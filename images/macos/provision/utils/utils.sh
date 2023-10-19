@@ -177,8 +177,7 @@ brew_smart_install() {
         # get deps & cache em
 
         failed=true
-        for i in {1..10};
-        do
+        for i in {1..10}; do
             brew deps $tool_name > /tmp/$tool_name && failed=false || sleep 60
             if [ "$failed" = false ]; then
                 break
@@ -193,8 +192,7 @@ brew_smart_install() {
         for dep in `cat /tmp/$tool_name`; do
 
             failed=true
-            for i in {1..10};
-            do
+            for i in {1..10}; do
                 brew --cache $dep && failed=false || sleep 60
                 if [ "$failed" = false ]; then
                     break
