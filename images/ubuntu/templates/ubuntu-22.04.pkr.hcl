@@ -235,18 +235,6 @@ build {
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline          = [
-      "echo '/imagegeneration' && ls -la /imagegeneration",
-      "echo '/imagegeneration/installers' && ls -la /imagegeneration/installers",
-      "echo '/imagegeneration/helpers' && ls -la /imagegeneration/helpers",
-      "echo '/imagegeneration/docs-gen' && ls -la /imagegeneration/docs-gen",
-      "echo '/imagegeneration/post-gen' && ls -la /imagegeneration/post-gen",
-      "echo '/imagegeneration/tests' && ls -la /imagegeneration/tests"
-    ]
-  }
-
-  provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = [
       "mv ${var.image_folder}/docs-gen ${var.image_folder}/SoftwareReport",
       "mv ${var.image_folder}/post-gen ${var.image_folder}/post-generation"
     ]
