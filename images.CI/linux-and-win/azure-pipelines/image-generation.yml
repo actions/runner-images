@@ -65,9 +65,9 @@ jobs:
       targetType: 'inline'
       script: |
         $ImageType = "${{ parameters.image_type }}"
-        $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "windows/templates" }
+        $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "ubuntu/templates" } else { "windows/templates" }
         $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
-        
+
         $TemplateFileName = "${{ parameters.image_template_name }}"
         if ($TemplateFileName) {
           $TemplatePath = Join-Path $TemplateDirectoryPath $TemplateFileName
