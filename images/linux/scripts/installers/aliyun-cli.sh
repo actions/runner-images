@@ -16,17 +16,18 @@ if isUbuntu20; then
     download_url="https://github.com/aliyun/aliyun-cli/releases/download/v$toolset_version/aliyun-cli-linux-$toolset_version-amd64.tgz"
     hash_url="https://github.com/aliyun/aliyun-cli/releases/download/v$toolset_version/SHASUMS256.txt"
 else
-    download_url="https://aliyuncli.alicdn.com/aliyun-cli-linux-latest-amd64.tgz"
+    download_url=$(get_github_package_download_url "aliyun/aliyun-cli" "contains(\"aliyun-cli-linux\") and endswith(\"amd64.tgz\")")
     hash_url="https://github.com/aliyun/aliyun-cli/releases/latest/download/SHASUMS256.txt"
 fi
 
-download_with_retries "$download_url" "/tmp" "aliyun-cli-linux-amd64.tgz"
+package_name="aliyun-cli-linux-amd64.tgz"
+download_with_retries "$download_url" "/tmp" "$package_name"
 
 # Supply chain security - Alibaba Cloud CLI
 external_hash=$(get_hash_from_remote_file "$hash_url" "aliyun-cli-linux" "amd64.tgz")
-use_checksum_comparison "/tmp/aliyun-cli-linux-amd64.tgz" "$external_hash"
+use_checksum_comparison "/tmp/$package_name" "$external_hash"
 
-tar xzf /tmp/aliyun-cli-linux-amd64.tgz
+tar xzf "/tmp/$package_name"
 mv aliyun /usr/local/bin
 
 invoke_tests "CLI.Tools" "Aliyun CLI"
