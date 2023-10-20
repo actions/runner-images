@@ -173,6 +173,38 @@ brew_smart_install() {
         brew install --build-from-source $tool_name
     else
         echo "Downloading $tool_name..."
+
+        # get deps & cache em
+
+        failed=true
+        for i in {1..10}; do
+            brew deps $tool_name > /tmp/$tool_name && failed=false || sleep 60
+            if [ "$failed" = false ]; then
+                break
+            fi
+        done
+
+        if [ "$failed" = true ]; then
+           echo "Failed: brew deps $tool_name"
+           exit 1;
+        fi
+
+        for dep in $(cat /tmp/$tool_name); do
+
+            failed=true
+            for i in {1..10}; do
+                brew --cache $dep && failed=false || sleep 60
+                if [ "$failed" = false ]; then
+                    break
+                fi
+            done
+
+            if [ "$failed" = true ]; then
+               echo "Failed: brew --cache $dep"
+               exit 1;
+            fi
+        done
+
         brew install $tool_name
     fi
 }
