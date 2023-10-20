@@ -206,7 +206,7 @@ build {
   provisioner "file" {
     destination = "${local.image_folder}"
     sources     = [
-      "${path.root}/../post-gen",
+      "${path.root}/../assets/post-gen",
       "${path.root}/../scripts/tests"
     ]
   }
