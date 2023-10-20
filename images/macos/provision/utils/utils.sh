@@ -189,7 +189,7 @@ brew_smart_install() {
            exit 1;
         fi
 
-        for dep in `cat /tmp/$tool_name`; do
+        for dep in $(cat /tmp/$tool_name); do
 
             failed=true
             for i in {1..10}; do
