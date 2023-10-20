@@ -3,9 +3,9 @@
         "default": "14.2",
         "x64": {
             "versions": [
-                { "link": "14.2", "version": "14.2.0+14C18" },
-                { "link": "14.1", "version": "14.1.0+14B47b" },
-                { "link": "14.0.1", "version": "14.0.1+14A400", "symlinks": ["14.0"] },
+                { "link": "14.2", "version": "14.2.0+14C18", "install_runtimes": "true" },
+                { "link": "14.1", "version": "14.1.0+14B47b", "install_runtimes": "true" },
+                { "link": "14.0.1", "version": "14.0.1+14A400", "symlinks": ["14.0"], "install_runtimes": "true" },
                 { "link": "13.4.1", "version": "13.4.1+13F100", "symlinks": ["13.4"] },
                 { "link": "13.3.1", "version": "13.3.1+13E500a", "symlinks": ["13.3"] },
                 { "link": "13.2.1", "version": "13.2.1+13C100", "symlinks": ["13.2"] },
