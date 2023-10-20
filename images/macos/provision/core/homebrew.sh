@@ -27,10 +27,10 @@ brew analytics off
 
 # jq is required for further installation scripts
 echo "Installing jq..."
-brew install jq
+brew_smart_install jq
 
 echo "Installing curl..."
-brew install curl
+brew_smart_install curl
 
 echo "Installing wget..."
 brew_smart_install "wget"
