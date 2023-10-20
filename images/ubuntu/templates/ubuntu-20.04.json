@@ -118,18 +118,6 @@
         {
             "type": "shell",
             "inline": [
-                "echo '/imagegeneration' && ls -la /imagegeneration",
-                "echo '/imagegeneration/installers' && ls -la /imagegeneration/installers",
-                "echo '/imagegeneration/helpers' && ls -la /imagegeneration/helpers",
-                "echo '/imagegeneration/docs-gen' && ls -la /imagegeneration/docs-gen",
-                "echo '/imagegeneration/post-gen' && ls -la /imagegeneration/post-gen",
-                "echo '/imagegeneration/tests' && ls -la /imagegeneration/tests"
-            ],
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "inline": [
                 "mv {{user `image_folder`}}/docs-gen {{user `image_folder`}}/SoftwareReport",
                 "mv {{user `image_folder`}}/post-gen {{user `image_folder`}}/post-generation"
             ],
