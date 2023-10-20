@@ -14,11 +14,14 @@ curl -fsSL -v -o /usr/local/bin/kind $URL
 chmod +x /usr/local/bin/kind
 
 ## Install kubectl
-KUBECTL_VERSION=$(curl -fsSL "https://dl.k8s.io/release/stable.txt")
-KUBECTL_LINK="https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl"
-echo "Installing kubectl version: $KUBECTL_VERSION from $KUBECTL_LINK"
-curl -fsSL -v -o /usr/local/bin/kubectl $KUBECTL_LINK
-chmod +x /usr/local/bin/kubectl
+KUBECTL_MAJOR_VERSION=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
+curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBECTL_MAJOR_VERSION/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBECTL_MAJOR_VERSION/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update -y && sudo apt-get install -y kubectl
+rm -f /etc/apt/sources.list.d/kubernetes.list
+kubectl version
+
+
 
 # Install Helm
 echo "Installing Helm from https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3"
