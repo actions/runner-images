@@ -15,8 +15,9 @@ chmod +x /usr/local/bin/kind
 
 ## Install kubectl
 KUBECTL_VERSION=$(curl -fsSL "https://dl.k8s.io/release/stable.txt")
-echo "Installing kubectl version: $KUBECTL_VERSION from https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl"
-curl -fsSL -v -o /usr/local/bin/kubectl "https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl"
+KUBECTL_LINK="https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl"
+echo "Installing kubectl version: $KUBECTL_VERSION from $KUBECTL_LINK"
+curl -fsSL -v -o /usr/local/bin/kubectl $KUBECTL_LINK
 chmod +x /usr/local/bin/kubectl
 
 # Install Helm
