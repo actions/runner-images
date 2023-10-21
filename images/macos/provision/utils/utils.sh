@@ -189,11 +189,11 @@ brew_smart_install() {
            exit 1;
         fi
 
-        for dep in $(cat /tmp/$tool_name); do
+        for dep in $(cat /tmp/$tool_name) $tool_name; do
 
             failed=true
             for i in {1..10}; do
-                brew --cache $dep && failed=false || sleep 60
+                brew --cache $dep >/dev/null && failed=false || sleep 60
                 if [ "$failed" = false ]; then
                     break
                 fi
