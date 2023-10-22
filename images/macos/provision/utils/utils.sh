@@ -201,7 +201,17 @@ brew_smart_install() {
             fi
         done
 
-        brew install $tool_name
+        failed=true
+        for i in {1..10}; do
+            brew install $tool_name >/dev/null && failed=false || sleep 60
+            [ "$failed" = false ] && break
+        done
+
+        if [ "$failed" = true ]; then
+           echo "Failed: brew install $tool_name"
+           exit 1;
+        fi
+
     fi
 }
 
