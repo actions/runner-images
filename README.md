@@ -36,12 +36,11 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 [ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
 [ubuntu-20.04]: https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2004-Readme.md
-[windows-2022]: https://github.com/actions/runner-images/blob/main/images/win/Windows2022-Readme.md
-[windows-2019]: https://github.com/actions/runner-images/blob/main/images/win/Windows2019-Readme.md
+[windows-2022]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
+[windows-2019]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2019-Readme.md
 [macOS-11]: https://github.com/actions/runner-images/blob/main/images/macos/macos-11-Readme.md
 [macOS-12]: https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
 [macOS-13]: https://github.com/actions/runner-images/blob/main/images/macos/macos-13-Readme.md
-[macOS-10.15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
 ## Announcements
