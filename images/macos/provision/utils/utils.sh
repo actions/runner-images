@@ -127,6 +127,16 @@ should_build_from_source() {
     # we will get an empty variable notification in the logs
     set -u
 
+    if [[ "$tool_name" == "jq" ]]; then
+        if [[ "$os_name" == "big_sur" ]]; then
+            echo "true"
+            return
+        else
+            echo "false"
+            return
+        fi
+    fi
+
     # Geting tool info from brew to find available install methods except build from source
     local tool_info=$(brew info --json=v1 $tool_name)
     
