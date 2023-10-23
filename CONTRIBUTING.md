@@ -49,11 +49,11 @@ Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at 
 
 ### Ubuntu
 
-- Add script that will install and validate the tool and put the script in the `scripts/installers` folder.
-Use existing scripts such as [github-cli.sh](images/linux/scripts/installers/github-cli.sh) as a starting point.
-  - Use [helpers](images/linux/scripts/helpers/install.sh) to simplify installation process.
+- Add script that will install and validate the tool and put the script in the `scripts/build` folder.
+Use existing scripts such as [github-cli.sh](images/ubuntu/scripts/build/github-cli.sh) as a starting point.
+  - Use [helpers](images/ubuntu/scripts/helpers/install.sh) to simplify installation process.
   - Validation part should `exit 1` if any issue with installation.
-- Add changes to the software report generator `images/linux/scripts/SoftwareReport/SoftwareReport.Generator.ps1`. The software report generator is used to generate an image's README file, e.g. [Ubuntu2004-Readme.md](images/linux/Ubuntu2004-README.md) and it uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
+- Add changes to the software report generator `images/ubuntu/scripts/docs-gen/SoftwareReport.Generator.ps1`. The software report generator is used to generate an image's README file, e.g. [Ubuntu2004-Readme.md](images/ubuntu/Ubuntu2004-README.md) and it uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
 
 ### macOS
 
