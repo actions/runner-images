@@ -111,11 +111,6 @@ foreach($toolsetVersion in $toolsetVersions.versions)
             }
         }
         
-        #Temp patch for pypy3.9-v7.3.13-win64.zip checksum, delete me when pypy.org will be fixed
-        if ($filename -ilike "*pypy3.9-v7.3.13-win64*") {
-            $distributorFileHash = "09EA41154AD1DCD3E8378609A73196A6C108B17AA05EF3CBB240610744102803"
-        }
-
         Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $distributorFileHash
         #endregion
 
