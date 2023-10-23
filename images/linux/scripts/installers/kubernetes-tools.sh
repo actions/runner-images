@@ -13,9 +13,11 @@ curl -fsSL -o /usr/local/bin/kind $URL
 chmod +x /usr/local/bin/kind
 
 ## Install kubectl
-KUBECTL_VERSION=$(curl -fsSL "https://dl.k8s.io/release/stable.txt")
-curl -fsSL -o /usr/local/bin/kubectl "https://dl.k8s.io/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl"
-chmod +x /usr/local/bin/kubectl
+KUBECTL_MINOR_VERSION=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
+curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBECTL_MINOR_VERSION/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$KUBECTL_MINOR_VERSION'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo apt-get update -y && sudo apt-get install -y kubectl
+rm -f /etc/apt/sources.list.d/kubernetes.list
 
 # Install Helm
 curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
