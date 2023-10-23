@@ -2,6 +2,7 @@
 ################################################################################
 ##  File:  kubernetes-tools.sh
 ##  Desc:  Installs kubectl, helm, kustomize
+##  Supply chain security: minikube - checksum validation
 ################################################################################
 
 # Source the helpers for use with the script
@@ -24,6 +25,11 @@ curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 
 # Install minikube
 curl -fsSL -O https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
+# Supply chain security - minikube
+minikube_hash=$(get_github_package_hash "kubernetes" "minikube" "linux-amd64" "" "latest" "false" ":" 2)
+use_checksum_comparison "minikube-linux-amd64" "$minikube_hash"
+
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
 # Install kustomize
