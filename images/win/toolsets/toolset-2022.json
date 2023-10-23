@@ -381,7 +381,10 @@
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
             { "name": "packer" },
-            { "name": "strawberryperl" },
+            {
+                "name": "strawberryperl" ,
+                "args": [ "--version", "5.32.1.1" ]
+            },
             { "name": "pulumi" },
             { "name": "tortoisesvn" },
             { "name": "swig" },

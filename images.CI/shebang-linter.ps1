@@ -22,7 +22,7 @@ function Validate-Scripts {
     return $ScriptWithoutShebangLine
 }
 
-$PathUbuntu = "./images/linux/scripts"
+$PathUbuntu = "./images/ubuntu/scripts"
 $PathMacOS = "./images/macos/provision"
 $PatternUbuntu = "#!/bin/bash -e"
 $PatternMacOS = "#!/bin/bash -e -o pipefail"
@@ -34,7 +34,7 @@ if ($ScriptsWithBrokenShebang.Length -gt 0) {
     $ScriptsWithBrokenShebang | ForEach-Object {
         Write-Host "##[error] '$_'"
     }
-    Write-Host "`n`n##[error] Expected shebang for scripts in 'images/linux' folder is '$PatternUbuntu'"
+    Write-Host "`n`n##[error] Expected shebang for scripts in 'images/ubuntu' folder is '$PatternUbuntu'"
     Write-Host "##[error] Expected shebang for scripts in 'images/macos' folder is '$PatternMacOS'"
     exit 1
     else {

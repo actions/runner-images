@@ -152,6 +152,42 @@ get_github_package_hash() {
     echo "$result"
 }
 
+get_hash_from_remote_file() {
+    local url=$1
+    local keywords=("$2" "$3")
+    local delimiter=${4:-' '}
+    local word_number=${5:-1}
+
+    if [[ -z "${keywords[0]}" || -z "$url" ]]; then
+        echo "File name and/or URL is not specified."
+        exit 1
+    fi
+
+    matching_line=$(curl -fsSL "$url" | tr -d '`')
+    for keyword in "${keywords[@]}"; do
+        matching_line=$(echo "$matching_line" | grep "$keyword")
+    done
+
+    if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
+        echo "Multiple lines found including the words: ${keywords[*]}. Please use a more specific filter."
+        exit 1
+    fi
+
+    if [[ -z "$matching_line" ]]; then
+        echo "Keywords (${keywords[*]}) not found in the file with hashes."
+        exit 1
+    fi
+
+    result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
+    if [[ ${#result} -ne 64 && ${#result} -ne 128 ]]; then
+        echo "Invalid result length. Expected 64 or 128 characters. Please check delimiter and/or word_number parameters."
+        echo "Result: $result"
+        exit 1
+    fi
+
+    echo "$result"
+}
+
 use_checksum_comparison() {
     local file_path=$1
     local checksum=$2

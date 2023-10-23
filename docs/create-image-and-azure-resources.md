@@ -269,10 +269,10 @@ Generated tool versions and details can be found in related projects:
 
 > :warning: These scripts are intended to run on a VM deployed in Azure
 
-The user, created during the image generation, does not exist in the result image hence some configuration files related to the user's home directory need to be changed as well as the file permissions for some directories. Scripts for that are located in the `post-generation` folder in the repository:
+The user, created during the image generation, does not exist in the result image hence some configuration files related to the user's home directory need to be changed as well as the file permissions for some directories. Scripts for that are located in the `post-gen` folder in the repository:
 
 - Windows: <https://github.com/actions/runner-images/tree/main/images/win/post-generation>
-- Linux: <https://github.com/actions/runner-images/tree/main/images/linux/post-generation>
+- Linux: <https://github.com/actions/runner-images/tree/main/images/ubuntu/assets/post-gen>
 
 **Note:** The default user for Linux should have `sudo privileges`.
 

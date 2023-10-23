@@ -73,6 +73,8 @@ function Install-JavaJDK {
 
     # We have to replace '+' sign in the version to '-' due to the issue with incorrect path in Android builds https://github.com/actions/runner-images/issues/3014
     $fullJavaVersion = $asset.version.semver -replace '\+', '-'
+    # Remove 'LTS' suffix from the version if present
+    $fullJavaVersion = $fullJavaVersion -replace '\.LTS$', ''
     # Create directories in toolcache path
     $javaToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Java_Temurin-Hotspot_jdk"
     $javaVersionPath = Join-Path -Path $javaToolcachePath -ChildPath $fullJavaVersion

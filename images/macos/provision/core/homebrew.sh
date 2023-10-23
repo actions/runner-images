@@ -5,8 +5,8 @@ source ~/utils/utils.sh
 arch=$(get_arch)
 
 echo "Installing Homebrew..."
-HOMEBREW_INSTALL_URL="https://raw.githubusercontent.com/Homebrew/install/master/install.sh"
-/bin/bash -c "$(curl -fsSL ${HOMEBREW_INSTALL_URL})"
+download_with_retries "https://raw.githubusercontent.com/Homebrew/install/master/install.sh" "/tmp" "homebrew-install.sh"
+/bin/bash /tmp/homebrew-install.sh
 
 if [[ $arch == "arm64" ]]; then
   /opt/homebrew/bin/brew update
@@ -27,10 +27,10 @@ brew analytics off
 
 # jq is required for further installation scripts
 echo "Installing jq..."
-brew install jq
+brew_smart_install jq
 
 echo "Installing curl..."
-brew install curl
+brew_smart_install curl
 
 echo "Installing wget..."
 brew_smart_install "wget"
