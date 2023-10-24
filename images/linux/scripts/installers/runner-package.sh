@@ -16,5 +16,4 @@ URL = "https://github.com/actions/runner/releases/download/v${LATEST_VERSION}/ac
 FILE_NAME = "actions-runner-linux-x64-${LATEST_VERSION}.tar.gz"
 
 
-download_with_retries "${URL}" "/tmp" "${FILE_NAME}"
-tar xzf "/temp/${FILE_NAME}"
+download_with_retries "${URL}" "/opt/runner-cache" "${FILE_NAME}"
