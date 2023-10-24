@@ -29,21 +29,21 @@
         }
     },
     "android": {
-        "cmdline-tools": "commandlinetools-mac-9123335_latest.zip",
-        "platform_min_version": "27",
-        "build_tools_min_version": "27.0.0",
+        "cmdline-tools": "commandlinetools-mac-10406996_latest.zip",
+        "sdk-tools": "sdk-tools-darwin-4333796.zip",
+        "platform_min_version": "33",
+        "build_tools_min_version": "33.0.2",
         "extra-list": [
             "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
         "addon-list": [],
         "additional-tools": [
-            "cmake;3.18.1",
             "cmake;3.22.1"
         ],
         "ndk": {
-            "default": "25",
+            "default": "26",
             "versions": [
-                "23", "24", "25", "26"
+                "24", "25", "26"
             ]
         }
     },
@@ -83,7 +83,8 @@
     "gcc": {
         "versions": [
             "11",
-            "12"
+            "12",
+            "13"
         ]
     },
     "dotnet": {
@@ -120,12 +121,14 @@
                         "3.8.*",
                         "3.9.*",
                         "3.10.*",
-                        "3.11.*"
+                        "3.11.*",
+                        "3.12.*"
                     ]
                 },
                 "arm64": {
                     "versions": [
-                        "3.11.*"
+                        "3.11.*",
+                        "3.12.*"
                     ]
                 }
             }

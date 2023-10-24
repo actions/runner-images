@@ -44,9 +44,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
 }
 $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
+$languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MSBuildVersion))
-    $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
     $languageAndRuntime.AddToolVersion("NVM", $(Get-NVMVersion))
     $languageAndRuntime.AddToolVersionsListInline("NVM - Cached node versions", $(Get-NVMNodeVersionList), '^\d+')
 }
@@ -211,11 +211,9 @@ $browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
 $java = $installedSoftware.AddHeader("Java")
 $java.AddTable($(Get-JavaVersions))
 
-if (-not $os.IsVenturaArm64) {
-    # Toolcache
-    $toolcache = $installedSoftware.AddHeader("Cached Tools")
-    $toolcache.AddNodes($(Build-ToolcacheSection))
-}
+# Toolcache
+$toolcache = $installedSoftware.AddHeader("Cached Tools")
+$toolcache.AddNodes($(Build-ToolcacheSection))
 
 # Rust
 $rust = $installedSoftware.AddHeader("Rust Tools")
