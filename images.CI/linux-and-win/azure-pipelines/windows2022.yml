@@ -3,7 +3,7 @@ schedules:
   displayName: Daily
   branches:
     include:
-    - main
+    - windows-new-dir-hierarchy
   always: true
 
 trigger: none
@@ -11,7 +11,7 @@ pr:
   autoCancel: true
   branches:
     include:
-    - main
+    - windows-new-dir-hierarchy
 
 jobs:
 - template: image-generation.yml
