@@ -15,6 +15,17 @@ swift_tar_name="swift-$swift_version-RELEASE-ubuntu$image_label.tar.gz"
 swift_tar_url="https://swift.org/builds/swift-$swift_version-release/ubuntu${image_label//./}/swift-$swift_version-RELEASE/$swift_tar_name"
 download_with_retries $swift_tar_url "/tmp" "$swift_tar_name"
 
+# Verifing pgp signature using official swift pgp key. Referring to https://www.swift.org/install/linux/#Installation-via-Tarball
+# Download swift pgp key
+download_with_retries "https://swift.org/keys/all-keys.asc" "/tmp" "all-keys.asc"
+# Import swift pgp key
+gpg --import /tmp/all-keys.asc
+# Download signature file
+download_with_retries "$swift_tar_url.sig" "/tmp" "$swift_tar_name.sig"
+# Verify signature
+gpg --verify "/tmp/$swift_tar_name.sig" "/tmp/$swift_tar_name"
+
+
 tar xzf /tmp/$swift_tar_name
 
 SWIFT_INSTALL_ROOT="/usr/share/swift"
