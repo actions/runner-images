@@ -3,7 +3,7 @@ schedules:
   displayName: Daily
   branches:
     include:
-    - main
+    - ubuntu-new-folder-structure
   always: true
 
 trigger: none
@@ -11,7 +11,7 @@ pr:
   autoCancel: true
   branches:
     include:
-    - main
+    - ubuntu-new-folder-structure
 
 jobs:
 - template: image-generation.yml
