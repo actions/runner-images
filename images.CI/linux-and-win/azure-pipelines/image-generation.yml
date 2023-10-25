@@ -113,8 +113,12 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        $readmePath = Join-Path "$(TemplateDirectoryPath)" "${{ parameters.image_readme_name }}"
-        $softwareReportPath = Join-Path "$(TemplateDirectoryPath)" "software-report.json"
+        $ImageType = "${{ parameters.image_type }}"
+        $rootDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "windows" }
+        $rootDirectoryPath = Join-Path "images" $rootDirectoryName | Resolve-Path
+        
+        $readmePath = Join-Path $rootDirectoryPath "${{ parameters.image_readme_name }}"
+        $softwareReportPath = Join-Path $rootDirectoryPath "software-report.json"
 
         Copy-Item -Path $readmePath -Destination "$(Build.ArtifactStagingDirectory)/"
         if (Test-Path $softwareReportPath) {
