@@ -73,6 +73,6 @@ rm $gpg_key
 rm $repo_path
 
 invoke_tests "Tools" "Docker"
-if [ "${DOCKERHUB_PULL_IMAGES:-yes}" -eq "yes" ]; then
+if [ "${DOCKERHUB_PULL_IMAGES:-yes}" == "yes" ]; then
     invoke_tests "Tools" "Docker images"
 fi
