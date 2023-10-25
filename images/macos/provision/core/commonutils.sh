@@ -19,7 +19,7 @@ for package in $cask_packages; do
             # macOS host: Dropped all kernel extensions. VirtualBox relies fully on the hypervisor and vmnet frameworks provided by Apple now.
             vbcask_url="https://raw.githubusercontent.com/Homebrew/homebrew-cask/aa3c55951fc9d687acce43e5c0338f42c1ddff7b/Casks/virtualbox.rb"
             download_with_retries $vbcask_url
-            brew install ./virtualbox.rb
+            brew install ./virtualbox.rb || true
             rm ./virtualbox.rb
         fi
     else
