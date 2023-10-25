@@ -199,7 +199,7 @@ get_github_package_download_url() {
     done
 
     if [ "$failed" = true ]; then
-       echo "Failed: brew --cache $dep"
+       echo "Failed: get_github_package_download_url"
        exit 1;
     fi
 
