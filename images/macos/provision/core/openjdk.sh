@@ -34,7 +34,7 @@ installOpenJDK() {
     if [[ $arch == "arm64" ]]; then
         asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="aarch64")' /tmp/openjdk-hotspot.json)
     else
-        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")' /tmp/openjsdk-hotspot.json)
+        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")' /tmp/openjdk-hotspot.json)
     fi
 
     archivePath=$(echo ${asset} | jq -r '.binary.package.link')
