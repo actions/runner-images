@@ -9,8 +9,7 @@ source $HELPER_SCRIPTS/install.sh
 
 DOWNLOAD_URL = $(get_github_package_download_url "actions/runner" "contains(\"actions-runner-linux-x64-\") and endswith(\".tar.gz\")" "latest")
 
-LATEST_VERSION = echo ${DOWNLOAD_URL##*/}
-FILE_NAME = "actions-runner-linux-x64-${LATEST_VERSION}.tar.gz"
+FILE_NAME = echo ${DOWNLOAD_URL##*/}
 
 mkdir -p /opt/runner-cache
 
