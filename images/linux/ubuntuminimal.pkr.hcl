@@ -258,8 +258,7 @@ build {
     scripts          = [
                         "${path.root}/scripts/installers/git.sh",
                         "${path.root}/scripts/installers/github-cli.sh",
-                        "${path.root}/scripts/installers/zstd.sh",
-                        "${path.root}/scripts/installers/runner-package.sh"
+                        "${path.root}/scripts/installers/zstd.sh"
     ]
   }
 
