@@ -32,7 +32,7 @@ installOpenJDK() {
     download_with_retries "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot" "/tmp" "openjdk-hotspot.json"
 
     if [[ $arch == "arm64" ]]; then
-        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="aarch64")' /tmp/openjsdk-hotspot.json)
+        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="aarch64")' /tmp/openjdk-hotspot.json)
     else
         asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")' /tmp/openjsdk-hotspot.json)
     fi
