@@ -67,6 +67,13 @@ Describe "Helm" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64) 
     }
 }
 
+Describe "Tcl/Tk" {
+    It "libtcl" {
+        "file /usr/local/lib/libtcl8.6.dylib" | Should -ReturnZeroExitCode
+        "file /usr/local/lib/libtk8.6.dylib" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "bazelisk" {
     It "bazelisk" {
         "bazelisk version" | Should -ReturnZeroExitCode
@@ -164,9 +171,9 @@ Describe "Homebrew" {
 }
 
 Describe "Kotlin" {
-    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
 
-    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object {  @{ toolName = $_ } })  { 
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) { 
         "$toolName -version" | Should -ReturnZeroExitCode
     }
 }
