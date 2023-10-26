@@ -2,8 +2,8 @@
 source ~/utils/utils.sh
 
 # Retrieve the CLI version of the latest CodeQL bundle.
-base_url="$(curl -fsSL https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json)"
-bundle_version="$(echo "$base_url" | jq -r '.cliVersion')"
+download_with_retries https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json "/tmp" "codeql-defaults.json"
+bundle_version="$(jq -r '.cliVersion' /tmp/codeql-defaults.json)"
 bundle_tag_name="codeql-bundle-v$bundle_version"
 
 echo "Downloading CodeQL bundle $bundle_version..."

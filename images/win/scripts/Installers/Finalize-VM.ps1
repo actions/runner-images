@@ -89,6 +89,9 @@ $regUserServicesToDisables | ForEach-Object {
 } | Out-Null
 
 
+Write-Host 'Disable Windows Update Service'
+Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Services\wuauserv -Name Start -Value 4 -Force
+
 # Disabled services
 $servicesToDisable = @(
     'wuauserv'
@@ -102,6 +105,7 @@ $servicesToDisable = @(
 )
 
 $servicesToDisable | ForEach-Object {
+    Stop-Service -Name $_
     Set-Service -Name $_ -StartupType Disabled -ErrorAction Ignore
 } | Out-Null
 
