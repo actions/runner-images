@@ -36,6 +36,7 @@ fi
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
 if is_Monterey; then
     if is_Veertu; then
+        echo "Executing AppleScript to change security preferences (with retries)"
         retry=5
         while [ $retry -gt 0 ]; do
             {
@@ -48,6 +49,7 @@ if is_Monterey; then
             sleep 10
         done
     else
+        echo "Executing AppleScript to change security preferences"
         osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
     fi
 fi
@@ -81,14 +83,6 @@ bazel
 
 # Install Azure DevOps extension for Azure Command Line Interface
 az extension add -n azure-devops
-
-# Workaround https://github.com/actions/runner-images/issues/4931
-# by making Tcl/Tk paths the same on macOS 10.15 and macOS 11
-if is_Monterey; then
-    version=$(brew info tcl-tk --json | jq -r '.[].installed[].version')
-    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtcl8.6.dylib /usr/local/lib/libtcl8.6.dylib
-    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtk8.6.dylib /usr/local/lib/libtk8.6.dylib
-fi
 
 # Invoke tests for all basic tools
 invoke_tests "BasicTools"
