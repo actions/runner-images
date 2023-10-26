@@ -1,10 +1,6 @@
-| Announcements |
-|-|
-| [[All OS] Android NDK r23 will be removed from images on October 9](https://github.com/actions/runner-images/issues/8383) |
-***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2031
-- Image Version: 20231023.1.0
+- Image Version: 20231024.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -33,7 +29,7 @@
 - pip 23.3.1 (python 3.9)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 830f86fb3)
+- Vcpkg (build from commit 7a6f366ce)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -46,7 +42,7 @@
 - Ant 1.10.14
 - Gradle 8.4
 - Maven 3.8.7
-- sbt 1.9.6
+- sbt 1.9.7
 
 ### Tools
 - 7zip 23.01
@@ -78,7 +74,7 @@
 - NSIS 3.08
 - OpenSSL 1.1.1w
 - Packer 1.9.4
-- Pulumi 3.89.0
+- Pulumi 3.90.0
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.13.1
@@ -95,7 +91,7 @@
 - AWS CLI 2.13.28
 - AWS SAM CLI 1.99.0
 - AWS Session Manager CLI 1.2.497.0
-- Azure CLI 2.53.0
+- Azure CLI 2.53.1
 - Azure DevOps CLI extension 0.26.0
 - GitHub CLI 2.37.0
 
@@ -107,18 +103,18 @@
 
 #### Packages
 - bindgen 0.68.1
-- cargo-audit 0.18.2
+- cargo-audit 0.18.3
 - cargo-outdated 0.13.1
 - cbindgen 0.26.0
 - Clippy 0.1.73
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 118.0.5993.89
+- Google Chrome 118.0.5993.118
 - Chrome Driver 118.0.5993.70
 - Microsoft Edge 118.0.2088.61
 - Microsoft Edge Driver 118.0.2088.61
-- Mozilla Firefox 118.0.2
+- Mozilla Firefox 119.0
 - Gecko Driver 0.33.0
 - IE Driver 4.14.0.0
 - Selenium server 4.14.0
@@ -222,9 +218,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.25.2  | C:\tools\nginx-1.25.2\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.7.34202.233 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.7.34221.43 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -301,9 +297,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | microsoft.net.runtime.mono.tooling.net6                                   | 7.0.1223.47720  |
 | microsoft.net.sdk.emscripten.net7                                         | 7.0.8.43102     |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 17.7.33905.399  |
-| Microsoft.NetCore.Component.Runtime.6.0                                   | 17.7.34202.233  |
-| Microsoft.NetCore.Component.Runtime.7.0                                   | 17.7.34202.233  |
-| Microsoft.NetCore.Component.SDK                                           | 17.7.34202.233  |
+| Microsoft.NetCore.Component.Runtime.6.0                                   | 17.7.34221.43   |
+| Microsoft.NetCore.Component.Runtime.7.0                                   | 17.7.34221.43   |
+| Microsoft.NetCore.Component.SDK                                           | 17.7.34221.43   |
 | Microsoft.NetCore.Component.Web                                           | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.AspNet                                   | 17.7.33905.399  |
@@ -555,11 +551,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.22621.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.123, 6.0.203, 6.0.318, 6.0.415, 7.0.402
+- .NET Core SDK: 6.0.124, 6.0.203, 6.0.319, 6.0.416, 7.0.403
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 6.0.5, 6.0.23, 7.0.12
-- Microsoft.NETCore.App: 6.0.5, 6.0.23, 7.0.12
-- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.23, 7.0.12
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.23, 6.0.24, 7.0.13
+- Microsoft.NETCore.App: 6.0.5, 6.0.23, 6.0.24, 7.0.13
+- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.24, 7.0.13
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
@@ -572,7 +568,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.435
+- AWSPowershell: 4.1.436
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.8.0
@@ -621,4 +617,3 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:180b44ab71dfd238ab4428baf047fee08663de4c317de0bce0887f12e4c7734c  | 2023-10-10 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:0e6791612f9448aa2e6713d95ffabdefa26122b58a0b341aace6b5a2d65aee8c  | 2023-10-06 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:40525c24f8e0a1cd4feca7330cf0bcdf125c0f7f2158852f4701dbe7ded2dd7f  | 2023-10-06 |
-
