@@ -19,7 +19,7 @@ download_with_retries $swift_tar_url "/tmp" "$swift_tar_name"
 # Download swift pgp key
 download_with_retries "https://swift.org/keys/all-keys.asc" "/tmp" "all-keys.asc"
 # Import swift pgp key
-gpg --no-default-keyring --keyring swift --verify --import /tmp/all-keys.asc
+gpg --no-default-keyring --keyring swift --import /tmp/all-keys.asc
 # Download signature file
 download_with_retries "$swift_tar_url.sig" "/tmp" "$swift_tar_name.sig"
 # Verify signature
