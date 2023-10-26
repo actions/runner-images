@@ -169,9 +169,7 @@
                 "{{ template_dir }}/scripts/Installers/Install-VCRedist.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-Runner.ps1"
-
+                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
             ]
         },
         {
@@ -280,7 +278,6 @@
                 "{{ template_dir }}/scripts/Installers/Configure-Shell.ps1",
                 "{{ template_dir }}/scripts/Installers/Enable-DeveloperMode.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-LLVM.ps1"
-
             ]
         },
         {
