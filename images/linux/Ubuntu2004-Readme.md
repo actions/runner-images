@@ -1,11 +1,7 @@
-| Announcements |
-|-|
-| [[All OS] Android NDK r23 will be removed from images on October 9](https://github.com/actions/runner-images/issues/8383) |
-***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1050-azure
-- Image Version: 20231022.1.0
+- Image Version: 20231025.1.0
 - Systemd version: 245.4-4ubuntu3.22
 
 ## Installed Software
@@ -33,15 +29,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.13.1
-- Homebrew 4.1.16
+- Homebrew 4.1.17
 - Miniconda 23.9.0
 - Npm 9.8.1
 - NuGet 6.6.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
-- Pipx 1.2.0
+- Pipx 1.2.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 830f86fb3)
+- Vcpkg (build from commit 213c01f87)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -63,12 +59,12 @@ to accomplish this.
 - Gradle 8.4
 - Lerna 7.4.1
 - Maven 3.8.8
-- Sbt 1.9.6
+- Sbt 1.9.7
 
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.9.12
-- AzCopy 10.21.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.21.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.4.0
 - Bazelisk 1.18.0
 - Bicep 0.22.6
@@ -86,7 +82,7 @@ to accomplish this.
 - Git LFS 3.4.0
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 8.6.0
+- Heroku 8.7.0
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.20.0
@@ -99,12 +95,12 @@ to accomplish this.
 - n 9.2.0
 - Newman 6.0.0
 - nvm 0.39.5
-- OpenSSL 1.1.1f-1ubuntu2.19
+- OpenSSL 1.1.1f-1ubuntu2.20
 - Packer 1.9.4
-- Parcel 2.10.0
+- Parcel 2.10.1
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.89.0
+- Pulumi 3.90.1
 - R 4.3.1
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -116,15 +112,15 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.13.28
+- AWS CLI 2.13.29
 - AWS CLI Session Manager Plugin 1.2.497.0
 - AWS SAM CLI 1.99.0
-- Azure CLI 2.53.0
+- Azure CLI 2.53.1
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.37.0
-- Google Cloud CLI 451.0.1
-- Netlify CLI 16.9.1
-- OpenShift CLI 4.13.17
+- Google Cloud CLI 452.0.0
+- Netlify CLI 16.9.2
+- OpenShift CLI 4.13.18
 - ORAS CLI 1.1.0
 - Vercel CLI 32.5.0
 
@@ -158,17 +154,17 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 #### Packages
 - Bindgen 0.68.1
-- Cargo audit 0.18.2
+- Cargo audit 0.18.3
 - Cargo clippy 0.1.73
 - Cargo outdated 0.13.1
 - Cbindgen 0.26.0
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 118.0.5993.88
+- Google Chrome 118.0.5993.117
 - ChromeDriver 118.0.5993.70
 - Chromium 118.0.5993.0
-- Microsoft Edge 118.0.2088.61
+- Microsoft Edge 118.0.2088.69
 - Microsoft Edge WebDriver 118.0.2088.61
 - Selenium server 4.14.0
 - Mozilla Firefox 119.0
@@ -183,7 +179,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.415, 7.0.112, 7.0.203, 7.0.309, 7.0.402
+- .NET Core SDK: 6.0.416, 7.0.113, 7.0.203, 7.0.310, 7.0.403
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
@@ -222,7 +218,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 14.21.3
 - 16.20.2
 - 18.18.2
-- 20.8.1
+- 20.9.0
 
 #### Python
 - 3.7.17
@@ -230,6 +226,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.18
 - 3.10.13
 - 3.11.6
+- 3.12.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.13]
@@ -309,8 +306,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:16-alpine          | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
 | node:18                 | sha256:a6385a6bb2fdcb7c48fc871e35e32af8daaa82c518900be49b76d10c005864c2  | 2023-10-18 |
 | node:18-alpine          | sha256:435dcad253bb5b7f347ebc69c8cc52de7c912eb7241098b920f2fc2d7843183d  | 2023-10-18 |
-| node:20                 | sha256:bd20621deff56cb66c6cd10772d26db1a0d480f2b08609eb96b799ba6260f3ed  | 2023-10-18 |
-| node:20-alpine          | sha256:002b6ee25b63b81dc4e47c9378ffe20915c3fa0e98e834c46584438468b1d0b5  | 2023-10-18 |
+| node:20                 | sha256:178f3b2d431a28b6df273ca5d169435850f1072745fff3f9b81000cc44daf500  | 2023-10-25 |
+| node:20-alpine          | sha256:4df6c64a9bc595ea1eb3782b909d257cd53300822f53d11f1a221a00cd61e983  | 2023-10-25 |
 | ubuntu:16.04            | sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6  | 2021-08-31 |
 | ubuntu:18.04            | sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98  | 2023-05-30 |
 | ubuntu:20.04            | sha256:ed4a42283d9943135ed87d4ee34e542f7f5ad9ecf2f244870e23122f703f91c2  | 2023-10-03 |
@@ -401,8 +398,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2                   |
 | xorriso                | 1.5.2-1                           |
-| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.8       |
+| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.9       |
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
-
