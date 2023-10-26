@@ -29,12 +29,12 @@ installOpenJDK() {
     local JAVA_VERSION=$1
 
     # Get link for Java binaries and Java version
-    assetUrl=$(curl -fsSL "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
+    download_with_retries "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot" "/tmp" "openjdk-hotspot.json"
 
     if [[ $arch == "arm64" ]]; then
-        asset=$(echo ${assetUrl} | jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="aarch64")')
+        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="aarch64")' /tmp/openjdk-hotspot.json)
     else
-        asset=$(echo ${assetUrl} | jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")')
+        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")' /tmp/openjdk-hotspot.json)
     fi
 
     archivePath=$(echo ${asset} | jq -r '.binary.package.link')
