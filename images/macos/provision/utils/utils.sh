@@ -15,15 +15,24 @@ download_with_retries() {
         local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
     fi
 
+    # Save current errexit state and disable it to prevent unexpected exit on error
+    if echo $SHELLOPTS | grep '\(^\|:\)errexit\(:\|$\)' > /dev/null;
+    then
+        local ERR_EXIT_ENABLED=true
+    else
+        local ERR_EXIT_ENABLED=false
+    fi
+    set +e
+
     echo "Downloading '$URL' to '${DEST}/${NAME}'..."
     retries=20
     interval=30
     while [ $retries -gt 0 ]; do
         ((retries--))
-        # Temporary disable exit on error to retry on non-zero exit code
-        set +e
+        test "$ERR_EXIT_ENABLED" = true && set +e
         http_code=$(eval $COMMAND)
         exit_code=$?
+        test "$ERR_EXIT_ENABLED" = true && set -e
         if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
             echo "Download completed"
             return 0
@@ -31,8 +40,6 @@ download_with_retries() {
             echo "Error — Either HTTP response code for '$URL' is wrong - '$http_code' or exit code is not 0 - '$exit_code'. Waiting $interval seconds before the next attempt, $retries attempts left"
             sleep 30
         fi
-        # Enable exit on error back
-        set -e
     done
 
     echo "Could not download $URL"
@@ -120,98 +127,50 @@ get_brew_os_keyword() {
     fi
 }
 
-should_build_from_source() {
-    local tool_name=$1
-    local os_name=$2
-    # If one of the parsers aborts with an error, 
-    # we will get an empty variable notification in the logs
-    set -u
-
-    # Geting tool info from brew to find available install methods except build from source
-    local tool_info=$(brew info --json=v1 $tool_name)
-    
-    # No need to build from source if a bottle is disabled
-    local bottle_disabled=$(echo -E $tool_info | jq ".[0].bottle_disabled")
-    if [[ $bottle_disabled == "true" ]]; then
-        echo "false"
-        return
-    fi
-
-    # No need to build from source if a universal bottle is available    
-    local all_bottle=$(echo -E $tool_info | jq ".[0].bottle.stable.files.all")
-    if [[ "$all_bottle" != "null" ]]; then
-        echo "false"
-        return
-    fi
-
-    # No need to build from source if a bottle for current OS is available
-    local os_bottle=$(echo -E $tool_info | jq ".[0].bottle.stable.files.$os_name")
-    if [[ "$os_bottle" != "null" ]]; then
-        echo "false"
-        return
-    fi
-
-    # Available method wasn't found - should build from source
-    echo "true"
-}
-
 # brew provides package bottles for different macOS versions
 # The 'brew install' command will fail if a package bottle does not exist
 # Use the '--build-from-source' option to build from source in this case
 brew_smart_install() {
     local tool_name=$1
 
-    local os_name=$(get_brew_os_keyword)
-    if [[ "$os_name" == "null" ]]; then
-        echo "$OSTYPE is unknown operating system"
-        exit 1
+    echo "Downloading $tool_name..."
+
+    # get deps & cache em
+
+    failed=true
+    for i in {1..10}; do
+        brew deps $tool_name > /tmp/$tool_name && failed=false || sleep 60
+        [ "$failed" = false ] && break
+    done
+
+    if [ "$failed" = true ]; then
+       echo "Failed: brew deps $tool_name"
+       exit 1;
     fi
 
-    local build_from_source=$(should_build_from_source "$tool_name" "$os_name")
-    if $build_from_source; then
-        echo "Bottle of the $tool_name for the $os_name was not found. Building $tool_name from source..."
-        brew install --build-from-source $tool_name
-    else
-        echo "Downloading $tool_name..."
+    for dep in $(cat /tmp/$tool_name) $tool_name; do
 
-        # get deps & cache em
+    failed=true
+    for i in {1..10}; do
+        brew --cache $dep >/dev/null && failed=false || sleep 60
+        [ "$failed" = false ] && break
+    done
 
-        failed=true
-        for i in {1..10}; do
-            brew deps $tool_name > /tmp/$tool_name && failed=false || sleep 60
-            [ "$failed" = false ] && break
-        done
+    if [ "$failed" = true ]; then
+       echo "Failed: brew --cache $dep"
+       exit 1;
+    fi
+    done
 
-        if [ "$failed" = true ]; then
-           echo "Failed: brew deps $tool_name"
-           exit 1;
-        fi
+    failed=true
+    for i in {1..10}; do
+        brew install $tool_name >/dev/null && failed=false || sleep 60
+        [ "$failed" = false ] && break
+    done
 
-        for dep in $(cat /tmp/$tool_name) $tool_name; do
-
-            failed=true
-            for i in {1..10}; do
-                brew --cache $dep >/dev/null && failed=false || sleep 60
-                [ "$failed" = false ] && break
-            done
-
-            if [ "$failed" = true ]; then
-               echo "Failed: brew --cache $dep"
-               exit 1;
-            fi
-        done
-
-        failed=true
-        for i in {1..10}; do
-            brew install $tool_name >/dev/null && failed=false || sleep 60
-            [ "$failed" = false ] && break
-        done
-
-        if [ "$failed" = true ]; then
-           echo "Failed: brew install $tool_name"
-           exit 1;
-        fi
-
+    if [ "$failed" = true ]; then
+       echo "Failed: brew install $tool_name"
+       exit 1;
     fi
 }
 
@@ -240,7 +199,18 @@ get_github_package_download_url() {
 
     [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
 
-    json=$(curl "${authString[@]}" -fsSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
+    failed=true
+    for i in {1..10}; do
+        curl "${authString[@]}" -fsSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}" >/tmp/get_github_package_download_url.json && failed=false || sleep 60
+        [ "$failed" = false ] && break
+    done
+
+    if [ "$failed" = true ]; then
+       echo "Failed: get_github_package_download_url"
+       exit 1;
+    fi
+
+    json=$(cat /tmp/get_github_package_download_url.json)
 
     if [[ "$VERSION" == "latest" ]]; then
         tagName=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0)).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | tail -1)
