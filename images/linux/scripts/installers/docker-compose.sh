@@ -5,6 +5,9 @@
 ##  Supply chain security: Docker Compose v1 - checksum validation
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/install.sh
+
 # Install docker-compose v1 from releases
 URL="https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64"
 curl -fsSL "${URL}" -o /tmp/docker-compose-v1
