@@ -10,8 +10,11 @@ source $HELPER_SCRIPTS/os.sh
 
 # Install libssl1.1 dependency
 if isUbuntu22; then
-    download_with_retries "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb" "/tmp"
-    dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb
+    # Collect info about openssl releases, filtering out the latest one libssl1.1 deb package for amd64, cut name prefix for a link
+    base_url="http://security.ubuntu.com/ubuntu/pool/main/o/openssl"
+    deb_name_prefix=$(curl -s "${base_url}" | grep -o '"libssl1\.1_1\.1\.[0-9][a-z]-[0-9]ubuntu[0-9].*_amd64\.deb"' | sed 's/"//g' | sed 's/_amd64.deb//g' | sort -V | tail -n 1)
+    download_with_retries "${base_url}/${deb_name_prefix}_amd64.deb" "/tmp"
+    dpkg -i "/tmp/${deb_name_prefix}_amd64.deb"
 fi
 
 # Install SqlPackage
