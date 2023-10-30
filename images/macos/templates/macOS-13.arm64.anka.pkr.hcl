@@ -122,7 +122,6 @@ build {
   }
   provisioner "shell" {
     scripts = [
-      "./provision/core/xcode-clt.sh",
       "./provision/core/homebrew.sh",
       "./provision/core/rosetta.sh"
     ]
