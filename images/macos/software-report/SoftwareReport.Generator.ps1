@@ -159,8 +159,6 @@ if ($os.IsBigSur) {
 }
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $tools.AddToolVersion("App Center CLI", $(Get-AppCenterCLIVersion))
-}
-if (-not $os.IsVenturaArm64) {
     $tools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
     $tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
     $tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersion))

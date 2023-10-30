@@ -199,7 +199,6 @@ build {
       "./provision/core/swiftlint.sh",
       "./provision/core/openjdk.sh",
       "./provision/core/php.sh",
-      "./provision/core/aws.sh",
       "./provision/core/rust.sh",
       "./provision/core/gcc.sh",
       "./provision/core/haskell.sh",
