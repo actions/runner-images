@@ -1,7 +1,7 @@
 jobs:
 - job: Image_generation
   displayName: Image Generation (${{ parameters.image_label }})
-  timeoutInMinutes: 720
+  timeoutInMinutes: 1200
   pool:
     name: Mac-Cloud Image Generation
   variables:
