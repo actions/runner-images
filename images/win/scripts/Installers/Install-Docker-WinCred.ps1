@@ -5,16 +5,14 @@
 ################################################################################
 
 #region functions
-Function Get-DockerWincredHash
-{
- Param (
-    [Parameter(Mandatory = $True)]
-    [string] $Release
-)
+function Get-DockerWincredHash {
+    Param (
+        [Parameter(Mandatory = $True)]
+        [string] $Release
+    )
 
- $hashURL = "https://github.com/docker/docker-credential-helpers/releases/download/${Release}/checksums.txt "
- (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*docker-credential-wincred-${Release}.windows-amd64.exe*" }).Split(' ')[0]
-
+    $hashURL = "https://github.com/docker/docker-credential-helpers/releases/download/${Release}/checksums.txt"
+    (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*docker-credential-wincred-${Release}.windows-amd64.exe*" }).Split(' ')[0]
 }
 #endregion
 
