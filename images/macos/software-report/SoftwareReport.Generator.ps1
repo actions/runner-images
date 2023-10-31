@@ -44,9 +44,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
 }
 $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
+$languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MSBuildVersion))
-    $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
     $languageAndRuntime.AddToolVersion("NVM", $(Get-NVMVersion))
     $languageAndRuntime.AddToolVersionsListInline("NVM - Cached node versions", $(Get-NVMNodeVersionList), '^\d+')
 }
@@ -100,9 +100,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
 # Project Management
 $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
+$projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
+$projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
-    $projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
-    $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
@@ -172,7 +172,7 @@ if (-not $os.IsVenturaArm64) {
     $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
 }
 $tools.AddToolVersion("Cmake", $(Get-CmakeVersion))
-$tools.AddToolVersion("CodeQL Action Bundles", $(Get-CodeQLBundleVersions))
+$tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 if ($os.IsMonterey) {
     $tools.AddToolVersion("Colima", $(Get-ColimaVersion))
 }
@@ -202,21 +202,18 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $linters.AddToolVersion("Yamllint", $(Get-YamllintVersion))
 }
 
-if (-not $os.IsVenturaArm64) {
-    # Browsers
-    $browsers = $installedSoftware.AddHeader("Browsers")
-    $browsers.AddNodes($(Build-BrowserSection))
-    $browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
+# Browsers
+$browsers = $installedSoftware.AddHeader("Browsers")
+$browsers.AddNodes($(Build-BrowserSection))
+$browsers.AddNode($(Build-BrowserWebdriversEnvironmentTable))
 
-    # Java
-    $java = $installedSoftware.AddHeader("Java")
-    $java.AddTable($(Get-JavaVersions))
-}
-if (-not $os.IsVenturaArm64) {
-    # Toolcache
-    $toolcache = $installedSoftware.AddHeader("Cached Tools")
-    $toolcache.AddNodes($(Build-ToolcacheSection))
-}
+# Java
+$java = $installedSoftware.AddHeader("Java")
+$java.AddTable($(Get-JavaVersions))
+
+# Toolcache
+$toolcache = $installedSoftware.AddHeader("Cached Tools")
+$toolcache.AddNodes($(Build-ToolcacheSection))
 
 # Rust
 $rust = $installedSoftware.AddHeader("Rust Tools")

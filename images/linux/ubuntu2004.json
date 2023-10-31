@@ -196,6 +196,7 @@
         {
             "type": "shell",
             "scripts": [
+                "{{template_dir}}/scripts/installers/action-archive-cache.sh",
                 "{{template_dir}}/scripts/installers/apt-common.sh",
                 "{{template_dir}}/scripts/installers/azcopy.sh",
                 "{{template_dir}}/scripts/installers/azure-cli.sh",

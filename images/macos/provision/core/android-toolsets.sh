@@ -37,21 +37,37 @@ ANDROID_NDK_MAJOR_LATEST=$(get_toolset_value '.android.ndk."versions"[-1]')
 # Get the latest command line tools from https://developer.android.com/studio#cmdline-tools
 # Newer version(s) require Java 11 by default
 # See https://github.com/actions/runner-images/issues/6960
-ANDROID_OSX_SDK_URL="https://dl.google.com/android/repository/commandlinetools-mac-9123335_latest.zip"
 ANDROID_HOME=$HOME/Library/Android/sdk
 ANDROID_OSX_SDK_FILE=tools-macosx.zip
 
-pushd $HOME
+# Download the latest command line tools so that we can accept all of the licenses.
+# See https://developer.android.com/studio/#command-tools
+cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
+
+if [[ $cmdlineToolsVersion == "latest" ]]; then
+    repositoryXmlUrl="https://dl.google.com/android/repository/repository2-1.xml"
+    download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
+    cmdlineToolsVersion=$(
+    yq -p=xml \
+    '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-mac"))' \
+    /tmp/repository2-1.xml
+    )
+
+    if [[ -z $cmdlineToolsVersion ]]; then
+        echo "Failed to parse latest command-line tools version"
+        exit 1
+    fi
+fi
 
 echo "Downloading android command line tools..."
-download_with_retries $ANDROID_OSX_SDK_URL "." $ANDROID_OSX_SDK_FILE
+download_with_retries "https://dl.google.com/android/repository/${cmdlineToolsVersion}" /tmp $ANDROID_OSX_SDK_FILE
 
 echo "Uncompressing android command line tools..."
 mkdir -p $HOME/Library/Android/sdk
-unzip -q $ANDROID_OSX_SDK_FILE -d $HOME/Library/Android/sdk/cmdline-tools
+unzip -q /tmp/$ANDROID_OSX_SDK_FILE -d $HOME/Library/Android/sdk/cmdline-tools
 # Command line tools need to be placed in $HOME/Library/Android/sdk/cmdline-tools/latest to function properly
 mv $HOME/Library/Android/sdk/cmdline-tools/cmdline-tools $HOME/Library/Android/sdk/cmdline-tools/latest
-rm -f $ANDROID_OSX_SDK_FILE
+rm -f /tmp/$ANDROID_OSX_SDK_FILE
 
 echo ANDROID_HOME is $ANDROID_HOME
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest:$ANDROID_HOME/cmdline-tools/latest/bin
@@ -104,5 +120,14 @@ do
     echo "Installing additional tool $tool_name ..."
     echo y | $SDKMANAGER "$tool_name"
 done
+
+# Download SDK tools to preserve backward compatibility
+sdkTools="android-sdk-tools.zip"
+sdkToolsVersion=$(get_toolset_value '.android."sdk-tools"')
+if [ "$sdkToolsVersion" != "null" ]; then
+    download_with_retries "https://dl.google.com/android/repository/${sdkToolsVersion}" "." $sdkTools
+    unzip -o -qq $sdkTools -d ${ANDROID_SDK_ROOT}
+    rm -f $sdkTools
+fi
 
 invoke_tests "Android"

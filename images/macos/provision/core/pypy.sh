@@ -11,7 +11,7 @@ function InstallPyPy
     PACKAGE_URL=$1
 
     PACKAGE_TAR_NAME=$(echo $PACKAGE_URL | awk -F/ '{print $NF}')
-    echo "Downloading tar archive '$PACKAGE_TAR_NAME' - '$PACKAGE_URL'"
+    echo "Downloading tar archive '$PACKAGE_TAR_NAME'"
     PACKAGE_TAR_TEMP_PATH="/tmp/$PACKAGE_TAR_NAME"
     download_with_retries $PACKAGE_URL "/tmp" "$PACKAGE_TAR_NAME"
 
@@ -76,11 +76,11 @@ function InstallPyPy
 }
 
 arch=$(get_arch)
-pypyVersions=$(curl -fsSL https://downloads.python.org/pypy/versions.json)
+download_with_retries "https://downloads.python.org/pypy/versions.json" "/tmp" "pypy-versions.json"
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .arch.'$arch'.versions[]')
 
 for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(echo $pypyVersions |
+    latestMajorPyPyVersion=$(cat /tmp/pypy-versions.json |
         jq -r --arg toolsetVersion $toolsetVersion '.[]
         | select((.python_version | startswith($toolsetVersion)) and .stable == true).files[]
         | select(.platform == "darwin").download_url' | head -1)

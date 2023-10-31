@@ -13,7 +13,8 @@ echo "Version of Microsoft Edge: ${EDGE_VERSION}"
 echo "Installing Microsoft Edge WebDriver..."
 
 EDGE_DRIVER_VERSION_URL="https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION_MAJOR}_MACOS"
-EDGE_DRIVER_LATEST_VERSION=$(curl -fsSL "$EDGE_DRIVER_VERSION_URL" | iconv -f utf-16 -t utf-8 | tr -d '\r')
+download_with_retries "$EDGE_DRIVER_VERSION_URL" "/tmp" "edge-version"
+EDGE_DRIVER_LATEST_VERSION=$(cat /tmp/edge-version | iconv -f utf-16 -t utf-8 | tr -d '\r')
 EDGE_DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_LATEST_VERSION}/edgedriver_mac64.zip"
 
 echo "Compatible version of WebDriver: ${EDGE_DRIVER_LATEST_VERSION}"
@@ -38,9 +39,9 @@ popd > /dev/null
 # Configure Edge Updater to prevent auto update
 # https://learn.microsoft.com/en-us/deployedge/edge-learnmore-edgeupdater-for-macos
 
-mkdir "Library/Managed Preferences"
+sudo mkdir "/Library/Managed Preferences"
 
-cat <<EOF > "Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
+cat <<EOF | sudo tee "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist" > /dev/null
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -57,6 +58,6 @@ cat <<EOF > "Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
 </plist>
 EOF
 
-chown root:wheel "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
+sudo chown root:wheel "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
 
 invoke_tests "Browsers" "Edge"

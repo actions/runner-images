@@ -129,9 +129,11 @@
     ],
     "java": {
         "default": "8",
-        "versions": [ "8", "11", "17" ]
+        "versions": [ "8", "11", "17", "21"]
     },
     "android": {
+        "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",
+        "hash": "8A90E6A3DEB2FA13229B2E335EFD07687DCC8A55A3C544DA9F40B41404993E7D",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra_list": [
@@ -176,6 +178,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
+        "signature": "6E78B3DCE2998F6C2457C3E54DA90A01034916AE",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -247,24 +250,6 @@
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM64",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM64",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM64",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64",
             "Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM",
             "Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM64.Spectre",
@@ -352,10 +337,12 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "9.1.1436.9590"
+            "version": "9.1.1436.9590",
+            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
         },
         "sdk": {
-            "version": "6.1.1436"
+            "version": "6.1.1436",
+            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
         }
     },
     "dotnet": {
@@ -377,7 +364,10 @@
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
             { "name": "packer" },
-            { "name": "strawberryperl" },
+            {
+                "name": "strawberryperl" ,
+                "args": [ "--version", "5.32.1.1" ]
+            },
             { "name": "pulumi" },
             { "name": "tortoisesvn" },
             { "name": "swig" },
@@ -417,7 +407,8 @@
         "version": "8.2"
     },
     "postgresql": {
-        "version": "14"
+        "version": "14",
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
         "version": "latest",

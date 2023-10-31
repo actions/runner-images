@@ -3,40 +3,47 @@
         "default": "14.3.1",
         "x64": {
             "versions": [
-                { "link": "15.0", "version": "15.0.0+15A240d"},
-                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
-                { "link": "14.2", "version": "14.2.0+14C18" },
-                { "link": "14.1", "version": "14.1.0+14B47b" }
+                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true"},
+                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "true"},
+                { "link": "14.2", "version": "14.2.0+14C18", "install_runtimes": "true"},
+                { "link": "14.1", "version": "14.1.0+14B47b", "install_runtimes": "true"}
                 ]
         },
         "arm64":{
             "versions": [
-                { "link": "15.0", "version": "15.0.0+15A240d"},
-                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"] },
-                { "link": "14.2", "version": "14.2.0+14C18" },
-                { "link": "14.1", "version": "14.1.0+14B47b" }
+                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true"},
+                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "true" },
+                { "link": "14.2", "version": "14.2.0+14C18", "install_runtimes": "true" },
+                { "link": "14.1", "version": "14.1.0+14B47b", "install_runtimes": "true" }
             ]
         }
     },
     "java": {
-        "default": "17",
-        "versions": [ "8", "11", "17" ]
+        "x64": {
+            "default": "17",
+            "versions": [ "8", "11", "17", "21"]
+        },
+        "arm64": {
+            "default": "17",
+            "versions": [ "11", "17", "21"]
+        }
     },
     "android": {
-        "platform_min_version": "27",
-        "build_tools_min_version": "27.0.0",
+        "cmdline-tools": "commandlinetools-mac-10406996_latest.zip",
+        "sdk-tools": "sdk-tools-darwin-4333796.zip",
+        "platform_min_version": "33",
+        "build_tools_min_version": "33.0.2",
         "extra-list": [
             "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
         "addon-list": [],
         "additional-tools": [
-            "cmake;3.18.1",
             "cmake;3.22.1"
         ],
         "ndk": {
-            "default": "25",
+            "default": "26",
             "versions": [
-                "23", "24", "25", "26"
+                "24", "25", "26"
             ]
         }
     },
@@ -76,7 +83,8 @@
     "gcc": {
         "versions": [
             "11",
-            "12"
+            "12",
+            "13"
         ]
     },
     "dotnet": {
@@ -113,12 +121,14 @@
                         "3.8.*",
                         "3.9.*",
                         "3.10.*",
-                        "3.11.*"
+                        "3.11.*",
+                        "3.12.*"
                     ]
                 },
                 "arm64": {
                     "versions": [
-                        "3.11.*"
+                        "3.11.*",
+                        "3.12.*"
                     ]
                 }
             }

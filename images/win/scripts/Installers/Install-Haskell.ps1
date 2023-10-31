@@ -9,8 +9,20 @@ Write-Host 'Installing ghcup...'
 $msysPath = "C:\msys64"
 $ghcupPrefix = "C:\"
 $cabalDir = "C:\cabal"
-$bootstrapHaskell = Invoke-WebRequest https://www.haskell.org/ghcup/sh/bootstrap-haskell.ps1 -UseBasicParsing
-Invoke-Command -ScriptBlock ([ScriptBlock]::Create($bootstrapHaskell)) -ArgumentList $false, $true, $true, $false, $true, $false, $false, $ghcupPrefix, "", $msysPath, $cabalDir
+
+$ghcupDownloadURL = "https://downloads.haskell.org/~ghcup/x86_64-mingw64-ghcup.exe"
+
+# If you want to install a specific version of ghcup, uncomment the following lines
+# $ghver = "0.1.19.4"
+# $ghcupDownloadURL = "https://downloads.haskell.org/~ghcup/${ghver}/x86_64-mingw64-ghcup-${ghver}.exe"
+
+# Other option is to download ghcup from GitHub releases:
+# https://github.com/haskell/ghcup-hs/releases/latest
+
+New-Item -Path "$ghcupPrefix\ghcup" -ItemType 'directory' -ErrorAction SilentlyContinue | Out-Null
+New-Item -Path "$ghcupPrefix\ghcup\bin" -ItemType 'directory' -ErrorAction SilentlyContinue | Out-Null
+Start-DownloadWithRetry -Url $ghcupDownloadURL -Name "ghcup.exe" -DownloadPath "$ghcupPrefix\ghcup\bin"
+
 Set-SystemVariable "GHCUP_INSTALL_BASE_PREFIX" $ghcupPrefix
 Set-SystemVariable "GHCUP_MSYS2" $msysPath
 Set-SystemVariable "CABAL_DIR" $cabalDir

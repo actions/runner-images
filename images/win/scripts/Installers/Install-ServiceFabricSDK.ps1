@@ -15,11 +15,11 @@ $serviceFabricSDKVersion = (Get-ToolsetContent).serviceFabric.sdk.version
 $InstallerName = "MicrosoftServiceFabric.${serviceFabricRuntimeVersion}.exe"
 $InstallerUrl = "https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be98-9d8b5abf7856/${InstallerName}"
 $ArgumentList = ("/accepteula ","/quiet","/force")
-Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList
+Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList -ExpectedSignature (Get-ToolsetContent).serviceFabric.runtime.signature
 
 # Install Service Fabric SDK
 $InstallerName = "MicrosoftServiceFabricSDK.${serviceFabricSDKVersion}.msi"
 $InstallerUrl = "https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be98-9d8b5abf7856/${InstallerName}"
-Install-Binary -Url $InstallerUrl -Name $InstallerName
+Install-Binary -Url $InstallerUrl -Name $InstallerName -ExpectedSignature (Get-ToolsetContent).serviceFabric.sdk.signature
 
-Invoke-PesterTests -TestFile "Tools" -TestName "ServiceFabricSDK"
+Invoke-PesterTests -TestFile "Tools" -TestName "ServiceFabricSDK" 

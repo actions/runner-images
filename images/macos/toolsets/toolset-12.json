@@ -3,9 +3,9 @@
         "default": "14.2",
         "x64": {
             "versions": [
-                { "link": "14.2", "version": "14.2.0+14C18" },
-                { "link": "14.1", "version": "14.1.0+14B47b" },
-                { "link": "14.0.1", "version": "14.0.1+14A400", "symlinks": ["14.0"] },
+                { "link": "14.2", "version": "14.2.0+14C18", "install_runtimes": "true" },
+                { "link": "14.1", "version": "14.1.0+14B47b", "install_runtimes": "true" },
+                { "link": "14.0.1", "version": "14.0.1+14A400", "symlinks": ["14.0"], "install_runtimes": "true" },
                 { "link": "13.4.1", "version": "13.4.1+13F100", "symlinks": ["13.4"] },
                 { "link": "13.3.1", "version": "13.3.1+13E500a", "symlinks": ["13.3"] },
                 { "link": "13.2.1", "version": "13.2.1+13C100", "symlinks": ["13.2"] },
@@ -140,10 +140,13 @@
         ]
     },
     "java": {
-        "default": "8",
-        "versions": [ "8", "11", "17" ]
+        "x64": {
+            "default": "8",
+            "versions": [ "8", "11", "17", "21"]
+        }
     },
     "android": {
+        "cmdline-tools": "commandlinetools-mac-9123335_latest.zip",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [
@@ -215,7 +218,8 @@
     "gcc": {
         "versions": [
             "11",
-            "12"
+            "12",
+            "13"
         ]
     },
     "toolcache": [
@@ -230,7 +234,8 @@
                         "3.8.*",
                         "3.9.*",
                         "3.10.*",
-                        "3.11.*"
+                        "3.11.*",
+                        "3.12.*"
                     ]
                 }
             }
@@ -328,7 +333,8 @@
         "nvm_versions": [
             "14",
             "16",
-            "18"
+            "18",
+            "20"
         ]
     },
     "llvm": {

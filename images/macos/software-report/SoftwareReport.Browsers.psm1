@@ -1,16 +1,30 @@
 function Build-BrowserSection {
-    return @(
+
+    $nodes = @()
+    $os = Get-OSVersion
+
+    $nodes += @(
         [ToolVersionNode]::new("Safari", $(Get-SafariVersion))
         [ToolVersionNode]::new("SafariDriver", $(Get-SafariDriverVersion))
         [ToolVersionNode]::new("Google Chrome", $(Get-ChromeVersion))
         [ToolVersionNode]::new("Google Chrome for Testing", $(Get-ChromeForTestingVersion))
         [ToolVersionNode]::new("ChromeDriver", $(Get-ChromeDriverVersion))
-        [ToolVersionNode]::new("Microsoft Edge", $(Get-EdgeVersion))
-        [ToolVersionNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
-        [ToolVersionNode]::new("Mozilla Firefox", $(Get-FirefoxVersion))
-        [ToolVersionNode]::new("geckodriver", $(Get-GeckodriverVersion))
+    )
+    
+    if (-not $os.IsVenturaArm64) {
+        $nodes += @(
+            [ToolVersionNode]::new("Microsoft Edge", $(Get-EdgeVersion))
+            [ToolVersionNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
+            [ToolVersionNode]::new("Mozilla Firefox", $(Get-FirefoxVersion))
+            [ToolVersionNode]::new("geckodriver", $(Get-GeckodriverVersion))
+        )
+    }
+    
+    $nodes += @(
         [ToolVersionNode]::new("Selenium server", $(Get-SeleniumVersion))
     )
+
+    return $nodes
 }
 
 function Get-SafariVersion {
@@ -64,7 +78,13 @@ function Get-GeckodriverVersion {
 }
 
 function Get-SeleniumVersion {
-    $seleniumVersion = (Get-ChildItem -Path "/usr/local/Cellar/selenium-server*/*").Name
+    $os = Get-OSVersion
+    if ($os.IsVenturaArm64) {
+        $cellarPath = "/opt/homebrew/Cellar"
+    } else {
+        $cellarPath = "/usr/local/Cellar"
+    }
+    $seleniumVersion = (Get-ChildItem -Path "$cellarPath/selenium-server*/*").Name
     return $seleniumVersion
 }
 

@@ -27,7 +27,8 @@ param(
     [int] $RamSizeGb = 7,
     [int] $DiskSizeGb = 300,
     [string] $DisplayResolution = "1920x1080",
-    [string] $TagName = [DateTimeOffset]::Now.ToUnixTimeSeconds()
+    [string] $TagName = [DateTimeOffset]::Now.ToUnixTimeSeconds(),
+    [string] $Uuid = "4203018E-580F-C1B5-9525-B745CECA79EB"
 )
 
 $ErrorActionPreference = "Stop"
@@ -99,7 +100,7 @@ function Invoke-SoftwareUpdate {
     $listOfNewUpdates = $newUpdates.split('*').Trim('')
     foreach ($newupdate in $listOfNewUpdates) {
         # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
-        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("macOS Ventura") -and (-not [String]::IsNullOrEmpty($newupdate))) {
+        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("macOS Ventura") -and !$newupdate.Contains("macOS Sonoma") -and (-not [String]::IsNullOrEmpty($newupdate))) {
             Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
             Start-Sleep -Seconds 60
 
@@ -204,6 +205,9 @@ Set-AnkaVMVideoController -VMName $TemplateName -ShortMacOSVersion $ShortMacOSVe
 
 Write-Host "`t[*] Setting screen resolution to $DisplayResolution for $TemplateName"
 Set-AnkaVMDisplayResolution -VMName $TemplateName -DisplayResolution $DisplayResolution
+
+# Set static UUID
+Set-AnkaVMUuid -VMName $TemplateName -Uuid $Uuid
 
 if ($PushToRegistry) {
     # Push a VM template (and tag) to the Cloud

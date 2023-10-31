@@ -280,6 +280,7 @@ build {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
+                        "${path.root}/scripts/installers/action-archive-cache.sh",
                         "${path.root}/scripts/installers/apt-common.sh",
                         "${path.root}/scripts/installers/azcopy.sh",
                         "${path.root}/scripts/installers/azure-cli.sh",

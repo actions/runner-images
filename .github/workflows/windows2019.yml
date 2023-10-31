@@ -1,0 +1,20 @@
+name: Trigger Windows19 CI
+run-name: Windows2019 - ${{ github.event.pull_request.title }}
+
+on:
+  pull_request_target:
+    types: labeled
+    paths:
+    - 'images/win/**'
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  Windows_2019:
+    if: contains(github.event.pull_request.labels.*.name, 'CI windows-all') || contains(github.event.pull_request.labels.*.name, 'CI windows-2019')
+    uses: ./.github/workflows/trigger-ubuntu-win-build.yml
+    with:
+      image_type: 'windows2019'
+    secrets: inherit

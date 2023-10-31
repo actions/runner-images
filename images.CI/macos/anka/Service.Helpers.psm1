@@ -244,12 +244,21 @@ function Install-SoftwareUpdate {
         [array] $listOfUpdates,
         [string] $Password
     )
-    $osVersion = [Environment]::OSVersion
-    # If an update is happening on macOS 12 we will use the prepared list of updates, otherwise, we will install all updates.
-    if ($osVersion.Version.Major -eq "12") {
+    # If an update is happening on macOS 12 or 13 we will use the prepared list of updates, otherwise, we will install all updates.
+    $command = "sw_vers"
+    $guestMacosVersion = Invoke-SSHPassCommand -HostName $HostName -Command $command
+    if ($guestMacosVersion[1] -match "12") {
         foreach ($update in $listOfUpdates){
             # Filtering updates that contain "Ventura" word
             if ($update -notmatch "Ventura") {
+                $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
+                Invoke-SSHPassCommand -HostName $HostName -Command $command
+            }
+        }
+    } elseif ($guestMacosVersion[1] -match "13") {
+        foreach ($update in $listOfUpdates){
+            # Filtering updates that contain "Sonoma" word
+            if ($update -notmatch "Sonoma") {
                 $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
                 Invoke-SSHPassCommand -HostName $HostName -Command $command
             }

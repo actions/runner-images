@@ -28,7 +28,8 @@ Function Install-VisualStudio {
         [Parameter(Mandatory)] [String] $Edition,
         [Parameter(Mandatory)] [String] $Channel,
         [Parameter(Mandatory)] [String[]] $RequiredComponents,
-        [String] $ExtraArgs = ""
+        [String] $ExtraArgs = "",
+        [Parameter(Mandatory)] [String] $SignatureThumbprint
     )
 
     $bootstrapperUrl = "https://aka.ms/vs/${Version}/${Channel}/vs_${Edition}.exe"
@@ -39,6 +40,9 @@ Function Install-VisualStudio {
     Write-Host "Downloading Bootstrapper ..."
     $BootstrapperName = [IO.Path]::GetFileName($BootstrapperUrl)
     $bootstrapperFilePath = Start-DownloadWithRetry -Url $BootstrapperUrl -Name $BootstrapperName
+
+    # Verify that the bootstrapper is signed by Microsoft
+    Test-FileSignature -FilePath $bootstrapperFilePath -ExpectedThumbprint $SignatureThumbprint
 
     try {
         Write-Host "Enable short name support on Windows needed for Xamarin Android AOT, defaults appear to have been changed in Azure VMs"

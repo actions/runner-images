@@ -12,6 +12,7 @@ export NUNIT3_PATH=/Library/Developer/nunit/3.6.0
 
 export AGENT_TOOLSDIRECTORY=$HOME/hostedtoolcache
 export RUNNER_TOOL_CACHE=$HOME/hostedtoolcache
+export ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE=$HOME/actionarchivecache
 
 export PATH=/Library/Frameworks/Mono.framework/Versions/Current/Commands:$PATH
 export PATH=/Library/Frameworks/Python.framework/Versions/Current/bin:$PATH

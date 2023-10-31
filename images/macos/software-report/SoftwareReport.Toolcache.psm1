@@ -33,14 +33,24 @@ function Get-ToolcacheGoVersions {
     return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
 }
 
-function Build-ToolcacheSection { 
-    return @(
-        [ToolVersionsListNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', "List"),
-        [ToolVersionsListNode]::new("Python", $(Get-ToolcachePythonVersions), '^\d+\.\d+', "List"), 
-        [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', "List"),
+function Build-ToolcacheSection {
+
+    $nodes = @()
+
+    if (-not $os.IsVenturaArm64) {
+        $nodes += @(
+            [ToolVersionsListNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', "List"),
+            [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', "List")
+        )
+    }
+
+    $nodes += @(
+        [ToolVersionsListNode]::new("Python", $(Get-ToolcachePythonVersions), '^\d+\.\d+', "List"),
         [ToolVersionsListNode]::new("Node.js", $(Get-ToolcacheNodeVersions), '^\d+', "List"),
         [ToolVersionsListNode]::new("Go", $(Get-ToolcacheGoVersions), '^\d+\.\d+', "List")
     )
+
+    return $nodes
 }
 
 function Get-PowerShellModules {

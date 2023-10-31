@@ -129,7 +129,7 @@ function Get-PipVersion {
         [int] $Version
     )
 
-    $command = If ($Version -eq 2) { "pip --version" } Else { "pip3 --version" }
+    $command = If ($Version -eq 2) { "/Library/Frameworks/Python.framework/Versions/2.7/bin/pip --version" } Else { "pip3 --version" }
     $commandOutput = Run-Command $command
     $versionPart1 = $commandOutput | Take-Part -Part 1
     $versionPart2 = $commandOutput | Take-Part -Part 4
@@ -192,7 +192,7 @@ function Get-PerlVersion {
 }
 
 function Get-PythonVersion {
-    $pythonVersion = Run-Command "python --version"
+    $pythonVersion = Run-Command "/Library/Frameworks/Python.framework/Versions/2.7/bin/python --version"
     return ($pythonVersion -replace "^Python").Trim()
 }
 
@@ -608,17 +608,13 @@ function Build-MiscellaneousEnvironmentTable {
     }
 }
 
-function Get-CodeQLBundleVersions {
-    $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
-    $CodeQLVersionPaths = Get-ChildItem $CodeQLVersionsWildcard 
-    $CodeQlVersions=@()
-    foreach ($CodeQLVersionPath in $CodeQLVersionPaths) {
-        $FullCodeQLVersionPath = $CodeQLVersionPath | Select-Object -Expand FullName
-        $CodeQLPath = Join-Path $FullCodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
-        $CodeQLVersion = & $CodeQLPath version --quiet
-        $CodeQLVersions += $CodeQLVersion
-    }
-    return $CodeQLVersions
+
+function Get-CodeQLBundleVersion {
+    $CodeQLVersionWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+    $CodeQLVersionPath = Get-ChildItem $CodeQLVersionWildcard | Select-Object -First 1 -Expand FullName
+    $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
+    $CodeQLVersion = & $CodeQLPath version --quiet
+    return $CodeQLVersion
 }
 
 function Get-ColimaVersion {

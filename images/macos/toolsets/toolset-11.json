@@ -153,10 +153,13 @@
         ]
     },
     "java": {
-        "default": "8",
-        "versions": [ "8", "11", "17" ]
+        "x64": {
+            "default": "8",
+            "versions": [ "8", "11", "17", "21"]
+        }
     },
     "android": {
+        "cmdline-tools": "commandlinetools-mac-9123335_latest.zip",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [
@@ -243,7 +246,8 @@
                         "3.8.*",
                         "3.9.*",
                         "3.10.*",
-                        "3.11.*"
+                        "3.11.*",
+                        "3.12.*"
                     ]
                 }
             }
@@ -344,7 +348,8 @@
         "nvm_versions": [
             "14",
             "16",
-            "18"
+            "18",
+            "20"
         ]
     },
     "llvm": {

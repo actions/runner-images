@@ -14,7 +14,8 @@ echo "Google Chrome version is $FULL_CHROME_VERSION"
 # Get Google Chrome versions information
 CHROME_PLATFORM="mac-$arch"
 CHROME_VERSIONS_URL="https://googlechromelabs.github.io/chrome-for-testing/latest-patch-versions-per-build-with-downloads.json"
-CHROME_VERSIONS_JSON=$(curl -fsSL "${CHROME_VERSIONS_URL}")
+download_with_retries "$CHROME_VERSIONS_URL" "/tmp" "latest-patch-versions-per-build-with-downloads.json"
+CHROME_VERSIONS_JSON=$(cat /tmp/latest-patch-versions-per-build-with-downloads.json)
 
 # Download and unpack the latest release of Chrome Driver
 CHROMEDRIVER_VERSION=$(echo "${CHROME_VERSIONS_JSON}" | jq -r '.builds["'"$CHROME_VERSION"'"].version')
@@ -26,8 +27,8 @@ CHROMEDRIVER_DIR="/usr/local/share/chromedriver-${CHROME_PLATFORM}"
 CHROMEDRIVER_BIN="$CHROMEDRIVER_DIR/chromedriver"
 
 download_with_retries "$CHROMEDRIVER_URL" "/tmp" "$CHROMEDRIVER_ARCHIVE"
-unzip -qq /tmp/$CHROMEDRIVER_ARCHIVE -d /usr/local/share
-chmod +x $CHROMEDRIVER_BIN
+unzip -qq /tmp/$CHROMEDRIVER_ARCHIVE -d /tmp/
+sudo mv "/tmp/chromedriver-${CHROME_PLATFORM}" "$CHROMEDRIVER_DIR"
 ln -s "$CHROMEDRIVER_BIN" /usr/local/bin/chromedriver
 echo "export CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" >> "${HOME}/.bashrc"
 

@@ -1,12 +1,11 @@
 param(
-    [UInt32] [Parameter (Mandatory)] $BuildId,
-    [String] [Parameter (Mandatory)] $Organization,
-    [String] [Parameter (Mandatory)] $Project,
-    [String] [Parameter (Mandatory)] $ImageName,
-    [String] [Parameter (Mandatory)] $StorageAccountContainerName,
-    [String] [Parameter (Mandatory)] $VhdName,
-    [String] [Parameter (Mandatory)] $DefinitionId,
-    [String] [Parameter (Mandatory)] $AccessToken
+    [Parameter (Mandatory)] [UInt32] $BuildId,
+    [Parameter (Mandatory)] [string] $Organization,
+    [Parameter (Mandatory)] [string] $Project,
+    [Parameter (Mandatory)] [string] $ImageType,
+    [Parameter (Mandatory)] [string] $ManagedImageName,
+    [Parameter (Mandatory)] [string] $DefinitionId,
+    [Parameter (Mandatory)] [string] $AccessToken
 )
 
 $Body = @{
@@ -15,14 +14,11 @@ $Body = @{
       ImageBuildId = @{
         value = $BuildId
       }
-      ImageName = @{
-        value = $ImageName
+      ImageType = @{
+        value = $ImageType
       }
-      ImageStorageContainerName = @{
-        value = $StorageAccountContainerName
-      }
-      ImageBlobPath = @{
-        value = $VhdName
+      ManagedImageName = @{
+        value = $ManagedImageName
       }
     }
     isDraft = "false"

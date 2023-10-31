@@ -29,7 +29,7 @@ function Install-Binary
         [Parameter(Mandatory, ParameterSetName="LocalPath")]
         [String] $FilePath,
         [String[]] $ArgumentList,
-        [String] $ExpectedSignature
+        [String[]] $ExpectedSignature
     )
 
     if ($PSCmdlet.ParameterSetName -eq "LocalPath")
@@ -47,14 +47,13 @@ function Install-Binary
         if ($ExpectedSignature)
         {
             Test-FileSignature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
-
         }
         else
         {
             throw "ExpectedSignature parameter is specified, but no signature is provided."
         }
     }
-
+ 
     # MSI binaries should be installed via msiexec.exe
     $fileExtension = ([System.IO.Path]::GetExtension($Name)).Replace(".", "")
     if ($fileExtension -eq "msi")
@@ -617,6 +616,7 @@ function Get-GitHubPackageDownloadUrl {
         [string]$Version,
         [string]$UrlFilter,
         [boolean]$IsPrerelease = $false,
+        [boolean]$LatestReleaseOnly = $true,
         [int]$SearchInCount = 100
     )
 
@@ -626,20 +626,35 @@ function Get-GitHubPackageDownloadUrl {
 
     $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
     $tags = $json.Where{ $_.prerelease -eq $IsPrerelease -and $_.assets }.tag_name
-    $versionToDownload = $tags |
-            Select-String -Pattern "\d+.\d+.\d+" |
-            ForEach-Object { $_.Matches.Value } |
-            Where-Object { $_ -like "$Version.*" -or $_ -eq $Version } |
-            Sort-Object { [version]$_ } |
-            Select-Object -Last 1
+    $availableVersions = $tags |
+        Select-String -Pattern "\d+.\d+.\d+" |
+        ForEach-Object { $_.Matches.Value } |
+        Where-Object { $_ -like "$Version.*" -or $_ -eq $Version } |
+        Sort-Object -Descending { [version]$_ }
 
-    if (-not $versionToDownload) {
-        Write-Host "Failed to get a tag name from ${RepoOwner}/${RepoName} releases"
-        exit 1
+    if (-not $availableVersions) {
+        throw "Failed to get available versions from ${RepoOwner}/${RepoName} releases"
     }
 
-    $UrlFilter = $UrlFilter -replace "{BinaryName}",$BinaryName -replace "{Version}",$versionToDownload
-    $downloadUrl = $json.assets.browser_download_url -like $UrlFilter
+    if ($LatestReleaseOnly) {
+        $latestVersion = $availableVersions | Select-Object -First 1
+        $urlFilterReplaced = $UrlFilter -replace "{BinaryName}", $BinaryName -replace "{Version}", $latestVersion
+        $downloadUrl = $json.assets.browser_download_url -like $urlFilterReplaced
+    } else {
+        foreach ($version in $availableVersions) {
+            $urlFilterReplaced = $UrlFilter -replace "{BinaryName}", $BinaryName -replace "{Version}", $version
+            $downloadUrl = $json.assets.browser_download_url -like $urlFilterReplaced
+
+            if ($downloadUrl) {
+                Write-Host "Found download url for ${RepoOwner}/${RepoName} ${BinaryName} ${version}"
+                break
+            }
+        }
+    }
+
+    if (-not $downloadUrl) {
+        throw "Failed to get download url for ${RepoOwner}/${RepoName} ${BinaryName}"
+    }
 
     return $downloadUrl
 }
@@ -706,18 +721,27 @@ function Test-FileSignature {
         [Parameter(Mandatory=$true)]
         [string]$FilePath,
         [Parameter(Mandatory=$true)]
-        [string]$ExpectedThumbprint
+        [string[]]$ExpectedThumbprint
     )
- 
+
     $signature = Get-AuthenticodeSignature $FilePath
- 
+
     if ($signature.Status -ne "Valid") {
         throw "Signature status is not valid. Status: $($signature.Status)"
     }
-
-    if ($signature.SignerCertificate.Thumbprint.Contains($ExpectedThumbprint) -ne $true) {
-        throw "Signature thumbprint do not match expected"
+    
+    foreach ($thumbprint in $ExpectedThumbprint) {
+        if ($signature.SignerCertificate.Thumbprint.Contains($thumbprint)) {
+            Write-Output "Signature for $FilePath is valid"
+            $signatureMatched = $true
+            return
+        }
     }
 
-    Write-Output "Signature for $FilePath is valid"
+    if ($signatureMatched) {
+        Write-Output "Signature for $FilePath is valid"
+    }
+    else {
+        throw "Signature thumbprint do not match expected."
+    }
 }

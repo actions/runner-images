@@ -19,4 +19,7 @@ done
 echo "install cabal..."
 ghcup install-cabal
 
+echo "Updating stack..."
+ghcup install stack latest
+
 invoke_tests "Haskell"

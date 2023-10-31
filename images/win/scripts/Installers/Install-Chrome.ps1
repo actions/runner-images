@@ -4,9 +4,10 @@
 ################################################################################
 
 # Download and install latest Chrome browser
+$ChromeSignatureThumbprint = "2673EA6CC23BEFFDA49AC715B121544098A1284C"
 $ChromeInstallerFile = "googlechromestandaloneenterprise64.msi"
 $ChromeInstallerUrl = "https://dl.google.com/tag/s/dl/chrome/install/${ChromeInstallerFile}"
-Install-Binary -Url $ChromeInstallerUrl -Name $ChromeInstallerFile -ArgumentList @()
+Install-Binary -Url $ChromeInstallerUrl -Name $ChromeInstallerFile -ArgumentList @() -ExpectedSignature $ChromeSignatureThumbprint
 
 # Prepare firewall rules
 Write-Host "Adding the firewall rule for Google update blocking..."

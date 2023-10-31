@@ -36,7 +36,7 @@ Write-Host "Warmup 'az-devops'"
 }
 
 # calling az devops login to force it to install `keyring`. Login will actually fail, redirecting error to null
-Write-Host 'fake token' | az devops login | Out-Null
+Write-Output 'fake token' | az devops login | Out-Null
 # calling az devops logout to be sure no credentials remain.
 az devops logout | out-null
 

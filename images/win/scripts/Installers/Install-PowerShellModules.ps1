@@ -1,12 +1,6 @@
 # Set TLS1.2
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
-Write-Host "Setup PowerShellGet"
-Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
-
-# Specifies the installation policy
-Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
-
 # Install PowerShell modules
 $modules = (Get-ToolsetContent).powershellModules
 
