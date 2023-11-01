@@ -41,6 +41,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [macOS-11]: https://github.com/actions/runner-images/blob/main/images/macos/macos-11-Readme.md
 [macOS-12]: https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
 [macOS-13]: https://github.com/actions/runner-images/blob/main/images/macos/macos-13-Readme.md
+[macOS-10.15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-10.15-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
 ## Announcements
@@ -122,8 +123,8 @@ We use third-party package managers to install software during the image generat
 
 | Operating system | Package manager                       | Third-party repos and packages |
 | :---             |        :---:                          |                           ---: |
-| Ubuntu           | [APT](https://wiki.debian.org/Apt)    | [Eclipse-Temurin (Adoptium)](https://packages.adoptium.net/artifactory/deb) </br> [Erlang](https://packages.erlang-solutions.com/ubuntu) </br>[Firefox](https://launchpad.net/~mozillateam/+archive/ubuntu/ppa) </br> [gcc, gfortran](https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test)  </br> [git](https://launchpad.net/~git-core/+archive/ubuntu/ppa) </br> [HHvm](https://dl.hhvm.com/ubuntu) </br> [PHP](https://launchpad.net/~ondrej/+archive/ubuntu/php) (Ubuntu 20 only) </br> [Mono](https://download.mono-project.com/repo/ubuntu) </br> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt) </br> [R](https://cloud.r-project.org/bin/linux/ubuntu)                                     |
-|                  | [pipx](https://pypa.github.io/pipx)   | ansible-core </br>yamllint     |
+| Ubuntu           | [APT](https://wiki.debian.org/Apt)    | [containers](https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable) (Ubuntu 20 only) <br/> [docker](https://download.docker.com/linux/ubuntu) <br/> [Eclipse-Temurin (Adoptium)](https://packages.adoptium.net/artifactory/deb/) <br/> [Erlang](https://packages.erlang-solutions.com/ubuntu) <br/> [Firefox](http://ppa.launchpad.net/mozillateam/ppa/ubuntu) <br/> [gcc, gfortran](https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test)  <br/> [git-lfs](https://packagecloud.io/install/repositories/github/git-lfs) <br/> [git](https://launchpad.net/~git-core/+archive/ubuntu/ppa) <br/> [Google Cloud CLI](https://packages.cloud.google.com/apt) <br/> [Heroku](https://cli-assets.heroku.com/channels/stable/apt) <br/> [HHvm](https://dl.hhvm.com/ubuntu) <br/> [MongoDB](https://repo.mongodb.org/apt/ubuntu) <br/> [Mono](https://download.mono-project.com/repo/ubuntu) <br/> [MS Edge](https://packages.microsoft.com/repos/edge) <br/> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt/) <br/> [R](https://cloud.r-project.org/bin/linux/ubuntu)                                      |
+|                  | [pipx](https://pypa.github.io/pipx)   | ansible-core <br/>yamllint     |
 | Windows          | [Chocolatey](https://chocolatey.org)  | No third-party repos installed |
 | macOS            | [Homebrew](https://brew.sh)           | [aws-cli v2](https://github.com/aws/homebrew-tap) </br> [azure/bicep](https://github.com/Azure/homebrew-bicep) </br> [mongodb/brew](https://github.com/mongodb/homebrew-brew)                                                  |
 |                  | [pipx](https://pypa.github.io/pipx/)  | yamllint                       |
