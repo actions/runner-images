@@ -1,6 +1,7 @@
 ################################################################################
 ##  File:  Install-Docker-Compose.ps1
 ##  Desc:  Install Docker Compose.
+##  Supply chain security: Docker Compose v1 - by package manager
 ################################################################################
 
 Write-Host "Install-Package Docker-Compose v1"
