@@ -217,6 +217,7 @@
                 "{{template_dir}}/scripts/installers/gcc.sh",
                 "{{template_dir}}/scripts/installers/gfortran.sh",
                 "{{template_dir}}/scripts/installers/git.sh",
+                "{{template_dir}}/scripts/installers/git-lfs.sh",
                 "{{template_dir}}/scripts/installers/github-cli.sh",
                 "{{template_dir}}/scripts/installers/google-chrome.sh",
                 "{{template_dir}}/scripts/installers/google-cloud-cli.sh",
