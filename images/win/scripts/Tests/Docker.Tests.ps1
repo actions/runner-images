@@ -1,8 +1,6 @@
 Describe "Docker" {
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "docker-compose" }
-    ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
+    It "docker is installed" {
+        "docker --version" | Should -ReturnZeroExitCode
     }
 
     It "docker service is up" {
@@ -15,10 +13,8 @@ Describe "Docker" {
 }
 
 Describe "DockerCompose" {
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "docker-compose" }
-    ) {
-        "$ToolName --version" | Should -ReturnZeroExitCode
+    It "docker-compose is installed" {
+        "docker-compose --version" | Should -ReturnZeroExitCode
     }
 
     It "docker compose v2" {
