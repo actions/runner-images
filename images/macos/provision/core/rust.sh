@@ -12,7 +12,8 @@ CARGO_HOME=$HOME/.cargo
 
 echo Install common tools...
 rustup component add rustfmt clippy
-cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
+cargo install --locked bindgen-cli --version 0.68.1 # Temp fix for https://github.com/rust-lang/rust-bindgen/issues/2677
+cargo install --locked cbindgen cargo-audit cargo-outdated
 
 echo Cleanup Cargo registry cached data...
 rm -rf $CARGO_HOME/registry/*
