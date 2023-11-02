@@ -182,6 +182,12 @@ Write-Host "`n[#2] Create a VM template:"
 Write-Host "`t[*] Deleting existed template with name '$TemplateName' before creating a new one"
 Remove-AnkaVM -VMName $TemplateName
 
+# Temporary disable VNC for macOS 14
+# It's probably Anka's bug fixed in 3.3.2
+if ($shortMacOSVersion -eq "14") {
+    $env:ANKA_CREATE_VNC = 0
+}
+
 Write-Host "`t[*] Creating Anka VM template with name '$TemplateName' and '$TemplateUsername' user"
 Write-Host "`t[*] CPU Count: $CPUCount, RamSize: ${RamSizeGb}G, DiskSizeGb: ${DiskSizeGb}G, InstallerPath: $macOSInstaller, TemplateName: $TemplateName"
 New-AnkaVMTemplate -InstallerPath "$macOSInstaller" `
