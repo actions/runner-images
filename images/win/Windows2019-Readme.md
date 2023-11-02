@@ -1,6 +1,6 @@
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 4974
-- Image Version: 20231025.2.0
+- Image Version: 20231029.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -29,7 +29,7 @@
 - pip 23.3.1 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit 213c01f87)
+- Vcpkg (build from commit 06c79a9af)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -47,21 +47,21 @@
 ### Tools
 - 7zip 23.01
 - aria2 1.36.0
-- azcopy 10.21.0
+- azcopy 10.21.1
 - Bazel 6.4.0
 - Bazelisk 1.18.0
 - Bicep 0.22.6
 - Cabal 3.10.1.0
 - CMake 3.27.7
 - CodeQL Action Bundle 2.15.1
-- Docker 24.0.6
+- Docker 24.0.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.0
 - Docker-wincred 0.8.0
 - ghc 9.8.1
 - Git 2.42.0.windows.2
 - Git LFS 3.4.0
-- Google Cloud CLI 452.0.0
+- Google Cloud CLI 452.0.1
 - ImageMagick 7.1.1-21
 - InnoSetup 6.2.2
 - jq 1.7-dirty
@@ -76,7 +76,7 @@
 - OpenSSL 1.1.1w
 - Packer 1.9.4
 - Parcel 2.10.1
-- Pulumi 3.90.1
+- Pulumi 3.91.1
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.13.1
@@ -90,7 +90,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.184
-- AWS CLI 2.13.28
+- AWS CLI 2.13.30
 - AWS SAM CLI 1.99.0
 - AWS Session Manager CLI 1.2.497.0
 - Azure CLI 2.53.1
@@ -115,8 +115,8 @@
 ### Browsers and Drivers
 - Google Chrome 118.0.5993.118
 - Chrome Driver 118.0.5993.70
-- Microsoft Edge 118.0.2088.61
-- Microsoft Edge Driver 118.0.2088.69
+- Microsoft Edge 118.0.2088.76
+- Microsoft Edge Driver 118.0.2088.76
 - Mozilla Firefox 119.0
 - Gecko Driver 0.33.0
 - IE Driver 4.14.0.0
@@ -135,8 +135,8 @@
 | ------------------- | -------------------- |
 | 8.0.392+8 (default) | JAVA_HOME_8_X64      |
 | 11.0.21+9           | JAVA_HOME_11_X64     |
-| 17.0.8+101          | JAVA_HOME_17_X64     |
-| 21.0.0+35.0         | JAVA_HOME_21_X64     |
+| 17.0.9+9.1          | JAVA_HOME_17_X64     |
+| 21.0.1+12.1         | JAVA_HOME_21_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -500,7 +500,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
-- PowerShell 7.2.15
+- PowerShell 7.2.16
 
 #### Powershell Modules
 - Az: 9.3.0
@@ -509,7 +509,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.437
+- AWSPowershell: 4.1.440
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.8.0
