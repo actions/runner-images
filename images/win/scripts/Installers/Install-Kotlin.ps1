@@ -13,7 +13,7 @@ $kotlinInstallerPath = Start-DownloadWithRetry -Url $kotlinDownloadUrl -Name "$k
 
 #region Supply chain security
 $fileHash = (Get-FileHash -Path $kotlinInstallerPath -Algorithm SHA256).Hash
-$externalHash = Get-HashFromGitHubReleaseBody -RepoOwner "JetBrains" -RepoName "kotlin" -FileName "$kotlinBinaryName" -Version $kotlinVersion -WordNumber 2
+$externalHash = Get-HashFromGitHubReleaseBody -RepoOwner "JetBrains" -RepoName "kotlin" -FileName "$kotlinBinaryName-*.zip" -Version $kotlinVersion -WordNumber 2
 Use-ChecksumComparison $fileHash $externalHash
 #endregion
 
