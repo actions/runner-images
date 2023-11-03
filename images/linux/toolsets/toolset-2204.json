@@ -277,7 +277,8 @@
         "versions": [
             "gfortran-9",
             "gfortran-10",
-            "gfortran-12"
+            "gfortran-12",
+            "gfortran-13"
         ]
     },
     "php": {
