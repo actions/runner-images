@@ -1,0 +1,114 @@
+{
+    "xcode": {
+        "default": "15.0.1",
+        "x64": {
+            "versions": [
+                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true"},
+                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "true"}
+            ]
+        }
+    },
+    "java": {
+        "x64": {
+            "default": "21",
+            "versions": [ "8", "11", "17", "21"]
+        }
+    },
+    "android": {
+        "cmdline-tools": "commandlinetools-mac-10406996_latest.zip",
+        "sdk-tools": "sdk-tools-darwin-4333796.zip",
+        "platform_min_version": "33",
+        "build_tools_min_version": "33.0.2",
+        "extra-list": [
+            "android;m2repository", "google;m2repository", "google;google_play_services"
+        ],
+        "addon-list": [],
+        "additional-tools": [
+            "cmake;3.22.1"
+        ],
+        "ndk": {
+            "default": "26",
+            "versions": [
+                "24", "25", "26"
+            ]
+        }
+    },
+    "powershellModules": [
+        { "name": "Az" },
+        { "name": "Pester" },
+        { "name": "PSScriptAnalyzer" }
+    ],
+    "brew": {
+        "common_packages": [
+            "ant",
+            "aria2",
+            "azure-cli",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "kotlin",
+            "libpq",
+            "p7zip",
+            "packer",
+            "perl",
+            "pkg-config",
+            "swiftformat",
+            "zstd",
+            "gmp",
+            "r",
+            "yq",
+            "unxip"
+        ],
+        "cask_packages": [
+            "julia"
+        ]
+    },
+    "gcc": {
+        "versions": [
+            "11",
+            "12",
+            "13"
+        ]
+    },
+    "dotnet": {
+        "arch":{
+            "x64": {
+               "versions": [
+                   "7.0"
+                ]
+            }
+        }
+    },
+    "ruby": {
+        "default": "3.0",
+        "rubygems": [
+            "cocoapods",
+            "xcpretty",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "go": {
+        "default": "1.20"
+    },
+    "node": {
+        "default": "18"
+    },
+    "llvm": {
+        "version": "15"
+    },
+    "php": {
+        "version": "8.2"
+    },
+    "mono": {
+        "framework":{
+            "version": "6.12.0.188"
+        },
+        "nunit": {
+            "version": "3.15.4"
+        }
+    }
+}
