@@ -1,8 +1,8 @@
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
 - Kernel Version: 6.2.0-1015-azure
-- Image Version: 20231025.1.0
-- Systemd version: 249.11-0ubuntu3.10
+- Image Version: 20231030.2.0
+- Systemd version: 249.11-0ubuntu3.11
 
 ## Installed Software
 
@@ -35,7 +35,7 @@
 - Pip3 22.0.2
 - Pipx 1.2.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 213c01f87)
+- Vcpkg (build from commit 06c79a9af)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -70,8 +70,8 @@ to accomplish this.
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.0
 - Docker-Buildx 0.11.2
-- Docker Client 24.0.6
-- Docker Server 24.0.6
+- Docker Client 24.0.7
+- Docker Server 24.0.7
 - Fastlane 2.216.0
 - Git 2.42.0
 - Git LFS 3.4.0
@@ -93,7 +93,7 @@ to accomplish this.
 - Packer 1.9.4
 - Parcel 2.10.1
 - Podman 3.4.4
-- Pulumi 3.90.1
+- Pulumi 3.91.1
 - R 4.3.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -105,14 +105,14 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.184
-- AWS CLI 2.13.29
+- AWS CLI 2.13.30
 - AWS CLI Session Manager Plugin 1.2.497.0
 - AWS SAM CLI 1.99.0
 - Azure CLI 2.53.1
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.37.0
-- Google Cloud CLI 452.0.0
-- Netlify CLI 16.9.2
+- Google Cloud CLI 452.0.1
+- Netlify CLI 16.9.3
 - OpenShift CLI 4.13.18
 - ORAS CLI 1.1.0
 - Vercel CLI 32.5.0
@@ -121,9 +121,9 @@ to accomplish this.
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
 | 8.0.382+5           | JAVA_HOME_8_X64      |
-| 11.0.20+1 (default) | JAVA_HOME_11_X64     |
-| 17.0.8+1            | JAVA_HOME_17_X64     |
-| 21.0.0+35           | JAVA_HOME_21_X64     |
+| 11.0.21+9 (default) | JAVA_HOME_11_X64     |
+| 17.0.9+9            | JAVA_HOME_17_X64     |
+| 21.0.1+12           | JAVA_HOME_21_X64     |
 
 ### PHP Tools
 - PHP: 8.1.2
@@ -157,8 +157,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 118.0.5993.117
 - ChromeDriver 118.0.5993.70
 - Chromium 118.0.5993.0
-- Microsoft Edge 118.0.2088.69
-- Microsoft Edge WebDriver 118.0.2088.69
+- Microsoft Edge 118.0.2088.76
+- Microsoft Edge WebDriver 118.0.2088.76
 - Selenium server 4.14.0
 - Mozilla Firefox 119.0
 - Geckodriver 0.33.0
@@ -230,7 +230,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.1.4
 
 ### PowerShell Tools
-- PowerShell 7.2.15
+- PowerShell 7.2.16
 
 #### PowerShell Modules
 - Az: 9.3.0
@@ -288,8 +288,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:16-alpine          | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
 | node:18                 | sha256:a6385a6bb2fdcb7c48fc871e35e32af8daaa82c518900be49b76d10c005864c2  | 2023-10-18 |
 | node:18-alpine          | sha256:435dcad253bb5b7f347ebc69c8cc52de7c912eb7241098b920f2fc2d7843183d  | 2023-10-18 |
-| node:20                 | sha256:178f3b2d431a28b6df273ca5d169435850f1072745fff3f9b81000cc44daf500  | 2023-10-25 |
-| node:20-alpine          | sha256:4df6c64a9bc595ea1eb3782b909d257cd53300822f53d11f1a221a00cd61e983  | 2023-10-25 |
+| node:20                 | sha256:62efd17e997bc843aefa4c003ed84f43dfac83fa6228c57c898482e50a02e45c  | 2023-10-25 |
+| node:20-alpine          | sha256:8e015de364a2eb2ed7c52a558e9f716dcb615560ffd132234087c10ccc1f2c63  | 2023-10-25 |
 | ubuntu:18.04            | sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98  | 2023-05-30 |
 | ubuntu:20.04            | sha256:ed4a42283d9943135ed87d4ee34e542f7f5ad9ecf2f244870e23122f703f91c2  | 2023-10-03 |
 | ubuntu:22.04            | sha256:2b7412e6465c3c7fc5bb21d3e6f1917c167358449fecac8176c6e496e5c1f05f  | 2023-10-05 |
@@ -308,7 +308,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 8.32-4.1ubuntu1                     |
 | curl                   | 7.81.0-1ubuntu1.14                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
-| dnsutils               | 1:9.18.12-0ubuntu0.22.04.3          |
+| dnsutils               | 1:9.18.18-0ubuntu0.22.04.1          |
 | dpkg                   | 1.21.1ubuntu2.2                     |
 | dpkg-dev               | 1.21.1ubuntu2.2                     |
 | fakeroot               | 1.28-1ubuntu1                       |
