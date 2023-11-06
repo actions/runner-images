@@ -15,7 +15,7 @@ for package in $cask_packages; do
     echo "Installing $package..."
     if [[ $package == "virtualbox" ]]; then
         if ! is_Ventura || ! is_VenturaArm64; then
-            # VirtualBox 7 crashes
+            # Do not update VirtualBox on macOS 12 due to the issue with VMs in gurumediation state which blocks Vagrant on macOS: https://github.com/actions/runner-images/issues/8730
             # macOS host: Dropped all kernel extensions. VirtualBox relies fully on the hypervisor and vmnet frameworks provided by Apple now.
             vbcask_url="https://raw.githubusercontent.com/Homebrew/homebrew-cask/aa3c55951fc9d687acce43e5c0338f42c1ddff7b/Casks/virtualbox.rb"
             download_with_retries $vbcask_url
