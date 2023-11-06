@@ -300,6 +300,7 @@ build {
                         "${path.root}/scripts/installers/gcc.sh",
                         "${path.root}/scripts/installers/gfortran.sh",
                         "${path.root}/scripts/installers/git.sh",
+                        "${path.root}/scripts/installers/git-lfs.sh",
                         "${path.root}/scripts/installers/github-cli.sh",
                         "${path.root}/scripts/installers/google-chrome.sh",
                         "${path.root}/scripts/installers/google-cloud-cli.sh",
