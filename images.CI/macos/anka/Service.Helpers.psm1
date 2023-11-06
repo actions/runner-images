@@ -13,7 +13,7 @@ function Enable-AutoLogon {
         [string] $Password
     )
 
-    $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/provision/bootstrap-provisioner/setAutoLogin.sh"
+    $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/assets/bootstrap-provisioner/setAutoLogin.sh"
     $script = Invoke-RestMethod -Uri $url
     $base64 = [Convert]::ToBase64String($script.ToCharArray())
     $command = "echo $base64 | base64 --decode > ./setAutoLogin.sh;sudo bash ./setAutoLogin.sh '${UserName}' '${Password}';rm ./setAutoLogin.sh"
@@ -43,7 +43,7 @@ function Invoke-SoftwareUpdateArm64 {
         '14.\d' { $nextOSVersion = 'NotYetDefined'  }
     }
 
-    $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/provision/configuration/auto-software-update-arm64.exp"
+    $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/assets/auto-software-update-arm64.exp"
     $script = Invoke-RestMethod -Uri $url
     foreach ($update in $listOfUpdates) {
         if ($update -notmatch "$nextOSVersion") {
