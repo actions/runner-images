@@ -145,9 +145,11 @@
     ],
     "java": {
         "default": "8",
-        "versions": [ "8", "11", "17" ]
+        "versions": [ "8", "11", "17", "21"]
     },
     "android": {
+        "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",
+        "hash": "8A90E6A3DEB2FA13229B2E335EFD07687DCC8A55A3C544DA9F40B41404993E7D",
         "platform_min_version": "19",
         "build_tools_min_version": "19.1.0",
         "extra_list": [
@@ -168,8 +170,7 @@
         "additional_tools": [
             "cmake;3.10.2.4988404",
             "cmake;3.18.1",
-            "cmake;3.22.1",
-            "patcher;v4"
+            "cmake;3.22.1"
         ],
         "ndk": {
             "default": "25",
@@ -266,6 +267,7 @@
         "subversion" : "16",
         "edition" : "Enterprise",
         "channel": "release",
+        "signature": "6E78B3DCE2998F6C2457C3E54DA90A01034916AE",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -411,10 +413,12 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "9.1.1436.9590"
+            "version": "9.1.1436.9590",
+            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
         },
         "sdk": {
-            "version": "6.1.1436"
+            "version": "6.1.1436",
+            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
         }
     },
     "dotnet": {
@@ -437,7 +441,10 @@
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
             { "name": "packer" },
-            { "name": "strawberryperl" },
+            {
+                "name": "strawberryperl" ,
+                "args": [ "--version", "5.32.1.1" ]
+            },
             { "name": "pulumi" },
             { "name": "tortoisesvn" },
             { "name": "swig" },
@@ -477,7 +484,8 @@
         "version": "16"
     },
     "postgresql": {
-        "version": "14"
+        "version": "14",
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
         "version": "latest",

@@ -174,6 +174,10 @@ Function GenerateResourcesAndImage {
                 Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
                 $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
             }
+            elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
+                Write-Verbose "PowerShell 7.0-7.2 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
+                $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
+            }
             else {
                 $AllowedInboundIpAddresses = '["{0}"]' -f $AgentIp
             }
@@ -198,6 +202,10 @@ Function GenerateResourcesAndImage {
     $TagsJson = $Tags | ConvertTo-Json -Compress
     if ($PSVersionTable.PSVersion.Major -eq 5) {
         Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in tags JSON."
+        $TagsJson = $TagsJson -replace '"', '\"'
+    }
+    elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
+        Write-Verbose "PowerShell 7.0-7.2 detected. Replacing double quotes with escaped double quotes in tags JSON."
         $TagsJson = $TagsJson -replace '"', '\"'
     }
     Write-Debug "Tags JSON: $TagsJson."

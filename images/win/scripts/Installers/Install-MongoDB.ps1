@@ -6,14 +6,16 @@
 # Install mongodb package
 $toolsetVersion = (Get-ToolsetContent).mongodb.version
 
-$getMongoReleases =  Invoke-WebRequest -Uri "https://www.mongodb.com/docs/v$toolsetVersion/release-notes/$toolsetVersion-changelog/" -UseBasicParsing
-$TargetReleases = $getMongoReleases.Links.href | Where-Object {$_ -like "#$toolsetVersion*-changelog"}
+$getMongoReleases =  Invoke-WebRequest -Uri "mongodb.com/docs/manual/release-notes/$toolsetVersion/" -UseBasicParsing
+$TargetReleases = $getMongoReleases.Links.href | Where-Object {$_ -like "#$toolsetVersion*---*"}
 
 $MinorVersions = @()
 foreach ($release in $TargetReleases) {
-    $pattern = '\d+\.\d+\.\d+'
-    $version = $release | Select-String -Pattern $pattern -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
-    $MinorVersions += $version
+    if ($release -notlike "*upcoming*") {
+      $pattern = '\d+\.\d+\.\d+'
+      $version = $release | Select-String -Pattern $pattern -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
+      $MinorVersions += $version
+    }
   }
 
 $LatestVersion = $MinorVersions[0]

@@ -2,6 +2,7 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
+$arch = Get-Architecture
 
 function Get-NativeVersionFormat {
     param($Version)
@@ -11,7 +12,7 @@ function Get-NativeVersionFormat {
     return $Version
 }
 
-Describe "Java" -Skip:($os.IsVenturaArm64) {
+Describe "Java" {
     BeforeAll {
         function Validate-JavaVersion {
             param($JavaCommand, $ExpectedVersion)
@@ -26,10 +27,14 @@ Describe "Java" -Skip:($os.IsVenturaArm64) {
     }
 
     $toolsetJava = Get-ToolsetValue "java"
-    $defaultVersion = $toolsetJava.default
-    $jdkVersions = $toolsetJava.versions
+    $defaultVersion = $toolsetJava.$arch.default
+    $jdkVersions = $toolsetJava.$arch.versions
 
-    $testCases = $jdkVersions | ForEach-Object { @{ Title = $_; Version = (Get-NativeVersionFormat $_); EnvVariable = "JAVA_HOME_${_}_X64" } }
+    if ($os.IsVenturaArm64) {
+        $testCases = $jdkVersions | ForEach-Object { @{ Title = $_; Version = (Get-NativeVersionFormat $_); EnvVariable = "JAVA_HOME_${_}_arm64" } }
+    } else {
+        $testCases = $jdkVersions | ForEach-Object { @{ Title = $_; Version = (Get-NativeVersionFormat $_); EnvVariable = "JAVA_HOME_${_}_X64" } }
+    }
     $testCases += @{ Title = "Default"; Version = (Get-NativeVersionFormat $defaultVersion); EnvVariable = "JAVA_HOME" }
 
     $testCases | ForEach-Object {
@@ -59,15 +64,19 @@ Describe "Java" -Skip:($os.IsVenturaArm64) {
             }
         }
     }
-    
+
     Context "Gradle" {
         Describe "Gradle" {
             It "Gradle is installed" {
                 "gradle --version" | Should -ReturnZeroExitCode
             }
-        
-            It "Gradle is installed to /usr/local/bin" {
+
+            It "Gradle is installed to /usr/local/bin" -Skip:($os.IsVenturaArm64)  {
                 (Get-Command "gradle").Path | Should -BeExactly "/usr/local/bin/gradle"
+            }
+
+            It "Gradle is installed to /opt/homebrew/bin/gradle" -Skip:(-not $os.IsVenturaArm64)  {
+                (Get-Command "gradle").Path | Should -BeExactly "/opt/homebrew/bin/gradle"
             }
         }
     }

@@ -4,7 +4,7 @@ arch=$(get_arch)
 
 # Check MacOS architecture and if ARM install using brew
 if [ $arch == "arm64" ]; then
-    brew install azcopy
+    brew_smart_install azcopy
 else
     AZCOPY_DOWNLOAD_URL="https://aka.ms/downloadazcopy-v10-mac"
 

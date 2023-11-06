@@ -198,6 +198,7 @@ build {
   }
   provisioner "shell" {
     scripts = [
+      "./provision/core/action-archive-cache.sh",
       "./provision/core/llvm.sh",
       "./provision/core/golang.sh",
       "./provision/core/swiftlint.sh",
@@ -207,7 +208,6 @@ build {
       "./provision/core/rust.sh",
       "./provision/core/gcc.sh",
       "./provision/core/haskell.sh",
-      "./provision/core/stack.sh",
       "./provision/core/cocoapods.sh",
       "./provision/core/android-toolsets.sh",
       "./provision/core/xamarin.sh",

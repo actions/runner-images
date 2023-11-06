@@ -53,7 +53,12 @@ installOpenJDK() {
     # https://github.com/adoptium/temurin-build/issues/2248
     [[ ${fullJavaVersion} =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+ ]] && fullJavaVersion=$(echo $fullJavaVersion | sed -E 's/\.[0-9]+-/-/')
 
+    # When version string is too short, add extra ".0" to make it valid semver
+    [[ ${fullJavaVersion} =~ ^[0-9]+- ]] && fullJavaVersion=$(echo $fullJavaVersion | sed -E 's/-/.0-/')
+    [[ ${fullJavaVersion} =~ ^[0-9]+\.[0-9]+- ]] && fullJavaVersion=$(echo $fullJavaVersion | sed -E 's/-/.0-/')
+    
     javaToolcacheVersionPath="${JAVA_TOOLCACHE_PATH}/${fullJavaVersion}"
+    echo "Java ${JAVA_VERSION} Toolcache Version Path: ${javaToolcacheVersionPath}"
     mkdir -p "${javaToolcacheVersionPath}"
 
     # Create a complete file

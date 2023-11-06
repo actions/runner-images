@@ -2,6 +2,7 @@
 ################################################################################
 ##  File:  docker.sh
 ##  Desc:  Installs docker onto the image
+##  Supply chain security: Docker Compose v2, amazon-ecr-credential-helper - checksum validation
 ################################################################################
 
 # Source the helpers for use with the script
@@ -17,10 +18,16 @@ echo "deb [arch=amd64 signed-by=$gpg_key] $repo_url $(getOSVersionLabel) stable"
 apt-get update
 apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io docker-buildx-plugin
 
-# Install docker compose v2 from releases
+# Download docker compose v2 from releases
 URL=$(get_github_package_download_url "docker/compose" "contains(\"compose-linux-x86_64\")")
-curl -fsSL $URL -o /usr/libexec/docker/cli-plugins/docker-compose
-chmod +x /usr/libexec/docker/cli-plugins/docker-compose
+curl -fsSL "${URL}" -o /tmp/docker-compose
+# Supply chain security - Docker Compose v2
+compose_hash_url=$(get_github_package_download_url "docker/compose" "contains(\"checksums.txt\")")
+compose_external_hash=$(get_hash_from_remote_file "${compose_hash_url}" "compose-linux-x86_64")
+use_checksum_comparison "/tmp/docker-compose" "${compose_external_hash}"
+# Install docker compose v2
+install /tmp/docker-compose /usr/libexec/docker/cli-plugins/docker-compose
+
 
 # docker from official repo introduced different GID generation: https://github.com/actions/runner-images/issues/8157
 gid=$(cut -d ":" -f 3 /etc/group | grep "^1..$" | sort -n | tail -n 1 | awk '{ print $1+1 }')
@@ -56,17 +63,22 @@ else
     echo "Skipping docker images pulling"
 fi
 
-# Install amazon-ecr-credential-helper
+# Download amazon-ecr-credential-helper
+aws_helper="docker-credential-ecr-login"
 aws_latest_release_url="https://api.github.com/repos/awslabs/amazon-ecr-credential-helper/releases/latest"
-aws_helper_url=$(curl "${authString[@]}" -fsSL $aws_latest_release_url | jq -r '.body' | awk -F'[()]' '/linux-amd64/ {print $2}')
-download_with_retries "$aws_helper_url" "/usr/bin" docker-credential-ecr-login
-chmod +x /usr/bin/docker-credential-ecr-login
+aws_helper_url=$(curl "${authString[@]}" -fsSL "${aws_latest_release_url}" | jq -r '.body' | awk -F'[()]' '/linux-amd64/ {print $2}')
+download_with_retries "${aws_helper_url}" "/tmp" "${aws_helper}"
+# Supply chain security - amazon-ecr-credential-helper
+aws_helper_external_hash=$(get_hash_from_remote_file "${aws_helper_url}.sha256" "${aws_helper}")
+use_checksum_comparison "/tmp/${aws_helper}" "${aws_helper_external_hash}"
+# Install amazon-ecr-credential-helper
+install "/tmp/${aws_helper}" "/usr/bin/${aws_helper}"
 
 # Cleanup custom repositories
 rm $gpg_key
 rm $repo_path
 
 invoke_tests "Tools" "Docker"
-if [ "${DOCKERHUB_PULL_IMAGES:-yes}" -eq "yes" ]; then
+if [ "${DOCKERHUB_PULL_IMAGES:-yes}" == "yes" ]; then
     invoke_tests "Tools" "Docker images"
 fi

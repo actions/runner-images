@@ -95,3 +95,117 @@ get_github_package_download_url() {
     fi
     echo $downloadUrl
 }
+
+get_github_package_hash() {
+    local repo_owner=$1
+    local repo_name=$2
+    local file_name=$3
+    local url=$4
+    local version=${5:-"latest"}
+    local prerelease=${6:-false}
+    local delimiter=${7:-'|'}
+    local word_number=${8:-2}
+
+    if [[ -z "$file_name" ]]; then
+        echo "File name is not specified."
+        exit 1
+    fi
+
+    if [[ -n "$url" ]]; then
+        release_url="$url"
+    else
+        if [ "$version" == "latest" ]; then
+            release_url="https://api.github.com/repos/${repo_owner}/${repo_name}/releases/latest"
+        else
+            json=$(curl -fsSL "https://api.github.com/repos/${repo_owner}/${repo_name}/releases?per_page=100")
+            tags=$(echo "$json" | jq -r --arg prerelease "$prerelease" '.[] | select(.prerelease == ($prerelease | test("true"; "i"))) | .tag_name')
+            tag=$(echo "$tags" | grep -o "$version")
+            if [[ "$(echo "$tag" | wc -l)" -gt 1 ]]; then
+                echo "Multiple tags found matching the version $version. Please specify a more specific version."
+                exit 1
+            fi
+            if [[ -z "$tag" ]]; then
+                echo "Failed to get a tag name for version $version."
+                exit 1
+            fi
+            release_url="https://api.github.com/repos/${repo_owner}/${repo_name}/releases/tags/$tag"
+        fi
+    fi
+
+    body=$(curl -fsSL "$release_url" | jq -r '.body' | tr -d '`')
+    matching_line=$(echo "$body" | grep "$file_name")
+    if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
+        echo "Multiple lines found included the file $file_name. Please specify a more specific file name."
+        exit 1
+    fi
+    if [[ -z "$matching_line" ]]; then
+        echo "File name '$file_name' not found in release body."
+        exit 1
+    fi
+
+    result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
+    if [[ -z "$result" ]]; then
+        echo "Empty result. Check parameters delimiter and/or word_number for the matching line."
+        exit 1
+    fi
+
+    echo "$result"
+}
+
+get_hash_from_remote_file() {
+    local url=$1
+    local keywords=("$2" "$3")
+    local delimiter=${4:-' '}
+    local word_number=${5:-1}
+
+    if [[ -z "${keywords[0]}" || -z "$url" ]]; then
+        echo "File name and/or URL is not specified."
+        exit 1
+    fi
+
+    matching_line=$(curl -fsSL "$url" | sed 's/  */ /g' | tr -d '`')
+    for keyword in "${keywords[@]}"; do
+        matching_line=$(echo "$matching_line" | grep "$keyword")
+    done
+
+    if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
+        echo "Multiple lines found including the words: ${keywords[*]}. Please use a more specific filter."
+        exit 1
+    fi
+
+    if [[ -z "$matching_line" ]]; then
+        echo "Keywords (${keywords[*]}) not found in the file with hashes."
+        exit 1
+    fi
+
+    result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
+    if [[ ${#result} -ne 64 && ${#result} -ne 128 ]]; then
+        echo "Invalid result length. Expected 64 or 128 characters. Please check delimiter and/or word_number parameters."
+        echo "Result: $result"
+        exit 1
+    fi
+
+    echo "$result"
+}
+
+use_checksum_comparison() {
+    local file_path=$1
+    local checksum=$2
+    local sha_type=${3:-"256"}
+
+    echo "Performing checksum verification"
+
+    if [[ ! -f "$file_path" ]]; then
+        echo "File not found: $file_path"
+        exit 1
+    fi
+
+    local_file_hash=$(shasum --algorithm "$sha_type" "$file_path" | awk '{print $1}')
+
+    if [[ "$local_file_hash" != "$checksum" ]]; then
+        echo "Checksum verification failed. Expected hash: $checksum; Actual hash: $local_file_hash."
+        exit 1
+    else
+        echo "Checksum verification passed"
+    fi
+}

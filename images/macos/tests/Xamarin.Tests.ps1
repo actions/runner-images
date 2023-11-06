@@ -2,7 +2,7 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
-if ($os.IsVentura -or $os.IsVenturaArm64) { 
+if ($os.IsVentura -or $os.IsVenturaArm64) {
     $MONO_VERSIONS = @(Get-ToolsetValue "mono.framework.version")
     $XAMARIN_IOS_VERSIONS = @()
     $XAMARIN_MAC_VERSIONS = @()

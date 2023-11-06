@@ -1,6 +1,12 @@
 function Get-JavaVersions {
     $defaultJavaPath = (Get-Item env:JAVA_HOME).value
-    $javaVersions = Get-Item env:JAVA_HOME_*_X64
+    
+    $os = Get-OSVersion
+    if ($os.IsVenturaArm64) {
+        $javaVersions = Get-Item env:JAVA_HOME_*_arm64
+    } else {
+        $javaVersions = Get-Item env:JAVA_HOME_*_X64
+    }
     $sortRules = @{
         Expression = { [Int32]$_.Name.Split("_")[2] }  
         Descending = $false

@@ -49,6 +49,9 @@ Get-ScheduledTask -TaskName ServerManager | Disable-ScheduledTask
 Write-Host "Disable 'Allow your PC to be discoverable by other PCs' popup"
 New-Item -Path HKLM:\System\CurrentControlSet\Control\Network -Name NewNetworkWindowOff -Force
 
+Write-Host 'Disable Windows Update Medic Service'
+Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Services\WaaSMedicSvc -Name Start -Value 4 -Force
+
 Write-Host "Disable Windows Update"
 Disable-WindowsUpdate
 

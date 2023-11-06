@@ -73,6 +73,11 @@ Write-Host "Unzip $setupZipFile to $setupPath..."
 Extract-7Zip -Path $setupZipFile -DestinationPath $setupPath
 Remove-Item $setupZipFile
 
+# Verify signature
+$BuildComponentSignatureThumbprint = "8740DF4ACB749640AD318E4BE842F72EC651AD80"
+Test-FileSignature -FilePath "$setupPath\Bootstrap.msi" -ExpectedThumbprint $BuildComponentSignatureThumbprint
+Test-FileSignature -FilePath "$setupPath\BuildComponentSetup.msi" -ExpectedThumbprint $BuildComponentSignatureThumbprint
+
 # Install
 Install-Msi -MsiPath "$setupPath\Bootstrap.msi" -LogPath "$setupPath\bootstrap.log"
 Install-Msi -MsiPath "$setupPath\BuildComponentSetup.msi" -LogPath  "$setupPath\buildComponentSetup.log"

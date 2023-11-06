@@ -15,7 +15,7 @@ for package in $cask_packages; do
     echo "Installing $package..."
     if [[ $package == "virtualbox" ]]; then
         if ! is_Ventura || ! is_VenturaArm64; then
-            # VirtualBox 7 crashes
+            # Do not update VirtualBox on macOS 12 due to the issue with VMs in gurumediation state which blocks Vagrant on macOS: https://github.com/actions/runner-images/issues/8730
             # macOS host: Dropped all kernel extensions. VirtualBox relies fully on the hypervisor and vmnet frameworks provided by Apple now.
             vbcask_url="https://raw.githubusercontent.com/Homebrew/homebrew-cask/aa3c55951fc9d687acce43e5c0338f42c1ddff7b/Casks/virtualbox.rb"
             download_with_retries $vbcask_url
@@ -36,18 +36,24 @@ fi
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
 if is_Monterey; then
     if is_Veertu; then
-        retry=5
-        while [ $retry -gt 0 ]; do
+        for retry in {4..0}; do
+            echo "Executing AppleScript to change security preferences. Retries left: $retry"
             {
+                set -e
                 osascript -e 'tell application "System Events" to get application processes where visible is true'
-            }
-            osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
+                osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
+            } && break
 
-            retry=$((retry-1))
-            echo "retries left "$retry
+            if [ "$retry" -eq 0 ]; then
+                echo "Executing AppleScript failed. No retries left"
+                exit 1
+            fi
+
+            echo "Executing AppleScript failed. Sleeping for 10 seconds and retrying"
             sleep 10
         done
     else
+        echo "Executing AppleScript to change security preferences"
         osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
     fi
 fi
@@ -81,14 +87,6 @@ bazel
 
 # Install Azure DevOps extension for Azure Command Line Interface
 az extension add -n azure-devops
-
-# Workaround https://github.com/actions/runner-images/issues/4931
-# by making Tcl/Tk paths the same on macOS 10.15 and macOS 11
-if is_Monterey; then
-    version=$(brew info tcl-tk --json | jq -r '.[].installed[].version')
-    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtcl8.6.dylib /usr/local/lib/libtcl8.6.dylib
-    ln -s /usr/local/Cellar/tcl-tk/$version/lib/libtk8.6.dylib /usr/local/lib/libtk8.6.dylib
-fi
 
 # Invoke tests for all basic tools
 invoke_tests "BasicTools"
