@@ -23,7 +23,7 @@ function Validate-Scripts {
 }
 
 $PathUbuntu = "./images/linux/scripts"
-$PathMacOS = "./images/macos/provision"
+$PathMacOS = "./images/macos"
 $PatternUbuntu = "#!/bin/bash -e"
 $PatternMacOS = "#!/bin/bash -e -o pipefail"
 $ScriptsWithBrokenShebang = @()
