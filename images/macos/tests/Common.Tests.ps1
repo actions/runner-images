@@ -58,7 +58,7 @@ Describe "AzCopy" {
     }
 }
 
-Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
     It "Conda" {
         Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
         $condaBinPath = Join-Path $env:CONDA "bin" "conda"
@@ -78,7 +78,7 @@ Describe "CocoaPods" {
     }
 }
 
-Describe "VSMac" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "VSMac" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
     $vsMacVersions = Get-ToolsetValue "xamarin.vsmac.versions"
     $defaultVSMacVersion = Get-ToolsetValue "xamarin.vsmac.default"
 
@@ -105,7 +105,7 @@ Describe "VSMac" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     }
 }
 
-Describe "Swig" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Swig" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
     It "Swig" {
         "swig -version" | Should -ReturnZeroExitCode
     }
@@ -117,13 +117,13 @@ Describe "Bicep" {
     }
 }
 
-Describe "Go" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Go" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
     It "Go" {
         "go version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "VirtualBox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64) {
+Describe "VirtualBox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
     It "Check kext kernel modules" {
         kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }
@@ -141,7 +141,7 @@ Describe "CodeQL Bundle" {
     }
 }
 
-Describe "Colima" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Colima" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
     It "Colima" {
         "colima version" | Should -ReturnZeroExitCode
     }
