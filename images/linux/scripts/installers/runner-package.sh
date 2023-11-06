@@ -11,6 +11,6 @@ DOWNLOAD_URL=$(get_github_package_download_url "actions/runner" "contains(\"acti
 
 FILE_NAME=echo ${DOWNLOAD_URL##*/}
 
-mkdir -p /opt/runner-cache
+sudo mkdir -p /opt/runner-cache
 
 download_with_retries "${URL}" "/opt/runner-cache" "${FILE_NAME}"
