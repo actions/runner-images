@@ -33,7 +33,6 @@ Describe "Android" {
             # Convert 'm2repository;com;android;support;constraint;constraint-layout-solver;1.0.0-beta1' ->
             #         'm2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-beta1'
             #         'cmake;3.6.4111459' -> 'cmake/3.6.4111459'
-            #         'patcher;v4' -> 'patcher/v4'
             $PackageName = $PackageName.Replace(";", "/")
             $targetPath = Join-Path $env:ANDROID_HOME $PackageName
             $targetPath | Should -Exist

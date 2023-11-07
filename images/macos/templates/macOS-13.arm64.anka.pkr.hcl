@@ -201,6 +201,7 @@ build {
       "./provision/core/rust.sh",
       "./provision/core/gcc.sh",
       "./provision/core/cocoapods.sh",
+      "./provision/core/android-toolsets.sh",
       "./provision/core/safari.sh",
       "./provision/core/chrome.sh",
       "./provision/core/bicep.sh",
