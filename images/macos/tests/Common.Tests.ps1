@@ -10,7 +10,7 @@ Describe ".NET" {
 }
 
 Describe "GCC" {
-    $testCases = Get-ToolsetValue -KeyPath gcc.versions | ForEach-Object { @{Version = $_} }
+    $testCases = Get-ToolsetValue -KeyPath gcc.versions | ForEach-Object { @{Version = $_ } }
 
     It "GCC <Version>" -TestCases $testCases {
         param (
@@ -33,7 +33,7 @@ Describe "GCC" {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsVenturaArm64) {
+Describe "vcpkg" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -58,7 +58,7 @@ Describe "AzCopy" {
     }
 }
 
-Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Conda" {
         Get-EnvironmentVariable "CONDA" | Should -Not -BeNullOrEmpty
         $condaBinPath = Join-Path $env:CONDA "bin" "conda"
@@ -66,7 +66,7 @@ Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonom
     }
 }
 
-Describe "Stack" -Skip:($os.IsVenturaArm64) {
+Describe "Stack" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
     }
@@ -78,7 +78,7 @@ Describe "CocoaPods" {
     }
 }
 
-Describe "VSMac" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "VSMac" -Skip:($os.IsVentura -or $os.IsSonoma) {
     $vsMacVersions = Get-ToolsetValue "xamarin.vsmac.versions"
     $defaultVSMacVersion = Get-ToolsetValue "xamarin.vsmac.default"
 
@@ -105,7 +105,7 @@ Describe "VSMac" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
     }
 }
 
-Describe "Swig" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "Swig" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Swig" {
         "swig -version" | Should -ReturnZeroExitCode
     }
@@ -117,13 +117,13 @@ Describe "Bicep" {
     }
 }
 
-Describe "Go" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "Go" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Go" {
         "go version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "VirtualBox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "VirtualBox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
     It "Check kext kernel modules" {
         kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }
@@ -141,7 +141,7 @@ Describe "CodeQL Bundle" {
     }
 }
 
-Describe "Colima" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "Colima" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Colima" {
         "colima version" | Should -ReturnZeroExitCode
     }

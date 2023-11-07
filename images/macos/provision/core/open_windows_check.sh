@@ -3,7 +3,7 @@
 source ~/utils/utils.sh
 
 # Close System Preferences window because in Ventura arm64 it is opened by default on Apperance tab
-if is_VenturaArm64; then
+if is_Arm64; then
     echo "Close System Preferences window"
     osascript -e 'tell application "System Preferences" to quit'
 fi
