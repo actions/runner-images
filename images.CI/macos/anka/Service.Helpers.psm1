@@ -305,9 +305,7 @@ function Invoke-SSHPassCommand {
         "${env:SSHUSER}@${HostName}"
     )
     $sshPassOptions = $sshArg -join " "
-    if ($PSVersionTable.PSVersion.Major -eq 5) {
-        $result = bash -c "$sshPassOptions \""$Command\"" 2>&1"
-    } elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
+    if ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
         $result = bash -c "$sshPassOptions \""$Command\"" 2>&1"
     } else {
         $result = bash -c "$sshPassOptions `"$Command`" 2>&1"
