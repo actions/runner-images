@@ -13,4 +13,4 @@ FILE_NAME=echo ${DOWNLOAD_URL##*/}
 
 sudo mkdir -p /opt/runner-cache
 
-download_with_retries "${URL}" "/opt/runner-cache" "${FILE_NAME}"
+download_with_retries "${DOWNLOAD_URL}" "/opt/runner-cache" "${FILE_NAME}"
