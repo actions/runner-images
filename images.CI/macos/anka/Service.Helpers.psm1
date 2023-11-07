@@ -63,24 +63,24 @@ function Get-AvailableIPSWVersions {
     )
 
     if ($IsBeta) {
-        $command = { mist list firmware "$MacOSCodeNameOrVersion" --include-betas --latest --export "/Applications/export.json"}
+        $command = { mist list firmware "$MacOSCodeNameOrVersion" --compatible --include-betas --latest --export "/Applications/export.json" }
     } elseif ($IsLatest) {
-        $command = { mist list firmware "$MacOSCodeNameOrVersion" --latest  --export "/Applications/export.json" }
+        $command = { mist list firmware "$MacOSCodeNameOrVersion" --compatible --latest --export "/Applications/export.json" }
     } else {
-        $command = { mist list firmware "$MacOSCodeNameOrVersion"  --export "/Applications/export.json" }
+        $command = { mist list firmware "$MacOSCodeNameOrVersion" --compatible --export "/Applications/export.json" }
     }
 
     $condition = { $LASTEXITCODE -eq 0 }
     Invoke-WithRetry -Command $command -BreakCondition $condition | Out-Null
     $softwareList = get-content -Path "/Applications/export.json"
-    $turgetVersion = ($softwareList | ConvertFrom-Json).version
-    if ($null -eq $turgetVersion) {
+    $availableBuilds = ($softwareList | ConvertFrom-Json).build
+    if ($null -eq $availableBuilds) {
         Write-Host "Requested macOS '$MacOSCodeNameOrVersion' version not found in the list of available installers."
         $command = { mist list firmware "$($MacOSCodeNameOrVersion.split('.')[0])" }
         Invoke-WithRetry -Command $command -BreakCondition $condition
         exit 1
     }
-    return $turgetVersion
+    return $availableBuilds
 }
 
 function Get-MacOSIPSWInstaller {
@@ -100,17 +100,20 @@ function Get-MacOSIPSWInstaller {
         $MacOSName = $MacOSVersion.ToString()
     }
 
-
     Write-Host "`t[*] Finding available full installers"
     if ($DownloadLatestVersion -eq $true) {
-        $targetVersion = Get-AvailableIPSWVersions -IsLatest $true -MacOSCodeNameOrVersion $MacOSName
-        Write-host "`t[*] The 'DownloadLatestVersion' flag is set to true. Latest macOS version is '$MacOSName' - '$targetVersion' now"
+        $targetBuild = Get-AvailableIPSWVersions -IsLatest $true -MacOSCodeNameOrVersion $MacOSName
+        Write-Host "`t[*] The 'DownloadLatestVersion' flag is set to true. Latest compatible macOS build of '$MacOSName' is '$targetBuild'"
     } elseif ($BetaSearch -eq $true) {
-        $targetVersion = Get-AvailableIPSWVersions -IsBeta $true -MacOSCodeNameOrVersion $MacOSName
-        Write-host "`t[*] The 'BetaSearch' flag is set to true. Latestbeta macOS version is '$MacOSName' - '$targetVersion' now"
+        $targetBuild = Get-AvailableIPSWVersions -IsBeta $true -MacOSCodeNameOrVersion $MacOSName
+        Write-Host "`t[*] The 'BetaSearch' flag is set to true. Latest compatible beta macOS build of '$MacOSName' is '$targetBuild'"
     } else {
-        $targetVersion = Get-AvailableIPSWVersions -MacOSCodeNameOrVersion $MacOSName -IsLatest $false
-        Write-host "`t[*] The exact version was specified - '$MacOSName' "
+        $targetBuild = Get-AvailableIPSWVersions -MacOSCodeNameOrVersion $MacOSName -IsLatest $false
+        Write-Host "`t[*] Available compatible macOS builds of '$MacOSName' are: $($targetBuild -join ', ')"
+        if ($targetBuild.Count -gt 1) {
+            Write-Error "`t[*] Please specify the exact build number of macOS you want to install"
+            exit 1
+        }
     }
 
     $installerPathPattern = "/Applications/Install ${macOSName}*.ipsw"
@@ -123,12 +126,12 @@ function Get-MacOSIPSWInstaller {
     # Download macOS installer
     $installerDir = "/Applications/"
     $installerName = "Install ${macOSName}.ipsw"
-    Write-Host "`t[*] Requested macOS '$targetVersion' version installer found, fetching it from mist database"
-    Invoke-WithRetry { mist download firmware "$targetVersion" --output-directory $installerDir --firmware-name "$installerName" } {$LASTEXITCODE -eq 0} | Out-Null
+    Write-Host "`t[*] Requested macOS '$targetBuild' version installer found, fetching it from mist database"
+    Invoke-WithRetry { mist download firmware "$targetBuild" --output-directory $installerDir --firmware-name "$installerName" } { $LASTEXITCODE -eq 0 } | Out-Null
     if (Test-Path "$installerDir$installerName") {
         $result = "$installerDir$installerName"
     } else {
-        Write-host "`t[*] Requested macOS '$targetVersion' version installer failed to download"
+        Write-Error "`t[*] Requested macOS '$targetBuild' version installer failed to download"
         exit 1
     }
     return $result
@@ -169,7 +172,7 @@ function Get-MacOSInstaller {
             exit 1
         }
         Show-StringWithFormat $filteredVersions
-        $osVersions = $filteredVersions.OSVersion | Sort-Object {[version]$_}
+        $osVersions = $filteredVersions.OSVersion | Sort-Object { [version]$_ }
         $MacOSVersion = $osVersions | Select-Object -Last 1
         Write-Host "`t[*] The 'DownloadLatestVersion' flag is set. Latest macOS version is '$MacOSVersion' now"
     }
@@ -248,7 +251,7 @@ function Install-SoftwareUpdate {
     $command = "sw_vers"
     $guestMacosVersion = Invoke-SSHPassCommand -HostName $HostName -Command $command
     if ($guestMacosVersion[1] -match "12") {
-        foreach ($update in $listOfUpdates){
+        foreach ($update in $listOfUpdates) {
             # Filtering updates that contain "Ventura" word
             if ($update -notmatch "Ventura") {
                 $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
@@ -256,7 +259,7 @@ function Install-SoftwareUpdate {
             }
         }
     } elseif ($guestMacosVersion[1] -match "13") {
-        foreach ($update in $listOfUpdates){
+        foreach ($update in $listOfUpdates) {
             # Filtering updates that contain "Sonoma" word
             if ($update -notmatch "Sonoma") {
                 $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
@@ -302,7 +305,13 @@ function Invoke-SSHPassCommand {
         "${env:SSHUSER}@${HostName}"
     )
     $sshPassOptions = $sshArg -join " "
-    $result = bash -c "$sshPassOptions \""$Command\"" 2>&1"
+    if ($PSVersionTable.PSVersion.Major -eq 5) {
+        $result = bash -c "$sshPassOptions \""$Command\"" 2>&1"
+    } elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
+        $result = bash -c "$sshPassOptions \""$Command\"" 2>&1"
+    } else {
+        $result = bash -c "$sshPassOptions `"$Command`" 2>&1"
+    }
     if ($LASTEXITCODE -ne 0) {
         Write-Error "There is an error during command execution:`n$result"
         exit 1
