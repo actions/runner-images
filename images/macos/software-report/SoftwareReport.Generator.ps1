@@ -145,7 +145,7 @@ if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)
     $utilities.AddToolVersion("Subversion (SVN)", $(Get-SVNVersion))
     $utilities.AddToolVersion("Switchaudio-osx", $(Get-SwitchAudioOsxVersion))
 }
-if ((-not $os.IsBigSur) -and (-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ($os.IsMonterey) {
     $utilities.AddToolVersion("Vagrant", $(Get-VagrantVersion))
     $utilities.AddToolVersion("VirtualBox", $(Get-VirtualBoxVersion))
 }
@@ -212,23 +212,25 @@ $java = $installedSoftware.AddHeader("Java")
 $java.AddTable($(Get-JavaVersions))
 
 # Toolcache
-$toolcache = $installedSoftware.AddHeader("Cached Tools")
-$toolcache.AddNodes($(Build-ToolcacheSection))
+if (-not $os.IsSonoma) {
+    $toolcache = $installedSoftware.AddHeader("Cached Tools")
+    $toolcache.AddNodes($(Build-ToolcacheSection))
 
-# Rust
-$rust = $installedSoftware.AddHeader("Rust Tools")
-$rust.AddToolVersion("Cargo", $(Get-RustCargoVersion))
-$rust.AddToolVersion("Rust", $(Get-RustVersion))
-$rust.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
-$rust.AddToolVersion("Rustup", $(Get-RustupVersion))
+    # Rust
+    $rust = $installedSoftware.AddHeader("Rust Tools")
+    $rust.AddToolVersion("Cargo", $(Get-RustCargoVersion))
+    $rust.AddToolVersion("Rust", $(Get-RustVersion))
+    $rust.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
+    $rust.AddToolVersion("Rustup", $(Get-RustupVersion))
 
-$rustPackages = $rust.AddHeader("Packages")
-$rustPackages.AddToolVersion("Bindgen", $(Get-Bindgen))
-$rustPackages.AddToolVersion("Cargo-audit", $(Get-Cargoaudit))
-$rustPackages.AddToolVersion("Cargo-outdated", $(Get-Cargooutdated))
-$rustPackages.AddToolVersion("Cbindgen", $(Get-Cbindgen))
-$rustPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
-$rustPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
+    $rustPackages = $rust.AddHeader("Packages")
+    $rustPackages.AddToolVersion("Bindgen", $(Get-Bindgen))
+    $rustPackages.AddToolVersion("Cargo-audit", $(Get-Cargoaudit))
+    $rustPackages.AddToolVersion("Cargo-outdated", $(Get-Cargooutdated))
+    $rustPackages.AddToolVersion("Cbindgen", $(Get-Cbindgen))
+    $rustPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
+    $rustPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
+}
 
 # PowerShell
 $powerShell = $installedSoftware.AddHeader("PowerShell Tools")
