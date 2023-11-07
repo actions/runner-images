@@ -121,11 +121,11 @@ build {
     inline          = [
       "mv ~/image-generation/docs-gen ~/image-generation/software-report",
       "mv ~/image-generation/xamarin-selector ~/image-generation/assets",
-      "mkdir ~/image-generation/utils",
-      "mv ~/image-generation/helpers/confirm-identified-developers.scpt ~/image-generation/utils",
-      "mv ~/image-generation/helpers/invoke-tests.sh ~/image-generation/utils",
-      "mv ~/image-generation/helpers/utils.sh ~/image-generation/utils",
-      "mv ~/image-generation/helpers/xamarin-utils.sh ~/image-generation/utils"
+      "mkdir ~/utils",
+      "mv ~/image-generation/helpers/confirm-identified-developers.scpt ~/utils",
+      "mv ~/image-generation/helpers/invoke-tests.sh ~/utils",
+      "mv ~/image-generation/helpers/utils.sh ~/utils",
+      "mv ~/image-generation/helpers/xamarin-utils.sh ~/utils"
     ]
   }
   provisioner "shell" {

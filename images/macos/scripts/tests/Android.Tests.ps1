@@ -4,7 +4,7 @@ Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1" -Di
 
 $os = Get-OSVersion
 
-Describe "Android" -Skip:($os.IsVenturaArm64) {
+Describe "Android" {
     $androidSdkManagerPackages = Get-AndroidPackages
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
@@ -50,7 +50,7 @@ Describe "Android" -Skip:($os.IsVenturaArm64) {
         }
     }
 
-    Context "SDKManagers" -Skip:($os.IsVenturaArm64) {
+    Context "SDKManagers" {
         if (-not $os.IsVentura -and -not $os.IsVenturaArm64) {
             $testCases = @(
                 @{
@@ -76,7 +76,7 @@ Describe "Android" -Skip:($os.IsVenturaArm64) {
         }
     }
 
-    Context "Packages" -Skip:($os.IsVenturaArm64) {
+    Context "Packages" {
         $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
 
         It "<PackageName>" -TestCases $testCases {
