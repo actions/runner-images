@@ -294,6 +294,7 @@ build {
                         "${path.root}/../scripts/build/gcc.sh",
                         "${path.root}/../scripts/build/gfortran.sh",
                         "${path.root}/../scripts/build/git.sh",
+                        "${path.root}/../scripts/build/git-lfs.sh",
                         "${path.root}/../scripts/build/github-cli.sh",
                         "${path.root}/../scripts/build/google-chrome.sh",
                         "${path.root}/../scripts/build/google-cloud-cli.sh",

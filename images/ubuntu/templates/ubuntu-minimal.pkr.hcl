@@ -258,6 +258,7 @@ build {
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
                         "${path.root}/../scripts/build/git.sh",
+                        "${path.root}/../scripts/build/git-lfs.sh",
                         "${path.root}/../scripts/build/github-cli.sh",
                         "${path.root}/../scripts/build/zstd.sh"
     ]

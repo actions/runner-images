@@ -205,6 +205,7 @@
                 "{{template_dir}}/../scripts/build/gcc.sh",
                 "{{template_dir}}/../scripts/build/gfortran.sh",
                 "{{template_dir}}/../scripts/build/git.sh",
+                "{{template_dir}}/../scripts/build/git-lfs.sh",
                 "{{template_dir}}/../scripts/build/github-cli.sh",
                 "{{template_dir}}/../scripts/build/google-chrome.sh",
                 "{{template_dir}}/../scripts/build/google-cloud-cli.sh",

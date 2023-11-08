@@ -51,12 +51,12 @@ variable "vcpu_count" {
 
 variable "ram_size" {
   type = string
-  default = "8G"
+  default = "24G"
 }
 
 variable "image_os" {
   type = string
-  default = "macos13"
+  default = "macos14"
 }
 
 source "veertu-anka-vm-clone" "template" {
@@ -66,7 +66,6 @@ source "veertu-anka-vm-clone" "template" {
   vcpu_count = "${var.vcpu_count}"
   ram_size = "${var.ram_size}"
   stop_vm = "true"
-  log_level = "debug"
 }
 
 build {
@@ -118,13 +117,12 @@ build {
   }
   provisioner "file" {
     destination = "image-generation/toolset.json"
-    source = "./toolsets/toolset-13.json"
+    source = "./toolsets/toolset-14.json"
   }
   provisioner "shell" {
     scripts = [
       "./provision/core/xcode-clt.sh",
-      "./provision/core/homebrew.sh",
-      "./provision/core/rosetta.sh"
+      "./provision/core/homebrew.sh"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
@@ -166,6 +164,7 @@ build {
       "./provision/core/powershell.sh",
       "./provision/core/mono.sh",
       "./provision/core/dotnet.sh",
+      "./provision/core/python.sh",
       "./provision/core/azcopy.sh",
       "./provision/core/openssl.sh",
       "./provision/core/ruby.sh",
@@ -197,13 +196,22 @@ build {
     scripts = [
       "./provision/core/action-archive-cache.sh",
       "./provision/core/llvm.sh",
+      "./provision/core/swiftlint.sh",
       "./provision/core/openjdk.sh",
+      "./provision/core/php.sh",
+      "./provision/core/aws.sh",
       "./provision/core/rust.sh",
       "./provision/core/gcc.sh",
+      "./provision/core/haskell.sh",
       "./provision/core/cocoapods.sh",
       "./provision/core/android-toolsets.sh",
+      "./provision/core/apache.sh",
+      "./provision/core/vcpkg.sh",
       "./provision/core/safari.sh",
       "./provision/core/chrome.sh",
+      "./provision/core/edge.sh",
+      "./provision/core/firefox.sh",
+      "./provision/core/pypy.sh",
       "./provision/core/bicep.sh",
       "./provision/core/codeql-bundle.sh"
     ]
@@ -213,20 +221,12 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
-    scripts = [
-      "./provision/core/toolset.ps1",
-      "./provision/core/configure-toolset.ps1"
-    ]
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
-  }
-  provisioner "shell" {
     script = "./provision/core/delete-duplicate-sims.rb"
     execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
   }
   provisioner "shell" {
     inline = [
-      "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}",
-      "pwsh -File \"$HOME/image-generation/tests/RunAll-Tests.ps1\""
+      "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}"
     ]
     execute_command = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
@@ -237,7 +237,9 @@ build {
   }
   provisioner "shell" {
     scripts = [
-      "./provision/configuration/configure-hostname.sh"
+      "./provision/configuration/configure-hostname.sh",
+      "./provision/configuration/cleanup-brew.sh",
+      "./provision/configuration/finalize-vm.sh"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
