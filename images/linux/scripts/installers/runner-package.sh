@@ -13,4 +13,6 @@ FILE_NAME="${DOWNLOAD_URL##*/}"
 
 sudo mkdir -p /opt/runner-cache
 
-download_with_retries "${DOWNLOAD_URL}" "/opt/runner-cache" "${FILE_NAME}"
+download_with_retries "${DOWNLOAD_URL}" "/tmp" "${FILE_NAME}"
+
+sudo mv /tmp/$FILE_NAME /opt/runner-cache/$FILE_NAME
