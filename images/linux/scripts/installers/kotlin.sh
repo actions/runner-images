@@ -13,7 +13,7 @@ download_url=$(get_github_package_download_url "JetBrains/kotlin" "contains(\"ko
 download_with_retries "$download_url" "/tmp" "$kotlin_zip_name"
 
 # Supply chain security - Kotlin
-kotlin_hash=$(get_github_package_hash "JetBrains" "kotlin" "kotlin-compiler" "" "latest" "false" "|" 3)
+kotlin_hash=$(get_github_package_hash "JetBrains" "kotlin" "kotlin-compiler-.*\.zip" "" "latest" "false" "|" 3)
 use_checksum_comparison "/tmp/${kotlin_zip_name}" "$kotlin_hash"
 
 unzip -qq /tmp/${kotlin_zip_name} -d $KOTLIN_ROOT

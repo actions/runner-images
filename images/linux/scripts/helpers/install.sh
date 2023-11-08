@@ -163,7 +163,7 @@ get_hash_from_remote_file() {
         exit 1
     fi
 
-    matching_line=$(curl -fsSL "$url" | tr -d '`')
+    matching_line=$(curl -fsSL "$url" | sed 's/  */ /g' | tr -d '`')
     for keyword in "${keywords[@]}"; do
         matching_line=$(echo "$matching_line" | grep "$keyword")
     done

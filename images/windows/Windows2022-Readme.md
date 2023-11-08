@@ -1,6 +1,6 @@
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2031
-- Image Version: 20231024.1.0
+- Image Version: 20231029.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -15,7 +15,7 @@
 - LLVM 16.0.6
 - Node 18.18.2
 - Perl 5.32.1
-- PHP 8.2.11
+- PHP 8.2.12
 - Python 3.9.13
 - Ruby 3.0.6p216
 
@@ -29,7 +29,7 @@
 - pip 23.3.1 (python 3.9)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 7a6f366ce)
+- Vcpkg (build from commit 06c79a9af)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -47,14 +47,14 @@
 ### Tools
 - 7zip 23.01
 - aria2 1.36.0
-- azcopy 10.21.0
+- azcopy 10.21.1
 - Bazel 6.4.0
 - Bazelisk 1.18.0
 - Bicep 0.22.6
 - Cabal 3.10.1.0
 - CMake 3.27.7
 - CodeQL Action Bundle 2.15.1
-- Docker 24.0.6
+- Docker 24.0.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.0
 - Docker-wincred 0.8.0
@@ -74,7 +74,7 @@
 - NSIS 3.08
 - OpenSSL 1.1.1w
 - Packer 1.9.4
-- Pulumi 3.90.0
+- Pulumi 3.91.1
 - R 4.3.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.13.1
@@ -88,7 +88,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.184
-- AWS CLI 2.13.28
+- AWS CLI 2.13.30
 - AWS SAM CLI 1.99.0
 - AWS Session Manager CLI 1.2.497.0
 - Azure CLI 2.53.1
@@ -112,8 +112,8 @@
 ### Browsers and Drivers
 - Google Chrome 118.0.5993.118
 - Chrome Driver 118.0.5993.70
-- Microsoft Edge 118.0.2088.61
-- Microsoft Edge Driver 118.0.2088.61
+- Microsoft Edge 118.0.2088.76
+- Microsoft Edge Driver 118.0.2088.76
 - Mozilla Firefox 119.0
 - Gecko Driver 0.33.0
 - IE Driver 4.14.0.0
@@ -132,8 +132,8 @@
 | ------------------- | -------------------- |
 | 8.0.392+8 (default) | JAVA_HOME_8_X64      |
 | 11.0.21+9           | JAVA_HOME_11_X64     |
-| 17.0.8+101          | JAVA_HOME_17_X64     |
-| 21.0.0+35.0         | JAVA_HOME_21_X64     |
+| 17.0.9+9.1          | JAVA_HOME_17_X64     |
+| 21.0.1+12.1         | JAVA_HOME_21_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -163,7 +163,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 14.21.3
 - 16.20.2
 - 18.18.2
-- 20.8.1
+- 20.9.0
 
 #### Python
 - 3.7.9
@@ -207,7 +207,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Database tools
 - Azure CosmosDb Emulator 2.14.12.0
 - DacFx 162.1.167.1
-- MySQL 8.0.34.0
+- MySQL 8.0.35.0
 - SQL OLEDB Driver 18.6.7.0
 - SQLPS 1.0
 
@@ -215,7 +215,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.25.2  | C:\tools\nginx-1.25.2\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.25.3  | C:\tools\nginx-1.25.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
@@ -383,24 +383,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.Spectre               | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64                   | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.14.29.16.11.x86.x64.Spectre           | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM                        | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM.Spectre                | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM64                      | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ARM64.Spectre              | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL                        | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM                    | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM.Spectre            | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM64                  | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.ARM64.Spectre          | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.ATL.Spectre                | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC                        | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM                    | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM.Spectre            | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM64                  | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.ARM64.Spectre          | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.MFC.Spectre                | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64                    | 17.7.33905.399  |
-| Microsoft.VisualStudio.Component.VC.14.35.17.5.x86.x64.Spectre            | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM                        | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM.Spectre                | 17.7.33905.399  |
 | Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM64                      | 17.7.33905.399  |
@@ -559,7 +541,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
-- PowerShell 7.2.15
+- PowerShell 7.2.16
 
 #### Powershell Modules
 - Az: 9.3.0
@@ -568,7 +550,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.436
+- AWSPowershell: 4.1.440
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.8.0
