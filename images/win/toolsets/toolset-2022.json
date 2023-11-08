@@ -144,13 +144,12 @@
         "addon_list": [],
         "additional_tools": [
             "cmake;3.18.1",
-            "cmake;3.22.1",
-            "patcher;v4"
+            "cmake;3.22.1"
         ],
         "ndk": {
             "default": "25",
             "versions": [
-                "23", "24", "25", "26"
+                "24", "25", "26"
             ]
         }
     },

@@ -20,11 +20,9 @@ source $CARGO_HOME/env
 rustup component add rustfmt clippy
 
 if isUbuntu22; then
-    cargo install bindgen-cli --version 0.68.1 # Temp fix for https://github.com/rust-lang/rust-bindgen/issues/2677
-    cargo install cbindgen cargo-audit cargo-outdated
+    cargo install bindgen-cli cbindgen cargo-audit cargo-outdated
 else
-    cargo install --locked bindgen-cli --version 0.68.1 # Temp fix for https://github.com/rust-lang/rust-bindgen/issues/2677
-    cargo install --locked cbindgen cargo-audit cargo-outdated
+    cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
 fi
 
 # Cleanup Cargo cache
