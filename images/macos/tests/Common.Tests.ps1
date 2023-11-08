@@ -123,12 +123,6 @@ Describe "Go" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
     }
 }
 
-Describe "VirtualBox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64) {
-    It "Check kext kernel modules" {
-        kextstat | Out-String | Should -Match "org.virtualbox.kext"
-    }
-}
-
 Describe "CodeQL Bundle" {
     It "Is installed" {
         $CodeQLVersionWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
