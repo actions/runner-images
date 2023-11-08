@@ -96,11 +96,11 @@ build {
   }
   provisioner "file" {
     destination = ".bashrc"
-    source = "./asset/bashrc"
+    source = "./assets/bashrc"
   }
   provisioner "file" {
     destination = ".bash_profile"
-    source = "./asset/bashprofile"
+    source = "./assets/bashprofile"
   }
   provisioner "shell" {
     inline = [
