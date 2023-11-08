@@ -209,6 +209,7 @@ build {
       "./scripts/build/rust.sh",
       "./scripts/build/gcc.sh",
       "./scripts/build/cocoapods.sh",
+      "./scripts/build/android-toolsets.sh",
       "./scripts/build/safari.sh",
       "./scripts/build/chrome.sh",
       "./scripts/build/bicep.sh",
