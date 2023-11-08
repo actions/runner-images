@@ -167,6 +167,8 @@
             "scripts": [
                 "{{ template_dir }}/../scripts/build/Install-VCRedist.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Docker.ps1",
+                "{{ template_dir }}/../scripts/build/Install-Docker-WinCred.ps1",
+                "{{ template_dir }}/../scripts/build/Install-Docker-Compose.ps1",
                 "{{ template_dir }}/../scripts/build/Install-PowershellCore.ps1",
                 "{{ template_dir }}/../scripts/build/Install-WebPlatformInstaller.ps1"
             ]

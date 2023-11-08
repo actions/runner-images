@@ -280,15 +280,15 @@ $installedSdks.AddTable($(Build-XcodeSDKTable $xcodeInfo))
 
 $installedSimulators = $xcode.AddHeader("Installed Simulators")
 $installedSimulators.AddTable($(Build-XcodeSimulatorsTable $xcodeInfo))
-if (-not $os.IsVenturaArm64) {
-# Android section
-    $android = $installedSoftware.AddHeader("Android")
-    $androidTable = Build-AndroidTable
-    $android.AddTable($androidTable)
 
-    $androidEnv = $android.AddHeader("Environment variables")
-    $androidEnv.AddTable($(Build-AndroidEnvironmentTable))
-}
+# Android section
+$android = $installedSoftware.AddHeader("Android")
+$androidTable = Build-AndroidTable
+$android.AddTable($androidTable)
+
+$androidEnv = $android.AddHeader("Environment variables")
+$androidEnv.AddTable($(Build-AndroidEnvironmentTable))
+
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
     $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
     $miscellaneous.AddToolVersion("libXext", $(Get-LibXextVersion))

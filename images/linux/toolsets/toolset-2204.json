@@ -91,7 +91,7 @@
         "ndk": {
             "default": "25",
             "versions": [
-                "23", "24", "25", "26"
+                "24", "25", "26"
             ]
         }
     },
@@ -277,7 +277,8 @@
         "versions": [
             "gfortran-9",
             "gfortran-10",
-            "gfortran-12"
+            "gfortran-12",
+            "gfortran-13"
         ]
     },
     "php": {
