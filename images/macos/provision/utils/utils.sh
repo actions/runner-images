@@ -55,6 +55,14 @@ is_VenturaArm64() {
     fi
 }
 
+is_Sonoma() {
+    if [ "$OSTYPE" = "darwin23" ]; then
+        true
+    else
+        false
+    fi
+}
+
 is_Ventura() {
     if [ "$OSTYPE" = "darwin22" ]; then
         true
@@ -122,6 +130,8 @@ get_brew_os_keyword() {
         echo "monterey"
     elif is_Ventura; then
         echo "ventura"
+    elif is_Sonoma; then
+        echo "sonoma"
     else
         echo "null"
     fi

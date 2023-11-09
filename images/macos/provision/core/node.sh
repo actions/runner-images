@@ -11,7 +11,7 @@ echo Installing yarn...
 download_with_retries "https://yarnpkg.com/install.sh" "/tmp" "yarn-install.sh"
 bash /tmp/yarn-install.sh
 
-if ! is_Ventura || ! is_VenturaArm64; then
+if is_BigSur || is_Monterey; then
   npm_global_packages=$(get_toolset_value '.npm.global_packages[].name')
   for module in ${npm_global_packages[@]}; do
     echo "Install $module"
