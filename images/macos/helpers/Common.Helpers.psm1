@@ -36,6 +36,7 @@ function Get-OSVersion {
         IsMonterey = $osVersion.Version.Major -eq "12"
         IsVentura = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -ne "arm64")
         IsVenturaArm64 = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -eq "arm64")
+        IsSonoma       = $($osVersion.Version.Major -eq "14")
     }
 }
 

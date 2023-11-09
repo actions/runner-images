@@ -3,22 +3,7 @@
 ##  Desc:  Install Docker.
 ##         Must be an independent step because it requires a restart before we
 ##         can continue.
-##  Supply chain security: (docker-wincred) checksum validation
 ################################################################################
-
-#region functions
-Function Get-DockerWincredHash
-{
- Param (
-    [Parameter(Mandatory = $True)]
-    [string] $Release
-)
-
- $hashURL = "https://github.com/docker/docker-credential-helpers/releases/download/${Release}/checksums.txt "
- (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*docker-credential-wincred-${Release}.windows-amd64.exe*" }).Split(' ')[0]
-
-}
-#endregion
 
 Write-Host "Get latest Moby release"
 $mobyLatestReleaseVersion = (Invoke-RestMethod -Uri "https://api.github.com/repos/moby/moby/releases/latest").tag_name.Trim("v")
@@ -55,32 +40,6 @@ if ($LastExitCode -ne 0) {
 # https://github.com/Azure/azure-cli/issues/18766
 New-Item -ItemType SymbolicLink -Path "C:\Windows\SysWOW64\docker.exe" -Target "C:\Windows\System32\docker.exe"
 
-Write-Host "Install-Package Docker-Compose v1"
-$versionToInstall = Get-LatestChocoPackageVersion -TargetVersion "1.29" -PackageName "docker-compose"
-Choco-Install -PackageName docker-compose -ArgumentList "--version=$versionToInstall"
-
-Write-Host "Install-Package Docker-Compose v2"
-$dockerComposev2Url = "https://github.com/docker/compose/releases/latest/download/docker-compose-windows-x86_64.exe"
-$cliPluginsDir = "C:\ProgramData\docker\cli-plugins"
-New-Item -Path $cliPluginsDir -ItemType Directory
-Start-DownloadWithRetry -Url $dockerComposev2Url -Name docker-compose.exe -DownloadPath $cliPluginsDir
-
-Write-Host "Install docker-wincred"
-$dockerCredLatestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/docker/docker-credential-helpers/releases/latest"
-$dockerCredDownloadUrl = $dockerCredLatestRelease.assets.browser_download_url -match "docker-credential-wincred-.+\.exe" | Select-Object -First 1
-Start-DownloadWithRetry -Url $dockerCredDownloadUrl -DownloadPath "C:\Windows\System32" -Name "docker-credential-wincred.exe"
-
-#region Supply chain security
-$distributor_file_hash = Get-DockerWincredHash -Release $dockerCredLatestRelease.name
-$local_file_hash = (Get-FileHash -Path 'C:\Windows\System32\docker-credential-wincred.exe' -Algorithm SHA256).Hash
-
-if ($local_file_hash -ne $distributor_file_hash) {
-    Write-Host "hash must be equal to: ${distributor_file_hash}"
-    Write-Host "actual hash is: ${local_file_hash}"
-    throw 'Checksum verification failed, please rerun install'
-}
-#endregion
-
 Write-Host "Download docker images"
 $dockerImages = (Get-ToolsetContent).docker.images
 foreach ($dockerImage in $dockerImages) {
@@ -93,4 +52,5 @@ foreach ($dockerImage in $dockerImages) {
     }
 }
 
-Invoke-PesterTests -TestFile "Docker"
+Invoke-PesterTests -TestFile "Docker" -TestName "Docker"
+Invoke-PesterTests -TestFile "Docker" -TestName "DockerImages"
