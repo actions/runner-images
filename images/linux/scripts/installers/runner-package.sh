@@ -7,7 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
-DOWNLOAD_URL=$(get_github_package_download_url "actions/runner" "test(\"actions-runner-linux-x64-[0-9].[0-9]{3}.[0-9].tar.gz\")" "latest")
+DOWNLOAD_URL=$(get_github_package_download_url "actions/runner" 'test("actions-runner-linux-x64-[0-9]+\\.[0-9]{3}\\.[0-9]+\\.tar\\.gz")')
 
 FILE_NAME="${DOWNLOAD_URL##*/}"
 
