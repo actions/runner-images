@@ -40,6 +40,9 @@ installOpenJDK() {
     archivePath=$(echo ${asset} | jq -r '.binary.package.link')
     fullVersion=$(echo ${asset} | jq -r '.version.semver' | tr '+' '-')
 
+    # Remove 'LTS' suffix from the version if present
+    fullVersion="${fullVersion//.LTS/}"
+
     JAVA_TOOLCACHE_PATH=${AGENT_TOOLSDIRECTORY}/Java_Temurin-Hotspot_jdk
     javaToolcacheVersionPath=$JAVA_TOOLCACHE_PATH/${fullVersion}
 

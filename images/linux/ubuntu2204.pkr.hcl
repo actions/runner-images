@@ -281,6 +281,7 @@ build {
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
                         "${path.root}/scripts/installers/action-archive-cache.sh",
+                        "${path.root}/scripts/installers/runner-package.sh",
                         "${path.root}/scripts/installers/apt-common.sh",
                         "${path.root}/scripts/installers/azcopy.sh",
                         "${path.root}/scripts/installers/azure-cli.sh",

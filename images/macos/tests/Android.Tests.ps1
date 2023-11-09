@@ -4,19 +4,19 @@ Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1" -Di
 
 $os = Get-OSVersion
 
-Describe "Android" -Skip:($os.IsVenturaArm64) {
+Describe "Android" {
     $androidSdkManagerPackages = Get-AndroidPackages
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
     [array]$ndkVersions = Get-ToolsetValue "android.ndk.versions"
-    $ndkFullVersions = $ndkVersions | ForEach-Object { Get-ChildItem "$env:ANDROID_HOME/ndk/${_}.*" -Name | Select-Object -Last 1} | ForEach-Object { "ndk/${_}" }
+    $ndkFullVersions = $ndkVersions | ForEach-Object { Get-ChildItem "$env:ANDROID_HOME/ndk/${_}.*" -Name | Select-Object -Last 1 } | ForEach-Object { "ndk/${_}" }
     # Platforms starting with a letter are the preview versions, which is not installed on the image
     $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', '' | Where-Object { $_ -match "^\d" } | Sort-Object -Unique
     $platformsInstalled = $platformVersionsList | Where-Object { [int]($_.Split("-")[0]) -ge $platformMinVersion } | ForEach-Object { "platforms/android-${_}" }
 
     $buildToolsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', ''
-    $buildTools = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$"} | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique |
-    ForEach-Object { "build-tools/${_}" }
+    $buildTools = $buildToolsList | Where-Object { $_ -match "\d+(\.\d+){2,}$" } | Where-Object { [version]$_ -ge $buildToolsMinVersion } | Sort-Object -Unique |
+        ForEach-Object { "build-tools/${_}" }
 
     $androidPackages = @(
         "tools",
@@ -31,14 +31,14 @@ Describe "Android" -Skip:($os.IsVenturaArm64) {
     ) | ForEach-Object { $_ }
 
     # Remove empty strings from array to avoid possible issues
-    $androidPackages = $androidPackages | Where-Object {$_}
+    $androidPackages = $androidPackages | Where-Object { $_ }
 
     BeforeAll {
         $ANDROID_SDK_DIR = Join-Path $env:HOME "Library" "Android" "sdk"
 
         function Validate-AndroidPackage {
             param (
-                [Parameter(Mandatory=$true)]
+                [Parameter(Mandatory = $true)]
                 [string]$PackageName
             )
 
@@ -50,23 +50,18 @@ Describe "Android" -Skip:($os.IsVenturaArm64) {
         }
     }
 
-    Context "SDKManagers" -Skip:($os.IsVenturaArm64) {
-        if (-not $os.IsVentura -and -not $os.IsVenturaArm64) {
-            $testCases = @(
+    Context "SDKManagers" {
+        $testCases = @(
+            @{
+                PackageName = "Command-line tools"
+                Sdkmanager  = "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+            }
+        )
+        if ($os.IsBigSur -or $os.IsMonterey) {
+            $testCases += @(
                 @{
                     PackageName = "SDK tools"
-                    Sdkmanager = "$env:ANDROID_HOME/tools/bin/sdkmanager"
-                },
-                @{
-                    PackageName = "Command-line tools"
-                    Sdkmanager = "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
-                }
-            )
-        }else {
-            $testCases = @(
-                @{
-                    PackageName = "Command-line tools"
-                    Sdkmanager = "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+                    Sdkmanager  = "$env:ANDROID_HOME/tools/bin/sdkmanager"
                 }
             )
         }
@@ -76,7 +71,7 @@ Describe "Android" -Skip:($os.IsVenturaArm64) {
         }
     }
 
-    Context "Packages" -Skip:($os.IsVenturaArm64) {
+    Context "Packages" {
         $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
 
         It "<PackageName>" -TestCases $testCases {

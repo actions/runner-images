@@ -28,7 +28,7 @@ Describe "Python3" -Skip:($os.IsVenturaArm64) {
 
 }
 
-Describe "Python2" -Skip:($os.IsVenturaArm64 -or $os.IsVentura) {
+Describe "Python2" -Skip:($os.IsVenturaArm64 -or $os.IsVentura -or $os.IsSonoma) {
     It "Python 2 is available" {
         "/Library/Frameworks/Python.framework/Versions/2.7/bin/python --version" | Should -ReturnZeroExitCode
     }

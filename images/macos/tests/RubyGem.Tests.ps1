@@ -20,7 +20,7 @@ Describe "Bundler" {
     }
 }
 
-Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
     It "Nomad shenzhen CLI" {
         "ipa --version" | Should -ReturnZeroExitCode
     }
@@ -38,7 +38,7 @@ Describe "xcpretty" {
     }
 }
 
-Describe "jazzy" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "jazzy" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
     It "jazzy" {
         "jazzy --version" | Should -ReturnZeroExitCode
     }
