@@ -92,8 +92,7 @@ function Install-Binary
     }
 }
 
-function Stop-SvcWithErrHandling
-{
+function Stop-SvcWithErrHandling {
     <#
     .DESCRIPTION
         Function for stopping the Windows Service with error handling
@@ -104,36 +103,26 @@ function Stop-SvcWithErrHandling
     .PARAMETER StopOnError
         Switch for stopping the script and exit from PowerShell if one service is absent
     #>
-    Param
-    (
+    Param (
         [Parameter(Mandatory, ValueFromPipeLine = $true)]
         [string] $ServiceName,
         [switch] $StopOnError
     )
 
-    Process
-    {
+    Process {
         $service = Get-Service $ServiceName -ErrorAction SilentlyContinue
-        if (-not $service)
-        {
+        if (-not $service) {
             Write-Warning "[!] Service [$ServiceName] is not found"
-            if ($StopOnError)
-            {
+            if ($StopOnError) {
                 exit 1
             }
-
-        }
-        else
-        {
+        } else {
             Write-Host "Try to stop service [$ServiceName]"
-            try
-            {
+            try {
                 Stop-Service -Name $ServiceName -Force
                 $service.WaitForStatus("Stopped", "00:01:00")
                 Write-Host "Service [$ServiceName] has been stopped successfuly"
-            }
-            catch
-            {
+            } catch {
                 Write-Error "[!] Failed to stop service [$ServiceName] with error:"
                 $_ | Out-String | Write-Error
             }
@@ -141,8 +130,7 @@ function Stop-SvcWithErrHandling
     }
 }
 
-function Set-SvcWithErrHandling
-{
+function Set-SvcWithErrHandling {
     <#
     .DESCRIPTION
         Function for setting the Windows Service parameter with error handling
@@ -152,32 +140,33 @@ function Set-SvcWithErrHandling
 
     .PARAMETER Arguments
         Hashtable for service arguments
+
+    .PARAMETER StopOnError
+        Switch for stopping the script and exit from PowerShell if one service is absent
     #>
 
-    Param
-    (
+    Param (
         [Parameter(Mandatory, ValueFromPipeLine = $true)]
         [string] $ServiceName,
         [Parameter(Mandatory)]
-        [hashtable] $Arguments
+        [hashtable] $Arguments,
+        [switch] $StopOnError
     )
 
-    Process
-    {
+    Process {
         $service = Get-Service $ServiceName -ErrorAction SilentlyContinue
-        if (-not $service)
-            {
-                Write-Warning "[!] Service [$ServiceName] is not found"
+        if (-not $service) {
+            Write-Warning "[!] Service [$ServiceName] is not found"
+            if ($StopOnError) {
+                exit 1
             }
-
-        try
-        {
-           Set-Service $serviceName @Arguments
-        }
-        catch
-        {
-            Write-Error "[!] Failed to set service [$ServiceName] arguments with error:"
-            $_ | Out-String | Write-Error
+        } else {
+            try {
+                Set-Service $serviceName @Arguments
+            } catch {
+                Write-Error "[!] Failed to set service [$ServiceName] arguments with error:"
+                $_ | Out-String | Write-Error
+            }
         }
     }
 }

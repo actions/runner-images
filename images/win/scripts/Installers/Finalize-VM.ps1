@@ -104,10 +104,8 @@ $servicesToDisable = @(
     'StorSvc'
 )
 
-$servicesToDisable | ForEach-Object {
-    Stop-Service -Name $_
-    Set-Service -Name $_ -StartupType Disabled -ErrorAction Ignore
-} | Out-Null
+$servicesToDisable | Stop-SvcWithErrHandling
+$servicesToDisable | Set-SvcWithErrHandling -Arguments @{StartupType = "Disabled"}
 
 # Disable scheduled tasks
 $allTasksInTaskPath = @(
