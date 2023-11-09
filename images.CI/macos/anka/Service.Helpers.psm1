@@ -28,14 +28,31 @@ function Invoke-SoftwareUpdateArm64 {
 
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
-        [string] $Password
+        [string] $Password,
+
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [array] $ListOfUpdates
     )
+
+    # Define the next macOS version
+    $command = "sw_vers"
+    $guestMacosVersion = Invoke-SSHPassCommand -HostName $HostName -Command $command
+    switch -regex ($guestMacosVersion[1]) {
+        '13.\d' { $nextOSVersion = 'Sonoma'         }
+        '14.\d' { $nextOSVersion = 'NotYetDefined'  }
+    }
 
     $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/provision/configuration/auto-software-update-arm64.exp"
     $script = Invoke-RestMethod -Uri $url
-    $base64 = [Convert]::ToBase64String($script.ToCharArray())
-    $command = "echo $base64 | base64 --decode > ./auto-software-update-arm64.exp;chmod +x ./auto-software-update-arm64.exp; ./auto-software-update-arm64.exp ${Password};rm ./auto-software-update-arm64.exp"
-    Invoke-SSHPassCommand -HostName $HostName -Command $command
+    foreach ($update in $listOfUpdates) {
+        if ($update -notmatch "$nextOSVersion") {
+            $updatedScript = $script.Replace("MACOSUPDATE", $($($update.trim()).Replace(" ","\ ")))
+            $base64 = [Convert]::ToBase64String($updatedScript.ToCharArray())
+            $command = "echo $base64 | base64 --decode > ./auto-software-update-arm64.exp;chmod +x ./auto-software-update-arm64.exp; ./auto-software-update-arm64.exp ${Password};rm ./auto-software-update-arm64.exp"
+            Invoke-SSHPassCommand -HostName $HostName -Command $command
+        }
+    }
 }
 
 function Get-AvailableVersions {
@@ -261,17 +278,22 @@ function Install-SoftwareUpdate {
             }
         }
     } elseif ($guestMacosVersion[1] -match "13") {
-        foreach ($update in $listOfUpdates) {
-            # Filtering updates that contain "Sonoma" word
-            if ($update -notmatch "Sonoma") {
-                $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
-                Invoke-SSHPassCommand -HostName $HostName -Command $command
+        $osArch = $(arch)
+        if ($osArch -eq "arm64") {
+            Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password -ListOfUpdates $listOfUpdates
+        } else {
+            foreach ($update in $listOfUpdates) {
+                # Filtering updates that contain "Sonoma" word
+                if ($update -notmatch "Sonoma") {
+                    $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
+                    Invoke-SSHPassCommand -HostName $HostName -Command $command
+                }
             }
         }
     } else {
         $osArch = $(arch)
         if ($osArch -eq "arm64") {
-            Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password
+            Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password -ListOfUpdates $listOfUpdates
         } else {
             $command = "sudo /usr/sbin/softwareupdate --all --install --restart --verbose"
             Invoke-SSHPassCommand -HostName $HostName -Command $command
