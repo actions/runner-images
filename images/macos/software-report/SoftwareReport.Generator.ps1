@@ -166,7 +166,7 @@ $tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersi
 $tools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
 $tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
 $tools.AddToolVersion("Bicep CLI", $(Get-BicepVersion))
-if (-not $os.IsVenturaArm64) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
 }
 $tools.AddToolVersion("Cmake", $(Get-CmakeVersion))
@@ -175,11 +175,9 @@ if ($os.IsMonterey) {
     $tools.AddToolVersion("Colima", $(Get-ColimaVersion))
 }
 $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
-if (-not $os.IsVenturaArm64) {
+if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("GHC", $(Get-GHCVersion))
     $tools.AddToolVersion("GHCup", $(Get-GHCupVersion))
-}
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("Jazzy", $(Get-JazzyVersion))
 }
 if (-not $os.IsVenturaArm64) {
@@ -222,10 +220,12 @@ if (-not $os.IsSonoma) {
     $rust.AddToolVersion("Rustup", $(Get-RustupVersion))
 
     $rustPackages = $rust.AddHeader("Packages")
-    $rustPackages.AddToolVersion("Bindgen", $(Get-Bindgen))
-    $rustPackages.AddToolVersion("Cargo-audit", $(Get-Cargoaudit))
-    $rustPackages.AddToolVersion("Cargo-outdated", $(Get-Cargooutdated))
-    $rustPackages.AddToolVersion("Cbindgen", $(Get-Cbindgen))
+    if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
+        $rustPackages.AddToolVersion("Bindgen", $(Get-Bindgen))
+        $rustPackages.AddToolVersion("Cargo-audit", $(Get-Cargoaudit))
+        $rustPackages.AddToolVersion("Cargo-outdated", $(Get-Cargooutdated))
+        $rustPackages.AddToolVersion("Cbindgen", $(Get-Cbindgen))
+    }
     $rustPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
     $rustPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 }
