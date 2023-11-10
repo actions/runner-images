@@ -4,8 +4,7 @@ source ~/utils/utils.sh
 
 # https://github.com/actions/runner-images/issues/8738
 if is_BigSur; then
-    (brew list ghc > /dev/null 2>&1) && brew unlink ghc
-    (brew list cabal-install > /dev/null 2>&1) && brew unlink cabal-install
+    brew unlink ghc cabal-install
 fi
 
 curl --proto '=https' --tlsv1.2 -fsSL https://get-ghcup.haskell.org | sh
