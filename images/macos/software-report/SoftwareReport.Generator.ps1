@@ -40,26 +40,26 @@ $languageAndRuntime.AddNodes($(Get-GccVersions))
 $languageAndRuntime.AddNodes($(Get-FortranVersions))
 $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
 }
 $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
 $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MSBuildVersion))
     $languageAndRuntime.AddToolVersion("NVM", $(Get-NVMVersion))
     $languageAndRuntime.AddToolVersionsListInline("NVM - Cached node versions", $(Get-NVMNodeVersionList), '^\d+')
 }
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
-if (-not $os.IsVenturaArm64) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
 }
 
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
 }
 
-if (-not $os.IsVenturaArm64) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
 }
 $languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
@@ -70,31 +70,31 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
 $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
 $packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
-if (-not $os.IsVenturaArm64) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
 }
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
 }
 $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
 $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $packageManagement.AddToolVersion("Pip", $(Get-PipVersion -Version 2))
 }
 
-if (-not $os.IsVenturaArm64) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $packageManagement.AddToolVersion("Pip3", $(Get-PipVersion -Version 3))
     $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
 }
 
 $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
-if (-not $os.IsVenturaArm64) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
 }
 $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $packageManagement.AddNode($(Build-PackageManagementEnvironmentTable))
 }
 # Project Management
@@ -102,7 +102,7 @@ $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
 $projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
 $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
@@ -124,11 +124,11 @@ $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
 if ($os.IsBigSur) {
     $utilities.AddToolVersion("helm", $(Get-HelmVersion))
 }
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 }
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $utilities.AddToolVersion("mongo", $(Get-MongoVersion))
     $utilities.AddToolVersion("mongod", $(Get-MongodVersion))
 }
@@ -138,7 +138,7 @@ if ($os.IsBigSur) {
 $utilities.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $utilities.AddToolVersion("Packer", $(Get-PackerVersion))
 $utilities.AddToolVersion("pkg-config", $(Get-PKGConfigVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $utilities.AddToolVersion("PostgreSQL", $(Get-PostgresServerVersion))
     $utilities.AddToolVersion("psql (PostgreSQL)", $(Get-PostgresClientVersion))
     $utilities.AddToolVersion("Sox", $(Get-SoxVersion))
@@ -157,7 +157,7 @@ $tools = $installedSoftware.AddHeader("Tools")
 if ($os.IsBigSur) {
     $tools.AddToolVersion("Aliyun CLI", $(Get-AliyunCLIVersion))
 }
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("App Center CLI", $(Get-AppCenterCLIVersion))
 }
 $tools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
@@ -166,7 +166,7 @@ $tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersi
 $tools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
 $tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
 $tools.AddToolVersion("Bicep CLI", $(Get-BicepVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
 }
 $tools.AddToolVersion("Cmake", $(Get-CmakeVersion))
@@ -175,26 +175,26 @@ if ($os.IsMonterey) {
     $tools.AddToolVersion("Colima", $(Get-ColimaVersion))
 }
 $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("GHC", $(Get-GHCVersion))
     $tools.AddToolVersion("GHCup", $(Get-GHCupVersion))
     $tools.AddToolVersion("Jazzy", $(Get-JazzyVersion))
 }
-if (-not $os.IsVenturaArm64) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $tools.AddToolVersion("Stack", $(Get-StackVersion))
 }
 $tools.AddToolVersion("SwiftFormat", $(Get-SwiftFormatVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("Swig", $(Get-SwigVersion))
 }
 $tools.AddToolVersion("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVersion))
 
 # Linters
 $linters = $installedSoftware.AddHeader("Linters")
-if (-not $os.IsVenturaArm64) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $linters.AddToolVersion("SwiftLint", $(Get-SwiftLintVersion))
 }
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $linters.AddToolVersion("Yamllint", $(Get-YamllintVersion))
 }
 
@@ -220,7 +220,7 @@ if (-not $os.IsSonoma) {
     $rust.AddToolVersion("Rustup", $(Get-RustupVersion))
 
     $rustPackages = $rust.AddHeader("Packages")
-    if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64)) {
+    if (-not $os.IsVentura) {
         $rustPackages.AddToolVersion("Bindgen", $(Get-Bindgen))
         $rustPackages.AddToolVersion("Cargo-audit", $(Get-Cargoaudit))
         $rustPackages.AddToolVersion("Cargo-outdated", $(Get-Cargooutdated))
@@ -238,13 +238,13 @@ $powerShellModules = $powerShell.AddHeader("PowerShell Modules")
 $powerShellModules.AddNodes($(Get-PowerShellModules))
 
 # Web Servers
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $webServers = $installedSoftware.AddHeader("Web Servers")
     $webServers.AddTable($(Build-WebServersSection))
 }
 
 # Xamarin section
-if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $xamarin = $installedSoftware.AddHeader("Xamarin")
     $vsForMac = $xamarin.AddHeader("Visual Studio for Mac")
     $vsForMac.AddTable($(Build-VSMacTable))

@@ -25,7 +25,7 @@ Describe "cmake" {
     }
 }
 
-Describe "Subversion" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "Subversion" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Subversion" {
         "svn --version" | Should -ReturnZeroExitCode
     }
@@ -61,7 +61,7 @@ Describe "Perl" {
     }
 }
 
-Describe "Helm" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "Helm" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsSonoma) {
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
     }
@@ -116,7 +116,7 @@ Describe "bazel" {
     }
 }
 
-Describe "Aliyun CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "Aliyun CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsSonoma) {
     It "Aliyun CLI" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
@@ -146,13 +146,13 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "vagrant" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "virtualbox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
@@ -178,7 +178,7 @@ Describe "Kotlin" {
     }
 }
 
-Describe "sbt" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "sbt" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "sbt" {
         "sbt -version" | Should -ReturnZeroExitCode
     }
@@ -190,7 +190,7 @@ Describe "yq" {
     }
 }
 
-Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "imagemagick" {
         "magick -version" | Should -ReturnZeroExitCode
     }

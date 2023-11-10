@@ -46,53 +46,44 @@ download_with_retries() {
     return 1
 }
 
-is_VenturaArm64() {
-    arch=$(get_arch)
-    if [ "$OSTYPE" = "darwin22" ] && [ $arch = "arm64" ]; then
-       true
-    else
-       false
-    fi
+is_Arm64() {
+    [ "$(arch)" = "arm64" ]
 }
 
 is_Sonoma() {
-    if [ "$OSTYPE" = "darwin23" ]; then
-        true
-    else
-        false
-    fi
+    [ "$OSTYPE" = "darwin23" ]
+}
+
+is_SonomaArm64() {
+    is_Sonoma && is_Arm64
+}
+
+is_SonomaX64() {
+    is_Sonoma && ! is_Arm64
 }
 
 is_Ventura() {
-    if [ "$OSTYPE" = "darwin22" ]; then
-        true
-    else
-        false
-    fi
+    [ "$OSTYPE" = "darwin22" ]
+}
+
+is_VenturaArm64() {
+    is_Ventura && is_Arm64
+}
+
+is_VenturaX64() {
+    is_Ventura && ! is_Arm64
 }
 
 is_Monterey() {
-    if [ "$OSTYPE" = "darwin21" ]; then
-        true
-    else
-        false
-    fi
+    [ "$OSTYPE" = "darwin21" ]
 }
 
 is_BigSur() {
-    if [ "$OSTYPE" = "darwin20" ]; then
-        true
-    else
-        false
-    fi
+    [ "$OSTYPE" = "darwin20" ]
 }
 
 is_Veertu() {
-    if [ -d "/Library/Application Support/Veertu" ]; then
-        true
-    else
-        false
-    fi
+    [ -d "/Library/Application Support/Veertu" ]
 }
 
 get_toolset_path() {

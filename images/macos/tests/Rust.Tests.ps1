@@ -17,7 +17,7 @@ Describe "Rust" {
             "cargo --version" | Should -ReturnZeroExitCode
         }
     }
-    Context "Cargo dependencies" -Skip:($os.IsVentura -or $os.IsVenturaArm64 -or $os.IsSonoma) {
+    Context "Cargo dependencies" -Skip:($os.IsVentura -or $os.IsSonoma) {
         It "bindgen" {
             "bindgen --version" | Should -ReturnZeroExitCode
         }
