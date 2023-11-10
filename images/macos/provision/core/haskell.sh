@@ -1,5 +1,13 @@
 #!/bin/bash -e -o pipefail
 
+source ~/utils/utils.sh
+
+# https://github.com/actions/runner-images/issues/8738
+if is_BigSur; then
+    (brew list ghc > /dev/null 2>&1) && brew unlink ghc
+    (brew list cabal-install > /dev/null 2>&1) && brew unlink cabal-install
+fi
+
 curl --proto '=https' --tlsv1.2 -fsSL https://get-ghcup.haskell.org | sh
 export PATH="$HOME/.ghcup/bin:$PATH"
 echo 'export PATH="$PATH:$HOME/.ghcup/bin"' >> "$HOME/.bashrc"
