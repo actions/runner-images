@@ -39,7 +39,7 @@ Describe "vcpkg" -Skip:($os.IsVenturaArm64) {
     }
 }
 
-Describe "AWS" -Skip:($os.IsVenturaArm64) {
+Describe "AWS" {
     It "AWS CLI" {
         "aws --version" | Should -ReturnZeroExitCode
     }

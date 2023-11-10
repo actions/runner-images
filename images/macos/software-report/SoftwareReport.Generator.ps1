@@ -160,11 +160,9 @@ if ($os.IsBigSur) {
 if ((-not $os.IsVentura) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("App Center CLI", $(Get-AppCenterCLIVersion))
 }
-if (-not $os.IsVenturaArm64) {
-    $tools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
-    $tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
-    $tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersion))
-}
+$tools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
+$tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
+$tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersion))
 $tools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
 $tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
 $tools.AddToolVersion("Bicep CLI", $(Get-BicepVersion))
