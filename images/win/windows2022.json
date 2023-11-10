@@ -158,7 +158,8 @@
                 "{{ template_dir }}/scripts/Installers/Install-Docker-WinCred.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-Docker-Compose.ps1",
                 "{{ template_dir }}/scripts/Installers/Install-PowershellCore.ps1",
-                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1"
+                "{{ template_dir }}/scripts/Installers/Install-WebPlatformInstaller.ps1",
+                "{{ template_dir }}/scripts/Installers/Install-Runner.ps1"
             ]
         },
         {
