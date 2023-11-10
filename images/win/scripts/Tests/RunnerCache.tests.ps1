@@ -1,7 +1,7 @@
 Describe "RunnerCache" {
     Context "runner cache directory not empty" {
         It "C:\ProgramData\runner" {
-            (Get-ChildItem -Path "/opt/runner-cache/*.tar.gz" -Recurse).Count | Should -BeGreaterThan 0
+            (Get-ChildItem -Path "C:\ProgramData\runner\*.zip" -Recurse).Count | Should -BeGreaterThan 0
         }
     }
 }
