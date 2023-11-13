@@ -30,7 +30,7 @@ then
   npm cache clean --force
 fi
 
-# Clean az teletry & logs
-rm -rf /opt/az/config/telemetry.txt
+# Clean az telemetry & logs
+rm -f /opt/az/config/telemetry.txt
 rm -rf /opt/az/config/telemetry
 rm -rf /opt/az/config/logs
