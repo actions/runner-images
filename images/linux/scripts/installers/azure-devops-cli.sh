@@ -5,8 +5,8 @@
 ################################################################################
 
 source $HELPER_SCRIPTS/etc-environment.sh
-export AZURE_DEVOPS_EXT_CONFIG_DIR=/opt/az-devops/config
-setEtcEnvironmentVariable "AZURE_DEVOPS_EXT_CONFIG_DIR" "$AZURE_DEVOPS_EXT_CONFIG_DIR"
+export AZ_DEVOPS_GLOBAL_CONFIG_DIR=/opt/az-devops/config
+setEtcEnvironmentVariable "AZ_DEVOPS_GLOBAL_CONFIG_DIR" "$AZ_DEVOPS_GLOBAL_CONFIG_DIR"
 
 export AZURE_DEVOPS_CACHE_DIR=/opt/az-devops/config/cache
 setEtcEnvironmentVariable "AZURE_DEVOPS_CACHE_DIR" "$AZURE_DEVOPS_CACHE_DIR"
