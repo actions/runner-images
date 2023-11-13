@@ -19,7 +19,7 @@ else
     echo 'export PATH="$GEM_PATH:/usr/local/opt/ruby@'${DEFAULT_RUBY_VERSION}'/bin:$PATH"'  >> "$HOME/.bashrc"
 fi
 
-if ! is_VenturaArm64; then
+if ! is_Arm64; then
     echo "Install Ruby from toolset..."
     [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
     PACKAGE_TAR_NAMES=$(curl "${authString[@]}" -fsSL "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')

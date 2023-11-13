@@ -281,6 +281,7 @@ build {
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
                         "${path.root}/scripts/installers/action-archive-cache.sh",
+                        "${path.root}/scripts/installers/runner-package.sh",
                         "${path.root}/scripts/installers/apt-common.sh",
                         "${path.root}/scripts/installers/azcopy.sh",
                         "${path.root}/scripts/installers/azure-cli.sh",
@@ -300,6 +301,7 @@ build {
                         "${path.root}/scripts/installers/gcc.sh",
                         "${path.root}/scripts/installers/gfortran.sh",
                         "${path.root}/scripts/installers/git.sh",
+                        "${path.root}/scripts/installers/git-lfs.sh",
                         "${path.root}/scripts/installers/github-cli.sh",
                         "${path.root}/scripts/installers/google-chrome.sh",
                         "${path.root}/scripts/installers/google-cloud-cli.sh",

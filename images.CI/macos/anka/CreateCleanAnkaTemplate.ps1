@@ -96,13 +96,20 @@ function Invoke-SoftwareUpdate {
     Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates -Password $Password | Show-StringWithFormat
 
     # Check if Action: restart
+    # Define the next macOS version
+    $command = "sw_vers"
+    $guestMacosVersion = Invoke-SSHPassCommand -HostName $ipAddress -Command $command
+    switch -regex ($guestMacosVersion[1]) {
+        '12.\d' { $nextOSVersion = 'macOS Ventura' }
+        '13.\d' { $nextOSVersion = 'macOS Sonoma'  }
+    }
     # Make an array of updates
     $listOfNewUpdates = $newUpdates.split('*').Trim('')
     foreach ($newupdate in $listOfNewUpdates) {
         # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
-        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("macOS Ventura") -and !$newupdate.Contains("macOS Sonoma") -and (-not [String]::IsNullOrEmpty($newupdate))) {
-            Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
-            Start-Sleep -Seconds 60
+        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("$nextOSVersion") -and (-not [String]::IsNullOrEmpty($newupdate))) {
+            Write-Host "`t[*] Sleep 120 seconds before the software updates have been installed"
+            Start-Sleep -Seconds 120
 
             Write-Host "`t[*] Waiting for loginwindow process"
             Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
@@ -112,7 +119,7 @@ function Invoke-SoftwareUpdate {
 
             # Check software updates have been installed
             $updates = Get-SoftwareUpdate -HostName $ipAddress
-            if ($updates.Contains("Action: restart")) {
+            if ($updates.Contains("Action: restart") -and !$updates.Contains("$nextOSVersion")) {
                 Write-Host "`t[x] Software updates failed to install: "
                 Show-StringWithFormat $updates
                 exit 1
@@ -123,6 +130,10 @@ function Invoke-SoftwareUpdate {
     Write-Host "`t[*] Show the install history:"
     $hUpdates = Get-SoftwareUpdateHistory -HostName $ipAddress
     Show-StringWithFormat $hUpdates
+
+    Write-Host "`t[*] The current macOS version:"
+    $command = "sw_vers"
+    Invoke-SSHPassCommand -HostName $ipAddress -Command $command | Show-StringWithFormat
 }
 
 function Invoke-UpdateSettings {
@@ -181,6 +192,12 @@ if ([string]::IsNullOrEmpty($TemplateName)) {
 Write-Host "`n[#2] Create a VM template:"
 Write-Host "`t[*] Deleting existed template with name '$TemplateName' before creating a new one"
 Remove-AnkaVM -VMName $TemplateName
+
+# Temporary disable VNC for macOS 14
+# It's probably Anka's bug fixed in 3.3.2
+if ($shortMacOSVersion -eq "14") {
+    $env:ANKA_CREATE_VNC = 0
+}
 
 Write-Host "`t[*] Creating Anka VM template with name '$TemplateName' and '$TemplateUsername' user"
 Write-Host "`t[*] CPU Count: $CPUCount, RamSize: ${RamSizeGb}G, DiskSizeGb: ${DiskSizeGb}G, InstallerPath: $macOSInstaller, TemplateName: $TemplateName"

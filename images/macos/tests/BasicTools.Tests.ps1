@@ -25,7 +25,7 @@ Describe "cmake" {
     }
 }
 
-Describe "Subversion" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Subversion" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Subversion" {
         "svn --version" | Should -ReturnZeroExitCode
     }
@@ -61,9 +61,16 @@ Describe "Perl" {
     }
 }
 
-Describe "Helm" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Helm" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsSonoma) {
     It "Helm" {
         "helm version --short" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Tcl/Tk" {
+    It "libtcl" {
+        "file /usr/local/lib/libtcl8.6.dylib" | Should -ReturnZeroExitCode
+        "file /usr/local/lib/libtk8.6.dylib" | Should -ReturnZeroExitCode
     }
 }
 
@@ -109,7 +116,7 @@ Describe "bazel" {
     }
 }
 
-Describe "Aliyun CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsVenturaArm64) {
+Describe "Aliyun CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsSonoma) {
     It "Aliyun CLI" {
         "aliyun --version" | Should -ReturnZeroExitCode
     }
@@ -139,13 +146,13 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64) {
+Describe "vagrant" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsVenturaArm64) {
+Describe "virtualbox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
@@ -164,14 +171,14 @@ Describe "Homebrew" {
 }
 
 Describe "Kotlin" {
-    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
 
-    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object {  @{ toolName = $_ } })  { 
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) { 
         "$toolName -version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "sbt" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "sbt" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "sbt" {
         "sbt -version" | Should -ReturnZeroExitCode
     }
@@ -183,7 +190,7 @@ Describe "yq" {
     }
 }
 
-Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "imagemagick" {
         "magick -version" | Should -ReturnZeroExitCode
     }

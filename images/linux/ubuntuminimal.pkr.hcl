@@ -257,6 +257,7 @@ build {
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
                         "${path.root}/scripts/installers/git.sh",
+                        "${path.root}/scripts/installers/git-lfs.sh",
                         "${path.root}/scripts/installers/github-cli.sh",
                         "${path.root}/scripts/installers/zstd.sh"
     ]

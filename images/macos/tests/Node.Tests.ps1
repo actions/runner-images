@@ -21,7 +21,7 @@ Describe "Node.js" {
     }
 }
 
-Describe "nvm" -Skip:($os.IsVentura -or $os.IsVenturaArm64) {
+Describe "nvm" -Skip:($os.IsVentura -or $os.IsSonoma) {
     BeforeAll {
         $nvmPath = Join-Path $env:HOME ".nvm" "nvm.sh"
         $nvmInitCommand = ". $nvmPath > /dev/null 2>&1 || true"
@@ -54,4 +54,3 @@ Describe "Global NPM Packages" {
         $Test | Should -ReturnZeroExitCode
     }
 }
-
