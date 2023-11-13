@@ -57,7 +57,7 @@ Describe "Toolcache" {
         }
     }
 
-    Context "Ruby" -Skip:($os.IsVenturaArm64) {
+    Context "Ruby" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
         $rubyDirectory = Join-Path $toolcacheDirectory "Ruby"
         $rubyPackage = $packages | Where-Object { $_.ToolName -eq "Ruby" } | Select-Object -First 1
         $testCase = @{ RubyDirectory = $rubyDirectory }
@@ -99,7 +99,7 @@ Describe "Toolcache" {
             }
         }
     }
-    Context "PyPy" -Skip:($os.IsVenturaArm64) {
+    Context "PyPy" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
         $pypyDirectory = Join-Path $toolcacheDirectory "PyPy"
         $pypyPackage = $packages | Where-Object { $_.ToolName -eq "pypy" } | Select-Object -First 1
         $testCase = @{ PypyDirectory = $pypyDirectory }

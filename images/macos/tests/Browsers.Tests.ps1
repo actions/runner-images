@@ -31,7 +31,7 @@ Describe "Chrome" {
 Describe "Selenium server" {
     It "Selenium server" {
         $os = Get-OSVersion
-        if ($os.IsVenturaArm64) {
+        if ($os.IsArm64) {
             $cellarPath = "/opt/homebrew/Cellar"
         } else {
             $cellarPath = "/usr/local/Cellar"
@@ -40,7 +40,7 @@ Describe "Selenium server" {
     }
 }
 
-Describe "Edge" -Skip:($os.IsVenturaArm64) {
+Describe "Edge" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
     It "Microsoft Edge" {
         $edgeLocation = "/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
         $edgeLocation | Should -Exist
@@ -52,7 +52,7 @@ Describe "Edge" -Skip:($os.IsVenturaArm64) {
     }
 }
 
-Describe "Firefox" -Skip:($os.IsVenturaArm64) {
+Describe "Firefox" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
     It "Firefox" {
         $firefoxLocation = "/Applications/Firefox.app/Contents/MacOS/firefox"
         $firefoxLocation | Should -Exist

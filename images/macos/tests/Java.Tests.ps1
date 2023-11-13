@@ -30,7 +30,7 @@ Describe "Java" {
     $defaultVersion = $toolsetJava.$arch.default
     $jdkVersions = $toolsetJava.$arch.versions
 
-    if ($os.IsVenturaArm64) {
+    if ($os.IsArm64) {
         $testCases = $jdkVersions | ForEach-Object { @{ Title = $_; Version = (Get-NativeVersionFormat $_); EnvVariable = "JAVA_HOME_${_}_arm64" } }
     } else {
         $testCases = $jdkVersions | ForEach-Object { @{ Title = $_; Version = (Get-NativeVersionFormat $_); EnvVariable = "JAVA_HOME_${_}_X64" } }
@@ -71,11 +71,11 @@ Describe "Java" {
                 "gradle --version" | Should -ReturnZeroExitCode
             }
 
-            It "Gradle is installed to /usr/local/bin" -Skip:($os.IsVenturaArm64)  {
+            It "Gradle is installed to /usr/local/bin" -Skip:($os.IsArm64) {
                 (Get-Command "gradle").Path | Should -BeExactly "/usr/local/bin/gradle"
             }
 
-            It "Gradle is installed to /opt/homebrew/bin/gradle" -Skip:(-not $os.IsVenturaArm64)  {
+            It "Gradle is installed to /opt/homebrew/bin/gradle" -Skip:(-not $os.IsArm64) {
                 (Get-Command "gradle").Path | Should -BeExactly "/opt/homebrew/bin/gradle"
             }
         }

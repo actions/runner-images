@@ -202,7 +202,6 @@ build {
       "./provision/core/aws.sh",
       "./provision/core/rust.sh",
       "./provision/core/gcc.sh",
-      "./provision/core/haskell.sh",
       "./provision/core/cocoapods.sh",
       "./provision/core/android-toolsets.sh",
       "./provision/core/apache.sh",
