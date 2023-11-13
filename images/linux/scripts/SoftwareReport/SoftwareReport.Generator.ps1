@@ -48,7 +48,7 @@ if (Test-IsUbuntu20) {
 $languageAndRuntime.AddToolVersionsListInline("GNU C++", $(Get-CPPVersions), "^\d+")
 $languageAndRuntime.AddToolVersionsListInline("GNU Fortran", $(Get-FortranVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
-$languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
+# $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
 $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
 $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MsbuildVersion))
 $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
