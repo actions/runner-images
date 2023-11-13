@@ -313,7 +313,7 @@ build {
                         "${path.root}/scripts/installers/leiningen.sh",
                         "${path.root}/scripts/installers/miniconda.sh",
                         "${path.root}/scripts/installers/mono.sh",
-                        "${path.root}/scripts/installers/kotlin.sh",
+                        // "${path.root}/scripts/installers/kotlin.sh",
                         "${path.root}/scripts/installers/mysql.sh",
                         "${path.root}/scripts/installers/mssql-cmd-tools.sh",
                         "${path.root}/scripts/installers/sqlpackage.sh",
