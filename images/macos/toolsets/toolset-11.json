@@ -220,7 +220,6 @@
             "libxft",
             "tcl-tk",
             "r",
-            "yq",
             "imagemagick"
         ],
         "cask_packages": [
