@@ -1,10 +1,9 @@
 ################################################################################
 ##  File:  Install-Ruby.ps1
-##  Desc:  Install rubyinstaller2
+##  Desc:  Install Ruby using the RubyInstaller2 package and set the default Ruby version
 ################################################################################
 
-function Get-RubyVersions
-{
+function Get-RubyVersions {
     param (
         [System.String] $Arch = "x64",
         [System.String] $Extension = "7z",
@@ -12,24 +11,20 @@ function Get-RubyVersions
     )
 
     $uri = "https://api.github.com/repos/oneclick/rubyinstaller2/releases?per_page=$ReleasesAmount"
-    try
-    {
+    try {
         $versionLists = @{}
         $assets = (Invoke-RestMethod -Uri $uri).Where{ -not $_.prerelease }.assets
         $7zArchives = $assets.Where{ $_.name.EndsWith("$Arch.$Extension") }
         $majorMinorGroups = $7zArchives | Group-Object { $_.name.Replace("rubyinstaller-", "").Substring(0, 3) }
-        foreach($majorMinorGroup in $majorMinorGroups)
-        {
+        foreach ($majorMinorGroup in $majorMinorGroups) {
             $group = $majorMinorGroup.Group
-            $sortVersions = $group | Sort-Object {[Version]$_.name.Replace("rubyinstaller-", "").Replace("-$Arch.$Extension","").Replace("-",".")}
+            $sortVersions = $group | Sort-Object { [Version]$_.name.Replace("rubyinstaller-", "").Replace("-$Arch.$Extension", "").Replace("-", ".") }
             $latestVersion = $sortVersions | Select-Object -Last 1
             $versionLists[$majorMinorGroup.Name] = $latestVersion.browser_download_url
 
         }
         return $versionLists
-    }
-    catch
-    {
+    } catch {
         Write-Host "Unable to send request to the '$uri'. Error: '$_'"
         exit 1
     }
@@ -37,8 +32,7 @@ function Get-RubyVersions
 
 # Most of this logic is from
 # https://github.com/ruby/setup-ruby/blob/master/windows.js
-function Install-Ruby
-{
+function Install-Ruby {
     param(
         [String]$PackagePath,
         [String]$Architecture = "x64"
@@ -46,8 +40,7 @@ function Install-Ruby
 
     # Create Ruby toolcache folder
     $rubyToolcachePath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath "Ruby"
-    if (-not (Test-Path $rubyToolcachePath))
-    {
+    if (-not (Test-Path $rubyToolcachePath)) {
         Write-Host "Creating Ruby toolcache folder"
         New-Item -ItemType Directory -Path $rubyToolcachePath | Out-Null
     }
@@ -60,8 +53,7 @@ function Install-Ruby
     # Get Ruby version from binaries
     $rubyVersion = & "$tempFolder\bin\ruby.exe" -e "print RUBY_VERSION"
 
-    if ($rubyVersion)
-    {
+    if ($rubyVersion) {
         Write-Host "Installing Ruby $rubyVersion"
         $rubyVersionPath = Join-Path -Path $rubyToolcachePath -ChildPath $rubyVersion
         $rubyArchPath = Join-Path -Path $rubyVersionPath -ChildPath $Architecture
@@ -79,18 +71,15 @@ function Install-Ruby
 
         Write-Host "Creating complete file"
         New-Item -ItemType File -Path $rubyVersionPath -Name "$Architecture.complete" | Out-Null
-    }
-    else
-    {
+    } else {
         Write-Host "Ruby application is not found. Failed to expand '$PackagePath' archive"
         exit 1
     }
 }
 
-function Set-DefaultRubyVersion
-{
+function Set-DefaultRubyVersion {
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [System.Version] $Version,
         [System.String] $Arch = "x64"
     )
@@ -110,18 +99,14 @@ $rubyToolVersions = $rubyTools.versions
 $rubyLatestMajorVersions = Get-RubyVersions
 
 Write-Host "Starting installation Ruby..."
-foreach($rubyVersion in $rubyToolVersions)
-{
+foreach ($rubyVersion in $rubyToolVersions) {
     Write-Host "Starting Ruby $rubyVersion installation"
     # Get url for the latest major Ruby version
     $url = $rubyLatestMajorVersions[$rubyVersion]
-    if ($url)
-    {
+    if ($url) {
         $tempRubyPackagePath = Start-DownloadWithRetry -Url $url
         Install-Ruby -PackagePath $tempRubyPackagePath
-    }
-    else
-    {
+    } else {
         Write-Host "Url not found for the '$rubyVersion' version"
         exit 1
     }

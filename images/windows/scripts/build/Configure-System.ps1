@@ -1,6 +1,6 @@
 ################################################################################
-##  File:  Finalize-VM.ps1
-##  Desc:  Clean up temp folders after installs to save space
+##  File:  Configure-System.ps1
+##  Desc:  Applies various configuration settings to the final image
 ################################################################################
 
 Write-Host "Cleanup WinSxS"
@@ -46,24 +46,24 @@ cmd /c "icacls $env:SystemRoot\Temp /grant Users:f /t /c /q 2>&1" | Out-Null
 
 # Registry settings
 $registrySettings = @(
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"; Name = "AUOptions"; Value = 1; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"; Name = "NoAutoUpdate"; Value = 1; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"; Name = "DoNotConnectToWindowsUpdateInternetLocations"; Value = 1; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"; Name = "DisableWindowsUpdateAccess"; Value = 1; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata"; Name = "PreventDeviceMetadataFromNetwork"; Value = 1; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection"; Name = "AllowTelemetry"; Value = 0; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\SQMClient\Windows"; Name = "CEIPEnable"; Value = 0; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat"; Name = "AITEnable"; Value = 0; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat"; Name = "DisableUAR"; Value = 1; PropertyType = "DWORD"}
-    @{Path = "HKLM:\Software\Policies\Microsoft\Windows\DataCollection"; Name = "AllowTelemetry"; Value = 0; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\DataCollection"; Name = "AllowTelemetry"; Value = 0; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance"; Name = "MaintenanceDisabled"; Value = 1; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\MRT"; Name = "DontOfferThroughWUAU"; Value = 1; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\MRT"; Name = "DontReportInfectionInformation"; Value = 1; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"; Name = "AllowCortana"; Value = 0; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SYSTEM\CurrentControlSet\Control"; Name = "ServicesPipeTimeout"; Value = 120000; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener"; Name = "Start"; Value = 0; PropertyType = "DWORD"}
-    @{Path = "HKLM:\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\SQMLogger"; Name = "Start"; Value = 0; PropertyType = "DWORD"}
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"; Name = "AUOptions"; Value = 1; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"; Name = "NoAutoUpdate"; Value = 1; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"; Name = "DoNotConnectToWindowsUpdateInternetLocations"; Value = 1; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"; Name = "DisableWindowsUpdateAccess"; Value = 1; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Device Metadata"; Name = "PreventDeviceMetadataFromNetwork"; Value = 1; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\DataCollection"; Name = "AllowTelemetry"; Value = 0; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\SQMClient\Windows"; Name = "CEIPEnable"; Value = 0; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat"; Name = "AITEnable"; Value = 0; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\AppCompat"; Name = "DisableUAR"; Value = 1; PropertyType = "DWORD" }
+    @{Path = "HKLM:\Software\Policies\Microsoft\Windows\DataCollection"; Name = "AllowTelemetry"; Value = 0; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Wow6432Node\Policies\Microsoft\Windows\DataCollection"; Name = "AllowTelemetry"; Value = 0; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance"; Name = "MaintenanceDisabled"; Value = 1; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\MRT"; Name = "DontOfferThroughWUAU"; Value = 1; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\MRT"; Name = "DontReportInfectionInformation"; Value = 1; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\Windows Search"; Name = "AllowCortana"; Value = 0; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SYSTEM\CurrentControlSet\Control"; Name = "ServicesPipeTimeout"; Value = 120000; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\AutoLogger-Diagtrack-Listener"; Name = "Start"; Value = 0; PropertyType = "DWORD" }
+    @{Path = "HKLM:\SYSTEM\CurrentControlSet\Control\WMI\AutoLogger\SQMLogger"; Name = "Start"; Value = 0; PropertyType = "DWORD" }
 )
 
 $registrySettings | ForEach-Object {
@@ -139,9 +139,9 @@ $allTasksInTaskPath | ForEach-Object {
 } | Out-Null
 
 $disableTaskNames = @(
-    @{TaskPath = "\Microsoft\Windows\.NET Framework\"; TaskName = ".NET Framework NGEN v4.0.30319"}
-    @{TaskPath = "\Microsoft\Windows\.NET Framework\"; TaskName = ".NET Framework NGEN v4.0.30319 64"}
-    @{TaskPath = "\Microsoft\Windows\AppID\"; TaskName = "SmartScreenSpecific"}
+    @{TaskPath = "\Microsoft\Windows\.NET Framework\"; TaskName = ".NET Framework NGEN v4.0.30319" }
+    @{TaskPath = "\Microsoft\Windows\.NET Framework\"; TaskName = ".NET Framework NGEN v4.0.30319 64" }
+    @{TaskPath = "\Microsoft\Windows\AppID\"; TaskName = "SmartScreenSpecific" }
 )
 
 $disableTaskNames | ForEach-Object {

@@ -1,5 +1,5 @@
 ################################################################################
-##  File:  Install-VS.ps1
+##  File:  Install-VisualStudio.ps1
 ##  Desc:  Install Visual Studio
 ################################################################################
 
@@ -19,8 +19,7 @@ Install-VisualStudio `
 $vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
 $instanceFolders = Get-ChildItem -Path $vsProgramData.FullName
 
-if ($instanceFolders -is [array])
-{
+if ($instanceFolders -is [array]) {
     Write-Host "More than one instance installed"
     exit 1
 }
@@ -32,14 +31,14 @@ Set-Content -Path "$vsInstallRoot\Common7\IDE\Extensions\MachineState.json" -Val
 
 if (Test-IsWin19) {
     
-	# Install Windows 10 SDK version 10.0.14393.795
+    # Install Windows 10 SDK version 10.0.14393.795
     $sdkSignatureThumbprint = "C91545B333C52C4465DE8B90A3FAF4E1D9C58DFA"
-	$sdkUrl = "https://go.microsoft.com/fwlink/p/?LinkId=838916"
-	$sdkFileName = "sdksetup14393.exe"
-	$argumentList = ("/q", "/norestart", "/ceip off", "/features OptionId.WindowsSoftwareDevelopmentKit")
-	Install-Binary -Url $sdkUrl -Name $sdkFileName -ArgumentList $argumentList -ExpectedSignature $sdkSignatureThumbprint
+    $sdkUrl = "https://go.microsoft.com/fwlink/p/?LinkId=838916"
+    $sdkFileName = "sdksetup14393.exe"
+    $argumentList = ("/q", "/norestart", "/ceip off", "/features OptionId.WindowsSoftwareDevelopmentKit")
+    Install-Binary -Url $sdkUrl -Name $sdkFileName -ArgumentList $argumentList -ExpectedSignature $sdkSignatureThumbprint
     
-	# Install Windows 11 SDK version 10.0.22621.0
+    # Install Windows 11 SDK version 10.0.22621.0
     $sdkSignatureThumbprint = "E4C5C5FCDB68B930EE4E19BC25D431EF6D864C51"
     $sdkUrl = "https://go.microsoft.com/fwlink/p/?linkid=2196241"
     $sdkFileName = "sdksetup22621.exe"

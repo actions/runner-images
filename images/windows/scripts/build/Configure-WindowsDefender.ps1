@@ -1,3 +1,8 @@
+################################################################################
+##  File:  Configure-WindowsDefender.ps1
+##  Desc:  Disables Windows Defender
+################################################################################
+
 Write-Host "Disable Windows Defender..."
 $avPreference = @(
     @{DisableArchiveScanning = $true}

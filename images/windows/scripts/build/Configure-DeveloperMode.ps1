@@ -1,5 +1,5 @@
 ################################################################################
-##  File:  Enable-DeveloperMode.ps1
+##  File:  Configure-DeveloperMode.ps1
 ##  Desc:  Enables Developer Mode by toggling registry setting. Developer Mode is required to enable certain tools (e.g. WinAppDriver). 
 ################################################################################
 

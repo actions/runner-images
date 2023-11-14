@@ -1,6 +1,6 @@
 ################################################################################
 ##  File:  Install-Chrome.ps1
-##  Desc:  Install Google Chrome
+##  Desc:  Install Google Chrome browser and Chrome WebDriver
 ################################################################################
 
 # Download and install latest Chrome browser

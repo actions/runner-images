@@ -1,6 +1,6 @@
 ################################################################################
 ##  File:  Install-Firefox.ps1
-##  Desc:  Install Mozilla Firefox
+##  Desc:  Install Mozilla Firefox browser and Gecko WebDriver
 ##  Supply chain security: Firefox browser - checksum validation
 ################################################################################
 

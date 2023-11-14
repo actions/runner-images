@@ -1,3 +1,8 @@
+################################################################################
+##  File:  Configure-ImageDataFile.ps1
+##  Desc:  Creates a JSON file with information about the image
+################################################################################
+
 $os = Get-CimInstance -ClassName Win32_OperatingSystem
 $caption = $os.Caption
 $osName = $caption.Substring(0, $caption.LastIndexOf(" "))
@@ -36,10 +41,3 @@ $json = @"
 "@
 
 $json | Out-File -FilePath $imageDataFile
-
-
-# Set static env vars
-setx ImageVersion $env:IMAGE_VERSION /m
-setx ImageOS $env:IMAGE_OS /m
-setx AGENT_TOOLSDIRECTORY $env:AGENT_TOOLSDIRECTORY /m
-setx ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE /m

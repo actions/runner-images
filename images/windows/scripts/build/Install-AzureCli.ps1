@@ -1,6 +1,6 @@
 ################################################################################
 ##  File:  Install-AzureCli.ps1
-##  Desc:  Install Azure CLI
+##  Desc:  Install and warm-up Azure CLI
 ################################################################################
 
 Write-Host 'Install the latest Azure CLI release'

@@ -1,5 +1,5 @@
 ###################################################################################
-##  File:  Install-Vsix.ps1
+##  File:  Install-VSExtensions.ps1
 ##  Desc:  Install the Visual Studio Extensions from toolset.json
 ###################################################################################
 

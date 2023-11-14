@@ -1,3 +1,8 @@
+################################################################################
+##  File:  Configure-Diagnostics.ps1
+##  Desc:  Disables Just-In-Time Debugger and Windows Error Reporting
+################################################################################
+
 Write-Host "Disable Just-In-Time Debugger"
 
 # Turn off Application Error Debugger

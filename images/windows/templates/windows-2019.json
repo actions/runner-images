@@ -147,14 +147,15 @@
                 "IMAGEDATA_FILE={{user `imagedata_file`}}"
             ],
             "scripts": [
-                "{{ template_dir }}/../scripts/build/Configure-Antivirus.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-WindowsDefender.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-PowerShell.ps1",
-                "{{ template_dir }}/../scripts/build/Install-PowerShellModules.ps1",
+                "{{ template_dir }}/../scripts/build/Install-PowershellModules.ps1",
                 "{{ template_dir }}/../scripts/build/Install-WindowsFeatures.ps1",
-                "{{ template_dir }}/../scripts/build/Install-Choco.ps1",
-                "{{ template_dir }}/../scripts/build/Initialize-VM.ps1",
-                "{{ template_dir }}/../scripts/build/Update-ImageData.ps1",
-                "{{ template_dir }}/../scripts/build/Update-DotnetTLS.ps1"
+                "{{ template_dir }}/../scripts/build/Install-Chocolatey.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-BaseImage.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-ImageDataFile.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-GlobalVariables.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-DotnetSecureChannel.ps1"
             ],
             "execution_policy": "unrestricted"
         },
@@ -167,8 +168,8 @@
             "scripts": [
                 "{{ template_dir }}/../scripts/build/Install-VCRedist.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Docker.ps1",
-                "{{ template_dir }}/../scripts/build/Install-Docker-WinCred.ps1",
-                "{{ template_dir }}/../scripts/build/Install-Docker-Compose.ps1",
+                "{{ template_dir }}/../scripts/build/Install-DockerWinCred.ps1",
+                "{{ template_dir }}/../scripts/build/Install-DockerCompose.ps1",
                 "{{ template_dir }}/../scripts/build/Install-PowershellCore.ps1",
                 "{{ template_dir }}/../scripts/build/Install-WebPlatformInstaller.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Runner.ps1"
@@ -185,7 +186,7 @@
                 3010
             ],
             "scripts": [
-                "{{ template_dir }}/../scripts/build/Install-VS.ps1",
+                "{{ template_dir }}/../scripts/build/Install-VisualStudio.ps1",
                 "{{ template_dir }}/../scripts/build/Install-KubernetesTools.ps1",
                 "{{ template_dir }}/../scripts/build/Install-NET48-devpack.ps1"
             ],
@@ -197,10 +198,10 @@
             "scripts": [
                 "{{ template_dir }}/../scripts/build/Install-Wix.ps1",
                 "{{ template_dir }}/../scripts/build/Install-WDK.ps1",
-                "{{ template_dir }}/../scripts/build/Install-Vsix.ps1",
+                "{{ template_dir }}/../scripts/build/Install-VSExtensions.ps1",
                 "{{ template_dir }}/../scripts/build/Install-AzureCli.ps1",
                 "{{ template_dir }}/../scripts/build/Install-AzureDevOpsCli.ps1",
-                "{{ template_dir }}/../scripts/build/Install-CommonUtils.ps1",
+                "{{ template_dir }}/../scripts/build/Install-ChocolateyPackages.ps1",
                 "{{ template_dir }}/../scripts/build/Install-JavaTools.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Kotlin.ps1",
                 "{{ template_dir }}/../scripts/build/Install-OpenSSL.ps1"
@@ -226,23 +227,22 @@
         {
             "type": "powershell",
             "scripts": [
-                "{{ template_dir }}/../scripts/build/Install-ActionArchiveCache.ps1",
+                "{{ template_dir }}/../scripts/build/Install-ActionsCache.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Ruby.ps1",
                 "{{ template_dir }}/../scripts/build/Install-PyPy.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Toolset.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-Toolset.ps1",
-                "{{ template_dir }}/../scripts/build/Install-NodeLts.ps1",
+                "{{ template_dir }}/../scripts/build/Install-NodeJS.ps1",
                 "{{ template_dir }}/../scripts/build/Install-AndroidSDK.ps1",
-                "{{ template_dir }}/../scripts/build/Install-AzureModules.ps1",
+                "{{ template_dir }}/../scripts/build/Install-PowershellAzModules.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Pipx.ps1",
-                "{{ template_dir }}/../scripts/build/Install-PipxPackages.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Git.ps1",
                 "{{ template_dir }}/../scripts/build/Install-GitHub-CLI.ps1",
                 "{{ template_dir }}/../scripts/build/Install-PHP.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Rust.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Sbt.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Chrome.ps1",
-                "{{ template_dir }}/../scripts/build/Install-Edge.ps1",
+                "{{ template_dir }}/../scripts/build/Install-EdgeDriver.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Firefox.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Selenium.ps1",
                 "{{ template_dir }}/../scripts/build/Install-IEWebDriver.ps1",
@@ -251,7 +251,7 @@
                 "{{ template_dir }}/../scripts/build/Install-Msys2.ps1",
                 "{{ template_dir }}/../scripts/build/Install-WinAppDriver.ps1",
                 "{{ template_dir }}/../scripts/build/Install-R.ps1",
-                "{{ template_dir }}/../scripts/build/Install-AWS.ps1",
+                "{{ template_dir }}/../scripts/build/Install-AWSTools.ps1",
                 "{{ template_dir }}/../scripts/build/Install-DACFx.ps1",
                 "{{ template_dir }}/../scripts/build/Install-MysqlCli.ps1",
                 "{{ template_dir }}/../scripts/build/Install-SQLPowerShellTools.ps1",
@@ -275,11 +275,11 @@
                 "{{ template_dir }}/../scripts/build/Install-GoogleCloudCLI.ps1",
                 "{{ template_dir }}/../scripts/build/Install-CodeQLBundle.ps1",
                 "{{ template_dir }}/../scripts/build/Install-BizTalkBuildComponent.ps1",
-                "{{ template_dir }}/../scripts/build/Disable-JITDebugger.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-Diagnostics",
                 "{{ template_dir }}/../scripts/build/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-Shell.ps1",
-                "{{ template_dir }}/../scripts/build/Enable-DeveloperMode.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-DeveloperMode.ps1",
                 "{{ template_dir }}/../scripts/build/Install-LLVM.ps1"
             ]
         },
@@ -301,7 +301,7 @@
             "type": "powershell",
             "pause_before": "2m",
             "scripts": [
-                "{{ template_dir }}/../scripts/build/Wait-WindowsUpdatesForInstall.ps1",
+                "{{ template_dir }}/../scripts/build/Install-WindowsUpdatesAfterReboot.ps1",
                 "{{ template_dir }}/../scripts/tests/RunAll-Tests.ps1"
             ]
         },
@@ -343,9 +343,9 @@
             "type": "powershell",
             "skip_clean": true,
             "scripts": [
-                "{{ template_dir }}/../scripts/build/Run-NGen.ps1",
-                "{{ template_dir }}/../scripts/build/Finalize-VM.ps1",
-                "{{ template_dir }}/../scripts/build/Warmup-User.ps1"
+                "{{ template_dir }}/../scripts/build/Install-NativeImages.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-System.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-User.ps1"
             ],
             "environment_vars": [
                 "INSTALL_USER={{user `install_user`}}"
