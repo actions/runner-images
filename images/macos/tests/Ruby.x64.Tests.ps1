@@ -3,7 +3,7 @@ Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
-Describe "Ruby" -Skip:($os.IsVenturaArm64) {
+Describe "Ruby" -Skip:($os.IsArm64) {
     It "Ruby is available" {
         "ruby --version" | Should -ReturnZeroExitCode
     }

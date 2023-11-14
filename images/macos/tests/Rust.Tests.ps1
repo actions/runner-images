@@ -1,3 +1,6 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+$os = Get-OSVersion
+
 Describe "Rust" {
     Context "Rust" {
         It "Rustup is installed" {
@@ -14,8 +17,7 @@ Describe "Rust" {
             "cargo --version" | Should -ReturnZeroExitCode
         }
     }
-
-    Context "Cargo dependencies" {
+    Context "Cargo dependencies" -Skip:($os.IsVentura -or $os.IsSonoma) {
         It "bindgen" {
             "bindgen --version" | Should -ReturnZeroExitCode
         }
