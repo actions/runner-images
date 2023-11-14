@@ -2,11 +2,6 @@
 
 source ~/utils/utils.sh
 
-# https://github.com/actions/runner-images/issues/8738
-if is_BigSur; then
-    brew unlink ghc cabal-install
-fi
-
 curl --proto '=https' --tlsv1.2 -fsSL https://get-ghcup.haskell.org | sh
 export PATH="$HOME/.ghcup/bin:$PATH"
 echo 'export PATH="$PATH:$HOME/.ghcup/bin"' >> "$HOME/.bashrc"
