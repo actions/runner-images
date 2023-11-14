@@ -236,6 +236,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 9.3.0
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.8.0
+- Microsoft.PowerShell.PSResourceGet: 1.0.1
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 

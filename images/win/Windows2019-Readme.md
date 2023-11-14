@@ -513,6 +513,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.8.0
+- Microsoft.PowerShell.PSResourceGet: 1.0.1
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
