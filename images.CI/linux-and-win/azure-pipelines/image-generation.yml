@@ -12,6 +12,9 @@ parameters:
   - name: image_type
     type: string
 
+  - name: image_template_name
+    type: string
+
   - name: image_readme_name
     type: string
 
@@ -62,11 +65,17 @@ jobs:
       targetType: 'inline'
       script: |
         $ImageType = "${{ parameters.image_type }}"
-        $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "win" }
+        $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "windows/templates" }
         $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
-        $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.pkr.hcl"
-        if ( -not (Test-Path $TemplatePath) ) {
-            $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
+        
+        $TemplateFileName = "${{ parameters.image_template_name }}"
+        if ($TemplateFileName) {
+          $TemplatePath = Join-Path $TemplateDirectoryPath $TemplateFileName
+        } else {
+          $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.pkr.hcl"
+          if ( -not (Test-Path $TemplatePath) ) {
+              $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
+          }
         }
         Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
@@ -104,8 +113,12 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        $readmePath = Join-Path "$(TemplateDirectoryPath)" "${{ parameters.image_readme_name }}"
-        $softwareReportPath = Join-Path "$(TemplateDirectoryPath)" "software-report.json"
+        $ImageType = "${{ parameters.image_type }}"
+        $rootDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "linux" } else { "windows" }
+        $rootDirectoryPath = Join-Path "images" $rootDirectoryName | Resolve-Path
+        
+        $readmePath = Join-Path $rootDirectoryPath "${{ parameters.image_readme_name }}"
+        $softwareReportPath = Join-Path $rootDirectoryPath "software-report.json"
 
         Copy-Item -Path $readmePath -Destination "$(Build.ArtifactStagingDirectory)/"
         if (Test-Path $softwareReportPath) {
