@@ -1,6 +1,12 @@
 #!/bin/bash -e -o pipefail
 source ~/utils/utils.sh
 
+# Download and install YQ in cases when it is not available in the formulae as for macOS 11: https://formulae.brew.sh/formula/yq
+if is_BigSur; then
+    download_with_retries "https://github.com/mikefarah/yq/releases/latest/download/yq_darwin_amd64" "/tmp" "yq"
+    sudo install /tmp/yq /usr/local/bin/yq
+fi
+
 # Monterey needs future review:
 # aliyun-cli, gnupg, helm have issues with building from the source code.
 # Added gmp for now, because toolcache ruby needs its libs. Remove it when php starts to build from source code.
