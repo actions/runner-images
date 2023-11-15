@@ -66,7 +66,7 @@ Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "Stack" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
+Describe "Stack" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
     }
