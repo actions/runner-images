@@ -25,6 +25,7 @@ Export-ModuleMember -Function @(
     'Install-VisualStudio'
     'Get-ToolsetContent'
     'Get-ToolsetToolFullPath'
+    'Get-ToolcacheToolDirectory'
     'Stop-SvcWithErrHandling'
     'Set-SvcWithErrHandling'
     'Start-DownloadWithRetry'
