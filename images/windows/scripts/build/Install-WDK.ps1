@@ -6,9 +6,9 @@
 # Requires Windows SDK with the same version number as the WDK
 if (Test-IsWin22) {
     # SDK available through Visual Studio
-    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2196230"
+    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2249371"
     $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2022\*\WDK.vsix"
-    $wdkSignatureThumbprint = "DE2396BCEB7E3CD13BF3D370424A560F97CABDE7"
+    $wdkSignatureThumbprint = "7C94971221A799907BB45665663BBFD587BAC9F8"
 } elseif (Test-IsWin19) {
     $winSdkUrl = "https://go.microsoft.com/fwlink/?linkid=2173743"
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2166289"
