@@ -350,13 +350,13 @@
         {
             "type": "file",
             "source": "{{user `image_folder`}}/software-report.md",
-            "destination": "{{template_dir}}/Ubuntu2004-Readme.md",
+            "destination": "{{template_dir}}/../Ubuntu2004-Readme.md",
             "direction": "download"
         },
         {
             "type": "file",
             "source": "{{user `image_folder`}}/software-report.json",
-            "destination": "{{template_dir}}/software-report.json",
+            "destination": "{{template_dir}}/../software-report.json",
             "direction": "download"
         },
         {
