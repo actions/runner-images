@@ -172,7 +172,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.416, 7.0.113, 7.0.203, 7.0.310, 7.0.403
+- .NET Core SDK: 6.0.416, 7.0.113, 7.0.203, 7.0.310, 7.0.403, 8.0.100
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
