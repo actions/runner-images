@@ -153,7 +153,7 @@ source "azure-arm" "build_image" {
   image_publisher                        = "canonical"
   image_sku                              = "22_04-lts"
   location                               = "${var.location}"
-  os_disk_size_gb                        = "256"
+  os_disk_size_gb                        = "150"
   os_type                                = "Linux"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   managed_image_name                     = "${local.managed_image_name}"
