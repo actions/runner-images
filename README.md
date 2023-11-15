@@ -34,8 +34,8 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 - In general the `-latest` label is used for the latest OS image version that is GA
 - Before moving the`-latest` label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows
 
-[ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2204-Readme.md
-[ubuntu-20.04]: https://github.com/actions/runner-images/blob/main/images/linux/Ubuntu2004-Readme.md
+[ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
+[ubuntu-20.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
 [windows-2022]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
 [windows-2019]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2019-Readme.md
 [macOS-11]: https://github.com/actions/runner-images/blob/main/images/macos/macos-11-Readme.md
