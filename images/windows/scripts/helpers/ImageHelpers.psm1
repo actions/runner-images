@@ -4,7 +4,6 @@ param()
 . $PSScriptRoot\PathHelpers.ps1
 . $PSScriptRoot\InstallHelpers.ps1
 . $PSScriptRoot\ChocoHelpers.ps1
-. $PSScriptRoot\TestsHelpers.ps1
 . $PSScriptRoot\VisualStudioHelpers.ps1
 
 Export-ModuleMember -Function @(
@@ -40,10 +39,6 @@ Export-ModuleMember -Function @(
     'Get-LatestChocoPackageVersion'
     'Get-GitHubPackageDownloadUrl'
     'Extract-7Zip'
-    'Get-CommandResult'
-    'Get-WhichTool'
-    'Get-EnvironmentVariable'
-    'Invoke-PesterTests'
     'Invoke-SBWithRetry'
     'Get-VsCatalogJsonPath'
     'Install-AndroidSDKPackages'
@@ -54,7 +49,6 @@ Export-ModuleMember -Function @(
     'Get-VisualStudioComponents'
     'Get-WindowsUpdatesHistory'
     'New-ItemPath'
-    'Get-ModuleVersionAsJob'
     'Use-ChecksumComparison'
     'Get-HashFromGitHubReleaseBody'
     'Test-FileSignature'

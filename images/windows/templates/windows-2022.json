@@ -92,6 +92,8 @@
                 "Remove-Item -Recurse '{{user `image_folder`}}\\assets'",
                 "Move-Item '{{user `image_folder`}}\\scripts\\docs-gen' '{{user `image_folder`}}\\SoftwareReport'",
                 "Move-Item '{{user `image_folder`}}\\scripts\\helpers' '{{user `helper_script_folder`}}\\ImageHelpers'",
+                "New-Item -Type Directory -Path '{{user `helper_script_folder`}}\\TestsHelpers\\'",
+                "Move-Item '{{user `image_folder`}}\\scripts\\tests\\Helpers.psm1' '{{user `helper_script_folder`}}\\TestsHelpers\\TestsHelpers.psm1'",
                 "Move-Item '{{user `image_folder`}}\\scripts\\tests' '{{user `image_folder`}}\\tests'",
                 "Remove-Item -Recurse '{{user `image_folder`}}\\scripts'",
                 "Move-Item '{{user `image_folder`}}\\toolsets\\toolset-2022.json' '{{user `image_folder`}}\\toolset.json'",
@@ -301,7 +303,7 @@
         {
             "type": "powershell",
             "inline": [
-                "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\SoftwareReport.Generator.ps1'"
+                "pwsh -File '{{user `image_folder`}}\\SoftwareReport\\Generate-SoftwareReport.ps1'"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}"

@@ -1,3 +1,6 @@
+[CmdletBinding()]
+param()
+
 function Get-CommandResult {
     Param (
         [Parameter(Mandatory)][string] $Command
@@ -7,7 +10,7 @@ function Get-CommandResult {
     $exitCode = $LASTEXITCODE
 
     return @{
-        Output = $output
+        Output   = $output
         ExitCode = $exitCode
     }
 }
@@ -87,8 +90,7 @@ function ShouldReturnZeroExitCode {
     [bool]$succeeded = $result.ExitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
 
-    if (-not $succeeded)
-    {
+    if (-not $succeeded) {
         $commandOutputIndent = " " * 4
         $commandOutput = ($result.Output | ForEach-Object { "${commandOutputIndent}${_}" }) -join "`n"
         $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}`n${commandOutput}"
@@ -111,22 +113,19 @@ function ShouldReturnZeroExitCodeWithParam {
 
     $delimiterCharacter = ""
 
-    while ($delimiterCharacter.Length -le 2)
-    {
+    while ($delimiterCharacter.Length -le 2) {
         $callParameterWithDelimiter = $delimiterCharacter + $CallParameter
         $commandToCheck = "$ActualValue $callParameterWithDelimiter"
         [bool]$succeeded = (ShouldReturnZeroExitCode -ActualValue $commandToCheck).Succeeded
         
-        if ($succeeded)
-        {
+        if ($succeeded) {
             break
         }
         $delimiterCharacter += '-'
     }
     if ($Negate) { $succeeded = -not $succeeded }
 
-    if (-not $succeeded)
-    {
+    if (-not $succeeded) {
         $failureMessage = "Tool '$ActualValue' has not returned 0 exit code for any of these flags: '$CallParameter' or '-$CallParameter' or '--$CallParameter'"
     }
 
@@ -156,8 +155,7 @@ function ShouldMatchCommandOutput {
     if (-not $succeeded) {
         if ($Negate) {
             $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to not match '$output', but it did match."
-        }
-        else {
+        } else {
             $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to match '$output', but it did not match."
         }
     }
@@ -198,3 +196,12 @@ Function Get-ModuleVersionAsJob {
     $testJob | Wait-Job | Receive-Job | Out-File -FilePath "${env:TEMP}\module-version.txt"
     Remove-Job $testJob
 }
+
+
+Export-ModuleMember -Function @(
+    'Get-CommandResult'
+    'Get-WhichTool'
+    'Get-EnvironmentVariable'
+    'Invoke-PesterTests'
+    'Get-ModuleVersionAsJob'
+)
