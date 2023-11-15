@@ -24,10 +24,10 @@ Function Get-PackerTemplatePath {
             $relativeTemplatePath = Join-Path "windows" "templates" "windows-2022.json"
         }
         ([ImageType]::Ubuntu2004) {
-            $relativeTemplatePath = Join-Path "ubuntu" "templates" "ubuntu-2004.json"
+            $relativeTemplatePath = Join-Path "ubuntu" "templates" "ubuntu-20.04.json"
         }
         ([ImageType]::Ubuntu2204) {
-            $relativeTemplatePath = Join-Path "ubuntu" "templates" "ubuntu-2204.pkr.hcl"
+            $relativeTemplatePath = Join-Path "ubuntu" "templates" "ubuntu-22.04.pkr.hcl"
         }
         ([ImageType]::UbuntuMinimal) {
             $relativeTemplatePath = Join-Path "ubuntu" "templates" "ubuntu-minimal.pkr.hcl"
