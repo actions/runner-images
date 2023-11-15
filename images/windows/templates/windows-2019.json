@@ -156,7 +156,7 @@
                 "{{ template_dir }}/../scripts/build/Install-Chocolatey.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-BaseImage.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-ImageDataFile.ps1",
-                "{{ template_dir }}/../scripts/build/Configure-GlobalVariables.ps1",
+                "{{ template_dir }}/../scripts/build/Configure-SystemEnvironment.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-DotnetSecureChannel.ps1"
             ],
             "execution_policy": "unrestricted"
@@ -277,7 +277,7 @@
                 "{{ template_dir }}/../scripts/build/Install-GoogleCloudCLI.ps1",
                 "{{ template_dir }}/../scripts/build/Install-CodeQLBundle.ps1",
                 "{{ template_dir }}/../scripts/build/Install-BizTalkBuildComponent.ps1",
-                "{{ template_dir }}/../scripts/build/Configure-Diagnostics",
+                "{{ template_dir }}/../scripts/build/Configure-Diagnostics.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-DynamicPort.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-Shell.ps1",
