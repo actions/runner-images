@@ -191,6 +191,7 @@
             "brotli",
             "coreutils",
             "file",
+            "findutils",
             "flex",
             "ftp",
             "haveged",
@@ -215,8 +216,7 @@
             "swig",
             "telnet",
             "time",
-            "zip",
-            "findutils"
+            "zip"
         ]
     },
     "brew": [
