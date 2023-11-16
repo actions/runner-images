@@ -1,12 +1,18 @@
+| Announcements |
+|-|
+| [[all OSs] Nodejs 14.x will be removed from the images on November, 26](https://github.com/actions/runner-images/issues/8779) |
+| [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
+| [[All OS] Android NDK r23 will be removed from images on November 13](https://github.com/actions/runner-images/issues/8383) |
+***
 # macOS 13
-- OS Version: macOS 13.6 (22G120)
+- OS Version: macOS 13.6.1 (22G313)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20231025.2
+- Image Version: 20231115.2
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.403
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.404, 8.0.100
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.3
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -16,28 +22,28 @@
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
-- Julia 1.9.3
-- Kotlin 1.9.10-release-459
+- Julia 1.9.4
+- Kotlin 1.9.255-SNAPSHOT
 - Mono 6.12.0.188
 - Node.js 18.18.2
 - Perl 5.38.0
-- PHP 8.2.11
+- PHP 8.2.12
 - Python3 3.12.0
-- R 4.3.1
+- R 4.3.2
 - Ruby 3.0.6p216
 
 ### Package Management
-- Bundler 2.4.21
+- Bundler 2.4.22
 - Carthage 0.39.1
-- CocoaPods 1.13.0
+- CocoaPods 1.14.2
 - Composer 2.6.5
-- Homebrew 4.1.17
+- Homebrew 4.1.20
 - NPM 9.8.1
 - NuGet 6.3.1.1
 - Pip3 23.3.1 (python 3.12)
 - Pipx 1.2.1
-- RubyGems 3.4.21
-- Vcpkg 2023 (build from commit 213c01f87)
+- RubyGems 3.4.22
+- Vcpkg 2023 (build from commit 2b14b606c)
 - Yarn 1.22.19
 
 ### Project Management
@@ -47,15 +53,15 @@
 
 ### Utilities
 - 7-Zip 17.05
-- aria2 1.36.0
-- azcopy 10.21.1
+- aria2 1.37.0
+- azcopy 10.21.2
 - bazel 6.4.0
 - bazelisk 1.18.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.4.0
-- Git 2.42.0
+- Git 2.42.1
 - Git LFS 3.4.0
-- GitHub CLI 2.37.0
+- GitHub CLI 2.39.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
@@ -67,36 +73,33 @@
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.13.29
-- AWS SAM CLI 1.99.0
+- AWS CLI 2.13.36
+- AWS SAM CLI 1.102.0
 - AWS Session Manager CLI 1.2.497.0
-- Azure CLI 2.53.1
+- Azure CLI 2.54.0
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.22.6
-- Cabal 3.6.2.0
+- Bicep CLI 0.23.1
 - Cmake 3.27.7
-- CodeQL Action Bundle 2.15.1
-- Fastlane 2.216.0
-- GHC 9.8.1
-- GHCup 0.1.19.4
-- Stack 2.13.1
-- SwiftFormat 0.52.8
+- CodeQL Action Bundle 2.15.2
+- Fastlane 2.217.0
+- Stack stack:
+- SwiftFormat 0.52.9
 - Xcode Command Line Tools 15.0.0.0.1.1694021235
 
 ### Linters
 - SwiftLint 0.53.0
 
 ### Browsers
-- Safari 17.0 (18616.1.27.111.22)
-- SafariDriver 17.0 (18616.1.27.111.22)
-- Google Chrome 118.0.5993.117
-- Google Chrome for Testing 118.0.5993.70
-- ChromeDriver 118.0.5993.70
-- Microsoft Edge 118.0.2088.69
-- Microsoft Edge WebDriver 118.0.2088.69
-- Mozilla Firefox 119.0
+- Safari 17.1 (18616.2.9.11.10)
+- SafariDriver 17.1 (18616.2.9.11.10)
+- Google Chrome 119.0.6045.159
+- Google Chrome for Testing 119.0.6045.105
+- ChromeDriver 119.0.6045.105
+- Microsoft Edge 119.0.2151.58
+- Microsoft Edge WebDriver 119.0.2151.58
+- Mozilla Firefox 119.0.1
 - geckodriver 0.33.0
-- Selenium server 4.14.1
+- Selenium server 4.15.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -111,7 +114,7 @@
 | 8.0.392+8          | JAVA_HOME_8_X64      |
 | 11.0.21+9          | JAVA_HOME_11_X64     |
 | 17.0.9+9 (default) | JAVA_HOME_17_X64     |
-| 21.0.1+12.0.LTS    | JAVA_HOME_21_X64     |
+| 21.0.1+12.0        | JAVA_HOME_21_X64     |
 
 ### Cached Tools
 
@@ -140,8 +143,8 @@
 
 #### Go
 - 1.19.13
-- 1.20.10
-- 1.21.3
+- 1.20.11
+- 1.21.4
 
 ### Rust Tools
 - Cargo 1.73.0
@@ -150,18 +153,14 @@
 - Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.68.1
-- Cargo-audit 0.18.3
-- Cargo-outdated 0.13.1
-- Cbindgen 0.26.0
 - Clippy 0.1.73
 - Rustfmt 1.6.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.15
+- PowerShell 7.2.16
 
 #### PowerShell Modules
-- Az: 10.4.1
+- Az: 11.0.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -238,7 +237,6 @@
 | Google Play services       | 49                                                                                                                        |
 | Google Repository          | 58                                                                                                                        |
 | NDK                        | 24.0.8215888<br>25.2.9519653<br>26.1.10909125 (default)                                                                   |
-| SDK Patch Applier v4       | 1                                                                                                                         |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -249,3 +247,4 @@
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.1.10909125 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.1.10909125 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
+
