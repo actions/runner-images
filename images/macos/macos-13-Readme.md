@@ -82,7 +82,6 @@
 - Cmake 3.27.7
 - CodeQL Action Bundle 2.15.2
 - Fastlane 2.217.0
-- Stack stack:
 - SwiftFormat 0.52.9
 - Xcode Command Line Tools 15.0.0.0.1.1694021235
 
