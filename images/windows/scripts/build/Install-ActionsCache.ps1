@@ -1,12 +1,10 @@
 ################################################################################
-##  File:       Install-ActionArchiveCache.ps1
-##  Desc:       Download latest release from https://github.com/actions/action-versions
-##              and un-zip to C:\actionarchivecache
+##  File:       Install-ActionsCache.ps1
+##  Desc:       Downloads latest release from https://github.com/actions/action-versions
 ##  Maintainer: #actions-runtime and @TingluoHuang
 ################################################################################
 
-if (-not (Test-Path $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE))
-{
+if (-not (Test-Path $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE)) {
     Write-Host "Creating action archive cache folder"
     New-Item -ItemType Directory -Path $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE | Out-Null
 }

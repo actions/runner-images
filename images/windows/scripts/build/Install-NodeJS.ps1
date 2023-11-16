@@ -1,5 +1,5 @@
 ################################################################################
-##  File:  Install-NodeLts.ps1
+##  File:  Install-NodeJS.ps1
 ##  Desc:  Install nodejs-lts and other common node tools.
 ##         Must run after python is configured
 ################################################################################

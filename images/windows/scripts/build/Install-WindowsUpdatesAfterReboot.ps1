@@ -1,6 +1,6 @@
 ################################################################################
-##  File:  Wait-WindowsUpdatesForInstall.ps1
-##  Desc:  Wait for installation windows updates to complete
+##  File: Install-WindowsUpdatesAfterReboot.ps1
+##  Desc: Waits for Windows Updates to finish installing after reboot
 ################################################################################
 
 Invoke-SBWithRetry -RetryCount 10 -RetryIntervalSeconds 120 -Command {

@@ -1,6 +1,6 @@
 ################################################################################
-##  File:  Install-AWS.ps1
-##  Desc:  Install AWS tools(AWS CLI, Session Manager Plugin for the AWS CLI, AWS SAM CLI)
+##  File:  Install-AWSTools.ps1
+##  Desc:  Install AWS tools: CLI, Session Manager Plugin, AWS SAM CLI
 ##  Supply chain security: AWS CLI - managed by package manager, Session Manager Plugin for the AWS CLI - missing, AWS SAM CLI - checksum validation
 ################################################################################
 
@@ -11,7 +11,7 @@ Choco-Install -PackageName awscli
 $sessionManagerName = "SessionManagerPluginSetup.exe"
 $sessionManagerUrl = "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/windows/$sessionManagerName"
 $sessionManagerSignatureThumbprint = "FF457E5732E98A9F156E657F8CC7C4432507C3BB"
-Install-Binary -Url $sessionManagerUrl -Name $sessionManagerName -ArgumentList ("/silent", "/install")  -ExpectedSignature $sessionManagerSignatureThumbprint
+Install-Binary -Url $sessionManagerUrl -Name $sessionManagerName -ArgumentList ("/silent", "/install") -ExpectedSignature $sessionManagerSignatureThumbprint
 $env:Path = $env:Path + ";$env:ProgramFiles\Amazon\SessionManagerPlugin\bin"
 
 # Install AWS SAM CLI

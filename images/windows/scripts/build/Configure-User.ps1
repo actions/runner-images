@@ -1,5 +1,5 @@
 ################################################################################
-##  File:  Warmup-User.ps1
+##  File:  Configure-User.ps1
 ##  Desc:  Performs user part of warm up and moves data to C:\Users\Default
 ################################################################################
 
@@ -31,4 +31,4 @@ New-ItemProperty -Path $RegistryKeyPath -Name CacheType -PropertyType DWORD -Val
 reg.exe copy HKCU\Software\TortoiseSVN HKLM\DEFAULT\Software\TortoiseSVN /s
 
 reg.exe unload HKLM\DEFAULT
-Write-Host "Warmup-User.ps1 - completed"
+Write-Host "Configure-User.ps1 - completed"

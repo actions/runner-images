@@ -1,9 +1,9 @@
 ################################################################################
 ##  File:  Install-PyPy.ps1
-##  Team:  CI-Build
 ##  Desc:  Install PyPy
 ##  Supply chain security: checksum validation
 ################################################################################
+
 function Install-PyPy
 {
     param(

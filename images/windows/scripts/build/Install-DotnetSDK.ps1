@@ -1,7 +1,7 @@
 ################################################################################
 ##  File:  Install-DotnetSDK.ps1
 ##  Desc:  Install all released versions of the dotnet sdk and populate package
-##         cache.  Should run after VS and Node
+##         cache. Should run after VS and Node
 ##  Supply chain security: checksum validation
 ################################################################################
 

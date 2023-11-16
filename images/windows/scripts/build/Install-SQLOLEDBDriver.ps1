@@ -1,6 +1,6 @@
 ################################################################################
 ##  File:  Install-SQLOLEDBDriver.ps1
-##  Desc:  Install SQL OLEDB Driver
+##  Desc:  Install OLE DB Driver for SQL Server
 ################################################################################
 
 $binaryDownloadPath = Start-DownloadWithRetry "https://go.microsoft.com/fwlink/?linkid=2242656" "msoledbsql.msi"

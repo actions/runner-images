@@ -1,6 +1,6 @@
 ################################################################################
-##  File:  Install-Edge.ps1
-##  Desc:  Configure Edge browser and install Edge WebDriver
+##  File:  Install-EdgeDriver.ps1
+##  Desc:  Install Edge WebDriver and configure Microsoft Edge
 ################################################################################
 
 # Disable Edge auto-updates
@@ -9,8 +9,7 @@ Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpda
 # Install Microsoft Edge WebDriver
 Write-Host "Install Edge WebDriver..."
 $EdgeDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\EdgeDriver"
-if (-not (Test-Path -Path $EdgeDriverPath))
-{
+if (-not (Test-Path -Path $EdgeDriverPath)) {
     New-Item -Path $EdgeDriverPath -ItemType Directory -Force
 }
 
