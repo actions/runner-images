@@ -215,7 +215,8 @@
             "swig",
             "telnet",
             "time",
-            "zip"
+            "zip",
+            "findutils"
         ]
     },
     "brew": [
