@@ -34,26 +34,26 @@ Here are a few things you can do that will increase the likelihood of your pull 
 
 - For every new tool add validation scripts and update software report script to make sure that it is included to documentation
 - If the tool is available in other platforms (macOS, Windows, Linux), make sure you include it in as many as possible.
-- If installing a few versions of the tool, consider putting the list of versions in the corresponding `toolset.json` file. It will help other customers to configure their builds flexibly. See [toolset-windows-2019.json](images/win/toolsets/toolset-2019.json) as example.
+- If installing a few versions of the tool, consider putting the list of versions in the corresponding `toolset.json` file. It will help other customers to configure their builds flexibly. See [toolset-windows-2019.json](images/windows/toolsets/toolset-2019.json) as example.
 - Use consistent naming across all files
 - Validation scripts should be simple and shouldn't change image content
 
 ### Windows
 
-- Add a script that will install the tool and put the script in the `scripts/Installers` folder.  
-There are a bunch of helper functions that could simplify your code: `Choco-Install`, `Install-Binary`, `Install-VsixExtension`, `Start-DownloadWithRetry`, `Test-IsWin19`, `Test-IsWin22` (find the full list of helpers in [ImageHelpers.psm1](images/win/scripts/ImageHelpers/ImageHelpers.psm1)).
-- Add a script that will validate the tool installation and put the script in the `scripts/Tests` folder.  
+- Add a script that will install the tool and put the script in the `scripts/build` folder.  
+There are a bunch of helper functions that could simplify your code: `Choco-Install`, `Install-Binary`, `Install-VsixExtension`, `Start-DownloadWithRetry`, `Test-IsWin19`, `Test-IsWin22` (find the full list of helpers in [ImageHelpers.psm1](images/windows/scripts/helpers/ImageHelpers.psm1)).
+- Add a script that will validate the tool installation and put the script in the `scripts/tests` folder.  
 We use [Pester v5](https://github.com/pester/pester) for validation scripts. If the tests for the tool are complex enough, create a separate `*.Tests.ps1`. Otherwise, use `Tools.Tests.ps1` for simple tests.  
 Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at the end of the installation script to make sure that your tests will be run.
-- Add changes to the software report generator `images/win/scripts/SoftwareReport/SoftwareReport.Generator.ps1`. The software report generator is used to generate an image's README file, e.g. [Windows2019-Readme.md](images/win/Windows2019-Readme.md) and uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
+- Add changes to the software report generator `images/windows/scripts/docs-gen/SoftwareReport.Generator.ps1`. The software report generator is used to generate an image's README file, e.g. [Windows2019-Readme.md](images/windows/Windows2019-Readme.md) and uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
 
 ### Ubuntu
 
-- Add script that will install and validate the tool and put the script in the `scripts/installers` folder.
-Use existing scripts such as [github-cli.sh](images/linux/scripts/installers/github-cli.sh) as a starting point.
-  - Use [helpers](images/linux/scripts/helpers/install.sh) to simplify installation process.
+- Add script that will install and validate the tool and put the script in the `scripts/build` folder.
+Use existing scripts such as [github-cli.sh](images/ubuntu/scripts/build/github-cli.sh) as a starting point.
+  - Use [helpers](images/ubuntu/scripts/helpers/install.sh) to simplify installation process.
   - Validation part should `exit 1` if any issue with installation.
-- Add changes to the software report generator `images/linux/scripts/SoftwareReport/SoftwareReport.Generator.ps1`. The software report generator is used to generate an image's README file, e.g. [Ubuntu2004-Readme.md](images/linux/Ubuntu2004-README.md) and it uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
+- Add changes to the software report generator `images/ubuntu/scripts/docs-gen/SoftwareReport.Generator.ps1`. The software report generator is used to generate an image's README file, e.g. [Ubuntu2004-Readme.md](images/ubuntu/Ubuntu2004-README.md) and it uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
 
 ### macOS
 
