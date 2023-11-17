@@ -25,10 +25,3 @@ Describe "Add-MachinePathItem Tests"{
         Add-MachinePathItem -PathItem 'C:\baz' | Should Be 'C:\baz;C:\foo;C:\bar'
     }
 }
-
-Describe 'Set-SystemVariable Tests' {
-    Mock Set-ItemProperty {return}
-    It 'Set-SystemVariable should return new path' {
-        Set-SystemVariable -SystemVariable "NewPathVar" -Value "C:\baz" | Should Be "C:\baz"
-    }
-}
