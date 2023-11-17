@@ -1,0 +1,405 @@
+{
+    "variables": {
+        "client_id": "{{env `ARM_CLIENT_ID`}}",
+        "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
+        "client_cert_path": "{{env `ARM_CLIENT_CERT_PATH`}}",
+        "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
+        "tenant_id": "{{env `ARM_TENANT_ID`}}",
+        "managed_image_resource_group_name": "{{env `ARM_RESOURCE_GROUP`}}",
+        "build_resource_group_name": "{{env `BUILD_RESOURCE_GROUP_NAME`}}",
+        "temp_resource_group_name": "{{env `TEMP_RESOURCE_GROUP_NAME`}}",
+        "location": "{{env `ARM_RESOURCE_LOCATION`}}",
+        "virtual_network_name": "{{env `VNET_NAME`}}",
+        "virtual_network_resource_group_name": "{{env `VNET_RESOURCE_GROUP`}}",
+        "virtual_network_subnet_name": "{{env `VNET_SUBNET`}}",
+        "private_virtual_network_with_public_ip": "{{env `PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP`}}",
+        "allowed_inbound_ip_addresses": "{{env `AGENT_IP`}}",
+        "image_folder": "/imagegeneration",
+        "imagedata_file": "/imagegeneration/imagedata.json",
+        "installer_script_folder": "/imagegeneration/installers",
+        "helper_script_folder": "/imagegeneration/helpers",
+        "vm_size": "Standard_D4s_v4",
+        "managed_image_name": "packer-ubuntu20-dev",
+        "image_version": "dev",
+        "image_os": "ubuntu20",
+        "run_validation_diskspace": "false",
+        "dockerhub_login": "{{env `DOCKERHUB_LOGIN`}}",
+        "dockerhub_password": "{{env `DOCKERHUB_PASSWORD`}}"
+    },
+    "sensitive-variables": [
+        "client_secret"
+    ],
+    "builders": [
+        {
+            "type": "azure-arm",
+            "client_id": "{{user `client_id`}}",
+            "client_secret": "{{user `client_secret`}}",
+            "client_cert_path": "{{user `client_cert_path`}}",
+            "subscription_id": "{{user `subscription_id`}}",
+            "tenant_id": "{{user `tenant_id`}}",
+            "location": "{{user `location`}}",
+            "vm_size": "{{user `vm_size`}}",
+            "managed_image_name": "{{user `managed_image_name`}}",
+            "managed_image_resource_group_name": "{{user `managed_image_resource_group_name`}}",
+            "build_resource_group_name": "{{user `build_resource_group_name`}}",
+            "temp_resource_group_name": "{{user `temp_resource_group_name`}}",
+            "virtual_network_name": "{{user `virtual_network_name`}}",
+            "virtual_network_resource_group_name": "{{user `virtual_network_resource_group_name`}}",
+            "virtual_network_subnet_name": "{{user `virtual_network_subnet_name`}}",
+            "private_virtual_network_with_public_ip": "{{user `private_virtual_network_with_public_ip`}}",
+            "allowed_inbound_ip_addresses": "{{user `allowed_inbound_ip_addresses`}}",
+            "os_type": "Linux",
+            "image_publisher": "canonical",
+            "image_offer": "0001-com-ubuntu-server-focal",
+            "image_sku": "20_04-lts",
+            "os_disk_size_gb": "86"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "mkdir {{user `image_folder`}}",
+                "chmod 777 {{user `image_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/../scripts/build/apt-mock.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/repos.sh",
+                "{{template_dir}}/../scripts/build/apt-ubuntu-archive.sh",
+                "{{template_dir}}/../scripts/build/apt.sh"
+            ],
+            "environment_vars": [
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/../scripts/build/limits.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/../scripts/helpers",
+            "destination": "{{user `helper_script_folder`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/../scripts/build",
+            "destination": "{{user `installer_script_folder`}}"
+        },
+        {
+            "type": "file",
+            "sources": [
+                "{{template_dir}}/../scripts/tests",
+                "{{template_dir}}/../scripts/docs-gen",
+                "{{template_dir}}/../assets/post-gen"
+            ],
+            "destination": "{{user `image_folder`}}"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/../../../helpers/software-report-base",
+            "destination": "{{user `image_folder`}}/docs-gen/"
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/../toolsets/toolset-2004.json",
+            "destination": "{{user `installer_script_folder`}}/toolset.json"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "mv {{user `image_folder`}}/docs-gen {{user `image_folder`}}/SoftwareReport",
+                "mv {{user `image_folder`}}/post-gen {{user `image_folder`}}/post-generation"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/preimagedata.sh"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGEDATA_FILE={{user `imagedata_file`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/configure-environment.sh"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "IMAGE_OS={{user `image_os`}}",
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/apt-vital.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/complete-snap-setup.sh",
+                "{{template_dir}}/../scripts/build/powershellcore.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/Install-PowerShellModules.ps1",
+                "{{template_dir}}/../scripts/build/Install-AzureModules.ps1"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/action-archive-cache.sh",
+                "{{template_dir}}/../scripts/build/runner-package.sh",
+                "{{template_dir}}/../scripts/build/apt-common.sh",
+                "{{template_dir}}/../scripts/build/azcopy.sh",
+                "{{template_dir}}/../scripts/build/azure-cli.sh",
+                "{{template_dir}}/../scripts/build/azure-devops-cli.sh",
+                "{{template_dir}}/../scripts/build/bicep.sh",
+                "{{template_dir}}/../scripts/build/aliyun-cli.sh",
+                "{{template_dir}}/../scripts/build/apache.sh",
+                "{{template_dir}}/../scripts/build/aws.sh",
+                "{{template_dir}}/../scripts/build/clang.sh",
+                "{{template_dir}}/../scripts/build/swift.sh",
+                "{{template_dir}}/../scripts/build/cmake.sh",
+                "{{template_dir}}/../scripts/build/codeql-bundle.sh",
+                "{{template_dir}}/../scripts/build/containers.sh",
+                "{{template_dir}}/../scripts/build/dotnetcore-sdk.sh",
+                "{{template_dir}}/../scripts/build/erlang.sh",
+                "{{template_dir}}/../scripts/build/firefox.sh",
+                "{{template_dir}}/../scripts/build/microsoft-edge.sh",
+                "{{template_dir}}/../scripts/build/gcc.sh",
+                "{{template_dir}}/../scripts/build/gfortran.sh",
+                "{{template_dir}}/../scripts/build/git.sh",
+                "{{template_dir}}/../scripts/build/git-lfs.sh",
+                "{{template_dir}}/../scripts/build/github-cli.sh",
+                "{{template_dir}}/../scripts/build/google-chrome.sh",
+                "{{template_dir}}/../scripts/build/google-cloud-cli.sh",
+                "{{template_dir}}/../scripts/build/haskell.sh",
+                "{{template_dir}}/../scripts/build/heroku.sh",
+                "{{template_dir}}/../scripts/build/hhvm.sh",
+                "{{template_dir}}/../scripts/build/java-tools.sh",
+                "{{template_dir}}/../scripts/build/kubernetes-tools.sh",
+                "{{template_dir}}/../scripts/build/oc.sh",
+                "{{template_dir}}/../scripts/build/leiningen.sh",
+                "{{template_dir}}/../scripts/build/miniconda.sh",
+                "{{template_dir}}/../scripts/build/mono.sh",
+                "{{template_dir}}/../scripts/build/kotlin.sh",
+                "{{template_dir}}/../scripts/build/mysql.sh",
+                "{{template_dir}}/../scripts/build/mssql-cmd-tools.sh",
+                "{{template_dir}}/../scripts/build/sqlpackage.sh",
+                "{{template_dir}}/../scripts/build/nginx.sh",
+                "{{template_dir}}/../scripts/build/nvm.sh",
+                "{{template_dir}}/../scripts/build/nodejs.sh",
+                "{{template_dir}}/../scripts/build/bazel.sh",
+                "{{template_dir}}/../scripts/build/oras-cli.sh",
+                "{{template_dir}}/../scripts/build/phantomjs.sh",
+                "{{template_dir}}/../scripts/build/php.sh",
+                "{{template_dir}}/../scripts/build/postgresql.sh",
+                "{{template_dir}}/../scripts/build/pulumi.sh",
+                "{{template_dir}}/../scripts/build/ruby.sh",
+                "{{template_dir}}/../scripts/build/r.sh",
+                "{{template_dir}}/../scripts/build/rust.sh",
+                "{{template_dir}}/../scripts/build/julia.sh",
+                "{{template_dir}}/../scripts/build/sbt.sh",
+                "{{template_dir}}/../scripts/build/selenium.sh",
+                "{{template_dir}}/../scripts/build/terraform.sh",
+                "{{template_dir}}/../scripts/build/packer.sh",
+                "{{template_dir}}/../scripts/build/vcpkg.sh",
+                "{{template_dir}}/../scripts/build/dpkg-config.sh",
+                "{{template_dir}}/../scripts/build/mongodb.sh",
+                "{{template_dir}}/../scripts/build/yq.sh",
+                "{{template_dir}}/../scripts/build/android.sh",
+                "{{template_dir}}/../scripts/build/pypy.sh",
+                "{{template_dir}}/../scripts/build/python.sh",
+                "{{template_dir}}/../scripts/build/zstd.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/docker-compose.sh",
+                "{{template_dir}}/../scripts/build/docker.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "DOCKERHUB_LOGIN={{user `dockerhub_login`}}",
+                "DOCKERHUB_PASSWORD={{user `dockerhub_password`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/Install-Toolset.ps1",
+                "{{template_dir}}/../scripts/build/Configure-Toolset.ps1"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/pipx-packages.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/homebrew.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}",
+                "DEBIAN_FRONTEND=noninteractive",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/../scripts/build/snap.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "expect_disconnect": true,
+            "scripts": [
+                "{{template_dir}}/../scripts/build/reboot.sh"
+            ],
+            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "pause_before": "60s",
+            "start_retry_timeout": "10m",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/cleanup.sh"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "script": "{{template_dir}}/../scripts/build/apt-mock-remove.sh",
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "max_retries": 3,
+            "start_retry_timeout": "2m",
+            "inline": [
+                "pwsh -Command Write-Host Running SoftwareReport.Generator.ps1 script",
+                "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}",
+                "pwsh -Command Write-Host Running RunAll-Tests.ps1 script",
+                "pwsh -File {{user `image_folder`}}/tests/RunAll-Tests.ps1 -OutputDirectory {{user `image_folder`}}"
+            ],
+            "environment_vars": [
+                "IMAGE_VERSION={{user `image_version`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "{{user `image_folder`}}/software-report.md",
+            "destination": "{{template_dir}}/../Ubuntu2004-Readme.md",
+            "direction": "download"
+        },
+        {
+            "type": "file",
+            "source": "{{user `image_folder`}}/software-report.json",
+            "destination": "{{template_dir}}/../software-report.json",
+            "direction": "download"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/../scripts/build/post-deployment.sh"
+            ],
+            "environment_vars":[
+                "HELPER_SCRIPT_FOLDER={{user `helper_script_folder`}}",
+                "INSTALLER_SCRIPT_FOLDER={{user `installer_script_folder`}}",
+                "IMAGE_FOLDER={{user `image_folder`}}"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "scripts":[
+                "{{template_dir}}/../scripts/build/validate-disk-space.sh"
+            ],
+            "environment_vars": [
+                "RUN_VALIDATION={{user `run_validation_diskspace`}}"
+            ]
+        },
+        {
+            "type": "file",
+            "source": "{{template_dir}}/../assets/ubuntu2004.conf",
+            "destination": "/tmp/"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "mkdir -p /etc/vsts",
+                "cp /tmp/ubuntu2004.conf /etc/vsts/machine_instance.conf"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        },
+        {
+            "type": "shell",
+            "inline": [
+                "sleep 30",
+                "/usr/sbin/waagent -force -deprovision+user && export HISTSIZE=0 && sync"
+            ],
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+        }
+    ]
+}
