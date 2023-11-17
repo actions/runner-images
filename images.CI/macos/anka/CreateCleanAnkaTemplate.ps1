@@ -19,6 +19,7 @@ param(
     [string] $TemplateName,
 
     [bool] $DownloadLatestVersion = $true,
+    [bool] $PushToRegistry = $true,
     [bool] $BetaSearch = $false,
     [bool] $InstallSoftwareUpdate = $true,
     [bool] $EnableAutoLogon = $true,
@@ -26,7 +27,8 @@ param(
     [int] $RamSizeGb = 7,
     [int] $DiskSizeGb = 300,
     [string] $DisplayResolution = "1920x1080",
-    [string] $TagName = [DateTimeOffset]::Now.ToUnixTimeSeconds()
+    [string] $TagName = [DateTimeOffset]::Now.ToUnixTimeSeconds(),
+    [string] $Uuid = "4203018E-580F-C1B5-9525-B745CECA79EB"
 )
 
 $ErrorActionPreference = "Stop"
@@ -45,6 +47,8 @@ function Invoke-EnableAutoLogon {
 
     $ipAddress = Get-AnkaVMIPAddress -VMName $TemplateName
 
+    Wait-AnkaVMSSHService -VMName $TemplateName -Seconds 30
+
     Write-Host "`t[*] Enable AutoLogon"
     Enable-AutoLogon -HostName $ipAddress -UserName $TemplateUsername -Password $TemplatePassword
 
@@ -58,6 +62,12 @@ function Invoke-EnableAutoLogon {
 }
 
 function Invoke-SoftwareUpdate {
+    param (
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $Password
+    )
+
     if (-not $InstallSoftwareUpdate) {
         Write-Host "`t[*] Skip installing software updates"
         return
@@ -81,35 +91,57 @@ function Invoke-SoftwareUpdate {
 
     Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"
     Show-StringWithFormat $newUpdates
+    $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title") | Where-Object {$_ -match "Label:"}).Replace("Label: ", '')
     Write-Host "`t[*] Installing Software Updates on '$TemplateName' VM:"
-    Install-SoftwareUpdate -HostName $ipAddress | Show-StringWithFormat
+    Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates -Password $Password | Show-StringWithFormat
 
     # Check if Action: restart
-    if ($newUpdates.Contains("Action: restart")) {
-        Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
-        Start-Sleep -Seconds 60
+    # Define the next macOS version
+    $command = "sw_vers"
+    $guestMacosVersion = Invoke-SSHPassCommand -HostName $ipAddress -Command $command
+    switch -regex ($guestMacosVersion[1]) {
+        '12.\d' { $nextOSVersion = 'macOS Ventura' }
+        '13.\d' { $nextOSVersion = 'macOS Sonoma'  }
+    }
+    # Make an array of updates
+    $listOfNewUpdates = $newUpdates.split('*').Trim('')
+    foreach ($newupdate in $listOfNewUpdates) {
+        # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
+        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("$nextOSVersion") -and (-not [String]::IsNullOrEmpty($newupdate))) {
+            Write-Host "`t[*] Sleep 120 seconds before the software updates have been installed"
+            Start-Sleep -Seconds 120
 
-        Write-Host "`t[*] Waiting for loginwindow process"
-        Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
+            Write-Host "`t[*] Waiting for loginwindow process"
+            Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
 
-        # Re-enable AutoLogon after installing a new security software update
-        Invoke-EnableAutoLogon
+            # Re-enable AutoLogon after installing a new security software update
+            Invoke-EnableAutoLogon
 
-        # Check software updates have been installed
-        $updates = Get-SoftwareUpdate -HostName $ipAddress
-        if ($updates.Contains("Action: restart")) {
-            Write-Host "`t[x] Software updates failed to install: $updates"
-            Show-StringWithFormat $updates
-            exit 1
+            # Check software updates have been installed
+            $updates = Get-SoftwareUpdate -HostName $ipAddress
+            if ($updates.Contains("Action: restart") -and !$updates.Contains("$nextOSVersion")) {
+                Write-Host "`t[x] Software updates failed to install: "
+                Show-StringWithFormat $updates
+                exit 1
+            }
         }
     }
 
     Write-Host "`t[*] Show the install history:"
     $hUpdates = Get-SoftwareUpdateHistory -HostName $ipAddress
     Show-StringWithFormat $hUpdates
+
+    Write-Host "`t[*] The current macOS version:"
+    $command = "sw_vers"
+    Invoke-SSHPassCommand -HostName $ipAddress -Command $command | Show-StringWithFormat
 }
 
 function Invoke-UpdateSettings {
+    param (
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $Password
+    )
     $isConfRequired = $InstallSoftwareUpdate -or $EnableAutoLogon
     if (-not $isConfRequired) {
         Write-Host "`t[*] Skip additional configuration"
@@ -126,7 +158,7 @@ function Invoke-UpdateSettings {
     Invoke-EnableAutoLogon
 
     # Install software updates
-    Invoke-SoftwareUpdate
+    Invoke-SoftwareUpdate -Password $Password
 
     Write-Host "`t[*] Stopping '$TemplateName' VM"
     Stop-AnkaVM -VMName $TemplateName
@@ -145,19 +177,31 @@ $env:SSHUSER = $TemplateUsername
 $env:SSHPASS = $TemplatePassword
 
 Write-Host "`n[#1] Download macOS application installer:"
-$macOSInstaller = Get-MacOSInstaller -MacOSVersion $MacOSVersion -DownloadLatestVersion $DownloadLatestVersion -BetaSearch $BetaSearch
 $shortMacOSVersion = Get-ShortMacOSVersion -MacOSVersion $MacOSVersion
 if ([string]::IsNullOrEmpty($TemplateName)) {
-    $TemplateName = "clean_macos_${shortMacOSVersion}_${DiskSizeGb}gb"
+    $osArch = $(arch)
+    if ($osArch -eq "arm64") {
+        $macOSInstaller = Get-MacOSIPSWInstaller -MacOSVersion $MacOSVersion -DownloadLatestVersion $DownloadLatestVersion -BetaSearch $BetaSearch
+        $TemplateName = "clean_macos_${shortMacOSVersion}_${osArch}_${DiskSizeGb}gb"
+    } else {
+        $macOSInstaller = Get-MacOSInstaller -MacOSVersion $MacOSVersion -DownloadLatestVersion $DownloadLatestVersion -BetaSearch $BetaSearch
+        $TemplateName = "clean_macos_${shortMacOSVersion}_${DiskSizeGb}gb"
+    }
 }
 
 Write-Host "`n[#2] Create a VM template:"
 Write-Host "`t[*] Deleting existed template with name '$TemplateName' before creating a new one"
 Remove-AnkaVM -VMName $TemplateName
 
+# Temporary disable VNC for macOS 14
+# It's probably Anka's bug fixed in 3.3.2
+if ($shortMacOSVersion -eq "14") {
+    $env:ANKA_CREATE_VNC = 0
+}
+
 Write-Host "`t[*] Creating Anka VM template with name '$TemplateName' and '$TemplateUsername' user"
 Write-Host "`t[*] CPU Count: $CPUCount, RamSize: ${RamSizeGb}G, DiskSizeGb: ${DiskSizeGb}G, InstallerPath: $macOSInstaller, TemplateName: $TemplateName"
-New-AnkaVMTemplate -InstallerPath $macOSInstaller `
+New-AnkaVMTemplate -InstallerPath "$macOSInstaller" `
                    -TemplateName $TemplateName `
                    -TemplateUsername $TemplateUsername `
                    -TemplatePassword $TemplatePassword `
@@ -166,7 +210,7 @@ New-AnkaVMTemplate -InstallerPath $macOSInstaller `
                    -DiskSizeGb $DiskSizeGb | Show-StringWithFormat
 
 Write-Host "`n[#3] Configure AutoLogon and/or install software updates:"
-Invoke-UpdateSettings
+Invoke-UpdateSettings -Password $TemplatePassword
 
 Write-Host "`n[#4] Finalization '$TemplateName' configuration and push to the registry:"
 Write-Host "`t[*] The '$TemplateName' VM status is stopped"
@@ -179,6 +223,11 @@ Set-AnkaVMVideoController -VMName $TemplateName -ShortMacOSVersion $ShortMacOSVe
 Write-Host "`t[*] Setting screen resolution to $DisplayResolution for $TemplateName"
 Set-AnkaVMDisplayResolution -VMName $TemplateName -DisplayResolution $DisplayResolution
 
-# Push a VM template (and tag) to the Cloud
-Write-Host "`t[*] Pushing '$TemplateName' image with '$TagName' tag to the '$RegistryUrl' registry..."
-Push-AnkaTemplateToRegistry -RegistryUrl $registryUrl -TagName $TagName -TemplateName $TemplateName
+# Set static UUID
+Set-AnkaVMUuid -VMName $TemplateName -Uuid $Uuid
+
+if ($PushToRegistry) {
+    # Push a VM template (and tag) to the Cloud
+    Write-Host "`t[*] Pushing '$TemplateName' image with '$TagName' tag to the '$RegistryUrl' registry..."
+    Push-AnkaTemplateToRegistry -RegistryUrl $registryUrl -TagName $TagName -TemplateName $TemplateName
+}

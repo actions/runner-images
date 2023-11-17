@@ -1,14 +1,16 @@
 {
     "xcode": {
         "default": "13.2.1",
-        "versions": [
-            { "link": "13.2.1", "version": "13.2.1", "symlinks": ["13.2"] },
-            { "link": "13.1", "version": "13.1.0" },
-            { "link": "13.0", "version": "13.0.0" },
-            { "link": "12.5.1", "version": "12.5.1", "symlinks": ["12.5"] },
-            { "link": "12.4", "version": "12.4.0" },
-            { "link": "11.7", "version": "11.7.0", "symlinks": ["11.7_beta"] }
-        ]
+        "x64": {
+            "versions": [
+                { "link": "13.2.1", "version": "13.2.1+13C100", "symlinks": ["13.2"] },
+                { "link": "13.1", "version": "13.1.0+13A1030d" },
+                { "link": "13.0", "version": "13.0.0+13A233" },
+                { "link": "12.5.1", "version": "12.5.1+12E507", "symlinks": ["12.5"] },
+                { "link": "12.4", "version": "12.4.0+12D4e" },
+                { "link": "11.7", "version": "11.7.0-GM+11E801a", "symlinks": ["11.7_beta"] }
+            ]
+        }
     },
     "xamarin": {
         "vsmac": {
@@ -151,25 +153,17 @@
         ]
     },
     "java": {
-        "default": "8",
-        "default_vendor": "Temurin-Hotspot",
-        "vendors": [
-            {
-                "name": "Temurin-Hotspot",
-                "versions": [ "8", "11", "17" ]
-            },
-            {
-                "name": "Adopt",
-                "versions": [ "8", "11" ]
-            }
-        ]
+        "x64": {
+            "default": "8",
+            "versions": [ "8", "11", "17", "21"]
+        }
     },
     "android": {
-        "cmdline-tools": "latest",
+        "cmdline-tools": "commandlinetools-mac-9123335_latest.zip",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
         "extra-list": [
-            "android;m2repository", "google;m2repository", "google;google_play_services", "intel;Hardware_Accelerated_Execution_Manager"
+            "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
         "addon-list": [],
         "additional-tools": [
@@ -180,7 +174,7 @@
         "ndk": {
             "default": "25",
             "versions": [
-                "23", "24", "25"
+                "24", "25", "26"
             ]
         }
     },
@@ -215,6 +209,7 @@
             "p7zip",
             "packer",
             "perl",
+            "pkg-config",
             "sbt",
             "subversion",
             "swiftformat",
@@ -225,7 +220,6 @@
             "libxft",
             "tcl-tk",
             "r",
-            "yq",
             "imagemagick"
         ],
         "cask_packages": [
@@ -234,70 +228,87 @@
     },
     "gcc": {
         "versions": [
-            "9",
             "10",
-            "11"
+            "11",
+            "12"
         ]
     },
     "toolcache": [
         {
             "name": "Python",
             "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
-            "arch": "x64",
             "platform" : "darwin",
-            "versions": [
-                "3.7.*",
-                "3.8.*",
-                "3.9.*",
-                "3.10.*",
-                "3.11.*"
-            ]
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "3.7.*",
+                        "3.8.*",
+                        "3.9.*",
+                        "3.10.*",
+                        "3.11.*",
+                        "3.12.*"
+                    ]
+                }
+            }
         },
         {
             "name": "PyPy",
-            "arch": "x64",
             "platform" : "darwin",
-            "versions": [
-                "2.7",
-                "3.7",
-                "3.8",
-                "3.9"
-            ]
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "2.7",
+                        "3.7",
+                        "3.8",
+                        "3.9",
+                        "3.10"
+                    ]
+                }
+            }
         },
         {
             "name": "Node",
             "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
             "platform" : "darwin",
-            "arch": "x64",
-            "versions": [
-                "14.*",
-                "16.*",
-                "18.*"
-            ]
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "14.*",
+                        "16.*",
+                        "18.*",
+                        "20.*"
+                    ]
+                }
+            }
         },
         {
             "name": "Go",
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
-            "arch": "x64",
             "platform" : "darwin",
-            "variable_template" : "GOROOT_{0}_{1}_X64",
-            "versions": [
-                "1.17.*",
-                "1.18.*",
-                "1.19.*"
-            ]
+            "arch": {
+                "x64": {
+                    "variable_template" : "GOROOT_{0}_{1}_X64",
+                    "versions": [
+                        "1.19.*",
+                        "1.20.*",
+                        "1.21.*"
+                    ]
+                }
+            }
         },
         {
             "name": "Ruby",
-            "arch": "x64",
-            "versions": [
-                "2.4.*",
-                "2.5.*",
-                "2.6.*",
-                "2.7.*",
-                "3.0.*",
-                "3.1.*"
-            ]
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "2.5.*",
+                        "2.6.*",
+                        "2.7.*",
+                        "3.0.*",
+                        "3.1.*"
+                    ]
+                }
+            }
         }
     ],
     "pipx": [
@@ -307,12 +318,15 @@
         }
     ],
     "dotnet": {
-        "versions": [
-            "3.1",
-            "5.0",
-            "6.0",
-            "7.0"
-        ]
+        "arch":{
+            "x64": {
+                "versions": [
+                    "6.0",
+                    "7.0",
+                    "8.0"
+                ]
+            }
+        }
     },
     "ruby": {
         "default": "2.7",
@@ -327,18 +341,19 @@
         ]
     },
     "go": {
-        "default": "1.17"
+        "default": "1.20"
     },
     "node": {
-        "default": "16",
+        "default": "18",
         "nvm_versions": [
             "14",
             "16",
-            "18"
+            "18",
+            "20"
         ]
     },
     "llvm": {
-        "version": "14"
+        "version": "15"
     },
     "php": {
         "version": "8.2"

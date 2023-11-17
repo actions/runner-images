@@ -67,7 +67,7 @@ function Select-DataStore {
     $availableDatastores = $availableClusterDatastores `
     | Where-Object { $_.FreeSpaceGB -ge $thresholdInGb } `
     | Where-Object {
-        $vmOnDatastore = @((Get-ChildItem -Path $_.DatastoreBrowserPath).Name -notmatch "^\.").Count
+        $vmOnDatastore = @((Get-ChildItem -Path $_.DatastoreBrowserPath).Name -notmatch '(^\.|vmkdump)').Count
         $vmOnDatastore -lt $vmCount } `
     | Group-Object -Property { $vmOnDatastore }
 

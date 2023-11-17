@@ -41,6 +41,8 @@ param(
     [ValidateNotNullOrEmpty()]
     [string]$VIPassword,
 
+    [string]$JobStatus,
+
     [int32]$CpuCount,
 
     [int32]$CoresPerSocketCount,
@@ -62,9 +64,9 @@ try {
 }
 
 $vm = Get-VM $VMName
-if ($env:AGENT_JOBSTATUS -eq 'Failed') {
+if (($env:AGENT_JOBSTATUS -and $env:AGENT_JOBSTATUS -eq 'Failed') -or ($JobStatus -and $JobStatus -eq 'failure')) {
     try {
-        if($vm.PowerState -ne "PoweredOff") {
+        if ($vm.PowerState -ne "PoweredOff") {
             Stop-VM -VM $vm -Confirm:$false -ErrorAction Stop | Out-Null
         }
         Set-VM -VM $vm -Name "${VMName}_failed" -Confirm:$false -ErrorAction Stop | Out-Null
@@ -80,13 +82,5 @@ try {
     Write-Host "VM has been moved successfully to target datastore '$TargetDataStore'"
 } catch {
     Write-Host "##vso[task.LogIssue type=error;]Failed to move VM '$VMName' to target datastore '$TargetDataStore'"
-    exit 1
-}
-
-try {
-    Write-Host "Change CPU count to $CpuCount, cores count to $CoresPerSocketCount, amount of RAM to $Memory"
-    $vm | Set-VM -NumCPU $CpuCount -CoresPerSocket $CoresPerSocketCount -MemoryMB $Memory -Confirm:$false -ErrorAction Stop | Out-Null
-} catch {
-    Write-Host "##vso[task.LogIssue type=error;]Failed to change specs for VM '$VMName'"
     exit 1
 }

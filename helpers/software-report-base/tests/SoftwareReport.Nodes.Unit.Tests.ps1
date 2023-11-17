@@ -26,7 +26,7 @@ Describe "Nodes.UnitTests" {
 
         It "Deserialization" {
             { [ToolVersionNode]::FromJsonObject(@{ NodeType = "ToolVersionNode"; ToolName = ""; Version = "2.1.3" }) } | Should -Throw '*Exception setting "ToolName": "The argument is null or empty.*'
-            { [ToolVersionNode]::FromJsonObject(@{ NodeType = "ToolVersionNode"; ToolName = "MyTool"; Version = "" }) } | Should -Throw '*Exception setting "Version": "The argument is null or empty.*'
+            { [ToolVersionNode]::FromJsonObject(@{ NodeType = "ToolVersionNode"; ToolName = "MyTool"; Version = "" }) } | Should -Throw 'ToolVersionNode ''MyTool'' has empty version'
             { [ToolVersionNode]::FromJsonObject(@{ NodeType = "ToolVersionNode"; ToolName = "MyTool"; Version = "2.1.3" }) } | Should -Not -Throw
         }
 

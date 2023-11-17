@@ -1,56 +1,50 @@
-| Announcements |
-|-|
-| [[macOS] Default Xcode on macOS 12 Monterey will be set to Xcode 14.1 on January, 9](https://github.com/actions/runner-images/issues/6746) |
-| [macOS-latest workflows will use macOS-12](https://github.com/actions/runner-images/issues/6384) |
-| [The macOS 10.15 Actions runner image will begin deprecation on 5/31/22 and will be fully unsupported by 12/1/22 for GitHub and ADO](https://github.com/actions/runner-images/issues/5583) |
-***
 # macOS 11
-- OS Version: macOS 11.7.2 (20G1020)
+- OS Version: macOS 11.7.10 (20G1427)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20221215.1
+- Image Version: 20231030.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 3.1.101, 3.1.201, 3.1.302, 3.1.426, 5.0.102, 5.0.202, 5.0.302, 5.0.408, 6.0.404, 7.0.101
+- .NET Core SDK: 6.0.416, 7.0.102, 7.0.202, 7.0.306, 7.0.403
 - Bash 3.2.57(1)-release
 - Clang/LLVM 13.0.0
-- Clang/LLVM (Homebrew) 14.0.6 - available on `$(brew --prefix llvm@14)/bin/clang`
-- GCC 9 (Homebrew GCC 9.5.0) - available by `gcc-9` alias
-- GCC 10 (Homebrew GCC 10.4.0) - available by `gcc-10` alias
-- GCC 11 (Homebrew GCC 11.3.0) - available by `gcc-11` alias
-- GNU Fortran 9 (Homebrew GCC 9.5.0) - available by `gfortran-9` alias
-- GNU Fortran 10 (Homebrew GCC 10.4.0) - available by `gfortran-10` alias
-- GNU Fortran 11 (Homebrew GCC 11.3.0) - available by `gfortran-11` alias
-- Go 1.17.13
-- Julia 1.8.3
-- Kotlin 1.7.21-release-272
+- Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
+- GCC 10 (Homebrew GCC 10.5.0) - available by `gcc-10` alias
+- GCC 11 (Homebrew GCC 11.4.0) - available by `gcc-11` alias
+- GCC 12 (Homebrew GCC 12.3.0) - available by `gcc-12` alias
+- GNU Fortran 10 (Homebrew GCC 10.5.0) - available by `gfortran-10` alias
+- GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
+- GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
+- Julia 1.9.3
+- Kotlin 1.9.10-release-459
+- Go 1.20.10
 - Mono 6.12.0.188
+- Node.js 18.18.2
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
-- Node.js 16.19.0
-- NVM 0.39.2
-- NVM - Cached node versions: 14.21.2, 16.19.0, 18.12.1
-- Perl 5.36.0
-- PHP 8.2.0
+- NVM 0.39.5
+- NVM - Cached node versions: 14.21.3, 16.20.2, 18.18.2, 20.9.0
+- Perl 5.38.0
+- PHP 8.2.12
 - Python 2.7.18
-- Python3 3.11.1
-- R 4.2.2
-- Ruby 2.7.7p221
+- Python3 3.12.0
+- R 4.3.1
+- Ruby 2.7.8p225
 
 ### Package Management
-- Bundler 2.3.26
-- Carthage 0.38.0
-- CocoaPods 1.11.3
-- Composer 2.4.4
-- Homebrew 3.6.15
-- Miniconda 4.12.0
-- NPM 8.19.3
+- Bundler 2.4.21
+- Carthage 0.39.1
+- CocoaPods 1.14.2
+- Composer 2.6.5
+- Homebrew 4.1.17
+- Miniconda 23.9.0
+- NPM 9.8.1
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip3 22.3.1 (python 3.11)
-- Pipx 1.1.0
-- RubyGems 3.3.26
-- Vcpkg 2022 (build from commit 4b6bce313)
+- Pip3 23.3.1 (python 3.12)
+- Pipx 1.2.1
+- RubyGems 3.4.21
+- Vcpkg 2023 (build from commit 3715d743a)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -60,167 +54,165 @@
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
-- Apache Ant 1.10.12
-- Apache Maven 3.8.6
-- Gradle 7.6
-- Sbt 1.8.0
+- Apache Ant 1.10.14
+- Apache Maven 3.9.5
+- Gradle 8.4
+- Sbt 1.9.7
 
 ### Utilities
-- 7-Zip 17.04
+- 7-Zip 17.05
 - aria2 1.36.0
-- azcopy 10.16.2
-- bazel 5.4.0
-- bazelisk 1.15.0
+- azcopy 10.21.1
+- bazel 6.4.0
+- bazelisk 1.18.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 7.86.0
-- Git 2.39.0
-- Git LFS 3.3.0
-- GitHub CLI 2.20.2
-- GNU Tar 1.34 - available by 'gtar' alias
-- GNU Wget 1.21.3
-- gpg (GnuPG) 2.3.8
-- helm v3.10.3+g835b733
-- Hub CLI 2.14.2
-- ImageMagick 7.1.0-54
-- jq 1.6
-- mongo v5.0.11
-- mongod v5.0.11
-- Newman 5.3.2
-- OpenSSL 1.1.1s  1 Nov 2022
-- Packer 1.8.5
-- PostgreSQL 14.6 (Homebrew)
-- psql (PostgreSQL) 14.6 (Homebrew)
+- Curl 8.4.0
+- Git 2.42.0
+- Git LFS 3.4.0
+- GitHub CLI 2.37.0
+- GNU Tar 1.35 - available by 'gtar' alias
+- GNU Wget 1.21.4
+- gpg (GnuPG) 2.4.3
+- helm v3.13.1+g3547a4b
+- ImageMagick 7.1.1-21
+- jq 1.7
+- mongo 5.0.21
+- mongod 5.0.21
+- Newman 6.0.0
+- OpenSSL 1.1.1w  11 Sep 2023
+- Packer 1.9.4
+- pkg-config 0.29.2
+- PostgreSQL 14.9 (Homebrew)
+- psql (PostgreSQL) 14.9 (Homebrew)
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
-- Switchaudio-osx 1.1.0
-- yq 4.30.5
-- zstd 1.5.2
+- Switchaudio-osx 1.2.2
+- yq 4.35.2
+- zstd 1.5.5
 
 ### Tools
-- Aliyun CLI 3.0.140
-- App Center CLI 2.12.0
-- AWS CLI 2.9.7
-- AWS SAM CLI 1.66.0
-- AWS Session Manager CLI 1.2.398.0
-- Azure CLI 2.43.0
-- Azure CLI (azure-devops) 0.25.0
-- Bicep CLI 0.13.1
-- Cabal 3.6.2.0
-- Cmake 3.25.1
-- CodeQL Action Bundle 2.11.6
-- Colima 0.5.0
-- Fastlane 2.211.0
-- GHC 9.4.3
-- GHCup 0.1.18.0
-- Jazzy 0.14.3
-- Stack 2.9.1
-- SwiftFormat 0.50.6
+- Aliyun CLI 3.0.184
+- App Center CLI 2.14.0
+- AWS CLI 2.13.30
+- AWS SAM CLI 1.99.0
+- AWS Session Manager CLI 1.2.497.0
+- Azure CLI 2.53.1
+- Azure CLI (azure-devops) 0.26.0
+- Bicep CLI 0.22.6
+- Cabal 3.10.1.0
+- Cmake 3.27.7
+- CodeQL Action Bundle 2.15.1
+- Fastlane 2.216.0
+- GHC 9.6.2
+- GHCup 0.1.19.4
+- Jazzy 0.14.4
+- Stack 2.13.1
+- SwiftFormat 0.52.8
 - Swig 4.1.1
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
 ### Linters
 - SwiftLint 0.48.0
-- Yamllint 1.28.0
+- Yamllint 1.32.0
 
 ### Browsers
-- Safari 16.2 (16614.3.7.1.7)
-- SafariDriver 16.2 (16614.3.7.1.7)
-- Google Chrome 108.0.5359.124
-- ChromeDriver 108.0.5359.71
-- Microsoft Edge 108.0.1462.46
-- Microsoft Edge WebDriver 108.0.1462.46
-- Mozilla Firefox 108.0
-- geckodriver 0.32.0
-- Selenium server 4.5.0
+- Safari 16.6.1 (16615.3.12.11.5)
+- SafariDriver 16.6.1 (16615.3.12.11.5)
+- Google Chrome 118.0.5993.117
+- Google Chrome for Testing 118.0.5993.70
+- ChromeDriver 118.0.5993.70
+- Microsoft Edge 118.0.2088.76
+- Microsoft Edge WebDriver 118.0.2088.76
+- Mozilla Firefox 119.0
+- geckodriver 0.33.0
+- Selenium server 4.14.1
 
 #### Environment variables
-| Name            | Value                                          |
-| --------------- | ---------------------------------------------- |
-| CHROMEWEBDRIVER | /usr/local/Caskroom/chromedriver/108.0.5359.71 |
-| EDGEWEBDRIVER   | /usr/local/share/edge_driver                   |
-| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin                 |
+| Name            | Value                                 |
+| --------------- | ------------------------------------- |
+| CHROMEWEBDRIVER | /usr/local/share/chromedriver-mac-x64 |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver          |
+| GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin        |
 
 ### Java
-| Version             | Vendor          | Environment Variable |
-| ------------------- | --------------- | -------------------- |
-| 8.0.352+8 (default) | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.17+8           | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.5+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
-
-### GraalVM
-| Version   | Environment variables |
-| --------- | --------------------- |
-| CE 22.3.0 | GRAALVM_11_ROOT       |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.392+8 (default) | JAVA_HOME_8_X64      |
+| 11.0.21+9           | JAVA_HOME_11_X64     |
+| 17.0.9+9            | JAVA_HOME_17_X64     |
+| 21.0.1+12.0.LTS     | JAVA_HOME_21_X64     |
 
 ### Cached Tools
 
 #### Ruby
-- 2.4.10
 - 2.5.9
 - 2.6.10
-- 2.7.7
-- 3.0.5
-- 3.1.3
-
-#### Python
-- 3.7.15
-- 3.8.15
-- 3.9.16
-- 3.10.9
-- 3.11.1
+- 2.7.8
+- 3.0.6
+- 3.1.4
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.10]
+- 2.7.18 [PyPy 7.3.13]
 - 3.7.13 [PyPy 7.3.9]
-- 3.8.15 [PyPy 7.3.10]
-- 3.9.15 [PyPy 7.3.10]
+- 3.8.16 [PyPy 7.3.11]
+- 3.9.18 [PyPy 7.3.13]
+- 3.10.13 [PyPy 7.3.13]
+
+#### Python
+- 3.7.17
+- 3.8.18
+- 3.9.18
+- 3.10.13
+- 3.11.6
+- 3.12.0
 
 #### Node.js
-- 14.21.2
-- 16.19.0
-- 18.12.1
+- 14.21.3
+- 16.20.2
+- 18.18.2
+- 20.9.0
 
 #### Go
-- 1.17.13
-- 1.18.9
-- 1.19.4
+- 1.19.13
+- 1.20.10
+- 1.21.3
 
 ### Rust Tools
-- Cargo 1.66.0
-- Rust 1.66.0
-- Rustdoc 1.66.0
-- Rustup 1.25.1
+- Cargo 1.73.0
+- Rust 1.73.0
+- Rustdoc 1.73.0
+- Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.63.0
-- Cargo-audit 0.17.4
-- Cargo-outdated 0.11.1
-- Cbindgen 0.24.3
-- Clippy 0.1.66
-- Rustfmt 1.5.1-stable
+- Bindgen 0.68.1
+- Cargo-audit 0.18.3
+- Cargo-outdated 0.13.1
+- Cbindgen 0.26.0
+- Clippy 0.1.73
+- Rustfmt 1.6.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.8
+- PowerShell 7.2.16
 
 #### PowerShell Modules
-- Az: 9.2.0
+- Az: 10.4.1
 - MarkdownPS: 1.9
-- Pester: 5.3.3
+- Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
 ### Web Servers
-| Name  | Version  | ConfigFile                      | ServiceStatus | ListenPort |
-| ----- | -------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.54_1 | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.23.3   | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
+| ----- | ------- | ------------------------------- | ------------- | ---------- |
+| httpd | 2.4.58  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| nginx | 1.25.3  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 
 #### Visual Studio for Mac
-| Version        | Build     | Path                                 |
-| -------------- | --------- | ------------------------------------ |
-| 2019           | 8.10.25.2 | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.4.2.17 | /Applications/Visual Studio.app      |
+| Version        | Build      | Path                                 |
+| -------------- | ---------- | ------------------------------------ |
+| 2019           | 8.10.25.2  | /Applications/Visual Studio 2019.app |
+| 2022 (default) | 17.6.6.408 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
@@ -333,33 +325,33 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | watchOS 8.3 | 13.2.1        | Apple Watch Series 4 - 40mm<br>Apple Watch Series 4 - 44mm<br>Apple Watch Series 5 - 40mm<br>Apple Watch Series 5 - 44mm<br>Apple Watch Series 6 - 40mm<br>Apple Watch Series 6 - 44mm<br>Apple Watch Series 7 - 41mm<br>Apple Watch Series 7 - 45mm                                                                                                                                                                                                                                                                                                                                                                                          |
 
 ### Android
-| Package Name               | Version                                                                                                                                                       |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 8.0                                                                                                                                                           |
-| Android Emulator           | 31.3.14                                                                                                                                                       |
-| Android SDK Build-tools    | 33.0.0 33.0.1<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platforms      | android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)        |
-| Android SDK Platform-Tools | 33.0.3                                                                                                                                                        |
-| Android Support Repository | 47.0.0                                                                                                                                                        |
-| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                    |
-| Google Play services       | 49                                                                                                                                                            |
-| Google Repository          | 58                                                                                                                                                            |
-| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.1.8937393 (default)                                                                                                        |
-| SDK Patch Applier v4       | 1                                                                                                                                                             |
+| Package Name               | Version                                                                                                                                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 8.0                                                                                                                                                                                                                                                           |
+| Android Emulator           | 32.1.15                                                                                                                                                                                                                                                       |
+| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                                                |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
+| Android SDK Platform-Tools | 34.0.5                                                                                                                                                                                                                                                        |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                        |
+| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                    |
+| Google Play services       | 49                                                                                                                                                                                                                                                            |
+| Google Repository          | 58                                                                                                                                                                                                                                                            |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653 (default)<br>26.1.10909125                                                                                                                                                                                       |
+| SDK Patch Applier v4       | 1                                                                                                                                                                                                                                                             |
 
 #### Environment variables
-| Name                    | Value                                              |
-| ----------------------- | -------------------------------------------------- |
-| ANDROID_HOME            | /Users/runner/Library/Android/sdk                  |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/25.1.8937393 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/25.1.8937393 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/25.1.8937393 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/25.1.8937393 |
-| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                  |
+| Name                    | Value                                               |
+| ----------------------- | --------------------------------------------------- |
+| ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
+| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.1.10909125 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
+| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
 ### Miscellaneous
 - libXext 1.3.5
-- libXft 2.3.7
-- Tcl/Tk 8.6.13
-- Zlib 1.2.13
+- libXft 2.3.8
+- Tcl/Tk 8.6.13_5
+- Zlib 1.3
 

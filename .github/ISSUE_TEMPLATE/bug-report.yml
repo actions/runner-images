@@ -19,11 +19,11 @@ body:
     attributes:
       label: Runner images affected
       options:
-        - label: Ubuntu 18.04
         - label: Ubuntu 20.04
         - label: Ubuntu 22.04
         - label: macOS 11
         - label: macOS 12
+        - label: macOS 13
         - label: Windows Server 2019
         - label: Windows Server 2022
   - type: textarea
