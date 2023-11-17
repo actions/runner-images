@@ -18,19 +18,19 @@ Function Get-PackerTemplatePath {
 
     switch ($ImageType) {
         ([ImageType]::Windows2019) {
-            $relativeTemplatePath = Join-Path "win" "windows2019.json"
+            $relativeTemplatePath = Join-Path "windows" "templates" "windows-2019.json"
         }
         ([ImageType]::Windows2022) {
-            $relativeTemplatePath = Join-Path "win" "windows2022.json"
+            $relativeTemplatePath = Join-Path "windows" "templates" "windows-2022.json"
         }
         ([ImageType]::Ubuntu2004) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
+            $relativeTemplatePath = Join-Path "ubuntu" "templates" "ubuntu-20.04.json"
         }
         ([ImageType]::Ubuntu2204) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.pkr.hcl"
+            $relativeTemplatePath = Join-Path "ubuntu" "templates" "ubuntu-22.04.pkr.hcl"
         }
         ([ImageType]::UbuntuMinimal) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntuminimal.pkr.hcl"
+            $relativeTemplatePath = Join-Path "ubuntu" "templates" "ubuntu-minimal.pkr.hcl"
         }
         default { throw "Unknown type of image" }
     }
