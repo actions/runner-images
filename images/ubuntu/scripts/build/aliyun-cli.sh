@@ -27,6 +27,7 @@ if isUbuntu20; then
     external_hash=$(get_toolset_value '.aliyunCli.sha256')
 else
     external_hash=$(get_hash_from_remote_file "$hash_url" "aliyun-cli-linux" "amd64.tgz")
+fi
 
 use_checksum_comparison "/tmp/$package_name" "$external_hash"
 
