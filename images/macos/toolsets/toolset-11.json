@@ -220,7 +220,6 @@
             "libxft",
             "tcl-tk",
             "r",
-            "yq",
             "imagemagick"
         ],
         "cask_packages": [
@@ -323,7 +322,8 @@
             "x64": {
                 "versions": [
                     "6.0",
-                    "7.0"
+                    "7.0",
+                    "8.0"
                 ]
             }
         }
