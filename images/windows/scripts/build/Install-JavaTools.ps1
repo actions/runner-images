@@ -20,7 +20,7 @@ function Set-JavaPath {
     }
 
     Write-Host "Set 'JAVA_HOME_${Version}_X64' environmental variable as $javaPath"
-    setx JAVA_HOME_${Version}_X64 $javaPath /M
+    [Environment]::SetEnvironmentVariable("JAVA_HOME_${Version}_X64", $javaPath, "Machine")
 
     if ($Default) {
         # Clean up any other Java folders from PATH to make sure that they won't conflict with each other
@@ -42,7 +42,7 @@ function Set-JavaPath {
         Set-MachinePath -NewPath $newPath
 
         Write-Host "Set JAVA_HOME environmental variable as $javaPath"
-        setx JAVA_HOME $javaPath /M
+        [Environment]::SetEnvironmentVariable("JAVA_HOME", $javaPath, "Machine")
     }
 }
 
@@ -129,9 +129,9 @@ $maven_opts = '-Xms256m'
 $m2_repo = 'C:\ProgramData\m2'
 New-Item -Path $m2_repo -ItemType Directory -Force | Out-Null
 
-setx M2 $m2 /M
-setx M2_REPO $m2_repo /M
-setx MAVEN_OPTS $maven_opts /M
+[Environment]::SetEnvironmentVariable("M2", $m2, "Machine")
+[Environment]::SetEnvironmentVariable("M2_REPO", $m2_repo, "Machine")
+[Environment]::SetEnvironmentVariable("MAVEN_OPTS", $maven_opts, "Machine")
 
 # Download cobertura jars
 $uri = 'https://repo1.maven.org/maven2/net/sourceforge/cobertura/cobertura/2.1.1/cobertura-2.1.1-bin.zip'
@@ -143,6 +143,6 @@ $fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
 Use-ChecksumComparison $fileHash $sha256sum
 Extract-7Zip -Path $archivePath -DestinationPath "C:\"
 
-setx COBERTURA_HOME $coberturaPath /M
+[Environment]::SetEnvironmentVariable("COBERTURA_HOME", $coberturaPath, "Machine")
 
 Invoke-PesterTests -TestFile "Java"
