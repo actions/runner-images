@@ -626,3 +626,13 @@ function Get-PKGConfigVersion {
     $pkgconfigVersion = Run-Command "pkg-config --version"
     return $pkgconfigVersion
 }
+
+function Get-XcbeautifyVersion {
+    $XcbeautifyVersion = Run-Command "xcbeautify --version"
+    return $XcbeautifyVersion
+}
+
+function Get-XcodesVersion {
+    $XcodesVersion = Run-Command "xcodes version"
+    return $XcodesVersion
+}
