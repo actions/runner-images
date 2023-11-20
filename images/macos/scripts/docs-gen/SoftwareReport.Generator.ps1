@@ -185,7 +185,13 @@ $tools.AddToolVersion("SwiftFormat", $(Get-SwiftFormatVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("Swig", $(Get-SwigVersion))
 }
+if (-not $os.IsBigSur) {
+    $tools.AddToolVersion("Xcbeautify", $(Get-XcbeautifyVersion))
+}
 $tools.AddToolVersion("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVersion))
+if (-not $os.IsBigSur) {
+    $tools.AddToolVersion("Xcodes", $(Get-XcodesVersion))
+}
 
 # Linters
 $linters = $installedSoftware.AddHeader("Linters")
