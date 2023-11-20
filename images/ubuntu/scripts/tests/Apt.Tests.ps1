@@ -54,6 +54,10 @@ Describe "Apt" {
             $toolName = "hg"
         }
 
+        if ($toolName -eq "findutils")
+        {
+            $toolName = "find"
+        }
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
     }
 }

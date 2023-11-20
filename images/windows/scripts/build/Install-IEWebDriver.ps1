@@ -33,6 +33,6 @@ Write-Host "Get the IEDriver version..."
 (Get-Item "$ieDriverPath\IEDriverServer.exe").VersionInfo.FileVersion | Out-File -FilePath "$ieDriverPath\versioninfo.txt"
 
 Write-Host "Setting the IEWebDriver environment variables"
-setx IEWebDriver $ieDriverPath /M
+[Environment]::SetEnvironmentVariable("IEWebDriver", $ieDriverPath, "Machine")
 
 Invoke-PesterTests -TestFile "Browsers" -TestName "Internet Explorer"

@@ -10,8 +10,8 @@ $env:PIPX_HOME = "${env:ProgramFiles(x86)}\pipx"
 pip install pipx
 
 Add-MachinePathItem "${env:PIPX_BIN_DIR}"
-Set-SystemVariable -SystemVariable PIPX_BIN_DIR -Value $env:PIPX_BIN_DIR
-Set-SystemVariable -SystemVariable PIPX_HOME -Value $env:PIPX_HOME
+[System.Environment]::SetEnvironmentVariable("PIPX_BIN_DIR", $env:PIPX_BIN_DIR, "Machine")
+[System.Environment]::SetEnvironmentVariable("PIPX_HOME", $env:PIPX_HOME, "Machine")
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Pipx"
 

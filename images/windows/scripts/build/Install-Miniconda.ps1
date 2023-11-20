@@ -12,7 +12,7 @@ $InstallerUrl = "https://repo.anaconda.com/miniconda/${InstallerName}"
 $ArgumentList = ("/S", "/AddToPath=0", "/RegisterPython=0", "/D=$CondaDestination")
 
 Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList
-Set-SystemVariable -SystemVariable "CONDA" -Value $CondaDestination
+[System.Environment]::SetEnvironmentVariable("CONDA", $CondaDestination, "Machine")
 
 #region Supply chain security
 $localFileHash = (Get-FileHash -Path (Join-Path ${env:TEMP} $installerName) -Algorithm SHA256).Hash

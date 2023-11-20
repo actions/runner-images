@@ -191,6 +191,7 @@
             "brotli",
             "coreutils",
             "file",
+            "findutils",
             "flex",
             "ftp",
             "haveged",
@@ -368,6 +369,7 @@
         "version": "7.2"
     },
     "aliyunCli": {
-        "version": "3.0.174"
+        "version": "3.0.174",
+        "sha256": "0c51028a7a32fc02c8de855f73e273556f957115eb5624565738f9b9f83a50ba"
     }
 }

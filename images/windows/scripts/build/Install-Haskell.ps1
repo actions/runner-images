@@ -23,9 +23,9 @@ New-Item -Path "$ghcupPrefix\ghcup" -ItemType 'directory' -ErrorAction SilentlyC
 New-Item -Path "$ghcupPrefix\ghcup\bin" -ItemType 'directory' -ErrorAction SilentlyContinue | Out-Null
 Start-DownloadWithRetry -Url $ghcupDownloadURL -Name "ghcup.exe" -DownloadPath "$ghcupPrefix\ghcup\bin"
 
-Set-SystemVariable "GHCUP_INSTALL_BASE_PREFIX" $ghcupPrefix
-Set-SystemVariable "GHCUP_MSYS2" $msysPath
-Set-SystemVariable "CABAL_DIR" $cabalDir
+[System.Environment]::SetEnvironmentVariable("GHCUP_INSTALL_BASE_PREFIX", $ghcupPrefix, "Machine")
+[System.Environment]::SetEnvironmentVariable("GHCUP_MSYS2", $msysPath, "Machine")
+[System.Environment]::SetEnvironmentVariable("CABAL_DIR", $cabalDir, "Machine")
 Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
 
