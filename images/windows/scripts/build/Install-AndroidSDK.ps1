@@ -120,16 +120,16 @@ $ndkDefaultVersion = ($androidNDKs | Where-Object { $_ -match "ndk;$ndkDefaultMa
 $ndkRoot = "$sdkRoot\ndk\$ndkDefaultVersion"
 
 # Create env variables
-setx ANDROID_HOME $sdkRoot /M
-setx ANDROID_SDK_ROOT $sdkRoot /M
+[Environment]::SetEnvironmentVariable("ANDROID_HOME", $sdkRoot, "Machine")
+[Environment]::SetEnvironmentVariable("ANDROID_SDK_ROOT", $sdkRoot, "Machine")
 # ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
-setx ANDROID_NDK $ndkRoot /M
-setx ANDROID_NDK_HOME $ndkRoot /M
-setx ANDROID_NDK_ROOT $ndkRoot /M
+[Environment]::SetEnvironmentVariable("ANDROID_NDK", $ndkRoot, "Machine")
+[Environment]::SetEnvironmentVariable("ANDROID_NDK_HOME", $ndkRoot, "Machine")
+[Environment]::SetEnvironmentVariable("ANDROID_NDK_ROOT", $ndkRoot, "Machine")
 
 $ndkLatestPath = "$sdkRoot\ndk\$ndkLatestVersion"
 if (Test-Path $ndkLatestPath) {
-    setx ANDROID_NDK_LATEST_HOME $ndkLatestPath /M
+    [Environment]::SetEnvironmentVariable("ANDROID_NDK_LATEST_HOME", $ndkLatestPath, "Machine")
 } else {
     Write-Host "Latest NDK $ndkLatestVersion is not installed at path $ndkLatestPath"
     exit 1

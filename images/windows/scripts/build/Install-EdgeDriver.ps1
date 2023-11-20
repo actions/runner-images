@@ -38,7 +38,7 @@ $EdgeDriverSignatureThumbprint = ("7C94971221A799907BB45665663BBFD587BAC9F8", "7
 Test-FileSignature -FilePath "$EdgeDriverPath\msedgedriver.exe" -ExpectedThumbprint $EdgeDriverSignatureThumbprint
 
 Write-Host "Setting the environment variables..."
-setx EdgeWebDriver "$EdgeDriverPath" /M
+[Environment]::SetEnvironmentVariable("EdgeWebDriver", $EdgeDriverPath, "Machine")
 
 $regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\'
 $PathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path'

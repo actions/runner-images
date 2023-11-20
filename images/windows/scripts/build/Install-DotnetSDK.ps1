@@ -6,9 +6,9 @@
 ################################################################################
 
 # Set environment variables
-Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
-Set-SystemVariable -SystemVariable DOTNET_NOLOGO -Value "1"
-Set-SystemVariable -SystemVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE -Value "1"
+[System.Environment]::SetEnvironmentVariable("DOTNET_MULTILEVEL_LOOKUP", "0", "Machine")
+[System.Environment]::SetEnvironmentVariable("DOTNET_NOLOGO", "1", "Machine")
+[System.Environment]::SetEnvironmentVariable("DOTNET_SKIP_FIRST_TIME_EXPERIENCE", "1", "Machine")
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
