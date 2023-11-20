@@ -70,7 +70,9 @@
             "gmp",
             "r",
             "yq",
-            "unxip"
+            "unxip",
+            "xcbeautify",
+            "xcodes"
         ],
         "cask_packages": [
             "julia"
