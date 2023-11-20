@@ -16,7 +16,7 @@ Choco-Install -PackageName composer -ArgumentList "--ia", "/DEV=$installDir /PHP
 ((Get-Content -path $installDir\php.ini -Raw) -replace ';extension=curl','extension=curl' -replace ';extension=mbstring','extension=mbstring' -replace ';extension_dir = "ext"','extension_dir = "ext"' -replace ';extension=openssl','extension=openssl') | Set-Content -Path $installDir\php.ini
 
 # Set the PHPROOT environment variable.
-setx PHPROOT $installDir /M
+[Environment]::SetEnvironmentVariable("PHPROOT", $installDir, "Machine")
 
 # Invoke Pester Tests
 Invoke-PesterTests -TestFile "PHP"

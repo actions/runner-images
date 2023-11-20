@@ -179,8 +179,6 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("GHC", $(Get-GHCVersion))
     $tools.AddToolVersion("GHCup", $(Get-GHCupVersion))
     $tools.AddToolVersion("Jazzy", $(Get-JazzyVersion))
-}
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $tools.AddToolVersion("Stack", $(Get-StackVersion))
 }
 $tools.AddToolVersion("SwiftFormat", $(Get-SwiftFormatVersion))

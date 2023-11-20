@@ -78,7 +78,7 @@ Write-Host "Expand Chrome WebDriver archive (without using directory names)..."
 Extract-7Zip -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath -ExtractMethod "e"
 
 Write-Host "Setting the environment variables..."
-setx ChromeWebDriver "$ChromeDriverPath" /M
+[Environment]::SetEnvironmentVariable("ChromeWebDriver", $ChromeDriverPath, "Machine")
 
 $regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\'
 $PathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path'

@@ -19,7 +19,6 @@ Export-ModuleMember -Function @(
     'Add-DefaultItem'
     'Get-SystemVariable'
     'Get-DefaultVariable'
-    'Set-SystemVariable'
     'Set-DefaultVariable'
     'Install-Binary'
     'Install-VisualStudio'
