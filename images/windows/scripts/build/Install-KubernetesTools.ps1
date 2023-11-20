@@ -23,12 +23,12 @@ Use-ChecksumComparison $fileHash $externalHash
 Add-MachinePathItem $destFilePath
 
 Write-Host "Install Kubectl"
-Choco-Install -PackageName kubernetes-cli
+Install-ChocoPackage kubernetes-cli
 
 Write-Host "Install Helm"
-Choco-Install -PackageName kubernetes-helm
+Install-ChocoPackage kubernetes-helm
 
 Write-Host "Install Minikube"
-Choco-Install -PackageName minikube
+Install-ChocoPackage minikube
 
 Invoke-PesterTests -TestFile "Tools" -TestName "KubernetesTools"

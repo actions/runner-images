@@ -5,19 +5,18 @@
 ################################################################################
 
 # Install and configure Firefox browser
-Write-Host "Install latest Firefox browser..."
+Write-Host "Get the latest Firefox version..."
 $VersionsManifest = Invoke-RestMethod "https://product-details.mozilla.org/1.0/firefox_versions.json"
-$InstallerUrl = "https://download.mozilla.org/?product=firefox-$($VersionsManifest.LATEST_FIREFOX_VERSION)&os=win64&lang=en-US"
-$packagePath = Start-DownloadWithRetry -Url $InstallerUrl -Name "FirefoxSetup.exe"
 
-#region Supply chain security - Stack
-$fileHash = (Get-FileHash -Path $packagePath -Algorithm SHA256).Hash
+Write-Host "Install Firefox browser..."
+$installerUrl = "https://download.mozilla.org/?product=firefox-$($VersionsManifest.LATEST_FIREFOX_VERSION)&os=win64&lang=en-US"
 $hashUrl = "https://archive.mozilla.org/pub/firefox/releases/$($VersionsManifest.LATEST_FIREFOX_VERSION)/SHA256SUMS"
 $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*win64/en-US/Firefox Setup*exe*" }).Split(' ')[0]
-Use-ChecksumComparison $fileHash $externalHash
-#endregion
 
-Install-Binary -FilePath $packagePath -ArgumentList "/silent", "/install"
+Install-Binary -Type EXE `
+    -Url $installerUrl `
+    -Args @("/silent", "/install") `
+    -ExpectedSHA256Sum $externalHash
 
 Write-Host "Disable autoupdate..."
 $FirefoxDirectoryPath = Join-Path $env:ProgramFiles "Mozilla Firefox"
@@ -32,8 +31,7 @@ pref("general.config.filename", "mozilla.cfg");' -ItemType file -force
 # Download and install Gecko WebDriver
 Write-Host "Install Gecko WebDriver..."
 $GeckoDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\GeckoDriver"
-if (-not (Test-Path -Path $GeckoDriverPath))
-{
+if (-not (Test-Path -Path $GeckoDriverPath)) {
     New-Item -Path $GeckoDriverPath -ItemType Directory -Force
 }
 

@@ -3,8 +3,8 @@
 ##  Desc:  Install R for Windows
 ################################################################################
 
-Choco-Install R.Project
-Choco-Install rtools
+Install-ChocoPackage R.Project
+Install-ChocoPackage rtools
 
 $rscriptPath = Resolve-Path "C:\Program Files\R\*\bin\x64"
 Add-MachinePathItem $rscriptPath

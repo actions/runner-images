@@ -3,7 +3,7 @@
 ##  Desc:  Install Bazel and Bazelisk (A user-friendly launcher for Bazel)
 ################################################################################
 
-Choco-Install -PackageName bazel
+Install-ChocoPackage bazel
 
 npm install -g @bazel/bazelisk
 

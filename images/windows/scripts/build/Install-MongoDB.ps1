@@ -20,12 +20,10 @@ foreach ($release in $TargetReleases) {
 
 $LatestVersion = $MinorVersions[0]
 
-$installDir = "c:\PROGRA~1\MongoDB"
-$binaryName = "mongodb-windows-x86_64-$LatestVersion-signed.msi"
-$downloadURL = "https://fastdl.mongodb.org/windows/$BinaryName"
-$installArg = "INSTALLLOCATION=$installDir ADDLOCAL=all"
-Install-Binary -Url $downloadURL -Name $binaryName -ArgumentList ("/q","/i","${env:Temp}\$binaryName", $installArg) -ExpectedSignature (Get-ToolsetContent).mongodb.signature
-
+Install-Binary `
+  -Url "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$LatestVersion-signed.msi" `
+  -ExtraArgs @('TARGETDIR=C:\PROGRA~1\MongoDB ADDLOCAL=ALL') `
+  -ExpectedSignature (Get-ToolsetContent).mongodb.signature
 
 # Add mongodb to the PATH
 $mongodbService = "mongodb"
