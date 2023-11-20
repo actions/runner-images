@@ -27,6 +27,6 @@ New-Item -Path $seleniumDirectory -Name "$seleniumBinaryName-$seleniumFullVersio
 
 # Add SELENIUM_JAR_PATH environment variable
 $seleniumBinPath = Join-Path $seleniumDirectory $seleniumFileName
-setx "SELENIUM_JAR_PATH" "$($seleniumBinPath)" /M
+[Environment]::SetEnvironmentVariable("SELENIUM_JAR_PATH", $seleniumBinPath, "Machine")
 
 Invoke-PesterTests -TestFile "Browsers" -TestName "Selenium"

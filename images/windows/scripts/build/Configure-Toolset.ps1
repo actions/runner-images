@@ -23,7 +23,7 @@ Function Set-DefaultVariables
 
     if (-not ([string]::IsNullOrEmpty($EnvVars.defaultVariable)))
     {
-        setx $toolEnvVars.defaultVariable $ToolVersionPath /M | Out-Null
+        [Environment]::SetEnvironmentVariable($toolEnvVars.defaultVariable, $ToolVersionPath, "Machine")
     }
 }
 
@@ -48,20 +48,17 @@ $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache `
                             | Where-Object { $toolsToConfigure -contains $_.name }
 
 Write-Host "Configure toolset tools environment..."
-foreach ($tool in $tools)
-{
+foreach ($tool in $tools) {
     $toolEnvVars = $toolsEnvironmentVariables[$tool.name]
 
-    if (-not ([string]::IsNullOrEmpty($toolEnvVars.variableTemplate)))
-    {
-        foreach ($version in $tool.versions)
-        {
+    if (-not ([string]::IsNullOrEmpty($toolEnvVars.variableTemplate))) {
+        foreach ($version in $tool.versions) {
             Write-Host "Set $($tool.name) $version environment variable..."
 
             $foundVersionArchPath = Get-ToolsetToolFullPath -Name $tool.name -Version $version -Arch $tool.arch
             $envName = $toolEnvVars.variableTemplate -f $version.Split(".")
 
-            setx $envName $foundVersionArchPath /M | Out-Null
+            [Environment]::SetEnvironmentVariable($envName, $foundVersionArchPath, "Machine")
         }
     }
 

@@ -181,6 +181,7 @@
             "brotli",
             "coreutils",
             "file",
+            "findutils",
             "flex",
             "ftp",
             "haveged",

@@ -54,16 +54,6 @@ function Get-DefaultVariable {
     [System.GC]::Collect()
 }
 
-function Set-SystemVariable {
-    param(
-        [string]$SystemVariable,
-        [string]$Value
-    )
-    
-    [System.Environment]::SetEnvironmentVariable($SystemVariable, $Value, "Machine")
-    Get-SystemVariable $SystemVariable
-}
-
 function Set-DefaultVariable {
     param(
         [string]$DefaultVariable,
@@ -93,7 +83,7 @@ function Set-MachinePath {
         [string]$NewPath
     )
     
-    Set-SystemVariable PATH $NewPath
+    [System.Environment]::SetEnvironmentVariable("PATH", $NewPath, "Machine")
 }
 
 function Set-DefaultPath {
