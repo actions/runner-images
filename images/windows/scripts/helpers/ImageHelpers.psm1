@@ -36,7 +36,7 @@ Export-ModuleMember -Function @(
     'Test-IsWin19'
     'Install-ChocoPackage'
     'Send-RequestToCocolateyPackages'
-    'Get-LatestChocoPackageVersion'
+    'Resolve-ChocoPackageVersion'
     'Get-GitHubPackageDownloadUrl'
     'Extract-7Zip'
     'Invoke-SBWithRetry'
