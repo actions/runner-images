@@ -8,7 +8,7 @@ Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 # Install the latest version of Git for Windows
 $repoURL = "https://api.github.com/repos/git-for-windows/git/releases/latest"
 $gitReleases = Invoke-RestMethod $repoURL
-$downloadUrl = $gitReleases.assets.browser_download_url -match "Git-.+-64-bit.exe"
+$downloadUrl = $gitReleases.assets.browser_download_url -match "Git-.+-64-bit.exe" | Select-Object -First 1
 
 $installerFile = Split-Path $downloadUrl -Leaf
 $externalHash = Get-HashFromGitHubReleaseBody -Url $RepoURL -FileName $installerFile
