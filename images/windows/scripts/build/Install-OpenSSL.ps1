@@ -7,7 +7,7 @@
 $arch = 'INTEL'
 $bits = '64'
 $light = $false
-$installer = "exe"
+$installerType = "exe"
 $version = (Get-ToolsetContent).openssl.version
 $installDir = "$Env:ProgramFiles\OpenSSL"
 
@@ -22,7 +22,7 @@ $installerHash = $null
 
 foreach ($key in $installerNames) {
     $installer = $installersAvailable.$key
-    if (($installer.light -eq $light) -and ($installer.arch -eq $arch) -and ($installer.bits -eq $bits) -and ($installer.installer -eq $installer) -and ($installer.basever -eq $version)) {
+    if (($installer.light -eq $light) -and ($installer.arch -eq $arch) -and ($installer.bits -eq $bits) -and ($installer.installer -eq $installerType) -and ($installer.basever -eq $version)) {
         $installerUrl = $installer.url
         $installerHash = $installer.sha512
     }
