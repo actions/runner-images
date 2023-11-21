@@ -265,9 +265,9 @@ build {
   }
 
   provisioner "shell" {
-    execute_command   = "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+    execute_command   = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     expect_disconnect = true
-    scripts           = ["${path.root}/../scripts/build/reboot.sh"]
+    inline            = ["echo 'Reboot VM'", "sudo reboot"]
   }
 
   provisioner "shell" {

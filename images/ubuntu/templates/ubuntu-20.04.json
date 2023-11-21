@@ -317,10 +317,11 @@
         {
             "type": "shell",
             "expect_disconnect": true,
-            "scripts": [
-                "{{template_dir}}/../scripts/build/reboot.sh"
+            "inline": [
+                "echo 'Reboot VM'",
+                "sudo reboot"
             ],
-            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",
