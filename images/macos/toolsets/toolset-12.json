@@ -206,7 +206,9 @@
             "r",
             "yq",
             "imagemagick",
-            "unxip"
+            "unxip",
+            "xcbeautify",
+            "xcodes"
         ],
         "cask_packages": [
             "julia",
@@ -309,7 +311,8 @@
             "x64": {
                 "versions": [
                     "6.0",
-                    "7.0"
+                    "7.0",
+                    "8.0"
                 ]
             }
         }

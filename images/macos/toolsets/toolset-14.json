@@ -70,7 +70,9 @@
             "gmp",
             "r",
             "yq",
-            "unxip"
+            "unxip",
+            "xcbeautify",
+            "xcodes"
         ],
         "cask_packages": [
             "julia"
@@ -87,12 +89,14 @@
         "arch":{
             "x64": {
                "versions": [
-                   "7.0"
+                   "7.0",
+                   "8.0"
                 ]
             },
             "arm64": {
                 "versions": [
-                    "7.0"
+                    "7.0",
+                    "8.0"
                 ]
             }
         }
