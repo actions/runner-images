@@ -25,8 +25,6 @@ Export-ModuleMember -Function @(
     'Get-ToolsetContent'
     'Get-TCToolVersionPath'
     'Get-TCToolPath'
-    'Stop-SvcWithErrHandling'
-    'Set-SvcWithErrHandling'
     'Start-DownloadWithRetry'
     'Get-VsixExtenstionFromMarketplace'
     'Install-VSIXFromFile'
