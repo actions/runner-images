@@ -45,8 +45,8 @@ function Install-Binary {
         [String[]] $InstallArgs,
         [String[]] $ExtraInstallArgs,
         [String[]] $ExpectedSignature,
-        [String[]] $ExpectedSHA256Sum,
-        [String[]] $ExpectedSHA512Sum
+        [String] $ExpectedSHA256Sum,
+        [String] $ExpectedSHA512Sum
     )
 
     if ($PSCmdlet.ParameterSetName -eq "LocalPath") {
@@ -79,22 +79,14 @@ function Install-Binary {
         }
     }
 
-    if ($PSBoundParameters.ContainsKey('ExpectedSHA256Sum')) {
-        if ($ExpectedSHA256Sum) {
-            $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA256).Hash
-            Use-ChecksumComparison $fileHash $ExpectedSHA256Sum
-        } else {
-            throw "ExpectedSHA256Sum parameter is specified, but no hash is provided."
-        }
+    if ($ExpectedSHA256Sum) {
+        $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA256).Hash
+        Use-ChecksumComparison $fileHash $ExpectedSHA256Sum
     }
 
-    if ($PSBoundParameters.ContainsKey('ExpectedSHA512Sum')) {
-        if ($ExpectedSHA512Sum) {
-            $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA512).Hash
-            Use-ChecksumComparison $fileHash $ExpectedSHA512Sum
-        } else {
-            throw "ExpectedSHA512Sum parameter is specified, but no hash is provided."
-        }
+    if ($ExpectedSHA512Sum) {
+        $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA512).Hash
+        Use-ChecksumComparison $fileHash $ExpectedSHA512Sum
     }
 
     if ($ExtraInstallArgs -and $InstallArgs) {
