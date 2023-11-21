@@ -9,12 +9,12 @@ $signatureThumbrint = "ABDCA79AF9DD48A0EA702AD45260B3C03093FB4B"
 
 Install-Binary `
   -Url "${baseUrl}/vcredist_x86.exe" `
-  -Args $argumentList `
+  -InstallArgs $argumentList `
   -ExpectedSignature $signatureThumbrint
 
 Install-Binary `
   -Url "${baseUrl}/vcredist_x64.exe" `
-  -Args $argumentList `
+  -InstallArgs $argumentList `
   -ExpectedSignature $signatureThumbrint
 
 Invoke-PesterTests -TestFile "Tools" -TestName "VCRedist"

@@ -50,7 +50,7 @@ $ErrorActionPreference = $ErrorActionOldValue
 $InstallerArgs = @("--install_runtimes 0", "--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
 Install-Binary `
     -Url $InstallerUrl `
-    -Args $InstallerArgs `
+    -InstallArgs $InstallerArgs `
     -ExpectedSignature (Get-ToolsetContent).postgresql.signature
 
 # Get Path to pg_ctl.exe

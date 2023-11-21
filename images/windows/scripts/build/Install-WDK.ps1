@@ -8,7 +8,7 @@ if (Test-IsWin19) {
     # Install all features without showing the GUI using winsdksetup.exe
     Install-Binary -Type EXE `
         -Url 'https://go.microsoft.com/fwlink/?linkid=2173743' `
-        -Args @("/features", "+", "/quiet") `
+        -InstallArgs @("/features", "+", "/quiet") `
         -ExpectedSignature '44796EB5BD439B4BFB078E1DC2F8345AE313CBB1'
 
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2166289"
@@ -26,7 +26,7 @@ if (Test-IsWin19) {
 # Install all features without showing the GUI using wdksetup.exe
 Install-Binary -Type EXE `
     -Url $wdkUrl `
-    -Args @("/features", "+", "/quiet") `
+    -InstallArgs @("/features", "+", "/quiet") `
     -ExpectedSignature $wdkSignatureThumbprint
 
 # Need to install the VSIX to get the build targets when running VSBuild

@@ -6,7 +6,7 @@
 # https://cloud.google.com/sdk/docs/downloads-interactive
 Install-Binary `
   -Url 'https://dl.google.com/dl/cloudsdk/channels/rapid/GoogleCloudSDKInstaller.exe' `
-  -Args @("/S", "/allusers", "/noreporting") `
+  -InstallArgs @("/S", "/allusers", "/noreporting") `
   -ExpectedSignature '2673EA6CC23BEFFDA49AC715B121544098A1284C'
 
 Invoke-PesterTests -TestFile "Tools" -TestName "GoogleCloudCLI"

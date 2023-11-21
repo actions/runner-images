@@ -22,7 +22,7 @@ $LatestVersion = $MinorVersions[0]
 
 Install-Binary `
   -Url "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$LatestVersion-signed.msi" `
-  -ExtraArgs @('TARGETDIR=C:\PROGRA~1\MongoDB ADDLOCAL=ALL') `
+  -ExtraInstallArgs @('TARGETDIR=C:\PROGRA~1\MongoDB ADDLOCAL=ALL') `
   -ExpectedSignature (Get-ToolsetContent).mongodb.signature
 
 # Add mongodb to the PATH

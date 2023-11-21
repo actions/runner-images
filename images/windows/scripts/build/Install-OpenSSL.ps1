@@ -34,7 +34,7 @@ if ($null -eq $installerUrl) {
 
 Install-Binary `
     -Url $installerUrl `
-    -Args @('/silent', '/sp-', '/suppressmsgboxes', "/DIR=`"$installDir`"") `
+    -InstallArgs @('/silent', '/sp-', '/suppressmsgboxes', "/DIR=`"$installDir`"") `
     -ExpectedSHA512Sum $installerHash
 
 # Update PATH

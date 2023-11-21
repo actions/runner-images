@@ -10,7 +10,7 @@ Install-ChocoPackage awscli
 # Install Session Manager Plugin for the AWS CLI
 Install-Binary `
   -Url "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/windows/SessionManagerPluginSetup.exe" `
-  -Args ("/silent", "/install") `
+  -InstallArgs ("/silent", "/install") `
   -ExpectedSignature "FF457E5732E98A9F156E657F8CC7C4432507C3BB"
 $env:Path = $env:Path + ";$env:ProgramFiles\Amazon\SessionManagerPlugin\bin"
 

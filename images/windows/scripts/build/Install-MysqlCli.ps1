@@ -6,7 +6,7 @@
 # Installing visual c++ redistibutable package.
 Install-Binary `
     -Url 'https://download.microsoft.com/download/0/5/6/056dcda9-d667-4e27-8001-8a0c6971d6b1/vcredist_x64.exe' `
-    -Args @("/install", "/quiet", "/norestart") `
+    -InstallArgs @("/install", "/quiet", "/norestart") `
     -ExpectedSignature '3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC'
 
 # Downloading mysql

@@ -15,11 +15,11 @@ function Install-Binary {
     .PARAMETER Type
         The type of the binary to be installed. Valid values are "MSI" and "EXE". If not specified, the type is inferred from the file extension.
 
-    .PARAMETER Args
-        The list of arguments that will be passed to the installer. Cannot be used together with ExtraArgs.
+    .PARAMETER InstallArgs
+        The list of arguments that will be passed to the installer. Cannot be used together with ExtraInstallArgs.
 
-    .PARAMETER ExtraArgs
-        Additional arguments that will be passed to the installer. Cannot be used together with Args.
+    .PARAMETER ExtraInstallArgs
+        Additional arguments that will be passed to the installer. Cannot be used together with InstallArgs.
 
     .PARAMETER ExpectedSignature
         The expected signature of the binary. If specified, the binary's signature is checked before installation.
@@ -31,7 +31,7 @@ function Install-Binary {
         The expected SHA512 sum of the binary. If specified, the binary's SHA512 sum is checked before installation.
 
     .EXAMPLE
-        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Type EXE -Args ("/features", "+", "/quiet") -ExpectedSignature "A5C7D5B7C838D5F89DDBEDB85B2C566B4CDA881F"
+        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Type EXE -InstallArgs ("/features", "+", "/quiet") -ExpectedSignature "A5C7D5B7C838D5F89DDBEDB85B2C566B4CDA881F"
     #>
 
     Param
@@ -42,8 +42,8 @@ function Install-Binary {
         [String] $LocalPath,
         [ValidateSet("MSI", "EXE")]
         [String] $Type,
-        [String[]] $Args,
-        [String[]] $ExtraArgs,
+        [String[]] $InstallArgs,
+        [String[]] $ExtraInstallArgs,
         [String[]] $ExpectedSignature,
         [String[]] $ExpectedSHA256Sum,
         [String[]] $ExpectedSHA512Sum
@@ -67,7 +67,7 @@ function Install-Binary {
                 throw "Cannot determine the file type from the URL. Please specify the Type parameter."
             }
         }
-        $fileName = [System.IO.Path]::GetTempFileName() + ".$Type"
+        $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
         $filePath = Start-DownloadWithRetry -Url $Url -Name $fileName
     }
 
@@ -97,30 +97,30 @@ function Install-Binary {
         }
     }
 
-    if ($ExtraArgs -and $Args) {
-        throw "Args and ExtraArgs parameters cannot be used together."
+    if ($ExtraInstallArgs -and $InstallArgs) {
+        throw "InstallArgs and ExtraInstallArgs parameters cannot be used together."
     }
  
     if ($Type -eq "MSI") {
         # MSI binaries should be installed via msiexec.exe
-        if ($ExtraArgs) {
-            $Args = @('/i', $filePath, '/qn', '/norestart') + $ExtraArgs
-        } elseif (-not $Args) {
+        if ($ExtraInstallArgs) {
+            $InstallArgs = @('/i', $filePath, '/qn', '/norestart') + $ExtraInstallArgs
+        } elseif (-not $InstallArgs) {
             Write-Host "No arguments provided for MSI binary. Using default arguments: /i, /qn, /norestart"
-            $Args = @('/i', $filePath, '/qn', '/norestart')
+            $InstallArgs = @('/i', $filePath, '/qn', '/norestart')
         }
         $filePath = "msiexec.exe"
     } else {
         # EXE binaries should be started directly
-        if ($ExtraArgs) {
-            $Args = $ExtraArgs
+        if ($ExtraInstallArgs) {
+            $InstallArgs = $ExtraInstallArgs
         }
     }
 
     $installStartTime = Get-Date
     Write-Host "Starting Install $Name..."
     try {
-        $process = Start-Process -FilePath $filePath -ArgumentList $Args -Wait -PassThru
+        $process = Start-Process -FilePath $filePath -ArgumentList $InstallArgs -Wait -PassThru
         $exitCode = $process.ExitCode
         $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         if ($exitCode -eq 0) {
@@ -217,8 +217,7 @@ function Set-SvcWithErrHandling {
     }
 }
 
-function Start-DownloadWithRetry
-{
+function Start-DownloadWithRetry {
     Param
     (
         [Parameter(Mandatory)]
@@ -236,26 +235,20 @@ function Start-DownloadWithRetry
     $downloadStartTime = Get-Date
 
     # Default retry logic for the package.
-    while ($Retries -gt 0)
-    {
-        try
-        {
+    Write-Host "Downloading package from: $Url to path $filePath."
+    while ($Retries -gt 0) {
+        try {
             $downloadAttemptStartTime = Get-Date
-            Write-Host "Downloading package from: $Url to path $filePath ."
             (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
             break
-        }
-        catch
-        {
+        } catch {
             $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
             $attemptTime = [math]::Round(($(Get-Date) - $downloadAttemptStartTime).TotalSeconds, 2)
-            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n $_"
+            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n$($_.Exception.ToString())"
             $Retries--
 
-            if ($Retries -eq 0)
-            {
-                Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
-                Write-Host "Total time elapsed $failTime"
+            if ($Retries -eq 0) {
+                Write-Host "Package download failed after $failTime seconds"
                 exit 1
             }
 

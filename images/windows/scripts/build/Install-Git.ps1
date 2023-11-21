@@ -15,7 +15,7 @@ $externalHash = Get-HashFromGitHubReleaseBody -Url $RepoURL -FileName $installer
 
 Install-Binary `
     -Url $downloadUrl `
-    -Args @(`
+    -InstallArgs @(`
         "/VERYSILENT", `
         "/NORESTART", `
         "/NOCANCEL", `

@@ -18,11 +18,11 @@ Extract-7Zip -Path $setupZipFile -DestinationPath $setupPath
 Write-Host "Installing BizTalk Project Build Component..."
 Install-Binary `
     -LocalPath "$setupPath\Bootstrap.msi" `
-    -ExtraArgs ("/l*v", "$setupPath\bootstrap.log") `
+    -ExtraInstallArgs ("/l*v", "$setupPath\bootstrap.log") `
     -ExpectedSignature $BuildComponentSignatureThumbprint
 Install-Binary `
     -LocalPath "$setupPath\BuildComponentSetup.msi" `
-    -ExtraArgs ("/l*v", "$setupPath\buildComponentSetup.log") `
+    -ExtraInstallArgs ("/l*v", "$setupPath\buildComponentSetup.log") `
     -ExpectedSignature $BuildComponentSignatureThumbprint
 
 Remove-Item $setupZipFile

@@ -24,7 +24,7 @@ if ($null -eq $distributorFileHash) {
 
 Install-Binary `
     -Url "https://repo.anaconda.com/miniconda/${InstallerName}" `
-    -Args @("/S", "/AddToPath=0", "/RegisterPython=0", "/D=$CondaDestination") `
+    -InstallArgs @("/S", "/AddToPath=0", "/RegisterPython=0", "/D=$CondaDestination") `
     -ExpectedSHA256Sum $distributorFileHash
 
 [System.Environment]::SetEnvironmentVariable("CONDA", $CondaDestination, "Machine")

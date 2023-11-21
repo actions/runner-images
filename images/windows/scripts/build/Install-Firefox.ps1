@@ -15,7 +15,7 @@ $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({
 
 Install-Binary -Type EXE `
     -Url $installerUrl `
-    -Args @("/silent", "/install") `
+    -InstallArgs @("/silent", "/install") `
     -ExpectedSHA256Sum $externalHash
 
 Write-Host "Disable autoupdate..."

@@ -15,7 +15,7 @@ $urlBase = "https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be9
 # Install Service Fabric Runtime for Windows
 Install-Binary `
   -Url "${urlBase}/MicrosoftServiceFabric.${runtimeVersion}.exe" `
-  -Args @("/accepteula ", "/quiet", "/force") `
+  -InstallArgs @("/accepteula ", "/quiet", "/force") `
   -ExpectedSignature (Get-ToolsetContent).serviceFabric.runtime.signature
 
 # Install Service Fabric SDK
