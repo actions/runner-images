@@ -22,7 +22,6 @@
         "managed_image_name": "packer-ubuntu20-dev",
         "image_version": "dev",
         "image_os": "ubuntu20",
-        "run_validation_diskspace": "false",
         "dockerhub_login": "{{env `DOCKERHUB_LOGIN`}}",
         "dockerhub_password": "{{env `DOCKERHUB_PASSWORD`}}"
     },
@@ -370,15 +369,6 @@
                 "IMAGE_FOLDER={{user `image_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "scripts":[
-                "{{template_dir}}/../scripts/build/validate-disk-space.sh"
-            ],
-            "environment_vars": [
-                "RUN_VALIDATION={{user `run_validation_diskspace`}}"
-            ]
         },
         {
             "type": "file",

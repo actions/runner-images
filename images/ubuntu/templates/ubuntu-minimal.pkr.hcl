@@ -77,11 +77,6 @@ variable "managed_image_resource_group_name" {
   default = "${env("ARM_RESOURCE_GROUP")}"
 }
 
-variable "run_validation_diskspace" {
-  type    = bool
-  default = false
-}
-
 variable "subscription_id" {
   type    = string
   default = "${env("ARM_SUBSCRIPTION_ID")}"
@@ -281,11 +276,6 @@ build {
     environment_vars = ["HELPER_SCRIPT_FOLDER=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/../scripts/build/configure-post-deployment.sh"]
-  }
-
-  provisioner "shell" {
-    environment_vars = ["RUN_VALIDATION=${var.run_validation_diskspace}"]
-    scripts          = ["${path.root}/../scripts/build/validate-disk-space.sh"]
   }
 
   provisioner "shell" {
