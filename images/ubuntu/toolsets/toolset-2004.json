@@ -241,8 +241,6 @@
             "node:16-alpine",
             "node:18-alpine",
             "node:20-alpine",
-            "ubuntu:16.04",
-            "ubuntu:18.04",
             "ubuntu:20.04"
         ]
     },
