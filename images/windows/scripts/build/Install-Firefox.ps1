@@ -58,6 +58,6 @@ Test-FileSignature -FilePath "$GeckoDriverPath/geckodriver.exe" -ExpectedThumbpr
 
 Write-Host "Setting the environment variables..."
 Add-MachinePathItem -PathItem $GeckoDriverPath
-setx GeckoWebDriver "$GeckoDriverPath" /M
+[Environment]::SetEnvironmentVariable("GeckoWebDriver", $GeckoDriverPath, "Machine")
 
 Invoke-PesterTests -TestFile "Browsers" -TestName "Firefox"

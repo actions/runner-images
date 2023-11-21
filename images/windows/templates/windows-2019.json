@@ -151,7 +151,7 @@
             "scripts": [
                 "{{ template_dir }}/../scripts/build/Configure-WindowsDefender.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-PowerShell.ps1",
-                "{{ template_dir }}/../scripts/build/Install-PowershellModules.ps1",
+                "{{ template_dir }}/../scripts/build/Install-PowerShellModules.ps1",
                 "{{ template_dir }}/../scripts/build/Install-WindowsFeatures.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Chocolatey.ps1",
                 "{{ template_dir }}/../scripts/build/Configure-BaseImage.ps1",

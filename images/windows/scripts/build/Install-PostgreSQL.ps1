@@ -3,22 +3,22 @@ $pgUser = "postgres"
 $pgPwd = "root"
 
 # Prepare environment variable for validation
-Set-SystemVariable -SystemVariable PGUSER -Value $pgUser
-Set-SystemVariable -SystemVariable PGPASSWORD -Value $pgPwd
+[System.Environment]::SetEnvironmentVariable("PGUSER", $pgUser, "Machine")
+[System.Environment]::SetEnvironmentVariable("PGPASSWORD", $pgPwd, "Machine")
 
 # Define latest available version to install based on version specified in the toolset
 $toolsetVersion = (Get-ToolsetContent).postgresql.version
-$getPostgreReleases =  Invoke-WebRequest -Uri "https://git.postgresql.org/gitweb/?p=postgresql.git;a=tags" -UseBasicParsing
+$getPostgreReleases = Invoke-WebRequest -Uri "https://git.postgresql.org/gitweb/?p=postgresql.git;a=tags" -UseBasicParsing
 # Getting all links matched to the pattern (e.g.a=log;h=refs/tags/REL_14)
-$TargetReleases = $getPostgreReleases.Links.href | Where-Object {$_ -match "a=log;h=refs/tags/REL_$toolsetVersion"}
+$TargetReleases = $getPostgreReleases.Links.href | Where-Object { $_ -match "a=log;h=refs/tags/REL_$toolsetVersion" }
 [Int32]$OutNumber = $null
 $MinorVersions = @()
 foreach ($release in $TargetReleases) {
-  $version = $release.split('/')[-1]
-  # Checking if the latest symbol of the release version is actually a number. If yes, add to $MinorVersions array
-  if ([Int32]::TryParse($($version.Split('_')[-1]),[ref]$OutNumber)){
-    $MinorVersions += $OutNumber
-  }
+    $version = $release.split('/')[-1]
+    # Checking if the latest symbol of the release version is actually a number. If yes, add to $MinorVersions array
+    if ([Int32]::TryParse($($version.Split('_')[-1]), [ref]$OutNumber)) {
+        $MinorVersions += $OutNumber
+    }
 }
 # Sorting and getting the last one
 $TargetMinorVersions = ($MinorVersions | Sort-Object)[-1]
@@ -47,7 +47,7 @@ do {
 # Return the previous value of ErrorAction and invoke Install-Binary function
 $ErrorActionPreference = $ErrorActionOldValue
 $InstallerName = $InstallerUrl.Split('/')[-1]
-$ArgumentList = ("--install_runtimes 0","--superpassword root","--enable_acledit 1","--unattendedmodeui none","--mode unattended")
+$ArgumentList = ("--install_runtimes 0", "--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
 Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList -ExpectedSignature (Get-ToolsetContent).postgresql.signature
 
 # Get Path to pg_ctl.exe
@@ -63,16 +63,15 @@ $pgReadyPath = Join-Path $pgBin "pg_isready.exe"
 $pgReady = Start-Process -FilePath $pgReadyPath -Wait -PassThru
 $exitCode = $pgReady.ExitCode
 
-if ($exitCode -ne 0)
-{
+if ($exitCode -ne 0) {
     Write-Host -Object "PostgreSQL is not ready. Exitcode: $exitCode"
     exit $exitCode
 }
 
 # Added PostgreSQL environment variable
-Set-SystemVariable -SystemVariable PGBIN -Value $pgBin
-Set-SystemVariable -SystemVariable PGROOT -Value $pgRoot
-Set-SystemVariable -SystemVariable PGDATA -Value $pgData
+[System.Environment]::SetEnvironmentVariable("PGBIN", $pgBin, "Machine")
+[System.Environment]::SetEnvironmentVariable("PGROOT", $pgRoot, "Machine")
+[System.Environment]::SetEnvironmentVariable("PGDATA", $pgData, "Machine")
 
 # Stop and disable PostgreSQL service
 $pgService = Get-Service -Name postgresql*
