@@ -18,7 +18,7 @@ Choco-Install -PackageName nodejs -ArgumentList "--version=$versionToInstall"
 Add-MachinePathItem $PrefixPath
 $env:Path = Get-MachinePath
 
-setx npm_config_prefix $PrefixPath /M
+[Environment]::SetEnvironmentVariable("npm_config_prefix", $PrefixPath, "Machine")
 $env:npm_config_prefix = $PrefixPath
 
 npm config set cache $CachePath --global
