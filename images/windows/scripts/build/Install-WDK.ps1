@@ -31,6 +31,6 @@ Install-Binary -Type EXE `
 
 # Need to install the VSIX to get the build targets when running VSBuild
 $wdkExtensionPath = Resolve-Path -Path $wdkExtensionPath
-Install-VsixExtension -wdkExtensionPath $wdkExtensionPath -Name "WDK.vsix" -InstallOnly
+Install-VsixExtension -FilePath $wdkExtensionPath -Name "WDK.vsix" -InstallOnly
 
 Invoke-PesterTests -TestFile "WDK"
