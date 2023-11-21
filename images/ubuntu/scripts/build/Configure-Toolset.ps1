@@ -4,7 +4,7 @@
 ##  Desc:  Configure toolset
 ################################################################################
 
-Import-Module "$env:HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$env:HELPER_SCRIPTS/../tests/Helpers.psm1" -DisableNameChecking
 
 function Get-ToolsetToolFullPath
 {
