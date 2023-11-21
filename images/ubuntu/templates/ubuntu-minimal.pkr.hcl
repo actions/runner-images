@@ -174,7 +174,7 @@ build {
   // Add apt wrapper to implement retries
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/apt-mock.sh"
+    script          = "${path.root}/../scripts/build/configure-apt-mock.sh"
   }
 
   // Install MS package repos, Configure apt
@@ -182,15 +182,15 @@ build {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/repos.sh",
-                        "${path.root}/../scripts/build/apt.sh"
+                        "${path.root}/../scripts/build/install-ms-repos.sh",
+                        "${path.root}/../scripts/build/configure-apt.sh"
     ]
   }
 
   // Configure limits
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/limits.sh"
+    script          = "${path.root}/../scripts/build/configure-limits.sh"
   }
 
   provisioner "file" {
@@ -225,7 +225,7 @@ build {
   provisioner "shell" {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGEDATA_FILE=${local.imagedata_file}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/preimagedata.sh"]
+    scripts          = ["${path.root}/../scripts/build/configure-image-data.sh"]
   }
 
   // Create /etc/environment, configure waagent etc.
@@ -238,13 +238,13 @@ build {
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/apt-vital.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-apt-vital.sh"]
   }
 
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/powershellcore.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-powershell.sh"]
   }
 
   provisioner "shell" {
@@ -257,10 +257,10 @@ build {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/git.sh",
-                        "${path.root}/../scripts/build/git-lfs.sh",
-                        "${path.root}/../scripts/build/github-cli.sh",
-                        "${path.root}/../scripts/build/zstd.sh"
+                        "${path.root}/../scripts/build/install-git.sh",
+                        "${path.root}/../scripts/build/install-git-lfs.sh",
+                        "${path.root}/../scripts/build/install-github-cli.sh",
+                        "${path.root}/../scripts/build/install-zstd.sh"
     ]
   }
 
@@ -273,19 +273,14 @@ build {
   provisioner "shell" {
     execute_command     = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     pause_before        = "1m0s"
-    scripts             = ["${path.root}/../scripts/build/cleanup.sh"]
+    scripts             = ["${path.root}/../scripts/build/configure-cleanup.sh"]
     start_retry_timeout = "10m"
-  }
-
-  provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/apt-mock-remove.sh"
   }
 
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPT_FOLDER=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/post-deployment.sh"]
+    scripts          = ["${path.root}/../scripts/build/configure-post-deployment.sh"]
   }
 
   provisioner "shell" {

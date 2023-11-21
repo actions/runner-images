@@ -1,3 +1,8 @@
+################################################################################
+##  File:  Install-PowerShellModules.ps1
+##  Desc:  Install modules for PowerShell
+################################################################################
+
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
