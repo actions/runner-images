@@ -151,7 +151,7 @@
         "hash": "8A90E6A3DEB2FA13229B2E335EFD07687DCC8A55A3C544DA9F40B41404993E7D",
         "platform_min_version": "19",
         "build_tools_min_version": "19.1.0",
-        "extra_list": [
+        "extras": [
             "android;m2repository",
             "google;m2repository",
             "google;google_play_services",
@@ -160,7 +160,7 @@
             "m2repository;com;android;support;constraint;constraint-layout;1.0.2",
             "m2repository;com;android;support;constraint;constraint-layout;1.0.1"
         ],
-        "addon_list": [
+        "addons": [
             "addon-google_apis-google-24",
             "addon-google_apis-google-23",
             "addon-google_apis-google-22",
