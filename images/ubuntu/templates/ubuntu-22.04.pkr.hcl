@@ -315,7 +315,7 @@ build {
                         "${path.root}/../scripts/build/install-postgresql.sh",
                         "${path.root}/../scripts/build/install-pulumi.sh",
                         "${path.root}/../scripts/build/install-ruby.sh",
-                        "${path.root}/../scripts/build/install-r.sh",
+                        "${path.root}/../scripts/build/install-rlang.sh",
                         "${path.root}/../scripts/build/install-rust.sh",
                         "${path.root}/../scripts/build/install-julia.sh",
                         "${path.root}/../scripts/build/install-sbt.sh",
@@ -371,7 +371,7 @@ build {
   provisioner "shell" {
     execute_command     = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     pause_before        = "1m0s"
-    scripts             = ["${path.root}/../scripts/build/configure-cleanup.sh"]
+    scripts             = ["${path.root}/../scripts/build/cleanup.sh"]
     start_retry_timeout = "10m"
   }
 
@@ -395,7 +395,7 @@ build {
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPT_FOLDER=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "IMAGE_FOLDER=${var.image_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/configure-post-deployment.sh"]
+    scripts          = ["${path.root}/../scripts/build/configure-system.sh"]
   }
 
   provisioner "file" {

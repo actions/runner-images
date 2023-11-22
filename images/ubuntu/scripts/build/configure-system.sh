@@ -1,7 +1,7 @@
 #!/bin/bash -e
 ################################################################################
-##  File: configure-post-deployment.sh
-##  Desc: Post deployment actions
+##  File: configure-system.sh
+##  Desc: Post deployment system configuration actions
 ################################################################################
 
 mv -f /imagegeneration/post-generation /opt
@@ -20,7 +20,7 @@ ENVPATH=${ENVPATH%"\""}
 echo "PATH=$ENVPATH" | sudo tee -a /etc/environment
 echo "Updated /etc/environment: $(cat /etc/environment)"
 
-# Clean yarn and npm cache
+# Сlean yarn and npm cache
 if yarn --version > /dev/null
 then
   yarn cache clean
