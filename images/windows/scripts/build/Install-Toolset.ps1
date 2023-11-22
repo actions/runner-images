@@ -19,10 +19,10 @@ Function Install-Asset {
     Write-Host "Extract $($ReleaseAsset.filename) content..."
     if ($assetArchivePath.EndsWith(".tar.gz")) {
         $assetTarPath = $assetArchivePath.TrimEnd(".tar.gz")
-        Extract-7Zip -Path $assetArchivePath -DestinationPath $assetTarPath
-        Extract-7Zip -Path $assetTarPath -DestinationPath $assetFolderPath
+        Expand-7ZipArchive -Path $assetArchivePath -DestinationPath $assetTarPath
+        Expand-7ZipArchive -Path $assetTarPath -DestinationPath $assetFolderPath
     } else {
-        Extract-7Zip -Path $assetArchivePath -DestinationPath $assetFolderPath
+        Expand-7ZipArchive -Path $assetArchivePath -DestinationPath $assetFolderPath
     }
 
     Write-Host "Invoke installation script..."

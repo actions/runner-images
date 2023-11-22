@@ -471,7 +471,7 @@ function Test-IsWin19
     (Get-WinVersion) -match "2019"
 }
 
-function Extract-7Zip {
+function Expand-7ZipArchive {
     Param
     (
         [Parameter(Mandatory=$true)]

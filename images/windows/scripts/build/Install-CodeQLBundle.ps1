@@ -18,9 +18,9 @@ $CodeQLToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" |
 New-Item -Path $CodeQLToolcachePath -ItemType Directory -Force | Out-Null
 
 Write-Host "Unpacking the downloaded CodeQL bundle archive..."
-Extract-7Zip -Path $CodeQLBundlePath -DestinationPath $DownloadDirectoryPath
+Expand-7ZipArchive -Path $CodeQLBundlePath -DestinationPath $DownloadDirectoryPath
 $UnGzipedCodeQLBundlePath = Join-Path $DownloadDirectoryPath "codeql-bundle.tar"
-Extract-7Zip -Path $UnGzipedCodeQLBundlePath -DestinationPath $CodeQLToolcachePath
+Expand-7ZipArchive -Path $UnGzipedCodeQLBundlePath -DestinationPath $CodeQLToolcachePath
 
 Write-Host "CodeQL bundle at $($CodeQLToolcachePath) contains the following directories:"
 Get-ChildItem -Path $CodeQLToolcachePath -Depth 2

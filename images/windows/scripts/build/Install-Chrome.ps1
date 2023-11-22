@@ -74,7 +74,7 @@ Write-Host "Download Chrome WebDriver from $ChromeDriverZipDownloadUrl..."
 $ChromeDriverArchPath = Start-DownloadWithRetry -Url $ChromeDriverZipDownloadUrl
 
 Write-Host "Expand Chrome WebDriver archive (without using directory names)..."
-Extract-7Zip -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath -ExtractMethod "e"
+Expand-7ZipArchive -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath -ExtractMethod "e"
 
 Write-Host "Setting the environment variables..."
 [Environment]::SetEnvironmentVariable("ChromeWebDriver", $ChromeDriverPath, "Machine")

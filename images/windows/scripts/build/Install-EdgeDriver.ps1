@@ -31,7 +31,7 @@ $EdgeDriverDownloadUrl = "https://msedgedriver.azureedge.net/${EdgeDriverLatestV
 $EdgeDriverArchPath = Start-DownloadWithRetry -Url $EdgeDriverDownloadUrl -Name $EdgeDriverArchName
 
 Write-Host "Expand Microsoft Edge WebDriver archive..."
-Extract-7Zip -Path $EdgeDriverArchPath -DestinationPath $EdgeDriverPath
+Expand-7ZipArchiverchive -Path $EdgeDriverArchPath -DestinationPath $EdgeDriverPath
 
 #Validate the EdgeDriver signature
 $EdgeDriverSignatureThumbprint = "CB9C4FBEA1D87D2D468AC5A9CAAB0163F6AD8401"

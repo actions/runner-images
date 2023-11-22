@@ -21,7 +21,7 @@ function Install-PyPy
     # Expand archive with binaries
     $packageName = [IO.Path]::GetFileNameWithoutExtension((Split-Path -Path $packagePath -Leaf))
     $tempFolder = Join-Path -Path $pypyToolcachePath -ChildPath $packageName
-    Extract-7Zip -Path $packagePath -DestinationPath $pypyToolcachePath
+    Expand-7ZipArchive -Path $packagePath -DestinationPath $pypyToolcachePath
 
     # Get Python version from binaries
     $pypyApp = Get-ChildItem -Path "$tempFolder\pypy*.exe" | Where-Object Name -match "pypy(\d+)?.exe" | Select-Object -First 1

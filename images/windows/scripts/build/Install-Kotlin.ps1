@@ -19,7 +19,7 @@ Use-ChecksumComparison $fileHash $externalHash
 
 Write-Host "Expand Kotlin archive"
 $kotlinPath = "C:\tools"
-Extract-7Zip -Path $kotlinInstallerPath -DestinationPath $kotlinPath
+Expand-7ZipArchive -Path $kotlinInstallerPath -DestinationPath $kotlinPath
 
 # Add to PATH
 Add-MachinePathItem "$kotlinPath\kotlinc\bin"

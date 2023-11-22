@@ -13,7 +13,7 @@ $setupPath = Join-Path $env:TEMP "BizTalkBuildComponent"
 if (-not (Test-Path -Path $setupPath)) {
     $null = New-Item -Path $setupPath -ItemType Directory -Force
 }
-Extract-7Zip -Path $setupZipFile -DestinationPath $setupPath
+Expand-7ZipArchive -Path $setupZipFile -DestinationPath $setupPath
 
 Write-Host "Installing BizTalk Project Build Component..."
 Install-Binary `

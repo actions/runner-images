@@ -38,7 +38,7 @@ Export-ModuleMember -Function @(
     'Send-RequestToCocolateyPackages'
     'Resolve-ChocoPackageVersion'
     'Get-GitHubPackageDownloadUrl'
-    'Extract-7Zip'
+    'Expand-7ZipArchive'
     'Invoke-SBWithRetry'
     'Get-VsCatalogJsonPath'
     'Install-AndroidSDKPackages'
