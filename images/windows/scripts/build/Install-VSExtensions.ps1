@@ -16,8 +16,9 @@ $vsixPackagesList | ForEach-Object {
     if ($vsixPackage.FileName.EndsWith(".vsix")) {
         Install-VsixExtension -Url $vsixPackage.DownloadUri -Name $vsixPackage.FileName
     } else {
-        $argumentList = ('/install', '/quiet', '/norestart')
-        Install-Binary -Url $vsixPackage.DownloadUri -Name $vsixPackage.FileName -ArgumentList $argumentList
+        Install-Binary `
+            -Url $vsixPackage.DownloadUri `
+            -InstallArgs @('/install', '/quiet', '/norestart')
     }
 }
 

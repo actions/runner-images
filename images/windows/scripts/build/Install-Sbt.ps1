@@ -5,7 +5,7 @@
 
 # Install the latest version of sbt.
 # See https://chocolatey.org/packages/sbt
-Choco-Install -PackageName sbt
+Install-ChocoPackage sbt
 
 $env:SBT_HOME="${env:ProgramFiles(x86)}\sbt"
 

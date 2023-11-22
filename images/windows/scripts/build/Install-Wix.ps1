@@ -3,6 +3,6 @@
 ##  Desc:  Install WIX.
 ################################################################################
 
-Choco-Install -PackageName wixtoolset -ArgumentList "--force"
+Install-ChocoPackage wixtoolset -ArgumentList "--force"
 
 Invoke-PesterTests -TestFile "Wix"

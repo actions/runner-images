@@ -114,13 +114,13 @@ foreach ($jdkVersionToInstall in $jdkVersionsToInstall) {
 
 # Install Java tools
 # Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
-Choco-Install -PackageName ant -ArgumentList "-i"
+Install-ChocoPackage ant -ArgumentList "--ignore-dependencies"
 # Maven 3.9.x has multiple compatibilities problems
 $toolsetMavenVersion = (Get-ToolsetContent).maven.version
-$versionToInstall = Get-LatestChocoPackageVersion -TargetVersion $toolsetMavenVersion -PackageName "maven"
+$versionToInstall = Resolve-ChocoPackageVersion -PackageName "maven" -TargetVersion $toolsetMavenVersion
 
-Choco-Install -PackageName maven -ArgumentList "--version=$versionToInstall"
-Choco-Install -PackageName gradle
+Install-ChocoPackage maven -ArgumentList "--version=$versionToInstall"
+Install-ChocoPackage gradle
 
 # Add maven env variables to Machine
 [string]$m2 = (Get-MachinePath).Split(";") -match "maven"

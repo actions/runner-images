@@ -11,9 +11,9 @@ $azureCliConfigPath = 'C:\azureCli'
 # make variable to be available in the current session
 ${env:AZURE_CONFIG_DIR} = $azureCliConfigPath
 
-$azCliUrl = 'https://aka.ms/installazurecliwindowsx64'
-$azCliSignatureThumbprint = "72105B6D5F370B62FD5C82F1512F7AD7DEE5F2C0"
-Install-Binary -Url $azCliUrl -Name 'azure-cli.msi' -ExpectedSignature $azCliSignatureThumbprint
+Install-Binary -Type MSI `
+   -Url 'https://aka.ms/installazurecliwindowsx64' `
+   -ExpectedSignature '72105B6D5F370B62FD5C82F1512F7AD7DEE5F2C0'
 
 $azureCliExtensionPath = Join-Path $Env:CommonProgramFiles 'AzureCliExtensionDirectory'
 $null = New-Item -ItemType 'Directory' -Path $azureCliExtensionPath
