@@ -20,7 +20,10 @@ Write-Host "Clean up various directories"
     "$env:SystemRoot\winsxs\manifestcache",
     "$env:SystemRoot\Temp",
     "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp",
-    "$env:TEMP"
+    "$env:TEMP",
+    "$env:AZURE_CONFIG_DIR\logs",
+    "$env:AZURE_CONFIG_DIR\commands",
+    "$env:AZURE_CONFIG_DIR\telemetry"
 ) | ForEach-Object {
     if (Test-Path $_) {
         Write-Host "Removing $_"
