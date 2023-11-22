@@ -140,7 +140,7 @@ $androidPackages = Get-AndroidPackages
 [int]$platformMinVersion = $androidToolset.platform_min_version
 $platformList = $androidPackages `
 | Where-Object { "$_".StartsWith("platforms;") } `
-| ForEach-Object { [int]$_.Split("-")[1] } `
+| ForEach-Object { $_.Split("-")[1] -as [int] } `
 | Where-Object { $_ -ge $platformMinVersion } `
 | Sort-Object -Unique
 
@@ -152,7 +152,7 @@ Install-AndroidSDKPackages $platformList
 [version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
 $buildToolsList = $androidPackages `
 | Where-Object { "$_".StartsWith("build-tools;") } `
-| ForEach-Object { [version]$_.Split(";")[1] } `
+| ForEach-Object { $_.Split(";")[1] -as [version] } `
 | Where-Object { $_ -ge $buildToolsMinVersion } `
 | Sort-Object -Unique
 
