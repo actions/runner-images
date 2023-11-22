@@ -65,7 +65,7 @@ Describe "Windows Updates" {
     $testCases = Get-WindowsUpdateStates | Sort-Object Title | ForEach-Object {
         @{
             Title  = $_.Title
-            Status = $_.Status
+            State = $_.State
         }
     }
 
@@ -75,6 +75,6 @@ Describe "Windows Updates" {
             $expect = "Installed", "Failed", "Running"
         }
 
-        $Status | Should -BeIn $expect
+        $State | Should -BeIn $expect
     }
 }
