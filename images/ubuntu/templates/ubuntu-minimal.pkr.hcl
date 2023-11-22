@@ -77,11 +77,6 @@ variable "managed_image_resource_group_name" {
   default = "${env("ARM_RESOURCE_GROUP")}"
 }
 
-variable "run_validation_diskspace" {
-  type    = bool
-  default = false
-}
-
 variable "subscription_id" {
   type    = string
   default = "${env("ARM_SUBSCRIPTION_ID")}"
@@ -174,7 +169,7 @@ build {
   // Add apt wrapper to implement retries
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/apt-mock.sh"
+    script          = "${path.root}/../scripts/build/configure-apt-mock.sh"
   }
 
   // Install MS package repos, Configure apt
@@ -182,15 +177,15 @@ build {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/repos.sh",
-                        "${path.root}/../scripts/build/apt.sh"
+                        "${path.root}/../scripts/build/install-ms-repos.sh",
+                        "${path.root}/../scripts/build/configure-apt.sh"
     ]
   }
 
   // Configure limits
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/limits.sh"
+    script          = "${path.root}/../scripts/build/configure-limits.sh"
   }
 
   provisioner "file" {
@@ -225,7 +220,7 @@ build {
   provisioner "shell" {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGEDATA_FILE=${local.imagedata_file}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/preimagedata.sh"]
+    scripts          = ["${path.root}/../scripts/build/configure-image-data.sh"]
   }
 
   // Create /etc/environment, configure waagent etc.
@@ -238,13 +233,13 @@ build {
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/apt-vital.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-apt-vital.sh"]
   }
 
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/powershellcore.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-powershell.sh"]
   }
 
   provisioner "shell" {
@@ -257,17 +252,17 @@ build {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/git.sh",
-                        "${path.root}/../scripts/build/git-lfs.sh",
-                        "${path.root}/../scripts/build/github-cli.sh",
-                        "${path.root}/../scripts/build/zstd.sh"
+                        "${path.root}/../scripts/build/install-git.sh",
+                        "${path.root}/../scripts/build/install-git-lfs.sh",
+                        "${path.root}/../scripts/build/install-github-cli.sh",
+                        "${path.root}/../scripts/build/install-zstd.sh"
     ]
   }
 
   provisioner "shell" {
-    execute_command   = "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+    execute_command   = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     expect_disconnect = true
-    scripts           = ["${path.root}/../scripts/build/reboot.sh"]
+    inline            = ["echo 'Reboot VM'", "sudo reboot"]
   }
 
   provisioner "shell" {
@@ -278,19 +273,9 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/apt-mock-remove.sh"
-  }
-
-  provisioner "shell" {
     environment_vars = ["HELPER_SCRIPT_FOLDER=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/post-deployment.sh"]
-  }
-
-  provisioner "shell" {
-    environment_vars = ["RUN_VALIDATION=${var.run_validation_diskspace}"]
-    scripts          = ["${path.root}/../scripts/build/validate-disk-space.sh"]
+    scripts          = ["${path.root}/../scripts/build/configure-system.sh"]
   }
 
   provisioner "shell" {
