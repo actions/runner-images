@@ -79,6 +79,6 @@ if ($exitCode -ne 0) {
 # Stop and disable PostgreSQL service
 $pgService = Get-Service -Name postgresql*
 Stop-Service $pgService
-Set-Service $pgService -StartupType Disabled
+$pgService | Set-Service -StartupType Disabled
 
 Invoke-PesterTests -TestFile "Databases" -TestName "PostgreSQL"

@@ -36,6 +36,6 @@ $mongodbService.WaitForStatus('Running', '00:01:00')
 
 # Stop and disable mongodb service
 Stop-Service $mongodbService
-Set-Service $mongodbService -StartupType Disabled
+$mongodbService | Set-Service -StartupType Disabled
 
 Invoke-PesterTests -TestFile "Databases" -TestName "MongoDB"

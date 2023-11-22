@@ -15,7 +15,7 @@ New-NetFirewallRule -DisplayName "BlockGoogleUpdate" -Direction Outbound -Action
 $googleServices = @('gupdate', 'gupdatem') | Get-Service
 Stop-Service $googleServices
 $googleServices.WaitForStatus('Stopped', "00:01:00")
-Set-Service $googleServices -StartupType Disabled
+$googleServices | Set-Service -StartupType Disabled
 
 $regGoogleUpdatePath = "HKLM:\SOFTWARE\Policies\Google\Update"
 $regGoogleUpdateChrome = "HKLM:\SOFTWARE\Policies\Google\Chrome"

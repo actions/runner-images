@@ -108,7 +108,7 @@ $servicesToDisable = @(
 ) | Get-Service -ErrorAction SilentlyContinue
 Stop-Service $servicesToDisable
 $servicesToDisable.WaitForStatus('Stopped', "00:01:00")
-Set-Service $servicesToDisable -StartupType Disabled
+$servicesToDisable | Set-Service -StartupType Disabled
 
 # Disable scheduled tasks
 $allTasksInTaskPath = @(

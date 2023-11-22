@@ -12,7 +12,7 @@ Install-ChocoPackage nginx -ArgumentList "--force", "--params", "/installLocatio
 
 # Stop and disable Nginx service
 Stop-Service -Name nginx
-Set-Service nginx -StartupType Disabled
+Set-Service -Name nginx -StartupType Disabled
 
 # Start w3svc service
 Start-Service -Name w3svc
