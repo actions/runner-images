@@ -404,38 +404,67 @@ function Get-ToolsetContent
     ConvertFrom-Json -InputObject $toolsetJson
 }
 
-function Get-ToolcacheToolDirectory {
-    Param ([string] $ToolName)
+function Get-TCToolPath {
+    <#
+    .SYNOPSIS
+        This function returns the full path of a tool in the tool cache.
+
+    .DESCRIPTION
+        The Get-TCToolPath function takes a tool name as a parameter and returns the full path of the tool in the tool cache. 
+        It uses the AGENT_TOOLSDIRECTORY environment variable to determine the root path of the tool cache.
+
+    .PARAMETER ToolName
+        The name of the tool for which the path is to be returned.
+
+    .EXAMPLE
+        Get-TCToolPath -ToolName "Tool1"
+
+        This command returns the full path of "Tool1" in the tool cache.
+
+    #>
+    Param
+    (
+        [string] $ToolName
+    )
+
     $toolcacheRootPath = Resolve-Path $env:AGENT_TOOLSDIRECTORY
     return Join-Path $toolcacheRootPath $ToolName
 }
 
-function Get-ToolsetToolFullPath
-{
+function Get-TCToolVersionPath {
     <#
+    .SYNOPSIS
+        This function returns the full path of a specific version of a tool in the tool cache.
+
     .DESCRIPTION
-        Function that return full path to specified toolset tool.
+        The Get-TCToolVersionPath function takes a tool name, version, and architecture as parameters and returns the full path of the specified version of the tool in the tool cache. 
+        It uses the Get-TCToolPath function to get the root path of the tool.
 
     .PARAMETER Name
-        The name of required tool.
+        The name of the tool for which the path is to be returned.
 
     .PARAMETER Version
-        The version of required tool.
+        The version of the tool for which the path is to be returned. If the version number is less than 3 parts, a wildcard is added.
 
     .PARAMETER Arch
-        The architecture of required tool.
-    #>
+        The architecture of the tool for which the path is to be returned. Defaults to "x64".
 
+    .EXAMPLE
+        Get-TCToolVersionPath -Name "Tool1" -Version "1.0" -Arch "x86"
+
+        This command returns the full path of version "1.0" of "Tool1" for "x86" architecture in the tool cache.
+
+    #>
     Param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $Name,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $Version,
         [string] $Arch = "x64"
     )
 
-    $toolPath = Get-ToolcacheToolDirectory -ToolName $Name
+    $toolPath = Get-TCToolPath -ToolName $Name
 
     # Add wildcard if missing
     if ($Version.Split(".").Length -lt 3) {
@@ -446,8 +475,8 @@ function Get-ToolsetToolFullPath
 
     # Take latest installed version in case if toolset version contains wildcards
     $foundVersion = Get-Item $versionPath `
-                    | Sort-Object -Property {[version]$_.name} -Descending `
-                    | Select-Object -First 1
+    | Sort-Object -Property { [version]$_.name } -Descending `
+    | Select-Object -First 1
 
     if (-not $foundVersion) {
         return $null
