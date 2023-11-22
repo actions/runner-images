@@ -297,74 +297,63 @@ function Get-VsixExtenstionFromMarketplace {
     }
 }
 
-function Install-VsixExtension
-{
+function Install-VSIXFromFile {
     Param
     (
-        [string] $Url,
         [Parameter(Mandatory = $true)]
-        [string] $Name,
         [string] $FilePath,
-        [int] $Retries = 20,
-        [switch] $InstallOnly
+        [int] $Retries = 20
     )
 
-    if (-not $InstallOnly)
-        {
-            $FilePath = Start-DownloadWithRetry -Url $Url -Name $Name
-        }
-
-    $argumentList = ('/quiet', "`"$FilePath`"")
-
-    do
-    {
-        Write-Host "Starting Install $Name..."
-        try
-        {
-            $installPath = ${env:ProgramFiles(x86)}
-
-            # There are 2 types of packages at the moment - exe and vsix
-            if ($Name -match "vsix")
-            {
-                $process = Start-Process -FilePath "${installPath}\Microsoft Visual Studio\Installer\resources\app\ServiceHub\Services\Microsoft.VisualStudio.Setup.Service\VSIXInstaller.exe" -ArgumentList $argumentList -Wait -PassThru
-            }
-            else
-            {
-                $process = Start-Process -FilePath ${env:Temp}\$Name /Q -Wait -PassThru
-            }
-        }
-        catch
-        {
-            Write-Host "There is an error during $Name installation"
+    Write-Host "Installing VSIX from $FilePath..."
+    while ($True) {
+        $installerPath = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\resources\app\ServiceHub\Services\Microsoft.VisualStudio.Setup.Service\VSIXInstaller.exe"
+        try {
+            $process = Start-Process `
+                -FilePath $installerPath `
+                -ArgumentList @('/quiet', "`"$FilePath`"") `
+                -Wait -PassThru
+        } catch {
+            Write-Host "Failed to start VSIXInstaller.exe with error:"
             $_
             exit 1
         }
 
         $exitCode = $process.ExitCode
 
-        if ($exitCode -eq 0 -or $exitCode -eq 1001) # 1001 means the extension is already installed
-        {
-            Write-Host "$Name installed successfully"
+        if ($exitCode -eq 0) {
+            Write-Host "VSIX installed successfully."
+            break
+        } elseif ($exitCode -eq 1001) {
+            Write-Host "VSIX is already installed."
+            break
         }
-        else
-        {
-            Write-Host "Unsuccessful exit code returned by the installation process: $exitCode."
-            $Retries--
-            if ($Retries -eq 0) {
-                Write-Host "The $Name couldn't be installed after 20 attempts."
-                exit 1
-            } else {
-                Write-Host "Waiting 10 seconds before retrying. Retries left: $Retries"
-                Start-Sleep -Seconds 10
-            }
-        }
-    } until ($exitCode -eq 0 -or $exitCode -eq 1001 -or $Retries -eq 0 )
 
-    #Cleanup downloaded installation files
-    if (-not $InstallOnly)
-        {
-            Remove-Item -Force -Confirm:$false $FilePath
+        Write-Host "VSIX installation failed with exit code $exitCode."
+
+        $Retries--
+        if ($Retries -eq 0) {
+            Write-Host "VSIX installation failed after $Retries retries."
+            exit 1
         }
+
+        Write-Host "Waiting 10 seconds before retrying. Retries left: $Retries"
+        Start-Sleep -Seconds 10
+    }
+}
+
+function Install-VSIXFromUrl {
+    Param
+    (
+        [Parameter(Mandatory = $true)]
+        [string] $Url,
+        [int] $Retries = 20
+    )
+
+    $name = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".vsix"
+    $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    Install-VSIXFromFile -FilePath $filePath -Retries $Retries
+    Remove-Item -Force -Confirm:$false $filePath
 }
 
 function Get-VSExtensionVersion
