@@ -652,6 +652,28 @@ function Get-WindowsUpdateStates {
 }
 
 function Invoke-ScriptBlockWithRetry {
+    <#
+    .SYNOPSIS
+        Executes a script block with retry logic.
+
+    .DESCRIPTION
+        The Invoke-ScriptBlockWithRetry function executes a specified script block with retry logic. It allows you to specify the number of retries and the interval between retries.
+
+    .PARAMETER Command
+        The script block to be executed.
+
+    .PARAMETER RetryCount
+        The number of times to retry executing the script block. The default value is 10.
+
+    .PARAMETER RetryIntervalSeconds
+        The interval in seconds between each retry. The default value is 5.
+
+    .EXAMPLE
+        Invoke-ScriptBlockWithRetry -Command { Get-Process } -RetryCount 3 -RetryIntervalSeconds 10
+        This example executes the script block { Get-Process } with 3 retries and a 10-second interval between each retry.
+
+    #>
+
     param (
         [scriptblock] $Command,
         [int] $RetryCount = 10,
