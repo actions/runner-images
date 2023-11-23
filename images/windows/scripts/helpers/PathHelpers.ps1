@@ -68,7 +68,25 @@ function Dismount-RegistryHive {
 }
 
 function Add-MachinePathItem {
+    <#
+    .SYNOPSIS
+        Adds a new item to the machine-level PATH environment variable.
+
+    .DESCRIPTION
+        The Add-MachinePathItem function adds a new item to the machine-level PATH environment variable.
+        It takes a string parameter, $PathItem, which represents the new item to be added to the PATH.
+
+    .PARAMETER PathItem
+        Specifies the new item to be added to the machine-level PATH environment variable.
+
+    .EXAMPLE
+        Add-MachinePathItem -PathItem "C:\Program Files\MyApp"
+
+        This example adds "C:\Program Files\MyApp" to the machine-level PATH environment variable.
+    #>
+
     param(
+        [Parameter(Mandatory = $true)]
         [string]$PathItem
     )
 
@@ -78,6 +96,28 @@ function Add-MachinePathItem {
 }
 
 function Add-DefaultPathItem {
+    <#
+    .SYNOPSIS
+        Adds a path item to the default user profile path.
+
+    .DESCRIPTION
+        This function adds a specified path item to the default user profile path.
+        It mounts the NTUSER.DAT file of the default user to the registry,
+        retrieves the current value of the "Path" environment variable,
+        appends the new path item to it, and updates the registry with the modified value.
+
+    .PARAMETER PathItem
+        The path item to be added to the default user profile path.
+
+    .EXAMPLE
+        Add-DefaultPathItem -PathItem "C:\Program Files\MyApp"
+
+        This example adds "C:\Program Files\MyApp" to the default user profile path.
+
+    .NOTES
+        This function requires administrative privileges to modify the Windows registry.
+    #>
+
     param(
         [Parameter(Mandatory = $true)]
         [string]$PathItem
