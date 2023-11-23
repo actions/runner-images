@@ -824,6 +824,18 @@ function Test-FileSignature {
 }
 
 function Update-Environment {
+    <#
+    .SYNOPSIS
+        Updates the environment variables by reading values from the registry.
+
+    .DESCRIPTION
+        This function updates current environment by reading values from the registry.
+        It is useful when you need to update the environment variables without restarting the current session.
+
+    .NOTES
+        The function requires administrative privileges to modify the system registry.
+    #>
+
     $locations = @(
         'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment',
         'HKCU:\Environment'
