@@ -21,10 +21,9 @@ function Install-Msys2 {
   Write-Host "Finished download"
 
   #region Supply chain security - Kind
-  $fileHash = (Get-FileHash -Path $msys2File -Algorithm SHA256).Hash
   $hashUrl = ($assets.browser_download_url -match "msys2-checksums.txt") | Select-Object -First 1
   $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*msys2-x86_64*" }).Split(' ')[0]
-  Use-ChecksumComparison $fileHash $externalHash
+  Test-FileChecksum $msys2File -ExpectedSHA256Sum $externalHash
   #endregion
 
   # extract tar.xz to C:\

@@ -13,10 +13,8 @@ $env:CARGO_HOME = "C:\Users\Default\.cargo"
 $rustupPath = Invoke-DownloadWithRetry "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
 
 #region Supply chain security
-$localFileHash = (Get-FileHash -Path (Join-Path ${env:TEMP} 'rustup-init.exe') -Algorithm SHA256).Hash
 $distributorFileHash = (Invoke-RestMethod -Uri 'https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe.sha256').Trim()
-
-Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $distributorFileHash
+Test-FileChecksum (Join-Path ${env:TEMP} 'rustup-init.exe') -ExpectedSHA256Sum $distributorFileHash
 #endregion
 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)

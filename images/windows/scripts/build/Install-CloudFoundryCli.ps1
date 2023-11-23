@@ -21,6 +21,6 @@ Add-MachinePathItem $CloudFoundryCliPath
 
 # Validate cf signature
 $CloudFoundrySignatureThumbprint = "4C69EDD13930ED01B83DD1D17B09C434DC1F2177"
-Test-FileSignature -FilePath "$CloudFoundryCliPath\cf.exe" -ExpectedThumbprint $CloudFoundrySignatureThumbprint
+Test-FileSignature -Path "$CloudFoundryCliPath\cf.exe" -ExpectedThumbprint $CloudFoundrySignatureThumbprint
 
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "CloudFoundry CLI"
