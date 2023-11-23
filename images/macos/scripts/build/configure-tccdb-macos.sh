@@ -1,6 +1,8 @@
 #!/bin/bash -e -o pipefail
-
-# This script adds permissions, which are required for some installed tools to work properly, to the TCC.db
+################################################################################
+##  File:  configure-tccdb-macos.sh
+##  Desc:  Configure permissions to the TCC.db
+################################################################################
 
 source ~/utils/utils.sh
 
