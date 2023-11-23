@@ -89,7 +89,7 @@ function Install-JavaJDK {
     New-Item -ItemType Directory -Path $javaVersionPath -Force | Out-Null
 
     # Complete the installation by extracting Java binaries to toolcache and creating the complete file
-    Extract-7Zip -Path $archivePath -DestinationPath $javaVersionPath
+    Expand-7ZipArchive -Path $archivePath -DestinationPath $javaVersionPath
     Invoke-SBWithRetry -Command {
         Get-ChildItem -Path $javaVersionPath | Rename-Item -NewName $javaArchPath -ErrorAction Stop
     }
@@ -141,7 +141,7 @@ $coberturaPath = "C:\cobertura-2.1.1"
 $archivePath = Start-DownloadWithRetry -Url $uri -Name "cobertura.zip"
 $fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
 Use-ChecksumComparison $fileHash $sha256sum
-Extract-7Zip -Path $archivePath -DestinationPath "C:\"
+Expand-7ZipArchive -Path $archivePath -DestinationPath "C:\"
 
 [Environment]::SetEnvironmentVariable("COBERTURA_HOME", $coberturaPath, "Machine")
 

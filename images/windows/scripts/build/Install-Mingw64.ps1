@@ -23,7 +23,7 @@ if (Test-IsWin19) {
     if ($hash.Hash -ne $sha256sum) {
       throw "Checksum verification failed for $packagePath"
     }
-    Extract-7Zip -Path $packagePath -DestinationPath "C:\"
+    Expand-7ZipArchive -Path $packagePath -DestinationPath "C:\"
 
     # Make a copy of mingw-make.exe to make.exe, which is a more discoverable name
     # and so the same command line can be used on Windows as on macOS and Linux
@@ -58,7 +58,7 @@ if (Test-IsWin19) {
       -UrlFilter "*$arch-{Version}-release-$threads-$exceptions-$runtime-*.7z"
 
     $packagePath = Start-DownloadWithRetry -Url $url -Name "$_.7z"
-    Extract-7Zip -Path $packagePath -DestinationPath "C:\"
+    Expand-7ZipArchive -Path $packagePath -DestinationPath "C:\"
 
     # Make a copy of mingw-make.exe to make.exe, which is a more discoverable name
     # and so the same command line can be used on Windows as on macOS and Linux

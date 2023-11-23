@@ -26,7 +26,7 @@ if (-not (Test-Path -Path $ieDriverPath)) {
     $null = New-Item -Path $ieDriverPath -ItemType Directory -Force
 }
 
-Extract-7Zip -Path $driverZipFile -DestinationPath $ieDriverPath
+Expand-7ZipArchive -Path $driverZipFile -DestinationPath $ieDriverPath
 Remove-Item $driverZipFile
 
 Write-Host "Get the IEDriver version..."
