@@ -5,8 +5,8 @@
 ################################################################################
 
 Write-Host "Install-Package Docker-Compose v1"
-$versionToInstall = Get-LatestChocoPackageVersion -TargetVersion "1.29" -PackageName "docker-compose"
-Choco-Install -PackageName docker-compose -ArgumentList "--version=$versionToInstall"
+$versionToInstall = Resolve-ChocoPackageVersion -PackageName "docker-compose" -TargetVersion "1.29"
+Install-ChocoPackage docker-compose -ArgumentList "--version=$versionToInstall"
 
 Write-Host "Install-Package Docker-Compose v2"
 $dockerComposev2Url = "https://github.com/docker/compose/releases/latest/download/docker-compose-windows-x86_64.exe"

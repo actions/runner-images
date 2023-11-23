@@ -8,7 +8,7 @@ Stop-Service -Name w3svc | Out-Null
 
 # Install latest nginx in chocolatey
 $installDir = "C:\tools"
-Choco-Install -PackageName nginx -ArgumentList "--force", "--params", "/installLocation:$installDir /port:80"
+Install-ChocoPackage nginx -ArgumentList "--force", "--params", "/installLocation:$installDir /port:80"
 
 # Stop and disable Nginx service
 Stop-Service -Name nginx

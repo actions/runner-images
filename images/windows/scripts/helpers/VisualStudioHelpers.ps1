@@ -66,14 +66,19 @@ Function Install-VisualStudio {
         $responseDataPath = "$env:TEMP\vs_install_response.json"
         $responseData | ConvertTo-Json | Out-File -FilePath $responseDataPath
 
+        $installStartTime = Get-Date
         Write-Host "Starting Install ..."
         $bootstrapperArgumentList = ('/c', $bootstrapperFilePath, '--in', $responseDataPath, $ExtraArgs, '--quiet', '--norestart', '--wait', '--nocache' )
         Write-Host "Bootstrapper arguments: $bootstrapperArgumentList"
         $process = Start-Process -FilePath cmd.exe -ArgumentList $bootstrapperArgumentList -Wait -PassThru
 
         $exitCode = $process.ExitCode
-        if ($exitCode -eq 0 -or $exitCode -eq 3010) {
-            Write-Host "Installation successful"
+        $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
+        if ($exitCode -eq 0) {
+            Write-Host "Installation successful in $installCompleteTime seconds"
+            return $exitCode
+        } elseif ($exitCode -eq 3010) {
+            Write-Host "Installation successful in $installCompleteTime seconds. Reboot is required."
             return $exitCode
         } else {
             Write-Host "Non zero exit code returned by the installation process : $exitCode"

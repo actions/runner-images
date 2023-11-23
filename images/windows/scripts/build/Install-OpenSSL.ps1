@@ -7,7 +7,7 @@
 $arch = 'INTEL'
 $bits = '64'
 $light = $false
-$installer = "exe"
+$installerType = "exe"
 $version = (Get-ToolsetContent).openssl.version
 $installDir = "$Env:ProgramFiles\OpenSSL"
 
@@ -15,35 +15,27 @@ $installDir = "$Env:ProgramFiles\OpenSSL"
 $jsonUrl = 'https://raw.githubusercontent.com/slproweb/opensslhashes/master/win32_openssl_hashes.json'
 
 $installersAvailable = (Invoke-RestMethod $jsonUrl).files
+$installerNames = $installersAvailable | Get-Member -MemberType NoteProperty | Select-Object -ExpandProperty Name
 
-$distributor_file_hash = $null
 $installerUrl = $null
-$installerName = $null
+$installerHash = $null
 
-$installersAvailable | Get-Member -MemberType NoteProperty | ForEach-Object {
-  $key = $_.Name
-  if(($installersAvailable.$key.light -eq $light) -and ($installersAvailable.$key.arch -eq $arch) -and ($installersAvailable.$key.bits -eq $bits) -and ($installersAvailable.$key.installer -eq $installer) -and ($installersAvailable.$key.basever -eq $version)) {
-    $installerUrl = $installersAvailable.$key.url
-    $installerName = $key
-    $distributor_file_hash = $installersAvailable.$key.sha512
-  }
+foreach ($key in $installerNames) {
+    $installer = $installersAvailable.$key
+    if (($installer.light -eq $light) -and ($installer.arch -eq $arch) -and ($installer.bits -eq $bits) -and ($installer.installer -eq $installerType) -and ($installer.basever -eq $version)) {
+        $installerUrl = $installer.url
+        $installerHash = $installer.sha512
+    }
 }
 
-# Invoke installation
-
-$installerArgs = '/silent', '/sp-', '/suppressmsgboxes', "/DIR=`"$installDir`""
-Install-Binary -Url "$installerUrl" -Name "$installerName" -ArgumentList $installerArgs
-
-#region Supply chain security
-Write-Verbose "Performing checksum verification"
-$local_file_hash = (Get-FileHash -Path (Join-Path ${env:TEMP} $installerName) -Algorithm SHA512).Hash
-
-if ($local_file_hash -ne $distributor_file_hash) {
-        Write-Host "hash must be equal to: ${distributor_file_hash}"
-        Write-Host "actual hash is: ${local_file_hash}"
-        throw 'Checksum verification failed, please rerun install'
+if ($null -eq $installerUrl) {
+    throw "Installer not found for version $version"
 }
-#endregion
+
+Install-Binary `
+    -Url $installerUrl `
+    -InstallArgs @('/silent', '/sp-', '/suppressmsgboxes', "/DIR=`"$installDir`"") `
+    -ExpectedSHA512Sum $installerHash
 
 # Update PATH
 Add-MachinePathItem "$installDir\bin"

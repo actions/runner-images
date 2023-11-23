@@ -1,4 +1,8 @@
 #!/bin/bash -e
+################################################################################
+##  File:  cleanup.sh
+##  Desc:  Perform cleanup
+################################################################################
 
 # before cleanup
 before=$(df / -Pm | awk 'NR==2{print $4}')
@@ -32,3 +36,10 @@ after=$(df / -Pm | awk 'NR==2{print $4}')
 
 # delete symlink for tests running
 rm -f /usr/local/bin/invoke_tests
+
+# remove apt mock
+prefix=/usr/local/bin
+
+for tool in apt apt-get apt-fast apt-key;do
+  sudo rm -f $prefix/$tool
+done

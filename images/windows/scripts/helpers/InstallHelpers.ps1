@@ -1,94 +1,132 @@
-function Install-Binary
-{
+function Install-Binary {
     <#
     .SYNOPSIS
-        A helper function to install executables.
+        A function to install binaries from either a URL or a local path.
 
     .DESCRIPTION
-        Download and install .exe or .msi binaries from specified URL.
+        This function downloads and installs .exe or .msi binaries from a specified URL or a local path. It also supports checking the binary's signature and SHA256/SHA512 sum before installation.
 
     .PARAMETER Url
-        The URL from which the binary will be downloaded. Required parameter.
+        The URL from which the binary will be downloaded. This parameter is required if LocalPath is not specified.
 
-    .PARAMETER Name
-        The Name with which binary will be downloaded. Required parameter.
+    .PARAMETER LocalPath
+        The local path of the binary to be installed. This parameter is required if Url is not specified.
 
-    .PARAMETER ArgumentList
-        The list of arguments that will be passed to the installer. Required for .exe binaries.
+    .PARAMETER Type
+        The type of the binary to be installed. Valid values are "MSI" and "EXE". If not specified, the type is inferred from the file extension.
+
+    .PARAMETER InstallArgs
+        The list of arguments that will be passed to the installer. Cannot be used together with ExtraInstallArgs.
+
+    .PARAMETER ExtraInstallArgs
+        Additional arguments that will be passed to the installer. Cannot be used together with InstallArgs.
+
+    .PARAMETER ExpectedSignature
+        The expected signature of the binary. If specified, the binary's signature is checked before installation.
+
+    .PARAMETER ExpectedSHA256Sum
+        The expected SHA256 sum of the binary. If specified, the binary's SHA256 sum is checked before installation.
+
+    .PARAMETER ExpectedSHA512Sum
+        The expected SHA512 sum of the binary. If specified, the binary's SHA512 sum is checked before installation.
 
     .EXAMPLE
-        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Name "winsdksetup.exe" -ArgumentList ("/features", "+", "/quiet") -ExpectedSignature "XXXXXXXXXXXXXXXXXXXXXXXXXX"
+        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Type EXE -InstallArgs ("/features", "+", "/quiet") -ExpectedSignature "A5C7D5B7C838D5F89DDBEDB85B2C566B4CDA881F"
     #>
 
     Param
     (
-        [Parameter(Mandatory, ParameterSetName="Url")]
+        [Parameter(Mandatory, ParameterSetName = "Url")]
         [String] $Url,
-        [Parameter(Mandatory, ParameterSetName="Url")]
-        [String] $Name,
-        [Parameter(Mandatory, ParameterSetName="LocalPath")]
-        [String] $FilePath,
-        [String[]] $ArgumentList,
-        [String[]] $ExpectedSignature
+        [Parameter(Mandatory, ParameterSetName = "LocalPath")]
+        [String] $LocalPath,
+        [ValidateSet("MSI", "EXE")]
+        [String] $Type,
+        [String[]] $InstallArgs,
+        [String[]] $ExtraInstallArgs,
+        [String[]] $ExpectedSignature,
+        [String] $ExpectedSHA256Sum,
+        [String] $ExpectedSHA512Sum
     )
 
-    if ($PSCmdlet.ParameterSetName -eq "LocalPath")
-    {
-        $name = Split-Path -Path $FilePath -Leaf
-    }
-    else
-    {
-        Write-Host "Downloading $Name..."
-        $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    if ($PSCmdlet.ParameterSetName -eq "LocalPath") {
+        if (-not (Test-Path -Path $LocalPath)) {
+            throw "LocalPath parameter is specified, but the file does not exist."
+        }
+        if (-not $Type) {
+            $Type = ([System.IO.Path]::GetExtension($LocalPath)).Replace(".", "").ToUpper()
+            if ($Type -ne "MSI" -and $Type -ne "EXE") {
+                throw "LocalPath parameter is specified, but the file extension is not .msi or .exe. Please specify the Type parameter."
+            }
+        }
+        $filePath = $LocalPath
+    } else {
+        if (-not $Type) {
+            $Type = ([System.IO.Path]::GetExtension($Url)).Replace(".", "").ToUpper()
+            if ($Type -ne "MSI" -and $Type -ne "EXE") {
+                throw "Cannot determine the file type from the URL. Please specify the Type parameter."
+            }
+        }
+        $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
+        $filePath = Start-DownloadWithRetry -Url $Url -Name $fileName
     }
 
-    if ($PSBoundParameters.ContainsKey('ExpectedSignature'))
-    {
-        if ($ExpectedSignature)
-        {
+    if ($PSBoundParameters.ContainsKey('ExpectedSignature')) {
+        if ($ExpectedSignature) {
             Test-FileSignature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
-        }
-        else
-        {
+        } else {
             throw "ExpectedSignature parameter is specified, but no signature is provided."
         }
     }
- 
-    # MSI binaries should be installed via msiexec.exe
-    $fileExtension = ([System.IO.Path]::GetExtension($Name)).Replace(".", "")
-    if ($fileExtension -eq "msi")
-    {
-        if (-not $ArgumentList)
-        {
-            $ArgumentList = ('/i', $filePath, '/QN', '/norestart')
-        }
-        $filePath = "msiexec.exe"
+
+    if ($ExpectedSHA256Sum) {
+        $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA256).Hash
+        Use-ChecksumComparison $fileHash $ExpectedSHA256Sum
     }
 
-    try
-    {
-        $installStartTime = Get-Date
-        Write-Host "Starting Install $Name..."
-        $process = Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait -PassThru
-        $exitCode = $process.ExitCode
-        $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
-        if ($exitCode -eq 0 -or $exitCode -eq 3010)
-        {
-            Write-Host "Installation successful in $installCompleteTime seconds"
+    if ($ExpectedSHA512Sum) {
+        $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA512).Hash
+        Use-ChecksumComparison $fileHash $ExpectedSHA512Sum
+    }
+
+    if ($ExtraInstallArgs -and $InstallArgs) {
+        throw "InstallArgs and ExtraInstallArgs parameters cannot be used together."
+    }
+ 
+    if ($Type -eq "MSI") {
+        # MSI binaries should be installed via msiexec.exe
+        if ($ExtraInstallArgs) {
+            $InstallArgs = @('/i', $filePath, '/qn', '/norestart') + $ExtraInstallArgs
+        } elseif (-not $InstallArgs) {
+            Write-Host "No arguments provided for MSI binary. Using default arguments: /i, /qn, /norestart"
+            $InstallArgs = @('/i', $filePath, '/qn', '/norestart')
         }
-        else
-        {
-            Write-Host "Non zero exit code returned by the installation process: $exitCode"
-            Write-Host "Total time elapsed: $installCompleteTime seconds"
-            exit $exitCode
+        $filePath = "msiexec.exe"
+    } else {
+        # EXE binaries should be started directly
+        if ($ExtraInstallArgs) {
+            $InstallArgs = $ExtraInstallArgs
         }
     }
-    catch
-    {
+
+    $installStartTime = Get-Date
+    Write-Host "Starting Install $Name..."
+    try {
+        $process = Start-Process -FilePath $filePath -ArgumentList $InstallArgs -Wait -PassThru
+        $exitCode = $process.ExitCode
         $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
-        Write-Host "Failed to install the $fileExtension ${Name}: $($_.Exception.Message)"
-        Write-Host "Installation failed after $installCompleteTime seconds"
-        exit 1
+        if ($exitCode -eq 0) {
+            Write-Host "Installation successful in $installCompleteTime seconds"
+        } elseif ($exitCode -eq 3010) {
+            Write-Host "Installation successful in $installCompleteTime seconds. Reboot is required."
+        } else {
+            Write-Host "Installation process returned unexpected exit code: $exitCode"
+            Write-Host "Time elapsed: $installCompleteTime seconds"
+            exit $exitCode
+        }
+    } catch {
+        $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
+        Write-Host "Installation failed in $installCompleteTime seconds"
     }
 }
 
@@ -171,8 +209,7 @@ function Set-SvcWithErrHandling {
     }
 }
 
-function Start-DownloadWithRetry
-{
+function Start-DownloadWithRetry {
     Param
     (
         [Parameter(Mandatory)]
@@ -190,26 +227,20 @@ function Start-DownloadWithRetry
     $downloadStartTime = Get-Date
 
     # Default retry logic for the package.
-    while ($Retries -gt 0)
-    {
-        try
-        {
+    Write-Host "Downloading package from: $Url to path $filePath."
+    while ($Retries -gt 0) {
+        try {
             $downloadAttemptStartTime = Get-Date
-            Write-Host "Downloading package from: $Url to path $filePath ."
             (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
             break
-        }
-        catch
-        {
+        } catch {
             $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
             $attemptTime = [math]::Round(($(Get-Date) - $downloadAttemptStartTime).TotalSeconds, 2)
-            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n $_"
+            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n$($_.Exception.ToString())"
             $Retries--
 
-            if ($Retries -eq 0)
-            {
-                Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
-                Write-Host "Total time elapsed $failTime"
+            if ($Retries -eq 0) {
+                Write-Host "Package download failed after $failTime seconds"
                 exit 1
             }
 

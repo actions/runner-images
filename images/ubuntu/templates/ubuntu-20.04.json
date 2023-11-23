@@ -22,7 +22,6 @@
         "managed_image_name": "packer-ubuntu20-dev",
         "image_version": "dev",
         "image_os": "ubuntu20",
-        "run_validation_diskspace": "false",
         "dockerhub_login": "{{env `DOCKERHUB_LOGIN`}}",
         "dockerhub_password": "{{env `DOCKERHUB_PASSWORD`}}"
     },
@@ -66,15 +65,15 @@
         },
         {
             "type": "shell",
-            "script": "{{template_dir}}/../scripts/build/apt-mock.sh",
+            "script": "{{template_dir}}/../scripts/build/configure-apt-mock.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/../scripts/build/repos.sh",
-                "{{template_dir}}/../scripts/build/apt-ubuntu-archive.sh",
-                "{{template_dir}}/../scripts/build/apt.sh"
+                "{{template_dir}}/../scripts/build/install-ms-repos.sh",
+                "{{template_dir}}/../scripts/build/configure-apt-sources.sh",
+                "{{template_dir}}/../scripts/build/configure-apt.sh"
             ],
             "environment_vars": [
                 "DEBIAN_FRONTEND=noninteractive"
@@ -83,7 +82,7 @@
         },
         {
             "type": "shell",
-            "script": "{{template_dir}}/../scripts/build/limits.sh",
+            "script": "{{template_dir}}/../scripts/build/configure-limits.sh",
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
@@ -126,7 +125,7 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/../scripts/build/preimagedata.sh"
+                "{{template_dir}}/../scripts/build/configure-image-data.sh"
             ],
             "environment_vars": [
                 "IMAGE_VERSION={{user `image_version`}}",
@@ -149,7 +148,7 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/../scripts/build/apt-vital.sh"
+                "{{template_dir}}/../scripts/build/install-apt-vital.sh"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
@@ -161,8 +160,7 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/../scripts/build/complete-snap-setup.sh",
-                "{{template_dir}}/../scripts/build/powershellcore.sh"
+                "{{template_dir}}/../scripts/build/install-powershell.sh"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}"
@@ -173,7 +171,7 @@
             "type": "shell",
             "scripts": [
                 "{{template_dir}}/../scripts/build/Install-PowerShellModules.ps1",
-                "{{template_dir}}/../scripts/build/Install-AzureModules.ps1"
+                "{{template_dir}}/../scripts/build/Install-PowerShellAzModules.ps1"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
@@ -184,70 +182,70 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/../scripts/build/action-archive-cache.sh",
-                "{{template_dir}}/../scripts/build/runner-package.sh",
-                "{{template_dir}}/../scripts/build/apt-common.sh",
-                "{{template_dir}}/../scripts/build/azcopy.sh",
-                "{{template_dir}}/../scripts/build/azure-cli.sh",
-                "{{template_dir}}/../scripts/build/azure-devops-cli.sh",
-                "{{template_dir}}/../scripts/build/bicep.sh",
-                "{{template_dir}}/../scripts/build/aliyun-cli.sh",
-                "{{template_dir}}/../scripts/build/apache.sh",
-                "{{template_dir}}/../scripts/build/aws.sh",
-                "{{template_dir}}/../scripts/build/clang.sh",
-                "{{template_dir}}/../scripts/build/swift.sh",
-                "{{template_dir}}/../scripts/build/cmake.sh",
-                "{{template_dir}}/../scripts/build/codeql-bundle.sh",
-                "{{template_dir}}/../scripts/build/containers.sh",
-                "{{template_dir}}/../scripts/build/dotnetcore-sdk.sh",
-                "{{template_dir}}/../scripts/build/erlang.sh",
-                "{{template_dir}}/../scripts/build/firefox.sh",
-                "{{template_dir}}/../scripts/build/microsoft-edge.sh",
-                "{{template_dir}}/../scripts/build/gcc.sh",
-                "{{template_dir}}/../scripts/build/gfortran.sh",
-                "{{template_dir}}/../scripts/build/git.sh",
-                "{{template_dir}}/../scripts/build/git-lfs.sh",
-                "{{template_dir}}/../scripts/build/github-cli.sh",
-                "{{template_dir}}/../scripts/build/google-chrome.sh",
-                "{{template_dir}}/../scripts/build/google-cloud-cli.sh",
-                "{{template_dir}}/../scripts/build/haskell.sh",
-                "{{template_dir}}/../scripts/build/heroku.sh",
-                "{{template_dir}}/../scripts/build/hhvm.sh",
-                "{{template_dir}}/../scripts/build/java-tools.sh",
-                "{{template_dir}}/../scripts/build/kubernetes-tools.sh",
-                "{{template_dir}}/../scripts/build/oc.sh",
-                "{{template_dir}}/../scripts/build/leiningen.sh",
-                "{{template_dir}}/../scripts/build/miniconda.sh",
-                "{{template_dir}}/../scripts/build/mono.sh",
-                "{{template_dir}}/../scripts/build/kotlin.sh",
-                "{{template_dir}}/../scripts/build/mysql.sh",
-                "{{template_dir}}/../scripts/build/mssql-cmd-tools.sh",
-                "{{template_dir}}/../scripts/build/sqlpackage.sh",
-                "{{template_dir}}/../scripts/build/nginx.sh",
-                "{{template_dir}}/../scripts/build/nvm.sh",
-                "{{template_dir}}/../scripts/build/nodejs.sh",
-                "{{template_dir}}/../scripts/build/bazel.sh",
-                "{{template_dir}}/../scripts/build/oras-cli.sh",
-                "{{template_dir}}/../scripts/build/phantomjs.sh",
-                "{{template_dir}}/../scripts/build/php.sh",
-                "{{template_dir}}/../scripts/build/postgresql.sh",
-                "{{template_dir}}/../scripts/build/pulumi.sh",
-                "{{template_dir}}/../scripts/build/ruby.sh",
-                "{{template_dir}}/../scripts/build/r.sh",
-                "{{template_dir}}/../scripts/build/rust.sh",
-                "{{template_dir}}/../scripts/build/julia.sh",
-                "{{template_dir}}/../scripts/build/sbt.sh",
-                "{{template_dir}}/../scripts/build/selenium.sh",
-                "{{template_dir}}/../scripts/build/terraform.sh",
-                "{{template_dir}}/../scripts/build/packer.sh",
-                "{{template_dir}}/../scripts/build/vcpkg.sh",
-                "{{template_dir}}/../scripts/build/dpkg-config.sh",
-                "{{template_dir}}/../scripts/build/mongodb.sh",
-                "{{template_dir}}/../scripts/build/yq.sh",
-                "{{template_dir}}/../scripts/build/android.sh",
-                "{{template_dir}}/../scripts/build/pypy.sh",
-                "{{template_dir}}/../scripts/build/python.sh",
-                "{{template_dir}}/../scripts/build/zstd.sh"
+                "{{template_dir}}/../scripts/build/install-actions-cache.sh",
+                "{{template_dir}}/../scripts/build/install-runner-package.sh",
+                "{{template_dir}}/../scripts/build/install-apt-common.sh",
+                "{{template_dir}}/../scripts/build/install-azcopy.sh",
+                "{{template_dir}}/../scripts/build/install-azure-cli.sh",
+                "{{template_dir}}/../scripts/build/install-azure-devops-cli.sh",
+                "{{template_dir}}/../scripts/build/install-bicep.sh",
+                "{{template_dir}}/../scripts/build/install-aliyun-cli.sh",
+                "{{template_dir}}/../scripts/build/install-apache.sh",
+                "{{template_dir}}/../scripts/build/install-aws-tools.sh",
+                "{{template_dir}}/../scripts/build/install-clang.sh",
+                "{{template_dir}}/../scripts/build/install-swift.sh",
+                "{{template_dir}}/../scripts/build/install-cmake.sh",
+                "{{template_dir}}/../scripts/build/install-codeql-bundle.sh",
+                "{{template_dir}}/../scripts/build/install-container-tools.sh",
+                "{{template_dir}}/../scripts/build/install-dotnetcore-sdk.sh",
+                "{{template_dir}}/../scripts/build/install-erlang.sh",
+                "{{template_dir}}/../scripts/build/install-firefox.sh",
+                "{{template_dir}}/../scripts/build/install-microsoft-edge.sh",
+                "{{template_dir}}/../scripts/build/install-gcc-compilers.sh",
+                "{{template_dir}}/../scripts/build/install-gfortran.sh",
+                "{{template_dir}}/../scripts/build/install-git.sh",
+                "{{template_dir}}/../scripts/build/install-git-lfs.sh",
+                "{{template_dir}}/../scripts/build/install-github-cli.sh",
+                "{{template_dir}}/../scripts/build/install-google-chrome.sh",
+                "{{template_dir}}/../scripts/build/install-google-cloud-cli.sh",
+                "{{template_dir}}/../scripts/build/install-haskell.sh",
+                "{{template_dir}}/../scripts/build/install-heroku.sh",
+                "{{template_dir}}/../scripts/build/install-hhvm.sh",
+                "{{template_dir}}/../scripts/build/install-java-tools.sh",
+                "{{template_dir}}/../scripts/build/install-kubernetes-tools.sh",
+                "{{template_dir}}/../scripts/build/install-oc-cli.sh",
+                "{{template_dir}}/../scripts/build/install-leiningen.sh",
+                "{{template_dir}}/../scripts/build/install-miniconda.sh",
+                "{{template_dir}}/../scripts/build/install-mono.sh",
+                "{{template_dir}}/../scripts/build/install-kotlin.sh",
+                "{{template_dir}}/../scripts/build/install-mysql.sh",
+                "{{template_dir}}/../scripts/build/install-mssql-tools.sh",
+                "{{template_dir}}/../scripts/build/install-sqlpackage.sh",
+                "{{template_dir}}/../scripts/build/install-nginx.sh",
+                "{{template_dir}}/../scripts/build/install-nvm.sh",
+                "{{template_dir}}/../scripts/build/install-nodejs.sh",
+                "{{template_dir}}/../scripts/build/install-bazel.sh",
+                "{{template_dir}}/../scripts/build/install-oras-cli.sh",
+                "{{template_dir}}/../scripts/build/install-phantomjs.sh",
+                "{{template_dir}}/../scripts/build/install-php.sh",
+                "{{template_dir}}/../scripts/build/install-postgresql.sh",
+                "{{template_dir}}/../scripts/build/install-pulumi.sh",
+                "{{template_dir}}/../scripts/build/install-ruby.sh",
+                "{{template_dir}}/../scripts/build/install-rlang.sh",
+                "{{template_dir}}/../scripts/build/install-rust.sh",
+                "{{template_dir}}/../scripts/build/install-julia.sh",
+                "{{template_dir}}/../scripts/build/install-sbt.sh",
+                "{{template_dir}}/../scripts/build/install-selenium.sh",
+                "{{template_dir}}/../scripts/build/install-terraform.sh",
+                "{{template_dir}}/../scripts/build/install-packer.sh",
+                "{{template_dir}}/../scripts/build/install-vcpkg.sh",
+                "{{template_dir}}/../scripts/build/configure-dpkg.sh",
+                "{{template_dir}}/../scripts/build/install-mongodb.sh",
+                "{{template_dir}}/../scripts/build/install-yq.sh",
+                "{{template_dir}}/../scripts/build/install-android-sdk.sh",
+                "{{template_dir}}/../scripts/build/install-pypy.sh",
+                "{{template_dir}}/../scripts/build/install-python.sh",
+                "{{template_dir}}/../scripts/build/install-zstd.sh"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
@@ -259,8 +257,8 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/../scripts/build/docker-compose.sh",
-                "{{template_dir}}/../scripts/build/docker.sh"
+                "{{template_dir}}/../scripts/build/install-docker-compose.sh",
+                "{{template_dir}}/../scripts/build/install-docker.sh"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
@@ -285,7 +283,7 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/../scripts/build/pipx-packages.sh"
+                "{{template_dir}}/../scripts/build/install-pipx-packages.sh"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
@@ -296,7 +294,7 @@
         {
             "type": "shell",
             "scripts": [
-                "{{template_dir}}/../scripts/build/homebrew.sh"
+                "{{template_dir}}/../scripts/build/install-homebrew.sh"
             ],
             "environment_vars": [
                 "HELPER_SCRIPTS={{user `helper_script_folder`}}",
@@ -307,16 +305,22 @@
         },
         {
             "type": "shell",
-            "script": "{{template_dir}}/../scripts/build/snap.sh",
+            "scripts": [
+                "{{template_dir}}/../scripts/build/configure-snap.sh"
+            ],
+            "environment_vars": [
+                "HELPER_SCRIPTS={{user `helper_script_folder`}}"
+            ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",
             "expect_disconnect": true,
-            "scripts": [
-                "{{template_dir}}/../scripts/build/reboot.sh"
+            "inline": [
+                "echo 'Reboot VM'",
+                "sudo reboot"
             ],
-            "execute_command": "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
         },
         {
             "type": "shell",
@@ -329,16 +333,11 @@
         },
         {
             "type": "shell",
-            "script": "{{template_dir}}/../scripts/build/apt-mock-remove.sh",
-            "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
             "max_retries": 3,
             "start_retry_timeout": "2m",
             "inline": [
-                "pwsh -Command Write-Host Running SoftwareReport.Generator.ps1 script",
-                "pwsh -File {{user `image_folder`}}/SoftwareReport/SoftwareReport.Generator.ps1 -OutputDirectory {{user `image_folder`}}",
+                "pwsh -Command Write-Host Running Generate-SoftwareReport.ps1 script",
+                "pwsh -File {{user `image_folder`}}/SoftwareReport/Generate-SoftwareReport.ps1 -OutputDirectory {{user `image_folder`}}",
                 "pwsh -Command Write-Host Running RunAll-Tests.ps1 script",
                 "pwsh -File {{user `image_folder`}}/tests/RunAll-Tests.ps1 -OutputDirectory {{user `image_folder`}}"
             ],
@@ -362,7 +361,7 @@
         {
             "type": "shell",
             "scripts":[
-                "{{template_dir}}/../scripts/build/post-deployment.sh"
+                "{{template_dir}}/../scripts/build/configure-system.sh"
             ],
             "environment_vars":[
                 "HELPER_SCRIPT_FOLDER={{user `helper_script_folder`}}",
@@ -370,15 +369,6 @@
                 "IMAGE_FOLDER={{user `image_folder`}}"
             ],
             "execute_command": "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-        },
-        {
-            "type": "shell",
-            "scripts":[
-                "{{template_dir}}/../scripts/build/validate-disk-space.sh"
-            ],
-            "environment_vars": [
-                "RUN_VALIDATION={{user `run_validation_diskspace`}}"
-            ]
         },
         {
             "type": "file",
