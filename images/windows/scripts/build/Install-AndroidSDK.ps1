@@ -181,17 +181,17 @@ Install-AndroidSDKPackages $androidNDKs
 
 $ndkLatestVersion = ($androidNDKs | Where-Object { $_ -match "ndk;$ndkLatestMajorVersion" }).Split(';')[1]
 $ndkDefaultVersion = ($androidNDKs | Where-Object { $_ -match "ndk;$ndkDefaultMajorVersion" }).Split(';')[1]
-$ndkRoot = "$sdkRoot\ndk\$ndkDefaultVersion"
+$ndkRoot = "$SDKRootPath\ndk\$ndkDefaultVersion"
 
 # Create env variables
-[Environment]::SetEnvironmentVariable("ANDROID_HOME", $sdkRoot, "Machine")
-[Environment]::SetEnvironmentVariable("ANDROID_SDK_ROOT", $sdkRoot, "Machine")
+[Environment]::SetEnvironmentVariable("ANDROID_HOME", $SDKRootPath, "Machine")
+[Environment]::SetEnvironmentVariable("ANDROID_SDK_ROOT", $SDKRootPath, "Machine")
 # ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
 [Environment]::SetEnvironmentVariable("ANDROID_NDK", $ndkRoot, "Machine")
 [Environment]::SetEnvironmentVariable("ANDROID_NDK_HOME", $ndkRoot, "Machine")
 [Environment]::SetEnvironmentVariable("ANDROID_NDK_ROOT", $ndkRoot, "Machine")
 
-$ndkLatestPath = "$sdkRoot\ndk\$ndkLatestVersion"
+$ndkLatestPath = "$SDKRootPath\ndk\$ndkLatestVersion"
 if (Test-Path $ndkLatestPath) {
     [Environment]::SetEnvironmentVariable("ANDROID_NDK_LATEST_HOME", $ndkLatestPath, "Machine")
 } else {
