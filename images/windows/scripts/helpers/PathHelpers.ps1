@@ -1,28 +1,62 @@
-function Connect-Hive {
+
+function Mount-RegistryHive {
+    <#
+    .SYNOPSIS
+        Mounts a registry hive from a file.
+
+    .DESCRIPTION
+        The Mount-RegistryHive function loads a registry hive from a specified file into a specified subkey.
+
+    .PARAMETER FileName
+        The path to the file from which to load the registry hive.
+
+    .PARAMETER SubKey
+        The registry subkey into which to load the hive.
+
+    .EXAMPLE
+        Mount-RegistryHive -FileName "C:\Path\To\HiveFile.hiv" -SubKey "HKLM\SubKey"
+    #>
     param(
-        [string]$FileName = "C:\Users\Default\NTUSER.DAT",
-        [string]$SubKey = "HKLM\DEFAULT"
+        [Parameter(Mandatory = $true)]
+        [string]$FileName,
+        [Parameter(Mandatory = $true)]
+        [string]$SubKey
     )
 
     Write-Host "Loading the file $FileName to the Key $SubKey"
-    if (Test-Path $SubKey.Replace("\",":")) {
+    if (Test-Path $SubKey.Replace("\", ":")) {
+        Write-Warning "The key $SubKey is already loaded"
         return
     }
 
     $result = reg load $SubKey $FileName *>&1
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "Failed to load hive: $result"
+        Write-Error "Failed to load file $FileName to the key ${SubKey}: $result"
         exit 1
     }
 }
 
-function Disconnect-Hive {
+function Dismount-RegistryHive {
+    <#
+    .SYNOPSIS
+        Dismounts a registry hive.
+
+    .DESCRIPTION
+        The Dismount-RegistryHive function unloads a registry hive from a specified subkey.
+
+    .PARAMETER SubKey
+        The registry subkey from which to unload the hive.
+
+    .EXAMPLE
+        Dismount-RegistryHive -SubKey "HKLM\SubKey"
+    #>
     param(
-        [string]$SubKey = "HKLM\DEFAULT"
+        [Parameter(Mandatory = $true)]
+        [string]$SubKey
     )
 
     Write-Host "Unloading the hive $SubKey"
-    if (-not (Test-Path $SubKey.Replace("\",":"))) {
+    if (-not (Test-Path $SubKey.Replace("\", ":"))) {
         return
     }
 
@@ -33,123 +67,32 @@ function Disconnect-Hive {
     }
 }
 
-function Get-SystemVariable {
-    param(
-        [string]$SystemVariable
-    )
-    
-    [System.Environment]::GetEnvironmentVariable($SystemVariable, "Machine")
-}
-
-function Get-DefaultVariable {
-    param(
-        [string]$DefaultVariable,
-        [string]$Name = "DEFAULT\Environment",
-        [bool]$Writable = $false
-    )
-
-    $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($Name, $Writable)
-    $key.GetValue($DefaultVariable, "", "DoNotExpandEnvironmentNames")
-    $key.Handle.Close()
-    [System.GC]::Collect()
-}
-
-function Set-DefaultVariable {
-    param(
-        [string]$DefaultVariable,
-        [string]$Value,
-        [string]$Name = "DEFAULT\Environment",
-        [string]$Kind = "ExpandString",
-        [bool]$Writable = $true
-    )
-
-    $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($Name, $Writable)
-    $key.SetValue($DefaultVariable, $Value, $Kind)
-    Get-DefaultVariable -DefaultVariable $DefaultVariable -Name $Name
-    $key.Handle.Close()
-    [System.GC]::Collect()
-}
-
-function Get-MachinePath {
-    Get-SystemVariable PATH
-}
-
-function Get-DefaultPath {
-    Get-DefaultVariable Path
-}
-
-function Set-MachinePath {
-    param(
-        [string]$NewPath
-    )
-    
-    [System.Environment]::SetEnvironmentVariable("PATH", $NewPath, "Machine")
-}
-
-function Set-DefaultPath {
-    param(
-        [string]$NewPath
-    )
-
-    Set-DefaultVariable PATH $NewPath
-}
-
-function Test-MachinePath {
-    param(
-        [string]$PathItem
-    )
-
-    $pathItems = (Get-MachinePath).Split(';')
-    $pathItems.Contains($PathItem)
-}
-
 function Add-MachinePathItem {
     param(
         [string]$PathItem
     )
 
-    $currentPath = Get-MachinePath
+    $currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
     $newPath = $PathItem + ';' + $currentPath
-    Set-MachinePath -NewPath $newPath
+    [System.Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
 }
 
 function Add-DefaultPathItem {
     param(
+        [Parameter(Mandatory = $true)]
         [string]$PathItem
     )
 
-    Connect-Hive
-    $currentPath = Get-DefaultPath
-    $newPath = $PathItem + ';' + $currentPath
-    Set-DefaultPath -NewPath $newPath
-    Disconnect-Hive
-}
+    Mount-RegistryHive `
+        -FileName "C:\Users\Default\NTUSER.DAT" `
+        -SubKey "HKLM\DEFAULT"
 
-function Add-DefaultItem {
-    param(
-        [string]$DefaultVariable,
-        [string]$Value,
-        [string]$Name = "DEFAULT\Environment",
-        [string]$Kind = "ExpandString",
-        [bool]$Writable = $true
-    )
+    $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey("DEFAULT\Environment", $true)
+    $currentValue = $key.GetValue("Path", "", "DoNotExpandEnvironmentNames")
+    $updatedValue = $PathItem + ';' + $currentValue
+    $key.SetValue("Path", $updatedValue, "ExpandString")
+    $key.Handle.Close()
+    [System.GC]::Collect()
 
-    Connect-Hive
-    $regPath = Join-Path "HKLM:\" $Name
-    if (-not (Test-Path $Name)) {
-        Write-Host "Creating $regPath key"
-        New-Item -Path $regPath -Force | Out-Null
-    }
-    Set-DefaultVariable -DefaultVariable $DefaultVariable -Value $Value -Name $Name -Kind $Kind -Writable $Writable
-    Disconnect-Hive
-}
-
-function New-ItemPath {
-    param (
-        [string]$Path
-    )
-
-    if (-not (Test-Path $Path)) {
-        New-Item -Path $Path -Force -ErrorAction Ignore | Out-Null
-    }
+    Dismount-RegistryHive "HKLM\DEFAULT"
 }

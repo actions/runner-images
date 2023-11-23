@@ -3,7 +3,6 @@
 ##  Desc:  Install Git for Windows
 ##  Supply chain security: Git - checksum validation, Hub CLI - managed by package manager
 ################################################################################
-Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 
 # Install the latest version of Git for Windows
 $repoURL = "https://api.github.com/repos/git-for-windows/git/releases/latest"
@@ -28,7 +27,7 @@ Install-Binary `
         "/COMPONENTS=gitlfs") `
     -ExpectedSHA256Sum $externalHash
 
-Update-SessionEnvironment
+Update-Environment
 
 git config --system --add safe.directory "*"
 

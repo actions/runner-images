@@ -822,3 +822,24 @@ function Test-FileSignature {
         throw "Signature thumbprint do not match expected."
     }
 }
+
+function Update-Environment {
+    $locations = @(
+        'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment',
+        'HKCU:\Environment'
+    )
+
+    $locations | ForEach-Object {
+        $key = Get-Item 
+        $key.GetValueNames() | ForEach-Object {
+            $name = $_
+            $value = $key.GetValue($_)
+
+            if ($_ -eq 'HKCU:\Environment' -and $name -ieq 'PATH') {
+                $Env:Path += ";$value"
+            } else {
+                Set-Item -Path Env:$name -Value $value
+            }
+        }
+    }
+}

@@ -24,7 +24,7 @@ function Set-JavaPath {
 
     if ($Default) {
         # Clean up any other Java folders from PATH to make sure that they won't conflict with each other
-        $currentPath = Get-MachinePath
+        $currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
 
         $pathSegments = $currentPath.Split(';')
         $newPathSegments = @()
@@ -39,7 +39,7 @@ function Set-JavaPath {
         $newPath = $javaPath + '\bin;' + $newPath
 
         Write-Host "Add $javaPath\bin to PATH"
-        Set-MachinePath -NewPath $newPath
+        [System.Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
 
         Write-Host "Set JAVA_HOME environmental variable as $javaPath"
         [Environment]::SetEnvironmentVariable("JAVA_HOME", $javaPath, "Machine")
@@ -123,15 +123,14 @@ Install-ChocoPackage maven -ArgumentList "--version=$versionToInstall"
 Install-ChocoPackage gradle
 
 # Add maven env variables to Machine
-[string]$m2 = (Get-MachinePath).Split(";") -match "maven"
-$maven_opts = '-Xms256m'
+[string]$m2 = ([Environment]::GetEnvironmentVariable("PATH", "Machine")).Split(";") -match "maven"
 
 $m2_repo = 'C:\ProgramData\m2'
 New-Item -Path $m2_repo -ItemType Directory -Force | Out-Null
 
 [Environment]::SetEnvironmentVariable("M2", $m2, "Machine")
 [Environment]::SetEnvironmentVariable("M2_REPO", $m2_repo, "Machine")
-[Environment]::SetEnvironmentVariable("MAVEN_OPTS", $maven_opts, "Machine")
+[Environment]::SetEnvironmentVariable("MAVEN_OPTS", "-Xms256m", "Machine")
 
 # Download cobertura jars
 $uri = 'https://repo1.maven.org/maven2/net/sourceforge/cobertura/cobertura/2.1.1/cobertura-2.1.1-bin.zip'
