@@ -10,9 +10,10 @@ if (-not $vsixPackagesList) {
     exit 0
 }
 
-$vsixPackagesList | ForEach-Object {
+foreach ($vsixPackage in $vsixPackagesList) {
     # Retrieve cdn endpoint to avoid HTTP error 429 https://github.com/actions/runner-images/issues/3074
-    $vsixPackage = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
+    $vsixPackage = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $vsixPackage
+    Write-Host "Installing $vsixPackage"
     if ($vsixPackage.FileName.EndsWith(".vsix")) {
         Install-VSIXFromUrl $vsixPackage.DownloadUri
     } else {
