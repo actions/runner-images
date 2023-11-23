@@ -183,7 +183,7 @@ function Get-VsixExtenstionFromMarketplace {
     )
 
     $extensionUri = $MarketplaceUri + $ExtensionMarketPlaceName
-    $request = Invoke-WebRequest -Uri $extensionUri -UseBasicParsing -MaximumRetryCount 20 -RetryIntervalSec 30
+    $request = Invoke-RestMethod -Uri $extensionUri -MaximumRetryCount 20 -RetryIntervalSec 30
     $request -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
     $extensionName = $Matches.extensionname
     $request -match 'VsixId":"(?<vsixid>[^"]*)' | Out-Null
