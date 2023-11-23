@@ -86,7 +86,7 @@ function Install-Binary {
     }
 
     if ($ExpectedSHA512Sum) {
-        Test-FileChecksum $filePath -ExpectedSHA256Sum $ExpectedSHA512Sum
+        Test-FileChecksum $filePath -ExpectedSHA512Sum $ExpectedSHA512Sum
     }
 
     if ($ExtraInstallArgs -and $InstallArgs) {
