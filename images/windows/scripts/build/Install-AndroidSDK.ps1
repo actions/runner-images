@@ -37,6 +37,7 @@ function Install-AndroidSDKPackages {
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyCollection()]
+        [AllowNull()]
         [string[]]$Packages
     )
 
