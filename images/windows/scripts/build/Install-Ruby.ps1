@@ -62,7 +62,7 @@ function Install-Ruby {
         New-Item -ItemType Directory -Path $rubyVersionPath -Force | Out-Null
 
         Write-Host "Moving Ruby '${rubyVersion}' files to '${rubyArchPath}'"
-        Invoke-SBWithRetry -Command {
+        Invoke-ScriptBlockWithRetry -Command {
             Move-Item -Path $tempFolder -Destination $rubyArchPath -ErrorAction Stop | Out-Null
         }
 

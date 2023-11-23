@@ -38,7 +38,7 @@ Export-ModuleMember -Function @(
     'Resolve-ChocoPackageVersion'
     'Resolve-GithubReleaseAssetUrl'
     'Expand-7ZipArchive'
-    'Invoke-SBWithRetry'
+    'Invoke-ScriptBlockWithRetry'
     'Get-VsCatalogJsonPath'
     'Get-AndroidPackages'
     'Get-AndroidPlatformPackages'
