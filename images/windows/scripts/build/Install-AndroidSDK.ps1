@@ -12,9 +12,6 @@ $SDKInstallRoot = "C:\Program Files (x86)\Android\android-sdk"
 # https://github.com/actions/runner-images/issues/1122
 $SDKRootPath = "C:\Android\android-sdk"
 
-# The sdkmanager.bat script is used to install Android SDK packages.
-$SDKManager = "$SDKRootPath\cmdline-tools\latest\bin\sdkmanager.bat"
-
 #region functions
 function Install-AndroidSDKPackages {
     <#
@@ -40,6 +37,9 @@ function Install-AndroidSDKPackages {
         [AllowNull()]
         [string[]]$Packages
     )
+    
+    # The sdkmanager.bat script is used to install Android SDK packages.
+    $SDKManager = "$SDKRootPath\cmdline-tools\latest\bin\sdkmanager.bat"
 
     $errors = @()
 
@@ -53,35 +53,6 @@ function Install-AndroidSDKPackages {
     if ($errors.Count -gt 0) {
         throw $errors
     }
-}
-
-function Get-AndroidPackages {
-    <#
-    .SYNOPSIS
-        This function returns a list of available Android packages.
-
-    .DESCRIPTION
-        The Get-AndroidPackages function checks if a list of packages is already available in a file. If not, it uses the sdkmanager.bat script to generate a list of available packages and saves it to a file. 
-        It then returns the content of this file.
-
-    .EXAMPLE
-        Get-AndroidPackages
-
-        This command returns a list of available Android packages.
-
-    #>
-
-    $PackagesListFile = "$SDKRootPath\packages-list.txt"
-
-    if (-Not (Test-Path -Path $PackagesListFile -PathType Leaf)) {
-        (cmd /c "$SDKManager --list --verbose 2>&1") |
-            Where-Object { $_ -Match "^[^\s]" } |
-            Where-Object { $_ -NotMatch "^(Loading |Info: Parsing |---|\[=+|Installed |Available )" } |
-            Where-Object { $_ -NotMatch "^[^;]*$" } |
-            Out-File -FilePath $PackagesListFile
-    }
-
-    return Get-Content $PackagesListFile
 }
 #endregion
 
@@ -119,7 +90,7 @@ New-Item -Path "$SDKRootPath" -ItemType SymbolicLink -Value "$SDKInstallRoot"
 #     $base64Content = [Convert]::ToBase64String([IO.File]::ReadAllBytes($LicensesZipFileName))
 #     echo $base64Content
 # Another possible solution that works in powershell core:
-# Write-Ouptut "y" | $SDKManager <packagename>
+# Write-Ouptut "y" | $sdkmanager.bat <packagename>
 $licenseContentBase64 = "UEsDBBQAAAAAAKNK11IAAAAAAAAAAAAAAAAJAAAAbGljZW5zZXMvUEsDBAoAAAAAAJ1K11K7n0IrKgAAACoAAAAhAAAAbGljZW5zZXMvYW5kcm9pZC1nb29nbGV0di1saWNlbnNlDQo2MDEwODViOTRjZDc3ZjBiNTRmZjg2NDA2OTU3MDk5ZWJlNzljNGQ2UEsDBAoAAAAAAKBK11LzQumJKgAAACoAAAAkAAAAbGljZW5zZXMvYW5kcm9pZC1zZGstYXJtLWRidC1saWNlbnNlDQo4NTlmMzE3Njk2ZjY3ZWYzZDdmMzBhNTBhNTU2MGU3ODM0YjQzOTAzUEsDBAoAAAAAAKFK11IKSOJFKgAAACoAAAAcAAAAbGljZW5zZXMvYW5kcm9pZC1zZGstbGljZW5zZQ0KMjQzMzNmOGE2M2I2ODI1ZWE5YzU1MTRmODNjMjgyOWIwMDRkMWZlZVBLAwQKAAAAAACiStdSec1a4SoAAAAqAAAAJAAAAGxpY2Vuc2VzL2FuZHJvaWQtc2RrLXByZXZpZXctbGljZW5zZQ0KODQ4MzFiOTQwOTY0NmE5MThlMzA1NzNiYWI0YzljOTEzNDZkOGFiZFBLAwQKAAAAAACiStdSk6vQKCoAAAAqAAAAGwAAAGxpY2Vuc2VzL2dvb2dsZS1nZGstbGljZW5zZQ0KMzNiNmEyYjY0NjA3ZjExYjc1OWYzMjBlZjlkZmY0YWU1YzQ3ZDk3YVBLAwQKAAAAAACiStdSrE3jESoAAAAqAAAAJAAAAGxpY2Vuc2VzL2ludGVsLWFuZHJvaWQtZXh0cmEtbGljZW5zZQ0KZDk3NWY3NTE2OThhNzdiNjYyZjEyNTRkZGJlZWQzOTAxZTk3NmY1YVBLAwQKAAAAAACjStdSkb1vWioAAAAqAAAAJgAAAGxpY2Vuc2VzL21pcHMtYW5kcm9pZC1zeXNpbWFnZS1saWNlbnNlDQplOWFjYWI1YjVmYmI1NjBhNzJjZmFlY2NlODk0Njg5NmZmNmFhYjlkUEsBAj8AFAAAAAAAo0rXUgAAAAAAAAAAAAAAAAkAJAAAAAAAAAAQAAAAAAAAAGxpY2Vuc2VzLwoAIAAAAAAAAQAYACIHOBcRaNcBIgc4FxFo1wHBTVQTEWjXAVBLAQI/AAoAAAAAAJ1K11K7n0IrKgAAACoAAAAhACQAAAAAAAAAIAAAACcAAABsaWNlbnNlcy9hbmRyb2lkLWdvb2dsZXR2LWxpY2Vuc2UKACAAAAAAAAEAGACUEFUTEWjXAZQQVRMRaNcB6XRUExFo1wFQSwECPwAKAAAAAACgStdS80LpiSoAAAAqAAAAJAAkAAAAAAAAACAAAACQAAAAbGljZW5zZXMvYW5kcm9pZC1zZGstYXJtLWRidC1saWNlbnNlCgAgAAAAAAABABgAsEM0FBFo1wGwQzQUEWjXAXb1MxQRaNcBUEsBAj8ACgAAAAAAoUrXUgpI4kUqAAAAKgAAABwAJAAAAAAAAAAgAAAA/AAAAGxpY2Vuc2VzL2FuZHJvaWQtc2RrLWxpY2Vuc2UKACAAAAAAAAEAGAAsMGUVEWjXASwwZRURaNcB5whlFRFo1wFQSwECPwAKAAAAAACiStdSec1a4SoAAAAqAAAAJAAkAAAAAAAAACAAAABgAQAAbGljZW5zZXMvYW5kcm9pZC1zZGstcHJldmlldy1saWNlbnNlCgAgAAAAAAABABgA7s3WFRFo1wHuzdYVEWjXAfGm1hURaNcBUEsBAj8ACgAAAAAAokrXUpOr0CgqAAAAKgAAABsAJAAAAAAAAAAgAAAAzAEAAGxpY2Vuc2VzL2dvb2dsZS1nZGstbGljZW5zZQoAIAAAAAAAAQAYAGRDRxYRaNcBZENHFhFo1wFfHEcWEWjXAVBLAQI/AAoAAAAAAKJK11KsTeMRKgAAACoAAAAkACQAAAAAAAAAIAAAAC8CAABsaWNlbnNlcy9pbnRlbC1hbmRyb2lkLWV4dHJhLWxpY2Vuc2UKACAAAAAAAAEAGADGsq0WEWjXAcayrRYRaNcBxrKtFhFo1wFQSwECPwAKAAAAAACjStdSkb1vWioAAAAqAAAAJgAkAAAAAAAAACAAAACbAgAAbGljZW5zZXMvbWlwcy1hbmRyb2lkLXN5c2ltYWdlLWxpY2Vuc2UKACAAAAAAAAEAGAA4LjgXEWjXATguOBcRaNcBIgc4FxFo1wFQSwUGAAAAAAgACACDAwAACQMAAAAA"
 $licenseContent = [System.Convert]::FromBase64String($licenseContentBase64)
 Set-Content -Path "$SDKInstallRoot\android-sdk-licenses.zip" -Value $licenseContent -Encoding Byte
@@ -134,28 +105,22 @@ if (Test-Path $platformToolsPath) {
 Install-AndroidSDKPackages "platform-tools"
 
 # Get Android SDK packages list
-$androidPackages = Get-AndroidPackages
+$androidPackages = Get-AndroidPackages -SDKRootPath $SDKRootPath
 
 # Install Android platform versions
 # that are greater than or equal to the minimum version
-[int]$platformMinVersion = $androidToolset.platform_min_version
-$platformList = $androidPackages `
-| Where-Object { "$_".StartsWith("platforms;") } `
-| Where-Object { ($_.Split("-")[1] -as [int]) -ge $platformMinVersion } `
-| Sort-Object -Unique
-
 Write-Host "Installing Android SDK packages for platforms..."
+$platformList = Get-AndroidPlatformPackages `
+    -SDKRootPath $SDKRootPath `
+    -minimumVersion $androidToolset.platform_min_version
 Install-AndroidSDKPackages $platformList
 
 # Install Android build-tools versions
 # that are greater than or equal to the minimum version
-[version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
-$buildToolsList = $androidPackages `
-| Where-Object { "$_".StartsWith("build-tools;") } `
-| Where-Object { ($_.Split(";")[1] -as [version]) -ge $buildToolsMinVersion } `
-| Sort-Object -Unique
-
 Write-Host "Installing Android SDK packages for build tools..."
+$buildToolsList = Get-AndroidBuildToolPackages `
+    -SDKRootPath $SDKRootPath `
+    -minimumVersion $androidToolset.build_tools_min_version
 Install-AndroidSDKPackages $buildToolsList
 
 # Install extras, add-ons and additional tools
