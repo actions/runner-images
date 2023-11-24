@@ -2,16 +2,12 @@ Describe "Android SDK" {
     $androidToolset = (Get-ToolsetContent).android
     $androidInstalledPackages = Get-AndroidInstalledPackages
 
-    $platformList = Get-AndroidPlatformPackages `
-        -SDKRootPath $env:ANDROID_HOME `
-        -minimumVersion $androidToolset.platform_min_version
+    $platformList = Get-AndroidPlatformPackages -minVersion $androidToolset.platform_min_version
     $platformTestCases = $platformList | ForEach-Object {
         @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
     }
 
-    $buildToolsList = Get-AndroidBuildToolPackages `
-        -SDKRootPath $env:ANDROID_HOME `
-        -minimumVersion $androidToolset.build_tools_min_version
+    $buildToolsList = Get-AndroidBuildToolPackages -minVersion $androidToolset.build_tools_min_version
     $buildToolsTestCases = $buildToolsList | ForEach-Object {
         @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
     }

@@ -516,11 +516,13 @@ function Get-AndroidPackages {
         This function returns a list of available Android packages.
 
     .DESCRIPTION
-        The Get-AndroidPackages function checks if a list of packages is already available in a file. If not, it uses the sdkmanager.bat script to generate a list of available packages and saves it to a file. 
+        The Get-AndroidPackages function checks if a list of packages is already available in a file.
+        If not, it uses the sdkmanager.bat script to generate a list of available packages and saves it to a file. 
         It then returns the content of this file.
 
     .PARAMETER SDKRootPath
         The root path of the Android SDK installation.
+        If not specified, the function uses the ANDROID_HOME environment variable.
 
     .EXAMPLE
         Get-AndroidPackages -SDKRootPath "C:\Android\SDK"
@@ -533,9 +535,12 @@ function Get-AndroidPackages {
     #>
     Param
     (
-        [Parameter(Mandatory = $true)]
         [string]$SDKRootPath
     )
+    
+    if (-not $SDKRootPath) {
+        $SDKRootPath = $env:ANDROID_HOME
+    }
 
     $packagesListFile = "$SDKRootPath\packages-list.txt"
     $sdkManager = "$SDKRootPath\cmdline-tools\latest\bin\sdkmanager.bat"
@@ -554,19 +559,23 @@ function Get-AndroidPackages {
 function Get-AndroidPlatformPackages {
     <#
     .SYNOPSIS
-        This function returns a list of available Android packages.
+        This function returns a list of available Android platform packages.
 
     .DESCRIPTION
-        The Get-AndroidPackages function checks if a list of packages is already available in a file. If not, it uses the sdkmanager.bat script to generate a list of available packages and saves it to a file. 
-        It then returns the content of this file.
+        The Get-AndroidPlatformPackages function uses the Get-AndroidPackages function to get a list of available packages
+        and filters it to return only platform packages.
 
     .PARAMETER SDKRootPath
         The root path of the Android SDK installation.
+        If not specified, the function uses the ANDROID_HOME environment variable.
+
+    .PARAMETER minimumVersion
+        The minimum version of the platform packages to include in the result. Default is 0.
 
     .EXAMPLE
-        Get-AndroidPackages -SDKRootPath "C:\Android\SDK"
+        Get-AndroidPlatformPackages -SDKRootPath "C:\Android\SDK" -minimumVersion 29
 
-        This command returns a list of available Android packages for the specified SDK root path.
+        This command returns a list of available Android platform packages for the specified SDK root path with a minimum version of 29.
 
     .NOTES
         This function requires the Android SDK to be installed and the sdkmanager.bat script to be accessible.
@@ -574,10 +583,14 @@ function Get-AndroidPlatformPackages {
     #>
     Param
     (
-        [Parameter(Mandatory = $true)]
         [string]$SDKRootPath,
+        [Parameter(Alias = "minVersion")]
         [int]$minimumVersion = 0
     )
+    
+    if (-not $SDKRootPath) {
+        $SDKRootPath = $env:ANDROID_HOME
+    }
 
     return (Get-AndroidPackages -SDKRootPath $SDKRootPath) `
     | Where-Object { "$_".StartsWith("platforms;") } `
@@ -588,19 +601,23 @@ function Get-AndroidPlatformPackages {
 function Get-AndroidBuildToolPackages {
     <#
     .SYNOPSIS
-        This function returns a list of available Android packages.
+        This function returns a list of available Android build tool packages.
 
     .DESCRIPTION
-        The Get-AndroidPackages function checks if a list of packages is already available in a file. If not, it uses the sdkmanager.bat script to generate a list of available packages and saves it to a file. 
-        It then returns the content of this file.
+        The Get-AndroidBuildToolPackages function uses the Get-AndroidPackages function to get a list of available packages
+        and filters it to return only build tool packages.
 
     .PARAMETER SDKRootPath
         The root path of the Android SDK installation.
+        If not specified, the function uses the ANDROID_HOME environment variable.
+
+    .PARAMETER minimumVersion
+        The minimum version of the build tool packages to include in the result. Default is 0.0.0.
 
     .EXAMPLE
-        Get-AndroidPackages -SDKRootPath "C:\Android\SDK"
+        Get-AndroidBuildToolPackages -SDKRootPath "C:\Android\SDK" -minimumVersion "30.0.2"
 
-        This command returns a list of available Android packages for the specified SDK root path.
+        This command returns a list of available Android build tool packages for the specified SDK root path with a minimum version of 30.0.2.
 
     .NOTES
         This function requires the Android SDK to be installed and the sdkmanager.bat script to be accessible.
@@ -608,17 +625,20 @@ function Get-AndroidBuildToolPackages {
     #>
     Param
     (
-        [Parameter(Mandatory = $true)]
         [string]$SDKRootPath,
-        [version]$minimumVersion = 0
+        [Parameter(Alias = "minVersion")]
+        [version]$minimumVersion = "0.0.0"
     )
+    
+    if (-not $SDKRootPath) {
+        $SDKRootPath = $env:ANDROID_HOME
+    }
 
     return (Get-AndroidPackages -SDKRootPath $SDKRootPath) `
     | Where-Object { "$_".StartsWith("build-tools;") } `
     | Where-Object { ($_.Split(";")[1] -as [version]) -ge $minimumVersion } `
     | Sort-Object -Unique
 }
-
 
 function Get-AndroidInstalledPackages {
     <#
@@ -630,6 +650,7 @@ function Get-AndroidInstalledPackages {
 
     .PARAMETER SDKRootPath
         The root path of the Android SDK.
+        If not specified, the function uses the ANDROID_HOME environment variable.
 
     .EXAMPLE
         Get-AndroidInstalledPackages -SDKRootPath "C:\Android\SDK"
@@ -641,9 +662,12 @@ function Get-AndroidInstalledPackages {
 
     Param
     (
-        [Parameter(Mandatory = $true)]
         [string]$SDKRootPath
     )
+    
+    if (-not $SDKRootPath) {
+        $SDKRootPath = $env:ANDROID_HOME
+    }
     
     $sdkManager = "$SDKRootPath\cmdline-tools\latest\bin\sdkmanager.bat"
 

@@ -112,7 +112,7 @@ $androidPackages = Get-AndroidPackages -SDKRootPath $SDKRootPath
 Write-Host "Installing Android SDK packages for platforms..."
 $platformList = Get-AndroidPlatformPackages `
     -SDKRootPath $SDKRootPath `
-    -minimumVersion $androidToolset.platform_min_version
+    -minVersion $androidToolset.platform_min_version
 Install-AndroidSDKPackages $platformList
 
 # Install Android build-tools versions
@@ -120,7 +120,7 @@ Install-AndroidSDKPackages $platformList
 Write-Host "Installing Android SDK packages for build tools..."
 $buildToolsList = Get-AndroidBuildToolPackages `
     -SDKRootPath $SDKRootPath `
-    -minimumVersion $androidToolset.build_tools_min_version
+    -minVersion $androidToolset.build_tools_min_version
 Install-AndroidSDKPackages $buildToolsList
 
 # Install extras, add-ons and additional tools
