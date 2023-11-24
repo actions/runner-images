@@ -33,11 +33,11 @@ Describe "Haskell" {
     }
 
     It "GHC <ghcVersion> is installed" -TestCases $ghcTestCases {
-        "$binGhcPath --version" | Should -MatchCommandOutput $ghcShortVersion
+        "$binGhcPath --version" | Should -OutputTextMatchingRegex $ghcShortVersion
     }
 
     It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases $ghcDefaultCases {
-        "ghc --version" | Should -MatchCommandOutput $defaultGhcShortVersion
+        "ghc --version" | Should -OutputTextMatchingRegex $defaultGhcShortVersion
     }
 
     It "Cabal is installed" {
