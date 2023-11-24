@@ -584,7 +584,7 @@ function Get-AndroidPlatformPackages {
     Param
     (
         [string]$SDKRootPath,
-        [Parameter(Alias = "minVersion")]
+        [Alias("minVersion")]
         [int]$minimumVersion = 0
     )
     
@@ -626,7 +626,7 @@ function Get-AndroidBuildToolPackages {
     Param
     (
         [string]$SDKRootPath,
-        [Parameter(Alias = "minVersion")]
+        [Alias("minVersion")]
         [version]$minimumVersion = "0.0.0"
     )
     
