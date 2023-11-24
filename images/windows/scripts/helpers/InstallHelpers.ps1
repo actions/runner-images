@@ -183,8 +183,6 @@ function Get-VsixExtenstionFromMarketplace {
     )
 
     $extensionUri = $MarketplaceUri + $ExtensionMarketPlaceName
-    Write-Host "Getting extension information from $extensionUri"
-
     $request = Invoke-RestMethod -Uri $extensionUri -MaximumRetryCount 20 -RetryIntervalSec 30
     $request -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
     $extensionName = $Matches.extensionname
