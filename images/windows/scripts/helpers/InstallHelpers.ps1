@@ -841,17 +841,20 @@ function Update-Environment {
         'HKCU:\Environment'
     )
 
+    # Update PATH variable
+    $pathItems = $locations | ForEach-Object { 
+        (Get-Item $_).GetValue('PATH').Split(';') 
+    } | Select-Object -Unique
+    $Env:PATH = $pathItems -join ';'
+
+    # Update other variables
     $locations | ForEach-Object {
         $key = Get-Item $_
-        $key.GetValueNames() | ForEach-Object {
-            $name = $_
-            $value = $key.GetValue($_)
-
-            if ($_ -eq 'HKCU:\Environment' -and $name -ieq 'PATH') {
-                $Env:Path += ";$value"
-            } else {
+        foreach ($name in $key.GetValueNames()) {
+            $value = $key.GetValue($name)
+            if (-not ($name -ieq 'PATH')) {
                 Set-Item -Path Env:$name -Value $value
-            }
+            } 
         }
     }
 }

@@ -35,8 +35,6 @@ if ($LastExitCode -ne 0) {
     exit $exitCode
 }
 
-Update-Environment
-
 # Fix AZ CLI DOCKER_COMMAND_ERROR
 # cli.azure.cli.command_modules.acr.custom: Could not run 'docker.exe' command.
 # https://github.com/Azure/azure-cli/issues/18766
