@@ -842,7 +842,7 @@ function Update-Environment {
     )
 
     $locations | ForEach-Object {
-        $key = Get-Item 
+        $key = Get-Item $_
         $key.GetValueNames() | ForEach-Object {
             $name = $_
             $value = $key.GetValue($_)
