@@ -186,6 +186,7 @@
         },
         {
             "type": "powershell",
+            "use_pwsh": true,
             "pause_before": "2m",
             "scripts": [
                 "{{ template_dir }}/../scripts/build/Install-Wix.ps1",
