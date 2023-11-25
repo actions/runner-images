@@ -44,11 +44,14 @@ do {
         $increment--
     }
 } while (!$response)
+
 # Return the previous value of ErrorAction and invoke Install-Binary function
 $ErrorActionPreference = $ErrorActionOldValue
-$InstallerName = $InstallerUrl.Split('/')[-1]
-$ArgumentList = ("--install_runtimes 0", "--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
-Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList -ExpectedSignature (Get-ToolsetContent).postgresql.signature
+$InstallerArgs = @("--install_runtimes 0", "--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
+Install-Binary `
+    -Url $InstallerUrl `
+    -InstallArgs $InstallerArgs `
+    -ExpectedSignature (Get-ToolsetContent).postgresql.signature
 
 # Get Path to pg_ctl.exe
 $pgPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
@@ -75,7 +78,7 @@ if ($exitCode -ne 0) {
 
 # Stop and disable PostgreSQL service
 $pgService = Get-Service -Name postgresql*
-Stop-Service -InputObject $pgService
-Set-Service -InputObject $pgService -StartupType Disabled
+Stop-Service $pgService
+$pgService | Set-Service -StartupType Disabled
 
 Invoke-PesterTests -TestFile "Databases" -TestName "PostgreSQL"

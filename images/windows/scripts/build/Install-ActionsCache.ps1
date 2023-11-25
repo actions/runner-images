@@ -14,6 +14,6 @@ Write-Host "Download Latest action-versions archive from $downloadUrl"
 $actionVersionsArchivePath = Start-DownloadWithRetry -Url $downloadUrl -Name "action-versions.zip"
 
 Write-Host "Expand action-versions archive"
-Extract-7Zip -Path $actionVersionsArchivePath -DestinationPath $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE
+Expand-7ZipArchive -Path $actionVersionsArchivePath -DestinationPath $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE
 
 Invoke-PesterTests -TestFile "ActionArchiveCache"

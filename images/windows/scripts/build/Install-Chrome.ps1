@@ -4,18 +4,18 @@
 ################################################################################
 
 # Download and install latest Chrome browser
-$ChromeSignatureThumbprint = "2673EA6CC23BEFFDA49AC715B121544098A1284C"
-$ChromeInstallerFile = "googlechromestandaloneenterprise64.msi"
-$ChromeInstallerUrl = "https://dl.google.com/tag/s/dl/chrome/install/${ChromeInstallerFile}"
-Install-Binary -Url $ChromeInstallerUrl -Name $ChromeInstallerFile -ArgumentList @() -ExpectedSignature $ChromeSignatureThumbprint
+Install-Binary `
+    -Url 'https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi' `
+    -ExpectedSignature '2673EA6CC23BEFFDA49AC715B121544098A1284C'
 
 # Prepare firewall rules
 Write-Host "Adding the firewall rule for Google update blocking..."
 New-NetFirewallRule -DisplayName "BlockGoogleUpdate" -Direction Outbound -Action Block -Program "C:\Program Files (x86)\Google\Update\GoogleUpdate.exe"
 
-$GoogleSvcs = ('gupdate','gupdatem')
-$GoogleSvcs | Stop-SvcWithErrHandling -StopOnError
-$GoogleSvcs | Set-SvcWithErrHandling -Arguments @{StartupType = "Disabled"}
+$googleServices = @('gupdate', 'gupdatem') | Get-Service
+Stop-Service $googleServices
+$googleServices.WaitForStatus('Stopped', "00:01:00")
+$googleServices | Set-Service -StartupType Disabled
 
 $regGoogleUpdatePath = "HKLM:\SOFTWARE\Policies\Google\Update"
 $regGoogleUpdateChrome = "HKLM:\SOFTWARE\Policies\Google\Chrome"
@@ -75,7 +75,7 @@ Write-Host "Download Chrome WebDriver from $ChromeDriverZipDownloadUrl..."
 $ChromeDriverArchPath = Start-DownloadWithRetry -Url $ChromeDriverZipDownloadUrl
 
 Write-Host "Expand Chrome WebDriver archive (without using directory names)..."
-Extract-7Zip -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath -ExtractMethod "e"
+Expand-7ZipArchive -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath -ExtractMethod "e"
 
 Write-Host "Setting the environment variables..."
 [Environment]::SetEnvironmentVariable("ChromeWebDriver", $ChromeDriverPath, "Machine")

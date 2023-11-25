@@ -21,7 +21,7 @@ Use-ChecksumComparison $fileHash $externalHash
 Write-Host "Expand aliyun-cli archive"
 $aliyunPath = "C:\aliyun-cli"
 New-Item -Path $aliyunPath -ItemType Directory -Force
-Extract-7Zip -Path $packagePath -DestinationPath $aliyunPath
+Expand-7ZipArchive -Path $packagePath -DestinationPath $aliyunPath
 
 # Add aliyun-cli to path
 Add-MachinePathItem $aliyunPath

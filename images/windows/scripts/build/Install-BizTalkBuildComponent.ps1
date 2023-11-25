@@ -3,86 +3,29 @@
 ##  Desc:  Install BizTalk Project Build Component
 ################################################################################
 
-function Install-Msi
-{
-    <#
-    .SYNOPSIS
-        A helper function to install executables.
+$BuildComponentUri = "https://aka.ms/BuildComponentSetup.EN"
+$BuildComponentSignatureThumbprint = "8740DF4ACB749640AD318E4BE842F72EC651AD80"
 
-    .DESCRIPTION
-        install .exe or .msi binaries from specified Path.
+Write-Host "Downloading BizTalk Project Build Component archive..."
+$setupZipFile = Start-DownloadWithRetry -Url $BuildComponentUri -Name "BuildComponentSetup.EN.zip"
 
-    .PARAMETER MsiPath
-        Msi or exe path. Required parameter.
-
-    .PARAMETER LogPath
-        The log file path where installation will write log to. Required parameter.
-
-    .EXAMPLE
-        Install-Msi -MsiPath "c:\temp\abc.msi" -LogPath "c:\abc.log"
-    #>
-
-    Param
-    (
-        [Parameter(Mandatory)]
-        [String] $MsiPath,
-        [Parameter(Mandatory)]
-        [String] $LogPath
-    )
-
-    try
-    {
-        $filePath = "msiexec.exe"
-
-        Write-Host "Starting Install $MsiPath..."
-        $ArgumentList = ('/i', $MsiPath, '/QN', '/norestart', "/l*v",$LogPath)
-        $process = Start-Process -FilePath $filePath -ArgumentList $ArgumentList -Wait -PassThru -Verb runAs
-
-        $exitCode = $process.ExitCode
-        if ($exitCode -eq 0 -or $exitCode -eq 3010)
-        {
-            Write-Host "Installation for $MsiPath is successful."
-        }
-        else
-        {
-            Write-Host "Non zero exit code returned by $MsiPath installation process: $exitCode"
-            Get-Content  $LogPath | Write-Host
-            exit $exitCode
-        }
-    }
-    catch
-    {
-        Write-Host "Failed to install $MsiPath : $($_.Exception.Message)"
-        exit 1
-    }
-}
-
-$bizTalkBuildComponentUri = "https://aka.ms/BuildComponentSetup.EN"
-
-# Download
-Write-Host "BizTalk Project Build Component download..."
-$setupZipFile = Start-DownloadWithRetry -Url $bizTalkBuildComponentUri -Name "BuildComponentSetup.EN.zip"
-
-# Unzip
-$setupPath = "C:\BizTalkBuildComponent"
+$setupPath = Join-Path $env:TEMP "BizTalkBuildComponent"
 if (-not (Test-Path -Path $setupPath)) {
     $null = New-Item -Path $setupPath -ItemType Directory -Force
 }
+Expand-7ZipArchive -Path $setupZipFile -DestinationPath $setupPath
 
-Write-Host "Unzip $setupZipFile to $setupPath..."
-Extract-7Zip -Path $setupZipFile -DestinationPath $setupPath
+Write-Host "Installing BizTalk Project Build Component..."
+Install-Binary `
+    -LocalPath "$setupPath\Bootstrap.msi" `
+    -ExtraInstallArgs ("/l*v", "$setupPath\bootstrap.log") `
+    -ExpectedSignature $BuildComponentSignatureThumbprint
+Install-Binary `
+    -LocalPath "$setupPath\BuildComponentSetup.msi" `
+    -ExtraInstallArgs ("/l*v", "$setupPath\buildComponentSetup.log") `
+    -ExpectedSignature $BuildComponentSignatureThumbprint
+
 Remove-Item $setupZipFile
-
-# Verify signature
-$BuildComponentSignatureThumbprint = "8740DF4ACB749640AD318E4BE842F72EC651AD80"
-Test-FileSignature -FilePath "$setupPath\Bootstrap.msi" -ExpectedThumbprint $BuildComponentSignatureThumbprint
-Test-FileSignature -FilePath "$setupPath\BuildComponentSetup.msi" -ExpectedThumbprint $BuildComponentSignatureThumbprint
-
-# Install
-Install-Msi -MsiPath "$setupPath\Bootstrap.msi" -LogPath "$setupPath\bootstrap.log"
-Install-Msi -MsiPath "$setupPath\BuildComponentSetup.msi" -LogPath  "$setupPath\buildComponentSetup.log"
-
 Remove-Item $setupPath -Recurse -Force
 
-# Test
 Invoke-PesterTests -TestFile "BizTalk" -TestName "BizTalk Build Component Setup"

@@ -48,7 +48,7 @@ function Install-Ruby {
     # Expand archive with binaries
     $packageName = [IO.Path]::GetFileNameWithoutExtension((Split-Path -Path $PackagePath -Leaf))
     $tempFolder = Join-Path -Path $rubyToolcachePath -ChildPath $packageName
-    Extract-7Zip -Path $PackagePath -DestinationPath $rubyToolcachePath
+    Expand-7ZipArchive -Path $PackagePath -DestinationPath $rubyToolcachePath
 
     # Get Ruby version from binaries
     $rubyVersion = & "$tempFolder\bin\ruby.exe" -e "print RUBY_VERSION"

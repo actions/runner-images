@@ -1,7 +1,12 @@
+################################################################################
+##  File:  Install-PowerShellModules.ps1
+##  Desc:  Install modules for PowerShell
+################################################################################
+
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"
 
-Import-Module "$env:HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$env:HELPER_SCRIPTS/../tests/Helpers.psm1" -DisableNameChecking
 
 # Specifies the installation policy
 Set-PSRepository -InstallationPolicy Trusted -Name PSGallery

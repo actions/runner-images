@@ -55,18 +55,17 @@ foreach ($tool in $tools) {
         foreach ($version in $tool.versions) {
             Write-Host "Set $($tool.name) $version environment variable..."
 
-            $foundVersionArchPath = Get-ToolsetToolFullPath -Name $tool.name -Version $version -Arch $tool.arch
+            $foundVersionArchPath = Get-TCToolVersionPath -Name $tool.name -Version $version -Arch $tool.arch
             $envName = $toolEnvVars.variableTemplate -f $version.Split(".")
 
             [Environment]::SetEnvironmentVariable($envName, $foundVersionArchPath, "Machine")
         }
     }
 
-    if (-not ([string]::IsNullOrEmpty($tool.default)))
-    {
+    if (-not ([string]::IsNullOrEmpty($tool.default))) {
         Write-Host "Use $($tool.name) $($tool.default) as a system $($tool.name)..."
 
-        $toolVersionPath = Get-ToolsetToolFullPath -Name $tool.name -Version $tool.default -Arch $tool.arch
+        $toolVersionPath = Get-TCToolVersionPath -Name $tool.name -Version $tool.default -Arch $tool.arch
 
         Set-DefaultVariables -ToolVersionPath $toolVersionPath -EnvVars $toolEnvVars
     }

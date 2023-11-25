@@ -23,7 +23,7 @@ Use-ChecksumComparison $fileHash $externalHash
 #endregion
 
 Write-Host "Expand stack archive"
-Extract-7Zip -Path $StackArchivePath -DestinationPath $DestinationPath
+Expand-7ZipArchive -Path $StackArchivePath -DestinationPath $DestinationPath
 
 New-Item -Name "x64.complete" -Path $StackToolcachePath
 

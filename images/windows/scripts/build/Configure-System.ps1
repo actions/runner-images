@@ -20,7 +20,10 @@ Write-Host "Clean up various directories"
     "$env:SystemRoot\winsxs\manifestcache",
     "$env:SystemRoot\Temp",
     "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp",
-    "$env:TEMP"
+    "$env:TEMP",
+    "$env:AZURE_CONFIG_DIR\logs",
+    "$env:AZURE_CONFIG_DIR\commands",
+    "$env:AZURE_CONFIG_DIR\telemetry"
 ) | ForEach-Object {
     if (Test-Path $_) {
         Write-Host "Removing $_"
@@ -102,10 +105,10 @@ $servicesToDisable = @(
     'gupdate'
     'gupdatem'
     'StorSvc'
-)
-
-$servicesToDisable | Stop-SvcWithErrHandling
-$servicesToDisable | Set-SvcWithErrHandling -Arguments @{StartupType = "Disabled"}
+) | Get-Service -ErrorAction SilentlyContinue
+Stop-Service $servicesToDisable
+$servicesToDisable.WaitForStatus('Stopped', "00:01:00")
+$servicesToDisable | Set-Service -StartupType Disabled
 
 # Disable scheduled tasks
 $allTasksInTaskPath = @(

@@ -1,7 +1,7 @@
 #!/bin/bash -e
 ################################################################################
-##  File:  install-helpers.sh
-##  Desc:  Helper functions for installing tools
+##  File:  os.sh
+##  Desc:  Helper functions for OS releases
 ################################################################################
 
 function isUbuntu20

@@ -5,9 +5,9 @@
 
 $azureDevOpsCliConfigPath = 'C:\azureDevOpsCli'
 # Store azure-devops-cli cache outside of the provisioning user's profile
-[Environment]::SetEnvironmentVariable('AZURE_DEVOPS_EXT_CONFIG_DIR', $azureDevOpsCliConfigPath, [System.EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('AZ_DEVOPS_GLOBAL_CONFIG_DIR', $azureDevOpsCliConfigPath, [System.EnvironmentVariableTarget]::Machine)
 # make variable to be available in the current session
-${env:AZURE_DEVOPS_EXT_CONFIG_DIR} = $azureDevOpsCliConfigPath
+${env:AZ_DEVOPS_GLOBAL_CONFIG_DIR} = $azureDevOpsCliConfigPath
 
 $azureDevOpsCliCachePath = Join-Path $azureDevOpsCliConfigPath 'cache'
 $null = New-Item -ItemType 'Directory' -Path $azureDevOpsCliCachePath
