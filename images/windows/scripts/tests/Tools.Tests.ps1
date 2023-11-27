@@ -141,7 +141,7 @@ Describe "Sbt" {
 
 Describe "ServiceFabricSDK" {
     It "PowerShell Module" {
-        Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
+        Get-Module -Name ServiceFabric -SkipEditionCheck -ListAvailable | Should -Not -BeNullOrEmpty
     }
 
     It "ServiceFabricSDK version" {
