@@ -148,7 +148,7 @@ function Invoke-DownloadWithRetry {
         $Path = Join-Path -Path "${env:Temp}" -ChildPath $Name
     }
 
-    Write-Host "Downloading package from: $Url to path $Path."
+    Write-Host "Downloading package from $Url to $Path..."
 
     $interval = 30
     $downloadStartTime = Get-Date
@@ -161,7 +161,7 @@ function Invoke-DownloadWithRetry {
             break
         } catch {
             $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
-            Write-Warning "Package download failed in $attemptSeconds seconds. Retries left: $retries"
+            Write-Warning "Package download failed in $attemptSeconds seconds"
             Write-Warning $_.Exception.Message
         }
             
@@ -170,11 +170,10 @@ function Invoke-DownloadWithRetry {
             throw "Package download failed after $totalSeconds seconds"
         }
 
-        Write-Warning "Waiting $interval seconds before retrying..."
+        Write-Warning "Waiting $interval seconds before retrying (retries left: $retries)..."
         Start-Sleep -Seconds $interval
     }
 
-    $totalSeconds = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
     return $Path
 }
 
