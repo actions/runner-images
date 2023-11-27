@@ -1,9 +1,10 @@
 [CmdletBinding()]
 param()
 
-. $PSScriptRoot\PathHelpers.ps1
-. $PSScriptRoot\InstallHelpers.ps1
+. $PSScriptRoot\AndroidHelpers.ps1
 . $PSScriptRoot\ChocoHelpers.ps1
+. $PSScriptRoot\InstallHelpers.ps1
+. $PSScriptRoot\PathHelpers.ps1
 . $PSScriptRoot\VisualStudioHelpers.ps1
 
 Export-ModuleMember -Function @(
@@ -17,7 +18,7 @@ Export-ModuleMember -Function @(
     'Get-TCToolVersionPath'
     'Get-TCToolPath'
     'Invoke-DownloadWithRetry'
-    'Get-VsixExtenstionFromMarketplace'
+    'Get-VsixInfoFromMarketplace'
     'Install-VSIXFromFile'
     'Install-VSIXFromUrl'
     'Get-VSExtensionVersion'
@@ -25,7 +26,6 @@ Export-ModuleMember -Function @(
     'Test-IsWin22'
     'Test-IsWin19'
     'Install-ChocoPackage'
-    'Send-RequestToCocolateyPackages'
     'Resolve-ChocoPackageVersion'
     'Resolve-GithubReleaseAssetUrl'
     'Expand-7ZipArchive'

@@ -116,11 +116,6 @@ Function Install-VisualStudio {
     }
 }
 
-function Get-VsCatalogJsonPath {
-    $instanceFolder = Get-Item "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\*" | Select-Object -First 1
-    return Join-Path $instanceFolder.FullName "catalog.json"
-}
-
 function Get-VisualStudioInstance {
     # Use -Prerelease and -All flags to make sure that Preview versions of VS are found correctly
     $vsInstance = Get-VSSetupInstance -Prerelease -All | Where-Object { $_.DisplayName -match "Visual Studio" } | Select-Object -First 1
@@ -129,6 +124,145 @@ function Get-VisualStudioInstance {
 
 function Get-VisualStudioComponents {
     (Get-VisualStudioInstance).Packages | Where-Object type -in 'Component', 'Workload' |
-    Sort-Object Id, Version | Select-Object @{n = 'Package'; e = {$_.Id}}, Version |
-    Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
+        Sort-Object Id, Version | Select-Object @{n = 'Package'; e = { $_.Id } }, Version |
+        Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
+}
+
+function Get-VsixInfoFromMarketplace {
+    Param
+    (
+        [Parameter(Mandatory)]
+        [Alias("ExtensionMarketPlaceName")]
+        [string] $Name,
+        [string] $MarketplaceUri = "https://marketplace.visualstudio.com/items?itemName="
+    )
+
+    # Invoke-WebRequest doesn't support retry in PowerShell 5.1
+    $webResponse = Invoke-ScriptBlockWithRetry -RetryCount 20 -RetryIntervalSeconds 30 -Command {
+        Invoke-WebRequest -Uri "${MarketplaceUri}${ExtensionMarketPlaceName}" -UseBasicParsing
+    }
+
+    $webResponse -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
+    $extensionName = $Matches.extensionname
+
+    $webResponse -match 'VsixId":"(?<vsixid>[^"]*)' | Out-Null
+    $vsixId = $Matches.vsixid
+
+    $webResponse -match 'AssetUri":"(?<uri>[^"]*)' | Out-Null
+    $assetUri = $Matches.uri
+
+    $webResponse -match 'Microsoft\.VisualStudio\.Services\.Payload\.FileName":"(?<filename>[^"]*)' | Out-Null
+    $fileName = $Matches.filename
+
+    switch ($Name) {
+        # ProBITools.MicrosoftReportProjectsforVisualStudio2022 has different URL
+        # https://github.com/actions/runner-images/issues/5340
+        "ProBITools.MicrosoftReportProjectsforVisualStudio2022" {
+            $assetUri = "https://download.microsoft.com/download/b/b/5/bb57be7e-ae72-4fc0-b528-d0ec224997bd"
+            $fileName = "Microsoft.DataTools.ReportingServices.vsix"
+        }
+        "ProBITools.MicrosoftAnalysisServicesModelingProjects2022" {
+            $assetUri = "https://download.microsoft.com/download/c/8/9/c896a7f2-d0fd-45ac-90e6-ff61f67523cb"
+            $fileName = "Microsoft.DataTools.AnalysisServices.vsix"
+        }
+
+        # Starting from version 4.1 SqlServerIntegrationServicesProjects extension is distributed as exe file
+        "SSIS.SqlServerIntegrationServicesProjects" {
+            $fileName = "Microsoft.DataTools.IntegrationServices.exe"
+        }
+    }
+
+    $downloadUri = $assetUri + "/" + $fileName
+
+    return [PSCustomObject] @{
+        "ExtensionName" = $extensionName
+        "VsixId"        = $vsixId
+        "FileName"      = $fileName
+        "DownloadUri"   = $downloadUri
+    }
+}
+
+function Install-VSIXFromFile {
+    Param
+    (
+        [Parameter(Mandatory = $true)]
+        [string] $FilePath,
+        [int] $Retries = 20
+    )
+
+    Write-Host "Installing VSIX from $FilePath..."
+    while ($True) {
+        $installerPath = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\resources\app\ServiceHub\Services\Microsoft.VisualStudio.Setup.Service\VSIXInstaller.exe"
+        try {
+            $process = Start-Process `
+                -FilePath $installerPath `
+                -ArgumentList @('/quiet', "`"$FilePath`"") `
+                -Wait -PassThru
+        } catch {
+            Write-Host "Failed to start VSIXInstaller.exe with error:"
+            $_
+            exit 1
+        }
+
+        $exitCode = $process.ExitCode
+
+        if ($exitCode -eq 0) {
+            Write-Host "VSIX installed successfully."
+            break
+        } elseif ($exitCode -eq 1001) {
+            Write-Host "VSIX is already installed."
+            break
+        }
+
+        Write-Host "VSIX installation failed with exit code $exitCode."
+
+        $Retries--
+        if ($Retries -eq 0) {
+            Write-Host "VSIX installation failed after $Retries retries."
+            exit 1
+        }
+
+        Write-Host "Waiting 10 seconds before retrying. Retries left: $Retries"
+        Start-Sleep -Seconds 10
+    }
+}
+
+function Install-VSIXFromUrl {
+    Param
+    (
+        [Parameter(Mandatory = $true)]
+        [string] $Url,
+        [int] $Retries = 20
+    )
+
+    $filePath = Invoke-DownloadWithRetry $Url
+    Install-VSIXFromFile -FilePath $filePath -Retries $Retries
+    Remove-Item -Force -Confirm:$false $filePath
+}
+
+function Get-VSExtensionVersion {
+    Param
+    (
+        [Parameter(Mandatory = $true)]
+        [string] $packageName
+    )
+
+    $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
+    if ($instanceFolders -is [array]) {
+        Write-Host ($instanceFolders | Out-String)
+        Write-Host ($instanceFolders | Get-ChildItem | Out-String)
+        Write-Host "More than one instance installed"
+        exit 1
+    }
+
+    $stateContent = Get-Content -Path (Join-Path $instanceFolders.FullName '\state.packages.json')
+    $state = $stateContent | ConvertFrom-Json
+    $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
+
+    if (-not $packageVersion) {
+        Write-Host "Installed package $packageName for Visual Studio was not found"
+        exit 1
+    }
+
+    return $packageVersion
 }

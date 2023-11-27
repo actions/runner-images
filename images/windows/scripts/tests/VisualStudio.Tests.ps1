@@ -1,7 +1,8 @@
 Describe "Visual Studio" {
     Context "Basic" {
         It "Catalog.json" {
-            Get-VsCatalogJsonPath | Should -Exist
+            $instanceFolder = Get-Item "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances\*" | Select-Object -First 1
+            Join-Path $instanceFolder.FullName "catalog.json" | Should -Exist
         }
 
         It "Devenv.exe" {
