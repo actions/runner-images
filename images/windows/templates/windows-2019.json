@@ -213,7 +213,6 @@
         },
         {
             "type": "powershell",
-            "use_pwsh": true,
             "scripts": [
                 "{{ template_dir }}/../scripts/build/Install-ServiceFabricSDK.ps1"
             ],
