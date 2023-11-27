@@ -141,6 +141,8 @@ Describe "Sbt" {
 
 Describe "ServiceFabricSDK" {
     It "PowerShell Module" {
+        # Ignore PowerShell version check:
+        # https://github.com/microsoft/service-fabric/issues/1343
         Get-Module -Name ServiceFabric -SkipEditionCheck -ListAvailable | Should -Not -BeNullOrEmpty
     }
 
