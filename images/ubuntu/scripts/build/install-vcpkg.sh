@@ -4,9 +4,12 @@
 ##  Desc:  Install vcpkg
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
+
 # Set env variable for vcpkg
 VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
-echo "VCPKG_INSTALLATION_ROOT=${VCPKG_INSTALLATION_ROOT}" | tee -a /etc/environment
+setEtcEnvironmentVariable "VCPKG_INSTALLATION_ROOT" "${VCPKG_INSTALLATION_ROOT}"
 
 # Install vcpkg
 git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT

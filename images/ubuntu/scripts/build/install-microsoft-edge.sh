@@ -4,7 +4,9 @@
 ##  Desc:  Install Microsoft Edge and WebDriver
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 REPO_URL="https://packages.microsoft.com/repos/edge"
 gpg_key="/usr/share/keyrings/microsoft-edge.gpg"
@@ -44,6 +46,6 @@ unzip -qq /tmp/edgedriver_linux64.zip -d $EDGEDRIVER_DIR
 chmod +x $EDGEDRIVER_BIN
 ln -s $EDGEDRIVER_BIN /usr/bin
 
-echo "EDGEWEBDRIVER=$EDGEDRIVER_DIR" | tee -a /etc/environment
+setEtcEnvironmentVariable "EDGEWEBDRIVER" "${EDGEDRIVER_DIR}"
 
 invoke_tests "Browsers" "Edge"

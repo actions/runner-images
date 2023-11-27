@@ -16,13 +16,13 @@ createJavaEnvironmentalVariable() {
 
     if [[ ${DEFAULT} == "True" ]]; then
         echo "Setting up JAVA_HOME variable to ${INSTALL_PATH_PATTERN}"
-        addEtcEnvironmentVariable JAVA_HOME ${INSTALL_PATH_PATTERN}
+        setEtcEnvironmentVariable "JAVA_HOME" "${INSTALL_PATH_PATTERN}"
         echo "Setting up default symlink"
         update-java-alternatives -s ${INSTALL_PATH_PATTERN}
     fi
 
     echo "Setting up JAVA_HOME_${JAVA_VERSION}_X64 variable to ${INSTALL_PATH_PATTERN}"
-    addEtcEnvironmentVariable JAVA_HOME_${JAVA_VERSION}_X64 ${INSTALL_PATH_PATTERN}
+    setEtcEnvironmentVariable "JAVA_HOME_${JAVA_VERSION}_X64" "${INSTALL_PATH_PATTERN}"
 }
 
 enableRepositories() {
@@ -56,7 +56,7 @@ installOpenJDK() {
     # When version string is too short, add extra ".0" to make it valid semver
     [[ ${fullJavaVersion} =~ ^[0-9]+- ]] && fullJavaVersion=$(echo $fullJavaVersion | sed -E 's/-/.0-/')
     [[ ${fullJavaVersion} =~ ^[0-9]+\.[0-9]+- ]] && fullJavaVersion=$(echo $fullJavaVersion | sed -E 's/-/.0-/')
-    
+
     javaToolcacheVersionPath="${JAVA_TOOLCACHE_PATH}/${fullJavaVersion}"
     echo "Java ${JAVA_VERSION} Toolcache Version Path: ${javaToolcacheVersionPath}"
     mkdir -p "${javaToolcacheVersionPath}"
@@ -93,7 +93,7 @@ done
 
 # Install Ant
 apt-get install -y --no-install-recommends ant ant-optional
-echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
+setEtcEnvironmentVariable "ANT_HOME" "/usr/share/ant"
 
 # Install Maven
 mavenVersion=$(get_toolset_value '.java.maven')
@@ -113,7 +113,8 @@ echo "gradleVersion=${gradleLatestVersion}"
 download_with_retries ${gradleDownloadUrl} "/tmp" "gradleLatest.zip"
 unzip -qq -d /usr/share /tmp/gradleLatest.zip
 ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
-echo "GRADLE_HOME=$(find /usr/share -depth -maxdepth 1 -name "gradle*")" | tee -a /etc/environment
+gradle_home_dir=$(find /usr/share -depth -maxdepth 1 -name "gradle*")
+setEtcEnvironmentVariable "GRADLE_HOME" "${gradle_home_dir}"
 
 # Delete java repositories and keys
 rm -f /etc/apt/sources.list.d/adoptium.list

@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 function GetChromiumRevision {
     CHROME_REVISION=$1
@@ -36,7 +37,7 @@ CHROME_DEB_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_
 CHROME_DEB_NAME="google-chrome-stable_current_amd64.deb"
 download_with_retries $CHROME_DEB_URL "/tmp" "${CHROME_DEB_NAME}"
 apt install "/tmp/${CHROME_DEB_NAME}" -f
-echo "CHROME_BIN=/usr/bin/google-chrome" | tee -a /etc/environment
+setEtcEnvironmentVariable "CHROME_BIN" "/usr/bin/google-chrome"
 
 # Remove Google Chrome repo
 rm -f /etc/cron.daily/google-chrome /etc/apt/sources.list.d/google-chrome.list /etc/apt/sources.list.d/google-chrome.list.save
@@ -64,7 +65,7 @@ unzip -qq /tmp/$CHROMEDRIVER_ARCHIVE -d /usr/local/share
 
 chmod +x $CHROMEDRIVER_BIN
 ln -s "$CHROMEDRIVER_BIN" /usr/bin/
-echo "CHROMEWEBDRIVER=$CHROMEDRIVER_DIR" | tee -a /etc/environment
+setEtcEnvironmentVariable "CHROMEWEBDRIVER" "${CHROMEDRIVER_DIR}"
 
 # Download and unpack Chromium
 CHROME_REVISION=$(echo "${CHROME_VERSIONS_JSON}" | jq -r '.builds["'"$CHROME_VERSION"'"].revision')

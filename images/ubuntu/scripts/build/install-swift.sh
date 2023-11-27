@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 # Install
 image_label="$(lsb_release -rs)"
@@ -41,6 +42,6 @@ ln -s "$SWIFT_BIN_ROOT/swift" /usr/local/bin/swift
 ln -s "$SWIFT_BIN_ROOT/swiftc" /usr/local/bin/swiftc
 ln -s "$SWIFT_LIB_ROOT/libsourcekitdInProc.so" /usr/local/lib/libsourcekitdInProc.so
 
-echo "SWIFT_PATH=$SWIFT_BIN_ROOT" | tee -a /etc/environment
+setEtcEnvironmentVariable "SWIFT_PATH" "${SWIFT_BIN_ROOT}"
 
 invoke_tests "Common" "Swift"

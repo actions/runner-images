@@ -35,10 +35,10 @@ function get_full_ndk_version {
 ANDROID_ROOT=/usr/local/lib/android
 ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
 SDKMANAGER=${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager
-echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
+setEtcEnvironmentVariable "ANDROID_SDK_ROOT" "${ANDROID_SDK_ROOT}"
 
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
-echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
+setEtcEnvironmentVariable "ANDROID_HOME" "${ANDROID_SDK_ROOT}"
 
 # Create android sdk directory
 mkdir -p ${ANDROID_SDK_ROOT}
@@ -100,10 +100,10 @@ ndkDefaultFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
 ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
 ANDROID_NDK="$ANDROID_SDK_ROOT/ndk/$ndkDefaultFullVersion"
 # ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
-echo "ANDROID_NDK=${ANDROID_NDK}" | tee -a /etc/environment
-echo "ANDROID_NDK_HOME=${ANDROID_NDK}" | tee -a /etc/environment
-echo "ANDROID_NDK_ROOT=${ANDROID_NDK}" | tee -a /etc/environment
-echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
+setEtcEnvironmentVariable "ANDROID_NDK" "${ANDROID_NDK}"
+setEtcEnvironmentVariable "ANDROID_NDK_HOME" "${ANDROID_NDK}"
+setEtcEnvironmentVariable "ANDROID_NDK_ROOT" "${ANDROID_NDK}"
+setEtcEnvironmentVariable "ANDROID_NDK_LATEST_HOME" "${ANDROID_SDK_ROOT}/ndk/${ndkLatestFullVersion}"
 
 availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-[0-9]" | cut -d"|" -f 1))
 allBuildTools=($($SDKMANAGER --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
