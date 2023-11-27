@@ -61,7 +61,7 @@ $androidToolset = (Get-ToolsetContent).android
 # Newer version(s) require Java 11 by default
 # See https://github.com/actions/runner-images/issues/6960
 $cmdlineToolsUrl = $androidToolset.commandline_tools_url
-$cmdlineToolsArchPath = Start-DownloadWithRetry -Url $cmdlineToolsUrl -Name "cmdline-tools.zip"
+$cmdlineToolsArchPath = Invoke-DownloadWithRetry $cmdlineToolsUrl
 
 #region Supply chain security
 $localFileHash = (Get-FileHash -Path $cmdlineToolsArchPath -Algorithm SHA256).Hash

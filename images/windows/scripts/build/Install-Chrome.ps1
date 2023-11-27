@@ -72,7 +72,7 @@ Write-Host "Chrome WebDriver version to install is $($ChromeDriverVersion.versio
 $ChromeDriverZipDownloadUrl = ($ChromeDriverVersion.downloads.chromedriver | Where-Object platform -eq "win64").url
 
 Write-Host "Download Chrome WebDriver from $ChromeDriverZipDownloadUrl..."
-$ChromeDriverArchPath = Start-DownloadWithRetry -Url $ChromeDriverZipDownloadUrl
+$ChromeDriverArchPath = Invoke-DownloadWithRetry $ChromeDriverZipDownloadUrl
 
 Write-Host "Expand Chrome WebDriver archive (without using directory names)..."
 Expand-7ZipArchive -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath -ExtractMethod "e"

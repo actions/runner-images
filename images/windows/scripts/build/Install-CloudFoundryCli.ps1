@@ -4,10 +4,9 @@
 ################################################################################
 
 # Download the latest cf cli exe
-$CloudFoundryCliName = "cf-cli.zip"
 $CloudFoundryCliUrl = "https://packages.cloudfoundry.org/stable?release=windows64-exe&source=github"
 
-$CloudFoundryArchPath = Start-DownloadWithRetry -Url $CloudFoundryCliUrl -Name $CloudFoundryCliName
+$CloudFoundryArchPath = Invoke-DownloadWithRetry $CloudFoundryCliUrl
 
 # Create directory for cf cli
 $CloudFoundryCliPath = "C:\cf-cli"

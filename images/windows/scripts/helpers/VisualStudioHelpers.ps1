@@ -38,8 +38,7 @@ Function Install-VisualStudio {
     $productId = "Microsoft.VisualStudio.Product.${Edition}"
 
     Write-Host "Downloading Bootstrapper ..."
-    $BootstrapperName = [IO.Path]::GetFileName($BootstrapperUrl)
-    $bootstrapperFilePath = Start-DownloadWithRetry -Url $BootstrapperUrl -Name $BootstrapperName
+    $bootstrapperFilePath = Invoke-DownloadWithRetry $BootstrapperUrl
 
     # Verify that the bootstrapper is signed by Microsoft
     Test-FileSignature -FilePath $bootstrapperFilePath -ExpectedThumbprint $SignatureThumbprint
@@ -85,8 +84,7 @@ Function Install-VisualStudio {
 
             # Try to download tool to collect logs
             $collectExeUrl = "https://aka.ms/vscollect.exe"
-            $collectExeName = [IO.Path]::GetFileName($collectExeUrl)
-            $collectExePath = Start-DownloadWithRetry -Url $collectExeUrl -Name $collectExeName
+            $collectExePath = Invoke-DownloadWithRetry -Url $collectExeUrl
 
             # Collect installation logs using the collect.exe tool and check if it is successful
             & "$collectExePath"

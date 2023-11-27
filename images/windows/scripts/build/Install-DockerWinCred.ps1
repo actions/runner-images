@@ -19,7 +19,7 @@ function Get-DockerWincredHash {
 Write-Host "Install docker-wincred"
 $dockerCredLatestRelease = Invoke-RestMethod -Uri "https://api.github.com/repos/docker/docker-credential-helpers/releases/latest"
 $dockerCredDownloadUrl = $dockerCredLatestRelease.assets.browser_download_url -match "docker-credential-wincred-.+\.exe" | Select-Object -First 1
-Start-DownloadWithRetry -Url $dockerCredDownloadUrl -DownloadPath "C:\Windows\System32" -Name "docker-credential-wincred.exe"
+Invoke-DownloadWithRetry -Url $dockerCredDownloadUrl -Path "C:\Windows\System32\docker-credential-wincred.exe"
 
 #region Supply chain security
 $distributor_file_hash = Get-DockerWincredHash -Release $dockerCredLatestRelease.name

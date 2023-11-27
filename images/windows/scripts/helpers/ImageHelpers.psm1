@@ -25,7 +25,7 @@ Export-ModuleMember -Function @(
     'Get-ToolsetContent'
     'Get-TCToolVersionPath'
     'Get-TCToolPath'
-    'Start-DownloadWithRetry'
+    'Invoke-DownloadWithRetry'
     'Get-VsixExtenstionFromMarketplace'
     'Install-VSIXFromFile'
     'Install-VSIXFromUrl'

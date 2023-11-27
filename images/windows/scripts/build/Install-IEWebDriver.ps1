@@ -10,13 +10,8 @@ $ieDriverUrl = Resolve-GithubReleaseAssetUrl `
     -Asset "IEDriverServer_x64_*.zip"
 
 # Download IE selenium driver
-try {
-    Write-Host "Selenium IEDriverServer download and install..."
-    $driverZipFile = Start-DownloadWithRetry -Url $ieDriverUrl -Name "SeleniumWebDrivers.zip"
-} catch {
-    Write-Error "[!] Failed to download $ieDriverUrl"
-    exit 1
-}
+Write-Host "Selenium IEDriverServer download and install..."
+$driverZipFile = Invoke-DownloadWithRetry $ieDriverUrl
 
 $ieDriverPath = "C:\SeleniumWebDrivers\IEDriver"
 if (-not (Test-Path -Path $ieDriverPath)) {

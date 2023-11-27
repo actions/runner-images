@@ -16,22 +16,21 @@
 function Get-SDKVersionsToInstall (
     $DotnetVersion
 ) {
-    $releaseJson = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
-    $releasesJsonPath = Start-DownloadWithRetry -Url $releaseJson -Name "releases-${DotnetVersion}.json"
-    $currentReleases = Get-Content -Path $releasesJsonPath | ConvertFrom-Json
+    $metadataJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
+    $currentReleases = Invoke-RestMethod -Uri $metadataJsonUri -MaximumRetryCount 20 -RetryIntervalSec 30
     # filtering out the preview/rc releases
     $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') }
 
     $sdks = @()
-    ForEach ($release in $currentReleases)
-    {
+    ForEach ($release in $currentReleases) {
         $sdks += $release.'sdk'
         $sdks += $release.'sdks'
     }
 
-    return $sdks.version | Sort-Object { [Version] $_ } -Unique `
-                         | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } `
-                         | Foreach-Object { $_.Group[-1] }
+    return $sdks.version `
+        | Sort-Object { [Version] $_ } -Unique `
+        | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } `
+        | Foreach-Object { $_.Group[-1] }
 }
 
 function Invoke-Warmup (
@@ -55,23 +54,19 @@ function InstallSDKVersion (
     $SdkVersion,
     $dotnetVersion,
     $Warmup
-)
-{
-    if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion"))
-    {
+) {
+    if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion")) {
         Write-Host "Installing dotnet $sdkVersion"
         $ZipPath = [System.IO.Path]::combine([System.IO.Path]::GetTempPath(), [System.IO.Path]::GetRandomFileName())
         .\dotnet-install.ps1 -Version $sdkVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet') -ZipPath $ZipPath -KeepZip
 
         #region Supply chain security
-        $distributorFileHash = (Invoke-RestMethod -Uri "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$dotnetVersion/releases.json").releases.sdks.Where({$_.version -eq $SdkVersion}).files.Where({ $_.name -eq 'dotnet-sdk-win-x64.zip'}).hash
+        $distributorFileHash = (Invoke-RestMethod -Uri "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$dotnetVersion/releases.json").releases.sdks.Where({ $_.version -eq $SdkVersion }).files.Where({ $_.name -eq 'dotnet-sdk-win-x64.zip' }).hash
         $localFileHash = (Get-FileHash -Path $ZipPath -Algorithm 'SHA512').Hash
 
         Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $distributorFileHash
         #endregion
-    }
-    else
-    {
+    } else {
         Write-Host "Sdk version $sdkVersion already installed"
     }
 
@@ -80,8 +75,7 @@ function InstallSDKVersion (
     }
 }
 
-function InstallAllValidSdks()
-{
+function InstallAllValidSdks() {
     # Consider all channels except preview/eol channels.
     # Sort the channels in ascending order
     $dotnetToolset = (Get-ToolsetContent).dotnet
@@ -91,7 +85,7 @@ function InstallAllValidSdks()
     # Download installation script.
     $installationName = "dotnet-install.ps1"
     $installationUrl = "https://dot.net/v1/${installationName}"
-    Start-DownloadWithRetry -Url $installationUrl -Name $installationName -DownloadPath ".\"
+    Invoke-DownloadWithRetry -Url $installationUrl -Path ".\$installationName"
 
     ForEach ($dotnetVersion in $dotnetVersions)
     {

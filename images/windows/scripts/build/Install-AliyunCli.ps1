@@ -9,7 +9,7 @@ $repoUrl = "https://api.github.com/repos/aliyun/aliyun-cli/releases/latest"
 $installerFileName = "aliyun-cli-windows"
 $assets = (Invoke-RestMethod -Uri $repoUrl).assets
 $downloadUrl = ($assets.browser_download_url -ilike "*aliyun-cli-windows-*-amd64.zip*") | Select-Object -First 1
-$packagePath = Start-DownloadWithRetry -Url $downloadUrl -Name "$installerFileName.zip"
+$packagePath = Invoke-DownloadWithRetry $downloadUrl
 
 #region Supply chain security - Alibaba Cloud CLI
 $fileHash = (Get-FileHash -Path $packagePath -Algorithm SHA256).Hash

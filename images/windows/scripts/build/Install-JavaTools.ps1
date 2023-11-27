@@ -63,7 +63,7 @@ function Install-JavaJDK {
 
     # Download and extract java binaries to temporary folder
     $downloadUrl = $asset.binary.package.link
-    $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
+    $archivePath = Invoke-DownloadWithRetry $downloadUrl
 
     #region Supply chain security - JDK
     $fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
@@ -138,7 +138,7 @@ $uri = 'https://repo1.maven.org/maven2/net/sourceforge/cobertura/cobertura/2.1.1
 $sha256sum = '79479DDE416B082F38ECD1F2F7C6DEBD4D0C2249AF80FD046D1CE05D628F2EC6'
 $coberturaPath = "C:\cobertura-2.1.1"
 
-$archivePath = Start-DownloadWithRetry -Url $uri -Name "cobertura.zip"
+$archivePath = Invoke-DownloadWithRetry $uri
 $fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
 Use-ChecksumComparison $fileHash $sha256sum
 Expand-7ZipArchive -Path $archivePath -DestinationPath "C:\"

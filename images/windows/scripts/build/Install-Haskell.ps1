@@ -21,7 +21,7 @@ $ghcupDownloadURL = "https://downloads.haskell.org/~ghcup/x86_64-mingw64-ghcup.e
 
 New-Item -Path "$ghcupPrefix\ghcup" -ItemType 'directory' -ErrorAction SilentlyContinue | Out-Null
 New-Item -Path "$ghcupPrefix\ghcup\bin" -ItemType 'directory' -ErrorAction SilentlyContinue | Out-Null
-Start-DownloadWithRetry -Url $ghcupDownloadURL -Name "ghcup.exe" -DownloadPath "$ghcupPrefix\ghcup\bin"
+Invoke-DownloadWithRetry -Url $ghcupDownloadURL -Path "$ghcupPrefix\ghcup\bin\ghcup.exe"
 
 [System.Environment]::SetEnvironmentVariable("GHCUP_INSTALL_BASE_PREFIX", $ghcupPrefix, "Machine")
 [System.Environment]::SetEnvironmentVariable("GHCUP_MSYS2", $msysPath, "Machine")
