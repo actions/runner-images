@@ -49,13 +49,13 @@ function Test-DefaultVersion {
     $binaryName = [IO.Path]::GetFileNameWithoutExtension($ToolExecs[0].Binary)
     $testCase = @{ Binary = $binaryName; Arguments = $ToolExecs[0].Arguments; ExpectedVersion = $ExpectedVersion }
     It "<ExpectedVersion> is default version" -TestCases $testCase {
-        $commandResult = Get-CommandResult "$Binary $Arguments"
-        $commandResult.ExitCode | Should -Be 0
-        $commandResult.Output | Should -Match $ExpectedVersion
+        $outputLines = (& $env:comspec /c "$Binary $Arguments 2>&1") -as [string[]]
+        $LASTEXITCODE | Should -Be 0
+        $outputLines | Should -Match $ExpectedVersion
     }
 
     It "default version is located in tool-cache" -TestCases $testCase {
-        $binaryFullPath = Get-WhichTool $Binary
+        $binaryFullPath = (Get-Command $Binary).Path
         $toolcacheDirectory = Get-TCToolPath -ToolName $Name
         $binaryFullPath | Should -Match ([Regex]::Escape($toolcacheDirectory))
     }

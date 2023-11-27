@@ -28,7 +28,7 @@ Describe "MSYS2 packages" {
     }
 
     It "<ToolName> is avaialable" -TestCases $TestCases {
-        "$ToolName" | Should -ReturnZeroExitCodeWithParam
+        "$ToolName --version" | Should -ReturnZeroExitCode
     }
 
     AfterEach {
@@ -43,11 +43,11 @@ foreach ($mingwType in $mingwTypes) {
         $execDir = Join-Path "C:\msys64" $mingwType.exec_dir | Join-Path -ChildPath "bin"
         
         foreach ($tool in $tools) {
-            Context "$($tool.name) package"{
+            Context "$($tool.name) package" {
                 $executables = $tool.executables | ForEach-Object {
                     @{
                         ExecName = $_
-                        ExecDir = $execDir
+                        ExecDir  = $execDir
                     }
                 }
 
@@ -60,7 +60,7 @@ foreach ($mingwType in $mingwTypes) {
                 }
 
                 It "<ExecName> is available" -TestCases $executables {
-                    "$ExecName" | Should -ReturnZeroExitCodeWithParam
+                    "$ExecName --version" | Should -ReturnZeroExitCode
                 }
 
                 AfterEach {
