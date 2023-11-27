@@ -50,12 +50,10 @@ if (Test-IsWin19) {
       throw "Unknown architecture $_"
     }
 
-    $url = Get-GitHubPackageDownloadUrl `
-      -RepoOwner "niXman" `
-      -RepoName "mingw-builds-binaries" `
-      -BinaryName "" `
-      -Version $version `
-      -UrlFilter "*$arch-{Version}-release-$threads-$exceptions-$runtime-*.7z"
+    $url = Resolve-GithubReleaseAssetUrl `
+        -Repo "niXman/mingw-builds-binaries" `
+        -Version "$version" `
+        -Asset "$arch-*-release-$threads-$exceptions-$runtime-*.7z"
 
     $packagePath = Start-DownloadWithRetry -Url $url -Name "$_.7z"
     Expand-7ZipArchive -Path $packagePath -DestinationPath "C:\"

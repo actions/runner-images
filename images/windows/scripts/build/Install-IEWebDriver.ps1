@@ -4,13 +4,10 @@
 ################################################################################
 
 $seleniumMajorVersion = (Get-ToolsetContent).selenium.version
-$ieDriverUrl = Get-GitHubPackageDownloadUrl `
-    -RepoOwner "SeleniumHQ" `
-    -RepoName "selenium" `
-    -BinaryName "IEDriverServer_x64" `
-    -Version $seleniumMajorVersion `
-    -UrlFilter "*{BinaryName}_{Version}.zip" `
-    -LatestReleaseOnly $false
+$ieDriverUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "SeleniumHQ/selenium" `
+    -Version "$seleniumMajorVersion.*" `
+    -Asset "IEDriverServer_x64_*.zip"
 
 # Download IE selenium driver
 try {

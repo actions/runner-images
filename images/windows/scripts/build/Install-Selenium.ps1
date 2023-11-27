@@ -9,15 +9,12 @@ New-Item -ItemType directory -Path $seleniumDirectory
 
 # Download Selenium
 $seleniumMajorVersion = (Get-ToolsetContent).selenium.version
-$seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
-$seleniumFileName = "$seleniumBinaryName.jar"
+$seleniumFileName = "selenium-server.jar"
 
-$seleniumDownloadUrl = Get-GitHubPackageDownloadUrl `
-  -RepoOwner "SeleniumHQ" `
-  -RepoName "selenium" `
-  -BinaryName "$seleniumBinaryName" `
-  -Version $seleniumMajorVersion `
-  -UrlFilter "*{BinaryName}-{Version}.jar"
+$seleniumDownloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "SeleniumHQ/selenium" `
+    -Version "$seleniumMajorVersion.*" `
+    -Asset "selenium-server-*.jar"
 
 Start-DownloadWithRetry -Url $seleniumDownloadUrl -Name $seleniumFileName -DownloadPath $seleniumDirectory
 

@@ -392,8 +392,7 @@
         }
     ],
     "selenium": {
-        "version": "4",
-        "binary_name": "selenium-server"
+        "version": "4"
     },
     "npm": {
         "global_packages": [
@@ -488,8 +487,7 @@
         "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
-        "version": "latest",
-        "binary_name": "kotlin-compiler"
+        "version": "latest"
     },
     "openssl": {
         "version": "1.1.1"

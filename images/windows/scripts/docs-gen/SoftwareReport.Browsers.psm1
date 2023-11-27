@@ -63,7 +63,7 @@ function Get-SeleniumWebDriverVersion {
     $driverName = $webDrivers.$Driver.Name
     $driverPath = $webDrivers.$Driver.Path
     $versionFileName = "versioninfo.txt";
-	$webDriverVersion = Get-Content -Path "$driverPath\$versionFileName"
+    $webDriverVersion = Get-Content -Path "$driverPath\$versionFileName"
     return [ToolVersionNode]::new($driverName, $webDriverVersion)
 }
 
