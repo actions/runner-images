@@ -29,7 +29,7 @@ fi
 apt-get update
 apt-get -y install ${install_packages[@]}
 mkdir -p /etc/containers
-echo -e "[registries.search]\nregistries = ['docker.io', 'quay.io']" | tee /etc/containers/registries.conf
+printf "[registries.search]\nregistries = ['docker.io', 'quay.io']\n" | tee /etc/containers/registries.conf
 
 if isUbuntu20; then
     # Remove source repo
