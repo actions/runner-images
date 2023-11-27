@@ -68,7 +68,7 @@ function Get-SeleniumWebDriverVersion {
 }
 
 function Get-SeleniumVersion {
-    $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
+    $seleniumBinaryName = "selenium-server"
     $fullSeleniumVersion = (Get-ChildItem "C:\selenium\${seleniumBinaryName}-*").Name -replace "${seleniumBinaryName}-"
     return [ToolVersionNode]::new("Selenium server", $fullSeleniumVersion)
 }
