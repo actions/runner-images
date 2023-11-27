@@ -46,7 +46,7 @@ Export-ModuleMember -Function @(
     'Get-AndroidInstalledPackages'
     'Get-VisualStudioInstance'
     'Get-VisualStudioComponents'
-    'Get-WindowsUpdatesHistory'
+    'Get-WindowsUpdateStates'
     'New-ItemPath'
     'Use-ChecksumComparison'
     'Get-HashFromGitHubReleaseBody'
