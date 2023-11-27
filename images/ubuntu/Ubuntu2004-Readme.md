@@ -1,14 +1,14 @@
 | Announcements |
 |-|
 | [[all OSs] Nodejs 14.x will be removed from the images on November, 26](https://github.com/actions/runner-images/issues/8779) |
-| [[Ubuntu] Ubuntu:16.04 & Ubuntu:18.04 docker images will be removed from runners on November, 19](https://github.com/actions/runner-images/issues/8776) |
+| [[Ubuntu] Ubuntu:16.04 & Ubuntu:18.04 docker images will be removed from runners on November, 26](https://github.com/actions/runner-images/issues/8776) |
 | [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
 | [[All OS] Android NDK r23 will be removed from images on November 13](https://github.com/actions/runner-images/issues/8383) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1051-azure
-- Image Version: 20231115.8.0
+- Image Version: 20231126.1.0
 - Systemd version: 245.4-4ubuntu3.22
 
 ## Installed Software
@@ -24,7 +24,7 @@
 - GNU C++: 9.4.0, 10.5.0
 - GNU Fortran: 9.4.0, 10.5.0
 - Julia 1.9.4
-- Kotlin 1.9.255-SNAPSHOT
+- Kotlin 1.9.21-release-633
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.18.2
@@ -36,15 +36,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.13.1
-- Homebrew 4.1.20
-- Miniconda 23.9.0
+- Homebrew 4.1.21
+- Miniconda 23.10.0
 - Npm 9.8.1
 - NuGet 6.6.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.2.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 2b14b606c)
+- Vcpkg (build from commit cd5e746ec)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -64,7 +64,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.7
 - Gradle 8.4
-- Lerna 7.4.2
+- Lerna 8.0.0
 - Maven 3.8.8
 - Sbt 1.9.7
 
@@ -73,19 +73,19 @@ to accomplish this.
 - apt-fast 1.9.12
 - AzCopy 10.21.2 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.4.0
-- Bazelisk 1.18.0
+- Bazelisk 1.19.0
 - Bicep 0.23.1
 - Buildah 1.22.3
 - CMake 3.27.8
-- CodeQL Action Bundle 2.15.2
+- CodeQL Action Bundle 2.15.3
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.23.0
+- Docker Compose v2 2.23.3
 - Docker-Buildx 0.11.2
 - Docker Client 24.0.7
 - Docker Server 24.0.7
 - Fastlane 2.217.0
-- Git 2.42.0
+- Git 2.43.0
 - Git LFS 3.4.0
 - Git-ftp 1.6.0
 - Haveged 1.9.1
@@ -107,29 +107,29 @@ to accomplish this.
 - Parcel 2.10.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.94.0
+- Pulumi 3.94.2
 - R 4.3.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
 - Terraform 1.6.4
 - yamllint 1.33.0
-- yq 4.35.2
+- yq 4.40.3
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.13.36
+- AWS CLI 2.13.38
 - AWS CLI Session Manager Plugin 1.2.497.0
-- AWS SAM CLI 1.102.0
+- AWS SAM CLI 1.103.0
 - Azure CLI 2.54.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.39.1
 - Google Cloud CLI 455.0.0
-- Netlify CLI 17.3.2
-- OpenShift CLI 4.14.2
+- Netlify CLI 17.7.0
+- OpenShift CLI 4.14.3
 - ORAS CLI 1.1.0
-- Vercel CLI 32.5.4
+- Vercel CLI 32.5.6
 
 ### Java
 | Version             | Environment Variable |
@@ -140,7 +140,7 @@ to accomplish this.
 | 21.0.1+12           | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.25, 8.2.12
+- PHP: 7.4.33, 8.0.30, 8.1.26, 8.2.13
 - Composer 2.6.5
 - PHPUnit 8.5.34
 ```
@@ -154,15 +154,15 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.13.1
 
 ### Rust Tools
-- Cargo 1.73.0
-- Rust 1.73.0
-- Rustdoc 1.73.0
+- Cargo 1.74.0
+- Rust 1.74.0
+- Rustdoc 1.74.0
 - Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.69.1
 - Cargo audit 0.18.3
-- Cargo clippy 0.1.73
+- Cargo clippy 0.1.74
 - Cargo outdated 0.14.0
 - Cbindgen 0.26.0
 - Rustfmt 1.6.0
@@ -171,8 +171,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 119.0.6045.159
 - ChromeDriver 119.0.6045.105
 - Chromium 119.0.6045.0
-- Microsoft Edge 119.0.2151.58
-- Microsoft Edge WebDriver 119.0.2151.58
+- Microsoft Edge 119.0.2151.72
+- Microsoft Edge WebDriver 119.0.2151.72
 - Selenium server 4.15.0
 - Mozilla Firefox 120.0
 - Geckodriver 0.33.0
@@ -222,10 +222,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.21.4
 
 #### Node.js
-- 14.21.3
 - 16.20.2
 - 18.18.2
-- 20.9.0
+- 20.10.0
 
 #### Python
 - 3.7.17
@@ -251,13 +250,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.1.4
 
 ### PowerShell Tools
-- PowerShell 7.2.16
+- PowerShell 7.2.17
 
 #### PowerShell Modules
 - Az: 9.3.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.9.0
+- Microsoft.Graph: 2.10.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -299,23 +298,19 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.16             | sha256:a8cbb8c69ee71561f4b69c066bad07f7e510caaa523da26fbfc606b10bd7934b  | 2023-08-07 |
 | alpine:3.17             | sha256:f71a5f071694a785e064f05fed657bf8277f1b2113a8ed70c90ad486d6ee54dc  | 2023-08-07 |
 | alpine:3.18             | sha256:eece025e432126ce23f223450a0326fbebde39cdf496a85d8c016293fc851978  | 2023-09-28 |
-| buildpack-deps:bullseye | sha256:91d0d87bdeb73250aa8b9bc1739ab59e0df4e365dd7e459d1d453d46befd93c3  | 2023-11-01 |
-| buildpack-deps:buster   | sha256:994c0590e60c01834f0b716a12087fa53cdc8751260c9924a698e38e9548e12a  | 2023-11-01 |
+| buildpack-deps:bullseye | sha256:257cbe4fba66709d5a536dd5ac13b22411d469eaf61f421f5c2b871f2290e25c  | 2023-11-21 |
+| buildpack-deps:buster   | sha256:77c7243f791521c7bf816e786ef46956eabb0c8e73c8479141ba5e92c05497a7  | 2023-11-21 |
 | buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
-| debian:10               | sha256:53cf4f4dbe6f827072bde99045671754cca8174d0464d829c194a26e7ba2c134  | 2023-11-01 |
-| debian:11               | sha256:a4aa0519fbd45786048bbc4daa7092fec803d22463f1cb6c4e7762dcb6a10cf0  | 2023-11-01 |
+| debian:10               | sha256:46ca02d33c65ab188d6e56f26c323bf1aa9a99074f2f54176fdc3884304f58b8  | 2023-11-21 |
+| debian:11               | sha256:ab2b95aa8d7d6d54866b92c322cf0693933c1ae8038652f24ddfda1d1763a45a  | 2023-11-21 |
 | debian:9                | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest    | sha256:d4187a7326f20d04fafd075f80ccc5d3f8cfd4f665c6e03d158a78e4f64bf3db  | 2023-10-19 |
-| node:14                 | sha256:a158d3b9b4e3fa813fa6c8c590b8f0a860e015ad4e59bbce5744d2f6fd8461aa  | 2023-04-12 |
-| node:14-alpine          | sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33  | 2023-03-29 |
 | node:16                 | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine          | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18                 | sha256:7ce8b205d15e30fd395e5fa4000bcdf595fcff3f434fe75822e54e82a5f5cf82  | 2023-11-01 |
-| node:18-alpine          | sha256:435dcad253bb5b7f347ebc69c8cc52de7c912eb7241098b920f2fc2d7843183d  | 2023-10-18 |
-| node:20                 | sha256:5f21943fe97b24ae1740da6d7b9c56ac43fe3495acb47c1b232b0a352b02a25c  | 2023-11-01 |
-| node:20-alpine          | sha256:8e015de364a2eb2ed7c52a558e9f716dcb615560ffd132234087c10ccc1f2c63  | 2023-10-25 |
-| ubuntu:16.04            | sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6  | 2021-08-31 |
-| ubuntu:18.04            | sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98  | 2023-05-30 |
+| node:18                 | sha256:a17842484dd30af97540e5416c9a62943c709583977ba41481d601ecffb7f31b  | 2023-11-22 |
+| node:18-alpine          | sha256:3428c2de886bf4378657da6fe86e105573a609c94df1f7d6a70e57d2b51de21f  | 2023-11-16 |
+| node:20                 | sha256:445acd9b2ef7e9de665424053bf95652e0b8995ef36500557d48faf29300170a  | 2023-11-23 |
+| node:20-alpine          | sha256:b1789b7be6aa16afd642eaaaccdeeeb33bd8f08e69b3d27d931aa9665b731f01  | 2023-11-23 |
 | ubuntu:20.04            | sha256:ed4a42283d9943135ed87d4ee34e542f7f5ad9ecf2f244870e23122f703f91c2  | 2023-10-03 |
 
 ### Installed apt packages
@@ -337,6 +332,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | dpkg-dev               | 1.19.7ubuntu3.2                   |
 | fakeroot               | 1.24-1                            |
 | file                   | 1:5.38-4                          |
+| findutils              | 4.7.0-1ubuntu1                    |
 | flex                   | 2.6.4-6.2                         |
 | fonts-noto-color-emoji | 0\~20200916-1\~ubuntu20.04.1      |
 | ftp                    | 0.17-34.1                         |
