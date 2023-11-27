@@ -138,7 +138,7 @@ function Invoke-DownloadWithRetry {
         [Parameter(Mandatory)]
         [string] $Url,
         [Alias("Destination")]
-        [string] $Path = "${env:Temp}"
+        [string] $Path
     )
 
     if (-not $Path) {
