@@ -20,7 +20,7 @@ Start-DownloadWithRetry -Url $seleniumDownloadUrl -Name $seleniumFileName -Downl
 
 # Create an empty file to retrive Selenium version
 $seleniumFullVersion = $seleniumDownloadUrl.Split("-")[1].Split("/")[0]
-New-Item -Path $seleniumDirectory -Name "$seleniumBinaryName-$seleniumFullVersion"
+New-Item -Path $seleniumDirectory -Name "selenium-server-$seleniumFullVersion"
 
 # Add SELENIUM_JAR_PATH environment variable
 $seleniumBinPath = Join-Path $seleniumDirectory $seleniumFileName
