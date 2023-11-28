@@ -6,10 +6,12 @@
 
 # Install Kotlin
 $kotlinVersion = (Get-ToolsetContent).kotlin.version
-$kotlinBinaryName = (Get-ToolsetContent).kotlin.binary_name
 
-$kotlinDownloadUrl = Get-GitHubPackageDownloadUrl -RepoOwner "JetBrains" -RepoName "kotlin" -BinaryName $kotlinBinaryName -Version $kotlinVersion -UrlFilter "*{BinaryName}-{Version}.zip"
-$kotlinInstallerPath = Start-DownloadWithRetry -Url $kotlinDownloadUrl -Name "$kotlinBinaryName.zip"
+$kotlinDownloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "JetBrains/kotlin" `
+    -Version $kotlinVersion `
+    -Asset "kotlin-compiler-*.zip"
+$kotlinInstallerPath = Start-DownloadWithRetry -Url $kotlinDownloadUrl -Name "kotlin-compiler.zip"
 
 #region Supply chain security
 $fileHash = (Get-FileHash -Path $kotlinInstallerPath -Algorithm SHA256).Hash

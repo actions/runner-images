@@ -146,8 +146,7 @@ Describe "Internet Explorer" {
 
 Describe "Selenium" {
     BeforeAll {
-        $seleniumBinaryName = (Get-ToolsetContent).selenium.binary_name
-        $seleniumBinPath = Join-Path "C:\selenium\" "$seleniumBinaryName.jar"
+        $seleniumBinPath = "C:\selenium\selenium-server.jar"
     }
 
     It "Selenium server is installed" {

@@ -36,7 +36,7 @@ Export-ModuleMember -Function @(
     'Install-ChocoPackage'
     'Send-RequestToCocolateyPackages'
     'Resolve-ChocoPackageVersion'
-    'Get-GitHubPackageDownloadUrl'
+    'Resolve-GithubReleaseAssetUrl'
     'Expand-7ZipArchive'
     'Invoke-SBWithRetry'
     'Get-VsCatalogJsonPath'

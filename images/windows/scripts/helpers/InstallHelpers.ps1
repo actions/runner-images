@@ -685,55 +685,88 @@ function Invoke-SBWithRetry {
     }
 }
 
-function Get-GitHubPackageDownloadUrl {
+function Resolve-GithubReleaseAssetUrl {
     param (
-        [string]$RepoOwner,
-        [string]$RepoName,
-        [string]$BinaryName,
-        [string]$Version,
-        [string]$UrlFilter,
-        [boolean]$IsPrerelease = $false,
-        [boolean]$LatestReleaseOnly = $true,
-        [int]$SearchInCount = 100
+        [Parameter(Mandatory = $true)]
+        [Alias("Repo")]
+        [string] $Repository,
+        [Parameter(Mandatory = $true)]
+        [Alias("Pattern", "File", "Asset")]
+        [string] $UrlMatchPattern,
+        [switch] $AllowPrerelease,
+        [string] $Version = "*"
     )
 
+    # Add wildcard to the beginning of the pattern if it's not there
+    if ($UrlMatchPattern.Substring(0, 2) -ne "*/") {
+        $UrlMatchPattern = "*/$UrlMatchPattern"
+    }
+
+    $releases = @()
+    $page = 1
+    $pageSize = 100
+    do {
+        $releasesPage = Invoke-RestMethod -Uri "https://api.github.com/repos/${Repository}/releases?per_page=${pageSize}&page=${page}"
+        $releases += $releasesPage
+        $page++
+    } while ($releasesPage.Count -eq $pageSize)
+    Write-Debug "Found $($releases.Count) releases for ${Repository}"
+
+    if (-not $releases) {
+        throw "Failed to get releases from ${Repository}"
+    }
+
+    $releases = $releases.Where{ $_.assets }
+    if (-not $AllowPrerelease) {
+        $releases = $releases.Where{ $_.prerelease -eq $false }
+    }
+    Write-Debug "Found $($releases.Count) releases with assets for ${Repository}"
+
+    # Parse version from tag name and put it to parameter Version
+    foreach ($release in $releases) {
+        $release | Add-Member -MemberType NoteProperty -Name version -Value (
+            $release.tag_name | Select-String -Pattern "\d+.\d+.\d+" | ForEach-Object { $_.Matches.Value }
+        )
+    }
+
+    # Sort releases by version
+    $releases = $releases | Sort-Object -Descending { [version]$_.version }
+
+    # Select releases matching version
     if ($Version -eq "latest") {
-        $Version = "*"
-    }
-
-    $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
-    $tags = $json.Where{ $_.prerelease -eq $IsPrerelease -and $_.assets }.tag_name
-    $availableVersions = $tags |
-        Select-String -Pattern "\d+.\d+.\d+" |
-        ForEach-Object { $_.Matches.Value } |
-        Where-Object { $_ -like "$Version.*" -or $_ -eq $Version } |
-        Sort-Object -Descending { [version]$_ }
-
-    if (-not $availableVersions) {
-        throw "Failed to get available versions from ${RepoOwner}/${RepoName} releases"
-    }
-
-    if ($LatestReleaseOnly) {
-        $latestVersion = $availableVersions | Select-Object -First 1
-        $urlFilterReplaced = $UrlFilter -replace "{BinaryName}", $BinaryName -replace "{Version}", $latestVersion
-        $downloadUrl = $json.assets.browser_download_url -like $urlFilterReplaced
+        $matchingReleases = $releases | Select-Object -First 1
+    } elseif ($Version.Contains("*")) {
+        $matchingReleases = $releases | Where-Object { $_.version -like "$Version" }
     } else {
-        foreach ($version in $availableVersions) {
-            $urlFilterReplaced = $UrlFilter -replace "{BinaryName}", $BinaryName -replace "{Version}", $version
-            $downloadUrl = $json.assets.browser_download_url -like $urlFilterReplaced
+        $matchingReleases = $releases | Where-Object { $_.version -eq "$Version" }
+    }
 
-            if ($downloadUrl) {
-                Write-Host "Found download url for ${RepoOwner}/${RepoName} ${BinaryName} ${version}"
-                break
-            }
+    if (-not $matchingReleases) {
+        throw "Failed to get releases from ${Repository} matching version `"${Version}`".`nAvailable versions: $($availableVersions -join ", ")"
+    }
+    Write-Debug "Found $($matchingReleases.Count) releases matching version ${Version} for ${Repository}"
+
+    # Loop over releases until we find a download url matching the pattern
+    foreach ($release in $matchingReleases) {
+        $matchedVersion = $release.version
+        $matchedUrl = $release.assets.browser_download_url -like $UrlMatchPattern
+        if ($matchedUrl) {
+            break
         }
     }
 
-    if (-not $downloadUrl) {
-        throw "Failed to get download url for ${RepoOwner}/${RepoName} ${BinaryName}"
+    if (-not $matchedUrl) {
+        Write-Debug "Found no download urls matching pattern ${UrlMatchPattern}"
+        Write-Debug "Available download urls:`n$($matchingReleases.assets.browser_download_url -join "`n")"
+        throw "No assets found in ${Repository} matching version `"${Version}`" and pattern `"${UrlMatchPattern}`""
+    } elseif ($matchedUrl.Count -gt 1) {
+        Write-Debug "Found multiple download urls matching pattern ${UrlMatchPattern}:`n$($matchedUrl -join "`n")"
+        throw "Multiple download urls found in ${Repository} version `"${matchedVersion}`" matching pattern `"${UrlMatchPattern}`":`n$($matchedUrl -join "`n")"
     }
 
-    return $downloadUrl
+    Write-Host "Found download url for ${Repository} version ${matchedVersion}: ${matchedUrl}"
+
+    return ($matchedUrl -as [string])
 }
 
 function Use-ChecksumComparison {
