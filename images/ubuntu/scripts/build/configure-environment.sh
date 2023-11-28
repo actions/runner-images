@@ -17,7 +17,7 @@ setEtcEnvironmentVariable "ACCEPT_EULA" "Y"
 
 # This directory is supposed to be created in $HOME and owned by user(https://github.com/actions/runner-images/issues/491)
 mkdir -p /etc/skel/.config/configstore
-setEtcEnvironmentVariable "ImaXDG_CONFIG_HOME" '$HOME/.config'
+setEtcEnvironmentVariable "XDG_CONFIG_HOME" '$HOME/.config'
 
 # Change waagent entries to use /mnt for swapfile
 sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
