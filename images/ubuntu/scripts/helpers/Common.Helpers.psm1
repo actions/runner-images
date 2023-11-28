@@ -1,8 +1,33 @@
 function Get-CommandResult {
+    <#
+    .SYNOPSIS
+        Runs a command in bash and returns the output and exit code.
+
+    .DESCRIPTION
+        Function runs a provided command in bash and returns the output and exit code as hashtable.
+
+    .PARAMETER Command
+        The command to run.
+
+    .PARAMETER ExpectedExitCode
+        The expected exit code. If the actual exit code does not match, an exception is thrown.
+
+    .PARAMETER Multiline
+        If true, the output is returned as an array of strings. Otherwise, the output is returned as a single string.
+
+    .PARAMETER ValidateExitCode
+        If true, the actual exit code is compared to the expected exit code.
+
+    .EXAMPLE
+        $result = Get-CommandResult "ls -la"
+
+        This command runs "ls -la" in bash and returns the output and exit code as hashtable.
+
+    #>
     param (
         [Parameter(Mandatory=$true)]
         [string] $Command,
-        [int[]] $ExpectExitCode = 0,
+        [int[]] $ExpectedExitCode = 0,
         [switch] $Multiline,
         [bool] $ValidateExitCode = $true
     )
@@ -12,7 +37,7 @@ function Get-CommandResult {
     $exitCode = $LASTEXITCODE
 
     if ($ValidateExitCode) {
-        if ($ExpectExitCode -notcontains $exitCode) {
+        if ($ExpectedExitCode -notcontains $exitCode) {
             try {
                 throw "StdOut: '$stdout' ExitCode: '$exitCode'"
             } catch {
@@ -24,22 +49,9 @@ function Get-CommandResult {
     }
 
     return @{
-        Output = If ($Multiline -eq $true) { $stdout } else { [string]$stdout }
+        Output = If ($Multiline -eq $true) { $stdout } else { [string] $stdout }
         ExitCode = $exitCode
     }
-}
-
-function Get-OSVersionShort {
-    $(Get-OSVersionFull) | Take-OutputPart -Delimiter '.' -Part 0,1
-}
-
-function Get-OSVersionFull {
-    lsb_release -ds | Take-OutputPart -Part 1, 2
-}
-
-function Get-KernelVersion {
-    $kernelVersion = uname -r
-    return $kernelVersion
 }
 
 function Test-IsUbuntu20 {
@@ -56,6 +68,23 @@ function Get-ToolsetContent {
 }
 
 function Get-ToolsetValue {
+    <#
+    .SYNOPSIS
+        This function retrieves the value of a specific toolset.
+
+    .DESCRIPTION
+        The Get-ToolsetValue is used to retrieve the value of a specific toolset.
+        The toolset is a collection of tools or settings in json format.
+
+    .PARAMETER KeyPath
+        The path to the toolset value in json notation.
+
+    .EXAMPLE
+        Get-ToolsetValue -Toolset "tool.arch.versions"
+
+        This command returns the value of the nodes named "tool", "arch" and "versions" as PSCustomObject.
+
+    #>
     param (
         [Parameter(Mandatory = $true)]
         [string] $KeyPath
@@ -64,30 +93,9 @@ function Get-ToolsetValue {
     $jsonNode = Get-ToolsetContent
 
     $pathParts = $KeyPath.Split(".")
-    # try to walk through all arguments consequentially to resolve specific json node
+    # walk through all arguments consequentially to resolve specific json node
     $pathParts | ForEach-Object {
         $jsonNode = $jsonNode.$_
     }
     return $jsonNode
-}
-
-function Get-AndroidPackages {
-    $packagesListFile = "/usr/local/lib/android/sdk/packages-list.txt"
-
-    if (-Not (Test-Path -Path $packagesListFile -PathType Leaf)) {
-        (/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --list --verbose 2>&1) |
-        Where-Object { $_ -Match "^[^\s]" } |
-        Where-Object { $_ -NotMatch "^(Loading |Info: Parsing |---|\[=+|Installed |Available )" } |
-        Where-Object { $_ -NotMatch "^[^;]*$" } |
-        Out-File -FilePath $packagesListFile
-
-        Write-Host Android packages list:
-        Get-Content $packagesListFile
-    }
-
-    return Get-Content $packagesListFile
-}
-
-function Get-EnvironmentVariable($variable) {
-    return [System.Environment]::GetEnvironmentVariable($variable)
 }

@@ -1,4 +1,81 @@
 Describe "Android" {
+    BeforeAll {
+        function Test-AndroidPackage {
+            <#
+            .SYNOPSIS
+                This function tests existance of an Android package.
+
+            .DESCRIPTION
+                The Test-AndroidPackage function is used to test an existance of Android package in ANDROID_HOME path.
+
+            .PARAMETER PackageName
+                The name of the Android package to test.
+
+            .EXAMPLE
+                Test-AndroidPackage
+
+                This command tests the Android package.
+
+            #>
+            param (
+                [Parameter(Mandatory=$true)]
+                [string] $PackageName
+            )
+
+            # Convert 'cmake;3.6.4111459' -> 'cmake/3.6.4111459'
+            $PackageName = $PackageName.Replace(";", "/")
+            $targetPath = Join-Path $env:ANDROID_HOME $PackageName
+            $targetPath | Should -Exist
+        }
+
+        function Get-AndroidPackages {
+            <#
+            .SYNOPSIS
+                This function returns a list of available Android packages.
+
+            .DESCRIPTION
+                The Get-AndroidPackages function checks if a list of packages is already available in a file.
+                If not, it uses the sdkmanager to generate a list of available packages and saves it to a file.
+                It then returns the content of this file.
+
+            .PARAMETER SDKRootPath
+                The root path of the Android SDK installation.
+                If not specified, the function uses the ANDROID_HOME environment variable.
+
+            .EXAMPLE
+                Get-AndroidPackages -SDKRootPath "/usr/local/lib/android/sdk"
+
+                This command returns a list of available Android packages for the specified SDK root path.
+
+            .NOTES
+                This function requires the Android SDK to be installed.
+            #>
+            param (
+                [Parameter(Mandatory=$false)]
+                [string] $SDKRootPath
+            )
+
+            if (-not $SDKRootPath) {
+                $SDKRootPath = $env:ANDROID_HOME
+            }
+
+            $packagesListFile = "$SDKRootPath/packages-list.txt"
+
+            if (-not (Test-Path -Path $packagesListFile -PathType Leaf)) {
+                (/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --list --verbose 2>&1) |
+                    Where-Object { $_ -Match "^[^\s]" } |
+                    Where-Object { $_ -NotMatch "^(Loading |Info: Parsing |---|\[=+|Installed |Available )" } |
+                    Where-Object { $_ -NotMatch "^[^;]*$" } |
+                    Out-File -FilePath $packagesListFile
+
+                Write-Host "Android packages list:"
+                Get-Content $packagesListFile
+            }
+
+            return Get-Content $packagesListFile
+        }
+    }
+
     $androidSdkManagerPackages = Get-AndroidPackages
     [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
     [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
@@ -23,22 +100,6 @@ Describe "Android" {
 
     $androidPackages = $androidPackages | ForEach-Object { $_ }
 
-    BeforeAll {
-        function Validate-AndroidPackage {
-            param (
-                [Parameter(Mandatory=$true)]
-                [string]$PackageName
-            )
-
-            # Convert 'm2repository;com;android;support;constraint;constraint-layout-solver;1.0.0-beta1' ->
-            #         'm2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-beta1'
-            #         'cmake;3.6.4111459' -> 'cmake/3.6.4111459'
-            $PackageName = $PackageName.Replace(";", "/")
-            $targetPath = Join-Path $env:ANDROID_HOME $PackageName
-            $targetPath | Should -Exist
-        }
-    }
-
     Context "SDKManagers" {
         $testCases = @(
             @{
@@ -61,7 +122,7 @@ Describe "Android" {
 
         It "<PackageName>" -TestCases $testCases {
             param ([string] $PackageName)
-            Validate-AndroidPackage $PackageName
+            Test-AndroidPackage $PackageName
         }
     }
 }
