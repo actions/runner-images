@@ -1,4 +1,4 @@
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1"
+Import-Module "$PSScriptRoot/Helpers.psm1"
 
 $toolsets = Get-ChildItem -Path $PSScriptRoot -Filter "toolset-*.json"
 
