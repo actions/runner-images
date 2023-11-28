@@ -60,7 +60,7 @@ IsPackageInstalled() {
 }
 
 verlte() {
-    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
+    sortedVersion=$(printf "$1\n$2\n" | sort -V | head -n1)
     [  "$1" = "$sortedVersion" ]
 }
 
