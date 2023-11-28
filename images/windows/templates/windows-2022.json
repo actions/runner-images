@@ -218,7 +218,6 @@
         },
         {
             "type": "powershell",
-            "use_pwsh": true,
             "scripts": [
                 "{{ template_dir }}/../scripts/build/Install-ActionsCache.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Ruby.ps1",

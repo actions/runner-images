@@ -17,7 +17,7 @@ function Get-SDKVersionsToInstall (
     $DotnetVersion
 ) {
     $metadataJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
-    $currentReleases = Invoke-RestMethod -Uri $metadataJsonUri -MaximumRetryCount 20 -RetryIntervalSec 30
+    $currentReleases = Invoke-DownloadWithRetry $metadataJsonUri | Get-Item | Get-Content | ConvertFrom-Json
     # filtering out the preview/rc releases
     $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') }
 
