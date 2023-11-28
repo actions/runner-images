@@ -4,11 +4,14 @@
 ##  Desc:  Install Nvm
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
+
 export NVM_DIR="/etc/skel/.nvm"
 mkdir $NVM_DIR
 VERSION=$(curl -fsSL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
 curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/$VERSION/install.sh | bash
-echo 'NVM_DIR=$HOME/.nvm' | tee -a /etc/environment
+setEtcEnvironmentVariable "NVM_DIR" '$HOME/.nvm'
 echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm' | tee -a /etc/skel/.bash_profile
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 

@@ -5,10 +5,9 @@
 ################################################################################
 
 # Source the helpers for use with the script
-# shellcheck source=../helpers/install.sh
 source "$HELPER_SCRIPTS/install.sh"
-# shellcheck source=../helpers/os.sh
 source "$HELPER_SCRIPTS/os.sh"
+source $HELPER_SCRIPTS/etc-environment.sh
 
 # Mozillateam PPA is added manually because sometimes
 # lanuchad portal sends empty answer when trying to add it automatically
@@ -45,6 +44,6 @@ tar -xzf /tmp/geckodriver.tar.gz -C $GECKODRIVER_DIR
 
 chmod +x $GECKODRIVER_BIN
 ln -s "$GECKODRIVER_BIN" /usr/bin/
-echo "GECKOWEBDRIVER=$GECKODRIVER_DIR" | tee -a /etc/environment
+setEtcEnvironmentVariable "GECKOWEBDRIVER" "${GECKODRIVER_DIR}"
 
 invoke_tests "Browsers" "Firefox"

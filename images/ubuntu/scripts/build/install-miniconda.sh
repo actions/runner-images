@@ -4,6 +4,9 @@
 ##  Desc:  Install miniconda
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
+
 # Install Miniconda
 curl -fsSL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh \
     && chmod +x miniconda.sh \
@@ -11,7 +14,7 @@ curl -fsSL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
     && rm miniconda.sh
 
 CONDA=/usr/share/miniconda
-echo "CONDA=$CONDA" | tee -a /etc/environment
+setEtcEnvironmentVariable "CONDA" "${CONDA}"
 
 ln -s $CONDA/bin/conda /usr/bin/conda
 

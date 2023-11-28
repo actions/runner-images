@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 # Download Selenium server
 SELENIUM_MAJOR_VERSION=$(get_toolset_value '.selenium.version')
@@ -20,6 +21,6 @@ SELENIUM_FULL_VERSION=$(echo $SELENIUM_DOWNLOAD_URL | awk -F"${SELENIUM_BINARY_N
 touch "$SELENIUM_JAR_PATH/$SELENIUM_BINARY_NAME-$SELENIUM_FULL_VERSION"
 
 # Add SELENIUM_JAR_PATH environment variable
-echo "SELENIUM_JAR_PATH=$SELENIUM_JAR_PATH/$SELENIUM_JAR_NAME" | tee -a /etc/environment
+setEtcEnvironmentVariable "SELENIUM_JAR_PATH" "${SELENIUM_JAR_PATH}/${SELENIUM_JAR_NAME}"
 
 invoke_tests "Tools" "Selenium"
