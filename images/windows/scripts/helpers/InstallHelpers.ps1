@@ -142,10 +142,14 @@ function Invoke-DownloadWithRetry {
     )
 
     if (-not $Path) {
-        if ([String]::IsNullOrEmpty($Name)) {
-            $Name = [IO.Path]::GetFileName($Url)
+        $invalidChars = [IO.Path]::GetInvalidFileNameChars() -join ''
+        $re = "[{0}]" -f [RegEx]::Escape($invalidChars)
+        $fileName = [IO.Path]::GetFileName($Url) -replace $re
+
+        if ([String]::IsNullOrEmpty($fileName)) {
+            $fileName = [System.IO.Path]::GetRandomFileName()
         }
-        $Path = Join-Path -Path "${env:Temp}" -ChildPath $Name
+        $Path = Join-Path -Path "${env:Temp}" -ChildPath $fileName
     }
 
     Write-Host "Downloading package from $Url to $Path..."
