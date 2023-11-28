@@ -8,8 +8,8 @@ source ~/utils/utils.sh
 
 # Download and install YQ in cases when it is not available in the formulae as for macOS 11: https://formulae.brew.sh/formula/yq
 if is_BigSur; then
-    download_with_retries "https://github.com/mikefarah/yq/releases/latest/download/yq_darwin_amd64" "/tmp" "yq"
-    sudo install /tmp/yq /usr/local/bin/yq
+    binary_path=$(download_with_retry "https://github.com/mikefarah/yq/releases/latest/download/yq_darwin_amd64")
+    sudo install "$binary_path" /usr/local/bin/yq
 fi
 
 # Monterey needs future review:
@@ -27,12 +27,10 @@ for package in $cask_packages; do
     if is_Monterey && [[ $package == "virtualbox" ]]; then
         # Do not update VirtualBox on macOS 12 due to the issue with VMs in gurumediation state which blocks Vagrant on macOS: https://github.com/actions/runner-images/issues/8730
         # macOS host: Dropped all kernel extensions. VirtualBox relies fully on the hypervisor and vmnet frameworks provided by Apple now.
-        vbcask_url="https://raw.githubusercontent.com/Homebrew/homebrew-cask/aa3c55951fc9d687acce43e5c0338f42c1ddff7b/Casks/virtualbox.rb"
-        download_with_retries $vbcask_url
-        brew install ./virtualbox.rb
-        rm ./virtualbox.rb
+        virtualbox_cask_path=$(download_with_retry "https://raw.githubusercontent.com/Homebrew/homebrew-cask/aa3c55951fc9d687acce43e5c0338f42c1ddff7b/Casks/virtualbox.rb")
+        brew install "$virtualbox_cask_path"
     else
-        brew install --cask $package
+        brew install --cask "$package"
     fi
 done
 

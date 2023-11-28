@@ -10,13 +10,12 @@ function InstallPyPy
 {
     PACKAGE_URL=$1
 
-    PACKAGE_TAR_NAME=$(echo $PACKAGE_URL | awk -F/ '{print $NF}')
+    PACKAGE_TAR_NAME=$(basename "$PACKAGE_URL")
     echo "Downloading tar archive '$PACKAGE_TAR_NAME'"
-    PACKAGE_TAR_TEMP_PATH="/tmp/$PACKAGE_TAR_NAME"
-    download_with_retries $PACKAGE_URL "/tmp" "$PACKAGE_TAR_NAME"
+    archive_path=$(download_with_retry "$PACKAGE_URL")
 
     echo "Expand '$PACKAGE_TAR_NAME' to the /tmp folder"
-    tar xf $PACKAGE_TAR_TEMP_PATH -C /tmp
+    tar xf "$archive_path" -C /tmp
 
     # Get Python version
     PACKAGE_NAME=${PACKAGE_TAR_NAME/.tar.bz2/}
@@ -70,17 +69,14 @@ function InstallPyPy
 
     echo "Create complete file"
     touch $PYPY_TOOLCACHE_VERSION_PATH/x64.complete
-
-    echo "Remove '$PACKAGE_TAR_TEMP_PATH'"
-    rm -f $PACKAGE_TAR_TEMP_PATH
 }
 
 arch=$(get_arch)
-download_with_retries "https://downloads.python.org/pypy/versions.json" "/tmp" "pypy-versions.json"
+versions_json_path=$(download_with_retry "https://downloads.python.org/pypy/versions.json")
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .arch.'$arch'.versions[]')
 
 for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(cat /tmp/pypy-versions.json |
+    latestMajorPyPyVersion=$(cat "$versions_json_path" |
         jq -r --arg toolsetVersion $toolsetVersion '.[]
         | select((.python_version | startswith($toolsetVersion)) and .stable == true).files[]
         | select(.platform == "darwin").download_url' | head -1)

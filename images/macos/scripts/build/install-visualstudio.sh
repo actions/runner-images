@@ -21,18 +21,16 @@ install_vsmac() {
     fi
 
     echo "Installing Visual Studio ${VSMAC_VERSION} for Mac"
-    TMPMOUNT=`/usr/bin/mktemp -d /tmp/visualstudio.XXXX`
-    TMPMOUNT_DOWNLOADS="$TMPMOUNT/downloads"
-    mkdir $TMPMOUNT_DOWNLOADS
+    TMPMOUNT=$(/usr/bin/mktemp -d /tmp/visualstudio.XXXX)
+    mkdir -p "$TMPMOUNT/downloads"
 
-    download_with_retries $VSMAC_DOWNLOAD_URL $TMPMOUNT_DOWNLOADS
+    VSMAC_INSTALLER=$(download_with_retry "$VSMAC_DOWNLOAD_URL" "$TMPMOUNT/downloads/${VSMAC_DOWNLOAD_URL##*/}")
 
     echo "Mounting Visual Studio..."
-    VISUAL_STUDIO_NAME=${VSMAC_DOWNLOAD_URL##*/}
-    hdiutil attach "$TMPMOUNT_DOWNLOADS/$VISUAL_STUDIO_NAME" -mountpoint "$TMPMOUNT"
+    hdiutil attach "$VSMAC_INSTALLER" -mountpoint "$TMPMOUNT"
 
     echo "Moving Visual Studio to /Applications/..."
-    pushd $TMPMOUNT
+    pushd "$TMPMOUNT"
     tar cf - "./Visual Studio.app" | tar xf - -C /Applications/
 
     if [ $VSMAC_VERSION != $VSMAC_DEFAULT ]; then

@@ -9,16 +9,15 @@ source ~/utils/utils.sh
 echo Installing PowerShell...
 arch=$(get_arch)
 
-download_with_retries "https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json" "/tmp" "powershell-metadata.json"
-psver=$(cat /tmp/powershell-metadata.json | jq -r '.LTSReleaseTag[0]')
-psDownloadUrl=$(get_github_package_download_url "PowerShell/PowerShell" "contains(\"osx-$arch.pkg\")" "$psver" "$API_PAT")
-download_with_retries $psDownloadUrl "/tmp" "powershell.pkg"
+metadata_json_path=$(download_with_retry "https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json")
+version=$(jq -r '.LTSReleaseTag[0]' "$metadata_json_path")
+download_url=$(get_github_package_download_url "PowerShell/PowerShell" "contains(\"osx-$arch.pkg\")" "$version" "$API_PAT")
+pkg_path=$(download_with_retry "$download_url")
 
 # Work around the issue on macOS Big Sur 11.5 or higher for possible error message ("can't be opened because Apple cannot check it for malicious software") when installing the package
-sudo xattr -rd com.apple.quarantine /tmp/powershell.pkg
+sudo xattr -rd com.apple.quarantine "$pkg_path"
 
-
-sudo installer -pkg /tmp/powershell.pkg -target /
+sudo installer -pkg "$pkg_path" -target /
 
 # Install PowerShell modules
 psModules=$(get_toolset_value '.powershellModules[].name')

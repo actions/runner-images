@@ -45,11 +45,10 @@ if ! is_Arm64; then
         mkdir -p $RUBY_VERSION_PATH
 
         echo "Downloading tar archive $PACKAGE_TAR_NAME"
-        DOWNLOAD_URL="https://github.com/ruby/ruby-builder/releases/download/toolcache/${PACKAGE_TAR_NAME}"
-        download_with_retries $DOWNLOAD_URL "/tmp" $PACKAGE_TAR_NAME
+        ARCHIVE_PATH=$(download_with_retry "https://github.com/ruby/ruby-builder/releases/download/toolcache/${PACKAGE_TAR_NAME}")
 
         echo "Expand '$PACKAGE_TAR_NAME' to the '$RUBY_VERSION_PATH' folder"
-        tar xf "/tmp/$PACKAGE_TAR_NAME" -C $RUBY_VERSION_PATH
+        tar xf "$ARCHIVE_PATH" -C $RUBY_VERSION_PATH
         COMPLETE_FILE_PATH="$RUBY_VERSION_PATH/x64.complete"
         if [ ! -f $COMPLETE_FILE_PATH ]; then
             echo "Create complete file"

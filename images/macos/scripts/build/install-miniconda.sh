@@ -6,10 +6,9 @@
 
 source ~/utils/utils.sh
 
-download_with_retries "https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh" "/tmp" "miniconda.sh"
-
-chmod +x /tmp/miniconda.sh
-sudo /tmp/miniconda.sh -b -p /usr/local/miniconda
+miniconda_installer_path=$(download_with_retry "https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh")
+chmod +x "$miniconda_installer_path"
+sudo "$miniconda_installer_path" -b -p /usr/local/miniconda
 
 # Chmod with full permissions recursively to avoid permissions restrictions
 sudo chmod -R 777 /usr/local/miniconda
