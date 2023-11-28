@@ -38,7 +38,10 @@ $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Ob
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
-    $assets = Invoke-RestMethod $tool.url -MaximumRetryCount 10 -RetryIntervalSec 5
+    # Invoke-RestMethod doesn't support retry in PowerShell 5.1
+    $assets = Invoke-ScriptBlockWithRetry -Command {
+        Invoke-RestMethod $tool.url
+    }
 
     # Get github release asset for each version
     foreach ($toolVersion in $tool.versions) {

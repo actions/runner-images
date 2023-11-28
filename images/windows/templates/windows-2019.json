@@ -197,9 +197,7 @@
         },
         {
             "type": "powershell",
-            "use_pwsh": true,
             "scripts": [
-                "{{ template_dir }}/../scripts/build/Configure-PowerShell.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Wix.ps1",
                 "{{ template_dir }}/../scripts/build/Install-WDK.ps1",
                 "{{ template_dir }}/../scripts/build/Install-VSExtensions.ps1",
@@ -230,7 +228,6 @@
         },
         {
             "type": "powershell",
-            "use_pwsh": true,
             "scripts": [
                 "{{ template_dir }}/../scripts/build/Install-ActionsCache.ps1",
                 "{{ template_dir }}/../scripts/build/Install-Ruby.ps1",
@@ -304,7 +301,6 @@
         },
         {
             "type": "powershell",
-            "use_pwsh": true,
             "pause_before": "2m",
             "scripts": [
                 "{{ template_dir }}/../scripts/build/Install-WindowsUpdatesAfterReboot.ps1",

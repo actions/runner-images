@@ -182,8 +182,10 @@ function Get-VsixExtenstionFromMarketplace {
         [string] $MarketplaceUri = "https://marketplace.visualstudio.com/items?itemName="
     )
 
-    $extensionUri = $MarketplaceUri + $ExtensionMarketPlaceName
-    $request = Invoke-RestMethod -Uri $extensionUri -MaximumRetryCount 20 -RetryIntervalSec 30
+    # Invoke-WebRequest doesn't support retry in PowerShell 5.1
+    $request = Invoke-ScriptBlockWithRetry -RetryCount 20 -RetryIntervalSeconds 30 -Command {
+        Invoke-WebRequest -Uri "${MarketplaceUri}${ExtensionMarketPlaceName}" -UseBasicParsing
+    }
     $request -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
     $extensionName = $Matches.extensionname
     $request -match 'VsixId":"(?<vsixid>[^"]*)' | Out-Null
