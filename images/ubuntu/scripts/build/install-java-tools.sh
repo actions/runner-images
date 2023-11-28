@@ -98,8 +98,8 @@ setEtcEnvironmentVariable "ANT_HOME" "/usr/share/ant"
 # Install Maven
 mavenVersion=$(get_toolset_value '.java.maven')
 mavenDownloadUrl="https://dlcdn.apache.org/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.zip"
-download_with_retries ${mavenDownloadUrl} "/tmp" "maven.zip"
-unzip -qq -d /usr/share /tmp/maven.zip
+maven_archive_path=$(download_with_retry "$mavenDownloadUrl")
+unzip -qq -d /usr/share "$maven_archive_path"
 ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
 
 # Install Gradle
@@ -110,8 +110,8 @@ gradleLatestVersion=$(echo ${gradleJson} | jq -r '.[] | select(.version | contai
 gradleDownloadUrl=$(echo ${gradleJson} | jq -r ".[] | select(.version==\"$gradleLatestVersion\") | .downloadUrl")
 echo "gradleUrl=${gradleDownloadUrl}"
 echo "gradleVersion=${gradleLatestVersion}"
-download_with_retries ${gradleDownloadUrl} "/tmp" "gradleLatest.zip"
-unzip -qq -d /usr/share /tmp/gradleLatest.zip
+gradle_archive_path=$(download_with_retry "$gradleDownloadUrl")
+unzip -qq -d /usr/share "$gradle_archive_path"
 ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
 gradle_home_dir=$(find /usr/share -depth -maxdepth 1 -name "gradle*")
 setEtcEnvironmentVariable "GRADLE_HOME" "${gradle_home_dir}"

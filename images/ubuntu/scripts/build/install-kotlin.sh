@@ -8,15 +8,14 @@
 source $HELPER_SCRIPTS/install.sh
 
 KOTLIN_ROOT="/usr/share"
-kotlin_zip_name="kotlin-compiler.zip"
 download_url=$(get_github_package_download_url "JetBrains/kotlin" "contains(\"kotlin-compiler\")")
-download_with_retries "$download_url" "/tmp" "$kotlin_zip_name"
+archive_path=$(download_with_retry "$download_url")
 
 # Supply chain security - Kotlin
 kotlin_hash=$(get_github_package_hash "JetBrains" "kotlin" "kotlin-compiler-.*\.zip" "" "latest" "false" "|" 3)
-use_checksum_comparison "/tmp/${kotlin_zip_name}" "$kotlin_hash"
+use_checksum_comparison "$archive_path" "$kotlin_hash"
 
-unzip -qq /tmp/${kotlin_zip_name} -d $KOTLIN_ROOT
+unzip -qq "$archive_path" -d $KOTLIN_ROOT
 rm $KOTLIN_ROOT/kotlinc/bin/*.bat
 ln -sf $KOTLIN_ROOT/kotlinc/bin/* /usr/bin
 

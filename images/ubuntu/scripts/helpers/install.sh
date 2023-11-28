@@ -4,50 +4,45 @@
 ##  Desc:  Helper functions for installing tools
 ################################################################################
 
-download_with_retries() {
-# Due to restrictions of bash functions, positional arguments are used here.
-# In case if you using latest argument NAME, you should also set value to all previous parameters.
-# Example: download_with_retries $ANDROID_SDK_URL "." "android_sdk.zip"
-    local URL="$1"
-    local DEST="${2:-.}"
-    local NAME="${3:-${URL##*/}}"
-    local COMPRESSED="$4"
+download_with_retry() {
+    url=$1
+    download_path=$2
 
-    if [[ $COMPRESSED == "compressed" ]]; then
-        local COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME' -w '%{http_code}'"
-    else
-        local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
+    if [ -z "$download_path" ]; then
+        download_path="/tmp/$(basename "$url")"
     fi
 
-    # Save current errexit state and disable it to prevent unexpected exit on error
-    if echo $SHELLOPTS | grep '\(^\|:\)errexit\(:\|$\)' > /dev/null;
-    then
-        local ERR_EXIT_ENABLED=true
-    else
-        local ERR_EXIT_ENABLED=false
-    fi
-    set +e
+    echo "Downloading package from $url to $download_path..." >&2
 
-    echo "Downloading '$URL' to '${DEST}/${NAME}'..."
-    retries=20
     interval=30
-    while [ $retries -gt 0 ]; do
-        ((retries--))
-        test "$ERR_EXIT_ENABLED" = true && set +e
-        http_code=$(eval $COMMAND)
-        exit_code=$?
-        test "$ERR_EXIT_ENABLED" = true && set -e
-        if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
-            echo "Download completed"
-            return 0
+    download_start_time=$(date +%s)
+
+    for ((retries=20; retries>0; retries--)); do
+        attempt_start_time=$(date +%s)
+        if http_code=$(curl -4sSLo "$download_path" "$url" -w '%{http_code}'); then
+            attempt_seconds=$(($(date +%s) - attempt_start_time))
+            if [ "$http_code" -eq 200 ]; then
+                echo "Package downloaded in $attempt_seconds seconds" >&2
+                break
+            else
+                echo "Received HTTP status code $http_code after $attempt_seconds seconds" >&2
+            fi
         else
-            echo "Error — Either HTTP response code for '$URL' is wrong - '$http_code' or exit code is not 0 - '$exit_code'. Waiting $interval seconds before the next attempt, $retries attempts left"
-            sleep $interval
+            attempt_seconds=$(($(date +%s) - attempt_start_time))
+            echo "Package download failed in $attempt_seconds seconds" >&2
         fi
+
+        if [ $retries -eq 0 ]; then
+            total_seconds=$(($(date +%s) - download_start_time))
+            echo "Package download failed after $total_seconds seconds" >&2
+            exit 1
+        fi
+
+        echo "Waiting $interval seconds before retrying (retries left: $retries)..." >&2
+        sleep $interval
     done
 
-    echo "Could not download $URL"
-    return 1
+    echo "$download_path"
 }
 
 ## Use dpkg to figure out if a package has already been installed

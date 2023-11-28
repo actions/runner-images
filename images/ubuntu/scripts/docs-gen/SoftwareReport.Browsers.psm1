@@ -34,8 +34,7 @@ function Get-EdgeDriverVersion {
 }
 
 function Get-SeleniumVersion {
-    $seleniumBinaryName = Get-ToolsetValue "selenium.binary_name"
-    $fullSeleniumVersion = (Get-ChildItem "/usr/share/java/${seleniumBinaryName}-*").Name -replace "${seleniumBinaryName}-"
+    $fullSeleniumVersion = (Get-ChildItem "/usr/share/java/selenium-server-*").Name -replace "selenium-server-"
     return $fullSeleniumVersion
 }
 
