@@ -32,7 +32,7 @@ download_with_retry() {
             echo "Package download failed in $attempt_seconds seconds" >&2
         fi
 
-        if [ $retries -eq 0 ]; then
+        if [ "$retries" -le 1 ]; then
             total_seconds=$(($(date +%s) - download_start_time))
             echo "Package download failed after $total_seconds seconds" >&2
             exit 1
