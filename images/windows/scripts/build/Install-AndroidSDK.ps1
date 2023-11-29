@@ -73,7 +73,7 @@ Expand-7ZipArchive -Path $cmdlineToolsArchPath -DestinationPath "${SDKInstallRoo
 
 # cmdline tools should be installed in ${SDKInstallRoot}\cmdline-tools\latest\bin, but archive contains ${SDKInstallRoot}\cmdline-tools\bin 
 # we need to create the proper folder structure
-Invoke-SBWithRetry -Command {
+Invoke-ScriptBlockWithRetry -Command {
     Rename-Item "${SDKInstallRoot}\cmdline-tools\cmdline-tools" "latest" -ErrorAction Stop
 }
 

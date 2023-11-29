@@ -3,7 +3,7 @@
 ##  Desc: Waits for Windows Updates to finish installing after reboot
 ################################################################################
 
-Invoke-SBWithRetry -RetryCount 10 -RetryIntervalSeconds 120 -Command {
+Invoke-ScriptBlockWithRetry -RetryCount 10 -RetryIntervalSeconds 120 -Command {
     $inProgress = Get-WindowsUpdateStates | Where-Object State -eq "Running" | Where-Object Title -notmatch "Microsoft Defender Antivirus"
     if ( $inProgress ) {
         $title = $inProgress.Title -join "`n"

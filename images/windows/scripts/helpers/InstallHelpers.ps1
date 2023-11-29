@@ -182,8 +182,10 @@ function Get-VsixExtenstionFromMarketplace {
         [string] $MarketplaceUri = "https://marketplace.visualstudio.com/items?itemName="
     )
 
-    $extensionUri = $MarketplaceUri + $ExtensionMarketPlaceName
-    $request = Invoke-SBWithRetry -Command { Invoke-WebRequest -Uri $extensionUri -UseBasicParsing } -RetryCount 20 -RetryIntervalSeconds 30
+    # Invoke-WebRequest doesn't support retry in PowerShell 5.1
+    $request = Invoke-ScriptBlockWithRetry -RetryCount 20 -RetryIntervalSeconds 30 -Command {
+        Invoke-WebRequest -Uri "${MarketplaceUri}${ExtensionMarketPlaceName}" -UseBasicParsing
+    }
     $request -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
     $extensionName = $Matches.extensionname
     $request -match 'VsixId":"(?<vsixid>[^"]*)' | Out-Null
@@ -212,9 +214,9 @@ function Get-VsixExtenstionFromMarketplace {
 
     return [PSCustomObject] @{
         "ExtensionName" = $extensionName
-        "VsixId" = $vsixId
-        "FileName" = $fileName
-        "DownloadUri" = $downloadUri
+        "VsixId"        = $vsixId
+        "FileName"      = $fileName
+        "DownloadUri"   = $downloadUri
     }
 }
 
@@ -277,17 +279,15 @@ function Install-VSIXFromUrl {
     Remove-Item -Force -Confirm:$false $filePath
 }
 
-function Get-VSExtensionVersion
-{
+function Get-VSExtensionVersion {
     Param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string] $packageName
     )
 
     $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
-    if ($instanceFolders -is [array])
-    {
+    if ($instanceFolders -is [array]) {
         Write-Host ($instanceFolders | Out-String)
         Write-Host ($instanceFolders | Get-ChildItem | Out-String)
         Write-Host "More than one instance installed"
@@ -298,8 +298,7 @@ function Get-VSExtensionVersion
     $state = $stateContent | ConvertFrom-Json
     $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
 
-    if (-not $packageVersion)
-    {
+    if (-not $packageVersion) {
         Write-Host "Installed package $packageName for Visual Studio was not found"
         exit 1
     }
@@ -307,8 +306,7 @@ function Get-VSExtensionVersion
     return $packageVersion
 }
 
-function Get-ToolsetContent
-{
+function Get-ToolsetContent {
     $toolsetPath = Join-Path "C:\\image" "toolset.json"
     $toolsetJson = Get-Content -Path $toolsetPath -Raw
     ConvertFrom-Json -InputObject $toolsetJson
@@ -395,27 +393,24 @@ function Get-TCToolVersionPath {
     return Join-Path $foundVersion $Arch
 }
 
-function Get-WinVersion
-{
+function Get-WinVersion {
     (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
 }
 
-function Test-IsWin22
-{
+function Test-IsWin22 {
     (Get-WinVersion) -match "2022"
 }
 
-function Test-IsWin19
-{
+function Test-IsWin19 {
     (Get-WinVersion) -match "2019"
 }
 
 function Expand-7ZipArchive {
     Param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$Path,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$DestinationPath,
         [ValidateSet("x", "e")]
         [char]$ExtractMethod = "x"
@@ -424,8 +419,7 @@ function Expand-7ZipArchive {
     Write-Host "Expand archive '$PATH' to '$DestinationPath' directory"
     7z.exe $ExtractMethod "$Path" -o"$DestinationPath" -y | Out-Null
 
-    if ($LASTEXITCODE -ne 0)
-    {
+    if ($LASTEXITCODE -ne 0) {
         Write-Host "There is an error during expanding '$Path' to '$DestinationPath' directory"
         exit 1
     }
@@ -659,7 +653,29 @@ function Get-WindowsUpdateStates {
     }
 }
 
-function Invoke-SBWithRetry {
+function Invoke-ScriptBlockWithRetry {
+    <#
+    .SYNOPSIS
+        Executes a script block with retry logic.
+
+    .DESCRIPTION
+        The Invoke-ScriptBlockWithRetry function executes a specified script block with retry logic. It allows you to specify the number of retries and the interval between retries.
+
+    .PARAMETER Command
+        The script block to be executed.
+
+    .PARAMETER RetryCount
+        The number of times to retry executing the script block. The default value is 10.
+
+    .PARAMETER RetryIntervalSeconds
+        The interval in seconds between each retry. The default value is 5.
+
+    .EXAMPLE
+        Invoke-ScriptBlockWithRetry -Command { Get-Process } -RetryCount 3 -RetryIntervalSeconds 10
+        This example executes the script block { Get-Process } with 3 retries and a 10-second interval between each retry.
+
+    #>
+
     param (
         [scriptblock] $Command,
         [int] $RetryCount = 10,
@@ -670,8 +686,7 @@ function Invoke-SBWithRetry {
         try {
             & $Command
             return
-        }
-        catch {
+        } catch {
             Write-Host "There is an error encountered:`n $_"
             $RetryCount--
 
@@ -771,9 +786,9 @@ function Resolve-GithubReleaseAssetUrl {
 
 function Use-ChecksumComparison {
     param (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$LocalFileHash,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$DistributorFileHash
     )
 
@@ -790,7 +805,7 @@ function Get-HashFromGitHubReleaseBody {
     param (
         [string]$RepoOwner,
         [string]$RepoName,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$FileName,
         [string]$Url,
         [string]$Version = "latest",
@@ -815,7 +830,7 @@ function Get-HashFromGitHubReleaseBody {
             $releaseUrl = "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases/tag/$tag"
         }
     }
-    $body = (Invoke-RestMethod -Uri $releaseUrl).body -replace('`', "") -join "`n"
+    $body = (Invoke-RestMethod -Uri $releaseUrl).body -replace ('`', "") -join "`n"
     $matchingLine = $body.Split("`n") | Where-Object { $_ -like "*$FileName*" }    
     if ([string]::IsNullOrEmpty($matchingLine)) {
         throw "File name '$FileName' not found in release body."
@@ -828,9 +843,9 @@ function Get-HashFromGitHubReleaseBody {
 }
 function Test-FileSignature {
     param(
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string]$FilePath,
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [string[]]$ExpectedThumbprint
     )
 
@@ -850,8 +865,7 @@ function Test-FileSignature {
 
     if ($signatureMatched) {
         Write-Output "Signature for $FilePath is valid"
-    }
-    else {
+    } else {
         throw "Signature thumbprint do not match expected."
     }
 }

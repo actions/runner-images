@@ -90,7 +90,7 @@ function Install-JavaJDK {
 
     # Complete the installation by extracting Java binaries to toolcache and creating the complete file
     Expand-7ZipArchive -Path $archivePath -DestinationPath $javaVersionPath
-    Invoke-SBWithRetry -Command {
+    Invoke-ScriptBlockWithRetry -Command {
         Get-ChildItem -Path $javaVersionPath | Rename-Item -NewName $javaArchPath -ErrorAction Stop
     }
     New-Item -ItemType File -Path $javaVersionPath -Name "$Architecture.complete" | Out-Null

@@ -41,7 +41,7 @@ function Install-PyPy
         New-Item -ItemType Directory -Path $pypyVersionPath -Force | Out-Null
 
         Write-Host "Move PyPy '${pythonVersion}' files to '${pypyArchPath}'"
-        Invoke-SBWithRetry -Command {
+        Invoke-ScriptBlockWithRetry -Command {
             Move-Item -Path $tempFolder -Destination $pypyArchPath -ErrorAction Stop | Out-Null
         }
 
