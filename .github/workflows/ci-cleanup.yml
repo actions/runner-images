@@ -14,6 +14,7 @@ jobs:
     steps:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_HEAD_REF: ${{ github.event.pull_request.head.ref }}
         shell: pwsh
         run: |
           $startDate = Get-Date -UFormat %s
@@ -21,13 +22,13 @@ jobs:
           while ($true) {
             $continue = $false
             foreach ($wf in $workflows) {
-              $skippedCommand = "gh run list --workflow ${wf}.yml --branch ${{ github.event.pull_request.head.ref }} --repo ${{ github.repository }} --status skipped --json databaseId"
+              $skippedCommand = "gh run list --workflow ${wf}.yml --branch "$env:PR_HEAD_REF" --repo ${{ github.repository }} --status skipped --json databaseId"
               $skippedIds = Invoke-Expression -Command $skippedCommand | ConvertFrom-Json | ForEach-Object { $_.databaseId }
               $skippedIds | ForEach-Object {
                 $deleteCommand = "gh run delete --repo ${{ github.repository }} $_"
                 Invoke-Expression -Command $deleteCommand
               }
-              $pendingCommand = "gh run list --workflow ${wf}.yml --branch ${{ github.event.pull_request.head.ref }} --repo ${{ github.repository }} --status requested --json databaseId --template '{{ . | len }}'"
+              $pendingCommand = "gh run list --workflow ${wf}.yml --branch "$env:PR_HEAD_REF" --repo ${{ github.repository }} --status requested --json databaseId --template '{{ . | len }}'"
               $pending = Invoke-Expression -Command $pendingCommand
               if ($pending -gt 0) {
                 Write-Host "Pending for ${wf}.yml: $pending run(s)"
