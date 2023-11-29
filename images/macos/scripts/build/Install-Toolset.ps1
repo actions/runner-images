@@ -13,14 +13,12 @@ Function Install-Asset {
         [object] $ReleaseAsset
     )
 
-    $assetFolderPath = Join-Path "/tmp" "$($ReleaseAsset.filename)-temp-dir"
-    New-Item -ItemType Directory -Path $assetFolderPath | Out-Null
-    $assetArchivePath = Join-Path $assetFolderPath $ReleaseAsset.filename
-
-    Write-Host "Download $($ReleaseAsset.filename) archive to the $assetFolderPath folder..."
-    Start-DownloadWithRetry -Url $ReleaseAsset.download_url -DownloadPath $assetFolderPath
+    Write-Host "Download $($ReleaseAsset.filename) archive..."
+    $assetArchivePath = Invoke-DownloadWithRetry $ReleaseAsset.download_url
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
+    $assetFolderPath = Join-Path "/tmp" "$($ReleaseAsset.filename)-temp-dir"
+    New-Item -ItemType Directory -Path $assetFolderPath | Out-Null
     tar -xzf $assetArchivePath -C $assetFolderPath
 
     Write-Host "Invoke installation script..."
