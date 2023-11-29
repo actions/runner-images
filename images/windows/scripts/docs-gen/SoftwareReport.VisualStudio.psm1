@@ -58,7 +58,7 @@ function Get-VisualStudioExtensions {
     )
 
     $extensions | Foreach-Object {
-        [PSCustomObject]$_
+        [PSCustomObject] $_
     } | Select-Object Package, Version | Sort-Object Package
 }
 
