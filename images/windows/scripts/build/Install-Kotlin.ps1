@@ -15,7 +15,7 @@ $kotlinArchivePath = Invoke-DownloadWithRetry $kotlinDownloadUrl
 
 #region Supply chain security
 $externalHash = Get-HashFromGitHubReleaseBody -RepoOwner "JetBrains" -RepoName "kotlin" -FileName "$kotlinBinaryName-*.zip" -Version $kotlinVersion -WordNumber 2
-Test-FileChecksum $kotlinInstallerPath -ExpectedSHA256Sum $externalHash
+Test-FileChecksum $kotlinArchivePath -ExpectedSHA256Sum $externalHash
 #endregion
 
 Write-Host "Expand Kotlin archive"
