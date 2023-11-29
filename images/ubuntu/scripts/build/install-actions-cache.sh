@@ -18,8 +18,7 @@ setEtcEnvironmentVariable "ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE" "${ACTION_ARCHIV
 
 # Download latest release from github.com/actions/action-versions and untar to /opt/actionarchivecache
 downloadUrl=$(get_github_package_download_url "actions/action-versions" "contains(\"action-versions.tar.gz\")")
-echo "Downloading action-versions $downloadUrl"
-download_with_retries "$downloadUrl" "/tmp" action-versions.tar.gz
-tar -xzf /tmp/action-versions.tar.gz -C $ACTION_ARCHIVE_CACHE_DIR
+archive_path=$(download_with_retry "$downloadUrl")
+tar -xzf "$archive_path" -C $ACTION_ARCHIVE_CACHE_DIR
 
 invoke_tests "ActionArchiveCache"

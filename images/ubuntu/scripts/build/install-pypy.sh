@@ -12,16 +12,16 @@ function InstallPyPy
 {
     PACKAGE_URL=$1
 
-    PACKAGE_TAR_NAME=$(echo $PACKAGE_URL | awk -F/ '{print $NF}')
-    echo "Downloading tar archive '$PACKAGE_TAR_NAME'"
-    PACKAGE_TAR_TEMP_PATH="/tmp/$PACKAGE_TAR_NAME"
-    download_with_retries $PACKAGE_URL "/tmp" $PACKAGE_TAR_NAME
+    PACKAGE_TAR_NAME=$(echo "$PACKAGE_URL" | awk -F/ '{print $NF}')
+    PACKAGE_NAME=${PACKAGE_TAR_NAME/.tar.bz2/}
 
-    echo "Expand '$PACKAGE_TAR_NAME' to the /tmp folder"
-    tar xf $PACKAGE_TAR_TEMP_PATH -C /tmp
+    echo "Downloading tar archive '$PACKAGE_NAME'"
+    PACKAGE_TAR_TEMP_PATH=$(download_with_retry $PACKAGE_URL)
+
+    echo "Expand '$PACKAGE_NAME' to the /tmp folder"
+    tar xf "$PACKAGE_TAR_TEMP_PATH" -C /tmp
 
     # Get Python version
-    PACKAGE_NAME=${PACKAGE_TAR_NAME/.tar.bz2/}
     MAJOR_VERSION=$(echo ${PACKAGE_NAME/pypy/} | cut -d. -f1)
     PYTHON_MAJOR="python$MAJOR_VERSION"
 

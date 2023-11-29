@@ -40,9 +40,9 @@ EDGE_DRIVER_VERSION_URL="https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDG
 EDGE_DRIVER_LATEST_VERSION=$(curl -fsSL "$EDGE_DRIVER_VERSION_URL" | iconv -f utf-16 -t utf-8 | tr -d '\r')
 
 EDGEDRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_LATEST_VERSION}/edgedriver_linux64.zip"
-download_with_retries $EDGEDRIVER_URL "/tmp" "edgedriver_linux64.zip"
+EDGEDRIVER_ARCHIVE_PATH=$(download_with_retry "$EDGEDRIVER_URL")
 
-unzip -qq /tmp/edgedriver_linux64.zip -d $EDGEDRIVER_DIR
+unzip -qq "$EDGEDRIVER_ARCHIVE_PATH" -d "$EDGEDRIVER_DIR"
 chmod +x $EDGEDRIVER_BIN
 ln -s $EDGEDRIVER_BIN /usr/bin
 

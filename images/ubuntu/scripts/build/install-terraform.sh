@@ -7,10 +7,8 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Install Terraform
-URL=$(curl -fsSL https://api.releases.hashicorp.com/v1/releases/terraform/latest | jq -r '.builds[] | select((.arch=="amd64") and (.os=="linux")).url')
-ZIP_NAME="terraform_linux_amd64.zip"
-download_with_retries "${URL}" "/tmp" "${ZIP_NAME}"
-unzip -qq "/tmp/${ZIP_NAME}" -d /usr/local/bin
-rm -f "/tmp/${ZIP_NAME}"
+download_url=$(curl -fsSL https://api.releases.hashicorp.com/v1/releases/terraform/latest | jq -r '.builds[] | select((.arch=="amd64") and (.os=="linux")).url')
+archive_path=$(download_with_retry "${download_url}")
+unzip -qq "$archive_path" -d /usr/local/bin
 
 invoke_tests "Tools" "Terraform"
