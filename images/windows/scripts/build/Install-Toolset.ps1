@@ -14,7 +14,7 @@ Function Install-Asset {
 
     $releaseAssetName = [System.IO.Path]::GetFileNameWithoutExtension($ReleaseAsset.filename)
     $assetFolderPath = Join-Path $env:TEMP $releaseAssetName
-    $assetArchivePath = Start-DownloadWithRetry -Url $ReleaseAsset.download_url -Name $ReleaseAsset.filename
+    $assetArchivePath = Invoke-DownloadWithRetry $ReleaseAsset.download_url
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
     if ($assetArchivePath.EndsWith(".tar.gz")) {

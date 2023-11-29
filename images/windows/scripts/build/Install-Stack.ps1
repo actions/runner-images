@@ -13,7 +13,7 @@ $DownloadUrl = $StackReleasesJson.assets | Where-Object { $_.name.EndsWith($Down
 Write-Host "Download stack archive"
 $StackToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY "stack\$Version"
 $DestinationPath = Join-Path $StackToolcachePath "x64"
-$StackArchivePath = Start-DownloadWithRetry -Url $DownloadUrl
+$StackArchivePath = Invoke-DownloadWithRetry $DownloadUrl
 
 #region Supply chain security - Stack
 $fileHash = (Get-FileHash -Path $StackArchivePath -Algorithm SHA256).Hash

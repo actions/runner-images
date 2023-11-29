@@ -17,7 +17,7 @@ function Install-Msys2 {
   
   # Download the latest msys2 x86_64, filename includes release date
   Write-Host "Starting msys2 download using $($msys2Uri.split('/')[-1])"
-  $msys2File = Start-DownloadWithRetry -Url $msys2Uri
+  $msys2File = Invoke-DownloadWithRetry $msys2Uri
   Write-Host "Finished download"
 
   #region Supply chain security - Kind

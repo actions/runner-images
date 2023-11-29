@@ -10,7 +10,7 @@ $env:CARGO_HOME = "C:\Users\Default\.cargo"
 
 # Download the latest rustup-init.exe for Windows x64
 # See https://rustup.rs/#
-$rustupPath = Start-DownloadWithRetry -Url "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe" -Name "rustup-init.exe"
+$rustupPath = Invoke-DownloadWithRetry "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
 
 #region Supply chain security
 $localFileHash = (Get-FileHash -Path (Join-Path ${env:TEMP} 'rustup-init.exe') -Algorithm SHA256).Hash

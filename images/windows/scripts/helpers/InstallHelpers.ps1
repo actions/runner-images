@@ -66,9 +66,11 @@ function Install-Binary {
             if ($Type -ne "MSI" -and $Type -ne "EXE") {
                 throw "Cannot determine the file type from the URL. Please specify the Type parameter."
             }
+            $fileName = [System.IO.Path]::GetFileName($Url)
+        } else {
+            $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
         }
-        $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
-        $filePath = Start-DownloadWithRetry -Url $Url -Name $fileName
+        $filePath = Invoke-DownloadWithRetry -Url $Url -Path "${env:Temp}\$fileName"
     }
 
     if ($PSBoundParameters.ContainsKey('ExpectedSignature')) {
@@ -130,49 +132,53 @@ function Install-Binary {
     }
 }
 
-function Start-DownloadWithRetry {
+function Invoke-DownloadWithRetry {
     Param
     (
         [Parameter(Mandatory)]
         [string] $Url,
-        [string] $Name,
-        [string] $DownloadPath = "${env:Temp}",
-        [int] $Retries = 20
+        [Alias("Destination")]
+        [string] $Path
     )
 
-    if ([String]::IsNullOrEmpty($Name)) {
-        $Name = [IO.Path]::GetFileName($Url)
+    if (-not $Path) {
+        $invalidChars = [IO.Path]::GetInvalidFileNameChars() -join ''
+        $re = "[{0}]" -f [RegEx]::Escape($invalidChars)
+        $fileName = [IO.Path]::GetFileName($Url) -replace $re
+
+        if ([String]::IsNullOrEmpty($fileName)) {
+            $fileName = [System.IO.Path]::GetRandomFileName()
+        }
+        $Path = Join-Path -Path "${env:Temp}" -ChildPath $fileName
     }
 
-    $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
-    $downloadStartTime = Get-Date
+    Write-Host "Downloading package from $Url to $Path..."
 
-    # Default retry logic for the package.
-    Write-Host "Downloading package from: $Url to path $filePath."
-    while ($Retries -gt 0) {
+    $interval = 30
+    $downloadStartTime = Get-Date
+    for ($retries = 20; $retries -gt 0; $retries--) {
         try {
-            $downloadAttemptStartTime = Get-Date
-            (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
+            $attemptStartTime = Get-Date
+            (New-Object System.Net.WebClient).DownloadFile($Url, $Path)
+            $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
+            Write-Host "Package downloaded in $attemptSeconds seconds"
             break
         } catch {
-            $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
-            $attemptTime = [math]::Round(($(Get-Date) - $downloadAttemptStartTime).TotalSeconds, 2)
-            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n$($_.Exception.ToString())"
-            $Retries--
-
-            if ($Retries -eq 0) {
-                Write-Host "Package download failed after $failTime seconds"
-                exit 1
-            }
-
-            Write-Host "Waiting 30 seconds before retrying. Retries left: $Retries"
-            Start-Sleep -Seconds 30
+            $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
+            Write-Warning "Package download failed in $attemptSeconds seconds"
+            Write-Warning $_.Exception.Message
         }
+            
+        if ($retries -eq 0) {
+            $totalSeconds = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
+            throw "Package download failed after $totalSeconds seconds"
+        }
+
+        Write-Warning "Waiting $interval seconds before retrying (retries left: $retries)..."
+        Start-Sleep -Seconds $interval
     }
 
-    $downloadCompleteTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
-    Write-Host "Package downloaded successfully in $downloadCompleteTime seconds"
-    return $filePath
+    return $Path
 }
 
 function Get-VsixExtenstionFromMarketplace {
@@ -273,8 +279,7 @@ function Install-VSIXFromUrl {
         [int] $Retries = 20
     )
 
-    $name = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".vsix"
-    $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
+    $filePath = Invoke-DownloadWithRetry $Url
     Install-VSIXFromFile -FilePath $filePath -Retries $Retries
     Remove-Item -Force -Confirm:$false $filePath
 }

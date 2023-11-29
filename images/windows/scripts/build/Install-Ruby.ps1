@@ -104,7 +104,7 @@ foreach ($rubyVersion in $rubyToolVersions) {
     # Get url for the latest major Ruby version
     $url = $rubyLatestMajorVersions[$rubyVersion]
     if ($url) {
-        $tempRubyPackagePath = Start-DownloadWithRetry -Url $url
+        $tempRubyPackagePath = Invoke-DownloadWithRetry $url
         Install-Ruby -PackagePath $tempRubyPackagePath
     } else {
         Write-Host "Url not found for the '$rubyVersion' version"

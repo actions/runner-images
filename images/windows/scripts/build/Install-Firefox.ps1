@@ -42,10 +42,8 @@ $GeckoDriverVersion = $GeckoDriverJson.tag_name
 $GeckoDriverVersion.Substring(1) | Out-File -FilePath "$GeckoDriverPath\versioninfo.txt" -Force;
 
 Write-Host "Download Gecko WebDriver WebDriver..."
-$GeckoDriverArchName = $GeckoDriverWindowsAsset.name
 $GeckoDriverDownloadUrl = $GeckoDriverWindowsAsset.browser_download_url
-
-$GeckoDriverArchPath = Start-DownloadWithRetry -Url $GeckoDriverDownloadUrl -Name $GeckoDriverArchName
+$GeckoDriverArchPath = Invoke-DownloadWithRetry $GeckoDriverDownloadUrl
 
 Write-Host "Expand Gecko WebDriver archive..."
 Expand-7ZipArchive -Path $GeckoDriverArchPath -DestinationPath $GeckoDriverPath

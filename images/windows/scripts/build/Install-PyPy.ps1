@@ -99,7 +99,7 @@ foreach($toolsetVersion in $toolsetVersions.versions)
     {
         $filename = $latestMajorPyPyVersion.filename
         Write-Host "Found PyPy '$filename' package"
-        $tempPyPyPackagePath = Start-DownloadWithRetry -Url $latestMajorPyPyVersion.download_url -Name $filename
+        $tempPyPyPackagePath = Invoke-DownloadWithRetry $latestMajorPyPyVersion.download_url
 
         #region Supply chain security
         $localFileHash = (Get-FileHash -Path $tempPyPyPackagePath -Algorithm SHA256).Hash
