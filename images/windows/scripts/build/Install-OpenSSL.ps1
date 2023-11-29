@@ -39,6 +39,6 @@ Install-Binary `
 
 # Update PATH
 Add-MachinePathItem "$installDir\bin"
-$env:Path = Get-MachinePath
+Update-Environment
 
 Invoke-PesterTests -TestFile "Tools" -TestName "OpenSSL"

@@ -2,7 +2,6 @@
 ##  File:  Install-Haskell.ps1
 ##  Desc:  Install Haskell for Windows
 ################################################################################
-Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
 Write-Host 'Installing ghcup...'
@@ -28,8 +27,7 @@ Start-DownloadWithRetry -Url $ghcupDownloadURL -Name "ghcup.exe" -DownloadPath "
 [System.Environment]::SetEnvironmentVariable("CABAL_DIR", $cabalDir, "Machine")
 Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
-
-Update-SessionEnvironment
+Update-Environment
 
 # Get 3 latest versions of GHC
 $Versions = ghcup list -t ghc -r | Where-Object {$_ -notlike "prerelease"}

@@ -6,11 +6,30 @@
 Write-Host "Cleanup WinSxS"
 Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
 
-# Sets the default install version to v1 for new distributions
+# Set default version to 1 for WSL (aka LXSS - Linux Subsystem)
+# The value should be set in the default user registry hive
 # https://github.com/actions/runner-images/issues/5760
 if (Test-IsWin22) {
-    Write-Host "Sets the default install version to v1 for new distributions"
-    Add-DefaultItem -DefaultVariable "DefaultVersion" -Value 1 -Name "DEFAULT\Software\Microsoft\Windows\CurrentVersion\Lxss" -Kind "DWord"
+    Write-Host "Setting WSL default version to 1"
+
+    Mount-RegistryHive `
+        -FileName "C:\Users\Default\NTUSER.DAT" `
+        -SubKey "HKLM\DEFAULT"
+
+    # Create the key if it doesn't exist
+    $keyPath = "DEFAULT\Software\Microsoft\Windows\CurrentVersion\Lxss"
+    if (-not (Test-Path $keyPath)) {
+        Write-Host "Creating $keyPath key"
+        New-Item -Path (Join-Path "HKLM:\" $keyPath) -Force | Out-Null
+    }
+
+    # Set the DefaultVersion value to 1
+    $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($keyPath, $true)
+    $key.SetValue("DefaultVersion", "1", "DWord")
+    $key.Handle.Close()
+    [System.GC]::Collect()
+    
+    Dismount-RegistryHive "HKLM\DEFAULT"
 }
 
 Write-Host "Clean up various directories"
@@ -70,9 +89,11 @@ $registrySettings = @(
 )
 
 $registrySettings | ForEach-Object {
-    $regPath = $PSItem.Path
-    New-ItemPath -Path $regPath
-    New-ItemProperty @PSItem -Force -ErrorAction Ignore
+    $regPath = $_.Path
+    if (-not (Test-Path $regPath)) {
+        New-Item -Path $regPath -Force -ErrorAction Ignore | Out-Null
+    }
+    New-ItemProperty @_ -Force -ErrorAction Ignore
 } | Out-Null
 
 # Disable Template Services / User Services added by Desktop Experience
@@ -86,7 +107,9 @@ $regUserServicesToDisables = @(
 
 $regUserServicesToDisables | ForEach-Object {
     $regPath = $_
-    New-ItemPath -Path $regPath
+    if (-not (Test-Path $regPath)) {
+        New-Item -Path $regPath -Force -ErrorAction Ignore | Out-Null
+    }
     New-ItemProperty -Path $regPath -Name "Start" -Value 4 -PropertyType DWORD -Force -ErrorAction Ignore
     New-ItemProperty -Path $regPath -Name "UserServiceFlags" -Value 0 -PropertyType DWORD -Force -ErrorAction Ignore
 } | Out-Null
