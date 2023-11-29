@@ -396,19 +396,66 @@ function Get-TCToolVersionPath {
     return Join-Path $foundVersion $Arch
 }
 
-function Get-WinVersion {
-    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
-}
-
 function Test-IsWin22 {
-    (Get-WinVersion) -match "2022"
+    <#
+    .SYNOPSIS
+        Checks if the current Windows operating system is Windows Server 2022.
+
+    .DESCRIPTION
+        This function uses the Get-CimInstance cmdlet to retrieve information
+        about the current Windows operating system. It then checks if the Caption
+        property of the Win32_OperatingSystem class contains the string "2022",
+        indicating that the operating system is Windows Server 2022.
+
+    .OUTPUTS
+        Returns $true if the current Windows operating system is Windows Server 2022.
+        Otherwise, returns $false.
+    #>
+    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption -match "2022"
 }
 
 function Test-IsWin19 {
-    (Get-WinVersion) -match "2019"
+    <#
+    .SYNOPSIS
+        Checks if the current Windows operating system is Windows Server 2019.
+
+    .DESCRIPTION
+        This function uses the Get-CimInstance cmdlet to retrieve information
+        about the current Windows operating system. It then checks if the Caption
+        property of the Win32_OperatingSystem class contains the string "2019",
+        indicating that the operating system is Windows Server 2019.
+
+    .OUTPUTS
+        Returns $true if the current Windows operating system is Windows Server 2019.
+        Otherwise, returns $false.
+    #>
+    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption -match "2019"
 }
 
 function Expand-7ZipArchive {
+    <#
+    .SYNOPSIS
+        Extracts files from a 7-Zip archive.
+
+    .DESCRIPTION
+        This function uses the 7z.exe command-line tool to extract files from an archive.
+        The archive path, destination path, and extract method are specified as parameters.
+
+    .PARAMETER Path
+        The path to the archive.
+
+    .PARAMETER DestinationPath
+        The path to the directory where the files will be extracted.
+
+    .PARAMETER ExtractMethod
+        The method used to extract the files.
+        Valid values are "x" (extract with full paths) and "e" (extract without paths).
+
+    .EXAMPLE
+        Expand-7ZipArchive -Path "C:\archive.7z" -DestinationPath "C:\extracted" -ExtractMethod "x"
+
+        Extracts files from the "C:\archive.7z" archive to the "C:\extracted" directory keeping the full paths.
+    #>
     Param
     (
         [Parameter(Mandatory = $true)]
