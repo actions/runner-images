@@ -118,7 +118,7 @@ Install-ChocoPackage maven -ArgumentList "--version=$versionToInstall"
 Install-ChocoPackage gradle
 
 # Add maven env variables to Machine
-[string]$m2 = ([Environment]::GetEnvironmentVariable("PATH", "Machine")).Split(";") -match "maven"
+[string] $m2 = ([Environment]::GetEnvironmentVariable("PATH", "Machine")).Split(";") -match "maven"
 
 $m2_repo = 'C:\ProgramData\m2'
 New-Item -Path $m2_repo -ItemType Directory -Force | Out-Null

@@ -386,7 +386,7 @@ function Get-TCToolVersionPath {
 
     # Take latest installed version in case if toolset version contains wildcards
     $foundVersion = Get-Item $versionPath `
-    | Sort-Object -Property { [version]$_.name } -Descending `
+    | Sort-Object -Property { [version] $_.name } -Descending `
     | Select-Object -First 1
 
     if (-not $foundVersion) {
@@ -412,11 +412,11 @@ function Expand-7ZipArchive {
     Param
     (
         [Parameter(Mandatory = $true)]
-        [string]$Path,
+        [string] $Path,
         [Parameter(Mandatory = $true)]
-        [string]$DestinationPath,
+        [string] $DestinationPath,
         [ValidateSet("x", "e")]
-        [char]$ExtractMethod = "x"
+        [char] $ExtractMethod = "x"
     )
 
     Write-Host "Expand archive '$PATH' to '$DestinationPath' directory"
@@ -453,7 +453,7 @@ function Get-AndroidPackages {
     #>
     Param
     (
-        [string]$SDKRootPath
+        [string] $SDKRootPath
     )
     
     if (-not $SDKRootPath) {
@@ -501,9 +501,9 @@ function Get-AndroidPlatformPackages {
     #>
     Param
     (
-        [string]$SDKRootPath,
+        [string] $SDKRootPath,
         [Alias("minVersion")]
-        [int]$minimumVersion = 0
+        [int] $minimumVersion = 0
     )
     
     if (-not $SDKRootPath) {
@@ -543,9 +543,9 @@ function Get-AndroidBuildToolPackages {
     #>
     Param
     (
-        [string]$SDKRootPath,
+        [string] $SDKRootPath,
         [Alias("minVersion")]
-        [version]$minimumVersion = "0.0.0"
+        [version] $minimumVersion = "0.0.0"
     )
     
     if (-not $SDKRootPath) {
@@ -580,7 +580,7 @@ function Get-AndroidInstalledPackages {
 
     Param
     (
-        [string]$SDKRootPath
+        [string] $SDKRootPath
     )
     
     if (-not $SDKRootPath) {
@@ -748,7 +748,7 @@ function Resolve-GithubReleaseAssetUrl {
     }
 
     # Sort releases by version
-    $releases = $releases | Sort-Object -Descending { [version]$_.version }
+    $releases = $releases | Sort-Object -Descending { [version] $_.version }
 
     # Select releases matching version
     if ($Version -eq "latest") {
@@ -789,16 +789,16 @@ function Resolve-GithubReleaseAssetUrl {
 
 function Get-HashFromGitHubReleaseBody {
     param (
-        [string]$RepoOwner,
-        [string]$RepoName,
+        [string] $RepoOwner,
+        [string] $RepoName,
         [Parameter(Mandatory = $true)]
-        [string]$FileName,
-        [string]$Url,
-        [string]$Version = "latest",
-        [boolean]$IsPrerelease = $false,
-        [int]$SearchInCount = 100,
-        [string]$Delimiter = '|',
-        [int]$WordNumber = 1
+        [string] $FileName,
+        [string] $Url,
+        [string] $Version = "latest",
+        [boolean] $IsPrerelease = $false,
+        [int] $SearchInCount = 100,
+        [string] $Delimiter = '|',
+        [int] $WordNumber = 1
     )
 
     if ($Url) {

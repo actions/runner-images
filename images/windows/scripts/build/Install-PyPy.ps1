@@ -7,8 +7,8 @@
 function Install-PyPy
 {
     param(
-        [String]$PackagePath,
-        [String]$Architecture
+        [String] $PackagePath,
+        [String] $Architecture
     )
 
     # Create PyPy toolcache folder

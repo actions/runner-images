@@ -35,7 +35,7 @@ function Install-AndroidSDKPackages {
         [Parameter(Mandatory = $true)]
         [AllowEmptyCollection()]
         [AllowNull()]
-        [string[]]$Packages
+        [string[]] $Packages
     )
     
     # The sdkmanager.bat script is used to install Android SDK packages.
