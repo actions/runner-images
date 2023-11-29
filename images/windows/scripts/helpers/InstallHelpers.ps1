@@ -703,32 +703,73 @@ function Invoke-ScriptBlockWithRetry {
     }
 }
 
-function Resolve-GithubReleaseAssetUrl {
+function Get-GithubReleasesByVersion {
+    <#
+    .SYNOPSIS
+        Retrieves GitHub releases for a specified repository based on version.
+
+    .DESCRIPTION
+        The function retrieves GitHub releases for a specified repository based on the
+        version provided. It supports filtering by version, allowing for the retrieval
+        of specific releases or the latest release. The function utilizes the GitHub REST API
+        to fetch the releases and caches the results to improve performance and reduce
+        the number of API calls.
+
+    .PARAMETER Repository
+        The name of the GitHub repository in the format "owner/repo".
+
+    .PARAMETER Version
+        The version of the release to retrieve. It can be a specific version number,
+        "latest" to retrieve the latest release, or a wildcard pattern to match multiple versions.
+
+    .PARAMETER AllowPrerelease
+        Specifies whether to include prerelease versions in the results. By default,
+        prerelease versions are excluded.
+
+    .EXAMPLE
+        Get-GithubReleasesByVersion -Repository "Microsoft/PowerShell" -Version "7.2.0"
+
+        Retrieves the GitHub releases for the "Microsoft/PowerShell" repository with the version "7.2.0".
+
+    .EXAMPLE
+        Get-GithubReleasesByVersion -Repository "Microsoft/PowerShell" -Version "latest"
+
+        Retrieves the latest GitHub release for the "Microsoft/PowerShell" repository.
+
+    .EXAMPLE
+        Get-GithubReleasesByVersion -Repository "Microsoft/PowerShell" -Version "7.*"
+
+        Retrieves all GitHub releases for the "Microsoft/PowerShell" repository with versions starting with "7.".
+    #>
+
     param (
         [Parameter(Mandatory = $true)]
         [Alias("Repo")]
         [string] $Repository,
-        [Parameter(Mandatory = $true)]
-        [Alias("Pattern", "File", "Asset")]
-        [string] $UrlMatchPattern,
-        [switch] $AllowPrerelease,
-        [string] $Version = "*"
+        [string] $Version = "*",
+        [switch] $AllowPrerelease
     )
 
-    # Add wildcard to the beginning of the pattern if it's not there
-    if ($UrlMatchPattern.Substring(0, 2) -ne "*/") {
-        $UrlMatchPattern = "*/$UrlMatchPattern"
-    }
+    $localCacheFile = Join-Path ${env:TEMP} "github-releases_$($Repository -replace "/", "_").json"
 
-    $releases = @()
-    $page = 1
-    $pageSize = 100
-    do {
-        $releasesPage = Invoke-RestMethod -Uri "https://api.github.com/repos/${Repository}/releases?per_page=${pageSize}&page=${page}"
-        $releases += $releasesPage
-        $page++
-    } while ($releasesPage.Count -eq $pageSize)
-    Write-Debug "Found $($releases.Count) releases for ${Repository}"
+    if (Test-Path $localCacheFile) {
+        $releases = Get-Content $localCacheFile | ConvertFrom-Json
+        Write-Debug "Found cached releases for ${Repository} in local file"
+        Write-Debug "Release count: $($releases.Count)"
+    } else {
+        $releases = @()
+        $page = 1
+        $pageSize = 100
+        do {
+            $releasesPage = Invoke-RestMethod -Uri "https://api.github.com/repos/${Repository}/releases?per_page=${pageSize}&page=${page}"
+            $releases += $releasesPage
+            $page++
+        } while ($releasesPage.Count -eq $pageSize)
+
+        Write-Debug "Found $($releases.Count) releases for ${Repository}"
+        Write-Debug "Caching releases for ${Repository} in local file"
+        $releases | ConvertTo-Json -Depth 10 | Set-Content $localCacheFile
+    }
 
     if (-not $releases) {
         throw "Failed to get releases from ${Repository}"
@@ -764,6 +805,63 @@ function Resolve-GithubReleaseAssetUrl {
     }
     Write-Debug "Found $($matchingReleases.Count) releases matching version ${Version} for ${Repository}"
 
+    return $matchingReleases
+}
+
+function Resolve-GithubReleaseAssetUrl {
+    <#
+    .SYNOPSIS
+        Resolves the download URL for a specific asset in a GitHub release.
+
+    .DESCRIPTION
+        This function retrieves the download URL for a specific asset in a GitHub release.
+        It takes the repository name, version, and a URL match pattern as input parameters.
+        It searches for releases that match the specified version and then looks
+        for a download URL that matches the provided pattern. If a matching URL is found,
+        it returns the URL. If no matching URL is found, an exception is thrown.
+
+    .PARAMETER Repository
+        The name of the GitHub repository in the format "owner/repo".
+
+    .PARAMETER Version
+        The version of the release to retrieve. It can be a specific version number,
+        "latest" to retrieve the latest release, or a wildcard pattern to match multiple versions.
+
+    .PARAMETER AllowPrerelease
+        Specifies whether to include prerelease versions in the results. By default,
+        prerelease versions are excluded.
+
+    .PARAMETER UrlMatchPattern
+        The pattern to match against the download URLs of the release assets.
+        Wildcards (*) can be used to match any characters.
+
+    .EXAMPLE
+        Resolve-GithubReleaseAssetUrl -Repository "myrepo" -Version "1.0" -UrlMatchPattern "*.zip"
+        Retrieves the download URL for the asset in the "myrepo" repository with version "1.0" and a file extension of ".zip".
+
+    #>
+
+    param (
+        [Parameter(Mandatory = $true)]
+        [Alias("Repo")]
+        [string] $Repository,
+        [string] $Version = "*",
+        [switch] $AllowPrerelease,
+        [Parameter(Mandatory = $true)]
+        [Alias("Pattern", "File", "Asset")]
+        [string] $UrlMatchPattern
+    )
+
+    $matchingReleases = Get-GithubReleasesByVersion `
+        -Repository $Repository `
+        -AllowPrerelease:$AllowPrerelease `
+        -Version $Version
+
+    # Add wildcard to the beginning of the pattern if it's not there
+    if ($UrlMatchPattern.Substring(0, 2) -ne "*/") {
+        $UrlMatchPattern = "*/$UrlMatchPattern"
+    }
+
     # Loop over releases until we find a download url matching the pattern
     foreach ($release in $matchingReleases) {
         $matchedVersion = $release.version
@@ -787,45 +885,94 @@ function Resolve-GithubReleaseAssetUrl {
     return ($matchedUrl -as [string])
 }
 
-function Get-HashFromGitHubReleaseBody {
+function Get-GithubReleaseAssetHash {
+    <#
+    .SYNOPSIS
+        Retrieves the hash value of a specific file from a GitHub release body.
+
+    .DESCRIPTION
+        The Get-GithubReleaseAssetHash function retrieves the hash value (SHA256 or SHA512)
+        of a specific file from a GitHub release. It searches for the file in the release body
+        and returns the hash value if found.
+
+    .PARAMETER Repository
+        The name of the GitHub repository in the format "owner/repo".
+
+    .PARAMETER Version
+        The version of the release to inspect. It can be a specific version number,
+        "latest" to retrieve the latest release, or a wildcard pattern to match multiple versions.
+
+    .PARAMETER AllowPrerelease
+        Specifies whether to include prerelease versions in the results. By default,
+        prerelease versions are excluded.
+
+    .PARAMETER FileName
+        The name of the file to retrieve the hash value for.
+
+    .PARAMETER HashType
+        The type of hash value to retrieve. Valid values are "SHA256" and "SHA512".
+
+    .EXAMPLE
+        Get-GithubReleaseAssetHash -Repository "MyRepo" -FileName "myfile.txt" -HashType "SHA256"
+
+        Retrieves the SHA256 hash value of "myfile.txt" from the latest release of the "MyRepo" repository.
+
+    .EXAMPLE
+        Get-GithubReleaseAssetHash -Repository "MyRepo" -Version "1.0" -FileName "myfile.txt" -HashType "SHA512"
+
+        Retrieves the SHA512 hash value of "myfile.txt" from the release version "1.0" of the "MyRepo" repository.
+    #>
+
     param (
-        [string] $RepoOwner,
-        [string] $RepoName,
         [Parameter(Mandatory = $true)]
+        [Alias("Repo")]
+        [string] $Repository,
+        [string] $Version = "*",
+        [switch] $AllowPrerelease,
+        [Parameter(Mandatory = $true)]
+        [Alias("File", "Asset")]
         [string] $FileName,
-        [string] $Url,
-        [string] $Version = "latest",
-        [boolean] $IsPrerelease = $false,
-        [int] $SearchInCount = 100,
-        [string] $Delimiter = '|',
-        [int] $WordNumber = 1
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("SHA256", "SHA512")]
+        [string] $HashType
     )
 
-    if ($Url) {
-        $releaseUrl = $Url
-    } else {
-        if ($Version -eq "latest") {
-            $releaseUrl = "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases/latest"
-        } else {
-            $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
-            $tags = $json.Where{ $_.prerelease -eq $IsPrerelease }.tag_name
-            $tag = $tags -match $Version
-            if (-not $tag) {
-                throw "Failed to get a tag name for version $Version."
-            }
-            $releaseUrl = "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases/tag/$tag"
+    $matchingReleases = Get-GithubReleasesByVersion `
+        -Repository $Repository `
+        -AllowPrerelease:$AllowPrerelease `
+        -Version $Version
+
+    foreach ($release in $matchingReleases) {
+        $matchedVersion = $release.version
+        $matchedBody = $release.body
+        $matchedLine = $matchedBody.Split("`n") | Where-Object { $_ -like "*$FileName*" }
+        if ($matchedLine.Count -gt 1) {
+            throw "Found multiple lines matching file name '${FileName}' in body of release ${matchedVersion}."
+        } elseif ($matchedLine.Count -ne 0) {
+            break
         }
     }
-    $body = (Invoke-RestMethod -Uri $releaseUrl).body -replace ('`', "") -join "`n"
-    $matchingLine = $body.Split("`n") | Where-Object { $_ -like "*$FileName*" }    
-    if ([string]::IsNullOrEmpty($matchingLine)) {
-        throw "File name '$FileName' not found in release body."
+    if (-not $matchedLine) {
+        throw "File name '${FileName}' not found in release body."
     }
-    $result = $matchingLine.Split($Delimiter)[$WordNumber] -replace "[^a-zA-Z0-9]", ""
-    if ([string]::IsNullOrEmpty($result)) {
-        throw "Empty result. Check Split method parameters (delimiter and/or word number) for the matching line."
+    Write-Debug "Found line matching file name '${FileName}' in body of release ${matchedVersion}:`n${matchedLine}"
+
+    if ($HashType -eq "SHA256") {
+        $pattern = "[A-Fa-f0-9]{64}"
+    } elseif ($HashType -eq "SHA512") {
+        $pattern = "[A-Fa-f0-9]{128}"
+    } else {
+        throw "Unknown hash type: ${HashType}"
     }
-    return $result
+
+    $hash = $matchedLine | Select-String -Pattern $pattern | ForEach-Object { $_.Matches.Value }
+        
+    if ([string]::IsNullOrEmpty($hash)) {
+        throw "Found '${FileName}' in body of release ${matchedVersion}, but failed to get hash from it.`nLine: ${matchedLine}"
+    }
+    Write-Host "Found hash for ${FileName} in release ${matchedVersion}: $hash"
+
+    return $hash
 }
 
 function Test-FileChecksum {

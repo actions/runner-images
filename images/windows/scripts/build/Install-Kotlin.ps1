@@ -9,12 +9,16 @@ $kotlinVersion = (Get-ToolsetContent).kotlin.version
 
 $kotlinDownloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "JetBrains/kotlin" `
-    -Version $kotlinVersion `
+    -Version "$kotlinVersion" `
     -Asset "kotlin-compiler-*.zip"
 $kotlinArchivePath = Invoke-DownloadWithRetry $kotlinDownloadUrl
 
 #region Supply chain security
-$externalHash = Get-HashFromGitHubReleaseBody -RepoOwner "JetBrains" -RepoName "kotlin" -FileName "$kotlinBinaryName-*.zip" -Version $kotlinVersion -WordNumber 2
+$externalHash = Get-GithubReleaseAssetHash `
+    -Repo "JetBrains/kotlin" `
+    -Version "$kotlinVersion" `
+    -FileName (Split-Path $kotlinDownloadUrl -Leaf) `
+    -HashType "SHA256"
 Test-FileChecksum $kotlinArchivePath -ExpectedSHA256Sum $externalHash
 #endregion
 

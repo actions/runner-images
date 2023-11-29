@@ -38,7 +38,7 @@ Export-ModuleMember -Function @(
     'Get-VisualStudioInstance'
     'Get-VisualStudioComponents'
     'Get-WindowsUpdateStates'
-    'Get-HashFromGitHubReleaseBody'
+    'Get-GithubReleaseAssetHash'
     'Test-FileChecksum'
     'Test-FileSignature'
     'Update-Environment'

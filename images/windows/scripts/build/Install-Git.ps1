@@ -5,12 +5,17 @@
 ################################################################################
 
 # Install the latest version of Git for Windows
-$repoURL = "https://api.github.com/repos/git-for-windows/git/releases/latest"
-$gitReleases = Invoke-RestMethod $repoURL
-$downloadUrl = $gitReleases.assets.browser_download_url -match "Git-.+-64-bit.exe" | Select-Object -First 1
 
-$installerFile = Split-Path $downloadUrl -Leaf
-$externalHash = Get-HashFromGitHubReleaseBody -Url $RepoURL -FileName $installerFile
+$downloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "git-for-windows/git" `
+    -Version "latest" `
+    -UrlMatchPattern "Git-*-64-bit.exe"
+
+$externalHash = Get-GithubReleaseAssetHash `
+    -Repo "git-for-windows/git" `
+    -Version "latest" `
+    -FileName (Split-Path $downloadUrl -Leaf) `
+    -HashType "SHA256"
 
 Install-Binary `
     -Url $downloadUrl `
