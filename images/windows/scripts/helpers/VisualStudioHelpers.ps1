@@ -139,7 +139,7 @@ function Get-VsixInfoFromMarketplace {
 
     # Invoke-WebRequest doesn't support retry in PowerShell 5.1
     $webResponse = Invoke-ScriptBlockWithRetry -RetryCount 20 -RetryIntervalSeconds 30 -Command {
-        Invoke-WebRequest -Uri "${MarketplaceUri}${ExtensionMarketPlaceName}" -UseBasicParsing
+        Invoke-WebRequest -Uri "${MarketplaceUri}${Name}" -UseBasicParsing
     }
 
     $webResponse -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
