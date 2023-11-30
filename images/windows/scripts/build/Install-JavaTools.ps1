@@ -64,12 +64,7 @@ function Install-JavaJDK {
     # Download and extract java binaries to temporary folder
     $downloadUrl = $asset.binary.package.link
     $archivePath = Invoke-DownloadWithRetry $downloadUrl
-
-    #region Supply chain security - JDK
-    $fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
-    $externalHash = $asset.binary.package.checksum
-    Use-ChecksumComparison $fileHash $externalHash
-    #endregion
+    Test-FileChecksum $archivePath -ExpectedSHA256Sum $asset.binary.package.checksum
 
     # We have to replace '+' sign in the version to '-' due to the issue with incorrect path in Android builds https://github.com/actions/runner-images/issues/3014
     $fullJavaVersion = $asset.version.semver -replace '\+', '-'
@@ -123,7 +118,7 @@ Install-ChocoPackage maven -ArgumentList "--version=$versionToInstall"
 Install-ChocoPackage gradle
 
 # Add maven env variables to Machine
-[string]$m2 = ([Environment]::GetEnvironmentVariable("PATH", "Machine")).Split(";") -match "maven"
+[string] $m2 = ([Environment]::GetEnvironmentVariable("PATH", "Machine")).Split(";") -match "maven"
 
 $m2_repo = 'C:\ProgramData\m2'
 New-Item -Path $m2_repo -ItemType Directory -Force | Out-Null
@@ -138,8 +133,7 @@ $sha256sum = '79479DDE416B082F38ECD1F2F7C6DEBD4D0C2249AF80FD046D1CE05D628F2EC6'
 $coberturaPath = "C:\cobertura-2.1.1"
 
 $archivePath = Invoke-DownloadWithRetry $uri
-$fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
-Use-ChecksumComparison $fileHash $sha256sum
+Test-FileChecksum $archivePath -ExpectedSHA256Sum $sha256sum
 Expand-7ZipArchive -Path $archivePath -DestinationPath "C:\"
 
 [Environment]::SetEnvironmentVariable("COBERTURA_HOME", $coberturaPath, "Machine")

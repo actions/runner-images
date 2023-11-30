@@ -41,7 +41,7 @@ Function Install-VisualStudio {
     $bootstrapperFilePath = Invoke-DownloadWithRetry $BootstrapperUrl
 
     # Verify that the bootstrapper is signed by Microsoft
-    Test-FileSignature -FilePath $bootstrapperFilePath -ExpectedThumbprint $SignatureThumbprint
+    Test-FileSignature -Path $bootstrapperFilePath -ExpectedThumbprint $SignatureThumbprint
 
     try {
         Write-Host "Enable short name support on Windows needed for Xamarin Android AOT, defaults appear to have been changed in Azure VMs"

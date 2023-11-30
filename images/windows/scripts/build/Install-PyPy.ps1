@@ -7,8 +7,8 @@
 function Install-PyPy
 {
     param(
-        [String]$PackagePath,
-        [String]$Architecture
+        [String] $PackagePath,
+        [String] $Architecture
     )
 
     # Create PyPy toolcache folder
@@ -102,16 +102,13 @@ foreach($toolsetVersion in $toolsetVersions.versions)
         $tempPyPyPackagePath = Invoke-DownloadWithRetry $latestMajorPyPyVersion.download_url
 
         #region Supply chain security
-        $localFileHash = (Get-FileHash -Path $tempPyPyPackagePath -Algorithm SHA256).Hash
         $distributorFileHash = $null
-
-        ForEach($node in $checksums) {
-            if($node.InnerText -ilike "*${filename}*") {
+        foreach ($node in $checksums) {
+            if ($node.InnerText -ilike "*${filename}*") {
                 $distributorFileHash = $node.InnerText.ToString().Split("`n").Where({ $_ -ilike "*${filename}*" }).Split(' ')[0]
             }
         }
-        
-        Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $distributorFileHash
+        Test-FileChecksum $tempPyPyPackagePath -ExpectedSHA256Sum $distributorFileHash
         #endregion
 
         Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $toolsetVersions.arch

@@ -35,7 +35,7 @@ function Install-AndroidSDKPackages {
         [Parameter(Mandatory = $true)]
         [AllowEmptyCollection()]
         [AllowNull()]
-        [string[]]$Packages
+        [string[]] $Packages
     )
     
     # The sdkmanager.bat script is used to install Android SDK packages.
@@ -63,11 +63,7 @@ $androidToolset = (Get-ToolsetContent).android
 $cmdlineToolsUrl = $androidToolset.commandline_tools_url
 $cmdlineToolsArchPath = Invoke-DownloadWithRetry $cmdlineToolsUrl
 
-#region Supply chain security
-$localFileHash = (Get-FileHash -Path $cmdlineToolsArchPath -Algorithm SHA256).Hash
-
-Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $androidToolset.hash
-#endregion
+Test-FileChecksum $cmdlineToolsArchPath -ExpectedSHA256Sum $androidToolset.hash
 
 Expand-7ZipArchive -Path $cmdlineToolsArchPath -DestinationPath "${SDKInstallRoot}\cmdline-tools"
 

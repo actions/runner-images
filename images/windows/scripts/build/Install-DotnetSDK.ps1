@@ -22,7 +22,7 @@ function Get-SDKVersionsToInstall (
     $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') }
 
     $sdks = @()
-    ForEach ($release in $currentReleases) {
+    foreach ($release in $currentReleases) {
         $sdks += $release.'sdk'
         $sdks += $release.'sdks'
     }
@@ -30,7 +30,7 @@ function Get-SDKVersionsToInstall (
     return $sdks.version `
         | Sort-Object { [Version] $_ } -Unique `
         | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } `
-        | Foreach-Object { $_.Group[-1] }
+        | ForEach-Object { $_.Group[-1] }
 }
 
 function Invoke-Warmup (
@@ -62,9 +62,7 @@ function InstallSDKVersion (
 
         #region Supply chain security
         $distributorFileHash = (Invoke-RestMethod -Uri "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$dotnetVersion/releases.json").releases.sdks.Where({ $_.version -eq $SdkVersion }).files.Where({ $_.name -eq 'dotnet-sdk-win-x64.zip' }).hash
-        $localFileHash = (Get-FileHash -Path $ZipPath -Algorithm 'SHA512').Hash
-
-        Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $distributorFileHash
+        Test-FileChecksum $ZipPath -ExpectedSHA512Sum $distributorFileHash
         #endregion
     } else {
         Write-Host "Sdk version $sdkVersion already installed"
@@ -87,29 +85,23 @@ function InstallAllValidSdks() {
     $installationUrl = "https://dot.net/v1/${installationName}"
     Invoke-DownloadWithRetry -Url $installationUrl -Path ".\$installationName"
 
-    ForEach ($dotnetVersion in $dotnetVersions)
-    {
+    foreach ($dotnetVersion in $dotnetVersions) {
         $sdkVersionsToInstall = Get-SDKVersionsToInstall -DotnetVersion $dotnetVersion
-        
-        ForEach ($sdkVersion in $sdkVersionsToInstall)
-        {
+        foreach ($sdkVersion in $sdkVersionsToInstall) {
             InstallSDKVersion -SdkVersion $sdkVersion -DotnetVersion $dotnetVersion -Warmup $warmup
         }
     }
 }
 
-function InstallTools()
-{
+function InstallTools() {
     $dotnetTools = (Get-ToolsetContent).dotnet.tools
 
-    ForEach ($dotnetTool in $dotnetTools)
-    {
+    foreach ($dotnetTool in $dotnetTools) {
         dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default\.dotnet\tools" --add-source https://api.nuget.org/v3/index.json | Out-Null
     }
 }
 
-function RunPostInstallationSteps()
-{
+function RunPostInstallationSteps() {
     # Add dotnet to PATH
     Add-MachinePathItem "C:\Program Files\dotnet"
 

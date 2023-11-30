@@ -38,8 +38,8 @@ Export-ModuleMember -Function @(
     'Get-VisualStudioInstance'
     'Get-VisualStudioComponents'
     'Get-WindowsUpdateStates'
-    'Use-ChecksumComparison'
     'Get-HashFromGitHubReleaseBody'
+    'Test-FileChecksum'
     'Test-FileSignature'
     'Update-Environment'
 )

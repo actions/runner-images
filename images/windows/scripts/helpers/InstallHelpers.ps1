@@ -75,20 +75,18 @@ function Install-Binary {
 
     if ($PSBoundParameters.ContainsKey('ExpectedSignature')) {
         if ($ExpectedSignature) {
-            Test-FileSignature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
+            Test-FileSignature -Path $filePath -ExpectedThumbprint $ExpectedSignature
         } else {
             throw "ExpectedSignature parameter is specified, but no signature is provided."
         }
     }
 
     if ($ExpectedSHA256Sum) {
-        $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA256).Hash
-        Use-ChecksumComparison $fileHash $ExpectedSHA256Sum
+        Test-FileChecksum $filePath -ExpectedSHA256Sum $ExpectedSHA256Sum
     }
 
     if ($ExpectedSHA512Sum) {
-        $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA512).Hash
-        Use-ChecksumComparison $fileHash $ExpectedSHA512Sum
+        Test-FileChecksum $filePath -ExpectedSHA512Sum $ExpectedSHA512Sum
     }
 
     if ($ExtraInstallArgs -and $InstallArgs) {
@@ -388,7 +386,7 @@ function Get-TCToolVersionPath {
 
     # Take latest installed version in case if toolset version contains wildcards
     $foundVersion = Get-Item $versionPath `
-    | Sort-Object -Property { [version]$_.name } -Descending `
+    | Sort-Object -Property { [version] $_.name } -Descending `
     | Select-Object -First 1
 
     if (-not $foundVersion) {
@@ -414,11 +412,11 @@ function Expand-7ZipArchive {
     Param
     (
         [Parameter(Mandatory = $true)]
-        [string]$Path,
+        [string] $Path,
         [Parameter(Mandatory = $true)]
-        [string]$DestinationPath,
+        [string] $DestinationPath,
         [ValidateSet("x", "e")]
-        [char]$ExtractMethod = "x"
+        [char] $ExtractMethod = "x"
     )
 
     Write-Host "Expand archive '$PATH' to '$DestinationPath' directory"
@@ -455,7 +453,7 @@ function Get-AndroidPackages {
     #>
     Param
     (
-        [string]$SDKRootPath
+        [string] $SDKRootPath
     )
     
     if (-not $SDKRootPath) {
@@ -503,9 +501,9 @@ function Get-AndroidPlatformPackages {
     #>
     Param
     (
-        [string]$SDKRootPath,
+        [string] $SDKRootPath,
         [Alias("minVersion")]
-        [int]$minimumVersion = 0
+        [int] $minimumVersion = 0
     )
     
     if (-not $SDKRootPath) {
@@ -545,9 +543,9 @@ function Get-AndroidBuildToolPackages {
     #>
     Param
     (
-        [string]$SDKRootPath,
+        [string] $SDKRootPath,
         [Alias("minVersion")]
-        [version]$minimumVersion = "0.0.0"
+        [version] $minimumVersion = "0.0.0"
     )
     
     if (-not $SDKRootPath) {
@@ -582,7 +580,7 @@ function Get-AndroidInstalledPackages {
 
     Param
     (
-        [string]$SDKRootPath
+        [string] $SDKRootPath
     )
     
     if (-not $SDKRootPath) {
@@ -750,7 +748,7 @@ function Resolve-GithubReleaseAssetUrl {
     }
 
     # Sort releases by version
-    $releases = $releases | Sort-Object -Descending { [version]$_.version }
+    $releases = $releases | Sort-Object -Descending { [version] $_.version }
 
     # Select releases matching version
     if ($Version -eq "latest") {
@@ -789,35 +787,18 @@ function Resolve-GithubReleaseAssetUrl {
     return ($matchedUrl -as [string])
 }
 
-function Use-ChecksumComparison {
-    param (
-        [Parameter(Mandatory = $true)]
-        [string]$LocalFileHash,
-        [Parameter(Mandatory = $true)]
-        [string]$DistributorFileHash
-    )
-
-    Write-Verbose "Performing checksum verification"
-
-    if ($LocalFileHash -ne $DistributorFileHash) {
-        throw "Checksum verification failed. Expected hash: $DistributorFileHash; Actual hash: $LocalFileHash."
-    } else {
-        Write-Verbose "Checksum verification passed"
-    }
-}
-
 function Get-HashFromGitHubReleaseBody {
     param (
-        [string]$RepoOwner,
-        [string]$RepoName,
+        [string] $RepoOwner,
+        [string] $RepoName,
         [Parameter(Mandatory = $true)]
-        [string]$FileName,
-        [string]$Url,
-        [string]$Version = "latest",
-        [boolean]$IsPrerelease = $false,
-        [int]$SearchInCount = 100,
-        [string]$Delimiter = '|',
-        [int]$WordNumber = 1
+        [string] $FileName,
+        [string] $Url,
+        [string] $Version = "latest",
+        [boolean] $IsPrerelease = $false,
+        [int] $SearchInCount = 100,
+        [string] $Delimiter = '|',
+        [int] $WordNumber = 1
     )
 
     if ($Url) {
@@ -846,15 +827,104 @@ function Get-HashFromGitHubReleaseBody {
     }
     return $result
 }
-function Test-FileSignature {
-    param(
-        [Parameter(Mandatory = $true)]
-        [string]$FilePath,
-        [Parameter(Mandatory = $true)]
-        [string[]]$ExpectedThumbprint
+
+function Test-FileChecksum {
+    <#
+    .SYNOPSIS
+        Verifies the checksum of a file.
+    
+    .DESCRIPTION
+        The Test-FileChecksum function verifies the SHA256 or SHA512 checksum of a file against an expected value. 
+        If the checksum does not match the expected value, the function throws an error.
+    
+    .PARAMETER Path
+        The path to the file for which to verify the checksum.
+    
+    .PARAMETER ExpectedSHA256Sum
+        The expected SHA256 checksum. If this parameter is provided, the function will calculate the SHA256 checksum of the file and compare it to this value.
+    
+    .PARAMETER ExpectedSHA512Sum
+        The expected SHA512 checksum. If this parameter is provided, the function will calculate the SHA512 checksum of the file and compare it to this value.
+    
+    .EXAMPLE
+        Test-FileChecksum -Path "C:\temp\file.txt" -ExpectedSHA256Sum "ABC123"
+    
+        Verifies that the SHA256 checksum of the file at C:\temp\file.txt is ABC123.
+    
+    .EXAMPLE
+        Test-FileChecksum -Path "C:\temp\file.txt" -ExpectedSHA512Sum "DEF456"
+    
+        Verifies that the SHA512 checksum of the file at C:\temp\file.txt is DEF456.
+    
+    #>
+
+    param (
+        [Parameter(Mandatory = $true, Position = 0)]
+        [string] $Path,
+        [Parameter(Mandatory = $false)]
+        [String] $ExpectedSHA256Sum,
+        [Parameter(Mandatory = $false)]
+        [String] $ExpectedSHA512Sum
     )
 
-    $signature = Get-AuthenticodeSignature $FilePath
+    Write-Verbose "Performing checksum verification"
+
+    if ($ExpectedSHA256Sum -and $ExpectedSHA512Sum) {
+        throw "Only one of the ExpectedSHA256Sum and ExpectedSHA512Sum parameters can be provided"
+    }
+
+    if (-not (Test-Path $Path)) {
+        throw "File not found: $Path"
+    }
+
+    if ($ExpectedSHA256Sum) {
+        $fileHash = (Get-FileHash -Path $Path -Algorithm SHA256).Hash
+        $expectedHash = $ExpectedSHA256Sum
+    }
+
+    if ($ExpectedSHA512Sum) {
+        $fileHash = (Get-FileHash -Path $Path -Algorithm SHA512).Hash
+        $expectedHash = $ExpectedSHA512Sum
+    }
+
+    if ($fileHash -ne $expectedHash) {
+        throw "Checksum verification failed: expected $expectedHash, got $fileHash"
+    } else {
+        Write-Verbose "Checksum verification passed"
+    }
+}
+
+function Test-FileSignature {
+    <#
+    .SYNOPSIS
+        Tests the file signature of a given file.
+
+    .DESCRIPTION
+        The Test-FileSignature function checks the signature of a file against the expected thumbprints. 
+        It uses the Get-AuthenticodeSignature cmdlet to retrieve the signature information of the file.
+        If the signature status is not valid or the thumbprint does not match the expected thumbprints, an exception is thrown.
+
+    .PARAMETER Path
+        Specifies the path of the file to test.
+
+    .PARAMETER ExpectedThumbprint
+        Specifies the expected thumbprints to match against the file's signature.
+
+    .EXAMPLE
+        Test-FileSignature -Path "C:\Path\To\File.exe" -ExpectedThumbprint "A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0"
+
+        This example tests the signature of the file "C:\Path\To\File.exe" against the expected thumbprint "A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0".
+
+    #>
+    
+    param(
+        [Parameter(Mandatory = $true, Position = 0)]
+        [string] $Path,
+        [Parameter(Mandatory = $true)]
+        [string[]] $ExpectedThumbprint
+    )
+
+    $signature = Get-AuthenticodeSignature $Path
 
     if ($signature.Status -ne "Valid") {
         throw "Signature status is not valid. Status: $($signature.Status)"
@@ -862,14 +932,14 @@ function Test-FileSignature {
     
     foreach ($thumbprint in $ExpectedThumbprint) {
         if ($signature.SignerCertificate.Thumbprint.Contains($thumbprint)) {
-            Write-Output "Signature for $FilePath is valid"
+            Write-Output "Signature for $Path is valid"
             $signatureMatched = $true
             return
         }
     }
 
     if ($signatureMatched) {
-        Write-Output "Signature for $FilePath is valid"
+        Write-Output "Signature for $Path is valid"
     } else {
         throw "Signature thumbprint do not match expected."
     }
