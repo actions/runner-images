@@ -11,8 +11,9 @@ if (-not $vsixPackagesList) {
 }
 
 $vsixPackagesList | ForEach-Object {
-    # Retrieve cdn endpoint to avoid HTTP error 429 https://github.com/actions/runner-images/issues/3074
-    $vsixPackage = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
+    # Retrieve cdn endpoint to avoid HTTP error 429
+    # https://github.com/actions/runner-images/issues/3074
+    $vsixPackage = Get-VsixInfoFromMarketplace $_
     Write-Host "Installing $vsixPackage"
     if ($vsixPackage.FileName.EndsWith(".vsix")) {
         Install-VSIXFromUrl $vsixPackage.DownloadUri
