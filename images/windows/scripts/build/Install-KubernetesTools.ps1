@@ -11,15 +11,15 @@ $targetDir = "C:\ProgramData\kind"
 New-Item -Path $targetDir -ItemType Directory -Force | Out-Null
 
 $downloadUrl = Resolve-GithubReleaseAssetUrl `
-  -Repo "kubernetes-sigs/kind" `
-  -Version "latest" `
-  -UrlMatchPattern "kind-windows-amd64"
+    -Repo "kubernetes-sigs/kind" `
+    -Version "latest" `
+    -UrlMatchPattern "kind-windows-amd64"
 $packagePath = Invoke-DownloadWithRetry -Url $downloadUrl -Path "$targetDir\kind.exe"
 
 #region Supply chain security - Kind
-$binaryName = Split-Path $downloadUrl -Leaf
-$checksums = Invoke-DownloadWithRetry ("$downloadUrl.sha256") | Get-Item | Get-Content
-$externalHash = $checksums.Where({ $_ -ilike "*${binaryName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url "$downloadUrl.sha256" `
+    -FileName (Split-Path $downloadUrl -Leaf)
 Test-FileChecksum $packagePath -ExpectedSHA256Sum $externalHash
 #endregion
 

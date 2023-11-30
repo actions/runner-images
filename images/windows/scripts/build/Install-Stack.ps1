@@ -19,9 +19,9 @@ $DestinationPath = Join-Path $StackToolcachePath "x64"
 $StackArchivePath = Invoke-DownloadWithRetry $downloadUrl
 
 #region Supply chain security - Stack
-$binaryName = Split-Path $downloadUrl -Leaf
-$checksums = Invoke-DownloadWithRetry ("$downloadUrl.sha256") | Get-Item | Get-Content
-$externalHash = $checksums.Where({ $_ -ilike "*${binaryName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url "$downloadUrl.sha256" `
+    -FileName (Split-Path $downloadUrl -Leaf)
 Test-FileChecksum $StackArchivePath -ExpectedSHA256Sum $externalHash
 #endregion
 

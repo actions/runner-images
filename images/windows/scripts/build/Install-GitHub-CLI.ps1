@@ -12,9 +12,9 @@ $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -UrlMatchPattern "gh_*_windows_amd64.msi"
 
 $installerName = Split-Path $downloadUrl -Leaf
-$checksums = Invoke-DownloadWithRetry ($downloadUrl -replace $installerName, "checksums.txt") | Get-Item | Get-Content
-$externalHash = $checksums.Where({ $_ -ilike "*${installerName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
-
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url ($downloadUrl -replace $installerName, "checksums.txt") `
+    -FileName $installerName
 Install-Binary `
   -Url $downloadUrl `
   -ExpectedSHA256Sum $externalHash

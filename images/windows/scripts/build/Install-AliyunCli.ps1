@@ -13,8 +13,9 @@ $packagePath = Invoke-DownloadWithRetry $downloadUrl
 
 #region Supply chain security - Alibaba Cloud CLI
 $packageName = Split-Path $downloadUrl -Leaf
-$checksums = Invoke-DownloadWithRetry ($downloadUrl -replace $packageName, "SHASUMS256.txt") | Get-Item | Get-Content
-$externalHash = $checksums.Where({ $_ -ilike "*${packageName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url ($downloadUrl -replace $packageName, "SHASUMS256.txt") `
+    -FileName $packageName
 Test-FileChecksum $packagePath -ExpectedSHA256Sum $externalHash
 #endregion
 

@@ -11,7 +11,7 @@ $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Version "latest" `
     -UrlMatchPattern "Git-*-64-bit.exe"
 
-$externalHash = Get-GithubReleaseAssetHash `
+$externalHash = Get-ChecksumFromGithubRelease `
     -Repo "git-for-windows/git" `
     -Version "latest" `
     -FileName (Split-Path $downloadUrl -Leaf) `

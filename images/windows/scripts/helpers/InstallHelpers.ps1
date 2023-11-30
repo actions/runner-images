@@ -646,13 +646,13 @@ function Resolve-GithubReleaseAssetUrl {
     return ($matchedUrl -as [string])
 }
 
-function Get-GithubReleaseAssetHash {
+function Get-ChecksumFromGithubRelease {
     <#
     .SYNOPSIS
         Retrieves the hash value of a specific file from a GitHub release body.
 
     .DESCRIPTION
-        The Get-GithubReleaseAssetHash function retrieves the hash value (SHA256 or SHA512)
+        The Get-ChecksumFromGithubRelease function retrieves the hash value (SHA256 or SHA512)
         of a specific file from a GitHub release. It searches for the file in the release body
         and returns the hash value if found.
 
@@ -674,12 +674,12 @@ function Get-GithubReleaseAssetHash {
         The type of hash value to retrieve. Valid values are "SHA256" and "SHA512".
 
     .EXAMPLE
-        Get-GithubReleaseAssetHash -Repository "MyRepo" -FileName "myfile.txt" -HashType "SHA256"
+        Get-ChecksumFromGithubRelease -Repository "MyRepo" -FileName "myfile.txt" -HashType "SHA256"
 
         Retrieves the SHA256 hash value of "myfile.txt" from the latest release of the "MyRepo" repository.
 
     .EXAMPLE
-        Get-GithubReleaseAssetHash -Repository "MyRepo" -Version "1.0" -FileName "myfile.txt" -HashType "SHA512"
+        Get-ChecksumFromGithubRelease -Repository "MyRepo" -Version "1.0" -FileName "myfile.txt" -HashType "SHA512"
 
         Retrieves the SHA512 hash value of "myfile.txt" from the release version "1.0" of the "MyRepo" repository.
     #>
@@ -733,6 +733,49 @@ function Get-GithubReleaseAssetHash {
         throw "Found '${FileName}' in body of release ${matchedVersion}, but failed to get hash from it.`nLine: ${matchedLine}"
     }
     Write-Host "Found hash for ${FileName} in release ${matchedVersion}: $hash"
+
+    return $hash
+}
+
+function Get-ChecksumFromUrl {
+    param (
+        [Parameter(Mandatory = $true)]
+        [Alias("Url")]
+        [string] $Url,
+        [Parameter(Mandatory = $true)]
+        [Alias("File", "Asset")]
+        [string] $FileName,
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("SHA256", "SHA512")]
+        [Alias("Type")]
+        [string] $HashType
+    )
+
+    $tempFile = Join-Path -Path $env:TEMP -ChildPath ([System.IO.Path]::GetRandomFileName())
+    $checksums = Invoke-DownloadWithRetry -Url $Url -Path $tempFile | Get-Item | Get-Content -as [string[]]
+    Remove-Item -Path $tempFile
+
+    $matchedLine = $checksums | Where-Object { $_ -like "*$FileName*" }
+    if ($matchedLine.Count -gt 1) {
+        throw "Found multiple lines matching file name '${FileName}' in checksum file."
+    } elseif ($matchedLine.Count -eq 0) {
+        throw "File name '${FileName}' not found in checksum file."
+    }
+
+    if ($HashType -eq "SHA256") {
+        $pattern = "[A-Fa-f0-9]{64}"
+    } elseif ($HashType -eq "SHA512") {
+        $pattern = "[A-Fa-f0-9]{128}"
+    } else {
+        throw "Unknown hash type: ${HashType}"
+    }
+    Write-Debug "Found line matching file name '${FileName}' in checksum file:`n${matchedLine}"
+
+    $hash = $matchedLine | Select-String -Pattern $pattern | ForEach-Object { $_.Matches.Value }
+    if ([string]::IsNullOrEmpty($hash)) {
+        throw "Found '${FileName}' in checksum file, but failed to get hash from it.`nLine: ${matchedLine}"
+    }
+    Write-Host "Found hash for ${FileName} in checksum file: $hash"
 
     return $hash
 }

@@ -13,8 +13,9 @@ $binaryPath = Invoke-DownloadWithRetry -Url $downloadUrl -Path "C:\Windows\Syste
 
 #region Supply chain security
 $binaryName = Split-Path $downloadUrl -Leaf
-$checksums = Invoke-DownloadWithRetry ($downloadUrl -replace $binaryName, "checksums.txt") | Get-Item | Get-Content
-$externalHash = $checksums.Where({ $_ -ilike "*${binaryName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url ($downloadUrl -replace $binaryName, "checksums.txt") `
+    -FileName $binaryName
 Test-FileChecksum -Path $binaryPath -ExpectedSHA256Sum $externalHash
 #endregion
 

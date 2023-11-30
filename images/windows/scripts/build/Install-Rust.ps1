@@ -14,7 +14,7 @@ $rustupPath = Invoke-DownloadWithRetry "https://static.rust-lang.org/rustup/dist
 
 #region Supply chain security
 $distributorFileHash = (Invoke-RestMethod -Uri 'https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe.sha256').Trim()
-Test-FileChecksum (Join-Path ${env:TEMP} 'rustup-init.exe') -ExpectedSHA256Sum $distributorFileHash
+Test-FileChecksum $rustupPath -ExpectedSHA256Sum $distributorFileHash
 #endregion
 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)

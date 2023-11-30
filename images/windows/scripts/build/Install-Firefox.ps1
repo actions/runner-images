@@ -11,7 +11,10 @@ $VersionsManifest = Invoke-RestMethod "https://product-details.mozilla.org/1.0/f
 Write-Host "Install Firefox browser..."
 $installerUrl = "https://download.mozilla.org/?product=firefox-$($VersionsManifest.LATEST_FIREFOX_VERSION)&os=win64&lang=en-US"
 $hashUrl = "https://archive.mozilla.org/pub/firefox/releases/$($VersionsManifest.LATEST_FIREFOX_VERSION)/SHA256SUMS"
-$externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*win64/en-US/Firefox Setup*exe*" }).Split(' ')[0]
+
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url $hashUrl `
+    -FileName "win64/en-US/Firefox Setup*exe"
 
 Install-Binary -Type EXE `
     -Url $installerUrl `

@@ -14,7 +14,7 @@ $kotlinDownloadUrl = Resolve-GithubReleaseAssetUrl `
 $kotlinArchivePath = Invoke-DownloadWithRetry $kotlinDownloadUrl
 
 #region Supply chain security
-$externalHash = Get-GithubReleaseAssetHash `
+$externalHash = Get-ChecksumFromGithubRelease `
     -Repo "JetBrains/kotlin" `
     -Version "$kotlinVersion" `
     -FileName (Split-Path $kotlinDownloadUrl -Leaf) `

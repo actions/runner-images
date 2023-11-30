@@ -23,8 +23,9 @@ function Install-Msys2 {
   $installerPath = Invoke-DownloadWithRetry $downloadUri
 
   #region Supply chain security - MSYS2
-  $checksums = Invoke-DownloadWithRetry ($downloadUrl -replace $installerName, "msys2-checksums.txt") | Get-Item | Get-Content
-  $externalHash = $checksums.Where({ $_ -ilike "*${installerName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
+  $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url ($downloadUrl -replace $installerName, "msys2-checksums.txt") `
+    -FileName $installerName
   Test-FileChecksum $installerPath -ExpectedSHA256Sum $externalHash
   #endregion
 

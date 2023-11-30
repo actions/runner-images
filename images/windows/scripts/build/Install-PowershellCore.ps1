@@ -16,10 +16,11 @@ try {
     $release = $metadata.LTSReleaseTag[0] -replace '^v'
     $downloadUrl = "https://github.com/PowerShell/PowerShell/releases/download/v${release}/PowerShell-${release}-win-x64.msi"
 
-    $hashUrl = "https://github.com/PowerShell/PowerShell/releases/download/v${release}/hashes.sha256"
-    $expectedSHA256Sum = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*PowerShell-${Release}-win-x64.msi*" }).Split(' ')[0]
-
-    Install-Binary -Url $downloadUrl -ExpectedSHA256Sum $expectedSHA256Sum
+    $installerName = Split-Path $downloadUrl -Leaf
+    $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+        -Url ($downloadUrl -replace $installerName, "hashes.sha256") `
+        -FileName $installerName
+    Install-Binary -Url $downloadUrl -ExpectedSHA256Sum $externalHash
 } finally {
     # Restore original value
     [Net.ServicePointManager]::SecurityProtocol = $originalValue
