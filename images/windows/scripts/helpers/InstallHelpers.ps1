@@ -131,6 +131,33 @@ function Install-Binary {
 }
 
 function Invoke-DownloadWithRetry {
+    <#
+    .SYNOPSIS
+        Downloads a file from a given URL with retry functionality.
+
+    .DESCRIPTION
+        The Invoke-DownloadWithRetry function downloads a file from the specified URL
+        to the specified path. It includes retry functionality in case the download fails.
+
+    .PARAMETER Url
+        The URL of the file to download.
+
+    .PARAMETER Path
+        The path where the downloaded file will be saved. If not provided, a temporary path
+        will be used.
+
+    .EXAMPLE
+        Invoke-DownloadWithRetry -Url "https://example.com/file.zip" -Path "C:\Downloads\file.zip"
+        Downloads the file from the specified URL and saves it to the specified path.
+
+    .EXAMPLE
+        Invoke-DownloadWithRetry -Url "https://example.com/file.zip"
+        Downloads the file from the specified URL and saves it to a temporary path.
+    
+    .OUTPUTS
+        The path where the downloaded file is saved.
+    #>
+
     Param
     (
         [Parameter(Mandatory)]
@@ -180,6 +207,15 @@ function Invoke-DownloadWithRetry {
 }
 
 function Get-ToolsetContent {
+    <#
+    .SYNOPSIS
+        Retrieves the content of the toolset.json file.
+
+    .DESCRIPTION
+        This function reads the toolset.json file located at "C:\image\toolset.json"
+        and returns the content as a PowerShell object.
+    #>
+
     $toolsetPath = Join-Path "C:\\image" "toolset.json"
     $toolsetJson = Get-Content -Path $toolsetPath -Raw
     ConvertFrom-Json -InputObject $toolsetJson
@@ -738,6 +774,28 @@ function Get-ChecksumFromGithubRelease {
 }
 
 function Get-ChecksumFromUrl {
+    <#
+    .SYNOPSIS
+        Retrieves the checksum hash for a file from a given URL.
+
+    .DESCRIPTION
+        The Get-ChecksumFromUrl function retrieves the checksum hash for a specified file
+        from a given URL. It supports SHA256 and SHA512 hash types.
+
+    .PARAMETER Url
+        The URL of the checksum file.
+
+    .PARAMETER FileName
+        The name of the file to retrieve the checksum hash for.
+
+    .PARAMETER HashType
+        The type of hash to retrieve. Valid values are "SHA256" and "SHA512".
+
+    .EXAMPLE
+        Get-ChecksumFromUrl -Url "https://example.com/checksums.txt" -FileName "file.txt" -HashType "SHA256"
+        Retrieves the SHA256 checksum hash for the file "file.txt" from the URL "https://example.com/checksums.txt".
+    #>
+
     param (
         [Parameter(Mandatory = $true)]
         [Alias("Url")]
