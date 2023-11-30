@@ -45,7 +45,7 @@ There are a bunch of helper functions that could simplify your code: `Choco-Inst
 - Add a script that will validate the tool installation and put the script in the `scripts/tests` folder.
 We use [Pester v5](https://github.com/pester/pester) for validation scripts. If the tests for the tool are complex enough, create a separate `*.Tests.ps1`. Otherwise, use `Tools.Tests.ps1` for simple tests.
 Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at the end of the installation script to make sure that your tests will be run.
-- Add changes to the software report generator `images/windows/scripts/docs-gen/SoftwareReport.Generator.ps1`. The software report generator is used to generate an image's README file, e.g. [Windows2019-Readme.md](images/windows/Windows2019-Readme.md) and uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
+- Add changes to the software report generator `images/windows/scripts/docs-gen/Generate-SoftwareReport.ps1`. The software report generator is used to generate an image's README file, e.g. [Windows2019-Readme.md](images/windows/Windows2019-Readme.md) and uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
 
 ### Ubuntu
 

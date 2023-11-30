@@ -64,15 +64,14 @@ else
 fi
 
 # Download amazon-ecr-credential-helper
-aws_helper="docker-credential-ecr-login"
 aws_latest_release_url="https://api.github.com/repos/awslabs/amazon-ecr-credential-helper/releases/latest"
 aws_helper_url=$(curl "${authString[@]}" -fsSL "${aws_latest_release_url}" | jq -r '.body' | awk -F'[()]' '/linux-amd64/ {print $2}')
-download_with_retries "${aws_helper_url}" "/tmp" "${aws_helper}"
+aws_helper_binary_path=$(download_with_retry "$aws_helper_url")
 # Supply chain security - amazon-ecr-credential-helper
-aws_helper_external_hash=$(get_hash_from_remote_file "${aws_helper_url}.sha256" "${aws_helper}")
-use_checksum_comparison "/tmp/${aws_helper}" "${aws_helper_external_hash}"
+aws_helper_external_hash=$(get_hash_from_remote_file "${aws_helper_url}.sha256" "docker-credential-ecr-login")
+use_checksum_comparison "$aws_helper_binary_path" "$aws_helper_external_hash"
 # Install amazon-ecr-credential-helper
-install "/tmp/${aws_helper}" "/usr/bin/${aws_helper}"
+install "$aws_helper_binary_path" "/usr/bin/docker-credential-ecr-login"
 
 # Cleanup custom repositories
 rm $gpg_key

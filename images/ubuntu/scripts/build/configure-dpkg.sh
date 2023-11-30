@@ -4,6 +4,9 @@
 ##  Desc:  Configure dpkg
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
+
 # This is the anti-frontend. It never interacts with you  at  all,
 # and  makes  the  default  answers  be used for all questions. It
 # might mail error messages to root, but that's it;  otherwise  it
@@ -11,7 +14,7 @@
 # automatic installs. If you are using this front-end, and require
 # non-default  answers  to questions, you will need to preseed the
 # debconf database
-echo 'DEBIAN_FRONTEND=noninteractive' | tee -a /etc/environment
+setEtcEnvironmentVariable "DEBIAN_FRONTEND" "noninteractive"
 
 # dpkg can be instructed not to ask for confirmation
 # when replacing a configuration file (with the --force-confdef --force-confold options)

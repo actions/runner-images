@@ -15,7 +15,7 @@ Invoke-Expression "$InstallDir\$VcpkgExecPath integrate install"
 
 # Add vcpkg to system environment
 Add-MachinePathItem $InstallDir
-$env:Path = Get-MachinePath
 [Environment]::SetEnvironmentVariable("VCPKG_INSTALLATION_ROOT", $InstallDir, "Machine")
+Update-Environment
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Vcpkg"

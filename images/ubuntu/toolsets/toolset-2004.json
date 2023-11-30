@@ -298,8 +298,7 @@
         {"name": "fastlane"}
     ],
     "selenium": {
-        "version": "4",
-        "binary_name": "selenium-server"
+        "version": "4"
     },
     "node": {
         "default": "18"

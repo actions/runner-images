@@ -129,17 +129,17 @@ build {
   }
   provisioner "shell" {
     scripts = [
-      "./scripts/build/xcode-clt.sh",
-      "./scripts/build/homebrew.sh"
+      "./scripts/build/install-xcode-clt.sh",
+      "./scripts/build/install-homebrew.sh"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
     scripts = [
       "./scripts/build/configure-tccdb-macos.sh",
-      "./scripts/build/disable-auto-updates.sh",
-      "./scripts/build/ntpconf.sh",
-      "./scripts/build/shell-change.sh"
+      "./scripts/build/configure-auto-updates.sh",
+      "./scripts/build/configure-ntpconf.sh",
+      "./scripts/build/configure-shell.sh"
     ]
     environment_vars = [
       "PASSWORD=${var.vm_password}",
@@ -149,7 +149,7 @@ build {
   }
   provisioner "shell" {
     scripts = [
-      "./scripts/build/preimagedata.sh",
+      "./scripts/build/configure-preimagedata.sh",
       "./scripts/build/configure-ssh.sh",
       "./scripts/build/configure-machine.sh"
     ]
@@ -161,25 +161,25 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
-    script  = "./scripts/build/reboot.sh"
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
+    execute_command   = "source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
     expect_disconnect = true
+    inline            = ["echo 'Reboot VM'", "shutdown -r now"]
   }
   provisioner "shell" {
     pause_before = "30s"
     scripts = [
-      "./scripts/build/open_windows_check.sh",
-      "./scripts/build/powershell.sh",
-      "./scripts/build/mono.sh",
-      "./scripts/build/dotnet.sh",
-      "./scripts/build/python.sh",
-      "./scripts/build/azcopy.sh",
-      "./scripts/build/openssl.sh",
-      "./scripts/build/ruby.sh",
-      "./scripts/build/rubygem.sh",
-      "./scripts/build/git.sh",
-      "./scripts/build/node.sh",
-      "./scripts/build/commonutils.sh"
+      "./scripts/build/configure-windows.sh",
+      "./scripts/build/install-powershell.sh",
+      "./scripts/build/install-mono.sh",
+      "./scripts/build/install-dotnet.sh",
+      "./scripts/build/install-python.sh",
+      "./scripts/build/install-azcopy.sh",
+      "./scripts/build/install-openssl.sh",
+      "./scripts/build/install-ruby.sh",
+      "./scripts/build/install-rubygems.sh",
+      "./scripts/build/install-git.sh",
+      "./scripts/build/install-node.sh",
+      "./scripts/build/install-common-utils.sh"
     ]
     environment_vars = [
       "API_PAT=${var.github_api_pat}",
@@ -188,7 +188,7 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
-    script = "./scripts/build/xcode.ps1"
+    script = "./scripts/build/Install-Xcode.ps1"
     environment_vars = [
       "XCODE_INSTALL_STORAGE_URL=${var.xcode_install_storage_url}",
       "XCODE_INSTALL_SAS=${var.xcode_install_sas}"
@@ -196,31 +196,31 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
   }
   provisioner "shell" {
-    script = "./scripts/build/reboot.sh"
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
+    execute_command   = "source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
     expect_disconnect = true
+    inline            = ["echo 'Reboot VM'", "shutdown -r now"]
   }
   provisioner "shell" {
     scripts = [
-      "./scripts/build/action-archive-cache.sh",
-      "./scripts/build/llvm.sh",
-      "./scripts/build/swiftlint.sh",
-      "./scripts/build/openjdk.sh",
-      "./scripts/build/php.sh",
-      "./scripts/build/aws.sh",
-      "./scripts/build/rust.sh",
-      "./scripts/build/gcc.sh",
-      "./scripts/build/cocoapods.sh",
-      "./scripts/build/android-toolsets.sh",
-      "./scripts/build/apache.sh",
-      "./scripts/build/vcpkg.sh",
-      "./scripts/build/safari.sh",
-      "./scripts/build/chrome.sh",
-      "./scripts/build/edge.sh",
-      "./scripts/build/firefox.sh",
-      "./scripts/build/pypy.sh",
-      "./scripts/build/bicep.sh",
-      "./scripts/build/codeql-bundle.sh"
+      "./scripts/build/install-actions-cache.sh",
+      "./scripts/build/install-llvm.sh",
+      "./scripts/build/install-swiftlint.sh",
+      "./scripts/build/install-openjdk.sh",
+      "./scripts/build/install-php.sh",
+      "./scripts/build/install-aws-tools.sh",
+      "./scripts/build/install-rust.sh",
+      "./scripts/build/install-gcc.sh",
+      "./scripts/build/install-cocoapods.sh",
+      "./scripts/build/install-android-sdk.sh",
+      "./scripts/build/install-apache.sh",
+      "./scripts/build/install-vcpkg.sh",
+      "./scripts/build/install-safari.sh",
+      "./scripts/build/install-chrome.sh",
+      "./scripts/build/install-edge.sh",
+      "./scripts/build/install-firefox.sh",
+      "./scripts/build/install-pypy.sh",
+      "./scripts/build/install-bicep.sh",
+      "./scripts/build/install-codeql-bundle.sh"
     ]
     environment_vars = [
       "API_PAT=${var.github_api_pat}"
@@ -228,12 +228,12 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
   provisioner "shell" {
-    script = "./scripts/build/delete-duplicate-sims.rb"
+    script = "./scripts/build/configure-xcode-simulators.rb"
     execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
   }
   provisioner "shell" {
     inline = [
-      "pwsh -File \"$HOME/image-generation/software-report/SoftwareReport.Generator.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}"
+      "pwsh -File \"$HOME/image-generation/software-report/Generate-SoftwareReport.ps1\" -OutputDirectory \"$HOME/image-generation/output/software-report\" -ImageName ${var.build_id}"
     ]
     execute_command = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
@@ -243,10 +243,14 @@ build {
     source = "./image-generation/output/"
   }
   provisioner "shell" {
+    inline = [
+      "rm -rf \"$(brew --cache)\""
+    ]
+  }
+  provisioner "shell" {
     scripts = [
       "./scripts/build/configure-hostname.sh",
-      "./scripts/build/cleanup-brew.sh",
-      "./scripts/build/finalize-vm.sh"
+      "./scripts/build/configure-system.sh"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }

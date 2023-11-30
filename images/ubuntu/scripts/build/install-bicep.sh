@@ -7,10 +7,8 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Install Bicep CLI
-download_with_retries "https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64" "." "bicep.bin"
+bicep_binary_path=$(download_with_retry "https://github.com/Azure/bicep/releases/latest/download/bicep-linux-x64")
 # Mark it as executable
-chmod +x ./bicep.bin
-# Add bicep to PATH (requires admin)
-sudo mv ./bicep.bin /usr/local/bin/bicep
+install "$bicep_binary_path" /usr/local/bin/bicep
 
 invoke_tests "Tools" "Bicep"

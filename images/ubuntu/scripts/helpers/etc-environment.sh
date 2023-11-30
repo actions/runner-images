@@ -8,20 +8,21 @@
 #     values containg slashes (i.e. directory path)
 #     The values containing '%' will break the functions
 
-function getEtcEnvironmentVariable {
+getEtcEnvironmentVariable () {
     variable_name="$1"
+
     # remove `variable_name=` and possible quotes from the line
-    grep "^${variable_name}=" /etc/environment |sed -E "s%^${variable_name}=\"?([^\"]+)\"?.*$%\1%"
+    grep "^${variable_name}=" /etc/environment | sed -E "s%^${variable_name}=\"?([^\"]+)\"?.*$%\1%"
 }
 
-function addEtcEnvironmentVariable {
+addEtcEnvironmentVariable () {
     variable_name="$1"
     variable_value="$2"
 
-    echo "$variable_name=$variable_value" | sudo tee -a /etc/environment
+    echo "${variable_name}=${variable_value}" | sudo tee -a /etc/environment
 }
 
-function replaceEtcEnvironmentVariable {
+replaceEtcEnvironmentVariable () {
     variable_name="$1"
     variable_value="$2"
 
@@ -29,40 +30,45 @@ function replaceEtcEnvironmentVariable {
     sudo sed -i -e "s%^${variable_name}=.*$%${variable_name}=\"${variable_value}\"%" /etc/environment
 }
 
-function setEtcEnvironmentVariable {
+setEtcEnvironmentVariable () {
     variable_name="$1"
     variable_value="$2"
 
-    if grep "$variable_name" /etc/environment > /dev/null; then
+    if grep "^${variable_name}=" /etc/environment > /dev/null
+    then
         replaceEtcEnvironmentVariable $variable_name $variable_value
     else
         addEtcEnvironmentVariable $variable_name $variable_value
     fi
 }
 
-function prependEtcEnvironmentVariable {
+prependEtcEnvironmentVariable () {
     variable_name="$1"
     element="$2"
+
     # TODO: handle the case if the variable does not exist
     existing_value=$(getEtcEnvironmentVariable "${variable_name}")
     setEtcEnvironmentVariable "${variable_name}" "${element}:${existing_value}"
 }
 
-function appendEtcEnvironmentVariable {
+appendEtcEnvironmentVariable () {
     variable_name="$1"
     element="$2"
+
     # TODO: handle the case if the variable does not exist
     existing_value=$(getEtcEnvironmentVariable "${variable_name}")
     setEtcEnvironmentVariable "${variable_name}" "${existing_value}:${element}"
 }
 
-function prependEtcEnvironmentPath {
+prependEtcEnvironmentPath () {
     element="$1"
+
     prependEtcEnvironmentVariable PATH "${element}"
 }
 
-function appendEtcEnvironmentPath {
+appendEtcEnvironmentPath () {
     element="$1"
+
     appendEtcEnvironmentVariable PATH "${element}"
 }
 
@@ -75,11 +81,10 @@ function appendEtcEnvironmentPath {
 # TODO: there might be the others variables to be processed in the same way as "PATH" variable
 #       ie MANPATH, INFOPATH, LD_*, etc. In the current implementation the values from /etc/evironments
 #       replace the values of the current environment
-function  reloadEtcEnvironment {
+reloadEtcEnvironment () {
     # add `export ` to every variable of /etc/environemnt except PATH and eval the result shell script
     eval $(grep -v '^PATH=' /etc/environment | sed -e 's%^%export %')
     # handle PATH specially
     etc_path=$(getEtcEnvironmentVariable PATH)
     export PATH="$PATH:$etc_path"
 }
-

@@ -8,8 +8,8 @@ Describe "Java" {
     [array]$testCases = $jdkVersions | ForEach-Object { @{Version = $_ } }
 
     It "Java <DefaultJavaVersion> is default" -TestCases @{ DefaultJavaVersion = $defaultVersion } {
-        $actualJavaPath = Get-EnvironmentVariable "JAVA_HOME"
-        $expectedJavaPath = Get-EnvironmentVariable "JAVA_HOME_${DefaultJavaVersion}_X64"
+        $actualJavaPath = [System.Environment]::GetEnvironmentVariable("JAVA_HOME")
+        $expectedJavaPath = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${DefaultJavaVersion}_X64")
 
         $actualJavaPath | Should -Not -BeNullOrEmpty
         $expectedJavaPath | Should -Not -BeNullOrEmpty
@@ -28,7 +28,7 @@ Describe "Java" {
     It "Gradle" {
         "gradle -version" | Should -ReturnZeroExitCode
 
-        $gradleVariableValue = Get-EnvironmentVariable "GRADLE_HOME"
+        $gradleVariableValue = [System.Environment]::GetEnvironmentVariable("GRADLE_HOME")
         $gradleVariableValue | Should -BeLike "/usr/share/gradle-*"
 
         $gradlePath = Join-Path $env:GRADLE_HOME "bin/gradle"
@@ -36,7 +36,7 @@ Describe "Java" {
     }
 
     It "Java <Version>" -TestCases $testCases {
-        $javaVariableValue = Get-EnvironmentVariable "JAVA_HOME_${Version}_X64"
+        $javaVariableValue = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${Version}_X64")
         $javaVariableValue | Should -Not -BeNullOrEmpty
         $javaPath = Join-Path $javaVariableValue "bin/java"
 

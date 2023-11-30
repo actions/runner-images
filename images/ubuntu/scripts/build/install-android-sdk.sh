@@ -35,26 +35,24 @@ function get_full_ndk_version {
 ANDROID_ROOT=/usr/local/lib/android
 ANDROID_SDK_ROOT=${ANDROID_ROOT}/sdk
 SDKMANAGER=${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager
-echo "ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
+setEtcEnvironmentVariable "ANDROID_SDK_ROOT" "${ANDROID_SDK_ROOT}"
 
 # ANDROID_HOME is deprecated, but older versions of Gradle rely on it
-echo "ANDROID_HOME=${ANDROID_SDK_ROOT}" | tee -a /etc/environment
+setEtcEnvironmentVariable "ANDROID_HOME" "${ANDROID_SDK_ROOT}"
 
 # Create android sdk directory
 mkdir -p ${ANDROID_SDK_ROOT}
-
-cmdlineTools="android-cmdline-tools.zip"
 
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
 cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
 if [[ $cmdlineToolsVersion == "latest" ]]; then
-    repositoryXmlUrl="https://dl.google.com/android/repository/repository2-1.xml"
-    download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
+    repository_xml_url="https://dl.google.com/android/repository/repository2-1.xml"
+    repository_xml_file=$(download_with_retry "$repository_xml_url")
     cmdlineToolsVersion=$(
     yq -p=xml \
     '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-linux"))' \
-    /tmp/repository2-1.xml
+    "${repository_xml_file}"
     )
 
     if [[ -z $cmdlineToolsVersion ]]; then
@@ -63,12 +61,10 @@ if [[ $cmdlineToolsVersion == "latest" ]]; then
     fi
 fi
 
-download_with_retries "https://dl.google.com/android/repository/${cmdlineToolsVersion}" "." $cmdlineTools
-
-unzip -qq $cmdlineTools -d ${ANDROID_SDK_ROOT}/cmdline-tools
+archive_path=$(download_with_retry "https://dl.google.com/android/repository/${cmdlineToolsVersion}")
+unzip -qq "$archive_path" -d ${ANDROID_SDK_ROOT}/cmdline-tools
 # Command line tools need to be placed in ${ANDROID_SDK_ROOT}/sdk/cmdline-tools/latest to determine SDK root
 mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest
-rm -f $cmdlineTools
 
 # Check sdk manager installation
 ${SDKMANAGER} --list 1>/dev/null
@@ -100,10 +96,10 @@ ndkDefaultFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
 ndkLatestFullVersion=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
 ANDROID_NDK="$ANDROID_SDK_ROOT/ndk/$ndkDefaultFullVersion"
 # ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
-echo "ANDROID_NDK=${ANDROID_NDK}" | tee -a /etc/environment
-echo "ANDROID_NDK_HOME=${ANDROID_NDK}" | tee -a /etc/environment
-echo "ANDROID_NDK_ROOT=${ANDROID_NDK}" | tee -a /etc/environment
-echo "ANDROID_NDK_LATEST_HOME=$ANDROID_SDK_ROOT/ndk/$ndkLatestFullVersion" | tee -a /etc/environment
+setEtcEnvironmentVariable "ANDROID_NDK" "${ANDROID_NDK}"
+setEtcEnvironmentVariable "ANDROID_NDK_HOME" "${ANDROID_NDK}"
+setEtcEnvironmentVariable "ANDROID_NDK_ROOT" "${ANDROID_NDK}"
+setEtcEnvironmentVariable "ANDROID_NDK_LATEST_HOME" "${ANDROID_SDK_ROOT}/ndk/${ndkLatestFullVersion}"
 
 availablePlatforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-[0-9]" | cut -d"|" -f 1))
 allBuildTools=($($SDKMANAGER --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))

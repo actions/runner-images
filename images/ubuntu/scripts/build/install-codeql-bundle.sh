@@ -14,8 +14,7 @@ bundle_tag_name="codeql-bundle-v$bundle_version"
 echo "Downloading CodeQL bundle $bundle_version..."
 # Note that this is the all-platforms CodeQL bundle, to support scenarios where customers run
 # different operating systems within containers.
-download_with_retries "https://github.com/github/codeql-action/releases/download/$bundle_tag_name/codeql-bundle.tar.gz" "/tmp" "codeql-bundle.tar.gz"
-codeql_archive="/tmp/codeql-bundle.tar.gz"
+codeql_archive=$(download_with_retry "https://github.com/github/codeql-action/releases/download/$bundle_tag_name/codeql-bundle.tar.gz")
 
 codeql_toolcache_path="$AGENT_TOOLSDIRECTORY/CodeQL/$bundle_version/x64"
 mkdir -p "$codeql_toolcache_path"

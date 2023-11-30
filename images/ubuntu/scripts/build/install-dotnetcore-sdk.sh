@@ -47,15 +47,13 @@ apt-get update
 sdks=()
 for version in ${DOTNET_VERSIONS[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
-    download_with_retries "${release_url}" "." "${version}.json"
-    releases=$(cat "./${version}.json")
+    releases=$(cat "$(download_with_retry "$release_url")")
     if [[ $version == "6.0" ]]; then
         sdks=("${sdks[@]}" $(echo "${releases}" | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))'))
     else
         sdks=("${sdks[@]}" $(echo "${releases}" | jq -r '.releases[].sdk.version | select(contains("preview") or contains("rc") | not)'))
         sdks=("${sdks[@]}" $(echo "${releases}" | jq -r '.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not)'))
     fi
-    rm ./${version}.json
 done
 
 sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -r | uniq -w 5)
@@ -73,12 +71,12 @@ extract_dotnet_sdk() {
 }
 
 # Download/install additional SDKs in parallel
-export -f download_with_retries
+export -f download_with_retry
 export -f extract_dotnet_sdk
 
 parallel --jobs 0 --halt soon,fail=1 \
     'url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/{}/dotnet-sdk-{}-linux-x64.tar.gz"; \
-    download_with_retries $url' ::: "${sortedSdks[@]}"
+    download_with_retry $url' ::: "${sortedSdks[@]}"
 
 find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
 
