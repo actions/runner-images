@@ -798,7 +798,6 @@ function Get-ChecksumFromUrl {
 
     param (
         [Parameter(Mandatory = $true)]
-        [Alias("Url")]
         [string] $Url,
         [Parameter(Mandatory = $true)]
         [Alias("File", "Asset")]
@@ -810,7 +809,7 @@ function Get-ChecksumFromUrl {
     )
 
     $tempFile = Join-Path -Path $env:TEMP -ChildPath ([System.IO.Path]::GetRandomFileName())
-    $checksums = Invoke-DownloadWithRetry -Url $Url -Path $tempFile | Get-Item | Get-Content -as [string[]]
+    $checksums = (Invoke-DownloadWithRetry -Url $Url -Path $tempFile | Get-Item | Get-Content) -as [string[]]
     Remove-Item -Path $tempFile
 
     $matchedLine = $checksums | Where-Object { $_ -like "*$FileName*" }
