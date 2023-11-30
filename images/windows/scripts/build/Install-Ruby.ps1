@@ -3,33 +3,6 @@
 ##  Desc:  Install Ruby using the RubyInstaller2 package and set the default Ruby version
 ################################################################################
 
-function Get-RubyVersions {
-    param (
-        [System.String] $Arch = "x64",
-        [System.String] $Extension = "7z",
-        [System.String] $ReleasesAmount = "50"
-    )
-
-    $uri = "https://api.github.com/repos/oneclick/rubyinstaller2/releases?per_page=$ReleasesAmount"
-    try {
-        $versionLists = @{}
-        $assets = (Invoke-RestMethod -Uri $uri).Where{ -not $_.prerelease }.assets
-        $7zArchives = $assets.Where{ $_.name.EndsWith("$Arch.$Extension") }
-        $majorMinorGroups = $7zArchives | Group-Object { $_.name.Replace("rubyinstaller-", "").Substring(0, 3) }
-        foreach ($majorMinorGroup in $majorMinorGroups) {
-            $group = $majorMinorGroup.Group
-            $sortVersions = $group | Sort-Object { [Version]$_.name.Replace("rubyinstaller-", "").Replace("-$Arch.$Extension", "").Replace("-", ".") }
-            $latestVersion = $sortVersions | Select-Object -Last 1
-            $versionLists[$majorMinorGroup.Name] = $latestVersion.browser_download_url
-
-        }
-        return $versionLists
-    } catch {
-        Write-Host "Unable to send request to the '$uri'. Error: '$_'"
-        exit 1
-    }
-}
-
 # Most of this logic is from
 # https://github.com/ruby/setup-ruby/blob/master/windows.js
 function Install-Ruby {
@@ -44,47 +17,46 @@ function Install-Ruby {
         Write-Host "Creating Ruby toolcache folder"
         New-Item -ItemType Directory -Path $rubyToolcachePath | Out-Null
     }
-
-    # Expand archive with binaries
+    
     $packageName = [IO.Path]::GetFileNameWithoutExtension((Split-Path -Path $PackagePath -Leaf))
+    Write-Host "Expanding Ruby archive $packageName"
     $tempFolder = Join-Path -Path $rubyToolcachePath -ChildPath $packageName
     Expand-7ZipArchive -Path $PackagePath -DestinationPath $rubyToolcachePath
 
     # Get Ruby version from binaries
     $rubyVersion = & "$tempFolder\bin\ruby.exe" -e "print RUBY_VERSION"
-
-    if ($rubyVersion) {
-        Write-Host "Installing Ruby $rubyVersion"
-        $rubyVersionPath = Join-Path -Path $rubyToolcachePath -ChildPath $rubyVersion
-        $rubyArchPath = Join-Path -Path $rubyVersionPath -ChildPath $Architecture
-
-        Write-Host "Creating Ruby '${rubyVersion}' folder in '${rubyVersionPath}'"
-        New-Item -ItemType Directory -Path $rubyVersionPath -Force | Out-Null
-
-        Write-Host "Moving Ruby '${rubyVersion}' files to '${rubyArchPath}'"
-        Invoke-ScriptBlockWithRetry -Command {
-            Move-Item -Path $tempFolder -Destination $rubyArchPath -ErrorAction Stop | Out-Null
-        }
-
-        Write-Host "Removing Ruby '${rubyVersion}' documentation '${rubyArchPath}\share\doc' folder"
-        Remove-Item -Path "${rubyArchPath}\share\doc" -Force -Recurse -ErrorAction Ignore
-
-        Write-Host "Creating complete file"
-        New-Item -ItemType File -Path $rubyVersionPath -Name "$Architecture.complete" | Out-Null
-    } else {
-        Write-Host "Ruby application is not found. Failed to expand '$PackagePath' archive"
-        exit 1
+    if ($LASTEXITCODE -ne 0 || -not $rubyVersion) {
+        throw "Unable to determine Ruby version"
     }
+    Write-Host "Ruby version is $rubyVersion"
+
+    $rubyVersionPath = Join-Path -Path $rubyToolcachePath -ChildPath $rubyVersion
+    $rubyArchPath = Join-Path -Path $rubyVersionPath -ChildPath $Architecture
+
+    Write-Host "Creating Ruby '${rubyVersion}' folder in '${rubyVersionPath}'"
+    New-Item -ItemType Directory -Path $rubyVersionPath -Force | Out-Null
+
+    Write-Host "Moving Ruby '${rubyVersion}' files to '${rubyArchPath}'"
+    Invoke-ScriptBlockWithRetry -Command {
+        Move-Item -Path $tempFolder -Destination $rubyArchPath -ErrorAction Stop | Out-Null
+    }
+
+    Write-Host "Removing Ruby '${rubyVersion}' documentation '${rubyArchPath}\share\doc' folder"
+    Remove-Item -Path "${rubyArchPath}\share\doc" -Force -Recurse -ErrorAction Ignore
+
+    Write-Host "Creating complete file for Ruby $rubyVersion $Architecture"
+    New-Item -ItemType File -Path $rubyVersionPath -Name "$Architecture.complete" | Out-Null
 }
 
 function Set-DefaultRubyVersion {
     param(
         [Parameter(Mandatory = $true)]
-        [System.Version] $Version,
-        [System.String] $Arch = "x64"
+        [version] $Version,
+        [Alias("Arch")]
+        [string] $Architecture = "x64"
     )
 
-    $rubyPath = Join-Path $env:AGENT_TOOLSDIRECTORY "/Ruby/${Version}*/${Arch}/bin"
+    $rubyPath = Join-Path $env:AGENT_TOOLSDIRECTORY "/Ruby/${Version}*/${Architecture}/bin"
     $rubyDir = (Get-Item -Path $rubyPath).FullName
 
     Write-Host "Use Ruby ${Version} as a system Ruby"
@@ -95,21 +67,15 @@ function Set-DefaultRubyVersion {
 $rubyTools = (Get-ToolsetContent).toolcache | Where-Object { $_.name -eq "Ruby" }
 $rubyToolVersions = $rubyTools.versions
 
-# Get Ruby versions from the repo
-$rubyLatestMajorVersions = Get-RubyVersions
-
 Write-Host "Starting installation Ruby..."
 foreach ($rubyVersion in $rubyToolVersions) {
     Write-Host "Starting Ruby $rubyVersion installation"
-    # Get url for the latest major Ruby version
-    $url = $rubyLatestMajorVersions[$rubyVersion]
-    if ($url) {
-        $tempRubyPackagePath = Invoke-DownloadWithRetry $url
-        Install-Ruby -PackagePath $tempRubyPackagePath
-    } else {
-        Write-Host "Url not found for the '$rubyVersion' version"
-        exit 1
-    }
+    $downloadUrl = Resolve-GithubReleaseAssetUrl `
+        -Repo "oneclick/rubyinstaller2" `
+        -Version "$rubyVersion*" `
+        -UrlMatchPattern "*-x64.7z"
+    $packagePath = Invoke-DownloadWithRetry $downloadUrl
+    Install-Ruby -PackagePath $packagePath
 }
 
 Set-DefaultRubyVersion -Version $rubyTools.default -Arch $rubyTools.arch

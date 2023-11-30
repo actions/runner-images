@@ -19,10 +19,8 @@ if (Test-IsWin19) {
     }
 
     $packagePath = Invoke-DownloadWithRetry $url
-    $hash = Get-FileHash -Path $packagePath -Algorithm SHA256
-    if ($hash.Hash -ne $sha256sum) {
-      throw "Checksum verification failed for $packagePath"
-    }
+    Test-FileChecksum -Path $packagePath -ExpectedSHA256Sum $sha256sum
+
     Expand-7ZipArchive -Path $packagePath -DestinationPath "C:\"
 
     # Make a copy of mingw-make.exe to make.exe, which is a more discoverable name

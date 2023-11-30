@@ -6,20 +6,24 @@
 
 Write-Host "Install Kind"
 # Choco installation can't be used because it depends on docker-desktop
-$repoUrl = 'https://api.github.com/repos/kubernetes-sigs/kind/releases/latest'
-$assets = (Invoke-RestMethod -Uri $repoUrl).assets
-[System.String] $kindDownloadLink = $assets.browser_download_url -match "kind-windows-amd64$"
-$destFilePath = "C:\ProgramData\kind"
-$null = New-Item -Path $destFilePath -ItemType Directory -Force
-$packagePath = Invoke-DownloadWithRetry -Url $kindDownloadLink -Path "$destFilePath\kind.exe"
+
+$targetDir = "C:\ProgramData\kind"
+New-Item -Path $targetDir -ItemType Directory -Force | Out-Null
+
+$downloadUrl = Resolve-GithubReleaseAssetUrl `
+  -Repo "kubernetes-sigs/kind" `
+  -Version "latest" `
+  -UrlMatchPattern "kind-windows-amd64"
+$packagePath = Invoke-DownloadWithRetry -Url $downloadUrl -Path "$targetDir\kind.exe"
 
 #region Supply chain security - Kind
-$hashUrl = ($assets.browser_download_url -match "kind-windows-amd64.sha256sum") | Select-Object -First 1
-$externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*kind-windows-amd64*" }).Split(' ')[0]
+$binaryName = Split-Path $downloadUrl -Leaf
+$checksums = Invoke-DownloadWithRetry ("$downloadUrl.sha256") | Get-Item | Get-Content
+$externalHash = $checksums.Where({ $_ -ilike "*${binaryName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
 Test-FileChecksum $packagePath -ExpectedSHA256Sum $externalHash
 #endregion
 
-Add-MachinePathItem $destFilePath
+Add-MachinePathItem $targetDir
 
 Write-Host "Install Kubectl"
 Install-ChocoPackage kubernetes-cli

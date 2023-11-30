@@ -5,15 +5,16 @@
 ################################################################################
 
 Write-Host "Download Latest aliyun-cli archive"
-$repoUrl = "https://api.github.com/repos/aliyun/aliyun-cli/releases/latest"
-$installerFileName = "aliyun-cli-windows"
-$assets = (Invoke-RestMethod -Uri $repoUrl).assets
-$downloadUrl = ($assets.browser_download_url -ilike "*aliyun-cli-windows-*-amd64.zip*") | Select-Object -First 1
+$downloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "aliyun/aliyun-cli" `
+    -Version "latest" `
+    -UrlMatchPattern "aliyun-cli-windows-*-amd64.zip"
 $packagePath = Invoke-DownloadWithRetry $downloadUrl
 
 #region Supply chain security - Alibaba Cloud CLI
-$hashUrl = ($assets.browser_download_url -ilike "*SHASUMS256.txt*") | Select-Object -First 1
-$externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*$installerFileName*" }).Split(' ')[0]
+$packageName = Split-Path $downloadUrl -Leaf
+$checksums = Invoke-DownloadWithRetry ($downloadUrl -replace $packageName, "SHASUMS256.txt") | Get-Item | Get-Content
+$externalHash = $checksums.Where({ $_ -ilike "*${packageName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
 Test-FileChecksum $packagePath -ExpectedSHA256Sum $externalHash
 #endregion
 

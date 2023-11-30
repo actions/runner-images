@@ -6,12 +6,14 @@
 
 Write-Host "Get the latest gh version..."
 
-$repoUrl = "https://api.github.com/repos/cli/cli/releases/latest"
-$assets = (Invoke-RestMethod -Uri $repoUrl).assets
-$downloadUrl = ($assets.browser_download_url -match "windows_amd64.msi") | Select-Object -First 1
+$downloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "cli/cli" `
+    -Version "latest" `
+    -UrlMatchPattern "gh_*_windows_amd64.msi"
 
-$hashUrl = ($assets.browser_download_url -match "checksums.txt") | Select-Object -First 1
-$externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*windows_amd64.msi*" }).Split(' ')[0]
+$installerName = Split-Path $downloadUrl -Leaf
+$checksums = Invoke-DownloadWithRetry ($downloadUrl -replace $installerName, "checksums.txt") | Get-Item | Get-Content
+$externalHash = $checksums.Where({ $_ -ilike "*${installerName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
 
 Install-Binary `
   -Url $downloadUrl `

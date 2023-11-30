@@ -11,25 +11,26 @@ $dash = "-" * 40
 $origPath = $env:PATH
 
 function Install-Msys2 {
-  $msys2_release = "https://api.github.com/repos/msys2/msys2-installer/releases/latest"
-  $assets = (Invoke-RestMethod -Uri $msys2_release).assets
-  $msys2Uri = ($assets | Where-Object { $_.name -match "^msys2-x86_64" -and $_.name.EndsWith(".exe") }).browser_download_url
+  # We can't use Resolve-GithubReleaseAssetUrl function here
+  # because msys2-installer releases don't have a consistent versioning scheme
+
+  $assets = (Invoke-RestMethod -Uri "https://api.github.com/repos/msys2/msys2-installer/releases/latest").assets
+  $downloadUri = ($assets | Where-Object { $_.name -match "^msys2-x86_64" -and $_.name.EndsWith(".exe") }).browser_download_url
+  $installerName = Split-Path $downloadUri -Leaf
   
   # Download the latest msys2 x86_64, filename includes release date
-  Write-Host "Starting msys2 download using $($msys2Uri.split('/')[-1])"
-  $msys2File = Invoke-DownloadWithRetry $msys2Uri
-  Write-Host "Finished download"
+  Write-Host "Download msys2 installer $installerName"
+  $installerPath = Invoke-DownloadWithRetry $downloadUri
 
-  #region Supply chain security - Kind
-  $hashUrl = ($assets.browser_download_url -match "msys2-checksums.txt") | Select-Object -First 1
-  $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*msys2-x86_64*" }).Split(' ')[0]
-  Test-FileChecksum $msys2File -ExpectedSHA256Sum $externalHash
+  #region Supply chain security - MSYS2
+  $checksums = Invoke-DownloadWithRetry ($downloadUrl -replace $installerName, "msys2-checksums.txt") | Get-Item | Get-Content
+  $externalHash = $checksums.Where({ $_ -ilike "*${installerName}*" }) | Select-String -Pattern "[A-Fa-f0-9]{64}" | ForEach-Object { $_.Matches.Value }
+  Test-FileChecksum $installerPath -ExpectedSHA256Sum $externalHash
   #endregion
 
-  # extract tar.xz to C:\
   Write-Host "Starting msys2 installation"
-  & $msys2File in --confirm-command --accept-messages --root C:/msys64
-  Remove-Item $msys2File
+  & $installerPath in --confirm-command --accept-messages --root C:/msys64
+  Remove-Item $installerPath
 }
 
 function Install-Msys2Packages($Packages) {

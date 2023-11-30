@@ -478,6 +478,10 @@ function Get-GithubReleasesByVersion {
     .PARAMETER AllowPrerelease
         Specifies whether to include prerelease versions in the results. By default,
         prerelease versions are excluded.
+    
+    .PARAMETER WithAssetsOnly
+        Specifies whether to exclude releases without assets. By default, releases without
+        assets are included.
 
     .EXAMPLE
         Get-GithubReleasesByVersion -Repository "Microsoft/PowerShell" -Version "7.2.0"
@@ -500,7 +504,8 @@ function Get-GithubReleasesByVersion {
         [Alias("Repo")]
         [string] $Repository,
         [string] $Version = "*",
-        [switch] $AllowPrerelease
+        [switch] $AllowPrerelease,
+        [switch] $WithAssetsOnly
     )
 
     $localCacheFile = Join-Path ${env:TEMP} "github-releases_$($Repository -replace "/", "_").json"
@@ -528,7 +533,9 @@ function Get-GithubReleasesByVersion {
         throw "Failed to get releases from ${Repository}"
     }
 
-    $releases = $releases.Where{ $_.assets }
+    if ($WithAssetsOnly) {
+        $releases = $releases.Where{ $_.assets }
+    }
     if (-not $AllowPrerelease) {
         $releases = $releases.Where{ $_.prerelease -eq $false }
     }
@@ -608,7 +615,8 @@ function Resolve-GithubReleaseAssetUrl {
     $matchingReleases = Get-GithubReleasesByVersion `
         -Repository $Repository `
         -AllowPrerelease:$AllowPrerelease `
-        -Version $Version
+        -Version $Version `
+        -WithAssetsOnly
 
     # Add wildcard to the beginning of the pattern if it's not there
     if ($UrlMatchPattern.Substring(0, 2) -ne "*/") {
@@ -618,7 +626,7 @@ function Resolve-GithubReleaseAssetUrl {
     # Loop over releases until we find a download url matching the pattern
     foreach ($release in $matchingReleases) {
         $matchedVersion = $release.version
-        $matchedUrl = $release.assets.browser_download_url -like $UrlMatchPattern
+        $matchedUrl = ([string[]] $release.assets.browser_download_url) -like $UrlMatchPattern
         if ($matchedUrl) {
             break
         }
@@ -693,7 +701,8 @@ function Get-GithubReleaseAssetHash {
     $matchingReleases = Get-GithubReleasesByVersion `
         -Repository $Repository `
         -AllowPrerelease:$AllowPrerelease `
-        -Version $Version
+        -Version $Version `
+        -WithAssetsOnly
 
     foreach ($release in $matchingReleases) {
         $matchedVersion = $release.version
