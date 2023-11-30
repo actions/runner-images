@@ -249,7 +249,7 @@ Function GenerateResourcesAndImage {
         }
         else {
             Write-Verbose "AzureClientId was provided, will use service principal login."
-            az login --service-principal --username $AzureClientId --password $AzureClientSecret --tenant $AzureTenantId --output none
+            az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
         }
         az account set --subscription $SubscriptionId
         if ($LastExitCode -ne 0) {
