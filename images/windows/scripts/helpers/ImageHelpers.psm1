@@ -1,54 +1,44 @@
 [CmdletBinding()]
 param()
 
-. $PSScriptRoot\PathHelpers.ps1
-. $PSScriptRoot\InstallHelpers.ps1
+. $PSScriptRoot\AndroidHelpers.ps1
 . $PSScriptRoot\ChocoHelpers.ps1
+. $PSScriptRoot\InstallHelpers.ps1
+. $PSScriptRoot\PathHelpers.ps1
 . $PSScriptRoot\VisualStudioHelpers.ps1
 
 Export-ModuleMember -Function @(
-    'Connect-Hive'
-    'Disconnect-Hive'
-    'Test-MachinePath'
-    'Get-MachinePath'
-    'Get-DefaultPath'
-    'Set-MachinePath'
-    'Set-DefaultPath'
+    'Mount-RegistryHive'
+    'Dismount-RegistryHive'
     'Add-MachinePathItem'
     'Add-DefaultPathItem'
-    'Add-DefaultItem'
-    'Get-SystemVariable'
-    'Get-DefaultVariable'
-    'Set-DefaultVariable'
     'Install-Binary'
     'Install-VisualStudio'
     'Get-ToolsetContent'
     'Get-TCToolVersionPath'
     'Get-TCToolPath'
-    'Start-DownloadWithRetry'
-    'Get-VsixExtenstionFromMarketplace'
+    'Invoke-DownloadWithRetry'
+    'Get-VsixInfoFromMarketplace'
     'Install-VSIXFromFile'
     'Install-VSIXFromUrl'
     'Get-VSExtensionVersion'
-    'Get-WinVersion'
     'Test-IsWin22'
     'Test-IsWin19'
     'Install-ChocoPackage'
-    'Send-RequestToCocolateyPackages'
     'Resolve-ChocoPackageVersion'
-    'Get-GitHubPackageDownloadUrl'
+    'Resolve-GithubReleaseAssetUrl'
     'Expand-7ZipArchive'
-    'Invoke-SBWithRetry'
+    'Invoke-ScriptBlockWithRetry'
     'Get-VsCatalogJsonPath'
-    'Install-AndroidSDKPackages'
     'Get-AndroidPackages'
-    'Get-AndroidPackagesByName'
-    'Get-AndroidPackagesByVersion'
+    'Get-AndroidPlatformPackages'
+    'Get-AndroidBuildToolPackages'
+    'Get-AndroidInstalledPackages'
     'Get-VisualStudioInstance'
     'Get-VisualStudioComponents'
-    'Get-WindowsUpdatesHistory'
-    'New-ItemPath'
-    'Use-ChecksumComparison'
-    'Get-HashFromGitHubReleaseBody'
+    'Get-WindowsUpdateStates'
+    'Get-GithubReleaseAssetHash'
+    'Test-FileChecksum'
     'Test-FileSignature'
+    'Update-Environment'
 )

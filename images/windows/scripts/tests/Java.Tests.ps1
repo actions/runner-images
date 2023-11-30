@@ -28,13 +28,13 @@ Describe "Java" {
         $javaVariableValue | Should -Not -BeNullOrEmpty
         $javaPath = Join-Path $javaVariableValue "bin\java"
 
-        $result = Get-CommandResult "`"$javaPath`" -version"
-        $result.ExitCode | Should -Be 0
-
         if ($Version -eq 8) {
             $Version = "1.${Version}"
         }
         $outputPattern = "openjdk version `"${Version}"
-        $result.Output[0] | Should -Match $outputPattern
+
+        $outputLines = (& $env:comspec /c "`"$javaPath`" -version 2>&1") -as [string[]]
+        $LASTEXITCODE | Should -Be 0
+        $outputLines[0] | Should -Match $outputPattern
     }
 }

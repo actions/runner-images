@@ -1,6 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Xcode.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
 
 $ARCH = Get-Architecture
 $xcodeVersions = Get-ToolsetValue "xcode.$ARCH.versions"

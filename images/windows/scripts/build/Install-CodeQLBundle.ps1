@@ -11,7 +11,7 @@ $TagName = "codeql-bundle-v" + $CliVersion
 Write-Host "Downloading CodeQL bundle $($CliVersion)..."
 # Note that this is the all-platforms CodeQL bundle, to support scenarios where customers run
 # different operating systems within containers.
-$CodeQLBundlePath = Start-DownloadWithRetry -Url "https://github.com/github/codeql-action/releases/download/$($TagName)/codeql-bundle.tar.gz" -Name "codeql-bundle.tar.gz"
+$CodeQLBundlePath = Invoke-DownloadWithRetry "https://github.com/github/codeql-action/releases/download/$($TagName)/codeql-bundle.tar.gz"
 $DownloadDirectoryPath = (Get-Item $CodeQLBundlePath).Directory.FullName
 
 $CodeQLToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath $CliVersion | Join-Path -ChildPath "x64"

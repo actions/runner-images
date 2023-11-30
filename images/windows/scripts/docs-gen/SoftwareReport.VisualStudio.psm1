@@ -24,15 +24,13 @@ function Get-VisualStudioExtensions {
 
     # Additional vsixs
     $toolset = Get-ToolsetContent
-    $vsixUrls = $toolset.visualStudio.vsix
-    if ($vsixUrls)
-    {
-        $vsixs = $vsixUrls | ForEach-Object {
-            $vsix = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
-            
-            $vsixVersion = ($vsPackages | Where-Object {$_.Id -match $vsix.VsixId -and $_.type -eq 'vsix'}).Version
+    $vsixPackagesList = $toolset.visualStudio.vsix
+    if ($vsixPackagesList) {
+        $vsixs = $vsixPackagesList | ForEach-Object {
+            $vsixPackage = Get-VsixInfoFromMarketplace $_
+            $vsixVersion = ($vsPackages | Where-Object { $_.Id -match $vsixPackage.VsixId -and $_.type -eq 'vsix' }).Version
             @{
-                Package = $vsix.ExtensionName
+                Package = $vsixPackage.ExtensionName
                 Version = $vsixVersion
             }
         }
@@ -41,15 +39,15 @@ function Get-VisualStudioExtensions {
     # SDK
     $sdkVersion = Get-SDKVersion
     $sdkPackages = @(
-        @{Package = 'Windows Software Development Kit'; Version = $sdkVersion}
+        @{Package = 'Windows Software Development Kit'; Version = $sdkVersion }
     )
 
     # WDK
     $wdkVersion = Get-WDKVersion
     $wdkExtensionVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
     $wdkPackages = @(
-        @{Package = 'Windows Driver Kit'; Version = $wdkVersion}
-        @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion}
+        @{Package = 'Windows Driver Kit'; Version = $wdkVersion }
+        @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion }
     )
 
     $extensions = @(
@@ -60,14 +58,14 @@ function Get-VisualStudioExtensions {
     )
 
     $extensions | Foreach-Object {
-        [PSCustomObject]$_
+        [PSCustomObject] $_
     } | Select-Object Package, Version | Sort-Object Package
 }
 
 function Get-WindowsSDKs {
     $path = "${env:ProgramFiles(x86)}\Windows Kits\10\Extension SDKs\WindowsDesktop"
     return [PSCustomObject]@{
-        Path = $path
+        Path     = $path
         Versions = $(Get-ChildItem $path).Name
     }
 }

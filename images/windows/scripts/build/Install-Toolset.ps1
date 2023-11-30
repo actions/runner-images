@@ -14,7 +14,7 @@ Function Install-Asset {
 
     $releaseAssetName = [System.IO.Path]::GetFileNameWithoutExtension($ReleaseAsset.filename)
     $assetFolderPath = Join-Path $env:TEMP $releaseAssetName
-    $assetArchivePath = Start-DownloadWithRetry -Url $ReleaseAsset.download_url -Name $ReleaseAsset.filename
+    $assetArchivePath = Invoke-DownloadWithRetry $ReleaseAsset.download_url
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
     if ($assetArchivePath.EndsWith(".tar.gz")) {
@@ -38,14 +38,18 @@ $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Ob
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
-    $assets = Invoke-SBWithRetry -Command { Invoke-RestMethod $tool.url }
+    # Invoke-RestMethod doesn't support retry in PowerShell 5.1
+    $assets = Invoke-ScriptBlockWithRetry -Command {
+        Invoke-RestMethod $tool.url
+    }
 
     # Get github release asset for each version
     foreach ($toolVersion in $tool.versions) {
-        $asset = $assets | Where-Object version -like $toolVersion `
-                         | Select-Object -ExpandProperty files `
-                         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) -and ($_.toolset -eq $tool.toolset) } `
-                         | Select-Object -First 1
+        $asset = $assets `
+        | Where-Object version -like $toolVersion `
+        | Select-Object -ExpandProperty files `
+        | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) -and ($_.toolset -eq $tool.toolset) } `
+        | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
         if ($null -ne $asset) {

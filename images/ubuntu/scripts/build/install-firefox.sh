@@ -5,10 +5,9 @@
 ################################################################################
 
 # Source the helpers for use with the script
-# shellcheck source=../helpers/install.sh
 source "$HELPER_SCRIPTS/install.sh"
-# shellcheck source=../helpers/os.sh
 source "$HELPER_SCRIPTS/os.sh"
+source $HELPER_SCRIPTS/etc-environment.sh
 
 # Mozillateam PPA is added manually because sometimes
 # lanuchad portal sends empty answer when trying to add it automatically
@@ -34,17 +33,17 @@ echo "mozillateam $repo_url" >> $HELPER_SCRIPTS/apt-sources.txt
 echo 'pref("intl.locale.requested","en_US");' >> "/usr/lib/firefox/browser/defaults/preferences/syspref.js"
 
 # Download and unpack latest release of geckodriver
-downloadUrl=$(get_github_package_download_url "mozilla/geckodriver" "test(\"linux64.tar.gz$\")")
-download_with_retries "$downloadUrl" "/tmp" geckodriver.tar.gz
+download_url=$(get_github_package_download_url "mozilla/geckodriver" "test(\"linux64.tar.gz$\")")
+driver_archive_path=$(download_with_retry "$download_url")
 
 GECKODRIVER_DIR="/usr/local/share/gecko_driver"
 GECKODRIVER_BIN="$GECKODRIVER_DIR/geckodriver"
 
 mkdir -p $GECKODRIVER_DIR
-tar -xzf /tmp/geckodriver.tar.gz -C $GECKODRIVER_DIR
+tar -xzf "$driver_archive_path" -C $GECKODRIVER_DIR
 
 chmod +x $GECKODRIVER_BIN
 ln -s "$GECKODRIVER_BIN" /usr/bin/
-echo "GECKOWEBDRIVER=$GECKODRIVER_DIR" | tee -a /etc/environment
+setEtcEnvironmentVariable "GECKOWEBDRIVER" "${GECKODRIVER_DIR}"
 
 invoke_tests "Browsers" "Firefox"

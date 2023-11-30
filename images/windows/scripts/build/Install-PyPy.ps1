@@ -7,8 +7,8 @@
 function Install-PyPy
 {
     param(
-        [String]$PackagePath,
-        [String]$Architecture
+        [String] $PackagePath,
+        [String] $Architecture
     )
 
     # Create PyPy toolcache folder
@@ -41,7 +41,7 @@ function Install-PyPy
         New-Item -ItemType Directory -Path $pypyVersionPath -Force | Out-Null
 
         Write-Host "Move PyPy '${pythonVersion}' files to '${pypyArchPath}'"
-        Invoke-SBWithRetry -Command {
+        Invoke-ScriptBlockWithRetry -Command {
             Move-Item -Path $tempFolder -Destination $pypyArchPath -ErrorAction Stop | Out-Null
         }
 
@@ -99,19 +99,16 @@ foreach($toolsetVersion in $toolsetVersions.versions)
     {
         $filename = $latestMajorPyPyVersion.filename
         Write-Host "Found PyPy '$filename' package"
-        $tempPyPyPackagePath = Start-DownloadWithRetry -Url $latestMajorPyPyVersion.download_url -Name $filename
+        $tempPyPyPackagePath = Invoke-DownloadWithRetry $latestMajorPyPyVersion.download_url
 
         #region Supply chain security
-        $localFileHash = (Get-FileHash -Path $tempPyPyPackagePath -Algorithm SHA256).Hash
         $distributorFileHash = $null
-
-        ForEach($node in $checksums) {
-            if($node.InnerText -ilike "*${filename}*") {
+        foreach ($node in $checksums) {
+            if ($node.InnerText -ilike "*${filename}*") {
                 $distributorFileHash = $node.InnerText.ToString().Split("`n").Where({ $_ -ilike "*${filename}*" }).Split(' ')[0]
             }
         }
-        
-        Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $distributorFileHash
+        Test-FileChecksum $tempPyPyPackagePath -ExpectedSHA256Sum $distributorFileHash
         #endregion
 
         Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $toolsetVersions.arch

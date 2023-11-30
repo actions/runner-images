@@ -11,13 +11,12 @@ $assets = (Invoke-RestMethod -Uri $repoUrl).assets
 [System.String] $kindDownloadLink = $assets.browser_download_url -match "kind-windows-amd64$"
 $destFilePath = "C:\ProgramData\kind"
 $null = New-Item -Path $destFilePath -ItemType Directory -Force
-$packagePath = Start-DownloadWithRetry -Url $kindDownloadLink -Name "kind.exe" -DownloadPath $destFilePath
+$packagePath = Invoke-DownloadWithRetry -Url $kindDownloadLink -Path "$destFilePath\kind.exe"
 
 #region Supply chain security - Kind
-$fileHash = (Get-FileHash -Path $packagePath -Algorithm SHA256).Hash
 $hashUrl = ($assets.browser_download_url -match "kind-windows-amd64.sha256sum") | Select-Object -First 1
 $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*kind-windows-amd64*" }).Split(' ')[0]
-Use-ChecksumComparison $fileHash $externalHash
+Test-FileChecksum $packagePath -ExpectedSHA256Sum $externalHash
 #endregion
 
 Add-MachinePathItem $destFilePath

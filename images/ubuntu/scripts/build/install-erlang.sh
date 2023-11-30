@@ -19,8 +19,8 @@ apt-get install --no-install-recommends esl-erlang
 
 # Install rebar3
 rebar3_url="https://github.com/erlang/rebar3/releases/latest/download/rebar3"
-download_with_retries $rebar3_url "/usr/local/bin" "rebar3"
-chmod +x /usr/local/bin/rebar3
+rebar3_binary_path=$(download_with_retry "$rebar3_url")
+install "$rebar3_binary_path" /usr/local/bin/rebar3
 
 # Clean up source list
 rm $source_list

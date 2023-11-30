@@ -4,7 +4,9 @@
 ##  Desc:  Install Microsoft Edge and WebDriver
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 REPO_URL="https://packages.microsoft.com/repos/edge"
 gpg_key="/usr/share/keyrings/microsoft-edge.gpg"
@@ -38,12 +40,12 @@ EDGE_DRIVER_VERSION_URL="https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDG
 EDGE_DRIVER_LATEST_VERSION=$(curl -fsSL "$EDGE_DRIVER_VERSION_URL" | iconv -f utf-16 -t utf-8 | tr -d '\r')
 
 EDGEDRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_LATEST_VERSION}/edgedriver_linux64.zip"
-download_with_retries $EDGEDRIVER_URL "/tmp" "edgedriver_linux64.zip"
+EDGEDRIVER_ARCHIVE_PATH=$(download_with_retry "$EDGEDRIVER_URL")
 
-unzip -qq /tmp/edgedriver_linux64.zip -d $EDGEDRIVER_DIR
+unzip -qq "$EDGEDRIVER_ARCHIVE_PATH" -d "$EDGEDRIVER_DIR"
 chmod +x $EDGEDRIVER_BIN
 ln -s $EDGEDRIVER_BIN /usr/bin
 
-echo "EDGEWEBDRIVER=$EDGEDRIVER_DIR" | tee -a /etc/environment
+setEtcEnvironmentVariable "EDGEWEBDRIVER" "${EDGEDRIVER_DIR}"
 
 invoke_tests "Browsers" "Edge"

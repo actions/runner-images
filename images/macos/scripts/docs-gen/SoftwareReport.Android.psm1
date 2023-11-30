@@ -1,4 +1,4 @@
-Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/SoftwareReport.Helpers.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 function Split-TableRowByColumns {

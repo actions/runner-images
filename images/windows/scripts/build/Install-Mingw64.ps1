@@ -18,7 +18,7 @@ if (Test-IsWin19) {
       throw "Unknown architecture $_"
     }
 
-    $packagePath = Start-DownloadWithRetry -Url $url -Name "$_.7z"
+    $packagePath = Invoke-DownloadWithRetry $url
     $hash = Get-FileHash -Path $packagePath -Algorithm SHA256
     if ($hash.Hash -ne $sha256sum) {
       throw "Checksum verification failed for $packagePath"
@@ -50,14 +50,12 @@ if (Test-IsWin19) {
       throw "Unknown architecture $_"
     }
 
-    $url = Get-GitHubPackageDownloadUrl `
-      -RepoOwner "niXman" `
-      -RepoName "mingw-builds-binaries" `
-      -BinaryName "" `
-      -Version $version `
-      -UrlFilter "*$arch-{Version}-release-$threads-$exceptions-$runtime-*.7z"
+    $url = Resolve-GithubReleaseAssetUrl `
+        -Repo "niXman/mingw-builds-binaries" `
+        -Version "$version" `
+        -Asset "$arch-*-release-$threads-$exceptions-$runtime-*.7z"
 
-    $packagePath = Start-DownloadWithRetry -Url $url -Name "$_.7z"
+    $packagePath = Invoke-DownloadWithRetry $url
     Expand-7ZipArchive -Path $packagePath -DestinationPath "C:\"
 
     # Make a copy of mingw-make.exe to make.exe, which is a more discoverable name

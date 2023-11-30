@@ -66,27 +66,27 @@ function Install-Binary {
             if ($Type -ne "MSI" -and $Type -ne "EXE") {
                 throw "Cannot determine the file type from the URL. Please specify the Type parameter."
             }
+            $fileName = [System.IO.Path]::GetFileName($Url)
+        } else {
+            $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
         }
-        $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
-        $filePath = Start-DownloadWithRetry -Url $Url -Name $fileName
+        $filePath = Invoke-DownloadWithRetry -Url $Url -Path "${env:Temp}\$fileName"
     }
 
     if ($PSBoundParameters.ContainsKey('ExpectedSignature')) {
         if ($ExpectedSignature) {
-            Test-FileSignature -FilePath $filePath -ExpectedThumbprint $ExpectedSignature
+            Test-FileSignature -Path $filePath -ExpectedThumbprint $ExpectedSignature
         } else {
             throw "ExpectedSignature parameter is specified, but no signature is provided."
         }
     }
 
     if ($ExpectedSHA256Sum) {
-        $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA256).Hash
-        Use-ChecksumComparison $fileHash $ExpectedSHA256Sum
+        Test-FileChecksum $filePath -ExpectedSHA256Sum $ExpectedSHA256Sum
     }
 
     if ($ExpectedSHA512Sum) {
-        $fileHash = (Get-FileHash -Path $filePath -Algorithm SHA512).Hash
-        Use-ChecksumComparison $fileHash $ExpectedSHA512Sum
+        Test-FileChecksum $filePath -ExpectedSHA512Sum $ExpectedSHA512Sum
     }
 
     if ($ExtraInstallArgs -and $InstallArgs) {
@@ -130,185 +130,56 @@ function Install-Binary {
     }
 }
 
-function Start-DownloadWithRetry {
+function Invoke-DownloadWithRetry {
     Param
     (
         [Parameter(Mandatory)]
         [string] $Url,
-        [string] $Name,
-        [string] $DownloadPath = "${env:Temp}",
-        [int] $Retries = 20
+        [Alias("Destination")]
+        [string] $Path
     )
 
-    if ([String]::IsNullOrEmpty($Name)) {
-        $Name = [IO.Path]::GetFileName($Url)
+    if (-not $Path) {
+        $invalidChars = [IO.Path]::GetInvalidFileNameChars() -join ''
+        $re = "[{0}]" -f [RegEx]::Escape($invalidChars)
+        $fileName = [IO.Path]::GetFileName($Url) -replace $re
+
+        if ([String]::IsNullOrEmpty($fileName)) {
+            $fileName = [System.IO.Path]::GetRandomFileName()
+        }
+        $Path = Join-Path -Path "${env:Temp}" -ChildPath $fileName
     }
 
-    $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
+    Write-Host "Downloading package from $Url to $Path..."
+
+    $interval = 30
     $downloadStartTime = Get-Date
-
-    # Default retry logic for the package.
-    Write-Host "Downloading package from: $Url to path $filePath."
-    while ($Retries -gt 0) {
+    for ($retries = 20; $retries -gt 0; $retries--) {
         try {
-            $downloadAttemptStartTime = Get-Date
-            (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
+            $attemptStartTime = Get-Date
+            (New-Object System.Net.WebClient).DownloadFile($Url, $Path)
+            $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
+            Write-Host "Package downloaded in $attemptSeconds seconds"
             break
         } catch {
-            $failTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
-            $attemptTime = [math]::Round(($(Get-Date) - $downloadAttemptStartTime).TotalSeconds, 2)
-            Write-Host "There is an error encounterd after $attemptTime seconds during package downloading:`n$($_.Exception.ToString())"
-            $Retries--
-
-            if ($Retries -eq 0) {
-                Write-Host "Package download failed after $failTime seconds"
-                exit 1
-            }
-
-            Write-Host "Waiting 30 seconds before retrying. Retries left: $Retries"
-            Start-Sleep -Seconds 30
+            $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
+            Write-Warning "Package download failed in $attemptSeconds seconds"
+            Write-Warning $_.Exception.Message
         }
+            
+        if ($retries -eq 0) {
+            $totalSeconds = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
+            throw "Package download failed after $totalSeconds seconds"
+        }
+
+        Write-Warning "Waiting $interval seconds before retrying (retries left: $retries)..."
+        Start-Sleep -Seconds $interval
     }
 
-    $downloadCompleteTime = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
-    Write-Host "Package downloaded successfully in $downloadCompleteTime seconds"
-    return $filePath
+    return $Path
 }
 
-function Get-VsixExtenstionFromMarketplace {
-    Param
-    (
-        [string] $ExtensionMarketPlaceName,
-        [string] $MarketplaceUri = "https://marketplace.visualstudio.com/items?itemName="
-    )
-
-    $extensionUri = $MarketplaceUri + $ExtensionMarketPlaceName
-    $request = Invoke-SBWithRetry -Command { Invoke-WebRequest -Uri $extensionUri -UseBasicParsing } -RetryCount 20 -RetryIntervalSeconds 30
-    $request -match 'UniqueIdentifierValue":"(?<extensionname>[^"]*)' | Out-Null
-    $extensionName = $Matches.extensionname
-    $request -match 'VsixId":"(?<vsixid>[^"]*)' | Out-Null
-    $vsixId = $Matches.vsixid
-    $request -match 'AssetUri":"(?<uri>[^"]*)' | Out-Null
-    $assetUri = $Matches.uri
-    $request -match 'Microsoft\.VisualStudio\.Services\.Payload\.FileName":"(?<filename>[^"]*)' | Out-Null
-    $fileName = $Matches.filename
-    $downloadUri = $assetUri + "/" + $fileName
-    # ProBITools.MicrosoftReportProjectsforVisualStudio2022 has different URL https://github.com/actions/runner-images/issues/5340
-    switch ($ExtensionMarketPlaceName) {
-        "ProBITools.MicrosoftReportProjectsforVisualStudio2022" {
-            $fileName = "Microsoft.DataTools.ReportingServices.vsix"
-            $downloadUri = "https://download.microsoft.com/download/b/b/5/bb57be7e-ae72-4fc0-b528-d0ec224997bd/Microsoft.DataTools.ReportingServices.vsix"
-        }
-        "ProBITools.MicrosoftAnalysisServicesModelingProjects2022" {
-            $fileName = "Microsoft.DataTools.AnalysisServices.vsix"
-            $downloadUri = "https://download.microsoft.com/download/c/8/9/c896a7f2-d0fd-45ac-90e6-ff61f67523cb/Microsoft.DataTools.AnalysisServices.vsix"
-        }
-        # Starting from version 4.1 SqlServerIntegrationServicesProjects extension is distributed as exe file
-        "SSIS.SqlServerIntegrationServicesProjects" {
-            $fileName = "Microsoft.DataTools.IntegrationServices.exe"
-            $downloadUri = $assetUri + "/" + $fileName
-        }
-    }
-
-    return [PSCustomObject] @{
-        "ExtensionName" = $extensionName
-        "VsixId" = $vsixId
-        "FileName" = $fileName
-        "DownloadUri" = $downloadUri
-    }
-}
-
-function Install-VSIXFromFile {
-    Param
-    (
-        [Parameter(Mandatory = $true)]
-        [string] $FilePath,
-        [int] $Retries = 20
-    )
-
-    Write-Host "Installing VSIX from $FilePath..."
-    while ($True) {
-        $installerPath = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\resources\app\ServiceHub\Services\Microsoft.VisualStudio.Setup.Service\VSIXInstaller.exe"
-        try {
-            $process = Start-Process `
-                -FilePath $installerPath `
-                -ArgumentList @('/quiet', "`"$FilePath`"") `
-                -Wait -PassThru
-        } catch {
-            Write-Host "Failed to start VSIXInstaller.exe with error:"
-            $_
-            exit 1
-        }
-
-        $exitCode = $process.ExitCode
-
-        if ($exitCode -eq 0) {
-            Write-Host "VSIX installed successfully."
-            break
-        } elseif ($exitCode -eq 1001) {
-            Write-Host "VSIX is already installed."
-            break
-        }
-
-        Write-Host "VSIX installation failed with exit code $exitCode."
-
-        $Retries--
-        if ($Retries -eq 0) {
-            Write-Host "VSIX installation failed after $Retries retries."
-            exit 1
-        }
-
-        Write-Host "Waiting 10 seconds before retrying. Retries left: $Retries"
-        Start-Sleep -Seconds 10
-    }
-}
-
-function Install-VSIXFromUrl {
-    Param
-    (
-        [Parameter(Mandatory = $true)]
-        [string] $Url,
-        [int] $Retries = 20
-    )
-
-    $name = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".vsix"
-    $filePath = Start-DownloadWithRetry -Url $Url -Name $Name
-    Install-VSIXFromFile -FilePath $filePath -Retries $Retries
-    Remove-Item -Force -Confirm:$false $filePath
-}
-
-function Get-VSExtensionVersion
-{
-    Param
-    (
-        [Parameter(Mandatory=$true)]
-        [string] $packageName
-    )
-
-    $instanceFolders = Get-ChildItem -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
-    if ($instanceFolders -is [array])
-    {
-        Write-Host ($instanceFolders | Out-String)
-        Write-Host ($instanceFolders | Get-ChildItem | Out-String)
-        Write-Host "More than one instance installed"
-        exit 1
-    }
-
-    $stateContent = Get-Content -Path (Join-Path $instanceFolders.FullName '\state.packages.json')
-    $state = $stateContent | ConvertFrom-Json
-    $packageVersion = ($state.packages | Where-Object { $_.id -eq $packageName }).version
-
-    if (-not $packageVersion)
-    {
-        Write-Host "Installed package $packageName for Visual Studio was not found"
-        exit 1
-    }
-
-    return $packageVersion
-}
-
-function Get-ToolsetContent
-{
+function Get-ToolsetContent {
     $toolsetPath = Join-Path "C:\\image" "toolset.json"
     $toolsetJson = Get-Content -Path $toolsetPath -Raw
     ConvertFrom-Json -InputObject $toolsetJson
@@ -385,7 +256,7 @@ function Get-TCToolVersionPath {
 
     # Take latest installed version in case if toolset version contains wildcards
     $foundVersion = Get-Item $versionPath `
-    | Sort-Object -Property { [version]$_.name } -Descending `
+    | Sort-Object -Property { [version] $_.name } -Descending `
     | Select-Object -First 1
 
     if (-not $foundVersion) {
@@ -395,116 +266,112 @@ function Get-TCToolVersionPath {
     return Join-Path $foundVersion $Arch
 }
 
-function Get-WinVersion
-{
-    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption
+function Test-IsWin22 {
+    <#
+    .SYNOPSIS
+        Checks if the current Windows operating system is Windows Server 2022.
+
+    .DESCRIPTION
+        This function uses the Get-CimInstance cmdlet to retrieve information
+        about the current Windows operating system. It then checks if the Caption
+        property of the Win32_OperatingSystem class contains the string "2022",
+        indicating that the operating system is Windows Server 2022.
+
+    .OUTPUTS
+        Returns $true if the current Windows operating system is Windows Server 2022.
+        Otherwise, returns $false.
+    #>
+    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption -match "2022"
 }
 
-function Test-IsWin22
-{
-    (Get-WinVersion) -match "2022"
-}
+function Test-IsWin19 {
+    <#
+    .SYNOPSIS
+        Checks if the current Windows operating system is Windows Server 2019.
 
-function Test-IsWin19
-{
-    (Get-WinVersion) -match "2019"
+    .DESCRIPTION
+        This function uses the Get-CimInstance cmdlet to retrieve information
+        about the current Windows operating system. It then checks if the Caption
+        property of the Win32_OperatingSystem class contains the string "2019",
+        indicating that the operating system is Windows Server 2019.
+
+    .OUTPUTS
+        Returns $true if the current Windows operating system is Windows Server 2019.
+        Otherwise, returns $false.
+    #>
+    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption -match "2019"
 }
 
 function Expand-7ZipArchive {
+    <#
+    .SYNOPSIS
+        Extracts files from a 7-Zip archive.
+
+    .DESCRIPTION
+        This function uses the 7z.exe command-line tool to extract files from an archive.
+        The archive path, destination path, and extract method are specified as parameters.
+
+    .PARAMETER Path
+        The path to the archive.
+
+    .PARAMETER DestinationPath
+        The path to the directory where the files will be extracted.
+
+    .PARAMETER ExtractMethod
+        The method used to extract the files.
+        Valid values are "x" (extract with full paths) and "e" (extract without paths).
+
+    .EXAMPLE
+        Expand-7ZipArchive -Path "C:\archive.7z" -DestinationPath "C:\extracted" -ExtractMethod "x"
+
+        Extracts files from the "C:\archive.7z" archive to the "C:\extracted" directory keeping the full paths.
+    #>
     Param
     (
-        [Parameter(Mandatory=$true)]
-        [string]$Path,
-        [Parameter(Mandatory=$true)]
-        [string]$DestinationPath,
+        [Parameter(Mandatory = $true)]
+        [string] $Path,
+        [Parameter(Mandatory = $true)]
+        [string] $DestinationPath,
         [ValidateSet("x", "e")]
-        [char]$ExtractMethod = "x"
+        [char] $ExtractMethod = "x"
     )
 
     Write-Host "Expand archive '$PATH' to '$DestinationPath' directory"
     7z.exe $ExtractMethod "$Path" -o"$DestinationPath" -y | Out-Null
 
-    if ($LASTEXITCODE -ne 0)
-    {
+    if ($LASTEXITCODE -ne 0) {
         Write-Host "There is an error during expanding '$Path' to '$DestinationPath' directory"
         exit 1
     }
 }
 
-function Install-AndroidSDKPackages {
-    Param
-    (
-        [Parameter(Mandatory=$true)]
-        [string]$AndroidSDKManagerPath,
-        [Parameter(Mandatory=$true)]
-        [string]$AndroidSDKRootPath,
-        [Parameter(Mandatory=$true)]
-        [AllowEmptyCollection()]
-        [string[]]$AndroidPackages,
-        [string] $PrefixPackageName
-    )
+function Get-WindowsUpdateStates {
+    <#
+    .SYNOPSIS
+        Retrieves the status of Windows updates.
 
-    foreach ($package in $AndroidPackages) {
-        & $AndroidSDKManagerPath --sdk_root=$AndroidSDKRootPath "$PrefixPackageName$package"
-    }
-}
+    .DESCRIPTION
+        The Get-WindowsUpdateStates function checks the Windows Event Log for specific event IDs related to Windows updates and returns a custom PowerShell object with the state and title of each update.
 
-function Get-AndroidPackages {
-    Param
-    (
-        [Parameter(Mandatory=$true)]
-        [string]$AndroidSDKManagerPath
-    )
+    .PARAMETER None
+        This function does not take any parameters.
 
-    $packagesListFile = "C:\Android\android-sdk\packages-list.txt"
+    .OUTPUTS
+        PSCustomObject. This function returns a collection of custom PowerShell objects. Each object has two properties:
+        - State: A string that represents the state of the update. Possible values are "Installed", "Failed", and "Running".
+        - Title: A string that represents the title of the update.
 
-    if (-Not (Test-Path -Path $packagesListFile -PathType Leaf)) {
-        (cmd /c "$AndroidSDKManagerPath --list --verbose 2>&1") |
-        Where-Object { $_ -Match "^[^\s]" } |
-        Where-Object { $_ -NotMatch "^(Loading |Info: Parsing |---|\[=+|Installed |Available )" } |
-        Where-Object { $_ -NotMatch "^[^;]*$" } |
-        Out-File -FilePath $packagesListFile
-    }
+    .NOTES
+        Event IDs used:
+        - 19: Installation Successful: Windows successfully installed the following update
+        - 20: Installation Failure: Windows failed to install the following update with error
+        - 43: Installation Started: Windows has started installing the following update
+    #>
 
-    return Get-Content $packagesListFile
-}
-
-function Get-AndroidPackagesByName {
-    Param (
-        [Parameter(Mandatory=$true)]
-        [string[]]$AndroidPackages,
-        [Parameter(Mandatory=$true)]
-        [string]$PrefixPackageName
-    )
-
-    return $AndroidPackages | Where-Object { "$_".StartsWith($PrefixPackageName) }
-}
-
-function Get-AndroidPackagesByVersion {
-    Param (
-        [Parameter(Mandatory=$true)]
-        [string[]]$AndroidPackages,
-        [Parameter(Mandatory=$true)]
-        [string]$PrefixPackageName,
-        [object]$MinimumVersion,
-        [char]$Delimiter,
-        [int]$Index = 0
-    )
-
-    $Type = $MinimumVersion.GetType()
-    $packagesByName = Get-AndroidPackagesByName -AndroidPackages $AndroidPackages -PrefixPackageName $PrefixPackageName
-    $packagesByVersion = $packagesByName | Where-Object { ($_.Split($Delimiter)[$Index] -as $Type) -ge $MinimumVersion }
-    return $packagesByVersion | Sort-Object -Unique
-}
-
-function Get-WindowsUpdatesHistory {
-    $allEvents = @{}
-    # 19 - Installation Successful: Windows successfully installed the following update
-    # 20 - Installation Failure: Windows failed to install the following update with error
-    # 43 - Installation Started: Windows has started installing the following update
+    $completedUpdates = @{}
     $filter = @{
-        LogName = "System"
-        Id = 19, 20, 43
+        LogName      = "System"
+        Id           = 19, 20, 43
         ProviderName = "Microsoft-Windows-WindowsUpdateClient"
     }
     $events = Get-WinEvent -FilterHashtable $filter -ErrorAction SilentlyContinue | Sort-Object Id
@@ -512,36 +379,59 @@ function Get-WindowsUpdatesHistory {
     foreach ( $event in $events ) {
         switch ( $event.Id ) {
             19 {
-                $status = "Successful"
+                $state = "Installed"
                 $title = $event.Properties[0].Value
-                $allEvents[$title] = ""
+                $completedUpdates[$title] = ""
                 break
             }
             20 {
-                $status = "Failure"
+                $state = "Failed"
                 $title = $event.Properties[1].Value
-                $allEvents[$title] = ""
+                $completedUpdates[$title] = ""
                 break
             }
             43 {
-                $status = "InProgress"
+                $state = "Running"
                 $title = $event.Properties[0].Value
                 break
             }
         }
 
-        if ( $status -eq "InProgress" -and $allEvents.ContainsKey($title) ) {
+        # Skip update started event if it was already completed
+        if ( $state -eq "Running" -and $completedUpdates.ContainsKey($title) ) {
             continue
         }
 
         [PSCustomObject]@{
-            Status = $status
+            State = $state
             Title = $title
         }
     }
 }
 
-function Invoke-SBWithRetry {
+function Invoke-ScriptBlockWithRetry {
+    <#
+    .SYNOPSIS
+        Executes a script block with retry logic.
+
+    .DESCRIPTION
+        The Invoke-ScriptBlockWithRetry function executes a specified script block with retry logic. It allows you to specify the number of retries and the interval between retries.
+
+    .PARAMETER Command
+        The script block to be executed.
+
+    .PARAMETER RetryCount
+        The number of times to retry executing the script block. The default value is 10.
+
+    .PARAMETER RetryIntervalSeconds
+        The interval in seconds between each retry. The default value is 5.
+
+    .EXAMPLE
+        Invoke-ScriptBlockWithRetry -Command { Get-Process } -RetryCount 3 -RetryIntervalSeconds 10
+        This example executes the script block { Get-Process } with 3 retries and a 10-second interval between each retry.
+
+    #>
+
     param (
         [scriptblock] $Command,
         [int] $RetryCount = 10,
@@ -552,8 +442,7 @@ function Invoke-SBWithRetry {
         try {
             & $Command
             return
-        }
-        catch {
+        } catch {
             Write-Host "There is an error encountered:`n $_"
             $RetryCount--
 
@@ -567,123 +456,375 @@ function Invoke-SBWithRetry {
     }
 }
 
-function Get-GitHubPackageDownloadUrl {
+function Get-GithubReleasesByVersion {
+    <#
+    .SYNOPSIS
+        Retrieves GitHub releases for a specified repository based on version.
+
+    .DESCRIPTION
+        The function retrieves GitHub releases for a specified repository based on the
+        version provided. It supports filtering by version, allowing for the retrieval
+        of specific releases or the latest release. The function utilizes the GitHub REST API
+        to fetch the releases and caches the results to improve performance and reduce
+        the number of API calls.
+
+    .PARAMETER Repository
+        The name of the GitHub repository in the format "owner/repo".
+
+    .PARAMETER Version
+        The version of the release to retrieve. It can be a specific version number,
+        "latest" to retrieve the latest release, or a wildcard pattern to match multiple versions.
+
+    .PARAMETER AllowPrerelease
+        Specifies whether to include prerelease versions in the results. By default,
+        prerelease versions are excluded.
+
+    .EXAMPLE
+        Get-GithubReleasesByVersion -Repository "Microsoft/PowerShell" -Version "7.2.0"
+
+        Retrieves the GitHub releases for the "Microsoft/PowerShell" repository with the version "7.2.0".
+
+    .EXAMPLE
+        Get-GithubReleasesByVersion -Repository "Microsoft/PowerShell" -Version "latest"
+
+        Retrieves the latest GitHub release for the "Microsoft/PowerShell" repository.
+
+    .EXAMPLE
+        Get-GithubReleasesByVersion -Repository "Microsoft/PowerShell" -Version "7.*"
+
+        Retrieves all GitHub releases for the "Microsoft/PowerShell" repository with versions starting with "7.".
+    #>
+
     param (
-        [string]$RepoOwner,
-        [string]$RepoName,
-        [string]$BinaryName,
-        [string]$Version,
-        [string]$UrlFilter,
-        [boolean]$IsPrerelease = $false,
-        [boolean]$LatestReleaseOnly = $true,
-        [int]$SearchInCount = 100
+        [Parameter(Mandatory = $true)]
+        [Alias("Repo")]
+        [string] $Repository,
+        [string] $Version = "*",
+        [switch] $AllowPrerelease
     )
 
-    if ($Version -eq "latest") {
-        $Version = "*"
-    }
+    $localCacheFile = Join-Path ${env:TEMP} "github-releases_$($Repository -replace "/", "_").json"
 
-    $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
-    $tags = $json.Where{ $_.prerelease -eq $IsPrerelease -and $_.assets }.tag_name
-    $availableVersions = $tags |
-        Select-String -Pattern "\d+.\d+.\d+" |
-        ForEach-Object { $_.Matches.Value } |
-        Where-Object { $_ -like "$Version.*" -or $_ -eq $Version } |
-        Sort-Object -Descending { [version]$_ }
-
-    if (-not $availableVersions) {
-        throw "Failed to get available versions from ${RepoOwner}/${RepoName} releases"
-    }
-
-    if ($LatestReleaseOnly) {
-        $latestVersion = $availableVersions | Select-Object -First 1
-        $urlFilterReplaced = $UrlFilter -replace "{BinaryName}", $BinaryName -replace "{Version}", $latestVersion
-        $downloadUrl = $json.assets.browser_download_url -like $urlFilterReplaced
+    if (Test-Path $localCacheFile) {
+        $releases = Get-Content $localCacheFile | ConvertFrom-Json
+        Write-Debug "Found cached releases for ${Repository} in local file"
+        Write-Debug "Release count: $($releases.Count)"
     } else {
-        foreach ($version in $availableVersions) {
-            $urlFilterReplaced = $UrlFilter -replace "{BinaryName}", $BinaryName -replace "{Version}", $version
-            $downloadUrl = $json.assets.browser_download_url -like $urlFilterReplaced
+        $releases = @()
+        $page = 1
+        $pageSize = 100
+        do {
+            $releasesPage = Invoke-RestMethod -Uri "https://api.github.com/repos/${Repository}/releases?per_page=${pageSize}&page=${page}"
+            $releases += $releasesPage
+            $page++
+        } while ($releasesPage.Count -eq $pageSize)
 
-            if ($downloadUrl) {
-                Write-Host "Found download url for ${RepoOwner}/${RepoName} ${BinaryName} ${version}"
-                break
-            }
+        Write-Debug "Found $($releases.Count) releases for ${Repository}"
+        Write-Debug "Caching releases for ${Repository} in local file"
+        $releases | ConvertTo-Json -Depth 10 | Set-Content $localCacheFile
+    }
+
+    if (-not $releases) {
+        throw "Failed to get releases from ${Repository}"
+    }
+
+    $releases = $releases.Where{ $_.assets }
+    if (-not $AllowPrerelease) {
+        $releases = $releases.Where{ $_.prerelease -eq $false }
+    }
+    Write-Debug "Found $($releases.Count) releases with assets for ${Repository}"
+
+    # Parse version from tag name and put it to parameter Version
+    foreach ($release in $releases) {
+        $release | Add-Member -MemberType NoteProperty -Name version -Value (
+            $release.tag_name | Select-String -Pattern "\d+.\d+.\d+" | ForEach-Object { $_.Matches.Value }
+        )
+    }
+
+    # Sort releases by version
+    $releases = $releases | Sort-Object -Descending { [version] $_.version }
+
+    # Select releases matching version
+    if ($Version -eq "latest") {
+        $matchingReleases = $releases | Select-Object -First 1
+    } elseif ($Version.Contains("*")) {
+        $matchingReleases = $releases | Where-Object { $_.version -like "$Version" }
+    } else {
+        $matchingReleases = $releases | Where-Object { $_.version -eq "$Version" }
+    }
+
+    if (-not $matchingReleases) {
+        throw "Failed to get releases from ${Repository} matching version `"${Version}`".`nAvailable versions: $($availableVersions -join ", ")"
+    }
+    Write-Debug "Found $($matchingReleases.Count) releases matching version ${Version} for ${Repository}"
+
+    return $matchingReleases
+}
+
+function Resolve-GithubReleaseAssetUrl {
+    <#
+    .SYNOPSIS
+        Resolves the download URL for a specific asset in a GitHub release.
+
+    .DESCRIPTION
+        This function retrieves the download URL for a specific asset in a GitHub release.
+        It takes the repository name, version, and a URL match pattern as input parameters.
+        It searches for releases that match the specified version and then looks
+        for a download URL that matches the provided pattern. If a matching URL is found,
+        it returns the URL. If no matching URL is found, an exception is thrown.
+
+    .PARAMETER Repository
+        The name of the GitHub repository in the format "owner/repo".
+
+    .PARAMETER Version
+        The version of the release to retrieve. It can be a specific version number,
+        "latest" to retrieve the latest release, or a wildcard pattern to match multiple versions.
+
+    .PARAMETER AllowPrerelease
+        Specifies whether to include prerelease versions in the results. By default,
+        prerelease versions are excluded.
+
+    .PARAMETER UrlMatchPattern
+        The pattern to match against the download URLs of the release assets.
+        Wildcards (*) can be used to match any characters.
+
+    .EXAMPLE
+        Resolve-GithubReleaseAssetUrl -Repository "myrepo" -Version "1.0" -UrlMatchPattern "*.zip"
+        Retrieves the download URL for the asset in the "myrepo" repository with version "1.0" and a file extension of ".zip".
+
+    #>
+
+    param (
+        [Parameter(Mandatory = $true)]
+        [Alias("Repo")]
+        [string] $Repository,
+        [string] $Version = "*",
+        [switch] $AllowPrerelease,
+        [Parameter(Mandatory = $true)]
+        [Alias("Pattern", "File", "Asset")]
+        [string] $UrlMatchPattern
+    )
+
+    $matchingReleases = Get-GithubReleasesByVersion `
+        -Repository $Repository `
+        -AllowPrerelease:$AllowPrerelease `
+        -Version $Version
+
+    # Add wildcard to the beginning of the pattern if it's not there
+    if ($UrlMatchPattern.Substring(0, 2) -ne "*/") {
+        $UrlMatchPattern = "*/$UrlMatchPattern"
+    }
+
+    # Loop over releases until we find a download url matching the pattern
+    foreach ($release in $matchingReleases) {
+        $matchedVersion = $release.version
+        $matchedUrl = $release.assets.browser_download_url -like $UrlMatchPattern
+        if ($matchedUrl) {
+            break
         }
     }
 
-    if (-not $downloadUrl) {
-        throw "Failed to get download url for ${RepoOwner}/${RepoName} ${BinaryName}"
+    if (-not $matchedUrl) {
+        Write-Debug "Found no download urls matching pattern ${UrlMatchPattern}"
+        Write-Debug "Available download urls:`n$($matchingReleases.assets.browser_download_url -join "`n")"
+        throw "No assets found in ${Repository} matching version `"${Version}`" and pattern `"${UrlMatchPattern}`""
+    } elseif ($matchedUrl.Count -gt 1) {
+        Write-Debug "Found multiple download urls matching pattern ${UrlMatchPattern}:`n$($matchedUrl -join "`n")"
+        throw "Multiple download urls found in ${Repository} version `"${matchedVersion}`" matching pattern `"${UrlMatchPattern}`":`n$($matchedUrl -join "`n")"
     }
 
-    return $downloadUrl
+    Write-Host "Found download url for ${Repository} version ${matchedVersion}: ${matchedUrl}"
+
+    return ($matchedUrl -as [string])
 }
 
-function Use-ChecksumComparison {
+function Get-GithubReleaseAssetHash {
+    <#
+    .SYNOPSIS
+        Retrieves the hash value of a specific file from a GitHub release body.
+
+    .DESCRIPTION
+        The Get-GithubReleaseAssetHash function retrieves the hash value (SHA256 or SHA512)
+        of a specific file from a GitHub release. It searches for the file in the release body
+        and returns the hash value if found.
+
+    .PARAMETER Repository
+        The name of the GitHub repository in the format "owner/repo".
+
+    .PARAMETER Version
+        The version of the release to inspect. It can be a specific version number,
+        "latest" to retrieve the latest release, or a wildcard pattern to match multiple versions.
+
+    .PARAMETER AllowPrerelease
+        Specifies whether to include prerelease versions in the results. By default,
+        prerelease versions are excluded.
+
+    .PARAMETER FileName
+        The name of the file to retrieve the hash value for.
+
+    .PARAMETER HashType
+        The type of hash value to retrieve. Valid values are "SHA256" and "SHA512".
+
+    .EXAMPLE
+        Get-GithubReleaseAssetHash -Repository "MyRepo" -FileName "myfile.txt" -HashType "SHA256"
+
+        Retrieves the SHA256 hash value of "myfile.txt" from the latest release of the "MyRepo" repository.
+
+    .EXAMPLE
+        Get-GithubReleaseAssetHash -Repository "MyRepo" -Version "1.0" -FileName "myfile.txt" -HashType "SHA512"
+
+        Retrieves the SHA512 hash value of "myfile.txt" from the release version "1.0" of the "MyRepo" repository.
+    #>
+
     param (
-        [Parameter(Mandatory=$true)]
-        [string]$LocalFileHash,
-        [Parameter(Mandatory=$true)]
-        [string]$DistributorFileHash
+        [Parameter(Mandatory = $true)]
+        [Alias("Repo")]
+        [string] $Repository,
+        [string] $Version = "*",
+        [switch] $AllowPrerelease,
+        [Parameter(Mandatory = $true)]
+        [Alias("File", "Asset")]
+        [string] $FileName,
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("SHA256", "SHA512")]
+        [string] $HashType
+    )
+
+    $matchingReleases = Get-GithubReleasesByVersion `
+        -Repository $Repository `
+        -AllowPrerelease:$AllowPrerelease `
+        -Version $Version
+
+    foreach ($release in $matchingReleases) {
+        $matchedVersion = $release.version
+        $matchedBody = $release.body
+        $matchedLine = $matchedBody.Split("`n") | Where-Object { $_ -like "*$FileName*" }
+        if ($matchedLine.Count -gt 1) {
+            throw "Found multiple lines matching file name '${FileName}' in body of release ${matchedVersion}."
+        } elseif ($matchedLine.Count -ne 0) {
+            break
+        }
+    }
+    if (-not $matchedLine) {
+        throw "File name '${FileName}' not found in release body."
+    }
+    Write-Debug "Found line matching file name '${FileName}' in body of release ${matchedVersion}:`n${matchedLine}"
+
+    if ($HashType -eq "SHA256") {
+        $pattern = "[A-Fa-f0-9]{64}"
+    } elseif ($HashType -eq "SHA512") {
+        $pattern = "[A-Fa-f0-9]{128}"
+    } else {
+        throw "Unknown hash type: ${HashType}"
+    }
+
+    $hash = $matchedLine | Select-String -Pattern $pattern | ForEach-Object { $_.Matches.Value }
+        
+    if ([string]::IsNullOrEmpty($hash)) {
+        throw "Found '${FileName}' in body of release ${matchedVersion}, but failed to get hash from it.`nLine: ${matchedLine}"
+    }
+    Write-Host "Found hash for ${FileName} in release ${matchedVersion}: $hash"
+
+    return $hash
+}
+
+function Test-FileChecksum {
+    <#
+    .SYNOPSIS
+        Verifies the checksum of a file.
+    
+    .DESCRIPTION
+        The Test-FileChecksum function verifies the SHA256 or SHA512 checksum of a file against an expected value. 
+        If the checksum does not match the expected value, the function throws an error.
+    
+    .PARAMETER Path
+        The path to the file for which to verify the checksum.
+    
+    .PARAMETER ExpectedSHA256Sum
+        The expected SHA256 checksum. If this parameter is provided, the function will calculate the SHA256 checksum of the file and compare it to this value.
+    
+    .PARAMETER ExpectedSHA512Sum
+        The expected SHA512 checksum. If this parameter is provided, the function will calculate the SHA512 checksum of the file and compare it to this value.
+    
+    .EXAMPLE
+        Test-FileChecksum -Path "C:\temp\file.txt" -ExpectedSHA256Sum "ABC123"
+    
+        Verifies that the SHA256 checksum of the file at C:\temp\file.txt is ABC123.
+    
+    .EXAMPLE
+        Test-FileChecksum -Path "C:\temp\file.txt" -ExpectedSHA512Sum "DEF456"
+    
+        Verifies that the SHA512 checksum of the file at C:\temp\file.txt is DEF456.
+    
+    #>
+
+    param (
+        [Parameter(Mandatory = $true, Position = 0)]
+        [string] $Path,
+        [Parameter(Mandatory = $false)]
+        [String] $ExpectedSHA256Sum,
+        [Parameter(Mandatory = $false)]
+        [String] $ExpectedSHA512Sum
     )
 
     Write-Verbose "Performing checksum verification"
 
-    if ($LocalFileHash -ne $DistributorFileHash) {
-        throw "Checksum verification failed. Expected hash: $DistributorFileHash; Actual hash: $LocalFileHash."
+    if ($ExpectedSHA256Sum -and $ExpectedSHA512Sum) {
+        throw "Only one of the ExpectedSHA256Sum and ExpectedSHA512Sum parameters can be provided"
+    }
+
+    if (-not (Test-Path $Path)) {
+        throw "File not found: $Path"
+    }
+
+    if ($ExpectedSHA256Sum) {
+        $fileHash = (Get-FileHash -Path $Path -Algorithm SHA256).Hash
+        $expectedHash = $ExpectedSHA256Sum
+    }
+
+    if ($ExpectedSHA512Sum) {
+        $fileHash = (Get-FileHash -Path $Path -Algorithm SHA512).Hash
+        $expectedHash = $ExpectedSHA512Sum
+    }
+
+    if ($fileHash -ne $expectedHash) {
+        throw "Checksum verification failed: expected $expectedHash, got $fileHash"
     } else {
         Write-Verbose "Checksum verification passed"
     }
 }
 
-function Get-HashFromGitHubReleaseBody {
-    param (
-        [string]$RepoOwner,
-        [string]$RepoName,
-        [Parameter(Mandatory=$true)]
-        [string]$FileName,
-        [string]$Url,
-        [string]$Version = "latest",
-        [boolean]$IsPrerelease = $false,
-        [int]$SearchInCount = 100,
-        [string]$Delimiter = '|',
-        [int]$WordNumber = 1
-    )
-
-    if ($Url) {
-        $releaseUrl = $Url
-    } else {
-        if ($Version -eq "latest") {
-            $releaseUrl = "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases/latest"
-        } else {
-            $json = Invoke-RestMethod -Uri "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases?per_page=${SearchInCount}"
-            $tags = $json.Where{ $_.prerelease -eq $IsPrerelease }.tag_name
-            $tag = $tags -match $Version
-            if (-not $tag) {
-                throw "Failed to get a tag name for version $Version."
-            }
-            $releaseUrl = "https://api.github.com/repos/${RepoOwner}/${RepoName}/releases/tag/$tag"
-        }
-    }
-    $body = (Invoke-RestMethod -Uri $releaseUrl).body -replace('`', "") -join "`n"
-    $matchingLine = $body.Split("`n") | Where-Object { $_ -like "*$FileName*" }    
-    if ([string]::IsNullOrEmpty($matchingLine)) {
-        throw "File name '$FileName' not found in release body."
-    }
-    $result = $matchingLine.Split($Delimiter)[$WordNumber] -replace "[^a-zA-Z0-9]", ""
-    if ([string]::IsNullOrEmpty($result)) {
-        throw "Empty result. Check Split method parameters (delimiter and/or word number) for the matching line."
-    }
-    return $result
-}
 function Test-FileSignature {
+    <#
+    .SYNOPSIS
+        Tests the file signature of a given file.
+
+    .DESCRIPTION
+        The Test-FileSignature function checks the signature of a file against the expected thumbprints. 
+        It uses the Get-AuthenticodeSignature cmdlet to retrieve the signature information of the file.
+        If the signature status is not valid or the thumbprint does not match the expected thumbprints, an exception is thrown.
+
+    .PARAMETER Path
+        Specifies the path of the file to test.
+
+    .PARAMETER ExpectedThumbprint
+        Specifies the expected thumbprints to match against the file's signature.
+
+    .EXAMPLE
+        Test-FileSignature -Path "C:\Path\To\File.exe" -ExpectedThumbprint "A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0"
+
+        This example tests the signature of the file "C:\Path\To\File.exe" against the expected thumbprint "A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0".
+
+    #>
+    
     param(
-        [Parameter(Mandatory=$true)]
-        [string]$FilePath,
-        [Parameter(Mandatory=$true)]
-        [string[]]$ExpectedThumbprint
+        [Parameter(Mandatory = $true, Position = 0)]
+        [string] $Path,
+        [Parameter(Mandatory = $true)]
+        [string[]] $ExpectedThumbprint
     )
 
-    $signature = Get-AuthenticodeSignature $FilePath
+    $signature = Get-AuthenticodeSignature $Path
 
     if ($signature.Status -ne "Valid") {
         throw "Signature status is not valid. Status: $($signature.Status)"
@@ -691,16 +832,51 @@ function Test-FileSignature {
     
     foreach ($thumbprint in $ExpectedThumbprint) {
         if ($signature.SignerCertificate.Thumbprint.Contains($thumbprint)) {
-            Write-Output "Signature for $FilePath is valid"
+            Write-Output "Signature for $Path is valid"
             $signatureMatched = $true
             return
         }
     }
 
     if ($signatureMatched) {
-        Write-Output "Signature for $FilePath is valid"
-    }
-    else {
+        Write-Output "Signature for $Path is valid"
+    } else {
         throw "Signature thumbprint do not match expected."
+    }
+}
+
+function Update-Environment {
+    <#
+    .SYNOPSIS
+        Updates the environment variables by reading values from the registry.
+
+    .DESCRIPTION
+        This function updates current environment by reading values from the registry.
+        It is useful when you need to update the environment variables without restarting the current session.
+
+    .NOTES
+        The function requires administrative privileges to modify the system registry.
+    #>
+
+    $locations = @(
+        'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment',
+        'HKCU:\Environment'
+    )
+
+    # Update PATH variable
+    $pathItems = $locations | ForEach-Object { 
+        (Get-Item $_).GetValue('PATH').Split(';') 
+    } | Select-Object -Unique
+    $Env:PATH = $pathItems -join ';'
+
+    # Update other variables
+    $locations | ForEach-Object {
+        $key = Get-Item $_
+        foreach ($name in $key.GetValueNames()) {
+            $value = $key.GetValue($name)
+            if (-not ($name -ieq 'PATH')) {
+                Set-Item -Path Env:$name -Value $value
+            } 
+        }
     }
 }

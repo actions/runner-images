@@ -10,17 +10,15 @@ source $HELPER_SCRIPTS/os.sh
 
 # Install libssl1.1 dependency
 if isUbuntu22; then
-    download_with_retries "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb" "/tmp"
+    libssl_deb_path=$(download_with_retry "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb")
     libssl_hash="0b3251aee55db6e20d02f4b9a2b703c9874a85ab6a20b12f4870f52f91633d37"
-    use_checksum_comparison "/tmp/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb" "${libssl_hash}"
-    dpkg -i /tmp/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb
+    use_checksum_comparison "$libssl_deb_path" "$libssl_hash"
+    dpkg -i "$libssl_deb_path"
 fi
 
 # Install SqlPackage
-download_with_retries "https://aka.ms/sqlpackage-linux" "." "sqlpackage.zip"
-
-unzip -qq sqlpackage.zip -d /usr/local/sqlpackage
-rm -f sqlpackage.zip
+archive_path=$(download_with_retry "https://aka.ms/sqlpackage-linux")
+unzip -qq "$archive_path" -d /usr/local/sqlpackage
 chmod +x /usr/local/sqlpackage/sqlpackage
 ln -sf /usr/local/sqlpackage/sqlpackage /usr/local/bin
 

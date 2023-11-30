@@ -1,56 +1,31 @@
-Import-Module (Join-Path $PSScriptRoot "..\SoftwareReport\SoftwareReport.Android.psm1") -DisableNameChecking
-
 Describe "Android SDK" {
     $androidToolset = (Get-ToolsetContent).android
-    $androidPackages = Get-AndroidPackages -AndroidSDKManagerPath (Get-AndroidSDKManagerPath)
     $androidInstalledPackages = Get-AndroidInstalledPackages
 
-    $ndkDefaultMajorVersion = $androidToolset.ndk.default
-    $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultMajorVersion.*" -Name | Select-Object -Last 1
-    $ndkVersions = $androidToolset.ndk.versions
-    $ndkPackagesTestCases = $ndkVersions | ForEach-Object {
+    $platformList = Get-AndroidPlatformPackages -minVersion $androidToolset.platform_min_version
+    $platformTestCases = $platformList | ForEach-Object {
+        @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
+    }
+
+    $buildToolsList = Get-AndroidBuildToolPackages -minVersion $androidToolset.build_tools_min_version
+    $buildToolsTestCases = $buildToolsList | ForEach-Object {
+        @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
+    }
+
+    $extraPackagesTestCases = $androidToolset.extra_list | ForEach-Object {
+        @{ extraPackage = $_; installedPackages = $androidInstalledPackages }
+    }
+
+    $addonsTestCases = $androidToolset.addon_list | ForEach-Object {
+        @{ addonPackage = $_; installedPackages = $androidInstalledPackages }
+    }
+
+    $additionalToolsTestCases = $androidToolset.additional_tools | ForEach-Object {
+        @{ additionalToolVersion = $_; installedPackages = $androidInstalledPackages }
+    }
+
+    $ndkPackagesTestCases = $androidToolset.ndk.versions | ForEach-Object {
         @{ ndkPackage = $_; installedPackages = $androidInstalledPackages }
-    }
-
-    $platformTestCases = @()
-    [int]$platformMinVersion = $androidToolset.platform_min_version
-    $platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
-                    -PrefixPackageName "platforms;" `
-                    -MinimumVersion $platformMinVersion `
-                    -Delimiter "-" `
-                    -Index 1
-
-    $platformList | ForEach-Object {
-        $platformTestCases += @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
-    }
-
-    $buildToolsTestCases = @()
-    [version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
-    $buildToolsList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
-                    -PrefixPackageName "build-tools;" `
-                    -MinimumVersion $buildToolsMinVersion `
-                    -Delimiter ";" `
-                    -Index 1
-    $buildToolsList | ForEach-Object {
-        $buildToolsTestCases += @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
-    }
-
-    $extraPackagesTestCases = @()
-    $extraPackageList = $androidToolset.extra_list
-    $extraPackageList | ForEach-Object {
-        $extraPackagesTestCases += @{ extraPackage = $_; installedPackages = $androidInstalledPackages }
-    }
-
-    $addonsTestCases = @()
-    $addonsPackageList = $androidToolset.addon_list
-    $addonsPackageList | ForEach-Object {
-        $addonsTestCases += @{ addonPackage = $_; installedPackages = $androidInstalledPackages }
-    }
-
-    $additionalToolsTestCases = @()
-    $additionalToolsList = $androidToolset.additional_tools
-    $additionalToolsList | ForEach-Object {
-        $additionalToolsTestCases += @{ additionalToolVersion = $_; installedPackages = $androidInstalledPackages }
     }
 
     Context "SDKManagers" {

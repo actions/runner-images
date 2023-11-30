@@ -1,6 +1,10 @@
 #!/bin/bash -e -o pipefail
+################################################################################
+##  File:  configure-hostname.sh
+##  Desc:  Change the hostname at startup to prevent duplicates
+##         Hostname and Computername should contain .local in name to avoid name resolution issues
+################################################################################
 
-# Add script for changing hostname to run on startup to prevent duplicate hostnames across the environment. Hostname and Computername should contain .local in name to avoid name resolution issues
 tee -a /usr/local/bin/change_hostname.sh > /dev/null <<\EOF
 #!/bin/bash -e -o pipefail
 

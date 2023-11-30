@@ -19,8 +19,7 @@ else
     hash_url="https://github.com/aliyun/aliyun-cli/releases/latest/download/SHASUMS256.txt"
 fi
 
-package_name="aliyun-cli-linux-amd64.tgz"
-download_with_retries "$download_url" "/tmp" "$package_name"
+archive_path=$(download_with_retry "$download_url")
 
 # Supply chain security - Alibaba Cloud CLI
 if isUbuntu20; then
@@ -29,9 +28,9 @@ else
     external_hash=$(get_hash_from_remote_file "$hash_url" "aliyun-cli-linux" "amd64.tgz")
 fi
 
-use_checksum_comparison "/tmp/$package_name" "$external_hash"
+use_checksum_comparison "$archive_path" "$external_hash"
 
-tar xzf "/tmp/$package_name"
+tar xzf "$archive_path"
 mv aliyun /usr/local/bin
 
 invoke_tests "CLI.Tools" "Aliyun CLI"
