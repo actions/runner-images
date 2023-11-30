@@ -8,8 +8,7 @@ $NsisVersion = (Get-ToolsetContent).nsis.version
 
 Install-ChocoPackage nsis -ArgumentList "--version", "$NsisVersion"
 
-$NsisPath = "${env:ProgramFiles(x86)}\NSIS\"
-Add-MachinePathItem $NsisPath
-$env:Path = Get-MachinePath
+Add-MachinePathItem "${env:ProgramFiles(x86)}\NSIS\"
+Update-Environment
 
 Invoke-PesterTests -TestFile "Tools" -TestName "NSIS"

@@ -1,13 +1,13 @@
 Describe "Vsix" {
     $toolset = Get-ToolsetContent
-    $requiredVsixs = $toolset.visualStudio.vsix
+    $requiredVsixPackages = $toolset.visualStudio.vsix
 
     $allPackages = (Get-VisualStudioInstance).Packages
-    $testCases = $requiredVsixs | ForEach-Object {
-        $vsix = Get-VsixExtenstionFromMarketplace -ExtensionMarketPlaceName $_
+    $testCases = $requiredVsixPackages | ForEach-Object {
+        $vsixPackage = Get-VsixInfoFromMarketplace $_
         @{
-            VsixName = $vsix.ExtensionName
-            VsixId = $vsix.VsixId
+            VsixName    = $vsixPackage.ExtensionName
+            VsixId      = $vsixPackage.VsixId
             AllPackages = $allPackages
         }
     }

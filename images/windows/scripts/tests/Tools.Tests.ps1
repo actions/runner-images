@@ -141,7 +141,13 @@ Describe "Sbt" {
 
 Describe "ServiceFabricSDK" {
     It "PowerShell Module" {
-        Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
+        # Ignore PowerShell version check if running in PowerShell Core
+        # https://github.com/microsoft/service-fabric/issues/1343
+        if ($PSVersionTable.PSEdition -eq 'Core') {
+            Get-Module -Name ServiceFabric -SkipEditionCheck -ListAvailable | Should -Not -BeNullOrEmpty
+        } else {
+            Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
+        }
     }
 
     It "ServiceFabricSDK version" {

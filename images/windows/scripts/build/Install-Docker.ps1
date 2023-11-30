@@ -21,14 +21,14 @@ if (-not $mobyRelease) {
 $mobyReleaseUrl = $dockerceUrl + $mobyRelease
 
 Write-Host "Install Moby $mobyRelease..."
-$mobyArchivePath = Start-DownloadWithRetry -Url $mobyReleaseUrl -Name $mobyRelease
+$mobyArchivePath = Invoke-DownloadWithRetry $mobyReleaseUrl
 Expand-Archive -Path $mobyArchivePath -DestinationPath $env:TEMP
 $dockerPath = "$env:TEMP\docker\docker.exe"
 $dockerdPath = "$env:TEMP\docker\dockerd.exe"
 
 Write-Host "Install Docker CE"
 $instScriptUrl = "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1"
-$instScriptPath = Start-DownloadWithRetry -Url $instScriptUrl -Name "install-docker-ce.ps1"
+$instScriptPath = Invoke-DownloadWithRetry $instScriptUrl
 & $instScriptPath -DockerPath $dockerPath -DockerDPath $dockerdPath
 if ($LastExitCode -ne 0) {
     Write-Host "Docker installation failed with exit code $LastExitCode"

@@ -1,4 +1,8 @@
 #!/bin/bash -e -o pipefail
+################################################################################
+##  File:  configure-machine.sh
+##  Desc:  Configure guest OS settings
+################################################################################
 
 source ~/utils/utils.sh
 

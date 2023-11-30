@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
 Describe "Clang/LLVM" {
     BeforeAll {
         $toolsetVersion = Get-ToolsetValue 'llvm.version'

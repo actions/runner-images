@@ -9,17 +9,24 @@ Install-ChocoPackage awscli
 
 # Install Session Manager Plugin for the AWS CLI
 Install-Binary `
-  -Url "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/windows/SessionManagerPluginSetup.exe" `
-  -InstallArgs ("/silent", "/install") `
-  -ExpectedSignature "FF457E5732E98A9F156E657F8CC7C4432507C3BB"
+    -Url "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/windows/SessionManagerPluginSetup.exe" `
+    -InstallArgs ("/silent", "/install") `
+    -ExpectedSignature "FF457E5732E98A9F156E657F8CC7C4432507C3BB"
 $env:Path = $env:Path + ";$env:ProgramFiles\Amazon\SessionManagerPlugin\bin"
 
 # Install AWS SAM CLI
-$packageName = "AWS_SAM_CLI_64_PY3.msi"
-$packageUrl = "https://github.com/awslabs/aws-sam-cli/releases/latest/download/$packageName"
-$externalHash = Get-HashFromGitHubReleaseBody -RepoOwner "awslabs" -RepoName "aws-sam-cli" -FileName $packageName
+$downloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "awslabs/aws-sam-cli" `
+    -Version "latest" `
+    -UrlMatchPattern "AWS_SAM_CLI_64_PY3.msi"
+$externalHash = Get-GithubReleaseAssetHash `
+    -Repo "awslabs/aws-sam-cli" `
+    -Version "latest" `
+    -FileName (Split-Path $downloadUrl -Leaf) `
+    -HashType "SHA256"
+
 Install-Binary `
-  -Url $packageUrl `
-  -ExpectedSHA256Sum $externalHash
+    -Url $downloadUrl `
+    -ExpectedSHA256Sum $externalHash
 
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "AWS"

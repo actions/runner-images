@@ -16,7 +16,7 @@ $versionToInstall = Resolve-ChocoPackageVersion -PackageName "nodejs" -TargetVer
 Install-ChocoPackage nodejs -ArgumentList "--version=$versionToInstall"
 
 Add-MachinePathItem $PrefixPath
-$env:Path = Get-MachinePath
+Update-Environment
 
 [Environment]::SetEnvironmentVariable("npm_config_prefix", $PrefixPath, "Machine")
 $env:npm_config_prefix = $PrefixPath

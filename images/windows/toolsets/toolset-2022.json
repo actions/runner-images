@@ -135,12 +135,12 @@
         "hash": "8A90E6A3DEB2FA13229B2E335EFD07687DCC8A55A3C544DA9F40B41404993E7D",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
-        "extra_list": [
+        "extras": [
             "android;m2repository",
             "google;m2repository",
             "google;google_play_services"
         ],
-        "addon_list": [],
+        "addons": [],
         "additional_tools": [
             "cmake;3.18.1",
             "cmake;3.22.1"
@@ -339,8 +339,7 @@
         }
     ],
     "selenium": {
-        "version": "4",
-        "binary_name": "selenium-server"
+        "version": "4"
     },
     "npm": {
         "global_packages": [
@@ -415,7 +414,7 @@
         "signature": "F2D7C28591847BB2CB2B1C2A0C59459FDC728A38"
     },
     "nsis": {
-        "version": "3.08"
+        "version": "3.09"
     },
     "llvm": {
         "version": "16"
@@ -428,8 +427,7 @@
         "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
-        "version": "latest",
-        "binary_name": "kotlin-compiler"
+        "version": "latest"
     },
     "openssl": {
         "version": "1.1.1"

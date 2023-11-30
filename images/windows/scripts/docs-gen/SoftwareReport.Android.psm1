@@ -15,17 +15,6 @@ function Get-AndroidSDKRoot {
     return "Location $path"
 }
 
-function Get-AndroidSDKManagerPath {
-    return Join-Path $env:ANDROID_HOME "cmdline-tools\latest\bin\sdkmanager.bat"
-}
-
-function Get-AndroidInstalledPackages {
-    $androidSDKManagerPath = Get-AndroidSDKManagerPath
-    $androidSDKManagerList = cmd /c "$androidSDKManagerPath --list_installed 2>&1"
-    $androidSDKManagerList = $androidSDKManagerList -notmatch "Warning"
-    return $androidSDKManagerList
-}
-
 function Build-AndroidTable {
     $packageInfo = Get-AndroidInstalledPackages
     return @(
@@ -84,7 +73,7 @@ function Build-AndroidTable {
     ) | Where-Object { $_.Version } | ForEach-Object {
         [PSCustomObject] @{
             "Package Name" = $_.Package
-            "Version" = $_.Version
+            "Version"      = $_.Version
         }
     }
 }
@@ -121,7 +110,7 @@ function Get-AndroidPlatformVersions {
 }
 
 function Get-AndroidCommandLineToolsVersion {
-    $commandLineTools = Get-AndroidSDKManagerPath
+    $commandLineTools = (Join-Path $env:ANDROID_HOME "cmdline-tools\latest\bin\sdkmanager.bat")
     (cmd /c "$commandLineTools --version 2>NUL" | Out-String).Trim() -match "(?<version>^(\d+\.){1,}\d+$)" | Out-Null
     $commandLineToolsVersion = $Matches.Version
     return $commandLineToolsVersion

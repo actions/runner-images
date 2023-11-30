@@ -125,49 +125,53 @@ function Invoke-ValidateCommand {
     }
 }
 
-function Start-DownloadWithRetry {
+function Invoke-DownloadWithRetry {
     Param
     (
         [Parameter(Mandatory)]
         [string] $Url,
-        [string] $Name,
-        [string] $DownloadPath = "${env:Temp}",
-        [int] $Retries = 20,
-        [int] $Interval = 30
+        [Alias("Destination")]
+        [string] $Path
     )
 
-    if ([String]::IsNullOrEmpty($Name)) {
-        $Name = [IO.Path]::GetFileName($Url)
+    if (-not $Path) {
+        $invalidChars = [IO.Path]::GetInvalidFileNameChars() -join ''
+        $re = "[{0}]" -f [RegEx]::Escape($invalidChars)
+        $fileName = [IO.Path]::GetFileName($Url) -replace $re
+
+        if ([String]::IsNullOrEmpty($fileName)) {
+            $fileName = [System.IO.Path]::GetRandomFileName()
+        }
+        $Path = Join-Path -Path "/tmp" -ChildPath $fileName
     }
 
-    $filePath = Join-Path -Path $DownloadPath -ChildPath $Name
+    Write-Host "Downloading package from $Url to $Path..."
 
-    #Default retry logic for the package.
-    while ($Retries -gt 0)
-    {
-        try
-        {
-            Write-Host "Downloading package from: $Url to path $filePath ."
-            (New-Object System.Net.WebClient).DownloadFile($Url, $filePath)
+    $interval = 30
+    $downloadStartTime = Get-Date
+    for ($retries = 20; $retries -gt 0; $retries--) {
+        try {
+            $attemptStartTime = Get-Date
+            (New-Object System.Net.WebClient).DownloadFile($Url, $Path)
+            $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
+            Write-Host "Package downloaded in $attemptSeconds seconds"
             break
+        } catch {
+            $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
+            Write-Warning "Package download failed in $attemptSeconds seconds"
+            Write-Warning $_.Exception.Message
         }
-        catch
-        {
-            Write-Host "There is an error during package downloading:`n $_"
-            $Retries--
-
-            if ($Retries -eq 0)
-            {
-                Write-Host "File can't be downloaded. Please try later or check that file exists by url: $Url"
-                exit 1
-            }
-
-            Write-Host "Waiting $Interval seconds before retrying. Retries left: $Retries"
-            Start-Sleep -Seconds $Interval
+            
+        if ($retries -eq 0) {
+            $totalSeconds = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
+            throw "Package download failed after $totalSeconds seconds"
         }
+
+        Write-Warning "Waiting $interval seconds before retrying (retries left: $retries)..."
+        Start-Sleep -Seconds $interval
     }
 
-    return $filePath
+    return $Path
 }
 
 function Add-EnvironmentVariable {

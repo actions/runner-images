@@ -4,6 +4,9 @@
 ##  Desc: Post deployment system configuration actions
 ################################################################################
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPT_FOLDER/etc-environment.sh
+
 mv -f /imagegeneration/post-generation /opt
 
 echo "chmod -R 777 /opt"
@@ -17,7 +20,7 @@ chmod 755 $IMAGE_FOLDER
 ENVPATH=$(grep 'PATH=' /etc/environment | head -n 1 | sed -z 's/^PATH=*//')
 ENVPATH=${ENVPATH#"\""}
 ENVPATH=${ENVPATH%"\""}
-echo "PATH=$ENVPATH" | sudo tee -a /etc/environment
+addEtcEnvironmentVariable "PATH" "${ENVPATH}"
 echo "Updated /etc/environment: $(cat /etc/environment)"
 
 # Сlean yarn and npm cache
