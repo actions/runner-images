@@ -21,14 +21,14 @@ function Install-WindowsUpdates {
     Write-Host "Installing windows updates"
     Get-WindowsUpdate -MicrosoftUpdate -NotKBArticleID "KB5001148" -AcceptAll -Install -IgnoreUserInput -IgnoreReboot | Out-Host
 
-    Write-Host "Validating windows updates installation and skip Microsoft Defender Antivirus"
-    # Azure service can automatic updates AV engine(Microsoft.Azure.Security.AntimalwareSignature.AntimalwareConfiguration)
+    Write-Host "Validating windows updates installation"
     # Get-WUHistory doesn't support Windows Server 2022
-    $wuHistory = Get-WindowsUpdatesHistory | Where-Object { $_.Status -in ("Successful", "InProgress") }
-    $wuFail = $updates[0] | Where-Object Title -notmatch "Microsoft Defender Antivirus" | Where-Object { -not ($wuHistory.Title -match $_.KB) }
+    $notFailedUpdateNames = Get-WindowsUpdateStates | Where-Object { $_.State -in ("Installed", "Running") } | Select-Object -ExpandProperty Title
+    # We ignore Microsoft Defender Antivirus updates; Azure service updates AV automatically
+    $failedUpdates = $updates[0] | Where-Object Title -notmatch "Microsoft Defender Antivirus" | Where-Object { -not ($notFailedUpdateNames -match $_.KB) }
 
-    if ( $wuFail ) {
-        Write-Host "Windows updates failed to install: $($wuFail.KB)"
+    if ( $failedUpdates ) {
+        Write-Host "Windows updates failed to install: $($failedUpdates.KB)"
         exit 1
     }
 }

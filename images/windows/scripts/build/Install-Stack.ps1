@@ -13,13 +13,12 @@ $DownloadUrl = $StackReleasesJson.assets | Where-Object { $_.name.EndsWith($Down
 Write-Host "Download stack archive"
 $StackToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY "stack\$Version"
 $DestinationPath = Join-Path $StackToolcachePath "x64"
-$StackArchivePath = Start-DownloadWithRetry -Url $DownloadUrl
+$StackArchivePath = Invoke-DownloadWithRetry $DownloadUrl
 
 #region Supply chain security - Stack
-$fileHash = (Get-FileHash -Path $StackArchivePath -Algorithm SHA256).Hash
 $hashUrl = $StackReleasesJson.assets | Where-Object { $_.name.EndsWith("$DownloadFilePattern.sha256") } | Select-Object -ExpandProperty "browser_download_url" -First 1
 $externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*$DownloadFilePattern*" }).Split(' ')[0]
-Use-ChecksumComparison $fileHash $externalHash
+Test-FileChecksum $StackArchivePath -ExpectedSHA256Sum $externalHash
 #endregion
 
 Write-Host "Expand stack archive"

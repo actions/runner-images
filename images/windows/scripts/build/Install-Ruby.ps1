@@ -62,7 +62,7 @@ function Install-Ruby {
         New-Item -ItemType Directory -Path $rubyVersionPath -Force | Out-Null
 
         Write-Host "Moving Ruby '${rubyVersion}' files to '${rubyArchPath}'"
-        Invoke-SBWithRetry -Command {
+        Invoke-ScriptBlockWithRetry -Command {
             Move-Item -Path $tempFolder -Destination $rubyArchPath -ErrorAction Stop | Out-Null
         }
 
@@ -104,7 +104,7 @@ foreach ($rubyVersion in $rubyToolVersions) {
     # Get url for the latest major Ruby version
     $url = $rubyLatestMajorVersions[$rubyVersion]
     if ($url) {
-        $tempRubyPackagePath = Start-DownloadWithRetry -Url $url
+        $tempRubyPackagePath = Invoke-DownloadWithRetry $url
         Install-Ruby -PackagePath $tempRubyPackagePath
     } else {
         Write-Host "Url not found for the '$rubyVersion' version"
