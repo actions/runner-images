@@ -9,14 +9,14 @@ Describe "Ruby" -Skip:($os.IsArm64) {
     }
 
     It "Ruby is installed via HomeBrew" {
-        Get-WhichTool "ruby" | Should -Not -BeLike "/usr/bin/ruby*"
+        Get-ToolPath "ruby" | Should -Not -BeLike "/usr/bin/ruby*"
     }
 
     It "Ruby tools are consistent" {
         $expectedPrefix = "/usr/local"
-        Get-WhichTool "ruby" | Should -Match "$($expectedPrefix)*"
-        Get-WhichTool "gem" | Should -Match "$($expectedPrefix)*"
-        Get-WhichTool "bundler" | Should -Match "$($expectedPrefix)*"
+        Get-ToolPath "ruby" | Should -Match "$($expectedPrefix)*"
+        Get-ToolPath "gem" | Should -Match "$($expectedPrefix)*"
+        Get-ToolPath "bundler" | Should -Match "$($expectedPrefix)*"
     }
 
     It "Ruby gems permissions are valid" {

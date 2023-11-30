@@ -1,11 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
-# Validates that tool is installed and in PATH
-function Validate-ToolExist($tool) {
-    Get-Command $tool -ErrorAction SilentlyContinue | Should -BeTrue
-}
-
-function Validate-ArrayWithoutDuplicates {
+function Confirm-ArrayWithoutDuplicates {
     param (
         [AllowEmptyCollection()]
         [Parameter(Mandatory = $true)]
@@ -19,7 +14,7 @@ function Validate-ArrayWithoutDuplicates {
     }
 }
 
-function Validate-Url {
+function Confirm-UrlAvailability {
     param (
         [Parameter(Mandatory)]
         [ValidateNotNullOrEmpty()]
@@ -37,7 +32,7 @@ function Validate-Url {
     $result | Should -BeTrue -Because "'$Url' should be available, but it is not"
 }
 
-function Validate-IdenticalFileContent {
+function Confirm-IdenticalFileContent {
     param (
         [Parameter(Mandatory)]
         [string] $File1,
@@ -54,7 +49,7 @@ function Validate-IdenticalFileContent {
 }
 
 function ShouldReturnZeroExitCode {
-    Param(
+    Param (
         [String] $ActualValue,
         [switch] $Negate,
         [string] $Because # This parameter is unused by we need it to match Pester asserts signature
@@ -65,8 +60,7 @@ function ShouldReturnZeroExitCode {
     [bool]$succeeded = $result.ExitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
 
-    if (-not $succeeded)
-    {
+    if (-not $succeeded) {
         $commandOutputIndent = " " * 4
         $commandOutput = ($result.Output | ForEach-Object { "${commandOutputIndent}${_}" }) -join "`n"
         $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}`n${commandOutput}"
@@ -79,7 +73,7 @@ function ShouldReturnZeroExitCode {
 }
 
 function ShouldMatchCommandOutput {
-    Param(
+    Param (
         [String] $ActualValue,
         [String] $RegularExpression,
         [switch] $Negate
@@ -115,7 +109,7 @@ If (Get-Command -Name Add-ShouldOperator -ErrorAction SilentlyContinue) {
 }
 
 function Invoke-PesterTests {
-    Param(
+    Param (
         [Parameter(Mandatory)][string] $TestFile,
         [string] $TestName
     )

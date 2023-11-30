@@ -2,44 +2,41 @@ Import-Module "$PSScriptRoot/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/Xcode.Helpers.psm1"
 
 function Install-XcodeVersion {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$Version,
+        [string] $Version,
         [Parameter(Mandatory)]
-        [string]$LinkTo
+        [string] $LinkTo
     )
 
     $xcodeDownloadDirectory = "$env:HOME/Library/Caches/XcodeInstall"
     $xcodeTargetPath = Get-XcodeRootPath -Version $LinkTo
     $xcodeXipDirectory = Invoke-DownloadXcodeArchive -DownloadDirectory $xcodeDownloadDirectory -Version $Version
     Expand-XcodeXipArchive -DownloadDirectory $xcodeXipDirectory.FullName -TargetPath $xcodeTargetPath
-
     Remove-Item -Path $xcodeXipDirectory -Force -Recurse
 }
 
 function Invoke-DownloadXcodeArchive {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$DownloadDirectory,
+        [string] $DownloadDirectory,
         [Parameter(Mandatory)]
-        [string]$Version
+        [string] $Version
     )
 
     Write-Host "Downloading Xcode $Version"
-
     $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$Version" -ItemType "Directory"
-
     $xcodeFileName = 'Xcode-{0}.xip' -f $Version
     $xcodeUri = '{0}{1}?{2}'-f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
-
     Invoke-DownloadWithRetry -Url $xcodeUri -Path (Join-Path $tempXipDirectory.FullName $xcodeFileName) | Out-Null
+
     return $tempXipDirectory
 }
 
 function Resolve-ExactXcodeVersion {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$Version
+        [string] $Version
     )
 
     # if toolset string contains spaces, consider it as a full name of Xcode
@@ -50,6 +47,7 @@ function Resolve-ExactXcodeVersion {
     $semverVersion = [SemVer]::Parse($Version)
     $availableVersions = Get-AvailableXcodeVersions
     $satisfiedVersions = $availableVersions | Where-Object { $semverVersion -eq $_.stableSemver }
+
     return $satisfiedVersions | Select-Object -Last 1 -ExpandProperty rawVersion
 }
 
@@ -75,18 +73,18 @@ function Get-AvailableXcodeVersions {
 }
 
 function Expand-XcodeXipArchive {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$DownloadDirectory,
+        [string] $DownloadDirectory,
         [Parameter(Mandatory)]
-        [string]$TargetPath
+        [string] $TargetPath
     )
 
     $xcodeXipPath = Get-ChildItem -Path $DownloadDirectory -Filter "Xcode-*.xip" | Select-Object -First 1
 
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
     Push-Location $DownloadDirectory
-    if(Test-CommandExists 'unxip') {
+    if ([boolean] (Get-Command 'unxip' -ErrorAction 'SilentlyContinue')) {
         Invoke-ValidateCommand "unxip $xcodeXipPath"
     } else {
         Invoke-ValidateCommand "xip -x $xcodeXipPath"
@@ -107,9 +105,9 @@ function Expand-XcodeXipArchive {
 }
 
 function Confirm-XcodeIntegrity {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$Version
+        [string] $Version
     )
 
     $XcodeRootPath = Get-XcodeRootPath -Version $Version
@@ -120,13 +118,12 @@ function Confirm-XcodeIntegrity {
 }
 
 function Approve-XcodeLicense {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$Version
+        [string] $Version
     )
 
     $os = Get-OSVersion
-
     $XcodeRootPath = Get-XcodeRootPath -Version $Version
     Write-Host "Approving Xcode license for '$XcodeRootPath'..."
     $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
@@ -139,9 +136,9 @@ function Approve-XcodeLicense {
 }
 
 function Install-XcodeAdditionalPackages {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$Version
+        [string] $Version
     )
 
     Write-Host "Installing additional packages for Xcode $Version..."
@@ -153,9 +150,9 @@ function Install-XcodeAdditionalPackages {
 }
 
 function Invoke-XcodeRunFirstLaunch {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$Version
+        [string] $Version
     )
 
     if ($Version.StartsWith("8") -or $Version.StartsWith("9")) {
@@ -168,9 +165,9 @@ function Invoke-XcodeRunFirstLaunch {
 }
 
 function Install-AdditionalSimulatorRuntimes {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$Version
+        [string] $Version
     )
 
     Write-Host "Installing Simulator Runtimes for Xcode $Version ..."
@@ -179,10 +176,10 @@ function Install-AdditionalSimulatorRuntimes {
 }
 
 function Build-XcodeSymlinks {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$Version,
-        [string[]]$Symlinks
+        [string] $Version,
+        [string[]] $Symlinks
     )
 
     $sourcePath = Get-XcodeRootPath -Version $Version
@@ -193,10 +190,10 @@ function Build-XcodeSymlinks {
     }
 }
 
-function Rebuild-XcodeLaunchServicesDb {
-    param(
+function Initialize-XcodeLaunchServicesDb {
+    param (
         [Parameter(Mandatory)]
-        [string]$Version
+        [string] $Version
     )
 
     $xcodePath = Get-XcodeRootPath -Version $Version
@@ -205,9 +202,9 @@ function Rebuild-XcodeLaunchServicesDb {
 }
 
 function Build-ProvisionatorSymlink {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$Version
+        [string] $Version
     )
 
     $sourcePath = Get-XcodeRootPath -Version $Version
@@ -222,9 +219,9 @@ function Build-ProvisionatorSymlink {
 }
 
 function Set-XcodeDeveloperDirEnvironmentVariables {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string[]]$XcodeList
+        [string[]] $XcodeList
     )
 
     $exactVersionsList = $XcodeList | Where-Object { Test-XcodeStableRelease -Version $_ } | ForEach-Object {
@@ -244,5 +241,39 @@ function Set-XcodeDeveloperDirEnvironmentVariables {
         $variableValue = "$($latestXcodeVersion.RootPath)/Contents/Developer"
         Write-Host "Set ${variableName}=${variableValue}"
         "export ${variableName}=${variableValue}" | Out-File "$env:HOME/.bashrc" -Append
+    }
+}
+
+function Invoke-ValidateCommand {
+    param (
+        [Parameter(Mandatory)]
+        [string] $Command,
+        [Uint] $Timeout = 0
+    )
+
+    if ($Timeout -eq 0) {
+        $output = Invoke-Expression -Command $Command
+        if ($LASTEXITCODE -ne 0) {
+            throw "Command '$Command' has finished with exit code $LASTEXITCODE"
+        }
+        return $output
+    } else {
+        $job = $command | Start-Job -ScriptBlock {
+            $output = Invoke-Expression -Command $input
+            if ($LASTEXITCODE -ne 0) {
+                  throw 'Command failed'
+            }
+            return $output
+        }
+        $waitObject = $job | Wait-Job -Timeout $Timeout
+
+        if (-not $waitObject) {
+             throw "Command '$Command' has timed out"
+        }
+
+        if ($waitObject.State -eq 'Failed') {
+             throw "Command '$Command' has failed"
+        }
+        Receive-Job -Job $job
     }
 }

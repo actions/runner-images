@@ -7,12 +7,12 @@
 source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 
-MONO_VERSIONS=($(get_toolset_value '.xamarin."mono-versions" | reverse | .[]'))
-XAMARIN_IOS_VERSIONS=($(get_toolset_value '.xamarin."ios-versions" | reverse | .[]'))
-XAMARIN_MAC_VERSIONS=($(get_toolset_value '.xamarin."mac-versions" | reverse | .[]'))
-XAMARIN_ANDROID_VERSIONS=($(get_toolset_value '.xamarin."android-versions" | reverse | .[]'))
+MONO_VERSIONS=($(get_toolset_value '.xamarin."mono_versions" | reverse | .[]'))
+XAMARIN_IOS_VERSIONS=($(get_toolset_value '.xamarin."ios_versions" | reverse | .[]'))
+XAMARIN_MAC_VERSIONS=($(get_toolset_value '.xamarin."mac_versions" | reverse | .[]'))
+XAMARIN_ANDROID_VERSIONS=($(get_toolset_value '.xamarin."android_versions" | reverse | .[]'))
 LATEST_SDK_SYMLINK=$(get_toolset_value '.xamarin.bundles[0].symlink')
-CURRENT_SDK_SYMLINK=$(get_toolset_value '.xamarin."bundle-default"')
+CURRENT_SDK_SYMLINK=$(get_toolset_value '.xamarin."bundle_default"')
 DEFAULT_XCODE_VERSION=$(get_toolset_value '.xcode.default')
 
 if [ "$CURRENT_SDK_SYMLINK" == "latest" ]; then

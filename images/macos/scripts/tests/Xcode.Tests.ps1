@@ -2,14 +2,20 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Xcode.Helpers.psm1"
 Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
 
-$ARCH = Get-Architecture
-$xcodeVersions = Get-ToolsetValue "xcode.$ARCH.versions"
-$defaultXcode = Get-ToolsetValue "xcode.default"
+$arch = Get-Architecture
+$xcodeVersions = (Get-ToolsetContent).xcode.${arch}.versions
+$defaultXcode = (Get-ToolsetContent).xcode.default
 $latestXcodeVersion = $xcodeVersions | Select-Object -First 1
 $os = Get-OSVersion
 
 Describe "Xcode" {
-    $testCases = $xcodeVersions | ForEach-Object { @{ XcodeVersion = $_.link; LatestXcodeVersion = $xcodeVersions[0].link; Symlinks = $_.symlinks } }
+    $testCases = $xcodeVersions | ForEach-Object {
+        @{
+            XcodeVersion = $_.link;
+            LatestXcodeVersion = $xcodeVersions[0].link;
+            Symlinks = $_.symlinks
+        }
+    }
 
     Context "Versions" {
         It "<XcodeVersion>" -TestCases $testCases {
@@ -82,7 +88,7 @@ Describe "XCODE_DEVELOPER_DIR variables" {
 
     It "XCODE_<MajorVersion>_DEVELOPER_DIR" -TestCases $testCases {
         $variableName = "XCODE_${MajorVersion}_DEVELOPER_DIR"
-        $actualPath = Get-EnvironmentVariable $variableName
+        $actualPath = [System.Environment]::GetEnvironmentVariable($variableName)
         $expectedVersion = $VersionsList | Where-Object { $_.Version.Major -eq $MajorVersion } | Select-Object -First 1
         $expectedPath = "$($expectedVersion.RootPath)/Contents/Developer"
         $actualPath | Should -Exist
@@ -99,21 +105,13 @@ Describe "Xcode simulators" {
                 [array]$devicesList = @(Get-XcodeDevicesList | Where-Object { $_ })
                 Write-Host "Devices for $XcodeVersion"
                 Write-Host ($devicesList -join "`n")
-                Validate-ArrayWithoutDuplicates $devicesList -Because "Found duplicate device simulators"
+                Confirm-ArrayWithoutDuplicates $devicesList -Because "Found duplicate device simulators"
             }
-
-#            It "No duplicates in pairs" -TestCases $testCase {
-#                Switch-Xcode -Version $XcodeVersion
-#                [array]$pairsList = @(Get-XcodePairsList | Where-Object { $_ })
-#                Write-Host "Pairs for $XcodeVersion"
-#                Write-Host ($pairsList -join "`n")
-#                Validate-ArrayWithoutDuplicates $pairsList -Because "Found duplicate pairs simulators"
-#            }
         }
     }
 
     AfterEach {
-        $defaultXcode = Get-ToolsetValue "xcode.default"
+        $defaultXcode = (Get-ToolsetContent).xcode.default
         Switch-Xcode -Version $defaultXcode
     }
 }

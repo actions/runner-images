@@ -6,7 +6,7 @@ $os = Get-OSVersion
 
 Describe "Toolcache" {
     $toolcacheDirectory = Join-Path $env:HOME "hostedtoolcache"
-    [array]$packages += Get-ToolsetValue -KeyPath "toolcache" | ForEach-Object {
+    [array]$packages += (Get-ToolsetContent).toolcache | ForEach-Object {
         return [PSCustomObject] @{
             ToolName = ($_.name).ToLower()
             Arch = $arch

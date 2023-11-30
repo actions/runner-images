@@ -18,19 +18,19 @@
             "default": "2022",
             "versions": [ "2019", "2022" ]
         },
-        "mono-versions": [
+        "mono_versions": [
             "6.12.0.188"
         ],
-        "ios-versions": [
+        "ios_versions": [
             "16.2.0.5", "16.1.1.27", "16.0.0.72", "15.12.0.2", "15.10.0.5", "15.8.0.3", "15.6.0.3", "15.4.0.0", "15.2.0.17", "15.0.0.6"
         ],
-        "mac-versions": [
+        "mac_versions": [
             "9.1.0.5", "9.0.0.27", "8.12.0.2", "8.10.0.5", "8.8.0.3", "8.6.0.3", "8.4.0.0", "8.2.0.17", "7.14.0.27"
         ],
-        "android-versions": [
+        "android_versions": [
             "13.2.1.2", "13.1.0.1", "13.0.0.0", "12.3.3.3", "12.2.8.3", "12.1.0.2", "12.0.0.3", "11.3.0.4"
         ],
-        "bundle-default": "6_12_21",
+        "bundle_default": "6_12_21",
         "bundles": [
             {
                 "symlink": "6_12_24",
@@ -149,11 +149,11 @@
         "cmdline-tools": "commandlinetools-mac-9123335_latest.zip",
         "platform_min_version": "27",
         "build_tools_min_version": "27.0.0",
-        "extra-list": [
+        "extras": [
             "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
-        "addon-list": [],
-        "additional-tools": [
+        "addons": [],
+        "additional_tools": [
             "cmake;3.18.1",
             "cmake;3.22.1"
         ],

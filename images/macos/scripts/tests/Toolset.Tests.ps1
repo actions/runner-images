@@ -39,83 +39,82 @@ $toolsets | ForEach-Object {
 
             It "Version '$vsmacVersion' is available and can be downloaded" {
                 $vsmacUrl = Invoke-BashUtilsFunction("buildVSMacDownloadUrl", $vsmacVersion)
-                Validate-Url $vsmacUrl
+                Confirm-UrlAvailability $vsmacUrl
             }
         }
 
         Context "Mono" {
-            $sdkVersions = $toolset.xamarin."mono-versions"
+            $sdkVersions = $toolset.xamarin."mono_versions"
 
             $sdkVersions | ForEach-Object {
                 It "Version '$_' is available and can be downloaded" {
                     $sdkUrl = Invoke-BashUtilsFunction("buildMonoDownloadUrl", $_)
-                    Validate-Url $sdkUrl
+                    Confirm-UrlAvailability $sdkUrl
                 }
             }
 
             It "Version list doesn't contain versions with the same major/minor version" {
                 $versions = $sdkVersions | ForEach-Object { Get-ShortVersion $_ }
-                Validate-ArrayWithoutDuplicates $versions -Because "It doesn't allow to install more than one version with the same major/minor"
+                Confirm-ArrayWithoutDuplicates $versions -Because "It doesn't allow to install more than one version with the same major/minor"
             }
         }
 
         Context "Xamarin.iOS" {
-            $sdkVersions = $toolset.xamarin."ios-versions"
+            $sdkVersions = $toolset.xamarin."ios_versions"
 
             $sdkVersions | ForEach-Object {
                 It "Version '$_' is available and can be downloaded" {
                     $sdkUrl = Invoke-BashUtilsFunction("buildXamariniIOSDownloadUrl", $_)
-                    Validate-Url $sdkUrl
+                    Confirm-UrlAvailability $sdkUrl
                 }
             }
 
             It "Version list doesn't contain versions with the same major/minor version" {
                 $versions = $sdkVersions | ForEach-Object { Get-ShortVersion $_ }
-                Validate-ArrayWithoutDuplicates $versions -Because "It doesn't allow to install more than one version with the same major/minor"
+                Confirm-ArrayWithoutDuplicates $versions -Because "It doesn't allow to install more than one version with the same major/minor"
             }
         }
 
         Context "Xamarin.Mac" {
-            $sdkVersions = $toolset.xamarin."mac-versions"
+            $sdkVersions = $toolset.xamarin."mac_versions"
 
             $sdkVersions | ForEach-Object {
                 It "Version '$_' is available and can be downloaded" {
                     $sdkUrl = Invoke-BashUtilsFunction("buildXamarinMacDownloadUrl", $_)
-                    Validate-Url $sdkUrl
+                    Confirm-UrlAvailability $sdkUrl
                 }
             }
 
             It "Version list doesn't contain versions with the same major/minor version" {
                 $versions = $sdkVersions | ForEach-Object { Get-ShortVersion $_ }
-                Validate-ArrayWithoutDuplicates $versions -Because "It doesn't allow to install more than one version with the same major/minor"
+                Confirm-ArrayWithoutDuplicates $versions -Because "It doesn't allow to install more than one version with the same major/minor"
             }
         }
 
         Context "Xamarin.Android" {
-            $sdkVersions = $toolset.xamarin."android-versions"
+            $sdkVersions = $toolset.xamarin."android_versions"
 
             $sdkVersions | ForEach-Object {
                 It "Version '$_' is available and can be downloaded" {
                     $sdkUrl = Invoke-BashUtilsFunction("buildXamarinAndroidDownloadUrl", $_)
-                    Validate-Url $sdkUrl
+                    Confirm-UrlAvailability $sdkUrl
                 }
             }
 
             It "Version list doesn't contain versions with the same major/minor version" {
                 $versions = $sdkVersions | ForEach-Object { $_.Replace("-", ".") } | ForEach-Object { Get-ShortVersion $_ }
-                Validate-ArrayWithoutDuplicates $versions -Because "It doesn't allow to install more than one version with the same major/minor"
+                Confirm-ArrayWithoutDuplicates $versions -Because "It doesn't allow to install more than one version with the same major/minor"
             }
         }
 
         Context "Xamarin bundles" {
-            $monoVersions = $toolset.xamarin."mono-versions" | ForEach-Object { Get-ShortVersion $_ }
-            $iOSVersions = $toolset.xamarin."ios-versions" | ForEach-Object { Get-ShortVersion $_ }
-            $macVersions = $toolset.xamarin."mac-versions" | ForEach-Object { Get-ShortVersion $_ }
+            $monoVersions = $toolset.xamarin."mono_versions" | ForEach-Object { Get-ShortVersion $_ }
+            $iOSVersions = $toolset.xamarin."ios_versions" | ForEach-Object { Get-ShortVersion $_ }
+            $macVersions = $toolset.xamarin."mac_versions" | ForEach-Object { Get-ShortVersion $_ }
             # Old Xamarin.Android version looks like "9.0.0-18" that doesn't support by System.Version
-            $androidVersions = $toolset.xamarin."android-versions" | ForEach-Object { Get-ShortVersion $_.Replace("-", ".") }
-            
-
+            $androidVersions = $toolset.xamarin."android_versions" | ForEach-Object { Get-ShortVersion $_.Replace("-", ".") }
             $bundles = $toolset.xamarin.bundles
+
             $bundles | ForEach-Object {
                 It "'$($_.symlink)' is valid" {
                     $monoVersions | Should -Contain $_.mono
@@ -127,18 +126,16 @@ $toolsets | ForEach-Object {
 
             It "Each bundle has unique symlink" {
                 $symlinks = $bundles | ForEach-Object { $_.symlink }
-                Validate-ArrayWithoutDuplicates $symlinks -Because "Bundle symlinks should be unique"
+                Confirm-ArrayWithoutDuplicates $symlinks -Because "Bundle symlinks should be unique"
             }
 
             It "Current bundle is valid" {
-                $currentBundleSymlink = $toolset.xamarin."bundle-default"
+                $currentBundleSymlink = $toolset.xamarin."bundle_default"
                 if ($currentBundleSymlink -ne "latest") {
                     $bundleSymlinks = $bundles | ForEach-Object { $_.symlink }
                     $bundleSymlinks | Should -Contain $currentBundleSymlink -Because "Current bundle should be installed"
                 }
-                
             }
-
         }
     }
 }

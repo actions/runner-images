@@ -9,7 +9,7 @@ Describe "Python3" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
     }
 
     It "Python 3 is installed under /usr/local/bin" {
-        Get-WhichTool "python3" | Should -BeLike "/usr/local/bin*"
+        Get-ToolPath "python3" | Should -BeLike "/usr/local/bin*"
     }
 
     It "Pip 3 is available" {

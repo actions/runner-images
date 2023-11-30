@@ -54,7 +54,7 @@ function Build-ToolcacheSection {
 }
 
 function Get-PowerShellModules {
-    $modules = (Get-ToolsetValue powershellModules).name
+    $modules = ((Get-ToolsetContent).powershellModules).name
     $modules | ForEach-Object {
         $moduleName = $_
         $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique
