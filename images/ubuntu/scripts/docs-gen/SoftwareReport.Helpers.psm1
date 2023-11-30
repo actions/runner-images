@@ -39,3 +39,16 @@ function Get-AptSourceRepository {
     $sourceUrl = Get-Content "$PSScriptRoot/../helpers/apt-sources.txt" | Select-String -Pattern $PackageName | Take-OutputPart -Part (1..3)
     return $sourceUrl
 }
+
+function Get-OSVersionShort {
+    $(Get-OSVersionFull) | Take-OutputPart -Delimiter '.' -Part 0,1
+}
+
+function Get-OSVersionFull {
+    lsb_release -ds | Take-OutputPart -Part 1, 2
+}
+
+function Get-KernelVersion {
+    $kernelVersion = uname -r
+    return $kernelVersion
+}
