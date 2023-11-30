@@ -34,16 +34,16 @@ installOpenJDK() {
     local JAVA_VERSION=$1
 
     # Get link for Java binaries and Java version
-    download_with_retries "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot" "/tmp" "openjdk-hotspot.json"
+    hotspot_json_path=$(download_with_retry "https://api.adoptium.net/v3/assets/latest/${JAVA_VERSION}/hotspot")
 
     if [[ $arch == "arm64" ]]; then
-        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="aarch64")' /tmp/openjdk-hotspot.json)
+        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="aarch64")' "$hotspot_json_path")
     else
-        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")' /tmp/openjdk-hotspot.json)
+        asset=$(jq -r '.[] | select(.binary.os=="mac" and .binary.image_type=="jdk" and .binary.architecture=="x64")' "$hotspot_json_path")
     fi
 
-    archivePath=$(echo ${asset} | jq -r '.binary.package.link')
-    fullVersion=$(echo ${asset} | jq -r '.version.semver' | tr '+' '-')
+    archive_url=$(echo "$asset" | jq -r '.binary.package.link')
+    fullVersion=$(echo "$asset" | jq -r '.version.semver' | tr '+' '-')
 
     # Remove 'LTS' suffix from the version if present
     fullVersion="${fullVersion//.LTS/}"
@@ -58,12 +58,12 @@ installOpenJDK() {
     fi
 
     # Download and extract Java binaries
-    download_with_retries ${archivePath} /tmp OpenJDK-${fullVersion}.tar.gz
+    archive_path=$(download_with_retry "$archive_url")
 
     echo "Creating ${javaToolcacheVersionArchPath} directory"
     mkdir -p ${javaToolcacheVersionArchPath}
 
-    tar -xf /tmp/OpenJDK-${fullVersion}.tar.gz -C ${javaToolcacheVersionArchPath} --strip-components=1
+    tar -xf "$archive_path" -C ${javaToolcacheVersionArchPath} --strip-components=1
 
     # Create complete file
     if [[ $arch == "arm64" ]]; then

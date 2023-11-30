@@ -32,9 +32,8 @@ function Invoke-DownloadXcodeArchive {
     $xcodeFileName = 'Xcode-{0}.xip' -f $Version
     $xcodeUri = '{0}{1}?{2}'-f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
 
-    Start-DownloadWithRetry -Url $xcodeUri -DownloadPath $tempXipDirectory.FullName -Name $xcodeFileName
+    Invoke-DownloadWithRetry -Url $xcodeUri -Path (Join-Path $tempXipDirectory.FullName $xcodeFileName) | Out-Null
     return $tempXipDirectory
-
 }
 
 function Resolve-ExactXcodeVersion {

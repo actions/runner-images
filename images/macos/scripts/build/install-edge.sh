@@ -17,29 +17,23 @@ echo "Version of Microsoft Edge: ${EDGE_VERSION}"
 
 echo "Installing Microsoft Edge WebDriver..."
 
-EDGE_DRIVER_VERSION_URL="https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION_MAJOR}_MACOS"
-download_with_retries "$EDGE_DRIVER_VERSION_URL" "/tmp" "edge-version"
-EDGE_DRIVER_LATEST_VERSION=$(cat /tmp/edge-version | iconv -f utf-16 -t utf-8 | tr -d '\r')
+EDGE_DRIVER_VERSION_FILE_PATH=$(download_with_retry "https://msedgedriver.azureedge.net/LATEST_RELEASE_${EDGE_VERSION_MAJOR}_MACOS")
+EDGE_DRIVER_LATEST_VERSION=$(iconv -f utf-16 -t utf-8 "$EDGE_DRIVER_VERSION_FILE_PATH" | tr -d '\r')
 EDGE_DRIVER_URL="https://msedgedriver.azureedge.net/${EDGE_DRIVER_LATEST_VERSION}/edgedriver_mac64.zip"
 
 echo "Compatible version of WebDriver: ${EDGE_DRIVER_LATEST_VERSION}"
 
-pushd "/tmp" > /dev/null
-download_with_retries $EDGE_DRIVER_URL "." "edgedriver.zip"
+EDGE_DRIVER_ARCHIVE_PATH=$(download_with_retry "$EDGE_DRIVER_URL")
 
 # Move webdriver to the separate directory to be consistent with the docs
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/test/continuous-test-selenium?view=azure-devops#decide-how-you-will-deploy-and-test-your-app
 
-APPLICATION="/usr/local/bin/msedgedriver"
-EDGEDRIVER_DIR="/usr/local/share/edge_driver"
-EDGEDRIVER_BIN="$EDGEDRIVER_DIR/msedgedriver"
+EDGE_DRIVER_DIR="/usr/local/share/edge_driver"
+mkdir -p $EDGE_DRIVER_DIR
+unzip -qq "$EDGE_DRIVER_ARCHIVE_PATH" -d "$EDGE_DRIVER_DIR"
+ln -s "$EDGE_DRIVER_DIR/msedgedriver" "/usr/local/bin/msedgedriver"
 
-mkdir -p $EDGEDRIVER_DIR
-
-unzip "edgedriver.zip" -d $EDGEDRIVER_DIR
-ln -s "$EDGEDRIVER_BIN" $APPLICATION
-echo "export EDGEWEBDRIVER=${EDGEDRIVER_DIR}" >> "${HOME}/.bashrc"
-popd > /dev/null
+echo "export EDGEWEBDRIVER=${EDGE_DRIVER_DIR}" >> "${HOME}/.bashrc"
 
 # Configure Edge Updater to prevent auto update
 # https://learn.microsoft.com/en-us/deployedge/edge-learnmore-edgeupdater-for-macos

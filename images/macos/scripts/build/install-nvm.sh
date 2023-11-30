@@ -7,25 +7,22 @@
 source ~/utils/utils.sh
 
 [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
-VERSION=$(curl "${authString[@]}" -fsSL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
-download_with_retries "https://raw.githubusercontent.com/nvm-sh/nvm/$VERSION/install.sh" "/tmp" "nvm-install.sh"
-bash /tmp/nvm-install.sh
+nvm_version=$(curl "${authString[@]}" -fsSL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
+nvm_installer_path=$(download_with_retry "https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh")
 
-if [ $? -eq 0 ]; then
-        . ~/.bashrc
-        nvm --version
-        nodeVersions=$(get_toolset_value '.node.nvm_versions[]')
-        for version in ${nodeVersions[@]}
-        do
-                nvm install v${version}
-        done
+if bash "$nvm_installer_path"; then
+    . ~/.bashrc
+    nvm --version
+    for version in $(get_toolset_value '.node.nvm_versions[]'); do
+        nvm install "v${version}"
+    done
 
-        # set system node as default
-        nvm alias default system
+    # set system node as default
+    nvm alias default system
+    
+    echo "Node version manager has been installed successfully"
 else
-        echo error
+    echo "Node version manager installation failed"
 fi
-
-echo "Node version manager has been installed successfully"
 
 invoke_tests "Node" "nvm"

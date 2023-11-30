@@ -4,15 +4,6 @@ source ~/utils/utils.sh
 
 # Xamarin can clean their SDKs while updating to newer versions,
 # so we should be able to detect it during image generation
-downloadAndInstallPKG() {
-  local PKG_URL=$1
-  local PKG_NAME=${PKG_URL##*/}
-
-  download_with_retries $PKG_URL
-
-  echo "Installing $PKG_NAME..."
-  sudo installer -pkg "$TMPMOUNT/$PKG_NAME" -target /
-}
 
 buildVSMacDownloadUrl() {
     echo "https://dl.xamarin.com/VsMac/VisualStudioForMac-${1}.dmg"
@@ -41,7 +32,8 @@ installMono() {
   local MONO_FOLDER_NAME=$(echo $VERSION | cut -d. -f 1,2,3)
   local SHORT_VERSION=$(echo $VERSION | cut -d. -f 1,2)
   local PKG_URL=$(buildMonoDownloadUrl $VERSION)
-  downloadAndInstallPKG $PKG_URL
+
+  sudo installer -pkg "$(download_with_retry "$PKG_URL")" -target /
 
   echo "Installing nunit3-console for Mono "$VERSION
   installNunitConsole $MONO_FOLDER_NAME
@@ -59,7 +51,8 @@ installXamarinIOS() {
   echo "Installing Xamarin.iOS ${VERSION}..."
   local SHORT_VERSION=$(echo $VERSION | cut -d. -f 1,2)
   local PKG_URL=$(buildXamariniIOSDownloadUrl $VERSION)
-  downloadAndInstallPKG $PKG_URL
+
+  sudo installer -pkg "$(download_with_retry "$PKG_URL")" -target /
 
   echo "Creating short symlink '${SHORT_VERSION}'"
   sudo ln -s ${IOS_VERSIONS_PATH}/${VERSION} ${IOS_VERSIONS_PATH}/${SHORT_VERSION}
@@ -74,7 +67,8 @@ installXamarinMac() {
   echo "Installing Xamarin.Mac ${VERSION}..."
   local SHORT_VERSION=$(echo $VERSION | cut -d. -f 1,2)
   local PKG_URL=$(buildXamarinMacDownloadUrl $VERSION)
-  downloadAndInstallPKG $PKG_URL
+
+  sudo installer -pkg "$(download_with_retry "$PKG_URL")" -target /
 
   echo "Creating short symlink '${SHORT_VERSION}'"
   sudo ln -s ${MAC_VERSIONS_PATH}/${VERSION} ${MAC_VERSIONS_PATH}/${SHORT_VERSION}
@@ -89,7 +83,8 @@ installXamarinAndroid() {
   echo "Installing Xamarin.Android ${VERSION}..."
   local SHORT_VERSION=$(echo $VERSION | cut -d. -f 1,2)
   local PKG_URL=$(buildXamarinAndroidDownloadUrl $VERSION)
-  downloadAndInstallPKG $PKG_URL
+
+  sudo installer -pkg "$(download_with_retry "$PKG_URL")" -target /
 
   if [ "$VERSION" == "9.4.1.0" ]; then
     # Fix symlinks for broken Xamarin.Android
@@ -159,46 +154,27 @@ fixXamarinAndroidSymlinksInLibDir() {
 
 installNunitConsole() {
   local MONO_VERSION=$1
+  local TMP_WRAPPER_PATH=$(mktemp)
 
-  cat <<EOF > ${TMPMOUNT}/${NUNIT3_CONSOLE_BIN}
+  cat <<EOF > "$TMP_WRAPPER_PATH"
 #!/bin/bash -e -o pipefail
 exec /Library/Frameworks/Mono.framework/Versions/${MONO_VERSION}/bin/mono --debug \$MONO_OPTIONS $NUNIT3_PATH/nunit3-console.exe "\$@"
 EOF
-  sudo chmod +x ${TMPMOUNT}/${NUNIT3_CONSOLE_BIN}
-  sudo mv ${TMPMOUNT}/${NUNIT3_CONSOLE_BIN} ${MONO_VERSIONS_PATH}/${MONO_VERSION}/Commands/${NUNIT3_CONSOLE_BIN}
+  sudo chmod +x "$TMP_WRAPPER_PATH"
+  sudo mv "$TMP_WRAPPER_PATH" "${MONO_VERSIONS_PATH}/${MONO_VERSION}/Commands/nunit3-console"
 }
 
 downloadNUnitConsole() {
-    echo "Downloading NUnit 3..."
-    local NUNIT3_LOCATION='https://github.com/nunit/nunit-console/releases/download/3.6.1/NUnit.Console-3.6.1.zip'
-    local NUNIT_PATH="/Library/Developer/nunit"
-    NUNIT3_PATH="$NUNIT_PATH/3.6.1"
+  echo "Downloading NUnit 3..."
+  local NUNIT3_VERSION='3.6.1'
+  local NUNIT3_LOCATION="https://github.com/nunit/nunit-console/releases/download/${NUNIT3_VERSION}/NUnit.Console-${NUNIT3_VERSION}.zip"
+  local NUNIT3_PATH="/Library/Developer/nunit/${NUNIT3_VERSION}"
 
-    pushd $TMPMOUNT
+  NUNIT3_ARCHIVE=$(download_with_retry $NUNIT3_LOCATION)
 
-    sudo mkdir -p $NUNIT3_PATH
-    download_with_retries $NUNIT3_LOCATION "." "nunit3.zip"
-
-    echo "Installing NUnit 3..."
-    sudo unzip nunit3.zip -d $NUNIT3_PATH
-    NUNIT3_CONSOLE_BIN=nunit3-console
-
-    popd
-}
-
-installNuget() {
-  local MONO_VERSION=$1
-  local NUGET_VERSION=$2
-  local NUGET_URL="https://dist.nuget.org/win-x86-commandline/v${NUGET_VERSION}/nuget.exe"
-  echo "Installing nuget $NUGET_VERSION for Mono $MONO_VERSION"
-  cd ${MONO_VERSIONS_PATH}/${MONO_VERSION}/lib/mono/nuget
-  sudo mv nuget.exe nuget_old.exe
-
-  pushd $TMPMOUNT
-  download_with_retries $NUGET_URL "." "nuget.exe"
-  sudo chmod a+x nuget.exe
-  sudo mv nuget.exe ${MONO_VERSIONS_PATH}/${MONO_VERSION}/lib/mono/nuget
-  popd
+  echo "Installing NUnit 3..."
+  sudo mkdir -p $NUNIT3_PATH
+  sudo unzip "$NUNIT3_ARCHIVE" -d $NUNIT3_PATH
 }
 
 createUWPShim() {

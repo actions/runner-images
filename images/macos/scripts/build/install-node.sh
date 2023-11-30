@@ -13,8 +13,8 @@ brew_smart_install "node@$defaultVersion"
 brew link node@$defaultVersion --force --overwrite
 
 echo Installing yarn...
-download_with_retries "https://yarnpkg.com/install.sh" "/tmp" "yarn-install.sh"
-bash /tmp/yarn-install.sh
+yarn_installer_path=$(download_with_retry "https://yarnpkg.com/install.sh")
+bash "$yarn_installer_path"
 
 if is_BigSur || is_Monterey; then
   npm_global_packages=$(get_toolset_value '.npm.global_packages[].name')

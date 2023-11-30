@@ -43,19 +43,18 @@ ANDROID_NDK_MAJOR_LATEST=$(get_toolset_value '.android.ndk."versions"[-1]')
 # Newer version(s) require Java 11 by default
 # See https://github.com/actions/runner-images/issues/6960
 ANDROID_HOME=$HOME/Library/Android/sdk
-ANDROID_OSX_SDK_FILE=tools-macosx.zip
 
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
 cmdlineToolsVersion=$(get_toolset_value '.android."cmdline-tools"')
 
 if [[ $cmdlineToolsVersion == "latest" ]]; then
-    repositoryXmlUrl="https://dl.google.com/android/repository/repository2-1.xml"
-    download_with_retries $repositoryXmlUrl "/tmp" "repository2-1.xml"
+    repository_xml_url="https://dl.google.com/android/repository/repository2-1.xml"
+    repository_xml_path=$(download_with_retry $repository_xml_url)
     cmdlineToolsVersion=$(
     yq -p=xml \
     '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-mac"))' \
-    /tmp/repository2-1.xml
+    "$repository_xml_path"
     )
 
     if [[ -z $cmdlineToolsVersion ]]; then
@@ -65,16 +64,15 @@ if [[ $cmdlineToolsVersion == "latest" ]]; then
 fi
 
 echo "Downloading android command line tools..."
-download_with_retries "https://dl.google.com/android/repository/${cmdlineToolsVersion}" /tmp $ANDROID_OSX_SDK_FILE
+archive_path=$(download_with_retry "https://dl.google.com/android/repository/${cmdlineToolsVersion}")
 
 echo "Uncompressing android command line tools..."
-mkdir -p $HOME/Library/Android/sdk
-unzip -q /tmp/$ANDROID_OSX_SDK_FILE -d $HOME/Library/Android/sdk/cmdline-tools
-# Command line tools need to be placed in $HOME/Library/Android/sdk/cmdline-tools/latest to function properly
-mv $HOME/Library/Android/sdk/cmdline-tools/cmdline-tools $HOME/Library/Android/sdk/cmdline-tools/latest
-rm -f /tmp/$ANDROID_OSX_SDK_FILE
+mkdir -p "$ANDROID_HOME"
+unzip -q "$archive_path" -d "$ANDROID_HOME/cmdline-tools"
+# Command line tools need to be placed in $ANDROID_HOME/cmdline-tools/latest to function properly
+mv "$ANDROID_HOME/cmdline-tools/cmdline-tools" "$ANDROID_HOME/cmdline-tools/latest"
 
-echo ANDROID_HOME is $ANDROID_HOME
+echo ANDROID_HOME is "$ANDROID_HOME"
 export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest:$ANDROID_HOME/cmdline-tools/latest/bin
 
 SDKMANAGER=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
@@ -127,12 +125,10 @@ do
 done
 
 # Download SDK tools to preserve backward compatibility
-sdkTools="android-sdk-tools.zip"
-sdkToolsVersion=$(get_toolset_value '.android."sdk-tools"')
-if [ "$sdkToolsVersion" != "null" ]; then
-    download_with_retries "https://dl.google.com/android/repository/${sdkToolsVersion}" "." $sdkTools
-    unzip -o -qq $sdkTools -d ${ANDROID_SDK_ROOT}
-    rm -f $sdkTools
+sdk_tools_version=$(get_toolset_value '.android."sdk-tools"')
+if [ "$sdk_tools_version" != "null" ]; then
+    sdk_tools_archive_path=$(download_with_retry "https://dl.google.com/android/repository/${sdk_tools_version}")
+    unzip -o -qq "$sdk_tools_archive_path" -d "${ANDROID_SDK_ROOT}"
 fi
 
 invoke_tests "Android"
