@@ -26,7 +26,7 @@ $externalHash = Get-GithubReleaseAssetHash `
     -HashType "SHA256"
 
 Install-Binary `
-    -Url "https://github.com/awslabs/aws-sam-cli/releases/latest/download/$packageName" `
+    -Url $downloadUrl `
     -ExpectedSHA256Sum $externalHash
 
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "AWS"
