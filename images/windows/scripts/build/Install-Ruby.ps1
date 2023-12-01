@@ -25,8 +25,8 @@ function Install-Ruby {
 
     # Get Ruby version from binaries
     $rubyVersion = & "$tempFolder\bin\ruby.exe" -e "print RUBY_VERSION"
-    if ($LASTEXITCODE -ne 0 || -not $rubyVersion) {
-        throw "Unable to determine Ruby version"
+    if (($LASTEXITCODE -ne 0) -or (-not $rubyVersion)) {
+        throw "Unable to determine Ruby version. Exit code: $LASTEXITCODE, output: '$rubyVersion'"
     }
     Write-Host "Ruby version is $rubyVersion"
 

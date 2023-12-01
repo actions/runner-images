@@ -18,7 +18,7 @@ $packagePath = Invoke-DownloadWithRetry -Url $downloadUrl -Path "$targetDir\kind
 
 #region Supply chain security - Kind
 $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
-    -Url "$downloadUrl.sha256" `
+    -Url "$downloadUrl.sha256sum" `
     -FileName (Split-Path $downloadUrl -Leaf)
 Test-FileChecksum $packagePath -ExpectedSHA256Sum $externalHash
 #endregion
