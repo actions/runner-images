@@ -21,7 +21,7 @@ function Invoke-PesterTests {
 
     .EXAMPLE
         Invoke-PesterTests -TestFile "*"
-        Runs all tests from all test files.
+        Runs all tests from all test files
 
     #>
     Param(
