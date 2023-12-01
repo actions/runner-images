@@ -357,18 +357,34 @@ Function GenerateResourcesAndImage {
         Write-Debug "Service principal app id: $ServicePrincipalAppId."
         Write-Debug "Tenant id: $TenantId."
 
-        & $PackerBinary build -on-error="$($OnError)" `
-            -var "client_id=$($ServicePrincipalAppId)" `
-            -var "client_secret=$($ServicePrincipalPassword)" `
-            -var "subscription_id=$($SubscriptionId)" `
-            -var "tenant_id=$($TenantId)" `
-            -var "location=$($AzureLocation)" `
-            -var "managed_image_name=$($ManagedImageName)" `
-            -var "managed_image_resource_group_name=$($ResourceGroupName)" `
-            -var "install_password=$($InstallPassword)" `
-            -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-            -var "azure_tags=$($TagsJson)" `
-            $TemplatePath
+        if($ReuseResourceGroup){
+            & $PackerBinary build -on-error="$($OnError)" `
+                -var "client_id=$($ServicePrincipalAppId)" `
+                -var "client_secret=$($ServicePrincipalPassword)" `
+                -var "subscription_id=$($SubscriptionId)" `
+                -var "tenant_id=$($TenantId)" `
+                -var "managed_image_name=$($ManagedImageName)" `
+                -var "managed_image_resource_group_name=$($ResourceGroupName)" `
+                -var "install_password=$($InstallPassword)" `
+                -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+                -var "azure_tags=$($TagsJson)" `
+                -var "build_resource_group_name=$($ResourceGroupName)" `
+                $TemplatePath
+            }
+            else{
+            & $PackerBinary build -on-error="$($OnError)" `
+                -var "client_id=$($ServicePrincipalAppId)" `
+                -var "client_secret=$($ServicePrincipalPassword)" `
+                -var "subscription_id=$($SubscriptionId)" `
+                -var "tenant_id=$($TenantId)" `
+                -var "location=$($AzureLocation)" `
+                -var "managed_image_name=$($ManagedImageName)" `
+                -var "managed_image_resource_group_name=$($ResourceGroupName)" `
+                -var "install_password=$($InstallPassword)" `
+                -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+                -var "azure_tags=$($TagsJson)" `
+                $TemplatePath
+            }
 
         if ($LastExitCode -ne 0) {
             throw "Failed to build image."
