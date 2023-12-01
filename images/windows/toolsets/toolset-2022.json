@@ -73,7 +73,7 @@
                 "1.20.*",
                 "1.21.*"
             ],
-            "default": "1.20.*"
+            "default": "1.21.*"
         }
     ],
     "powershellModules": [
