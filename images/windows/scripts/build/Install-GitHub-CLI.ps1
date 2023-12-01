@@ -11,13 +11,17 @@ $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Version "latest" `
     -UrlMatchPattern "gh_*_windows_amd64.msi"
 
-$installerName = Split-Path $downloadUrl -Leaf
+$checksumsUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "cli/cli" `
+    -Version "latest" `
+    -UrlMatchPattern "gh_*_checksums.txt"
 $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
-    -Url ($downloadUrl -replace $installerName, "checksums.txt") `
-    -FileName $installerName
+    -Url $checksumsUrl `
+    -FileName (Split-Path $downloadUrl -Leaf)
+
 Install-Binary `
-  -Url $downloadUrl `
-  -ExpectedSHA256Sum $externalHash
+    -Url $downloadUrl `
+    -ExpectedSHA256Sum $externalHash
 
 Add-MachinePathItem "C:\Program Files (x86)\GitHub CLI"
 

@@ -24,7 +24,7 @@ function Install-Msys2 {
 
   #region Supply chain security - MSYS2
   $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
-    -Url ($downloadUrl -replace $installerName, "msys2-checksums.txt") `
+    -Url ($downloadUri -replace $installerName, "msys2-checksums.txt") `
     -FileName $installerName
   Test-FileChecksum $installerPath -ExpectedSHA256Sum $externalHash
   #endregion
