@@ -11,7 +11,7 @@ Describe "MongoDB" -Skip:(Test-IsUbuntu22) {
 Describe "PostgreSQL" {
     It "PostgreSQL Service" {
         "sudo systemctl start postgresql" | Should -ReturnZeroExitCode
-        "pg_isready" | Should -MatchCommandOutput "/var/run/postgresql:5432 - accepting connections"
+        "pg_isready" | Should -OutputTextMatchingRegex "/var/run/postgresql:5432 - accepting connections"
         "sudo systemctl stop postgresql" | Should -ReturnZeroExitCode
     }
 
