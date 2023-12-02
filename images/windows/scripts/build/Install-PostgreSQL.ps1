@@ -3,8 +3,8 @@ $pgUser = "postgres"
 $pgPwd = "root"
 
 # Prepare environment variable for validation
-[System.Environment]::SetEnvironmentVariable("PGUSER", $pgUser, "Machine")
-[System.Environment]::SetEnvironmentVariable("PGPASSWORD", $pgPwd, "Machine")
+[Environment]::SetEnvironmentVariable("PGUSER", $pgUser, "Machine")
+[Environment]::SetEnvironmentVariable("PGPASSWORD", $pgPwd, "Machine")
 
 # Define latest available version to install based on version specified in the toolset
 $toolsetVersion = (Get-ToolsetContent).postgresql.version
@@ -72,9 +72,9 @@ if ($exitCode -ne 0) {
 }
 
 # Added PostgreSQL environment variable
-[System.Environment]::SetEnvironmentVariable("PGBIN", $pgBin, "Machine")
-[System.Environment]::SetEnvironmentVariable("PGROOT", $pgRoot, "Machine")
-[System.Environment]::SetEnvironmentVariable("PGDATA", $pgData, "Machine")
+[Environment]::SetEnvironmentVariable("PGBIN", $pgBin, "Machine")
+[Environment]::SetEnvironmentVariable("PGROOT", $pgRoot, "Machine")
+[Environment]::SetEnvironmentVariable("PGDATA", $pgData, "Machine")
 
 # Stop and disable PostgreSQL service
 $pgService = Get-Service -Name postgresql*

@@ -39,7 +39,7 @@ function Set-JavaPath {
         $newPath = $javaPath + '\bin;' + $newPath
 
         Write-Host "Add $javaPath\bin to PATH"
-        [System.Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
+        [Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
 
         Write-Host "Set JAVA_HOME environmental variable as $javaPath"
         [Environment]::SetEnvironmentVariable("JAVA_HOME", $javaPath, "Machine")
@@ -118,13 +118,13 @@ Install-ChocoPackage maven -ArgumentList "--version=$versionToInstall"
 Install-ChocoPackage gradle
 
 # Add maven env variables to Machine
-[string] $m2 = ([Environment]::GetEnvironmentVariable("PATH", "Machine")).Split(";") -match "maven"
+[string] $m2Path = ([Environment]::GetEnvironmentVariable("PATH", "Machine")).Split(";") -match "maven"
 
-$m2_repo = 'C:\ProgramData\m2'
-New-Item -Path $m2_repo -ItemType Directory -Force | Out-Null
+$m2RepoPath = 'C:\ProgramData\m2'
+New-Item -Path $m2RepoPath -ItemType Directory -Force | Out-Null
 
-[Environment]::SetEnvironmentVariable("M2", $m2, "Machine")
-[Environment]::SetEnvironmentVariable("M2_REPO", $m2_repo, "Machine")
+[Environment]::SetEnvironmentVariable("M2", $m2Path, "Machine")
+[Environment]::SetEnvironmentVariable("M2_REPO", $m2RepoPath, "Machine")
 [Environment]::SetEnvironmentVariable("MAVEN_OPTS", "-Xms256m", "Machine")
 
 # Download cobertura jars

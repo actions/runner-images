@@ -48,8 +48,7 @@ foreach ($dockerImage in $dockerImages) {
     docker pull $dockerImage
 
     if (!$?) {
-        Write-Host "Docker pull failed with a non-zero exit code"
-        exit 1
+        throw "Docker pull failed with a non-zero exit code ($LastExitCode)"
     }
 }
 

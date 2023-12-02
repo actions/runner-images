@@ -10,12 +10,14 @@ Install-Binary `
     -ExpectedSignature '3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC'
 
 # Downloading mysql
-[version]$MysqlVersion = (Get-ToolsetContent).mysql.version
+[version] $MysqlVersion = (Get-ToolsetContent).mysql.version
 $MysqlVersionMajorMinor = $MysqlVersion.ToString(2)
 
 if ($MysqlVersion.Build -lt 0) {
-    $MysqlVersion = (Invoke-RestMethod -Uri "https://dev.mysql.com/downloads/mysql/${MysqlVersionMajorMinor}.html" -Headers @{ 'User-Agent' = 'curl/8.4.0' } |
-            Select-String -Pattern "${MysqlVersionMajorMinor}\.\d+").Matches.Value
+    $downloadsPageUrl = "https://dev.mysql.com/downloads/mysql/${MysqlVersionMajorMinor}.html"
+    $MysqlVersion = Invoke-RestMethod -Uri $downloadsPageUrl -Headers @{ 'User-Agent' = 'curl/8.4.0' } `
+        | Select-String -Pattern "${MysqlVersionMajorMinor}\.\d+" `
+        | ForEach-Object { $_.Matches.Value }
 }
 
 $MysqlVersionFull = $MysqlVersion.ToString()

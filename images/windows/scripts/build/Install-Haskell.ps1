@@ -22,9 +22,9 @@ New-Item -Path "$ghcupPrefix\ghcup" -ItemType 'directory' -ErrorAction SilentlyC
 New-Item -Path "$ghcupPrefix\ghcup\bin" -ItemType 'directory' -ErrorAction SilentlyContinue | Out-Null
 Invoke-DownloadWithRetry -Url $ghcupDownloadURL -Path "$ghcupPrefix\ghcup\bin\ghcup.exe"
 
-[System.Environment]::SetEnvironmentVariable("GHCUP_INSTALL_BASE_PREFIX", $ghcupPrefix, "Machine")
-[System.Environment]::SetEnvironmentVariable("GHCUP_MSYS2", $msysPath, "Machine")
-[System.Environment]::SetEnvironmentVariable("CABAL_DIR", $cabalDir, "Machine")
+[Environment]::SetEnvironmentVariable("GHCUP_INSTALL_BASE_PREFIX", $ghcupPrefix, "Machine")
+[Environment]::SetEnvironmentVariable("GHCUP_MSYS2", $msysPath, "Machine")
+[Environment]::SetEnvironmentVariable("CABAL_DIR", $cabalDir, "Machine")
 Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
 Update-Environment
@@ -36,8 +36,7 @@ $LatestMajorMinor = $VersionsOutput | Group-Object { $_.ToString(2) } | Sort-Obj
 $VersionsList = $LatestMajorMinor | ForEach-Object { $_.Group | Select-Object -Last 1 } | Sort-Object
 
 # The latest version will be installed as a default
-ForEach ($version in $VersionsList)
-{
+foreach ($version in $VersionsList) {
     Write-Host "Installing ghc $version..."
     ghcup install ghc $version
     ghcup set ghc $version

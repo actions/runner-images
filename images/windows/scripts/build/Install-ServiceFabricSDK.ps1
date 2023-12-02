@@ -14,13 +14,13 @@ $urlBase = "https://download.microsoft.com/download/b/8/a/b8a2fb98-0ec1-41e5-be9
 
 # Install Service Fabric Runtime for Windows
 Install-Binary `
-  -Url "${urlBase}/MicrosoftServiceFabric.${runtimeVersion}.exe" `
-  -InstallArgs @("/accepteula ", "/quiet", "/force") `
-  -ExpectedSignature (Get-ToolsetContent).serviceFabric.runtime.signature
+    -Url "${urlBase}/MicrosoftServiceFabric.${runtimeVersion}.exe" `
+    -InstallArgs @("/accepteula ", "/quiet", "/force") `
+    -ExpectedSignature (Get-ToolsetContent).serviceFabric.runtime.signature
 
 # Install Service Fabric SDK
 Install-Binary `
-  -Url "${urlBase}/MicrosoftServiceFabricSDK.${sdkVersion}.msi" `
-  -ExpectedSignature (Get-ToolsetContent).serviceFabric.sdk.signature
+    -Url "${urlBase}/MicrosoftServiceFabricSDK.${sdkVersion}.msi" `
+    -ExpectedSignature (Get-ToolsetContent).serviceFabric.sdk.signature
 
 Invoke-PesterTests -TestFile "Tools" -TestName "ServiceFabricSDK" 

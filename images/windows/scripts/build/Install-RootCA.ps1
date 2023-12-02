@@ -43,31 +43,17 @@ function Get-CertificatesWithoutPropId {
     $certsWithoutPropId
 }
 
-function Invoke-WithRetry {
-     <#
-        .SYNOPSIS
-        Runs $command block until $BreakCondition or $RetryCount is reached.
-     #>
-
-     param([ScriptBlock]$Command, [ScriptBlock] $BreakCondition, [int] $RetryCount=5, [int] $Sleep=10)
-     
-     $c = 0
-     while($c -lt $RetryCount){
-        $result = & $Command
-        if(& $BreakCondition){
-            break
-        }
-        Start-Sleep $Sleep
-        $c++
-     }
-     $result
-}
-
 function Import-SSTFromWU {
     # Serialized Certificate Store File
     $sstFile = "$env:TEMP\roots.sst"
     # Generate SST from Windows Update
-    $result = Invoke-WithRetry { certutil.exe -generateSSTFromWU $sstFile } {$LASTEXITCODE -eq 0}
+    $result = Invoke-ScriptBlockWithRetry -RetryCount 5 -RetryIntervalSeconds 10 -Command {
+        $r = certutil.exe -generateSSTFromWU $sstFile
+        if ($LASTEXITCODE -ne 0) {
+            throw "failed to generate $sstFile sst file`n$o"
+        }
+        return $r
+    }
     if ($LASTEXITCODE -ne 0) {
         Write-Host "[Error]: failed to generate $sstFile sst file`n$result"
         exit $LASTEXITCODE
@@ -88,7 +74,9 @@ function Import-SSTFromWU {
 }
 
 function Clear-CertificatesPropId {
-    param([hashtable]$CertsWithoutPropId)
+    param(
+        [hashtable] $CertsWithoutPropId
+    )
 
     # List installed certificates
     $certs = Get-ChildItem -Path Cert:\LocalMachine\Root

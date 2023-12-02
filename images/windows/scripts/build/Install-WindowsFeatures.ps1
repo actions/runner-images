@@ -1,3 +1,8 @@
+####################################################################################
+##  File:  Install-WindowsFeatures.ps1
+##  Desc:  Install Windows Features
+####################################################################################
+
 $windowsFeatures = (Get-ToolsetContent).windowsFeatures
 
 foreach ($feature in $windowsFeatures) {

@@ -3,16 +3,16 @@
 ##  Desc:  Install Visual Studio
 ################################################################################
 
-$toolset = Get-ToolsetContent
+$vsToolset = (Get-ToolsetContent).visualStudio
 
 # Install VS
 Install-VisualStudio `
-    -Version $toolset.visualStudio.subversion `
-    -Edition $toolset.visualStudio.edition `
-    -Channel $toolset.visualStudio.channel `
-    -RequiredComponents $toolset.visualStudio.workloads `
+    -Version $vsToolset.subversion `
+    -Edition $vsToolset.edition `
+    -Channel $vsToolset.channel `
+    -RequiredComponents $vsToolset.workloads `
     -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
-    -SignatureThumbprint $toolset.visualStudio.signature
+    -SignatureThumbprint $vsToolset.signature
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
@@ -20,8 +20,7 @@ $vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\
 $instanceFolders = Get-ChildItem -Path $vsProgramData.FullName
 
 if ($instanceFolders -is [array]) {
-    Write-Host "More than one instance installed"
-    exit 1
+    throw "More than one instance installed"
 }
 
 # Updating content of MachineState.json file to disable autoupdate of VSIX extensions
@@ -35,7 +34,7 @@ if (Test-IsWin19) {
         -Url 'https://go.microsoft.com/fwlink/p/?LinkId=838916' `
         -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.WindowsSoftwareDevelopmentKit") `
         -ExpectedSignature 'C91545B333C52C4465DE8B90A3FAF4E1D9C58DFA'
-    
+
     # Install Windows 11 SDK version 10.0.22621.0
     Install-Binary -Type EXE `
         -Url 'https://go.microsoft.com/fwlink/p/?linkid=2196241' `

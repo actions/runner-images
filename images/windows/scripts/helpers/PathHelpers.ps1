@@ -31,8 +31,7 @@ function Mount-RegistryHive {
 
     $result = reg load $SubKey $FileName *>&1
     if ($LASTEXITCODE -ne 0) {
-        Write-Error "Failed to load file $FileName to the key ${SubKey}: $result"
-        exit 1
+        throw "Failed to load file $FileName to the key ${SubKey}: $result"
     }
 }
 
@@ -92,7 +91,7 @@ function Add-MachinePathItem {
 
     $currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
     $newPath = $PathItem + ';' + $currentPath
-    [System.Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
+    [Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
 }
 
 function Add-DefaultPathItem {
