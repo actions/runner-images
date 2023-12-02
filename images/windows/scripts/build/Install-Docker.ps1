@@ -15,7 +15,7 @@ Write-Host "Check Moby version $mobyLatestVersion"
 $mobyRelease = $dockerceBinaries.Links.href -match "${mobyLatestVersion}\.zip" | Select-Object -Last 1
 if (-not $mobyRelease) {
     Write-Host "Release not found for $mobyLatestRelease version"
-    $versions = [regex]::Matches($dockerceBinaries.Links.href, "docker-(\d+\.\d+\.\d+)\.zip") | Sort-Object { [version]$_.Groups[1].Value }
+    $versions = [regex]::Matches($dockerceBinaries.Links.href, "docker-(\d+\.\d+\.\d+)\.zip") | Sort-Object { [version] $_.Groups[1].Value }
     $mobyRelease = $versions | Select-Object -ExpandProperty Value -Last 1
     Write-Host "Found $mobyRelease"
 }

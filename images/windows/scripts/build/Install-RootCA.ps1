@@ -33,7 +33,7 @@ function Get-CertificatesWithoutPropId {
     $certs | ForEach-Object -Process {
         $certHandle = $_.Handle
         $isPropertySet = [PKI.Cert]::CertGetCertificateContextProperty(
-            $certHandle, $CERT_NOT_BEFORE_FILETIME_PROP_ID, $null, [ref]$null
+            $certHandle, $CERT_NOT_BEFORE_FILETIME_PROP_ID, $null, [ref] $null
         )
         if (-not $isPropertySet) {
             Write-Host "Subject: $($_.Subject)"

@@ -11,12 +11,12 @@ $toolsetVersion = (Get-ToolsetContent).postgresql.version
 $getPostgreReleases = Invoke-WebRequest -Uri "https://git.postgresql.org/gitweb/?p=postgresql.git;a=tags" -UseBasicParsing
 # Getting all links matched to the pattern (e.g.a=log;h=refs/tags/REL_14)
 $TargetReleases = $getPostgreReleases.Links.href | Where-Object { $_ -match "a=log;h=refs/tags/REL_$toolsetVersion" }
-[Int32]$OutNumber = $null
+[Int32] $OutNumber = $null
 $MinorVersions = @()
 foreach ($release in $TargetReleases) {
     $version = $release.split('/')[-1]
     # Checking if the latest symbol of the release version is actually a number. If yes, add to $MinorVersions array
-    if ([Int32]::TryParse($($version.Split('_')[-1]), [ref]$OutNumber)) {
+    if ([Int32]::TryParse($($version.Split('_')[-1]), [ref] $OutNumber)) {
         $MinorVersions += $OutNumber
     }
 }

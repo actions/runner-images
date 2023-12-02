@@ -18,9 +18,9 @@ function Mount-RegistryHive {
     #>
     param(
         [Parameter(Mandatory = $true)]
-        [string]$FileName,
+        [string] $FileName,
         [Parameter(Mandatory = $true)]
-        [string]$SubKey
+        [string] $SubKey
     )
 
     Write-Host "Loading the file $FileName to the Key $SubKey"
@@ -51,7 +51,7 @@ function Dismount-RegistryHive {
     #>
     param(
         [Parameter(Mandatory = $true)]
-        [string]$SubKey
+        [string] $SubKey
     )
 
     Write-Host "Unloading the hive $SubKey"
@@ -86,7 +86,7 @@ function Add-MachinePathItem {
 
     param(
         [Parameter(Mandatory = $true)]
-        [string]$PathItem
+        [string] $PathItem
     )
 
     $currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
@@ -119,7 +119,7 @@ function Add-DefaultPathItem {
 
     param(
         [Parameter(Mandatory = $true)]
-        [string]$PathItem
+        [string] $PathItem
     )
 
     Mount-RegistryHive `

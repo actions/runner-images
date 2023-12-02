@@ -7,8 +7,8 @@
 # https://github.com/ruby/setup-ruby/blob/master/windows.js
 function Install-Ruby {
     param(
-        [String]$PackagePath,
-        [String]$Architecture = "x64"
+        [String] $PackagePath,
+        [String] $Architecture = "x64"
     )
 
     # Create Ruby toolcache folder

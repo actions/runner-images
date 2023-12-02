@@ -32,7 +32,7 @@ Update-Environment
 # Get 3 latest versions of GHC
 $Versions = ghcup list -t ghc -r | Where-Object {$_ -notlike "prerelease"}
 $VersionsOutput = [Version[]]($Versions | ForEach-Object{ $_.Split(' ')[1]; })
-$LatestMajorMinor = $VersionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version]$_.Name } | Select-Object -last 3
+$LatestMajorMinor = $VersionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version] $_.Name } | Select-Object -last 3
 $VersionsList = $LatestMajorMinor | ForEach-Object { $_.Group | Select-Object -Last 1 } | Sort-Object
 
 # The latest version will be installed as a default
