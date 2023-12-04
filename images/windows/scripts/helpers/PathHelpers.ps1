@@ -18,9 +18,9 @@ function Mount-RegistryHive {
     #>
     param(
         [Parameter(Mandatory = $true)]
-        [string]$FileName,
+        [string] $FileName,
         [Parameter(Mandatory = $true)]
-        [string]$SubKey
+        [string] $SubKey
     )
 
     Write-Host "Loading the file $FileName to the Key $SubKey"
@@ -31,8 +31,7 @@ function Mount-RegistryHive {
 
     $result = reg load $SubKey $FileName *>&1
     if ($LASTEXITCODE -ne 0) {
-        Write-Error "Failed to load file $FileName to the key ${SubKey}: $result"
-        exit 1
+        throw "Failed to load file $FileName to the key ${SubKey}: $result"
     }
 }
 
@@ -52,7 +51,7 @@ function Dismount-RegistryHive {
     #>
     param(
         [Parameter(Mandatory = $true)]
-        [string]$SubKey
+        [string] $SubKey
     )
 
     Write-Host "Unloading the hive $SubKey"
@@ -87,12 +86,12 @@ function Add-MachinePathItem {
 
     param(
         [Parameter(Mandatory = $true)]
-        [string]$PathItem
+        [string] $PathItem
     )
 
     $currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
     $newPath = $PathItem + ';' + $currentPath
-    [System.Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
+    [Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
 }
 
 function Add-DefaultPathItem {
@@ -120,7 +119,7 @@ function Add-DefaultPathItem {
 
     param(
         [Parameter(Mandatory = $true)]
-        [string]$PathItem
+        [string] $PathItem
     )
 
     Mount-RegistryHive `

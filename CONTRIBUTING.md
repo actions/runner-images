@@ -41,7 +41,7 @@ Here are a few things you can do that will increase the likelihood of your pull 
 ### Windows
 
 - Add a script that will install the tool and put the script in the `scripts/build` folder.
-There are a bunch of helper functions that could simplify your code: `Choco-Install`, `Install-Binary`, `Install-VsixExtension`, `Start-DownloadWithRetry`, `Test-IsWin19`, `Test-IsWin22` (find the full list of helpers in [ImageHelpers.psm1](images/windows/scripts/helpers/ImageHelpers.psm1)).
+There are a bunch of helper functions that could simplify your code: `Install-ChocoPackage`, `Install-Binary`, `Install-VSIXFromFile`, `Install-VSIXFromUrl`, `Invoke-DownloadWithRetry`, `Test-IsWin19`, `Test-IsWin22` (find the full list of helpers in [ImageHelpers.psm1](images/windows/scripts/helpers/ImageHelpers.psm1)).
 - Add a script that will validate the tool installation and put the script in the `scripts/tests` folder.
 We use [Pester v5](https://github.com/pester/pester) for validation scripts. If the tests for the tool are complex enough, create a separate `*.Tests.ps1`. Otherwise, use `Tools.Tests.ps1` for simple tests.
 Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at the end of the installation script to make sure that your tests will be run.

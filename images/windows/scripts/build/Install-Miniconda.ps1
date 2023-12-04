@@ -27,6 +27,6 @@ Install-Binary `
     -InstallArgs @("/S", "/AddToPath=0", "/RegisterPython=0", "/D=$CondaDestination") `
     -ExpectedSHA256Sum $distributorFileHash
 
-[System.Environment]::SetEnvironmentVariable("CONDA", $CondaDestination, "Machine")
+[Environment]::SetEnvironmentVariable("CONDA", $CondaDestination, "Machine")
 
 Invoke-PesterTests -TestFile "Miniconda"

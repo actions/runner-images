@@ -6,36 +6,40 @@
 ################################################################################
 
 # Set environment variables
-[System.Environment]::SetEnvironmentVariable("DOTNET_MULTILEVEL_LOOKUP", "0", "Machine")
-[System.Environment]::SetEnvironmentVariable("DOTNET_NOLOGO", "1", "Machine")
-[System.Environment]::SetEnvironmentVariable("DOTNET_SKIP_FIRST_TIME_EXPERIENCE", "1", "Machine")
+[Environment]::SetEnvironmentVariable("DOTNET_MULTILEVEL_LOOKUP", "0", "Machine")
+[Environment]::SetEnvironmentVariable("DOTNET_NOLOGO", "1", "Machine")
+[Environment]::SetEnvironmentVariable("DOTNET_SKIP_FIRST_TIME_EXPERIENCE", "1", "Machine")
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
 #region "Functions"
-function Get-SDKVersionsToInstall (
-    $DotnetVersion
-) {
-    $metadataJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
-    $currentReleases = Invoke-DownloadWithRetry $metadataJsonUri | Get-Item | Get-Content | ConvertFrom-Json
+function Get-SDKVersionsToInstall {
+    param (
+        [Parameter(Mandatory)]
+        [string] $DotnetVersion
+    )
+    $releasesJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
+    $releasesData = (Invoke-DownloadWithRetry $releasesJsonUri) | Get-Item | Get-Content | ConvertFrom-Json
     # filtering out the preview/rc releases
-    $currentReleases = $currentReleases.'releases' | Where-Object { !$_.'release-version'.Contains('-') }
+    $releases = $releasesData.'releases' | Where-Object { !$_.'release-version'.Contains('-') }
 
     $sdks = @()
-    foreach ($release in $currentReleases) {
+    foreach ($release in $releases) {
         $sdks += $release.'sdk'
         $sdks += $release.'sdks'
     }
 
     return $sdks.version `
-        | Sort-Object { [Version] $_ } -Unique `
-        | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } `
-        | ForEach-Object { $_.Group[-1] }
+    | Sort-Object { [Version] $_ } -Unique `
+    | Group-Object { $_.Substring(0, $_.LastIndexOf('.') + 2) } `
+    | ForEach-Object { $_.Group[-1] }
 }
 
-function Invoke-Warmup (
-    $SdkVersion
-) {
+function Invoke-DotnetWarmup {
+    param (
+        [Parameter(Mandatory)]
+        [string] $SDKVersion
+    )
     # warm up dotnet for first time experience
     $projectTypes = @('console', 'mstest', 'web', 'mvc', 'webapi')
     $projectTypes | ForEach-Object {
@@ -43,85 +47,76 @@ function Invoke-Warmup (
         $projectPath = Join-Path -Path C:\temp -ChildPath $template
         New-Item -Path $projectPath -Force -ItemType Directory
         Push-Location -Path $projectPath
-        & $env:ProgramFiles\dotnet\dotnet.exe new globaljson --sdk-version "$sdkVersion"
+        & $env:ProgramFiles\dotnet\dotnet.exe new globaljson --sdk-version "$SDKVersion"
         & $env:ProgramFiles\dotnet\dotnet.exe new $template
         Pop-Location
         Remove-Item $projectPath -Force -Recurse
     }
 }
 
-function InstallSDKVersion (
-    $SdkVersion,
-    $dotnetVersion,
-    $Warmup
-) {
-    if (!(Test-Path -Path "C:\Program Files\dotnet\sdk\$sdkVersion")) {
-        Write-Host "Installing dotnet $sdkVersion"
-        $ZipPath = [System.IO.Path]::combine([System.IO.Path]::GetTempPath(), [System.IO.Path]::GetRandomFileName())
-        .\dotnet-install.ps1 -Version $sdkVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet') -ZipPath $ZipPath -KeepZip
+function Install-DotnetSDK {
+    param (
+        [Parameter(Mandatory)]
+        [string] $InstallScriptPath,
+        [Parameter(Mandatory)]
+        [Alias('Version')]
+        [string] $SDKVersion,
+        [Parameter(Mandatory)]
+        [string] $DotnetVersion
+    )
 
-        #region Supply chain security
-        $distributorFileHash = (Invoke-RestMethod -Uri "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/$dotnetVersion/releases.json").releases.sdks.Where({ $_.version -eq $SdkVersion }).files.Where({ $_.name -eq 'dotnet-sdk-win-x64.zip' }).hash
-        Test-FileChecksum $ZipPath -ExpectedSHA512Sum $distributorFileHash
-        #endregion
-    } else {
-        Write-Host "Sdk version $sdkVersion already installed"
+    if (Test-Path -Path "C:\Program Files\dotnet\sdk\$SDKVersion") {
+        Write-Host "Sdk version $SDKVersion already installed"
+        return
     }
 
-    if ($Warmup) {
-        Invoke-Warmup -SdkVersion $SdkVersion
-    }
+    Write-Host "Installing dotnet $SDKVersion"
+    $zipPath = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
+    & $InstallScriptPath -Version $SDKVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet') -ZipPath $zipPath -KeepZip
+
+    #region Supply chain security
+    $releasesJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
+    $releasesData = (Invoke-DownloadWithRetry $releasesJsonUri) | Get-Item | Get-Content | ConvertFrom-Json
+    $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq 'dotnet-sdk-win-x64.zip' }).hash
+    Test-FileChecksum $zipPath -ExpectedSHA512Sum $distributorFileHash
+    #endregion
 }
+#endregion
 
-function InstallAllValidSdks() {
-    # Consider all channels except preview/eol channels.
-    # Sort the channels in ascending order
-    $dotnetToolset = (Get-ToolsetContent).dotnet
-    $dotnetVersions = $dotnetToolset.versions
-    $warmup = $dotnetToolset.warmup
+$dotnetToolset = (Get-ToolsetContent).dotnet
 
-    # Download installation script.
-    $installationName = "dotnet-install.ps1"
-    $installationUrl = "https://dot.net/v1/${installationName}"
-    Invoke-DownloadWithRetry -Url $installationUrl -Path ".\$installationName"
+# Download installation script.
+$installScriptPath = Invoke-DownloadWithRetry -Url "https://dot.net/v1/dotnet-install.ps1"
 
-    foreach ($dotnetVersion in $dotnetVersions) {
-        $sdkVersionsToInstall = Get-SDKVersionsToInstall -DotnetVersion $dotnetVersion
-        foreach ($sdkVersion in $sdkVersionsToInstall) {
-            InstallSDKVersion -SdkVersion $sdkVersion -DotnetVersion $dotnetVersion -Warmup $warmup
+# Install and warm up dotnet
+foreach ($dotnetVersion in $dotnetToolset.versions) {
+    $sdkVersionsToInstall = Get-SDKVersionsToInstall -DotnetVersion $dotnetVersion
+    foreach ($sdkVersion in $sdkVersionsToInstall) {
+        Install-DotnetSDK -InstallScriptPath $installScriptPath -SDKVersion $sdkVersion -DotnetVersion $dotnetVersion
+        if ($dotnetToolset.warmup) {
+            Invoke-DotnetWarmup -SDKVersion $sdkVersion
         }
     }
 }
 
-function InstallTools() {
-    $dotnetTools = (Get-ToolsetContent).dotnet.tools
+# Add dotnet to PATH
+Add-MachinePathItem "C:\Program Files\dotnet"
 
-    foreach ($dotnetTool in $dotnetTools) {
-        dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default\.dotnet\tools" --add-source https://api.nuget.org/v3/index.json | Out-Null
-    }
+# Remove NuGet Folder
+$nugetPath = "$env:APPDATA\NuGet"
+if (Test-Path $nugetPath) {
+    Remove-Item -Path $nugetPath -Force -Recurse
 }
 
-function RunPostInstallationSteps() {
-    # Add dotnet to PATH
-    Add-MachinePathItem "C:\Program Files\dotnet"
+# Generate and copy new NuGet.Config config
+dotnet nuget list source | Out-Null
+Copy-Item -Path $nugetPath -Destination C:\Users\Default\AppData\Roaming -Force -Recurse
 
-    # Remove NuGet Folder
-    $nugetPath = "$env:APPDATA\NuGet"
-    if (Test-Path $nugetPath) {
-        Remove-Item -Path $nugetPath -Force -Recurse
-    }
-
-    # Generate and copy new NuGet.Config config
-    dotnet nuget list source | Out-Null
-    Copy-Item -Path $nugetPath -Destination C:\Users\Default\AppData\Roaming -Force -Recurse
-
-    # Add %USERPROFILE%\.dotnet\tools to USER PATH
-    Add-DefaultPathItem "%USERPROFILE%\.dotnet\tools"
+# Install dotnet tools
+Write-Host "Installing dotnet tools"
+Add-DefaultPathItem "%USERPROFILE%\.dotnet\tools"
+foreach ($dotnetTool in $dotnetToolset.tools) {
+    dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default\.dotnet\tools" --add-source https://api.nuget.org/v3/index.json | Out-Null
 }
-#endregion
-
-InstallAllValidSdks
-RunPostInstallationSteps
-InstallTools
 
 Invoke-PesterTests -TestFile "DotnetSDK"

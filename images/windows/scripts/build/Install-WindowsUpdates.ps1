@@ -28,8 +28,7 @@ function Install-WindowsUpdates {
     $failedUpdates = $updates[0] | Where-Object Title -notmatch "Microsoft Defender Antivirus" | Where-Object { -not ($notFailedUpdateNames -match $_.KB) }
 
     if ( $failedUpdates ) {
-        Write-Host "Windows updates failed to install: $($failedUpdates.KB)"
-        exit 1
+        throw "Windows updates failed to install: $($failedUpdates.KB)"
     }
 }
 

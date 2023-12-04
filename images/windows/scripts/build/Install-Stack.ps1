@@ -5,19 +5,23 @@
 ################################################################################
 
 Write-Host "Get the latest Stack version..."
-$StackReleasesJson = Invoke-RestMethod "https://api.github.com/repos/commercialhaskell/stack/releases/latest"
-$Version = $StackReleasesJson.name.TrimStart("v")
-$DownloadFilePattern = "windows-x86_64.zip"
-$DownloadUrl = $StackReleasesJson.assets | Where-Object { $_.name.EndsWith($DownloadFilePattern) } | Select-Object -ExpandProperty "browser_download_url" -First 1
+
+$version = (Get-GithubReleasesByVersion -Repo "commercialhaskell/stack" -Version "latest" -WithAssetsOnly).version
+
+$downloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "commercialhaskell/stack" `
+    -Version $version `
+    -UrlMatchPattern "stack-*-windows-x86_64.zip"
 
 Write-Host "Download stack archive"
-$StackToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY "stack\$Version"
+$StackToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY "stack\$version"
 $DestinationPath = Join-Path $StackToolcachePath "x64"
-$StackArchivePath = Invoke-DownloadWithRetry $DownloadUrl
+$StackArchivePath = Invoke-DownloadWithRetry $downloadUrl
 
 #region Supply chain security - Stack
-$hashUrl = $StackReleasesJson.assets | Where-Object { $_.name.EndsWith("$DownloadFilePattern.sha256") } | Select-Object -ExpandProperty "browser_download_url" -First 1
-$externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*$DownloadFilePattern*" }).Split(' ')[0]
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url "$downloadUrl.sha256" `
+    -FileName (Split-Path $downloadUrl -Leaf)
 Test-FileChecksum $StackArchivePath -ExpectedSHA256Sum $externalHash
 #endregion
 

@@ -11,7 +11,7 @@ $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Version "latest" `
     -UrlMatchPattern "Git-*-64-bit.exe"
 
-$externalHash = Get-GithubReleaseAssetHash `
+$externalHash = Get-ChecksumFromGithubRelease `
     -Repo "git-for-windows/git" `
     -Version "latest" `
     -FileName (Split-Path $downloadUrl -Leaf) `
@@ -37,7 +37,7 @@ Update-Environment
 git config --system --add safe.directory "*"
 
 # Disable GCM machine-wide
-[Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", [System.EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", "Machine")
 
 # Add to PATH
 Add-MachinePathItem "C:\Program Files\Git\bin"

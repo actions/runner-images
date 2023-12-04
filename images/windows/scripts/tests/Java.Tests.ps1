@@ -3,7 +3,7 @@ Describe "Java" {
     $defaultVersion = $toolsetJava.default
     $jdkVersions = $toolsetJava.versions
 
-    [array]$testCases = $jdkVersions | ForEach-Object { @{Version = $_ } }
+    [array] $testCases = $jdkVersions | ForEach-Object { @{Version = $_ } }
 
     It "Java <DefaultJavaVersion> is default" -TestCases @(@{ DefaultJavaVersion = $defaultVersion }) {
         $actualJavaPath = Get-EnvironmentVariable "JAVA_HOME"

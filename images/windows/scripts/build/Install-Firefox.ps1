@@ -11,7 +11,10 @@ $VersionsManifest = Invoke-RestMethod "https://product-details.mozilla.org/1.0/f
 Write-Host "Install Firefox browser..."
 $installerUrl = "https://download.mozilla.org/?product=firefox-$($VersionsManifest.LATEST_FIREFOX_VERSION)&os=win64&lang=en-US"
 $hashUrl = "https://archive.mozilla.org/pub/firefox/releases/$($VersionsManifest.LATEST_FIREFOX_VERSION)/SHA256SUMS"
-$externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*win64/en-US/Firefox Setup*exe*" }).Split(' ')[0]
+
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url $hashUrl `
+    -FileName "win64/en-US/Firefox Setup*exe"
 
 Install-Binary -Type EXE `
     -Url $installerUrl `
@@ -36,13 +39,14 @@ if (-not (Test-Path -Path $GeckoDriverPath)) {
 }
 
 Write-Host "Get the Gecko WebDriver version..."
-$GeckoDriverJson = Invoke-RestMethod "https://api.github.com/repos/mozilla/geckodriver/releases/latest"
-$GeckoDriverWindowsAsset = $GeckoDriverJson.assets | Where-Object { $_.name -Match "win64" } | Select-Object -First 1
-$GeckoDriverVersion = $GeckoDriverJson.tag_name
-$GeckoDriverVersion.Substring(1) | Out-File -FilePath "$GeckoDriverPath\versioninfo.txt" -Force;
+$GeckoDriverVersion = (Get-GithubReleasesByVersion -Repo "mozilla/geckodriver" -Version "latest").version
+$GeckoDriverVersion | Out-File -FilePath "$GeckoDriverPath\versioninfo.txt" -Force
 
 Write-Host "Download Gecko WebDriver WebDriver..."
-$GeckoDriverDownloadUrl = $GeckoDriverWindowsAsset.browser_download_url
+$GeckoDriverDownloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "mozilla/geckodriver" `
+    -Version $GeckoDriverVersion `
+    -UrlMatchPattern "geckodriver-*-win64.zip"
 $GeckoDriverArchPath = Invoke-DownloadWithRetry $GeckoDriverDownloadUrl
 
 Write-Host "Expand Gecko WebDriver archive..."

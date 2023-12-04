@@ -2,43 +2,55 @@
 param()
 
 . $PSScriptRoot\AndroidHelpers.ps1
-. $PSScriptRoot\ChocoHelpers.ps1
-. $PSScriptRoot\InstallHelpers.ps1
-. $PSScriptRoot\PathHelpers.ps1
-. $PSScriptRoot\VisualStudioHelpers.ps1
+Export-ModuleMember -Function @(
+    'Get-AndroidPackages'
+    'Get-AndroidPlatformPackages'
+    'Get-AndroidBuildToolPackages'
+    'Get-AndroidInstalledPackages'
+)
 
+. $PSScriptRoot\ChocoHelpers.ps1
+Export-ModuleMember -Function @(
+    'Install-ChocoPackage'
+    'Resolve-ChocoPackageVersion'
+)
+
+. $PSScriptRoot\InstallHelpers.ps1
+Export-ModuleMember -Function @(
+    'Install-Binary'
+    'Invoke-DownloadWithRetry'
+    'Get-ToolsetContent'
+    'Get-TCToolPath'
+    'Get-TCToolVersionPath'
+    'Test-IsWin22'
+    'Test-IsWin19'
+    'Expand-7ZipArchive'
+    'Get-WindowsUpdateStates'
+    'Invoke-ScriptBlockWithRetry'
+    'Get-GithubReleasesByVersion'
+    'Resolve-GithubReleaseAssetUrl'
+    'Get-ChecksumFromGithubRelease'
+    'Get-ChecksumFromUrl'
+    'Test-FileChecksum'
+    'Test-FileSignature'
+    'Update-Environment'
+)
+
+. $PSScriptRoot\PathHelpers.ps1
 Export-ModuleMember -Function @(
     'Mount-RegistryHive'
     'Dismount-RegistryHive'
     'Add-MachinePathItem'
     'Add-DefaultPathItem'
-    'Install-Binary'
+)
+
+. $PSScriptRoot\VisualStudioHelpers.ps1
+Export-ModuleMember -Function @(
     'Install-VisualStudio'
-    'Get-ToolsetContent'
-    'Get-TCToolVersionPath'
-    'Get-TCToolPath'
-    'Invoke-DownloadWithRetry'
+    'Get-VisualStudioInstance'
+    'Get-VisualStudioComponents'
     'Get-VsixInfoFromMarketplace'
     'Install-VSIXFromFile'
     'Install-VSIXFromUrl'
     'Get-VSExtensionVersion'
-    'Test-IsWin22'
-    'Test-IsWin19'
-    'Install-ChocoPackage'
-    'Resolve-ChocoPackageVersion'
-    'Resolve-GithubReleaseAssetUrl'
-    'Expand-7ZipArchive'
-    'Invoke-ScriptBlockWithRetry'
-    'Get-VsCatalogJsonPath'
-    'Get-AndroidPackages'
-    'Get-AndroidPlatformPackages'
-    'Get-AndroidBuildToolPackages'
-    'Get-AndroidInstalledPackages'
-    'Get-VisualStudioInstance'
-    'Get-VisualStudioComponents'
-    'Get-WindowsUpdateStates'
-    'Get-GithubReleaseAssetHash'
-    'Test-FileChecksum'
-    'Test-FileSignature'
-    'Update-Environment'
 )

@@ -117,18 +117,65 @@ Function Install-VisualStudio {
 }
 
 function Get-VisualStudioInstance {
+    <#
+    .SYNOPSIS
+        Retrieves the Visual Studio instance.
+
+    .DESCRIPTION
+        This function retrieves the Visual Studio instance
+        using the Get-VSSetupInstance cmdlet.
+        It searches for both regular and preview versions
+        of Visual Studio and returns the first instance found.
+    #>
+
     # Use -Prerelease and -All flags to make sure that Preview versions of VS are found correctly
     $vsInstance = Get-VSSetupInstance -Prerelease -All | Where-Object { $_.DisplayName -match "Visual Studio" } | Select-Object -First 1
     $vsInstance | Select-VSSetupInstance -Product *
 }
 
 function Get-VisualStudioComponents {
-    (Get-VisualStudioInstance).Packages | Where-Object type -in 'Component', 'Workload' |
-        Sort-Object Id, Version | Select-Object @{n = 'Package'; e = { $_.Id } }, Version |
-        Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
+    <#
+    .SYNOPSIS
+        Retrieves the Visual Studio components.
+
+    .DESCRIPTION
+        This function retrieves the Visual Studio components
+        by filtering the packages returned by Get-VisualStudioInstance cmdlet.
+        It filters the packages based on their type, sorts them by Id and Version,
+        and excludes packages with GUID-like Ids.
+    #>
+
+    (Get-VisualStudioInstance).Packages `
+    | Where-Object type -in 'Component', 'Workload' `
+    | Sort-Object Id, Version `
+    | Select-Object @{n = 'Package'; e = { $_.Id } }, Version `
+    | Where-Object { $_.Package -notmatch "[0-9a-fA-F]{8}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{4}\-[0-9a-fA-F]{12}" }
 }
 
 function Get-VsixInfoFromMarketplace {
+    <#
+    .SYNOPSIS
+        Retrieves information about a Visual Studio extension from the Visual Studio Marketplace.
+
+    .DESCRIPTION
+        The Get-VsixInfoFromMarketplace function retrieves information
+        about a Visual Studio extension from the Visual Studio Marketplace.
+        It takes the name of the extension as input and returns
+        the extension's name, VsixId, filename, and download URI.
+
+    .PARAMETER Name
+        The name of the Visual Studio extension.
+
+    .PARAMETER MarketplaceUri
+        The URI of the Visual Studio Marketplace.
+        Default value is "https://marketplace.visualstudio.com/items?itemName=".
+
+    .EXAMPLE
+        Get-VsixInfoFromMarketplace -Name "ProBITools.MicrosoftReportProjectsforVisualStudio2022"
+        Retrieves information about the "ProBITools.MicrosoftReportProjectsforVisualStudio2022" extension
+        from the Visual Studio Marketplace.
+    #>
+
     Param
     (
         [Parameter(Mandatory)]
@@ -183,6 +230,25 @@ function Get-VsixInfoFromMarketplace {
 }
 
 function Install-VSIXFromFile {
+    <#
+    .SYNOPSIS
+        Installs a Visual Studio Extension (VSIX) from a file.
+
+    .DESCRIPTION
+        This function installs a Visual Studio Extension (VSIX)
+        from the specified file path. It uses the VSIXInstaller.exe
+        tool provided by Microsoft Visual Studio.
+
+    .PARAMETER FilePath
+        The path to the VSIX file that needs to be installed.
+
+    .PARAMETER Retries
+        The number of retries to attempt if the installation fails. Default is 20.
+
+    .EXAMPLE
+        Install-VSIXFromFile -FilePath "C:\Extensions\MyExtension.vsix" -Retries 10
+        Installs the VSIX file located at "C:\Extensions\MyExtension.vsix" with 10 retries in case of failure.
+    #>
     Param
     (
         [Parameter(Mandatory = $true)]
@@ -228,6 +294,25 @@ function Install-VSIXFromFile {
 }
 
 function Install-VSIXFromUrl {
+    <#
+    .SYNOPSIS
+        Installs a Visual Studio extension (VSIX) from a given URL.
+
+    .DESCRIPTION
+        This function downloads a Visual Studio extension (VSIX)
+        from the specified URL and installs it.
+
+    .PARAMETER Url
+        The URL of the VSIX file to download and install.
+
+    .PARAMETER Retries
+        The number of retries to attempt if the download fails. Default is 20.
+
+    .EXAMPLE
+        Install-VSIXFromUrl -Url "https://example.com/extension.vsix" -Retries 10
+        Downloads and installs the VSIX file from the specified URL with 10 retries.
+    #>
+
     Param
     (
         [Parameter(Mandatory = $true)]
@@ -241,6 +326,22 @@ function Install-VSIXFromUrl {
 }
 
 function Get-VSExtensionVersion {
+    <#
+    .SYNOPSIS
+        Retrieves the version of a Visual Studio extension package.
+
+    .DESCRIPTION
+        This function retrieves the version of a specified Visual Studio extension package.
+        It searches for the package in the installed instances of Visual Studio and
+        returns the version number.
+
+    .PARAMETER packageName
+        The name of the extension package.
+
+    .EXAMPLE
+        Get-VSExtensionVersion -packageName "MyExtensionPackage"
+        Retrieves the version of the extension package named "MyExtensionPackage" for Visual Studio.
+    #>
     Param
     (
         [Parameter(Mandatory = $true)]

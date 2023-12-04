@@ -19,7 +19,7 @@ $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "awslabs/aws-sam-cli" `
     -Version "latest" `
     -UrlMatchPattern "AWS_SAM_CLI_64_PY3.msi"
-$externalHash = Get-GithubReleaseAssetHash `
+$externalHash = Get-ChecksumFromGithubRelease `
     -Repo "awslabs/aws-sam-cli" `
     -Version "latest" `
     -FileName (Split-Path $downloadUrl -Leaf) `

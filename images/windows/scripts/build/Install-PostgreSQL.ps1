@@ -3,20 +3,20 @@ $pgUser = "postgres"
 $pgPwd = "root"
 
 # Prepare environment variable for validation
-[System.Environment]::SetEnvironmentVariable("PGUSER", $pgUser, "Machine")
-[System.Environment]::SetEnvironmentVariable("PGPASSWORD", $pgPwd, "Machine")
+[Environment]::SetEnvironmentVariable("PGUSER", $pgUser, "Machine")
+[Environment]::SetEnvironmentVariable("PGPASSWORD", $pgPwd, "Machine")
 
 # Define latest available version to install based on version specified in the toolset
 $toolsetVersion = (Get-ToolsetContent).postgresql.version
 $getPostgreReleases = Invoke-WebRequest -Uri "https://git.postgresql.org/gitweb/?p=postgresql.git;a=tags" -UseBasicParsing
 # Getting all links matched to the pattern (e.g.a=log;h=refs/tags/REL_14)
 $TargetReleases = $getPostgreReleases.Links.href | Where-Object { $_ -match "a=log;h=refs/tags/REL_$toolsetVersion" }
-[Int32]$OutNumber = $null
+[Int32] $OutNumber = $null
 $MinorVersions = @()
 foreach ($release in $TargetReleases) {
     $version = $release.split('/')[-1]
     # Checking if the latest symbol of the release version is actually a number. If yes, add to $MinorVersions array
-    if ([Int32]::TryParse($($version.Split('_')[-1]), [ref]$OutNumber)) {
+    if ([Int32]::TryParse($($version.Split('_')[-1]), [ref] $OutNumber)) {
         $MinorVersions += $OutNumber
     }
 }
@@ -72,9 +72,9 @@ if ($exitCode -ne 0) {
 }
 
 # Added PostgreSQL environment variable
-[System.Environment]::SetEnvironmentVariable("PGBIN", $pgBin, "Machine")
-[System.Environment]::SetEnvironmentVariable("PGROOT", $pgRoot, "Machine")
-[System.Environment]::SetEnvironmentVariable("PGDATA", $pgData, "Machine")
+[Environment]::SetEnvironmentVariable("PGBIN", $pgBin, "Machine")
+[Environment]::SetEnvironmentVariable("PGROOT", $pgRoot, "Machine")
+[Environment]::SetEnvironmentVariable("PGDATA", $pgData, "Machine")
 
 # Stop and disable PostgreSQL service
 $pgService = Get-Service -Name postgresql*

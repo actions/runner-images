@@ -17,7 +17,7 @@ function Get-PathWithLink {
     return "${inputPath}${link}"
 }
 
-function Take-Part {
+function Get-StringPart {
     param (
         [Parameter(ValueFromPipeline)]
         [string] $toolOutput,

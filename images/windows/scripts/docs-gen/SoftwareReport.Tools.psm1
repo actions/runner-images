@@ -66,12 +66,12 @@ function Get-DockerComposeVersionV2 {
 }
 
 function Get-DockerWincredVersion {
-    $dockerCredVersion = docker-credential-wincred version | Take-Part -Part 2 | Take-Part -Part 0 -Delimiter "v"
+    $dockerCredVersion = docker-credential-wincred version | Get-StringPart -Part 2 | Get-StringPart -Part 0 -Delimiter "v"
     return $dockerCredVersion
 }
 
 function Get-GitVersion {
-    $gitVersion = git --version | Take-Part -Part -1
+    $gitVersion = git --version | Get-StringPart -Part -1
     return $gitVersion
 }
 

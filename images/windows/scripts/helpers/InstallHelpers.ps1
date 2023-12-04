@@ -131,6 +131,33 @@ function Install-Binary {
 }
 
 function Invoke-DownloadWithRetry {
+    <#
+    .SYNOPSIS
+        Downloads a file from a given URL with retry functionality.
+
+    .DESCRIPTION
+        The Invoke-DownloadWithRetry function downloads a file from the specified URL
+        to the specified path. It includes retry functionality in case the download fails.
+
+    .PARAMETER Url
+        The URL of the file to download.
+
+    .PARAMETER Path
+        The path where the downloaded file will be saved. If not provided, a temporary path
+        will be used.
+
+    .EXAMPLE
+        Invoke-DownloadWithRetry -Url "https://example.com/file.zip" -Path "C:\Downloads\file.zip"
+        Downloads the file from the specified URL and saves it to the specified path.
+
+    .EXAMPLE
+        Invoke-DownloadWithRetry -Url "https://example.com/file.zip"
+        Downloads the file from the specified URL and saves it to a temporary path.
+    
+    .OUTPUTS
+        The path where the downloaded file is saved.
+    #>
+
     Param
     (
         [Parameter(Mandatory)]
@@ -165,6 +192,11 @@ function Invoke-DownloadWithRetry {
             $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
             Write-Warning "Package download failed in $attemptSeconds seconds"
             Write-Warning $_.Exception.Message
+
+            if ($_.Exception.InnerException.Response.StatusCode -eq [System.Net.HttpStatusCode]::NotFound) {
+                Write-Warning "Request returned 404 Not Found. Aborting download."
+                $retries = 0
+            }
         }
             
         if ($retries -eq 0) {
@@ -180,6 +212,15 @@ function Invoke-DownloadWithRetry {
 }
 
 function Get-ToolsetContent {
+    <#
+    .SYNOPSIS
+        Retrieves the content of the toolset.json file.
+
+    .DESCRIPTION
+        This function reads the toolset.json file located at "C:\image\toolset.json"
+        and returns the content as a PowerShell object.
+    #>
+
     $toolsetPath = Join-Path "C:\\image" "toolset.json"
     $toolsetJson = Get-Content -Path $toolsetPath -Raw
     ConvertFrom-Json -InputObject $toolsetJson
@@ -478,6 +519,10 @@ function Get-GithubReleasesByVersion {
     .PARAMETER AllowPrerelease
         Specifies whether to include prerelease versions in the results. By default,
         prerelease versions are excluded.
+    
+    .PARAMETER WithAssetsOnly
+        Specifies whether to exclude releases without assets. By default, releases without
+        assets are included.
 
     .EXAMPLE
         Get-GithubReleasesByVersion -Repository "Microsoft/PowerShell" -Version "7.2.0"
@@ -500,7 +545,8 @@ function Get-GithubReleasesByVersion {
         [Alias("Repo")]
         [string] $Repository,
         [string] $Version = "*",
-        [switch] $AllowPrerelease
+        [switch] $AllowPrerelease,
+        [switch] $WithAssetsOnly
     )
 
     $localCacheFile = Join-Path ${env:TEMP} "github-releases_$($Repository -replace "/", "_").json"
@@ -528,7 +574,9 @@ function Get-GithubReleasesByVersion {
         throw "Failed to get releases from ${Repository}"
     }
 
-    $releases = $releases.Where{ $_.assets }
+    if ($WithAssetsOnly) {
+        $releases = $releases.Where{ $_.assets }
+    }
     if (-not $AllowPrerelease) {
         $releases = $releases.Where{ $_.prerelease -eq $false }
     }
@@ -608,7 +656,8 @@ function Resolve-GithubReleaseAssetUrl {
     $matchingReleases = Get-GithubReleasesByVersion `
         -Repository $Repository `
         -AllowPrerelease:$AllowPrerelease `
-        -Version $Version
+        -Version $Version `
+        -WithAssetsOnly
 
     # Add wildcard to the beginning of the pattern if it's not there
     if ($UrlMatchPattern.Substring(0, 2) -ne "*/") {
@@ -618,7 +667,7 @@ function Resolve-GithubReleaseAssetUrl {
     # Loop over releases until we find a download url matching the pattern
     foreach ($release in $matchingReleases) {
         $matchedVersion = $release.version
-        $matchedUrl = $release.assets.browser_download_url -like $UrlMatchPattern
+        $matchedUrl = ([string[]] $release.assets.browser_download_url) -like $UrlMatchPattern
         if ($matchedUrl) {
             break
         }
@@ -638,13 +687,13 @@ function Resolve-GithubReleaseAssetUrl {
     return ($matchedUrl -as [string])
 }
 
-function Get-GithubReleaseAssetHash {
+function Get-ChecksumFromGithubRelease {
     <#
     .SYNOPSIS
         Retrieves the hash value of a specific file from a GitHub release body.
 
     .DESCRIPTION
-        The Get-GithubReleaseAssetHash function retrieves the hash value (SHA256 or SHA512)
+        The Get-ChecksumFromGithubRelease function retrieves the hash value (SHA256 or SHA512)
         of a specific file from a GitHub release. It searches for the file in the release body
         and returns the hash value if found.
 
@@ -666,12 +715,12 @@ function Get-GithubReleaseAssetHash {
         The type of hash value to retrieve. Valid values are "SHA256" and "SHA512".
 
     .EXAMPLE
-        Get-GithubReleaseAssetHash -Repository "MyRepo" -FileName "myfile.txt" -HashType "SHA256"
+        Get-ChecksumFromGithubRelease -Repository "MyRepo" -FileName "myfile.txt" -HashType "SHA256"
 
         Retrieves the SHA256 hash value of "myfile.txt" from the latest release of the "MyRepo" repository.
 
     .EXAMPLE
-        Get-GithubReleaseAssetHash -Repository "MyRepo" -Version "1.0" -FileName "myfile.txt" -HashType "SHA512"
+        Get-ChecksumFromGithubRelease -Repository "MyRepo" -Version "1.0" -FileName "myfile.txt" -HashType "SHA512"
 
         Retrieves the SHA512 hash value of "myfile.txt" from the release version "1.0" of the "MyRepo" repository.
     #>
@@ -693,7 +742,8 @@ function Get-GithubReleaseAssetHash {
     $matchingReleases = Get-GithubReleasesByVersion `
         -Repository $Repository `
         -AllowPrerelease:$AllowPrerelease `
-        -Version $Version
+        -Version $Version `
+        -WithAssetsOnly
 
     foreach ($release in $matchingReleases) {
         $matchedVersion = $release.version
@@ -724,6 +774,70 @@ function Get-GithubReleaseAssetHash {
         throw "Found '${FileName}' in body of release ${matchedVersion}, but failed to get hash from it.`nLine: ${matchedLine}"
     }
     Write-Host "Found hash for ${FileName} in release ${matchedVersion}: $hash"
+
+    return $hash
+}
+
+function Get-ChecksumFromUrl {
+    <#
+    .SYNOPSIS
+        Retrieves the checksum hash for a file from a given URL.
+
+    .DESCRIPTION
+        The Get-ChecksumFromUrl function retrieves the checksum hash for a specified file
+        from a given URL. It supports SHA256 and SHA512 hash types.
+
+    .PARAMETER Url
+        The URL of the checksum file.
+
+    .PARAMETER FileName
+        The name of the file to retrieve the checksum hash for.
+
+    .PARAMETER HashType
+        The type of hash to retrieve. Valid values are "SHA256" and "SHA512".
+
+    .EXAMPLE
+        Get-ChecksumFromUrl -Url "https://example.com/checksums.txt" -FileName "file.txt" -HashType "SHA256"
+        Retrieves the SHA256 checksum hash for the file "file.txt" from the URL "https://example.com/checksums.txt".
+    #>
+
+    param (
+        [Parameter(Mandatory = $true)]
+        [string] $Url,
+        [Parameter(Mandatory = $true)]
+        [Alias("File", "Asset")]
+        [string] $FileName,
+        [Parameter(Mandatory = $true)]
+        [ValidateSet("SHA256", "SHA512")]
+        [Alias("Type")]
+        [string] $HashType
+    )
+
+    $tempFile = Join-Path -Path $env:TEMP -ChildPath ([System.IO.Path]::GetRandomFileName())
+    $checksums = (Invoke-DownloadWithRetry -Url $Url -Path $tempFile | Get-Item | Get-Content) -as [string[]]
+    Remove-Item -Path $tempFile
+
+    $matchedLine = $checksums | Where-Object { $_ -like "*$FileName*" }
+    if ($matchedLine.Count -gt 1) {
+        throw "Found multiple lines matching file name '${FileName}' in checksum file."
+    } elseif ($matchedLine.Count -eq 0) {
+        throw "File name '${FileName}' not found in checksum file."
+    }
+
+    if ($HashType -eq "SHA256") {
+        $pattern = "[A-Fa-f0-9]{64}"
+    } elseif ($HashType -eq "SHA512") {
+        $pattern = "[A-Fa-f0-9]{128}"
+    } else {
+        throw "Unknown hash type: ${HashType}"
+    }
+    Write-Debug "Found line matching file name '${FileName}' in checksum file:`n${matchedLine}"
+
+    $hash = $matchedLine | Select-String -Pattern $pattern | ForEach-Object { $_.Matches.Value }
+    if ([string]::IsNullOrEmpty($hash)) {
+        throw "Found '${FileName}' in checksum file, but failed to get hash from it.`nLine: ${matchedLine}"
+    }
+    Write-Host "Found hash for ${FileName} in checksum file: $hash"
 
     return $hash
 }

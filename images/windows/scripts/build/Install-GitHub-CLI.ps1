@@ -6,16 +6,22 @@
 
 Write-Host "Get the latest gh version..."
 
-$repoUrl = "https://api.github.com/repos/cli/cli/releases/latest"
-$assets = (Invoke-RestMethod -Uri $repoUrl).assets
-$downloadUrl = ($assets.browser_download_url -match "windows_amd64.msi") | Select-Object -First 1
+$downloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "cli/cli" `
+    -Version "latest" `
+    -UrlMatchPattern "gh_*_windows_amd64.msi"
 
-$hashUrl = ($assets.browser_download_url -match "checksums.txt") | Select-Object -First 1
-$externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*windows_amd64.msi*" }).Split(' ')[0]
+$checksumsUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "cli/cli" `
+    -Version "latest" `
+    -UrlMatchPattern "gh_*_checksums.txt"
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url $checksumsUrl `
+    -FileName (Split-Path $downloadUrl -Leaf)
 
 Install-Binary `
-  -Url $downloadUrl `
-  -ExpectedSHA256Sum $externalHash
+    -Url $downloadUrl `
+    -ExpectedSHA256Sum $externalHash
 
 Add-MachinePathItem "C:\Program Files (x86)\GitHub CLI"
 

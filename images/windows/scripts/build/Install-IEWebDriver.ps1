@@ -15,7 +15,7 @@ $driverZipFile = Invoke-DownloadWithRetry $ieDriverUrl
 
 $ieDriverPath = "C:\SeleniumWebDrivers\IEDriver"
 if (-not (Test-Path -Path $ieDriverPath)) {
-    $null = New-Item -Path $ieDriverPath -ItemType Directory -Force
+    New-Item -Path $ieDriverPath -ItemType Directory -Force | Out-Null
 }
 
 Expand-7ZipArchive -Path $driverZipFile -DestinationPath $ieDriverPath

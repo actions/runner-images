@@ -33,8 +33,7 @@ $regGoogleParameters = @(
 
 $regGoogleParameters | ForEach-Object {
     $Arguments = $_
-    if (-not ($Arguments.Path))
-    {
+    if (-not ($Arguments.Path)) {
         $Arguments.Add("Path", $regGoogleUpdatePath)
     }
     $Arguments.Add("Force", $true)
@@ -44,15 +43,14 @@ $regGoogleParameters | ForEach-Object {
 # Install Chrome WebDriver
 Write-Host "Install Chrome WebDriver..."
 $ChromeDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\ChromeDriver"
-if (-not (Test-Path -Path $ChromeDriverPath))
-{
+if (-not (Test-Path -Path $ChromeDriverPath)) {
     New-Item -Path $ChromeDriverPath -ItemType Directory -Force
 }
 
 Write-Host "Get the Chrome WebDriver download URL..."
 $RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
 $ChromePath = (Get-ItemProperty "$RegistryPath\chrome.exe").'(default)'
-[version]$ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion
+[version] $ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion
 $ChromeBuild = "$($ChromeVersion.Major).$($ChromeVersion.Minor).$($ChromeVersion.Build)"
 $ChromeDriverVersionsUrl = "https://googlechromelabs.github.io/chrome-for-testing/latest-patch-versions-per-build-with-downloads.json"
 
@@ -63,7 +61,7 @@ $ChromeDriverVersion = $ChromeDriverVersions.builds.$ChromeBuild
 if (-not ($ChromeDriverVersion)) {
     $availableVersions = $ChromeDriverVersions.builds | Get-Member | Select-Object -ExpandProperty Name
     Write-Host "Available chromedriver builds are $availableVersions"
-    Throw "Can't determine chromedriver version that matches chrome build $ChromeBuild"
+    throw "Can't determine chromedriver version that matches chrome build $ChromeBuild"
 }
 
 $ChromeDriverVersion.version | Out-File -FilePath "$ChromeDriverPath\versioninfo.txt" -Force;
@@ -79,10 +77,7 @@ Expand-7ZipArchive -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPat
 
 Write-Host "Setting the environment variables..."
 [Environment]::SetEnvironmentVariable("ChromeWebDriver", $ChromeDriverPath, "Machine")
-
-$regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\'
-$PathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path'
-$PathValue += ";$ChromeDriverPath\"
-Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $PathValue
+Add-MachinePathItem $ChromeDriverPath
+Update-Environment
 
 Invoke-PesterTests -TestFile "Browsers" -TestName "Chrome"

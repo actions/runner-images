@@ -51,12 +51,11 @@ foreach ($tool in $tools) {
         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) -and ($_.toolset -eq $tool.toolset) } `
         | Select-Object -First 1
 
-        Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
-        if ($null -ne $asset) {
-            Install-Asset -ReleaseAsset $asset
-        } else {
-            Write-Host "Asset was not found in versions manifest"
-            exit 1
+        if (-not $asset) {
+            throw "Asset for $($tool.name) $toolVersion $($tool.arch) not found in versions manifest"
         }
+
+        Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
+        Install-Asset -ReleaseAsset $asset
     }
 }
