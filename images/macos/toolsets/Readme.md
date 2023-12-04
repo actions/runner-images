@@ -3,7 +3,7 @@
 ## Xcode
 
 - `versions` - the array of objects that will present installed Xcode versions  
-  - `link` property points to the place where Xcode will be located on image. `/Applications/Xcode_<link>.app`    
+  - `link` property points to the place where Xcode will be located on image. `/Applications/Xcode_<link>.app`  
   - `version` points to Xcode version that will be downloaded and installed
   - `symlinks` describes the list of aliases where symlinks will be created to
 - `default` - version of Xcode to set as default (should be metched with any `link` in `versions` property)
