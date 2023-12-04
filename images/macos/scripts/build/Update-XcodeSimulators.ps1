@@ -8,16 +8,16 @@ $ErrorActionPreference = "Stop"
 Import-Module "$env:HOME/image-generation/helpers/Xcode.Helpers.psm1" -DisableNameChecking
 Import-Module "$env:HOME/image-generation/software-report/SoftwareReport.Xcode.psm1" -DisableNameChecking
 
-function Ensure-SimulatorInstalled {
+function Test-SimulatorInstalled {
     param(
         [Parameter(Mandatory)]
-        [string]$RuntimeId,
+        [string] $RuntimeId,
         [Parameter(Mandatory)]
-        [string]$DeviceId,
+        [string] $DeviceId,
         [Parameter(Mandatory)]
-        [string]$SimulatorName,
+        [string] $SimulatorName,
         [Parameter(Mandatory)]
-        [string]$XcodeVersion
+        [string] $XcodeVersion
     )
 
     $simctlPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "simctl"
@@ -52,5 +52,5 @@ Get-XcodeInfoList | Out-Null
 
 Write-Host "Validating and fixing Xcode simulators..."
 Get-BrokenXcodeSimulatorsList | ForEach-Object {
-    Ensure-SimulatorInstalled -RuntimeId $_.RuntimeId -DeviceId $_.DeviceId -SimulatorName $_.SimulatorName -XcodeVersion $_.XcodeVersion
+    Test-SimulatorInstalled -RuntimeId $_.RuntimeId -DeviceId $_.DeviceId -SimulatorName $_.SimulatorName -XcodeVersion $_.XcodeVersion
 }

@@ -29,11 +29,11 @@
         "sdk-tools": "sdk-tools-darwin-4333796.zip",
         "platform_min_version": "33",
         "build_tools_min_version": "33.0.2",
-        "extra-list": [
+        "extras": [
             "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
-        "addon-list": [],
-        "additional-tools": [
+        "addons": [],
+        "additional_tools": [
             "cmake;3.22.1"
         ],
         "ndk": {

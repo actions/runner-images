@@ -1,4 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
 $os = Get-OSVersion
 
 Describe "Azure CLI" {
@@ -173,7 +174,7 @@ Describe "Homebrew" {
 Describe "Kotlin" {
     $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
 
-    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) { 
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
         "$toolName -version" | Should -ReturnZeroExitCode
     }
 }

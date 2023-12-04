@@ -1,7 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
-$os = Get-OSVersion
-
 function Get-BashVersion {
     $version = bash -c 'echo ${BASH_VERSION}'
     return $version
@@ -83,7 +81,7 @@ function Get-VcpkgVersion {
 }
 
 function Get-GccVersions {
-    $versionList = Get-ToolsetValue -KeyPath gcc.versions
+    $versionList = (Get-ToolsetContent).gcc.versions
     $versionList | Foreach-Object {
         $nameVersion = Run-Command "gcc-${_} --version" | Select-Object -First 1
         $version = ($nameVersion -replace "^gcc-${_}").Trim() -replace '\).*$', ')'
@@ -92,7 +90,7 @@ function Get-GccVersions {
 }
 
 function Get-FortranVersions {
-    $versionList = Get-ToolsetValue -KeyPath gcc.versions
+    $versionList = (Get-ToolsetContent).gcc.versions
     $versionList | Foreach-Object {
         $nameVersion = Run-Command "gfortran-${_} --version" | Select-Object -First 1
         $version = ($nameVersion -replace "^GNU Fortran").Trim() -replace '\).*$', ')'
@@ -106,7 +104,7 @@ function Get-ClangLLVMVersions {
     $defaultClangOutput = Run-Command "clang --version" | Out-String
     $defaultClangVersion = $clangVersionRegex.Match($defaultClangOutput).Groups['version'].Value
 
-    $homebrewClangPath = '$(brew --prefix llvm@{0})/bin/clang' -f (Get-ToolsetValue 'llvm.version')
+    $homebrewClangPath = '$(brew --prefix llvm@{0})/bin/clang' -f ((Get-ToolsetContent).llvm.version)
     $homebrewClangOutput = Run-Command "$homebrewClangPath --version" | Out-String
     $homebrewClangVersion = $clangVersionRegex.Match($homebrewClangOutput).Groups['version'].Value
 

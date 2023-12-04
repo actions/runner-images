@@ -47,7 +47,7 @@ function Get-BrewPackageVersion {
         [string] $CommandName
     )
 
-    (Get-LinkTarget (Get-Command $CommandName).Source | Out-String) -match "(?<version>(\d+.){2}\d+)" | Out-Null 
+    (Get-LinkTarget (Get-Command $CommandName).Source | Out-String) -match "(?<version>(\d+.){2}\d+)" | Out-Null
     $packageVersion = $Matches.Version
 
     return $packageVersion
