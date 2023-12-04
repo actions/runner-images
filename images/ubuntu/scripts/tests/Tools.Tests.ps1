@@ -281,7 +281,7 @@ Describe "Kubernetes tools" {
     }
 
     It "kubectl" {
-        "kubectl version --client=true" | Should -MatchCommandOutput "Client Version: v"
+        "kubectl version --client=true" | Should -OutputTextMatchingRegex "Client Version: v"
     }
 
     It "helm" {
@@ -341,7 +341,7 @@ Describe "Containers" {
 
     # https://github.com/actions/runner-images/issues/7753
     It "podman networking" -TestCases "podman CNI plugins" {
-        "podman network create -d bridge test-net && podman network ls" | Should -Not -MatchCommandOutput "Error"
+        "podman network create -d bridge test-net && podman network ls" | Should -Not -OutputTextMatchingRegex "Error"
     }
 
 }
@@ -382,7 +382,7 @@ Describe "Ruby" {
     if ($gemTestCases)
     {
         It "Gem <gemName> is installed" -TestCases $gemTestCases {
-            "gem list -i '^$gemName$'" | Should -MatchCommandOutput "true"
+            "gem list -i '^$gemName$'" | Should -OutputTextMatchingRegex "true"
         }
     }
 }
