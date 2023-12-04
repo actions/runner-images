@@ -44,7 +44,7 @@ $toolsets | ForEach-Object {
         }
 
         Context "Mono" {
-            $sdkVersions = $toolset.xamarin."mono_versions"
+            $sdkVersions = $toolset.xamarin.mono_versions
 
             $sdkVersions | ForEach-Object {
                 It "Version '$_' is available and can be downloaded" {
@@ -60,7 +60,7 @@ $toolsets | ForEach-Object {
         }
 
         Context "Xamarin.iOS" {
-            $sdkVersions = $toolset.xamarin."ios_versions"
+            $sdkVersions = $toolset.xamarin.ios_versions
 
             $sdkVersions | ForEach-Object {
                 It "Version '$_' is available and can be downloaded" {
@@ -76,7 +76,7 @@ $toolsets | ForEach-Object {
         }
 
         Context "Xamarin.Mac" {
-            $sdkVersions = $toolset.xamarin."mac_versions"
+            $sdkVersions = $toolset.xamarin.mac_versions
 
             $sdkVersions | ForEach-Object {
                 It "Version '$_' is available and can be downloaded" {
@@ -92,7 +92,7 @@ $toolsets | ForEach-Object {
         }
 
         Context "Xamarin.Android" {
-            $sdkVersions = $toolset.xamarin."android_versions"
+            $sdkVersions = $toolset.xamarin.android_versions
 
             $sdkVersions | ForEach-Object {
                 It "Version '$_' is available and can be downloaded" {
@@ -108,11 +108,11 @@ $toolsets | ForEach-Object {
         }
 
         Context "Xamarin bundles" {
-            $monoVersions = $toolset.xamarin."mono_versions" | ForEach-Object { Get-ShortVersion $_ }
-            $iOSVersions = $toolset.xamarin."ios_versions" | ForEach-Object { Get-ShortVersion $_ }
-            $macVersions = $toolset.xamarin."mac_versions" | ForEach-Object { Get-ShortVersion $_ }
+            $monoVersions = $toolset.xamarin.mono_versions | ForEach-Object { Get-ShortVersion $_ }
+            $iOSVersions = $toolset.xamarin.ios_versions | ForEach-Object { Get-ShortVersion $_ }
+            $macVersions = $toolset.xamarin.mac_versions | ForEach-Object { Get-ShortVersion $_ }
             # Old Xamarin.Android version looks like "9.0.0-18" that doesn't support by System.Version
-            $androidVersions = $toolset.xamarin."android_versions" | ForEach-Object { Get-ShortVersion $_.Replace("-", ".") }
+            $androidVersions = $toolset.xamarin.android_versions | ForEach-Object { Get-ShortVersion $_.Replace("-", ".") }
             $bundles = $toolset.xamarin.bundles
 
             $bundles | ForEach-Object {
@@ -130,7 +130,7 @@ $toolsets | ForEach-Object {
             }
 
             It "Current bundle is valid" {
-                $currentBundleSymlink = $toolset.xamarin."bundle_default"
+                $currentBundleSymlink = $toolset.xamarin.bundle_default
                 if ($currentBundleSymlink -ne "latest") {
                     $bundleSymlinks = $bundles | ForEach-Object { $_.symlink }
                     $bundleSymlinks | Should -Contain $currentBundleSymlink -Because "Current bundle should be installed"
