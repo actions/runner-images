@@ -1,3 +1,8 @@
+################################################################################
+##  File:  Configure-GDIProcessHandleQuota.ps1
+##  Desc:  Set the GDIProcessHandleQuota value to 20000
+################################################################################
+
 # https://docs.microsoft.com/en-us/windows/win32/sysinfo/gdi-objects
 # This value can be set to a number between 256 and 65,536
 

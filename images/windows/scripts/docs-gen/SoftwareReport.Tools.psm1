@@ -25,7 +25,7 @@ function Get-BazeliskVersion {
 }
 
 function Get-BicepVersion {
-    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    (bicep --version | Out-String) -match "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $bicepVersion = $Matches.Version
     return $bicepVersion
 }
@@ -37,13 +37,13 @@ function Get-RVersion {
 }
 
 function Get-CMakeVersion {
-    ($(cmake -version) | Out-String) -match  "cmake version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    ($(cmake -version) | Out-String) -match "cmake version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $cmakeVersion = $Matches.Version
     return $cmakeVersion
 }
 
 function Get-CodeQLBundleVersion {
-    $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+    $CodeQLVersionsWildcard = Join-Path $env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
     $CodeQLVersion = & $CodeQLPath version --quiet
@@ -92,7 +92,7 @@ function Get-JQVersion {
 }
 
 function Get-KubectlVersion {
-    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
+    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v', '')
     return $kubectlVersion
 }
 
@@ -138,7 +138,7 @@ function Get-MercurialVersion {
 }
 
 function Get-NSISVersion {
-    $nsisVersion =  &"c:\Program Files (x86)\NSIS\makensis.exe" "/Version"
+    $nsisVersion = & "c:\Program Files (x86)\NSIS\makensis.exe" "/Version"
     return $nsisVersion.TrimStart("v")
 }
 
@@ -234,7 +234,7 @@ function Get-AlibabaCLIVersion {
 }
 
 function Get-CloudFoundryVersion {
-    $(cf version) -match  "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    $(cf version) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $cfVersion = $Matches.Version
     return $cfVersion
 }

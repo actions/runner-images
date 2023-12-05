@@ -4,23 +4,23 @@
 ################################################################################
 
 # Download the latest cf cli exe
-$CloudFoundryCliUrl = "https://packages.cloudfoundry.org/stable?release=windows64-exe&source=github"
+$cloudFoundryCliUrl = "https://packages.cloudfoundry.org/stable?release=windows64-exe&source=github"
 
-$CloudFoundryArchPath = Invoke-DownloadWithRetry $CloudFoundryCliUrl
+$cloudFoundryArchPath = Invoke-DownloadWithRetry $cloudFoundryCliUrl
 
 # Create directory for cf cli
-$CloudFoundryCliPath = "C:\cf-cli"
-New-Item -Path $CloudFoundryCliPath -ItemType Directory -Force
+$cloudFoundryCliPath = "C:\cf-cli"
+New-Item -Path $cloudFoundryCliPath -ItemType Directory -Force
 
 # Extract the zip archive
 Write-Host "Extracting cf cli..."
-Expand-7ZipArchive -Path $CloudFoundryArchPath -DestinationPath $CloudFoundryCliPath
+Expand-7ZipArchive -Path $cloudFoundryArchPath -DestinationPath $cloudFoundryCliPath
 
 # Add cf to path
-Add-MachinePathItem $CloudFoundryCliPath
+Add-MachinePathItem $cloudFoundryCliPath
 
 # Validate cf signature
-$CloudFoundrySignatureThumbprint = "4C69EDD13930ED01B83DD1D17B09C434DC1F2177"
-Test-FileSignature -Path "$CloudFoundryCliPath\cf.exe" -ExpectedThumbprint $CloudFoundrySignatureThumbprint
+$cloudFoundrySignatureThumbprint = "4C69EDD13930ED01B83DD1D17B09C434DC1F2177"
+Test-FileSignature -Path "$cloudFoundryCliPath\cf.exe" -ExpectedThumbprint $cloudFoundrySignatureThumbprint
 
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "CloudFoundry CLI"

@@ -4,26 +4,27 @@
 ####################################################################################
 
 # Install mongodb package
-$toolsetVersion = (Get-ToolsetContent).mongodb.version
+$toolsetContent = Get-ToolsetContent
+$toolsetVersion = $toolsetContent.mongodb.version
 
 $getMongoReleases = Invoke-WebRequest -Uri "mongodb.com/docs/manual/release-notes/$toolsetVersion/" -UseBasicParsing
-$TargetReleases = $getMongoReleases.Links.href | Where-Object {$_ -like "#$toolsetVersion*---*"}
+$targetReleases = $getMongoReleases.Links.href | Where-Object { $_ -like "#$toolsetVersion*---*" }
 
-$MinorVersions = @()
-foreach ($release in $TargetReleases) {
+$minorVersions = @()
+foreach ($release in $targetReleases) {
     if ($release -notlike "*upcoming*") {
         $pattern = '\d+\.\d+\.\d+'
         $version = $release | Select-String -Pattern $pattern -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
-        $MinorVersions += $version
+        $minorVersions += $version
     }
 }
 
-$LatestVersion = $MinorVersions[0]
+$latestVersion = $minorVersions[0]
 
 Install-Binary `
-    -Url "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$LatestVersion-signed.msi" `
+    -Url "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$latestVersion-signed.msi" `
     -ExtraInstallArgs @('TARGETDIR=C:\PROGRA~1\MongoDB ADDLOCAL=ALL') `
-    -ExpectedSignature (Get-ToolsetContent).mongodb.signature
+    -ExpectedSignature $toolsetContent.mongodb.signature
 
 # Add mongodb to the PATH
 $mongoPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'mongodb'").PathName
