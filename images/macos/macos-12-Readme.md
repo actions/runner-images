@@ -2,12 +2,11 @@
 |-|
 | [[all OSs] Nodejs 14.x will be removed from the images on November, 26](https://github.com/actions/runner-images/issues/8779) |
 | [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
-| [[All OS] Android NDK r23 will be removed from images on November 13](https://github.com/actions/runner-images/issues/8383) |
 ***
 # macOS 12
 - OS Version: macOS 12.7.1 (21G920)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20231115.2
+- Image Version: 20231127.1
 
 ## Installed Software
 
@@ -23,15 +22,15 @@
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
 - Julia 1.9.4
-- Kotlin 1.9.255-SNAPSHOT
+- Kotlin 1.9.21-release-633
 - Go 1.20.11
 - Mono 6.12.0.188
 - Node.js 18.18.2
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - NVM 0.39.5
-- NVM - Cached node versions: 14.21.3, 16.20.2, 18.18.2, 20.9.0
-- Perl 5.38.0
-- PHP 8.2.12
+- NVM - Cached node versions: 16.20.2, 18.18.2, 20.10.0
+- Perl 5.38.1
+- PHP 8.3.0
 - Python 2.7.18
 - Python3 3.12.0
 - R 4.3.2
@@ -40,17 +39,17 @@
 ### Package Management
 - Bundler 2.4.22
 - Carthage 0.39.1
-- CocoaPods 1.14.2
+- CocoaPods 1.14.3
 - Composer 2.6.5
-- Homebrew 4.1.20
-- Miniconda 23.9.0
+- Homebrew 4.1.22
+- Miniconda 23.10.0
 - NPM 9.8.1
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 23.3.1 (python 3.12)
 - Pipx 1.2.1
 - RubyGems 3.4.22
-- Vcpkg 2023 (build from commit 2b14b606c)
+- Vcpkg 2023 (build from commit 13c3c0fcc)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -70,10 +69,10 @@
 - aria2 1.37.0
 - azcopy 10.21.2
 - bazel 6.4.0
-- bazelisk 1.18.0
+- bazelisk 1.19.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 8.4.0
-- Git 2.42.1
+- Git 2.43.0
 - Git LFS 3.4.0
 - GitHub CLI 2.39.1
 - GNU Tar 1.35 - available by 'gtar' alias
@@ -93,29 +92,31 @@
 - Switchaudio-osx 1.2.2
 - Vagrant 2.4.0
 - VirtualBox 6.1.38r153438
-- yq 4.35.2
+- yq 4.40.3
 - zstd 1.5.5
 
 ### Tools
 - App Center CLI 2.14.0
-- AWS CLI 2.13.35
-- AWS SAM CLI 1.102.0
+- AWS CLI 2.13.39
+- AWS SAM CLI 1.103.0
 - AWS Session Manager CLI 1.2.497.0
 - Azure CLI 2.54.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.23.1
 - Cabal 3.6.2.0
-- Cmake 3.27.7
-- CodeQL Action Bundle 2.15.2
-- Colima 0.6.2
+- Cmake 3.27.8
+- CodeQL Action Bundle 2.15.3
+- Colima 0.6.6
 - Fastlane 2.217.0
 - GHC 9.8.1
 - GHCup 0.1.20.0
 - Jazzy 0.14.4
 - Stack 2.13.1
-- SwiftFormat 0.52.9
+- SwiftFormat 0.52.10
 - Swig 4.1.1
+- Xcbeautify 1.0.1
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
+- Xcodes 1.4.1
 
 ### Linters
 - SwiftLint 0.53.0
@@ -127,9 +128,9 @@
 - Google Chrome 119.0.6045.159
 - Google Chrome for Testing 119.0.6045.105
 - ChromeDriver 119.0.6045.105
-- Microsoft Edge 119.0.2151.58
-- Microsoft Edge WebDriver 119.0.2151.58
-- Mozilla Firefox 119.0.1
+- Microsoft Edge 119.0.2151.72
+- Microsoft Edge WebDriver 119.0.2151.72
+- Mozilla Firefox 120.0
 - geckodriver 0.33.0
 - Selenium server 4.15.0
 
@@ -171,10 +172,9 @@
 - 3.12.0
 
 #### Node.js
-- 14.21.3
 - 16.20.2
 - 18.18.2
-- 20.9.0
+- 20.10.0
 
 #### Go
 - 1.19.13
@@ -182,9 +182,9 @@
 - 1.21.4
 
 ### Rust Tools
-- Cargo 1.73.0
-- Rust 1.73.0
-- Rustdoc 1.73.0
+- Cargo 1.74.0
+- Rust 1.74.0
+- Rustdoc 1.74.0
 - Rustup 1.26.0
 
 #### Packages
@@ -192,11 +192,11 @@
 - Cargo-audit 0.18.3
 - Cargo-outdated 0.14.0
 - Cbindgen 0.26.0
-- Clippy 0.1.73
+- Clippy 0.1.74
 - Rustfmt 1.6.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.16
+- PowerShell 7.2.17
 
 #### PowerShell Modules
 - Az: 11.0.0
