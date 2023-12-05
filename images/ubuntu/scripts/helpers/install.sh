@@ -86,11 +86,11 @@ resolve_github_release_asset_url() {
     fi
 
     if [[ $version == "latest" ]]; then
-        tag_name=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | tail -n 1)
+        tag_name=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | tail -n 1)
     elif [[ $version == *"*"* ]]; then
-        tag_name=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep "${version}" | tail -n 1)
+        tag_name=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "${version}" | tail -n 1)
     else
-        tag_names=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep "${version}")
+        tag_names=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "${version}")
 
         for element in $tag_names; do
             semver=$(echo "$element" | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) {print substr($0, RSTART, RLENGTH)}')
