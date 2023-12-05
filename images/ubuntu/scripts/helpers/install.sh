@@ -92,7 +92,7 @@ resolve_github_release_asset_url() {
     else
         tag_names=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep "${version}")
 
-        for element in "${tag_names[@]}"; do
+        for element in $tag_names; do
             semver=$(echo "$element" | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) {print substr($0, RSTART, RLENGTH)}')
 
             if [[ $semver == $version ]]; then
