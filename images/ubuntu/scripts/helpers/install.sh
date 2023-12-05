@@ -69,26 +69,45 @@ get_toolset_value() {
     echo "$(jq -r "$query" $toolset_path)"
 }
 
-get_github_package_download_url() {
-    local REPO_ORG=$1
-    local FILTER=$2
-    local VERSION=$3
-    local SEARCH_IN_COUNT="100"
+resolve_github_release_asset_url() {
+    local repo=$1
+    local filter=$2
+    local version=${3:-"*"}
+    local allow_pre_release=${4:-false}
 
-    json=$(curl -fsSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
+    page_size="100"
 
-    if [ -n "$VERSION" ]; then
-        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "\w*${VERSION}" | tail -1)
+    json=$(curl -fsSL "https://api.github.com/repos/${repo}/releases?per_page=${page_size}")
+
+    if [[ $allow_pre_release == "true" ]]; then
+        json=$(echo $json | jq -r '.[] | select(.assets | length > 0)')
     else
-        tagName=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0)).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | tail -1)
+        json=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0))')
     fi
 
-    downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
-    if [ -z "$downloadUrl" ]; then
-        echo "Failed to parse a download url for the '${tagName}' tag using '${FILTER}' filter"
+    if [[ $version == "latest" ]]; then
+        tag_name=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | tail -n 1)
+    elif [[ $version == *"*"* ]]; then
+        tag_name=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep "${version}" | tail -n 1)
+    else
+        tag_names=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep "${version}")
+
+        for element in "${tag_names[@]}"; do
+            semver=$(echo "$element" | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) {print substr($0, RSTART, RLENGTH)}')
+
+            if [[ $semver == $version ]]; then
+                tag_name=$element
+            fi
+        done
+    fi
+
+    download_url=$(echo $json | jq -r ". | select(.tag_name==\"${tag_name}\").assets[].browser_download_url | select(${filter})" | head -n 1)
+    if [ -z "$download_url" ]; then
+        echo "Failed to parse a download url for the '${tag_name}' tag using '${filter}' filter"
         exit 1
     fi
-    echo $downloadUrl
+
+    echo $download_url
 }
 
 get_github_package_hash() {
