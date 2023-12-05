@@ -1,35 +1,35 @@
 function Get-ChromeVersion {
-    $googleChromeVersion = google-chrome --version | Take-OutputPart -Part 2
+    $googleChromeVersion = google-chrome --version | Get-StringPart -Part 2
     return $googleChromeVersion
 }
 
 function Get-ChromeDriverVersion {
-    $chromeDriverVersion = chromedriver --version | Take-OutputPart -Part 1
+    $chromeDriverVersion = chromedriver --version | Get-StringPart -Part 1
     return $chromeDriverVersion
 }
 
 function Get-FirefoxVersion {
-    $firefoxVersion = $(firefox --version) | Take-OutputPart -Part 2
+    $firefoxVersion = $(firefox --version) | Get-StringPart -Part 2
     return $firefoxVersion
 }
 
 function Get-GeckodriverVersion {
-    $geckodriverVersion = geckodriver --version | Select-Object -First 1 | Take-OutputPart -Part 1
+    $geckodriverVersion = geckodriver --version | Select-Object -First 1 | Get-StringPart -Part 1
     return $geckodriverVersion
 }
 
 function Get-ChromiumVersion {
-    $chromiumVersion = chromium-browser --version | Take-OutputPart -Part 1
+    $chromiumVersion = chromium-browser --version | Get-StringPart -Part 1
     return $chromiumVersion
 }
 
 function Get-EdgeVersion {
-    $edgeVersion = (microsoft-edge --version).Trim() | Take-OutputPart -Part 2
+    $edgeVersion = (microsoft-edge --version).Trim() | Get-StringPart -Part 2
     return $edgeVersion
 }
 
 function Get-EdgeDriverVersion {
-    $edgeDriverVersion = msedgedriver --version | Take-OutputPart -Part 3
+    $edgeDriverVersion = msedgedriver --version | Get-StringPart -Part 3
     return $edgeDriverVersion
 }
 
@@ -41,19 +41,19 @@ function Get-SeleniumVersion {
 function Build-BrowserWebdriversEnvironmentTable {
     return @(
         [PSCustomObject] @{
-            "Name" = "CHROMEWEBDRIVER"
+            "Name"  = "CHROMEWEBDRIVER"
             "Value" = $env:CHROMEWEBDRIVER
         },
         [PSCustomObject] @{
-            "Name" = "EDGEWEBDRIVER"
+            "Name"  = "EDGEWEBDRIVER"
             "Value" = $env:EDGEWEBDRIVER
         },
         [PSCustomObject] @{
-            "Name" = "GECKOWEBDRIVER"
+            "Name"  = "GECKOWEBDRIVER"
             "Value" = $env:GECKOWEBDRIVER
         },
         [PSCustomObject] @{
-            "Name" = "SELENIUM_JAR_PATH"
+            "Name"  = "SELENIUM_JAR_PATH"
             "Value" = $env:SELENIUM_JAR_PATH
         }
     )

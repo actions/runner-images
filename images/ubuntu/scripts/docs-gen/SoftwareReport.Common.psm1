@@ -10,18 +10,18 @@ function Get-DashVersion {
 
 function Get-CPPVersions {
     $result = Get-CommandResult "apt list --installed" -Multiline
-    $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d+"} | ForEach-Object {
-        & $_.Split("/")[0] --version | Select-Object -First 1 | Take-OutputPart -Part 3
-    } | Sort-Object {[Version]$_}
+    $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d+" } | ForEach-Object {
+        & $_.Split("/")[0] --version | Select-Object -First 1 | Get-StringPart -Part 3
+    } | Sort-Object {[Version] $_}
     return $cppVersions
 }
 
 function Get-FortranVersions {
     $result = Get-CommandResult "apt list --installed" -Multiline
-    $fortranVersions = $result.Output | Where-Object { $_ -match "^gfortran-\d+"} | ForEach-Object {
+    $fortranVersions = $result.Output | Where-Object { $_ -match "^gfortran-\d+" } | ForEach-Object {
         $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
         $Matches.version
-    } | Sort-Object {[Version]$_}
+    } | Sort-Object {[Version] $_}
     return $fortranVersions
 }
 
@@ -34,20 +34,21 @@ function Get-ClangToolVersions {
     )
 
     $result = Get-CommandResult "apt list --installed" -Multiline
-    $toolVersions = $result.Output | Where-Object { $_ -match "^${ToolName}-\d+"} | ForEach-Object {
+    $toolVersions = $result.Output | Where-Object { $_ -match "^${ToolName}-\d+" } | ForEach-Object {
         $clangCommand = ($_ -Split "/")[0]
         Invoke-Expression "$clangCommand --version" | Where-Object { $_ -match "${VersionLineMatcher}" } | ForEach-Object {
             $_ -match "${VersionLineMatcher} (?<version>${VersionPattern}" | Out-Null
             $Matches.version
             }
-        } | Sort-Object {[Version]$_}
+        } | Sort-Object {[Version] $_}
 
     return $toolVersions
 }
 
 
 function Get-ClangTidyVersions {
-    return Get-ClangToolVersions -ToolName "clang-tidy" -VersionLineMatcher "LLVM version" -VersionPattern "\d+\.\d+\.\d+)"
+    $clangVersions = Get-ClangToolVersions -ToolName "clang-tidy" -VersionLineMatcher "LLVM version" -VersionPattern "\d+\.\d+\.\d+)"
+    return $clangVersions
 }
 
 
@@ -64,7 +65,7 @@ function Get-ErlangRebar3Version {
 }
 
 function Get-MonoVersion {
-    $monoVersion = mono --version | Out-String | Take-OutputPart -Part 4
+    $monoVersion = mono --version | Out-String | Get-StringPart -Part 4
     return $monoVersion
 }
 
@@ -75,7 +76,7 @@ function Get-MsbuildVersion {
 }
 
 function Get-NuGetVersion {
-    $nugetVersion = nuget help | Select-Object -First 1 | Take-OutputPart -Part 2
+    $nugetVersion = nuget help | Select-Object -First 1 | Get-StringPart -Part 2
     return $nugetVersion
 }
 
@@ -85,7 +86,8 @@ function Get-NodeVersion {
 }
 
 function Get-OpensslVersion {
-    return $(dpkg-query -W -f '${Version}' openssl)
+    $opensslVersion = $(dpkg-query -W -f '${Version}' openssl)
+    return $opensslVersion
 }
 
 function Get-PerlVersion {
@@ -95,31 +97,32 @@ function Get-PerlVersion {
 
 function Get-PythonVersion {
     $result = Get-CommandResult "python --version"
-    $version = $result.Output | Take-OutputPart -Part 1
+    $version = $result.Output | Get-StringPart -Part 1
     return $version
 }
 
 function Get-PowershellVersion {
-    return $(pwsh --version) | Take-OutputPart -Part 1
+    $pwshVersion = $(pwsh --version) | Get-StringPart -Part 1
+    return $pwshVersion
 }
 
 function Get-RubyVersion {
-    $rubyVersion = ruby --version | Out-String | Take-OutputPart -Part 1
+    $rubyVersion = ruby --version | Out-String | Get-StringPart -Part 1
     return $rubyVersion
 }
 
 function Get-SwiftVersion {
-    $swiftVersion = swift --version | Out-String | Take-OutputPart -Part 2
+    $swiftVersion = swift --version | Out-String | Get-StringPart -Part 2
     return $swiftVersion
 }
 
 function Get-KotlinVersion {
-    $kotlinVersion = kotlin -version | Out-String | Take-OutputPart -Part 2
+    $kotlinVersion = kotlin -version | Out-String | Get-StringPart -Part 2
     return $kotlinVersion
 }
 
 function Get-JuliaVersion {
-    $juliaVersion = julia --version | Take-OutputPart -Part 2
+    $juliaVersion = julia --version | Get-StringPart -Part 2
     return $juliaVersion
 }
 
@@ -147,7 +150,7 @@ function Get-GemVersion {
 }
 
 function Get-MinicondaVersion {
-    $condaVersion = conda --version | Take-OutputPart -Part 1
+    $condaVersion = conda --version | Get-StringPart -Part 1
     return $condaVersion
 }
 
@@ -195,7 +198,7 @@ function Get-AntVersion {
 }
 
 function Get-GradleVersion {
-    $gradleVersion = (gradle -v) -match "^Gradle \d" | Take-OutputPart -Part 1
+    $gradleVersion = (gradle -v) -match "^Gradle \d" | Get-StringPart -Part 1
     return $gradleVersion
 }
 
@@ -213,14 +216,14 @@ function Get-SbtVersion {
 
 function Get-PHPVersions {
     $result = Get-CommandResult "apt list --installed" -Multiline
-    return $result.Output | Where-Object { $_ -match "^php\d+\.\d+/"} | ForEach-Object {
+    return $result.Output | Where-Object { $_ -match "^php\d+\.\d+/" } | ForEach-Object {
         $_ -match "now (\d+:)?(?<version>\d+\.\d+\.\d+)" | Out-Null
         $Matches.version
     }
 }
 
 function Get-ComposerVersion {
-    $composerVersion = (composer --version) -replace " version" | Take-OutputPart -Part 1
+    $composerVersion = (composer --version) -replace " version" | Get-StringPart -Part 1
     return $composerVersion
 }
 
@@ -281,7 +284,7 @@ function Get-PowerShellModules {
 }
 
 function Get-DotNetCoreSdkVersions {
-    $dotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Take-OutputPart -Part 0 }
+    $dotNetCoreSdkVersion = dotnet --list-sdks list | ForEach-Object { $_ | Get-StringPart -Part 0 }
     return $dotNetCoreSdkVersion
 }
 
@@ -307,8 +310,8 @@ function Get-CachedDockerImagesTableData {
         $parts = $_.Split("|")
         [PSCustomObject] @{
             "Repository:Tag" = $parts[0]
-            "Digest" = $parts[1]
-            "Created" = $parts[2].split(' ')[0]
+            "Digest"         = $parts[1]
+            "Created"        = $parts[2].split(' ')[0]
         }
     } | Sort-Object -Property "Repository:Tag"
 }
@@ -318,10 +321,10 @@ function Get-AptPackages {
     $output = @()
     ForEach ($pkg in ($apt.vital_packages + $apt.common_packages + $apt.cmd_packages)) {
         $version = $(dpkg-query -W -f '${Version}' $pkg)
-        if ($Null -eq $version) {
+        if ($null -eq $version) {
             $version = $(dpkg-query -W -f '${Version}' "$pkg*")
         }
-        
+
         $version = $version -replace '~','\~'
 
         $output += [PSCustomObject] @{
@@ -341,18 +344,18 @@ function Get-PipxVersion {
 function Build-PackageManagementEnvironmentTable {
     return @(
         [PSCustomObject] @{
-            "Name" = "CONDA"
+            "Name"  = "CONDA"
             "Value" = $env:CONDA
         },
         [PSCustomObject] @{
-            "Name" = "VCPKG_INSTALLATION_ROOT"
+            "Name"  = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
         }
     )
 }
 
 function Get-SystemdVersion {
-    $matches = [regex]::Matches((systemctl --version | head -n 1), "\((.*?)\)")
-    $result = foreach ($match in $matches) {$match.Groups[1].Value}
+    $matchCollection = [regex]::Matches((systemctl --version | head -n 1), "\((.*?)\)")
+    $result = foreach ($match in $matchCollection) {$match.Groups[1].Value}
     return $result
 }

@@ -1,25 +1,25 @@
 function Get-PostgreSqlVersion {
-    $postgreSQLVersion = psql --version | Take-OutputPart -Part 2
+    $postgreSQLVersion = psql --version | Get-StringPart -Part 2
     return $postgreSQLVersion
 }
 
 function Get-MongoDbVersion {
-    $mongoDBVersion = mongod --version | Select-Object -First 1 | Take-OutputPart -Part 2 -Delimiter "v"
+    $mongoDBVersion = mongod --version | Select-Object -First 1 | Get-StringPart -Part 2 -Delimiter "v"
     return $mongoDBVersion
 }
 
 function Get-SqliteVersion {
-    $sqliteVersion = sqlite3 --version | Take-OutputPart -Part 0
+    $sqliteVersion = sqlite3 --version | Get-StringPart -Part 0
     return $sqliteVersion
 }
 
 function Get-MySQLVersion {
-    $mySQLVersion = mysqld --version | Take-OutputPart -Part 2
+    $mySQLVersion = mysqld --version | Get-StringPart -Part 2
     return $mySQLVersion
 }
 
 function Get-SQLCmdVersion {
-    $sqlcmdVersion = sqlcmd -? | Select-String -Pattern "Version" | Take-OutputPart -Part 1
+    $sqlcmdVersion = sqlcmd -? | Select-String -Pattern "Version" | Get-StringPart -Part 1
     return $sqlcmdVersion
 }
 

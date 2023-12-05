@@ -2,8 +2,8 @@ using module ./software-report-base/SoftwareReport.psm1
 using module ./software-report-base/SoftwareReport.Nodes.psm1
 
 param (
-    [Parameter(Mandatory)][string]
-    $OutputDirectory
+    [Parameter(Mandatory)]
+    [string] $OutputDirectory
 )
 
 $global:ErrorActionPreference = "Stop"
@@ -23,7 +23,7 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableName
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -DisableNameChecking
 
 # Restore file owner in user profile
-Restore-UserOwner
+sudo chown -R ${env:USER}: $env:HOME
 
 # Software report
 $softwareReport = [SoftwareReport]::new("Ubuntu $(Get-OSVersionShort)")
@@ -163,7 +163,6 @@ $cliTools.AddToolVersion("Netlify CLI", $(Get-NetlifyCliVersion))
 $cliTools.AddToolVersion("OpenShift CLI", $(Get-OCCliVersion))
 $cliTools.AddToolVersion("ORAS CLI", $(Get-ORASCliVersion))
 $cliTools.AddToolVersion("Vercel CLI", $(Get-VerselCliversion))
-
 
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
 
