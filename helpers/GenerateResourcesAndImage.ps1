@@ -97,8 +97,10 @@ Function GenerateResourcesAndImage {
             This parameter cannot be used in combination with the virtual_network_name packer parameter.
         .PARAMETER Force
             Delete the resource group if it exists without user confirmation.
+            This parameter is deprecated and will be removed in a future release.
         .PARAMETER ReuseResourceGroup
             Reuse the resource group if it exists without user confirmation.
+            This parameter is deprecated and will be removed in a future release.
         .PARAMETER OnError
             Specify how packer handles an error during image creation.
             Options:
@@ -145,6 +147,10 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [hashtable] $Tags = @{}
     )
+
+    if ($Force -or $ReuseResourceGroup) {
+        Write-Warning "The `ReuseResourceGroup` and `Force` parameters are deprecated and will be removed in a future release. The resource group will be reused when it already exists and an error will be thrown when it doesn't. If you want to delete the resource group, please delete it manually."
+    }
 
     if ($Force -and $ReuseResourceGroup) {
         throw "Force and ReuseResourceGroup cannot be used together."
