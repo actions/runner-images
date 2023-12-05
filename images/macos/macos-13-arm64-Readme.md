@@ -1,13 +1,13 @@
 | Announcements |
 |-|
+| [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
 | [[all OSs] Nodejs 14.x will be removed from the images on November, 26](https://github.com/actions/runner-images/issues/8779) |
 | [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
-| [[All OS] Android NDK r23 will be removed from images on November 13](https://github.com/actions/runner-images/issues/8383) |
 ***
 # macOS 13
 - OS Version: macOS 13.6.1 (22G313)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20231115.2
+- Image Version: 20231205.1
 
 ## Installed Software
 
@@ -23,39 +23,39 @@
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
 - Julia 1.9.4
-- Kotlin 1.9.255-SNAPSHOT
+- Kotlin 1.9.21-release-633
 - Mono 6.12.0.188
-- Node.js 18.18.2
-- Perl 5.38.0
+- Node.js 18.19.0
+- Perl 5.38.2
 - R 4.3.2
 - Ruby 3.0.6p216
 
 ### Package Management
 - Bundler 2.4.22
 - Carthage 0.39.1
-- CocoaPods 1.14.2
-- Homebrew 4.1.20
-- NPM 9.8.1
+- CocoaPods 1.14.3
+- Homebrew 4.1.23
+- NPM 10.2.3
 - NuGet 6.3.1.1
 - RubyGems 3.4.22
 - Yarn 1.22.19
 
 ### Project Management
 - Apache Ant 1.10.14
-- Apache Maven 3.9.5
-- Gradle 8.4
+- Apache Maven 3.9.6
+- Gradle 8.5
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.21.2
 - bazel 6.4.0
-- bazelisk 1.18.0
+- bazelisk 1.19.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.1.2
-- Git 2.42.1
+- Git 2.43.0
 - Git LFS 3.4.0
-- GitHub CLI 2.39.1
+- GitHub CLI 2.39.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
@@ -63,28 +63,30 @@
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
-- yq 4.35.2
+- yq 4.40.4
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.13.36
-- AWS SAM CLI 1.102.0
-- AWS Session Manager CLI 1.2.497.0
-- Azure CLI 2.54.0
+- AWS CLI 2.14.5
+- AWS SAM CLI 1.103.0
+- AWS Session Manager CLI 1.2.536.0
+- Azure CLI 2.55.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.23.1
-- Cmake 3.27.7
-- CodeQL Action Bundle 2.15.2
+- Cmake 3.27.9
+- CodeQL Action Bundle 2.15.3
 - Fastlane 2.217.0
-- SwiftFormat 0.52.9
+- SwiftFormat 0.52.10
+- Xcbeautify 1.1.0
 - Xcode Command Line Tools 15.0.0.0.1.1694021235
+- Xcodes 1.4.1
 
 ### Linters
 
 ### Browsers
 - Safari 17.1 (18616.2.9.11.10)
 - SafariDriver 17.1 (18616.2.9.11.10)
-- Google Chrome 119.0.6045.159
+- Google Chrome 119.0.6045.199
 - Google Chrome for Testing 119.0.6045.105
 - ChromeDriver 119.0.6045.105
 - Selenium server 4.15.0
@@ -111,8 +113,8 @@
 
 #### Node.js
 - 16.20.1
-- 18.18.2
-- 20.9.0
+- 18.19.0
+- 20.10.0
 
 #### Go
 - 1.19.13
@@ -120,20 +122,20 @@
 - 1.21.4
 
 ### Rust Tools
-- Cargo 1.73.0
-- Rust 1.73.0
-- Rustdoc 1.73.0
+- Cargo 1.74.0
+- Rust 1.74.0
+- Rustdoc 1.74.0
 - Rustup 1.26.0
 
 #### Packages
-- Clippy 0.1.73
+- Clippy 0.1.74
 - Rustfmt 1.6.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.16
+- PowerShell 7.2.17
 
 #### PowerShell Modules
-- Az: 11.0.0
+- Az: 11.1.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -201,7 +203,7 @@
 | Package Name               | Version                                                                                                                   |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                      |
-| Android Emulator           | 32.1.15                                                                                                                   |
+| Android Emulator           | 33.1.23                                                                                                                   |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2                                                                                                          |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 34.0.5                                                                                                                    |
