@@ -10,4 +10,4 @@ if (-not(Test-Path -Path $RegistryKeyPath)) {
 }
 
 # Add registry value to enable Developer Mode
-New-ItemProperty -Path $RegistryKeyPath -Name AllowDevelopmentWithoutDevLicense -PropertyType DWORD -Value 1
+New-ItemProperty -Path $RegistryKeyPath -Name AllowDevelopmentWithoutDevLicense -PropertyType DWORD -Value 1 -Force
