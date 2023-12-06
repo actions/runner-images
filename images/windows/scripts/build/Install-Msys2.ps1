@@ -40,6 +40,7 @@ function Install-Msys2 {
 function Install-Msys2Packages {
     param (
         [Parameter(Mandatory = $true)]
+        [AllowEmptyCollection()]
         [string[]]$Packages
     )
 
@@ -64,7 +65,8 @@ function Install-Msys2Packages {
 function Install-MingwPackages {
     param (
         [Parameter(Mandatory = $true)]
-        [string[]]$Packages
+        [AllowEmptyCollection()]
+        [object[]] $Packages
     )
 
     if (-not $Packages) {
