@@ -2,12 +2,11 @@
 |-|
 | [[all OSs] Nodejs 14.x will be removed from the images on November, 26](https://github.com/actions/runner-images/issues/8779) |
 | [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
-| [[All OS] Android NDK r23 will be removed from images on November 13](https://github.com/actions/runner-images/issues/8383) |
 ***
 # macOS 11
 - OS Version: macOS 11.7.10 (20G1427)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20231117.2
+- Image Version: 20231127.1
 
 ## Installed Software
 
@@ -23,15 +22,15 @@
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - Julia 1.9.4
-- Kotlin 1.9.255-SNAPSHOT
+- Kotlin 1.9.21-release-633
 - Go 1.20.11
 - Mono 6.12.0.188
 - Node.js 18.18.2
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - NVM 0.39.5
-- NVM - Cached node versions: 14.21.3, 16.20.2, 18.18.2, 20.9.0
-- Perl 5.38.0
-- PHP 8.2.12
+- NVM - Cached node versions: 16.20.2, 18.18.2, 20.10.0
+- Perl 5.38.1
+- PHP 8.3.0
 - Python 2.7.18
 - Python3 3.12.0
 - R 4.3.2
@@ -40,9 +39,9 @@
 ### Package Management
 - Bundler 2.4.22
 - Carthage 0.39.1
-- CocoaPods 1.14.2
+- CocoaPods 1.14.3
 - Composer 2.6.5
-- Homebrew 4.1.20
+- Homebrew 4.1.22
 - Miniconda 23.10.0
 - NPM 9.8.1
 - NuGet 6.3.1.1
@@ -50,7 +49,7 @@
 - Pip3 23.3.1 (python 3.12)
 - Pipx 1.2.1
 - RubyGems 3.4.22
-- Vcpkg 2023 (build from commit 0c20b2a97)
+- Vcpkg 2023 (build from commit 2a01db703)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -73,7 +72,7 @@
 - bazelisk 1.19.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 8.4.0
-- Git 2.42.1
+- Git 2.43.0
 - Git LFS 3.4.0
 - GitHub CLI 2.39.1
 - GNU Tar 1.35 - available by 'gtar' alias
@@ -93,13 +92,13 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.2.2
-- yq 4.35.2
+- yq 4.40.3
 - zstd 1.5.5
 
 ### Tools
 - Aliyun CLI 3.0.188
 - App Center CLI 2.14.0
-- AWS CLI 2.13.37
+- AWS CLI 2.14.0
 - AWS SAM CLI 1.103.0
 - AWS Session Manager CLI 1.2.497.0
 - Azure CLI 2.54.0
@@ -107,7 +106,7 @@
 - Bicep CLI 0.23.1
 - Cabal 3.6.2.0
 - Cmake 3.27.8
-- CodeQL Action Bundle 2.15.2
+- CodeQL Action Bundle 2.15.3
 - Fastlane 2.217.0
 - GHC 9.8.1
 - GHCup 0.1.20.0
@@ -129,7 +128,7 @@
 - ChromeDriver 119.0.6045.105
 - Microsoft Edge 119.0.2151.72
 - Microsoft Edge WebDriver 119.0.2151.72
-- Mozilla Firefox 119.0.1
+- Mozilla Firefox 120.0
 - geckodriver 0.33.0
 - Selenium server 4.15.0
 
@@ -173,10 +172,9 @@
 - 3.12.0
 
 #### Node.js
-- 14.21.3
 - 16.20.2
 - 18.18.2
-- 20.9.0
+- 20.10.0
 
 #### Go
 - 1.19.13
