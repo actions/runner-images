@@ -4,7 +4,7 @@
 ##  Desc:  Configure Toolset
 ################################################################################
 
-$tools2Configure = @(
+$toolsToConfigure = @(
     @{
         name          = "Python"
         pathTemplates = @(
@@ -23,10 +23,10 @@ $tools2Configure = @(
 
 
 Write-Host "Configure toolset tools environment..."
-foreach ($tool in $tools2Configure) {
+foreach ($tool in $toolsToConfigure) {
     $toolsetData = Get-ToolsetContent `
     | Select-Object -ExpandProperty toolcache `
-    | Where-Object { $_.name -eq $toolName }
+    | Where-Object { $_.name -eq $tool.name }
 
     foreach ($key in $toolsetData.Keys) {
         $tool.$key = $toolsetData[$key]
