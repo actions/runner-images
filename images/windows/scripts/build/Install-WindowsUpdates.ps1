@@ -35,4 +35,4 @@ function Install-WindowsUpdates {
 Install-WindowsUpdates
 
 # Create complete windows update file
-New-Item -Path $env:windir -Name WindowsUpdateDone.txt -ItemType File | Out-Null
+New-Item -Path $env:windir -Name WindowsUpdateDone.txt -ItemType File -Force | Out-Null
