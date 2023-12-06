@@ -7,7 +7,7 @@
 # https://github.com/msys2/MINGW-packages/blob/master/azure-pipelines.yml
 # https://packages.msys2.org/group/
 
-$dash = "-" * 40
+$logPrefix = "`n" + ("-" * 40) + "`n---"
 $origPath = $env:PATH
 
 function Install-Msys2 {
@@ -48,14 +48,14 @@ function Install-Msys2Packages {
         return
     }
 
-    Write-Host "`n$dash Install msys2 packages"
+    Write-Host "$logPrefix Install msys2 packages"
     pacman.exe -S --noconfirm --needed --noprogressbar $Packages
     if ($LastExitCode -ne 0) {
         throw "MSYS2 packages installation failed with exit code $LastExitCode"
     }
     taskkill /f /fi "MODULES eq msys-2.0.dll"
 
-    Write-Host "`n$dash Remove p7zip/7z package due to conflicts"
+    Write-Host "$logPrefix Remove p7zip/7z package due to conflicts"
     pacman.exe -R --noconfirm --noprogressbar p7zip
     if ($LastExitCode -ne 0) {
         throw "Removal of p7zip/7z package failed with exit code $LastExitCode"
@@ -73,7 +73,7 @@ function Install-MingwPackages {
         return
     }
 
-    Write-Host "`n$dash Install mingw packages"
+    Write-Host "$logPrefix Install mingw packages"
     $archs = $Packages.arch
 
     foreach ($arch in $archs) {
@@ -90,7 +90,7 @@ function Install-MingwPackages {
     }
 
     # clean all packages to decrease image size
-    Write-Host "`n$dash Clean packages"
+    Write-Host "$logPrefix Clean packages"
     pacman.exe -Scc --noconfirm
     if ($LastExitCode -ne 0) {
         throw "Cleaning of packages failed with exit code $LastExitCode"
@@ -102,7 +102,7 @@ function Install-MingwPackages {
     }
 
     foreach ($arch in $archs) {
-        Write-Host "`n$dash Installed $arch packages"
+        Write-Host "$logPrefix Installed $arch packages"
         $pkgs | Select-String -Pattern "^${arch}-"
     }
 }
@@ -112,14 +112,14 @@ Install-Msys2
 # Add msys2 bin tools folders to PATH temporary
 $env:PATH = "C:\msys64\mingw64\bin;C:\msys64\usr\bin;$origPath"
 
-Write-Host "`n$dash pacman --noconfirm -Syyuu"
+Write-Host "$logPrefix pacman --noconfirm -Syyuu"
 pacman.exe -Syyuu --noconfirm
 if ($LastExitCode -ne 0) {
     throw "Updating of packages failed with exit code $LastExitCode"
 }
 taskkill /f /fi "MODULES eq msys-2.0.dll"
 
-Write-Host "`n$dash pacman --noconfirm -Syuu (2nd pass)"
+Write-Host "$logPrefix pacman --noconfirm -Syuu (2nd pass)"
 pacman.exe -Syuu --noconfirm
 if ($LastExitCode -ne 0) {
     throw "Second pass updating of packages failed with exit code $LastExitCode"
