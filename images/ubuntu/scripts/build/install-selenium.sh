@@ -11,7 +11,7 @@ source $HELPER_SCRIPTS/etc-environment.sh
 SELENIUM_MAJOR_VERSION=$(get_toolset_value '.selenium.version')
 
 # Download Selenium server
-SELENIUM_DOWNLOAD_URL=$(get_github_package_download_url "SeleniumHQ/selenium" "contains(\"selenium-server-${SELENIUM_MAJOR_VERSION}\") and endswith(\".jar\")")
+SELENIUM_DOWNLOAD_URL=$(resolve_github_release_asset_url "SeleniumHQ/selenium" "contains(\"selenium-server-\") and endswith(\".jar\")" "$SELENIUM_MAJOR_VERSION\.*")
 SELENIUM_JAR_PATH=$(download_with_retry "$SELENIUM_DOWNLOAD_URL" "/usr/share/java/selenium-server.jar")
 
 # Create an epmty file to retrive selenium version
