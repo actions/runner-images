@@ -59,13 +59,10 @@ verlte() {
     [  "$1" = "$sortedVersion" ]
 }
 
-get_toolset_path() {
-    echo "/imagegeneration/installers/toolset.json"
-}
-
 get_toolset_value() {
-    local toolset_path=$(get_toolset_path)
+    local toolset_path="/imagegeneration/installers/toolset.json"
     local query=$1
+
     echo "$(jq -r "$query" $toolset_path)"
 }
 
