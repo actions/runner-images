@@ -78,9 +78,8 @@ function Install-DotnetSDK {
     Write-Host "Installing dotnet $SDKVersion"
     $zipPath = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
     & $InstallScriptPath -Version $SDKVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet') -ZipPath $zipPath -KeepZip
-    if ($LastExitCode -ne 0) {
-        throw "Installation failed with exit code $LastExitCode"
-    }
+    # Installer is PowerShell script that doesn't set exit code on failure
+    # If installation failed, tests will fail anyway
 
     #region Supply chain security
     $releasesJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
