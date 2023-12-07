@@ -96,7 +96,7 @@ to accomplish this.
 - Newman 6.0.0
 - nvm 0.39.6
 - OpenSSL 3.0.2-0ubuntu1.12
-- Packer Packer v1.10.0
+- Packer v1.10.0
 - Parcel 2.10.3
 - Podman 3.4.4
 - Pulumi 3.95.0
