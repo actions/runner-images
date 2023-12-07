@@ -4,7 +4,6 @@
 ##  Desc:  Install Mono Framework
 ################################################################################
 
-# Source utility functions
 source ~/utils/utils.sh
 
 # Install Mono Framework
@@ -26,7 +25,7 @@ NUNIT_VERSION=$(get_toolset_value '.mono.nunit.version')
 NUNIT_ARCHIVE_URL="https://github.com/nunit/nunit-console/releases/download/${NUNIT_VERSION}/NUnit.Console-${NUNIT_VERSION}.zip"
 NUNIT_ARCHIVE_SHA256=$(get_toolset_value '.mono.nunit.sha256')
 NUNIT_PATH="/Library/Developer/nunit"
-NUNIT_VERSION_PATH="$NUNIT_PATH/$NUNIT_VERSION"
+nunit_version_path="$NUNIT_PATH/$nunit_version"
 
 NUNIT_ARCHIVE_PATH=$(download_with_retry "$NUNIT_ARCHIVE_URL")
 use_checksum_comparison "$NUNIT_ARCHIVE_PATH" "$NUNIT_ARCHIVE_SHA256"
@@ -36,18 +35,18 @@ sudo unzip -q "$NUNIT_ARCHIVE_PATH" -d "$NUNIT_VERSION_PATH"
 
 # Create a wrapper script for nunit3-console
 echo "Creating nunit3-console wrapper..."
-NUNIT3_CONSOLE_WRAPPER=$(mktemp)
-cat <<EOF > "$NUNIT3_CONSOLE_WRAPPER"
+nunit3_console_wrapper=$(mktemp)
+cat <<EOF > "$nunit3_console_wrapper"
 #!/bin/bash -e -o pipefail
-exec ${MONO_VERSIONS_PATH}/${MONO_VERSION}/bin/mono --debug \$MONO_OPTIONS $NUNIT_VERSION_PATH/nunit3-console.exe "\$@"
+exec ${MONO_VERSIONS_PATH}/${mono_version}/bin/mono --debug \$MONO_OPTIONS $nunit_version_path/nunit3-console.exe "\$@"
 EOF
-cat "$NUNIT3_CONSOLE_WRAPPER"
-sudo chmod +x "$NUNIT3_CONSOLE_WRAPPER"
-sudo mv "$NUNIT3_CONSOLE_WRAPPER" "${MONO_VERSIONS_PATH}/${MONO_VERSION}/Commands/nunit3-console"
+cat "$nunit3_console_wrapper"
+sudo chmod +x "$nunit3_console_wrapper"
+sudo mv "$nunit3_console_wrapper" "${MONO_VERSIONS_PATH}/${mono_version}/Commands/nunit3-console"
 
 # Create a symlink for the short version of Mono (e.g., 6.12)
-echo "Creating short symlink '${MONO_VERSION_SHORT}'..."
-sudo ln -s "${MONO_VERSIONS_PATH}/${MONO_VERSION}" "${MONO_VERSIONS_PATH}/${MONO_VERSION_SHORT}"
+echo "Creating short symlink '${mono_version_short}'..."
+sudo ln -s "${MONO_VERSIONS_PATH}/${mono_version}" "${MONO_VERSIONS_PATH}/${mono_version_short}"
 
 # Invoke tests for Xamarin and Mono
 invoke_tests "Xamarin" "Mono"

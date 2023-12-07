@@ -6,3 +6,5 @@
 
 echo 'Installing Rosetta'
 /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+
+invoke_tests "Rosetta"
