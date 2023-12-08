@@ -677,9 +677,14 @@ function Resolve-GithubReleaseAssetUrl {
         Write-Debug "Found no download urls matching pattern ${UrlMatchPattern}"
         Write-Debug "Available download urls:`n$($matchingReleases.assets.browser_download_url -join "`n")"
         throw "No assets found in ${Repository} matching version `"${Version}`" and pattern `"${UrlMatchPattern}`""
-    } elseif ($matchedUrl.Count -gt 1) {
-        Write-Debug "Found multiple download urls matching pattern ${UrlMatchPattern}:`n$($matchedUrl -join "`n")"
-        throw "Multiple download urls found in ${Repository} version `"${matchedVersion}`" matching pattern `"${UrlMatchPattern}`":`n$($matchedUrl -join "`n")"
+    }
+    # If multiple urls match the pattern, sort them and take the last one
+    # Will only work with simple number series of no more than nine in a row.
+    if ($matchedUrl.Count -gt 1) {
+        Write-Error "Found multiple download urls matching pattern ${UrlMatchPattern}:`n$($matchedUrl -join "`n")"
+        Write-Host "Performing sorting of urls to find the most recent version matching the pattern"
+        $matchedUrl = $matchedUrl | Sort-Object -Descending
+        $matchedUrl = $matchedUrl[0]
     }
 
     Write-Host "Found download url for ${Repository} version ${matchedVersion}: ${matchedUrl}"
