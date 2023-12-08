@@ -17,7 +17,7 @@ echo "Setting up ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE variable to ${ACTION_ARCHIV
 setEtcEnvironmentVariable "ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE" "${ACTION_ARCHIVE_CACHE_DIR}"
 
 # Download latest release from github.com/actions/action-versions and untar to /opt/actionarchivecache
-downloadUrl=$(get_github_package_download_url "actions/action-versions" "contains(\"action-versions.tar.gz\")")
+downloadUrl=$(resolve_github_release_asset_url "actions/action-versions" "contains(\"action-versions.tar.gz\")" "latest")
 archive_path=$(download_with_retry "$downloadUrl")
 tar -xzf "$archive_path" -C $ACTION_ARCHIVE_CACHE_DIR
 
