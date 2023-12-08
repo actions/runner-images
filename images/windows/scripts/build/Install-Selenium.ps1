@@ -13,7 +13,8 @@ $seleniumMajorVersion = (Get-ToolsetContent).selenium.version
 $seleniumDownloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "SeleniumHQ/selenium" `
     -Version "$seleniumMajorVersion.*" `
-    -Asset "selenium-server-*.jar"
+    -Asset "selenium-server-*.jar" `
+    -AllowMultipleMatches
 
 $seleniumBinPath = Join-Path $seleniumDirectory "selenium-server.jar"
 Invoke-DownloadWithRetry -Url $seleniumDownloadUrl -Path $seleniumBinPath

@@ -636,6 +636,10 @@ function Resolve-GithubReleaseAssetUrl {
         The pattern to match against the download URLs of the release assets.
         Wildcards (*) can be used to match any characters.
 
+    .PARAMETER AllowMultipleMatches
+        Specifies whether to choose one of multiple assets matching the pattern or consider this behavior to be erroneous.
+        By default, multiple matches are not considered normal behavior and result in an error.
+
     .EXAMPLE
         Resolve-GithubReleaseAssetUrl -Repository "myrepo" -Version "1.0" -UrlMatchPattern "*.zip"
         Retrieves the download URL for the asset in the "myrepo" repository with version "1.0" and a file extension of ".zip".
@@ -650,7 +654,8 @@ function Resolve-GithubReleaseAssetUrl {
         [switch] $AllowPrerelease,
         [Parameter(Mandatory = $true)]
         [Alias("Pattern", "File", "Asset")]
-        [string] $UrlMatchPattern
+        [string] $UrlMatchPattern,
+        [switch] $AllowMultipleMatches = $false
     )
 
     $matchingReleases = Get-GithubReleasesByVersion `
@@ -681,10 +686,14 @@ function Resolve-GithubReleaseAssetUrl {
     # If multiple urls match the pattern, sort them and take the last one
     # Will only work with simple number series of no more than nine in a row.
     if ($matchedUrl.Count -gt 1) {
-        Write-Error "Found multiple download urls matching pattern ${UrlMatchPattern}:`n$($matchedUrl -join "`n")"
-        Write-Host "Performing sorting of urls to find the most recent version matching the pattern"
-        $matchedUrl = $matchedUrl | Sort-Object -Descending
-        $matchedUrl = $matchedUrl[0]
+        if ($AllowMultipleMatches) {
+            Write-Debug "Found multiple download urls matching pattern ${UrlMatchPattern}:`n$($matchedUrl -join "`n")"
+            Write-Host "Performing sorting of urls to find the most recent version matching the pattern"
+            $matchedUrl = $matchedUrl | Sort-Object -Descending
+            $matchedUrl = $matchedUrl[0]
+        } else {
+            throw "Found multiple assets in ${Repository} matching version `"${Version}`" and pattern `"${UrlMatchPattern}`".`nAvailable assets:`n$($matchedUrl -join "`n")"
+        }
     }
 
     Write-Host "Found download url for ${Repository} version ${matchedVersion}: ${matchedUrl}"
