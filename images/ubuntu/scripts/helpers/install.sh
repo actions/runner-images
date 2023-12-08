@@ -54,11 +54,6 @@ IsPackageInstalled() {
     dpkg -S $1 &> /dev/null
 }
 
-verlte() {
-    sortedVersion=$(printf "$1\n$2\n" | sort -V | head -n1)
-    [  "$1" = "$sortedVersion" ]
-}
-
 get_toolset_value() {
     local toolset_path="/imagegeneration/installers/toolset.json"
     local query=$1
