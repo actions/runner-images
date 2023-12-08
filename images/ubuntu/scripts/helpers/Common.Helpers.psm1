@@ -63,39 +63,16 @@ function Test-IsUbuntu22 {
 }
 
 function Get-ToolsetContent {
-    $toolset = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
-    Get-Content $toolset -Raw | ConvertFrom-Json
-}
-
-function Get-ToolsetValue {
     <#
     .SYNOPSIS
-        This function retrieves the value of a specific toolset.
+        Retrieves the content of the toolset.json file.
 
     .DESCRIPTION
-        The Get-ToolsetValue is used to retrieve the value of a specific toolset.
-        The toolset is a collection of tools or settings in json format.
-
-    .PARAMETER KeyPath
-        The path to the toolset value in json notation.
-
-    .EXAMPLE
-        Get-ToolsetValue -Toolset "tool.arch.versions"
-
-        This command returns the value of the nodes named "tool", "arch" and "versions" as PSCustomObject.
-
+        This function reads the toolset.json in path provided by INSTALLER_SCRIPT_FOLDER
+        environment variable and returns the content as a PowerShell object.
     #>
-    param (
-        [Parameter(Mandatory = $true)]
-        [string] $KeyPath
-    )
 
-    $jsonNode = Get-ToolsetContent
-
-    $pathParts = $KeyPath.Split(".")
-    # walk through all arguments consequentially to resolve specific json node
-    $pathParts | ForEach-Object {
-        $jsonNode = $jsonNode.$_
-    }
-    return $jsonNode
+    $toolsetPath = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
+    $toolsetJson = Get-Content -Path $toolsetPath -Raw
+    ConvertFrom-Json -InputObject $toolsetJson
 }

@@ -1,5 +1,5 @@
 function Get-JavaVersionsTable {
-    $javaToolcacheVersions = Get-ChildItem $env:AGENT_TOOLSDIRECTORY/Java*/* -Directory | Sort-Object { [int]$_.Name.Split(".")[0] }
+    $javaToolcacheVersions = Get-ChildItem $env:AGENT_TOOLSDIRECTORY/Java*/* -Directory | Sort-Object { [int] $_.Name.Split(".")[0] }
 
     return $javaToolcacheVersions | ForEach-Object {
         $majorVersion = $_.Name.split(".")[0]

@@ -9,7 +9,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Download KIND
-kind_url=$(get_github_package_download_url "kubernetes-sigs/kind" "contains(\"kind-linux-amd64\")")
+kind_url=$(resolve_github_release_asset_url "kubernetes-sigs/kind" "contains(\"kind-linux-amd64\")" "latest")
 curl -fsSL -o /tmp/kind "${kind_url}"
 # Supply chain security - KIND
 kind_external_hash=$(get_hash_from_remote_file "${kind_url}.sha256sum" "kind-linux-amd64")
