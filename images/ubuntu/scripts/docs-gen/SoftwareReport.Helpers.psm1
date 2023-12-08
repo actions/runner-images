@@ -1,51 +1,34 @@
-function Take-OutputPart {
+function Get-StringPart {
     param (
         [Parameter(ValueFromPipeline)]
-        [string] $toolOutput,
+        [string] $ToolOutput,
         [string] $Delimiter = " ",
         [int[]] $Part
     )
-    $parts = $toolOutput.Split($Delimiter, [System.StringSplitOptions]::RemoveEmptyEntries)
+
+    $parts = $ToolOutput.Split($Delimiter, [System.StringSplitOptions]::RemoveEmptyEntries)
     $selectedParts = $parts[$Part]
     return [string]::Join($Delimiter, $selectedParts)
 }
 
-function Restore-UserOwner {
-    sudo chown -R ${env:USER}: $env:HOME
-}
-
-function Get-LinkTarget {
-    param (
-        [string] $inputPath
-    )
-    $link = Get-Item $inputPath | Select-Object -ExpandProperty Target
-    if ($link) {
-      return " -> $link"
-    }
-    return ""
-}
-
 function Get-PathWithLink {
     param (
-        [string] $inputPath
+        [string] $InputPath
     )
-    $link = Get-LinkTarget($inputPath)
-    return "${inputPath}${link}"
-}
 
-function Get-AptSourceRepository {
-    param([String] $PackageName)
-
-    $sourceUrl = Get-Content "$PSScriptRoot/../helpers/apt-sources.txt" | Select-String -Pattern $PackageName | Take-OutputPart -Part (1..3)
-    return $sourceUrl
+    $link = Get-Item $InputPath | Select-Object -ExpandProperty Target
+    if (-not [string]::IsNullOrEmpty($link)) {
+      return "${InputPath} -> ${link}"
+    }
+    return "${InputPath}"
 }
 
 function Get-OSVersionShort {
-    $(Get-OSVersionFull) | Take-OutputPart -Delimiter '.' -Part 0,1
+    $(Get-OSVersionFull) | Get-StringPart -Delimiter '.' -Part 0,1
 }
 
 function Get-OSVersionFull {
-    lsb_release -ds | Take-OutputPart -Part 1, 2
+    lsb_release -ds | Get-StringPart -Part 1, 2
 }
 
 function Get-KernelVersion {
