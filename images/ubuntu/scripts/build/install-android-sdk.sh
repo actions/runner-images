@@ -28,7 +28,7 @@ add_filtered_instalaltion_components() {
 get_full_ndk_version() {
     local major_version=$1
 
-    ndk_version=$($SDKMANAGER --list | grep "ndk;${major_version}/." | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
+    ndk_version=$($SDKMANAGER --list | grep "ndk;${major_version}\." | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
     echo "$ndk_version"
 }
 
