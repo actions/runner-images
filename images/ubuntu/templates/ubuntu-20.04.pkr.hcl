@@ -12,8 +12,8 @@ locals {
 }
 
 variable "allowed_inbound_ip_addresses" {
-  type    = list(string)
-  default = []
+  type    = string
+  default = "${env("AGENT_IP")}"
 }
 
 variable "azure_tags" {
@@ -27,8 +27,8 @@ variable "build_resource_group_name" {
 }
 
 variable "client_cert_path" {
-  type      = string
-  default   = "${env("ARM_CLIENT_CERT_PATH")}"
+  type    = string
+  default = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
 variable "client_id" {
@@ -64,7 +64,7 @@ variable "image_folder" {
 
 variable "image_os" {
   type    = string
-  default = "ubuntu22"
+  default = "ubuntu20"
 }
 
 variable "image_version" {
@@ -95,7 +95,7 @@ variable "location" {
 
 variable "managed_image_name" {
   type    = string
-  default = ""
+  default = "packer-ubuntu20-dev"
 }
 
 variable "managed_image_resource_group_name" {
@@ -104,8 +104,8 @@ variable "managed_image_resource_group_name" {
 }
 
 variable "private_virtual_network_with_public_ip" {
-  type    = bool
-  default = false
+  type    = string
+  default = "${env("PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP")}"
 }
 
 variable "subscription_id" {
@@ -149,9 +149,9 @@ source "azure-arm" "build_image" {
   client_cert_path                       = "${var.client_cert_path}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
-  image_offer                            = "0001-com-ubuntu-server-jammy"
+  image_offer                            = "0001-com-ubuntu-server-focal"
   image_publisher                        = "canonical"
-  image_sku                              = "22_04-lts"
+  image_sku                              = "20_04-lts"
   location                               = "${var.location}"
   managed_image_name                     = "${local.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
@@ -216,9 +216,9 @@ build {
   provisioner "file" {
     destination = "${var.image_folder}"
     sources     = [
-      "${path.root}/../assets/post-gen",
       "${path.root}/../scripts/tests",
-      "${path.root}/../scripts/docs-gen"
+      "${path.root}/../scripts/docs-gen",
+      "${path.root}/../assets/post-gen"
     ]
   }
 
@@ -229,7 +229,7 @@ build {
 
   provisioner "file" {
     destination = "${var.installer_script_folder}/toolset.json"
-    source      = "${path.root}/../toolsets/toolset-2204.json"
+    source      = "${path.root}/../toolsets/toolset-2004.json"
   }
 
   provisioner "shell" {
@@ -253,7 +253,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
+    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/../scripts/build/install-apt-vital.sh"]
   }
@@ -290,6 +290,7 @@ build {
       "${path.root}/../scripts/build/install-codeql-bundle.sh",
       "${path.root}/../scripts/build/install-container-tools.sh",
       "${path.root}/../scripts/build/install-dotnetcore-sdk.sh",
+      "${path.root}/../scripts/build/install-erlang.sh",
       "${path.root}/../scripts/build/install-firefox.sh",
       "${path.root}/../scripts/build/install-microsoft-edge.sh",
       "${path.root}/../scripts/build/install-gcc-compilers.sh",
@@ -301,6 +302,7 @@ build {
       "${path.root}/../scripts/build/install-google-cloud-cli.sh",
       "${path.root}/../scripts/build/install-haskell.sh",
       "${path.root}/../scripts/build/install-heroku.sh",
+      "${path.root}/../scripts/build/install-hhvm.sh",
       "${path.root}/../scripts/build/install-java-tools.sh",
       "${path.root}/../scripts/build/install-kubernetes-tools.sh",
       "${path.root}/../scripts/build/install-oc-cli.sh",
@@ -316,6 +318,7 @@ build {
       "${path.root}/../scripts/build/install-nodejs.sh",
       "${path.root}/../scripts/build/install-bazel.sh",
       "${path.root}/../scripts/build/install-oras-cli.sh",
+      "${path.root}/../scripts/build/install-phantomjs.sh",
       "${path.root}/../scripts/build/install-php.sh",
       "${path.root}/../scripts/build/install-postgresql.sh",
       "${path.root}/../scripts/build/install-pulumi.sh",
@@ -329,6 +332,7 @@ build {
       "${path.root}/../scripts/build/install-packer.sh",
       "${path.root}/../scripts/build/install-vcpkg.sh",
       "${path.root}/../scripts/build/configure-dpkg.sh",
+      "${path.root}/../scripts/build/install-mongodb.sh",
       "${path.root}/../scripts/build/install-yq.sh",
       "${path.root}/../scripts/build/install-android-sdk.sh",
       "${path.root}/../scripts/build/install-pypy.sh",
@@ -381,12 +385,19 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["IMAGE_VERSION=${var.image_version}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
-    inline           = ["pwsh -File ${var.image_folder}/SoftwareReport/Generate-SoftwareReport.ps1 -OutputDirectory ${var.image_folder}", "pwsh -File ${var.image_folder}/tests/RunAll-Tests.ps1 -OutputDirectory ${var.image_folder}"]
+    environment_vars    = ["IMAGE_VERSION=${var.image_version}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
+    inline              = [
+      "pwsh -Command Write-Host Running Generate-SoftwareReport.ps1 script",
+      "pwsh -File ${var.image_folder}/SoftwareReport/Generate-SoftwareReport.ps1 -OutputDirectory ${var.image_folder}",
+      "pwsh -Command Write-Host Running RunAll-Tests.ps1 script",
+      "pwsh -File ${var.image_folder}/tests/RunAll-Tests.ps1 -OutputDirectory ${var.image_folder}"
+    ]
+    max_retries         = "3"
+    start_retry_timeout = "2m"
   }
 
   provisioner "file" {
-    destination = "${path.root}/../Ubuntu2204-Readme.md"
+    destination = "${path.root}/../Ubuntu2004-Readme.md"
     direction   = "download"
     source      = "${var.image_folder}/software-report.md"
   }
@@ -405,12 +416,12 @@ build {
 
   provisioner "file" {
     destination = "/tmp/"
-    source      = "${path.root}/../assets/ubuntu2204.conf"
+    source      = "${path.root}/../assets/ubuntu2004.conf"
   }
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["mkdir -p /etc/vsts", "cp /tmp/ubuntu2204.conf /etc/vsts/machine_instance.conf"]
+    inline          = ["mkdir -p /etc/vsts", "cp /tmp/ubuntu2004.conf /etc/vsts/machine_instance.conf"]
   }
 
   provisioner "shell" {
