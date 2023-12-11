@@ -30,23 +30,35 @@ Add-MachinePathItem "$cabalDir\bin"
 Update-Environment
 
 # Get 3 latest versions of GHC
-$Versions = ghcup list -t ghc -r | Where-Object {$_ -notlike "prerelease"}
-$VersionsOutput = [Version[]]($Versions | ForEach-Object{ $_.Split(' ')[1]; })
-$LatestMajorMinor = $VersionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version] $_.Name } | Select-Object -last 3
-$VersionsList = $LatestMajorMinor | ForEach-Object { $_.Group | Select-Object -Last 1 } | Sort-Object
+$versions = ghcup list -t ghc -r | Where-Object { $_ -notlike "prerelease" }
+$versionsOutput = [version[]]($versions | ForEach-Object { $_.Split(' ')[1]; })
+$latestMajorMinor = $versionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version] $_.Name } | Select-Object -last 3
+$versionsList = $latestMajorMinor | ForEach-Object { $_.Group | Select-Object -Last 1 } | Sort-Object
 
 # The latest version will be installed as a default
-foreach ($version in $VersionsList) {
+foreach ($version in $versionsList) {
     Write-Host "Installing ghc $version..."
     ghcup install ghc $version
+    if ($LastExitCode -ne 0) {
+        throw "GHC installation failed with exit code $LastExitCode"
+    }
     ghcup set ghc $version
+    if ($LastExitCode -ne 0) {
+        throw "Setting GHC version failed with exit code $LastExitCode"
+    }
 }
 
 # Add default version of GHC to path
-$DefaultGhcVersion = $VersionsList | Select-Object -Last 1
-ghcup set ghc $DefaultGhcVersion
+$defaultGhcVersion = $versionsList | Select-Object -Last 1
+ghcup set ghc $defaultGhcVersion
+if ($LastExitCode -ne 0) {
+    throw "Setting default GHC version failed with exit code $LastExitCode"
+}
 
 Write-Host 'Installing cabal...'
 ghcup install cabal latest
+if ($LastExitCode -ne 0) {
+    throw "Cabal installation failed with exit code $LastExitCode"
+}
 
 Invoke-PesterTests -TestFile 'Haskell'

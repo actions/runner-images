@@ -4,7 +4,10 @@
 ################################################################################
 
 Write-Host "Cleanup WinSxS"
-Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
+if ($LASTEXITCODE -ne 0) {
+    throw "Failed to cleanup WinSxS"
+}
 
 # Set default version to 1 for WSL (aka LXSS - Linux Subsystem)
 # The value should be set in the default user registry hive
@@ -47,7 +50,13 @@ Write-Host "Clean up various directories"
     if (Test-Path $_) {
         Write-Host "Removing $_"
         cmd /c "takeown /d Y /R /f $_ 2>&1" | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            throw "Failed to take ownership of $_"
+        }
         cmd /c "icacls $_ /grant:r administrators:f /t /c /q 2>&1" | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            throw "Failed to grant administrators full control of $_"
+        }
         Remove-Item $_ -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
     }
 }
@@ -60,11 +69,21 @@ Remove-Item $profile.AllUsersAllHosts -Force -ErrorAction SilentlyContinue | Out
 
 # Clean yarn and npm cache
 cmd /c "yarn cache clean 2>&1" | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    throw "Failed to clean yarn cache"
+}
+
 cmd /c "npm cache clean --force 2>&1" | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    throw "Failed to clean npm cache"
+}
 
 # allow msi to write to temp folder
 # see https://github.com/actions/runner-images/issues/1704
 cmd /c "icacls $env:SystemRoot\Temp /grant Users:f /t /c /q 2>&1" | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    throw "Failed to grant Users full control of $env:SystemRoot\Temp"
+}
 
 # Registry settings
 $registrySettings = @(

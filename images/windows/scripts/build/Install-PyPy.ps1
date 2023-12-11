@@ -4,8 +4,7 @@
 ##  Supply chain security: checksum validation
 ################################################################################
 
-function Install-PyPy
-{
+function Install-PyPy {
     param(
         [String] $PackagePath,
         [String] $Architecture
@@ -31,8 +30,7 @@ function Install-PyPy
     Write-Host "Put '$pypyFullVersion' to PYPY_VERSION file"
     New-Item -Path "$tempFolder\PYPY_VERSION" -Value $pypyFullVersion | Out-Null
 
-    if ($pythonVersion)
-    {
+    if ($pythonVersion) {
         Write-Host "Installing PyPy $pythonVersion"
         $pypyVersionPath = Join-Path -Path $pypyToolcachePath -ChildPath $pythonVersion
         $pypyArchPath = Join-Path -Path $pypyVersionPath -ChildPath $architecture
@@ -55,25 +53,19 @@ function Install-PyPy
 
         # Create pip.exe if missing
         $pipPath = Join-Path -Path $pypyArchPath -ChildPath "Scripts/pip.exe"
-        if (-not (Test-Path $pipPath))
-        {
+        if (-not (Test-Path $pipPath)) {
             $pip3Path = Join-Path -Path $pypyArchPath -ChildPath "Scripts/pip3.exe"
             Copy-Item -Path $pip3Path -Destination $pipPath 
         }
 
-        if ($LASTEXITCODE -ne 0)
-        {
-            Throw "Error happened during PyPy installation"
-            exit 1
+        if ($LASTEXITCODE -ne 0) {
+            throw "PyPy installation failed with exit code $LASTEXITCODE"
         }
 
         Write-Host "Create complete file"
         New-Item -ItemType File -Path $pypyVersionPath -Name "$architecture.complete" | Out-Null
-    }
-    else
-    {
-        Write-Host "PyPy application is not found. Failed to expand '$packagePath' archive"
-        exit 1
+    } else {
+        throw "PyPy application is not found. Failed to expand '$packagePath' archive"
     }
 }
 
@@ -86,36 +78,31 @@ $pypyVersions = Invoke-RestMethod https://downloads.python.org/pypy/versions.jso
 # required for html parsing
 $checksums = (Invoke-RestMethod -Uri 'https://www.pypy.org/checksums.html' | ConvertFrom-HTML).SelectNodes('//*[@id="content"]/article/div/pre')
 
-Write-Host "Starting installation PyPy..."
-foreach($toolsetVersion in $toolsetVersions.versions)
-{
+Write-Host "Start PyPy installation"
+foreach ($toolsetVersion in $toolsetVersions.versions) {
     # Query latest PyPy version
     $latestMajorPyPyVersion = $pypyVersions |
-        Where-Object {$_.python_version.StartsWith("$toolsetVersion") -and $_.stable -eq $true} |
+        Where-Object { $_.python_version.StartsWith("$toolsetVersion") -and $_.stable -eq $true } |
         Select-Object -ExpandProperty files -First 1 |
         Where-Object platform -like "win*"
     
-    if ($latestMajorPyPyVersion)
-    {
-        $filename = $latestMajorPyPyVersion.filename
-        Write-Host "Found PyPy '$filename' package"
-        $tempPyPyPackagePath = Invoke-DownloadWithRetry $latestMajorPyPyVersion.download_url
+    if (-not $latestMajorPyPyVersion) {
+        throw "Failed to query PyPy version '$toolsetVersion'"
+    }
 
-        #region Supply chain security
-        $distributorFileHash = $null
-        foreach ($node in $checksums) {
-            if ($node.InnerText -ilike "*${filename}*") {
-                $distributorFileHash = $node.InnerText.ToString().Split("`n").Where({ $_ -ilike "*${filename}*" }).Split(' ')[0]
-            }
+    $filename = $latestMajorPyPyVersion.filename
+    Write-Host "Found PyPy '$filename' package"
+    $tempPyPyPackagePath = Invoke-DownloadWithRetry $latestMajorPyPyVersion.download_url
+
+    #region Supply chain security
+    $distributorFileHash = $null
+    foreach ($node in $checksums) {
+        if ($node.InnerText -ilike "*${filename}*") {
+            $distributorFileHash = $node.InnerText.ToString().Split("`n").Where({ $_ -ilike "*${filename}*" }).Split(' ')[0]
         }
-        Test-FileChecksum $tempPyPyPackagePath -ExpectedSHA256Sum $distributorFileHash
-        #endregion
+    }
+    Test-FileChecksum $tempPyPyPackagePath -ExpectedSHA256Sum $distributorFileHash
+    #endregion
 
-        Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $toolsetVersions.arch
-    }
-    else
-    {
-        Write-Host "Failed to query PyPy version '$toolsetVersion'"
-        exit 1
-    }
+    Install-PyPy -PackagePath $tempPyPyPackagePath -Architecture $toolsetVersions.arch
 }

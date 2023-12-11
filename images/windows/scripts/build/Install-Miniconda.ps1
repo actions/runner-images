@@ -4,29 +4,29 @@
 ##  Supply chain security: checksum validation
 ################################################################################
 
-$CondaDestination = "C:\Miniconda"
-$InstallerName = "Miniconda3-latest-Windows-x86_64.exe"
+$condaDestination = "C:\Miniconda"
+$installerName = "Miniconda3-latest-Windows-x86_64.exe"
 
 #region Supply chain security
 $distributorFileHash = $null
 $checksums = (Invoke-RestMethod -Uri 'https://repo.anaconda.com/miniconda/' | ConvertFrom-HTML).SelectNodes('//html/body/table/tr')
 
 foreach ($node in $checksums) {
-    if ($node.ChildNodes[1].InnerText -eq $InstallerName) {
+    if ($node.ChildNodes[1].InnerText -eq $installerName) {
         $distributorFileHash = $node.ChildNodes[7].InnerText
     }
 }
 
 if ($null -eq $distributorFileHash) {
-    throw "Unable to find checksum for $InstallerName in https://repo.anaconda.com/miniconda/"
+    throw "Unable to find checksum for $installerName in https://repo.anaconda.com/miniconda/"
 }
 #endregion
 
 Install-Binary `
-    -Url "https://repo.anaconda.com/miniconda/${InstallerName}" `
-    -InstallArgs @("/S", "/AddToPath=0", "/RegisterPython=0", "/D=$CondaDestination") `
+    -Url "https://repo.anaconda.com/miniconda/${installerName}" `
+    -InstallArgs @("/S", "/AddToPath=0", "/RegisterPython=0", "/D=$condaDestination") `
     -ExpectedSHA256Sum $distributorFileHash
 
-[Environment]::SetEnvironmentVariable("CONDA", $CondaDestination, "Machine")
+[Environment]::SetEnvironmentVariable("CONDA", $condaDestination, "Machine")
 
 Invoke-PesterTests -TestFile "Miniconda"

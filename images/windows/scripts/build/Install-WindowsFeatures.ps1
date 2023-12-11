@@ -13,12 +13,12 @@ foreach ($feature in $windowsFeatures) {
         $resultSuccess = $?
     } else {
         Write-Host "Activating Windows Feature '$($feature.name)'..."
-        $Arguments = @{
-            Name = $feature.name
-            IncludeAllSubFeature = [System.Convert]::ToBoolean($feature.includeAllSubFeatures)
+        $arguments = @{
+            Name                   = $feature.name
+            IncludeAllSubFeature   = [System.Convert]::ToBoolean($feature.includeAllSubFeatures)
             IncludeManagementTools = [System.Convert]::ToBoolean($feature.includeManagementTools)
         }
-        $result = Install-WindowsFeature @Arguments
+        $result = Install-WindowsFeature @arguments
 
         $resultSuccess = $result.Success
     }
@@ -33,3 +33,6 @@ foreach ($feature in $windowsFeatures) {
 # it improves Android emulator launch on Windows Server
 # https://learn.microsoft.com/en-us/windows-server/virtualization/hyper-v/manage/manage-hyper-v-scheduler-types
 bcdedit /set hypervisorschedulertype root
+if ($LASTEXITCODE -ne 0) {
+    throw "Failed to set hypervisorschedulertype to root"
+}

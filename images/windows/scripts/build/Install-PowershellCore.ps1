@@ -7,7 +7,7 @@
 $ErrorActionPreference = "Stop"
 
 $tempDir = Join-Path ([System.IO.Path]::GetTempPath()) ([System.IO.Path]::GetRandomFileName())
-$null = New-Item -ItemType Directory -Path $tempDir -Force -ErrorAction SilentlyContinue
+New-Item -ItemType Directory -Path $tempDir -Force -ErrorAction SilentlyContinue | Out-Null
 try {
     $originalValue = [Net.ServicePointManager]::SecurityProtocol
     [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12

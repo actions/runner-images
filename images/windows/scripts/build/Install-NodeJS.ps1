@@ -4,24 +4,24 @@
 ##         Must run after python is configured
 ################################################################################
 
-$PrefixPath = 'C:\npm\prefix'
-$CachePath = 'C:\npm\cache'
+$prefixPath = 'C:\npm\prefix'
+$cachePath = 'C:\npm\cache'
 
-New-Item -Path $PrefixPath -Force -ItemType Directory
-New-Item -Path $CachePath -Force -ItemType Directory
+New-Item -Path $prefixPath -Force -ItemType Directory
+New-Item -Path $cachePath -Force -ItemType Directory
 
 $defaultVersion = (Get-ToolsetContent).node.default
 $versionToInstall = Resolve-ChocoPackageVersion -PackageName "nodejs" -TargetVersion $defaultVersion
 
-Install-ChocoPackage nodejs -ArgumentList "--version=$versionToInstall"
+Install-ChocoPackage "nodejs" -ArgumentList "--version=$versionToInstall"
 
-Add-MachinePathItem $PrefixPath
+Add-MachinePathItem $prefixPath
 Update-Environment
 
-[Environment]::SetEnvironmentVariable("npm_config_prefix", $PrefixPath, "Machine")
-$env:npm_config_prefix = $PrefixPath
+[Environment]::SetEnvironmentVariable("npm_config_prefix", $prefixPath, "Machine")
+$env:npm_config_prefix = $prefixPath
 
-npm config set cache $CachePath --global
+npm config set cache $cachePath --global
 npm config set registry https://registry.npmjs.org/
 
 $globalNpmPackages = (Get-ToolsetContent).npm.global_packages

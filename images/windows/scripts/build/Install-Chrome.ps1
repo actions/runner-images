@@ -32,52 +32,51 @@ $regGoogleParameters = @(
 )
 
 $regGoogleParameters | ForEach-Object {
-    $Arguments = $_
-    if (-not ($Arguments.Path)) {
-        $Arguments.Add("Path", $regGoogleUpdatePath)
+    $arguments = $_
+    if (-not ($arguments.Path)) {
+        $arguments.Add("Path", $regGoogleUpdatePath)
     }
-    $Arguments.Add("Force", $true)
-    New-ItemProperty @Arguments
+    $arguments.Add("Force", $true)
+    New-ItemProperty @arguments
 }
-
 # Install Chrome WebDriver
 Write-Host "Install Chrome WebDriver..."
-$ChromeDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\ChromeDriver"
-if (-not (Test-Path -Path $ChromeDriverPath)) {
-    New-Item -Path $ChromeDriverPath -ItemType Directory -Force
+$chromeDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\ChromeDriver"
+if (-not (Test-Path -Path $chromeDriverPath)) {
+    New-Item -Path $chromeDriverPath -ItemType Directory -Force
 }
 
 Write-Host "Get the Chrome WebDriver download URL..."
-$RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
-$ChromePath = (Get-ItemProperty "$RegistryPath\chrome.exe").'(default)'
-[version] $ChromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($ChromePath).ProductVersion
-$ChromeBuild = "$($ChromeVersion.Major).$($ChromeVersion.Minor).$($ChromeVersion.Build)"
-$ChromeDriverVersionsUrl = "https://googlechromelabs.github.io/chrome-for-testing/latest-patch-versions-per-build-with-downloads.json"
+$registryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
+$chromePath = (Get-ItemProperty "$registryPath\chrome.exe").'(default)'
+[version] $chromeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($chromePath).ProductVersion
+$chromeBuild = "$($chromeVersion.Major).$($chromeVersion.Minor).$($chromeVersion.Build)"
+$chromeDriverVersionsUrl = "https://googlechromelabs.github.io/chrome-for-testing/latest-patch-versions-per-build-with-downloads.json"
 
-Write-Host "Chrome version is $ChromeVersion"
-$ChromeDriverVersions = Invoke-RestMethod -Uri $ChromeDriverVersionsUrl
-$ChromeDriverVersion = $ChromeDriverVersions.builds.$ChromeBuild
+Write-Host "Chrome version is $chromeVersion"
+$chromeDriverVersions = Invoke-RestMethod -Uri $chromeDriverVersionsUrl
+$chromeDriverVersion = $chromeDriverVersions.builds.$chromeBuild
 
-if (-not ($ChromeDriverVersion)) {
-    $availableVersions = $ChromeDriverVersions.builds | Get-Member | Select-Object -ExpandProperty Name
+if (-not ($chromeDriverVersion)) {
+    $availableVersions = $chromeDriverVersions.builds | Get-Member | Select-Object -ExpandProperty Name
     Write-Host "Available chromedriver builds are $availableVersions"
-    throw "Can't determine chromedriver version that matches chrome build $ChromeBuild"
+    throw "Can't determine chromedriver version that matches chrome build $chromeBuild"
 }
 
-$ChromeDriverVersion.version | Out-File -FilePath "$ChromeDriverPath\versioninfo.txt" -Force;
+$chromeDriverVersion.version | Out-File -FilePath "$chromeDriverPath\versioninfo.txt" -Force;
 
-Write-Host "Chrome WebDriver version to install is $($ChromeDriverVersion.version)"
-$ChromeDriverZipDownloadUrl = ($ChromeDriverVersion.downloads.chromedriver | Where-Object platform -eq "win64").url
+Write-Host "Chrome WebDriver version to install is $($chromeDriverVersion.version)"
+$chromeDriverZipDownloadUrl = ($chromeDriverVersion.downloads.chromedriver | Where-Object platform -eq "win64").url
 
-Write-Host "Download Chrome WebDriver from $ChromeDriverZipDownloadUrl..."
-$ChromeDriverArchPath = Invoke-DownloadWithRetry $ChromeDriverZipDownloadUrl
+Write-Host "Download Chrome WebDriver from $chromeDriverZipDownloadUrl..."
+$chromeDriverArchPath = Invoke-DownloadWithRetry $chromeDriverZipDownloadUrl
 
 Write-Host "Expand Chrome WebDriver archive (without using directory names)..."
-Expand-7ZipArchive -Path $ChromeDriverArchPath -DestinationPath $ChromeDriverPath -ExtractMethod "e"
+Expand-7ZipArchive -Path $chromeDriverArchPath -DestinationPath $chromeDriverPath -ExtractMethod "e"
 
 Write-Host "Setting the environment variables..."
-[Environment]::SetEnvironmentVariable("ChromeWebDriver", $ChromeDriverPath, "Machine")
-Add-MachinePathItem $ChromeDriverPath
+[Environment]::SetEnvironmentVariable("ChromeWebDriver", $chromeDriverPath, "Machine")
+Add-MachinePathItem $chromeDriverPath
 Update-Environment
 
 Invoke-PesterTests -TestFile "Browsers" -TestName "Chrome"

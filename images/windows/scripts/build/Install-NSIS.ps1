@@ -4,9 +4,9 @@
 ##  Supply chain security: NSIS - managed by package manager
 ################################################################################
 
-$NsisVersion = (Get-ToolsetContent).nsis.version
+$nsisVersion = (Get-ToolsetContent).nsis.version
 
-Install-ChocoPackage nsis -ArgumentList "--version", "$NsisVersion"
+Install-ChocoPackage nsis -ArgumentList "--version", "$nsisVersion"
 
 Add-MachinePathItem "${env:ProgramFiles(x86)}\NSIS\"
 Update-Environment

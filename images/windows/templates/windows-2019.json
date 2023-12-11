@@ -145,7 +145,6 @@
                 "IMAGE_VERSION={{user `image_version`}}",
                 "IMAGE_OS={{user `image_os`}}",
                 "AGENT_TOOLSDIRECTORY={{user `agent_tools_directory`}}",
-                "ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE=C:\\actionarchivecache\\",
                 "IMAGEDATA_FILE={{user `imagedata_file`}}"
             ],
             "scripts": [
@@ -360,9 +359,9 @@
         {
             "type": "powershell",
             "inline": [
-                "if( Test-Path $Env:SystemRoot\\System32\\Sysprep\\unattend.xml ){ rm $Env:SystemRoot\\System32\\Sysprep\\unattend.xml -Force}",
+                "if( Test-Path $env:SystemRoot\\System32\\Sysprep\\unattend.xml ){ rm $env:SystemRoot\\System32\\Sysprep\\unattend.xml -Force}",
                 "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
-                "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }"
+                "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10 } else { break } }"
             ]
         }
     ]

@@ -14,9 +14,9 @@ Update-Environment
 
 # Verify and run choco installer
 $signatureThumbprint = "83AC7D88C66CB8680BCE802E0F0F5C179722764B"
-$InstallScriptPath = Invoke-DownloadWithRetry 'https://chocolatey.org/install.ps1'
-Test-FileSignature -Path $InstallScriptPath -ExpectedThumbprint $signatureThumbprint
-Invoke-Expression $InstallScriptPath
+$installScriptPath = Invoke-DownloadWithRetry 'https://chocolatey.org/install.ps1'
+Test-FileSignature -Path $installScriptPath -ExpectedThumbprint $signatureThumbprint
+Invoke-Expression $installScriptPath
 
 # Turn off confirmation
 choco feature enable -n allowGlobalConfirmation
