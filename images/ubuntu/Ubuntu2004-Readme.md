@@ -102,7 +102,7 @@ to accomplish this.
 - Newman 6.0.0
 - nvm 0.39.7
 - OpenSSL 1.1.1f-1ubuntu2.20
-- Packer Packer v1.10.0
+- Packer v1.10.0
 - Parcel 2.10.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
