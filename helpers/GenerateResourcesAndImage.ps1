@@ -25,7 +25,7 @@ Function Get-PackerTemplatePath {
             $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2022.json"
         }
         ([ImageType]::Ubuntu2004) {
-            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-20.04.json"
+            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-20.04.pkr.hcl"
         }
         ([ImageType]::Ubuntu2204) {
             $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-22.04.pkr.hcl"
@@ -229,6 +229,13 @@ Function GenerateResourcesAndImage {
 
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
 
+    Write-Host "Downloading packer plugins..."
+    & $PackerBinary init $TemplatePath
+
+    if ($LastExitCode -ne 0) {
+        throw "Packer plugins download failed."
+    }
+
     Write-Host "Validating packer template..."
     & $PackerBinary validate `
         "-var=client_id=fake" `
@@ -242,7 +249,7 @@ Function GenerateResourcesAndImage {
         "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
         "-var=azure_tags=$($TagsJson)" `
         $TemplatePath
-    
+
     if ($LastExitCode -ne 0) {
         throw "Packer template validation failed."
     }

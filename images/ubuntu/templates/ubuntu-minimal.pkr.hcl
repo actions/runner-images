@@ -36,8 +36,8 @@ variable "build_resource_group_name" {
 }
 
 variable "client_cert_path" {
-  type      = string
-  default   = "${env("ARM_CLIENT_CERT_PATH")}"
+  type    = string
+  default = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
 variable "client_id" {
@@ -57,8 +57,9 @@ variable "image_version" {
 }
 
 variable "install_password" {
-  type  = string
-  default = ""
+  type      = string
+  default   = ""
+  sensitive = true
 }
 
 variable "location" {
