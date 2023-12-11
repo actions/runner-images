@@ -24,17 +24,17 @@ jobs:
       id: check
       shell: pwsh
       run: |
-        $apiUrl = "https://api.github.com/repos/actions/runner-images/releases/tags/${{ github.event.client_payload.ReleaseBranchName }}"
+        $apiUrl = "https://api.github.com/repos/actions/runner-images/releases/${{ github.event.client_payload.ReleaseID }}"
         $response = Invoke-RestMethod -Uri $apiUrl -Method Get -SkipHttpErrorCheck
         if ($response.message -ilike "Not Found") {
           echo "status=release_not_found" >> $env:GITHUB_OUTPUT
-          Write-Error "Release for tag ${{ github.event.client_payload.ReleaseBranchName }} wasn't found"
+          Write-Error "Release ${{ github.event.client_payload.ReleaseID }} wasn't found"
           exit 1
         }
         foreach ($asset in $response.assets) {
           if ($asset.name -like '*sbom*') {
             echo "status=sbom_exists" >> $env:GITHUB_OUTPUT
-            return "Release ${{ github.event.client_payload.ReleaseBranchNamen }} already contains a SBOM"
+            return "Release ${{ github.event.client_payload.ReleaseID }} already contains a SBOM"
           }
         }
         Write-Host "Release has been found, SBOM is not attached, starting generation."
