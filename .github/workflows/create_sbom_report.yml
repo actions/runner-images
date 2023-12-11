@@ -1,4 +1,4 @@
-name: Create and upload a SBOM to release assets
+name: Create SBOM for the release
 # Inherited variables:
 # github.event.client_payload.agentSpec - Current YAML Label
 # github.event.client_payload.ReleaseID - Current release ID
@@ -14,8 +14,35 @@ defaults:
   run:
     shell: pwsh
 jobs:
-  #Checking image version on available runner
+  #Checking current release for SBOM
+  sbom-check:
+    outputs:
+      check_status: ${{ steps.check.outputs.status }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check release
+      id: check
+      shell: pwsh
+      run: |
+        $apiUrl = "https://api.github.com/repos/actions/runner-images/releases/${{ github.event.client_payload.ReleaseID }}"
+        $response = Invoke-RestMethod -Uri $apiUrl -Method Get -SkipHttpErrorCheck
+        if ($response.message -ilike "Not Found") {
+          echo "status=release_not_found" >> $env:GITHUB_OUTPUT
+          Write-Error "Release ${{ github.event.client_payload.ReleaseID }} wasn't found"
+          exit 1
+        }
+        foreach ($asset in $response.assets) {
+          if ($asset.name -like '*sbom*') {
+            echo "status=sbom_exists" >> $env:GITHUB_OUTPUT
+            return "Release ${{ github.event.client_payload.ReleaseID }} already contains a SBOM"
+          }
+        }
+        Write-Host "Release has been found, SBOM is not attached, starting generation."
+        echo "status=okay" >> $env:GITHUB_OUTPUT
+  #Generating SBOM
   building-sbom:
+    needs: sbom-check
+    if: ${{ needs.sbom-check.outputs.check_status == 'okay' }}
     runs-on: ${{ github.event.client_payload.agentSpec }}
     steps:
       - name: Available image version check for ${{ github.event.client_payload.ReleaseBranchName }}

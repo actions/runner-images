@@ -100,14 +100,14 @@ function Invoke-SoftwareUpdate {
     $command = "sw_vers"
     $guestMacosVersion = Invoke-SSHPassCommand -HostName $ipAddress -Command $command
     switch -regex ($guestMacosVersion[1]) {
-        '12.\d' { $nextOSVersion = 'macOS Ventura' }
+        '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma' }
         '13.\d' { $nextOSVersion = 'macOS Sonoma'  }
     }
     # Make an array of updates
     $listOfNewUpdates = $newUpdates.split('*').Trim('')
     foreach ($newupdate in $listOfNewUpdates) {
         # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
-        if ($newupdate.Contains("Action: restart") -and !$newupdate.Contains("$nextOSVersion") -and (-not [String]::IsNullOrEmpty($newupdate))) {
+        if ($newupdate.Contains("Action: restart") -and !($newupdate -match $nextOSVersion) -and (-not [String]::IsNullOrEmpty($newupdate))) {
             Write-Host "`t[*] Sleep 120 seconds before the software updates have been installed"
             Start-Sleep -Seconds 120
 
@@ -119,7 +119,7 @@ function Invoke-SoftwareUpdate {
 
             # Check software updates have been installed
             $updates = Get-SoftwareUpdate -HostName $ipAddress
-            if ($updates.Contains("Action: restart") -and !$updates.Contains("$nextOSVersion")) {
+            if ($updates.Contains("Action: restart") -and !($newupdate -match $nextOSVersion)) {
                 Write-Host "`t[x] Software updates failed to install: "
                 Show-StringWithFormat $updates
                 exit 1

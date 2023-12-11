@@ -10,7 +10,7 @@ function Get-AptFastVersion {
 }
 
 function Get-AzCopyVersion {
-    $azcopyVersion = azcopy --version | Get-StringPart -Part 2
+    $azcopyVersion = [string]$(azcopy --version) | Get-StringPart -Part 2
     return "$azcopyVersion - available by ``azcopy`` and ``azcopy10`` aliases"
 }
 
