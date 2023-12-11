@@ -348,7 +348,7 @@ function Get-Aria2Version {
 }
 
 function Get-AzcopyVersion {
-    $azcopyVersion = Run-Command "azcopy --version" | Take-Part -Part 2
+    $azcopyVersion = [string]$(Run-Command "azcopy --version") | Take-Part -Part 2
     return $azcopyVersion
 }
 
