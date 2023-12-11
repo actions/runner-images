@@ -12,8 +12,8 @@ locals {
 }
 
 variable "allowed_inbound_ip_addresses" {
-  type    = string
-  default = "${env("AGENT_IP")}"
+  type    = list(string)
+  default = []
 }
 
 variable "azure_tags" {
@@ -95,7 +95,7 @@ variable "location" {
 
 variable "managed_image_name" {
   type    = string
-  default = "packer-ubuntu20-dev"
+  default = ""
 }
 
 variable "managed_image_resource_group_name" {
@@ -104,8 +104,8 @@ variable "managed_image_resource_group_name" {
 }
 
 variable "private_virtual_network_with_public_ip" {
-  type    = string
-  default = "${env("PRIVATE_VIRTUAL_NETWORK_WITH_PUBLIC_IP")}"
+  type    = bool
+  default = false
 }
 
 variable "subscription_id" {
@@ -216,9 +216,9 @@ build {
   provisioner "file" {
     destination = "${var.image_folder}"
     sources     = [
+      "${path.root}/../assets/post-gen",
       "${path.root}/../scripts/tests",
-      "${path.root}/../scripts/docs-gen",
-      "${path.root}/../assets/post-gen"
+      "${path.root}/../scripts/docs-gen"
     ]
   }
 
@@ -253,7 +253,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/../scripts/build/install-apt-vital.sh"]
   }
