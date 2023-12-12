@@ -6,7 +6,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2113
-- Image Version: 20231205.1.0
+- Image Version: 20231211.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -15,7 +15,7 @@
 
 ### Language and Runtime
 - Bash 5.2.21(1)-release
-- Go 1.20.11
+- Go 1.20.12
 - Julia 1.9.4
 - Kotlin 1.9.21
 - LLVM 16.0.6
@@ -27,7 +27,7 @@
 
 ### Package Management
 - Chocolatey 2.2.2
-- Composer 2.6.5
+- Composer 2.6.6
 - Helm 3.13.1
 - Miniconda 23.10.0 (pre-installed on the image but not added to PATH)
 - NPM 9.8.1
@@ -35,7 +35,7 @@
 - pip 23.3.1 (python 3.9)
 - Pipx 1.3.3
 - RubyGems 3.2.33
-- Vcpkg (build from commit 08c4e7104)
+- Vcpkg (build from commit 000d1bda1)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -53,8 +53,8 @@
 ### Tools
 - 7zip 23.01
 - aria2 1.37.0
-- azcopy 10.21.1
-- Bazel 6.4.0
+- azcopy 10.21.1 INFO: azcopy.exe 10.21.1: A newer version 10.22.0 is available to download 
+- Bazel 7.0.0
 - Bazelisk 1.19.0
 - Bicep 0.23.1
 - Cabal 3.10.2.0
@@ -80,7 +80,7 @@
 - NSIS 3.09
 - OpenSSL 1.1.1w
 - Packer 1.9.4
-- Pulumi 3.95.0
+- Pulumi 3.96.2
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.13.1
@@ -93,18 +93,18 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.188
-- AWS CLI 2.14.5
-- AWS SAM CLI 1.103.0
+- Alibaba Cloud CLI 3.0.189
+- AWS CLI 2.15.0
+- AWS SAM CLI 1.104.0
 - AWS Session Manager CLI 1.2.536.0
 - Azure CLI 2.55.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.39.2
+- GitHub CLI 2.40.0
 
 ### Rust Tools
-- Cargo 1.74.0
-- Rust 1.74.0
-- Rustdoc 1.74.0
+- Cargo 1.74.1
+- Rust 1.74.1
+- Rustdoc 1.74.1
 - Rustup 1.26.0
 
 #### Packages
@@ -116,14 +116,14 @@
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 120.0.6099.63
-- Chrome Driver 120.0.6099.62
-- Microsoft Edge 119.0.2151.97
-- Microsoft Edge Driver 119.0.2151.97
+- Google Chrome 120.0.6099.71
+- Chrome Driver 120.0.6099.71
+- Microsoft Edge 120.0.2210.61
+- Microsoft Edge Driver 120.0.2210.61
 - Mozilla Firefox 120.0.1
 - Gecko Driver 0.33.0
 - IE Driver 4.14.0.0
-- Selenium server 4.15.0
+- Selenium server 4.16.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -162,8 +162,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.19.13
-- 1.20.11
-- 1.21.4
+- 1.20.12
+- 1.21.5
 
 #### Node.js
 - 16.20.2
@@ -176,7 +176,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.9.13
 - 3.10.11
 - 3.11.7
-- 3.12.0
+- 3.12.1
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.13]
@@ -568,10 +568,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.468
+- AWSPowershell: 4.1.472
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.10.0
+- Microsoft.Graph: 2.11.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
