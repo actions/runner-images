@@ -5,8 +5,6 @@ Describe "Java" {
     $defaultVersion = $toolsetJava.default
     $jdkVersions = $toolsetJava.versions
 
-    [array]$testCases = $jdkVersions | ForEach-Object { @{Version = $_ } }
-
     It "Java <DefaultJavaVersion> is default" -TestCases @{ DefaultJavaVersion = $defaultVersion } {
         $actualJavaPath = [System.Environment]::GetEnvironmentVariable("JAVA_HOME")
         $expectedJavaPath = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${DefaultJavaVersion}_X64")
@@ -34,6 +32,8 @@ Describe "Java" {
         $gradlePath = Join-Path $env:GRADLE_HOME "bin/gradle"
         "`"$GradlePath`" -version" | Should -ReturnZeroExitCode
     }
+
+    $testCases = $jdkVersions | ForEach-Object { @{Version = $_ } }
 
     It "Java <Version>" -TestCases $testCases {
         $javaVariableValue = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${Version}_X64")

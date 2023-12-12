@@ -1,22 +1,22 @@
 Describe "PowerShellModules" {
     $modules = (Get-ToolsetContent).powershellModules
-    $withoutVersionsModules = $modules | Where-Object {-not $_.versions} | ForEach-Object {
+    $modulesWithoutVersions = $modules | Where-Object { -not $_.versions } | ForEach-Object {
         @{moduleName = $_.name}
     }
 
-    $withVersionsModules = $modules | Where-Object {$_.versions} | ForEach-Object {
+    $modulesWithVersions = $modules | Where-Object { $_.versions } | ForEach-Object {
         $moduleName = $_.name
         $_.versions | ForEach-Object {
             @{moduleName = $moduleName; expectedVersion = $_}
         }
     }
 
-    It "<moduleName> is installed" -TestCases $withoutVersionsModules {
+    It "<moduleName> is installed" -TestCases $modulesWithoutVersions {
         Get-Module -Name $moduleName -ListAvailable | Should -BeTrue
     }
 
-    if ($withVersionsModules) {
-        It "<moduleName> with <expectedVersion> is installed" -TestCases $withVersionsModules {
+    if ($modulesWithVersions) {
+        It "<moduleName> with <expectedVersion> is installed" -TestCases $modulesWithVersions {
             (Get-Module -Name $moduleName -ListAvailable).Version -contains $expectedVersion | Should -BeTrue
         }
     }
@@ -33,6 +33,7 @@ Describe "AzureModules" {
             foreach ($version in $module.versions) {
                 $modulePath = Join-Path -Path $modulesRootPath -ChildPath "${moduleName}_${version}"
                 $moduleInfo = @{ moduleName = $moduleName; modulePath = $modulePath; expectedVersion = $version }
+
                 It "<expectedVersion> exists in modules directory" -TestCases $moduleInfo {
                     $testJob = Start-Job -ScriptBlock {
                         param (
@@ -52,6 +53,7 @@ Describe "AzureModules" {
 
             if ($module.default) {
                 $moduleInfo = @{ moduleName = $moduleName; moduleDefault = $module.default }
+
                 It "<moduleDefault> set as default" -TestCases $moduleInfo {
                         $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
                         $moduleVersion | Should -Match $moduleDefault

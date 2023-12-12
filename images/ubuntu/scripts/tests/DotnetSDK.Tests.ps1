@@ -7,7 +7,7 @@ Describe "Dotnet and tools" {
         $dotnetSDKs = dotnet --list-sdks | ConvertTo-Json
         $dotnetRuntimes = dotnet --list-runtimes | ConvertTo-Json
     }
-    
+
     $dotnetVersions = (Get-ToolsetContent).dotnet.versions
 
     Context "Default" {
@@ -20,11 +20,11 @@ Describe "Dotnet and tools" {
         Context "Dotnet $version" {
             $dotnet = @{ dotnetVersion = $version }
 
-            It "SDK $version is available" -TestCases $dotnet {
+            It "SDK <dotnetVersion> is available" -TestCases $dotnet {
                 $dotnetSDKs | Should -Match "$dotnetVersion.[1-9]*"
             }
 
-            It "Runtime $version is available" -TestCases $dotnet {
+            It "Runtime <dotnetVersion> is available" -TestCases $dotnet {
                 $dotnetRuntimes | Should -Match "$dotnetVersion.[1-9]*"
             }
         }
