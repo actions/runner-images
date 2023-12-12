@@ -4,10 +4,10 @@
 ################################################################################
 
 function Disable-InternetExplorerESC {
-    $AdminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
-    $UserKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
-    Set-ItemProperty -Path $AdminKey -Name "IsInstalled" -Value 0 -Force
-    Set-ItemProperty -Path $UserKey -Name "IsInstalled" -Value 0 -Force
+    $adminKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A7-37EF-4b3f-8CFC-4F3A74704073}"
+    $userKey = "HKLM:\SOFTWARE\Microsoft\Active Setup\Installed Components\{A509B1A8-37EF-4b3f-8CFC-4F3A74704073}"
+    Set-ItemProperty -Path $adminKey -Name "IsInstalled" -Value 0 -Force
+    Set-ItemProperty -Path $userKey -Name "IsInstalled" -Value 0 -Force
 
     $ieProcess = Get-Process -Name Explorer -ErrorAction SilentlyContinue
 
@@ -19,9 +19,9 @@ function Disable-InternetExplorerESC {
 }
 
 function Disable-InternetExplorerWelcomeScreen {
-    $AdminKey = "HKLM:\Software\Policies\Microsoft\Internet Explorer\Main"
-    New-Item -Path $AdminKey -Value 1 -Force
-    Set-ItemProperty -Path $AdminKey -Name "DisableFirstRunCustomize" -Value 1 -Force
+    $adminKey = "HKLM:\Software\Policies\Microsoft\Internet Explorer\Main"
+    New-Item -Path $adminKey -Value 1 -Force
+    Set-ItemProperty -Path $adminKey -Name "DisableFirstRunCustomize" -Value 1 -Force
     Write-Host "Disabled IE Welcome screen"
 }
 
@@ -31,9 +31,9 @@ function Disable-UserAccessControl {
 }
 
 function Disable-WindowsUpdate {
-    $AutoUpdatePath = "HKLM:SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
-    If (Test-Path -Path $AutoUpdatePath) {
-        Set-ItemProperty -Path $AutoUpdatePath -Name NoAutoUpdate -Value 1
+    $autoUpdatePath = "HKLM:SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
+    if (Test-Path -Path $autoUpdatePath) {
+        Set-ItemProperty -Path $autoUpdatePath -Name NoAutoUpdate -Value 1
         Write-Host "Disabled Windows Update"
     } else {
         Write-Host "Windows Update key does not exist"

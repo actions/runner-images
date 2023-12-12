@@ -42,13 +42,18 @@ function Invoke-DotnetWarmup {
     )
     # warm up dotnet for first time experience
     $projectTypes = @('console', 'mstest', 'web', 'mvc', 'webapi')
-    $projectTypes | ForEach-Object {
-        $template = $_
-        $projectPath = Join-Path -Path C:\temp -ChildPath $template
+    foreach ($template in $projectTypes) {
+        $projectPath = Join-Path -Path "C:\temp" -ChildPath $template
         New-Item -Path $projectPath -Force -ItemType Directory
         Push-Location -Path $projectPath
-        & $env:ProgramFiles\dotnet\dotnet.exe new globaljson --sdk-version "$SDKVersion"
-        & $env:ProgramFiles\dotnet\dotnet.exe new $template
+        & "$env:ProgramFiles\dotnet\dotnet.exe" new globaljson --sdk-version "$SDKVersion"
+        if ($LastExitCode -ne 0) {
+            throw "Dotnet new globaljson failed with exit code $LastExitCode"
+        }
+        & "$env:ProgramFiles\dotnet\dotnet.exe" new $template
+        if ($LastExitCode -ne 0) {
+            throw "Dotnet new $template failed with exit code $LastExitCode"
+        }
         Pop-Location
         Remove-Item $projectPath -Force -Recurse
     }
@@ -73,6 +78,8 @@ function Install-DotnetSDK {
     Write-Host "Installing dotnet $SDKVersion"
     $zipPath = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
     & $InstallScriptPath -Version $SDKVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet') -ZipPath $zipPath -KeepZip
+    # Installer is PowerShell script that doesn't set exit code on failure
+    # If installation failed, tests will fail anyway
 
     #region Supply chain security
     $releasesJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
@@ -110,13 +117,19 @@ if (Test-Path $nugetPath) {
 
 # Generate and copy new NuGet.Config config
 dotnet nuget list source | Out-Null
-Copy-Item -Path $nugetPath -Destination C:\Users\Default\AppData\Roaming -Force -Recurse
+if ($LastExitCode -ne 0) {
+    throw "Dotnet nuget list source failed with exit code $LastExitCode"
+}
+Copy-Item -Path $nugetPath -Destination "C:\Users\Default\AppData\Roaming" -Force -Recurse
 
 # Install dotnet tools
 Write-Host "Installing dotnet tools"
 Add-DefaultPathItem "%USERPROFILE%\.dotnet\tools"
 foreach ($dotnetTool in $dotnetToolset.tools) {
-    dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default\.dotnet\tools" --add-source https://api.nuget.org/v3/index.json | Out-Null
+    dotnet tool install $($dotnetTool.name) --tool-path "C:\Users\Default\.dotnet\tools" --add-source "https://api.nuget.org/v3/index.json" | Out-Null
+    if ($LastExitCode -ne 0) {
+        throw "Dotnet tool install failed with exit code $LastExitCode"
+    }
 }
 
 Invoke-PesterTests -TestFile "DotnetSDK"

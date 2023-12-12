@@ -14,22 +14,22 @@ $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -UrlMatchPattern "stack-*-windows-x86_64.zip"
 
 Write-Host "Download stack archive"
-$StackToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY "stack\$version"
-$DestinationPath = Join-Path $StackToolcachePath "x64"
-$StackArchivePath = Invoke-DownloadWithRetry $downloadUrl
+$stackToolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "stack\$version"
+$destinationPath = Join-Path $stackToolcachePath "x64"
+$stackArchivePath = Invoke-DownloadWithRetry $downloadUrl
 
 #region Supply chain security - Stack
 $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
     -Url "$downloadUrl.sha256" `
     -FileName (Split-Path $downloadUrl -Leaf)
-Test-FileChecksum $StackArchivePath -ExpectedSHA256Sum $externalHash
+Test-FileChecksum $stackArchivePath -ExpectedSHA256Sum $externalHash
 #endregion
 
 Write-Host "Expand stack archive"
-Expand-7ZipArchive -Path $StackArchivePath -DestinationPath $DestinationPath
+Expand-7ZipArchive -Path $stackArchivePath -DestinationPath $destinationPath
 
-New-Item -Name "x64.complete" -Path $StackToolcachePath
+New-Item -Name "x64.complete" -Path $stackToolcachePath
 
-Add-MachinePathItem -PathItem $DestinationPath
+Add-MachinePathItem -PathItem $destinationPath
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Stack"

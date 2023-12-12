@@ -11,7 +11,13 @@ git clone $Uri $InstallDir -q
 
 # Build and integrate vcpkg
 Invoke-Expression "$InstallDir\bootstrap-vcpkg.bat"
+if ($LASTEXITCODE -ne 0) {
+    throw "vcpkg bootstrap failed with exit code $LASTEXITCODE"
+}
 Invoke-Expression "$InstallDir\$VcpkgExecPath integrate install"
+if ($LASTEXITCODE -ne 0) {
+    throw "vcpkg integration failed with exit code $LASTEXITCODE"
+}
 
 # Add vcpkg to system environment
 Add-MachinePathItem $InstallDir

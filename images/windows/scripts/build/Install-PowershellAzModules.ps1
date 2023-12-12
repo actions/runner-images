@@ -8,7 +8,7 @@
 $installPSModulePath = "C:\\Modules"
 if (-not (Test-Path -LiteralPath $installPSModulePath)) {
     Write-Host "Creating ${installPSModulePath} folder to store PowerShell Azure modules..."
-    $null = New-Item -Path $installPSModulePath -ItemType Directory
+    New-Item -Path $installPSModulePath -ItemType Directory | Out-Null
 }
 
 # Get modules content from toolset

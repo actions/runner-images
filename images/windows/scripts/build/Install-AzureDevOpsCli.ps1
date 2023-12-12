@@ -15,16 +15,16 @@ Update-Environment
 
 az extension add -n azure-devops
 if ($LASTEXITCODE -ne 0) {
-   throw "Command 'az extension add -n azure-devops' failed"
+    throw "Command 'az extension add -n azure-devops' failed"
 }
 
 # Warm-up Azure DevOps CLI
 Write-Host "Warmup 'az-devops'"
 @('devops', 'pipelines', 'boards', 'repos', 'artifacts') | ForEach-Object {
-   az $_ --help
-   if ($LASTEXITCODE -ne 0) {
-      throw "Command 'az $_ --help' failed"
-   }
+    az $_ --help
+    if ($LASTEXITCODE -ne 0) {
+        throw "Command 'az $_ --help' failed"
+    }
 }
 
 # calling az devops login to force it to install `keyring`. Login will actually fail, redirecting error to null

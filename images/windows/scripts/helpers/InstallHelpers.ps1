@@ -995,7 +995,7 @@ function Update-Environment {
     $pathItems = $locations | ForEach-Object { 
         (Get-Item $_).GetValue('PATH').Split(';') 
     } | Select-Object -Unique
-    $Env:PATH = $pathItems -join ';'
+    $env:PATH = $pathItems -join ';'
 
     # Update other variables
     $locations | ForEach-Object {
