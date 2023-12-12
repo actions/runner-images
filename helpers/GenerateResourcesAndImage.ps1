@@ -19,10 +19,10 @@ Function Get-PackerTemplatePath {
     switch ($ImageType) {
         # Note: Double Join-Path is required to support PowerShell 5.1
         ([ImageType]::Windows2019) {
-            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2019.json"
+            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2019.pkr.hcl"
         }
         ([ImageType]::Windows2022) {
-            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2022.json"
+            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2022.pkr.hcl"
         }
         ([ImageType]::Ubuntu2004) {
             $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-20.04.json"
@@ -155,7 +155,7 @@ Function GenerateResourcesAndImage {
     if ($Force -and $ReuseResourceGroup) {
         throw "Force and ReuseResourceGroup cannot be used together."
     }
-    
+
     Show-LatestCommit -ErrorAction SilentlyContinue
 
     # Validate packer is installed
@@ -229,6 +229,13 @@ Function GenerateResourcesAndImage {
 
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
 
+    Write-Host "Downloading packer plugins..."
+    & $PackerBinary init $TemplatePath
+
+    if ($LastExitCode -ne 0) {
+        throw "Packer plugins download failed."
+    }
+
     Write-Host "Validating packer template..."
     & $PackerBinary validate `
         "-var=client_id=fake" `
@@ -242,7 +249,7 @@ Function GenerateResourcesAndImage {
         "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
         "-var=azure_tags=$($TagsJson)" `
         $TemplatePath
-    
+
     if ($LastExitCode -ne 0) {
         throw "Packer template validation failed."
     }
@@ -290,7 +297,7 @@ Function GenerateResourcesAndImage {
                     # Resource group already exists, ask the user what to do
                     $title = "Resource group '$ResourceGroupName' already exists"
                     $message = "Do you want to delete the resource group and all resources in it?"
-                
+
                     $options = @(
                         [System.Management.Automation.Host.ChoiceDescription]::new("&Yes", "Delete the resource group and all resources in it."),
                         [System.Management.Automation.Host.ChoiceDescription]::new("&No", "Keep the resource group and continue."),
@@ -346,7 +353,7 @@ Function GenerateResourcesAndImage {
             if ($LastExitCode -ne 0) {
                 throw "Failed to create service principal '$ServicePrincipalName'."
             }
-            
+
             $ServicePrincipalAppId = $ServicePrincipal.appId
             $ServicePrincipalPassword = $ServicePrincipal.password
             $TenantId = $ServicePrincipal.tenant
@@ -383,7 +390,7 @@ Function GenerateResourcesAndImage {
         Write-Error $_
     } finally {
         Write-Verbose "`nCleaning up..."
-        
+
         # Remove ADServicePrincipal and ADApplication
         if ($ADCleanupRequired) {
             Write-Host "Removing ADServicePrincipal..."
