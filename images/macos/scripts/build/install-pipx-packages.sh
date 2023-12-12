@@ -8,11 +8,10 @@ source ~/utils/utils.sh
 
 export PATH="$PATH:/opt/pipx_bin"
 
-toolset=$(get_toolset_path)
-pipx_packages=$(jq -r ".pipx[] .package" $toolset)
+pipx_packages=$(get_toolset_value '.pipx[].package') #'.android.platform_min_version'
 
 for package in $pipx_packages; do
-    python_version=$(jq -r ".pipx[] | select(.package == \"$package\") .python" $toolset)
+    python_version="$(get_toolset_value ".pipx[] | select(.package==\"$package\") | .python[]?")"
     if [ "$python_version" != "null" ]; then
         python_path="$HOME/hostedtoolcache/Python/$python_version*/x64/bin/python$python_version"
         echo "Install $package into python $python_path"

@@ -58,7 +58,7 @@ for ((bundle_index=0; bundle_index<bundles_count; bundle_index++)); do
     ios=$(get_toolset_value ".xamarin.bundles[$bundle_index].ios")
     mac=$(get_toolset_value ".xamarin.bundles[$bundle_index].mac")
     android=$(get_toolset_value ".xamarin.bundles[$bundle_index].android")
-    createbundle $symlink $mono $ios $mac $android
+    createBundle $symlink $mono $ios $mac $android
 done
 
 # Symlinks for the latest Xamarin bundle
