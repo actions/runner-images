@@ -129,5 +129,8 @@
         "nunit": {
             "version": "3.15.4"
         }
+    },
+    "azcopy": {
+        "version": "10.21.2"
     }
 }
