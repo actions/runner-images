@@ -1,5 +1,7 @@
 Describe "ActionArchiveCache" {
-    $actionArchiveCachePath = "/opt/actionarchivecache"
+    BeforeAll {
+        $actionArchiveCachePath = "/opt/actionarchivecache"
+    }
 
     Context "Action archive cache directory not empty" {
         It "$actionArchiveCachePath not empty" {
