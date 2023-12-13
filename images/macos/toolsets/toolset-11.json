@@ -361,8 +361,5 @@
     },
     "postgresql": {
         "version": "14"
-    },
-    "azcopy": {
-        "version": "10.21.2"
     }
 }
