@@ -4,6 +4,8 @@
 ##  Desc:  Install Apache HTTP Server
 ################################################################################
 
+echo "Install Apache HTTP Server"
+
 # Install Apache
 apt-get install apache2 -y
 
