@@ -246,7 +246,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | 6_12_10           | 6.12         | 15.0        | 7.14        | 11.3            |
 
 #### Unit Test Framework
-- NUnit '/Library/Developer/nunit/3.6.0/nunit3-console.exe':
+- NUnit 3.6.1
 
 ### Xcode
 | Version        | Build    | Path                           |
