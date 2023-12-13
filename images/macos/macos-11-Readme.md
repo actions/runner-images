@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
 | [[all OSs] Nodejs 14.x will be removed from the images on November, 26](https://github.com/actions/runner-images/issues/8779) |
 | [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
 ***
 # macOS 11
 - OS Version: macOS 11.7.10 (20G1427)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20231127.1
+- Image Version: 20231211.2
 
 ## Installed Software
 
@@ -23,16 +24,16 @@
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - Julia 1.9.4
 - Kotlin 1.9.21-release-633
-- Go 1.20.11
+- Go 1.20.12
 - Mono 6.12.0.188
-- Node.js 18.18.2
+- Node.js 18.19.0
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
-- NVM 0.39.5
-- NVM - Cached node versions: 16.20.2, 18.18.2, 20.10.0
-- Perl 5.38.1
+- NVM 0.39.7
+- NVM - Cached node versions: 16.20.2, 18.19.0, 20.10.0
+- Perl 5.38.2
 - PHP 8.3.0
 - Python 2.7.18
-- Python3 3.12.0
+- Python3 3.12.1
 - R 4.3.2
 - Ruby 2.7.8p225
 
@@ -40,16 +41,16 @@
 - Bundler 2.4.22
 - Carthage 0.39.1
 - CocoaPods 1.14.3
-- Composer 2.6.5
-- Homebrew 4.1.22
+- Composer 2.6.6
+- Homebrew 4.1.25
 - Miniconda 23.10.0
-- NPM 9.8.1
+- NPM 10.2.3
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 23.3.1 (python 3.12)
-- Pipx 1.2.1
+- Pipx 1.3.3
 - RubyGems 3.4.22
-- Vcpkg 2023 (build from commit 2a01db703)
+- Vcpkg 2023 (build from commit f56238700)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -60,26 +61,26 @@
 
 ### Project Management
 - Apache Ant 1.10.14
-- Apache Maven 3.9.5
-- Gradle 8.4
+- Apache Maven 3.9.6
+- Gradle 8.5
 - Sbt 1.9.7
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.21.2
-- bazel 6.4.0
+- bazel 7.0.0
 - bazelisk 1.19.0
 - bsdtar 3.3.2 - available by 'tar' alias
-- Curl 8.4.0
+- Curl 8.5.0
 - Git 2.43.0
 - Git LFS 3.4.0
-- GitHub CLI 2.39.1
+- GitHub CLI 2.40.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
 - helm v3.13.2+g2a2fb3b
-- ImageMagick 7.1.1-21
+- ImageMagick 7.1.1-23
 - jq 1.7
 - mongo 5.0.21
 - mongod 5.0.21
@@ -92,27 +93,27 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.2
 - Switchaudio-osx 1.2.2
-- yq 4.40.3
+- yq 4.40.5
 - zstd 1.5.5
 
 ### Tools
-- Aliyun CLI 3.0.188
+- Aliyun CLI 3.0.189
 - App Center CLI 2.14.0
-- AWS CLI 2.14.0
-- AWS SAM CLI 1.103.0
-- AWS Session Manager CLI 1.2.497.0
-- Azure CLI 2.54.0
+- AWS CLI 2.15.0
+- AWS SAM CLI 1.104.0
+- AWS Session Manager CLI 1.2.536.0
+- Azure CLI 2.55.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.23.1
 - Cabal 3.6.2.0
-- Cmake 3.27.8
+- Cmake 3.28.0
 - CodeQL Action Bundle 2.15.3
 - Fastlane 2.217.0
 - GHC 9.8.1
 - GHCup 0.1.20.0
 - Jazzy 0.14.4
 - Stack 2.13.1
-- SwiftFormat 0.52.10
+- SwiftFormat 0.52.11
 - Swig 4.1.1
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
@@ -123,12 +124,12 @@
 ### Browsers
 - Safari 16.6.1 (16615.3.12.11.5)
 - SafariDriver 16.6.1 (16615.3.12.11.5)
-- Google Chrome 119.0.6045.159
-- Google Chrome for Testing 119.0.6045.105
-- ChromeDriver 119.0.6045.105
-- Microsoft Edge 119.0.2151.72
-- Microsoft Edge WebDriver 119.0.2151.72
-- Mozilla Firefox 120.0
+- Google Chrome 120.0.6099.62
+- Google Chrome for Testing 120.0.6099.71
+- ChromeDriver 120.0.6099.71
+- Microsoft Edge 120.0.2210.61
+- Microsoft Edge WebDriver 120.0.2210.61
+- Mozilla Firefox 120.0.1
 - geckodriver 0.33.0
 - Selenium server 4.15.0
 
@@ -168,23 +169,23 @@
 - 3.8.18
 - 3.9.18
 - 3.10.13
-- 3.11.6
-- 3.12.0
+- 3.11.7
+- 3.12.1
 
 #### Node.js
 - 16.20.2
-- 18.18.2
+- 18.19.0
 - 20.10.0
 
 #### Go
 - 1.19.13
-- 1.20.11
-- 1.21.4
+- 1.20.12
+- 1.21.5
 
 ### Rust Tools
-- Cargo 1.74.0
-- Rust 1.74.0
-- Rustdoc 1.74.0
+- Cargo 1.74.1
+- Rust 1.74.1
+- Rustdoc 1.74.1
 - Rustup 1.26.0
 
 #### Packages
@@ -199,7 +200,7 @@
 - PowerShell 7.2.17
 
 #### PowerShell Modules
-- Az: 11.0.0
+- Az: 11.1.0
 - MarkdownPS: 1.9
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
@@ -247,7 +248,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | 6_12_0            | 6.12         | 13.20       | 6.20        | 11.0            |
 
 #### Unit Test Framework
-- NUnit 3.6.1
+- NUnit '/Library/Developer/nunit/3.6.0/nunit3-console.exe':
 
 ### Xcode
 | Version          | Build    | Path                           |
@@ -332,7 +333,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                                                                                                                       |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                           |
-| Android Emulator           | 32.1.15                                                                                                                                                                                                                                                       |
+| Android Emulator           | 33.1.23                                                                                                                                                                                                                                                       |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                                                |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
 | Android SDK Platform-Tools | 34.0.5                                                                                                                                                                                                                                                        |
