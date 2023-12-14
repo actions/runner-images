@@ -4,10 +4,6 @@ Describe "Node.js" {
     $testCases = $binaries + $module_commands | ForEach-Object { @{NodeCommand = $_} }
 
     It "<NodeCommand>" -TestCases $testCases {
-        param (
-            [string] $NodeCommand
-        )
-
         "$NodeCommand --version" | Should -ReturnZeroExitCode
     }
 
@@ -15,4 +11,3 @@ Describe "Node.js" {
         node --version | Should -BeLike "v$((Get-ToolsetContent).node.default).*"
     }
 }
-
