@@ -1,18 +1,17 @@
 Describe "ActionArchiveCache" {
-    BeforeAll {
+    BeforeDiscovery {
         $actionArchiveCachePath = "/opt/actionarchivecache"
+        $tarballTestCases = Get-ChildItem -Path "$actionArchiveCachePath/*.tar.gz" -Recurse | ForEach-Object { @{ ActionTarball = $_.FullName } }
     }
 
     Context "Action archive cache directory not empty" {
-        It "$actionArchiveCachePath not empty" {
-            (Get-ChildItem -Path "$actionArchiveCachePath/*.tar.gz" -Recurse).Count | Should -BeGreaterThan 0
+        It "<ActionArchiveCachepath> not empty" -TestCases @{ ActionArchiveCachepath = $actionArchiveCachePath } {
+            (Get-ChildItem -Path "$ActionArchiveCachepath/*.tar.gz" -Recurse).Count | Should -BeGreaterThan 0
         }
     }
 
     Context "Action tarball not empty" {
-        $testCases = Get-ChildItem -Path "$actionArchiveCachePath/*.tar.gz" -Recurse | ForEach-Object { @{ ActionTarball = $_.FullName } }
-
-        It "<ActionTarball>" -TestCases $testCases {
+        It "<ActionTarball>" -TestCases $tarballTestCases {
             (Get-Item "$ActionTarball").Length | Should -BeGreaterThan 0
         }
     }
