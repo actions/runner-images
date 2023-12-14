@@ -217,7 +217,7 @@ Where:
 - `InstallPassword` - password for the user used to install software (Windows only);
 - `Location` - location where resources will be created (e.g., "East US");
 - `ImageName` and `ImageResourceGroupName` - name of the resource group where the managed image will be stored;
-- `TemplatePath` - path to the Packer template file (e.g., "images/windows/templates/windows-2022.json").
+- `TemplatePath` - path to the Packer template file (e.g., "images/windows/templates/windows-2022.pkr.hcl").
 
 ### Required variables
 
