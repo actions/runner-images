@@ -7,7 +7,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
 - Kernel Version: 6.2.0-1018-azure
-- Image Version: 20231205.1.0
+- Image Version: 20231211.1.0
 - Systemd version: 249.11-0ubuntu3.11
 
 ## Installed Software
@@ -33,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.13.1
-- Homebrew 4.1.23
+- Homebrew 4.1.24
 - Miniconda 23.10.0
 - Npm 10.2.3
 - NuGet 6.6.1.2
@@ -41,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.3.3
 - RubyGems 3.3.5
-- Vcpkg (build from commit 08c4e7104)
+- Vcpkg (build from commit 000d1bda1)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -65,12 +65,12 @@ to accomplish this.
 ### Tools
 - Ansible 2.16.1
 - apt-fast 1.9.12
-- AzCopy 10.22.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.21.2 - available by `azcopy` and `azcopy10` aliases
 - Bazel 6.4.0
 - Bazelisk 1.19.0
 - Bicep 0.23.1
 - Buildah 1.23.1
-- CMake 3.27.9
+- CMake 3.28.0
 - CodeQL Action Bundle 2.15.3
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
@@ -87,19 +87,19 @@ to accomplish this.
 - jq 1.6
 - Kind 0.20.0
 - Kubectl 1.28.4
-- Kustomize 5.2.1
+- Kustomize 5.3.0
 - Leiningen 2.10.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.32.0
 - n 9.2.0
 - Newman 6.0.0
-- nvm 0.39.6
+- nvm 0.39.7
 - OpenSSL 3.0.2-0ubuntu1.12
 - Packer v1.10.0
 - Parcel 2.10.3
 - Podman 3.4.4
-- Pulumi 3.95.0
+- Pulumi 3.96.2
 - R 4.3.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -110,15 +110,15 @@ to accomplish this.
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.188
-- AWS CLI 2.14.5
+- Alibaba Cloud CLI 3.0.189
+- AWS CLI 2.15.0
 - AWS CLI Session Manager Plugin 1.2.536.0
-- AWS SAM CLI 1.103.0
+- AWS SAM CLI 1.104.0
 - Azure CLI 2.55.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.39.2
+- GitHub CLI 2.40.0
 - Google Cloud CLI 456.0.0
-- Netlify CLI 17.9.0
+- Netlify CLI 17.10.1
 - OpenShift CLI 4.14.5
 - ORAS CLI 1.1.0
 - Vercel CLI 32.6.1
@@ -133,7 +133,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.6.5
+- Composer 2.6.6
 - PHPUnit 8.5.36
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -146,9 +146,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.13.1
 
 ### Rust Tools
-- Cargo 1.74.0
-- Rust 1.74.0
-- Rustdoc 1.74.0
+- Cargo 1.74.1
+- Rust 1.74.1
+- Rustdoc 1.74.1
 - Rustup 1.26.0
 
 #### Packages
@@ -160,12 +160,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 119.0.6045.199
-- ChromeDriver 119.0.6045.105
-- Chromium 119.0.6045.0
-- Microsoft Edge 119.0.2151.97
-- Microsoft Edge WebDriver 119.0.2151.97
-- Selenium server 4.15.0
+- Google Chrome 120.0.6099.71
+- ChromeDriver 120.0.6099.71
+- Chromium 120.0.6099.0
+- Microsoft Edge 120.0.2210.61
+- Microsoft Edge WebDriver 120.0.2210.61
+- Selenium server 4.16.0
 - Mozilla Firefox 120.0.1
 - Geckodriver 0.33.0
 
@@ -209,8 +209,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.19.13
-- 1.20.11
-- 1.21.4
+- 1.20.12
+- 1.21.5
 
 #### Node.js
 - 16.20.2
@@ -223,7 +223,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.18
 - 3.10.13
 - 3.11.7
-- 3.12.0
+- 3.12.1
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -240,7 +240,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 9.3.0
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.10.0
+- Microsoft.Graph: 2.11.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -307,7 +307,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.9-2build6                       |
 | bzip2                  | 1.0.8-5build1                       |
 | coreutils              | 8.32-4.1ubuntu1                     |
-| curl                   | 7.81.0-1ubuntu1.14                  |
+| curl                   | 7.81.0-1ubuntu1.15                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
 | dnsutils               | 1:9.18.18-0ubuntu0.22.04.1          |
 | dpkg                   | 1.21.1ubuntu2.2                     |
@@ -329,8 +329,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.4                     |
-| libcurl4               | 7.81.0-1ubuntu1.14                  |
+| libc6-dev              | 2.35-0ubuntu3.5                     |
+| libcurl4               | 7.81.0-1ubuntu1.15                  |
 | libgbm-dev             | 23.0.4-0ubuntu1\~22.04.1            |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
@@ -346,7 +346,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.4                     |
+| locales                | 2.35-0ubuntu3.5                     |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
@@ -374,7 +374,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.4                    |
 | swig                   | 4.0.2-1ubuntu1                      |
-| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.1        |
+| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
