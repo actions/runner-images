@@ -35,6 +35,9 @@ Install-Binary `
 Update-Environment
 
 git config --system --add safe.directory "*"
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "Failed to configure safe.directory for Git with exit code $LASTEXITCODE"
+}
 
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", "Machine")

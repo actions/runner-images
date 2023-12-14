@@ -12,7 +12,7 @@ $toolsExecutables = @{
         @{ Binary = "npm"; Arguments = "--version" }
     )
     Go = @(
-        @{ Binary =  "bin\go.exe"; Arguments = "version" }
+        @{ Binary = "bin\go.exe"; Arguments = "version" }
     )
     Ruby = @(
         @{ Binary = "bin\ruby.exe"; Arguments = "--version" }
