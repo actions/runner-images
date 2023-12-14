@@ -266,36 +266,13 @@ function Install-SoftwareUpdate {
         [array] $listOfUpdates,
         [string] $Password
     )
-    # If an update is happening on macOS 12 or 13 we will use the prepared list of updates, otherwise, we will install all updates.
-    $command = "sw_vers"
-    $guestMacosVersion = Invoke-SSHPassCommand -HostName $HostName -Command $command
-    if ($guestMacosVersion[1] -match "12") {
-        foreach ($update in $listOfUpdates) {
-            # Filtering updates that contain "Ventura" word
-            if ($update -notmatch "Ventura") {
-                $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
-                Invoke-SSHPassCommand -HostName $HostName -Command $command
-            }
-        }
-    } elseif ($guestMacosVersion[1] -match "13") {
-        $osArch = $(arch)
-        if ($osArch -eq "arm64") {
-            Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password -ListOfUpdates $listOfUpdates
-        } else {
-            foreach ($update in $listOfUpdates) {
-                # Filtering updates that contain "Sonoma" word
-                if ($update -notmatch "Sonoma") {
-                    $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
-                    Invoke-SSHPassCommand -HostName $HostName -Command $command
-                }
-            }
-        }
+    # If an update is happening on macOS arm64 we will use the additional tool to install updates.
+    $osArch = $(arch)
+    if ($osArch -eq "arm64") {
+        Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password -ListOfUpdates $listOfUpdates
     } else {
-        $osArch = $(arch)
-        if ($osArch -eq "arm64") {
-            Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password -ListOfUpdates $listOfUpdates
-        } else {
-            $command = "sudo /usr/sbin/softwareupdate --all --install --restart --verbose"
+        foreach ($update in $listOfUpdates) {
+            $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
             Invoke-SSHPassCommand -HostName $HostName -Command $command
         }
     }
@@ -348,7 +325,7 @@ function Invoke-WithRetry {
         [int] $RetryCount = 20,
         [int] $Seconds = 60
     )
-
+    $ErrorActionPreference = "SilentlyContinue"
     while ($RetryCount -gt 0) {
         if ($Command) {
             $result = & $Command
@@ -360,6 +337,7 @@ function Invoke-WithRetry {
 
         $RetryCount--
         if ($RetryCount -eq 0) {
+            $ErrorActionPreference = "Stop"
             Write-Error "No more attempts left: $BreakCondition"
         }
         Write-Host "`t    [/] Waiting $Seconds seconds before retrying. Retries left: $RetryCount"
