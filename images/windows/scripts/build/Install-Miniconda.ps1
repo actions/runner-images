@@ -9,7 +9,7 @@ $installerName = "Miniconda3-latest-Windows-x86_64.exe"
 
 #region Supply chain security
 $distributorFileHash = $null
-$checksums = (Invoke-RestMethod -Uri 'https://repo.anaconda.com/miniconda/' | ConvertFrom-HTML).SelectNodes('//html/body/table/tr')
+$checksums = (ConvertFrom-HTML -Uri 'https://repo.anaconda.com/miniconda/').SelectNodes('//html/body/table/tr')
 
 foreach ($node in $checksums) {
     if ($node.ChildNodes[1].InnerText -eq $installerName) {
