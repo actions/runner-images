@@ -1,34 +1,4 @@
 Describe "Android" {
-    BeforeAll {
-        function Test-AndroidPackage {
-            <#
-            .SYNOPSIS
-                This function tests existance of an Android package.
-
-            .DESCRIPTION
-                The Test-AndroidPackage function is used to test an existance of Android package in ANDROID_HOME path.
-
-            .PARAMETER PackageName
-                The name of the Android package to test.
-
-            .EXAMPLE
-                Test-AndroidPackage
-
-                This command tests the Android package.
-
-            #>
-            param (
-                [Parameter(Mandatory=$true)]
-                [string] $PackageName
-            )
-
-            # Convert 'cmake;3.6.4111459' -> 'cmake/3.6.4111459'
-            $PackageName = $PackageName.Replace(";", "/")
-            $targetPath = Join-Path $env:ANDROID_HOME $PackageName
-            $targetPath | Should -Exist
-        }
-    }
-
     function Get-AndroidPackages {
         <#
         .SYNOPSIS
@@ -130,8 +100,10 @@ Describe "Android" {
         $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
 
         It "<PackageName>" -TestCases $testCases {
-            param ([string] $PackageName)
-            Test-AndroidPackage $PackageName
+            # Convert 'cmake;3.6.4111459' -> 'cmake/3.6.4111459'
+            $PackageName = $PackageName.Replace(";", "/")
+            $targetPath = Join-Path $env:ANDROID_HOME $PackageName
+            $targetPath | Should -Exist
         }
     }
 }

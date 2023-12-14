@@ -5,15 +5,13 @@ Describe "Haskell" {
     $testCase = @{ GHCVersions = $GHCVersions }
 
     It "GHC directory contains two version of GHC" -TestCases $testCase {
-        param ([object] $GHCVersions)
         $GHCVersions.Count | Should -Be 2
     }
 
     $testCases = $GHCVersions | ForEach-Object { @{ GHCPath = "${_}/bin/ghc"} }
 
     It "GHC version <GHCPath>" -TestCases $testCases {
-            param ([string] $GHCPath)
-            "$GHCPath --version" | Should -ReturnZeroExitCode
+        "$GHCPath --version" | Should -ReturnZeroExitCode
     }
 
     It "GHCup" {

@@ -1,3 +1,8 @@
+################################################################################
+##  File:  Install-RootCA.ps1
+##  Desc:  Install Root CA certificates
+################################################################################
+
 # https://www.sysadmins.lv/blog-en/how-to-retrieve-certificate-purposes-property-with-cryptoapi-and-powershell.aspx
 # https://www.sysadmins.lv/blog-en/dump-authroot-and-disallowed-certificates-with-powershell.aspx
 # https://www.sysadmins.lv/blog-en/constraining-extended-key-usages-in-microsoft-windows.aspx
@@ -26,7 +31,7 @@ function Add-ExtendedCertType {
 
 function Get-CertificatesWithoutPropId {
     # List installed certificates
-    $certs = Get-ChildItem -Path Cert:\LocalMachine\Root
+    $certs = Get-ChildItem -Path "Cert:\LocalMachine\Root"
 
     Write-Host "Certificates without CERT_NOT_BEFORE_FILETIME_PROP_ID property"
     $certsWithoutPropId = @{}
@@ -65,12 +70,7 @@ function Import-SSTFromWU {
         exit $LASTEXITCODE
     }
 
-    try {
-        Import-Certificate -FilePath $sstFile -CertStoreLocation Cert:\LocalMachine\Root
-    } catch {
-        Write-Host "[Error]: failed to import ROOT CA`n$_"
-        exit 1
-    }
+    Import-Certificate -FilePath $sstFile -CertStoreLocation Cert:\LocalMachine\Root
 }
 
 function Clear-CertificatesPropId {

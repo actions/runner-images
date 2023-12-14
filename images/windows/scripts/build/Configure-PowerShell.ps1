@@ -17,7 +17,7 @@ $PSModuleAnalysisCachePath = 'C:\PSModuleAnalysisCachePath\ModuleAnalysisCache'
 # make variable to be available in the current session
 ${env:PSModuleAnalysisCachePath} = $PSModuleAnalysisCachePath
 
-$null = New-Item -Path $PSModuleAnalysisCachePath  -ItemType 'File'  -Force
+New-Item -Path $PSModuleAnalysisCachePath -ItemType 'File' -Force | Out-Null
 #endregion
 
 #region User (current user, image generation only)

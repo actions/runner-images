@@ -3,33 +3,33 @@
 ##  Desc:  Install Mysql CLI
 ################################################################################
 
-# Installing visual c++ redistibutable package.
+# Installing visual c++ redistributable package.
 Install-Binary `
     -Url 'https://download.microsoft.com/download/0/5/6/056dcda9-d667-4e27-8001-8a0c6971d6b1/vcredist_x64.exe' `
     -InstallArgs @("/install", "/quiet", "/norestart") `
     -ExpectedSignature '3BDA323E552DB1FDE5F4FBEE75D6D5B2B187EEDC'
 
 # Downloading mysql
-[version] $MysqlVersion = (Get-ToolsetContent).mysql.version
-$MysqlVersionMajorMinor = $MysqlVersion.ToString(2)
+[version] $mysqlVersion = (Get-ToolsetContent).mysql.version
+$mysqlVersionMajorMinor = $mysqlVersion.ToString(2)
 
-if ($MysqlVersion.Build -lt 0) {
-    $downloadsPageUrl = "https://dev.mysql.com/downloads/mysql/${MysqlVersionMajorMinor}.html"
-    $MysqlVersion = Invoke-RestMethod -Uri $downloadsPageUrl -Headers @{ 'User-Agent' = 'curl/8.4.0' } `
-        | Select-String -Pattern "${MysqlVersionMajorMinor}\.\d+" `
-        | ForEach-Object { $_.Matches.Value }
+if ($mysqlVersion.Build -lt 0) {
+    $downloadsPageUrl = "https://dev.mysql.com/downloads/mysql/${mysqlVersionMajorMinor}.html"
+    $mysqlVersion = Invoke-RestMethod -Uri $downloadsPageUrl -Headers @{ 'User-Agent' = 'curl/8.4.0' } `
+    | Select-String -Pattern "${mysqlVersionMajorMinor}\.\d+" `
+    | ForEach-Object { $_.Matches.Value }
 }
 
-$MysqlVersionFull = $MysqlVersion.ToString()
-$MysqlVersionUrl = "https://cdn.mysql.com/Downloads/MySQL-${MysqlVersionMajorMinor}/mysql-${MysqlVersionFull}-winx64.msi"
+$mysqlVersionFull = $mysqlVersion.ToString()
+$mysqlVersionUrl = "https://cdn.mysql.com/Downloads/MySQL-${mysqlVersionMajorMinor}/mysql-${mysqlVersionFull}-winx64.msi"
 
 Install-Binary `
-    -Url $MysqlVersionUrl `
+    -Url $mysqlVersionUrl `
     -ExpectedSignature (Get-ToolsetContent).mysql.signature
 
 # Adding mysql in system environment path
-$MysqlPath = $(Get-ChildItem -Path "C:\PROGRA~1\MySQL" -Directory)[0].FullName
+$mysqlPath = $(Get-ChildItem -Path "C:\PROGRA~1\MySQL" -Directory)[0].FullName
 
-Add-MachinePathItem "${MysqlPath}\bin"
+Add-MachinePathItem "${mysqlPath}\bin"
 
 Invoke-PesterTests -TestFile "Databases" -TestName "MySQL"
