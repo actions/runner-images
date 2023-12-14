@@ -87,12 +87,6 @@ rm -rf $HOME/.config/NuGet/NuGet.Config
 nuget config
 
 # Temporary workaround to point Mono to the proper NUnit console
-nunit_config=$(< /Library/Frameworks/Mono.framework/Versions/Current/Commands/nunit-console | tr -d '\r' | tr '/' ' ')
-if [[ $nunit_config != *"3.6.1"* ]]; then
-    echo "Fixing NUnit console version"
-    IFS=' ' read -ra conf_parts <<< "$nunit_config"
-    version_in_file=$(echo ${conf_parts[19]})
-    sudo sed -Ei '' "s/${version_in_file}/3.6.1/" /Library/Frameworks/Mono.framework/Versions/Current/Commands/nunit-console
-fi
+sudo sed -Ei '' 's/3.6.0/3.6.1/' /Library/Frameworks/Mono.framework/Versions/Current/Commands/nunit-console
 
 invoke_tests "Xamarin"
