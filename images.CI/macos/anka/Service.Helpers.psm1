@@ -325,19 +325,21 @@ function Invoke-WithRetry {
         [int] $RetryCount = 20,
         [int] $Seconds = 60
     )
-    $ErrorActionPreference = "SilentlyContinue"
     while ($RetryCount -gt 0) {
-        if ($Command) {
-            $result = & $Command
-        }
+        try {
+            if ($Command) {
+                $result = & $Command
+            }
 
-        if (& $BreakCondition) {
-            return $result
+            if (& $BreakCondition) {
+                return $result
+            }
+        } catch {
+            Write-Host "`t    [!] Error during command execution: $_"
         }
 
         $RetryCount--
         if ($RetryCount -eq 0) {
-            $ErrorActionPreference = "Stop"
             Write-Error "No more attempts left: $BreakCondition"
         }
         Write-Host "`t    [/] Waiting $Seconds seconds before retrying. Retries left: $RetryCount"

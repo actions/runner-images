@@ -102,8 +102,8 @@ function Invoke-SoftwareUpdate {
     $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title").where({$_ -match "Label:"}).Replace("Label: ", '').where({$_ -notmatch $nextOSVersion}))
     Write-Host "`t[*] Installing Software Updates on '$TemplateName' VM:"
     Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates -Password $Password | Show-StringWithFormat
-    Write-Host "`t[*] Sleep 300 seconds before the software updates have been installed"
-    Start-Sleep -Seconds 300
+    Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
+    Start-Sleep -Seconds 60
     Write-Host "`t[*] Waiting for loginwindow process"
     Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
     # Re-enable AutoLogon after installing a new security software update
