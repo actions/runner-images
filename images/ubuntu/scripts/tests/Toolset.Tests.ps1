@@ -28,7 +28,7 @@ Describe "Toolset" {
         }
     }
 
-    foreach($tool in $tools) {
+    foreach ($tool in $tools) {
         $toolName = $tool.Name
         Context "$toolName" {
             $toolExecs = $toolsExecutables[$toolName]
@@ -45,16 +45,15 @@ Describe "Toolset" {
                     $ExpectedVersionPath | Should -Exist
                 }
 
-                $toolExecs = $toolsExecutables[$toolName]
                 $foundVersion = Get-Item $expectedVersionPath `
                     | Sort-Object -Property {[SemVer]$_.name} -Descending `
                     | Select-Object -First 1
                 $foundVersionPath = Join-Path $foundVersion $tool.arch
 
-                if($toolExecs) {
+                if ($toolExecs) {
                     foreach ($executable in $toolExecs["tools"]) {
-                        $executablePath = Join-Path $foundVersionPath $executable   
-    
+                        $executablePath = Join-Path $foundVersionPath $executable
+
                         It "Validate $executable" -TestCases @{ExecutablePath = $executablePath} {
                             $ExecutablePath | Should -Exist
                         }
