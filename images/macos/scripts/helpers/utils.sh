@@ -235,3 +235,25 @@ get_arch() {
         echo "x64"
     fi
 }
+
+use_checksum_comparison() {
+    local file_path=$1
+    local checksum=$2
+    local sha_type=${3:-"256"}
+
+    echo "Performing checksum verification"
+
+    if [[ ! -f "$file_path" ]]; then
+        echo "File not found: $file_path"
+        exit 1
+    fi
+
+    local_file_hash=$(shasum --algorithm "$sha_type" "$file_path" | awk '{print $1}')
+
+    if [[ "$local_file_hash" != "$checksum" ]]; then
+        echo "Checksum verification failed. Expected hash: $checksum; Actual hash: $local_file_hash."
+        exit 1
+    else
+        echo "Checksum verification passed"
+    fi
+}
