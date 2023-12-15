@@ -4,7 +4,7 @@ Describe "MongoDB" -Skip:(Test-IsUbuntu22) {
         @{ ToolName = "mongod" }
     ) {
         $toolsetVersion = (Get-ToolsetContent).mongodb.version
-        (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
+        (& $ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
 

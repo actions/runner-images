@@ -353,11 +353,11 @@
     "serviceFabric": {
         "runtime": {
             "version": "9.1.1436.9590",
-            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
+            "checksum": "089F9BE6A63AF66C337E507B52082575C8ED330DF765259C6F2F13F900DA96D5"
         },
         "sdk": {
             "version": "6.1.1436",
-            "signature": "AFBF0B8B6A18F7E23CCA1DDCD0AC1A55B4035173"
+            "checksum": "D2A6B58315D08B6E46C2D25E91DFA1163136F70A5FA8CEF9DB147F07EE001AD1"
         }
     },
     "dotnet": {
