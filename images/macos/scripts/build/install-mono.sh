@@ -7,31 +7,30 @@
 source ~/utils/utils.sh
 
 # Install Mono Framework
-MONO_VERSION_FULL=$(get_toolset_value '.mono.framework.version')
-MONO_PKG_SHA256=$(get_toolset_value '.mono.framework.sha256')
-MONO_VERSION=$(echo "$MONO_VERSION_FULL" | cut -d. -f 1,2,3)
-MONO_VERSION_SHORT=$(echo $MONO_VERSION_FULL | cut -d. -f 1,2)
-MONO_PKG_URL="https://download.mono-project.com/archive/${MONO_VERSION}/macos-10-universal/MonoFramework-MDK-${MONO_VERSION_FULL}.macos10.xamarin.universal.pkg"
+mono_version_full=$(get_toolset_value '.mono.framework.version')
+mono_pkg_sha256=$(get_toolset_value '.mono.framework.sha256')
+mono_version=$(echo "$mono_version_full" | cut -d. -f 1,2,3)
+mono_version_short=$(echo $mono_version_full | cut -d. -f 1,2)
+mono_pkg_url="https://download.mono-project.com/archive/${mono_version}/macos-10-universal/MonoFramework-MDK-${mono_version_full}.macos10.xamarin.universal.pkg"
 MONO_VERSIONS_PATH='/Library/Frameworks/Mono.framework/Versions'
 
-MONO_PKG_PATH=$(download_with_retry "$MONO_PKG_URL")
-use_checksum_comparison "$MONO_PKG_PATH" "$MONO_PKG_SHA256"
-
-echo "Installing Mono Framework ${MONO_VERSION_FULL}..."
-sudo installer -pkg "$MONO_PKG_PATH" -target /
+mono_pkg_path=$(download_with_retry "$mono_pkg_url")
+use_checksum_comparison "$mono_pkg_path" "$mono_pkg_sha256"
+echo "Installing Mono Framework ${mono_version_full}..."
+sudo installer -pkg "$mono_pkg_path" -target /
 
 # Download and install NUnit console
-NUNIT_VERSION=$(get_toolset_value '.mono.nunit.version')
-NUNIT_ARCHIVE_URL="https://github.com/nunit/nunit-console/releases/download/${NUNIT_VERSION}/NUnit.Console-${NUNIT_VERSION}.zip"
-NUNIT_ARCHIVE_SHA256=$(get_toolset_value '.mono.nunit.sha256')
+nunit_version=$(get_toolset_value '.mono.nunit.version')
+nunit_archive_url="https://github.com/nunit/nunit-console/releases/download/${nunit_version}/NUnit.Console-${nunit_version}.zip"
+nunit_archive_sha256=$(get_toolset_value '.mono.nunit.sha256')
 NUNIT_PATH="/Library/Developer/nunit"
 nunit_version_path="$NUNIT_PATH/$nunit_version"
 
-NUNIT_ARCHIVE_PATH=$(download_with_retry "$NUNIT_ARCHIVE_URL")
-use_checksum_comparison "$NUNIT_ARCHIVE_PATH" "$NUNIT_ARCHIVE_SHA256"
-echo "Installing NUnit ${NUNIT_VERSION}..."
-sudo mkdir -p "$NUNIT_VERSION_PATH"
-sudo unzip -q "$NUNIT_ARCHIVE_PATH" -d "$NUNIT_VERSION_PATH"
+nunit_archive_path=$(download_with_retry "$nunit_archive_url")
+use_checksum_comparison "$nunit_archive_path" "$nunit_archive_sha256"
+echo "Installing NUnit ${nunit_version}..."
+sudo mkdir -p "$nunit_version_path"
+sudo unzip -q "$nunit_archive_path" -d "$nunit_version_path"
 
 # Create a wrapper script for nunit3-console
 echo "Creating nunit3-console wrapper..."
