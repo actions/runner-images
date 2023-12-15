@@ -96,8 +96,7 @@ function ShouldReturnZeroExitCode {
     [bool] $succeeded = $result.ExitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
 
-    if (-not $succeeded)
-    {
+    if (-not $succeeded) {
         $commandOutputIndent = " " * 4
         $commandOutput = ($result.Output | ForEach-Object { "${commandOutputIndent}${_}" }) -join "`n"
         $failureMessage = "Command '${ActualValue}' has finished with exit code`n${commandOutput}"
@@ -149,8 +148,7 @@ function ShouldOutputTextMatchingRegex {
     if (-not $succeeded) {
         if ($Negate) {
             $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to not match '$output', but it did match."
-        }
-        else {
+        } else {
             $failureMessage = "Expected regular expression '$RegularExpression' for '$ActualValue' command to match '$output', but it did not match."
         }
     }

@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    azure = {
+      source  = "github.com/hashicorp/azure"
+      version = "1.4.5"
+    }
+  }
+}
+
 locals {
   image_os = "ubuntu22"
 
@@ -26,9 +35,9 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
-variable "managed_image_name" {
+variable "client_cert_path" {
   type    = string
-  default = ""
+  default = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
 variable "client_id" {
@@ -42,24 +51,15 @@ variable "client_secret" {
   sensitive = true
 }
 
-variable "client_cert_path" {
-  type      = string
-  default   = "${env("ARM_CLIENT_CERT_PATH")}"
-}
-
-variable "commit_url" {
-  type      = string
-  default   = ""
-}
-
 variable "image_version" {
   type    = string
   default = "dev"
 }
 
 variable "install_password" {
-  type  = string
-  default = ""
+  type      = string
+  default   = ""
+  sensitive = true
 }
 
 variable "location" {
@@ -67,14 +67,19 @@ variable "location" {
   default = "${env("ARM_RESOURCE_LOCATION")}"
 }
 
-variable "private_virtual_network_with_public_ip" {
-  type    = bool
-  default = false
+variable "managed_image_name" {
+  type    = string
+  default = ""
 }
 
 variable "managed_image_resource_group_name" {
   type    = string
   default = "${env("ARM_RESOURCE_GROUP")}"
+}
+
+variable "private_virtual_network_with_public_ip" {
+  type    = bool
+  default = false
 }
 
 variable "subscription_id" {
@@ -162,8 +167,7 @@ build {
   // Create folder to store temporary data
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["mkdir ${local.image_folder}",
-                       "chmod 777 ${local.image_folder}"]
+    inline          = ["mkdir ${local.image_folder}", "chmod 777 ${local.image_folder}"]
   }
 
   // Add apt wrapper to implement retries
@@ -177,8 +181,8 @@ build {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/install-ms-repos.sh",
-                        "${path.root}/../scripts/build/configure-apt.sh"
+      "${path.root}/../scripts/build/install-ms-repos.sh",
+      "${path.root}/../scripts/build/configure-apt.sh"
     ]
   }
 
@@ -252,10 +256,10 @@ build {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/install-git.sh",
-                        "${path.root}/../scripts/build/install-git-lfs.sh",
-                        "${path.root}/../scripts/build/install-github-cli.sh",
-                        "${path.root}/../scripts/build/install-zstd.sh"
+      "${path.root}/../scripts/build/install-git.sh",
+      "${path.root}/../scripts/build/install-git-lfs.sh",
+      "${path.root}/../scripts/build/install-github-cli.sh",
+      "${path.root}/../scripts/build/install-zstd.sh"
     ]
   }
 
