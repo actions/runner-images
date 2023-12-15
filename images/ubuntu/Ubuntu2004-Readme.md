@@ -6,8 +6,8 @@
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
-- Kernel Version: 5.15.0-1052-azure
-- Image Version: 20231204.1.0
+- Kernel Version: 5.15.0-1053-azure
+- Image Version: 20231211.1.0
 - Systemd version: 245.4-4ubuntu3.22
 
 ## Installed Software
@@ -35,7 +35,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.13.1
-- Homebrew 4.1.22
+- Homebrew 4.1.24
 - Miniconda 23.10.0
 - Npm 10.2.3
 - NuGet 6.6.1.2
@@ -43,7 +43,7 @@
 - Pip3 20.0.2
 - Pipx 1.3.3
 - RubyGems 3.1.2
-- Vcpkg (build from commit 16ee2ecb3)
+- Vcpkg (build from commit 000d1bda1)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -75,7 +75,7 @@ to accomplish this.
 - Bazelisk 1.19.0
 - Bicep 0.23.1
 - Buildah 1.22.3
-- CMake 3.27.9
+- CMake 3.28.0
 - CodeQL Action Bundle 2.15.3
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
@@ -93,20 +93,20 @@ to accomplish this.
 - jq 1.6
 - Kind 0.20.0
 - Kubectl 1.28.4
-- Kustomize 5.2.1
+- Kustomize 5.3.0
 - Leiningen 2.10.0
 - MediaInfo 19.09
 - Mercurial 5.3.1
 - Minikube 1.32.0
 - n 9.2.0
 - Newman 6.0.0
-- nvm 0.39.5
+- nvm 0.39.7
 - OpenSSL 1.1.1f-1ubuntu2.20
-- Packer 1.9.4
+- Packer v1.10.0
 - Parcel 2.10.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.95.0
+- Pulumi 3.96.2
 - R 4.3.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -118,15 +118,15 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.14.5
-- AWS CLI Session Manager Plugin 1.2.497.0
-- AWS SAM CLI 1.103.0
-- Azure CLI 2.54.0
+- AWS CLI 2.15.0
+- AWS CLI Session Manager Plugin 1.2.536.0
+- AWS SAM CLI 1.104.0
+- Azure CLI 2.55.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.39.2
-- Google Cloud CLI 455.0.0
-- Netlify CLI 17.9.0
-- OpenShift CLI 4.14.4
+- GitHub CLI 2.40.0
+- Google Cloud CLI 456.0.0
+- Netlify CLI 17.10.1
+- OpenShift CLI 4.14.5
 - ORAS CLI 1.1.0
 - Vercel CLI 32.6.1
 
@@ -140,7 +140,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 7.4.33, 8.0.30, 8.1.26, 8.2.13, 8.3.0
-- Composer 2.6.5
+- Composer 2.6.6
 - PHPUnit 8.5.36
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -153,9 +153,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.13.1
 
 ### Rust Tools
-- Cargo 1.74.0
-- Rust 1.74.0
-- Rustdoc 1.74.0
+- Cargo 1.74.1
+- Rust 1.74.1
+- Rustdoc 1.74.1
 - Rustup 1.26.0
 
 #### Packages
@@ -167,12 +167,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.6.0
 
 ### Browsers and Drivers
-- Google Chrome 119.0.6045.199
-- ChromeDriver 119.0.6045.105
-- Chromium 119.0.6045.0
-- Microsoft Edge 119.0.2151.97
-- Microsoft Edge WebDriver 119.0.2151.97
-- Selenium server 4.15.0
+- Google Chrome 120.0.6099.71
+- ChromeDriver 120.0.6099.71
+- Chromium 120.0.6099.0
+- Microsoft Edge 120.0.2210.61
+- Microsoft Edge WebDriver 120.0.2210.61
+- Selenium server 4.16.0
 - Mozilla Firefox 120.0.1
 - Geckodriver 0.33.0
 
@@ -217,8 +217,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.19.13
-- 1.20.11
-- 1.21.4
+- 1.20.12
+- 1.21.5
 
 #### Node.js
 - 16.20.2
@@ -230,8 +230,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.8.18
 - 3.9.18
 - 3.10.13
-- 3.11.6
-- 3.12.0
+- 3.11.7
+- 3.12.1
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.13]
@@ -255,7 +255,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 9.3.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.10.0
+- Microsoft.Graph: 2.11.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -324,7 +324,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.7-6ubuntu0.1                  |
 | bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
-| curl                   | 7.68.0-1ubuntu2.20                |
+| curl                   | 7.68.0-1ubuntu2.21                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
 | dnsutils               | 1:9.16.1-0ubuntu2.16              |
 | dpkg                   | 1.19.7ubuntu3.2                   |
@@ -346,8 +346,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu1.5          |
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
-| libc6-dev              | 2.31-0ubuntu9.12                  |
-| libcurl4               | 7.68.0-1ubuntu2.20                |
+| libc6-dev              | 2.31-0ubuntu9.14                  |
+| libcurl4               | 7.68.0-1ubuntu2.21                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6+deb10u1build0.20.04.1  |
@@ -362,7 +362,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1                         |
 | libxss1                | 1:1.2.3-1                         |
 | libyaml-dev            | 0.2.2-1                           |
-| locales                | 2.31-0ubuntu9.12                  |
+| locales                | 2.31-0ubuntu9.14                  |
 | m4                     | 1.4.18-4                          |
 | make                   | 4.2.1-1.2                         |
 | mediainfo              | 19.09-1build1                     |
@@ -389,7 +389,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | subversion             | 1.13.0-3ubuntu0.2                 |
 | sudo                   | 1.8.31-1ubuntu1.5                 |
 | swig                   | 4.0.1-5build1                     |
-| tar                    | 1.30+dfsg-7ubuntu0.20.04.3        |
+| tar                    | 1.30+dfsg-7ubuntu0.20.04.4        |
 | telnet                 | 0.17-41.2build1                   |
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
