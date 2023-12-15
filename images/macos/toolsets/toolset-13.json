@@ -3,6 +3,7 @@
         "default": "14.3.1",
         "x64": {
             "versions": [
+                { "link": "15.1", "version": "15.1.0+15C65", "install_runtimes": "true"},
                 { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true"},
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "true"},
                 { "link": "14.2", "version": "14.2.0+14C18", "install_runtimes": "true"},
@@ -11,6 +12,7 @@
         },
         "arm64":{
             "versions": [
+                { "link": "15.1", "version": "15.1.0+15C65", "install_runtimes": "true"},
                 { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true"},
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "true" },
                 { "link": "14.2", "version": "14.2.0+14C18", "install_runtimes": "true" },
@@ -222,10 +224,12 @@
     },
     "mono": {
         "framework":{
-            "version": "6.12.0.188"
+            "version": "6.12.0.188",
+            "sha256": "07cdd4e5e72b562892960b7fc73af470db7a4ffc2f68bb834eb3d0a874bbd12c"
         },
         "nunit": {
-            "version": "3.15.4"
+            "version": "3.15.4",
+            "sha256": "356dab61433b5be76b76fd0e2e979bda56d164f6d85a900e55c3a4a5fffa28de"
         }
     }
 }

@@ -1,15 +1,10 @@
 Describe "PHP" {
-
-    [array]$testCases = (Get-ToolsetContent).php.versions | ForEach-Object { @{phpVersion = $_} }
+    $testCases = (Get-ToolsetContent).php.versions | ForEach-Object { @{PhpVersion = $_} }
 
     It "php <phpVersion>" -TestCases $testCases {
-        param (
-            [string] $phpVersion
-        )
-
-        "php$phpVersion --version" | Should -ReturnZeroExitCode
-        "php-config$phpVersion --version" | Should -ReturnZeroExitCode
-        "phpize$phpVersion --version" | Should -ReturnZeroExitCode
+        "php${PhpVersion} --version" | Should -ReturnZeroExitCode
+        "php-config${PhpVersion} --version" | Should -ReturnZeroExitCode
+        "phpize${PhpVersion} --version" | Should -ReturnZeroExitCode
     }
 
     It "PHPUnit" {
@@ -44,7 +39,7 @@ Describe "Swift" {
 }
 
 Describe "PipxPackages" {
-    [array]$testCases = (Get-ToolsetContent).pipx | ForEach-Object { @{package=$_.package; cmd = $_.cmd} }
+    $testCases = (Get-ToolsetContent).pipx | ForEach-Object { @{package=$_.package; cmd = $_.cmd} }
 
     It "<package>" -TestCases $testCases {
         "$cmd --version" | Should -ReturnZeroExitCode
