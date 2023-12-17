@@ -61,45 +61,80 @@ get_toolset_value() {
     echo "$(jq -r "$query" $toolset_path)"
 }
 
-resolve_github_release_asset_url() {
+get_github_releases_by_version() {
     local repo=$1
-    local filter=$2
-    local version=${3:-"*"}
-    local allow_pre_release=${4:-false}
+    local version=${2:-".+"}
+    local allow_pre_release=${3:-false}
+    local with_assets_only=${4:-false}
 
     page_size="100"
 
     json=$(curl -fsSL "https://api.github.com/repos/${repo}/releases?per_page=${page_size}")
 
-    if [[ $allow_pre_release == "true" ]]; then
-        json=$(echo $json | jq -r '.[] | select(.assets | length > 0)')
-    else
-        json=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0))')
-    fi
-
-    if [[ $version == "latest" ]]; then
-        tag_name=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | tail -n 1)
-    elif [[ $version == *"*"* ]]; then
-        tag_name=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "${version}" | tail -n 1)
-    else
-        tag_names=$(echo $json | jq -r '.tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "${version}")
-
-        for element in $tag_names; do
-            semver=$(echo "$element" | awk 'match($0, /[0-9]+\.[0-9]+\.[0-9]+/) {print substr($0, RSTART, RLENGTH)}')
-
-            if [[ $semver == $version ]]; then
-                tag_name=$element
-            fi
-        done
-    fi
-
-    download_url=$(echo $json | jq -r ". | select(.tag_name==\"${tag_name}\").assets[].browser_download_url | select(${filter})" | head -n 1)
-    if [ -z "$download_url" ]; then
-        echo "Failed to parse a download url for the '${tag_name}' tag using '${filter}' filter"
+    if [[ -z "$json" ]]; then
+        echo "Failed to get releases"
         exit 1
     fi
 
-    echo $download_url
+    if [[ $with_assets_only == "true" ]]; then
+        json=$(echo $json | jq -r '.[] | select(.assets | length > 0)')
+    else
+        json=$(echo $json | jq -r '.[]')
+    fi
+
+    if [[ $allow_pre_release == "true" ]]; then
+        json=$(echo $json | jq -r '.')
+    else
+        json=$(echo $json | jq -r '. | select(.prerelease==false)')
+    fi
+
+    # Sort by tag_name and filter out rc/beta/etc releases
+    json=$(echo $json | jq -s 'sort_by(.tag_name)' | jq '.[] | select(.tag_name | test(".*-[a-z]|beta") | not)')
+
+    # Select releases matching version
+    if [[ $version == "latest" ]]; then
+        json_filtered=$(echo $json | jq -s .[-1])
+    elif [[ $version == *"+"* ]] || [[ $version == *"*"* ]]; then
+        json_filtered=$(echo $json | jq --arg version $version '. | select(.tag_name | test($version))')
+    else
+        json_filtered=$(echo $json | jq --arg version $version '. | select(.tag_name | contains($version))')
+    fi
+
+    if [[ -z "$json_filtered" ]]; then
+        echo "Failed to get releases from ${repo} matching version ${version}"
+        echo "Available versions: $(echo "$json" | jq -r '.tag_name')"
+        exit 1
+    fi
+
+    echo $json_filtered
+}
+
+resolve_github_release_asset_url() {
+    local repo=$1
+    local url_filter=$2
+    local version=${3:-".+"}
+    local allow_pre_release=${4:-false}
+    local allow_multiple_matches=${5:-false}
+
+    matching_releases=$(get_github_releases_by_version "${repo}" "${version}" "${allow_pre_release}" "true")
+    matched_url=$(echo $matching_releases | jq -r ".assets[].browser_download_url | select(${url_filter})")
+
+    if [[ -z "$matched_url" ]]; then
+        echo "Found no download urls matching pattern: ${url_filter}"
+        echo "Available download urls: $(echo "$matching_releases" | jq -r '.assets[].browser_download_url')"
+        exit 1
+    fi
+
+    if [[ "$(echo "$matched_url" | wc -l)" -gt 1 ]]; then
+        if [[ $allow_multiple_matches == "true" ]]; then
+            matchedUrl=$(echo "$matched_url" | tail -n 1)
+        else
+            echo "Multiple matches found for ${version} version and ${url_filter} URL filter. Please make filters more specific"
+            exit 1
+        fi
+    fi
+
+    echo $matched_url
 }
 
 get_github_package_hash() {
