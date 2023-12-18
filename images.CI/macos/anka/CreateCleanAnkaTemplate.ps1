@@ -89,13 +89,6 @@ function Invoke-SoftwareUpdate {
         return
     }
 
-    Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"
-    Show-StringWithFormat $newUpdates
-    $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title") | Where-Object {$_ -match "Label:"}).Replace("Label: ", '')
-    Write-Host "`t[*] Installing Software Updates on '$TemplateName' VM:"
-    Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates -Password $Password | Show-StringWithFormat
-
-    # Check if Action: restart
     # Define the next macOS version
     $command = "sw_vers"
     $guestMacosVersion = Invoke-SSHPassCommand -HostName $ipAddress -Command $command
@@ -103,27 +96,26 @@ function Invoke-SoftwareUpdate {
         '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma' }
         '13.\d' { $nextOSVersion = 'macOS Sonoma'  }
     }
-    # Make an array of updates
-    $listOfNewUpdates = $newUpdates.split('*').Trim('')
+
+    Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"
+    Show-StringWithFormat $newUpdates
+    $listOfNewUpdates = $($($newUpdates.Split("*")).Split("Title").where({$_ -match "Label:"}).Replace("Label: ", '').where({$_ -notmatch $nextOSVersion}))
+    Write-Host "`t[*] Installing Software Updates on '$TemplateName' VM:"
+    Install-SoftwareUpdate -HostName $ipAddress -listOfUpdates $listOfNewUpdates -Password $Password | Show-StringWithFormat
+    Write-Host "`t[*] Sleep 60 seconds before the software updates have been installed"
+    Start-Sleep -Seconds 60
+    Write-Host "`t[*] Waiting for loginwindow process"
+    Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
+    # Re-enable AutoLogon after installing a new security software update
+    Invoke-EnableAutoLogon
+
     foreach ($newupdate in $listOfNewUpdates) {
-        # Will be True if the value is not Venture, not empty, and contains "Action: restart" words
-        if ($newupdate.Contains("Action: restart") -and !($newupdate -match $nextOSVersion) -and (-not [String]::IsNullOrEmpty($newupdate))) {
-            Write-Host "`t[*] Sleep 120 seconds before the software updates have been installed"
-            Start-Sleep -Seconds 120
-
-            Write-Host "`t[*] Waiting for loginwindow process"
-            Wait-LoginWindow -HostName $ipAddress | Show-StringWithFormat
-
-            # Re-enable AutoLogon after installing a new security software update
-            Invoke-EnableAutoLogon
-
-            # Check software updates have been installed
-            $updates = Get-SoftwareUpdate -HostName $ipAddress
-            if ($updates.Contains("Action: restart") -and !($newupdate -match $nextOSVersion)) {
-                Write-Host "`t[x] Software updates failed to install: "
-                Show-StringWithFormat $updates
-                exit 1
-            }
+        # Check software updates have been installed
+        $updates = Get-SoftwareUpdate -HostName $ipAddress
+        if ($updates.Contains("Action: restart") -and !($updates -match $nextOSVersion)) {
+            Write-Host "`t[x] Software updates failed to install: "
+            Show-StringWithFormat $updates
+            exit 1
         }
     }
 
@@ -135,6 +127,7 @@ function Invoke-SoftwareUpdate {
     $command = "sw_vers"
     Invoke-SSHPassCommand -HostName $ipAddress -Command $command | Show-StringWithFormat
 }
+
 
 function Invoke-UpdateSettings {
     param (
