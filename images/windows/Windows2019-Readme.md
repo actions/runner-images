@@ -79,7 +79,7 @@
 - Newman 6.0.0
 - NSIS 3.09
 - OpenSSL 1.1.1w
-- Packer Packer v1.10.0
+- Packer 1.10.0
 - Parcel 2.10.3
 - Pulumi 3.97.0
 - R 4.3.2
