@@ -62,7 +62,7 @@ userValuesArray=(
     "'kTCCServiceAppleEvents','/usr/libexec/sshd-keygen-wrapper',1,2,3,1,X'fade0c000000003c0000000100000006000000020000001d636f6d2e6170706c652e737368642d6b657967656e2d7772617070657200000000000003',NULL,0,'com.apple.Terminal',X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,1650386089"
     "'kTCCServicePostEvent','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
     "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
-    "'kTCCServiceScreenCapture','/usr/local/opt/runner/provisioner/provisioner',0,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
+    "'kTCCServiceScreenCapture','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
     "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.systemevents',X'fade0c000000003400000001000000060000000200000016636f6d2e6170706c652e73797374656d6576656e7473000000000003',NULL,1592919552"
 )
 for values in "${userValuesArray[@]}"; do
