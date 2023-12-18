@@ -88,16 +88,16 @@ get_github_releases_by_version() {
         json=$(echo $json | jq -r '. | select(.prerelease==false)')
     fi
 
-    # Sort by tag_name and filter out rc/beta/etc releases
-    json=$(echo $json | jq -s 'sort_by(.tag_name)' | jq '.[] | select(.tag_name | test(".*-[a-z]|beta") | not)')
+    # Filter out rc/beta/etc releases, convert to numeric version and sort
+    json=$(echo $json | jq '. | select(.tag_name | test(".*-[a-z]|beta") | not)' | jq '.tag_name |= gsub("[^\\d.]"; "")' | jq -s 'sort_by(.tag_name | split(".") | map(tonumber))')
 
     # Select releases matching version
     if [[ $version == "latest" ]]; then
-        json_filtered=$(echo $json | jq -s .[-1])
+        json_filtered=$(echo $json | jq .[-1])
     elif [[ $version == *"+"* ]] || [[ $version == *"*"* ]]; then
-        json_filtered=$(echo $json | jq --arg version $version '. | select(.tag_name | test($version))')
+        json_filtered=$(echo $json | jq --arg version $version '.[] | select(.tag_name | test($version))')
     else
-        json_filtered=$(echo $json | jq --arg version $version '. | select(.tag_name | contains($version))')
+        json_filtered=$(echo $json | jq --arg version $version '.[] | select(.tag_name | contains($version))')
     fi
 
     if [[ -z "$json_filtered" ]]; then
