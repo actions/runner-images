@@ -127,7 +127,7 @@ resolve_github_release_asset_url() {
 
     if [[ "$(echo "$matched_url" | wc -l)" -gt 1 ]]; then
         if [[ $allow_multiple_matches == "true" ]]; then
-            matchedUrl=$(echo "$matched_url" | tail -n 1)
+            matched_url=$(echo "$matched_url" | tail -n 1)
         else
             echo "Multiple matches found for ${version} version and ${url_filter} URL filter. Please make filters more specific"
             exit 1

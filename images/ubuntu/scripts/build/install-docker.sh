@@ -19,7 +19,7 @@ apt-get update
 apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io docker-buildx-plugin
 
 # Download docker compose v2 from releases
-URL=$(resolve_github_release_asset_url "docker/compose" "contains(\"compose-linux-x86_64\")" "latest")
+URL=$(resolve_github_release_asset_url "docker/compose" "endswith(\"compose-linux-x86_64\")" "latest")
 curl -fsSL "${URL}" -o /tmp/docker-compose
 # Supply chain security - Docker Compose v2
 compose_hash_url=$(resolve_github_release_asset_url "docker/compose" "contains(\"checksums.txt\")" "latest")

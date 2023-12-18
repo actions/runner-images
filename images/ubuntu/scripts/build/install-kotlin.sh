@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 KOTLIN_ROOT="/usr/share"
-download_url=$(resolve_github_release_asset_url "JetBrains/kotlin" "contains(\"kotlin-compiler\")" "latest")
+download_url=$(resolve_github_release_asset_url "JetBrains/kotlin" "contains(\"kotlin-compiler\") and endswith(\".zip\")" "latest")
 archive_path=$(download_with_retry "$download_url")
 
 # Supply chain security - Kotlin
