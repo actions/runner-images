@@ -13,7 +13,7 @@ source $HELPER_SCRIPTS/install.sh
 gh_cli_url=$(resolve_github_release_asset_url "cli/cli" "contains(\"linux\") and contains(\"amd64\") and endswith(\".deb\")" "latest")
 gh_cli_deb_path=$(download_with_retry "$gh_cli_url")
 # Supply chain security - GitHub CLI
-hash_url=$(resolve_github_release_asset_url "cli/cli" "contains(\"checksums.txt\")" "latest")
+hash_url=$(resolve_github_release_asset_url "cli/cli" "endswith(\"checksums.txt\")" "latest")
 external_hash=$(get_hash_from_remote_file "$hash_url" "linux_amd64.deb")
 use_checksum_comparison "$gh_cli_deb_path" "$external_hash"
 # Install GitHub CLI

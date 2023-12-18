@@ -22,7 +22,7 @@ apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io do
 URL=$(resolve_github_release_asset_url "docker/compose" "endswith(\"compose-linux-x86_64\")" "latest")
 curl -fsSL "${URL}" -o /tmp/docker-compose
 # Supply chain security - Docker Compose v2
-compose_hash_url=$(resolve_github_release_asset_url "docker/compose" "contains(\"checksums.txt\")" "latest")
+compose_hash_url=$(resolve_github_release_asset_url "docker/compose" "endswith(\"checksums.txt\")" "latest")
 compose_external_hash=$(get_hash_from_remote_file "${compose_hash_url}" "compose-linux-x86_64")
 use_checksum_comparison "/tmp/docker-compose" "${compose_external_hash}"
 # Install docker compose v2
