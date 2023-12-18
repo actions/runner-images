@@ -30,7 +30,7 @@ curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 # Download minikube
 curl -fsSL -O https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 # Supply chain security - minikube
-minikube_hash=$(get_github_package_hash "kubernetes" "minikube" "linux-amd64" "" "latest" "false" ":" 2)
+minikube_hash=$(get_checksum_from_github_release "kubernetes/minikube" "linux-amd64" "latest" "SHA256")
 use_checksum_comparison "minikube-linux-amd64" "${minikube_hash}"
 # Install minikube
 sudo install minikube-linux-amd64 /usr/local/bin/minikube

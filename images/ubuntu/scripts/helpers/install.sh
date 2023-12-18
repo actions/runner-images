@@ -137,60 +137,48 @@ resolve_github_release_asset_url() {
     echo $matched_url
 }
 
-get_github_package_hash() {
-    local repo_owner=$1
-    local repo_name=$2
-    local file_name=$3
-    local url=$4
-    local version=${5:-"latest"}
-    local prerelease=${6:-false}
-    local delimiter=${7:-'|'}
-    local word_number=${8:-2}
+get_checksum_from_github_release() {
+    local repo=$1
+    local file_name=$2
+    local version=${3:-".+"}
+    local hash_type=$4
+    local allow_pre_release=${5:-false}
 
     if [[ -z "$file_name" ]]; then
         echo "File name is not specified."
         exit 1
     fi
 
-    if [[ -n "$url" ]]; then
-        release_url="$url"
+    if [[ "$hash_type" == "SHA256" ]]; then
+        hash_pattern="[A-Fa-f0-9]{64}"
+    elif [[ "$hash_type" == "SHA512" ]]; then
+        hash_pattern="[A-Fa-f0-9]{128}"
     else
-        if [ "$version" == "latest" ]; then
-            release_url="https://api.github.com/repos/${repo_owner}/${repo_name}/releases/latest"
-        else
-            json=$(curl -fsSL "https://api.github.com/repos/${repo_owner}/${repo_name}/releases?per_page=100")
-            tags=$(echo "$json" | jq -r --arg prerelease "$prerelease" '.[] | select(.prerelease == ($prerelease | test("true"; "i"))) | .tag_name')
-            tag=$(echo "$tags" | grep -o "$version")
-            if [[ "$(echo "$tag" | wc -l)" -gt 1 ]]; then
-                echo "Multiple tags found matching the version $version. Please specify a more specific version."
-                exit 1
-            fi
-            if [[ -z "$tag" ]]; then
-                echo "Failed to get a tag name for version $version."
-                exit 1
-            fi
-            release_url="https://api.github.com/repos/${repo_owner}/${repo_name}/releases/tags/$tag"
-        fi
-    fi
-
-    body=$(curl -fsSL "$release_url" | jq -r '.body' | tr -d '`')
-    matching_line=$(echo "$body" | grep "$file_name")
-    if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
-        echo "Multiple lines found included the file $file_name. Please specify a more specific file name."
-        exit 1
-    fi
-    if [[ -z "$matching_line" ]]; then
-        echo "File name '$file_name' not found in release body."
+        echo "Unknown hash type: ${hash_type}"
         exit 1
     fi
 
-    result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
-    if [[ -z "$result" ]]; then
-        echo "Empty result. Check parameters delimiter and/or word_number for the matching line."
+    matching_releases=$(get_github_releases_by_version "${repo}" "${version}" "${allow_pre_release}" "true")
+    matched_line=$(printf "$(echo $matching_releases | jq '.body')\n" | grep "$file_name")
+
+    if [[ -z "$matched_line" ]]; then
+        echo "File name ${file_name} not found in release body"
         exit 1
     fi
 
-    echo "$result"
+    if [[ "$(echo "$matched_line" | wc -l)" -gt 1 ]]; then
+        echo "Multiple matches found for ${file_name} in release body: ${matched_line}"
+        exit 1
+    fi
+
+    hash=$(echo $matched_line | grep -oP "$hash_pattern")
+
+    if [[ -z "$hash" ]]; then
+        echo "Found ${file_name} in body of release, but failed to get hash from it: ${matched_line}"
+        exit 1
+    fi
+
+    echo "$hash"
 }
 
 get_hash_from_remote_file() {
