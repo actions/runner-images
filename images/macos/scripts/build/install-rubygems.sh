@@ -11,6 +11,8 @@ gem update --system
 
 # Temporarily install activesupport 7.0.8 due to compatibility issues with cocoapods https://github.com/CocoaPods/CocoaPods/issues/12081
 gem install activesupport -v 7.0.8 -P MediumSecurity
+# Temporarily install concurrent-ruby with the low security policy due to certificate issues
+gem install concurrent-ruby
 
 gemsToInstall=$(get_toolset_value '.ruby.rubygems | .[]')
 if [ -n "$gemsToInstall" ]; then
