@@ -10,7 +10,7 @@ echo Updating RubyGems...
 gem update --system
 
 # Temporarily install activesupport 7.0.8 due to compatibility issues with cocoapods https://github.com/CocoaPods/CocoaPods/issues/12081
-gem install activesupport -v 7.0.8 -P HighSecurity
+gem install activesupport -v 7.0.8 -P MediumSecurity
 
 gemsToInstall=$(get_toolset_value '.ruby.rubygems | .[]')
 if [ -n "$gemsToInstall" ]; then
