@@ -8,7 +8,7 @@ source ~/utils/utils.sh
 
 export PATH="$PATH:/opt/pipx_bin"
 
-pipx_packages=$(get_toolset_value '.pipx[].package') #'.android.platform_min_version'
+pipx_packages=$(get_toolset_value '.pipx[].package')
 
 for package in $pipx_packages; do
     python_version="$(get_toolset_value ".pipx[] | select(.package==\"$package\") | .python[]?")"
