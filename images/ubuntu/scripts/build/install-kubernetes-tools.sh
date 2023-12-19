@@ -12,7 +12,7 @@ source $HELPER_SCRIPTS/install.sh
 kind_url=$(resolve_github_release_asset_url "kubernetes-sigs/kind" "endswith(\"kind-linux-amd64\")" "latest")
 curl -fsSL -o /tmp/kind "${kind_url}"
 # Supply chain security - KIND
-kind_external_hash=$(get_hash_from_remote_file "${kind_url}.sha256sum" "kind-linux-amd64")
+kind_external_hash=$(get_checksum_from_url "${kind_url}.sha256sum" "kind-linux-amd64" "SHA256")
 use_checksum_comparison "/tmp/kind" "${kind_external_hash}"
 # Install KIND
 sudo install /tmp/kind /usr/local/bin/kind

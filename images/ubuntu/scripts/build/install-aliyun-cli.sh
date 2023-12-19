@@ -25,7 +25,7 @@ archive_path=$(download_with_retry "$download_url")
 if isUbuntu20; then
     external_hash=$(get_toolset_value '.aliyunCli.sha256')
 else
-    external_hash=$(get_hash_from_remote_file "$hash_url" "aliyun-cli-linux" "amd64.tgz")
+    external_hash=$(get_checksum_from_url "$hash_url" "aliyun-cli-linux.*amd64.tgz" "SHA256")
 fi
 
 use_checksum_comparison "$archive_path" "$external_hash"

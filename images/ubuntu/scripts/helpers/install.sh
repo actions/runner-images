@@ -181,40 +181,51 @@ get_checksum_from_github_release() {
     echo "$hash"
 }
 
-get_hash_from_remote_file() {
+get_checksum_from_url() {
     local url=$1
-    local keywords=("$2" "$3")
-    local delimiter=${4:-' '}
-    local word_number=${5:-1}
+    local file_name=$2
+    local hash_type=$3
+    local use_custom_search_pattern=${4:-false}
+    local delimiter=${5:-' '}
+    local word_number=${6:-1}
 
-    if [[ -z "${keywords[0]}" || -z "$url" ]]; then
-        echo "File name and/or URL is not specified."
+    if [[ "$hash_type" == "SHA256" ]]; then
+        hash_pattern="[A-Fa-f0-9]{64}"
+    elif [[ "$hash_type" == "SHA512" ]]; then
+        hash_pattern="[A-Fa-f0-9]{128}"
+    else
+        echo "Unknown hash type: ${hash_type}"
         exit 1
     fi
 
-    matching_line=$(curl -fsSL "$url" | sed 's/  */ /g' | tr -d '`')
-    for keyword in "${keywords[@]}"; do
-        matching_line=$(echo "$matching_line" | grep "$keyword")
-    done
+    checksums_file_path=$(download_with_retry "$url")
+    checksums=$(cat "$checksums_file_path")
+    rm "$checksums_file_path"
 
-    if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
-        echo "Multiple lines found including the words: ${keywords[*]}. Please use a more specific filter."
+    matched_line=$(printf "$checksums\n" | grep "$file_name")
+
+    if [[ "$(echo "$matched_line" | wc -l)" -gt 1 ]]; then
+        echo "Found multiple lines matching file name ${file_name} in checksum file."
         exit 1
     fi
 
-    if [[ -z "$matching_line" ]]; then
-        echo "Keywords (${keywords[*]}) not found in the file with hashes."
+    if [[ -z "$matched_line" ]]; then
+        echo "File name ${file_name} not found in checksum file."
         exit 1
     fi
 
-    result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
-    if [[ ${#result} -ne 64 && ${#result} -ne 128 ]]; then
-        echo "Invalid result length. Expected 64 or 128 characters. Please check delimiter and/or word_number parameters."
-        echo "Result: $result"
+    if [[ $use_custom_search_pattern == "true" ]]; then
+        hash=$(echo "$matched_line" | sed 's/  */ /g' | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
+    else
+        hash=$(echo $matched_line | grep -oP "$hash_pattern")
+    fi
+
+    if [[ -z "$hash" ]]; then
+        echo "Found ${file_name} in checksum file, but failed to get hash from it: ${matched_line}"
         exit 1
     fi
 
-    echo "$result"
+    echo "$hash"
 }
 
 use_checksum_comparison() {
