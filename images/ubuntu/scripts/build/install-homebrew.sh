@@ -15,12 +15,12 @@ source $HELPER_SCRIPTS/install.sh
 # Invoke shellenv to make brew available during runnig session
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-setEtcEnvironmentVariable HOMEBREW_NO_AUTO_UPDATE 1
-setEtcEnvironmentVariable HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS 3650
+set_etc_environment_variable HOMEBREW_NO_AUTO_UPDATE 1
+set_etc_environment_variable HOMEBREW_CLEANUP_PERIODIC_FULL_DAYS 3650
 
 # Validate the installation ad hoc
 echo "Validate the installation reloading /etc/environment"
-reloadEtcEnvironment
+reload_etc_environment
 
 gfortran=$(brew --prefix)/bin/gfortran
 # Remove gfortran symlink, not to conflict with system gfortran

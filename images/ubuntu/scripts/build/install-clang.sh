@@ -7,14 +7,14 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
-function InstallClang {
+install_clang() {
     local version=$1
 
     echo "Installing clang-$version..."
     apt-get install -y "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version" "clang-tidy-$version"
 }
 
-function SetDefaultClang {
+set_default_clang() {
     local version=$1
 
     echo "Make Clang ${version} default"
@@ -30,11 +30,11 @@ default_clang_version=$(get_toolset_value '.clang.default_version')
 
 for version in ${versions[*]}; do
     if [[ $version != $default_clang_version ]]; then
-        InstallClang $version
+        install_clang $version
     fi
 done
 
-InstallClang $default_clang_version
-SetDefaultClang $default_clang_version
+install_clang $default_clang_version
+set_default_clang $default_clang_version
 
 invoke_tests "Tools" "clang"

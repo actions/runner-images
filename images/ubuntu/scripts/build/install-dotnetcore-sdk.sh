@@ -31,7 +31,7 @@ apt-get update
 
 for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
-    if ! IsPackageInstalled $latest_package; then
+    if ! dpkg -S $latest_package &> /dev/null; then
         echo "Could not find .NET Core ($latest_package), installing..."
         apt-get install $latest_package -y
     else
@@ -82,10 +82,10 @@ find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
 
 # NuGetFallbackFolder at /usr/share/dotnet/sdk/NuGetFallbackFolder is warmed up by smoke test
 # Additional FTE will just copy to ~/.dotnet/NuGet which provides no benefit on a fungible machine
-setEtcEnvironmentVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
-setEtcEnvironmentVariable DOTNET_NOLOGO 1
-setEtcEnvironmentVariable DOTNET_MULTILEVEL_LOOKUP 0
-prependEtcEnvironmentPath '$HOME/.dotnet/tools'
+set_etc_environment_variable DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
+set_etc_environment_variable DOTNET_NOLOGO 1
+set_etc_environment_variable DOTNET_MULTILEVEL_LOOKUP 0
+prepend_etc_environment_path '$HOME/.dotnet/tools'
 
 # install dotnet tools
 for dotnet_tool in ${DOTNET_TOOLS[@]}; do
