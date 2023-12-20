@@ -78,7 +78,7 @@ is_BigSur() {
 }
 
 is_Veertu() {
-    [ -d "/Library/Application Support/Veertu" ]
+    [[ -d "/Library/Application Support/Veertu" ]]
 }
 
 get_toolset_value() {
