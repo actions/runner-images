@@ -20,7 +20,7 @@ systemValuesArray=(
     "'kTCCServiceAccessibility','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
     "'kTCCServiceMicrophone','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1576661342"
     "'kTCCServiceScreenCapture','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1599831148"
-    "'kTCCServiceScreenCapture','com.devexpress.testcafe-browser-tools',1,2,3,1,X'fade0c0000000068000000010000000700000007000000080000001443fa4ca5141baeda21aeca1f50894673b440d4690000000800000014f8afcf6e69791b283e55bd0b03e39e422745770e0000000800000014bf4fc1aed64c871a49fc6bc9dd3878ce5d4d17c6',NULL,0,'UNUSED',NULL,0,1687952810"
+    "'kTCCServiceScreenCapture','com.devexpress.testcafe-browser-tools',0,2,3,1,X'fade0c0000000068000000010000000700000007000000080000001443fa4ca5141baeda21aeca1f50894673b440d4690000000800000014f8afcf6e69791b283e55bd0b03e39e422745770e0000000800000014bf4fc1aed64c871a49fc6bc9dd3878ce5d4d17c6',NULL,0,'UNUSED',NULL,0,1687952810"
     "'kTCCServicePostEvent','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1644565949"
     "'kTCCServiceScreenCapture','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
     "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
