@@ -51,7 +51,7 @@ if is_Monterey; then
                 osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
             } && break
 
-            if [ "$retry" -eq 0 ]; then
+            if [[ "$retry" -eq 0 ]]; then
                 echo "Executing AppleScript failed. No retries left"
                 exit 1
             fi
@@ -75,14 +75,14 @@ if is_Monterey; then
     dbQuery="SELECT * FROM kext_policy WHERE bundle_id LIKE 'com.parallels.kext.%';"
     kext=$(sudo sqlite3 $dbName "$dbQuery")
 
-    if [ -z "$kext" ]; then
+    if [[ -z "$kext" ]]; then
         echo "Parallels International GmbH not found"
         exit 1
     fi
 
     # Create env variable
     url=$(brew info --json=v2 --installed | jq -r '.casks[] | select(.name[] == "Parallels Desktop").url')
-    if [ -z "$url" ]; then
+    if [[ -z "$url" ]]; then
         echo "Unable to parse url for Parallels Desktop cask"
         exit 1
     fi

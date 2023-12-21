@@ -41,5 +41,4 @@ echo "limit.maxfiles.plist permissions changing"
 chown root:wheel "${Launch_Daemons}/limit.maxfiles.plist"
 chmod 0644 "${Launch_Daemons}/limit.maxfiles.plist"
 
-
 echo "Done, limit.maxfiles has been updated"

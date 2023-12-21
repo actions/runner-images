@@ -15,21 +15,21 @@ DOTNET_INSTALL_SCRIPT="https://dot.net/v1/dotnet-install.sh"
 install_script_path=$(download_with_retry $DOTNET_INSTALL_SCRIPT)
 chmod +x "$install_script_path"
 
-ARGS_LIST=()
+args_list=()
 echo "Parsing dotnet SDK (except rc and preview versions) from .json..."
 
-DOTNET_VERSIONS=($(get_toolset_value ".dotnet.arch[\"$arch\"].versions | .[]"))
+dotnet_versions=($(get_toolset_value ".dotnet.arch[\"$arch\"].versions | .[]"))
 
-for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
-    RELEASE_URL="https://raw.githubusercontent.com/dotnet/core/main/release-notes/${DOTNET_VERSION}/releases.json"
-    releases_json_file=$(download_with_retry "$RELEASE_URL")
+for dotnet_version in "${dotnet_versions[@]}"; do
+    release_url="https://raw.githubusercontent.com/dotnet/core/main/release-notes/${dotnet_version}/releases.json"
+    releases_json_file=$(download_with_retry "$release_url")
 
-    if [[ $DOTNET_VERSION == "6.0" ]]; then
-        ARGS_LIST+=(
+    if [[ $dotnet_version == "6.0" ]]; then
+        args_list+=(
             $(cat "$releases_json_file" | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))')
         )
     else
-        ARGS_LIST+=(
+        args_list+=(
             $(cat "$releases_json_file" | \
             jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | \
             sort -r | rev | uniq -s 2 | rev)
@@ -37,7 +37,7 @@ for DOTNET_VERSION in "${DOTNET_VERSIONS[@]}"; do
     fi
 done
 
-for ARGS in "${ARGS_LIST[@]}"; do
+for ARGS in "${args_list[@]}"; do
     "$install_script_path" --version $ARGS -NoPath --arch $arch
 done
 
