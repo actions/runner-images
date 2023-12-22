@@ -19,7 +19,6 @@ if bash "$nvm_installer_path"; then
 
     # set system node as default
     nvm alias default system
-    
     echo "Node version manager has been installed successfully"
 else
     echo "Node version manager installation failed"

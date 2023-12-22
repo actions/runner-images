@@ -11,7 +11,7 @@ arch=$(get_arch)
 
 metadata_json_path=$(download_with_retry "https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json")
 version=$(jq -r '.LTSReleaseTag[0]' "$metadata_json_path")
-download_url=$(get_github_package_download_url "PowerShell/PowerShell" "contains(\"osx-$arch.pkg\")" "$version" "$API_PAT")
+download_url=$(resolve_github_release_asset_url "PowerShell/PowerShell" "contains(\"osx-$arch.pkg\")" "$version" "$API_PAT")
 pkg_path=$(download_with_retry "$download_url")
 
 # Work around the issue on macOS Big Sur 11.5 or higher for possible error message ("can't be opened because Apple cannot check it for malicious software") when installing the package

@@ -131,8 +131,7 @@ build {
   provisioner "shell" {
     scripts = [
       "./scripts/build/install-xcode-clt.sh",
-      "./scripts/build/install-homebrew.sh",
-      "./scripts/build/install-rosetta.sh"
+      "./scripts/build/install-homebrew.sh"
     ]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
   }
@@ -170,6 +169,7 @@ build {
   provisioner "shell" {
     pause_before = "30s"
     scripts = [
+      "./scripts/build/install-rosetta.sh",
       "./scripts/build/configure-windows.sh",
       "./scripts/build/install-powershell.sh",
       "./scripts/build/install-mono.sh",

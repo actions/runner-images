@@ -30,7 +30,6 @@ EOF
 /bin/chmod 644 "${PLIST}"
 /usr/sbin/chown root:wheel "${PLIST}"
 
-
 : '
 The MIT License (MIT)
 Copyright (c) 2013-2017 Timothy Sutton

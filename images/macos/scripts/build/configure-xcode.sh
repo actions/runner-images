@@ -5,6 +5,7 @@
 ################################################################################
 
 source ~/utils/utils.sh
+
 XCODE_LIST=($(get_toolset_value '.xcode.versions | reverse | .[].link'))
 DEFAULT_XCODE_VERSION=$(get_toolset_value '.xcode.default')
 
