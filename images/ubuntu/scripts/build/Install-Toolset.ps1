@@ -4,6 +4,8 @@
 ##  Desc:  Install toolset
 ################################################################################
 
+Import-Module "$env:HELPER_SCRIPTS/../tests/Helpers.psm1"
+
 Function Install-Asset {
     param(
         [Parameter(Mandatory = $true)]
