@@ -13,7 +13,7 @@ base_url="https://github.com/mikefarah/yq/releases/latest/download"
 binary_path=$(download_with_retry "${base_url}/yq_linux_amd64")
 
 # Supply chain security - yq
-external_hash=$(get_hash_from_remote_file "${base_url}/checksums" "yq_linux_amd64 " "" " " "19")
+external_hash=$(get_checksum_from_url "${base_url}/checksums" "yq_linux_amd64 " "SHA256" "true" " " "19")
 use_checksum_comparison "$binary_path" "$external_hash"
 
 # Install yq
