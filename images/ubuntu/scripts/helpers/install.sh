@@ -5,8 +5,8 @@
 ################################################################################
 
 download_with_retry() {
-    url=$1
-    download_path=$2
+    local url=$1
+    local download_path=$2
 
     if [ -z "$download_path" ]; then
         download_path="/tmp/$(basename "$url")"
@@ -43,15 +43,6 @@ download_with_retry() {
     done
 
     echo "$download_path"
-}
-
-## Use dpkg to figure out if a package has already been installed
-## Example use:
-## if ! IsPackageInstalled packageName; then
-##     echo "packageName is not installed!"
-## fi
-IsPackageInstalled() {
-    dpkg -S $1 &> /dev/null
 }
 
 get_toolset_value() {

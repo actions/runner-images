@@ -13,13 +13,13 @@ export BOOTSTRAP_HASKELL_INSTALL_NO_STACK_HOOK=1
 export GHCUP_INSTALL_BASE_PREFIX=/usr/local
 export BOOTSTRAP_HASKELL_GHC_VERSION=0
 ghcup_bin=$GHCUP_INSTALL_BASE_PREFIX/.ghcup/bin
-setEtcEnvironmentVariable "BOOTSTRAP_HASKELL_NONINTERACTIVE" $BOOTSTRAP_HASKELL_NONINTERACTIVE
-setEtcEnvironmentVariable "GHCUP_INSTALL_BASE_PREFIX" $GHCUP_INSTALL_BASE_PREFIX
+set_etc_environment_variable "BOOTSTRAP_HASKELL_NONINTERACTIVE" $BOOTSTRAP_HASKELL_NONINTERACTIVE
+set_etc_environment_variable "GHCUP_INSTALL_BASE_PREFIX" $GHCUP_INSTALL_BASE_PREFIX
 
 # Install GHCup
 curl --proto '=https' --tlsv1.2 -fsSL https://get-ghcup.haskell.org | sh > /dev/null 2>&1 || true
 export PATH="$ghcup_bin:$PATH"
-prependEtcEnvironmentPath $ghcup_bin
+prepend_etc_environment_path $ghcup_bin
 
 availableVersions=$(ghcup list -t ghc -r | grep -v "prerelease" | awk '{print $2}')
 

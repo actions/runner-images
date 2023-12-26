@@ -8,68 +8,67 @@
 #     values containg slashes (i.e. directory path)
 #     The values containing '%' will break the functions
 
-getEtcEnvironmentVariable () {
-    variable_name="$1"
+get_etc_environment_variable() {
+    local variable_name=$1
 
     # remove `variable_name=` and possible quotes from the line
     grep "^${variable_name}=" /etc/environment | sed -E "s%^${variable_name}=\"?([^\"]+)\"?.*$%\1%"
 }
 
-addEtcEnvironmentVariable () {
-    variable_name="$1"
-    variable_value="$2"
+add_etc_environment_variable() {
+    local variable_name=$1
+    local variable_value=$2
 
     echo "${variable_name}=${variable_value}" | sudo tee -a /etc/environment
 }
 
-replaceEtcEnvironmentVariable () {
-    variable_name="$1"
-    variable_value="$2"
+replace_etc_environment_variable() {
+    local variable_name=$1
+    local variable_value=$2
 
     # modify /etc/environemnt in place by replacing a string that begins with variable_name
     sudo sed -i -e "s%^${variable_name}=.*$%${variable_name}=\"${variable_value}\"%" /etc/environment
 }
 
-setEtcEnvironmentVariable () {
-    variable_name="$1"
-    variable_value="$2"
+set_etc_environment_variable() {
+    local variable_name=$1
+    local variable_value=$2
 
-    if grep "^${variable_name}=" /etc/environment > /dev/null
-    then
-        replaceEtcEnvironmentVariable $variable_name $variable_value
+    if grep "^${variable_name}=" /etc/environment > /dev/null; then
+        replace_etc_environment_variable $variable_name $variable_value
     else
-        addEtcEnvironmentVariable $variable_name $variable_value
+        add_etc_environment_variable $variable_name $variable_value
     fi
 }
 
-prependEtcEnvironmentVariable () {
-    variable_name="$1"
-    element="$2"
+prepend_etc_environment_variable() {
+    local variable_name=$1
+    local element=$2
 
     # TODO: handle the case if the variable does not exist
-    existing_value=$(getEtcEnvironmentVariable "${variable_name}")
-    setEtcEnvironmentVariable "${variable_name}" "${element}:${existing_value}"
+    existing_value=$(get_etc_environment_variable "${variable_name}")
+    set_etc_environment_variable "${variable_name}" "${element}:${existing_value}"
 }
 
-appendEtcEnvironmentVariable () {
-    variable_name="$1"
-    element="$2"
+append_etc_environment_variable() {
+    local variable_name=$1
+    local element=$2
 
     # TODO: handle the case if the variable does not exist
-    existing_value=$(getEtcEnvironmentVariable "${variable_name}")
-    setEtcEnvironmentVariable "${variable_name}" "${existing_value}:${element}"
+    existing_value=$(get_etc_environment_variable "${variable_name}")
+    set_etc_environment_variable "${variable_name}" "${existing_value}:${element}"
 }
 
-prependEtcEnvironmentPath () {
-    element="$1"
+prepend_etc_environment_path() {
+    local element=$1
 
-    prependEtcEnvironmentVariable PATH "${element}"
+    prepend_etc_environment_variable PATH "${element}"
 }
 
-appendEtcEnvironmentPath () {
-    element="$1"
+append_etc_environment_path() {
+    local element=$1
 
-    appendEtcEnvironmentVariable PATH "${element}"
+    append_etc_environment_variable PATH "${element}"
 }
 
 # Process /etc/environment as if it were shell script with `export VAR=...` expressions
@@ -81,10 +80,10 @@ appendEtcEnvironmentPath () {
 # TODO: there might be the others variables to be processed in the same way as "PATH" variable
 #       ie MANPATH, INFOPATH, LD_*, etc. In the current implementation the values from /etc/evironments
 #       replace the values of the current environment
-reloadEtcEnvironment () {
+reload_etc_environment() {
     # add `export ` to every variable of /etc/environemnt except PATH and eval the result shell script
     eval $(grep -v '^PATH=' /etc/environment | sed -e 's%^%export %')
     # handle PATH specially
-    etc_path=$(getEtcEnvironmentVariable PATH)
+    etc_path=$(get_etc_environment_variable PATH)
     export PATH="$PATH:$etc_path"
 }

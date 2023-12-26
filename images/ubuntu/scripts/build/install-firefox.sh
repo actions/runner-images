@@ -19,7 +19,7 @@ repo_path="/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-focal.list"
 
 # Install Firefox
 curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${gpg_fingerprint}" | sudo gpg --dearmor -o $gpg_key
-echo "deb $repo_url $(getOSVersionLabel) main" > $repo_path
+echo "deb $repo_url $(get_os_version_label) main" > $repo_path
 
 apt-get update
 apt-get install --target-release 'o=LP-PPA-mozillateam' -y firefox
@@ -44,6 +44,6 @@ tar -xzf "$driver_archive_path" -C $GECKODRIVER_DIR
 
 chmod +x $GECKODRIVER_BIN
 ln -s "$GECKODRIVER_BIN" /usr/bin/
-setEtcEnvironmentVariable "GECKOWEBDRIVER" "${GECKODRIVER_DIR}"
+set_etc_environment_variable "GECKOWEBDRIVER" "${GECKODRIVER_DIR}"
 
 invoke_tests "Browsers" "Firefox"

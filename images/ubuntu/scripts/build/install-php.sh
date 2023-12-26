@@ -11,7 +11,7 @@ source $HELPER_SCRIPTS/install.sh
 
 # add repository for old Ubuntu images
 # details in thread: https://github.com/actions/runner-images/issues/6331
-if isUbuntu20; then
+if is_ubuntu20; then
     apt-add-repository ppa:ondrej/php -y
     apt-get update
 fi
@@ -94,7 +94,7 @@ sudo mv composer.phar /usr/bin/composer
 php -r "unlink('composer-setup.php');"
 
 # Add composer bin folder to path
-prependEtcEnvironmentPath '$HOME/.config/composer/vendor/bin'
+prepend_etc_environment_path '$HOME/.config/composer/vendor/bin'
 
 #Create composer folder for user to preserve folder permissions
 mkdir -p /etc/skel/.composer
@@ -106,7 +106,7 @@ mv phpunit /usr/local/bin/phpunit
 
 # ubuntu 20.04 libzip-dev is libzip5 based and is not compatible libzip-dev of ppa:ondrej/php
 # see https://github.com/actions/runner-images/issues/1084
-if isUbuntu20; then
+if is_ubuntu20; then
   rm /etc/apt/sources.list.d/ondrej-*.list
   apt-get update
 fi

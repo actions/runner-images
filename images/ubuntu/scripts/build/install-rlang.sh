@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/os.sh
 
 # install R
-osLabel=$(getOSVersionLabel)
+osLabel=$(get_os_version_label)
 
 wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc | gpg --dearmor > /usr/share/keyrings/rlang.gpg
 echo "deb [signed-by=/usr/share/keyrings/rlang.gpg] https://cloud.r-project.org/bin/linux/ubuntu $osLabel-cran40/" > /etc/apt/sources.list.d/rlang.list

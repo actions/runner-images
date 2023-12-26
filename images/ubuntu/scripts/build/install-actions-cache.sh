@@ -14,7 +14,7 @@ ACTION_ARCHIVE_CACHE_DIR=/opt/actionarchivecache
 mkdir -p $ACTION_ARCHIVE_CACHE_DIR
 chmod -R 777 $ACTION_ARCHIVE_CACHE_DIR
 echo "Setting up ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE variable to ${ACTION_ARCHIVE_CACHE_DIR}"
-setEtcEnvironmentVariable "ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE" "${ACTION_ARCHIVE_CACHE_DIR}"
+set_etc_environment_variable "ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE" "${ACTION_ARCHIVE_CACHE_DIR}"
 
 # Download latest release from github.com/actions/action-versions and untar to /opt/actionarchivecache
 downloadUrl=$(resolve_github_release_asset_url "actions/action-versions" "endswith(\"action-versions.tar.gz\")" "latest")

@@ -14,7 +14,7 @@ gpg_key="/usr/share/keyrings/docker.gpg"
 repo_path="/etc/apt/sources.list.d/docker.list"
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $gpg_key
-echo "deb [arch=amd64 signed-by=$gpg_key] $repo_url $(getOSVersionLabel) stable" > $repo_path
+echo "deb [arch=amd64 signed-by=$gpg_key] $repo_url $(get_os_version_label) stable" > $repo_path
 apt-get update
 apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io docker-buildx-plugin
 

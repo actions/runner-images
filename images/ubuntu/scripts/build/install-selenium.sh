@@ -19,6 +19,6 @@ SELENIUM_FULL_VERSION=$(echo $SELENIUM_DOWNLOAD_URL | awk -F"selenium-server-|.j
 touch "/usr/share/java/selenium-server-$SELENIUM_FULL_VERSION"
 
 # Add SELENIUM_JAR_PATH environment variable
-setEtcEnvironmentVariable "SELENIUM_JAR_PATH" "$SELENIUM_JAR_PATH"
+set_etc_environment_variable "SELENIUM_JAR_PATH" "$SELENIUM_JAR_PATH"
 
 invoke_tests "Tools" "Selenium"
