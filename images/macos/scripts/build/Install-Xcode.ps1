@@ -44,7 +44,6 @@ $xcodeVersions | ForEach-Object {
         $xcodebuildPath = Get-XcodeToolPath -Version $_.link -ToolName 'xcodebuild'
         Invoke-ValidateCommand "sudo $xcodebuildPath -downloadPlatform $runtime" | Out-Null
     }
-
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
