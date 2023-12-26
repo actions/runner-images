@@ -6,7 +6,7 @@
 
 Import-Module "$env:HELPER_SCRIPTS/../tests/Helpers.psm1" -DisableNameChecking
 
-Function Get-TCToolVersionPath {
+function Get-TCToolVersionPath {
     param(
         [Parameter(Mandatory)]
         [string] $ToolName,
@@ -24,7 +24,7 @@ Function Get-TCToolVersionPath {
     return $installationDir
 }
 
-Function Add-ETCEnvironmentVariable {
+function Add-ETCEnvironmentVariable {
     param(
         [Parameter(Mandatory)]
         [string] $Name,

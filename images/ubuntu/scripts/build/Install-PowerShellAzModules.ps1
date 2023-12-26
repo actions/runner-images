@@ -36,7 +36,7 @@ foreach ($module in $modules) {
         }
 
         Write-Host "Downloading asset for ${moduleName} ${toolVersion}: $($asset.filename)"
-        wget $asset.download_url -nv --retry-connrefused --tries=10 -P $installPSModulePath
+        Invoke-DownloadWithRetry $asset.download_url -Destination "$installPSModulePath/$($asset.filename)"
     }
 }
 

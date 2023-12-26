@@ -6,19 +6,19 @@
 
 Import-Module "$env:HELPER_SCRIPTS/../tests/Helpers.psm1"
 
-Function Install-Asset {
+function Install-Asset {
     param(
         [Parameter(Mandatory = $true)]
         [object] $ReleaseAsset
     )
 
     Write-Host "Download $($ReleaseAsset.filename)"
-    wget $ReleaseAsset.download_url -nv --retry-connrefused --tries=10
+    $assetArchivePath = Invoke-DownloadWithRetry $ReleaseAsset.download_url
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
     $assetFolderPath = Join-Path "/tmp" $($ReleaseAsset.filename)
     New-Item -ItemType Directory -Path $assetFolderPath
-    tar -xzf $ReleaseAsset.filename -C $assetFolderPath
+    tar -xzf $assetArchivePath -C $assetFolderPath
 
     Write-Host "Invoke installation script..."
     Push-Location -Path $assetFolderPath
