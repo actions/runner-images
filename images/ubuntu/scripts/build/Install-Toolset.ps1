@@ -16,8 +16,8 @@ function Install-Asset {
     $assetArchivePath = Invoke-DownloadWithRetry $ReleaseAsset.download_url
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
-    $assetFolderPath = Join-Path "/tmp" $($ReleaseAsset.filename)
-    New-Item -ItemType Directory -Path $assetFolderPath
+    $assetFolderPath = Join-Path "/tmp" "$($ReleaseAsset.filename)-temp-dir"
+    New-Item -ItemType Directory -Path $assetFolderPath | Out-Null
     tar -xzf $assetArchivePath -C $assetFolderPath
 
     Write-Host "Invoke installation script..."
