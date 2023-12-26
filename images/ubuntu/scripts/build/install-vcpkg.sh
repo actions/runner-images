@@ -9,7 +9,7 @@ source $HELPER_SCRIPTS/etc-environment.sh
 
 # Set env variable for vcpkg
 VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
-setEtcEnvironmentVariable "VCPKG_INSTALLATION_ROOT" "${VCPKG_INSTALLATION_ROOT}"
+set_etc_environment_variable "VCPKG_INSTALLATION_ROOT" "${VCPKG_INSTALLATION_ROOT}"
 
 # Install vcpkg
 git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT

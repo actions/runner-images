@@ -14,8 +14,8 @@ download_url=$(resolve_github_release_asset_url "oras-project/oras" "endswith(\"
 archive_path=$(download_with_retry "$download_url")
 
 # Supply chain security - ORAS CLI
-hash_url=$(resolve_github_release_asset_url "oras-project/oras" "contains(\"checksums.txt\")" "latest")
-external_hash=$(get_hash_from_remote_file "${hash_url}" "linux_amd64.tar.gz")
+hash_url=$(resolve_github_release_asset_url "oras-project/oras" "endswith(\"checksums.txt\")" "latest")
+external_hash=$(get_checksum_from_url "${hash_url}" "linux_amd64.tar.gz" "SHA256")
 use_checksum_comparison "$archive_path" "${external_hash}"
 
 # Unzip ORAS CLI

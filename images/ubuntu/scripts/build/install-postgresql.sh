@@ -12,7 +12,7 @@ REPO_URL="https://apt.postgresql.org/pub/repos/apt/"
 
 # Preparing repo for PostgreSQL
 wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | gpg --dearmor > /usr/share/keyrings/postgresql.gpg
-echo "deb [signed-by=/usr/share/keyrings/postgresql.gpg] $REPO_URL $(getOSVersionLabel)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+echo "deb [signed-by=/usr/share/keyrings/postgresql.gpg] $REPO_URL $(get_os_version_label)-pgdg main" > /etc/apt/sources.list.d/pgdg.list
 
 # Fetch PostgreSQL version to install from the toolset
 toolsetVersion=$(get_toolset_value '.postgresql.version')

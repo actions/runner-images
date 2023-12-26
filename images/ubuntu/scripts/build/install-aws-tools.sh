@@ -18,10 +18,11 @@ apt install "$smplugin_deb_path"
 
 # Download the latest aws sam cli release
 aws_sam_cli_archive_name="aws-sam-cli-linux-x86_64.zip"
-aws_sam_cli_archive_path=$(download_with_retry "https://github.com/aws/aws-sam-cli/releases/latest/download/${aws_sam_cli_archive_name}")
+sam_cli_download_url=$(resolve_github_release_asset_url "aws/aws-sam-cli" "endswith(\"$aws_sam_cli_archive_name\")" "latest")
+aws_sam_cli_archive_path=$(download_with_retry "$sam_cli_download_url")
 
 # Supply chain security - AWS SAM CLI
-aws_sam_cli_hash=$(get_github_package_hash "aws" "aws-sam-cli" "${aws_sam_cli_archive_name}.. ")
+aws_sam_cli_hash=$(get_checksum_from_github_release "aws/aws-sam-cli" "${aws_sam_cli_archive_name}.. " "latest" "SHA256")
 use_checksum_comparison "$aws_sam_cli_archive_path" "$aws_sam_cli_hash"
 
 # Install the latest aws sam cli release

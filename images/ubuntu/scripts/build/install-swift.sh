@@ -42,6 +42,6 @@ ln -s "$SWIFT_BIN_ROOT/swift" /usr/local/bin/swift
 ln -s "$SWIFT_BIN_ROOT/swiftc" /usr/local/bin/swiftc
 ln -s "$SWIFT_LIB_ROOT/libsourcekitdInProc.so" /usr/local/lib/libsourcekitdInProc.so
 
-setEtcEnvironmentVariable "SWIFT_PATH" "${SWIFT_BIN_ROOT}"
+set_etc_environment_variable "SWIFT_PATH" "${SWIFT_BIN_ROOT}"
 
 invoke_tests "Common" "Swift"

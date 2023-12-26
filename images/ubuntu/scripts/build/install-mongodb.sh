@@ -9,7 +9,7 @@ source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
 REPO_URL="https://repo.mongodb.org/apt/ubuntu"
-osLabel=$(getOSVersionLabel)
+osLabel=$(get_os_version_label)
 toolsetVersion=$(get_toolset_value '.mongodb.version')
 
 #  Install Mongo DB

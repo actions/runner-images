@@ -46,6 +46,6 @@ unzip -qq "$EDGEDRIVER_ARCHIVE_PATH" -d "$EDGEDRIVER_DIR"
 chmod +x $EDGEDRIVER_BIN
 ln -s $EDGEDRIVER_BIN /usr/bin
 
-setEtcEnvironmentVariable "EDGEWEBDRIVER" "${EDGEDRIVER_DIR}"
+set_etc_environment_variable "EDGEWEBDRIVER" "${EDGEDRIVER_DIR}"
 
 invoke_tests "Browsers" "Edge"

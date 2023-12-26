@@ -14,7 +14,7 @@ download_url="https://get.pulumi.com/releases/sdk/pulumi-v${version}-linux-x64.t
 archive_path=$(download_with_retry "$download_url")
 
 # Supply chain security - Pulumi
-external_hash=$(get_hash_from_remote_file "https://github.com/pulumi/pulumi/releases/download/v${version}/SHA512SUMS" "linux-x64.tar.gz")
+external_hash=$(get_checksum_from_url "https://github.com/pulumi/pulumi/releases/download/v${version}/SHA512SUMS" "linux-x64.tar.gz" "SHA512")
 use_checksum_comparison "$archive_path" "$external_hash" "512"
 
 # Unzipping Pulumi

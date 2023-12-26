@@ -9,7 +9,7 @@ source $HELPER_SCRIPTS/os.sh
 LSB_CODENAME=$(lsb_release -cs)
 
 # There are no packages for Ubuntu 22 in the repo, but developers confirmed that packages from Ubuntu 20 should work
-if isUbuntu22; then
+if is_ubuntu22; then
     LSB_CODENAME="focal"
 fi
 
