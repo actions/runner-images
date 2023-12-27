@@ -349,5 +349,8 @@
     },
     "postgresql": {
         "version": "14"
+    },
+    "pwsh": {
+        "version": "7.2"
     }
 }
