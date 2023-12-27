@@ -24,7 +24,7 @@ function Get-TCToolVersionPath {
     return $installationDir
 }
 
-function Add-ETCEnvironmentVariable {
+function Add-GlobalEnvironmentVariable {
     param(
         [Parameter(Mandatory)]
         [string] $Name,
@@ -59,7 +59,7 @@ foreach ($tool in $tools) {
             $toolPath = Get-TCToolVersionPath -ToolName $tool.name -ToolVersion $toolVersion -ToolArchitecture $tool.arch
             $envVariableName = $toolEnvConfig.variableTemplate -f $toolVersion.split(".")
 
-            Add-ETCEnvironmentVariable -Name $envVariableName -Value $toolPath
+            Add-GlobalEnvironmentVariable -Name $envVariableName -Value $toolPath
         }
     }
 
@@ -69,7 +69,7 @@ foreach ($tool in $tools) {
 
         if (-not ([string]::IsNullOrEmpty($toolEnvConfig.defaultVariable))) {
             Write-Host "Set default $($toolEnvConfig.defaultVariable) for $($tool.name) $($tool.default) environment variable..."
-            Add-ETCEnvironmentVariable -Name $toolEnvConfig.defaultVariable -Value $toolDefaultPath
+            Add-GlobalEnvironmentVariable -Name $toolEnvConfig.defaultVariable -Value $toolDefaultPath
         }
 
         if (-not ([string]::IsNullOrEmpty($toolEnvConfig.command))) {
