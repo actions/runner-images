@@ -10,8 +10,15 @@ echo Installing PowerShell...
 arch=$(get_arch)
 
 metadata_json_path=$(download_with_retry "https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json")
-version=$(jq -r '.LTSReleaseTag[0]' "$metadata_json_path")
-download_url=$(resolve_github_release_asset_url "PowerShell/PowerShell" "contains(\"osx-$arch.pkg\")" "$version" "$API_PAT")
+pwshVersionToolset=$(get_toolset_value '.pwsh.version')
+pwshVersions=$(jq -r '.LTSReleaseTag[]' "$metadata_json_path")
+
+echo $pwshVersions | while read -r version; do
+    if [[ "$version" =~ "$pwshVersionToolset" ]]; then
+        download_url=$(resolve_github_release_asset_url "PowerShell/PowerShell" "contains(\"osx-$arch.pkg\")" "$version" "$API_PAT")
+        break
+    fi
+done
 pkg_path=$(download_with_retry "$download_url")
 
 # Work around the issue on macOS Big Sur 11.5 or higher for possible error message ("can't be opened because Apple cannot check it for malicious software") when installing the package

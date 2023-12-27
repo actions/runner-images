@@ -234,5 +234,8 @@
             "version": "3.15.4",
             "sha256": "356dab61433b5be76b76fd0e2e979bda56d164f6d85a900e55c3a4a5fffa28de"
         }
+    },
+    "pwsh": {
+        "version": "7.2"
     }
 }
