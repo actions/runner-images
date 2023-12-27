@@ -13,12 +13,13 @@ metadata_json_path=$(download_with_retry "https://raw.githubusercontent.com/Powe
 pwshVersionToolset=$(get_toolset_value '.pwsh.version')
 pwshVersions=$(jq -r '.LTSReleaseTag[]' "$metadata_json_path")
 
-echo $pwshVersions | while read -r version; do
+for version in ${pwshVersions[@]}; do
     if [[ "$version" =~ "$pwshVersionToolset" ]]; then
         download_url=$(resolve_github_release_asset_url "PowerShell/PowerShell" "contains(\"osx-$arch.pkg\")" "$version" "$API_PAT")
         break
     fi
 done
+
 pkg_path=$(download_with_retry "$download_url")
 
 # Work around the issue on macOS Big Sur 11.5 or higher for possible error message ("can't be opened because Apple cannot check it for malicious software") when installing the package
