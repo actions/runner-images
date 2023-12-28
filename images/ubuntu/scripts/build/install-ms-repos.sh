@@ -4,7 +4,7 @@
 ##  Desc:  Install official Microsoft package repos for the distribution
 ################################################################################
 
-os_label=$(lsb_release -cs)
+os_label=$(lsb_release -rs)
 
 # Install Microsoft repository
 wget https://packages.microsoft.com/config/ubuntu/$os_label/packages-microsoft-prod.deb
