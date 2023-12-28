@@ -17,8 +17,8 @@ echo "Setting up ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE variable to ${ACTION_ARCHIV
 set_etc_environment_variable "ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE" "${ACTION_ARCHIVE_CACHE_DIR}"
 
 # Download latest release from github.com/actions/action-versions and untar to /opt/actionarchivecache
-downloadUrl=$(resolve_github_release_asset_url "actions/action-versions" "endswith(\"action-versions.tar.gz\")" "latest")
-archive_path=$(download_with_retry "$downloadUrl")
+download_url=$(resolve_github_release_asset_url "actions/action-versions" "endswith(\"action-versions.tar.gz\")" "latest")
+archive_path=$(download_with_retry "$download_url")
 tar -xzf "$archive_path" -C $ACTION_ARCHIVE_CACHE_DIR
 
 invoke_tests "ActionArchiveCache"

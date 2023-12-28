@@ -4,6 +4,7 @@
 ##  Desc:  Install PyPy
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
 # This function installs PyPy using the specified arguments:
@@ -73,20 +74,20 @@ install_pypy() {
 }
 
 # Installation PyPy
-pypyVersions=$(curl -fsSL https://downloads.python.org/pypy/versions.json)
-toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
+pypy_versions_json=$(curl -fsSL https://downloads.python.org/pypy/versions.json)
+toolset_versions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
 
-for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(echo $pypyVersions |
-        jq -r --arg toolsetVersion $toolsetVersion '.[]
-        | select((.python_version | startswith($toolsetVersion)) and .stable == true).files[]
+for toolset_version in $toolset_versions; do
+    latest_major_pypy_version=$(echo $pypy_versions_json |
+        jq -r --arg toolset_version $toolset_version '.[]
+        | select((.python_version | startswith($toolset_version)) and .stable == true).files[]
         | select(.arch == "x64" and .platform == "linux").download_url' | head -1)
-    if [[ -z "$latestMajorPyPyVersion" ]]; then
-        echo "Failed to get PyPy version '$toolsetVersion'"
+    if [[ -z "$latest_major_pypy_version" ]]; then
+        echo "Failed to get PyPy version '$toolset_version'"
         exit 1
     fi
 
-    install_pypy $latestMajorPyPyVersion
+    install_pypy $latest_major_pypy_version
 done
 
 chown -R "$SUDO_USER:$SUDO_USER" "$AGENT_TOOLSDIRECTORY/PyPy"

@@ -21,15 +21,15 @@ curl --proto '=https' --tlsv1.2 -fsSL https://get-ghcup.haskell.org | sh > /dev/
 export PATH="$ghcup_bin:$PATH"
 prepend_etc_environment_path $ghcup_bin
 
-availableVersions=$(ghcup list -t ghc -r | grep -v "prerelease" | awk '{print $2}')
+available_versions=$(ghcup list -t ghc -r | grep -v "prerelease" | awk '{print $2}')
 
-# Get 2 latest Haskell Major.Minor versions
-minorMajorVersions=$(echo "$availableVersions" | cut -d"." -f 1,2 | uniq | tail -n2)
-for majorMinorVersion in $minorMajorVersions; do
-    fullVersion=$(echo "$availableVersions" | grep "$majorMinorVersion." | tail -n1)
-    echo "install ghc version $fullVersion..."
-    ghcup install ghc $fullVersion
-    ghcup set ghc $fullVersion
+# Install 2 latest Haskell Major.Minor versions
+major_minor_versions=$(echo "$available_versions" | cut -d"." -f 1,2 | uniq | tail -n2)
+for major_minor_version in $major_minor_versions; do
+    full_version=$(echo "$available_versions" | grep "$major_minor_version." | tail -n1)
+    echo "install ghc version $full_version..."
+    ghcup install ghc $full_version
+    ghcup set ghc $full_version
 done
 
 echo "install cabal..."
@@ -39,6 +39,6 @@ chmod -R 777 $GHCUP_INSTALL_BASE_PREFIX/.ghcup
 ln -s $GHCUP_INSTALL_BASE_PREFIX/.ghcup /etc/skel/.ghcup
 
 # Install the latest stable release of haskell stack
-curl -fsSL https://get.haskellstack.org/ | sh
+curl -fsSL https://get.haskellstack.org/ | bash
 
 invoke_tests "Haskell"

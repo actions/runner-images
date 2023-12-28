@@ -4,6 +4,7 @@
 ##  Desc:  Install container tools: podman, buildah and skopeo onto the image
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
 
 #

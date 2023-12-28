@@ -8,9 +8,9 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Install default Node.js
-defaultVersion=$(get_toolset_value '.node.default')
+default_version=$(get_toolset_value '.node.default')
 curl -fsSL https://raw.githubusercontent.com/tj/n/master/bin/n -o ~/n
-bash ~/n $defaultVersion
+bash ~/n $default_version
 
 # Install node modules
 node_modules=$(get_toolset_value '.node_modules[].name')

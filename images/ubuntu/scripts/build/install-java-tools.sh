@@ -4,8 +4,8 @@
 ##  Desc:  Install Java and related tooling (Ant, Gradle, Maven)
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
-source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
 create_java_environment_variable() {
@@ -64,7 +64,7 @@ install_open_jdk() {
 # Add Addoptium PPA
 # apt-key is deprecated, dearmor and add manually
 wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptium.gpg
-echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $(get_os_version_label) main" > /etc/apt/sources.list.d/adoptium.list
+echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $(lsb_release -cs) main" > /etc/apt/sources.list.d/adoptium.list
 
 # Get all the updates from enabled repositories.
 apt-get update

@@ -5,6 +5,7 @@
 ##  Supply chain security: Kotlin - checksum validation
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
 KOTLIN_ROOT="/usr/share"
