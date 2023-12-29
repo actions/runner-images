@@ -4,6 +4,7 @@
 ##  Desc:  Install Bazel and Bazelisk (A user-friendly launcher for Bazel)
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
 # Install bazelisk

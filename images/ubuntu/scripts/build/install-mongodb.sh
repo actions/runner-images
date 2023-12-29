@@ -5,21 +5,20 @@
 ################################################################################
 
 # Source the helpers
-source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
 REPO_URL="https://repo.mongodb.org/apt/ubuntu"
-osLabel=$(get_os_version_label)
-toolsetVersion=$(get_toolset_value '.mongodb.version')
+os_label=$(lsb_release -cs)
+toolset_version=$(get_toolset_value '.mongodb.version')
 
 #  Install Mongo DB
-wget -qO - https://www.mongodb.org/static/pgp/server-$toolsetVersion.asc | sudo apt-key add -
+wget -qO - https://www.mongodb.org/static/pgp/server-$toolset_version.asc | sudo apt-key add -
 
-echo "deb [ arch=amd64,arm64 ] $REPO_URL $osLabel/mongodb-org/$toolsetVersion multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$toolsetVersion.list
+echo "deb [ arch=amd64,arm64 ] $REPO_URL $os_label/mongodb-org/$toolset_version multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$toolset_version.list
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 
-rm /etc/apt/sources.list.d/mongodb-org-$toolsetVersion.list
+rm /etc/apt/sources.list.d/mongodb-org-$toolset_version.list
 
 echo "mongodb $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
 

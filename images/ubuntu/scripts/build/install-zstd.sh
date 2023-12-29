@@ -26,13 +26,13 @@ make -C "/tmp/${release_name}/contrib/pzstd" all
 make -C "/tmp/${release_name}" zstd-release
 
 for copyprocess in zstd zstdless zstdgrep; do
-  cp "/tmp/${release_name}/programs/${copyprocess}" /usr/local/bin/
+    cp "/tmp/${release_name}/programs/${copyprocess}" /usr/local/bin/
 done
 
 cp "/tmp/${release_name}/contrib/pzstd/pzstd" /usr/local/bin/
 
 for symlink in zstdcat zstdmt unzstd; do
-  ln -sf /usr/local/bin/zstd /usr/local/bin/${symlink}
+    ln -sf /usr/local/bin/zstd /usr/local/bin/${symlink}
 done
 
 invoke_tests "Tools" "Zstd"

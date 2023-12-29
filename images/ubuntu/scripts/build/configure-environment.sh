@@ -43,8 +43,8 @@ echo 'fs.inotify.max_user_instances=1280' | tee -a /etc/sysctl.conf
 
 # https://github.com/actions/runner-images/pull/7860
 netfilter_rule='/etc/udev/rules.d/50-netfilter.rules'
-rulesd="$(dirname "${netfilter_rule}")"
-mkdir -p $rulesd
+rules_directory="$(dirname "${netfilter_rule}")"
+mkdir -p $rules_directory
 touch $netfilter_rule
 echo 'ACTION=="add", SUBSYSTEM=="module", KERNEL=="nf_conntrack", RUN+="/usr/sbin/sysctl net.netfilter.nf_conntrack_tcp_be_liberal=1"' | tee -a $netfilter_rule
 

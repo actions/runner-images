@@ -13,6 +13,7 @@ if is_ubuntu22; then
     libssl_deb_path=$(download_with_retry "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.20_amd64.deb")
     libssl_hash="0b3251aee55db6e20d02f4b9a2b703c9874a85ab6a20b12f4870f52f91633d37"
     use_checksum_comparison "$libssl_deb_path" "$libssl_hash"
+
     dpkg -i "$libssl_deb_path"
 fi
 
