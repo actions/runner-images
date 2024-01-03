@@ -44,10 +44,6 @@ function Build-AndroidTable {
             "Version" = Get-AndroidPlatformVersions -PackageInfo $packageInfo
         },
         @{
-            "Package" = "Android SDK Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Tools"
-        },
-        @{
             "Package" = "Android Support Repository"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android Support Repository"
         },

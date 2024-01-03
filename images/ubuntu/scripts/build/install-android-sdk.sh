@@ -113,9 +113,6 @@ add_filtered_instalaltion_components $minimum_build_tool_version "${available_bu
 # Install components
 echo "y" | $SDKMANAGER ${components[@]}
 
-# Old skdmanager from sdk tools doesn't work with Java > 8, set version 8 explicitly
-sed -i "2i export JAVA_HOME=${JAVA_HOME_8_X64}" ${ANDROID_SDK_ROOT}/tools/bin/sdkmanager
-
 # Add required permissions
 chmod -R a+rwx ${ANDROID_SDK_ROOT}
 
