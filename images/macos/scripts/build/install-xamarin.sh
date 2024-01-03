@@ -15,17 +15,17 @@ latest_sdk_symlink=$(get_toolset_value '.xamarin.bundles[0].symlink')
 current_sdk_symlink=$(get_toolset_value '.xamarin."bundle_default"')
 default_xcode_version=$(get_toolset_value '.xcode.default')
 
-if [ "$current_sdk_symlink" == "latest" ]; then
+if [[ $current_sdk_symlink == "latest" ]]; then
   current_sdk_symlink=$latest_sdk_symlink
 fi
 
-MONO_VERSIONS_PATH='/Library/Frameworks/Mono.framework/Versions'
-IOS_VERSIONS_PATH='/Library/Frameworks/Xamarin.iOS.framework/Versions'
-ANDROID_VERSIONS_PATH='/Library/Frameworks/Xamarin.Android.framework/Versions'
-MAC_VERSIONS_PATH='/Library/Frameworks/Xamarin.Mac.framework/Versions'
+MONO_VERSIONS_PATH="/Library/Frameworks/Mono.framework/Versions"
+IOS_VERSIONS_PATH="/Library/Frameworks/Xamarin.iOS.framework/Versions"
+ANDROID_VERSIONS_PATH="/Library/Frameworks/Xamarin.Android.framework/Versions"
+MAC_VERSIONS_PATH="/Library/Frameworks/Xamarin.Mac.framework/Versions"
 
-TMPMOUNT=`/usr/bin/mktemp -d /tmp/visualstudio.XXXX`
-TMPMOUNT_FRAMEWORKS="$TMPMOUNT/frameworks"
+TMPMOUNT=$(/usr/bin/mktemp -d /tmp/visualstudio.XXXX)
+TMPMOUNT_FRAMEWORKS=$TMPMOUNT/frameworks
 createBackupFolders
 
 pushd $TMPMOUNT
@@ -34,19 +34,19 @@ pushd $TMPMOUNT
 downloadNUnitConsole
 
 # Install Mono sdks
-for version in "${mono_versions[@]}"; do installMono $version; done
+for version in ${mono_versions[@]}; do installMono $version; done
 sudo mv -v $TMPMOUNT_FRAMEWORKS/mono/* $MONO_VERSIONS_PATH/
 
 # Install Xamarin.iOS sdks
-for version in "${xamarin_ios_versions[@]}"; do installXamarinIOS $version; done
+for version in ${xamarin_ios_versions[@]}; do installXamarinIOS $version; done
 sudo mv -v $TMPMOUNT_FRAMEWORKS/ios/* $IOS_VERSIONS_PATH/
 
 # Install Xamarin.Mac sdks
-for version in "${xamarin_mac_versions[@]}"; do installXamarinMac $version; done
+for version in ${xamarin_mac_versions[@]}; do installXamarinMac $version; done
 sudo mv -v $TMPMOUNT_FRAMEWORKS/mac/* $MAC_VERSIONS_PATH/
 
 # Install Xamarin.Android sdks
-for version in "${xamarin_android_versions[@]}"; do installXamarinAndroid $version; done
+for version in ${xamarin_android_versions[@]}; do installXamarinAndroid $version; done
 sudo mv -v $TMPMOUNT_FRAMEWORKS/android/* $ANDROID_VERSIONS_PATH/
 
 
@@ -75,7 +75,7 @@ createUWPShim
 popd
 
 echo "Clean up packages..."
-sudo rm -rf "$TMPMOUNT"
+sudo rm -rf $TMPMOUNT
 
 # Fix Xamarin issue with Xcode symlink: https://github.com/xamarin/xamarin-macios/issues/9960
 PREFERENCES_XAMARIN_DIR="${HOME}/Library/Preferences/Xamarin"
