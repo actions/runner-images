@@ -19,5 +19,5 @@ jobs:
   parameters:
     image_label: 'macOS Big Sur'
     base_image_name: 'clean-macOS-11-380Gb-runner'
-    template_path: 'templates/macOS-11.json'
+    template_path: 'templates/macOS-11.pkr.hcl'
     target_datastore: 'ds-image'
