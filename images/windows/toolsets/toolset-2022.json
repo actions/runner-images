@@ -133,8 +133,8 @@
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",
         "hash": "8A90E6A3DEB2FA13229B2E335EFD07687DCC8A55A3C544DA9F40B41404993E7D",
-        "platform_min_version": "27",
-        "build_tools_min_version": "27.0.0",
+        "platform_min_version": "31",
+        "build_tools_min_version": "31.0.0",
         "extras": [
             "android;m2repository",
             "google;m2repository",
