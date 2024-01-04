@@ -20,7 +20,12 @@ Describe "DockerCompose" {
     It "docker compose v2" {
         "docker compose version" | Should -ReturnZeroExitCode
     }
+}
 
+Describe "DockerBuildx" {
+    It "docker buildx is installed" {
+        "docker buildx version" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "DockerWinCred" {

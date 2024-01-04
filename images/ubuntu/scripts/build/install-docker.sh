@@ -15,11 +15,23 @@ REPO_PATH="/etc/apt/sources.list.d/docker.list"
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $GPG_KEY
 echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL $(lsb_release -cs) stable" > $REPO_PATH
 apt-get update
-apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io
+
+# Download Docker Buildx from releases
+buildx_url=$(resolve_github_release_asset_url "docker/buildx" "endswith(\"linux-amd64\")" "latest")
+buildx_binary_path=$(download_with_retry "${URL}" "/tmp/docker-buildx")
+
+# Supply chain security - Docker Buildx
+buildx_hash_url=$(resolve_github_release_asset_url "docker/buildx" "endswith(\"checksums.txt\")" "latest")
+buildx_external_hash=$(get_checksum_from_url "${buildx_hash_url}" ".linux-amd64" "SHA256")
+use_checksum_comparison "${buildx_binary_path}" "${buildx_external_hash}"
+
+# Install Docker Buildx
+install "${buildx_binary_path}" /usr/libexec/docker/cli-plugins/docker-buildx
 
 # Download docker compose v2 from releases
-URL=$(resolve_github_release_asset_url "docker/compose" "endswith(\"compose-linux-x86_64\")" "latest")
-compose_binary_path=$(download_with_retry "${URL}" "/tmp/docker-compose-v2")
+compose_url=$(resolve_github_release_asset_url "docker/compose" "endswith(\"compose-linux-x86_64\")" "latest")
+compose_binary_path=$(download_with_retry "${compose_url}" "/tmp/docker-compose-v2")
 
 # Supply chain security - Docker Compose v2
 compose_hash_url=$(resolve_github_release_asset_url "docker/compose" "endswith(\"checksums.txt\")" "latest")

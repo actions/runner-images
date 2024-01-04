@@ -55,6 +55,11 @@ function Get-DockerVersion {
     return $dockerVersion
 }
 
+function Get-DockerBuildxVersion {
+    $dockerBuildxVersion = docker buildx version | Get-StringPart -Part 1 | Get-StringPart -Part 0 -Delimiter "v"
+    return $dockerBuildxVersion
+}
+
 function Get-DockerComposeVersion {
     $dockerComposeVersion = docker-compose version --short
     return $dockerComposeVersion

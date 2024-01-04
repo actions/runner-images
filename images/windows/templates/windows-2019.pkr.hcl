@@ -277,6 +277,7 @@ build {
       "${path.root}/../scripts/build/Install-VCRedist.ps1",
       "${path.root}/../scripts/build/Install-Docker.ps1",
       "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
+      "${path.root}/../scripts/build/Install-DockerBuildx.ps1",
       "${path.root}/../scripts/build/Install-DockerCompose.ps1",
       "${path.root}/../scripts/build/Install-PowershellCore.ps1",
       "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1",
