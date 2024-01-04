@@ -38,7 +38,7 @@ function Invoke-DownloadXcodeArchive {
     if ($xcodeSha256 -ne $Sha256Sum) {
         throw "Xcode $Version checksum mismatch. Expected: $Sha256Sum, Actual: $xcodeSha256"
     }
-  
+
     return $tempXipDirectory
 }
 
@@ -65,6 +65,7 @@ function Get-AvailableXcodeVersions {
     $availableVersions = $rawVersionsList | ForEach-Object {
         $partStable,$partMajor = $_.Split(" ", 2)
         $semver = $stableSemver = [SemVer]::Parse($partStable)
+
         if ($partMajor) {
             # Convert 'beta 3' -> 'beta.3', 'Release Candidate' -> 'releasecandidate', 'GM Seed 2' -> 'gmseed.2'
             $normalizedLabel = $partMajor.toLower() -replace " (\d)", '.$1' -replace " ([a-z])", '$1'

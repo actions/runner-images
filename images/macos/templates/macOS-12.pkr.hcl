@@ -100,7 +100,7 @@ build {
   sources = ["source.vsphere-clone.template"]
 
   provisioner "shell" {
-    inline = "mkdir ~/image-generation"
+    inline = ["mkdir ~/image-generation"]
   }
 
   provisioner "file" {
