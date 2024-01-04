@@ -21,7 +21,6 @@ Log into the Azure Portal.  Find that resource group under `Resource groups`.  Y
 ## Step 3: Connect to the VM
 Select the VM in the resource group.  Click `Connect:`
 
-This will download an RDP file.  Open that and enter the credentials found in the JSON file you pass to `packer build`:
+This will download an RDP file.  Open that and enter the credentials found in the HCL2 file you pass to `packer build`:
 
 ![VM credentials screenshot](/docs/resources/vmCredentials.png "VM credentials screenshot")
-
