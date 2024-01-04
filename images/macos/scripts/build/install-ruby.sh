@@ -29,7 +29,7 @@ if ! is_Arm64; then
     [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
     PACKAGE_TAR_NAMES=$(curl "${authString[@]}" -fsSL "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
     TOOLSET_VERSIONS=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .arch.'$arch'.versions[]')
-    RUBY_PATH=$AGENT_TOOLSDIRECTORY/Ruby
+    RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"
 
     echo "Check if Ruby hostedtoolcache folder exists..."
     if [[ ! -d $RUBY_PATH ]]; then
