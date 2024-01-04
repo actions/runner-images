@@ -32,7 +32,7 @@ if ! is_Arm64; then
     RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"
 
     echo "Check if Ruby hostedtoolcache folder exists..."
-    if [[ ! -d $RUBY_PATH ]]; then
+    if [ ! -d $RUBY_PATH ]; then
         mkdir -p $RUBY_PATH
     fi
 
