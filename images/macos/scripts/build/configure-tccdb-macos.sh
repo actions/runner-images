@@ -36,7 +36,7 @@ for values in ${systemValuesArray[@]}; do
         # TCC access table in Sonoma has extra 4 columns: pid, pid_version, boot_uuid, last_reminded
         configure_system_tccdb "$values,NULL,NULL,'UNUSED',${values##*,}"
     else
-        configure_system_tccdb $values
+        configure_system_tccdb "$values"
     fi
 done
 
@@ -70,6 +70,6 @@ for values in ${userValuesArray[@]}; do
         # TCC access table in Sonoma has extra 4 columns: pid, pid_version, boot_uuid, last_reminded
         configure_user_tccdb "$values,NULL,NULL,'UNUSED',${values##*,}"
     else
-        configure_user_tccdb $values
+        configure_user_tccdb "$values"
     fi
 done
