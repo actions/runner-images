@@ -1,4 +1,4 @@
-name: macOS-11_$(date:yyyyMMdd)$(rev:.r)_unstable
+name: macOS-11_$(date:yyyyMMdd)$(rev:.r)_unstable_hcl2
 schedules:
 - cron: '45 0 * * *'
   displayName: Daily
