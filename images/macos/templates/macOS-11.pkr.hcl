@@ -134,7 +134,7 @@ build {
   }
 
   provisioner "shell" {
-    inline = [ "mkdir ~/image-generation" ]
+    inline = [ "mkdir ~/bootstrap" ]
   }
 
   provisioner "file" {
