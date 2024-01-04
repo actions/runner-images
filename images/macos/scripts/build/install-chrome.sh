@@ -44,7 +44,7 @@ chrome_for_testing_app="Google Chrome for Testing.app"
 
 chrome_for_testing_archive_path=$(download_with_retry $chrome_for_testing_url)
 unzip -qq $chrome_for_testing_archive_path -d /tmp/
-mv /tmp/chrome-$chrome_platform/$chrome_for_testing_app /Applications/$chrome_for_testing_app
+mv "/tmp/chrome-$chrome_platform/$chrome_for_testing_app" "/Applications/$chrome_for_testing_app"
 
 echo "Installing Selenium"
 brew_smart_install "selenium-server"
