@@ -29,16 +29,16 @@ if ! is_Arm64; then
     [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
     PACKAGE_TAR_NAMES=$(curl "${authString[@]}" -fsSL "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
     TOOLSET_VERSIONS=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .arch.'$arch'.versions[]')
-    RUBY_PATH="$AGENT_TOOLSDIRECTORY/Ruby"
+    RUBY_PATH=$AGENT_TOOLSDIRECTORY/Ruby
 
     echo "Check if Ruby hostedtoolcache folder exists..."
-    if [ ! -d $RUBY_PATH ]; then
+    if [[ ! -d $RUBY_PATH ]]; then
         mkdir -p $RUBY_PATH
     fi
     echo "ruby path - $RUBY_PATH "
     for TOOLSET_VERSION in ${TOOLSET_VERSIONS[@]}; do
-        PACKAGE_TAR_NAME=$(echo $PACKAGE_TAR_NAMES | grep "^ruby-${TOOLSET_VERSION}-macos-latest.tar.gz$" | egrep -v "rc|preview" | sort -V | tail -1)
-        RUBY_VERSION=$(echo $PACKAGE_TAR_NAME | cut -d'-' -f 2)
+        PACKAGE_TAR_NAME=$(echo "$PACKAGE_TAR_NAMES" | grep "^ruby-${TOOLSET_VERSION}-macos-latest.tar.gz$" | egrep -v "rc|preview" | sort -V | tail -1)
+        RUBY_VERSION=$(echo "$PACKAGE_TAR_NAME" | cut -d'-' -f 2)
         RUBY_VERSION_PATH="$RUBY_PATH/$RUBY_VERSION"
 
         echo "Create Ruby $RUBY_VERSION directory..."
