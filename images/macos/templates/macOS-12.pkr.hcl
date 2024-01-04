@@ -139,7 +139,7 @@ build {
 
   provisioner "file" {
     destination = "~/bootstrap"
-    source      = "./assets/bootstrap-provisioner"
+    source      = "./assets/bootstrap-provisioner/"
   }
 
   provisioner "file" {
