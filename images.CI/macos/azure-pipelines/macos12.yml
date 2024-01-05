@@ -19,5 +19,5 @@ jobs:
   parameters:
     image_label: 'macOS Monterey'
     base_image_name: 'clean-macOS-12-380Gb-runner'
-    template_path: 'templates/macOS-12.json'
+    template_path: 'templates/macOS-12.pkr.hcl'
     target_datastore: 'ds-image'
