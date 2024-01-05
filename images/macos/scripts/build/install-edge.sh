@@ -10,7 +10,7 @@ echo "Installing Microsoft Edge..."
 brew install --cask microsoft-edge
 
 EDGE_INSTALLATION_PATH="/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge"
-edge_version=$($EDGE_INSTALLATION_PATH --version | cut -d' ' -f 3)
+edge_version=$("$EDGE_INSTALLATION_PATH" --version | cut -d' ' -f 3)
 edge_version_major=$(echo $edge_version | cut -d'.' -f 1)
 
 echo "Version of Microsoft Edge: ${edge_version}"
@@ -18,7 +18,7 @@ echo "Version of Microsoft Edge: ${edge_version}"
 echo "Installing Microsoft Edge WebDriver..."
 
 edge_driver_version_file_path=$(download_with_retry "https://msedgedriver.azureedge.net/LATEST_RELEASE_${edge_version_major}_MACOS")
-edge_driver_latest_version=$(iconv -f utf-16 -t utf-8 $edge_driver_version_file_path | tr -d '\r')
+edge_driver_latest_version=$(iconv -f utf-16 -t utf-8 "$edge_driver_version_file_path" | tr -d '\r')
 edge_driver_url="https://msedgedriver.azureedge.net/${edge_driver_latest_version}/edgedriver_mac64.zip"
 
 echo "Compatible version of WebDriver: ${edge_driver_latest_version}"
