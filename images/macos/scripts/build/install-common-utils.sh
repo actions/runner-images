@@ -73,7 +73,7 @@ if is_Monterey; then
     echo "Checking parallels kexts"
     dbName="/var/db/SystemPolicyConfiguration/KextPolicy"
     dbQuery="SELECT * FROM kext_policy WHERE bundle_id LIKE 'com.parallels.kext.%';"
-    kext=$(sudo sqlite3 $dbName $dbQuery)
+    kext=$(sudo sqlite3 $dbName "$dbQuery")
 
     if [[ -z $kext ]]; then
         echo "Parallels International GmbH not found"
