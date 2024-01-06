@@ -38,7 +38,7 @@ echo "export EDGEWEBDRIVER=${EDGE_DRIVER_DIR}" >> ${HOME}/.bashrc
 # Configure Edge Updater to prevent auto update
 # https://learn.microsoft.com/en-us/deployedge/edge-learnmore-edgeupdater-for-macos
 
-sudo mkdir /Library/Managed Preferences
+sudo mkdir "/Library/Managed Preferences"
 
 cat <<EOF | sudo tee "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist" > /dev/null
 <?xml version="1.0" encoding="UTF-8"?>
@@ -57,6 +57,6 @@ cat <<EOF | sudo tee "/Library/Managed Preferences/com.microsoft.EdgeUpdater.pli
 </plist>
 EOF
 
-sudo chown root:wheel /Library/Managed Preferences/com.microsoft.EdgeUpdater.plist
+sudo chown root:wheel "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
 
 invoke_tests "Browsers" "Edge"
