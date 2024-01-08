@@ -4,7 +4,7 @@
 ################################################################################
 
 # Disable Edge auto-updates
-Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
+#Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
 
 Write-Host "Get the Microsoft Edge WebDriver version..."
 $edgeBinaryPath = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe").'(default)'
@@ -27,7 +27,7 @@ Write-Host "Expand Microsoft Edge WebDriver archive..."
 Expand-7ZipArchive -Path $archivePath -DestinationPath $edgeDriverPath
 
 #Validate the EdgeDriver signature
-$signatureThumbprint = "573EF451A68C33FB904346D44551BEF3BB5BBF68"
+$signatureThumbprint = "CB9C4FBEA1D87D2D468AC5A9CAAB0163F6AD8401"
 Test-FileSignature -Path "$edgeDriverPath\msedgedriver.exe" -ExpectedThumbprint $signatureThumbprint
 
 Write-Host "Setting the environment variables..."
