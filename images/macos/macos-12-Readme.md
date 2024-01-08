@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
 | [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
 | [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
 ***
 # macOS 12
 - OS Version: macOS 12.7.2 (21G1974)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20231216.1
+- Image Version: 20240105.3
 
 ## Installed Software
 
@@ -21,8 +22,8 @@
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
-- Julia 1.9.4
-- Kotlin 1.9.21-release-633
+- Julia 1.10.0
+- Kotlin 1.9.22-release-704
 - Go 1.20.12
 - Mono 6.12.0.188
 - Node.js 18.19.0
@@ -30,26 +31,26 @@
 - NVM 0.39.7
 - NVM - Cached node versions: 16.20.2, 18.19.0, 20.10.0
 - Perl 5.38.2
-- PHP 8.3.0
+- PHP 8.3.1
 - Python 2.7.18
 - Python3 3.12.1
 - R 4.3.2
 - Ruby 3.0.6p216
 
 ### Package Management
-- Bundler 2.5.1
+- Bundler 2.5.4
 - Carthage 0.39.1
 - CocoaPods 1.14.3
 - Composer 2.6.6
-- Homebrew 4.1.25
-- Miniconda 23.10.0
+- Homebrew 4.2.2
+- Miniconda 23.11.0
 - NPM 10.2.3
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip3 23.3.1 (python 3.12)
-- Pipx 1.3.3
-- RubyGems 3.5.1
-- Vcpkg 2023 (build from commit 0e47c1985)
+- Pip3 23.3.2 (python 3.12)
+- Pipx 1.4.1
+- RubyGems 3.5.4
+- Vcpkg 2023 (build from commit ce46ba877)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -78,7 +79,7 @@
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
-- ImageMagick 7.1.1-23
+- ImageMagick 7.1.1-25
 - jq 1.7.1
 - mongo 5.0.21
 - mongod 5.0.21
@@ -88,7 +89,7 @@
 - PostgreSQL 14.10 (Homebrew)
 - psql (PostgreSQL) 14.10 (Homebrew)
 - Sox 14.4.2
-- Subversion (SVN) 1.14.2
+- Subversion (SVN) 1.14.3
 - Switchaudio-osx 1.2.2
 - Vagrant 2.4.0
 - VirtualBox 6.1.38r153438
@@ -97,24 +98,24 @@
 
 ### Tools
 - App Center CLI 2.14.0
-- AWS CLI 2.15.2
-- AWS SAM CLI 1.105.0
+- AWS CLI 2.15.8
+- AWS SAM CLI 1.106.0
 - AWS Session Manager CLI 1.2.536.0
 - Azure CLI 2.55.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.24.24
-- Cabal 3.6.2.0
-- Cmake 3.28.0
-- CodeQL Action Bundle 2.15.4
+- Cabal 3.10.2.1
+- Cmake 3.28.1
+- CodeQL Action Bundle 2.15.5
 - Colima 0.6.7
-- Fastlane 2.217.0
+- Fastlane 2.219.0
 - GHC 9.8.1
 - GHCup 0.1.20.0
 - Jazzy 0.14.4
 - Stack 2.13.1
 - SwiftFormat 0.52.11
 - Swig 4.1.1
-- Xcbeautify 1.1.1
+- Xcbeautify 1.3.0
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
 - Xcodes 1.4.1
 
@@ -123,16 +124,16 @@
 - Yamllint 1.33.0
 
 ### Browsers
-- Safari 17.2 (17617.1.17.11.11)
-- SafariDriver 17.2 (17617.1.17.11.11)
-- Google Chrome 120.0.6099.109
-- Google Chrome for Testing 120.0.6099.71
-- ChromeDriver 120.0.6099.71
-- Microsoft Edge 120.0.2210.77
-- Microsoft Edge WebDriver 120.0.2210.77
-- Mozilla Firefox 120.0.1
-- geckodriver 0.33.0
-- Selenium server 4.15.0
+- Safari 17.2.1 (17617.1.17.11.12)
+- SafariDriver 17.2.1 (17617.1.17.11.12)
+- Google Chrome 120.0.6099.199
+- Google Chrome for Testing 120.0.6099.109
+- ChromeDriver 120.0.6099.109
+- Microsoft Edge 120.0.2210.121
+- Microsoft Edge WebDriver 120.0.2210.91
+- Mozilla Firefox 121.0
+- geckodriver 0.34.0
+- Selenium server 4.16.1
 
 #### Environment variables
 | Name            | Value                                 |
@@ -157,11 +158,11 @@
 - 3.1.4
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.13]
+- 2.7.18 [PyPy 7.3.14]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
-- 3.9.18 [PyPy 7.3.13]
-- 3.10.13 [PyPy 7.3.13]
+- 3.9.18 [PyPy 7.3.14]
+- 3.10.13 [PyPy 7.3.14]
 
 #### Python
 - 3.7.17
@@ -182,9 +183,9 @@
 - 1.21.5
 
 ### Rust Tools
-- Cargo 1.74.1
-- Rust 1.74.1
-- Rustdoc 1.74.1
+- Cargo 1.75.0
+- Rust 1.75.0
+- Rustdoc 1.75.0
 - Rustup 1.26.0
 
 #### Packages
@@ -192,8 +193,8 @@
 - Cargo-audit 0.18.3
 - Cargo-outdated 0.14.0
 - Cbindgen 0.26.0
-- Clippy 0.1.74
-- Rustfmt 1.6.0-stable
+- Clippy 0.1.75
+- Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
 - PowerShell 7.2.17
@@ -332,18 +333,18 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | watchOS 9.1 | 13.1<br>13.2.1<br>13.3.1<br>13.4.1<br>14.0.1<br>14.1<br>14.2 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                                                                                                                                                                                                                                                                                     |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                                   |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                       |
-| Android Emulator           | 33.1.23                                                                                                                                                                                                                                                                                   |
-| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                                                                                            |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
-| Android SDK Platform-Tools | 34.0.5                                                                                                                                                                                                                                                                                    |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                    |
-| CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                                                                                                          |
-| Google Play services       | 49                                                                                                                                                                                                                                                                                        |
-| Google Repository          | 58                                                                                                                                                                                                                                                                                        |
-| NDK                        | 24.0.8215888<br>25.2.9519653 (default)<br>26.1.10909125                                                                                                                                                                                                                                   |
+| Package Name               | Version                                                                                                                                                                                           |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 8.0                                                                                                                                                                                               |
+| Android Emulator           | 33.1.24                                                                                                                                                                                           |
+| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0                                                                                                                                                |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
+| Android SDK Platform-Tools | 34.0.5                                                                                                                                                                                            |
+| Android Support Repository | 47.0.0                                                                                                                                                                                            |
+| CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                  |
+| Google Play services       | 49                                                                                                                                                                                                |
+| Google Repository          | 58                                                                                                                                                                                                |
+| NDK                        | 24.0.8215888<br>25.2.9519653 (default)<br>26.1.10909125                                                                                                                                           |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -364,7 +365,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v19/19.2.0-54827/ParallelsDesktop-19.2.0-54827.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v19/19.2.1-54832/ParallelsDesktop-19.2.1-54832.dmg |
 
 ##### Notes
 ```
