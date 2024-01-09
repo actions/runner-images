@@ -20,11 +20,11 @@ brew services start $postgreService
 echo "Check PostgreSQL service is running"
 i=10
 COMMAND='pg_isready'
-while [ $i -gt 0 ]; do
+while [[ $i -gt 0 ]]; do
     echo "Check PostgreSQL service status"
     eval $COMMAND && break
     ((i--))
-    if [ $i == 0 ]; then
+    if [[ $i == 0 ]]; then
         echo "PostgreSQL service not ready, all attempts exhausted"
         exit 1
     fi

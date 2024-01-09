@@ -160,7 +160,7 @@ installNunitConsole() {
 #!/bin/bash -e -o pipefail
 exec /Library/Frameworks/Mono.framework/Versions/${MONO_VERSION}/bin/mono --debug \$MONO_OPTIONS $NUNIT3_PATH/nunit3-console.exe "\$@"
 EOF
-  sudo chmod +x "$TMP_WRAPPER_PATH"
+  sudo chmod +x $TMP_WRAPPER_PATH
   sudo mv "$TMP_WRAPPER_PATH" "${MONO_VERSIONS_PATH}/${MONO_VERSION}/Commands/nunit3-console"
 }
 

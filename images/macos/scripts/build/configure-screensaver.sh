@@ -5,7 +5,7 @@
 ################################################################################
 
 # set screensaver idleTime to 0, to prevent turning screensaver on
-macUUID=`ioreg -rd1 -c IOPlatformExpertDevice | grep -i "UUID" | cut -c27-62`
+macUUID=$(ioreg -rd1 -c IOPlatformExpertDevice | grep -i "UUID" | cut -c27-62)
 
 rm -rf /Users/$USERNAME/Library/Preferences/com.apple.screensaver.$macUUID.plist
 rm -rf /Users/$USERNAME/Library/Preferences/ByHost/com.apple.screensaver.$macUUID.plist
