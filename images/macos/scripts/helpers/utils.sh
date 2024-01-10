@@ -87,12 +87,6 @@ get_toolset_value() {
     echo "$(jq -r "$query" $toolset_path)"
 }
 
-verlte() {
-    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
-    [  "$1" = "$sortedVersion" ]
-}
-
-
 # brew provides package bottles for different macOS versions
 # The 'brew install' command will fail if a package bottle does not exist
 # Use the '--build-from-source' option to build from source in this case
