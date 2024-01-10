@@ -7,8 +7,8 @@
 source ~/utils/utils.sh
 
 is_clt_installed() {
-    clt_path=`xcode-select -p 2>&1`
-    [[ -d "$clt_path" ]]
+    clt_path=$(xcode-select -p 2>&1)
+    [[ -d $clt_path ]]
 }
 
 install_clt() {

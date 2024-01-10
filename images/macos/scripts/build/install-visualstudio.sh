@@ -24,13 +24,13 @@ install_vsmac() {
     TMPMOUNT=$(/usr/bin/mktemp -d /tmp/visualstudio.XXXX)
     mkdir -p "$TMPMOUNT/downloads"
 
-    vsmac_installer=$(download_with_retry "$vsmac_download_url" "$TMPMOUNT/downloads/${vsmac_download_url##*/}")
+    vsmac_installer=$(download_with_retry $vsmac_download_url "$TMPMOUNT/downloads/${vsmac_download_url##*/}")
 
     echo "Mounting Visual Studio..."
-    hdiutil attach "$vsmac_installer" -mountpoint "$TMPMOUNT"
+    hdiutil attach $vsmac_installer -mountpoint $TMPMOUNT
 
     echo "Moving Visual Studio to /Applications/..."
-    pushd "$TMPMOUNT"
+    pushd $TMPMOUNT
     tar cf - "./Visual Studio.app" | tar xf - -C /Applications/
 
     if [[ $vsmac_version != $vsmac_default ]]; then
@@ -38,14 +38,14 @@ install_vsmac() {
     fi
 
     popd
-    sudo hdiutil detach "$TMPMOUNT"
-    sudo rm -rf "$TMPMOUNT"
+    sudo hdiutil detach $TMPMOUNT
+    sudo rm -rf $TMPMOUNT
 }
 
 vsmac_versions=($(get_toolset_value '.xamarin.vsmac.versions[]'))
 default_vsmac_version=$(get_toolset_value '.xamarin.vsmac.default')
 
-for version in "${vsmac_versions[@]}"; do
+for version in ${vsmac_versions[@]}; do
     install_vsmac $version $default_vsmac_version
 done
 

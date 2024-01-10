@@ -18,15 +18,15 @@ createEnvironmentVariable() {
 
     if [[ ${DEFAULT} == "True" ]]; then
         echo "Setting up JAVA_HOME variable to ${INSTALL_PATH_PATTERN}"
-        echo "export JAVA_HOME=${INSTALL_PATH_PATTERN}" >> "${HOME}/.bashrc"
+        echo "export JAVA_HOME=${INSTALL_PATH_PATTERN}" >> ${HOME}/.bashrc
     fi
 
     if [[ $arch == "arm64" ]]; then
         echo "Setting up JAVA_HOME_${JAVA_VERSION}_arm64 variable to ${INSTALL_PATH_PATTERN}"
-        echo "export JAVA_HOME_${JAVA_VERSION}_arm64=${INSTALL_PATH_PATTERN}" >> "${HOME}/.bashrc"
+        echo "export JAVA_HOME_${JAVA_VERSION}_arm64=${INSTALL_PATH_PATTERN}" >> ${HOME}/.bashrc
     else
         echo "Setting up JAVA_HOME_${JAVA_VERSION}_X64 variable to ${INSTALL_PATH_PATTERN}"
-        echo "export JAVA_HOME_${JAVA_VERSION}_X64=${INSTALL_PATH_PATTERN}" >> "${HOME}/.bashrc"
+        echo "export JAVA_HOME_${JAVA_VERSION}_X64=${INSTALL_PATH_PATTERN}" >> ${HOME}/.bashrc
     fi
 }
 
@@ -58,12 +58,12 @@ installOpenJDK() {
     fi
 
     # Download and extract Java binaries
-    archive_path=$(download_with_retry "$archive_url")
+    archive_path=$(download_with_retry $archive_url)
 
     echo "Creating ${javaToolcacheVersionArchPath} directory"
     mkdir -p ${javaToolcacheVersionArchPath}
 
-    tar -xf "$archive_path" -C ${javaToolcacheVersionArchPath} --strip-components=1
+    tar -xf $archive_path -C ${javaToolcacheVersionArchPath} --strip-components=1
 
     # Create complete file
     if [[ $arch == "arm64" ]]; then

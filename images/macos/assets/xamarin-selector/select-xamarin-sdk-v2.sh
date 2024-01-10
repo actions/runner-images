@@ -23,7 +23,7 @@ change_framework_version() {
   echo "Select $framework $version"
 
   local countDigit=$(echo "${version}" | grep -o "\." | grep -c "\.")
-  
+
   if [[ countDigit -gt 1 ]]; then
     echo "[WARNING] It is not recommended to specify the exact framework version because your build can be broken with the next patch update. Consider using "major.minor" only format."
   fi
@@ -31,7 +31,7 @@ change_framework_version() {
   local framework_path=$(get_framework_path "$framework")
 
   if [ -d "${framework_path}/${version}" ]; then
-    sudo rm -f "${framework_path}/Current"
+    sudo rm -f ${framework_path}/Current
     sudo ln -s "${framework_path}/${version}" "${framework_path}/Current"
   else
     echo "Invalid framework version ${framework_path}/${version}"
@@ -46,7 +46,7 @@ for arg in "$@"; do
   case $key in
   --mono | --ios | --android | --mac) change_framework_version $key $value ;;
   *)
-  echo "Invalid parameter <${key}>"   
+  echo "Invalid parameter <${key}>"
   exit 1
   ;;
   esac
