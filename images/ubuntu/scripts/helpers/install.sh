@@ -46,7 +46,7 @@ download_with_retry() {
 }
 
 get_toolset_value() {
-    local toolset_path="/imagegeneration/installers/toolset.json"
+    local toolset_path="${INSTALLER_SCRIPT_FOLDER}/toolset.json"
     local query=$1
 
     echo "$(jq -r "$query" $toolset_path)"
