@@ -8,10 +8,10 @@ function Install-WindowsUpdates {
     Write-Host "Starting wuauserv"
     Start-Service -Name wuauserv -PassThru | Out-Host
 
-    # Temporarily exclude Windows update KB5001148 since it throws an error.
-    # The KB5001148 itself is quite old and looks like not needed (https://support.microsoft.com/en-us/topic/kb5001148-visual-studio-client-detector-utility-for-administrator-updates-ad593454-547c-43c3-b5a3-6f201ae63f03)
+    # Temporarily exclude Windows update KB5034439 since it throws an error.
+    # The known issue (https://support.microsoft.com/en-au/topic/kb5034439-windows-recovery-environment-update-for-azure-stack-hci-version-22h2-and-windows-server-2022-january-9-2024-6f9d26e6-784c-4503-a3c6-0beedda443ca)
     Write-Host "Getting list of available windows updates"
-    Get-WindowsUpdate -MicrosoftUpdate -NotKBArticleID "KB5001148" -OutVariable updates | Out-Host
+    Get-WindowsUpdate -MicrosoftUpdate -NotKBArticleID "KB5034439" -OutVariable updates | Out-Host
 
     if ( -not $updates ) {
         Write-Host "There are no windows updates to install"
@@ -19,7 +19,7 @@ function Install-WindowsUpdates {
     }
 
     Write-Host "Installing windows updates"
-    Get-WindowsUpdate -MicrosoftUpdate -NotKBArticleID "KB5001148" -AcceptAll -Install -IgnoreUserInput -IgnoreReboot | Out-Host
+    Get-WindowsUpdate -MicrosoftUpdate -NotKBArticleID "KB5034439" -AcceptAll -Install -IgnoreUserInput -IgnoreReboot | Out-Host
 
     Write-Host "Validating windows updates installation"
     # Get-WUHistory doesn't support Windows Server 2022
