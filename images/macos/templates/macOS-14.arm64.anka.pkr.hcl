@@ -97,7 +97,7 @@ build {
 
   provisioner "file" {
     destination = "${local.image_folder}/add-certificate.swift"
-    source      = "${path.root}/../add-certificate.swift"
+    source      = "${path.root}/../assets/add-certificate.swift"
   }
 
   provisioner "file" {
