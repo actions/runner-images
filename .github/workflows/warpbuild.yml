@@ -5,6 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       image:
+        type: choice
         description: "Image name"
         required: true
         options:
