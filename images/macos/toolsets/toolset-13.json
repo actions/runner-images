@@ -11,10 +11,10 @@
         },
         "arm64":{
             "versions": [
-                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true"},
-                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "true" },
-                { "link": "14.2", "version": "14.2.0+14C18", "install_runtimes": "true" },
-                { "link": "14.1", "version": "14.1.0+14B47b", "install_runtimes": "true" }
+                { "link": "15.0.1", "version": "15.0.1-15A507", "symlinks": ["15.0"], "install_runtimes": "true"},
+                { "link": "14.3.1", "version": "14.3.1-14E300c","symlinks": ["14.3"], "install_runtimes": "true" },
+                { "link": "14.2", "version": "14.2.0-14C18", "install_runtimes": "true" },
+                { "link": "14.1", "version": "14.1.0-14B47b", "install_runtimes": "true" }
             ]
         }
     },

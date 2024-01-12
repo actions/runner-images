@@ -1,0 +1,226 @@
+on:
+  push:
+    branches:
+      - feat/macos-tart
+  workflow_dispatch:
+    inputs:
+      image:
+        description: "Image name"
+        required: true
+        options:
+          - "macos-13-arm64"
+      tag:
+        description: "Image tag"
+        required: true
+        default: "v0.1.0"
+
+jobs:
+  macos-13-arm64:
+    # define this job as a concurrency group
+    # we want to build only one image at a time since the mac machine is a shared resource
+    concurrency:
+      group: macos-ssh
+    # if: github.event.inputs.image == 'macos-13-arm64'
+    runs-on: warp-ubuntu-latest-x64-2x
+    env:
+      XCODE_INSTALL_STORAGE_URL: ${{ secrets.MACOS_XCODE_INSTALL_STORAGE_URL }}
+      PREPROD_AWS_ACCESS_KEY_ID: ${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
+      PREPROD_AWS_SECRET_ACCESS_KEY: ${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY }}
+      PREPROD_AWS_REGION: us-east-2
+      PROD_AWS_ACCESS_KEY_ID: ${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+      PROD_AWS_SECRET_ACCESS_KEY: ${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+      PROD_AWS_REGION: us-east-2
+      DEFAULT_IMAGE_TAG: v0.6.0
+    steps:
+      - uses: actions/checkout@v2
+      - name: Figure out image tag
+        run: |
+          IMAGE_TAG=${{ github.event.inputs.tag }}
+          if [ "$IMAGE_TAG" == "" ]; then
+            IMAGE_TAG=${{ env.DEFAULT_IMAGE_TAG }}
+          fi
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+      - name: Add preprod image URI on workflow dispatch
+        run: |
+          PREPROD_IMAGE_URI=170982004044.dkr.ecr.us-east-2.amazonaws.com/warpbuild/runners:$IMAGE_TAG-macos-13-arm64-gh-warp
+          echo "PREPROD_IMAGE_URI=$PREPROD_IMAGE_URI" >> $GITHUB_ENV
+          PREPROD_IMAGE_HOST=$(echo $PREPROD_IMAGE_URI | cut -d'/' -f1)
+          echo "PREPROD_IMAGE_HOST=$PREPROD_IMAGE_HOST" >> $GITHUB_ENV
+      - name: Add prod image URI on workflow dispatch
+        run: |
+          PROD_IMAGE_URI=459740431552.dkr.ecr.us-east-2.amazonaws.com/warpbuild/runners:$IMAGE_TAG-macos-13-arm64-gh-warp
+          echo "PROD_IMAGE_URI=$PROD_IMAGE_URI" >> $GITHUB_ENV
+          PROD_IMAGE_HOST=$(echo $PROD_IMAGE_URI | cut -d'/' -f1)
+          echo "PROD_IMAGE_HOST=$PROD_IMAGE_HOST" >> $GITHUB_ENV
+      - name: Add key to known_hosts
+        env:
+          MACOS_KEY: |
+            ${{ secrets.MACOS_KEY }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$MACOS_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H '${{ secrets.MACOS_HOST }}' >> ~/.ssh/known_hosts
+      - name: Validate that inputs are present
+        run: |
+          if [ -z "${{ secrets.MACOS_USERNAME }}" ]; then
+            echo "MACOS_USERNAME is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.MACOS_HOST }}" ]; then
+            echo "MACOS_HOST is not set"
+            exit 1
+          fi
+          if [ -z "${{ secrets.MACOS_KEY }}" ]; then
+            echo "MACOS_KEY is not set"
+            exit 1
+          fi
+
+      - name: Just hello world from remote
+        run: |
+          ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'echo "Hello world from remote"'
+      - name: Save script to a file
+        run: |
+          cat << EOF > wb-mac-image-build.wrapper.sh
+          #!/bin/bash
+
+          rm -rf ~/wb-mac-image-build.done || true
+          rm -rf ~/wb-mac-image-build.failed || true
+          ./wb-mac-image-build.sh
+          exit_code=\$?
+          echo "wb-mac-image-build.sh exited with code \$exit_code"
+          if [ \$exit_code -ne 0 ]; then
+            echo "wb-mac-image-build.sh failed"
+            touch ~/wb-mac-image-build.failed
+            exit 1
+          fi
+
+          echo "wb-mac-image-build.sh completed successfully"
+          echo "creating the done file"
+
+          touch ~/wb-mac-image-build.done
+          EOF
+
+
+          cat <<EOF > wb-mac-image-build.sh
+          #!/bin/bash
+          set -e
+
+          # configure git with the github token
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          git config --global user.name "${{ github.actor }}"
+
+          git config --global credential.helper store
+          echo "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com" > ~/.git-credentials
+
+          echo "Deleting repo if it exists"
+          rm -rf repo
+          git clone https://github.com/${{ github.owner }}/${{ github.repository }} repo
+          cd repo
+          echo "Fetching all branches"
+          git fetch --all
+          echo "Listing all available branches"
+          git branch -v -a
+          BRANCH=$(echo "${{ github.ref }}" | sed 's/refs\/heads\///g')
+          echo "Checking out to current commit"
+          git checkout ${{ github.sha }}
+
+          echo "Setting variables"
+          export XCODE_INSTALL_STORAGE_URL=${{ secrets.MACOS_XCODE_INSTALL_STORAGE_URL }}
+          export PREPROD_AWS_ACCESS_KEY_ID=${{ secrets.PREPROD_AWS_ACCESS_KEY_ID }}
+          export PREPROD_AWS_SECRET_ACCESS_KEY=${{ secrets.PREPROD_AWS_SECRET_ACCESS_KEY }}
+          export PREPROD_AWS_REGION=us-east-2
+          export PROD_AWS_ACCESS_KEY_ID=${{ secrets.PROD_AWS_ACCESS_KEY_ID }}
+          export PROD_AWS_SECRET_ACCESS_KEY=${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }}
+          export PROD_AWS_REGION=us-east-2
+          export PREPROD_IMAGE_HOST=${{ env.PREPROD_IMAGE_HOST }}
+          export PREPROD_IMAGE_URI=${{ env.PREPROD_IMAGE_URI }}
+          export PROD_IMAGE_HOST=${{ env.PROD_IMAGE_HOST }}
+          export PROD_IMAGE_URI=${{ env.PROD_IMAGE_URI }}
+          export GITHUB_API_PAT=${{ secrets.GITHUB_TOKEN }}
+
+          echo "Current path variable: $PATH"
+            
+          export PACKER_LOG=1
+
+          make ci-wb
+          make ci-post-wb
+
+          EOF
+
+      - name: Move scripts to remote
+        run: |
+          cat wb-mac-image-build.sh
+          scp -o StrictHostKeyChecking=no wb-mac-image-build.sh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }}:~/wb-mac-image-build.sh
+          scp -o StrictHostKeyChecking=no wb-mac-image-build.wrapper.sh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }}:~/wb-mac-image-build.wrapper.sh
+          ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'chmod +x ~/wb-mac-image-build.sh'
+          ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'chmod +x ~/wb-mac-image-build.wrapper.sh'
+
+      - name: Create Launch Agent Plist
+        run: |
+          cat <<EOF > com.github.macos.imagebuilder.plist
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>Label</key>
+              <string>com.github.macos.imagebuilder</string>
+              <key>ProgramArguments</key>
+              <array>
+                  <string>/bin/bash</string>
+                  <string>-c</string>
+                  <string>. /Users/${{ secrets.MACOS_USERNAME }}/.bashrc; /Users/${{ secrets.MACOS_USERNAME }}/wb-mac-image-build.wrapper.sh</string>
+              </array>
+              <key>WorkingDirectory</key>
+              <string>/Users/${{ secrets.MACOS_USERNAME }}</string>
+              <key>RunAtLoad</key>
+              <true/>
+              <key>StandardErrorPath</key>
+              <string>/Users/${{ secrets.MACOS_USERNAME }}/imagebuilder-stderr.log</string>
+              <key>StandardOutPath</key>
+              <string>/Users/${{ secrets.MACOS_USERNAME }}/imagebuilder-stdout.log</string>
+          </dict>
+          </plist>
+          EOF
+
+      - name: Transfer and Load Launch Agent
+        run: |
+          scp -o StrictHostKeyChecking=no com.github.macos.imagebuilder.plist ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }}:~/Library/LaunchAgents/
+          # unload the agent if it's already loaded
+          ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'launchctl unload -w ~/Library/LaunchAgents/com.github.macos.imagebuilder.plist' || true
+          # wait for the agent to unload
+          sleep 5
+          # cleanup the logs from the previous run
+          ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'rm -f ~/imagebuilder-stderr.log ~/imagebuilder-stdout.log'
+          # load the agent
+          ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'launchctl load -w ~/Library/LaunchAgents/com.github.macos.imagebuilder.plist'
+
+      - name: Monitor
+        run: |
+          echo "Some log lines will be missed. To get the complete logs vnc into the mac machine"
+
+          # Poll for the completion flag file
+          while true; do
+            # completed successfully
+            if ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'test -f ~/wb-mac-image-build.done'; then
+              echo "Script has completed"
+              break
+            fi
+            # failed
+            if ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'test -f ~/wb-mac-image-build.failed'; then
+              echo "Script has failed"
+              echo "Log file:"
+              # log the error file
+              ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'cat ~/imagebuilder-stderr.log'
+              break
+            fi
+            # log the last 50 lines of the out log file
+            echo "Logging last 50 lines of the stdout log file"
+            ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'tail -n 50 ~/imagebuilder-stdout.log'
+            sleep 30
+          done
+
+          # if the script failed, exit with an error
+          if ssh ${{ secrets.MACOS_USERNAME }}@${{ secrets.MACOS_HOST }} 'test -f ~/wb-mac-image-build.failed'; then
+            exit 1
+          fi
