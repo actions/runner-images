@@ -100,12 +100,12 @@ build {
   }
 
   provisioner "file" {
-    destination = "~/.bashrc"
+    destination = ".bashrc"
     source      = "${path.root}/../assets/bashrc"
   }
 
   provisioner "file" {
-    destination = "~/.bash_profile"
+    destination = ".bash_profile"
     source      = "${path.root}/../assets/bashprofile"
   }
 
@@ -114,7 +114,7 @@ build {
   }
 
   provisioner "file" {
-    destination = "~/bootstrap"
+    destination = "bootstrap"
     source      = "${path.root}/../assets/bootstrap-provisioner/"
   }
 
