@@ -174,7 +174,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["API_PAT=${var.github_api_pat}", "USER_PASSWORD=${var.vm_password}"]
+    environment_vars = ["API_PAT=${var.github_api_pat}", "USER_PASSWORD=${var.vm_password}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     pause_before     = "30s"
     scripts          = [
@@ -193,7 +193,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["XCODE_INSTALL_STORAGE_URL=${var.xcode_install_storage_url}", "XCODE_INSTALL_SAS=${var.xcode_install_sas}"]
+    environment_vars = ["XCODE_INSTALL_STORAGE_URL=${var.xcode_install_storage_url}", "XCODE_INSTALL_SAS=${var.xcode_install_sas}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
     script           = "${path.root}/../scripts/build/Install-Xcode.ps1"
   }
@@ -205,7 +205,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["API_PAT=${var.github_api_pat}"]
+    environment_vars = ["API_PAT=${var.github_api_pat}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts          = [
       "${path.root}/../scripts/build/install-actions-cache.sh",
@@ -229,8 +229,9 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
-    inline          = [
+    environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
+    execute_command  = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    inline           = [
       "pwsh -File \"${local.image_folder}/software-report/Generate-SoftwareReport.ps1\" -OutputDirectory \"${local.image_folder}/output/software-report\" -ImageName ${var.build_id}"
     ]
   }
