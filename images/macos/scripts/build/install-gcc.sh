@@ -14,7 +14,7 @@ done
 
 # Delete default gfortran link if it exists https://github.com/actions/runner-images/issues/1280
 gfortranPath=$(which gfortran) || true
-if [ $gfortranPath ]; then
+if [[ $gfortranPath ]]; then
     rm $gfortranPath
 fi
 

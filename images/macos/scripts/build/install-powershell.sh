@@ -11,7 +11,7 @@ arch=$(get_arch)
 
 metadata_json_path=$(download_with_retry "https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json")
 pwshVersionToolset=$(get_toolset_value '.pwsh.version')
-pwshVersions=$(jq -r '.LTSReleaseTag[]' "$metadata_json_path")
+pwshVersions=$(jq -r '.LTSReleaseTag[]' $metadata_json_path)
 
 for version in ${pwshVersions[@]}; do
     if [[ "$version" =~ "$pwshVersionToolset" ]]; then
@@ -20,19 +20,19 @@ for version in ${pwshVersions[@]}; do
     fi
 done
 
-pkg_path=$(download_with_retry "$download_url")
+pkg_path=$(download_with_retry $download_url)
 
 # Work around the issue on macOS Big Sur 11.5 or higher for possible error message ("can't be opened because Apple cannot check it for malicious software") when installing the package
-sudo xattr -rd com.apple.quarantine "$pkg_path"
+sudo xattr -rd com.apple.quarantine $pkg_path
 
-sudo installer -pkg "$pkg_path" -target /
+sudo installer -pkg $pkg_path -target /
 
 # Install PowerShell modules
 psModules=$(get_toolset_value '.powershellModules[].name')
 for module in ${psModules[@]}; do
     echo "Installing $module module"
     moduleVersions="$(get_toolset_value ".powershellModules[] | select(.name==\"$module\") | .versions[]?")"
-    if [[ -z "$moduleVersions" ]];then
+    if [[ -z $moduleVersions ]];then
         # Check MacOS architecture and sudo on Arm64
         if [[ $arch == "arm64" ]]; then
             sudo pwsh -command "& {Install-Module $module -Force -Scope AllUsers}"
