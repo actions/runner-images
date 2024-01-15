@@ -14,10 +14,10 @@ toolsetVersion=$(get_toolset_value '.mongodb.version')
 brew tap mongodb/brew
 versionToInstall=$(brew search --formulae /mongodb-community@$toolsetVersion/ | awk -F'/' '{print $3}' | tail -1)
 echo "Installing mongodb $versionToInstall"
-brew_smart_install "$versionToInstall"
+brew_smart_install $versionToInstall
 
 if ! which mongo ; then
-    brew link "$versionToInstall"
+    brew link $versionToInstall
 fi
 
 invoke_tests "Databases" "MongoDB"
