@@ -1,14 +1,12 @@
 | Announcements |
 |-|
 | [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
-| [[Ubuntu] buildpack-deps docker images will be removed from runners on January, 8](https://github.com/actions/runner-images/issues/9053) |
 | [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
-| [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
 - Kernel Version: 6.2.0-1018-azure
-- Image Version: 20240107.1.0
+- Image Version: 20240114.1.0
 - Systemd version: 249.11-0ubuntu3.11
 
 ## Installed Software
@@ -34,15 +32,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.13.1
-- Homebrew 4.2.2
+- Homebrew 4.2.3
 - Miniconda 23.11.0
 - Npm 10.2.3
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.4.1
+- Pipx 1.4.2
 - RubyGems 3.3.5
-- Vcpkg (build from commit ce46ba877)
+- Vcpkg (build from commit 53bef8994)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -75,7 +73,7 @@ to accomplish this.
 - CodeQL Action Bundle 2.15.5
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.23.3
+- Docker Compose v2 2.24.0
 - Docker-Buildx 0.11.2
 - Docker Client 24.0.7
 - Docker Server 24.0.7
@@ -100,7 +98,7 @@ to accomplish this.
 - Packer 1.10.0
 - Parcel 2.11.0
 - Podman 3.4.4
-- Pulumi 3.100.0
+- Pulumi 3.101.1
 - R 4.3.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -112,17 +110,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.196
-- AWS CLI 2.15.8
-- AWS CLI Session Manager Plugin 1.2.536.0
-- AWS SAM CLI 1.106.0
-- Azure CLI 2.55.0
+- AWS CLI 2.15.10
+- AWS CLI Session Manager Plugin 1.2.553.0
+- AWS SAM CLI 1.107.0
+- Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.40.1
-- Google Cloud CLI 458.0.1
-- Netlify CLI 17.11.1
-- OpenShift CLI 4.14.7
+- GitHub CLI 2.42.0
+- Google Cloud CLI 459.0.0
+- Netlify CLI 17.13.2
+- OpenShift CLI 4.14.8
 - ORAS CLI 1.1.0
-- Vercel CLI 33.0.2
+- Vercel CLI 33.1.0
 
 ### Java
 | Version             | Environment Variable |
@@ -153,7 +151,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.69.1
+- Bindgen 0.69.2
 - Cargo audit 0.18.3
 - Cargo clippy 0.1.75
 - Cargo outdated 0.14.0
@@ -161,13 +159,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 120.0.6099.199
+- Google Chrome 120.0.6099.216
 - ChromeDriver 120.0.6099.109
 - Chromium 120.0.6099.0
-- Microsoft Edge 120.0.2210.121
-- Microsoft Edge WebDriver 120.0.2210.121
+- Microsoft Edge 120.0.2210.133
+- Microsoft Edge WebDriver 120.0.2210.133
 - Selenium server 4.16.1
-- Mozilla Firefox 121.0
+- Mozilla Firefox 121.0.1
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -179,7 +177,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.417, 7.0.404, 8.0.100
+- .NET Core SDK: 6.0.418, 7.0.405, 8.0.101
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
@@ -204,7 +202,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 162.1.167.1
+- SqlPackage 162.1.172.1
 
 ### Cached Tools
 
@@ -229,14 +227,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
-- 3.9.18 [PyPy 7.3.14]
-- 3.10.13 [PyPy 7.3.14]
+- 3.9.18 [PyPy 7.3.15]
+- 3.10.13 [PyPy 7.3.15]
 
 #### Ruby
 - 3.1.4
 
 ### PowerShell Tools
-- PowerShell 7.2.17
+- PowerShell 7.2.18
 
 #### PowerShell Modules
 - Az: 9.3.0
@@ -279,15 +277,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.16          | sha256:e4cdb7d47b06ba0a062ad2a97a7d154967c8f83934594d9f2bd3efa89292996b  | 2023-11-30 |
 | alpine:3.17          | sha256:6e94b5cda2d6fd57d85abf81e81dabaea97a5885f919da676cc19d3551da4061  | 2023-11-30 |
 | alpine:3.18          | sha256:34871e7290500828b39e22294660bee86d966bc0017544e848dd9a255cdf59e0  | 2023-11-30 |
-| debian:10            | sha256:cd3bbe339eeb538f4a1a6b04e290690658c119cd50b73677d29b80e3cda8f1dd  | 2023-12-19 |
-| debian:11            | sha256:71f0e09d55a4042ddee1f114a0838d99266e185bf33e71f15c15bf6b9545a9a0  | 2023-12-19 |
+| debian:10            | sha256:defa5d214292f2aaf7905d3e4bcdf8f628019feb63e7c8746df563d1a941f8d7  | 2024-01-11 |
+| debian:11            | sha256:71cb300d5448af821aedfe63afd55ba05f45a6a79f00dcd131b96b780bb99fe4  | 2024-01-11 |
 | moby/buildkit:latest | sha256:5a8f30813a104b86e927ff4695a746f74a5bb921c7be1dbcca6d754dfbe04822  | 2023-12-01 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:f152130c9bb77afd49873a26fcfb6da7971b451ae6db51901fb7e028ccc0ca75  | 2023-12-19 |
+| node:18              | sha256:d7885552c11adb0f251db87d96a9c964990235569c8291bc61c276261947d6de  | 2024-01-11 |
 | node:18-alpine       | sha256:b1a0356f7d6b86c958a06949d3db3f7fb27f95f627aa6157cb98bc65c801efa2  | 2023-12-11 |
-| node:20              | sha256:8d0f16fe841577f9317ab49011c6d819e1fa81f8d4af7ece7ae0ac815e07ac84  | 2023-12-19 |
-| node:20-alpine       | sha256:9e38d3d4117da74a643f67041c83914480b335c3bd44d37ccf5b5ad86cd715d1  | 2023-12-11 |
+| node:20              | sha256:9aa3de5470c99408fda002dc1f406e92a31daf0492eb33d857d8d9d252edcc52  | 2024-01-11 |
+| node:20-alpine       | sha256:8e6a472eb9742f4f486ca9ef13321b7fc2e54f2f60814f339eeda2aff3037573  | 2024-01-10 |
 | ubuntu:20.04         | sha256:f2034e7195f61334e6caff6ecf2e965f92d11e888309065da85ff50c617732b8  | 2023-12-13 |
 | ubuntu:22.04         | sha256:6042500cf4b44023ea1894effe7890666b0c5c7871ed83a97c36c76ae560bb9b  | 2023-12-12 |
 
@@ -325,7 +323,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.5                     |
+| libc6-dev              | 2.35-0ubuntu3.6                     |
 | libcurl4               | 7.81.0-1ubuntu1.15                  |
 | libgbm-dev             | 23.0.4-0ubuntu1\~22.04.1            |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -342,7 +340,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.5                     |
+| locales                | 2.35-0ubuntu3.6                     |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
