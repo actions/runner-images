@@ -40,9 +40,17 @@ function Get-OSVersion {
     }
 }
 
-# Get the value of the toolset
 function Get-ToolsetContent {
-    $toolsetPath = Join-Path $env:HOME "image-generation" "toolset.json"
+    <#
+    .SYNOPSIS
+        Retrieves the content of the toolset.json file.
+
+    .DESCRIPTION
+        This function reads the toolset.json in path provided by IMAGE_FOLDER
+        environment variable and returns the content as a PowerShell object.
+    #>
+
+    $toolsetPath = Join-Path $env:IMAGE_FOLDER "toolset.json"
     $toolsetJson = Get-Content -Path $toolsetPath -Raw
     ConvertFrom-Json -InputObject $toolsetJson
 }

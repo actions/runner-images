@@ -82,7 +82,7 @@ is_Veertu() {
 }
 
 get_toolset_value() {
-    local toolset_path=$(echo "$HOME/image-generation/toolset.json")
+    local toolset_path=$(echo "$IMAGE_FOLDER/toolset.json")
     local query=$1
     echo "$(jq -r "$query" $toolset_path)"
 }
