@@ -28,7 +28,7 @@ Function CreateAzureVMFromPackerTemplate {
             The location where the Azure virtual machine will be provisioned. Example: "eastus"
 
         .EXAMPLE
-            CreateAzureVMFromPackerTemplate -SubscriptionId {YourSubscriptionId} -ResourceGroupName {ResourceGroupName} -TemplateFile "C:\BuildVmImages\temporaryTemplate.json" -VirtualMachineName "testvm1" -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "eastus"
+            CreateAzureVMFromPackerTemplate -SubscriptionId {SubscriptionId} -ResourceGroupName {ResourceGroupName} -VirtualMachineName "testvm1" -ManagedImageName {ManagedImageName} -AdminUsername "shady1" -AdminPassword "SomeSecurePassword1" -AzureLocation "eastus"
     #>
     param (
         [Parameter(Mandatory = $True)]
