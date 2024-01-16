@@ -18,11 +18,12 @@ apt-get update
 apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io docker-buildx-plugin
 
 # Download docker compose v2 from releases
-URL=$(resolve_github_release_asset_url "docker/compose" "endswith(\"compose-linux-x86_64\")" "latest")
+# Temporaty pinned to v2.23.3 due https://github.com/actions/runner-images/issues/9172
+URL=$(resolve_github_release_asset_url "docker/compose" "endswith(\"compose-linux-x86_64\")" "v2.23.3")
 compose_binary_path=$(download_with_retry "${URL}" "/tmp/docker-compose-v2")
 
 # Supply chain security - Docker Compose v2
-compose_hash_url=$(resolve_github_release_asset_url "docker/compose" "endswith(\"checksums.txt\")" "latest")
+compose_hash_url=$(resolve_github_release_asset_url "docker/compose" "endswith(\"checksums.txt\")" "v2.23.3")
 compose_external_hash=$(get_checksum_from_url "${compose_hash_url}" "compose-linux-x86_64" "SHA256")
 use_checksum_comparison "${compose_binary_path}" "${compose_external_hash}"
 
