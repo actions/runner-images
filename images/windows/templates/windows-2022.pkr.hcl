@@ -148,6 +148,78 @@ variable "vm_size" {
   default = "Standard_F8s_v2"
 }
 
+
+variable "skip_ami_creation" {
+  type    = bool
+  default = false
+}
+
+locals {
+  timestamp = regex_replace(timestamp(), "[ TZ:]", "")
+  tags = {
+    "radixdlt:managed_by" : "packer",
+    "radixdlt:application" : "github-runner"
+    "radixdlt:source_ami_id" : "{{ .SourceAMI }}",
+    "radixdlt:source_region" : "{{ .BuildRegion }}"
+    "radixdlt:source_ami_name" : "{{ .SourceAMIName }}",
+    "Name" : "RadixDLT-GithubRunner-Windows-v1-${local.timestamp}"
+  }
+  shared_regions = [
+    "us-east-1",
+    "ap-south-1",
+    "ap-southeast-2",
+    "eu-west-2",
+    "eu-west-1",
+    "eu-central-1",
+    "eu-west-3"
+  ]
+  shared_accounts = [
+    "821496737932",
+    "123730156073"
+  ]
+}
+
+data "amazon-ami" "network_node" {
+  filter {
+    name   = "name"
+    values = ["Windows_Server-2019-English-Full-Base-*"]  
+  }     
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]  
+  }     
+  owners = ["801119661308"] # Canonical
+
+  most_recent = true
+  region      = "ap-south-1"
+}
+
+source "amazon-ebs" "network_node" {
+  ami_name                = "GithubRunner-Ubuntu-${local.timestamp}"
+  ami_description         = "AMI for Github Actions based on 22.04 ubuntu image created by Packer at ${local.timestamp}"
+  ami_regions             = local.shared_regions
+  ami_users               = local.shared_accounts
+  instance_type           = "t3.large"
+  region                  = "ap-south-1"
+  source_ami              = "${data.amazon-ami.network_node.id}"
+  ssh_username            = "ubuntu"
+  temporary_key_pair_type = "ed25519"
+  run_tags = {
+    "Name" : "Packer Builder"
+  }
+  skip_create_ami = var.skip_ami_creation
+  launch_block_device_mappings {
+    device_name           = "/dev/sda1"
+    volume_size           = 256
+    volume_type           = "gp3"
+    delete_on_termination = true
+  }
+
+  tags          = local.tags
+  snapshot_tags = local.tags
+}
+
+
 source "azure-arm" "image" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
@@ -187,7 +259,7 @@ source "azure-arm" "image" {
 }
 
 build {
-  sources = ["source.azure-arm.image"]
+  sources = ["source.amazon-ebs.network_node"]
 
   provisioner "powershell" {
     inline = ["New-Item -Path ${var.image_folder} -ItemType Directory -Force"]
