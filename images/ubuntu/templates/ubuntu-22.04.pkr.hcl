@@ -143,40 +143,77 @@ variable "vm_size" {
   default = "Standard_D4s_v4"
 }
 
-source "azure-arm" "build_image" {
-  allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
-  build_resource_group_name              = "${var.build_resource_group_name}"
-  client_cert_path                       = "${var.client_cert_path}"
-  client_id                              = "${var.client_id}"
-  client_secret                          = "${var.client_secret}"
-  image_offer                            = "0001-com-ubuntu-server-jammy"
-  image_publisher                        = "canonical"
-  image_sku                              = "22_04-lts"
-  location                               = "${var.location}"
-  managed_image_name                     = "${local.managed_image_name}"
-  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
-  os_disk_size_gb                        = "86"
-  os_type                                = "Linux"
-  private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
-  subscription_id                        = "${var.subscription_id}"
-  temp_resource_group_name               = "${var.temp_resource_group_name}"
-  tenant_id                              = "${var.tenant_id}"
-  virtual_network_name                   = "${var.virtual_network_name}"
-  virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
-  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
-  vm_size                                = "${var.vm_size}"
 
-  dynamic "azure_tag" {
-    for_each = var.azure_tags
-    content {
-      name = azure_tag.key
-      value = azure_tag.value
-    }
-  }
+variable "skip_ami_creation" {
+  type    = bool
+  default = false
 }
 
+locals {
+  timestamp = regex_replace(timestamp(), "[ TZ:]", "")
+  tags = {
+    "radixdlt:managed_by" : "packer",
+    "radixdlt:application" : "network-node"
+    "radixdlt:source_ami_id" : "{{ .SourceAMI }}",
+    "radixdlt:source_region" : "{{ .BuildRegion }}"
+    "radixdlt:source_ami_name" : "{{ .SourceAMIName }}",
+    "Name" : "RadixDLT-GithubRunner-Ubuntu-v1-${local.timestamp}"
+  }
+  shared_regions = [
+    "us-east-1",
+    "ap-south-1",
+    "ap-southeast-2",
+    "eu-west-2",
+    "eu-west-1",
+    "eu-central-1",
+    "eu-west-3"
+  ]
+  shared_accounts = [
+    "821496737932",
+    "123730156073"
+  ]
+}
+
+
+data "amazon-ami" "network_node" {
+  filters = {
+    name                = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+    root-device-type    = "ebs"
+    virtualization-type = "hvm"
+  }
+  most_recent = true
+  owners      = ["099720109477"]
+  region      = "ap-south-1"
+}
+
+source "amazon-ebs" "network_node" {
+  ami_name                = "GithubRunner-Ubuntu-${local.timestamp}"
+  ami_description         = "AMI for Github Actions based on 22.04 ubuntu image created by Packer at ${local.timestamp}"
+  ami_regions             = local.shared_regions
+  ami_users               = local.shared_accounts
+  instance_type           = "t3.large"
+  region                  = "ap-south-1"
+  source_ami              = "${data.amazon-ami.network_node.id}"
+  ssh_username            = "ubuntu"
+  temporary_key_pair_type = "ed25519"
+  run_tags = {
+    "Name" : "Packer Builder"
+  }
+  skip_create_ami = var.skip_ami_creation
+  launch_block_device_mappings {
+    device_name           = "/dev/sda1"
+    volume_size           = 256
+    volume_type           = "gp3"
+    delete_on_termination = true
+  }
+
+  tags          = local.tags
+  snapshot_tags = local.tags
+}
+
+
 build {
-  sources = ["source.azure-arm.build_image"]
+  sources = ["source.amazon-ebs.network_node"]
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
