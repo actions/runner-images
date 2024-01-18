@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "14.3.1",
+        "default": "15.0.1",
         "x64": {
             "versions": [
                 { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
@@ -77,14 +77,13 @@
             "swiftformat",
             "zstd",
             "gmp",
-            "r",
             "yq",
             "unxip",
             "xcbeautify",
             "xcodes"
         ],
         "cask_packages": [
-            "julia"
+            ""
         ]
     },
     "gcc": {
@@ -114,7 +113,6 @@
         "default": "3.0",
         "rubygems": [
             "cocoapods",
-            "xcpretty",
             "bundler",
             "fastlane"
         ]
@@ -217,7 +215,7 @@
         "default": "1.20"
     },
     "node": {
-        "default": "18"
+        "default": "20"
     },
     "llvm": {
         "version": "15"
