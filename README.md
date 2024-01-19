@@ -28,7 +28,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | macOS 12 | `macos-latest`,`macos-12`, `macos-latest-large`, or `macos-12-large`| [macOS-12] | 
 | macOS 11 | `macos-11`| [macOS-11] | 
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | 
-| Windows Server 2019 | `windows-2019` | [windows-2019] | )
+| Windows Server 2019 | `windows-2019` | [windows-2019] |
 
 ### Label scheme
 
