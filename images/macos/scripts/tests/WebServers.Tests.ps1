@@ -2,7 +2,7 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 $os = Get-OSVersion
 
-Describe "Apache" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
+Describe "Apache" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Apache CLI" {
         "httpd -v" | Should -ReturnZeroExitCode
     }

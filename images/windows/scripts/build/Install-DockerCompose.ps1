@@ -9,7 +9,8 @@ $versionToInstall = Resolve-ChocoPackageVersion -PackageName "docker-compose" -T
 Install-ChocoPackage docker-compose -ArgumentList "--version=$versionToInstall"
 
 Write-Host "Install-Package Docker-Compose v2"
-$dockerComposev2Url = "https://github.com/docker/compose/releases/latest/download/docker-compose-windows-x86_64.exe"
+# Temporaty pinned to v2.23.3 due https://github.com/actions/runner-images/issues/9172
+$dockerComposev2Url = "https://github.com/docker/compose/releases/download/v2.23.3/docker-compose-windows-x86_64.exe"
 $cliPluginsDir = "C:\ProgramData\docker\cli-plugins"
 New-Item -Path $cliPluginsDir -ItemType Directory
 Invoke-DownloadWithRetry -Url $dockerComposev2Url -Path "$cliPluginsDir\docker-compose.exe"
