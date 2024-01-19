@@ -21,7 +21,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 | Image | YAML Label | Included Software | 
 | --------------------|---------------------|--------------------|
-| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] 
+| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] |
 | Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | 
 | macOS 14 [beta] | `macos-14`, `macos-14-large`, or  `macos-14-xlarge`| [macOS-14] |
 | macOS 13 | `macos-13`, `macos-13-large`, or  `macos-13-xlarge`| [macOS-13] |
