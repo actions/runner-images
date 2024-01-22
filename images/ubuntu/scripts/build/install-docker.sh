@@ -18,7 +18,7 @@ echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL ${os_codename} stable" > $RE
 apt-get update
 
 for pkg in docker-ce docker-ce-cli containerd.io docker-buildx-plugin; do
-    version=$(get_toolset_value ".docker.components.${pkg}")
+    version=$(get_toolset_value ".docker.components.\"$pkg\"")
     if [[ $version == "latest" ]]; then
         apt-get install -y --no-install-recommends "${pkg}"
     else
