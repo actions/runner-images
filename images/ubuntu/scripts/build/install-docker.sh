@@ -17,15 +17,16 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $GPG_
 echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL ${os_codename} stable" > $REPO_PATH
 apt-get update
 
-for pkg in docker-ce docker-ce-cli containerd.io docker-buildx-plugin; do
+for pkg in containerd.io docker-ce-cli docker-ce docker-buildx-plugin; do
     version=$(get_toolset_value ".docker.components.\"$pkg\"")
     if [[ $version == "latest" ]]; then
-        apt-get install -y --no-install-recommends "${pkg}"
+        components_to_install+="${pkg} "
     else
         version_string=$(apt-cache madison "${pkg}" | awk '{ print $3 }' | grep "${version}" | grep "${os_codename}" | head -1)
-        apt-get install -y --no-install-recommends "${pkg}=${version_string}"
+        components_to_install+="${pkg}=${version_string} "
     fi
 done
+apt-get install -y --no-install-recommends $components_to_install
 
 # Download docker compose v2 from releases
 # Temporaty pinned to v2.23.3 due https://github.com/actions/runner-images/issues/9172
