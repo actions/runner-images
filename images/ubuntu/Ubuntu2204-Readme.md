@@ -6,7 +6,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
 - Kernel Version: 6.2.0-1018-azure
-- Image Version: 20240116.3.0
+- Image Version: 20240121.1.0
 - Systemd version: 249.11-0ubuntu3.11
 
 ## Installed Software
@@ -31,16 +31,16 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.13.1
+- Helm 3.14.0
 - Homebrew 4.2.4
 - Miniconda 23.11.0
 - Npm 10.2.3
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.4.2
+- Pipx 1.4.3
 - RubyGems 3.3.5
-- Vcpkg (build from commit 53bef8994)
+- Vcpkg (build from commit a1a1cbc97)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -65,18 +65,18 @@ to accomplish this.
 - Ansible 2.16.2
 - apt-fast 1.10.0
 - AzCopy 10.21.2 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.0.0
+- Bazel 7.0.1
 - Bazelisk 1.19.0
 - Bicep 0.24.24
 - Buildah 1.23.1
 - CMake 3.28.1
-- CodeQL Action Bundle 2.15.5
+- CodeQL Action Bundle 2.16.0
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
-- Docker-Buildx 0.11.2
-- Docker Client 24.0.7
-- Docker Server 24.0.7
+- Docker-Buildx 0.12.1
+- Docker Client 25.0.0
+- Docker Server 25.0.0
 - Fastlane 2.219.0
 - Git 2.43.0
 - Git LFS 3.4.1
@@ -85,7 +85,7 @@ to accomplish this.
 - Heroku 8.7.1
 - jq 1.6
 - Kind 0.20.0
-- Kubectl 1.29.0
+- Kubectl 1.29.1
 - Kustomize 5.3.0
 - Leiningen 2.10.0
 - MediaInfo 21.09
@@ -98,29 +98,29 @@ to accomplish this.
 - Packer 1.10.0
 - Parcel 2.11.0
 - Podman 3.4.4
-- Pulumi 3.101.1
+- Pulumi 3.102.0
 - R 4.3.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.6.6
+- Terraform 1.7.0
 - yamllint 1.33.0
 - yq 4.40.5
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.196
-- AWS CLI 2.15.10
+- AWS CLI 2.15.12
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.107.0
 - Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.42.0
-- Google Cloud CLI 459.0.0
-- Netlify CLI 17.14.0
-- OpenShift CLI 4.14.8
+- GitHub CLI 2.42.1
+- Google Cloud CLI 460.0.0
+- Netlify CLI 17.15.1
+- OpenShift CLI 4.14.9
 - ORAS CLI 1.1.0
-- Vercel CLI 33.1.0
+- Vercel CLI 33.2.0
 
 ### Java
 | Version             | Environment Variable |
@@ -159,13 +159,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 120.0.6099.216
+- Google Chrome 120.0.6099.224
 - ChromeDriver 120.0.6099.109
 - Chromium 120.0.6099.0
-- Microsoft Edge 120.0.2210.133
-- Microsoft Edge WebDriver 120.0.2210.133
+- Microsoft Edge 120.0.2210.144
+- Microsoft Edge WebDriver 120.0.2210.144
 - Selenium server 4.16.1
-- Mozilla Firefox 121.0.1
+- Mozilla Firefox 122.0
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -208,13 +208,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.19.13
-- 1.20.12
-- 1.21.5
+- 1.20.13
+- 1.21.6
 
 #### Node.js
 - 16.20.2
 - 18.19.0
-- 20.10.0
+- 20.11.0
 
 #### Python
 - 3.7.17
@@ -239,7 +239,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 9.3.0
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.11.1
+- Microsoft.Graph: 2.12.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -282,12 +282,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | moby/buildkit:latest | sha256:5a8f30813a104b86e927ff4695a746f74a5bb921c7be1dbcca6d754dfbe04822  | 2023-12-01 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:d7885552c11adb0f251db87d96a9c964990235569c8291bc61c276261947d6de  | 2024-01-11 |
+| node:18              | sha256:995a5f4314885452a4a785abc25a0fec40e26c346559e11e709d58bb7a927cf4  | 2024-01-17 |
 | node:18-alpine       | sha256:b1a0356f7d6b86c958a06949d3db3f7fb27f95f627aa6157cb98bc65c801efa2  | 2023-12-11 |
-| node:20              | sha256:9aa3de5470c99408fda002dc1f406e92a31daf0492eb33d857d8d9d252edcc52  | 2024-01-11 |
+| node:20              | sha256:ffebb4405810c92d267a764b21975fb2d96772e41877248a37bf3abaa0d3b590  | 2024-01-17 |
 | node:20-alpine       | sha256:8e6a472eb9742f4f486ca9ef13321b7fc2e54f2f60814f339eeda2aff3037573  | 2024-01-10 |
 | ubuntu:20.04         | sha256:f2034e7195f61334e6caff6ecf2e965f92d11e888309065da85ff50c617732b8  | 2023-12-13 |
-| ubuntu:22.04         | sha256:6042500cf4b44023ea1894effe7890666b0c5c7871ed83a97c36c76ae560bb9b  | 2023-12-12 |
+| ubuntu:22.04         | sha256:e6173d4dc55e76b87c4af8db8821b1feae4146dd47341e4d431118c7dd060a74  | 2024-01-11 |
 
 ### Installed apt packages
 | Name                   | Version                             |
@@ -378,7 +378,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1                     |
 | xorriso                | 1.5.4-2                             |
-| xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.5        |
+| xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.7        |
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
