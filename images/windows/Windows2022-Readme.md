@@ -5,7 +5,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2227
-- Image Version: 20240116.1.0
+- Image Version: 20240121.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -14,13 +14,13 @@
 
 ### Language and Runtime
 - Bash 5.2.21(1)-release
-- Go 1.20.12
+- Go 1.20.13
 - Julia 1.10.0
 - Kotlin 1.9.22
 - LLVM 16.0.6
 - Node 18.18.2
 - Perl 5.32.1
-- PHP 8.2.14
+- PHP 8.2.15
 - Python 3.9.13
 - Ruby 3.0.6p216
 
@@ -32,9 +32,9 @@
 - NPM 9.8.1
 - NuGet 6.8.0.131
 - pip 23.3.2 (python 3.9)
-- Pipx 1.4.2
+- Pipx 1.4.3
 - RubyGems 3.2.33
-- Vcpkg (build from commit 53bef8994)
+- Vcpkg (build from commit a1a1cbc97)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -53,13 +53,13 @@
 - 7zip 23.01
 - aria2 1.37.0
 - azcopy 10.22.2
-- Bazel 7.0.0
+- Bazel 7.0.1
 - Bazelisk 1.19.0
 - Bicep 0.24.24
 - Cabal 3.10.2.1
 - CMake 3.27.9
-- CodeQL Action Bundle 2.15.5
-- Docker 24.0.7
+- CodeQL Action Bundle 2.16.0
+- Docker 25.0.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
 - Docker-wincred 0.8.1
@@ -70,7 +70,7 @@
 - InnoSetup 6.2.2
 - jq 1.7-dirty
 - Kind 0.20.0
-- Kubectl 1.29.0
+- Kubectl 1.29.1
 - Mercurial 5.0
 - gcc 12.2.0
 - gdb 11.2
@@ -79,7 +79,7 @@
 - NSIS 3.09
 - OpenSSL 1.1.1w
 - Packer 1.10.0
-- Pulumi 3.101.1
+- Pulumi 3.102.0
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.13.1
@@ -93,12 +93,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.196
-- AWS CLI 2.15.10
+- AWS CLI 2.15.12
 - AWS SAM CLI 1.107.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.56.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.42.0
+- GitHub CLI 2.42.1
 
 ### Rust Tools
 - Cargo 1.75.0
@@ -115,10 +115,10 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 120.0.6099.217
+- Google Chrome 120.0.6099.225
 - Chrome Driver 120.0.6099.109
-- Microsoft Edge 120.0.2210.133
-- Microsoft Edge Driver 120.0.2210.133
+- Microsoft Edge 120.0.2210.144
+- Microsoft Edge Driver 120.0.2210.144
 - Mozilla Firefox 121.0.1
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
@@ -135,10 +135,10 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.392+8 (default) | JAVA_HOME_8_X64      |
-| 11.0.21+9           | JAVA_HOME_11_X64     |
-| 17.0.9+9.1          | JAVA_HOME_17_X64     |
-| 21.0.1+12.1         | JAVA_HOME_21_X64     |
+| 8.0.402+6 (default) | JAVA_HOME_8_X64      |
+| 11.0.22+7           | JAVA_HOME_11_X64     |
+| 17.0.10+7           | JAVA_HOME_17_X64     |
+| 21.0.2+13.0         | JAVA_HOME_21_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -161,13 +161,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.19.13
-- 1.20.12
-- 1.21.5
+- 1.20.13
+- 1.21.6
 
 #### Node.js
 - 16.20.2
 - 18.19.0
-- 20.10.0
+- 20.11.0
 
 #### Python
 - 3.7.9
@@ -222,9 +222,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.25.3  | C:\tools\nginx-1.25.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.8.34408.163 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.8.34511.84 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -257,8 +257,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
 | Component.Xamarin                                                         | 17.8.34129.139  |
 | Component.Xamarin.RemotedSimulator                                        | 17.8.34129.139  |
-| ios                                                                       | 17.0.8478.0     |
-| maccatalyst                                                               | 17.0.8478.0     |
+| ios                                                                       | 17.2.8004.0     |
+| maccatalyst                                                               | 17.2.8004.0     |
 | maui.blazor                                                               | 8.0.3.0         |
 | maui.core                                                                 | 8.0.3.0         |
 | maui.windows                                                              | 8.0.3.0         |
@@ -567,15 +567,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.494
+- AWSPowershell: 4.1.498
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.11.1
+- Microsoft.Graph: 2.12.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
 - PSWindowsUpdate: 2.2.1.4
-- SqlServer: 22.1.1
+- SqlServer: 22.2.0
 - VSSetup: 2.2.16
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
