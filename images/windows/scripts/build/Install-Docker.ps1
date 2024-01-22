@@ -6,7 +6,7 @@
 ################################################################################
 
 Write-Host "Get latest Moby release"
-$toolsetVersion = Get-ToolsetContent.docker.components.docker-ce
+$toolsetVersion = (Get-ToolsetContent).docker.components.docker
 $mobyVersion = (Get-GithubReleasesByVersion -Repo "moby/moby" -Version "${toolsetVersion}").version
 $dockerceUrl = "https://download.docker.com/win/static/stable/x86_64/"
 $dockerceBinaries = Invoke-WebRequest -Uri $dockerceUrl -UseBasicParsing
