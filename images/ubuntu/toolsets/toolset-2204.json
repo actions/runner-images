@@ -228,13 +228,32 @@
             "ubuntu:20.04",
             "ubuntu:22.04"
         ],
-        "components": {
-            "docker-ce": "24.0.7",
-            "docker-ce-cli": "24.0.7",
-            "containerd.io": "latest",
-            "docker-buildx-plugin": "latest",
-            "compose": "2.23.3"
-        }
+        "components": [
+            {
+                "package": "containerd.io",
+                "version": "latest"
+            },
+            {
+                "package": "docker-ce-cli",
+                "version": "24.0.7"
+            },
+            {
+                "package": "docker-ce",
+                "version": "24.0.7"
+            }
+        ],
+        "plugins": [
+            {
+                "plugin": "buildx",
+                "version": "latest",
+                "asset": "linux-amd64"
+            },            
+            {
+                "plugin": "compose",
+                "version": "2.23.3",
+                "asset": "linux-x86_64"
+            }
+        ]
     },
     "pipx": [
         {
