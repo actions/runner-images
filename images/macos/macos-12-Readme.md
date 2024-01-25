@@ -2,17 +2,16 @@
 |-|
 | [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
 | [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
-| [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
 ***
 # macOS 12
 - OS Version: macOS 12.7.2 (21G1974)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240105.3
+- Image Version: 20240119.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 6.0.417, 7.0.102, 7.0.202, 7.0.306, 7.0.404, 8.0.100
+- .NET Core SDK: 6.0.418, 7.0.102, 7.0.202, 7.0.306, 7.0.405, 8.0.101
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -24,33 +23,33 @@
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
 - Julia 1.10.0
 - Kotlin 1.9.22-release-704
-- Go 1.20.12
+- Go 1.20.13
 - Mono 6.12.0.188
 - Node.js 18.19.0
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - NVM 0.39.7
-- NVM - Cached node versions: 16.20.2, 18.19.0, 20.10.0
+- NVM - Cached node versions: 16.20.2, 18.19.0, 20.11.0
 - Perl 5.38.2
-- PHP 8.3.1
+- PHP 8.3.2
 - Python 2.7.18
 - Python3 3.12.1
 - R 4.3.2
 - Ruby 3.0.6p216
 
 ### Package Management
-- Bundler 2.5.4
+- Bundler 2.5.5
 - Carthage 0.39.1
 - CocoaPods 1.14.3
 - Composer 2.6.6
-- Homebrew 4.2.2
+- Homebrew 4.2.4
 - Miniconda 23.11.0
 - NPM 10.2.3
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 23.3.2 (python 3.12)
-- Pipx 1.4.1
-- RubyGems 3.5.4
-- Vcpkg 2023 (build from commit ce46ba877)
+- Pipx 1.4.3
+- RubyGems 3.5.5
+- Vcpkg 2024 (build from commit a1a1cbc97)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -69,17 +68,17 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.21.2
-- bazel 7.0.0
+- bazel 7.0.1
 - bazelisk 1.19.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 8.5.0
 - Git 2.43.0
 - Git LFS 3.4.1
-- GitHub CLI 2.40.1
+- GitHub CLI 2.42.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
-- ImageMagick 7.1.1-25
+- ImageMagick 7.1.1-26
 - jq 1.7.1
 - mongo 5.0.21
 - mongod 5.0.21
@@ -98,24 +97,24 @@
 
 ### Tools
 - App Center CLI 2.14.0
-- AWS CLI 2.15.8
-- AWS SAM CLI 1.106.0
-- AWS Session Manager CLI 1.2.536.0
-- Azure CLI 2.55.0
+- AWS CLI 2.15.12
+- AWS SAM CLI 1.107.0
+- AWS Session Manager CLI 1.2.553.0
+- Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.24.24
 - Cabal 3.10.2.1
 - Cmake 3.28.1
-- CodeQL Action Bundle 2.15.5
+- CodeQL Action Bundle 2.16.0
 - Colima 0.6.7
 - Fastlane 2.219.0
 - GHC 9.8.1
 - GHCup 0.1.20.0
 - Jazzy 0.14.4
 - Stack 2.13.1
-- SwiftFormat 0.52.11
-- Swig 4.1.1
-- Xcbeautify 1.3.0
+- SwiftFormat 0.53.0
+- Swig 4.2.0
+- Xcbeautify 1.4.0
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
 - Xcodes 1.4.1
 
@@ -126,12 +125,12 @@
 ### Browsers
 - Safari 17.2.1 (17617.1.17.11.12)
 - SafariDriver 17.2.1 (17617.1.17.11.12)
-- Google Chrome 120.0.6099.199
+- Google Chrome 120.0.6099.234
 - Google Chrome for Testing 120.0.6099.109
 - ChromeDriver 120.0.6099.109
-- Microsoft Edge 120.0.2210.121
-- Microsoft Edge WebDriver 120.0.2210.91
-- Mozilla Firefox 121.0
+- Microsoft Edge 120.0.2210.144
+- Microsoft Edge WebDriver 120.0.2210.144
+- Mozilla Firefox 121.0.1
 - geckodriver 0.34.0
 - Selenium server 4.16.1
 
@@ -145,10 +144,10 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.392+8 (default) | JAVA_HOME_8_X64      |
+| 8.0.402+6 (default) | JAVA_HOME_8_X64      |
 | 11.0.21+9           | JAVA_HOME_11_X64     |
-| 17.0.9+9            | JAVA_HOME_17_X64     |
-| 21.0.1+12.0         | JAVA_HOME_21_X64     |
+| 17.0.10+7           | JAVA_HOME_17_X64     |
+| 21.0.2+13.0         | JAVA_HOME_21_X64     |
 
 ### Cached Tools
 
@@ -158,11 +157,11 @@
 - 3.1.4
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.14]
+- 2.7.18 [PyPy 7.3.15]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
-- 3.9.18 [PyPy 7.3.14]
-- 3.10.13 [PyPy 7.3.14]
+- 3.9.18 [PyPy 7.3.15]
+- 3.10.13 [PyPy 7.3.15]
 
 #### Python
 - 3.7.17
@@ -175,12 +174,12 @@
 #### Node.js
 - 16.20.2
 - 18.19.0
-- 20.10.0
+- 20.11.0
 
 #### Go
 - 1.19.13
-- 1.20.12
-- 1.21.5
+- 1.20.13
+- 1.21.6
 
 ### Rust Tools
 - Cargo 1.75.0
@@ -189,7 +188,7 @@
 - Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.69.1
+- Bindgen 0.69.2
 - Cargo-audit 0.18.3
 - Cargo-outdated 0.14.0
 - Cbindgen 0.26.0
@@ -197,10 +196,10 @@
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.17
+- PowerShell 7.2.18
 
 #### PowerShell Modules
-- Az: 11.1.0
+- Az: 11.2.0
 - MarkdownPS: 1.9
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
@@ -217,7 +216,7 @@
 | Version        | Build      | Path                                 |
 | -------------- | ---------- | ------------------------------------ |
 | 2019           | 8.10.25.2  | /Applications/Visual Studio 2019.app |
-| 2022 (default) | 17.6.7.417 | /Applications/Visual Studio.app      |
+| 2022 (default) | 17.6.8.400 | /Applications/Visual Studio.app      |
 
 ##### Notes
 ```
