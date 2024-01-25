@@ -128,7 +128,7 @@ $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
 if ($os.IsBigSur) {
     $utilities.AddToolVersion("helm", $(Get-HelmVersion))
 }
-if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsBigSur) -and (-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 }
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
