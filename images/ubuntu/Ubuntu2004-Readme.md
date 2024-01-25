@@ -6,8 +6,8 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1053-azure
-- Image Version: 20240116.2.0
-- Systemd version: 245.4-4ubuntu3.22
+- Image Version: 20240122.3.0
+- Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
 
@@ -33,16 +33,16 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.13.1
-- Homebrew 4.2.4
+- Helm 3.14.0
+- Homebrew 4.2.5
 - Miniconda 23.11.0
 - Npm 10.2.3
 - NuGet 6.6.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
-- Pipx 1.4.2
+- Pipx 1.4.3
 - RubyGems 3.1.2
-- Vcpkg (build from commit 53bef8994)
+- Vcpkg (build from commit fa6e6a6ec)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -70,16 +70,16 @@ to accomplish this.
 - Ansible 2.13.13
 - apt-fast 1.10.0
 - AzCopy 10.21.2 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.0.0
+- Bazel 7.0.1
 - Bazelisk 1.19.0
 - Bicep 0.24.24
 - Buildah 1.22.3
 - CMake 3.28.1
-- CodeQL Action Bundle 2.15.5
+- CodeQL Action Bundle 2.16.0
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
-- Docker-Buildx 0.11.2
+- Docker-Buildx 0.12.1
 - Docker Client 24.0.7
 - Docker Server 24.0.7
 - Fastlane 2.219.0
@@ -91,7 +91,7 @@ to accomplish this.
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.20.0
-- Kubectl 1.29.0
+- Kubectl 1.29.1
 - Kustomize 5.3.0
 - Leiningen 2.10.0
 - MediaInfo 19.09
@@ -105,29 +105,29 @@ to accomplish this.
 - Parcel 2.11.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.101.1
+- Pulumi 3.102.0
 - R 4.3.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.6.6
+- Terraform 1.7.0
 - yamllint 1.33.0
 - yq 4.40.5
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.15.10
+- AWS CLI 2.15.12
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.107.0
 - Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.42.0
-- Google Cloud CLI 459.0.0
-- Netlify CLI 17.14.0
-- OpenShift CLI 4.14.8
+- GitHub CLI 2.42.1
+- Google Cloud CLI 460.0.0
+- Netlify CLI 17.15.2
+- OpenShift CLI 4.14.9
 - ORAS CLI 1.1.0
-- Vercel CLI 33.1.0
+- Vercel CLI 33.2.0
 
 ### Java
 | Version             | Environment Variable |
@@ -138,7 +138,7 @@ to accomplish this.
 | 21.0.1+12           | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.27, 8.2.14, 8.3.1
+- PHP: 7.4.33, 8.0.30, 8.1.27, 8.2.15, 8.3.2
 - Composer 2.6.6
 - PHPUnit 8.5.36
 ```
@@ -166,13 +166,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 120.0.6099.216
+- Google Chrome 120.0.6099.224
 - ChromeDriver 120.0.6099.109
 - Chromium 120.0.6099.0
-- Microsoft Edge 120.0.2210.133
-- Microsoft Edge WebDriver 120.0.2210.133
+- Microsoft Edge 120.0.2210.144
+- Microsoft Edge WebDriver 120.0.2210.144
 - Selenium server 4.16.1
-- Mozilla Firefox 121.0.1
+- Mozilla Firefox 122.0
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -188,7 +188,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
-- MongoDB 5.0.23
+- MongoDB 5.0.24
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -216,13 +216,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.19.13
-- 1.20.12
-- 1.21.5
+- 1.20.13
+- 1.21.6
 
 #### Node.js
 - 16.20.2
 - 18.19.0
-- 20.10.0
+- 20.11.0
 
 #### Python
 - 3.7.17
@@ -254,7 +254,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 9.3.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.11.1
+- Microsoft.Graph: 2.12.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -299,9 +299,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | moby/buildkit:latest | sha256:5a8f30813a104b86e927ff4695a746f74a5bb921c7be1dbcca6d754dfbe04822  | 2023-12-01 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:d7885552c11adb0f251db87d96a9c964990235569c8291bc61c276261947d6de  | 2024-01-11 |
+| node:18              | sha256:995a5f4314885452a4a785abc25a0fec40e26c346559e11e709d58bb7a927cf4  | 2024-01-17 |
 | node:18-alpine       | sha256:b1a0356f7d6b86c958a06949d3db3f7fb27f95f627aa6157cb98bc65c801efa2  | 2023-12-11 |
-| node:20              | sha256:9aa3de5470c99408fda002dc1f406e92a31daf0492eb33d857d8d9d252edcc52  | 2024-01-11 |
+| node:20              | sha256:ffebb4405810c92d267a764b21975fb2d96772e41877248a37bf3abaa0d3b590  | 2024-01-17 |
 | node:20-alpine       | sha256:8e6a472eb9742f4f486ca9ef13321b7fc2e54f2f60814f339eeda2aff3037573  | 2024-01-10 |
 | ubuntu:20.04         | sha256:f2034e7195f61334e6caff6ecf2e965f92d11e888309065da85ff50c617732b8  | 2023-12-13 |
 
@@ -392,7 +392,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2                   |
 | xorriso                | 1.5.2-1                           |
-| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.12      |
+| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.14      |
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
