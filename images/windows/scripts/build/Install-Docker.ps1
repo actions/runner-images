@@ -6,13 +6,13 @@
 ################################################################################
 
 Write-Host "Get latest Moby release"
-$mobyLatestVersion = (Get-GithubReleasesByVersion -Repo "moby/moby" -Version "latest").version
-
+$toolsetVersion = (Get-ToolsetContent).docker.components.docker
+$mobyVersion = (Get-GithubReleasesByVersion -Repo "moby/moby" -Version "${toolsetVersion}").version
 $dockerceUrl = "https://download.docker.com/win/static/stable/x86_64/"
 $dockerceBinaries = Invoke-WebRequest -Uri $dockerceUrl -UseBasicParsing
 
-Write-Host "Check Moby version $mobyLatestVersion"
-$mobyRelease = $dockerceBinaries.Links.href -match "${mobyLatestVersion}\.zip" | Select-Object -Last 1
+Write-Host "Check Moby version $mobyVersion"
+$mobyRelease = $dockerceBinaries.Links.href -match "${mobyVersion}\.zip" | Select-Object -Last 1
 if (-not $mobyRelease) {
     Write-Host "Release not found for $mobyLatestRelease version"
     $versions = [regex]::Matches($dockerceBinaries.Links.href, "docker-(\d+\.\d+\.\d+)\.zip") | Sort-Object { [version] $_.Groups[1].Value }

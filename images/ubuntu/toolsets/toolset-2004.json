@@ -236,7 +236,14 @@
             "node:18-alpine",
             "node:20-alpine",
             "ubuntu:20.04"
-        ]
+        ],
+        "components": {
+            "docker-ce": "24.0.7",
+            "docker-ce-cli": "24.0.7",
+            "containerd.io": "latest",
+            "docker-buildx-plugin": "latest",
+            "compose": "2.23.3"
+        }
     },
     "pipx": [
         {
@@ -358,7 +365,7 @@
         "version": "14"
     },
     "pwsh": {
-        "version": "7.2"
+        "version": "7.4"
     },
     "aliyunCli": {
         "version": "3.0.174",
