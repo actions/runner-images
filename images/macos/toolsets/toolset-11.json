@@ -219,8 +219,7 @@
             "libxext",
             "libxft",
             "tcl-tk",
-            "r",
-            "imagemagick"
+            "r"
         ],
         "cask_packages": [
             "julia"

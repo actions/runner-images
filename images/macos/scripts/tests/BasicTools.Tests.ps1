@@ -191,7 +191,7 @@ Describe "yq" {
     }
 }
 
-Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "imagemagick" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
     It "imagemagick" {
         "magick -version" | Should -ReturnZeroExitCode
     }
