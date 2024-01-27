@@ -352,9 +352,6 @@
     "llvm": {
         "version": "15"
     },
-    "php": {
-        "version": "8.3"
-    },
     "mongodb": {
         "version": "5.0"
     },

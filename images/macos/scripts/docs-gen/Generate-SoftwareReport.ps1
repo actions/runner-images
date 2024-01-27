@@ -53,7 +53,7 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersionsListInline("NVM - Cached node versions", $(Get-NVMNodeVersionList), '^\d+')
 }
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
+if ((-not $os.IsBigSur) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
 }
 
