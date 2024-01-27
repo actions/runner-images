@@ -219,8 +219,7 @@
             "libxext",
             "libxft",
             "tcl-tk",
-            "r",
-            "imagemagick"
+            "r"
         ],
         "cask_packages": [
             "julia"
@@ -363,6 +362,6 @@
         "version": "14"
     },
     "pwsh": {
-        "version": "7.2"
+        "version": "7.4"
     }
 }

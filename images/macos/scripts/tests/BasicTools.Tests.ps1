@@ -123,7 +123,7 @@ Describe "Aliyun CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsSonoma) 
     }
 }
 
-Describe "Julia" {
+Describe "Julia" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Julia" {
         "julia --version" | Should -ReturnZeroExitCode
     }
@@ -159,7 +159,7 @@ Describe "virtualbox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "R" {
+Describe "R" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "R" {
         "R --version" | Should -ReturnZeroExitCode
     }
@@ -191,7 +191,7 @@ Describe "yq" {
     }
 }
 
-Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "imagemagick" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
     It "imagemagick" {
         "magick -version" | Should -ReturnZeroExitCode
     }

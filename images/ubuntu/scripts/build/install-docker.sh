@@ -11,18 +11,31 @@ source $HELPER_SCRIPTS/install.sh
 REPO_URL="https://download.docker.com/linux/ubuntu"
 GPG_KEY="/usr/share/keyrings/docker.gpg"
 REPO_PATH="/etc/apt/sources.list.d/docker.list"
+os_codename=$(lsb_release -cs)
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $GPG_KEY
-echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL $(lsb_release -cs) stable" > $REPO_PATH
+echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL ${os_codename} stable" > $REPO_PATH
 apt-get update
-apt-get install --no-install-recommends docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+
+for pkg in containerd.io docker-ce-cli docker-ce docker-buildx-plugin; do
+    version=$(get_toolset_value ".docker.components.\"$pkg\"")
+    if [[ $version == "latest" ]]; then
+        components_to_install+="${pkg} "
+    else
+        version_string=$(apt-cache madison "${pkg}" | awk '{ print $3 }' | grep "${version}" | grep "${os_codename}" | head -1)
+        components_to_install+="${pkg}=${version_string} "
+    fi
+done
+apt-get install -y --no-install-recommends $components_to_install
 
 # Download docker compose v2 from releases
-URL=$(resolve_github_release_asset_url "docker/compose" "endswith(\"compose-linux-x86_64\")" "latest")
+# Temporaty pinned to v2.23.3 due https://github.com/actions/runner-images/issues/9172
+compose_version=$(get_toolset_value ".docker.components.compose")
+URL=$(resolve_github_release_asset_url "docker/compose" "endswith(\"compose-linux-x86_64\")" "${compose_version}")
 compose_binary_path=$(download_with_retry "${URL}" "/tmp/docker-compose-v2")
 
 # Supply chain security - Docker Compose v2
-compose_hash_url=$(resolve_github_release_asset_url "docker/compose" "endswith(\"checksums.txt\")" "latest")
+compose_hash_url=$(resolve_github_release_asset_url "docker/compose" "endswith(\"checksums.txt\")" "${compose_version}")
 compose_external_hash=$(get_checksum_from_url "${compose_hash_url}" "compose-linux-x86_64" "SHA256")
 use_checksum_comparison "${compose_binary_path}" "${compose_external_hash}"
 

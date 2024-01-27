@@ -38,7 +38,9 @@ $languageAndRuntime.AddToolVersion("Bash", $(Get-BashVersion))
 $languageAndRuntime.AddNodes($(Get-ClangLLVMVersions))
 $languageAndRuntime.AddNodes($(Get-GccVersions))
 $languageAndRuntime.AddNodes($(Get-FortranVersions))
-$languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+    $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
+}
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
@@ -62,7 +64,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
 if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
 }
-$languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+    $languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
+}
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
 
 # Package Management
@@ -124,7 +128,7 @@ $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
 if ($os.IsBigSur) {
     $utilities.AddToolVersion("helm", $(Get-HelmVersion))
 }
-if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsBigSur) -and (-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 }
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
@@ -275,9 +279,10 @@ Get-XcodeInfoList | Out-Null
 
 $xcodeInfo = Get-XcodeInfoList
 $xcode.AddTable($(Build-XcodeTable $xcodeInfo))
-
-$xcodeTools = $xcode.AddHeader("Xcode Support Tools")
-$xcodeTools.AddNodes($(Build-XcodeSupportToolsSection))
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+    $xcodeTools = $xcode.AddHeader("Xcode Support Tools")
+    $xcodeTools.AddNodes($(Build-XcodeSupportToolsSection))
+}
 
 $installedSdks = $xcode.AddHeader("Installed SDKs")
 $installedSdks.AddTable($(Build-XcodeSDKTable $xcodeInfo))
