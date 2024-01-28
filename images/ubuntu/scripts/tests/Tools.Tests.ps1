@@ -92,7 +92,7 @@ Describe "Docker" {
     It "docker buildx" {
         $version=(Get-ToolsetContent).docker.plugins | Where-Object { $_.plugin -eq 'buildx' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
-            $(docker buildx version) | Should -Match -BeLike "*$version*"
+            $(docker buildx version) | Should -BeLike "*$version*"
         }else{
             $(docker buildx) | Should -ReturnZeroExitCode
         }
