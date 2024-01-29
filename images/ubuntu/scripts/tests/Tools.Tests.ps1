@@ -70,7 +70,7 @@ Describe "Docker" {
         If ($version -ne "latest") {
             $(docker version --format '{{.Server.Version}}') | Should -BeLike "*$version*"
         }else{
-            $(docker version --format '{{.Server.Version}}') | Should -ReturnZeroExitCode
+            "docker version --format '{{.Server.Version}}'" | Should -ReturnZeroExitCode
         }
     }
 
@@ -79,7 +79,7 @@ Describe "Docker" {
         If ($version -ne "latest") {
             $(docker version --format '{{.Client.Version}}') | Should -BeLike "*$version*"
         }else{
-            $(docker version --format '{{.Client.Version}}') | Should -ReturnZeroExitCode
+            "docker version --format '{{.Client.Version}}'" | Should -ReturnZeroExitCode
         }
     }
 
@@ -94,7 +94,7 @@ Describe "Docker" {
         If ($version -ne "latest") {
             $(docker buildx version) | Should -BeLike "*$version*"
         }else{
-            $(docker buildx) | Should -ReturnZeroExitCode
+            "docker buildx" | Should -ReturnZeroExitCode
         }
     }
 
@@ -103,7 +103,7 @@ Describe "Docker" {
         If ($version -ne "latest") {
             $(docker compose version --short) | Should -BeLike "*$version*"
         }else{
-            $(docker compose version --short) | Should -ReturnZeroExitCode
+            "docker compose version --short" | Should -ReturnZeroExitCode
         }
     }
 
