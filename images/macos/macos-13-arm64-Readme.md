@@ -2,17 +2,16 @@
 |-|
 | [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
 | [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
-| [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
 ***
 # macOS 13
 - OS Version: macOS 13.6.3 (22G436)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240107.1
+- Image Version: 20240114.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.404, 8.0.100
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.405, 8.0.101
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.3
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -34,7 +33,7 @@
 - Bundler 2.5.4
 - Carthage 0.39.1
 - CocoaPods 1.14.3
-- Homebrew 4.2.2
+- Homebrew 4.2.3
 - NPM 10.2.3
 - NuGet 6.3.1.1
 - RubyGems 3.5.4
@@ -55,7 +54,7 @@
 - Curl 8.1.2
 - Git 2.43.0
 - Git LFS 3.4.1
-- GitHub CLI 2.40.1
+- GitHub CLI 2.42.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
@@ -67,17 +66,17 @@
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.15.8
-- AWS SAM CLI 1.106.0
-- AWS Session Manager CLI 1.2.536.0
-- Azure CLI 2.55.0
+- AWS CLI 2.15.10
+- AWS SAM CLI 1.107.0
+- AWS Session Manager CLI 1.2.553.0
+- Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.24.24
 - Cmake 3.28.1
 - CodeQL Action Bundle 2.15.5
 - Fastlane 2.219.0
-- SwiftFormat 0.52.11
-- Xcbeautify 1.3.0
+- SwiftFormat 0.53.0
+- Xcbeautify 1.4.0
 - Xcode Command Line Tools 15.1.0.0.1.1700200546
 - Xcodes 1.4.1
 
@@ -86,7 +85,7 @@
 ### Browsers
 - Safari 17.2.1 (18617.1.17.11.12)
 - SafariDriver 17.2.1 (18617.1.17.11.12)
-- Google Chrome 120.0.6099.199
+- Google Chrome 120.0.6099.216
 - Google Chrome for Testing 120.0.6099.109
 - ChromeDriver 120.0.6099.109
 - Selenium server 4.16.1
@@ -132,22 +131,22 @@
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.17
+- PowerShell 7.2.18
 
 #### PowerShell Modules
-- Az: 11.1.0
+- Az: 11.2.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
 ### Xcode
-| Version          | Build    | Path                           |
-| ---------------- | -------- | ------------------------------ |
-| 15.2 (beta)      | 15C5500c | /Applications/Xcode_15.2.app   |
-| 15.1             | 15C65    | /Applications/Xcode_15.1.app   |
-| 15.0.1           | 15A507   | /Applications/Xcode_15.0.1.app |
-| 14.3.1 (default) | 14E300c  | /Applications/Xcode_14.3.1.app |
-| 14.2             | 14C18    | /Applications/Xcode_14.2.app   |
-| 14.1             | 14B47b   | /Applications/Xcode_14.1.app   |
+| Version          | Build   | Path                           |
+| ---------------- | ------- | ------------------------------ |
+| 15.2             | 15C500b | /Applications/Xcode_15.2.app   |
+| 15.1             | 15C65   | /Applications/Xcode_15.1.app   |
+| 15.0.1           | 15A507  | /Applications/Xcode_15.0.1.app |
+| 14.3.1 (default) | 14E300c | /Applications/Xcode_14.3.1.app |
+| 14.2             | 14C18   | /Applications/Xcode_14.2.app   |
+| 14.1             | 14B47b  | /Applications/Xcode_14.1.app   |
 
 #### Xcode Support Tools
 - xcpretty 0.3.0

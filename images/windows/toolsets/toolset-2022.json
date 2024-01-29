@@ -176,7 +176,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "signature": "72105B6D5F370B62FD5C82F1512F7AD7DEE5F2C0",
+        "signature": "C2048FB509F1C37A8C3E9EC6648118458AA01780",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -330,7 +330,11 @@
             "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022",
             "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022",
             "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022"
-        ]
+        ],
+        "components": {
+            "docker": "24.0.7",
+            "compose": "2.23.3"
+        }
     },
     "pipx": [
         {
@@ -433,6 +437,6 @@
         "version": "1.1.1"
     },
     "pwsh": {
-        "version": "7.2"
+        "version": "7.4"
     }
 }

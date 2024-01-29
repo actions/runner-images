@@ -4,8 +4,10 @@ jobs:
   timeoutInMinutes: 1200
   pool:
     name: Mac-Cloud Image Generation
+    demands:
+    - PrimaryRackAgent -equals ${{ parameters.primary_agent }}
   variables:
-  - group: Mac-Cloud Image Generation
+  - group: ${{ parameters.variable_group_name }}
 
   steps:
   - pwsh: |

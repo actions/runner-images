@@ -2,17 +2,16 @@
 |-|
 | [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
 | [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
-| [Major Refactoring of GitHub Actions Runner Images Repository](https://github.com/actions/runner-images/issues/8706) |
 ***
 # macOS 13
 - OS Version: macOS 13.6.3 (22G436)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240106.8
+- Image Version: 20240114.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.404, 8.0.100
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.405, 8.0.101
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.3
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -37,13 +36,13 @@
 - Carthage 0.39.1
 - CocoaPods 1.14.3
 - Composer 2.6.6
-- Homebrew 4.2.2
+- Homebrew 4.2.3
 - NPM 10.2.3
 - NuGet 6.3.1.1
 - Pip3 23.3.2 (python 3.12)
-- Pipx 1.4.1
+- Pipx 1.4.2
 - RubyGems 3.5.4
-- Vcpkg 2023 (build from commit ce46ba877)
+- Vcpkg 2024 (build from commit 53bef8994)
 - Yarn 1.22.19
 
 ### Project Management
@@ -61,7 +60,7 @@
 - Curl 8.5.0
 - Git 2.43.0
 - Git LFS 3.4.1
-- GitHub CLI 2.40.1
+- GitHub CLI 2.42.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.3
@@ -73,17 +72,17 @@
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.15.8
-- AWS SAM CLI 1.106.0
-- AWS Session Manager CLI 1.2.536.0
-- Azure CLI 2.55.0
+- AWS CLI 2.15.10
+- AWS SAM CLI 1.107.0
+- AWS Session Manager CLI 1.2.553.0
+- Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.24.24
 - Cmake 3.28.1
 - CodeQL Action Bundle 2.15.5
 - Fastlane 2.219.0
-- SwiftFormat 0.52.11
-- Xcbeautify 1.3.0
+- SwiftFormat 0.53.0
+- Xcbeautify 1.4.0
 - Xcode Command Line Tools 15.1.0.0.1.1700200546
 - Xcodes 1.4.1
 
@@ -93,12 +92,12 @@
 ### Browsers
 - Safari 17.2.1 (18617.1.17.11.12)
 - SafariDriver 17.2.1 (18617.1.17.11.12)
-- Google Chrome 120.0.6099.199
+- Google Chrome 120.0.6099.216
 - Google Chrome for Testing 120.0.6099.109
 - ChromeDriver 120.0.6099.109
-- Microsoft Edge 120.0.2210.121
-- Microsoft Edge WebDriver 120.0.2210.91
-- Mozilla Firefox 121.0
+- Microsoft Edge 120.0.2210.133
+- Microsoft Edge WebDriver 120.0.2210.133
+- Mozilla Firefox 121.0.1
 - geckodriver 0.34.0
 - Selenium server 4.16.1
 
@@ -124,11 +123,11 @@
 - 3.1.4
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.14]
+- 2.7.18 [PyPy 7.3.15]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
-- 3.9.18 [PyPy 7.3.14]
-- 3.10.13 [PyPy 7.3.14]
+- 3.9.18 [PyPy 7.3.15]
+- 3.10.13 [PyPy 7.3.15]
 
 #### Python
 - 3.8.18
@@ -158,22 +157,22 @@
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.17
+- PowerShell 7.2.18
 
 #### PowerShell Modules
-- Az: 11.1.0
+- Az: 11.2.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
 ### Xcode
-| Version          | Build    | Path                           |
-| ---------------- | -------- | ------------------------------ |
-| 15.2 (beta)      | 15C5500c | /Applications/Xcode_15.2.app   |
-| 15.1             | 15C65    | /Applications/Xcode_15.1.app   |
-| 15.0.1           | 15A507   | /Applications/Xcode_15.0.1.app |
-| 14.3.1 (default) | 14E300c  | /Applications/Xcode_14.3.1.app |
-| 14.2             | 14C18    | /Applications/Xcode_14.2.app   |
-| 14.1             | 14B47b   | /Applications/Xcode_14.1.app   |
+| Version          | Build   | Path                           |
+| ---------------- | ------- | ------------------------------ |
+| 15.2             | 15C500b | /Applications/Xcode_15.2.app   |
+| 15.1             | 15C65   | /Applications/Xcode_15.1.app   |
+| 15.0.1           | 15A507  | /Applications/Xcode_15.0.1.app |
+| 14.3.1 (default) | 14E300c | /Applications/Xcode_14.3.1.app |
+| 14.2             | 14C18   | /Applications/Xcode_14.2.app   |
+| 14.1             | 14B47b  | /Applications/Xcode_14.1.app   |
 
 #### Xcode Support Tools
 - xcpretty 0.3.0
@@ -215,8 +214,8 @@
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
