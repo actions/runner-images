@@ -38,7 +38,6 @@
 - Bundler 2.4.22
 - Carthage 0.39.1
 - CocoaPods 1.14.3
-- Composer command
 - Homebrew 4.2.5
 - Miniconda 23.11.0
 - NPM 10.2.3
