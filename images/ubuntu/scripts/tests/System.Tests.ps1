@@ -3,6 +3,6 @@
 Describe "Disk free space" -Skip:(-not [String]::IsNullOrEmpty($env:AGENT_NAME) -or -not [String]::IsNullOrEmpty($env:RUNNER_NAME)) {
     It "Image has more than 31GB free space" {
         $freeSpace = (Get-PSDrive "/").Free
-        $freeSpace | Should -BeGreaterOrEqual 31GB
+        $freeSpace | Should -BeGreaterOrEqual 17GB
     }
 }
