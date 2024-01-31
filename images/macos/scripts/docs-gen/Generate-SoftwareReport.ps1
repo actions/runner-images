@@ -74,7 +74,7 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
 $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
 $packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
+if ((-not $os.IsBigSur) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
 }
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
