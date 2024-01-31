@@ -1,11 +1,10 @@
 | Announcements |
 |-|
 | [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
-| [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 5329
-- Image Version: 20240122.1.0
+- Image Version: 20240128.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -34,7 +33,7 @@
 - pip 23.3.2 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 2.7.6.3
-- Vcpkg (build from commit fa6e6a6ec)
+- Vcpkg (build from commit 7032c5759)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -53,12 +52,12 @@
 - 7zip 23.01
 - aria2 1.37.0
 - azcopy 10.22.2
-- Bazel 7.0.1
+- Bazel 7.0.2
 - Bazelisk 1.19.0
 - Bicep 0.24.24
 - Cabal 3.10.2.1
 - CMake 3.27.9
-- CodeQL Action Bundle 2.16.0
+- CodeQL Action Bundle 2.16.1
 - Docker 24.0.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
@@ -66,10 +65,10 @@
 - ghc 9.8.1
 - Git 2.43.0.windows.1
 - Git LFS 3.4.0
-- Google Cloud CLI 460.0.0
-- ImageMagick 7.1.1-26
+- Google Cloud CLI 461.0.0
+- ImageMagick 7.1.1-27
 - InnoSetup 6.2.2
-- jq 1.7-dirty
+- jq 1.7.1
 - Kind 0.20.0
 - Kubectl 1.29.1
 - Mercurial 5.0
@@ -81,7 +80,7 @@
 - OpenSSL 1.1.1w
 - Packer 1.10.0
 - Parcel 2.11.0
-- Pulumi 3.102.0
+- Pulumi 3.103.1
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.13.1
@@ -94,9 +93,9 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.196
-- AWS CLI 2.15.12
-- AWS SAM CLI 1.107.0
+- Alibaba Cloud CLI 3.0.197
+- AWS CLI 2.15.15
+- AWS SAM CLI 1.108.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.56.0
 - Azure DevOps CLI extension 0.26.0
@@ -118,14 +117,14 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 120.0.6099.225
-- Chrome Driver 120.0.6099.109
-- Microsoft Edge 120.0.2210.144
-- Microsoft Edge Driver 120.0.2210.144
-- Mozilla Firefox 121.0.1
+- Google Chrome 121.0.6167.86
+- Chrome Driver 121.0.6167.85
+- Microsoft Edge 121.0.2277.83
+- Microsoft Edge Driver 121.0.2277.83
+- Mozilla Firefox 122.0
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
-- Selenium server 4.16.0
+- Selenium server 4.17.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -218,7 +217,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 5.0.24.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.12.0
+- Azure CosmosDb Emulator 2.14.16.0
 - DacFx 162.1.172.1
 - MySQL 5.7.44.0
 - SQL OLEDB Driver 18.6.7.0
@@ -504,7 +503,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
-- PowerShell 7.2.18
+- PowerShell 7.4.1
 
 #### Powershell Modules
 - Az: 9.3.0
@@ -513,7 +512,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.498
+- AWSPowershell: 4.1.503
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.12.0
