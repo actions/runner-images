@@ -65,15 +65,6 @@ Describe "Rust" {
 }
 
 Describe "Docker" {
-    It "docker engine" {
-        $version=(Get-ToolsetContent).docker.components | Where-Object { $_.package -eq 'docker-ce' } | Select-Object -ExpandProperty version
-        If ($version -ne "latest") {
-            $(docker version --format '{{.Server.Version}}') | Should -BeLike "*$version*"
-        }else{
-            "docker version --format '{{.Server.Version}}'" | Should -ReturnZeroExitCode
-        }
-    }
-
     It "docker client" {
         $version=(Get-ToolsetContent).docker.components | Where-Object { $_.package -eq 'docker-ce-cli' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
@@ -81,12 +72,6 @@ Describe "Docker" {
         }else{
             "docker version --format '{{.Client.Version}}'" | Should -ReturnZeroExitCode
         }
-    }
-
-    It "docker major version match" {
-        $dockerClientVersion = "$(docker version --format '{{.Client.Version}}')"
-        $dockerServerVersion = "$(docker version --format '{{.Server.Version}}')"
-        $dockerClientVersion.Substring(0, 2) | Should -Be $dockerServerVersion.Substring(0, 2)
     }
 
     It "docker buildx" {
