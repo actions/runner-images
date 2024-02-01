@@ -19,8 +19,10 @@ set_etc_environment_variable "ACCEPT_EULA" "Y"
 mkdir -p /etc/skel/.config/configstore
 set_etc_environment_variable "XDG_CONFIG_HOME" '$HOME/.config'
 
-# Add localhost alias to ::1 IPv6
-sed -i 's/::1 ip6-localhost ip6-loopback/::1     localhost ip6-localhost ip6-loopback/g' /etc/hosts
+if [[ ! -f /run/systemd/container ]]; then
+    # Add localhost alias to ::1 IPv6
+    sed -i 's/::1 ip6-localhost ip6-loopback/::1     localhost ip6-localhost ip6-loopback/g' /etc/hosts
+fi
 
 # Prepare directory and env variable for toolcache
 AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
@@ -47,12 +49,16 @@ echo 'ACTION=="add", SUBSYSTEM=="module", KERNEL=="nf_conntrack", RUN+="/usr/sbi
 chmod +x $HELPER_SCRIPTS/invoke-tests.sh
 ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/invoke_tests
 
-# Disable motd updates metadata
-sed -i 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news
+if [[ ! -f /run/systemd/container ]]; then
+    # Disable motd updates metadata
+    sed -i 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news
+fi
 
 if [[ -f "/etc/fwupd/daemon.conf" ]]; then
     sed -i 's/UpdateMotd=true/UpdateMotd=false/g' /etc/fwupd/daemon.conf
-    systemctl mask fwupd-refresh.timer
+    if [[ ! -f /run/systemd/container ]]; then
+        systemctl mask fwupd-refresh.timer
+    fi
 fi
 
 # Disable to load providers
