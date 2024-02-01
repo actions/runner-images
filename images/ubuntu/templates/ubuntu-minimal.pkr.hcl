@@ -55,6 +55,16 @@ source "docker" "build_image" {
 build {
   sources = ["source.docker.build_image"]
 
+  provisioner "shell" {
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
+    execute_command = "sh -c '{{ .Vars }} {{ .Path }}'"
+    inline          = [
+      "apt-get --quiet update",
+      "apt-get upgrade -y",
+      "apt-get install --no-install-recommends --yes apt-utils lsb-release rsync sudo"
+    ]
+  }
+
   // Create folder to store temporary data
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
