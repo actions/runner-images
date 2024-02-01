@@ -378,16 +378,8 @@ Function GenerateResourcesAndImage {
 
     Write-Host "Validating packer template..."
     & $PackerBinary validate `
-        "-var=client_id=fake" `
-        "-var=client_secret=fake" `
-        "-var=subscription_id=$($SubscriptionId)" `
-        "-var=tenant_id=fake" `
-        "-var=location=$($AzureLocation)" `
         "-var=image_name=$($ImageName)" `
-        "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
         "-var=install_password=$($InstallPassword)" `
-        "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-        "-var=azure_tags=$($TagsJson)" `
         $TemplatePath
 
     if ($LastExitCode -ne 0) {
@@ -409,16 +401,8 @@ Function GenerateResourcesAndImage {
         }
 
         & $PackerBinary build -on-error="$($OnError)" `
-            -var "client_id=$($ServicePrincipalAppId)" `
-            -var "client_secret=$($ServicePrincipalPassword)" `
-            -var "subscription_id=$($SubscriptionId)" `
-            -var "tenant_id=$($TenantId)" `
-            -var "location=$($AzureLocation)" `
             -var "image_name=$($ImageName)" `
-            -var "managed_image_resource_group_name=$($ResourceGroupName)" `
             -var "install_password=$($InstallPassword)" `
-            -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-            -var "azure_tags=$($TagsJson)" `
             $TemplatePath
 
         if ($LastExitCode -ne 0) {
