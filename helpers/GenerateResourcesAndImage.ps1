@@ -66,6 +66,160 @@ function Start-Sleep($seconds) {
     Write-Progress -Activity "Sleeping" -Status "Sleeping..." -SecondsRemaining 0 -Completed
 }
 
+$ADCleanupRequired = $false
+[string] $ServicePrincipalAppId = $null
+
+Function Prepare-Azure-Registry {
+    param (
+        [Parameter(Mandatory = $True)]
+        [string] $SubscriptionId,
+        [Parameter(Mandatory = $True)]
+        [string] $ResourceGroupName,
+        [Parameter(Mandatory = $True)]
+        [string] $AzureLocation,
+        [Parameter(Mandatory = $False)]
+        [int] $SecondsToWaitForServicePrincipalSetup = 120,
+        [Parameter(Mandatory = $False)]
+        [string] $AzureClientId,
+        [Parameter(Mandatory = $False)]
+        [string] $AzureClientSecret,
+        [Parameter(Mandatory = $False)]
+        [string] $AzureTenantId,
+        [Parameter(Mandatory = $False)]
+        [switch] $ReuseResourceGroup
+    )
+
+    # Login to Azure subscription
+    if ([string]::IsNullOrEmpty($AzureClientId)) {
+        Write-Verbose "No AzureClientId was provided, will use interactive login."
+        az login --output none
+    }
+    else {
+        Write-Verbose "AzureClientId was provided, will use service principal login."
+        az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
+    }
+    az account set --subscription $SubscriptionId
+    if ($LastExitCode -ne 0) {
+        throw "Failed to login to Azure subscription '$SubscriptionId'."
+    }
+
+    # Check resource group
+    $ResourceGroupExists = [System.Convert]::ToBoolean((az group exists --name $ResourceGroupName));
+    if ($ResourceGroupExists) {
+        Write-Verbose "Resource group '$ResourceGroupName' already exists."
+    }
+
+    # Remove resource group if it exists and we are not reusing it
+    if ($ResourceGroupExists -and -not $ReuseResourceGroup) {
+        if ($Force) {
+            # Delete and recreate the resource group
+            Write-Host "Deleting resource group '$ResourceGroupName'..."
+            az group delete --name $ResourceGroupName --yes --output none
+            if ($LastExitCode -ne 0) {
+                throw "Failed to delete resource group '$ResourceGroupName'."
+            }
+            Write-Host "Resource group '$ResourceGroupName' was deleted."
+            $ResourceGroupExists = $false
+        }
+        else {
+            # are we running in a non-interactive session?
+            # https://stackoverflow.com/questions/9738535/powershell-test-for-noninteractive-mode
+            if ([System.Console]::IsOutputRedirected -or ![Environment]::UserInteractive -or !!([Environment]::GetCommandLineArgs() | Where-Object { $_ -ilike '-noni*' })) {
+                throw "Non-interactive mode, resource group '$ResourceGroupName' already exists, either specify -Force to delete it, or -ReuseResourceGroup to reuse."
+            }
+            else {
+                # Resource group already exists, ask the user what to do
+                $title = "Resource group '$ResourceGroupName' already exists"
+                $message = "Do you want to delete the resource group and all resources in it?"
+
+                $options = @(
+                    [System.Management.Automation.Host.ChoiceDescription]::new("&Yes", "Delete the resource group and all resources in it."),
+                    [System.Management.Automation.Host.ChoiceDescription]::new("&No", "Keep the resource group and continue."),
+                    [System.Management.Automation.Host.ChoiceDescription]::new("&Abort", "Abort execution.")
+                )
+                $result = $Host.UI.PromptForChoice($title, $message, $options, 0)
+            }
+
+            switch ($result) {
+                0 {
+                    # Delete and recreate the resource group
+                    Write-Host "Deleting resource group '$ResourceGroupName'..."
+                    az group delete --name $ResourceGroupName --yes
+                    if ($LastExitCode -ne 0) {
+                        throw "Failed to delete resource group '$ResourceGroupName'."
+                    }
+                    Write-Host "Resource group '$ResourceGroupName' was deleted."
+                    $ResourceGroupExists = $false
+                }
+                1 {
+                    # Keep the resource group and continue
+                }
+                2 {
+                    # Stop the current action
+                    Write-Error "User stopped the action."
+                    exit 1
+                }
+            }
+        }
+    }
+
+    # Create resource group
+    if (-not $ResourceGroupExists) {
+        Write-Host "Creating resource group '$ResourceGroupName' in location '$AzureLocation'..."
+        if ($TagsList) {
+            az group create --name $ResourceGroupName --location $AzureLocation --tags $TagsList --query id
+        }
+        else {
+            az group create --name $ResourceGroupName --location $AzureLocation --query id
+        }
+        if ($LastExitCode -ne 0) {
+            throw "Failed to create resource group '$ResourceGroupName'."
+        }
+    }
+
+    # Create service principal
+    if ([string]::IsNullOrEmpty($AzureClientId)) {
+        Write-Host "Creating service principal for packer..."
+        $ADCleanupRequired = $true
+
+        $ServicePrincipalName = "packer-" + [System.GUID]::NewGuid().ToString().ToUpper()
+        $ServicePrincipal = az ad sp create-for-rbac --name $ServicePrincipalName --role Contributor --scopes /subscriptions/$SubscriptionId --only-show-errors | ConvertFrom-Json
+        if ($LastExitCode -ne 0) {
+            throw "Failed to create service principal '$ServicePrincipalName'."
+        }
+
+        $ServicePrincipalAppId = $ServicePrincipal.appId
+        $ServicePrincipalPassword = $ServicePrincipal.password
+        $TenantId = $ServicePrincipal.tenant
+
+        Write-Verbose "Waiting for service principal to propagate..."
+        Start-Sleep $SecondsToWaitForServicePrincipalSetup
+        Write-Host "Service principal created with id '$ServicePrincipalAppId'. It will be deleted after the build."
+    }
+    else {
+        $ServicePrincipalAppId = $AzureClientId
+        $ServicePrincipalPassword = $AzureClientSecret
+        $TenantId = $AzureTenantId
+    }
+    Write-Debug "Service principal app id: $ServicePrincipalAppId."
+    Write-Debug "Tenant id: $TenantId."
+}
+
+Function Cleanup-Azure-Registry {
+    # Remove ADServicePrincipal and ADApplication
+    if ($ADCleanupRequired) {
+        Write-Host "Removing ADServicePrincipal..."
+        if (az ad sp show --id $ServicePrincipalAppId --query id) {
+            az ad sp delete --id $ServicePrincipalAppId
+        }
+
+        Write-Host "Removing ADApplication..."
+        if (az ad app show --id $ServicePrincipalAppId --query id) {
+            az ad app delete --id $ServicePrincipalAppId
+        }
+    }
+}
+
 Function GenerateResourcesAndImage {
     <#
         .SYNOPSIS
@@ -115,11 +269,15 @@ Function GenerateResourcesAndImage {
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2004 -AzureLocation "East US"
     #>
     param (
-        [Parameter(Mandatory = $True)]
+        [Parameter(Mandatory = $False)]
+        [ValidateSet("none", "azure")]
+        [string] $Registry = "none",
+        # Registry: Azure
+        [Parameter(Mandatory = $False)]
         [string] $SubscriptionId,
-        [Parameter(Mandatory = $True)]
+        [Parameter(Mandatory = $False)]
         [string] $ResourceGroupName,
-        [Parameter(Mandatory = $True)]
+        [Parameter(Mandatory = $False)]
         [string] $AzureLocation,
         [Parameter(Mandatory = $False)]
         [int] $SecondsToWaitForServicePrincipalSetup = 120,
@@ -237,120 +395,18 @@ Function GenerateResourcesAndImage {
     }
 
     try {
-        # Login to Azure subscription
-        if ([string]::IsNullOrEmpty($AzureClientId)) {
-            Write-Verbose "No AzureClientId was provided, will use interactive login."
-            az login --output none
+
+        if ($Registry -eq "azure") {
+            Prepare-Azure-Registry `
+                -SubscriptionId "$SubscriptionId" `
+                -ResourceGroupName "$ResourceGroupName" `
+                -AzureLocation "$AzureLocation" `
+                -SecondsToWaitForServicePrincipalSetup "$SecondsToWaitForServicePrincipalSetup" `
+                -AzureClientId "$AzureClientId" `
+                -AzureClientSecret "$AzureClientSecret" `
+                -AzureTenantId "$AzureTenantId" `
+                -ReuseResourceGroup "$ReuseResourceGroup"
         }
-        else {
-            Write-Verbose "AzureClientId was provided, will use service principal login."
-            az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
-        }
-        az account set --subscription $SubscriptionId
-        if ($LastExitCode -ne 0) {
-            throw "Failed to login to Azure subscription '$SubscriptionId'."
-        }
-
-        # Check resource group
-        $ResourceGroupExists = [System.Convert]::ToBoolean((az group exists --name $ResourceGroupName));
-        if ($ResourceGroupExists) {
-            Write-Verbose "Resource group '$ResourceGroupName' already exists."
-        }
-
-        # Remove resource group if it exists and we are not reusing it
-        if ($ResourceGroupExists -and -not $ReuseResourceGroup) {
-            if ($Force) {
-                # Delete and recreate the resource group
-                Write-Host "Deleting resource group '$ResourceGroupName'..."
-                az group delete --name $ResourceGroupName --yes --output none
-                if ($LastExitCode -ne 0) {
-                    throw "Failed to delete resource group '$ResourceGroupName'."
-                }
-                Write-Host "Resource group '$ResourceGroupName' was deleted."
-                $ResourceGroupExists = $false
-            }
-            else {
-                # are we running in a non-interactive session?
-                # https://stackoverflow.com/questions/9738535/powershell-test-for-noninteractive-mode
-                if ([System.Console]::IsOutputRedirected -or ![Environment]::UserInteractive -or !!([Environment]::GetCommandLineArgs() | Where-Object { $_ -ilike '-noni*' })) {
-                    throw "Non-interactive mode, resource group '$ResourceGroupName' already exists, either specify -Force to delete it, or -ReuseResourceGroup to reuse."
-                }
-                else {
-                    # Resource group already exists, ask the user what to do
-                    $title = "Resource group '$ResourceGroupName' already exists"
-                    $message = "Do you want to delete the resource group and all resources in it?"
-
-                    $options = @(
-                        [System.Management.Automation.Host.ChoiceDescription]::new("&Yes", "Delete the resource group and all resources in it."),
-                        [System.Management.Automation.Host.ChoiceDescription]::new("&No", "Keep the resource group and continue."),
-                        [System.Management.Automation.Host.ChoiceDescription]::new("&Abort", "Abort execution.")
-                    )
-                    $result = $Host.UI.PromptForChoice($title, $message, $options, 0)
-                }
-
-                switch ($result) {
-                    0 {
-                        # Delete and recreate the resource group
-                        Write-Host "Deleting resource group '$ResourceGroupName'..."
-                        az group delete --name $ResourceGroupName --yes
-                        if ($LastExitCode -ne 0) {
-                            throw "Failed to delete resource group '$ResourceGroupName'."
-                        }
-                        Write-Host "Resource group '$ResourceGroupName' was deleted."
-                        $ResourceGroupExists = $false
-                    }
-                    1 {
-                        # Keep the resource group and continue
-                    }
-                    2 {
-                        # Stop the current action
-                        Write-Error "User stopped the action."
-                        exit 1
-                    }
-                }
-            }
-        }
-
-        # Create resource group
-        if (-not $ResourceGroupExists) {
-            Write-Host "Creating resource group '$ResourceGroupName' in location '$AzureLocation'..."
-            if ($TagsList) {
-                az group create --name $ResourceGroupName --location $AzureLocation --tags $TagsList --query id
-            }
-            else {
-                az group create --name $ResourceGroupName --location $AzureLocation --query id
-            }
-            if ($LastExitCode -ne 0) {
-                throw "Failed to create resource group '$ResourceGroupName'."
-            }
-        }
-
-        # Create service principal
-        if ([string]::IsNullOrEmpty($AzureClientId)) {
-            Write-Host "Creating service principal for packer..."
-            $ADCleanupRequired = $true
-
-            $ServicePrincipalName = "packer-" + [System.GUID]::NewGuid().ToString().ToUpper()
-            $ServicePrincipal = az ad sp create-for-rbac --name $ServicePrincipalName --role Contributor --scopes /subscriptions/$SubscriptionId --only-show-errors | ConvertFrom-Json
-            if ($LastExitCode -ne 0) {
-                throw "Failed to create service principal '$ServicePrincipalName'."
-            }
-
-            $ServicePrincipalAppId = $ServicePrincipal.appId
-            $ServicePrincipalPassword = $ServicePrincipal.password
-            $TenantId = $ServicePrincipal.tenant
-
-            Write-Verbose "Waiting for service principal to propagate..."
-            Start-Sleep $SecondsToWaitForServicePrincipalSetup
-            Write-Host "Service principal created with id '$ServicePrincipalAppId'. It will be deleted after the build."
-        }
-        else {
-            $ServicePrincipalAppId = $AzureClientId
-            $ServicePrincipalPassword = $AzureClientSecret
-            $TenantId = $AzureTenantId
-        }
-        Write-Debug "Service principal app id: $ServicePrincipalAppId."
-        Write-Debug "Tenant id: $TenantId."
 
         & $PackerBinary build -on-error="$($OnError)" `
             -var "client_id=$($ServicePrincipalAppId)" `
@@ -373,18 +429,10 @@ Function GenerateResourcesAndImage {
     } finally {
         Write-Verbose "`nCleaning up..."
 
-        # Remove ADServicePrincipal and ADApplication
-        if ($ADCleanupRequired) {
-            Write-Host "Removing ADServicePrincipal..."
-            if (az ad sp show --id $ServicePrincipalAppId --query id) {
-                az ad sp delete --id $ServicePrincipalAppId
-            }
-
-            Write-Host "Removing ADApplication..."
-            if (az ad app show --id $ServicePrincipalAppId --query id) {
-                az ad app delete --id $ServicePrincipalAppId
-            }
+        if ($Registry -eq 'azure') {
+            Cleanup-Azure-Registry
         }
+
         Write-Verbose "Cleanup completed."
     }
 }
