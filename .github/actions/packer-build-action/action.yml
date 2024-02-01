@@ -1,0 +1,26 @@
+name: 'packer-build-action'
+description: 'Build images with Packer'
+
+inputs:
+  image_type:
+    description: >-
+      One of the `ImageType` defined in `./helpers/GenerateResourcesAndImage.ps1`.
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Setup `packer`
+      id: setup
+      uses: hashicorp/setup-packer@main
+      with:
+        version: '1.10.1'
+
+    - name: Build `${{ inputs.image_type }}`
+      shell: pwsh
+      run: |
+        Import-Module .\helpers\GenerateResourcesAndImage.ps1
+
+        echo "::group::Generate Image"
+        GenerateResourcesAndImage -ImageType ${{ inputs.image_type }}
+        echo "::endgroup::"

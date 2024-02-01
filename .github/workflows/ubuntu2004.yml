@@ -2,8 +2,7 @@ name: Trigger Ubuntu20.04 CI
 run-name: Ubuntu20.04 - ${{ github.event.pull_request.title }}
 
 on:
-  pull_request_target:
-    types: labeled
+  pull_request:
     paths:
     - 'images/ubuntu/**'
 
@@ -13,8 +12,13 @@ defaults:
 
 jobs:
   Ubuntu_2004:
+    runs-on: ubuntu-latest
     if: contains(github.event.pull_request.labels.*.name, 'CI ubuntu-all') || contains(github.event.pull_request.labels.*.name, 'CI ubuntu-2004')
-    uses: ./.github/workflows/trigger-ubuntu-win-build.yml
-    with:
-      image_type: 'ubuntu2004'
-    secrets: inherit
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/actions/packer-build-action
+        id: build
+        with:
+          image_type: Ubuntu2004
