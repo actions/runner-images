@@ -1,12 +1,11 @@
 | Announcements |
 |-|
 | [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
-| [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
 ***
 # macOS 12
-- OS Version: macOS 12.7.2 (21G1974)
+- OS Version: macOS 12.7.3 (21H1015)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240119.1
+- Image Version: 20240127.1
 
 ## Installed Software
 
@@ -41,7 +40,7 @@
 - Carthage 0.39.1
 - CocoaPods 1.14.3
 - Composer 2.6.6
-- Homebrew 4.2.4
+- Homebrew 4.2.5
 - Miniconda 23.11.0
 - NPM 10.2.3
 - NuGet 6.3.1.1
@@ -49,7 +48,7 @@
 - Pip3 23.3.2 (python 3.12)
 - Pipx 1.4.3
 - RubyGems 3.5.5
-- Vcpkg 2024 (build from commit a1a1cbc97)
+- Vcpkg 2024 (build from commit 7032c5759)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -67,8 +66,8 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.21.2
-- bazel 7.0.1
+- azcopy 10.22.2
+- bazel 7.0.2
 - bazelisk 1.19.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 8.5.0
@@ -77,8 +76,8 @@
 - GitHub CLI 2.42.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
-- gpg (GnuPG) 2.4.3
-- ImageMagick 7.1.1-26
+- gpg (GnuPG) 2.4.4
+- ImageMagick 7.1.1-27
 - jq 1.7.1
 - mongo 5.0.21
 - mongod 5.0.21
@@ -90,22 +89,22 @@
 - Sox 14.4.2
 - Subversion (SVN) 1.14.3
 - Switchaudio-osx 1.2.2
-- Vagrant 2.4.0
+- Vagrant 2.4.1
 - VirtualBox 6.1.38r153438
 - yq 4.40.5
 - zstd 1.5.5
 
 ### Tools
 - App Center CLI 2.14.0
-- AWS CLI 2.15.12
-- AWS SAM CLI 1.107.0
+- AWS CLI 2.15.15
+- AWS SAM CLI 1.108.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.24.24
 - Cabal 3.10.2.1
 - Cmake 3.28.1
-- CodeQL Action Bundle 2.16.0
+- CodeQL Action Bundle 2.16.1
 - Colima 0.6.7
 - Fastlane 2.219.0
 - GHC 9.8.1
@@ -123,16 +122,16 @@
 - Yamllint 1.33.0
 
 ### Browsers
-- Safari 17.2.1 (17617.1.17.11.12)
-- SafariDriver 17.2.1 (17617.1.17.11.12)
-- Google Chrome 120.0.6099.234
-- Google Chrome for Testing 120.0.6099.109
-- ChromeDriver 120.0.6099.109
-- Microsoft Edge 120.0.2210.144
-- Microsoft Edge WebDriver 120.0.2210.144
-- Mozilla Firefox 121.0.1
+- Safari 17.3 (17617.2.4.11.9)
+- SafariDriver 17.3 (17617.2.4.11.9)
+- Google Chrome 121.0.6167.85
+- Google Chrome for Testing 121.0.6167.85
+- ChromeDriver 121.0.6167.85
+- Microsoft Edge 121.0.2277.83
+- Microsoft Edge WebDriver 121.0.2277.83
+- Mozilla Firefox 122.0
 - geckodriver 0.34.0
-- Selenium server 4.16.1
+- Selenium server 4.17.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -145,7 +144,7 @@
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
 | 8.0.402+6 (default) | JAVA_HOME_8_X64      |
-| 11.0.21+9           | JAVA_HOME_11_X64     |
+| 11.0.22+7           | JAVA_HOME_11_X64     |
 | 17.0.10+7           | JAVA_HOME_17_X64     |
 | 21.0.2+13.0         | JAVA_HOME_21_X64     |
 
@@ -196,7 +195,7 @@
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.18
+- PowerShell 7.4.1
 
 #### PowerShell Modules
 - Az: 11.2.0
@@ -359,7 +358,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 - libXext 1.3.5
 - libXft 2.3.8
 - Tcl/Tk 8.6.13_5
-- Zlib 1.3
+- Zlib 1.3.1
 
 #### Environment variables
 | Name              | Value                                                                                     |
