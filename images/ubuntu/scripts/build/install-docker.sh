@@ -2,7 +2,7 @@
 ################################################################################
 ##  File:  install-docker.sh
 ##  Desc:  Install docker onto the image
-##  Supply chain security: Docker Compose v2, amazon-ecr-credential-helper - checksum validation
+##  Supply chain security: amazon-ecr-credential-helper - dynamic checksum validation
 ################################################################################
 
 # Source the helpers for use with the script
@@ -17,34 +17,36 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $GPG_
 echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL ${os_codename} stable" > $REPO_PATH
 apt-get update
 
-for pkg in containerd.io docker-ce-cli docker-ce docker-buildx-plugin; do
-    version=$(get_toolset_value ".docker.components.\"$pkg\"")
+# Install docker components which available via apt-get
+# Using toolsets keep installation order to install dependencies before the package in order to control versions
+
+components=$(get_toolset_value '.docker.components[] .package')
+for package in $components; do
+    version=$(get_toolset_value ".docker.components[] | select(.package == \"$package\") | .version")
     if [[ $version == "latest" ]]; then
-        components_to_install+="${pkg} "
+        apt-get install -y --no-install-recommends "$package"
     else
-        version_string=$(apt-cache madison "${pkg}" | awk '{ print $3 }' | grep "${version}" | grep "${os_codename}" | head -1)
-        components_to_install+="${pkg}=${version_string} "
+        version_string=$(apt-cache madison "$package" | awk '{ print $3 }' | grep "$version" | grep "$os_codename" | head -1)
+        apt-get install -y --no-install-recommends "${package}=${version_string}"
     fi
 done
-apt-get install -y --no-install-recommends $components_to_install
 
-# Download docker compose v2 from releases
-# Temporaty pinned to v2.23.3 due https://github.com/actions/runner-images/issues/9172
-compose_version=$(get_toolset_value ".docker.components.compose")
-URL=$(resolve_github_release_asset_url "docker/compose" "endswith(\"compose-linux-x86_64\")" "${compose_version}")
-compose_binary_path=$(download_with_retry "${URL}" "/tmp/docker-compose-v2")
+# Install plugins that are best installed from the GitHub repository
+# Be aware that `url` built from github repo name and plugin name because of current repo naming for those plugins
 
-# Supply chain security - Docker Compose v2
-compose_hash_url=$(resolve_github_release_asset_url "docker/compose" "endswith(\"checksums.txt\")" "${compose_version}")
-compose_external_hash=$(get_checksum_from_url "${compose_hash_url}" "compose-linux-x86_64" "SHA256")
-use_checksum_comparison "${compose_binary_path}" "${compose_external_hash}"
-
-# Install docker compose v2
-install "${compose_binary_path}" /usr/libexec/docker/cli-plugins/docker-compose
+plugins=$(get_toolset_value '.docker.plugins[] .plugin')
+for plugin in $plugins; do
+    version=$(get_toolset_value ".docker.plugins[] | select(.plugin == \"$plugin\") | .version")
+    filter=$(get_toolset_value ".docker.plugins[] | select(.plugin == \"$plugin\") | .asset")
+    url=$(resolve_github_release_asset_url "docker/$plugin" "endswith(\"$filter\")" "$version")
+    binary_path=$(download_with_retry "$url" "/tmp/docker-$plugin")
+    mkdir -pv "/usr/libexec/docker/cli-plugins"
+    install "$binary_path" "/usr/libexec/docker/cli-plugins/docker-$plugin"
+done
 
 # docker from official repo introduced different GID generation: https://github.com/actions/runner-images/issues/8157
 gid=$(cut -d ":" -f 3 /etc/group | grep "^1..$" | sort -n | tail -n 1 | awk '{ print $1+1 }')
-groupmod -g $gid docker
+groupmod -g "$gid" docker
 chgrp -hR docker /run/docker.sock
 
 # Enable docker.service
