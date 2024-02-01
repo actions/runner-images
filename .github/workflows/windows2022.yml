@@ -4,6 +4,7 @@ run-name: Windows2022 - ${{ github.event.pull_request.title }}
 on:
   pull_request:
     paths:
+    - 'helpers/GenerateResourcesAndImage.ps1'
     - 'images/windows/**'
 
 defaults:

@@ -4,6 +4,7 @@ run-name: Ubuntu22.04 - ${{ github.event.pull_request.title }}
 on:
   pull_request:
     paths:
+    - 'helpers/GenerateResourcesAndImage.ps1'
     - 'images/ubuntu/**'
 
 defaults:
