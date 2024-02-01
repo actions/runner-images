@@ -5,7 +5,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1054-azure
-- Image Version: 20240126.1.0
+- Image Version: 20240131.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -33,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.0
-- Homebrew 4.2.5
+- Homebrew 4.2.6
 - Miniconda 23.11.0
 - Npm 10.2.3
 - NuGet 6.6.1.2
@@ -41,7 +41,7 @@
 - Pip3 20.0.2
 - Pipx 1.4.3
 - RubyGems 3.1.2
-- Vcpkg (build from commit 7032c5759)
+- Vcpkg (build from commit 10e052511)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -68,12 +68,12 @@ to accomplish this.
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.10.0
-- AzCopy 10.22.2 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.23.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.0.2
 - Bazelisk 1.19.0
 - Bicep 0.24.24
 - Buildah 1.22.3
-- CMake 3.28.1
+- CMake 3.28.2
 - CodeQL Action Bundle 2.16.1
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
@@ -92,7 +92,7 @@ to accomplish this.
 - Kind 0.20.0
 - Kubectl 1.29.1
 - Kustomize 5.3.0
-- Leiningen 2.10.0
+- Leiningen 2.11.1
 - MediaInfo 19.09
 - Mercurial 5.3.1
 - Minikube 1.32.0
@@ -100,33 +100,33 @@ to accomplish this.
 - Newman 6.1.0
 - nvm 0.39.7
 - OpenSSL 1.1.1f-1ubuntu2.20
-- Packer 1.10.0
+- Packer 1.10.1
 - Parcel 2.11.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.103.1
+- Pulumi 3.104.1
 - R 4.3.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.7.1
+- Terraform 1.7.2
 - yamllint 1.33.0
 - yq 4.40.5
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.15.15
+- AWS CLI 2.15.16
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.108.0
 - Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.42.1
-- Google Cloud CLI 461.0.0
-- Netlify CLI 17.15.3
+- GitHub CLI 2.43.1
+- Google Cloud CLI 462.0.1
+- Netlify CLI 17.15.6
 - OpenShift CLI 4.14.10
 - ORAS CLI 1.1.0
-- Vercel CLI 33.3.0
+- Vercel CLI 33.4.1
 
 ### Java
 | Version             | Environment Variable |
@@ -165,7 +165,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 121.0.6167.85
+- Google Chrome 121.0.6167.139
 - ChromeDriver 121.0.6167.85
 - Chromium 121.0.6167.0
 - Microsoft Edge 121.0.2277.83
@@ -199,7 +199,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.35-0ubuntu0.20.04.1
+- MySQL 8.0.36-0ubuntu0.20.04.1
 ```
 User: root
 Password: root
@@ -268,7 +268,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Package Name               | Version                                                                                                                                                                                           |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 9.0                                                                                                                                                                                               |
-| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0                                                                                                                                                |
+| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                         |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                            |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                        |
@@ -292,15 +292,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.16          | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
 | alpine:3.17          | sha256:53cf9478b76f4c8fae126acbdfb79bed6e69e628faff572ebe4a029d3d247d98  | 2024-01-27 |
 | alpine:3.18          | sha256:11e21d7b981a59554b3f822c49f6e9f57b6068bb74f49c4cd5cc4c663c7e5160  | 2024-01-27 |
-| debian:10            | sha256:defa5d214292f2aaf7905d3e4bcdf8f628019feb63e7c8746df563d1a941f8d7  | 2024-01-11 |
-| debian:11            | sha256:71cb300d5448af821aedfe63afd55ba05f45a6a79f00dcd131b96b780bb99fe4  | 2024-01-11 |
+| debian:10            | sha256:8fc5c3f7828792d01a02f490202c4b1aaa33f00a3beed5bc12814e3ed55fa0e2  | 2024-01-31 |
+| debian:11            | sha256:44cfd77e3dbebfa8a0545d9fd1bee6e874cf6998a3bbfb5cccf34919df4e3360  | 2024-01-31 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest | sha256:5a8f30813a104b86e927ff4695a746f74a5bb921c7be1dbcca6d754dfbe04822  | 2023-12-01 |
+| moby/buildkit:latest | sha256:449188623c7a8a3bd4f161c5d0ddf5cabbfb828f7eaadf9ed8111864b911a308  | 2024-01-31 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:995a5f4314885452a4a785abc25a0fec40e26c346559e11e709d58bb7a927cf4  | 2024-01-17 |
+| node:18              | sha256:56ed84097b42a0aa7c218bb7970add8efa4407750a576d8a8e4a5726002ca3b0  | 2024-02-01 |
 | node:18-alpine       | sha256:0085670310d2879621f96a4216c893f92e2ded827e9e6ef8437672e1bd72f437  | 2024-01-27 |
-| node:20              | sha256:ffebb4405810c92d267a764b21975fb2d96772e41877248a37bf3abaa0d3b590  | 2024-01-17 |
+| node:20              | sha256:33bfe51ff32a17d6cfb5bca5ae2743a9b2390ac99dcffde543565bb83b1fb786  | 2024-02-01 |
 | node:20-alpine       | sha256:2f46fd49c767554c089a5eb219115313b72748d8f62f5eccb58ef52bc36db4ad  | 2024-01-27 |
 | ubuntu:20.04         | sha256:f2034e7195f61334e6caff6ecf2e965f92d11e888309065da85ff50c617732b8  | 2023-12-13 |
 
@@ -391,7 +391,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2                   |
 | xorriso                | 1.5.2-1                           |
-| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.14      |
+| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.15      |
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
