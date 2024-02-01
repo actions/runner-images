@@ -120,13 +120,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $True)]
         [string] $ResourceGroupName,
         [Parameter(Mandatory = $True)]
-        [ImageType] $ImageType,
-        [Parameter(Mandatory = $False)]
-        [string] $ManagedImageName = "Runner-Image-$($ImageType)",
-        [Parameter(Mandatory = $True)]
         [string] $AzureLocation,
-        [Parameter(Mandatory = $False)]
-        [string] $ImageGenerationRepositoryRoot = $pwd,
         [Parameter(Mandatory = $False)]
         [int] $SecondsToWaitForServicePrincipalSetup = 120,
         [Parameter(Mandatory = $False)]
@@ -136,11 +130,19 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [string] $AzureTenantId,
         [Parameter(Mandatory = $False)]
+        [switch] $ReuseResourceGroup,
+
+        # Generic parameters
+        [Parameter(Mandatory = $True)]
+        [ImageType] $ImageType,
+        [Parameter(Mandatory = $False)]
+        [string] $ManagedImageName = "Runner-Image-$($ImageType)",
+        [Parameter(Mandatory = $False)]
+        [string] $ImageGenerationRepositoryRoot = $pwd,
+        [Parameter(Mandatory = $False)]
         [switch] $RestrictToAgentIpAddress,
         [Parameter(Mandatory = $False)]
         [switch] $Force,
-        [Parameter(Mandatory = $False)]
-        [switch] $ReuseResourceGroup,
         [Parameter(Mandatory = $False)]
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
