@@ -1,12 +1,11 @@
 | Announcements |
 |-|
 | [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
-| [Old versions of Android SDK & tools will be removed from images on January, 8](https://github.com/actions/runner-images/issues/8952) |
 ***
 # macOS 11
 - OS Version: macOS 11.7.10 (20G1427)
 - Kernel Version: Darwin 20.6.0
-- Image Version: 20240113.1
+- Image Version: 20240127.1
 
 ## Installed Software
 
@@ -30,7 +29,6 @@
 - NVM 0.39.7
 - NVM - Cached node versions: 16.20.2, 18.19.0, 20.11.0
 - Perl 5.38.2
-- PHP 8.3.1
 - Python 2.7.18
 - Python3 3.12.1
 - R 4.3.2
@@ -40,16 +38,15 @@
 - Bundler 2.4.22
 - Carthage 0.39.1
 - CocoaPods 1.14.3
-- Composer 2.6.6
-- Homebrew 4.2.3
+- Homebrew 4.2.5
 - Miniconda 23.11.0
 - NPM 10.2.3
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 23.3.2 (python 3.12)
-- Pipx 1.4.2
+- Pipx 1.4.3
 - RubyGems 3.4.10
-- Vcpkg 2024 (build from commit 53bef8994)
+- Vcpkg 2024 (build from commit 7032c5759)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -67,19 +64,18 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.21.2
-- bazel 7.0.0
+- azcopy 10.22.2
+- bazel 7.0.2
 - bazelisk 1.19.0
 - bsdtar 3.3.2 - available by 'tar' alias
 - Curl 8.5.0
 - Git 2.43.0
 - Git LFS 3.4.1
-- GitHub CLI 2.42.0
+- GitHub CLI 2.42.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
-- gpg (GnuPG) 2.4.3
-- helm v3.13.3+gc8b9489
-- ImageMagick 7.1.1-26
+- gpg (GnuPG) 2.4.4
+- helm v3.14.0+g3fc9f4b
 - jq 1.7.1
 - mongo 5.0.21
 - mongod 5.0.21
@@ -96,24 +92,24 @@
 - zstd 1.5.5
 
 ### Tools
-- Aliyun CLI 3.0.196
+- Aliyun CLI 3.0.197
 - App Center CLI 2.14.0
-- AWS CLI 2.15.10
-- AWS SAM CLI 1.107.0
+- AWS CLI 2.15.15
+- AWS SAM CLI 1.108.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.24.24
 - Cabal 3.10.2.1
 - Cmake 3.28.1
-- CodeQL Action Bundle 2.15.5
+- CodeQL Action Bundle 2.16.1
 - Fastlane 2.219.0
 - GHC 9.8.1
 - GHCup 0.1.20.0
 - Jazzy 0.14.4
 - Stack 2.13.1
 - SwiftFormat 0.53.0
-- Swig 4.1.1
+- Swig 4.2.0
 - Xcode Command Line Tools 13.2.0.0.1.1638488800
 
 ### Linters
@@ -123,14 +119,14 @@
 ### Browsers
 - Safari 16.6.1 (16615.3.12.11.5)
 - SafariDriver 16.6.1 (16615.3.12.11.5)
-- Google Chrome 120.0.6099.216
-- Google Chrome for Testing 120.0.6099.109
-- ChromeDriver 120.0.6099.109
-- Microsoft Edge 120.0.2210.133
-- Microsoft Edge WebDriver 120.0.2210.133
-- Mozilla Firefox 121.0.1
+- Google Chrome 121.0.6167.85
+- Google Chrome for Testing 121.0.6167.85
+- ChromeDriver 121.0.6167.85
+- Microsoft Edge 121.0.2277.83
+- Microsoft Edge WebDriver 121.0.2277.83
+- Mozilla Firefox 122.0
 - geckodriver 0.34.0
-- Selenium server 4.16.1
+- Selenium server 4.17.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -142,10 +138,10 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.392+8 (default) | JAVA_HOME_8_X64      |
-| 11.0.21+9           | JAVA_HOME_11_X64     |
-| 17.0.9+9            | JAVA_HOME_17_X64     |
-| 21.0.1+12.0         | JAVA_HOME_21_X64     |
+| 8.0.402+6 (default) | JAVA_HOME_8_X64      |
+| 11.0.22+7           | JAVA_HOME_11_X64     |
+| 17.0.10+7           | JAVA_HOME_17_X64     |
+| 21.0.2+13.0         | JAVA_HOME_21_X64     |
 
 ### Cached Tools
 
@@ -157,11 +153,11 @@
 - 3.1.4
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.14]
+- 2.7.18 [PyPy 7.3.15]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
-- 3.9.18 [PyPy 7.3.14]
-- 3.10.13 [PyPy 7.3.14]
+- 3.9.18 [PyPy 7.3.15]
+- 3.10.13 [PyPy 7.3.15]
 
 #### Python
 - 3.7.17
@@ -174,12 +170,12 @@
 #### Node.js
 - 16.20.2
 - 18.19.0
-- 20.10.0
+- 20.11.0
 
 #### Go
 - 1.19.13
-- 1.20.12
-- 1.21.5
+- 1.20.13
+- 1.21.6
 
 ### Rust Tools
 - Cargo 1.75.0
@@ -196,7 +192,7 @@
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.2.18
+- PowerShell 7.4.1
 
 #### PowerShell Modules
 - Az: 11.2.0
@@ -356,5 +352,5 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 - libXext 1.3.5
 - libXft 2.3.8
 - Tcl/Tk 8.6.13_5
-- Zlib 1.3
+- Zlib 1.3.1
 
