@@ -1,4 +1,6 @@
-Describe "Apache" {
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
+Describe "Apache" -Skip:(Test-IsContainer) {
     It "Apache CLI" {
         "apache2 -v" | Should -ReturnZeroExitCode
     }
@@ -10,7 +12,7 @@ Describe "Apache" {
     }
 }
 
-Describe "Nginx" {
+Describe "Nginx" -Skip:(Test-IsContainer) {
     It "Nginx CLI" {
         "nginx -v" | Should -ReturnZeroExitCode
     }

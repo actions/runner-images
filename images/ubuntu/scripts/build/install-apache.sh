@@ -4,6 +4,10 @@
 ##  Desc:  Install Apache HTTP Server
 ################################################################################
 
+if [[ -f /run/systemd/container ]]; then
+    exit 0
+fi
+
 # Install Apache
 apt-get install apache2 -y
 

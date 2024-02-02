@@ -4,6 +4,10 @@
 ##  Desc:  Install Nginx
 ################################################################################
 
+if [[ -f /run/systemd/container ]]; then
+    exit 0
+fi
+
 # Install Nginx
 apt-get install nginx -y
 
