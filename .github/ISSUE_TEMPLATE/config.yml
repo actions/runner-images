@@ -1,6 +1,0 @@
-blank_issues_enabled: false
-
-contact_links:
-  - name: Get help in GitHub Discussions
-    url: https://github.com/actions/runner-images/discussions
-    about: Have a question? Feel free to ask in the runner-images GitHub Discussions!
