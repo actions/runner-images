@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
 function Get-PostgreSqlVersion {
     $postgreSQLVersion = psql --version | Get-StringPart -Part 2
     return $postgreSQLVersion
@@ -14,7 +16,7 @@ function Get-SqliteVersion {
 }
 
 function Get-MySQLVersion {
-    $mySQLVersion = mysqld --version | Get-StringPart -Part 2
+    $mySQLVersion = mysql --version | Get-StringPart -Part 2
     return $mySQLVersion
 }
 
@@ -43,12 +45,18 @@ function Build-PostgreSqlSection {
 function Build-MySQLSection {
     $node = [HeaderNode]::new("MySQL")
     $node.AddToolVersion("MySQL", $(Get-MySQLVersion))
-    $node.AddNote(@(
-        "User: root",
-        "Password: root",
-        "MySQL service is disabled by default.",
-        "Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'"
-    ) -join "`n")
+    if (Test-IsContainer) {
+        $node.AddNote(@(
+            "MySQL service is not installed."
+        ) -join "`n")
+    } else {
+        $node.AddNote(@(
+            "User: root",
+            "Password: root",
+            "MySQL service is disabled by default.",
+            "Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'"
+        ) -join "`n")
+    }
 
     return $node
 }
