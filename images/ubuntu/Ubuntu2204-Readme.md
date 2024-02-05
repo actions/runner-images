@@ -5,7 +5,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
 - Kernel Version: 6.2.0-1019-azure
-- Image Version: 20240201.1.0
+- Image Version: 20240204.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -39,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.4.3
 - RubyGems 3.3.5
-- Vcpkg (build from commit 10e052511)
+- Vcpkg (build from commit fecdd89f2)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -83,7 +83,7 @@ to accomplish this.
 - Haveged 1.9.14
 - Heroku 8.7.1
 - jq 1.6
-- Kind 0.20.0
+- Kind 0.21.0
 - Kubectl 1.29.1
 - Kustomize 5.3.0
 - Leiningen 2.11.1
@@ -108,8 +108,8 @@ to accomplish this.
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.197
-- AWS CLI 2.15.16
+- Alibaba Cloud CLI 3.0.198
+- AWS CLI 2.15.17
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.108.0
 - Azure CLI 2.56.0
@@ -150,8 +150,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.69.2
-- Cargo audit 0.18.3
+- Bindgen 0.69.4
+- Cargo audit 0.19.0
 - Cargo clippy 0.1.75
 - Cargo outdated 0.14.0
 - Cbindgen 0.26.0
@@ -161,8 +161,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 121.0.6167.139
 - ChromeDriver 121.0.6167.85
 - Chromium 121.0.6167.0
-- Microsoft Edge 121.0.2277.83
-- Microsoft Edge WebDriver 121.0.2277.83
+- Microsoft Edge 121.0.2277.98
+- Microsoft Edge WebDriver 121.0.2277.98
 - Selenium server 4.17.0
 - Mozilla Firefox 122.0
 - Geckodriver 0.34.0
@@ -285,8 +285,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:18-alpine       | sha256:0085670310d2879621f96a4216c893f92e2ded827e9e6ef8437672e1bd72f437  | 2024-01-27 |
 | node:20              | sha256:fd0115473b293460df5b217ea73ff216928f2b0bb7650c5e7aa56aae4c028426  | 2024-02-01 |
 | node:20-alpine       | sha256:2f46fd49c767554c089a5eb219115313b72748d8f62f5eccb58ef52bc36db4ad  | 2024-01-27 |
-| ubuntu:20.04         | sha256:f2034e7195f61334e6caff6ecf2e965f92d11e888309065da85ff50c617732b8  | 2023-12-13 |
-| ubuntu:22.04         | sha256:e6173d4dc55e76b87c4af8db8821b1feae4146dd47341e4d431118c7dd060a74  | 2024-01-11 |
+| ubuntu:20.04         | sha256:bb1c41682308d7040f74d103022816d41c50d7b0c89e9d706a74b4e548636e54  | 2024-01-23 |
+| ubuntu:22.04         | sha256:e9569c25505f33ff72e88b2990887c9dcf230f23259da296eb814fc2b41af999  | 2024-01-25 |
 
 ### Installed apt packages
 | Name                   | Version                             |
