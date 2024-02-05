@@ -33,11 +33,17 @@ function Get-SqlPackageVersion {
 function Build-PostgreSqlSection {
     $node = [HeaderNode]::new("PostgreSQL")
     $node.AddToolVersion("PostgreSQL", $(Get-PostgreSqlVersion))
-    $node.AddNote(@(
-        "User: postgres",
-        "PostgreSQL service is disabled by default.",
-        "Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'"
-    ) -join "`n")
+    if (Test-IsContainer) {
+        $node.AddNote(@(
+            "PostgreSQL service is not installed."
+        ) -join "`n")
+    } else {
+        $node.AddNote(@(
+            "User: postgres",
+            "PostgreSQL service is disabled by default.",
+            "Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'"
+        ) -join "`n")
+    }
 
     return $node
 }

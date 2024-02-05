@@ -18,16 +18,21 @@ echo "deb [signed-by=/usr/share/keyrings/postgresql.gpg] $REPO_URL $(lsb_release
 toolset_version=$(get_toolset_value '.postgresql.version')
 
 # Install PostgreSQL
-echo "Install PostgreSQL"
+echo "Install PostgreSQL client"
 apt update
-apt install postgresql-$toolset_version
+apt install postgresql-client-$toolset_version
 
 echo "Install libpq-dev"
 apt-get install libpq-dev
 
-# Disable postgresql.service
-systemctl is-active --quiet postgresql.service && systemctl stop postgresql.service
-systemctl disable postgresql.service
+if [[ ! -f /run/systemd/container ]]; then
+    echo "Install PostgreSQL"
+    apt install postgresql-$toolset_version
+
+    # Disable postgresql.service
+    systemctl is-active --quiet postgresql.service && systemctl stop postgresql.service
+    systemctl disable postgresql.service
+fi
 
 rm /etc/apt/sources.list.d/pgdg.list
 rm /usr/share/keyrings/postgresql.gpg

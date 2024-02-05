@@ -11,7 +11,7 @@ Describe "MongoDB" -Skip:(Test-IsUbuntu22) {
 }
 
 Describe "PostgreSQL" {
-    It "PostgreSQL Service" {
+    It "PostgreSQL Service" -Skip:(Test-IsContainer) {
         "sudo systemctl start postgresql" | Should -ReturnZeroExitCode
         "pg_isready" | Should -OutputTextMatchingRegex "/var/run/postgresql:5432 - accepting connections"
         "sudo systemctl stop postgresql" | Should -ReturnZeroExitCode
@@ -21,8 +21,10 @@ Describe "PostgreSQL" {
         $toolsetVersion = (Get-ToolsetContent).postgresql.version
         # Client version
         (psql --version).split()[-1] | Should -BeLike "$toolsetVersion*"
-        # Server version
-        (pg_config --version).split()[-1] | Should -BeLike "$toolsetVersion*"
+        if (-not (Test-IsContainer)) {
+            # Server version
+            (pg_config --version).split()[-1] | Should -BeLike "$toolsetVersion*"
+        }
     }
 }
 
