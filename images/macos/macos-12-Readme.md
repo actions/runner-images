@@ -5,7 +5,7 @@
 # macOS 12
 - OS Version: macOS 12.7.3 (21H1015)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240127.1
+- Image Version: 20240202.1
 
 ## Installed Software
 
@@ -38,9 +38,9 @@
 ### Package Management
 - Bundler 2.5.5
 - Carthage 0.39.1
-- CocoaPods 1.14.3
+- CocoaPods 1.15.0
 - Composer 2.6.6
-- Homebrew 4.2.5
+- Homebrew 4.2.6
 - Miniconda 23.11.0
 - NPM 10.2.3
 - NuGet 6.3.1.1
@@ -48,7 +48,7 @@
 - Pip3 23.3.2 (python 3.12)
 - Pipx 1.4.3
 - RubyGems 3.5.5
-- Vcpkg 2024 (build from commit 7032c5759)
+- Vcpkg 2024 (build from commit 80403036a)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -66,14 +66,14 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.22.2
+- azcopy 10.23.0
 - bazel 7.0.2
 - bazelisk 1.19.0
 - bsdtar 3.5.1 - available by 'tar' alias
-- Curl 8.5.0
+- Curl 8.6.0
 - Git 2.43.0
 - Git LFS 3.4.1
-- GitHub CLI 2.42.1
+- GitHub CLI 2.43.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.4
@@ -96,22 +96,22 @@
 
 ### Tools
 - App Center CLI 2.14.0
-- AWS CLI 2.15.15
+- AWS CLI 2.15.17
 - AWS SAM CLI 1.108.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.24.24
 - Cabal 3.10.2.1
-- Cmake 3.28.1
+- Cmake 3.28.2
 - CodeQL Action Bundle 2.16.1
-- Colima 0.6.7
+- Colima 0.6.8
 - Fastlane 2.219.0
 - GHC 9.8.1
 - GHCup 0.1.20.0
 - Jazzy 0.14.4
 - Stack 2.13.1
-- SwiftFormat 0.53.0
+- SwiftFormat 0.53.1
 - Swig 4.2.0
 - Xcbeautify 1.4.0
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
@@ -122,13 +122,13 @@
 - Yamllint 1.33.0
 
 ### Browsers
-- Safari 17.3 (17617.2.4.11.9)
-- SafariDriver 17.3 (17617.2.4.11.9)
-- Google Chrome 121.0.6167.85
+- Safari 17.3 (17617.2.4.11.11)
+- SafariDriver 17.3 (17617.2.4.11.11)
+- Google Chrome 121.0.6167.139
 - Google Chrome for Testing 121.0.6167.85
 - ChromeDriver 121.0.6167.85
-- Microsoft Edge 121.0.2277.83
-- Microsoft Edge WebDriver 121.0.2277.83
+- Microsoft Edge 121.0.2277.98
+- Microsoft Edge WebDriver 121.0.2277.98
 - Mozilla Firefox 122.0
 - geckodriver 0.34.0
 - Selenium server 4.17.0
@@ -335,7 +335,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                               |
 | Android Emulator           | 33.1.24                                                                                                                                                                                           |
-| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0                                                                                                                                                |
+| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                         |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android SDK Platform-Tools | 34.0.5                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                            |
