@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2227
-- Image Version: 20240128.1.0
+- Image Version: 20240204.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -30,10 +30,10 @@
 - Miniconda 23.11.0 (pre-installed on the image but not added to PATH)
 - NPM 9.8.1
 - NuGet 6.8.0.131
-- pip 23.3.2 (python 3.9)
+- pip 24.0 (python 3.9)
 - Pipx 1.4.3
 - RubyGems 3.2.33
-- Vcpkg (build from commit 7032c5759)
+- Vcpkg (build from commit 80403036a)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -51,7 +51,7 @@
 ### Tools
 - 7zip 23.01
 - aria2 1.37.0
-- azcopy 10.22.2
+- azcopy 10.23.0
 - Bazel 7.0.2
 - Bazelisk 1.19.0
 - Bicep 0.24.24
@@ -68,7 +68,7 @@
 - ImageMagick 7.1.1-27
 - InnoSetup 6.2.2
 - jq 1.7.1
-- Kind 0.20.0
+- Kind 0.21.0
 - Kubectl 1.29.1
 - Mercurial 5.0
 - gcc 12.2.0
@@ -78,7 +78,7 @@
 - NSIS 3.09
 - OpenSSL 1.1.1w
 - Packer 1.10.0
-- Pulumi 3.103.1
+- Pulumi 3.104.2
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.13.1
@@ -91,13 +91,13 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.197
-- AWS CLI 2.15.15
+- Alibaba Cloud CLI 3.0.198
+- AWS CLI 2.15.17
 - AWS SAM CLI 1.108.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.56.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.42.1
+- GitHub CLI 2.43.1
 
 ### Rust Tools
 - Cargo 1.75.0
@@ -106,18 +106,18 @@
 - Rustup 1.26.0
 
 #### Packages
-- bindgen 0.69.2
-- cargo-audit 0.18.3
+- bindgen 0.69.4
+- cargo-audit 0.19.0
 - cargo-outdated 0.14.0
 - cbindgen 0.26.0
 - Clippy 0.1.75
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 121.0.6167.86
+- Google Chrome 121.0.6167.140
 - Chrome Driver 121.0.6167.85
-- Microsoft Edge 121.0.2277.83
-- Microsoft Edge Driver 121.0.2277.83
+- Microsoft Edge 121.0.2277.98
+- Microsoft Edge Driver 121.0.2277.98
 - Mozilla Firefox 122.0
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
@@ -221,9 +221,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.25.3  | C:\tools\nginx-1.25.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version       | Path                                                     |
-| ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.8.34511.84 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version        | Path                                                     |
+| ----------------------------- | -------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.8.34525.116 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -534,12 +534,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | -------------------------------------------- | ------------ | ----------- |
 | Microsoft Visual C++ 2013 Additional Runtime | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.38.33130 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.38.33135 |
 
 #### Installed Windows SDKs
 - 10.0.17763.0
@@ -566,7 +566,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.503
+- AWSPowershell: 4.1.508
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.12.0
@@ -587,7 +587,7 @@ All other versions are saved but not installed.
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                               |
 | Android Emulator           | 31.2.9                                                                                                                                                                                            |
-| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0                                                                                                                                                |
+| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                         |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android SDK Platform-Tools | 34.0.5                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                            |
