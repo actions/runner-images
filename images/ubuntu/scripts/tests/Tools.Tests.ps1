@@ -97,7 +97,7 @@ Describe "Docker" {
     }
 }
 
-Describe "Docker images" {
+Describe "Docker images" -Skip:(Test-IsContainer) {
     $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 
     It "<ImageName>" -TestCases $testCases {

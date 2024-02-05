@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
 function Get-AnsibleVersion {
     $ansibleVersion = (ansible --version)[0] -replace "[^\d.]"
     return $ansibleVersion
@@ -74,7 +76,7 @@ function Get-DockerClientVersion {
 }
 
 function Get-DockerServerVersion {
-    $dockerServerVersion = sudo docker version --format '{{.Server.Version}}'
+    $dockerServerVersion = dockerd --version | Get-StringPart -Part 2 | Get-StringPart -Part 0 -Delimiter ","
     return $dockerServerVersion
 }
 
