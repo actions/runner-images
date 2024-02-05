@@ -37,6 +37,8 @@ runs:
 
     - name: Build `${{ inputs.image_type }}`
       shell: pwsh
+      env:
+        PACKER_LOG: 1
       run: |
         Import-Module .\helpers\GenerateResourcesAndImage.ps1
 
