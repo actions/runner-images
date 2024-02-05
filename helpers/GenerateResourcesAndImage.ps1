@@ -386,6 +386,15 @@ Function GenerateResourcesAndImage {
         throw "Packer template validation failed."
     }
 
+    $CacheDir = $env:PACKER_CACHE_DIR
+    if ([string]::IsNullOrEmpty($CacheDir)) {
+        if (-not [string]::IsNullOrEmpty($env:XDG_CACHE_HOME)) {
+            $CacheDir = Join-Path $env:XDG_CACHE_HOME "packer"
+        } elseif (-not [string]::IsNullOrEmpty($env:HOME)) {
+            $CacheDir = Join-Path $env:HOME ".cache" "packer"
+        }
+    }
+
     try {
 
         if ($Registry -eq "azure") {
@@ -403,6 +412,7 @@ Function GenerateResourcesAndImage {
         & $PackerBinary build -on-error="$($OnError)" `
             -var "image_name=$($ImageName)" `
             -var "install_password=$($InstallPassword)" `
+            -var "cache_folder=$($CacheDir)" `
             $TemplatePath
 
         if ($LastExitCode -ne 0) {

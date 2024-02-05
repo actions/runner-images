@@ -8,6 +8,8 @@ packer {
 }
 
 locals {
+  cache_folder = var.cache_folder != "" ? var.cache_folder : "${path.root}/../../../.cache/packer"
+
   image_name_split = split(":", var.image_name != "" ? var.image_name : "runner-image:${var.image_os}-${var.image_version}")
   image_tag = length(local.image_name_split) > 1 ? element(local.image_name_split, 1) : "latest"
   image_name = element(local.image_name_split, 0)
@@ -64,6 +66,11 @@ variable "install_password" {
   sensitive = true
 }
 
+variable "cache_folder" {
+  type    = string
+  default = ""
+}
+
 source "docker" "build_image" {
   changes = [
     "USER runner"
@@ -79,6 +86,9 @@ source "docker" "build_image" {
     "--",
     "{{ .Image }}"
   ]
+  volumes     = {
+    "${local.cache_folder}": "/var/cache/packer"
+  }
 }
 
 build {

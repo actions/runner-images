@@ -245,15 +245,24 @@ runs:
         switch -Wildcard ("${{ inputs.image_type }}") {
           "Ubuntu*" {
             $imageOs = "ubuntu"
+
+            $cacheDir = Join-Path -Path "/mnt" -ChildPath "packer" "cache"
+            sudo mkdir -vp "$cacheDir"
+            sudo chmod 777 "$cacheDir"
           }
           "Windows*" {
             $imageOs = "windows"
+
+            $cacheDir = Join-Path -Path "${{ github.workspace }}" -ChildPath "packer" "cache"
+            mkdir $cacheDir
+            icacls $cacheDir /grant Everyone:F
           }
         }
 
         echo "::group::Pre-configure Packer"
         & {
           echo "image_os=${imageOs}";
+          echo "cache_dir=$cacheDir";
         } | tee -a "$env:GITHUB_OUTPUT"
         echo "::endgroup::"
 
@@ -261,6 +270,7 @@ runs:
       shell: pwsh
       env:
         PACKER_LOG: 1
+        PACKER_CACHE_DIR: ${{ steps.preconfig.outputs.cache_dir }}
       run: |
         Import-Module .\helpers\GenerateResourcesAndImage.ps1
 
