@@ -10,6 +10,136 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Disk space before pruning
+      shell: pwsh
+      run: |
+        echo "::group::Disk space before pruning"
+        switch ("${{ runner.os }}") {
+          "Linux" {
+            df -h
+          }
+          "Windows" {
+            Get-PSDrive -PSProvider FileSystem
+          }
+        }
+        echo "::endgroup::"
+
+    - name: Prune software (APT)
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        echo "::group::Installed APT packages"
+        dpkg -l
+        echo "::endgroup::"
+
+        echo "::group::Remove APT packages"
+        sudo apt-mark minimize-manual --yes
+        packages=(
+          ant
+          ant-optional
+          apache2*
+          aspnetcore-*
+          azure-cli
+          clang-*
+          dotnet-*
+          google-chrome-stable
+          libmono-*
+          lld-*
+          lldb-*
+          libmono*
+          libnginx-*
+          llvm-*
+          microsoft-edge-stable
+          mongodb-*
+          mono-*
+          mysql-*
+          nginx
+          php*
+          podman
+          postgresql-*
+          r-*
+          ruby*
+          temurin-*
+          walinuxagent
+        )
+        sudo apt-get remove --purge -y ${packages[@]}
+        echo "::endgroup::"
+
+        echo "::group::Remaining APT packages"
+        dpkg -l
+        echo "::endgroup::"
+
+        echo "::group::Disk space after removing apt packages"
+        df -h
+        echo "::endgroup::"
+
+        echo "::group::Remove directories/files"
+        paths=(
+          /etc/skel/.cargo
+          /etc/skel/.composer
+          /etc/skel/.dotnet
+          /etc/skel/.nvm
+          /etc/skel/.rustup
+          /opt/actionarchivecache
+          /opt/az
+          /opt/hostedtoolcache
+          /opt/pipx
+          /opt/pipx_bin
+          /opt/runner
+          /opt/runner-cache
+          /usr/local/.ghcup
+          /usr/local/aws-cli
+          /usr/local/aws-sam-cli
+          /usr/local/bin/aliyun
+          /usr/local/bin/azcopy*
+          /usr/local/bin/bicep
+          /usr/local/bin/ccmake
+          /usr/local/bin/cmake
+          /usr/local/bin/cmake-gui
+          /usr/local/bin/cpack
+          /usr/local/bin/ctest
+          /usr/local/bin/helm
+          /usr/local/bin/kind
+          /usr/local/bin/kustomize
+          /usr/local/bin/minikube
+          /usr/local/bin/oc
+          /usr/local/bin/pulumi*
+          /usr/local/bin/terraform
+          /usr/local/julia*
+          /usr/local/lib/android
+          /usr/local/lib/node_modules
+          /usr/local/share/chromedriver-linux64
+          /usr/local/share/chromium
+          /usr/local/share/cmake-*
+          /usr/local/share/edge_driver
+          /usr/local/share/gecko_driver
+          /usr/local/share/powershell
+          /usr/local/share/vcpkg
+          /usr/local/sqlpackage
+          /usr/share/az_*
+          /usr/share/gradle-*
+          /usr/share/kotlinc
+          /usr/share/miniconda
+          /usr/share/sbt
+          /usr/share/swift
+        )
+        sudo rm -rf ${paths[@]}
+        echo "::endgroup::"
+
+    - name: Disk space after pruning
+      shell: pwsh
+      run: |
+        echo "::group::Disk space after pruning"
+        switch ("${{ runner.os }}") {
+          "Linux" {
+            df -h
+          }
+          "Windows" {
+            Get-PSDrive -PSProvider FileSystem
+          }
+        }
+        echo "::endgroup::"
+
     - name: Setup `packer`
       id: setup
       uses: hashicorp/setup-packer@main
