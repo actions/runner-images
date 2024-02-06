@@ -5,14 +5,17 @@ schedules:
     include:
     - main
   always: true
-
 trigger: none
+
 pr:
   autoCancel: true
   branches:
     include:
     - main
-
+pool:
+ name: ci-agent-pool
+ vmImage: Ent-Packer
+ 
 jobs:
 - template: image-generation.yml
   parameters:
