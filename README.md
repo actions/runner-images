@@ -23,8 +23,10 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | --------------------|---------------------|--------------------|
 | Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] |
 | Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] |
-| macOS 14 [beta] | `macos-14`, `macos-14-large`, or  `macos-14-xlarge`| [macOS-14] |
-| macOS 13 | `macos-13`, `macos-13-large`, or  `macos-13-xlarge`| [macOS-13] |
+| macOS 14 [beta] | `macos-14-large`| [macOS-14] |
+| macOS 14 Arm64 [beta] | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
+| macOS 13 | `macos-13` or `macos-13-large` | [macOS-13] |
+| macOS 13 Arm64 | `macos-13-xlarge` | [macOS-13-arm64] |
 | macOS 12 | `macos-latest`,`macos-12`, `macos-latest-large`, or `macos-12-large`| [macOS-12] |
 | macOS 11 [deprecated] | `macos-11`| [macOS-11] |
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] |
@@ -42,7 +44,9 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [macOS-11]: https://github.com/actions/runner-images/blob/main/images/macos/macos-11-Readme.md
 [macOS-12]: https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md
 [macOS-13]: https://github.com/actions/runner-images/blob/main/images/macos/macos-13-Readme.md
+[macOS-13-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-13-arm64-Readme.md
 [macOS-14]: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
+[macOS-14-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-arm64-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
 ## Announcements
