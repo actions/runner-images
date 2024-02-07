@@ -5,7 +5,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1054-azure
-- Image Version: 20240131.1.0
+- Image Version: 20240204.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -41,7 +41,7 @@
 - Pip3 20.0.2
 - Pipx 1.4.3
 - RubyGems 3.1.2
-- Vcpkg (build from commit 10e052511)
+- Vcpkg (build from commit 80403036a)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -60,7 +60,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.5
+- Gradle 8.6
 - Lerna 8.0.2
 - Maven 3.8.8
 - Sbt 1.9.8
@@ -89,7 +89,7 @@ to accomplish this.
 - Heroku 8.7.1
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
-- Kind 0.20.0
+- Kind 0.21.0
 - Kubectl 1.29.1
 - Kustomize 5.3.0
 - Leiningen 2.11.1
@@ -104,7 +104,7 @@ to accomplish this.
 - Parcel 2.11.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.104.1
+- Pulumi 3.104.2
 - R 4.3.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -116,14 +116,14 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.15.16
+- AWS CLI 2.15.17
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.108.0
 - Azure CLI 2.56.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.43.1
 - Google Cloud CLI 462.0.1
-- Netlify CLI 17.15.6
+- Netlify CLI 17.15.7
 - OpenShift CLI 4.14.10
 - ORAS CLI 1.1.0
 - Vercel CLI 33.4.1
@@ -157,8 +157,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustup 1.26.0
 
 #### Packages
-- Bindgen 0.69.2
-- Cargo audit 0.18.3
+- Bindgen 0.69.4
+- Cargo audit 0.19.0
 - Cargo clippy 0.1.75
 - Cargo outdated 0.14.0
 - Cbindgen 0.26.0
@@ -168,8 +168,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 121.0.6167.139
 - ChromeDriver 121.0.6167.85
 - Chromium 121.0.6167.0
-- Microsoft Edge 121.0.2277.83
-- Microsoft Edge WebDriver 121.0.2277.83
+- Microsoft Edge 121.0.2277.98
+- Microsoft Edge WebDriver 121.0.2277.98
 - Selenium server 4.17.0
 - Mozilla Firefox 122.0
 - Geckodriver 0.34.0
@@ -298,11 +298,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | moby/buildkit:latest | sha256:449188623c7a8a3bd4f161c5d0ddf5cabbfb828f7eaadf9ed8111864b911a308  | 2024-01-31 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:56ed84097b42a0aa7c218bb7970add8efa4407750a576d8a8e4a5726002ca3b0  | 2024-02-01 |
+| node:18              | sha256:2a13079c6393cd19adfd8d362fac004b2d0eed462f3c3fedfad2c0d0de17b429  | 2024-02-01 |
 | node:18-alpine       | sha256:0085670310d2879621f96a4216c893f92e2ded827e9e6ef8437672e1bd72f437  | 2024-01-27 |
-| node:20              | sha256:33bfe51ff32a17d6cfb5bca5ae2743a9b2390ac99dcffde543565bb83b1fb786  | 2024-02-01 |
+| node:20              | sha256:fd0115473b293460df5b217ea73ff216928f2b0bb7650c5e7aa56aae4c028426  | 2024-02-01 |
 | node:20-alpine       | sha256:2f46fd49c767554c089a5eb219115313b72748d8f62f5eccb58ef52bc36db4ad  | 2024-01-27 |
-| ubuntu:20.04         | sha256:f2034e7195f61334e6caff6ecf2e965f92d11e888309065da85ff50c617732b8  | 2023-12-13 |
+| ubuntu:20.04         | sha256:bb1c41682308d7040f74d103022816d41c50d7b0c89e9d706a74b4e548636e54  | 2024-01-23 |
 
 ### Installed apt packages
 | Name                   | Version                           |
