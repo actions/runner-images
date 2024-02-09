@@ -112,9 +112,80 @@
             "fastlane"
         ]
     },
-    "go": {
-        "default": "1.20"
-    },
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "3.11.*",
+                        "3.12.*"
+                    ]
+                },
+                "arm64": {
+                    "versions": [
+                        "3.11.*",
+                        "3.12.*"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "18.*",
+                        "20.*"
+                    ]
+                },
+                "arm64": {
+                    "versions": [
+                        "18.*",
+                        "20.*"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": {
+                "x64": {
+                    "variable_template" : "GOROOT_{0}_{1}_X64",
+                    "versions": [
+                        "1.20.*",
+                        "1.21.*",
+                        "1.22.*"
+                    ]
+                },
+                "arm64": {
+                    "variable_template" : "GOROOT_{0}_{1}_ARM64",
+                    "versions": [
+                        "1.20.*",
+                        "1.21.*",
+                        "1.22.*"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Ruby",
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "3.0.*",
+                        "3.1.*"
+                    ]
+                }
+            }
+        }
+    ],
     "node": {
         "default": "20"
     },

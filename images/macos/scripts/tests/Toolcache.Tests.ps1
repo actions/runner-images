@@ -99,7 +99,7 @@ Describe "Toolcache" {
             }
         }
     }
-    Context "PyPy" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
+    Context "PyPy" -Skip:($os.IsVenturaArm64 -or $os.IsSonoma) {
         $pypyDirectory = Join-Path $toolcacheDirectory "PyPy"
         $pypyPackage = $packages | Where-Object { $_.ToolName -eq "pypy" } | Select-Object -First 1
         $testCase = @{ PypyDirectory = $pypyDirectory }
