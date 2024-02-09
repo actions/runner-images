@@ -78,49 +78,13 @@ is_BigSur() {
 }
 
 is_Veertu() {
-    [ -d "/Library/Application Support/Veertu" ]
-}
-
-get_toolset_path() {
-    echo "$HOME/image-generation/toolset.json"
+    [[ -d "/Library/Application Support/Veertu" ]]
 }
 
 get_toolset_value() {
-    local toolset_path=$(get_toolset_path)
+    local toolset_path=$(echo "$IMAGE_FOLDER/toolset.json")
     local query=$1
     echo "$(jq -r "$query" $toolset_path)"
-}
-
-verlte() {
-    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
-    [  "$1" = "$sortedVersion" ]
-}
-
-brew_cask_install_ignoring_sha256() {
-    local TOOL_NAME=$1
-
-    CASK_DIR="$(brew --repo homebrew/cask)/Casks"
-    chmod a+w "$CASK_DIR/$TOOL_NAME.rb"
-    SHA=$(grep "sha256" "$CASK_DIR/$TOOL_NAME.rb" | awk '{print $2}')
-    sed -i '' "s/$SHA/:no_check/" "$CASK_DIR/$TOOL_NAME.rb"
-    brew install --cask $TOOL_NAME
-    pushd $CASK_DIR
-    git checkout HEAD -- "$TOOL_NAME.rb"
-    popd
-}
-
-get_brew_os_keyword() {
-    if is_BigSur; then
-        echo "big_sur"
-    elif is_Monterey; then
-        echo "monterey"
-    elif is_Ventura; then
-        echo "ventura"
-    elif is_Sonoma; then
-        echo "sonoma"
-    else
-        echo "null"
-    fi
 }
 
 # brew provides package bottles for different macOS versions
@@ -172,7 +136,6 @@ brew_smart_install() {
 
 configure_system_tccdb () {
     local values=$1
-
     local dbPath="/Library/Application Support/com.apple.TCC/TCC.db"
     local sqlQuery="INSERT OR IGNORE INTO access VALUES($values);"
     sudo sqlite3 "$dbPath" "$sqlQuery"
@@ -180,46 +143,38 @@ configure_system_tccdb () {
 
 configure_user_tccdb () {
     local values=$1
-
     local dbPath="$HOME/Library/Application Support/com.apple.TCC/TCC.db"
     local sqlQuery="INSERT OR IGNORE INTO access VALUES($values);"
     sqlite3 "$dbPath" "$sqlQuery"
 }
 
-get_github_package_download_url() {
-    local REPO_ORG=$1
-    local FILTER=$2
-    local VERSION=$3
-    local API_PAT=$4
-    local SEARCH_IN_COUNT="100"
+resolve_github_release_asset_url() {
+    local repo=$1
+    local filter=$2
+    local version=${3:-"*"}
+    local api_pat=$4
 
-    [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
+    page_size="100"
 
-    failed=true
-    for i in {1..10}; do
-        curl "${authString[@]}" -fsSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}" >/tmp/get_github_package_download_url.json && failed=false || sleep 60
-        [ "$failed" = false ] && break
-    done
+    [ -n "$api_pat" ] && authString=(-H "Authorization: token ${api_pat}")
 
-    if [ "$failed" = true ]; then
-       echo "Failed: get_github_package_download_url"
-       exit 1;
-    fi
+    json=$(curl "${authString[@]}" -fsSL "https://api.github.com/repos/${repo}/releases?per_page=${page_size}")
 
-    json=$(cat /tmp/get_github_package_download_url.json)
-
-    if [[ "$VERSION" == "latest" ]]; then
-        tagName=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0)).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | tail -1)
+    if [[ $version == "latest" ]]; then
+        tag_name=$(echo $json | jq -r '.[].tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | tail -n 1)
+    elif [[ $version == *"*"* ]]; then
+        tag_name=$(echo $json | jq -r '.[].tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "${version}" | tail -n 1)
     else
-        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | egrep "\w*${VERSION}" | tail -1)
+        tag_name=$(echo $json | jq -r '.[].tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "${version}")
     fi
 
-    downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
-    if [ -z "$downloadUrl" ]; then
-        echo "Failed to parse a download url for the '${tagName}' tag using '${FILTER}' filter"
+    download_url=$(echo $json | jq -r ".[] | select(.tag_name==\"${tag_name}\").assets[].browser_download_url | select(${filter})" | head -n 1)
+    if [ -z "$download_url" ]; then
+        echo "Failed to parse a download url for the '${tag_name}' tag using '${filter}' filter"
         exit 1
     fi
-    echo $downloadUrl
+
+    echo $download_url
 }
 
 # Close all finder windows because they can interfere with UI tests
@@ -233,5 +188,27 @@ get_arch() {
         echo "arm64"
     else
         echo "x64"
+    fi
+}
+
+use_checksum_comparison() {
+    local file_path=$1
+    local checksum=$2
+    local sha_type=${3:-"256"}
+
+    echo "Performing checksum verification"
+
+    if [[ ! -f "$file_path" ]]; then
+        echo "File not found: $file_path"
+        exit 1
+    fi
+
+    local_file_hash=$(shasum --algorithm "$sha_type" "$file_path" | awk '{print $1}')
+
+    if [[ "$local_file_hash" != "$checksum" ]]; then
+        echo "Checksum verification failed. Expected hash: $checksum; Actual hash: $local_file_hash."
+        exit 1
+    else
+        echo "Checksum verification passed"
     fi
 }

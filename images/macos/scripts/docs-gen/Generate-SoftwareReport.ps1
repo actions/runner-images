@@ -38,7 +38,9 @@ $languageAndRuntime.AddToolVersion("Bash", $(Get-BashVersion))
 $languageAndRuntime.AddNodes($(Get-ClangLLVMVersions))
 $languageAndRuntime.AddNodes($(Get-GccVersions))
 $languageAndRuntime.AddNodes($(Get-FortranVersions))
-$languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+    $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
+}
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("Go", $(Get-GoVersion))
@@ -51,7 +53,7 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersionsListInline("NVM - Cached node versions", $(Get-NVMNodeVersionList), '^\d+')
 }
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
+if ((-not $os.IsBigSur) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
 }
 
@@ -62,7 +64,9 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
 if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
 }
-$languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+    $languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
+}
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
 
 # Package Management
@@ -70,7 +74,7 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
 $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
 $packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
+if ((-not $os.IsBigSur) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
 }
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
@@ -124,7 +128,7 @@ $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
 if ($os.IsBigSur) {
     $utilities.AddToolVersion("helm", $(Get-HelmVersion))
 }
-if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsBigSur) -and (-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 }
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
@@ -212,27 +216,26 @@ $java = $installedSoftware.AddHeader("Java")
 $java.AddTable($(Get-JavaVersions))
 
 # Toolcache
-if (-not $os.IsSonoma) {
-    $toolcache = $installedSoftware.AddHeader("Cached Tools")
-    $toolcache.AddNodes($(Build-ToolcacheSection))
 
-    # Rust
-    $rust = $installedSoftware.AddHeader("Rust Tools")
-    $rust.AddToolVersion("Cargo", $(Get-RustCargoVersion))
-    $rust.AddToolVersion("Rust", $(Get-RustVersion))
-    $rust.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
-    $rust.AddToolVersion("Rustup", $(Get-RustupVersion))
+$toolcache = $installedSoftware.AddHeader("Cached Tools")
+$toolcache.AddNodes($(Build-ToolcacheSection))
 
-    $rustPackages = $rust.AddHeader("Packages")
-    if (-not $os.IsVentura) {
-        $rustPackages.AddToolVersion("Bindgen", $(Get-Bindgen))
-        $rustPackages.AddToolVersion("Cargo-audit", $(Get-Cargoaudit))
-        $rustPackages.AddToolVersion("Cargo-outdated", $(Get-Cargooutdated))
-        $rustPackages.AddToolVersion("Cbindgen", $(Get-Cbindgen))
-    }
-    $rustPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
-    $rustPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
+# Rust
+$rust = $installedSoftware.AddHeader("Rust Tools")
+$rust.AddToolVersion("Cargo", $(Get-RustCargoVersion))
+$rust.AddToolVersion("Rust", $(Get-RustVersion))
+$rust.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
+$rust.AddToolVersion("Rustup", $(Get-RustupVersion))
+
+$rustPackages = $rust.AddHeader("Packages")
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+    $rustPackages.AddToolVersion("Bindgen", $(Get-Bindgen))
+    $rustPackages.AddToolVersion("Cargo-audit", $(Get-Cargoaudit))
+    $rustPackages.AddToolVersion("Cargo-outdated", $(Get-Cargooutdated))
+    $rustPackages.AddToolVersion("Cbindgen", $(Get-Cbindgen))
 }
+$rustPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
+$rustPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 
 # PowerShell
 $powerShell = $installedSoftware.AddHeader("PowerShell Tools")
@@ -275,9 +278,10 @@ Get-XcodeInfoList | Out-Null
 
 $xcodeInfo = Get-XcodeInfoList
 $xcode.AddTable($(Build-XcodeTable $xcodeInfo))
-
-$xcodeTools = $xcode.AddHeader("Xcode Support Tools")
-$xcodeTools.AddNodes($(Build-XcodeSupportToolsSection))
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+    $xcodeTools = $xcode.AddHeader("Xcode Support Tools")
+    $xcodeTools.AddNodes($(Build-XcodeSupportToolsSection))
+}
 
 $installedSdks = $xcode.AddHeader("Installed SDKs")
 $installedSdks.AddTable($(Build-XcodeSDKTable $xcodeInfo))

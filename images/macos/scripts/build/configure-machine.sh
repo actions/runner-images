@@ -22,7 +22,7 @@ if is_Veertu; then
 fi
 
 # Change screen resolution to the maximum supported for 4Mb video memory
-if [ -d "/Library/Application Support/VMware Tools" ]; then
+if [[ -d "/Library/Application Support/VMware Tools" ]]; then
     sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
 fi
 
@@ -43,7 +43,6 @@ defaults write com.apple.VoiceOver4/default SCREnableAppleScript -bool YES
 
 swiftc -suppress-warnings "${HOME}/image-generation/add-certificate.swift"
 
-
 certs=(
     AppleWWDRCAG3.cer
     DeveloperIDG2CA.cer
@@ -52,9 +51,7 @@ for cert in ${certs[@]}; do
     echo "Adding ${cert} certificate"
     cert_path="${HOME}/${cert}"
     curl -fsSL "https://www.apple.com/certificateauthority/${cert}" --output ${cert_path}
-
     sudo ./add-certificate ${cert_path}
-
     rm ${cert_path}
 done
 
@@ -63,7 +60,7 @@ rm -f ./add-certificate
 # enable-automationmode-without-authentication
 if ! is_BigSur; then
 retry=10
-while [ $retry -gt 0 ]; do
+while [[ $retry -gt 0 ]]; do
 {
 osascript <<EOF
     tell application "Terminal"
@@ -80,7 +77,7 @@ EOF
 } && break
 
     retry=$((retry-1))
-    if [ $retry -eq 0 ]; then
+    if [[ $retry -eq 0 ]]; then
         echo "No retry attempts left"
         exit 1
     fi
@@ -100,7 +97,7 @@ done
 fi
 
 # Create symlink for tests running
-if [ ! -d "/usr/local/bin" ];then
+if [[ ! -d "/usr/local/bin" ]];then
     sudo mkdir -p -m 775 /usr/local/bin
     sudo chown $USER:admin /usr/local/bin
 fi

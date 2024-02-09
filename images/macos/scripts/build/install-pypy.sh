@@ -6,23 +6,22 @@
 
 source ~/utils/utils.sh
 
-function InstallPyPy
-{
-    PACKAGE_URL=$1
+InstallPyPy() {
+    local package_url=$1
 
-    PACKAGE_TAR_NAME=$(basename "$PACKAGE_URL")
+    PACKAGE_TAR_NAME=$(basename $package_url)
     echo "Downloading tar archive '$PACKAGE_TAR_NAME'"
-    archive_path=$(download_with_retry "$PACKAGE_URL")
+    archive_path=$(download_with_retry $package_url)
 
     echo "Expand '$PACKAGE_TAR_NAME' to the /tmp folder"
-    tar xf "$archive_path" -C /tmp
+    tar xf $archive_path -C /tmp
 
     # Get Python version
     PACKAGE_NAME=${PACKAGE_TAR_NAME/.tar.bz2/}
     MAJOR_VERSION=$(echo ${PACKAGE_NAME/pypy/} | cut -d. -f1)
     PYTHON_MAJOR="python$MAJOR_VERSION"
 
-    if [ $MAJOR_VERSION != 2 ]; then
+    if [[ $MAJOR_VERSION != 2 ]]; then
         PYPY_MAJOR="pypy$MAJOR_VERSION"
     else
         PYPY_MAJOR="pypy"
@@ -40,14 +39,14 @@ function InstallPyPy
     PYPY_TOOLCACHE_VERSION_ARCH_PATH=$PYPY_TOOLCACHE_VERSION_PATH/x64
 
     echo "Check if PyPy hostedtoolcache folder exist..."
-    if [ ! -d $PYPY_TOOLCACHE_PATH ]; then
+    if [[ ! -d $PYPY_TOOLCACHE_PATH ]]; then
         mkdir -p $PYPY_TOOLCACHE_PATH
     fi
 
     echo "Create PyPy '$PYPY_TOOLCACHE_VERSION_PATH' folder"
     mkdir $PYPY_TOOLCACHE_VERSION_PATH
 
-    echo "Move PyPy '$PACKAGE_TEMP_FOLDER' binaries to '$PYPY_TOOLCACHE_VERSION_ARCH_PATH' folder"
+    echo "Move PyPy $PACKAGE_TEMP_FOLDER binaries to $PYPY_TOOLCACHE_VERSION_ARCH_PATH folder"
     mv $PACKAGE_TEMP_FOLDER $PYPY_TOOLCACHE_VERSION_ARCH_PATH
 
     echo "Create additional symlinks (Required for UsePythonVersion Azure DevOps task)"
@@ -58,8 +57,8 @@ function InstallPyPy
     echo $PYPY_FULL_VERSION > "PYPY_VERSION"
 
     # Starting from PyPy 7.3.4 these links are already included in the package
-    [ -f ./$PYTHON_MAJOR ] || ln -s $PYPY_MAJOR $PYTHON_MAJOR
-    [ -f ./python ] || ln -s $PYTHON_MAJOR python
+    [[ -f ./$PYTHON_MAJOR ]] || ln -s $PYPY_MAJOR $PYTHON_MAJOR
+    [[ -f ./python ]] || ln -s $PYTHON_MAJOR python
 
     chmod +x ./python ./$PYTHON_MAJOR
 
@@ -76,12 +75,12 @@ versions_json_path=$(download_with_retry "https://downloads.python.org/pypy/vers
 toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .arch.'$arch'.versions[]')
 
 for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(cat "$versions_json_path" |
+    latestMajorPyPyVersion=$(cat $versions_json_path |
         jq -r --arg toolsetVersion $toolsetVersion '.[]
         | select((.python_version | startswith($toolsetVersion)) and .stable == true).files[]
         | select(.platform == "darwin").download_url' | head -1)
-    if [[ -z "$latestMajorPyPyVersion" ]]; then
-        echo "Failed to get PyPy version '$toolsetVersion'"
+    if [[ -z $latestMajorPyPyVersion ]]; then
+        echo "Failed to get PyPy version $toolsetVersion"
         exit 1
     fi
     InstallPyPy $latestMajorPyPyVersion

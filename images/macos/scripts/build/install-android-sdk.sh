@@ -6,39 +6,37 @@
 
 source ~/utils/utils.sh
 
-function filter_components_by_version {
-    minimumVersion=$1
+add_filtered_instalaltion_components() {
+    local minimum_version=$1
     shift
-    toolsArr=("$@")
+    local tools_array=("$@")
 
-    for item in ${toolsArr[@]}
-    do
+    for item in ${tools_array[@]}; do
         # take the last argument after spliting string by ';'' and '-''
         version=$(echo "${item##*[-;]}")
-        if verlte $minimumVersion $version
-        then
+        if [[ "$(printf "${minimum_version}\n${version}\n" | sort -V | head -n1)" == "$minimum_version" ]]; then
             components+=($item)
         fi
     done
 }
 
-function get_full_ndk_version {
-    majorVersion=$1
-    ndkVersion=$(${SDKMANAGER} --list | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
+get_full_ndk_version() {
+    local majorVersion=$1
 
+    ndkVersion=$(${SDKMANAGER} --list | grep "ndk;${majorVersion}.*" | awk '{gsub("ndk;", ""); print $1}' | sort -V | tail -n1)
     echo "$ndkVersion"
 }
 
 components=()
 
-ANDROID_PLATFORM=$(get_toolset_value '.android.platform_min_version')
-ANDROID_BUILD_TOOL=$(get_toolset_value '.android.build_tools_min_version')
-ANDROID_EXTRA_LIST=($(get_toolset_value '.android."extras"[]'))
-ANDROID_ADDON_LIST=($(get_toolset_value '.android."addons"[]'))
-ANDROID_ADDITIONAL_TOOLS=($(get_toolset_value '.android."additional_tools"[]'))
-ANDROID_NDK_MAJOR_VERSIONS=($(get_toolset_value '.android.ndk."versions"[]'))
-ANDROID_NDK_MAJOR_DEFAULT=$(get_toolset_value '.android.ndk.default')
-ANDROID_NDK_MAJOR_LATEST=$(get_toolset_value '.android.ndk."versions"[-1]')
+android_platform=$(get_toolset_value '.android.platform_min_version')
+android_build_tool=$(get_toolset_value '.android.build_tools_min_version')
+android_extra_list=($(get_toolset_value '.android."extras"[]'))
+android_addon_list=($(get_toolset_value '.android."addons"[]'))
+android_additional_tools=($(get_toolset_value '.android."additional_tools"[]'))
+android_ndk_major_versions=($(get_toolset_value '.android.ndk."versions"[]'))
+android_ndk_major_default=$(get_toolset_value '.android.ndk.default')
+android_ndk_major_latest=$(get_toolset_value '.android.ndk."versions"[-1]')
 # Get the latest command line tools from https://developer.android.com/studio#cmdline-tools
 # Newer version(s) require Java 11 by default
 # See https://github.com/actions/runner-images/issues/6960
@@ -81,15 +79,15 @@ echo "Installing latest tools & platform tools..."
 echo y | $SDKMANAGER "tools" "platform-tools"
 
 echo "Installing latest ndk..."
-for ndk_version in "${ANDROID_NDK_MAJOR_VERSIONS[@]}"
+for ndk_version in "${android_ndk_major_versions[@]}"
 do
     ndk_full_version=$(get_full_ndk_version $ndk_version)
     echo y | $SDKMANAGER "ndk;$ndk_full_version"
 done
 
-ndkDefault=$(get_full_ndk_version $ANDROID_NDK_MAJOR_DEFAULT)
+ndkDefault=$(get_full_ndk_version $android_ndk_major_default)
 ANDROID_NDK_HOME=$ANDROID_HOME/ndk/$ndkDefault
-ndkLatest=$(get_full_ndk_version $ANDROID_NDK_MAJOR_LATEST)
+ndkLatest=$(get_full_ndk_version $android_ndk_major_latest)
 ANDROID_NDK_LATEST_HOME=$ANDROID_HOME/ndk/$ndkLatest
 # ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
 echo "export ANDROID_NDK=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
@@ -98,27 +96,27 @@ echo "export ANDROID_NDK_ROOT=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
 echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"
 
 availablePlatforms=($($SDKMANAGER --list | grep "platforms;android-[0-9]" | cut -d"|" -f 1 | sort -u))
-filter_components_by_version $ANDROID_PLATFORM "${availablePlatforms[@]}"
+add_filtered_instalaltion_components $android_platform "${availablePlatforms[@]}"
 
 allBuildTools=($($SDKMANAGER --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
-filter_components_by_version $ANDROID_BUILD_TOOL "${availableBuildTools[@]}"
+add_filtered_instalaltion_components $android_build_tool "${availableBuildTools[@]}"
 
 echo "y" | $SDKMANAGER ${components[@]}
 
-for extra_name in "${ANDROID_EXTRA_LIST[@]}"
+for extra_name in "${android_extra_list[@]}"
 do
     echo "Installing extra $extra_name ..."
     echo y | $SDKMANAGER "extras;$extra_name"
 done
 
-for addon_name in "${ANDROID_ADDON_LIST[@]}"
+for addon_name in "${android_addon_list[@]}"
 do
     echo "Installing add-on $addon_name ..."
     echo y | $SDKMANAGER "add-ons;$addon_name"
 done
 
-for tool_name in "${ANDROID_ADDITIONAL_TOOLS[@]}"
+for tool_name in "${android_additional_tools[@]}"
 do
     echo "Installing additional tool $tool_name ..."
     echo y | $SDKMANAGER "$tool_name"

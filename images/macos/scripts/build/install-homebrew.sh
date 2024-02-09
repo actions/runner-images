@@ -10,7 +10,7 @@ arch=$(get_arch)
 
 echo "Installing Homebrew..."
 homebrew_installer_path=$(download_with_retry "https://raw.githubusercontent.com/Homebrew/install/master/install.sh")
-/bin/bash "$homebrew_installer_path"
+/bin/bash $homebrew_installer_path
 
 if [[ $arch == "arm64" ]]; then
   /opt/homebrew/bin/brew update

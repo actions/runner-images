@@ -6,7 +6,9 @@ function Install-XcodeVersion {
         [Parameter(Mandatory)]
         [string] $Version,
         [Parameter(Mandatory)]
-        [string] $LinkTo
+        [string] $LinkTo,
+        [Parameter(Mandatory)]
+        [string] $Sha256Sum
     )
 
     $xcodeDownloadDirectory = "$env:HOME/Library/Caches/XcodeInstall"
@@ -28,7 +30,14 @@ function Invoke-DownloadXcodeArchive {
     $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$Version" -ItemType "Directory"
     $xcodeFileName = 'Xcode-{0}.xip' -f $Version
     $xcodeUri = '{0}{1}?{2}'-f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
-    Invoke-DownloadWithRetry -Url $xcodeUri -Path (Join-Path $tempXipDirectory.FullName $xcodeFileName) | Out-Null
+    $xcodeFullPath = Join-Path $tempXipDirectory.FullName $xcodeFileName
+    Invoke-DownloadWithRetry -Url $xcodeUri -Path $xcodeFullPath | Out-Null
+
+    # Validating checksum
+    $xcodeSha256 = Get-FileHash -Path $xcodeFullPath -Algorithm SHA256 | Select-Object -ExpandProperty Hash
+    if ($xcodeSha256 -ne $Sha256Sum) {
+        throw "Xcode $Version checksum mismatch. Expected: $Sha256Sum, Actual: $xcodeSha256"
+    }
 
     return $tempXipDirectory
 }
@@ -56,6 +65,7 @@ function Get-AvailableXcodeVersions {
     $availableVersions = $rawVersionsList | ForEach-Object {
         $partStable,$partMajor = $_.Split(" ", 2)
         $semver = $stableSemver = [SemVer]::Parse($partStable)
+
         if ($partMajor) {
             # Convert 'beta 3' -> 'beta.3', 'Release Candidate' -> 'releasecandidate', 'GM Seed 2' -> 'gmseed.2'
             $normalizedLabel = $partMajor.toLower() -replace " (\d)", '.$1' -replace " ([a-z])", '$1'

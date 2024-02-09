@@ -23,11 +23,6 @@ variable "vm_password" {
   sensitive = true
 }
 
-variable "github_api_pat" {
-  type = string
-  default = ""
-}
-
 variable "vcpu_count" {
   type = number
   default = 6
@@ -38,33 +33,28 @@ variable "ram_size" {
   default = 8
 }
 
-variable "image_os" {
-  type = string
-  default = "macos14"
-}
-
 source "tart-cli" "tart" {
   vm_name      = "${var.vm_name}"
+  recovery     = true
   cpu_count    = var.vcpu_count
   memory_gb    = var.ram_size
-  disk_size_gb = 200
-  headless     = true
-  ssh_password = var.vm_password
-  ssh_username = var.vm_username
-  ssh_timeout  = "120s"
+  disk_size_gb = 50
+  communicator = "none"
+  boot_command = [
+    # Skip over "Macintosh" and select "Options"
+    # to boot into macOS Recovery
+    "<wait60s><right><right><enter>",
+    # Open Terminal
+    "<wait10s><leftAltOn>T<leftAltOff>",
+    # Disable SIP
+    "<wait10s>csrutil disable<enter>",
+    "<wait10s>y<enter>",
+    "<wait10s>${var.vm_password}<enter>",
+    # Shutdown
+    "<wait10s>halt<enter>"
+  ]
 }
 
 build {
-  sources = [
-    "source.tart-cli.tart"
-  ]
-
-  provisioner "shell" {
-    scripts = [
-      "./scripts/warpbuild/install-agent.sh",
-      "./scripts/warpbuild/install-github-runner.sh"
-    ]
-  }
-
+  sources = ["source.tart-cli.tart"]
 }
- 

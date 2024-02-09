@@ -4,5 +4,5 @@
 ##  Desc:  Install Rosetta
 ################################################################################
 
-echo 'Installing Rosetta'
+echo "Installing Rosetta"
 /usr/sbin/softwareupdate --install-rosetta --agree-to-license

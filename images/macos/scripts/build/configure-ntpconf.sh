@@ -15,5 +15,5 @@ server time.windows.com
 EOF
 
 # Set the timezone to UTC.
-echo The Timezone setting to UTC...
+echo "The Timezone setting to UTC..."
 ln -sf /usr/share/zoneinfo/UTC /etc/localtime

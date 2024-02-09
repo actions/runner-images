@@ -8,13 +8,13 @@
 source ~/utils/utils.sh
 
 echo "Check if ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE folder exist..."
-if [ ! -d $ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE ]; then
+if [[ ! -d $ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE ]]; then
     mkdir -p $ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE
 fi
 
-download_url=$(get_github_package_download_url "actions/action-versions" "contains(\"action-versions.tar.gz\")" "latest")
+download_url=$(resolve_github_release_asset_url "actions/action-versions" "contains(\"action-versions.tar.gz\")" "latest")
 echo "Downloading action-versions $download_url"
-archive_path=$(download_with_retry "$download_url")
-tar -xzf "$archive_path" -C "$ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE"
+archive_path=$(download_with_retry $download_url)
+tar -xzf $archive_path -C $ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE
 
 invoke_tests "ActionArchiveCache"

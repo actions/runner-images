@@ -8,45 +8,45 @@ source ~/utils/utils.sh
 source ~/utils/xamarin-utils.sh
 
 install_vsmac() {
-    local VSMAC_VERSION=$1
-    local VSMAC_DEFAULT=$2
-    if [ $VSMAC_VERSION == "2019" ]; then
-        VSMAC_DOWNLOAD_URL=$(curl -fsSL "https://aka.ms/manifest/stable" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
-    elif [ $VSMAC_VERSION == "2022" ]; then
-        VSMAC_DOWNLOAD_URL=$(curl -fsSL "https://aka.ms/manifest/stable-2022" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
-    elif [ $VSMAC_VERSION == "preview" ]; then
-        VSMAC_DOWNLOAD_URL=$(curl -fsSL "https://aka.ms/manifest/preview" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
+    local vsmac_version=$1
+    local vsmac_default=$2
+    if [[ $vsmac_version == "2019" ]]; then
+        vsmac_download_url=$(curl -fsSL "https://aka.ms/manifest/stable" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
+    elif [[ $vsmac_version == "2022" ]]; then
+        vsmac_download_url=$(curl -fsSL "https://aka.ms/manifest/stable-2022" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
+    elif [[ $vsmac_version == "preview" ]]; then
+        vsmac_download_url=$(curl -fsSL "https://aka.ms/manifest/preview" | jq -r '.items[] | select(.genericName=="VisualStudioMac").url')
     else
-        VSMAC_DOWNLOAD_URL=$(buildVSMacDownloadUrl $VSMAC_VERSION)
+        vsmac_download_url=$(buildVSMacDownloadUrl $vsmac_version)
     fi
 
-    echo "Installing Visual Studio ${VSMAC_VERSION} for Mac"
+    echo "Installing Visual Studio ${vsmac_version} for Mac"
     TMPMOUNT=$(/usr/bin/mktemp -d /tmp/visualstudio.XXXX)
     mkdir -p "$TMPMOUNT/downloads"
 
-    VSMAC_INSTALLER=$(download_with_retry "$VSMAC_DOWNLOAD_URL" "$TMPMOUNT/downloads/${VSMAC_DOWNLOAD_URL##*/}")
+    vsmac_installer=$(download_with_retry $vsmac_download_url "$TMPMOUNT/downloads/${vsmac_download_url##*/}")
 
     echo "Mounting Visual Studio..."
-    hdiutil attach "$VSMAC_INSTALLER" -mountpoint "$TMPMOUNT"
+    hdiutil attach $vsmac_installer -mountpoint $TMPMOUNT
 
     echo "Moving Visual Studio to /Applications/..."
-    pushd "$TMPMOUNT"
+    pushd $TMPMOUNT
     tar cf - "./Visual Studio.app" | tar xf - -C /Applications/
 
-    if [ $VSMAC_VERSION != $VSMAC_DEFAULT ]; then
-        mv "/Applications/Visual Studio.app" "/Applications/Visual Studio ${VSMAC_VERSION}.app"
+    if [[ $vsmac_version != $vsmac_default ]]; then
+        mv "/Applications/Visual Studio.app" "/Applications/Visual Studio ${vsmac_version}.app"
     fi
 
     popd
-    sudo hdiutil detach "$TMPMOUNT"
-    sudo rm -rf "$TMPMOUNT"
+    sudo hdiutil detach $TMPMOUNT
+    sudo rm -rf $TMPMOUNT
 }
 
-VSMAC_VERSIONS=($(get_toolset_value '.xamarin.vsmac.versions[]'))
-DEFAULT_VSMAC_VERSION=$(get_toolset_value '.xamarin.vsmac.default')
+vsmac_versions=($(get_toolset_value '.xamarin.vsmac.versions[]'))
+default_vsmac_version=$(get_toolset_value '.xamarin.vsmac.default')
 
-for VERSION in "${VSMAC_VERSIONS[@]}"; do
-    install_vsmac $VERSION $DEFAULT_VSMAC_VERSION
+for version in ${vsmac_versions[@]}; do
+    install_vsmac $version $default_vsmac_version
 done
 
 invoke_tests "Common" "VSMac"
