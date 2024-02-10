@@ -26,20 +26,19 @@ find /var/log -type f -regex ".*\.[0-9]$" -delete
 # wipe log files
 find /var/log/ -type f -exec cp /dev/null {} \;
 
-# after cleanup
-after=$(df / -Pm | awk 'NR==2{print $4}')
-
-# display size
- echo "Before: $before MB"
- echo "After : $after MB"
- echo "Delta : $(($after-$before)) MB"
-
 # delete symlink for tests running
 rm -f /usr/local/bin/invoke_tests
 
 # remove apt mock
 prefix=/usr/local/bin
-
 for tool in apt apt-get apt-fast apt-key;do
-  sudo rm -f $prefix/$tool
+    sudo rm -f $prefix/$tool
 done
+
+# after cleanup
+after=$(df / -Pm | awk 'NR==2{print $4}')
+
+# display size
+echo "Before: $before MB"
+echo "After : $after MB"
+echo "Delta : $(($after-$before)) MB"

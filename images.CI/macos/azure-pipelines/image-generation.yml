@@ -4,8 +4,10 @@ jobs:
   timeoutInMinutes: 1200
   pool:
     name: Mac-Cloud Image Generation
+    demands:
+    - PrimaryRackAgent -equals ${{ parameters.primary_agent }}
   variables:
-  - group: Mac-Cloud Image Generation
+  - group: ${{ parameters.variable_group_name }}
 
   steps:
   - pwsh: |
@@ -63,6 +65,7 @@ jobs:
           'Using ssh communicator to connect:'
       )
 
+      packer init ${{ parameters.template_path }}
       packer build -on-error=abort `
         -var="vcenter_server=$(vcenter-server-v2)" `
         -var="vcenter_username=$(vcenter-username-v2)" `

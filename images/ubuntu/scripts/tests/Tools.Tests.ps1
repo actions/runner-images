@@ -65,16 +65,31 @@ Describe "Rust" {
 }
 
 Describe "Docker" {
-    It "docker" {
-        "docker --version" | Should -ReturnZeroExitCode
+    It "docker client" {
+        $version=(Get-ToolsetContent).docker.components | Where-Object { $_.package -eq 'docker-ce-cli' } | Select-Object -ExpandProperty version
+        If ($version -ne "latest") {
+            $(docker version --format '{{.Client.Version}}') | Should -BeLike "*$version*"
+        }else{
+            "docker version --format '{{.Client.Version}}'" | Should -ReturnZeroExitCode
+        }
     }
 
     It "docker buildx" {
-        "docker buildx" | Should -ReturnZeroExitCode
+        $version=(Get-ToolsetContent).docker.plugins | Where-Object { $_.plugin -eq 'buildx' } | Select-Object -ExpandProperty version
+        If ($version -ne "latest") {
+            $(docker buildx version) | Should -BeLike "*$version*"
+        }else{
+            "docker buildx" | Should -ReturnZeroExitCode
+        }
     }
 
     It "docker compose v2" {
-        "docker compose" | Should -ReturnZeroExitCode
+        $version=(Get-ToolsetContent).docker.plugins | Where-Object { $_.plugin -eq 'compose' } | Select-Object -ExpandProperty version
+        If ($version -ne "latest") {
+            $(docker compose version --short) | Should -BeLike "*$version*"
+        }else{
+            "docker compose version --short" | Should -ReturnZeroExitCode
+        }
     }
 
     It "docker-credential-ecr-login" {

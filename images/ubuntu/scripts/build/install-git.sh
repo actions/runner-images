@@ -14,6 +14,7 @@ add-apt-repository $GIT_REPO -y
 apt-get update
 apt-get install git -y
 git --version
+
 # Git version 2.35.2 introduces security fix that breaks action\checkout https://github.com/actions/checkout/issues/760
 cat <<EOF >> /etc/gitconfig
 [safe]

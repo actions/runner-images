@@ -4,23 +4,38 @@
 ##  Desc:  Install .NET Core SDK
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
+extract_dotnet_sdk() {
+    local archive_name=$1
+
+    set -e
+    destination="./tmp-$(basename -s .tar.gz $archive_name)"
+
+    echo "Extracting $archive_name to $destination"
+    mkdir "$destination" && tar -C "$destination" -xzf "$archive_name"
+    rsync -qav --remove-source-files "$destination/shared/" /usr/share/dotnet/shared/
+    rsync -qav --remove-source-files "$destination/host/" /usr/share/dotnet/host/
+    rsync -qav --remove-source-files "$destination/sdk/" /usr/share/dotnet/sdk/
+    rm -rf "$destination" "$archive_name"
+}
+
 # Ubuntu 20 doesn't support EOL versions
-LATEST_DOTNET_PACKAGES=$(get_toolset_value '.dotnet.aptPackages[]')
-DOTNET_VERSIONS=$(get_toolset_value '.dotnet.versions[]')
-DOTNET_TOOLS=$(get_toolset_value '.dotnet.tools[].name')
+latest_dotnet_packages=$(get_toolset_value '.dotnet.aptPackages[]')
+dotnet_versions=$(get_toolset_value '.dotnet.versions[]')
+dotnet_tools=$(get_toolset_value '.dotnet.tools[].name')
 
 # Disable telemetry
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 
+# Install .NET SDK from apt
 # There is a versions conflict, that leads to
 # Microsoft <-> Canonical repos dependencies mix up.
 # Give Microsoft's repo higher priority to avoid collisions.
 # See: https://github.com/dotnet/core/issues/7699
-
 cat << EOF > /etc/apt/preferences.d/dotnet
 Package: *net*
 Pin: origin packages.microsoft.com
@@ -29,9 +44,9 @@ EOF
 
 apt-get update
 
-for latest_package in ${LATEST_DOTNET_PACKAGES[@]}; do
+for latest_package in ${latest_dotnet_packages[@]}; do
     echo "Determing if .NET Core ($latest_package) is installed"
-    if ! IsPackageInstalled $latest_package; then
+    if ! dpkg -S $latest_package &> /dev/null; then
         echo "Could not find .NET Core ($latest_package), installing..."
         apt-get install $latest_package -y
     else
@@ -43,9 +58,10 @@ rm /etc/apt/preferences.d/dotnet
 
 apt-get update
 
+# Install .NET SDK from home repository
 # Get list of all released SDKs from channels which are not end-of-life or preview
 sdks=()
-for version in ${DOTNET_VERSIONS[@]}; do
+for version in ${dotnet_versions[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
     releases=$(cat "$(download_with_retry "$release_url")")
     if [[ $version == "6.0" ]]; then
@@ -56,19 +72,7 @@ for version in ${DOTNET_VERSIONS[@]}; do
     fi
 done
 
-sortedSdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -r | uniq -w 5)
-
-extract_dotnet_sdk() {
-    local ARCHIVE_NAME="$1"
-    set -e
-    dest="./tmp-$(basename -s .tar.gz $ARCHIVE_NAME)"
-    echo "Extracting $ARCHIVE_NAME to $dest"
-    mkdir "$dest" && tar -C "$dest" -xzf "$ARCHIVE_NAME"
-    rsync -qav --remove-source-files "$dest/shared/" /usr/share/dotnet/shared/
-    rsync -qav --remove-source-files "$dest/host/" /usr/share/dotnet/host/
-    rsync -qav --remove-source-files "$dest/sdk/" /usr/share/dotnet/sdk/
-    rm -rf "$dest" "$ARCHIVE_NAME"
-}
+sorted_sdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -r | uniq -w 5)
 
 # Download/install additional SDKs in parallel
 export -f download_with_retry
@@ -76,19 +80,19 @@ export -f extract_dotnet_sdk
 
 parallel --jobs 0 --halt soon,fail=1 \
     'url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/{}/dotnet-sdk-{}-linux-x64.tar.gz"; \
-    download_with_retry $url' ::: "${sortedSdks[@]}"
+    download_with_retry $url' ::: "${sorted_sdks[@]}"
 
 find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
 
 # NuGetFallbackFolder at /usr/share/dotnet/sdk/NuGetFallbackFolder is warmed up by smoke test
 # Additional FTE will just copy to ~/.dotnet/NuGet which provides no benefit on a fungible machine
-setEtcEnvironmentVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
-setEtcEnvironmentVariable DOTNET_NOLOGO 1
-setEtcEnvironmentVariable DOTNET_MULTILEVEL_LOOKUP 0
-prependEtcEnvironmentPath '$HOME/.dotnet/tools'
+set_etc_environment_variable DOTNET_SKIP_FIRST_TIME_EXPERIENCE 1
+set_etc_environment_variable DOTNET_NOLOGO 1
+set_etc_environment_variable DOTNET_MULTILEVEL_LOOKUP 0
+prepend_etc_environment_path '$HOME/.dotnet/tools'
 
-# install dotnet tools
-for dotnet_tool in ${DOTNET_TOOLS[@]}; do
+# Install .Net tools
+for dotnet_tool in ${dotnet_tools[@]}; do
     echo "Installing dotnet tool $dotnet_tool"
     dotnet tool install $dotnet_tool --tool-path '/etc/skel/.dotnet/tools'
 done

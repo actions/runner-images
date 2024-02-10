@@ -11,7 +11,7 @@ LICENSE_BLOCK
 USERNAME="${1}"
 PW="${2}"
 
-function kcpasswordEncode {
+kcpasswordEncode() {
     #ascii string
     local thisString="${1}"
     local i

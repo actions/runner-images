@@ -5,6 +5,7 @@
 ################################################################################
 
 source ~/utils/utils.sh
+
 XCODE_LIST=($(get_toolset_value '.xcode.versions | reverse | .[].link'))
 DEFAULT_XCODE_VERSION=$(get_toolset_value '.xcode.default')
 
@@ -12,15 +13,14 @@ DEFAULT_XCODE_VERSION=$(get_toolset_value '.xcode.default')
 # Assets.xcassets : error : CoreData: error: (6922) I/O error for database
 # at $HOME/Library/Developer/Xcode/UserData/IB Support/Simulator Devices/{GUID}
 echo "Erase a device's contents and settings:"
-for XCODE_VERSION in "${XCODE_LIST[@]}"
-do
+for XCODE_VERSION in ${XCODE_LIST[@]}; do
     echo "    Xcode Version: ${XCODE_VERSION}"
     launchctl remove com.apple.CoreSimulator.CoreSimulatorService || true
     #add sleep to let CoreSimulatorService to exit
     sleep 3
 
     # Select xcode version by default
-    sudo xcode-select -s "/Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer"
+    sudo xcode-select -s /Applications/Xcode_${XCODE_VERSION}.app/Contents/Developer
 
     # Erase a device's contents and settings
     xcrun simctl erase all
@@ -31,4 +31,4 @@ done
 
 # Select xcode version by default
 echo "Setting Xcode ${DEFAULT_XCODE_VERSION} as default"
-sudo xcode-select -s "/Applications/Xcode_${DEFAULT_XCODE_VERSION}.app/Contents/Developer"
+sudo xcode-select -s /Applications/Xcode_${DEFAULT_XCODE_VERSION}.app/Contents/Developer

@@ -4,91 +4,79 @@
 ##  Desc:  Configure toolset
 ################################################################################
 
-Import-Module "$env:HELPER_SCRIPTS/../tests/Helpers.psm1" -DisableNameChecking
+Import-Module "$env:HELPER_SCRIPTS/../tests/Helpers.psm1"
 
-function Get-ToolsetToolFullPath
-{
-    param
-    (
-        [Parameter(Mandatory)] [string] $ToolName,
-        [Parameter(Mandatory)] [string] $ToolVersion,
-        [Parameter(Mandatory)] [string] $ToolArchitecture
+function Get-TCToolVersionPath {
+    param(
+        [Parameter(Mandatory)]
+        [string] $ToolName,
+        [Parameter(Mandatory)]
+        [string] $ToolVersion,
+        [Parameter(Mandatory)]
+        [string] $ToolArchitecture
     )
 
-    $toolPath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath $toolName
-    $toolPathVersion = Join-Path -Path $toolPath -ChildPath $toolVersion
-    $foundVersion = Get-Item $toolPathVersion | Sort-Object -Property {[version]$_.name} -Descending | Select-Object -First 1
-    $installationDir = Join-Path -Path $foundVersion -ChildPath $toolArchitecture
+    $toolPath = Join-Path -Path $env:AGENT_TOOLSDIRECTORY -ChildPath $ToolName
+    $toolPathVersion = Join-Path -Path $toolPath -ChildPath $ToolVersion
+    $foundVersion = Get-Item $toolPathVersion | Sort-Object -Property { [version] $_.name } -Descending | Select-Object -First 1
+    $installationDir = Join-Path -Path $foundVersion -ChildPath $ToolArchitecture
+
     return $installationDir
 }
 
-function Add-EnvironmentVariable
-{
-    param
-    (
-        [Parameter(Mandatory)] [string] $Name,
-        [Parameter(Mandatory)] [string] $Value,
+function Add-GlobalEnvironmentVariable {
+    param(
+        [Parameter(Mandatory)]
+        [string] $Name,
+        [Parameter(Mandatory)]
+        [string] $Value,
         [string] $FilePath = "/etc/environment"
     )
 
-    $envVar = "{0}={1}" -f $name, $value
-    Tee-Object -InputObject $envVar -FilePath $filePath -Append
+    $envVar = "{0}={1}" -f $Name, $Value
+    Tee-Object -InputObject $envVar -FilePath $FilePath -Append
 }
 
 $ErrorActionPreference = "Stop"
 
-Write-Host "Configure toolset tools environment..."
-$toolsEnvironment = @{
+Write-Host "Configure toolcache tools environment..."
+$toolEnvConfigs = @{
     go = @{
-        command = "ln -s {0}/bin/* /usr/bin/"
+        command          = "ln -s {0}/bin/* /usr/bin/"
         variableTemplate = "GOROOT_{0}_{1}_X64"
     }
 }
 
-$toolset = Get-Content -Path "$env:INSTALLER_SCRIPT_FOLDER/toolset.json" -Raw | ConvertFrom-Json
+# Get toolcache content from toolset
+$tools = (Get-ToolsetContent).toolcache | Where-Object { $toolEnvConfigs.Keys -contains $_.name }
 
-foreach ($tool in $toolset.toolcache)
-{
-    $toolName = $tool.name
-    $toolArch = $tool.arch
-    $toolEnvironment = $toolsEnvironment[$toolName]
+foreach ($tool in $tools) {
+    $toolEnvConfig = $toolEnvConfigs[$tool.name]
 
-    if (-not $toolEnvironment)
-    {
-        continue
-    }
+    if (-not ([string]::IsNullOrEmpty($toolEnvConfig.variableTemplate))) {
+        foreach ($toolVersion in $tool.versions) {
+            Write-Host "Set $($tool.name) $toolVersion environment variable..."
+            $toolPath = Get-TCToolVersionPath -ToolName $tool.name -ToolVersion $toolVersion -ToolArchitecture $tool.arch
+            $envVariableName = $toolEnvConfig.variableTemplate -f $toolVersion.split(".")
 
-    foreach ($toolVersion in $tool.versions)
-    {
-        Write-Host "Set $toolName $toolVersion environment variable..."
-        $toolPath = Get-ToolsetToolFullPath -ToolName $toolName -ToolVersion $toolVersion -ToolArchitecture $toolArch
-        $envName = $toolEnvironment.variableTemplate -f $toolVersion.split(".")
-
-        # Add environment variable name=value
-        Add-EnvironmentVariable -Name $envName -Value $toolPath
+            Add-GlobalEnvironmentVariable -Name $envVariableName -Value $toolPath
+        }
     }
 
     # Invoke command and add env variable for the default tool version
-    $toolDefVersion = $tool.default
-    if (-not $toolDefVersion)
-    {
-        continue
-    }
+    if (-not ([string]::IsNullOrEmpty($tool.default))) {
+        $toolDefaultPath = Get-TCToolVersionPath -ToolName $tool.name -ToolVersion $tool.default -ToolArchitecture $tool.arch
 
-    $envDefName = $toolEnvironment.defaultVariable
-    $toolPath = Get-ToolsetToolFullPath -ToolName $toolName -ToolVersion $toolDefVersion -ToolArchitecture $toolArch
+        if (-not ([string]::IsNullOrEmpty($toolEnvConfig.defaultVariable))) {
+            Write-Host "Set default $($toolEnvConfig.defaultVariable) for $($tool.name) $($tool.default) environment variable..."
+            Add-GlobalEnvironmentVariable -Name $toolEnvConfig.defaultVariable -Value $toolDefaultPath
+        }
 
-    if ($envDefName)
-    {
-        Write-Host "Set default $envDefName for $toolName $toolDefVersion environment variable..."
-        Add-EnvironmentVariable -Name $envDefName -Value $toolPath
-    }
-
-    if ($toolEnvironment.command)
-    {
-        $command = $toolEnvironment.command -f $toolPath
-        Write-Host "Invoke $command command for default $toolName $toolDefVersion..."
-        Invoke-Expression -Command $command
+        if (-not ([string]::IsNullOrEmpty($toolEnvConfig.command))) {
+            $command = $toolEnvConfig.command -f $toolDefaultPath
+            Write-Host "Invoke $command command for default $($tool.name) $($tool.default) ..."
+            Invoke-Expression -Command $command
+        }
     }
 }
 

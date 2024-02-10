@@ -18,10 +18,12 @@ export PIPX_BIN_DIR=/opt/pipx_bin
 export PIPX_HOME=/opt/pipx
 python3 -m pip install pipx
 python3 -m pipx ensurepath
+
 # Update /etc/environment
-setEtcEnvironmentVariable "PIPX_BIN_DIR" $PIPX_BIN_DIR
-setEtcEnvironmentVariable "PIPX_HOME" $PIPX_HOME
-prependEtcEnvironmentPath $PIPX_BIN_DIR
+set_etc_environment_variable "PIPX_BIN_DIR" $PIPX_BIN_DIR
+set_etc_environment_variable "PIPX_HOME" $PIPX_HOME
+prepend_etc_environment_path $PIPX_BIN_DIR
+
 # Test pipx
 if ! command -v pipx; then
     echo "pipx was not installed or not found on PATH"
@@ -29,6 +31,6 @@ if ! command -v pipx; then
 fi
 
 # Adding this dir to PATH will make installed pip commands are immediately available.
-prependEtcEnvironmentPath '$HOME/.local/bin'
+prepend_etc_environment_path '$HOME/.local/bin'
 
 invoke_tests "Tools" "Python"

@@ -4,90 +4,90 @@
 ##  Desc:  Install PyPy
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
 # This function installs PyPy using the specified arguments:
-#   $1=PACKAGE_URL
-function InstallPyPy
-{
-    PACKAGE_URL=$1
+#   $1=package_url
+install_pypy() {
+    local package_url=$1
 
-    PACKAGE_TAR_NAME=$(echo "$PACKAGE_URL" | awk -F/ '{print $NF}')
-    PACKAGE_NAME=${PACKAGE_TAR_NAME/.tar.bz2/}
+    package_tar_name=$(echo "$package_url" | awk -F/ '{print $NF}')
+    package_name=${package_tar_name/.tar.bz2/}
 
-    echo "Downloading tar archive '$PACKAGE_NAME'"
-    PACKAGE_TAR_TEMP_PATH=$(download_with_retry $PACKAGE_URL)
+    echo "Downloading tar archive '$package_name'"
+    package_tar_temp_path=$(download_with_retry $package_url)
 
-    echo "Expand '$PACKAGE_NAME' to the /tmp folder"
-    tar xf "$PACKAGE_TAR_TEMP_PATH" -C /tmp
+    echo "Expand '$package_name' to the /tmp folder"
+    tar xf "$package_tar_temp_path" -C /tmp
 
     # Get Python version
-    MAJOR_VERSION=$(echo ${PACKAGE_NAME/pypy/} | cut -d. -f1)
-    PYTHON_MAJOR="python$MAJOR_VERSION"
+    major_version=$(echo ${package_name/pypy/} | cut -d. -f1)
+    python_major="python$major_version"
 
-    if [ $MAJOR_VERSION != 2 ]; then
-        PYPY_MAJOR="pypy$MAJOR_VERSION"
+    if [ $major_version != 2 ]; then
+        pypy_major="pypy$major_version"
     else
-        PYPY_MAJOR="pypy"
+        pypy_major="pypy"
     fi
 
-    PACKAGE_TEMP_FOLDER="/tmp/$PACKAGE_NAME"
-    PYTHON_FULL_VERSION=$("$PACKAGE_TEMP_FOLDER/bin/$PYPY_MAJOR" -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))")
-    PYPY_FULL_VERSION=$("$PACKAGE_TEMP_FOLDER/bin/$PYPY_MAJOR" -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))")
-    echo "Put '$PYPY_FULL_VERSION' to PYPY_VERSION file"
-    echo $PYPY_FULL_VERSION > "$PACKAGE_TEMP_FOLDER/PYPY_VERSION"
+    package_temp_folder="/tmp/$package_name"
+    python_full_version=$("$package_temp_folder/bin/$pypy_major" -c "import sys;print('{}.{}.{}'.format(sys.version_info[0],sys.version_info[1],sys.version_info[2]))")
+    pypy_full_version=$("$package_temp_folder/bin/$pypy_major" -c "import sys;print('{}.{}.{}'.format(*sys.pypy_version_info[0:3]))")
+    echo "Put '$pypy_full_version' to PYPY_VERSION file"
+    echo $pypy_full_version > "$package_temp_folder/PYPY_VERSION"
 
     # PyPy folder structure
-    PYPY_TOOLCACHE_PATH=$AGENT_TOOLSDIRECTORY/PyPy
-    PYPY_TOOLCACHE_VERSION_PATH=$PYPY_TOOLCACHE_PATH/$PYTHON_FULL_VERSION
-    PYPY_TOOLCACHE_VERSION_ARCH_PATH=$PYPY_TOOLCACHE_VERSION_PATH/x64
+    pypy_toolcache_path=$AGENT_TOOLSDIRECTORY/PyPy
+    pypy_toolcache_version_path=$pypy_toolcache_path/$python_full_version
+    pypy_toolcache_version_arch_path=$pypy_toolcache_version_path/x64
 
     echo "Check if PyPy hostedtoolcache folder exist..."
-    if [ ! -d $PYPY_TOOLCACHE_PATH ]; then
-        mkdir -p $PYPY_TOOLCACHE_PATH
+    if [ ! -d $pypy_toolcache_path ]; then
+        mkdir -p $pypy_toolcache_path
     fi
 
-    echo "Create PyPy '$PYPY_TOOLCACHE_VERSION_PATH' folder"
-    mkdir $PYPY_TOOLCACHE_VERSION_PATH
+    echo "Create PyPy '$pypy_toolcache_version_path' folder"
+    mkdir $pypy_toolcache_version_path
 
-    echo "Move PyPy '$PACKAGE_TEMP_FOLDER' binaries to '$PYPY_TOOLCACHE_VERSION_ARCH_PATH' folder"
-    mv $PACKAGE_TEMP_FOLDER $PYPY_TOOLCACHE_VERSION_ARCH_PATH
+    echo "Move PyPy '$package_temp_folder' binaries to '$pypy_toolcache_version_arch_path' folder"
+    mv $package_temp_folder $pypy_toolcache_version_arch_path
 
     echo "Create additional symlinks (Required for UsePythonVersion Azure DevOps task)"
-    cd $PYPY_TOOLCACHE_VERSION_ARCH_PATH/bin
+    cd $pypy_toolcache_version_arch_path/bin
 
     # Starting from PyPy 7.3.4 these links are already included in the package
-    [ -f ./$PYTHON_MAJOR ] || ln -s $PYPY_MAJOR $PYTHON_MAJOR
-    [ -f ./python ] || ln -s $PYTHON_MAJOR python
+    [ -f ./$python_major ] || ln -s $pypy_major $python_major
+    [ -f ./python ] || ln -s $python_major python
 
-    chmod +x ./python ./$PYTHON_MAJOR
+    chmod +x ./python ./$python_major
 
     echo "Install latest Pip"
     ./python -m ensurepip
     ./python -m pip install --ignore-installed pip
 
     echo "Create complete file"
-    touch $PYPY_TOOLCACHE_VERSION_PATH/x64.complete
+    touch $pypy_toolcache_version_path/x64.complete
 
-    echo "Remove '$PACKAGE_TAR_TEMP_PATH'"
-    rm -f $PACKAGE_TAR_TEMP_PATH
+    echo "Remove '$package_tar_temp_path'"
+    rm -f $package_tar_temp_path
 }
 
 # Installation PyPy
-pypyVersions=$(curl -fsSL https://downloads.python.org/pypy/versions.json)
-toolsetVersions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
+pypy_versions_json=$(curl -fsSL https://downloads.python.org/pypy/versions.json)
+toolset_versions=$(get_toolset_value '.toolcache[] | select(.name | contains("PyPy")) | .versions[]')
 
-for toolsetVersion in $toolsetVersions; do
-    latestMajorPyPyVersion=$(echo $pypyVersions |
-        jq -r --arg toolsetVersion $toolsetVersion '.[]
-        | select((.python_version | startswith($toolsetVersion)) and .stable == true).files[]
+for toolset_version in $toolset_versions; do
+    latest_major_pypy_version=$(echo $pypy_versions_json |
+        jq -r --arg toolset_version $toolset_version '.[]
+        | select((.python_version | startswith($toolset_version)) and .stable == true).files[]
         | select(.arch == "x64" and .platform == "linux").download_url' | head -1)
-    if [[ -z "$latestMajorPyPyVersion" ]]; then
-        echo "Failed to get PyPy version '$toolsetVersion'"
+    if [[ -z "$latest_major_pypy_version" ]]; then
+        echo "Failed to get PyPy version '$toolset_version'"
         exit 1
     fi
 
-    InstallPyPy $latestMajorPyPyVersion
+    install_pypy $latest_major_pypy_version
 done
 
 chown -R "$SUDO_USER:$SUDO_USER" "$AGENT_TOOLSDIRECTORY/PyPy"

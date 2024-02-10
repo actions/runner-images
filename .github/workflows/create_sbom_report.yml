@@ -20,7 +20,7 @@ jobs:
       check_status: ${{ steps.check.outputs.status }}
     runs-on: ubuntu-latest
     steps:
-    - name: Check release
+    - name: Check release for ${{ github.event.client_payload.ReleaseBranchName }}
       id: check
       shell: pwsh
       run: |

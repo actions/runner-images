@@ -176,30 +176,20 @@ Function GenerateResourcesAndImage {
         }
 
         Write-Host "Access to packer generated VM will be restricted to agent IP Address: $AgentIp."
-        if ($TemplatePath.Contains("pkr.hcl")) {
-            if ($PSVersionTable.PSVersion.Major -eq 5) {
-                Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
-                $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
-            }
-            elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
-                Write-Verbose "PowerShell 7.0-7.2 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
-                $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
-            }
-            else {
-                $AllowedInboundIpAddresses = '["{0}"]' -f $AgentIp
-            }
+        if ($PSVersionTable.PSVersion.Major -eq 5) {
+            Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
+            $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
+        }
+        elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
+            Write-Verbose "PowerShell 7.0-7.2 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
+            $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
         }
         else {
-            $AllowedInboundIpAddresses = $AgentIp
+            $AllowedInboundIpAddresses = '["{0}"]' -f $AgentIp
         }
     }
     else {
-        if ($TemplatePath.Contains("pkr.hcl")) {
-            $AllowedInboundIpAddresses = "[]"
-        }
-        else {
-            $AllowedInboundIpAddresses = ""
-        }
+        $AllowedInboundIpAddresses = "[]"
     }
     Write-Debug "Allowed inbound IP addresses: $AllowedInboundIpAddresses."
 
@@ -216,16 +206,6 @@ Function GenerateResourcesAndImage {
         $TagsJson = $TagsJson -replace '"', '\"'
     }
     Write-Debug "Tags JSON: $TagsJson."
-    if ($TemplatePath.Contains(".json")) {
-        Write-Verbose "Injecting tags into packer template."
-        if ($Tags) {
-            $BuilderScriptPathInjected = $TemplatePath.Replace(".json", "-temp.json")
-            $PackerTemplateContent = Get-Content -Path $TemplatePath | ConvertFrom-Json
-            $PackerTemplateContent.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
-            $PackerTemplateContent | ConvertTo-Json -Depth 3 | Out-File -Encoding Ascii $BuilderScriptPathInjected
-            $TemplatePath = $BuilderScriptPathInjected
-        }
-    }
 
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
 

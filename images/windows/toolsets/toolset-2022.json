@@ -71,7 +71,8 @@
             "versions": [
                 "1.19.*",
                 "1.20.*",
-                "1.21.*"
+                "1.21.*",
+                "1.22.*"
             ],
             "default": "1.20.*"
         }
@@ -133,8 +134,8 @@
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",
         "hash": "8A90E6A3DEB2FA13229B2E335EFD07687DCC8A55A3C544DA9F40B41404993E7D",
-        "platform_min_version": "27",
-        "build_tools_min_version": "27.0.0",
+        "platform_min_version": "31",
+        "build_tools_min_version": "31.0.0",
         "extras": [
             "android;m2repository",
             "google;m2repository",
@@ -176,7 +177,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "signature": "72105B6D5F370B62FD5C82F1512F7AD7DEE5F2C0",
+        "signature": "F9A7CF9FBE13BAC767F4781061332DA6E8B4E0EE",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -330,7 +331,11 @@
             "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022",
             "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022",
             "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022"
-        ]
+        ],
+        "components": {
+            "docker": "24.0.7",
+            "compose": "2.23.3"
+        }
     },
     "pipx": [
         {
@@ -431,5 +436,8 @@
     },
     "openssl": {
         "version": "1.1.1"
+    },
+    "pwsh": {
+        "version": "7.4"
     }
 }

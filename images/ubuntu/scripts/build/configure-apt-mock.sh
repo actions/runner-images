@@ -7,9 +7,9 @@
 
 prefix=/usr/local/bin
 
-for real_tool in /usr/bin/apt /usr/bin/apt-get /usr/bin/apt-fast /usr/bin/apt-key;do
-  tool=`basename $real_tool`
-  cat >$prefix/$tool <<EOT
+for real_tool in /usr/bin/apt /usr/bin/apt-get /usr/bin/apt-fast /usr/bin/apt-key; do
+    tool=$(basename $real_tool)
+    cat >$prefix/$tool <<EOT
 #!/bin/sh
 
 i=1
@@ -50,5 +50,5 @@ while [ \$i -le 30 ];do
   i=\$((i + 1))
 done
 EOT
-  chmod +x $prefix/$tool
+    chmod +x $prefix/$tool
 done

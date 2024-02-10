@@ -9,18 +9,20 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Download KIND
-kind_url=$(resolve_github_release_asset_url "kubernetes-sigs/kind" "contains(\"kind-linux-amd64\")" "latest")
-curl -fsSL -o /tmp/kind "${kind_url}"
+kind_url=$(resolve_github_release_asset_url "kubernetes-sigs/kind" "endswith(\"kind-linux-amd64\")" "latest")
+kind_binary_path=$(download_with_retry "${kind_url}")
+
 # Supply chain security - KIND
-kind_external_hash=$(get_hash_from_remote_file "${kind_url}.sha256sum" "kind-linux-amd64")
-use_checksum_comparison "/tmp/kind" "${kind_external_hash}"
+kind_external_hash=$(get_checksum_from_url "${kind_url}.sha256sum" "kind-linux-amd64" "SHA256")
+use_checksum_comparison "${kind_binary_path}" "${kind_external_hash}"
+
 # Install KIND
-sudo install /tmp/kind /usr/local/bin/kind
+install "${kind_binary_path}" /usr/local/bin/kind
 
 ## Install kubectl
-KUBECTL_MINOR_VERSION=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
-curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBECTL_MINOR_VERSION/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$KUBECTL_MINOR_VERSION'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
+curl -fsSL https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 sudo apt-get update -y && sudo apt-get install -y kubectl
 rm -f /etc/apt/sources.list.d/kubernetes.list
 
@@ -29,11 +31,13 @@ curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 
 # Download minikube
 curl -fsSL -O https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+
 # Supply chain security - minikube
-minikube_hash=$(get_github_package_hash "kubernetes" "minikube" "linux-amd64" "" "latest" "false" ":" 2)
+minikube_hash=$(get_checksum_from_github_release "kubernetes/minikube" "linux-amd64" "latest" "SHA256")
 use_checksum_comparison "minikube-linux-amd64" "${minikube_hash}"
+
 # Install minikube
-sudo install minikube-linux-amd64 /usr/local/bin/minikube
+install minikube-linux-amd64 /usr/local/bin/minikube
 
 # Install kustomize
 download_url="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"

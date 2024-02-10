@@ -5,22 +5,26 @@
 ################################################################################
 
 # Source the helpers
-source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
+toolset_version=$(get_toolset_value '.mongodb.version')
 REPO_URL="https://repo.mongodb.org/apt/ubuntu"
-osLabel=$(getOSVersionLabel)
-toolsetVersion=$(get_toolset_value '.mongodb.version')
+GPG_KEY="/usr/share/keyrings/mongodb-org-$toolset_version.gpg"
+REPO_PATH="/etc/apt/sources.list.d/mongodb-org-$toolset_version.list"
 
-#  Install Mongo DB
-wget -qO - https://www.mongodb.org/static/pgp/server-$toolsetVersion.asc | sudo apt-key add -
+# add Mongo DB repository to apt
+curl -fsSL https://www.mongodb.org/static/pgp/server-$toolset_version.asc | gpg --dearmor -o $GPG_KEY
+echo "deb [ arch=amd64,arm64 signed-by=$GPG_KEY ] $REPO_URL $(lsb_release -cs)/mongodb-org/$toolset_version multiverse" > $REPO_PATH
 
-echo "deb [ arch=amd64,arm64 ] $REPO_URL $osLabel/mongodb-org/$toolsetVersion multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$toolsetVersion.list
+# Install Mongo DB
 sudo apt-get update
 sudo apt-get install -y mongodb-org
 
-rm /etc/apt/sources.list.d/mongodb-org-$toolsetVersion.list
+# remove Mongo DB's apt repository
+rm $REPO_PATH
+rm $GPG_KEY
 
+# Document source repo
 echo "mongodb $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
 
 invoke_tests "Databases" "MongoDB"

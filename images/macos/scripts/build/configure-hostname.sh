@@ -14,7 +14,7 @@ scutil --set LocalHostName $name
 scutil --set ComputerName "${name}.local"
 EOF
 
-chmod +x "/usr/local/bin/change_hostname.sh"
+chmod +x /usr/local/bin/change_hostname.sh
 
 sudo tee -a /Library/LaunchDaemons/change_hostname.plist > /dev/null <<\EOF
 <?xml version="1.0" encoding="UTF-8"?>
