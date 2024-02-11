@@ -39,6 +39,9 @@ variable "install_password" {
 }
 
 source "docker" "build_image" {
+  changes = [
+    "USER runner"
+  ]
   commit      = true
   image       = "buildpack-deps:22.04"
   run_command = [
@@ -62,6 +65,22 @@ build {
       "apt-get --quiet update",
       "apt-get upgrade -y",
       "apt-get install --no-install-recommends --yes apt-utils lsb-release rsync sudo"
+    ]
+  }
+
+  // Create image users
+  provisioner "shell" {
+    execute_command = "sh -c '{{ .Vars }} {{ .Path }}'"
+    inline          = [
+      "useradd --home /home/runneradmin --create-home --shell /bin/bash --uid 1000 runneradmin",
+      "echo 'runneradmin:runneradmin' | chpasswd",
+      "adduser runneradmin sudo",
+      "echo 'runneradmin ALL=NOPASSWD: ALL' > /etc/sudoers.d/runneradmin",
+
+      "useradd --home /home/runner --create-home --shell /bin/bash --uid 1001 runner",
+      "echo 'runner:runner' | chpasswd",
+      "adduser runner sudo",
+      "echo 'runner ALL=NOPASSWD: ALL' > /etc/sudoers.d/runner"
     ]
   }
 
