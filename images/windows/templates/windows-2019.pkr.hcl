@@ -8,7 +8,7 @@ packer {
 }
 
 locals {
-  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
+  image_name = var.image_name != "" ? var.image_name : "packer-${var.image_os}-${var.image_version}"
 }
 
 variable "agent_tools_directory" {
@@ -57,6 +57,11 @@ variable "image_folder" {
   default = "C:\\image"
 }
 
+variable "image_name" {
+  type    = string
+  default = ""
+}
+
 variable "image_os" {
   type    = string
   default = "win19"
@@ -86,11 +91,6 @@ variable "install_user" {
 variable "location" {
   type    = string
   default = "${env("ARM_RESOURCE_LOCATION")}"
-}
-
-variable "managed_image_name" {
-  type    = string
-  default = ""
 }
 
 variable "managed_image_resource_group_name" {
@@ -159,7 +159,7 @@ source "azure-arm" "image" {
   image_publisher                        = "MicrosoftWindowsServer"
   image_sku                              = "2019-Datacenter"
   location                               = "${var.location}"
-  managed_image_name                     = "${local.managed_image_name}"
+  managed_image_name                     = "${local.image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   managed_image_storage_account_type     = "${var.managed_image_storage_account_type}"
   object_id                              = "${var.object_id}"

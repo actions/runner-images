@@ -8,7 +8,7 @@ packer {
 }
 
 locals {
-  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
+  image_name = var.image_name != "" ? var.image_name : "packer-${var.image_os}-${var.image_version}"
 }
 
 variable "allowed_inbound_ip_addresses" {
@@ -62,6 +62,11 @@ variable "image_folder" {
   default = "/imagegeneration"
 }
 
+variable "image_name" {
+  type    = string
+  default = ""
+}
+
 variable "image_os" {
   type    = string
   default = "ubuntu20"
@@ -91,11 +96,6 @@ variable "install_password" {
 variable "location" {
   type    = string
   default = "${env("ARM_RESOURCE_LOCATION")}"
-}
-
-variable "managed_image_name" {
-  type    = string
-  default = ""
 }
 
 variable "managed_image_resource_group_name" {
@@ -153,7 +153,7 @@ source "azure-arm" "build_image" {
   image_publisher                        = "canonical"
   image_sku                              = "20_04-lts"
   location                               = "${var.location}"
-  managed_image_name                     = "${local.managed_image_name}"
+  managed_image_name                     = "${local.image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   os_disk_size_gb                        = "75"
   os_type                                = "Linux"

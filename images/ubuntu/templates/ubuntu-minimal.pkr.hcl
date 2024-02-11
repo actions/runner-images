@@ -17,7 +17,7 @@ locals {
   installer_script_folder = "/imagegeneration/installers"
   imagedata_file          = "/imagegeneration/imagedata.json"
 
-  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
+  image_name = var.image_name != "" ? var.image_name : "packer-${var.image_os}-${var.image_version}"
 }
 
 variable "allowed_inbound_ip_addresses" {
@@ -51,6 +51,11 @@ variable "client_secret" {
   sensitive = true
 }
 
+variable "image_name" {
+  type    = string
+  default = ""
+}
+
 variable "image_version" {
   type    = string
   default = "dev"
@@ -65,11 +70,6 @@ variable "install_password" {
 variable "location" {
   type    = string
   default = "${env("ARM_RESOURCE_LOCATION")}"
-}
-
-variable "managed_image_name" {
-  type    = string
-  default = ""
 }
 
 variable "managed_image_resource_group_name" {
@@ -133,7 +133,7 @@ source "azure-arm" "build_image" {
   image_sku       = "22_04-lts"
 
   // Target location
-  managed_image_name = "${local.managed_image_name}"
+  managed_image_name = "${local.image_name}"
   managed_image_resource_group_name = "${var.managed_image_resource_group_name}"
 
   // Resource group for VM

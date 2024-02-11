@@ -232,8 +232,8 @@ Function GenerateResourcesAndImage {
             The name of the resource group to create the Azure resources in.
         .PARAMETER ImageType
             The type of image to generate. Valid values are: Windows2019, Windows2022, Ubuntu2004, Ubuntu2204, UbuntuMinimal.
-        .PARAMETER ManagedImageName
-            The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
+        .PARAMETER ImageName
+            The name of the image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation
             The Azure location where the Azure resources will be created. For example: "East US"
         .PARAMETER ImageGenerationRepositoryRoot
@@ -294,7 +294,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $True)]
         [ImageType] $ImageType,
         [Parameter(Mandatory = $False)]
-        [string] $ManagedImageName = "Runner-Image-$($ImageType)",
+        [string] $ImageName = "Runner-Image-$($ImageType)",
         [Parameter(Mandatory = $False)]
         [string] $ImageGenerationRepositoryRoot = $pwd,
         [Parameter(Mandatory = $False)]
@@ -383,7 +383,7 @@ Function GenerateResourcesAndImage {
         "-var=subscription_id=$($SubscriptionId)" `
         "-var=tenant_id=fake" `
         "-var=location=$($AzureLocation)" `
-        "-var=managed_image_name=$($ManagedImageName)" `
+        "-var=image_name=$($ImageName)" `
         "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
         "-var=install_password=$($InstallPassword)" `
         "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
@@ -414,7 +414,7 @@ Function GenerateResourcesAndImage {
             -var "subscription_id=$($SubscriptionId)" `
             -var "tenant_id=$($TenantId)" `
             -var "location=$($AzureLocation)" `
-            -var "managed_image_name=$($ManagedImageName)" `
+            -var "image_name=$($ImageName)" `
             -var "managed_image_resource_group_name=$($ResourceGroupName)" `
             -var "install_password=$($InstallPassword)" `
             -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
