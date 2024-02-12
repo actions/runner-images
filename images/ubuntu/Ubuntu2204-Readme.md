@@ -1,11 +1,13 @@
 | Announcements |
 |-|
+| [[All OSes] Ruby versions <= 2.7.x will be removed on February, 26](https://github.com/actions/runner-images/issues/9327) |
+| [[All OSes] Go 1.19.x will be removed and 1.21.x set as default on February, 26](https://github.com/actions/runner-images/issues/9326) |
 | [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.3 LTS
 - Kernel Version: 6.2.0-1019-azure
-- Image Version: 20240204.1.0
+- Image Version: 20240212.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -31,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.0
-- Homebrew 4.2.6
+- Homebrew 4.2.7
 - Miniconda 23.11.0
 - Npm 10.2.3
 - NuGet 6.6.1.2
@@ -39,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.4.3
 - RubyGems 3.3.5
-- Vcpkg (build from commit fecdd89f2)
+- Vcpkg (build from commit 345ac44ab)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -57,7 +59,7 @@ to accomplish this.
 ```
 
 ### Project Management
-- Lerna 8.0.2
+- Lerna 8.1.2
 - Maven 3.8.8
 
 ### Tools
@@ -66,9 +68,9 @@ to accomplish this.
 - AzCopy 10.23.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.0.2
 - Bazelisk 1.19.0
-- Bicep 0.24.24
+- Bicep 0.25.3
 - Buildah 1.23.1
-- CMake 3.28.2
+- CMake 3.28.3
 - CodeQL Action Bundle 2.16.1
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
@@ -81,7 +83,7 @@ to accomplish this.
 - Git LFS 3.4.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 8.7.1
+- Heroku 8.9.0
 - jq 1.6
 - Kind 0.21.0
 - Kubectl 1.29.1
@@ -91,35 +93,35 @@ to accomplish this.
 - Mercurial 6.1.1
 - Minikube 1.32.0
 - n 9.2.0
-- Newman 6.1.0
+- Newman 6.1.1
 - nvm 0.39.7
-- OpenSSL 3.0.2-0ubuntu1.13
+- OpenSSL 3.0.2-0ubuntu1.14
 - Packer 1.10.1
 - Parcel 2.11.0
 - Podman 3.4.4
-- Pulumi 3.104.2
+- Pulumi 3.105.0
 - R 4.3.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.7.2
-- yamllint 1.33.0
-- yq 4.40.5
+- Terraform 1.7.3
+- yamllint 1.34.0
+- yq 4.40.7
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.198
-- AWS CLI 2.15.17
+- AWS CLI 2.15.19
 - AWS CLI Session Manager Plugin 1.2.553.0
-- AWS SAM CLI 1.108.0
-- Azure CLI 2.56.0
+- AWS SAM CLI 1.109.0
+- Azure CLI 2.57.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.43.1
-- Google Cloud CLI 462.0.1
-- Netlify CLI 17.15.7
-- OpenShift CLI 4.14.10
+- Google Cloud CLI 463.0.0
+- Netlify CLI 17.16.1
+- OpenShift CLI 4.14.11
 - ORAS CLI 1.1.0
-- Vercel CLI 33.4.1
+- Vercel CLI 33.5.0
 
 ### Java
 | Version             | Environment Variable |
@@ -131,7 +133,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.6.6
+- Composer 2.7.1
 - PHPUnit 8.5.36
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -141,30 +143,30 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cabal 3.10.2.1
 - GHC 9.8.1
 - GHCup 0.1.20.0
-- Stack 2.13.1
+- Stack 2.15.1
 
 ### Rust Tools
-- Cargo 1.75.0
-- Rust 1.75.0
-- Rustdoc 1.75.0
+- Cargo 1.76.0
+- Rust 1.76.0
+- Rustdoc 1.76.0
 - Rustup 1.26.0
 
 #### Packages
 - Bindgen 0.69.4
 - Cargo audit 0.19.0
-- Cargo clippy 0.1.75
+- Cargo clippy 0.1.76
 - Cargo outdated 0.14.0
 - Cbindgen 0.26.0
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 121.0.6167.139
+- Google Chrome 121.0.6167.160
 - ChromeDriver 121.0.6167.85
 - Chromium 121.0.6167.0
-- Microsoft Edge 121.0.2277.98
-- Microsoft Edge WebDriver 121.0.2277.98
+- Microsoft Edge 121.0.2277.113
+- Microsoft Edge WebDriver 121.0.2277.113
 - Selenium server 4.17.0
-- Mozilla Firefox 122.0
+- Mozilla Firefox 122.0.1
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -183,7 +185,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.37.2
 
 #### PostgreSQL
-- PostgreSQL 14.10
+- PostgreSQL 14.11
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -207,8 +209,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.19.13
-- 1.20.13
-- 1.21.6
+- 1.20.14
+- 1.21.7
+- 1.22.0
 
 #### Node.js
 - 16.20.2
@@ -220,8 +223,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.8.18
 - 3.9.18
 - 3.10.13
-- 3.11.7
-- 3.12.1
+- 3.11.8
+- 3.12.2
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -238,7 +241,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 9.3.0
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.12.0
+- Microsoft.Graph: 2.13.1
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -333,7 +336,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 |
 | libsecret-1-dev        | 0.20.5-2                            |
 | libsqlite3-dev         | 3.37.2-2ubuntu0.3                   |
-| libssl-dev             | 3.0.2-0ubuntu1.13                   |
+| libssl-dev             | 3.0.2-0ubuntu1.14                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
