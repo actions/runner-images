@@ -1,10 +1,12 @@
 | Announcements |
 |-|
+| [[All OSes] Ruby versions <= 2.7.x will be removed on February, 26](https://github.com/actions/runner-images/issues/9327) |
+| [[All OSes] Go 1.19.x will be removed and 1.21.x set as default on February, 26](https://github.com/actions/runner-images/issues/9326) |
 | [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2227
-- Image Version: 20240128.1.0
+- Image Version: 20240211.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,7 +15,7 @@
 
 ### Language and Runtime
 - Bash 5.2.21(1)-release
-- Go 1.20.13
+- Go 1.20.14
 - Julia 1.10.0
 - Kotlin 1.9.22
 - LLVM 16.0.6
@@ -25,15 +27,15 @@
 
 ### Package Management
 - Chocolatey 2.2.2
-- Composer 2.6.6
+- Composer 2.7.1
 - Helm 3.13.3
 - Miniconda 23.11.0 (pre-installed on the image but not added to PATH)
 - NPM 9.8.1
 - NuGet 6.8.0.131
-- pip 23.3.2 (python 3.9)
+- pip 24.0 (python 3.9)
 - Pipx 1.4.3
 - RubyGems 3.2.33
-- Vcpkg (build from commit 7032c5759)
+- Vcpkg (build from commit 345ac44ab)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -44,17 +46,17 @@
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.5
+- Gradle 8.6
 - Maven 3.8.7
 - sbt 1.9.8
 
 ### Tools
 - 7zip 23.01
 - aria2 1.37.0
-- azcopy 10.22.2
+- azcopy 10.23.0
 - Bazel 7.0.2
 - Bazelisk 1.19.0
-- Bicep 0.24.24
+- Bicep 0.25.3
 - Cabal 3.10.2.1
 - CMake 3.27.9
 - CodeQL Action Bundle 2.16.1
@@ -68,57 +70,57 @@
 - ImageMagick 7.1.1-27
 - InnoSetup 6.2.2
 - jq 1.7.1
-- Kind 0.20.0
+- Kind 0.21.0
 - Kubectl 1.29.1
 - Mercurial 5.0
 - gcc 12.2.0
 - gdb 11.2
 - GNU Binutils 2.39
-- Newman 6.1.0
+- Newman 6.1.1
 - NSIS 3.09
 - OpenSSL 1.1.1w
 - Packer 1.10.0
-- Pulumi 3.103.1
+- Pulumi 3.105.0
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
-- Stack 2.13.1
+- Stack 2.15.1
 - Subversion (SVN) 1.14.2
 - Swig 4.1.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.11.2.4516
-- yamllint 1.33.0
+- yamllint 1.34.0
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.197
-- AWS CLI 2.15.15
-- AWS SAM CLI 1.108.0
+- Alibaba Cloud CLI 3.0.198
+- AWS CLI 2.15.19
+- AWS SAM CLI 1.109.0
 - AWS Session Manager CLI 1.2.553.0
-- Azure CLI 2.56.0
+- Azure CLI 2.57.0
 - Azure DevOps CLI extension 0.26.0
-- GitHub CLI 2.42.1
+- GitHub CLI 2.43.1
 
 ### Rust Tools
-- Cargo 1.75.0
-- Rust 1.75.0
-- Rustdoc 1.75.0
+- Cargo 1.76.0
+- Rust 1.76.0
+- Rustdoc 1.76.0
 - Rustup 1.26.0
 
 #### Packages
-- bindgen 0.69.2
-- cargo-audit 0.18.3
+- bindgen 0.69.4
+- cargo-audit 0.19.0
 - cargo-outdated 0.14.0
 - cbindgen 0.26.0
-- Clippy 0.1.75
+- Clippy 0.1.76
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 121.0.6167.86
+- Google Chrome 121.0.6167.161
 - Chrome Driver 121.0.6167.85
-- Microsoft Edge 121.0.2277.83
-- Microsoft Edge Driver 121.0.2277.83
-- Mozilla Firefox 122.0
+- Microsoft Edge 121.0.2277.112
+- Microsoft Edge Driver 121.0.2277.112
+- Mozilla Firefox 122.0.1
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
 - Selenium server 4.17.0
@@ -160,8 +162,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.19.13
-- 1.20.13
-- 1.21.6
+- 1.20.14
+- 1.21.7
+- 1.22.0
 
 #### Node.js
 - 16.20.2
@@ -173,8 +176,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.8.10
 - 3.9.13
 - 3.10.11
-- 3.11.7
-- 3.12.1
+- 3.11.8
+- 3.12.2
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.15]
@@ -194,7 +197,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.10                                                                                                                                |
+| Version              | 14.11                                                                                                                                |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -221,9 +224,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.25.3  | C:\tools\nginx-1.25.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version       | Path                                                     |
-| ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.8.34511.84 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version        | Path                                                     |
+| ----------------------------- | -------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.8.34525.116 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -534,12 +537,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | -------------------------------------------- | ------------ | ----------- |
 | Microsoft Visual C++ 2013 Additional Runtime | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.38.33130 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.38.33130 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.38.33135 |
 
 #### Installed Windows SDKs
 - 10.0.17763.0
@@ -566,10 +569,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.503
+- AWSPowershell: 4.1.513
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.12.0
+- Microsoft.Graph: 2.13.1
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
@@ -587,7 +590,7 @@ All other versions are saved but not installed.
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                               |
 | Android Emulator           | 31.2.9                                                                                                                                                                                            |
-| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0                                                                                                                                                |
+| Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                         |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android SDK Platform-Tools | 34.0.5                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                            |
