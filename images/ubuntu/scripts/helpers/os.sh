@@ -4,17 +4,10 @@
 ##  Desc:  Helper functions for OS releases
 ################################################################################
 
-function isUbuntu20
-{
+is_ubuntu20() {
     lsb_release -d | grep -q 'Ubuntu 20'
 }
 
-function isUbuntu22
-{
+is_ubuntu22() {
     lsb_release -d | grep -q 'Ubuntu 22'
-}
-
-function getOSVersionLabel
-{
-    lsb_release -cs
 }

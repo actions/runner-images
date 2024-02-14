@@ -14,7 +14,7 @@ source $HELPER_SCRIPTS/etc-environment.sh
 # automatic installs. If you are using this front-end, and require
 # non-default  answers  to questions, you will need to preseed the
 # debconf database
-setEtcEnvironmentVariable "DEBIAN_FRONTEND" "noninteractive"
+set_etc_environment_variable "DEBIAN_FRONTEND" "noninteractive"
 
 # dpkg can be instructed not to ask for confirmation
 # when replacing a configuration file (with the --force-confdef --force-confold options)

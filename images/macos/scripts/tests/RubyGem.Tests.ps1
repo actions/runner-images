@@ -32,7 +32,7 @@ Describe "Fastlane" {
     }
 }
 
-Describe "xcpretty" {
+Describe "xcpretty" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "xcpretty" {
         "xcpretty --version" | Should -ReturnZeroExitCode
     }

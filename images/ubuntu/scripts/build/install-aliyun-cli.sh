@@ -11,7 +11,7 @@ source $HELPER_SCRIPTS/install.sh
 
 # Install Alibaba Cloud CLI
 # Pin tool version on ubuntu20 due to issues with GLIBC_2.32 not available
-if isUbuntu20; then
+if is_ubuntu20; then
     toolset_version=$(get_toolset_value '.aliyunCli.version')
     download_url="https://github.com/aliyun/aliyun-cli/releases/download/v$toolset_version/aliyun-cli-linux-$toolset_version-amd64.tgz"
 else
@@ -22,10 +22,10 @@ fi
 archive_path=$(download_with_retry "$download_url")
 
 # Supply chain security - Alibaba Cloud CLI
-if isUbuntu20; then
+if is_ubuntu20; then
     external_hash=$(get_toolset_value '.aliyunCli.sha256')
 else
-    external_hash=$(get_hash_from_remote_file "$hash_url" "aliyun-cli-linux" "amd64.tgz")
+    external_hash=$(get_checksum_from_url "$hash_url" "aliyun-cli-linux.*amd64.tgz" "SHA256")
 fi
 
 use_checksum_comparison "$archive_path" "$external_hash"

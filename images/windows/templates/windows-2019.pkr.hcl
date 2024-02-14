@@ -253,7 +253,7 @@ build {
   }
 
   provisioner "powershell" {
-    environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "AGENT_TOOLSDIRECTORY=${var.agent_tools_directory}", "IMAGEDATA_FILE=${var.imagedata_file}"]
+    environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "AGENT_TOOLSDIRECTORY=${var.agent_tools_directory}", "IMAGEDATA_FILE=${var.imagedata_file}", "IMAGE_FOLDER=${var.image_folder}"]
     execution_policy = "unrestricted"
     scripts          = [
       "${path.root}/../scripts/build/Configure-WindowsDefender.ps1",
@@ -273,7 +273,8 @@ build {
   }
 
   provisioner "powershell" {
-    scripts = [
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
+    scripts          = [
       "${path.root}/../scripts/build/Install-VCRedist.ps1",
       "${path.root}/../scripts/build/Install-Docker.ps1",
       "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
@@ -291,6 +292,7 @@ build {
   provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
+    environment_vars  = ["IMAGE_FOLDER=${var.image_folder}"]
     scripts           = [
       "${path.root}/../scripts/build/Install-VisualStudio.ps1",
       "${path.root}/../scripts/build/Install-KubernetesTools.ps1",
@@ -300,7 +302,8 @@ build {
   }
 
   provisioner "powershell" {
-    scripts = [
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
+    scripts          = [
       "${path.root}/../scripts/build/Install-Wix.ps1",
       "${path.root}/../scripts/build/Install-WDK.ps1",
       "${path.root}/../scripts/build/Install-VSExtensions.ps1",
@@ -315,6 +318,7 @@ build {
 
   provisioner "powershell" {
     execution_policy = "remotesigned"
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
     scripts          = ["${path.root}/../scripts/build/Install-ServiceFabricSDK.ps1"]
   }
 
@@ -327,7 +331,8 @@ build {
   }
 
   provisioner "powershell" {
-    scripts = [
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
+    scripts          = [
       "${path.root}/../scripts/build/Install-ActionsCache.ps1",
       "${path.root}/../scripts/build/Install-Ruby.ps1",
       "${path.root}/../scripts/build/Install-PyPy.ps1",
@@ -398,8 +403,9 @@ build {
   }
 
   provisioner "powershell" {
-    pause_before = "2m0s"
-    scripts      = [
+    pause_before     = "2m0s"
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
+    scripts          = [
       "${path.root}/../scripts/build/Install-WindowsUpdatesAfterReboot.ps1",
       "${path.root}/../scripts/tests/RunAll-Tests.ps1"
     ]
@@ -410,7 +416,7 @@ build {
   }
 
   provisioner "powershell" {
-    environment_vars = ["IMAGE_VERSION=${var.image_version}"]
+    environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_FOLDER=${var.image_folder}"]
     inline           = ["pwsh -File '${var.image_folder}\\SoftwareReport\\Generate-SoftwareReport.ps1'"]
   }
 

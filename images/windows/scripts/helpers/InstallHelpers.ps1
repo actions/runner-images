@@ -217,11 +217,11 @@ function Get-ToolsetContent {
         Retrieves the content of the toolset.json file.
 
     .DESCRIPTION
-        This function reads the toolset.json file located at "C:\image\toolset.json"
-        and returns the content as a PowerShell object.
+        This function reads the toolset.json file in path provided by IMAGE_FOLDER
+        environment variable and returns the content as a PowerShell object.
     #>
 
-    $toolsetPath = Join-Path "C:\\image" "toolset.json"
+    $toolsetPath = Join-Path $env:IMAGE_FOLDER "toolset.json"
     $toolsetJson = Get-Content -Path $toolsetPath -Raw
     ConvertFrom-Json -InputObject $toolsetJson
 }

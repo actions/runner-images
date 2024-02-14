@@ -5,28 +5,27 @@
 ################################################################################
 
 # Source the helpers for use with the script
-source "$HELPER_SCRIPTS/install.sh"
-source "$HELPER_SCRIPTS/os.sh"
+source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
 # Mozillateam PPA is added manually because sometimes
 # lanuchad portal sends empty answer when trying to add it automatically
 
-repo_url="http://ppa.launchpad.net/mozillateam/ppa/ubuntu"
-gpg_fingerprint="0ab215679c571d1c8325275b9bdb3d89ce49ec21"
-gpg_key="/etc/apt/trusted.gpg.d/mozillateam_ubuntu_ppa.gpg"
-repo_path="/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-focal.list"
+REPO_URL="http://ppa.launchpad.net/mozillateam/ppa/ubuntu"
+GPG_FINGERPRINT="0ab215679c571d1c8325275b9bdb3d89ce49ec21"
+GPG_KEY="/etc/apt/trusted.gpg.d/mozillateam_ubuntu_ppa.gpg"
+REPO_PATH="/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-focal.list"
 
 # Install Firefox
-curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${gpg_fingerprint}" | sudo gpg --dearmor -o $gpg_key
-echo "deb $repo_url $(getOSVersionLabel) main" > $repo_path
+curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${GPG_FINGERPRINT}" | sudo gpg --dearmor -o $GPG_KEY
+echo "deb $REPO_URL $(lsb_release -cs) main" > $REPO_PATH
 
 apt-get update
 apt-get install --target-release 'o=LP-PPA-mozillateam' -y firefox
-rm $repo_path
+rm $REPO_PATH
 
 # Document apt source repo's
-echo "mozillateam $repo_url" >> $HELPER_SCRIPTS/apt-sources.txt
+echo "mozillateam $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
 
 # add to gloabl system preferences for firefox locale en_US, because other browsers have en_US local.
 # Default firefox local is en_GB
@@ -44,6 +43,6 @@ tar -xzf "$driver_archive_path" -C $GECKODRIVER_DIR
 
 chmod +x $GECKODRIVER_BIN
 ln -s "$GECKODRIVER_BIN" /usr/bin/
-setEtcEnvironmentVariable "GECKOWEBDRIVER" "${GECKODRIVER_DIR}"
+set_etc_environment_variable "GECKOWEBDRIVER" "${GECKODRIVER_DIR}"
 
 invoke_tests "Browsers" "Firefox"

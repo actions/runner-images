@@ -69,14 +69,7 @@ jobs:
         $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
 
         $TemplateFileName = "${{ parameters.image_template_name }}"
-        if ($TemplateFileName) {
-          $TemplatePath = Join-Path $TemplateDirectoryPath $TemplateFileName
-        } else {
-          $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.pkr.hcl"
-          if ( -not (Test-Path $TemplatePath) ) {
-              $TemplatePath = Join-Path $TemplateDirectoryPath "$ImageType.json"
-          }
-        }
+        $TemplatePath = Join-Path $TemplateDirectoryPath $TemplateFileName
         Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 

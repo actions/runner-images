@@ -6,12 +6,12 @@
 
 source ~/utils/utils.sh
 
-[ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
+[[ -n $API_PAT ]] && authString=(-H "Authorization: token ${API_PAT}")
 nvm_version=$(curl "${authString[@]}" -fsSL https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r '.tag_name')
 nvm_installer_path=$(download_with_retry "https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh")
 
-if bash "$nvm_installer_path"; then
-    . ~/.bashrc
+if bash $nvm_installer_path; then
+    source ~/.bashrc
     nvm --version
     for version in $(get_toolset_value '.node.nvm_versions[]'); do
         nvm install "v${version}"
@@ -19,7 +19,6 @@ if bash "$nvm_installer_path"; then
 
     # set system node as default
     nvm alias default system
-    
     echo "Node version manager has been installed successfully"
 else
     echo "Node version manager installation failed"

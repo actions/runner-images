@@ -3,12 +3,12 @@
         "default": "13.2.1",
         "x64": {
             "versions": [
-                { "link": "13.2.1", "version": "13.2.1+13C100", "symlinks": ["13.2"] },
-                { "link": "13.1", "version": "13.1.0+13A1030d" },
-                { "link": "13.0", "version": "13.0.0+13A233" },
-                { "link": "12.5.1", "version": "12.5.1+12E507", "symlinks": ["12.5"] },
-                { "link": "12.4", "version": "12.4.0+12D4e" },
-                { "link": "11.7", "version": "11.7.0-GM+11E801a", "symlinks": ["11.7_beta"] }
+                { "link": "13.2.1", "version": "13.2.1+13C100", "symlinks": ["13.2"], "sha256": "D3BFCC6225D531587490C0DFC0926C80B7D50D17671DC8F25868F965F5D65F9D" },
+                { "link": "13.1", "version": "13.1.0+13A1030d", "sha256": "4EFDEEA0EEEDA1957BB394128CCCD1DAAC3CB0A3D074224E0FAB90855CCA09C4" },
+                { "link": "13.0", "version": "13.0.0+13A233", "sha256": "1D8257750A4E0333A2B372B32381BE5EC9B29704C8A0D44CE2E6D26D1CF4301E" },
+                { "link": "12.5.1", "version": "12.5.1+12E507", "symlinks": ["12.5"], "sha256": "2592BF58E654440B3DF7062219DBBD24BDF345FAE6BA000756D6D5B1166A7168" },
+                { "link": "12.4", "version": "12.4.0+12D4e", "sha256": "CC8D10155258F9DDAA5E422AB8F50E6058758C95208E58E59B5DB1DB033CE2FF" },
+                { "link": "11.7", "version": "11.7.0-GM+11E801a", "symlinks": ["11.7_beta"], "sha256": "A53FDEAB92326CD9BF93A1B5FAE01E3D658B04DA60DFF5DE74141CABA0808B03" }
             ]
         }
     },
@@ -160,8 +160,8 @@
     },
     "android": {
         "cmdline-tools": "commandlinetools-mac-9123335_latest.zip",
-        "platform_min_version": "27",
-        "build_tools_min_version": "27.0.0",
+        "platform_min_version": "31",
+        "build_tools_min_version": "31.0.0",
         "extras": [
             "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
@@ -219,8 +219,7 @@
             "libxext",
             "libxft",
             "tcl-tk",
-            "r",
-            "imagemagick"
+            "r"
         ],
         "cask_packages": [
             "julia"
@@ -353,13 +352,13 @@
     "llvm": {
         "version": "15"
     },
-    "php": {
-        "version": "8.3"
-    },
     "mongodb": {
         "version": "5.0"
     },
     "postgresql": {
         "version": "14"
+    },
+    "pwsh": {
+        "version": "7.4"
     }
 }

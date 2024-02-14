@@ -6,11 +6,11 @@
 
 source ~/utils/utils.sh
 
-DEFAULT_GO_VERSION=$(get_toolset_value '.go.default')
+default_go_version=$(get_toolset_value '.go.default')
 echo "Installing Go..."
-brew_smart_install "go@${DEFAULT_GO_VERSION}"
+brew_smart_install "go@${default_go_version}"
 
 # Create symlinks to preserve backward compatibility. Symlinks are not created when non-latest go is being installed
-ln -sf $(brew --prefix go@${DEFAULT_GO_VERSION})/bin/* /usr/local/bin/
+ln -sf $(brew --prefix go@${default_go_version})/bin/* /usr/local/bin/
 
 invoke_tests "Common" "Go"

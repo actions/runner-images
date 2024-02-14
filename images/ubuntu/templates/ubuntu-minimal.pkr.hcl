@@ -149,7 +149,7 @@ source "azure-arm" "build_image" {
 
   // VM Configuration
   vm_size         = "${var.vm_size}"
-  os_disk_size_gb = "86"
+  os_disk_size_gb = "75"
   os_type         = "Linux"
 
   dynamic "azure_tag" {
@@ -241,7 +241,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}"]
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/../scripts/build/install-powershell.sh"]
   }

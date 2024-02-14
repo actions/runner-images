@@ -154,7 +154,7 @@ function Build-OSInfoSection {
     )
 
     $fieldsToInclude = @("System Version:", "Kernel Version:")
-    $rawSystemInfo = Invoke-Expression "system_profiler SPSoftwareDataType"
+    $rawSystemInfo = Run-Command "system_profiler SPSoftwareDataType"
     $parsedSystemInfo = $rawSystemInfo | Where-Object { -not ($_ | Select-String -NotMatch $fieldsToInclude) } | ForEach-Object { $_.Trim() }
     $parsedSystemInfo[0] -match "System Version: macOS (?<version>\d+)" | Out-Null
     $version = $Matches.Version
@@ -169,12 +169,12 @@ function Build-OSInfoSection {
 }
 
 function Get-MonoVersion {
-    $monoVersion = mono --version | Out-String | Take-Part -Part 4
+    $monoVersion = Run-Command "mono --version" | Out-String | Take-Part -Part 4
     return $monoVersion
 }
 
 function Get-MSBuildVersion {
-    $msbuildVersion = msbuild -version | Select-Object -Last 1
+    $msbuildVersion = Run-Command "msbuild -version" | Select-Object -Last 1
     $monoVersion = Get-MonoVersion
     return "$msbuildVersion (Mono $monoVersion)"
 }
@@ -250,7 +250,7 @@ function Get-NuGetVersion {
 }
 
 function Get-CondaVersion {
-    $condaVersion = Invoke-Expression "conda --version"
+    $condaVersion = Run-Command "conda --version"
     return ($condaVersion -replace "^conda").Trim()
 }
 
@@ -312,7 +312,7 @@ function Get-SVNVersion {
 
 function Get-PackerVersion {
     # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
-    $result = Run-Command -Command "packer --version"
+    $result = Run-Command "packer --version"
     $packerVersion = [regex]::matches($result, "(\d+.){2}\d+").Value
     return $packerVersion
 }
@@ -538,22 +538,22 @@ function Get-JazzyVersion {
 }
 
 function Get-ZlibVersion {
-	$zlibVersion = brew info --json zlib | jq -r '.[].installed[].version'
+	$zlibVersion = (Run-Command "brew info --json zlib" | ConvertFrom-Json).installed.version
 	return $zlibVersion
 }
 
 function Get-LibXftVersion {
-    $libXftVersion = brew info --json libxft | jq -r '.[].installed[].version'
+    $libXftVersion = (Run-Command "brew info --json libxft" | ConvertFrom-Json).installed.version
     return $libXftVersion
 }
 
 function Get-LibXextVersion {
-    $libXextVersion = brew info --json libxext | jq -r '.[].installed[].version'
+    $libXextVersion = (Run-Command "brew info --json libxext" | ConvertFrom-Json).installed.version
     return $libXextVersion
 }
 
 function Get-TclTkVersion {
-    $tcltkVersion = brew info --json tcl-tk | jq -r '.[].installed[].version'
+    $tcltkVersion = (Run-Command "brew info --json tcl-tk" | ConvertFrom-Json).installed.version
     return $tcltkVersion
 }
 

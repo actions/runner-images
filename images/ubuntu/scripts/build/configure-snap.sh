@@ -4,12 +4,13 @@
 ##  Desc:  Configure snap
 ################################################################################
 
+# Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
 
 # Update /etc/environment to include /snap/bin in PATH
 # because /etc/profile.d is ignored by `--norc` shell launch option
 
-prependEtcEnvironmentPath "/snap/bin"
+prepend_etc_environment_path "/snap/bin"
 
 # Put snapd auto refresh on hold
 # as it may generate too much traffic on Canonical's snap server

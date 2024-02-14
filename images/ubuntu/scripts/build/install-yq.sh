@@ -9,14 +9,15 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Download yq
-base_url="https://github.com/mikefarah/yq/releases/latest/download"
-binary_path=$(download_with_retry "${base_url}/yq_linux_amd64")
+yq_url=$(resolve_github_release_asset_url "mikefarah/yq" "endswith(\"yq_linux_amd64\")" "latest")
+binary_path=$(download_with_retry "${yq_url}")
 
 # Supply chain security - yq
-external_hash=$(get_hash_from_remote_file "${base_url}/checksums" "yq_linux_amd64 " "" " " "19")
+hash_url=$(resolve_github_release_asset_url "mikefarah/yq" "endswith(\"checksums\")" "latest")
+external_hash=$(get_checksum_from_url "${hash_url}" "yq_linux_amd64 " "SHA256" "true" " " "19")
 use_checksum_comparison "$binary_path" "$external_hash"
 
 # Install yq
-sudo install "$binary_path" /usr/bin/yq
+install "$binary_path" /usr/bin/yq
 
 invoke_tests "Tools" "yq"
