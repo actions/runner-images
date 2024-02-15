@@ -65,6 +65,7 @@
             "gnu-tar",
             "kotlin",
             "libpq",
+            "libsodium",
             "p7zip",
             "packer",
             "perl",
