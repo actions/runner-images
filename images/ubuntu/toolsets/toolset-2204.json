@@ -236,11 +236,11 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "24.0.7"
+                "version": "24.0.8"
             },
             {
                 "package": "docker-ce",
-                "version": "24.0.7"
+                "version": "24.0.8"
             }
         ],
         "plugins": [
