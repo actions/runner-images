@@ -47,11 +47,9 @@ disown
 sleep 30
 kill -9 $SAFARI_PID
 
-echo "Enabling Safari's remote automation and \"Develop\" menu"
-# Enable Safari's remote automation and "Develop" menu
+echo "Enabling Safari's remote automation"
+# Enable Safari's remote automation
 sudo safaridriver --enable
-defaults write com.apple.Safari.SandboxBroker ShowDevelopMenu -bool true
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
 
 echo "Disabling screen lock"
 # Disable screen lock
@@ -59,6 +57,3 @@ echo "Disabling screen lock"
 # Note that this only works if the user is logged-in,
 # i.e. not on login screen.
 sysadminctl -screenLock off -password $PASSWORD
-
-echo "Disabling screensaver"
-defaults -currentHost write com.apple.screensaver idleTime 0

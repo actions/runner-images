@@ -27,12 +27,6 @@ variable "esxi_datastore" {
   type = string
 }
 
-variable "github_api_pat" {
-  type      = string
-  default   = ""
-  sensitive = true
-}
-
 variable "image_os" {
   type    = string
   default = "macos12"
@@ -203,7 +197,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["API_PAT=${var.github_api_pat}", "USER_PASSWORD=${var.vm_password}", "IMAGE_FOLDER=${local.image_folder}"]
+    environment_vars = ["USER_PASSWORD=${var.vm_password}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}"
     pause_before     = "30s"
     scripts          = [
@@ -235,7 +229,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["API_PAT=${var.github_api_pat}", "IMAGE_FOLDER=${local.image_folder}"]
+    environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}"
     scripts          = [
       "${path.root}/../scripts/build/install-actions-cache.sh",
