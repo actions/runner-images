@@ -63,7 +63,7 @@ get_github_releases_by_version() {
     json=$(curl -fsSL "https://api.github.com/repos/${repo}/releases?per_page=${page_size}")
 
     if [[ -z "$json" ]]; then
-        echo "Failed to get releases"
+        echo "Failed to get releases" >&2
         exit 1
     fi
 
@@ -92,8 +92,8 @@ get_github_releases_by_version() {
     fi
 
     if [[ -z "$json_filtered" ]]; then
-        echo "Failed to get releases from ${repo} matching version ${version}"
-        echo "Available versions: $(echo "$json" | jq -r '.tag_name')"
+        echo "Failed to get releases from ${repo} matching version ${version}" >&2
+        echo "Available versions: $(echo "$json" | jq -r '.tag_name')" >&2
         exit 1
     fi
 
@@ -111,8 +111,8 @@ resolve_github_release_asset_url() {
     matched_url=$(echo $matching_releases | jq -r ".assets[].browser_download_url | select(${url_filter})")
 
     if [[ -z "$matched_url" ]]; then
-        echo "Found no download urls matching pattern: ${url_filter}"
-        echo "Available download urls: $(echo "$matching_releases" | jq -r '.assets[].browser_download_url')"
+        echo "Found no download urls matching pattern: ${url_filter}" >&2
+        echo "Available download urls: $(echo "$matching_releases" | jq -r '.assets[].browser_download_url')" >&2
         exit 1
     fi
 
@@ -120,7 +120,7 @@ resolve_github_release_asset_url() {
         if [[ $allow_multiple_matches == "true" ]]; then
             matched_url=$(echo "$matched_url" | tail -n 1)
         else
-            echo "Multiple matches found for ${version} version and ${url_filter} URL filter. Please make filters more specific"
+            echo "Multiple matches found for ${version} version and ${url_filter} URL filter. Please make filters more specific" >&2
             exit 1
         fi
     fi
@@ -136,7 +136,7 @@ get_checksum_from_github_release() {
     local allow_pre_release=${5:-false}
 
     if [[ -z "$file_name" ]]; then
-        echo "File name is not specified."
+        echo "File name is not specified." >&2
         exit 1
     fi
 
@@ -145,7 +145,7 @@ get_checksum_from_github_release() {
     elif [[ "$hash_type" == "SHA512" ]]; then
         hash_pattern="[A-Fa-f0-9]{128}"
     else
-        echo "Unknown hash type: ${hash_type}"
+        echo "Unknown hash type: ${hash_type}" >&2
         exit 1
     fi
 
@@ -153,19 +153,19 @@ get_checksum_from_github_release() {
     matched_line=$(printf "$(echo $matching_releases | jq '.body')\n" | grep "$file_name")
 
     if [[ -z "$matched_line" ]]; then
-        echo "File name ${file_name} not found in release body"
+        echo "File name ${file_name} not found in release body" >&2
         exit 1
     fi
 
     if [[ "$(echo "$matched_line" | wc -l)" -gt 1 ]]; then
-        echo "Multiple matches found for ${file_name} in release body: ${matched_line}"
+        echo "Multiple matches found for ${file_name} in release body: ${matched_line}" >&2
         exit 1
     fi
 
     hash=$(echo $matched_line | grep -oP "$hash_pattern")
 
     if [[ -z "$hash" ]]; then
-        echo "Found ${file_name} in body of release, but failed to get hash from it: ${matched_line}"
+        echo "Found ${file_name} in body of release, but failed to get hash from it: ${matched_line}" >&2
         exit 1
     fi
 
@@ -185,7 +185,7 @@ get_checksum_from_url() {
     elif [[ "$hash_type" == "SHA512" ]]; then
         hash_pattern="[A-Fa-f0-9]{128}"
     else
-        echo "Unknown hash type: ${hash_type}"
+        echo "Unknown hash type: ${hash_type}" >&2
         exit 1
     fi
 
@@ -196,12 +196,12 @@ get_checksum_from_url() {
     matched_line=$(printf "$checksums\n" | grep "$file_name")
 
     if [[ "$(echo "$matched_line" | wc -l)" -gt 1 ]]; then
-        echo "Found multiple lines matching file name ${file_name} in checksum file."
+        echo "Found multiple lines matching file name ${file_name} in checksum file." >&2
         exit 1
     fi
 
     if [[ -z "$matched_line" ]]; then
-        echo "File name ${file_name} not found in checksum file."
+        echo "File name ${file_name} not found in checksum file." >&2
         exit 1
     fi
 
@@ -212,7 +212,7 @@ get_checksum_from_url() {
     fi
 
     if [[ -z "$hash" ]]; then
-        echo "Found ${file_name} in checksum file, but failed to get hash from it: ${matched_line}"
+        echo "Found ${file_name} in checksum file, but failed to get hash from it: ${matched_line}" >&2
         exit 1
     fi
 
