@@ -15,7 +15,11 @@ Install-Binary `
 $mysqlVersionMajorMinor = $mysqlVersion.ToString(2)
 
 if ($mysqlVersion.Build -lt 0) {
-    $downloadsPageUrl = "https://dev.mysql.com/downloads/mysql/${mysqlVersionMajorMinor}.html"
+    if ($mysqlVersionMajorMinor -eq "5.7") {
+        $downloadsPageUrl = "https://downloads.mysql.com/archives/community/"
+    } else {
+        $downloadsPageUrl = "https://dev.mysql.com/downloads/mysql/${mysqlVersionMajorMinor}.html"
+    }
     $mysqlVersion = Invoke-RestMethod -Uri $downloadsPageUrl -Headers @{ 'User-Agent' = 'curl/8.4.0' } `
     | Select-String -Pattern "${mysqlVersionMajorMinor}\.\d+" `
     | ForEach-Object { $_.Matches.Value }
