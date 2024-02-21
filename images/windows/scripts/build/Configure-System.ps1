@@ -152,13 +152,6 @@ Stop-Service $servicesToDisable
 $servicesToDisable.WaitForStatus('Stopped', "00:01:00")
 $servicesToDisable | Set-Service -StartupType Disabled
 
-# Set the "wlansvc" service startup type to manual and stop the service
-Set-Service -Name wlansvc -StartupType Manual
-$WLANService = Get-Service -Name wlansvc
-if ($WLANService.Status -eq 'Running') {
-    Stop-Service -Name wlansvc
-}
-
 # Disable scheduled tasks
 $allTasksInTaskPath = @(
     "\"
