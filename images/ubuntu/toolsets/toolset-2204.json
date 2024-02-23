@@ -43,12 +43,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.19.*",
                 "1.20.*",
                 "1.21.*",
                 "1.22.*"
             ],
-            "default": "1.20.*"
+            "default": "1.21.*"
         },
         {
             "name": "Ruby",
