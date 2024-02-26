@@ -6,7 +6,7 @@
 # macOS 14
 - OS Version: macOS 14.3.1 (23D60)
 - Kernel Version: Darwin 23.3.0
-- Image Version: 20240219.1
+- Image Version: 20240225.1
 
 ## Installed Software
 
@@ -40,7 +40,7 @@
 - Pip3 24.0 (python 3.12)
 - Pipx 1.4.3
 - RubyGems 3.5.6
-- Vcpkg 2024 (build from commit 13bde2ff1)
+- Vcpkg 2024 (build from commit 37c3e63a1)
 - Yarn 1.22.19
 
 ### Project Management
@@ -56,7 +56,7 @@
 - bazelisk 1.19.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.6.0
-- Git 2.43.2
+- Git 2.44.0
 - Git LFS 3.4.1
 - GitHub CLI 2.44.1
 - GNU Tar 1.35 - available by 'gtar' alias
@@ -70,14 +70,14 @@
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.15.21
-- AWS SAM CLI 1.109.0
+- AWS CLI 2.15.23
+- AWS SAM CLI 1.110.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.57.0
 - Azure CLI (azure-devops) 0.26.0
 - Bicep CLI 0.25.53
 - Cmake 3.28.3
-- CodeQL Action Bundle 2.16.2
+- CodeQL Action Bundle 2.16.3
 - Fastlane 2.219.0
 - SwiftFormat 0.53.2
 - Xcbeautify 1.4.0
@@ -90,14 +90,14 @@
 ### Browsers
 - Safari 17.3.1 (19617.2.4.11.12)
 - SafariDriver 17.3.1 (19617.2.4.11.12)
-- Google Chrome 121.0.6167.184
-- Google Chrome for Testing 121.0.6167.184
-- ChromeDriver 121.0.6167.184
-- Microsoft Edge 121.0.2277.128
-- Microsoft Edge WebDriver 121.0.2277.128
-- Mozilla Firefox 122.0.1
+- Google Chrome 122.0.6261.69
+- Google Chrome for Testing 122.0.6261.69
+- ChromeDriver 122.0.6261.69
+- Microsoft Edge 122.0.2365.52
+- Microsoft Edge WebDriver 122.0.2365.52
+- Mozilla Firefox 123.0
 - geckodriver 0.34.0
-- Selenium server 4.17.0
+- Selenium server 4.18.1
 
 #### Environment variables
 | Name            | Value                                 |
