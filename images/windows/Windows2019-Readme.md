@@ -78,7 +78,7 @@
 - GNU Binutils 2.30
 - Newman 6.1.1
 - NSIS 3.09
-- OpenSSL 1.1.1w
+- OpenSSL 3.2.1
 - Packer 1.10.0
 - Parcel 2.11.0
 - Pulumi 3.106.0
