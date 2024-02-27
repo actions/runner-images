@@ -137,7 +137,10 @@ build {
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["mv ${local.image_folder}/post-gen ${local.image_folder}/post-generation"]
+    inline          = [
+      "chown -R runner:runner ${var.image_folder}",
+      "mv ${local.image_folder}/post-gen ${local.image_folder}/post-generation"
+    ]
   }
 
   // Generate image data file
