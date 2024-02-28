@@ -5,7 +5,7 @@
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 5458
-- Image Version: 20240218.2.0
+- Image Version: 20240225.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,8 +13,8 @@
 ## Installed Software
 
 ### Language and Runtime
-- Bash 5.2.21(1)-release
-- Go 1.20.14
+- Bash 5.2.26(1)-release
+- Go 1.21.7
 - Julia 1.10.0
 - Kotlin 1.9.22
 - LLVM 16.0.6
@@ -22,19 +22,19 @@
 - Perl 5.32.1
 - PHP 8.2.16
 - Python 3.7.9
-- Ruby 2.5.9p229
+- Ruby 3.0.6p216
 
 ### Package Management
 - Chocolatey 2.2.2
 - Composer 2.7.1
-- Helm 3.14.0
+- Helm 3.14.1
 - Miniconda 23.11.0 (pre-installed on the image but not added to PATH)
 - NPM 9.8.1
 - NuGet 6.9.1.3
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
-- RubyGems 2.7.6.3
-- Vcpkg (build from commit 13bde2ff1)
+- RubyGems 3.2.33
+- Vcpkg (build from commit 37c3e63a1)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -47,7 +47,7 @@
 - Ant 1.10.14
 - Gradle 8.6
 - Maven 3.8.7
-- sbt 1.9.8
+- sbt 1.9.9
 
 ### Tools
 - 7zip 23.01
@@ -58,15 +58,15 @@
 - Bicep 0.25.53
 - Cabal 3.10.2.1
 - CMake 3.28.3
-- CodeQL Action Bundle 2.16.2
+- CodeQL Action Bundle 2.16.3
 - Docker 24.0.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
 - Docker-wincred 0.8.1
-- ghc 9.8.1
-- Git 2.43.0.windows.1
-- Git LFS 3.4.0
-- Google Cloud CLI 464.0.0
+- ghc 9.8.2
+- Git 2.44.0.windows.1
+- Git LFS 3.4.1
+- Google Cloud CLI 465.0.0
 - ImageMagick 7.1.1-28
 - InnoSetup 6.2.2
 - jq 1.7.1
@@ -81,7 +81,7 @@
 - OpenSSL 1.1.1w
 - Packer 1.10.0
 - Parcel 2.11.0
-- Pulumi 3.106.0
+- Pulumi 3.107.0
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.15.1
@@ -95,8 +95,8 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.198
-- AWS CLI 2.15.21
-- AWS SAM CLI 1.109.0
+- AWS CLI 2.15.23
+- AWS SAM CLI 1.110.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.57.0
 - Azure DevOps CLI extension 0.26.0
@@ -118,14 +118,14 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 121.0.6167.185
-- Chrome Driver 121.0.6167.184
-- Microsoft Edge 121.0.2277.106
-- Microsoft Edge Driver 121.0.2277.128
-- Mozilla Firefox 122.0.1
+- Google Chrome 122.0.6261.70
+- Chrome Driver 122.0.6261.69
+- Microsoft Edge 122.0.2365.52
+- Microsoft Edge Driver 122.0.2365.52
+- Mozilla Firefox 123.0
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
-- Selenium server 4.17.0
+- Selenium server 4.18.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -166,7 +166,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Tools
 
 #### Go
-- 1.19.13
 - 1.20.14
 - 1.21.7
 - 1.22.0
@@ -193,9 +192,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.13 [PyPy 7.3.15]
 
 #### Ruby
-- 2.5.9
-- 2.6.10
-- 2.7.8
 - 3.0.6
 - 3.1.4
 
@@ -514,10 +510,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.518
+- AWSPowershell: 4.1.523
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.14.0
+- Microsoft.Graph: 2.15.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.21.0
