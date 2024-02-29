@@ -11,7 +11,7 @@ source $HELPER_SCRIPTS/os.sh
 # Install libssl1.1 dependency
 if is_ubuntu22; then
     libssl_deb_path=$(download_with_retry "http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.22_amd64.deb")
-    libssl_hash="DF9D07D552AAB0C7E5B9FBCC568913ACD20D50FB8B1E34876FA348B7A0C82D48"
+    libssl_hash="df9d07d552aab0c7e5b9fbcc568913acd20d50fb8b1e34876fa348b7a0c82d48"
     use_checksum_comparison "$libssl_deb_path" "$libssl_hash"
 
     dpkg -i "$libssl_deb_path"
