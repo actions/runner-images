@@ -5,8 +5,8 @@
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
-- Kernel Version: 5.15.0-1056-azure
-- Image Version: 20240218.1.0
+- Kernel Version: 5.15.0-1057-azure
+- Image Version: 20240225.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -33,8 +33,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.14.1
-- Homebrew 4.2.8
+- Helm 3.14.2
+- Homebrew 4.2.9
 - Miniconda 23.11.0
 - Npm 10.2.4
 - NuGet 6.6.1.2
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.4.3
 - RubyGems 3.1.2
-- Vcpkg (build from commit 13bde2ff1)
+- Vcpkg (build from commit 37c3e63a1)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -64,7 +64,7 @@ to accomplish this.
 - Gradle 8.6
 - Lerna 8.1.2
 - Maven 3.8.8
-- Sbt 1.9.8
+- Sbt 1.9.9
 
 ### Tools
 - Ansible 2.13.13
@@ -75,19 +75,19 @@ to accomplish this.
 - Bicep 0.25.53
 - Buildah 1.22.3
 - CMake 3.28.3
-- CodeQL Action Bundle 2.16.2
+- CodeQL Action Bundle 2.16.3
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
 - Docker-Buildx 0.12.1
-- Docker Client 24.0.8
-- Docker Server 24.0.8
+- Docker Client 24.0.9
+- Docker Server 24.0.9
 - Fastlane 2.219.0
 - Git 2.43.2
 - Git LFS 3.4.1
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 8.9.0
+- Heroku 8.10.0
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.22.0
@@ -97,7 +97,7 @@ to accomplish this.
 - MediaInfo 19.09
 - Mercurial 5.3.1
 - Minikube 1.32.0
-- n 9.2.0
+- n 9.2.1
 - Newman 6.1.1
 - nvm 0.39.7
 - OpenSSL 1.1.1f-1ubuntu2.21
@@ -105,29 +105,29 @@ to accomplish this.
 - Parcel 2.11.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.106.0
+- Pulumi 3.107.0
 - R 4.3.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.7.3
+- Terraform 1.7.4
 - yamllint 1.35.1
 - yq 4.41.1
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.15.21
+- AWS CLI 2.15.23
 - AWS CLI Session Manager Plugin 1.2.553.0
-- AWS SAM CLI 1.109.0
+- AWS SAM CLI 1.110.0
 - Azure CLI 2.57.0
 - Azure CLI (azure-devops) 0.26.0
 - GitHub CLI 2.44.1
-- Google Cloud CLI 464.0.0
-- Netlify CLI 17.16.2
-- OpenShift CLI 4.14.12
+- Google Cloud CLI 465.0.0
+- Netlify CLI 17.17.0
+- OpenShift CLI 4.14.13
 - ORAS CLI 1.1.0
-- Vercel CLI 33.5.1
+- Vercel CLI 33.5.2
 
 ### Java
 | Version             | Environment Variable |
@@ -147,7 +147,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Haskell Tools
 - Cabal 3.10.2.1
-- GHC 9.8.1
+- GHC 9.8.2
 - GHCup 0.1.20.0
 - Stack 2.15.1
 
@@ -166,12 +166,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 121.0.6167.184
-- ChromeDriver 121.0.6167.184
-- Chromium 121.0.6167.0
-- Microsoft Edge 121.0.2277.128
-- Microsoft Edge WebDriver 121.0.2277.128
-- Selenium server 4.17.0
+- Google Chrome 122.0.6261.69
+- ChromeDriver 122.0.6261.69
+- Chromium 122.0.6261.0
+- Microsoft Edge 122.0.2365.52
+- Microsoft Edge WebDriver 122.0.2365.52
+- Selenium server 4.18.1
 - Mozilla Firefox 123.0
 - Geckodriver 0.34.0
 
@@ -215,7 +215,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.19.13
 - 1.20.14
 - 1.21.7
 - 1.22.0
@@ -242,9 +241,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.13 [PyPy 7.3.15]
 
 #### Ruby
-- 2.5.9
-- 2.6.10
-- 2.7.8
 - 3.0.6
 - 3.1.4
 
@@ -255,7 +251,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 9.3.0
 - Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.14.0
+- Microsoft.Graph: 2.15.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -320,7 +316,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 8.30-3ubuntu2                     |
 | curl                   | 7.68.0-1ubuntu2.21                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
-| dnsutils               | 1:9.16.1-0ubuntu2.16              |
+| dnsutils               | 1:9.16.48-0ubuntu0.20.04.1        |
 | dpkg                   | 1.19.7ubuntu3.2                   |
 | dpkg-dev               | 1.19.7ubuntu3.2                   |
 | fakeroot               | 1.24-1                            |
