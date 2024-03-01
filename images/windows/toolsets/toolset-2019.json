@@ -5,13 +5,10 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "2.5",
-                "2.6",
-                "2.7",
                 "3.0",
                 "3.1"
             ],
-            "default": "2.5"
+            "default": "3.0"
         },
         {
             "name": "Python",
@@ -72,12 +69,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.19.*",
                 "1.20.*",
                 "1.21.*",
                 "1.22.*"
             ],
-            "default": "1.20.*"
+            "default": "1.21.*"
         }
     ],
     "powershellModules": [
@@ -260,14 +256,15 @@
         { "name": "FS-iSCSITarget-Server", "includeAllSubFeatures": true, "includeManagementTools": true },
         { "name": "Containers" },
         { "name": "Microsoft-Windows-Subsystem-Linux", "optionalFeature": true },
-        { "name": "VirtualMachinePlatform", "optionalFeature": true }
+        { "name": "VirtualMachinePlatform", "optionalFeature": true },
+        { "name": "Wireless-Networking" }
     ],
     "visualStudio": {
         "version" : "2019",
         "subversion" : "16",
         "edition" : "Enterprise",
         "channel": "release",
-        "signature": "6E78B3DCE2998F6C2457C3E54DA90A01034916AE",
+        "signature": "C2048FB509F1C37A8C3E9EC6648118458AA01780",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",

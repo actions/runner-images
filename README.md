@@ -47,9 +47,9 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] |
 | macOS 14 [beta] | `macos-14-large`| [macOS-14] |
 | macOS 14 Arm64 [beta] | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
-| macOS 13 | `macos-13` or `macos-13-large` | [macOS-13] |
+| macOS 13 | `macos-13`, `macos-13-large` or `macos-latest-large` | [macOS-13] |
 | macOS 13 Arm64 | `macos-13-xlarge` | [macOS-13-arm64] |
-| macOS 12 | `macos-latest`,`macos-12`, `macos-latest-large`, or `macos-12-large`| [macOS-12] |
+| macOS 12 | `macos-latest`,`macos-12` or`macos-12-large`| [macOS-12] |
 | macOS 11 [deprecated] | `macos-11`| [macOS-11] |
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] |
 | Windows Server 2019 | `windows-2019` | [windows-2019] |
@@ -226,4 +226,10 @@ For some tools, we always install the latest at the time of the deployment; for 
 <details>
    <summary><b><i>How do I request that a new tool be pre-installed on the image?</b></i></summary>
 Please create an issue and get an approval from us to add this tool to the image before creating the pull request.
+</details>
+
+<details>
+   <summary><b><i>What branch should I use to build custom image?</b></i></summary>
+We strongly encourage customers to build their own images using the main branch.
+This repository contains multiple branches and releases that serve as document milestones to reflect what software is installed in the images at certain point of time. Current builds are not idempotent and if one tries to build a runner image using the specific tag it is not guaranteed that the build will succeed.
 </details>

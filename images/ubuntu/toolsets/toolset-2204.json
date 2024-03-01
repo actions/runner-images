@@ -43,12 +43,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.19.*",
                 "1.20.*",
                 "1.21.*",
                 "1.22.*"
             ],
-            "default": "1.20.*"
+            "default": "1.21.*"
         },
         {
             "name": "Ruby",
@@ -236,11 +235,11 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "24.0.7"
+                "version": "24.0.9"
             },
             {
                 "package": "docker-ce",
-                "version": "24.0.7"
+                "version": "24.0.9"
             }
         ],
         "plugins": [

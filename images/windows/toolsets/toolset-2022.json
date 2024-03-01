@@ -5,7 +5,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "2.7",
                 "3.0",
                 "3.1"
             ],
@@ -69,12 +68,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.19.*",
                 "1.20.*",
                 "1.21.*",
                 "1.22.*"
             ],
-            "default": "1.20.*"
+            "default": "1.21.*"
         }
     ],
     "powershellModules": [
@@ -170,7 +168,8 @@
         { "name": "NET-Framework-Features", "includeAllSubFeatures": true },
         { "name": "Hyper-V", "includeAllSubFeatures": true },
         { "name": "HypervisorPlatform", "optionalFeature": true },
-        { "name": "Hyper-V-PowerShell" }
+        { "name": "Hyper-V-PowerShell" },
+        { "name": "Wireless-Networking" }
     ],
     "visualStudio": {
         "version" : "2022",
@@ -249,24 +248,6 @@
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.14.29.16.11.MFC.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ARM64",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.ARM.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.ARM",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.ARM64",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.ATL",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.ARM.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.ARM",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.ARM64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.ARM64",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.MFC",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.x86.x64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.14.37.17.7.x86.x64",
             "Microsoft.VisualStudio.Component.VC.14.38.17.8.ARM",
             "Microsoft.VisualStudio.Component.VC.14.38.17.8.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.14.38.17.8.ARM64",
@@ -285,6 +266,24 @@
             "Microsoft.VisualStudio.Component.VC.14.38.17.8.MFC.Spectre",
             "Microsoft.VisualStudio.Component.VC.14.38.17.8.x86.x64",
             "Microsoft.VisualStudio.Component.VC.14.38.17.8.x86.x64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ARM",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ARM.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ARM64",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ARM64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ATL",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ATL.ARM",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ATL.ARM.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ATL.ARM64",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ATL.ARM64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.ATL.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.MFC",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.MFC.ARM",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.MFC.ARM.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.MFC.ARM64",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.MFC.ARM64.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.MFC.Spectre",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.x86.x64",
+            "Microsoft.VisualStudio.Component.VC.14.39.17.9.x86.x64.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATLMFC",
             "Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",

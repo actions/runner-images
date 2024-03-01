@@ -10,19 +10,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Update release for ${{ github.event.client_payload.ReleaseBranchName }}
-      uses: actions/github-script@v2
+      uses: actions/github-script@v7
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-            const response = await github.repos.getReleaseByTag({
+            const response = await github.rest.repos.getReleaseByTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag: "${{ github.event.client_payload.ReleaseBranchName }}"
             });
-            github.repos.updateRelease({
+            github.rest.repos.updateRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
               release_id: response.data.id,

@@ -10,15 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Create release for ${{ github.event.client_payload.ReleaseBranchName }}
-      uses: actions/create-release@v1.1.1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: ncipollo/release-action@v1.14.0
       with:
-        tag_name: ${{ github.event.client_payload.ReleaseBranchName }}
-        release_name: ${{ github.event.client_payload.ReleaseTitle }}
+        tag: ${{ github.event.client_payload.ReleaseBranchName }}
+        name: ${{ github.event.client_payload.ReleaseTitle }}
         body: ${{ github.event.client_payload.ReleaseBody }}
         prerelease: ${{ github.event.client_payload.Prerelease }}
-        commitish: ${{ github.event.client_payload.Commitish }}
+        commit: ${{ github.event.client_payload.Commitish }}
