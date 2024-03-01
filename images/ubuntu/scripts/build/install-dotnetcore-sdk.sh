@@ -72,7 +72,7 @@ for version in ${dotnet_versions[@]}; do
     fi
 done
 
-sorted_sdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -r | uniq -w 5)
+sorted_sdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -V -r | sort -t. -k 1,1 -u)
 
 # Download/install additional SDKs in parallel
 export -f download_with_retry
