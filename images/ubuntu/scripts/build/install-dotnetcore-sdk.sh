@@ -60,7 +60,7 @@ apt-get update
 
 # Install .NET SDK from home repository
 # Get list of all released SDKs from channels which are not end-of-life or preview
-sdks=()
+sdks=($(dotnet --list-sdks | awk '{ print $1 "9999"; }'))
 for version in ${dotnet_versions[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
     releases=$(cat "$(download_with_retry "$release_url")")
@@ -72,7 +72,7 @@ for version in ${dotnet_versions[@]}; do
     fi
 done
 
-sorted_sdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -V -r | sort -t. -k 1,1 -u)
+sorted_sdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -V -r | sort -t. -k 1,1 -u | sed 's,9999$,,')
 
 # Download/install additional SDKs in parallel
 export -f download_with_retry
