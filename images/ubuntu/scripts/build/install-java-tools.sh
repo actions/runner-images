@@ -68,6 +68,7 @@ echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium
 
 # Get all the updates from enabled repositories.
 apt-get update
+apt-get update --fix-missing #WARPCHANGE
 
 defaultVersion=$(get_toolset_value '.java.default')
 jdkVersionsToInstall=($(get_toolset_value ".java.versions[]"))
