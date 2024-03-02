@@ -62,6 +62,10 @@ function Test-IsUbuntu22 {
     return (lsb_release -rs) -eq "22.04"
 }
 
+function Test-IsContainer {
+    return Test-Path -Path "/run/systemd/container"
+}
+
 function Get-ToolsetContent {
     <#
     .SYNOPSIS
