@@ -233,7 +233,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER ImageType
             The type of image to generate. Valid values are: Windows2019, Windows2022, Ubuntu2004, Ubuntu2204, UbuntuMinimal.
         .PARAMETER ImageName
-            The name of the image to create. The default is "Runner-Image-{{ImageType}}".
+            The name of the image to create. The default is "runner-image:{{ImageType}}".
         .PARAMETER AzureLocation
             The Azure location where the Azure resources will be created. For example: "East US"
         .PARAMETER ImageGenerationRepositoryRoot
@@ -294,7 +294,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $True)]
         [ImageType] $ImageType,
         [Parameter(Mandatory = $False)]
-        [string] $ImageName = "Runner-Image-$($ImageType)",
+        [string] $ImageName = "runner-image:$($ImageType.ToString().ToLower())",
         [Parameter(Mandatory = $False)]
         [string] $ImageGenerationRepositoryRoot = $pwd,
         [Parameter(Mandatory = $False)]
