@@ -219,6 +219,19 @@ runs:
         df -h
         echo "::endgroup::"
 
+    - name: Move docker service folder
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        echo "::group::Move docker service folder"
+        sudo systemctl stop docker.service
+        sudo mv /var/lib/docker /merged
+        sudo mkdir /var/lib/docker
+        sudo mount --bind /merged/docker /var/lib/docker
+        sudo systemctl start docker.service
+        docker info
+        echo "::endgroup::"
+
     - name: Setup `packer`
       id: setup
       uses: hashicorp/setup-packer@main
