@@ -479,7 +479,7 @@
         "version": "3.09"
     },
     "php": {
-        "version": "8.2"
+        "version": "8.3"
     },
     "llvm": {
         "version": "16"
