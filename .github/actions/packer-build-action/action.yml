@@ -158,6 +158,21 @@ runs:
         }
         echo "::endgroup::"
 
+    - name: Remove swap file
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        echo "::group::Swap info"
+        swapon -s
+        echo "::endgroup::"
+
+        sudo swapoff -a
+        sudo rm -f /mnt/swapfile
+
+        echo "::group::Disk space after removing swap file"
+        df -h
+        echo "::endgroup::"
+
     - name: Setup `packer`
       id: setup
       uses: hashicorp/setup-packer@main
