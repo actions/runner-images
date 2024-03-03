@@ -16,6 +16,25 @@ runs:
       with:
         version: '1.10.1'
 
+    - name: Pre-configure Packer
+      id: preconfig
+      shell: pwsh
+      run: |
+        switch -Wildcard ("${{ inputs.image_type }}") {
+          "Ubuntu*" {
+            $imageOs = "ubuntu"
+          }
+          "Windows*" {
+            $imageOs = "windows"
+          }
+        }
+
+        echo "::group::Pre-configure Packer"
+        & {
+          echo "image_os=${imageOs}";
+        } | tee -a "$env:GITHUB_OUTPUT"
+        echo "::endgroup::"
+
     - name: Build `${{ inputs.image_type }}`
       shell: pwsh
       run: |
@@ -24,3 +43,14 @@ runs:
         echo "::group::Generate Image"
         GenerateResourcesAndImage -ImageType ${{ inputs.image_type }}
         echo "::endgroup::"
+
+        $readme = Join-Path "images" "${{ steps.preconfig.outputs.image_os }}" "${{ inputs.image_type }}-Readme.md"
+        Get-Content -Path "$readme" | Out-File -Append -FilePath "$env:GITHUB_STEP_SUMMARY"
+
+    - name: Upload generated reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: reports-${{ inputs.image_type }}
+        path: |
+          images/${{ steps.preconfig.outputs.image_os }}/${{ inputs.image_type }}-Readme.md
+          images/${{ steps.preconfig.outputs.image_os }}/software-report.json
