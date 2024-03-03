@@ -63,7 +63,7 @@ apt-get update
 sdks=($(dotnet --list-sdks | awk '{ print $1 "9999"; }'))
 for version in ${dotnet_versions[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
-    releases=$(cat "$(download_with_retry "$release_url")")
+    releases=$(cat "$(download_with_retry --no-resume "$release_url")")
     if [[ $version == "6.0" ]]; then
         sdks=("${sdks[@]}" $(echo "${releases}" | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))'))
     else
@@ -80,7 +80,7 @@ export -f extract_dotnet_sdk
 
 parallel --jobs 0 --halt soon,fail=1 \
     'url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/{}/dotnet-sdk-{}-linux-x64.tar.gz"; \
-    extract_dotnet_sdk "$(download_with_retry $url)"' ::: "${sorted_sdks[@]}"
+    extract_dotnet_sdk "$(download_with_retry --no-resume $url)"' ::: "${sorted_sdks[@]}"
 
 # NuGetFallbackFolder at /usr/share/dotnet/sdk/NuGetFallbackFolder is warmed up by smoke test
 # Additional FTE will just copy to ~/.dotnet/NuGet which provides no benefit on a fungible machine
