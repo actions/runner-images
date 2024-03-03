@@ -173,6 +173,52 @@ runs:
         df -h
         echo "::endgroup::"
 
+    - name: Create LVM volume
+      if: runner.os == 'Linux'
+      shell: bash
+      env:
+        ROOT_RESERVE_MB: 512
+        ROOT_LOOP_IMAGE_PATH: /loop.img
+        MNT_RESERVE_MB: 128
+        MNT_LOOP_IMAGE_PATH: /mnt/loop.img
+      run: |
+        echo "::group::Create LVM volume"
+        ROOT_FREE_KB=$(df --block-size=1024 --output=avail / | tail -1)
+        ROOT_LVM_SIZE_KB=$(($ROOT_FREE_KB-$ROOT_RESERVE_MB))
+        ROOT_LVM_SIZE_BYTES=$(($ROOT_LVM_SIZE_KB*1024))
+
+        sudo touch "${ROOT_LOOP_IMAGE_PATH}"
+        sudo fallocate -z -l "${ROOT_LVM_SIZE_BYTES}" "${ROOT_LOOP_IMAGE_PATH}"
+        export ROOT_LOOP_DEV=$(sudo losetup --find --show "${ROOT_LOOP_IMAGE_PATH}")
+        sudo pvcreate -f "${ROOT_LOOP_DEV}"
+
+        MNT_FREE_KB=$(df --block-size=1024 --output=avail /mnt | tail -1)
+        MNT_LVM_SIZE_KB=$(($MNT_FREE_KB-$MNT_RESERVE_MB))
+        MNT_LVM_SIZE_BYTES=$(($MNT_LVM_SIZE_KB*1024))
+
+        sudo touch "${MNT_LOOP_IMAGE_PATH}"
+        sudo fallocate -z -l "${MNT_LVM_SIZE_BYTES}" "${MNT_LOOP_IMAGE_PATH}"
+        export MNT_LOOP_DEV=$(sudo losetup --find --show "${MNT_LOOP_IMAGE_PATH}")
+        sudo pvcreate -f "${MNT_LOOP_DEV}"
+
+        VG_NAME=vgmerged
+        sudo vgcreate "${VG_NAME}" "${MNT_LOOP_DEV}" "${ROOT_LOOP_DEV}"
+
+        LV_NAME=lvmerged
+        sudo lvcreate -l 100%FREE -n "${LV_NAME}" "${VG_NAME}"
+
+        MERGED_DEV="/dev/mapper/${VG_NAME}-${LV_NAME}"
+        sudo mkfs.ext4 -m0 "${MERGED_DEV}"
+        echo "::endgroup::"
+
+        MERGED_DIR=/merged
+        sudo mkdir "${MERGED_DIR}"
+        sudo mount "${MERGED_DEV}" "${MERGED_DIR}"
+
+        echo "::group::Disk space after merging disks"
+        df -h
+        echo "::endgroup::"
+
     - name: Setup `packer`
       id: setup
       uses: hashicorp/setup-packer@main
