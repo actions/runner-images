@@ -190,8 +190,14 @@ runs:
       run: |
         Import-Module .\helpers\GenerateResourcesAndImage.ps1
 
+        $imageName = "runner-image:$("${{ inputs.image_type }}".ToLower())"
+
         echo "::group::Generate Image"
-        GenerateResourcesAndImage -ImageType ${{ inputs.image_type }}
+        GenerateResourcesAndImage -ImageType ${{ inputs.image_type }} -ImageName $imageName
+        echo "::endgroup::"
+        echo "::group::Image Info"
+        docker images
+        docker inspect $imageName | Tee-Object -FilePath "$(Join-Path "images" "${{ steps.preconfig.outputs.image_os }}" "${{ inputs.image_type }}-inspect.json")"
         echo "::endgroup::"
 
         $readme = Join-Path "images" "${{ steps.preconfig.outputs.image_os }}" "${{ inputs.image_type }}-Readme.md"
@@ -202,5 +208,6 @@ runs:
       with:
         name: reports-${{ inputs.image_type }}
         path: |
+          images/${{ steps.preconfig.outputs.image_os }}/${{ inputs.image_type }}-inspect.json
           images/${{ steps.preconfig.outputs.image_os }}/${{ inputs.image_type }}-Readme.md
           images/${{ steps.preconfig.outputs.image_os }}/software-report.json
