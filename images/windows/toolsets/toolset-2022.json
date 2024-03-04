@@ -424,7 +424,7 @@
         "version": "16"
     },
     "php": {
-        "version": "8.2"
+        "version": "8.3"
     },
     "postgresql": {
         "version": "14",
