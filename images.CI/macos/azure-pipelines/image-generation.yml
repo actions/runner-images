@@ -1,8 +1,6 @@
-jobs:
-- job: Image_generation
-  displayName: Image Generation (${{ parameters.image_label }})
-  timeoutInMinutes: 1200
-  pool:
+jobs:run
+actio imagenea
+
     name: Mac-Cloud Image Generation
     demands:
     - PrimaryRackAgent -equals ${{ parameters.primary_agent }}
