@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu, Windows] Az Powershell module will be updated to v11.3.1 on March 18](https://github.com/actions/runner-images/issues/9445) |
 | [[All OSes] Ruby versions <= 2.7.x will be removed on February, 26](https://github.com/actions/runner-images/issues/9327) |
 | [[All OSes] Go 1.19.x will be removed and 1.21.x set as default on February, 26](https://github.com/actions/runner-images/issues/9326) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 5458
-- Image Version: 20240225.1.0
+- Image Version: 20240304.2.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,7 +21,7 @@
 - LLVM 16.0.6
 - Node 18.18.2
 - Perl 5.32.1
-- PHP 8.2.16
+- PHP 8.3.3
 - Python 3.7.9
 - Ruby 3.0.6p216
 
@@ -28,13 +29,13 @@
 - Chocolatey 2.2.2
 - Composer 2.7.1
 - Helm 3.14.1
-- Miniconda 23.11.0 (pre-installed on the image but not added to PATH)
+- Miniconda 24.1.2 (pre-installed on the image but not added to PATH)
 - NPM 9.8.1
 - NuGet 6.9.1.3
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 37c3e63a1)
+- Vcpkg (build from commit 215a25355)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -66,8 +67,8 @@
 - ghc 9.8.2
 - Git 2.44.0.windows.1
 - Git LFS 3.4.1
-- Google Cloud CLI 465.0.0
-- ImageMagick 7.1.1-28
+- Google Cloud CLI 466.0.0
+- ImageMagick 7.1.1-29
 - InnoSetup 6.2.2
 - jq 1.7.1
 - Kind 0.22.0
@@ -80,8 +81,8 @@
 - NSIS 3.09
 - OpenSSL 1.1.1w
 - Packer 1.10.0
-- Parcel 2.11.0
-- Pulumi 3.107.0
+- Parcel 2.12.0
+- Pulumi 3.108.1
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.15.1
@@ -89,19 +90,19 @@
 - Swig 4.1.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
-- WiX Toolset 3.11.2.4516
+- WiX Toolset 3.14.0.8606
 - yamllint 1.32.0
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.198
-- AWS CLI 2.15.23
+- AWS CLI 2.15.25
 - AWS SAM CLI 1.110.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.57.0
-- Azure DevOps CLI extension 0.26.0
+- Azure DevOps CLI extension 1.0.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.44.1
+- GitHub CLI 2.45.0
 
 ### Rust Tools
 - Cargo 1.76.0
@@ -112,16 +113,16 @@
 #### Packages
 - bindgen 0.69.4
 - cargo-audit 0.20.0
-- cargo-outdated 0.14.0
+- cargo-outdated 0.15.0
 - cbindgen 0.26.0
 - Clippy 0.1.76
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 122.0.6261.70
-- Chrome Driver 122.0.6261.69
-- Microsoft Edge 122.0.2365.52
-- Microsoft Edge Driver 122.0.2365.52
+- Google Chrome 122.0.6261.95
+- Chrome Driver 122.0.6261.94
+- Microsoft Edge 122.0.2365.66
+- Microsoft Edge Driver 122.0.2365.66
 - Mozilla Firefox 123.0
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
@@ -216,7 +217,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.16.0
-- DacFx 162.1.172.1
+- DacFx 162.2.111.2
 - MySQL 5.7.44.0
 - SQL OLEDB Driver 18.6.7.0
 - SQLPS 1.0
@@ -510,7 +511,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.523
+- AWSPowershell: 4.1.528
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.15.0
