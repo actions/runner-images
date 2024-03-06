@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu, Windows] Az Powershell module will be updated to v11.3.1 on March 18](https://github.com/actions/runner-images/issues/9445) |
 | [[All OSes] Ruby versions <= 2.7.x will be removed on February, 26](https://github.com/actions/runner-images/issues/9327) |
 | [[All OSes] Go 1.19.x will be removed and 1.21.x set as default on February, 26](https://github.com/actions/runner-images/issues/9326) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1057-azure
-- Image Version: 20240225.1.0
+- Image Version: 20240304.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -21,7 +22,7 @@
 - Erlang rebar3 3.22.1
 - GNU C++: 9.4.0, 10.5.0
 - GNU Fortran: 9.4.0, 10.5.0
-- Julia 1.10.1
+- Julia 1.10.2
 - Kotlin 1.9.22-release-704
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -34,15 +35,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.2
-- Homebrew 4.2.9
-- Miniconda 23.11.0
+- Homebrew 4.2.11
+- Miniconda 24.1.2
 - Npm 10.2.4
 - NuGet 6.6.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.4.3
 - RubyGems 3.1.2
-- Vcpkg (build from commit 37c3e63a1)
+- Vcpkg (build from commit 215a25355)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -100,34 +101,34 @@ to accomplish this.
 - n 9.2.1
 - Newman 6.1.1
 - nvm 0.39.7
-- OpenSSL 1.1.1f-1ubuntu2.21
+- OpenSSL 1.1.1f-1ubuntu2.22
 - Packer 1.10.1
-- Parcel 2.11.0
+- Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.107.0
-- R 4.3.2
+- Pulumi 3.108.1
+- R 4.3.3
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
 - Terraform 1.7.4
 - yamllint 1.35.1
-- yq 4.41.1
+- yq 4.42.1
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.15.23
+- AWS CLI 2.15.25
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.110.0
 - Azure CLI 2.57.0
-- Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.44.1
-- Google Cloud CLI 465.0.0
-- Netlify CLI 17.17.0
-- OpenShift CLI 4.14.13
+- Azure CLI (azure-devops) 1.0.0
+- GitHub CLI 2.45.0
+- Google Cloud CLI 466.0.0
+- Netlify CLI 17.17.2
+- OpenShift CLI 4.15.0
 - ORAS CLI 1.1.0
-- Vercel CLI 33.5.2
+- Vercel CLI 33.5.3
 
 ### Java
 | Version             | Environment Variable |
@@ -161,18 +162,18 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Bindgen 0.69.4
 - Cargo audit 0.20.0
 - Cargo clippy 0.1.76
-- Cargo outdated 0.14.0
+- Cargo outdated 0.15.0
 - Cbindgen 0.26.0
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 122.0.6261.69
-- ChromeDriver 122.0.6261.69
+- Google Chrome 122.0.6261.94
+- ChromeDriver 122.0.6261.94
 - Chromium 122.0.6261.0
-- Microsoft Edge 122.0.2365.52
-- Microsoft Edge WebDriver 122.0.2365.52
+- Microsoft Edge 122.0.2365.63
+- Microsoft Edge WebDriver 122.0.2365.63
 - Selenium server 4.18.1
-- Mozilla Firefox 123.0
+- Mozilla Firefox 123.0.1
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -188,7 +189,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
-- MongoDB 5.0.24
+- MongoDB 5.0.25
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -210,7 +211,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 162.1.172.1
+- SqlPackage 162.2.111.2
 
 ### Cached Tools
 
@@ -309,7 +310,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.35.0-1build1                    |
 | autoconf               | 2.69-11.1                         |
 | automake               | 1:1.16.1-4ubuntu6                 |
-| binutils               | 2.34-6ubuntu1.8                   |
+| binutils               | 2.34-6ubuntu1.9                   |
 | bison                  | 2:3.5.1+dfsg-1                    |
 | brotli                 | 1.0.7-6ubuntu0.1                  |
 | bzip2                  | 1.0.8-2                           |
@@ -384,7 +385,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
 | tk                     | 8.6.9+1                           |
-| tzdata                 | 2023d-0ubuntu0.20.04              |
+| tzdata                 | 2024a-0ubuntu0.20.04              |
 | unzip                  | 6.0-25ubuntu1.2                   |
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2                   |
