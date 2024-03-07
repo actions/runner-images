@@ -93,7 +93,7 @@ if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
 }
 
 $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64) -and (-not $os.IsSonoma)) {
     $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
 }
 $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
