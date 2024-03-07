@@ -204,6 +204,7 @@ build {
       "${path.root}/../scripts/build/install-powershell.sh",
       "${path.root}/../scripts/build/install-mono.sh",
       "${path.root}/../scripts/build/install-dotnet.sh",
+      "${path.root}/../scripts/build/install-python.sh",
       "${path.root}/../scripts/build/install-azcopy.sh",
       "${path.root}/../scripts/build/install-openssl.sh",
       "${path.root}/../scripts/build/install-ruby.sh",

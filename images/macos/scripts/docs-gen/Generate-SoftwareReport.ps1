@@ -61,9 +61,8 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
 }
 
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
-    $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
-}
+$languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
+
 if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
 }
@@ -87,10 +86,8 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $packageManagement.AddToolVersion("Pip", $(Get-PipVersion -Version 2))
 }
 
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
-    $packageManagement.AddToolVersion("Pip3", $(Get-PipVersion -Version 3))
-    $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
-}
+$packageManagement.AddToolVersion("Pip3", $(Get-PipVersion -Version 3))
+$packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
 
 $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
 if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
