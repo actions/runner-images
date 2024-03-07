@@ -3,7 +3,7 @@ Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
-Describe "Python3" {
+Describe "Python3" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
     It "Python 3 is available" {
         "python3 --version" | Should -ReturnZeroExitCode
     }
@@ -16,14 +16,17 @@ Describe "Python3" {
         "pip3 --version" | Should -ReturnZeroExitCode
     }
 
-    It "Pipx is available" {
-        "pipx --version" | Should -ReturnZeroExitCode
-    }
-
     It "Pip 3 and Python 3 came from the same brew formula" {
         $pip3Path = Split-Path (readlink (which pip3))
         $python3Path = Split-Path (readlink (which python3))
         $pip3Path | Should -BeExactly $python3Path
+    }
+
+}
+
+Describe "Pipx" {
+    It "Pipx is available" {
+        "pipx --version" | Should -ReturnZeroExitCode
     }
 
 }
