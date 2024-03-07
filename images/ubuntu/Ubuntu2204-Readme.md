@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu, Windows] Az Powershell module will be updated to v11.3.1 on March 18](https://github.com/actions/runner-images/issues/9445) |
 | [[All OSes] Ruby versions <= 2.7.x will be removed on February, 26](https://github.com/actions/runner-images/issues/9327) |
 | [[All OSes] Go 1.19.x will be removed and 1.21.x set as default on February, 26](https://github.com/actions/runner-images/issues/9326) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.4 LTS
 - Kernel Version: 6.5.0-1015-azure
-- Image Version: 20240225.1.0
+- Image Version: 20240304.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -19,7 +20,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 9.5.0, 10.5.0, 11.4.0, 12.3.0, 13.1.0
 - GNU Fortran: 9.5.0, 10.5.0, 11.4.0, 12.3.0, 13.1.0
-- Julia 1.10.1
+- Julia 1.10.2
 - Kotlin 1.9.22-release-704
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -32,15 +33,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.2
-- Homebrew 4.2.10
-- Miniconda 23.11.0
+- Homebrew 4.2.11
+- Miniconda 24.1.2
 - Npm 10.2.4
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.4.3
 - RubyGems 3.3.5
-- Vcpkg (build from commit 37c3e63a1)
+- Vcpkg (build from commit 215a25355)
 - Yarn 1.22.21
 
 #### Environment variables
@@ -62,7 +63,7 @@ to accomplish this.
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.16.3
+- Ansible 2.16.4
 - apt-fast 1.10.0
 - AzCopy 10.23.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.0.2
@@ -94,12 +95,12 @@ to accomplish this.
 - n 9.2.1
 - Newman 6.1.1
 - nvm 0.39.7
-- OpenSSL 3.0.2-0ubuntu1.14
+- OpenSSL 3.0.2-0ubuntu1.15
 - Packer 1.10.1
-- Parcel 2.11.0
+- Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.107.0
-- R 4.3.2
+- Pulumi 3.108.1
+- R 4.3.3
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
@@ -110,17 +111,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.198
-- AWS CLI 2.15.23
+- AWS CLI 2.15.25
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.110.0
 - Azure CLI 2.57.0
-- Azure CLI (azure-devops) 0.26.0
-- GitHub CLI 2.44.1
-- Google Cloud CLI 465.0.0
-- Netlify CLI 17.17.0
-- OpenShift CLI 4.14.13
+- Azure CLI (azure-devops) 1.0.0
+- GitHub CLI 2.45.0
+- Google Cloud CLI 466.0.0
+- Netlify CLI 17.17.2
+- OpenShift CLI 4.15.0
 - ORAS CLI 1.1.0
-- Vercel CLI 33.5.2
+- Vercel CLI 33.5.3
 
 ### Java
 | Version             | Environment Variable |
@@ -154,18 +155,18 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Bindgen 0.69.4
 - Cargo audit 0.20.0
 - Cargo clippy 0.1.76
-- Cargo outdated 0.14.0
+- Cargo outdated 0.15.0
 - Cbindgen 0.26.0
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 122.0.6261.69
-- ChromeDriver 122.0.6261.69
+- Google Chrome 122.0.6261.94
+- ChromeDriver 122.0.6261.94
 - Chromium 122.0.6261.0
-- Microsoft Edge 122.0.2365.52
-- Microsoft Edge WebDriver 122.0.2365.52
+- Microsoft Edge 122.0.2365.63
+- Microsoft Edge WebDriver 122.0.2365.63
 - Selenium server 4.18.1
-- Mozilla Firefox 123.0
+- Mozilla Firefox 123.0.1
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -202,7 +203,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 162.1.172.1
+- SqlPackage 162.2.111.2
 
 ### Cached Tools
 
@@ -296,7 +297,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.36.0-1                            |
 | autoconf               | 2.71-2                              |
 | automake               | 1:1.16.5-1.3                        |
-| binutils               | 2.38-4ubuntu2.5                     |
+| binutils               | 2.38-4ubuntu2.6                     |
 | bison                  | 2:3.8.2+dfsg-1build1                |
 | brotli                 | 1.0.9-2build6                       |
 | bzip2                  | 1.0.8-5build1                       |
@@ -334,7 +335,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 |
 | libsecret-1-dev        | 0.20.5-2                            |
 | libsqlite3-dev         | 3.37.2-2ubuntu0.3                   |
-| libssl-dev             | 3.0.2-0ubuntu1.14                   |
+| libssl-dev             | 3.0.2-0ubuntu1.15                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
@@ -373,7 +374,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
 | tk                     | 8.6.11+1build2                      |
-| tzdata                 | 2023d-0ubuntu0.22.04                |
+| tzdata                 | 2024a-0ubuntu0.22.04                |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1                     |
