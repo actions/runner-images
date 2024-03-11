@@ -89,8 +89,10 @@ if is_Monterey; then
     echo "export PARALLELS_DMG_URL=$url" >> ${HOME}/.bashrc
 fi
 
-# Install Azure DevOps extension for Azure Command Line Interface
-az extension add -n azure-devops
+if ! is_BigSur; then
+    # Install Azure DevOps extension for Azure Command Line Interface
+    az extension add -n azure-devops
+fi
 
 # Invoke tests for all basic tools
 invoke_tests "BasicTools"
