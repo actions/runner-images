@@ -103,6 +103,9 @@ for ndk_major_version in "${android_ndk_major_versions[@]}"; do
     components+=("ndk;$ndk_full_version")
 done
 
+components+=("platform-tools;")
+components+=("emulator;")
+
 available_platforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p' | grep "platforms;android-[0-9]" | cut -d"|" -f 1))
 all_build_tools=($($SDKMANAGER --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 available_build_tools=$(echo ${all_build_tools[@]//*rc[0-9]/})
