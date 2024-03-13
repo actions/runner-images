@@ -239,7 +239,6 @@ build {
       "${path.root}/../scripts/build/install-gcc.sh",
       "${path.root}/../scripts/build/install-cocoapods.sh",
       "${path.root}/../scripts/build/install-android-sdk.sh",
-      "${path.root}/../scripts/build/install-vcpkg.sh",
       "${path.root}/../scripts/build/install-safari.sh",
       "${path.root}/../scripts/build/install-chrome.sh",
       "${path.root}/../scripts/build/install-edge.sh",
@@ -260,8 +259,9 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
-    script          = "${path.root}/../scripts/build/configure-xcode-simulators.rb"
+    environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
+    script          = "${path.root}/../scripts/build/Configure-Xcode-Simulators.ps1"
   }
 
   provisioner "shell" {
