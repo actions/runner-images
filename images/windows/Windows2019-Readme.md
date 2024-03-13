@@ -6,7 +6,7 @@
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 5458
-- Image Version: 20240304.2.0
+- Image Version: 20240310.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -15,9 +15,9 @@
 
 ### Language and Runtime
 - Bash 5.2.26(1)-release
-- Go 1.21.7
-- Julia 1.10.0
-- Kotlin 1.9.22
+- Go 1.21.8
+- Julia 1.10.2
+- Kotlin 1.9.23
 - LLVM 16.0.6
 - Node 18.18.2
 - Perl 5.32.1
@@ -35,8 +35,8 @@
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 215a25355)
-- Yarn 1.22.21
+- Vcpkg (build from commit 0719a7138)
+- Yarn 1.22.22
 
 #### Environment variables
 | Name                    | Value        |
@@ -67,7 +67,7 @@
 - ghc 9.8.2
 - Git 2.44.0.windows.1
 - Git LFS 3.4.1
-- Google Cloud CLI 466.0.0
+- Google Cloud CLI 467.0.0
 - ImageMagick 7.1.1-29
 - InnoSetup 6.2.2
 - jq 1.7.1
@@ -82,10 +82,10 @@
 - OpenSSL 1.1.1w
 - Packer 1.10.0
 - Parcel 2.12.0
-- Pulumi 3.108.1
+- Pulumi 3.109.0
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
-- Stack 2.15.1
+- Stack 2.15.3
 - Subversion (SVN) 1.14.2
 - Swig 4.1.1
 - VSWhere 3.1.7
@@ -95,11 +95,11 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.198
-- AWS CLI 2.15.25
-- AWS SAM CLI 1.110.0
+- Alibaba Cloud CLI 3.0.199
+- AWS CLI 2.15.27
+- AWS SAM CLI 1.111.0
 - AWS Session Manager CLI 1.2.553.0
-- Azure CLI 2.57.0
+- Azure CLI 2.58.0
 - Azure DevOps CLI extension 1.0.0
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 2.45.0
@@ -119,11 +119,11 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 122.0.6261.95
-- Chrome Driver 122.0.6261.94
-- Microsoft Edge 122.0.2365.66
-- Microsoft Edge Driver 122.0.2365.66
-- Mozilla Firefox 123.0
+- Google Chrome 122.0.6261.112
+- Chrome Driver 122.0.6261.111
+- Microsoft Edge 122.0.2365.80
+- Microsoft Edge Driver 122.0.2365.80
+- Mozilla Firefox 123.0.1
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
 - Selenium server 4.18.0
@@ -168,8 +168,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.20.14
-- 1.21.7
-- 1.22.0
+- 1.21.8
+- 1.22.1
 
 #### Node.js
 - 16.20.2
@@ -213,7 +213,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.24.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.25.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.16.0
@@ -511,13 +511,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Az (Cached): 1.0.0.zip, 1.6.0.zip, 2.3.2.zip, 2.6.0.zip, 3.1.0.zip, 3.5.0.zip, 3.8.0.zip, 4.3.0.zip, 4.4.0.zip, 4.7.0.zip, 5.5.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.528
+- AWSPowershell: 4.1.533
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.15.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
-- PSScriptAnalyzer: 1.21.0
+- PSScriptAnalyzer: 1.22.0
 - PSWindowsUpdate: 2.2.1.4
 - SqlServer: 22.2.0
 - VSSetup: 2.2.16
