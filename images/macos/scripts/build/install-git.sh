@@ -11,13 +11,16 @@ brew_smart_install "git"
 
 git config --global --add safe.directory "*"
 
-echo "Installing Git LFS"
-brew_smart_install "git-lfs"
 
-# Update global git config
-git lfs install
-# Update system git config
-sudo git lfs install --system
+if ! is_BigSur; then
+    echo "Installing Git LFS"
+    brew_smart_install "git-lfs"
+
+    # Update global git config
+    git lfs install
+    # Update system git config
+    sudo git lfs install --system
+fi
 
 echo "Disable all the Git help messages..."
 git config --global advice.pushUpdateRejected false

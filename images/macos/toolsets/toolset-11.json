@@ -195,7 +195,6 @@
             "aliyun-cli",
             "ant",
             "aria2",
-            "azure-cli",
             "bazelisk",
             "carthage",
             "cmake",
@@ -218,8 +217,7 @@
             "zlib",
             "libxext",
             "libxft",
-            "tcl-tk",
-            "r"
+            "tcl-tk"
         ],
         "cask_packages": [
             "julia"
