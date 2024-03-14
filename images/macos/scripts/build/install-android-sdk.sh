@@ -6,13 +6,13 @@
 
 source ~/utils/utils.sh
 
-add_filtered_instalaltion_components() {
+add_filtered_installation_components() {
     local minimum_version=$1
     shift
     local tools_array=("$@")
 
     for item in ${tools_array[@]}; do
-        # take the last argument after spliting string by ';'' and '-''
+        # take the last argument after splitting string by ';'' and '-''
         version=$(echo "${item##*[-;]}")
         if [[ "$(printf "${minimum_version}\n${version}\n" | sort -V | head -n1)" == "$minimum_version" ]]; then
             components+=($item)
@@ -96,11 +96,11 @@ echo "export ANDROID_NDK_ROOT=$ANDROID_NDK_HOME" >> "${HOME}/.bashrc"
 echo "export ANDROID_NDK_LATEST_HOME=$ANDROID_NDK_LATEST_HOME" >> "${HOME}/.bashrc"
 
 availablePlatforms=($($SDKMANAGER --list | grep "platforms;android-[0-9]" | cut -d"|" -f 1 | sort -u))
-add_filtered_instalaltion_components $android_platform "${availablePlatforms[@]}"
+add_filtered_installation_components $android_platform "${availablePlatforms[@]}"
 
 allBuildTools=($($SDKMANAGER --list --include_obsolete | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 availableBuildTools=$(echo ${allBuildTools[@]//*rc[0-9]/})
-add_filtered_instalaltion_components $android_build_tool "${availableBuildTools[@]}"
+add_filtered_installation_components $android_build_tool "${availableBuildTools[@]}"
 
 echo "y" | $SDKMANAGER ${components[@]}
 

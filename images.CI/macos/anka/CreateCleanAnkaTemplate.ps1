@@ -76,7 +76,7 @@ function Invoke-SoftwareUpdate {
     $ipAddress = Get-AnkaVMIPAddress -VMName $TemplateName
 
     # Unenroll Seed
-    Write-Host "`t[*] Reseting the seed before requesting stable versions"
+    Write-Host "`t[*] Resetting the seed before requesting stable versions"
     Remove-CurrentBetaSeed -HostName $ipAddress | Show-StringWithFormat
 
     # Install Software Updates
