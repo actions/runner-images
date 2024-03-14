@@ -9,13 +9,13 @@ source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
-add_filtered_instalaltion_components() {
+add_filtered_installation_components() {
     local minimum_version=$1
     shift
     local tools_array=("$@")
 
     for item in ${tools_array[@]}; do
-        # Take the last argument after spliting string by ';'' and '-''
+        # Take the last argument after splitting string by ';'' and '-''
         item_version=$(echo "${item##*[-;]}")
 
         # Semver 'comparison'. Add item to components array, if item's version is greater than or equal to minimum version
@@ -107,8 +107,8 @@ available_platforms=($($SDKMANAGER --list | sed -n '/Available Packages:/,/^$/p'
 all_build_tools=($($SDKMANAGER --list | grep "build-tools;" | cut -d"|" -f 1 | sort -u))
 available_build_tools=$(echo ${all_build_tools[@]//*rc[0-9]/})
 
-add_filtered_instalaltion_components $minimum_platform_version "${available_platforms[@]}"
-add_filtered_instalaltion_components $minimum_build_tool_version "${available_build_tools[@]}"
+add_filtered_installation_components $minimum_platform_version "${available_platforms[@]}"
+add_filtered_installation_components $minimum_build_tool_version "${available_build_tools[@]}"
 
 # Install components
 echo "y" | $SDKMANAGER ${components[@]}

@@ -14,7 +14,7 @@ selenium_major_version=$(get_toolset_value '.selenium.version')
 selenium_download_url=$(resolve_github_release_asset_url "SeleniumHQ/selenium" "contains(\"selenium-server-\") and endswith(\".jar\")" "$selenium_major_version\.+" "" "true")
 selenium_jar_path=$(download_with_retry "$selenium_download_url" "/usr/share/java/selenium-server.jar")
 
-# Create an epmty file to retrive selenium version
+# Create an empty file to retrieve selenium version
 selenium_full_version=$(echo $selenium_download_url | awk -F"selenium-server-|.jar" '{print $2}')
 touch "/usr/share/java/selenium-server-$selenium_full_version"
 
