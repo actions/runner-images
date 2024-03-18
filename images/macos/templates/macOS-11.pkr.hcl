@@ -245,7 +245,6 @@ build {
       "${path.root}/../scripts/build/install-swiftlint.sh",
       "${path.root}/../scripts/build/install-openjdk.sh",
       "${path.root}/../scripts/build/install-aws-tools.sh",
-      "${path.root}/../scripts/build/install-rust.sh",
       "${path.root}/../scripts/build/install-gcc.sh",
       "${path.root}/../scripts/build/install-haskell.sh",
       "${path.root}/../scripts/build/install-cocoapods.sh",

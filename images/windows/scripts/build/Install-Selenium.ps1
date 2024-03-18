@@ -19,7 +19,7 @@ $seleniumDownloadUrl = Resolve-GithubReleaseAssetUrl `
 $seleniumBinPath = Join-Path $seleniumDirectory "selenium-server.jar"
 Invoke-DownloadWithRetry -Url $seleniumDownloadUrl -Path $seleniumBinPath
 
-# Create an empty file to retrive Selenium version
+# Create an empty file to retrieve Selenium version
 $seleniumFullVersion = $seleniumDownloadUrl.Split("-")[1].Split("/")[0]
 New-Item -Path $seleniumDirectory -Name "selenium-server-$seleniumFullVersion"
 

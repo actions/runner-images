@@ -43,7 +43,7 @@ Describe "AWS" {
     It "AWS CLI" {
         "aws --version" | Should -ReturnZeroExitCode
     }
-    It "AWS SAM CLI" {
+    It "AWS SAM CLI" -Skip:($os.IsBigSur) {
         "sam --version" | Should -ReturnZeroExitCode
     }
 

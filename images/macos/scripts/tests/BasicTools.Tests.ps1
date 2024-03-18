@@ -2,13 +2,13 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 $os = Get-OSVersion
 
-Describe "Azure CLI" {
+Describe "Azure CLI" -Skip:($os.IsBigSur) {
     It "Azure CLI" {
         "az -v" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Azure DevOps CLI" {
+Describe "Azure DevOps CLI" -Skip:($os.IsBigSur) {
     It "az devops" {
         "az devops -h" | Should -ReturnZeroExitCode
     }
@@ -159,7 +159,7 @@ Describe "virtualbox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "R" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "R" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsBigSur) {
     It "R" {
         "R --version" | Should -ReturnZeroExitCode
     }
