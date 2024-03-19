@@ -4,14 +4,26 @@ packer {
       source  = "github.com/hashicorp/azure"
       version = "1.4.5"
     }
+    amazon = {
+      source  = "github.com/hashicorp/amazon"
+      version = "~> 1"
+    }
   }
 }
 
 locals {
   managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
+  cloud_providers = {
+    "amazon" = "amazon-ebs",
+    "azure"  = "azure-arm"
+  }
 }
 
-variable "allowed_inbound_ip_addresses" {
+variable "provider" {
+  type    = string
+}
+
+variable "azure_allowed_inbound_ip_addresses" {
   type    = list(string)
   default = []
 }
@@ -21,22 +33,22 @@ variable "azure_tags" {
   default = {}
 }
 
-variable "build_resource_group_name" {
+variable "azure_build_resource_group_name" {
   type    = string
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
-variable "client_cert_path" {
+variable "azure_client_cert_path" {
   type    = string
   default = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
-variable "client_id" {
+variable "azure_client_id" {
   type    = string
   default = "${env("ARM_CLIENT_ID")}"
 }
 
-variable "client_secret" {
+variable "azure_client_secret" {
   type      = string
   default   = "${env("ARM_CLIENT_SECRET")}"
   sensitive = true
@@ -88,7 +100,7 @@ variable "install_password" {
   sensitive = true
 }
 
-variable "location" {
+variable "azure_location" {
   type    = string
   default = "${env("ARM_RESOURCE_LOCATION")}"
 }
@@ -98,73 +110,98 @@ variable "managed_image_name" {
   default = ""
 }
 
-variable "managed_image_resource_group_name" {
+variable "azure_managed_image_resource_group_name" {
   type    = string
   default = "${env("ARM_RESOURCE_GROUP")}"
 }
 
-variable "private_virtual_network_with_public_ip" {
+variable "azure_private_virtual_network_with_public_ip" {
   type    = bool
   default = false
 }
 
-variable "subscription_id" {
+variable "azure_subscription_id" {
   type    = string
   default = "${env("ARM_SUBSCRIPTION_ID")}"
 }
 
-variable "temp_resource_group_name" {
+variable "azure_temp_resource_group_name" {
   type    = string
   default = "${env("TEMP_RESOURCE_GROUP_NAME")}"
 }
 
-variable "tenant_id" {
+variable "azure_tenant_id" {
   type    = string
   default = "${env("ARM_TENANT_ID")}"
 }
 
-variable "virtual_network_name" {
+variable "azure_virtual_network_name" {
   type    = string
   default = "${env("VNET_NAME")}"
 }
 
-variable "virtual_network_resource_group_name" {
+variable "azure_virtual_network_resource_group_name" {
   type    = string
   default = "${env("VNET_RESOURCE_GROUP")}"
 }
 
-variable "virtual_network_subnet_name" {
+variable "azure_virtual_network_subnet_name" {
   type    = string
   default = "${env("VNET_SUBNET")}"
 }
 
-variable "vm_size" {
+variable "azure_vm_size" {
   type    = string
   default = "Standard_D4s_v4"
 }
 
+variable "aws_subnet_id" {
+  type    = string
+  default = "${env("SUBNET_ID")}"
+}
+
+variable "aws_volume_size" {
+  type    = number
+  default = 22
+}
+
+variable "aws_volume_type" {
+  type    = string
+  default = "gp3"
+}
+
+variable "aws_region" {
+  type    = string
+  default = "${env("AWS_DEFAULT_REGION")}"
+}
+
+variable "aws_tags" {
+  type    = map(string)
+  default = {}
+}
+
 source "azure-arm" "build_image" {
-  allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
-  build_resource_group_name              = "${var.build_resource_group_name}"
-  client_cert_path                       = "${var.client_cert_path}"
-  client_id                              = "${var.client_id}"
-  client_secret                          = "${var.client_secret}"
+  allowed_inbound_ip_addresses           = "${var.azure_allowed_inbound_ip_addresses}"
+  build_resource_group_name              = "${var.azure_build_resource_group_name}"
+  client_cert_path                       = "${var.azure_client_cert_path}"
+  client_id                              = "${var.azure_client_id}"
+  client_secret                          = "${var.azure_client_secret}"
   image_offer                            = "0001-com-ubuntu-server-jammy"
   image_publisher                        = "canonical"
   image_sku                              = "22_04-lts"
-  location                               = "${var.location}"
+  location                               = "${var.azure_location}"
   managed_image_name                     = "${local.managed_image_name}"
-  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
+  managed_image_resource_group_name      = "${var.azure_managed_image_resource_group_name}"
   os_disk_size_gb                        = "75"
   os_type                                = "Linux"
-  private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
-  subscription_id                        = "${var.subscription_id}"
-  temp_resource_group_name               = "${var.temp_resource_group_name}"
-  tenant_id                              = "${var.tenant_id}"
-  virtual_network_name                   = "${var.virtual_network_name}"
-  virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
-  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
-  vm_size                                = "${var.vm_size}"
+  private_virtual_network_with_public_ip = "${var.azure_private_virtual_network_with_public_ip}"
+  subscription_id                        = "${var.azure_subscription_id}"
+  temp_resource_group_name               = "${var.azure_temp_resource_group_name}"
+  tenant_id                              = "${var.azure_tenant_id}"
+  virtual_network_name                   = "${var.azure_virtual_network_name}"
+  virtual_network_resource_group_name    = "${var.azure_virtual_network_resource_group_name}"
+  virtual_network_subnet_name            = "${var.azure_virtual_network_subnet_name}"
+  vm_size                                = "${var.azure_vm_size}"
 
   dynamic "azure_tag" {
     for_each = var.azure_tags
@@ -175,8 +212,62 @@ source "azure-arm" "build_image" {
   }
 }
 
+
+source "amazon-ebs" "build_image" {
+  aws_polling {
+    delay_seconds = 30
+    max_attempts  = 300
+  }
+
+  temporary_security_group_source_public_ip = true
+  ami_name                                  = "${local.managed_image_name}"
+  ami_virtualization_type                   = "hvm"
+  ami_groups                                = ["all"]
+  ebs_optimized                             = true
+  spot_instance_types                       = ["m6id.8xlarge", "m6i.8xlarge"]
+  spot_price                                = "1.00"
+  region                                    = "${var.aws_region}"
+  ssh_username                              = "ubuntu"
+  subnet_id                                 = "${var.aws_subnet_id}"
+  associate_public_ip_address               = "true"
+  force_deregister                          = "true"
+  force_delete_snapshot                     = "true"
+
+  ami_regions = [
+    "us-east-1",
+    "us-east-2",
+    "us-west-1",
+    "us-west-2",
+  ]
+
+  // make underlying snapshot public
+  snapshot_groups = ["all"]
+
+  tags = var.aws_tags
+
+  launch_block_device_mappings {
+    device_name = "/dev/sda1"
+    volume_type = "${var.aws_volume_type}"
+    volume_size = "${var.aws_volume_size}"
+    delete_on_termination = "true"
+    iops = 4000
+    throughput = 1000
+    encrypted = "false"
+  }
+
+  source_ami_filter {
+    filters = {
+      virtualization-type = "hvm"
+      name                = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
+      root-device-type    = "ebs"
+    }
+    owners      = ["099720109477"]
+    most_recent = true
+  }
+}
+
 build {
-  sources = ["source.azure-arm.build_image"]
+  sources = ["source.${local.cloud_providers[var.provider]}.build_image"]
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
