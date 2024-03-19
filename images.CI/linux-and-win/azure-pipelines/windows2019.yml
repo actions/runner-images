@@ -1,10 +1,4 @@
-schedules:
-- cron: "0 0 * * *"
-  displayName: Daily
-  branches:
-    include:
-    - main
-  always: true
+
 
 trigger: none
 pr:
