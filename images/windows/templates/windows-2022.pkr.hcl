@@ -148,6 +148,7 @@ variable "vm_size" {
   default = "Standard_B4ms"
 }
 
+
 source "azure-arm" "image" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
