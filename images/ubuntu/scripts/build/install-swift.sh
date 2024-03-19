@@ -16,8 +16,8 @@ swift_release_name="swift-${swift_version}-RELEASE-${image_label}"
 archive_url="https://swift.org/builds/swift-${swift_version}-release/${image_label//./}/swift-${swift_version}-RELEASE/${swift_release_name}.tar.gz"
 archive_path=$(download_with_retry "$archive_url")
 
-# Verifing pgp signature using official swift pgp key. Referring to https://www.swift.org/install/linux/#Installation-via-Tarball
-# Download and import swift pgp key
+# Verifying PGP signature using official Swift PGP key. Referring to https://www.swift.org/install/linux/#Installation-via-Tarball
+# Download and import Swift PGP key
 pgp_key_path=$(download_with_retry "https://swift.org/keys/all-keys.asc")
 gpg --no-default-keyring --keyring swift --import "$pgp_key_path"
 
@@ -25,7 +25,7 @@ gpg --no-default-keyring --keyring swift --import "$pgp_key_path"
 signature_path=$(download_with_retry "${archive_url}.sig")
 gpg --no-default-keyring --keyring swift --verify "$signature_path" "$archive_path"
 
-# Remove swift pgp public key with temporary keyring
+# Remove Swift PGP public key with temporary keyring
 rm ~/.gnupg/swift
 
 # Extract and install swift

@@ -20,10 +20,10 @@ chmod 755 $IMAGE_FOLDER
 ENVPATH=$(grep 'PATH=' /etc/environment | head -n 1 | sed -z 's/^PATH=*//')
 ENVPATH=${ENVPATH#"\""}
 ENVPATH=${ENVPATH%"\""}
-add_etc_environment_variable "PATH" "${ENVPATH}"
+replace_etc_environment_variable "PATH" "${ENVPATH}"
 echo "Updated /etc/environment: $(cat /etc/environment)"
 
-# Сlean yarn and npm cache
+# Clean yarn and npm cache
 if yarn --version > /dev/null; then
     yarn cache clean
 fi

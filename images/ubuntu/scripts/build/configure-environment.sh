@@ -19,7 +19,7 @@ set_etc_environment_variable "ACCEPT_EULA" "Y"
 mkdir -p /etc/skel/.config/configstore
 set_etc_environment_variable "XDG_CONFIG_HOME" '$HOME/.config'
 
-# Change waagent entries to use /mnt for swapfile
+# Change waagent entries to use /mnt for swap file
 sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=4096/g' /etc/waagent.conf
@@ -40,6 +40,9 @@ echo 'vm.max_map_count=262144' | tee -a /etc/sysctl.conf
 # https://kind.sigs.k8s.io/docs/user/known-issues/#pod-errors-due-to-too-many-open-files
 echo 'fs.inotify.max_user_watches=655360' | tee -a /etc/sysctl.conf
 echo 'fs.inotify.max_user_instances=1280' | tee -a /etc/sysctl.conf
+
+# https://github.com/actions/runner-images/issues/9491
+echo 'vm.mmap_rnd_bits=28' | tee -a /etc/sysctl.conf
 
 # https://github.com/actions/runner-images/pull/7860
 netfilter_rule='/etc/udev/rules.d/50-netfilter.rules'
