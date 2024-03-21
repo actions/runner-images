@@ -5,13 +5,10 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "2.5",
-                "2.6",
-                "2.7",
                 "3.0",
                 "3.1"
             ],
-            "default": "2.5"
+            "default": "3.0"
         },
         {
             "name": "Python",
@@ -72,12 +69,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.19.*",
                 "1.20.*",
                 "1.21.*",
                 "1.22.*"
             ],
-            "default": "1.20.*"
+            "default": "1.21.*"
         }
     ],
     "powershellModules": [
@@ -123,23 +119,9 @@
         {
             "name": "az",
             "versions": [
-                "9.3.0"
+                "11.3.1"
             ],
             "zip_versions": [
-                "1.0.0",
-                "1.6.0",
-                "2.3.2",
-                "2.6.0",
-                "3.1.0",
-                "3.5.0",
-                "3.8.0",
-                "4.3.0",
-                "4.4.0",
-                "4.7.0",
-                "5.5.0",
-                "5.9.0",
-                "6.6.0",
-                "7.5.0"
             ]
         }
     ],
@@ -260,7 +242,8 @@
         { "name": "FS-iSCSITarget-Server", "includeAllSubFeatures": true, "includeManagementTools": true },
         { "name": "Containers" },
         { "name": "Microsoft-Windows-Subsystem-Linux", "optionalFeature": true },
-        { "name": "VirtualMachinePlatform", "optionalFeature": true }
+        { "name": "VirtualMachinePlatform", "optionalFeature": true },
+        { "name": "Wireless-Networking" }
     ],
     "visualStudio": {
         "version" : "2019",
@@ -482,7 +465,7 @@
         "version": "3.09"
     },
     "php": {
-        "version": "8.2"
+        "version": "8.3"
     },
     "llvm": {
         "version": "16"

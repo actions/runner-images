@@ -12,7 +12,7 @@ source $HELPER_SCRIPTS/install.sh
 # Install the Homebrew on Linux
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-# Invoke shellenv to make brew available during runnig session
+# Invoke shellenv to make brew available during running session
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 set_etc_environment_variable HOMEBREW_NO_AUTO_UPDATE 1

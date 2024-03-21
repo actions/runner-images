@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
@@ -24,11 +24,11 @@ jobs:
         sleep 30
 
     - name: Approve pull request by GitHub-Actions bot
-      uses: actions/github-script@v2
+      uses: actions/github-script@v7
       with:
         github-token: ${{secrets.PRAPPROVAL_SECRET}}
         script: |
-          github.pulls.createReview({
+          github.rest.pulls.createReview({
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: ${{ github.event.client_payload.PullRequestNumber }},
@@ -36,11 +36,11 @@ jobs:
           });
 
     - name: Merge pull request for ${{ github.event.client_payload.ReleaseBranchName }}
-      uses: actions/github-script@v2
+      uses: actions/github-script@v7
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-          github.pulls.merge({
+          github.rest.pulls.merge({
             owner: context.repo.owner,
             repo: context.repo.repo,
             pull_number: ${{ github.event.client_payload.PullRequestNumber }},
