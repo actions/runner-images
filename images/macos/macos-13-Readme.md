@@ -1,16 +1,17 @@
 | Announcements |
 |-|
-| [[All OSes] Powershell Core will be updated to 7.4.x LTS on January, 28](https://github.com/actions/runner-images/issues/9115) |
+| [[All OSes] Ruby versions <= 2.7.x will be removed on February, 26](https://github.com/actions/runner-images/issues/9327) |
+| [[All OSes] Go 1.19.x will be removed and 1.21.x set as default on February, 26](https://github.com/actions/runner-images/issues/9326) |
 ***
 # macOS 13
 - OS Version: macOS 13.6.4 (22G513)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240204.1
+- Image Version: 20240219.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.405, 8.0.101
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.406, 8.0.101, 8.0.201
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -22,24 +23,24 @@
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
 - Kotlin 1.9.22-release-704
 - Mono 6.12.0.188
-- Node.js 20.11.0
+- Node.js 20.11.1
 - Perl 5.38.2
-- PHP 8.3.2
-- Python3 3.12.1
+- PHP 8.3.3
+- Python3 3.12.2
 - Ruby 3.0.6p216
 
 ### Package Management
-- Bundler 2.5.5
+- Bundler 2.5.6
 - Carthage 0.39.1
-- CocoaPods 1.15.0
-- Composer 2.6.6
-- Homebrew 4.2.6
+- CocoaPods 1.15.2
+- Composer 2.7.1
+- Homebrew 4.2.9
 - NPM 10.2.4
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
 - Pipx 1.4.3
-- RubyGems 3.5.5
-- Vcpkg 2024 (build from commit 80403036a)
+- RubyGems 3.5.6
+- Vcpkg 2024 (build from commit 13bde2ff1)
 - Yarn 1.22.19
 
 ### Project Management
@@ -55,9 +56,9 @@
 - bazelisk 1.19.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.6.0
-- Git 2.43.0
+- Git 2.43.2
 - Git LFS 3.4.1
-- GitHub CLI 2.43.1
+- GitHub CLI 2.44.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.21.4
 - gpg (GnuPG) 2.4.4
@@ -65,20 +66,20 @@
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
-- yq 4.40.5
+- yq 4.41.1
 - zstd 1.5.5
 
 ### Tools
-- AWS CLI 2.15.17
-- AWS SAM CLI 1.108.0
+- AWS CLI 2.15.21
+- AWS SAM CLI 1.109.0
 - AWS Session Manager CLI 1.2.553.0
-- Azure CLI 2.56.0
+- Azure CLI 2.57.0
 - Azure CLI (azure-devops) 0.26.0
-- Bicep CLI 0.24.24
-- Cmake 3.28.2
-- CodeQL Action Bundle 2.16.1
+- Bicep CLI 0.25.53
+- Cmake 3.28.3
+- CodeQL Action Bundle 2.16.2
 - Fastlane 2.219.0
-- SwiftFormat 0.53.1
+- SwiftFormat 0.53.2
 - Xcbeautify 1.4.0
 - Xcode Command Line Tools 15.1.0.0.1.1700200546
 - Xcodes 1.4.1
@@ -87,14 +88,14 @@
 - SwiftLint 0.53.0
 
 ### Browsers
-- Safari 17.3 (18617.2.4.11.11)
-- SafariDriver 17.3 (18617.2.4.11.11)
-- Google Chrome 121.0.6167.139
-- Google Chrome for Testing 121.0.6167.85
-- ChromeDriver 121.0.6167.85
-- Microsoft Edge 121.0.2277.98
-- Microsoft Edge WebDriver 121.0.2277.98
-- Mozilla Firefox 122.0
+- Safari 17.3.1 (18617.2.4.11.12)
+- SafariDriver 17.3.1 (18617.2.4.11.12)
+- Google Chrome 121.0.6167.184
+- Google Chrome for Testing 121.0.6167.184
+- ChromeDriver 121.0.6167.184
+- Microsoft Edge 121.0.2277.128
+- Microsoft Edge WebDriver 121.0.2277.128
+- Mozilla Firefox 122.0.1
 - geckodriver 0.34.0
 - Selenium server 4.17.0
 
@@ -115,10 +116,6 @@
 
 ### Cached Tools
 
-#### Ruby
-- 3.0.6
-- 3.1.4
-
 #### PyPy
 - 2.7.18 [PyPy 7.3.15]
 - 3.7.13 [PyPy 7.3.9]
@@ -126,38 +123,43 @@
 - 3.9.18 [PyPy 7.3.15]
 - 3.10.13 [PyPy 7.3.15]
 
+#### Ruby
+- 3.0.6
+- 3.1.4
+
 #### Python
 - 3.8.18
 - 3.9.18
 - 3.10.13
-- 3.11.7
-- 3.12.1
+- 3.11.8
+- 3.12.2
 
 #### Node.js
 - 16.20.2
-- 18.19.0
-- 20.11.0
+- 18.19.1
+- 20.11.1
 
 #### Go
 - 1.19.13
-- 1.20.13
-- 1.21.6
+- 1.20.14
+- 1.21.7
+- 1.22.0
 
 ### Rust Tools
-- Cargo 1.75.0
-- Rust 1.75.0
-- Rustdoc 1.75.0
+- Cargo 1.76.0
+- Rust 1.76.0
+- Rustdoc 1.76.0
 - Rustup 1.26.0
 
 #### Packages
-- Clippy 0.1.75
+- Clippy 0.1.76
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
 - PowerShell 7.4.1
 
 #### PowerShell Modules
-- Az: 11.2.0
+- Az: 11.3.1
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.21.0
 
@@ -205,11 +207,11 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
+| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
@@ -239,21 +241,21 @@
 | Android Command Line Tools | 11.0                                                                                                                                                  |
 | Android Emulator           | 33.1.24                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 2)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
-| Android SDK Platform-Tools | 34.0.5                                                                                                                                                |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
+| Android SDK Platform-Tools | 35.0.0                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                |
 | CMake                      | 3.22.1                                                                                                                                                |
 | Google Play services       | 49                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                    |
-| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.1.10909125 (default)                                                                                               |
+| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.2.11394342 (default)                                                                                               |
 
 #### Environment variables
 | Name                    | Value                                               |
 | ----------------------- | --------------------------------------------------- |
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.1.10909125 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.1.10909125 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.1.10909125 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.1.10909125 |
+| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.2.11394342 |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.2.11394342 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.2.11394342 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.2.11394342 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
