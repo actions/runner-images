@@ -38,7 +38,7 @@ parameters:
 jobs:
 - job: ${{ parameters.job_id }}
   displayName: Image Generation (${{ parameters.image_type }})
-  timeoutInMinutes: 600
+  timeoutInMinutes: 1200
   cancelTimeoutInMinutes: 30
   pool: ${{ parameters.agent_pool }}
   variables:
