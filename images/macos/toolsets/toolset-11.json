@@ -195,7 +195,6 @@
             "aliyun-cli",
             "ant",
             "aria2",
-            "azure-cli",
             "bazelisk",
             "carthage",
             "cmake",
@@ -218,8 +217,7 @@
             "zlib",
             "libxext",
             "libxft",
-            "tcl-tk",
-            "r"
+            "tcl-tk"
         ],
         "cask_packages": [
             "julia"
@@ -287,7 +285,6 @@
                 "x64": {
                     "variable_template" : "GOROOT_{0}_{1}_X64",
                     "versions": [
-                        "1.19.*",
                         "1.20.*",
                         "1.21.*"
                     ]
@@ -299,9 +296,6 @@
             "arch": {
                 "x64": {
                     "versions": [
-                        "2.5.*",
-                        "2.6.*",
-                        "2.7.*",
                         "3.0.*",
                         "3.1.*"
                     ]
@@ -327,7 +321,7 @@
         }
     },
     "ruby": {
-        "default": "2.7",
+        "default": "3.0",
         "rubygems": [
             "xcode-install",
             "cocoapods",
@@ -339,7 +333,7 @@
         ]
     },
     "go": {
-        "default": "1.20"
+        "default": "1.21"
     },
     "node": {
         "default": "18",

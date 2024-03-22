@@ -28,7 +28,7 @@ fi
 # Cleanup Cargo cache
 rm -rf ${CARGO_HOME}/registry/*
 
-# Update /etc/environemnt
+# Update /etc/environment
 prepend_etc_environment_path '$HOME/.cargo/bin'
 
 invoke_tests "Tools" "Rust"
