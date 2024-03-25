@@ -24,7 +24,7 @@ $Body = @{
     isDraft = "false"
 } | ConvertTo-Json -Depth 3
 
-$URL = "https://vsrm.dev.azure.com/$Organization/$Project/_apis/release/releases?api-version=5.1"
+$URL = "https://dev.azure.com/$Organization/$Project/_apis/release/releases?api-version=5.1"
 $base64AuthInfo = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("'':${AccessToken}"))
 $headers = @{
     Authorization = "Basic ${base64AuthInfo}"
