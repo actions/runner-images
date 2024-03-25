@@ -27,7 +27,7 @@ function Get-BazeliskVersion {
 
 function Get-BicepVersion {
     (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    return $Matches.Version
+    return $Matches.version
 }
 
 function Get-CodeQLBundleVersion {

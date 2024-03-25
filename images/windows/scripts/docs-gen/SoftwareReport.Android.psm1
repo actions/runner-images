@@ -108,7 +108,7 @@ function Get-AndroidPlatformVersions {
 function Get-AndroidCommandLineToolsVersion {
     $commandLineTools = (Join-Path $env:ANDROID_HOME "cmdline-tools\latest\bin\sdkmanager.bat")
     (cmd /c "$commandLineTools --version 2>NUL" | Out-String).Trim() -match "(?<version>^(\d+\.){1,}\d+$)" | Out-Null
-    $commandLineToolsVersion = $Matches.Version
+    $commandLineToolsVersion = $Matches.version
     return $commandLineToolsVersion
 }
 

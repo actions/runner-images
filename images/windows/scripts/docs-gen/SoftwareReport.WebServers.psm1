@@ -9,13 +9,13 @@ function Get-NginxPath {
 function Get-ApacheVersion {
     $apacheBinPath = Join-Path (Get-ApachePath) "\bin\httpd"
     (. $apacheBinPath -V | Select-String -Pattern "Apache/") -match "Apache/(?<version>\d+\.\d+\.\d+)" | Out-Null
-    return $Matches.Version
+    return $Matches.version
 }
 
 function Get-NginxVersion {
     $nginxBinPath = Join-Path (Get-NginxPath) "nginx"
     (cmd /c "$nginxBinPath -v 2>&1") -match "nginx/(?<version>\d+\.\d+\.\d+)" | Out-Null
-    return $Matches.Version
+    return $Matches.version
 }
 
 function Get-ApacheSection

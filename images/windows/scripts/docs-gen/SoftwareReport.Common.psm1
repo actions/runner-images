@@ -99,7 +99,7 @@ function Get-LLVMVersion {
 
 function Get-PerlVersion {
     ($(perl --version) | Out-String) -match "\(v(?<version>\d+\.\d+\.\d+)\)" | Out-Null
-    $perlVersion = $Matches.Version
+    $perlVersion = $Matches.version
     return $perlVersion
 }
 
@@ -130,7 +130,7 @@ function Get-RubyGemsVersion {
 
 function Get-HelmVersion {
     ($(helm version --short) | Out-String) -match "v(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $helmVersion = $Matches.Version
+    $helmVersion = $Matches.version
     return $helmVersion
 }
 
@@ -161,7 +161,7 @@ function Get-MavenVersion {
 
 function Get-GradleVersion {
     ($(gradle -version) | Out-String) -match "Gradle (?<version>\d+\.\d+)" | Out-Null
-    $gradleVersion = $Matches.Version
+    $gradleVersion = $Matches.version
     return $gradleVersion
 }
 

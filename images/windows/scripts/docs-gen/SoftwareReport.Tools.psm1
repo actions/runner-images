@@ -1,6 +1,6 @@
 function Get-Aria2Version {
     (aria2c -v | Out-String) -match "(?<version>(\d+\.){1,}\d+)" | Out-Null
-    $aria2Version = $Matches.Version
+    $aria2Version = $Matches.version
     return $aria2Version
 }
 
@@ -14,31 +14,31 @@ function Get-AzCosmosDBEmulatorVersion {
 
 function Get-BazelVersion {
     ((cmd /c "bazel --version 2>&1") | Out-String) -match "bazel (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $bazelVersion = $Matches.Version
+    $bazelVersion = $Matches.version
     return $bazelVersion
 }
 
 function Get-BazeliskVersion {
     ((cmd /c "bazelisk version 2>&1") | Out-String) -match "Bazelisk version: v(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $bazeliskVersion = $Matches.Version
+    $bazeliskVersion = $Matches.version
     return $bazeliskVersion
 }
 
 function Get-BicepVersion {
     (bicep --version | Out-String) -match "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $bicepVersion = $Matches.Version
+    $bicepVersion = $Matches.version
     return $bicepVersion
 }
 
 function Get-RVersion {
     ($(cmd /c "Rscript --version 2>&1") | Out-String) -match "Rscript .* version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $rVersion = $Matches.Version
+    $rVersion = $Matches.version
     return $rVersion
 }
 
 function Get-CMakeVersion {
     ($(cmake -version) | Out-String) -match "cmake version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $cmakeVersion = $Matches.Version
+    $cmakeVersion = $Matches.version
     return $cmakeVersion
 }
 
@@ -72,7 +72,7 @@ function Get-GitVersion {
 
 function Get-GitLFSVersion {
     $(git-lfs version) -match "git-lfs\/(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $gitLfsVersion = $Matches.Version
+    $gitLfsVersion = $Matches.version
     return $gitLfsVersion
 }
 
@@ -93,25 +93,25 @@ function Get-KubectlVersion {
 
 function Get-KindVersion {
     $(kind version) -match "kind v(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $kindVersion = $Matches.Version
+    $kindVersion = $Matches.version
     return $kindVersion
 }
 
 function Get-GCCVersion {
     (gcc --version | Select-String -Pattern "gcc.exe") -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $mingwVersion = $Matches.Version
+    $mingwVersion = $Matches.version
     return $mingwVersion
 }
 
 function Get-GDBVersion {
     (gdb --version | Select-String -Pattern "GNU gdb") -match "(?<version>\d+\.\d+)" | Out-Null
-    $mingwVersion = $Matches.Version
+    $mingwVersion = $Matches.version
     return $mingwVersion
 }
 
 function Get-GNUBinutilsVersion {
     (ld --version | Select-String -Pattern "GNU Binutils") -match "(?<version>\d+\.\d+)" | Out-Null
-    $mingwVersion = $Matches.Version
+    $mingwVersion = $Matches.version
     return $mingwVersion
 }
 
@@ -128,7 +128,7 @@ function Get-SQLOLEDBDriverVersion {
 
 function Get-MercurialVersion {
     ($(hg --version) | Out-String) -match "version (?<version>\d+\.\d+\.?\d*)" | Out-Null
-    $mercurialVersion = $Matches.Version
+    $mercurialVersion = $Matches.version
     return $mercurialVersion
 }
 
@@ -139,7 +139,7 @@ function Get-NSISVersion {
 
 function Get-OpenSSLVersion {
     $(openssl version) -match "OpenSSL (?<version>\d+\.\d+\.\d+\w?) " | Out-Null
-    $opensslVersion = $Matches.Version
+    $opensslVersion = $Matches.version
     return $opensslVersion
 }
 
@@ -170,7 +170,7 @@ function Get-SVNVersion {
 
 function Get-VSWhereVersion {
     ($(Get-Command -Name vswhere).FileVersionInfo.ProductVersion) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $vswhereVersion = $Matches.Version
+    $vswhereVersion = $Matches.version
     return $vswhereVersion
 }
 
@@ -188,7 +188,7 @@ function Get-WixVersion {
 
 function Get-ZstdVersion {
     $(zstd --version) -match "v(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $zstdVersion = $Matches.Version
+    $zstdVersion = $Matches.version
     return $zstdVersion
 }
 
@@ -208,13 +208,13 @@ function Get-AzureDevopsExtVersion {
 
 function Get-AWSCLIVersion {
     $(aws --version) -match "aws-cli\/(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $awscliVersion = $Matches.Version
+    $awscliVersion = $Matches.version
     return $awscliVersion
 }
 
 function Get-AWSSAMVersion {
     $(sam --version) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $awssamVersion = $Matches.Version
+    $awssamVersion = $Matches.version
     return $awssamVersion
 }
 
@@ -230,31 +230,31 @@ function Get-AlibabaCLIVersion {
 
 function Get-CloudFoundryVersion {
     $(cf version) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $cfVersion = $Matches.Version
+    $cfVersion = $Matches.version
     return $cfVersion
 }
 
 function Get-7zipVersion {
     (7z | Out-String) -match "7-Zip (?<version>\d+\.\d+\.?\d*)" | Out-Null
-    $version = $Matches.Version
+    $version = $Matches.version
     return $version
 }
 
 function Get-GHCVersion {
     ((ghc --version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $ghcVersion = $Matches.Version
+    $ghcVersion = $Matches.version
     return $ghcVersion
 }
 
 function Get-CabalVersion {
     ((cabal --version) | Out-String) -match "version (?<version>\d+\.\d+\.\d+\.\d+)" | Out-Null
-    $cabalVersion = $Matches.Version
+    $cabalVersion = $Matches.version
     return $cabalVersion
 }
 
 function Get-StackVersion {
     ((stack --version --quiet) | Out-String) -match "Version (?<version>\d+\.\d+\.\d+)," | Out-Null
-    $stackVersion = $Matches.Version
+    $stackVersion = $Matches.version
     return $stackVersion
 }
 
@@ -273,7 +273,7 @@ function Get-NewmanVersion {
 
 function Get-GHVersion {
     ($(gh --version) | Select-String -Pattern "gh version") -match "gh version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $ghVersion = $Matches.Version
+    $ghVersion = $Matches.version
     return $ghVersion
 }
 
@@ -305,12 +305,12 @@ function Get-DacFxVersion {
 
 function Get-SwigVersion {
     (swig -version | Out-String) -match "version (?<version>\d+\.\d+\.\d+)" | Out-Null
-    $swigVersion = $Matches.Version
+    $swigVersion = $Matches.version
     return $swigVersion
 }
 
 function Get-ImageMagickVersion {
     (magick -version | Select-String -Pattern "Version") -match "(?<version>\d+\.\d+\.\d+-\d+)" | Out-Null
-    $magickVersion = $Matches.Version
+    $magickVersion = $Matches.version
     return $magickVersion
 }
