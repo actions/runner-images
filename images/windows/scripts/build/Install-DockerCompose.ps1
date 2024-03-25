@@ -1,12 +1,7 @@
 ################################################################################
 ##  File:  Install-Docker-Compose.ps1
 ##  Desc:  Install Docker Compose.
-##  Supply chain security: Docker Compose v1 - by package manager
 ################################################################################
-
-Write-Host "Install-Package Docker-Compose v1"
-$versionToInstall = Resolve-ChocoPackageVersion -PackageName "docker-compose" -TargetVersion "1.29"
-Install-ChocoPackage docker-compose -ArgumentList "--version=$versionToInstall"
 
 Write-Host "Install-Package Docker-Compose v2"
 # Temporaty pinned to v2.23.3 due https://github.com/actions/runner-images/issues/9172
