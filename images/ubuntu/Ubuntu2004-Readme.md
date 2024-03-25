@@ -7,7 +7,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1058-azure
-- Image Version: 20240310.1.0
+- Image Version: 20240317.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -34,8 +34,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.14.2
-- Homebrew 4.2.11
+- Helm 3.14.3
+- Homebrew 4.2.12
 - Miniconda 24.1.2
 - Npm 10.2.4
 - NuGet 6.6.1.2
@@ -43,7 +43,7 @@
 - Pip3 20.0.2
 - Pipx 1.4.3
 - RubyGems 3.1.2
-- Vcpkg (build from commit 0719a7138)
+- Vcpkg (build from commit cf4ebef22)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -71,16 +71,16 @@ to accomplish this.
 - Ansible 2.13.13
 - apt-fast 1.10.0
 - AzCopy 10.23.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.0.2
+- Bazel 7.1.0
 - Bazelisk 1.19.0
-- Bicep 0.25.53
+- Bicep 0.26.54
 - Buildah 1.22.3
 - CMake 3.28.3
-- CodeQL Action Bundle 2.16.3
+- CodeQL Action Bundle 2.16.4
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
-- Docker-Buildx 0.13.0
+- Docker-Buildx 0.13.1
 - Docker Client 24.0.9
 - Docker Server 24.0.9
 - Fastlane 2.219.0
@@ -92,43 +92,43 @@ to accomplish this.
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.22.0
-- Kubectl 1.29.2
+- Kubectl 1.29.3
 - Kustomize 5.3.0
 - Leiningen 2.11.2
 - MediaInfo 19.09
 - Mercurial 5.3.1
 - Minikube 1.32.0
 - n 9.2.1
-- Newman 6.1.1
+- Newman 6.1.2
 - nvm 0.39.7
 - OpenSSL 1.1.1f-1ubuntu2.22
 - Packer 1.10.2
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.109.0
+- Pulumi 3.111.1
 - R 4.3.3
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.7.4
+- Terraform 1.7.5
 - yamllint 1.35.1
 - yq 4.42.1
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.15.27
+- AWS CLI 2.15.30
 - AWS CLI Session Manager Plugin 1.2.553.0
-- AWS SAM CLI 1.111.0
+- AWS SAM CLI 1.112.0
 - Azure CLI 2.58.0
 - Azure CLI (azure-devops) 1.0.0
 - GitHub CLI 2.45.0
-- Google Cloud CLI 467.0.0
-- Netlify CLI 17.19.0
-- OpenShift CLI 4.15.0
+- Google Cloud CLI 468.0.0
+- Netlify CLI 17.19.4
+- OpenShift CLI 4.15.2
 - ORAS CLI 1.1.0
-- Vercel CLI 33.5.5
+- Vercel CLI 33.6.1
 
 ### Java
 | Version             | Environment Variable |
@@ -139,8 +139,8 @@ to accomplish this.
 | 21.0.2+13           | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.27, 8.2.16, 8.3.3
-- Composer 2.7.1
+- PHP: 7.4.33, 8.0.30, 8.1.27, 8.2.17, 8.3.4
+- Composer 2.7.2
 - PHPUnit 8.5.37
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -149,14 +149,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.10.2.1
 - GHC 9.8.2
-- GHCup 0.1.20.0
+- GHCup 0.1.22.0
 - Stack 2.15.3
 
 ### Rust Tools
 - Cargo 1.76.0
 - Rust 1.76.0
 - Rustdoc 1.76.0
-- Rustup 1.26.0
+- Rustup 1.27.0
 
 #### Packages
 - Bindgen 0.69.4
@@ -167,13 +167,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 122.0.6261.111
-- ChromeDriver 122.0.6261.111
+- Google Chrome 122.0.6261.128
+- ChromeDriver 122.0.6261.128
 - Chromium 122.0.6261.0
-- Microsoft Edge 122.0.2365.80
-- Microsoft Edge WebDriver 122.0.2365.80
+- Microsoft Edge 122.0.2365.92
+- Microsoft Edge WebDriver 122.0.2365.92
 - Selenium server 4.18.1
-- Mozilla Firefox 123.0.1
+- Mozilla Firefox 124.0
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -185,7 +185,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.419, 7.0.406, 8.0.200
+- .NET Core SDK: 6.0.420, 7.0.407, 8.0.202
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
@@ -249,8 +249,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - PowerShell 7.4.1
 
 #### PowerShell Modules
-- Az: 9.3.0
-- Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
+- Az: 11.3.1
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.15.0
 - Pester: 5.5.0
@@ -291,16 +290,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.16          | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
 | alpine:3.17          | sha256:53cf9478b76f4c8fae126acbdfb79bed6e69e628faff572ebe4a029d3d247d98  | 2024-01-27 |
 | alpine:3.18          | sha256:11e21d7b981a59554b3f822c49f6e9f57b6068bb74f49c4cd5cc4c663c7e5160  | 2024-01-27 |
-| debian:10            | sha256:a52d4e1c201d9ab2f3b939b91a3fdd345d3d11404755bc1cdb22c1d5be131c5d  | 2024-02-13 |
-| debian:11            | sha256:171478fbe347a3cfe45058dae333b6ed848fd8ce89f3104c89fa94c245086db1  | 2024-02-13 |
+| debian:10            | sha256:f6b3b7c7b049c2c7d0f19ae988b4eac64fd8e127fa891c9de1d3cf3f8c33cad4  | 2024-03-12 |
+| debian:11            | sha256:5a87974e73c64b3fb161d444a84bdd47c0e6b6058eacaeea64342e7cbce1f04d  | 2024-03-12 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest | sha256:24fddad8ce5063e822f32df151b5d7c0b060a850e680bed615ccf9162eabf6e3  | 2024-03-05 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:aa329c613f0067755c0787d2a3a9802c7d95eecdb927d62b910ec1d28689882f  | 2024-02-15 |
-| node:18-alpine       | sha256:ca9f6cb0466f9638e59e0c249d335a07c867cd50c429b5c7830dda1bed584649  | 2024-02-15 |
-| node:20              | sha256:f3299f16246c71ab8b304d6745bb4059fa9283e8d025972e28436a9f9b36ed24  | 2024-02-15 |
-| node:20-alpine       | sha256:c0a3badbd8a0a760de903e00cedbca94588e609299820557e72cba2a53dbaa2c  | 2024-02-15 |
+| node:18              | sha256:b39895225fb1984139d5af76400aff8fac3dd5bc00dd41a3ce22fc8a6cf538d5  | 2024-03-12 |
+| node:18-alpine       | sha256:c7620fdecfefb96813da62519897808775230386f4c8482e972e37b8b18cb460  | 2024-03-16 |
+| node:20              | sha256:e06aae17c40c7a6b5296ca6f942a02e6737ae61bbbf3e2158624bb0f887991b5  | 2024-03-12 |
+| node:20-alpine       | sha256:bf77dc26e48ea95fca9d1aceb5acfa69d2e546b765ec2abfb502975f1a2d4def  | 2024-03-16 |
 | ubuntu:20.04         | sha256:80ef4a44043dec4490506e6cc4289eeda2d106a70148b74b5ae91ee670e9c35d  | 2024-02-16 |
 
 ### Installed apt packages
