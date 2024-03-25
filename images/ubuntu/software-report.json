@@ -10,7 +10,7 @@
     {
       "NodeType": "ToolVersionNode",
       "ToolName": "Kernel Version:",
-      "Version": "6.5.0-1015-aws"
+      "Version": "6.5.0-1016-aws"
     },
     {
       "NodeType": "ToolVersionNode",
@@ -163,7 +163,7 @@
             {
               "NodeType": "ToolVersionNode",
               "ToolName": "Homebrew",
-              "Version": "4.2.14"
+              "Version": "4.2.15"
             },
             {
               "NodeType": "ToolVersionNode",
@@ -203,7 +203,7 @@
             {
               "NodeType": "ToolVersionNode",
               "ToolName": "Vcpkg",
-              "Version": "(build from commit a34c873a9)"
+              "Version": "(build from commit 9de2e978b)"
             },
             {
               "NodeType": "ToolVersionNode",
@@ -255,7 +255,7 @@
             {
               "NodeType": "ToolVersionNode",
               "ToolName": "Ansible",
-              "Version": "2.16.4"
+              "Version": "2.16.5"
             },
             {
               "NodeType": "ToolVersionNode",
@@ -355,7 +355,7 @@
             {
               "NodeType": "ToolVersionNode",
               "ToolName": "Heroku",
-              "Version": "8.11.0"
+              "Version": "8.11.1"
             },
             {
               "NodeType": "ToolVersionNode",

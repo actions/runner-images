@@ -152,32 +152,20 @@ source "amazon-ebs" "build_image" {
 
   subnet_filter {
     filters = {
-      "tag:Environment" : "packer"
+      "tag:Packer" : "true"
     }
     random = true
   }
 
-  # Associate a public IP address in case a public subnet is selected
-  # and the default behavior is to not assign a public IP address. This
-  # is necessary for the instance to have an internet connection. In any
-  # case, the public IP address is not used to connect to the instance.
-  ssh_interface               = "private_ip"
-  associate_public_ip_address = true
+  ssh_interface = "private_ip"
 
   spot_instance_types = [
-    "c5.xlarge",
-    "c5d.xlarge",
-    "c6in.xlarge",
-    "m6i.xlarge",
+    "c7a.xlarge",
   ]
 
   spot_price = "auto"
 
-  region = "ap-southeast-3"
-
-  ami_regions = [
-    "us-east-2",
-  ]
+  region = "us-east-2"
 
   source_ami_filter {
     filters = {

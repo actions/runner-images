@@ -1,6 +1,6 @@
 # Ubuntu 22.04
 - OS Version: 22.04.4 LTS
-- Kernel Version: 6.5.0-1015-aws
+- Kernel Version: 6.5.0-1016-aws
 - Image Version: dev
 - Systemd version: 249.11-0ubuntu3.12
 
@@ -27,7 +27,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.3
-- Homebrew 4.2.14
+- Homebrew 4.2.15
 - Miniconda 24.1.2
 - Npm 10.2.4
 - NuGet 6.6.1.2
@@ -35,7 +35,7 @@
 - Pip3 22.0.2
 - Pipx 1.4.3
 - RubyGems 3.3.5
-- Vcpkg (build from commit a34c873a9)
+- Vcpkg (build from commit 9de2e978b)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,7 +57,7 @@ to accomplish this.
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.16.4
+- Ansible 2.16.5
 - apt-fast 1.10.0
 - AzCopy 10.23.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.1.1
@@ -77,7 +77,7 @@ to accomplish this.
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 8.11.0
+- Heroku 8.11.1
 - jq 1.6
 - Kind 0.22.0
 - Kubectl 1.29.3
