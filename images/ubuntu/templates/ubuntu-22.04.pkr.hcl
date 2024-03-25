@@ -144,7 +144,7 @@ variable "vm_size" {
 }
 
 local "aws_ami_name_x86_64" {
-  expression = "GitHub Actions Runner Ubuntu 22.04 ${formatdate("YYYYMMDD", timestamp())} x86_64"
+  expression = "GitHub Actions Runner Ubuntu 22.04 ${formatdate("YYYY-MM-DD hh.mm ZZZ", timestamp())} x86_64"
 }
 
 source "amazon-ebs" "build_image" {
@@ -174,6 +174,10 @@ source "amazon-ebs" "build_image" {
   spot_price = "auto"
 
   region = "ap-southeast-3"
+
+  ami_regions = [
+    "us-east-2",
+  ]
 
   source_ami_filter {
     filters = {
