@@ -8,4 +8,8 @@ Describe "Wix" {
     It "Wix Toolset version from registry" {
       $version | Should -Not -BeNullOrEmpty
     }
+
+    It "Wix binaries are available via env:Path" {
+      candle.exe -? | Should -Not -BeNullOrEmpty
+    }
 }
