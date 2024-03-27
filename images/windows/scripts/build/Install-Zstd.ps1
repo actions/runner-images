@@ -3,9 +3,10 @@
 ##  Desc:  Install zstd
 ################################################################################
 
+# version newer than v1.5.5 has no windows builds yet
 $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "facebook/zstd" `
-    -Version "latest" `
+    -Version "1.5.5" `
     -UrlMatchPattern "zstd-*-win64.zip"
 $zstdArchivePath = Invoke-DownloadWithRetry $downloadUrl
 $zstdName = [IO.Path]::GetFileNameWithoutExtension($zstdArchivePath)
