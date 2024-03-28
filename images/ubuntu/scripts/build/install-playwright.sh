@@ -8,4 +8,4 @@
 source $HELPER_SCRIPTS/install.sh
 
 npm install -g playwright
-npx playwright install --with-deps
+su ubuntu -c "npx playwright install --with-deps"
