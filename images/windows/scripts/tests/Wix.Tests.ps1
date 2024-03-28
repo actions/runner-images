@@ -9,7 +9,7 @@ Describe "Wix" {
       $version | Should -Not -BeNullOrEmpty
     }
 
-    It "Wix binaries are available via env:Path" {
+    It "Wix binaries are available" {
       candle.exe -? | Should -Not -BeNullOrEmpty
     }
 }
