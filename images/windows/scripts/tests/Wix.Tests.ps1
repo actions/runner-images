@@ -14,10 +14,11 @@ Describe "Wix" {
     }
 
     It "Wix binaries folder exists" {
-      Test-Path -Path "$env:WIX\bin" | Should -Be $true
+      Test-Path -Path $(Join-Path -Path $env:WIX -ChildPath "bin") | Should -Be $true
     }
 
     It "Wix binaries folder is in PATH" {
-      $env:PATH -split ";" | Should -Contain "$env:WIX\bin"
+      $testPath = Join-Path -Path $env:WIX -ChildPath "bin"
+      $env:PATH -split ";" | Should -Contain "$testPath"
     }
 }
