@@ -9,7 +9,15 @@ Describe "Wix" {
       $version | Should -Not -BeNullOrEmpty
     }
 
-    It "Wix binaries are available" {
-      candle.exe -? | Should -Not -BeNullOrEmpty
+    It "Wix variable exists" {
+      $env:WIX | Should -Not -BeNullOrEmpty
+    }
+
+    It "Wix binaries folder exists" {
+      Test-Path -Path "$env:WIX\bin" | Should -Be $true
+    }
+
+    It "Wix binaries folder is in PATH" {
+      $env:PATH -split ";" | Should -Contain "$env:WIX\bin"
     }
 }

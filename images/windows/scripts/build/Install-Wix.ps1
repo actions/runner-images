@@ -6,14 +6,9 @@
 Install-ChocoPackage wixtoolset -ArgumentList "--force"
 
 Update-Environment
-
-$wixBinPath = Join-Path -Path $env:WIX -ChildPath 'bin'
-if (Test-Path $wixBinPath) {
-    $currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
-    $newPath = $currentPath + ";$wixBinPath"
-    [Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
-} else {
-    Write-Error "WIX binaries folder ($wixBinPath) not found."
-}
+$currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
+$newPath = $currentPath + ";$(Join-Path -Path $env:WIX -ChildPath "bin")"
+[Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
+Update-Environment
 
 Invoke-PesterTests -TestFile "Wix"
