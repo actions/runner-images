@@ -260,7 +260,7 @@ function Get-RubyGemsVersion {
 }
 
 function Get-ComposerVersion {
-    $composerVersion = Run-Command "composer --version" | Take-Part -Part 2
+    $composerVersion = Run-Command "composer --version" | Select-Object -First 1 | Take-Part -Part 2
     return $composerVersion
 }
 
