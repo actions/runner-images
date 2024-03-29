@@ -1,13 +1,11 @@
 | Announcements |
 |-|
-| [[Ubuntu, Windows] Az Powershell module will be updated to v11.3.1 on March 18](https://github.com/actions/runner-images/issues/9445) |
-| [[All OSes] Ruby versions <= 2.7.x will be removed on February, 26](https://github.com/actions/runner-images/issues/9327) |
-| [[All OSes] Go 1.19.x will be removed and 1.21.x set as default on February, 26](https://github.com/actions/runner-images/issues/9326) |
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on April, 1](https://github.com/actions/runner-images/issues/9557) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
-- Kernel Version: 5.15.0-1058-azure
-- Image Version: 20240317.1.0
+- Kernel Version: 5.15.0-1059-azure
+- Image Version: 20240324.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -35,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.3
-- Homebrew 4.2.12
+- Homebrew 4.2.14
 - Miniconda 24.1.2
 - Npm 10.2.4
 - NuGet 6.6.1.2
@@ -43,7 +41,7 @@
 - Pip3 20.0.2
 - Pipx 1.4.3
 - RubyGems 3.1.2
-- Vcpkg (build from commit cf4ebef22)
+- Vcpkg (build from commit a34c873a9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,7 +60,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.6
+- Gradle 8.7
 - Lerna 8.1.2
 - Maven 3.8.8
 - Sbt 1.9.9
@@ -71,12 +69,12 @@ to accomplish this.
 - Ansible 2.13.13
 - apt-fast 1.10.0
 - AzCopy 10.23.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.1.0
+- Bazel 7.1.1
 - Bazelisk 1.19.0
 - Bicep 0.26.54
 - Buildah 1.22.3
-- CMake 3.28.3
-- CodeQL Action Bundle 2.16.4
+- CMake 3.29.0
+- CodeQL Action Bundle 2.16.5
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
@@ -88,7 +86,7 @@ to accomplish this.
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 8.10.0
+- Heroku 8.11.0
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.22.0
@@ -113,20 +111,20 @@ to accomplish this.
 - SVN 1.13.0
 - Terraform 1.7.5
 - yamllint 1.35.1
-- yq 4.42.1
+- yq 4.43.1
 - zstd 1.5.5
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.15.30
+- AWS CLI 2.15.32
 - AWS CLI Session Manager Plugin 1.2.553.0
-- AWS SAM CLI 1.112.0
+- AWS SAM CLI 1.113.0
 - Azure CLI 2.58.0
 - Azure CLI (azure-devops) 1.0.0
-- GitHub CLI 2.45.0
-- Google Cloud CLI 468.0.0
-- Netlify CLI 17.19.4
-- OpenShift CLI 4.15.2
+- GitHub CLI 2.46.0
+- Google Cloud CLI 469.0.0
+- Netlify CLI 17.20.1
+- OpenShift CLI 4.15.3
 - ORAS CLI 1.1.0
 - Vercel CLI 33.6.1
 
@@ -147,33 +145,33 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Haskell Tools
-- Cabal 3.10.2.1
+- Cabal 3.10.3.0
 - GHC 9.8.2
 - GHCup 0.1.22.0
 - Stack 2.15.3
 
 ### Rust Tools
-- Cargo 1.76.0
-- Rust 1.76.0
-- Rustdoc 1.76.0
+- Cargo 1.77.0
+- Rust 1.77.0
+- Rustdoc 1.77.0
 - Rustup 1.27.0
 
 #### Packages
 - Bindgen 0.69.4
 - Cargo audit 0.20.0
-- Cargo clippy 0.1.76
+- Cargo clippy 0.1.77
 - Cargo outdated 0.15.0
 - Cbindgen 0.26.0
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 122.0.6261.128
-- ChromeDriver 122.0.6261.128
-- Chromium 122.0.6261.0
-- Microsoft Edge 122.0.2365.92
-- Microsoft Edge WebDriver 122.0.2365.92
+- Google Chrome 123.0.6312.58
+- ChromeDriver 123.0.6312.58
+- Chromium 123.0.6312.0
+- Microsoft Edge 123.0.2420.53
+- Microsoft Edge WebDriver 123.0.2420.53
 - Selenium server 4.18.1
-- Mozilla Firefox 124.0
+- Mozilla Firefox 124.0.1
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -228,8 +226,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Python
 - 3.7.17
 - 3.8.18
-- 3.9.18
-- 3.10.13
+- 3.9.19
+- 3.10.14
 - 3.11.8
 - 3.12.2
 
@@ -251,7 +249,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 11.3.1
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.15.0
+- Microsoft.Graph: 2.16.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.22.0
 
@@ -293,7 +291,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | debian:10            | sha256:f6b3b7c7b049c2c7d0f19ae988b4eac64fd8e127fa891c9de1d3cf3f8c33cad4  | 2024-03-12 |
 | debian:11            | sha256:5a87974e73c64b3fb161d444a84bdd47c0e6b6058eacaeea64342e7cbce1f04d  | 2024-03-12 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest | sha256:24fddad8ce5063e822f32df151b5d7c0b060a850e680bed615ccf9162eabf6e3  | 2024-03-05 |
+| moby/buildkit:latest | sha256:00d2c6b8f39ae515e0eadd74f39e71a5efdc94321c9b919692a2aa32deef2bb1  | 2024-03-18 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
 | node:18              | sha256:b39895225fb1984139d5af76400aff8fac3dd5bc00dd41a3ce22fc8a6cf538d5  | 2024-03-12 |
