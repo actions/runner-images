@@ -1,12 +1,6 @@
-| Announcements |
-|-|
-| [[Ubuntu, Windows] Az Powershell module will be updated to v11.3.1 on March 18](https://github.com/actions/runner-images/issues/9445) |
-| [[All OSes] Ruby versions <= 2.7.x will be removed on February, 26](https://github.com/actions/runner-images/issues/9327) |
-| [[All OSes] Go 1.19.x will be removed and 1.21.x set as default on February, 26](https://github.com/actions/runner-images/issues/9326) |
-***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2340
-- Image Version: 20240317.1.0
+- Image Version: 20240322.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -35,7 +29,7 @@
 - pip 24.0 (python 3.9)
 - Pipx 1.4.3
 - RubyGems 3.2.33
-- Vcpkg (build from commit cf4ebef22)
+- Vcpkg (build from commit 18e898197)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,12 +48,12 @@
 - 7zip 23.01
 - aria2 1.37.0
 - azcopy 10.23.0
-- Bazel 7.1.0
+- Bazel 7.1.1
 - Bazelisk 1.19.0
 - Bicep 0.26.54
-- Cabal 3.10.2.1
-- CMake 3.28.3
-- CodeQL Action Bundle 2.16.4
+- Cabal 3.10.3.0
+- CMake 3.29.0
+- CodeQL Action Bundle 2.16.5
 - Docker 24.0.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
@@ -79,7 +73,7 @@
 - Newman 6.1.2
 - NSIS 3.09
 - OpenSSL 1.1.1w
-- Packer 1.10.0
+- Packer 1.10.2
 - Pulumi 3.111.1
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
@@ -93,18 +87,18 @@
 - zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.199
-- AWS CLI 2.15.30
-- AWS SAM CLI 1.112.0
+- Alibaba Cloud CLI 3.0.200
+- AWS CLI 2.15.31
+- AWS SAM CLI 1.113.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.58.0
 - Azure DevOps CLI extension 1.0.0
-- GitHub CLI 2.45.0
+- GitHub CLI 2.46.0
 
 ### Rust Tools
-- Cargo 1.76.0
-- Rust 1.76.0
-- Rustdoc 1.76.0
+- Cargo 1.77.0
+- Rust 1.77.0
+- Rustdoc 1.77.0
 - Rustup 1.27.0
 
 #### Packages
@@ -112,15 +106,15 @@
 - cargo-audit 0.20.0
 - cargo-outdated 0.15.0
 - cbindgen 0.26.0
-- Clippy 0.1.76
+- Clippy 0.1.77
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 122.0.6261.129
-- Chrome Driver 122.0.6261.128
+- Google Chrome 123.0.6312.59
+- Chrome Driver 123.0.6312.58
 - Microsoft Edge 122.0.2365.92
-- Microsoft Edge Driver 122.0.2365.92
-- Mozilla Firefox 123.0.1
+- Microsoft Edge Driver 122.0.2365.106
+- Mozilla Firefox 124.0.1
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
 - Selenium server 4.18.0
@@ -222,9 +216,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.25.4  | C:\tools\nginx-1.25.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version       | Path                                                     |
-| ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.9.34701.34 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version        | Path                                                     |
+| ----------------------------- | -------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.9.34714.143 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -566,10 +560,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.538
+- AWSPowershell: 4.1.542
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.15.0
+- Microsoft.Graph: 2.16.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.22.0
@@ -589,7 +583,7 @@ All other versions are saved but not installed.
 | Android Emulator           | 31.2.9                                                                                                                                                                                            |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                         |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
-| Android SDK Platform-Tools | 35.0.0                                                                                                                                                                                            |
+| Android SDK Platform-Tools | 35.0.1                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                            |
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                  |
 | Google Play services       | 49                                                                                                                                                                                                |
@@ -614,4 +608,3 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:76d2dd2054a18f47d9c690f9d0047e319d7b68aa4e72ee7aae46e3637042c165  | 2024-03-12 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:6e6053f0358f9522d2d14693f9bc152f47fe04c82c53dc8c6d127a5a823c8720  | 2024-03-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:6b8781cab588a2858d1aba2c5d5456e79c823e04d666d59d0732dab1273dc8fb  | 2024-03-05 |
-
