@@ -2,11 +2,19 @@ param(
     [Parameter (Mandatory)] [UInt32] $BuildId,
     [Parameter (Mandatory)] [string] $Organization,
     [Parameter (Mandatory)] [string] $Project,
-    [Parameter (Mandatory)] [string] $ImageType,
-    [Parameter (Mandatory)] [string] $ManagedImageName,
+    [string] $ImageType,
+    [string] $ManagedImageName,
     [Parameter (Mandatory)] [string] $DefinitionId,
     [Parameter (Mandatory)] [string] $AccessToken
 )
+
+if (-not $ImageType){
+  $ImageType = $env:ImageType
+  }
+
+if (-not $ManagedImageName) {
+  $ManagedImageName = $env:ManagedImageName
+}
 
 $Body = @{
     definitionId = $DefinitionId
