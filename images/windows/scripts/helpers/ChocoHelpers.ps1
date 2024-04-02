@@ -77,20 +77,13 @@ function Resolve-ChocoPackageVersion {
         [string] $TargetVersion
     )
 
-    $versions = @()
-    $searchResult = choco search $PackageName --exact --all-versions
-    foreach ($line in $searchResult) {
-        if ($line -match $PackageName -and $line -match '\[Approved\]' -and $line -notmatch 'broken') {
-            $words = $line -split '\s+'
-            $versions += $words[1]
-        }
-    }
+    $searchResult = choco search $PackageName --exact --all-versions --approved-only --limit-output | 
+        ConvertFrom-CSV -Delimiter '|' -Header 'Name', 'Version'
 
-    if ($versions.Count -gt 0) {
-        $latestVersion = $versions | Where-Object { $_ -Like "$TargetVersion.*" -or $_ -eq $TargetVersion } | Sort-Object { [version] $_ } | Select-Object -Last 1
-    } else {
-        Write-Error "No versions found for package $PackageName"
-    }
+    $latestVersion = $searchResult.Version | 
+        Where-Object { $_ -Like "$TargetVersion.*" -or $_ -eq $TargetVersion } | 
+        Sort-Object { [version] $_ } | 
+        Select-Object -Last 1
 
     return $latestVersion
 }
