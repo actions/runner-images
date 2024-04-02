@@ -1,6 +1,10 @@
+| Announcements |
+|-|
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on April, 1](https://github.com/actions/runner-images/issues/9557) |
+***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2340
-- Image Version: 20240322.1.0
+- Image Version: 20240331.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,9 +17,9 @@
 - Julia 1.10.2
 - Kotlin 1.9.23
 - LLVM 16.0.6
-- Node 18.18.2
+- Node 18.7.0
 - Perl 5.32.1
-- PHP 8.3.4
+- PHP 8.3.3
 - Python 3.9.13
 - Ruby 3.0.6p216
 
@@ -24,12 +28,12 @@
 - Composer 2.7.2
 - Helm 3.14.2
 - Miniconda 24.1.2 (pre-installed on the image but not added to PATH)
-- NPM 9.8.1
+- NPM 8.15.0
 - NuGet 6.9.1.3
 - pip 24.0 (python 3.9)
-- Pipx 1.4.3
+- Pipx 1.5.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 18e898197)
+- Vcpkg (build from commit ce1916404)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -47,7 +51,7 @@
 ### Tools
 - 7zip 23.01
 - aria2 1.37.0
-- azcopy 10.23.0
+- azcopy 10.24.0
 - Bazel 7.1.1
 - Bazelisk 1.19.0
 - Bicep 0.26.54
@@ -55,7 +59,6 @@
 - CMake 3.29.0
 - CodeQL Action Bundle 2.16.5
 - Docker 24.0.7
-- Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
 - Docker-wincred 0.8.1
 - ghc 9.8.2
@@ -74,21 +77,21 @@
 - NSIS 3.09
 - OpenSSL 1.1.1w
 - Packer 1.10.2
-- Pulumi 3.111.1
+- Pulumi 3.112.0
 - R 4.3.2
 - Service Fabric SDK 9.1.1436.9590
-- Stack 2.15.3
+- Stack 2.15.5
 - Subversion (SVN) 1.14.2
 - Swig 4.1.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
-- WiX Toolset 3.14.0.8606
+- WiX Toolset 3.14.1.8722
 - yamllint 1.35.1
-- zstd 1.5.5
+- zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.200
-- AWS CLI 2.15.31
+- Alibaba Cloud CLI 3.0.201
+- AWS CLI 2.15.34
 - AWS SAM CLI 1.113.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.58.0
@@ -96,9 +99,9 @@
 - GitHub CLI 2.46.0
 
 ### Rust Tools
-- Cargo 1.77.0
-- Rust 1.77.0
-- Rustdoc 1.77.0
+- Cargo 1.77.1
+- Rust 1.77.1
+- Rustdoc 1.77.1
 - Rustup 1.27.0
 
 #### Packages
@@ -110,14 +113,14 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 123.0.6312.59
-- Chrome Driver 123.0.6312.58
-- Microsoft Edge 122.0.2365.92
-- Microsoft Edge Driver 122.0.2365.106
+- Google Chrome 123.0.6312.86
+- Chrome Driver 123.0.6312.86
+- Microsoft Edge 123.0.2420.65
+- Microsoft Edge Driver 123.0.2420.65
 - Mozilla Firefox 124.0.1
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
-- Selenium server 4.18.0
+- Selenium server 4.19.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -161,8 +164,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 16.20.2
-- 18.19.1
-- 20.11.1
+- 18.20.0
+- 20.12.0
 
 #### Python
 - 3.7.9
@@ -200,7 +203,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.25.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.26.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.16.0
@@ -216,9 +219,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.25.4  | C:\tools\nginx-1.25.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.9.34714.143 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.9.34723.18 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -560,7 +563,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.542
+- AWSPowershell: 4.1.548
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.16.0
@@ -608,3 +611,4 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:76d2dd2054a18f47d9c690f9d0047e319d7b68aa4e72ee7aae46e3637042c165  | 2024-03-12 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:6e6053f0358f9522d2d14693f9bc152f47fe04c82c53dc8c6d127a5a823c8720  | 2024-03-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:6b8781cab588a2858d1aba2c5d5456e79c823e04d666d59d0732dab1273dc8fb  | 2024-03-05 |
+
