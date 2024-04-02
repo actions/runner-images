@@ -77,14 +77,20 @@ function Resolve-ChocoPackageVersion {
         [string] $TargetVersion
     )
 
-    $versionNumbers = $TargetVersion.Split(".")
-    [int] $versionNumbers[-1] += 1
-    $incrementedVersion = $versionNumbers -join "."
-    $filterQuery = "`$filter=(Id eq '$PackageName') and (IsPrerelease eq false) and (Version ge '$TargetVersion') and (Version lt '$incrementedVersion')"
-    $latestVersion = (Invoke-RestMethod "https://community.chocolatey.org/api/v2/Packages()?$filterQuery").properties.Version |
-        Where-Object { $_ -Like "$TargetVersion.*" -or $_ -eq $TargetVersion } |
-        Sort-Object { [version] $_ } |
-        Select-Object -Last 1
+    $versions = @()
+    $searchResult = choco search $PackageName --exact --all-versions
+    foreach ($line in $searchResult) {
+        if ($line -match $PackageName -and $line -match '\[Approved\]' -and $line -notmatch 'broken') {
+            $words = $line -split '\s+'
+            $versions += $words[1]
+        }
+    }
+
+    if ($versions.Count -gt 0) {
+        $latestVersion = $versions | Where-Object { $_ -Like "$TargetVersion.*" -or $_ -eq $TargetVersion } | Sort-Object { [version] $_ } | Select-Object -Last 1
+    } else {
+        Write-Error "No versions found for package $PackageName"
+    }
 
     return $latestVersion
 }
