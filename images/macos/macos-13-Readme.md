@@ -1,7 +1,7 @@
 # macOS 13
-- OS Version: macOS 13.6.5 (22G621)
+- OS Version: macOS 13.6.6 (22G630)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240327.2
+- Image Version: 20240402.2
 
 ## Installed Software
 
@@ -28,14 +28,14 @@
 - Bundler 2.5.7
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Composer "diagnose"
-- Homebrew 4.2.15
+- Composer 2.7.2
+- Homebrew 4.2.16
 - NPM 10.5.0
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
-- Pipx 1.4.3
+- Pipx 1.5.0
 - RubyGems 3.5.7
-- Vcpkg 2024 (build from commit 3c76dc55f)
+- Vcpkg 2024 (build from commit 1daec834f)
 - Yarn 1.22.19
 
 ### Project Management
@@ -50,7 +50,7 @@
 - bazel 7.1.1
 - bazelisk 1.19.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.6.0
+- Curl 8.7.1
 - Git 2.44.0
 - Git LFS 3.5.1
 - GitHub CLI 2.46.0
@@ -65,10 +65,10 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.15.33
+- AWS CLI 2.15.34
 - AWS SAM CLI 1.113.0
 - AWS Session Manager CLI 1.2.553.0
-- Azure CLI 2.58.0
+- Azure CLI 2.59.0
 - Azure CLI (azure-devops) 1.0.0
 - Bicep CLI 0.26.54
 - Cmake 3.29.0
@@ -83,16 +83,16 @@
 - SwiftLint 0.53.0
 
 ### Browsers
-- Safari 17.4 (18618.1.15.111.5)
-- SafariDriver 17.4 (18618.1.15.111.5)
-- Google Chrome 123.0.6312.87
+- Safari 17.4.1 (18618.1.15.111.8)
+- SafariDriver 17.4.1 (18618.1.15.111.8)
+- Google Chrome 123.0.6312.107
 - Google Chrome for Testing 123.0.6312.86
 - ChromeDriver 123.0.6312.86
-- Microsoft Edge 123.0.2420.53
-- Microsoft Edge WebDriver 123.0.2420.53
-- Mozilla Firefox 124.0.1
+- Microsoft Edge 123.0.2420.65
+- Microsoft Edge WebDriver 123.0.2420.65
+- Mozilla Firefox 124.0.2
 - geckodriver 0.34.0
-- Selenium server 4.18.1
+- Selenium server 4.19.1
 
 #### Environment variables
 | Name            | Value                                 |
@@ -131,8 +131,8 @@
 
 #### Node.js
 - 16.20.2
-- 18.19.1
-- 20.11.1
+- 18.20.0
+- 20.12.0
 
 #### Go
 - 1.20.14
@@ -140,9 +140,9 @@
 - 1.22.1
 
 ### Rust Tools
-- Cargo 1.77.0
-- Rust 1.77.0
-- Rustdoc 1.77.0
+- Cargo 1.77.1
+- Rust 1.77.1
+- Rustdoc 1.77.1
 - Rustup 1.27.0
 
 #### Packages
@@ -153,7 +153,7 @@
 - PowerShell 7.4.1
 
 #### PowerShell Modules
-- Az: 11.4.0
+- Az: 11.5.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.22.0
 
@@ -201,8 +201,8 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
+| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
@@ -233,7 +233,7 @@
 | Package Name               | Version                                                                                                                                               |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                  |
-| Android Emulator           | 34.1.19                                                                                                                                               |
+| Android Emulator           | 34.1.20                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                |
