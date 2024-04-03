@@ -83,7 +83,7 @@ Describe "Docker" {
         }
     }
 
-    It "Docker compose v2" {
+    It "docker compose v2" {
         $version=(Get-ToolsetContent).docker.plugins | Where-Object { $_.plugin -eq 'compose' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
             $(docker compose version --short) | Should -BeLike "*$version*"
@@ -102,6 +102,12 @@ Describe "Docker images" {
 
     It "<ImageName>" -TestCases $testCases {
        sudo docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
+    }
+}
+
+Describe "Docker-compose v1" {
+    It "docker-compose" {
+        "docker-compose --version"| Should -ReturnZeroExitCode
     }
 }
 
