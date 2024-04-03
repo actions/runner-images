@@ -4,8 +4,8 @@
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.4 LTS
-- Kernel Version: 6.5.0-1016-azure
-- Image Version: 20240324.2.0
+- Kernel Version: 6.5.0-1017-azure
+- Image Version: 20240403.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -22,7 +22,7 @@
 - Kotlin 1.9.23-release-779
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 18.19.1
+- Node.js 18.20.0
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
@@ -31,15 +31,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.3
-- Homebrew 4.2.14
+- Homebrew 4.2.16
 - Miniconda 24.1.2
-- Npm 10.2.4
+- Npm 10.5.0
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.4.3
+- Pipx 1.5.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit a34c873a9)
+- Vcpkg (build from commit 11ed79186)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,9 +61,9 @@ to accomplish this.
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.16.4
+- Ansible 2.16.5
 - apt-fast 1.10.0
-- AzCopy 10.23.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.24.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.1.1
 - Bazelisk 1.19.0
 - Bicep 0.26.54
@@ -81,7 +81,7 @@ to accomplish this.
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 8.11.0
+- Heroku 8.11.1
 - jq 1.6
 - Kind 0.22.0
 - Kubectl 1.29.3
@@ -97,7 +97,7 @@ to accomplish this.
 - Packer 1.10.2
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.111.1
+- Pulumi 3.112.0
 - R 4.3.3
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -105,21 +105,21 @@ to accomplish this.
 - Terraform 1.7.5
 - yamllint 1.35.1
 - yq 4.43.1
-- zstd 1.5.5
+- zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.200
-- AWS CLI 2.15.32
+- Alibaba Cloud CLI 3.0.201
+- AWS CLI 2.15.34
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.113.0
-- Azure CLI 2.58.0
+- Azure CLI 2.59.0
 - Azure CLI (azure-devops) 1.0.0
 - GitHub CLI 2.46.0
-- Google Cloud CLI 469.0.0
-- Netlify CLI 17.20.1
-- OpenShift CLI 4.15.3
+- Google Cloud CLI 471.0.0
+- Netlify CLI 17.21.1
+- OpenShift CLI 4.15.6
 - ORAS CLI 1.1.0
-- Vercel CLI 33.6.1
+- Vercel CLI 33.6.2
 
 ### Java
 | Version             | Environment Variable |
@@ -141,12 +141,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cabal 3.10.3.0
 - GHC 9.8.2
 - GHCup 0.1.22.0
-- Stack 2.15.3
+- Stack 2.15.5
 
 ### Rust Tools
-- Cargo 1.77.0
-- Rust 1.77.0
-- Rustdoc 1.77.0
+- Cargo 1.77.1
+- Rust 1.77.1
+- Rustdoc 1.77.1
 - Rustup 1.27.0
 
 #### Packages
@@ -158,13 +158,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 123.0.6312.58
-- ChromeDriver 123.0.6312.58
+- Google Chrome 123.0.6312.105
+- ChromeDriver 123.0.6312.86
 - Chromium 123.0.6312.0
-- Microsoft Edge 123.0.2420.53
-- Microsoft Edge WebDriver 123.0.2420.53
-- Selenium server 4.18.1
-- Mozilla Firefox 124.0.1
+- Microsoft Edge 123.0.2420.65
+- Microsoft Edge WebDriver 123.0.2420.65
+- Selenium server 4.19.1
+- Mozilla Firefox 124.0.2
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -176,7 +176,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.420, 7.0.407, 8.0.202
+- .NET Core SDK: 6.0.420, 7.0.407, 8.0.203
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
@@ -212,8 +212,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 16.20.2
-- 18.19.1
-- 20.11.1
+- 18.20.0
+- 20.12.0
 
 #### Python
 - 3.7.17
@@ -281,10 +281,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | moby/buildkit:latest | sha256:00d2c6b8f39ae515e0eadd74f39e71a5efdc94321c9b919692a2aa32deef2bb1  | 2024-03-18 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:b39895225fb1984139d5af76400aff8fac3dd5bc00dd41a3ce22fc8a6cf538d5  | 2024-03-12 |
-| node:18-alpine       | sha256:c7620fdecfefb96813da62519897808775230386f4c8482e972e37b8b18cb460  | 2024-03-16 |
-| node:20              | sha256:e06aae17c40c7a6b5296ca6f942a02e6737ae61bbbf3e2158624bb0f887991b5  | 2024-03-12 |
-| node:20-alpine       | sha256:bf77dc26e48ea95fca9d1aceb5acfa69d2e546b765ec2abfb502975f1a2d4def  | 2024-03-16 |
+| node:18              | sha256:8438dbe00747d24cdb53c616e02bf804420df9052151713c59484a1ddaf87b24  | 2024-03-27 |
+| node:18-alpine       | sha256:c698ffe060d198dcc6647be78ea1683363f12d5d507dc5ec9855f1c55966ffdd  | 2024-03-27 |
+| node:20              | sha256:bf0ef0687ffbd6c7742e1919177826c8bf1756a68b51f003dcfe3a13c31c65fe  | 2024-03-27 |
+| node:20-alpine       | sha256:ef3f47741e161900ddd07addcaca7e76534a9205e4cd73b2ed091ba339004a75  | 2024-03-27 |
 | ubuntu:20.04         | sha256:80ef4a44043dec4490506e6cc4289eeda2d106a70148b74b5ae91ee670e9c35d  | 2024-02-16 |
 | ubuntu:22.04         | sha256:77906da86b60585ce12215807090eb327e7386c8fafb5402369e421f44eff17e  | 2024-02-27 |
 
@@ -299,8 +299,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | bison                  | 2:3.8.2+dfsg-1build1                |
 | brotli                 | 1.0.9-2build6                       |
 | bzip2                  | 1.0.8-5build1                       |
-| coreutils              | 8.32-4.1ubuntu1.1                   |
-| curl                   | 7.81.0-1ubuntu1.15                  |
+| coreutils              | 8.32-4.1ubuntu1.2                   |
+| curl                   | 7.81.0-1ubuntu1.16                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
 | dnsutils               | 1:9.18.18-0ubuntu0.22.04.2          |
 | dpkg                   | 1.21.1ubuntu2.3                     |
@@ -323,7 +323,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.6                     |
-| libcurl4               | 7.81.0-1ubuntu1.15                  |
+| libcurl4               | 7.81.0-1ubuntu1.16                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.2          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
