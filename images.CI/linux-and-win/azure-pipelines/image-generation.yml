@@ -148,7 +148,7 @@ jobs:
                         -PrefixToPathTrim "$(TemplateDirectoryPath)" `
                         -PrintTopNLongest 25
 
-  - ${{ if eq(parameters.create_release, true) }}:
+  #- ${{ if eq(parameters.create_release, true) }}:
   - task: PowerShell@2
     displayName: 'Create release for VM deployment'
     inputs:
