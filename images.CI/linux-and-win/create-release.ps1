@@ -8,6 +8,7 @@ param(
     [Parameter (Mandatory)] [string] $AccessToken
 )
 
+
 if (-not $ImageType){
   $ImageType = $env:ImageType
   }
