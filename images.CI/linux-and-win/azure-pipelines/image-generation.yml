@@ -150,21 +150,21 @@ jobs:
                         -PrintTopNLongest 25
 
   - ${{ if eq(parameters.create_release, true) }}:
-    - task: PowerShell@2
-      displayName: 'Create release for VM deployment'
-      inputs:
-        targetType: filePath
-        filePath: ./images.CI/linux-and-win/create-release.ps1
-        arguments: -BuildId $(Build.BuildId) `
+  - task: PowerShell@2
+    displayName: 'Create release for VM deployment'
+    inputs:
+      targetType: filePath
+      filePath: ./images.CI/linux-and-win/create-release.ps1
+      arguments: -BuildId $(Build.BuildId) `
                    -Organization $(RELEASE_TARGET_ORGANIZATION) `
                    -DefinitionId $(RELEASE_TARGET_DEFINITION_ID) `
                    -Project $(RELEASE_TARGET_PROJECT) `
                    -ImageType "${{ parameters.image_type }}" `
                    -ManagedImageName "$(ManagedImageName)" `
                    -AccessToken $(RELEASE_TARGET_TOKEN)
-      env: 
-        ImageType: ${{ parameters.image_type }}
-        ManageImageName: $(ManagedImageName)
+   env: 
+      ImageType: ${{ parameters.image_type }}
+      ManageImageName: $(ManagedImageName)
         
   - task: PowerShell@2
     displayName: 'Clean up resources'
