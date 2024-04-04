@@ -96,7 +96,6 @@ jobs:
                  -VirtualNetworkName $(BUILD_AGENT_VNET_NAME) `
                  -VirtualNetworkRG $(BUILD_AGENT_VNET_RESOURCE_GROUP) `
                  -VirtualNetworkSubnet $(BUILD_AGENT_SUBNET_NAME)
-
     env:
       PACKER_LOG: 1
       PACKER_LOG_PATH: "$(Agent.TempDirectory)/packer-log.txt"
@@ -162,9 +161,9 @@ jobs:
                    -ImageType "${{ parameters.image_type }}" `
                    -ManagedImageName "$(ManagedImageName)" `
                    -AccessToken $(RELEASE_TARGET_TOKEN)
-   env: 
-      ImageType: ${{ parameters.image_type }}
-      ManageImageName: $(ManagedImageName)
+      env: 
+        ImageType: ${{ parameters.image_type }}
+        ManageImageName: $(ManagedImageName)
         
   - task: PowerShell@2
     displayName: 'Clean up resources'
