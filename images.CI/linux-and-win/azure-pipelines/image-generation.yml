@@ -1,3 +1,76 @@
+trigger: 
+ - none
+
+resources:
+  repositories:
+  - repository: pocHelloapp
+    type: git
+    name: poc-Hello-app
+    trigger: 
+      branches:
+        include:
+         - dev
+         - qa
+         - main
+         - prod-hotfix
+      paths:
+        exclude:
+         - .gitignore
+         - README.md
+
+
+pool: 
+  name: Azure Pipelines
+  vmImage: 'windows-latest'
+
+variables:
+  ref: $[ resources.repositories.pocHelloapp.ref ]
+  env: $[replace(variables['ref'], 'refs/heads/', '')]
+
+steps:
+- checkout: pocHelloapp
+
+- task: PowerShell@2
+  displayName: SetBuildtag
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host "##vso[build.addbuildtag]$(env)"
+
+- task: DotNetCoreCLI@2
+  displayName: 'Restore projects'
+  inputs:
+    command: 'restore'
+    projects : '**/*.csproj'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Build project'
+  inputs:
+    command: 'build'
+    projects : '**/*.csproj'
+    arguments: '--configuration Release'
+
+- task: DotNetCoreCLI@2
+  displayName: 'Publish'
+  inputs:
+    command: 'publish'
+    projects: '**/*.csproj'
+    arguments: '--configuration Release --output $(build.artifactstagingdirectory)'
+    zipAfterPublish: false
+    publishWebProjects: true
+
+- task: PublishPipelineArtifact@1
+  displayName: Publish Package to Artifact
+  inputs:
+    targetPath: '$(build.artifactstagingdirectory)'
+    artifact: 'drop'
+
+
+
+
+       
+       
+      
 # Ideally we would use GitHub Actions for this, but since we use self-hosted machines to run image builds
 # we need the following features to use GitHub Actions for Images CI:
 # - https://github.community/t5/GitHub-Actions/Make-secrets-available-to-builds-of-forks/m-p/30678#M508
@@ -161,7 +234,7 @@ jobs:
                    -ImageType "${{ parameters.image_type }}" `
                    -ManagedImageName "$(ManagedImageName)" `
                    -AccessToken $(RELEASE_TARGET_TOKEN)
-      env: 
+    env: 
         ImageType: ${{ parameters.image_type }}
         ManageImageName: $(ManagedImageName)
         
