@@ -36,9 +36,6 @@ brew_smart_install jq
 echo "Installing curl..."
 brew_smart_install curl
 
-echo "Configuring curl to resolve names with IPv4..."
-echo '--ipv4' >> ~/.curlrc
-
 echo "Installing wget..."
 brew_smart_install "wget"
 

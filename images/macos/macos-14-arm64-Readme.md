@@ -1,7 +1,7 @@
 # macOS 14
-- OS Version: macOS 14.4 (23E214)
+- OS Version: macOS 14.4.1 (23E224)
 - Kernel Version: Darwin 23.4.0
-- Image Version: 20240325.1
+- Image Version: 20240402.2
 
 ## Installed Software
 
@@ -18,7 +18,7 @@
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
 - Kotlin 1.9.23-release-779
 - Mono 6.12.0.188
-- Node.js 20.11.1
+- Node.js 20.12.0
 - Perl 5.38.2
 - Python3 3.12.2
 - Ruby 3.0.6p216
@@ -27,11 +27,11 @@
 - Bundler 2.5.7
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Homebrew 4.2.15
-- NPM 10.2.4
+- Homebrew 4.2.16
+- NPM 10.5.0
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
-- Pipx 1.4.3
+- Pipx 1.5.0
 - RubyGems 3.5.7
 - Yarn 1.22.19
 
@@ -43,7 +43,7 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.23.0
+- azcopy 10.24.0
 - bazel 7.1.1
 - bazelisk 1.19.0
 - bsdtar 3.5.3 - available by 'tar' alias
@@ -59,13 +59,13 @@
 - Packer 1.9.4
 - pkg-config 0.29.2
 - yq 4.43.1
-- zstd 1.5.5
+- zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.15.32
+- AWS CLI 2.15.34
 - AWS SAM CLI 1.113.0
 - AWS Session Manager CLI 1.2.553.0
-- Azure CLI 2.58.0
+- Azure CLI 2.59.0
 - Azure CLI (azure-devops) 1.0.0
 - Bicep CLI 0.26.54
 - Cmake 3.29.0
@@ -79,12 +79,12 @@
 ### Linters
 
 ### Browsers
-- Safari 17.4 (19618.1.15.11.12)
-- SafariDriver 17.4 (19618.1.15.11.12)
-- Google Chrome 123.0.6312.59
-- Google Chrome for Testing 123.0.6312.58
-- ChromeDriver 123.0.6312.58
-- Selenium server 4.18.1
+- Safari 17.4.1 (19618.1.15.11.14)
+- SafariDriver 17.4.1 (19618.1.15.11.14)
+- Google Chrome 123.0.6312.107
+- Google Chrome for Testing 123.0.6312.86
+- ChromeDriver 123.0.6312.86
+- Selenium server 4.19.1
 
 #### Environment variables
 | Name            | Value                                   |
@@ -107,8 +107,8 @@
 - 3.12.2
 
 #### Node.js
-- 18.19.1
-- 20.11.1
+- 18.20.0
+- 20.12.0
 
 #### Go
 - 1.20.14
@@ -116,9 +116,9 @@
 - 1.22.1
 
 ### Rust Tools
-- Cargo 1.77.0
-- Rust 1.77.0
-- Rustdoc 1.77.0
+- Cargo 1.77.1
+- Rust 1.77.1
+- Rustdoc 1.77.1
 - Rustup 1.27.0
 
 #### Packages
@@ -129,7 +129,7 @@
 - PowerShell 7.4.1
 
 #### PowerShell Modules
-- Az: 11.4.0
+- Az: 11.5.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.22.0
 
@@ -207,7 +207,7 @@
 | Package Name               | Version                                                                                                                                               |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                  |
-| Android Emulator           | 34.1.19                                                                                                                                               |
+| Android Emulator           | 34.1.20                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                |
