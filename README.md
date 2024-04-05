@@ -81,6 +81,10 @@ GitHub Actions and Azure DevOps use the `-latest` YAML label (ex: `ubuntu-latest
 
 The `-latest` migration process is gradual and happens over 1-2 months in order to allow customers to adapt their workflows to the newest OS version. During this process, any workflow using the `-latest` label, may see changes in the OS version in their workflows or pipelines. To avoid unwanted migration, users can specify a specific OS version in the yaml file (ex: macos-12, windows-2022, ubuntu-22.04).
 
+#### Planned & ongoing migration(s)
+
+We are currently in the process of `macos-14` to `macos-latest` migration, details can be found [here](https://github.blog/changelog/2024-04-01-macos-14-sonoma-is-generally-available-and-the-latest-macos-runner-image).
+
 
 ## Image Releases
 
