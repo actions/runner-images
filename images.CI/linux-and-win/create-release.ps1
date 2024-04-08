@@ -7,6 +7,9 @@ param(
     [Parameter(Mandatory)] [string] $DefinitionId,
     [Parameter(Mandatory)] [string] $AccessToken
 )
+# Debugging lines to check received parameters
+Write-Host "Received ImageType: $ImageType"
+Write-Host "Received ManagedImageName: $ManagedImageName"
 
 # Convert parameters to JSON body directly to avoid reliance on environment variables
 $Body = @{
