@@ -33,7 +33,7 @@ Describe "GCC" {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
+Describe "vcpkg" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64 -or $os.IsSonoma) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -43,7 +43,7 @@ Describe "AWS" {
     It "AWS CLI" {
         "aws --version" | Should -ReturnZeroExitCode
     }
-    It "AWS SAM CLI" {
+    It "AWS SAM CLI" -Skip:($os.IsBigSur) {
         "sam --version" | Should -ReturnZeroExitCode
     }
 

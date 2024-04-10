@@ -61,7 +61,7 @@ install_open_jdk() {
     chmod -R 777 /usr/lib/jvm
 }
 
-# Add Addoptium PPA
+# Add Adoptium PPA
 # apt-key is deprecated, dearmor and add manually
 wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptium.gpg
 echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $(lsb_release -cs) main" > /etc/apt/sources.list.d/adoptium.list

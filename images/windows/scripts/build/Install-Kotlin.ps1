@@ -14,11 +14,7 @@ $kotlinDownloadUrl = Resolve-GithubReleaseAssetUrl `
 $kotlinArchivePath = Invoke-DownloadWithRetry $kotlinDownloadUrl
 
 #region Supply chain security
-$externalHash = Get-ChecksumFromGithubRelease `
-    -Repo "JetBrains/kotlin" `
-    -Version "$kotlinVersion" `
-    -FileName (Split-Path $kotlinDownloadUrl -Leaf) `
-    -HashType "SHA256"
+$externalHash = Get-Content $(Invoke-DownloadWithRetry "$kotlinDownloadUrl.sha256")
 Test-FileChecksum $kotlinArchivePath -ExpectedSHA256Sum $externalHash
 #endregion
 

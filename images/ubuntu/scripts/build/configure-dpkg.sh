@@ -12,7 +12,7 @@ source $HELPER_SCRIPTS/etc-environment.sh
 # might mail error messages to root, but that's it;  otherwise  it
 # is  completely  silent  and  unobtrusive, a perfect frontend for
 # automatic installs. If you are using this front-end, and require
-# non-default  answers  to questions, you will need to preseed the
+# non-default  answers  to questions, you will need to pre-seed the
 # debconf database
 set_etc_environment_variable "DEBIAN_FRONTEND" "noninteractive"
 

@@ -38,11 +38,17 @@ if is_Veertu; then
 fi
 
 echo "Brew Installing Python 3"
-brew_smart_install "python@3.11"
+brew_smart_install "python@3.12"
 
 echo "Installing pipx"
-export PIPX_BIN_DIR=/usr/local/opt/pipx_bin
-export PIPX_HOME=/usr/local/opt/pipx
+
+if is_Arm64; then
+    export PIPX_BIN_DIR="$HOME/.local/bin"
+    export PIPX_HOME="$HOME/Library/Application\ Support/pipx"
+else
+    export PIPX_BIN_DIR=/usr/local/opt/pipx_bin
+    export PIPX_HOME=/usr/local/opt/pipx
+fi
 
 brew_smart_install "pipx"
 

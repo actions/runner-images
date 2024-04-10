@@ -171,11 +171,11 @@ function Get-MacOSInstaller {
         Write-Host "`t[*] Beta Version requested. Enrolling machine to DeveloperSeed"
         sudo $seedutil enroll DeveloperSeed | Out-Null
     } else {
-        Write-Host "`t[*] Reseting the seed before requesting stable versions"
+        Write-Host "`t[*] Resetting the seed before requesting stable versions"
         sudo $seedutil unenroll | Out-Null
     }
 
-    # Validate there is no softwareupdate at the moment
+    # Validate there is no software update at the moment
     Test-SoftwareUpdate
 
     # Validate availability OSVersion
