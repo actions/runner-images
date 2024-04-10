@@ -1,10 +1,6 @@
-| Announcements |
-|-|
-| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on April, 1](https://github.com/actions/runner-images/issues/9557) |
-***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 5576
-- Image Version: 20240403.1.0
+- Image Version: 20240407.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,7 +9,7 @@
 
 ### Language and Runtime
 - Bash 5.2.26(1)-release
-- Go 1.21.8
+- Go 1.21.9
 - Julia 1.10.2
 - Kotlin 1.9.23
 - LLVM 16.0.6
@@ -33,7 +29,7 @@
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 11ed79186)
+- Vcpkg (build from commit 5fa0f075e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,8 +52,8 @@
 - Bazelisk 1.19.0
 - Bicep 0.26.54
 - Cabal 3.10.3.0
-- CMake 3.29.0
-- CodeQL Action Bundle 2.16.5
+- CMake 3.29.1
+- CodeQL Action Bundle 2.17.0
 - Docker 24.0.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
@@ -81,7 +77,7 @@
 - Packer 1.10.2
 - Parcel 2.12.0
 - Pulumi 3.112.0
-- R 4.3.2
+- R 4.3.3
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.15.5
 - Subversion (SVN) 1.14.2
@@ -94,13 +90,13 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.201
-- AWS CLI 2.15.34
-- AWS SAM CLI 1.113.0
+- AWS CLI 2.15.36
+- AWS SAM CLI 1.114.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.59.0
 - Azure DevOps CLI extension 1.0.0
 - Cloud Foundry CLI 6.53.0
-- GitHub CLI 2.46.0
+- GitHub CLI 2.47.0
 
 ### Rust Tools
 - Cargo 1.77.1
@@ -118,9 +114,9 @@
 
 ### Browsers and Drivers
 - Google Chrome 123.0.6312.106
-- Chrome Driver 123.0.6312.86
-- Microsoft Edge 122.0.2365.66
-- Microsoft Edge Driver 122.0.2365.113
+- Chrome Driver 123.0.6312.105
+- Microsoft Edge 123.0.2420.81
+- Microsoft Edge Driver 123.0.2420.81
 - Mozilla Firefox 124.0.2
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
@@ -166,13 +162,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.20.14
-- 1.21.8
-- 1.22.1
+- 1.21.9
+- 1.22.2
 
 #### Node.js
 - 16.20.2
-- 18.20.0
-- 20.12.0
+- 18.20.1
+- 20.12.1
 
 #### Python
 - 3.7.9
@@ -508,7 +504,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.550
+- AWSPowershell: 4.1.553
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.16.0
@@ -556,4 +552,3 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:e15423aa2e5b51384f2edd40ddd1317371fc43f9483ec055989ef5ceb0c627a5  | 2024-03-12 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:05f991b57e0095d6ea29c4fa7bef9e614c290de030c8e10e40cebc505871f725  | 2024-03-04 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:00cdad01de658d8d64acf052ddaa19c848e6d7edd214f2d8c2fd3da116fa58b2  | 2024-03-04 |
-
