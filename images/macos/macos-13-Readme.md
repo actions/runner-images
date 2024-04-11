@@ -1,7 +1,7 @@
 # macOS 13
 - OS Version: macOS 13.6.6 (22G630)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240402.2
+- Image Version: 20240405.2
 
 ## Installed Software
 
@@ -18,7 +18,7 @@
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
 - Kotlin 1.9.23-release-779
 - Mono 6.12.0.188
-- Node.js 20.12.0
+- Node.js 20.12.1
 - Perl 5.38.2
 - PHP 8.3.4
 - Python3 3.12.2
@@ -35,7 +35,7 @@
 - Pip3 24.0 (python 3.12)
 - Pipx 1.5.0
 - RubyGems 3.5.7
-- Vcpkg 2024 (build from commit 1daec834f)
+- Vcpkg 2024 (build from commit 8d8cec243)
 - Yarn 1.22.19
 
 ### Project Management
@@ -53,7 +53,7 @@
 - Curl 8.7.1
 - Git 2.44.0
 - Git LFS 3.5.1
-- GitHub CLI 2.46.0
+- GitHub CLI 2.47.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -65,15 +65,15 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.15.34
-- AWS SAM CLI 1.113.0
+- AWS CLI 2.15.36
+- AWS SAM CLI 1.114.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.59.0
 - Azure CLI (azure-devops) 1.0.0
 - Bicep CLI 0.26.54
-- Cmake 3.29.0
-- CodeQL Action Bundle 2.16.5
-- Fastlane 2.219.0
+- Cmake 3.29.1
+- CodeQL Action Bundle 2.17.0
+- Fastlane 2.220.0
 - SwiftFormat 0.53.5
 - Xcbeautify 2.0.1
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
@@ -86,10 +86,10 @@
 - Safari 17.4.1 (18618.1.15.111.8)
 - SafariDriver 17.4.1 (18618.1.15.111.8)
 - Google Chrome 123.0.6312.107
-- Google Chrome for Testing 123.0.6312.86
-- ChromeDriver 123.0.6312.86
-- Microsoft Edge 123.0.2420.65
-- Microsoft Edge WebDriver 123.0.2420.65
+- Google Chrome for Testing 123.0.6312.105
+- ChromeDriver 123.0.6312.105
+- Microsoft Edge 123.0.2420.81
+- Microsoft Edge WebDriver 123.0.2420.81
 - Mozilla Firefox 124.0.2
 - geckodriver 0.34.0
 - Selenium server 4.19.1
@@ -126,18 +126,18 @@
 - 3.8.18
 - 3.9.19
 - 3.10.14
-- 3.11.8
+- 3.11.9
 - 3.12.2
 
 #### Node.js
 - 16.20.2
-- 18.20.0
-- 20.12.0
+- 18.20.1
+- 20.12.1
 
 #### Go
 - 1.20.14
-- 1.21.8
-- 1.22.1
+- 1.21.9
+- 1.22.2
 
 ### Rust Tools
 - Cargo 1.77.1
@@ -201,11 +201,11 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
+| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
