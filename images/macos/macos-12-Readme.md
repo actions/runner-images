@@ -1,7 +1,7 @@
 # macOS 12
 - OS Version: macOS 12.7.4 (21H1123)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240329.1
+- Image Version: 20240406.2
 
 ## Installed Software
 
@@ -18,12 +18,12 @@
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
 - Julia 1.10.2
 - Kotlin 1.9.23-release-779
-- Go 1.21.8
+- Go 1.21.9
 - Mono 6.12.0.188
-- Node.js 18.19.1
+- Node.js 18.20.1
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - NVM 0.39.7
-- NVM - Cached node versions: 16.20.2, 18.20.0, 20.12.0
+- NVM - Cached node versions: 16.20.2, 18.20.1, 20.12.1
 - Perl 5.38.2
 - PHP 8.3.4
 - Python 2.7.18
@@ -36,15 +36,15 @@
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.2
-- Homebrew 4.2.15
+- Homebrew 4.2.16
 - Miniconda 24.1.2
-- NPM 10.2.4
+- NPM 10.5.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 24.0 (python 3.12)
 - Pipx 1.5.0
 - RubyGems 3.5.7
-- Vcpkg 2024 (build from commit 6c296b954)
+- Vcpkg 2024 (build from commit 5fa0f075e)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -69,7 +69,7 @@
 - Curl 8.7.1
 - Git 2.44.0
 - Git LFS 3.5.1
-- GitHub CLI 2.46.0
+- GitHub CLI 2.47.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -92,21 +92,21 @@
 
 ### Tools
 - App Center CLI 3.0.0
-- AWS CLI 2.15.34
-- AWS SAM CLI 1.113.0
+- AWS CLI 2.15.36
+- AWS SAM CLI 1.114.0
 - AWS Session Manager CLI 1.2.553.0
-- Azure CLI 2.58.0
+- Azure CLI 2.59.0
 - Azure CLI (azure-devops) 1.0.0
 - Bicep CLI 0.26.54
 - Cabal 3.10.2.1
-- Cmake 3.29.0
-- CodeQL Action Bundle 2.16.5
+- Cmake 3.29.1
+- CodeQL Action Bundle 2.17.0
 - Colima 0.6.8
-- Fastlane 2.219.0
+- Fastlane 2.220.0
 - GHC 9.8.2
 - GHCup 0.1.22.0
 - Jazzy 0.14.4
-- Stack 2.15.3
+- Stack 2.15.5
 - SwiftFormat 0.53.5
 - Swig 4.2.1
 - Xcbeautify 1.6.0
@@ -120,14 +120,14 @@
 ### Browsers
 - Safari 17.4.1 (17618.1.15.111.8)
 - SafariDriver 17.4.1 (17618.1.15.111.8)
-- Google Chrome 123.0.6312.87
-- Google Chrome for Testing 123.0.6312.86
-- ChromeDriver 123.0.6312.86
-- Microsoft Edge 123.0.2420.65
-- Microsoft Edge WebDriver 123.0.2420.65
-- Mozilla Firefox 124.0.1
+- Google Chrome 123.0.6312.107
+- Google Chrome for Testing 123.0.6312.105
+- ChromeDriver 123.0.6312.105
+- Microsoft Edge 123.0.2420.81
+- Microsoft Edge WebDriver 123.0.2420.81
+- Mozilla Firefox 124.0.2
 - geckodriver 0.34.0
-- Selenium server 4.19.0
+- Selenium server 4.19.1
 
 #### Environment variables
 | Name            | Value                                 |
@@ -162,18 +162,18 @@
 - 3.8.18
 - 3.9.19
 - 3.10.14
-- 3.11.8
+- 3.11.9
 - 3.12.2
 
 #### Node.js
 - 16.20.2
-- 18.20.0
-- 20.12.0
+- 18.20.1
+- 20.12.1
 
 #### Go
 - 1.20.14
-- 1.21.8
-- 1.22.1
+- 1.21.9
+- 1.22.2
 
 ### Rust Tools
 - Cargo 1.77.1
@@ -193,7 +193,7 @@
 - PowerShell 7.4.1
 
 #### PowerShell Modules
-- Az: 11.4.0
+- Az: 11.5.0
 - MarkdownPS: 1.9
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.22.0
@@ -201,7 +201,7 @@
 ### Web Servers
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.58  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| httpd | 2.4.59  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
 | nginx | 1.25.4  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
@@ -330,7 +330,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                                                           |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                               |
-| Android Emulator           | 34.1.19                                                                                                                                                                                           |
+| Android Emulator           | 34.1.20                                                                                                                                                                                           |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                         |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                                                            |
