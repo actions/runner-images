@@ -193,4 +193,4 @@ $disableTaskNames | ForEach-Object {
     Disable-ScheduledTask @PSItem -ErrorAction Ignore
 } | Out-Null
 
-Write-Host "Finalize-VM.ps1 - completed"
+Write-Host "Configure-System.ps1 - completed"
