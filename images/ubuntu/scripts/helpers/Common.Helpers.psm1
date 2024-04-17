@@ -62,6 +62,10 @@ function Test-IsUbuntu22 {
     return (lsb_release -rs) -eq "22.04"
 }
 
+function Test-IsUbuntu24 {
+    return (lsb_release -rs) -eq "24.04"
+}
+
 function Get-ToolsetContent {
     <#
     .SYNOPSIS
