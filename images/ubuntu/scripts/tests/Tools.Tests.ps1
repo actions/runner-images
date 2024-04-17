@@ -1,3 +1,4 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Describe "azcopy" {
     It "azcopy" {
         "azcopy --version" | Should -ReturnZeroExitCode
@@ -105,7 +106,7 @@ Describe "Docker images" {
     }
 }
 
-Describe "Docker-compose v1" {
+Describe "Docker-compose v1" -Skip:(Test-IsUbuntu24) {
     It "docker-compose" {
         "docker-compose --version"| Should -ReturnZeroExitCode
     }
@@ -144,7 +145,7 @@ Describe "Cmake" {
     }
 }
 
-Describe "erlang" -Skip:(Test-IsUbuntu22) {
+Describe "erlang" -Skip:(-not (Test-IsUbuntu20)) {
     $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
 
     It "erlang <ErlangCommand>" -TestCases $testCases {
@@ -168,7 +169,7 @@ Describe "gfortran" {
     }
 }
 
-Describe "Mono" {
+Describe "Mono" -Skip:(Test-IsUbuntu24) {
     It "mono" {
         "mono --version" | Should -ReturnZeroExitCode
     }
@@ -182,7 +183,7 @@ Describe "Mono" {
     }
 }
 
-Describe "MSSQLCommandLineTools" {
+Describe "MSSQLCommandLineTools" -Skip:(Test-IsUbuntu24) {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }
@@ -257,7 +258,7 @@ Describe "Heroku" {
     }
 }
 
-Describe "HHVM" -Skip:(Test-IsUbuntu22) {
+Describe "HHVM" -Skip:(-not (Test-IsUbuntu20)) {
     It "hhvm" {
         "hhvm --version" | Should -ReturnZeroExitCode
     }
@@ -321,7 +322,7 @@ Describe "Pulumi" {
     }
 }
 
-Describe "Phantomjs" -Skip:(Test-IsUbuntu22) {
+Describe "Phantomjs" -Skip:(-not (Test-IsUbuntu20)) {
     It "phantomjs" {
         $env:OPENSSL_CONF="/etc/ssl"
         "phantomjs --version" | Should -ReturnZeroExitCode

@@ -9,8 +9,10 @@ source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
 # Install GNU C++ compiler
-add-apt-repository ppa:ubuntu-toolchain-r/test -y
-apt-get update -y
+if ! is_ubuntu24 ; then
+    add-apt-repository ppa:ubuntu-toolchain-r/test -y
+    apt-get update -y
+fi
 
 versions=$(get_toolset_value '.gcc.versions[]')
 
