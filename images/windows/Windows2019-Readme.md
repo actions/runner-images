@@ -1,6 +1,6 @@
 # Windows Server 2019
-- OS Version: 10.0.17763 Build 5576
-- Image Version: 20240407.1.0
+- OS Version: 10.0.17763 Build 5696
+- Image Version: 20240414.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -15,21 +15,21 @@
 - LLVM 16.0.6
 - Node 18.18.2
 - Perl 5.32.1
-- PHP 8.3.4
+- PHP 8.3.6
 - Python 3.7.9
 - Ruby 3.0.6p216
 
 ### Package Management
 - Chocolatey 2.2.2
 - Composer 2.7.2
-- Helm 3.14.2
+- Helm 3.14.3
 - Miniconda 24.1.2 (pre-installed on the image but not added to PATH)
 - NPM 9.8.1
 - NuGet 6.9.1.3
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 5fa0f075e)
+- Vcpkg (build from commit ad3bae574)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -40,7 +40,7 @@
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.6
+- Gradle 8.7
 - Maven 3.8.7
 - sbt 1.9.9
 
@@ -50,9 +50,9 @@
 - azcopy 10.24.0
 - Bazel 7.1.1
 - Bazelisk 1.19.0
-- Bicep 0.26.54
+- Bicep 0.26.170
 - Cabal 3.10.3.0
-- CMake 3.29.1
+- CMake 3.29.2
 - CodeQL Action Bundle 2.17.0
 - Docker 24.0.7
 - Docker Compose v1 1.29.2
@@ -89,9 +89,9 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.201
-- AWS CLI 2.15.36
-- AWS SAM CLI 1.114.0
+- Alibaba Cloud CLI 3.0.202
+- AWS CLI 2.15.38
+- AWS SAM CLI 1.115.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.59.0
 - Azure DevOps CLI extension 1.0.0
@@ -99,9 +99,9 @@
 - GitHub CLI 2.47.0
 
 ### Rust Tools
-- Cargo 1.77.1
-- Rust 1.77.1
-- Rustdoc 1.77.1
+- Cargo 1.77.2
+- Rust 1.77.2
+- Rustdoc 1.77.2
 - Rustup 1.27.0
 
 #### Packages
@@ -113,10 +113,10 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 123.0.6312.106
-- Chrome Driver 123.0.6312.105
-- Microsoft Edge 123.0.2420.81
-- Microsoft Edge Driver 123.0.2420.81
+- Google Chrome 123.0.6312.123
+- Chrome Driver 123.0.6312.122
+- Microsoft Edge 123.0.2420.97
+- Microsoft Edge Driver 123.0.2420.97
 - Mozilla Firefox 124.0.2
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
@@ -167,8 +167,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 16.20.2
-- 18.20.1
-- 20.12.1
+- 18.20.2
+- 20.12.2
 
 #### Python
 - 3.7.9
@@ -176,7 +176,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.9.13
 - 3.10.11
 - 3.11.9
-- 3.12.2
+- 3.12.3
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.15]
@@ -223,14 +223,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.25.4  | C:\tools\nginx-1.25.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
-| Name                          | Version         | Path                                                           |
-| ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.11.34601.136 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Name                          | Version        | Path                                                           |
+| ----------------------------- | -------------- | -------------------------------------------------------------- |
+| Visual Studio Enterprise 2019 | 16.11.34729.46 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.11.34526.176 |
+| Component.Android.NDK.R16B                                                | 16.11.34728.71  |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -488,15 +488,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.22621.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.128, 6.0.203, 6.0.321, 6.0.420, 7.0.117, 7.0.203, 7.0.314, 7.0.407
+- .NET Core SDK: 6.0.129, 6.0.203, 6.0.321, 6.0.421, 7.0.118, 7.0.203, 7.0.315, 7.0.408
 - .NET Framework: 4.7.2, 4.8
-- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.28, 7.0.5, 7.0.17
-- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.28, 7.0.5, 7.0.17
-- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.28, 7.0.5, 7.0.17
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.29, 7.0.5, 7.0.18
+- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.29, 7.0.5, 7.0.18
+- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.29, 7.0.5, 7.0.18
 - nbgv 3.6.133+2d32d93cb1
 
 ### PowerShell Tools
-- PowerShell 7.4.1
+- PowerShell 7.4.2
 
 #### Powershell Modules
 - Az: 11.3.1
@@ -504,10 +504,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.553
+- AWSPowershell: 4.1.558
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
-- Microsoft.Graph: 2.16.0
+- Microsoft.Graph: 2.17.0
 - Pester: 3.4.0, 5.5.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.22.0
@@ -525,14 +525,14 @@ All other versions are saved but not installed.
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                     |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0<br>30.0.2                                                                                                                                                     |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3) |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                                                                                  |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                  |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                              |
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                |
 | Google Play services       | 49                                                                                                                                                                                                                      |
 | Google Repository          | 58                                                                                                                                                                                                                      |
-| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.2.11394342                                                                                                                                                                           |
+| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264                                                                                                                                                                           |
 
 #### Environment variables
 | Name                    | Value                                    |
@@ -540,15 +540,15 @@ All other versions are saved but not installed.
 | ANDROID_HOME            | C:\Android\android-sdk                   |
 | ANDROID_NDK             | C:\Android\android-sdk\ndk\25.2.9519653  |
 | ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.2.9519653  |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\26.2.11394342 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\26.3.11579264 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.2.9519653  |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:ac14bbc4ac85bb5d2891ea7e7d39316c6df63b749ef6447644289bb09455951c  | 2024-03-12 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:78dac4e522f121788fbc834f3ccb6b7f7b19c15a3fbdcbfae60a9b3eee4537c8  | 2024-03-12 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:e15423aa2e5b51384f2edd40ddd1317371fc43f9483ec055989ef5ceb0c627a5  | 2024-03-12 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:05f991b57e0095d6ea29c4fa7bef9e614c290de030c8e10e40cebc505871f725  | 2024-03-04 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:00cdad01de658d8d64acf052ddaa19c848e6d7edd214f2d8c2fd3da116fa58b2  | 2024-03-04 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:21e238b7a784c14fb02717859a9ac0cb39109c15e1a340400d3e3c2cccbc081d  | 2024-04-09 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:504e7de522e227c46da6408894c19a4454b9979ab06b8577dae1fa5885795450  | 2024-04-09 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:46e393cbb7c915c504a810639e35f40cb516f8e886e4cbcf8a3b49f86705a070  | 2024-04-09 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:9118c25a81609f13b441411f006b7cb6dd50958303e228f53914bebd8056d2e1  | 2024-04-06 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:6fdf140282a2f809dae9b13fe441635867f0a27c33a438771673b8da8f3348a4  | 2024-04-06 |
