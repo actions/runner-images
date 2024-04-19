@@ -44,7 +44,7 @@ echo "Installing pipx"
 
 if is_Arm64; then
     export PIPX_BIN_DIR="$HOME/.local/bin"
-    export PIPX_HOME="$HOME/Library/Application\ Support/pipx"
+    export PIPX_HOME="$HOME/.local/pipx"
 else
     export PIPX_BIN_DIR=/usr/local/opt/pipx_bin
     export PIPX_HOME=/usr/local/opt/pipx
