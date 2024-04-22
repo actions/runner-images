@@ -1,7 +1,7 @@
 # macOS 12
 - OS Version: macOS 12.7.4 (21H1123)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240412.2
+- Image Version: 20240418.1
 
 ## Installed Software
 
@@ -20,7 +20,7 @@
 - Kotlin 1.9.23-release-779
 - Go 1.21.9
 - Mono 6.12.0.188
-- Node.js 18.20.1
+- Node.js 18.20.2
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - NVM 0.39.7
 - NVM - Cached node versions: 16.20.2, 18.20.2, 20.12.2
@@ -36,15 +36,15 @@
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.2
-- Homebrew 4.2.17
-- Miniconda 24.1.2
+- Homebrew 4.2.18
+- Miniconda 24.3.0
 - NPM 10.5.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 24.0 (python 3.12)
 - Pipx 1.5.0
 - RubyGems 3.5.9
-- Vcpkg 2024 (build from commit ad3bae574)
+- Vcpkg 2024 (build from commit 6c87aab05)
 - Yarn 1.22.19
 
 #### Environment variables
@@ -69,7 +69,7 @@
 - Curl 8.7.1
 - Git 2.44.0
 - Git LFS 3.5.1
-- GitHub CLI 2.47.0
+- GitHub CLI 2.48.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -92,7 +92,7 @@
 
 ### Tools
 - App Center CLI 3.0.0
-- AWS CLI 2.15.38
+- AWS CLI 2.15.39
 - AWS SAM CLI 1.115.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.59.0
@@ -107,7 +107,7 @@
 - GHCup 0.1.22.0
 - Jazzy 0.14.4
 - Stack 2.15.5
-- SwiftFormat 0.53.6
+- SwiftFormat 0.53.7
 - Swig 4.2.1
 - Xcbeautify 1.6.0
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
@@ -120,12 +120,12 @@
 ### Browsers
 - Safari 17.4.1 (17618.1.15.111.8)
 - SafariDriver 17.4.1 (17618.1.15.111.8)
-- Google Chrome 123.0.6312.124
-- Google Chrome for Testing 123.0.6312.122
-- ChromeDriver 123.0.6312.122
-- Microsoft Edge 123.0.2420.97
-- Microsoft Edge WebDriver 123.0.2420.97
-- Mozilla Firefox 124.0.2
+- Google Chrome 124.0.6367.62
+- Google Chrome for Testing 124.0.6367.60
+- ChromeDriver 124.0.6367.60
+- Microsoft Edge 124.0.2478.51
+- Microsoft Edge WebDriver 124.0.2478.51
+- Mozilla Firefox 125.0.1
 - geckodriver 0.34.0
 - Selenium server 4.19.1
 
@@ -141,7 +141,7 @@
 | ------------------- | -------------------- |
 | 8.0.402+6 (default) | JAVA_HOME_8_X64      |
 | 11.0.22+7           | JAVA_HOME_11_X64     |
-| 17.0.10+7           | JAVA_HOME_17_X64     |
+| 17.0.11+9           | JAVA_HOME_17_X64     |
 | 21.0.2+13.0         | JAVA_HOME_21_X64     |
 
 ### Cached Tools
@@ -202,7 +202,7 @@
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
 | httpd | 2.4.59  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
-| nginx | 1.25.4  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
+| nginx | 1.25.5  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
 
