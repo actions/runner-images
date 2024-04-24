@@ -1,7 +1,7 @@
 # macOS 13
 - OS Version: macOS 13.6.6 (22G630)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240415.2
+- Image Version: 20240422.1
 
 ## Installed Software
 
@@ -18,7 +18,7 @@
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
 - Kotlin 1.9.23-release-779
 - Mono 6.12.0.188
-- Node.js 20.12.1
+- Node.js 20.12.2
 - Perl 5.38.2
 - Python3 3.12.3
 - Ruby 3.0.6p216
@@ -27,7 +27,7 @@
 - Bundler 2.5.9
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Homebrew 4.2.18
+- Homebrew 4.2.19
 - NPM 10.5.0
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
@@ -50,7 +50,7 @@
 - Curl 8.4.0
 - Git 2.44.0
 - Git LFS 3.5.1
-- GitHub CLI 2.47.0
+- GitHub CLI 2.48.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -62,7 +62,7 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.15.38
+- AWS CLI 2.15.40
 - AWS SAM CLI 1.115.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.59.0
@@ -81,9 +81,9 @@
 ### Browsers
 - Safari 17.4.1 (18618.1.15.111.8)
 - SafariDriver 17.4.1 (18618.1.15.111.8)
-- Google Chrome 123.0.6312.124
-- Google Chrome for Testing 123.0.6312.122
-- ChromeDriver 123.0.6312.122
+- Google Chrome 124.0.6367.62
+- Google Chrome for Testing 124.0.6367.60
+- ChromeDriver 124.0.6367.60
 - Selenium server 4.19.1
 
 #### Environment variables
@@ -96,9 +96,9 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 11.0.22+7.1         | JAVA_HOME_11_arm64   |
-| 17.0.10+7 (default) | JAVA_HOME_17_arm64   |
-| 21.0.2+13.0         | JAVA_HOME_21_arm64   |
+| 11.0.23+9           | JAVA_HOME_11_arm64   |
+| 17.0.11+9 (default) | JAVA_HOME_17_arm64   |
+| 21.0.3+9.0          | JAVA_HOME_21_arm64   |
 
 ### Cached Tools
 
