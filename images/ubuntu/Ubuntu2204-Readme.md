@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
 | [[Ubuntu] ubuntu-toolchain-r/test repository will be removed from images on May 6](https://github.com/actions/runner-images/issues/9679) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.4 LTS
 - Kernel Version: 6.5.0-1018-azure
-- Image Version: 20240414.1.0
+- Image Version: 20240422.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -31,15 +32,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.4
-- Homebrew 4.2.17
-- Miniconda 24.1.2
+- Homebrew 4.2.19
+- Miniconda 24.3.0
 - Npm 10.5.0
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.5.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit ad3bae574)
+- Vcpkg (build from commit 9224b3bbd)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,7 +62,7 @@ to accomplish this.
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.16.5
+- Ansible 2.16.6
 - apt-fast 1.10.0
 - AzCopy 10.24.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.1.1
@@ -73,7 +74,7 @@ to accomplish this.
 - Docker Amazon ECR Credential Helper 0.7.1
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
-- Docker-Buildx 0.13.1
+- Docker-Buildx 0.14.0
 - Docker Client 24.0.9
 - Docker Server 24.0.9
 - Fastlane 2.220.0
@@ -81,45 +82,45 @@ to accomplish this.
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 8.11.2
+- Heroku 8.11.4
 - jq 1.6
 - Kind 0.22.0
-- Kubectl 1.29.3
+- Kubectl 1.30.0
 - Kustomize 5.4.1
 - Leiningen 2.11.2
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.32.0
-- n 9.2.1
+- Minikube 1.33.0
+- n 9.2.3
 - Newman 6.1.2
 - nvm 0.39.7
 - OpenSSL 3.0.2-0ubuntu1.15
 - Packer 1.10.2
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.112.0
+- Pulumi 3.113.3
 - R 4.3.3
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.8.0
+- Terraform 1.8.1
 - yamllint 1.35.1
 - yq 4.43.1
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.202
-- AWS CLI 2.15.38
+- AWS CLI 2.15.40
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.115.0
 - Azure CLI 2.59.0
 - Azure CLI (azure-devops) 1.0.0
-- GitHub CLI 2.47.0
-- Google Cloud CLI 471.0.0
+- GitHub CLI 2.48.0
+- Google Cloud CLI 472.0.0
 - Netlify CLI 17.22.1
-- OpenShift CLI 4.15.8
+- OpenShift CLI 4.15.9
 - ORAS CLI 1.1.0
-- Vercel CLI 34.0.0
+- Vercel CLI 34.1.1
 
 ### Java
 | Version             | Environment Variable |
@@ -131,7 +132,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.7.2
+- Composer 2.7.3
 - PHPUnit 8.5.38
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -158,13 +159,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 123.0.6312.122
-- ChromeDriver 123.0.6312.122
-- Chromium 123.0.6312.0
-- Microsoft Edge 123.0.2420.97
-- Microsoft Edge WebDriver 123.0.2420.97
+- Google Chrome 124.0.6367.60
+- ChromeDriver 124.0.6367.60
+- Chromium 124.0.6367.0
+- Microsoft Edge 124.0.2478.51
+- Microsoft Edge WebDriver 124.0.2478.51
 - Selenium server 4.19.1
-- Mozilla Firefox 125.0
+- Mozilla Firefox 125.0.2
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -285,8 +286,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:18-alpine       | sha256:80338ff3fc4e989c1d5264a23223cec1c6014e812e584e825e78d1a98d893381  | 2024-04-11 |
 | node:20              | sha256:844b41cf784f66d7920fd673f7af54ca7b81e289985edc6cd864e7d05e0d133c  | 2024-04-11 |
 | node:20-alpine       | sha256:ec0c413b1d84f3f7f67ec986ba885930c57b5318d2eb3abc6960ee05d4f2eb28  | 2024-04-11 |
-| ubuntu:20.04         | sha256:80ef4a44043dec4490506e6cc4289eeda2d106a70148b74b5ae91ee670e9c35d  | 2024-02-16 |
-| ubuntu:22.04         | sha256:77906da86b60585ce12215807090eb327e7386c8fafb5402369e421f44eff17e  | 2024-02-27 |
+| ubuntu:20.04         | sha256:71b82b8e734f5cd0b3533a16f40ca1271f28d87343972bb4cd6bd6c38f1bd38e  | 2024-04-10 |
+| ubuntu:22.04         | sha256:1b8d8ff4777f36f19bfe73ee4df61e3a0b789caeff29caa019539ec7c9a57f95  | 2024-04-10 |
 
 ### Installed apt packages
 | Name                   | Version                             |
@@ -322,7 +323,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.6                     |
+| libc6-dev              | 2.35-0ubuntu3.7                     |
 | libcurl4               | 7.81.0-1ubuntu1.16                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.2          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -339,7 +340,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.6                     |
+| locales                | 2.35-0ubuntu3.7                     |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
@@ -347,7 +348,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 6.1.1-1ubuntu1                      |
 | net-tools              | 1.60+git20181103.0eebece-1ubuntu5   |
 | netcat                 | 1.218-4ubuntu1                      |
-| openssh-client         | 1:8.9p1-3ubuntu0.6                  |
+| openssh-client         | 1:8.9p1-3ubuntu0.7                  |
 | p7zip-full             | 16.02+dfsg-8                        |
 | p7zip-rar              | 16.02-3build1                       |
 | parallel               | 20210822+ds-2                       |
@@ -362,7 +363,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
 | sqlite3                | 3.37.2-2ubuntu0.3                   |
-| ssh                    | 1:8.9p1-3ubuntu0.6                  |
+| ssh                    | 1:8.9p1-3ubuntu0.7                  |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.4                    |
