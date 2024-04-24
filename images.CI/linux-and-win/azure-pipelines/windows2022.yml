@@ -1,11 +1,3 @@
-schedules:
-- cron: "0 0 * * *"
-  displayName: Daily
-  branches:
-    include:
-    - main
-  always: true
-
 trigger: none
 pr:
   autoCancel: true
@@ -19,3 +11,5 @@ jobs:
     image_type: windows2022
     image_readme_name: Windows2022-Readme.md
     image_template_name: windows-2022.pkr.hcl
+    agent_pool: VMSS Agentpool Linux 1
+    create_release: false
