@@ -28,14 +28,11 @@ Describe "Chrome" {
             $versionInfo | Should -Not -BeNullOrEmpty
         }
 
-        It "gupdate service is stopped" {
-            $svc = Get-Service -Name gupdate
-            $svc.Status | Should -BeExactly Stopped
-        }
-
-        It "gupdatem service is stopped" {
-            $svc = Get-Service -Name gupdatem
-            $svc.Status | Should -BeExactly Stopped
+        It "GoogleUpdater services is stopped" {
+            $services = Get-Service -Name "GoogleUpdater*"
+            foreach ($svc in $services) {
+                $svc.Status | Should -BeExactly 'Stopped'
+            }
         }
 
         It "BlockGoogleUpdate firewall rule exists" {
