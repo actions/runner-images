@@ -1,6 +1,11 @@
+| Announcements |
+|-|
+| [[Windows-2022] Multiple VC Build Tools will be removed on May, 13](https://github.com/actions/runner-images/issues/9701) |
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
+***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2402
-- Image Version: 20240414.1.0
+- Image Version: 20240421.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -21,15 +26,15 @@
 
 ### Package Management
 - Chocolatey 2.2.2
-- Composer 2.7.2
+- Composer 2.7.3
 - Helm 3.14.3
-- Miniconda 24.1.2 (pre-installed on the image but not added to PATH)
+- Miniconda 24.3.0 (pre-installed on the image but not added to PATH)
 - NPM 9.8.1
 - NuGet 6.9.1.3
 - pip 24.0 (python 3.9)
 - Pipx 1.5.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit ad3bae574)
+- Vcpkg (build from commit 9224b3bbd)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -65,16 +70,16 @@
 - InnoSetup 6.2.2
 - jq 1.7.1
 - Kind 0.22.0
-- Kubectl 1.29.1
+- Kubectl 1.30.0
 - Mercurial 5.0
 - gcc 12.2.0
 - gdb 11.2
 - GNU Binutils 2.39
 - Newman 6.1.2
-- NSIS 3.09
+- NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.10.2
-- Pulumi 3.112.0
+- Pulumi 3.113.3
 - R 4.3.3
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.15.5
@@ -88,12 +93,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.202
-- AWS CLI 2.15.38
+- AWS CLI 2.15.40
 - AWS SAM CLI 1.115.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.59.0
 - Azure DevOps CLI extension 1.0.0
-- GitHub CLI 2.47.0
+- GitHub CLI 2.48.0
 
 ### Rust Tools
 - Cargo 1.77.2
@@ -110,11 +115,11 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 123.0.6312.123
-- Chrome Driver 123.0.6312.122
-- Microsoft Edge 123.0.2420.97
-- Microsoft Edge Driver 123.0.2420.97
-- Mozilla Firefox 124.0.2
+- Google Chrome 124.0.6367.61
+- Chrome Driver 124.0.6367.60
+- Microsoft Edge 124.0.2478.51
+- Microsoft Edge Driver 124.0.2478.51
+- Mozilla Firefox 125.0.1
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
 - Selenium server 4.19.0
@@ -130,10 +135,10 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.402+6 (default) | JAVA_HOME_8_X64      |
-| 11.0.22+7           | JAVA_HOME_11_X64     |
-| 17.0.10+7           | JAVA_HOME_17_X64     |
-| 21.0.2+13.0         | JAVA_HOME_21_X64     |
+| 8.0.412+8 (default) | JAVA_HOME_8_X64      |
+| 11.0.23+9           | JAVA_HOME_11_X64     |
+| 17.0.11+9           | JAVA_HOME_17_X64     |
+| 21.0.3+9.0          | JAVA_HOME_21_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -213,7 +218,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.25.4  | C:\tools\nginx-1.25.4\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.25.5  | C:\tools\nginx-1.25.5\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
@@ -560,7 +565,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.558
+- AWSPowershell: 4.1.562
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.17.0
@@ -608,3 +613,4 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:51c056c03b12aa8004e6d7909e5bdf7b699502d89fc8fc861edbbbcd78cf16bd  | 2024-04-09 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:6223f3a17f2652064c56ca55aaef866177d58d6a1c526636ac2120685df5466d  | 2024-04-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:5d09ffa90d91a46e2fe7652b0a37cbf5217f34a819c3d71cbe635dae8226061b  | 2024-04-05 |
+
