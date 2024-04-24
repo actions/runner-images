@@ -59,13 +59,11 @@ jobs:
       arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
                  -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
 
-  - task: AzurePowerShell@5
+  - task: PowerShell@2
     displayName: 'Set variables'
     inputs:
-      TargetAzurePs: LatestVersion
-      azureSubscription: 'spn-hosted-runners'
-      ScriptType: 'InlineScript'
-      Inline: |
+      targetType: 'inline'
+      script: |
         $ImageType = "${{ parameters.image_type }}"
         $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "ubuntu/templates" } else { "windows/templates" }
         $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
@@ -75,14 +73,11 @@ jobs:
         Write-Host "##vso[task.setvariable variable=TemplateDirectoryPath;]$TemplateDirectoryPath"
         Write-Host "##vso[task.setvariable variable=TemplatePath;]$TemplatePath"
 
-        $ManagedImageName = "${{ parameters.image_type }}-$(Build.BuildId)"
+        $ManagedImageName = "${{ parameters.image_type }}-$(Get-Date -Format yyyyMMdd)-$(Build.BuildId)"
         Write-Host "##vso[task.setvariable variable=ManagedImageName;]$ManagedImageName"
 
         $TempResourceGroupName = "packer-temp-$ManagedImageName"
         Write-Host "##vso[task.setvariable variable=TempResourceGroupName;]$TempResourceGroupName"
-
-        $clientSecret = $(az keyvault secret show --name "spnhostedrunners" --vault-name "gh-imagegeneration" --query value -o tsv)
-        Write-Host "##vso[task.setvariable variable=ClientSecret;issecret=true]$clientSecret"
 
   - task: PowerShell@2
     displayName: 'Build VM'
@@ -90,7 +85,7 @@ jobs:
       targetType: filePath
       filePath: ./images.CI/linux-and-win/build-image.ps1
       arguments: -ClientId $(CLIENT_ID) `
-                 -ClientSecret "$(ClientSecret)" `
+                 -ClientSecret $(CLIENT_SECRET) `
                  -TemplatePath $(TemplatePath) `
                  -ImageName "$(ManagedImageName)" `
                  -ImageResourceGroupName $(AZURE_RESOURCE_GROUP) `
@@ -122,6 +117,7 @@ jobs:
         if (Test-Path $softwareReportPath) {
             Copy-Item -Path $softwareReportPath -Destination "$(Build.ArtifactStagingDirectory)/"
         }
+    enabled: true
 
   - task: PowerShell@2
     displayName: 'Print markdown software report'
@@ -129,6 +125,7 @@ jobs:
       targetType: 'inline'
       script: |
         Get-Content -Path "$(Build.ArtifactStagingDirectory)/${{ parameters.image_readme_name }}"
+    enabled: true
 
   - task: PowerShell@2
     displayName: 'Print json software report'
@@ -139,11 +136,13 @@ jobs:
         if (Test-Path $softwareReportPath) {
             Get-Content -Path $softwareReportPath
         }
+    enabled: true
 
   - task: PublishBuildArtifacts@1
     inputs:
       ArtifactName: 'Built_VM_Artifacts'
     displayName: Publish Artifacts
+    enabled: true
 
   - task: PowerShell@2
     displayName: 'Print provisioners duration'
@@ -177,5 +176,5 @@ jobs:
       arguments: -TempResourceGroupName "$(TempResourceGroupName)" `
                  -SubscriptionId $(AZURE_SUBSCRIPTION) `
                  -ClientId $(CLIENT_ID) `
-                 -ClientSecret "$(ClientSecret)" `
+                 -ClientSecret $(CLIENT_SECRET) `
                  -TenantId $(AZURE_TENANT)
