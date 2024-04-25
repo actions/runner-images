@@ -59,13 +59,13 @@ jobs:
       arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
                  -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
 
-  - task: AzurePowerShell@5
+  - task: AzureCLI@2
     displayName: 'Set variables'
     inputs:
-      TargetAzurePs: LatestVersion
       azureSubscription: 'spn-hosted-runners'
-      ScriptType: 'InlineScript'
-      Inline: |
+      scriptType: 'pscore'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
         $ImageType = "${{ parameters.image_type }}"
         $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "ubuntu/templates" } else { "windows/templates" }
         $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
