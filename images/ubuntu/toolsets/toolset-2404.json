@@ -13,6 +13,7 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
+                "3.9",
                 "3.10"
             ]
         },
@@ -21,23 +22,15 @@
             "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
             "platform" : "linux",
             "arch": "x64",
-            "versions": [
-                "16.*",
-                "18.*",
-                "20.*"
-            ]
+            "versions": []
         },
         {
             "name": "go",
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "arch": "x64",
             "platform" : "linux",
-            "versions": [
-                "1.20.*",
-                "1.21.*",
-                "1.22.*"
-            ],
-            "default": "1.21.*"
+            "versions": [],
+            "default": "*"
         },
         {
             "name": "Ruby",
@@ -58,9 +51,9 @@
         "maven": "3.8.8"
     },
     "android": {
-        "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
-        "platform_min_version": "33",
-        "build_tools_min_version": "33.0.0",
+        "cmdline-tools": "commandlinetools-linux-11076708_latest.zip",
+        "platform_min_version": "34",
+        "build_tools_min_version": "34.0.0",
         "extra_list": [
             "android;m2repository",
             "google;m2repository",
@@ -71,7 +64,7 @@
         "additional_tools": [
         ],
         "ndk": {
-            "default": "25",
+            "default": "26",
             "versions": [
                 "24", "25", "26"
             ]
@@ -196,7 +189,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.26.1",
+                "version": "latest",
                 "asset": "linux-x86_64"
             }
         ]
@@ -301,10 +294,10 @@
         }
     ],
     "mongodb": {
-        "version": "5.0"
+        "version": "7.0"
     },
     "postgresql": {
-        "version": "14"
+        "version": "16"
     },
     "pwsh": {
         "version": "7.4"

@@ -10,8 +10,6 @@ source $HELPER_SCRIPTS/etc-environment.sh
 
 # Install
 image_label="ubuntu$(lsb_release -rs)"
-#Temp WA untill SWIFT release for Ubuntu 24.04 is available
-image_label=${image_label//24.04/22.04}
 swift_version=$(curl -fsSL "https://api.github.com/repos/apple/swift/releases/latest" | jq -r '.tag_name | match("[0-9.]+").string')
 swift_release_name="swift-${swift_version}-RELEASE-${image_label}"
 
