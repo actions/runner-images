@@ -12,7 +12,7 @@ Install-Binary `
 Write-Host "Adding the firewall rule for Google update blocking..."
 New-NetFirewallRule -DisplayName "BlockGoogleUpdate" -Direction Outbound -Action Block -Program "C:\Program Files (x86)\Google\Update\GoogleUpdate.exe"
 
-$googleServices = @('gupdate', 'gupdatem') | Get-Service
+$googleServices = Get-Service -Name "GoogleUpdater*"
 Stop-Service $googleServices
 $googleServices.WaitForStatus('Stopped', "00:01:00")
 $googleServices | Set-Service -StartupType Disabled
