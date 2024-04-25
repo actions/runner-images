@@ -61,12 +61,12 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
 }
 
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
-    $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
-}
-if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+$languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
+
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma) -and (-not $os.IsBigSur)) {
     $languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
 }
+
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
 
 # Package Management
@@ -87,10 +87,8 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $packageManagement.AddToolVersion("Pip", $(Get-PipVersion -Version 2))
 }
 
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
-    $packageManagement.AddToolVersion("Pip3", $(Get-PipVersion -Version 3))
-    $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
-}
+$packageManagement.AddToolVersion("Pip3", $(Get-PipVersion -Version 3))
+$packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
 
 $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
 if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64) -and (-not $os.IsSonoma)) {
@@ -120,7 +118,9 @@ $utilities.AddToolVersion("bazelisk", $(Get-BazeliskVersion))
 $utilities.AddToolVersion("bsdtar", $(Get-BsdtarVersion))
 $utilities.AddToolVersion("Curl", $(Get-CurlVersion))
 $utilities.AddToolVersion("Git", $(Get-GitVersion))
-$utilities.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
+if (-not $os.IsBigSur) {
+    $utilities.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
+}
 $utilities.AddToolVersion("GitHub CLI", $(Get-GitHubCLIVersion))
 $utilities.AddToolVersion("GNU Tar", $(Get-GnuTarVersion))
 $utilities.AddToolVersion("GNU Wget", $(Get-WgetVersion))
@@ -165,10 +165,14 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("App Center CLI", $(Get-AppCenterCLIVersion))
 }
 $tools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
-$tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
+if (-not $os.IsBigSur) {
+    $tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
+}
 $tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersion))
-$tools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
-$tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
+if (-not $os.IsBigSur) {
+    $tools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
+    $tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
+}
 $tools.AddToolVersion("Bicep CLI", $(Get-BicepVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
@@ -221,6 +225,7 @@ $toolcache = $installedSoftware.AddHeader("Cached Tools")
 $toolcache.AddNodes($(Build-ToolcacheSection))
 
 # Rust
+if (-not $os.IsBigSur) {
 $rust = $installedSoftware.AddHeader("Rust Tools")
 $rust.AddToolVersion("Cargo", $(Get-RustCargoVersion))
 $rust.AddToolVersion("Rust", $(Get-RustVersion))
@@ -236,6 +241,7 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
 }
 $rustPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
 $rustPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
+}
 
 # PowerShell
 $powerShell = $installedSoftware.AddHeader("PowerShell Tools")

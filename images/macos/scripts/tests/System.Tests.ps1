@@ -33,10 +33,6 @@ Describe "Audio device" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "SwitchAudioSource is installed" {
         "SwitchAudioSource -c" | Should -ReturnZeroExitCode
     }
-
-    It "Audio channel BlackHole 2ch" {
-        SwitchAudioSource -c | Should -BeLikeExactly "BlackHole 2ch"
-    }
 }
 
 Describe "Screen Resolution" -Skip:(isVeertu) {

@@ -1,12 +1,20 @@
 ################################################################################
 ##  File:  Install-Docker-Compose.ps1
 ##  Desc:  Install Docker Compose.
-##  Supply chain security: Docker Compose v1 - by package manager
 ################################################################################
 
 Write-Host "Install-Package Docker-Compose v1"
-$versionToInstall = Resolve-ChocoPackageVersion -PackageName "docker-compose" -TargetVersion "1.29"
-Install-ChocoPackage docker-compose -ArgumentList "--version=$versionToInstall"
+$dockerComposev1Url = "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Windows-x86_64.exe"
+$checksumsUrl = "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Windows-x86_64.exe.sha256"
+$dockerComposev1Dir = "C:\ProgramData\docker-compose"
+New-Item -Path $dockerComposev1Dir -ItemType Directory
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url $checksumsUrl `
+    -FileName (Split-Path $dockerComposev1Url -Leaf)
+$dockerComposev1Path = Invoke-DownloadWithRetry -Url $dockerComposev1Url -Path "$dockerComposev1Dir\docker-compose.exe"
+Test-FileChecksum $dockerComposev1Path -ExpectedSHA256Sum $externalHash
+Add-MachinePathItem $dockerComposev1Dir
+Update-Environment
 
 Write-Host "Install-Package Docker-Compose v2"
 # Temporaty pinned to v2.23.3 due https://github.com/actions/runner-images/issues/9172

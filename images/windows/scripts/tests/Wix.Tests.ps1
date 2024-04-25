@@ -8,4 +8,17 @@ Describe "Wix" {
     It "Wix Toolset version from registry" {
       $version | Should -Not -BeNullOrEmpty
     }
+
+    It "Wix variable exists" {
+      $env:WIX | Should -Not -BeNullOrEmpty
+    }
+
+    It "Wix binaries folder exists" {
+      Test-Path -Path $(Join-Path -Path $env:WIX -ChildPath "bin") | Should -Be $true
+    }
+
+    It "Wix binaries folder is in PATH" {
+      $testPath = Join-Path -Path $env:WIX -ChildPath "bin"
+      $env:PATH -split ";" | Should -Contain "$testPath"
+    }
 }

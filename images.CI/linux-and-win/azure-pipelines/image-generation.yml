@@ -59,11 +59,13 @@ jobs:
       arguments: -RepoUrl $(CUSTOM_REPOSITORY_URL) `
                  -RepoBranch $(CUSTOM_REPOSITORY_BRANCH)
 
-  - task: PowerShell@2
+  - task: AzurePowerShell@5
     displayName: 'Set variables'
     inputs:
-      targetType: 'inline'
-      script: |
+      TargetAzurePs: LatestVersion
+      azureSubscription: 'spn-hosted-runners'
+      ScriptType: 'InlineScript'
+      Inline: |
         $ImageType = "${{ parameters.image_type }}"
         $TemplateDirectoryName = if ($ImageType.StartsWith("ubuntu")) { "ubuntu/templates" } else { "windows/templates" }
         $TemplateDirectoryPath = Join-Path "images" $TemplateDirectoryName | Resolve-Path
@@ -79,13 +81,16 @@ jobs:
         $TempResourceGroupName = "packer-temp-$ManagedImageName"
         Write-Host "##vso[task.setvariable variable=TempResourceGroupName;]$TempResourceGroupName"
 
+        $clientSecret = $(az keyvault secret show --name "spnhostedrunners" --vault-name "gh-imagegeneration" --query value -o tsv)
+        Write-Host "##vso[task.setvariable variable=ClientSecret;issecret=true]$clientSecret"
+
   - task: PowerShell@2
     displayName: 'Build VM'
     inputs:
       targetType: filePath
       filePath: ./images.CI/linux-and-win/build-image.ps1
       arguments: -ClientId $(CLIENT_ID) `
-                 -ClientSecret $(CLIENT_SECRET) `
+                 -ClientSecret "$(ClientSecret)" `
                  -TemplatePath $(TemplatePath) `
                  -ImageName "$(ManagedImageName)" `
                  -ImageResourceGroupName $(AZURE_RESOURCE_GROUP) `
@@ -172,5 +177,5 @@ jobs:
       arguments: -TempResourceGroupName "$(TempResourceGroupName)" `
                  -SubscriptionId $(AZURE_SUBSCRIPTION) `
                  -ClientId $(CLIENT_ID) `
-                 -ClientSecret $(CLIENT_SECRET) `
+                 -ClientSecret "$(ClientSecret)" `
                  -TenantId $(AZURE_TENANT)

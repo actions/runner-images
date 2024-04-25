@@ -19,18 +19,18 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 ## Available Images
 
-| Image | YAML Label | Included Software |
-| --------------------|---------------------|--------------------|
-| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] |
-| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] |
-| macOS 14 [beta] | `macos-14-large`| [macOS-14] |
-| macOS 14 Arm64 [beta] | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
-| macOS 13 | `macos-13`, `macos-13-large` or `macos-latest-large` | [macOS-13] |
-| macOS 13 Arm64 | `macos-13-xlarge` | [macOS-13-arm64] |
-| macOS 12 | `macos-latest`,`macos-12` or`macos-12-large`| [macOS-12] |
-| macOS 11 [deprecated] | `macos-11`| [macOS-11] |
-| Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] |
-| Windows Server 2019 | `windows-2019` | [windows-2019] |
+| Image | YAML Label | Included Software | Rollout Status of Latest Image Release |
+| --------------------|---------------------|--------------------|--------------------|
+| Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fubuntu22.json) |
+| Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fubuntu20.json) |
+| macOS 14 | `macos-latest-large` or `macos-14-large`| [macOS-14] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fmacos-14.json) |
+| macOS 14 Arm64 |`macos-latest`, `macos-14`, `macos-latest-xlarge` or `macos-14-xlarge`| [macOS-14-arm64] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fmacos-14-arm64.json) |
+| macOS 13 | `macos-13` or `macos-13-large` | [macOS-13] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fmacos-13.json) |
+| macOS 13 Arm64 | `macos-13-xlarge` | [macOS-13-arm64] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fmacos-13-arm64.json) |
+| macOS 12 | `macos-12` or `macos-12-large`| [macOS-12] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2FmacOS-12.json) |
+| macOS 11 [deprecated] | `macos-11`| [macOS-11] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2FmacOS-11.json) |
+| Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fwin22.json) |
+| Windows Server 2019 | `windows-2019` | [windows-2019] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fwin19.json) |
 
 ### Label scheme
 
@@ -80,6 +80,10 @@ GitHub Actions and Azure DevOps use the `-latest` YAML label (ex: `ubuntu-latest
 
 
 The `-latest` migration process is gradual and happens over 1-2 months in order to allow customers to adapt their workflows to the newest OS version. During this process, any workflow using the `-latest` label, may see changes in the OS version in their workflows or pipelines. To avoid unwanted migration, users can specify a specific OS version in the yaml file (ex: macos-12, windows-2022, ubuntu-22.04).
+
+#### Planned & ongoing migration(s)
+
+We are currently in the process of `macos-14` to `macos-latest` migration, details can be found [here](https://github.blog/changelog/2024-04-01-macos-14-sonoma-is-generally-available-and-the-latest-macos-runner-image).
 
 
 ## Image Releases

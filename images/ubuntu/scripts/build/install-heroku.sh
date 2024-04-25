@@ -10,7 +10,7 @@ REPO_PATH="/etc/apt/sources.list.d/heroku.list"
 
 # add heroku repository to apt
 curl -fsSL "${REPO_URL}/release.key" | gpg --dearmor -o $GPG_KEY
-echo "deb [signed-by=$GPG_KEY] $REPO_URL ./" > $REPO_PATH
+echo "deb [trusted=yes] $REPO_URL ./" > $REPO_PATH
 
 # install heroku
 apt-get update -y && apt-get install -y heroku

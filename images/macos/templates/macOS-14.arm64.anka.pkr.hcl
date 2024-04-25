@@ -24,6 +24,11 @@ variable "source_vm_name" {
   type = string
 }
 
+variable "source_vm_port" {
+  type = number
+  default = 22
+}
+
 variable "source_vm_tag" {
   type = string
   default = ""
@@ -90,8 +95,9 @@ source "veertu-anka-vm-clone" "template" {
 
 source "null" "template" {
   ssh_host = "${var.source_vm_name}"
+  ssh_port = "${var.source_vm_port}"
   ssh_username = "${var.vm_username}"
-  ssh_password = "${var.vm_password}"
+  ssh_private_key_file = "${var.vm_password}"
   ssh_proxy_host = "${var.socks_proxy}"
 }
 
@@ -204,6 +210,7 @@ build {
       "${path.root}/../scripts/build/install-powershell.sh",
       "${path.root}/../scripts/build/install-mono.sh",
       "${path.root}/../scripts/build/install-dotnet.sh",
+      "${path.root}/../scripts/build/install-python.sh",
       "${path.root}/../scripts/build/install-azcopy.sh",
       "${path.root}/../scripts/build/install-openssl.sh",
       "${path.root}/../scripts/build/install-ruby.sh",
@@ -255,8 +262,9 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "source $HOME/.bash_profile; ruby {{ .Path }}"
-    script          = "${path.root}/../scripts/build/configure-xcode-simulators.rb"
+    environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
+    script          = "${path.root}/../scripts/build/Configure-Xcode-Simulators.ps1"
   }
 
   provisioner "shell" {

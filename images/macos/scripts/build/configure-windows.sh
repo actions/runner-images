@@ -22,17 +22,17 @@ while [[ $retry -gt 0 ]]; do
     fi
     sleep 30
 done
-IFS=',' read -r -a windowslist <<< $openwindows
+IFS=',' read -r -a windowslist <<< "$openwindows"
 
 if [[ -n ${openwindows} ]]; then
     echo "Found opened window:"
 fi
 
-for window in ${windowslist[@]}; do
-    if [[ $window =~ "NotificationCenter" ]]; then
-        echo "[Warning] $window"
+for key in ${!windowslist[@]}; do
+    if [[ ${windowslist[$key]} =~ "NotificationCenter" ]]; then
+        echo "[Warning] ${windowslist[$key]}"
     else
-        echo " - ${window}" | xargs
+        echo " - ${windowslist[$key]}" | xargs
         scripterror=true
     fi
 done
