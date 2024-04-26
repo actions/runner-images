@@ -16,9 +16,13 @@ apt-get install -y --no-install-recommends python3 python3-dev python3-pip pytho
 # Set pipx custom directory
 export PIPX_BIN_DIR=/opt/pipx_bin
 export PIPX_HOME=/opt/pipx
-python3 -m pip install pipx
-python3 -m pipx ensurepath
-
+if is_ubuntu24; then
+    apt-get install -y --no-install-recommends pipx
+    pipx ensurepath
+else
+    python3 -m pip install pipx
+    python3 -m pipx ensurepath
+fi
 # Update /etc/environment
 set_etc_environment_variable "PIPX_BIN_DIR" $PIPX_BIN_DIR
 set_etc_environment_variable "PIPX_HOME" $PIPX_HOME

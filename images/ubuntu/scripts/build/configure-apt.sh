@@ -42,6 +42,8 @@ apt-get update
 # Install jq
 apt-get install jq
 
-# Install apt-fast using quick-install.sh
-# https://github.com/ilikenwf/apt-fast
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
+if ! is_ubuntu24; then
+    # Install apt-fast using quick-install.sh
+    # https://github.com/ilikenwf/apt-fast
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
+fi

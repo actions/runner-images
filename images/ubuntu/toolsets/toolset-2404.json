@@ -1,0 +1,305 @@
+{
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "platform" : "linux",
+            "platform_version": "24.04",
+            "arch": "x64",
+            "versions": []
+        },
+        {
+            "name": "PyPy",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [
+                "3.9",
+                "3.10"
+            ]
+        },
+        {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": []
+        },
+        {
+            "name": "go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "arch": "x64",
+            "platform" : "linux",
+            "versions": [],
+            "default": "*"
+        },
+        {
+            "name": "Ruby",
+            "platform_version": "24.04",
+            "arch": "x64",
+            "versions": []
+        },
+        {
+            "name": "CodeQL",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "*"
+            ]
+        }
+    ],
+    "java": {
+        "maven": "3.8.8"
+    },
+    "android": {
+        "cmdline-tools": "commandlinetools-linux-11076708_latest.zip",
+        "platform_min_version": "34",
+        "build_tools_min_version": "34.0.0",
+        "extra_list": [
+            "android;m2repository",
+            "google;m2repository",
+            "google;google_play_services"
+        ],
+        "addon_list": [
+        ],
+        "additional_tools": [
+        ],
+        "ndk": {
+            "default": "26",
+            "versions": [
+                "24", "25", "26"
+            ]
+        }
+    },
+    "powershellModules": [
+        {"name": "Microsoft.Graph"},
+        {"name": "Pester"},
+        {"name": "PSScriptAnalyzer"}
+    ],
+    "azureModules": [
+        {
+            "name": "az",
+            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
+            "versions": [
+                "11.5.0"
+            ],
+            "zip_versions": [
+            ]
+        }
+    ],
+    "apt": {
+        "vital_packages": [
+            "bzip2",
+            "curl",
+            "g++",
+            "gcc",
+            "make",
+            "jq",
+            "tar",
+            "unzip",
+            "wget"
+        ],
+        "common_packages": [
+            "autoconf",
+            "automake",
+            "dbus",
+            "dnsutils",
+            "dpkg",
+            "dpkg-dev",
+            "fakeroot",
+            "fonts-noto-color-emoji",
+            "gnupg2",
+            "iproute2",
+            "iputils-ping",
+            "libtool",
+            "libssl-dev",
+            "locales",
+            "mercurial",
+            "openssh-client",
+            "p7zip-rar",
+            "pkg-config",
+            "python-is-python3",
+            "rpm",
+            "texinfo",
+            "tk",
+            "tzdata",
+            "upx",
+            "xvfb",
+            "xz-utils",
+            "zsync"
+        ],
+        "cmd_packages": [
+            "acl",
+            "aria2",
+            "binutils",
+            "bison",
+            "brotli",
+            "coreutils",
+            "file",
+            "findutils",
+            "flex",
+            "ftp",
+            "haveged",
+            "lz4",
+            "m4",
+            "mediainfo",
+            "netcat",
+            "net-tools",
+            "p7zip-full",
+            "parallel",
+            "patchelf",
+            "pigz",
+            "pollinate",
+            "rsync",
+            "shellcheck",
+            "sphinxsearch",
+            "sqlite3",
+            "ssh",
+            "sshpass",
+            "sudo",
+            "swig",
+            "telnet",
+            "time",
+            "zip"
+        ]
+    },
+    "brew": [
+    ],
+    "docker": {
+        "images": [
+        ],
+        "components": [
+            {
+                "package": "containerd.io",
+                "version": "latest"
+            },
+            {
+                "package": "docker-ce-cli",
+                "version": "26.1.0"
+            },
+            {
+                "package": "docker-ce",
+                "version": "26.1.0"
+            }
+        ],
+        "plugins": [
+            {
+                "plugin": "buildx",
+                "version": "latest",
+                "asset": "linux-amd64"
+            },
+            {
+                "plugin": "compose",
+                "version": "latest",
+                "asset": "linux-x86_64"
+            }
+        ]
+    },
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint"
+        },
+        {
+            "package": "ansible-core",
+            "cmd": "ansible"
+        }
+    ],
+    "dotnet": {
+        "aptPackages": [
+            "dotnet-sdk-8.0"
+        ],
+        "versions": [
+            "8.0"
+        ],
+        "tools": [
+            { "name": "nbgv", "test": "nbgv --version", "getversion" : "nbgv --version" }
+        ]
+    },
+    "clang": {
+        "versions": [
+            "16",
+            "17",
+            "18"
+        ],
+        "default_version": "17"
+    },
+    "gcc": {
+        "versions": [
+            "g++-12",
+            "g++-13",
+            "g++-14"
+        ]
+    },
+    "gfortran": {
+        "versions": [
+            "gfortran-12",
+            "gfortran-13",
+            "gfortran-14"
+        ]
+    },
+    "php": {
+        "versions": [
+            "8.3"
+        ]
+    },
+    "rubygems": [
+        {"name": "fastlane"}
+    ],
+    "selenium": {
+        "version": "4"
+    },
+    "node": {
+        "default": "20"
+    },
+    "node_modules": [
+        {
+            "name": "grunt",
+            "command": "grunt"
+        },
+        {
+            "name": "gulp",
+            "command": "gulp"
+        },
+        {
+            "name": "n",
+            "command": "n"
+        },
+        {
+            "name": "parcel",
+            "command": "parcel"
+        },
+        {
+            "name": "typescript",
+            "command": "tsc"
+        },
+        {
+            "name": "newman",
+            "command": "newman"
+        },
+        {
+            "name": "webpack",
+            "command": "webpack"
+        },
+        {
+            "name": "webpack-cli",
+            "command": "webpack-cli"
+        },
+        {
+            "name": "lerna",
+            "command": "lerna"
+        },
+        {
+            "name": "yarn",
+            "command": "yarn"
+        }
+    ],
+    "mongodb": {
+        "version": "7.0"
+    },
+    "postgresql": {
+        "version": "16"
+    },
+    "pwsh": {
+        "version": "7.4"
+    }
+}
