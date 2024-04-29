@@ -81,11 +81,6 @@ GitHub Actions and Azure DevOps use the `-latest` YAML label (ex: `ubuntu-latest
 
 The `-latest` migration process is gradual and happens over 1-2 months in order to allow customers to adapt their workflows to the newest OS version. During this process, any workflow using the `-latest` label, may see changes in the OS version in their workflows or pipelines. To avoid unwanted migration, users can specify a specific OS version in the yaml file (ex: macos-12, windows-2022, ubuntu-22.04).
 
-#### Planned & ongoing migration(s)
-
-We are currently in the process of `macos-14` to `macos-latest` migration, details can be found [here](https://github.blog/changelog/2024-04-01-macos-14-sonoma-is-generally-available-and-the-latest-macos-runner-image).
-
-
 ## Image Releases
 
 *How to best follow along with changes*
@@ -132,7 +127,7 @@ We use third-party package managers to install software during the image generat
 
 | Operating system | Package manager                       | Third-party repos and packages |
 | :---             |        :---:                          |                           ---: |
-| Ubuntu           | [APT](https://wiki.debian.org/Apt)    | [containers](https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable) (Ubuntu 20 only) <br/> [docker](https://download.docker.com/linux/ubuntu) <br/> [Eclipse-Temurin (Adoptium)](https://packages.adoptium.net/artifactory/deb/) <br/> [Erlang](https://packages.erlang-solutions.com/ubuntu) <br/> [Firefox](http://ppa.launchpad.net/mozillateam/ppa/ubuntu) <br/> [gcc, gfortran](https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test)  <br/> [git-lfs](https://packagecloud.io/install/repositories/github/git-lfs) <br/> [git](https://launchpad.net/~git-core/+archive/ubuntu/ppa) <br/> [Google Cloud CLI](https://packages.cloud.google.com/apt) <br/> [Heroku](https://cli-assets.heroku.com/channels/stable/apt) <br/> [HHvm](https://dl.hhvm.com/ubuntu) <br/> [MongoDB](https://repo.mongodb.org/apt/ubuntu) <br/> [Mono](https://download.mono-project.com/repo/ubuntu) <br/> [MS Edge](https://packages.microsoft.com/repos/edge) <br/> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt/) <br/> [R](https://cloud.r-project.org/bin/linux/ubuntu)                                      |
+| Ubuntu           | [APT](https://wiki.debian.org/Apt)    | [containers](https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable) (Ubuntu 20 only) <br/> [docker](https://download.docker.com/linux/ubuntu) (Ubuntu20 0nly) <br/> [Eclipse-Temurin (Adoptium)](https://packages.adoptium.net/artifactory/deb/) <br/> [Erlang](https://packages.erlang-solutions.com/ubuntu) <br/> [Firefox](http://ppa.launchpad.net/mozillateam/ppa/ubuntu) <br/> [git-lfs](https://packagecloud.io/install/repositories/github/git-lfs) <br/> [git](https://launchpad.net/~git-core/+archive/ubuntu/ppa) <br/> [Google Cloud CLI](https://packages.cloud.google.com/apt) <br/> [Heroku](https://cli-assets.heroku.com/channels/stable/apt) <br/> [HHvm](https://dl.hhvm.com/ubuntu) <br/> [MongoDB](https://repo.mongodb.org/apt/ubuntu) <br/> [Mono](https://download.mono-project.com/repo/ubuntu) <br/> [MS Edge](https://packages.microsoft.com/repos/edge) <br/> [PostgreSQL](https://apt.postgresql.org/pub/repos/apt/) <br/> [R](https://cloud.r-project.org/bin/linux/ubuntu)                                      |
 |                  | [pipx](https://pypa.github.io/pipx)   | ansible-core <br/>yamllint     |
 | Windows          | [Chocolatey](https://chocolatey.org)  | No third-party repos installed |
 | macOS            | [Homebrew](https://brew.sh)           | [aws-cli v2](https://github.com/aws/homebrew-tap) </br> [azure/bicep](https://github.com/Azure/homebrew-bicep) </br> [mongodb/brew](https://github.com/mongodb/homebrew-brew)                                                  |
