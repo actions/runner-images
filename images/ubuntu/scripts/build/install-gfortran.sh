@@ -6,11 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
-source $HELPER_SCRIPTS/os.sh
-
-# Install GNU Fortran compiler
-add-apt-repository ppa:ubuntu-toolchain-r/test -y
-apt-get update -y
 
 versions=$(get_toolset_value '.gfortran.versions[]')
 

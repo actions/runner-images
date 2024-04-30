@@ -48,6 +48,7 @@ done
 gid=$(cut -d ":" -f 3 /etc/group | grep "^1..$" | sort -n | tail -n 1 | awk '{ print $1+1 }')
 groupmod -g "$gid" docker
 chgrp -hR docker /run/docker.sock
+chgrp -hR docker /var/run/docker.sock
 
 # Enable docker.service
 systemctl is-active --quiet docker.service || systemctl start docker.service

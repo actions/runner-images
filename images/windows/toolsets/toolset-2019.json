@@ -462,7 +462,7 @@
         "signature": "F2D7C28591847BB2CB2B1C2A0C59459FDC728A38"
     },
     "nsis": {
-        "version": "3.09"
+        "version": "3.10"
     },
     "php": {
         "version": "8.3"
