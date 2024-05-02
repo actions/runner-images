@@ -78,7 +78,6 @@
     "azureModules": [
         {
             "name": "az",
-            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
                 "11.5.0"
             ]

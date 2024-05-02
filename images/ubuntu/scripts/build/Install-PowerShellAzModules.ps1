@@ -22,8 +22,6 @@ foreach ($module in $modules) {
         Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force
     }
 
-    $assets = Invoke-RestMethod $module.url
-
 }
 
 Invoke-PesterTests -TestFile "PowerShellModules" -TestName "AzureModules"
