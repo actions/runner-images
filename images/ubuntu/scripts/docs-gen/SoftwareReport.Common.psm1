@@ -10,7 +10,7 @@ function Get-DashVersion {
 
 function Get-CPPVersions {
     $result = Get-CommandResult "apt list --installed" -Multiline
-    $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d+" } | ForEach-Object {
+    $cppVersions = $result.Output | Where-Object { $_ -match "g\+\+-\d\d\/" } | ForEach-Object {
         & $_.Split("/")[0] --version | Select-Object -First 1 | Get-StringPart -Part 3
     } | Sort-Object {[Version] $_}
     return $cppVersions
@@ -18,9 +18,8 @@ function Get-CPPVersions {
 
 function Get-FortranVersions {
     $result = Get-CommandResult "apt list --installed" -Multiline
-    $fortranVersions = $result.Output | Where-Object { $_ -match "^gfortran-\d+" } | ForEach-Object {
-        $_ -match "now (?<version>\d+\.\d+\.\d+)-" | Out-Null
-        $Matches.version
+    $fortranVersions = $result.Output | Where-Object { $_ -match "^gfortran-\d\d\/" } | ForEach-Object {
+        & $_.Split("/")[0] --version | Select-Object -First 1 | Get-StringPart -Part 4
     } | Sort-Object {[Version] $_}
     return $fortranVersions
 }
@@ -175,15 +174,13 @@ function Get-ParcelVersion {
 }
 
 function Get-PipVersion {
-    $result = Get-CommandResult "pip --version"
-    $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
-    return $Matches.version
+    $pipVersion = pip --version | Get-StringPart -Part 1
+    return $pipVersion
 }
 
 function Get-Pip3Version {
-    $result = Get-CommandResult "pip3 --version"
-    $result.Output -match "pip (?<version>\d+\.\d+\.\d+)" | Out-Null
-    return $Matches.version
+    $pip3Version = pip3 --version | Get-StringPart -Part 1
+    return $pip3Version
 }
 
 function Get-VcpkgVersion {
