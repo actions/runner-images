@@ -21,6 +21,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 | Image | YAML Label | Included Software | Rollout Status of Latest Image Release |
 | --------------------|---------------------|--------------------|--------------------|
+| Ubuntu 24.04 | `ubuntu-24.04` | [ubuntu-24.04] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fubuntu24.json) |
 | Ubuntu 22.04 | `ubuntu-latest` or `ubuntu-22.04` | [ubuntu-22.04] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fubuntu22.json) |
 | Ubuntu 20.04 | `ubuntu-20.04` | [ubuntu-20.04] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fubuntu20.json) |
 | macOS 14 | `macos-latest-large` or `macos-14-large`| [macOS-14] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fmikhailkoliada%2F35b243dd6e217d041fe3dfa5b4e2e2ed%2Fraw%2Fmacos-14.json) |
@@ -37,6 +38,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 - In general the `-latest` label is used for the latest OS image version that is GA
 - Before moving the`-latest` label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows
 
+[ubuntu-24.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
 [ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
 [ubuntu-20.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
 [windows-2022]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
