@@ -47,4 +47,3 @@ if ! is_ubuntu24; then
     # https://github.com/ilikenwf/apt-fast
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
 fi
-mv /usr/local/bin/apt-fast /usr/local/sbin/apt-fast
