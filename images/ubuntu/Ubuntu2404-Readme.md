@@ -1,7 +1,12 @@
+| Announcements |
+|-|
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
+| [[Ubuntu] ubuntu-toolchain-r/test repository will be removed from images on May 6](https://github.com/actions/runner-images/issues/9679) |
+***
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
 - Kernel Version: 6.8.0-1007-azure
-- Image Version: 20240430.1.0
+- Image Version: 20240507.1.0
 - Systemd version: 255.4-1ubuntu8
 
 ## Installed Software
@@ -23,14 +28,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.4
-- Homebrew 4.2.20
+- Homebrew 4.2.21
 - Miniconda 24.3.0
 - Npm 10.5.0
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit c591ac646)
+- Vcpkg (build from commit 28b1cf627)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -80,14 +85,14 @@ to accomplish this.
 - Newman 6.1.2
 - OpenSSL 3.0.13-0ubuntu3
 - Parcel 2.12.0
-- Pulumi 3.114.0
+- Pulumi 3.115.2
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
 - yq 4.43.1
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.15.42
+- AWS CLI 2.15.45
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.116.0
 - Azure CLI 2.60.0
@@ -96,7 +101,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.7.4
+- Composer 2.7.6
 - PHPUnit 8.5.38
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -109,10 +114,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.15.5
 
 ### Rust Tools
-- Cargo 1.77.2
-- Rust 1.77.2
-- Rustdoc 1.77.2
-- Rustup 1.27.0
+- Cargo 1.78.0
+- Rust 1.78.0
+- Rustdoc 1.78.0
+- Rustup 1.27.1
 
 #### Packages
 - Rustfmt 1.7.0
@@ -262,3 +267,4 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.6.1+really5.4.5-1   |
 | zip                    | 3.0-13build1          |
 | zsync                  | 0.6.2-5build1         |
+
