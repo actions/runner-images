@@ -191,9 +191,7 @@ if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
 }
 
 # Java
-if (-not $(Test-IsUbuntu24)) {
-    $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
-}
+$installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
 
 # PHP Tools
 $phpTools = $installedSoftware.AddHeader("PHP Tools")
