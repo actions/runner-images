@@ -263,9 +263,7 @@ if (-not $(Test-IsUbuntu24)) {
 $cachedTools = $installedSoftware.AddHeader("Cached Tools")
 $cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+")
 $cachedTools.AddToolVersionsList("Node.js", $(Get-ToolcacheNodeVersions), "^\d+")
-if (-not $(Test-IsUbuntu24)) {
-    $cachedTools.AddToolVersionsList("Python", $(Get-ToolcachePythonVersions), "^\d+\.\d+")
-}
+$cachedTools.AddToolVersionsList("Python", $(Get-ToolcachePythonVersions), "^\d+\.\d+")
 $cachedTools.AddToolVersionsList("PyPy", $(Get-ToolcachePyPyVersions), "^\d+\.\d+")
 if (-not $(Test-IsUbuntu24)) {
     $cachedTools.AddToolVersionsList("Ruby", $(Get-ToolcacheRubyVersions), "^\d+\.\d+")

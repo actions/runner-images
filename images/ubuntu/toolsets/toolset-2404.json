@@ -6,7 +6,12 @@
             "platform" : "linux",
             "platform_version": "24.04",
             "arch": "x64",
-            "versions": []
+            "versions": [
+                "3.9.*",
+                "3.10.*",
+                "3.11.*",
+                "3.12.*"
+            ]
         },
         {
             "name": "PyPy",
