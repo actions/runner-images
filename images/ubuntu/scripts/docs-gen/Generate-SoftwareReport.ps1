@@ -102,10 +102,8 @@ $tools = $installedSoftware.AddHeader("Tools")
 $tools.AddToolVersion("Ansible", $(Get-AnsibleVersion))
 $tools.AddToolVersion("apt-fast", $(Get-AptFastVersion))
 $tools.AddToolVersion("AzCopy", $(Get-AzCopyVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $tools.AddToolVersion("Bazel", $(Get-BazelVersion))
-    $tools.AddToolVersion("Bazelisk", $(Get-BazeliskVersion))
-}
+$tools.AddToolVersion("Bazel", $(Get-BazelVersion))
+$tools.AddToolVersion("Bazelisk", $(Get-BazeliskVersion))
 $tools.AddToolVersion("Bicep", $(Get-BicepVersion))
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $tools.AddToolVersion("Buildah", $(Get-BuildahVersion))
@@ -191,9 +189,7 @@ if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
 }
 
 # Java
-if (-not $(Test-IsUbuntu24)) {
-    $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
-}
+$installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
 
 # PHP Tools
 $phpTools = $installedSoftware.AddHeader("PHP Tools")
