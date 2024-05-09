@@ -182,11 +182,11 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "26.1.0"
+                "version": "26.1.2"
             },
             {
                 "package": "docker-ce",
-                "version": "26.1.0"
+                "version": "26.1.2"
             }
         ],
         "plugins": [
