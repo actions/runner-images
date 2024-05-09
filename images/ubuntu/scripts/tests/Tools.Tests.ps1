@@ -118,7 +118,7 @@ Describe "Ansible" {
     }
 }
 
-Describe "Bazel" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Bazel" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bazel" }
         @{ ToolName = "bazelisk" }
