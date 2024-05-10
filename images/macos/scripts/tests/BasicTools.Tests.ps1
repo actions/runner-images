@@ -179,7 +179,7 @@ Describe "Kotlin" {
     }
 }
 
-Describe "sbt" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "sbt" {
     It "sbt" {
         "sbt -version" | Should -ReturnZeroExitCode
     }

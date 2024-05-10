@@ -104,9 +104,7 @@ $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Apache Ant", $(Get-ApacheAntVersion))
 $projectManagement.AddToolVersion("Apache Maven", $(Get-MavenVersion))
 $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
-if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
-    $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
-}
+$projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 
 # Utilities
 $utilities = $installedSoftware.AddHeader("Utilities")
