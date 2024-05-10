@@ -105,9 +105,7 @@ $tools.AddToolVersion("AzCopy", $(Get-AzCopyVersion))
 $tools.AddToolVersion("Bazel", $(Get-BazelVersion))
 $tools.AddToolVersion("Bazelisk", $(Get-BazeliskVersion))
 $tools.AddToolVersion("Bicep", $(Get-BicepVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $tools.AddToolVersion("Buildah", $(Get-BuildahVersion))
-}
+$tools.AddToolVersion("Buildah", $(Get-BuildahVersion))
 $tools.AddToolVersion("CMake", $(Get-CMakeVersion))
 $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 $tools.AddToolVersion("Docker Amazon ECR Credential Helper", $(Get-DockerAmazonECRCredHelperVersion))
@@ -152,14 +150,12 @@ $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
 if (Test-IsUbuntu20) {
     $tools.AddToolVersion("PhantomJS", $(Get-PhantomJSVersion))
 }
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $tools.AddToolVersion("Podman", $(Get-PodManVersion))
-}
+$tools.AddToolVersion("Podman", $(Get-PodManVersion))
 $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $tools.AddToolVersion("R", $(Get-RVersion))
-    $tools.AddToolVersion("Skopeo", $(Get-SkopeoVersion))
 }
+$tools.AddToolVersion("Skopeo", $(Get-SkopeoVersion))
 $tools.AddToolVersion("Sphinx Open Source Search Server", $(Get-SphinxVersion))
 if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $tools.AddToolVersion("SVN", $(Get-SVNVersion))
