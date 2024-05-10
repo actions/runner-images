@@ -118,7 +118,7 @@ Describe "Ansible" {
     }
 }
 
-Describe "Bazel" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Bazel" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bazel" }
         @{ ToolName = "bazelisk" }
@@ -329,7 +329,7 @@ Describe "Phantomjs" -Skip:(-not (Test-IsUbuntu20)) {
     }
 }
 
-Describe "Containers" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Containers" {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
