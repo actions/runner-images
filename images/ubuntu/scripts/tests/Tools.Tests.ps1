@@ -69,10 +69,25 @@ Describe "Docker" {
     It "docker client" {
         $version=(Get-ToolsetContent).docker.components | Where-Object { $_.package -eq 'docker-ce-cli' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
-            $(docker version --format '{{.Client.Version}}') | Should -BeLike "*$version*"
+            $(sudo docker version --format '{{.Client.Version}}') | Should -BeLike "*$version*"
         }else{
-            "docker version --format '{{.Client.Version}}'" | Should -ReturnZeroExitCode
+            "sudo docker version --format '{{.Client.Version}}'" | Should -ReturnZeroExitCode
         }
+    }
+
+    It "docker server" {
+        $version=(Get-ToolsetContent).docker.components | Where-Object { $_.package -eq 'docker-ce' } | Select-Object -ExpandProperty version
+        If ($version -ne "latest") {
+            $(sudo docker version --format '{{.Server.Version}}') | Should -BeLike "*$version*"
+        }else{
+            "sudo docker version --format '{{.Server.Version}}'" | Should -ReturnZeroExitCode
+        }
+    }
+
+    It "docker client/server versions match" {
+        $clientVersion = $(sudo docker version --format '{{.Client.Version}}')
+        $serverVersion = $(sudo docker version --format '{{.Server.Version}}')
+        $clientVersion | Should -Be $serverVersion
     }
 
     It "docker buildx" {

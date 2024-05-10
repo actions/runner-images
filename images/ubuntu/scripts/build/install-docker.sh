@@ -47,8 +47,14 @@ done
 # docker from official repo introduced different GID generation: https://github.com/actions/runner-images/issues/8157
 gid=$(cut -d ":" -f 3 /etc/group | grep "^1..$" | sort -n | tail -n 1 | awk '{ print $1+1 }')
 groupmod -g "$gid" docker
-chgrp -hR docker /run/docker.sock
-chgrp -hR docker /var/run/docker.sock
+
+# Create systemd-tmpfiles configuration for Docker
+cat <<EOF | sudo tee /etc/tmpfiles.d/docker.conf
+L /run/docker.sock - - - - root docker 0770
+EOF
+
+# Reload systemd-tmpfiles to apply the new configuration
+systemd-tmpfiles --create /etc/tmpfiles.d/docker.conf
 
 # Enable docker.service
 systemctl is-active --quiet docker.service || systemctl start docker.service
