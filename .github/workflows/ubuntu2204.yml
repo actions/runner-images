@@ -1,4 +1,4 @@
-name: Trigger Ubuntu22.04 CI
+name: Trigger Ubuntu22.04 CI.
 run-name: Ubuntu22.04 - ${{ github.event.pull_request.title }}
 
 on:
