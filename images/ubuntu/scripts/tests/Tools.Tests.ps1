@@ -106,7 +106,7 @@ Describe "Docker images" {
     }
 }
 
-Describe "Docker-compose v1" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "Docker-compose v1" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "docker-compose" {
         "docker-compose --version"| Should -ReturnZeroExitCode
     }
@@ -118,7 +118,7 @@ Describe "Ansible" {
     }
 }
 
-Describe "Bazel" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "Bazel" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bazel" }
         @{ ToolName = "bazelisk" }
@@ -183,25 +183,25 @@ Describe "Mono" -Skip:(Test-IsUbuntu24) {
     }
 }
 
-Describe "MSSQLCommandLineTools" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "MSSQLCommandLineTools" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "SqlPackage" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "SqlPackage" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "sqlpackage" {
         "sqlpackage /version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "R" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "R" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "r" {
         "R --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Sbt" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "Sbt" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
     }
@@ -214,7 +214,7 @@ Describe "Selenium" {
     }
 }
 
-Describe "Terraform" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "Terraform" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "terraform" {
         "terraform --version" | Should -ReturnZeroExitCode
     }
@@ -252,7 +252,7 @@ Describe "Git-lfs" {
     }
 }
 
-Describe "Heroku" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "Heroku" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "heroku" {
         "heroku --version" | Should -ReturnZeroExitCode
     }
@@ -298,7 +298,7 @@ Describe "Kubernetes tools" {
     }
 }
 
-Describe "Leiningen" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "Leiningen" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "leiningen" {
         "lein --version" | Should -ReturnZeroExitCode
     }
@@ -310,7 +310,7 @@ Describe "Conda" {
     }
 }
 
-Describe "Packer" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "Packer" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "packer" {
         "packer --version" | Should -ReturnZeroExitCode
     }
@@ -329,7 +329,7 @@ Describe "Phantomjs" -Skip:(-not (Test-IsUbuntu20)) {
     }
 }
 
-Describe "Containers" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "Containers" {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {
@@ -345,7 +345,7 @@ Describe "Containers" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu2
 
 }
 
-Describe "nvm" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "nvm" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "nvm" {
         "source /etc/skel/.nvm/nvm.sh && nvm --version" | Should -ReturnZeroExitCode
     }
@@ -381,7 +381,7 @@ Describe "yq" {
     }
 }
 
-Describe "Kotlin" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu20))) {
+Describe "Kotlin" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "kapt" {
         "kapt -version" | Should -ReturnZeroExitCode
     }
