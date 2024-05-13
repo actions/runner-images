@@ -150,6 +150,10 @@ local "aws_ami_name_x86_64" {
 source "amazon-ebs" "build_image" {
   ami_name = local.aws_ami_name_x86_64
 
+  ami_users = [
+    "702719119055",
+  ]
+
   subnet_filter {
     filters = {
       "tag:Packer" : "true"
