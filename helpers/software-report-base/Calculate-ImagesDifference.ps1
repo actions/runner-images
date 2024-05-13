@@ -57,7 +57,7 @@ $diff = $comparer.GetMarkdownReport()
 if ($ReleaseBranchName -and $ReadmePath) {
     # https://github.com/actions/runner-images/blob/releases/macOS-12/20221215/images/macos/macos-12-Readme.md
     $ImageDocsUrl = "https://github.com/actions/runner-images/blob/${ReleaseBranchName}/${ReadmePath}"
-    $diff += "`n`n`nFor comprehensive list of software installed on this image please click [here]($ImageDocsUrl)."
+    $diff += "`n`n`nThis comment only shows a part of the list, read the [full list of software installed on this image]($ImageDocsUrl)."
 }
 
 $parentDirectory = Split-Path $OutputFile -Parent
