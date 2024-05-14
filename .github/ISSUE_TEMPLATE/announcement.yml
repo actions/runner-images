@@ -38,6 +38,7 @@ body:
       options:
         - label: Ubuntu 20.04
         - label: Ubuntu 22.04
+        - label: Ubuntu 24.04
         - label: macOS 11
         - label: macOS 12
         - label: macOS 13
