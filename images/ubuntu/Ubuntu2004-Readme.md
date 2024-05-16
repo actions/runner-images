@@ -2,12 +2,11 @@
 |-|
 | [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
 | [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
-| [[Ubuntu] ubuntu-toolchain-r/test repository will be removed from images on May 13](https://github.com/actions/runner-images/issues/9679) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1064-azure
-- Image Version: 20240514.2.0
+- Image Version: 20240516.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -43,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.5.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit bd2b54836)
+- Vcpkg (build from commit 66a252f70)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -84,7 +83,7 @@ to accomplish this.
 - Docker Client 24.0.9
 - Docker Server 24.0.9
 - Fastlane 2.220.0
-- Git 2.43.2
+- Git 2.45.1
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.1
@@ -92,7 +91,7 @@ to accomplish this.
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.23.0
-- Kubectl 1.30.0
+- Kubectl 1.30.1
 - Kustomize 5.4.1
 - Leiningen 2.11.2
 - MediaInfo 19.09
@@ -106,7 +105,7 @@ to accomplish this.
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.116.0
+- Pulumi 3.116.1
 - R 4.4.0
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -118,17 +117,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.15.50
+- AWS CLI 2.15.51
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.116.0
 - Azure CLI 2.60.0
-- Azure CLI (azure-devops) 1.0.0
+- Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.49.2
 - Google Cloud CLI 476.0.0
 - Netlify CLI 17.23.5
-- OpenShift CLI 4.15.12
+- OpenShift CLI 4.15.13
 - ORAS CLI 1.1.0
-- Vercel CLI 34.1.14
+- Vercel CLI 34.2.0
 
 ### Java
 | Version             | Environment Variable |
@@ -167,12 +166,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 124.0.6367.207
-- ChromeDriver 124.0.6367.207
-- Chromium 124.0.6367.0
+- Google Chrome 125.0.6422.60
+- ChromeDriver 125.0.6422.60
+- Chromium 125.0.6422.0
 - Microsoft Edge 124.0.2478.105
 - Microsoft Edge WebDriver 124.0.2478.105
-- Selenium server 4.20.0
+- Selenium server 4.21.0
 - Mozilla Firefox 126.0
 - Geckodriver 0.34.0
 
