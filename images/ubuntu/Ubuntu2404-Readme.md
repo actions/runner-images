@@ -1,12 +1,12 @@
 | Announcements |
 |-|
+| [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
 | [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
-| [[Ubuntu] ubuntu-toolchain-r/test repository will be removed from images on May 13](https://github.com/actions/runner-images/issues/9679) |
 ***
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
 - Kernel Version: 6.8.0-1007-azure
-- Image Version: 20240510.1.0
+- Image Version: 20240516.4.0
 - Systemd version: 255.4-1ubuntu8
 
 ## Installed Software
@@ -28,14 +28,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.4
-- Homebrew 4.2.21
+- Homebrew 4.3.0
 - Miniconda 24.3.0
 - Npm 10.5.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit cbf4a6641)
+- Vcpkg (build from commit 66a252f70)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,7 +55,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.7
-- Lerna 8.1.2
+- Lerna 8.1.3
 - Maven 3.8.8
 
 ### Tools
@@ -68,42 +68,42 @@ to accomplish this.
 - Buildah 1.33.7
 - CMake 3.29.3
 - CodeQL Action Bundle 2.17.2
-- Docker Amazon ECR Credential Helper 0.7.1
+- Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.0
 - Docker-Buildx 0.14.0
 - Docker Client 26.1.0
 - Docker Server 26.1.0
 - Fastlane 2.220.0
-- Git 2.43.2
+- Git 2.45.1
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
-- Kind 0.22.0
-- Kubectl 1.30.0
+- Kind 0.23.0
+- Kubectl 1.30.1
 - Kustomize 5.4.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
-- Minikube 1.33.0
+- Minikube 1.33.1
 - n 9.2.3
 - Newman 6.1.2
 - OpenSSL 3.0.13-0ubuntu3
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.115.2
+- Pulumi 3.116.1
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
-- yq 4.43.1
+- yq 4.44.1
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.15.47
+- AWS CLI 2.15.51
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.116.0
 - Azure CLI 2.60.0
-- Azure CLI (azure-devops) 1.0.0
-- GitHub CLI 2.49.1
+- Azure CLI (azure-devops) 1.0.1
+- GitHub CLI 2.49.2
 
 ### Java
 | Version             | Environment Variable |
@@ -123,9 +123,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Haskell Tools
 - Cabal 3.10.3.0
-- GHC 9.8.2
+- GHC 9.10.1
 - GHCup 0.1.22.0
-- Stack 2.15.5
+- Stack 2.15.7
 
 ### Rust Tools
 - Cargo 1.78.0
@@ -137,10 +137,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 124.0.6367.201
-- ChromeDriver 124.0.6367.201
-- Chromium 124.0.6367.0
-- Selenium server 4.20.0
+- Google Chrome 125.0.6422.60
+- ChromeDriver 125.0.6422.60
+- Chromium 125.0.6422.0
+- Selenium server 4.21.0
 
 #### Environment variables
 | Name              | Value                                 |
@@ -151,7 +151,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.104
+- .NET Core SDK: 8.0.300
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
