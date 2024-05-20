@@ -122,6 +122,7 @@
             "gnupg2",
             "iproute2",
             "iputils-ping",
+            "libyaml-dev",
             "libtool",
             "libssl-dev",
             "locales",
