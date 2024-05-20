@@ -41,6 +41,8 @@ if ($LASTEXITCODE -ne 0) {
 
 # Disable GCM machine-wide
 [Environment]::SetEnvironmentVariable("GCM_INTERACTIVE", "Never", "Machine")
+# Revert to the old behaviour and avoid the Git LFS problems (https://github.blog/2024-05-14-securing-git-addressing-5-new-vulnerabilities/)
+[Environment]::SetEnvironmentVariable("GIT_CLONE_PROTECTION_ACTIVE", "false", "Machine")
 
 # Add to PATH
 Add-MachinePathItem "C:\Program Files\Git\bin"
