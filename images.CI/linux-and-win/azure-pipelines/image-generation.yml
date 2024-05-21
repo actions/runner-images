@@ -5,6 +5,10 @@
 # - https://github.community/t5/GitHub-Actions/Protecting-github-workflows/td-p/30290
 
 parameters:
+  - name: azureSubscription
+    type: string
+    default: spn-hosted-runners
+
   - name: job_id
     type: string
     default: 'generate_image'
@@ -35,6 +39,14 @@ parameters:
     type: string
     default: 'self'
 
+  - name: keyvault_name
+    type: string
+    default: 'gh-imagegeneration'
+
+  - name: keyvault_secret_name
+    type: string
+    default: 'spnhostedrunners'
+
 jobs:
 - job: ${{ parameters.job_id }}
   displayName: Image Generation (${{ parameters.image_type }})
@@ -62,7 +74,7 @@ jobs:
   - task: AzureCLI@2
     displayName: 'Set variables'
     inputs:
-      azureSubscription: 'spn-hosted-runners'
+      azureSubscription: ${{ parameters.azureSubscription }}
       scriptType: 'pscore'
       scriptLocation: 'inlineScript'
       inlineScript: |
@@ -81,7 +93,7 @@ jobs:
         $TempResourceGroupName = "packer-temp-$ManagedImageName"
         Write-Host "##vso[task.setvariable variable=TempResourceGroupName;]$TempResourceGroupName"
 
-        $clientSecret = $(az keyvault secret show --name "spnhostedrunners" --vault-name "gh-imagegeneration" --query value -o tsv)
+        $clientSecret = $(az keyvault secret show --name "${{ parameters.keyvault_secret_name }}" --vault-name "${{ parameters.keyvault_name }}" --query value -o tsv)
         Write-Host "##vso[task.setvariable variable=ClientSecret;issecret=true]$clientSecret"
 
   - task: PowerShell@2
