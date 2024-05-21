@@ -103,3 +103,6 @@ if [[ ! -d "/usr/local/bin" ]];then
 fi
 chmod +x $HOME/utils/invoke-tests.sh
 sudo ln -s $HOME/utils/invoke-tests.sh /usr/local/bin/invoke_tests
+
+# Revert to the old behaviour and avoid the Git LFS problems (https://github.blog/2024-05-14-securing-git-addressing-5-new-vulnerabilities/)
+echo "export GIT_CLONE_PROTECTION_ACTIVE=false" >> $HOME/.bashrc
