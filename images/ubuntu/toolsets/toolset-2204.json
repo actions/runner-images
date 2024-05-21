@@ -240,7 +240,18 @@
             "node:18-alpine",
             "node:20-alpine",
             "ubuntu:20.04",
-            "ubuntu:22.04"
+            "ubuntu:22.04",
+            "mcr.microsoft.com/mssql/server:2019-latest",
+            "osixia/openldap:latest",
+            "osixia/phpldapadmin",
+            "public.ecr.aws/docker/library/debian:bookworm-slim",
+            "public.ecr.aws/docker/library/golang:latest",
+            "public.ecr.aws/docker/library/postgres:latest",
+            "public.ecr.aws/docker/library/python:3.11",
+            "public.ecr.aws/docker/library/python:3.11-slim",
+            "public.ecr.aws/docker/library/rabbitmq:management-alpine",
+            "public.ecr.aws/hashicorp/consul:latest",
+            "public.ecr.aws/hashicorp/vault:latest"
         ],
         "components": [
             {
