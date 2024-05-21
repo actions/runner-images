@@ -21,7 +21,7 @@ else
 fi
 release_label="macOS-${label_version}"
 
-if is_Ventura || is_Sonoma; then
+if is_Ventura || is_Sonoma || is_Monterey; then
   software_url="https://github.com/actions/runner-images/blob/${image_label}/${image_version}/images/macos/${image_label}-Readme.md"
   releaseUrl="https://github.com/actions/runner-images/releases/tag/${image_label}%2F${image_version}"
 else

@@ -1,12 +1,12 @@
 # macOS 13
 - OS Version: macOS 13.6.6 (22G630)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240506.1
+- Image Version: 20240514.3
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.408, 8.0.101, 8.0.204
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.409, 8.0.101, 8.0.204, 8.0.300
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -16,11 +16,11 @@
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
-- Kotlin 1.9.23-release-779
+- Kotlin 1.9.24-release-822
 - Mono 6.12.0.188
-- Node.js 20.12.2
+- Node.js 20.13.1
 - Perl 5.38.2
-- PHP 8.3.6
+- PHP 8.3.7
 - Python3 3.12.3
 - Ruby 3.0.7p220
 
@@ -29,13 +29,13 @@
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.6
-- Homebrew 4.2.21
-- NPM 10.5.0
+- Homebrew 4.3.0
+- NPM 10.5.2
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
 - Pipx 1.5.0
 - RubyGems 3.5.10
-- Vcpkg 2024 (build from commit 28b1cf627)
+- Vcpkg 2024 (build from commit bd2b54836)
 - Yarn 1.22.19
 
 ### Project Management
@@ -47,13 +47,13 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.24.0
-- bazel 7.1.1
-- bazelisk 1.19.0_1
+- bazel 7.1.2
+- bazelisk 1.20.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.45.0
+- Git 2.45.1
 - Git LFS 3.5.1
-- GitHub CLI 2.49.0
+- GitHub CLI 2.49.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -61,21 +61,21 @@
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
-- yq 4.43.1
+- yq 4.44.1
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.15.45
+- AWS CLI 2.15.50
 - AWS SAM CLI 1.116.0
 - AWS Session Manager CLI 1.2.553.0
 - Azure CLI 2.60.0
 - Azure CLI (azure-devops) 1.0.0
-- Bicep CLI 0.26.170
-- Cmake 3.29.2
-- CodeQL Action Bundle 2.17.1
+- Bicep CLI 0.27.1
+- Cmake 3.29.3
+- CodeQL Action Bundle 2.17.2
 - Fastlane 2.220.0
-- SwiftFormat 0.53.8
-- Xcbeautify 2.3.0
+- SwiftFormat 0.53.9
+- Xcbeautify 2.3.1
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.4.1
 
@@ -85,12 +85,12 @@
 ### Browsers
 - Safari 17.4.1 (18618.1.15.111.8)
 - SafariDriver 17.4.1 (18618.1.15.111.8)
-- Google Chrome 124.0.6367.119
-- Google Chrome for Testing 124.0.6367.91
-- ChromeDriver 124.0.6367.91
-- Microsoft Edge 124.0.2478.80
-- Microsoft Edge WebDriver 124.0.2478.80
-- Mozilla Firefox 125.0.3
+- Google Chrome 124.0.6367.208
+- Google Chrome for Testing 124.0.6367.207
+- ChromeDriver 124.0.6367.207
+- Microsoft Edge 124.0.2478.105
+- Microsoft Edge WebDriver 124.0.2478.105
+- Mozilla Firefox 126.0
 - geckodriver 0.34.0
 - Selenium server 4.20.0
 
@@ -132,12 +132,12 @@
 #### Node.js
 - 16.20.2
 - 18.20.2
-- 20.12.2
+- 20.13.1
 
 #### Go
 - 1.20.14
-- 1.21.9
-- 1.22.2
+- 1.21.10
+- 1.22.3
 
 ### Rust Tools
 - Cargo 1.78.0
@@ -201,8 +201,8 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
+| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
