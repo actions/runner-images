@@ -342,6 +342,8 @@ build {
       "${path.root}/../scripts/build/install-julia.sh",
       "${path.root}/../scripts/build/install-sbt.sh",
       "${path.root}/../scripts/build/install-selenium.sh",
+      "${path.root}/../scripts/build/install-consul.sh",
+      "${path.root}/../scripts/build/install-vault.sh",
       "${path.root}/../scripts/build/install-terraform.sh",
       "${path.root}/../scripts/build/install-packer.sh",
       "${path.root}/../scripts/build/install-vcpkg.sh",

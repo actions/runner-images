@@ -37,7 +37,7 @@ Describe "Rust" {
     It "Rustfmt is installed" {
         "rustfmt --version" | Should -ReturnZeroExitCode
     }
-    
+
     It "cargo" {
         "cargo --version" | Should -ReturnZeroExitCode
     }
@@ -214,9 +214,21 @@ Describe "Selenium" {
     }
 }
 
+Describe "Consul" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+    It "consul" {
+        "consul --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Terraform" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
     It "terraform" {
         "terraform --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Vault" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+    It "vault" {
+        "vault --version" | Should -ReturnZeroExitCode
     }
 }
 
