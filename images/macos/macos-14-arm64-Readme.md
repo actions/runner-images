@@ -1,12 +1,12 @@
 # macOS 14
 - OS Version: macOS 14.4.1 (23E224)
 - Kernel Version: Darwin 23.4.0
-- Image Version: 20240422.3
+- Image Version: 20240514.3
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.408, 8.0.101, 8.0.204
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.409, 8.0.101, 8.0.204, 8.0.300
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.3
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -16,23 +16,23 @@
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
-- Kotlin 1.9.23-release-779
+- Kotlin 1.9.24-release-822
 - Mono 6.12.0.188
-- Node.js 20.12.2
+- Node.js 20.13.1
 - Perl 5.38.2
 - Python3 3.12.3
-- Ruby 3.0.6p216
+- Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.9
+- Bundler 2.5.10
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Homebrew 4.2.19
-- NPM 10.5.0
+- Homebrew 4.3.0
+- NPM 10.5.2
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
 - Pipx 1.5.0
-- RubyGems 3.5.9
+- RubyGems 3.5.10
 - Yarn 1.22.19
 
 ### Project Management
@@ -44,13 +44,13 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.24.0
-- bazel 7.1.1
-- bazelisk 1.19.0
+- bazel 7.1.2
+- bazelisk 1.20.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.4.0
-- Git 2.44.0
+- Git 2.45.1
 - Git LFS 3.5.1
-- GitHub CLI 2.48.0
+- GitHub CLI 2.49.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -58,21 +58,21 @@
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
-- yq 4.43.1
+- yq 4.44.1
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.15.40
-- AWS SAM CLI 1.115.0
+- AWS CLI 2.15.50
+- AWS SAM CLI 1.116.0
 - AWS Session Manager CLI 1.2.553.0
-- Azure CLI 2.59.0
+- Azure CLI 2.60.0
 - Azure CLI (azure-devops) 1.0.0
-- Bicep CLI 0.26.170
-- Cmake 3.29.2
-- CodeQL Action Bundle 2.17.0
+- Bicep CLI 0.27.1
+- Cmake 3.29.3
+- CodeQL Action Bundle 2.17.2
 - Fastlane 2.220.0
-- SwiftFormat 0.53.7
-- Xcbeautify 2.1.0
+- SwiftFormat 0.53.9
+- Xcbeautify 2.3.1
 - Xcode Command Line Tools 15.3.0.0.1.1708646388
 - Xcodes 1.4.1
 
@@ -81,10 +81,10 @@
 ### Browsers
 - Safari 17.4.1 (19618.1.15.11.14)
 - SafariDriver 17.4.1 (19618.1.15.11.14)
-- Google Chrome 124.0.6367.62
-- Google Chrome for Testing 124.0.6367.60
-- ChromeDriver 124.0.6367.60
-- Selenium server 4.19.1
+- Google Chrome 124.0.6367.208
+- Google Chrome for Testing 124.0.6367.207
+- ChromeDriver 124.0.6367.207
+- Selenium server 4.20.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -103,45 +103,47 @@
 ### Cached Tools
 
 #### Python
+- 3.9.13
+- 3.10.11
 - 3.11.9
 - 3.12.3
 
 #### Node.js
 - 18.20.2
-- 20.12.2
+- 20.13.1
 
 #### Go
 - 1.20.14
-- 1.21.9
-- 1.22.2
+- 1.21.10
+- 1.22.3
 
 ### Rust Tools
-- Cargo 1.77.2
-- Rust 1.77.2
-- Rustdoc 1.77.2
-- Rustup 1.27.0
+- Cargo 1.78.0
+- Rust 1.78.0
+- Rustdoc 1.78.0
+- Rustup 1.27.1
 
 #### Packages
-- Clippy 0.1.77
+- Clippy 0.1.78
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
 - PowerShell 7.4.2
 
 #### PowerShell Modules
-- Az: 11.5.0
+- Az: 11.6.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.22.0
 
 ### Xcode
-| Version          | Build    | Path                           |
-| ---------------- | -------- | ------------------------------ |
-| 15.4 (beta)      | 15F5021i | /Applications/Xcode_15.4.app   |
-| 15.3             | 15E204a  | /Applications/Xcode_15.3.app   |
-| 15.2             | 15C500b  | /Applications/Xcode_15.2.app   |
-| 15.1             | 15C65    | /Applications/Xcode_15.1.app   |
-| 15.0.1 (default) | 15A507   | /Applications/Xcode_15.0.1.app |
-| 14.3.1           | 14E300c  | /Applications/Xcode_14.3.1.app |
+| Version          | Build   | Path                           |
+| ---------------- | ------- | ------------------------------ |
+| 15.4             | 15F31c  | /Applications/Xcode_15.4.app   |
+| 15.3             | 15E204a | /Applications/Xcode_15.3.app   |
+| 15.2             | 15C500b | /Applications/Xcode_15.2.app   |
+| 15.1             | 15C65   | /Applications/Xcode_15.1.app   |
+| 15.0.1 (default) | 15A507  | /Applications/Xcode_15.0.1.app |
+| 14.3.1           | 14E300c | /Applications/Xcode_14.3.1.app |
 
 #### Installed SDKs
 | SDK                                                     | SDK Name                                      | Xcode Version |
@@ -188,8 +190,8 @@
 | Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | visionOS 1.2                                            | xros1.2                                       | 15.4          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
 | DriverKit 23.0                                          | driverkit23.0                                 | 15.0.1        |
 | DriverKit 23.2                                          | driverkit23.2                                 | 15.1, 15.2    |
@@ -202,8 +204,8 @@
 | iOS 16.4     | 14.3.1                                           | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                                                                                                             |
 | iOS 17.0     | 14.3.1<br>15.0.1<br>15.1<br>15.2<br>15.3<br>15.4 | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                                        |
 | iOS 17.2     | 14.3.1<br>15.0.1<br>15.1<br>15.2<br>15.3<br>15.4 | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                                        |
-| iOS 17.4     | 14.3.1<br>15.0.1<br>15.1<br>15.2<br>15.3<br>15.4 | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                                        |
-| iOS 17.5     | 14.3.1<br>15.0.1<br>15.1<br>15.2<br>15.3<br>15.4 | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                                        |
+| iOS 17.4     | 14.3.1<br>15.0.1<br>15.1<br>15.2<br>15.3<br>15.4 | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                    |
+| iOS 17.5     | 14.3.1<br>15.0.1<br>15.1<br>15.2<br>15.3<br>15.4 | iPhone 14<br>iPhone 14 Plus<br>iPhone 14 Pro<br>iPhone 14 Pro Max<br>iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                    |
 | tvOS 16.4    | 14.3.1<br>15.0.1<br>15.1<br>15.2<br>15.3<br>15.4 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                              |
 | tvOS 17.0    | 14.3.1<br>15.0.1<br>15.1<br>15.2<br>15.3<br>15.4 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                              |
 | tvOS 17.2    | 14.3.1<br>15.0.1<br>15.1<br>15.2<br>15.3<br>15.4 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                              |
@@ -222,7 +224,7 @@
 | Package Name               | Version                                                                                                                                               |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                  |
-| Android Emulator           | 34.1.20                                                                                                                                               |
+| Android Emulator           | 34.2.13                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                |

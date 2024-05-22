@@ -122,6 +122,7 @@
             "gnupg2",
             "iproute2",
             "iputils-ping",
+            "libyaml-dev",
             "libtool",
             "libssl-dev",
             "locales",
@@ -218,9 +219,13 @@
     ],
     "dotnet": {
         "aptPackages": [
+            "dotnet-sdk-6.0",
+            "dotnet-sdk-7.0",
             "dotnet-sdk-8.0"
         ],
         "versions": [
+            "6.0",
+            "7.0",
             "8.0"
         ],
         "tools": [

@@ -244,6 +244,10 @@ Describe "Git" {
     It "git-ftp" {
         "git-ftp --version" | Should -ReturnZeroExitCode
     }
+
+    It "GIT_CLONE_PROTECTION_ACTIVE environment variable should be equal false" {
+        $env:GIT_CLONE_PROTECTION_ACTIVE | Should -BeExactly false
+    }
 }
 
 Describe "Git-lfs" {
