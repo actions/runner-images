@@ -42,6 +42,9 @@ apt-get update
 # Install jq
 apt-get install jq
 
+# Source the helpers for use with the script
+source $HELPER_SCRIPTS/os.sh
+
 if ! is_ubuntu24; then
     # Install apt-fast using quick-install.sh
     # https://github.com/ilikenwf/apt-fast
