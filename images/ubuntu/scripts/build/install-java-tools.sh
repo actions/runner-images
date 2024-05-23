@@ -70,21 +70,19 @@ echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium
 apt-get update
 
 # While Ubuntu 24.04 binaries are not released in the Adoptium repo, we will not install Java
-if ! is_ubuntu24; then
-    defaultVersion=$(get_toolset_value '.java.default')
-    jdkVersionsToInstall=($(get_toolset_value ".java.versions[]"))
+defaultVersion=$(get_toolset_value '.java.default')
+jdkVersionsToInstall=($(get_toolset_value ".java.versions[]"))
 
-    for jdkVersionToInstall in ${jdkVersionsToInstall[@]}; do
-        install_open_jdk ${jdkVersionToInstall}
+for jdkVersionToInstall in ${jdkVersionsToInstall[@]}; do
+    install_open_jdk ${jdkVersionToInstall}
 
-        if [[ ${jdkVersionToInstall} == ${defaultVersion} ]]
-        then
-            create_java_environment_variable ${jdkVersionToInstall} True
-        else
-            create_java_environment_variable ${jdkVersionToInstall} False
-        fi
-    done
-fi
+    if [[ ${jdkVersionToInstall} == ${defaultVersion} ]]
+    then
+        create_java_environment_variable ${jdkVersionToInstall} True
+    else
+        create_java_environment_variable ${jdkVersionToInstall} False
+    fi
+done
 
 # Install Ant
 apt-get install -y --no-install-recommends ant ant-optional

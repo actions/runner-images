@@ -22,4 +22,8 @@ Describe "Git" {
     It "GCM_INTERACTIVE environment variable should be equal Never" {
         $env:GCM_INTERACTIVE | Should -BeExactly Never
     }
+
+    It "GIT_CLONE_PROTECTION_ACTIVE environment variable should be equal false" {
+        $env:GIT_CLONE_PROTECTION_ACTIVE | Should -BeExactly false
+    }
 }

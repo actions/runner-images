@@ -2,12 +2,12 @@
 ################################################################################
 ##  File:  configure-apt-mock.sh
 ##  Desc:  A temporary workaround for https://github.com/Azure/azure-linux-extensions/issues/1238.
-##         Cleaned up during configure-cleanup.sh.
+##         Cleaned up during cleanup.sh.
 ################################################################################
 
 prefix=/usr/local/bin
 
-for real_tool in /usr/bin/apt /usr/bin/apt-get /usr/bin/apt-fast /usr/bin/apt-key; do
+for real_tool in /usr/bin/apt /usr/bin/apt-get /usr/bin/apt-key; do
     tool=$(basename $real_tool)
     cat >$prefix/$tool <<EOT
 #!/bin/sh

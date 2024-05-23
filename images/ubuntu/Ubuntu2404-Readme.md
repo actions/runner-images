@@ -1,7 +1,12 @@
+| Announcements |
+|-|
+| [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
+***
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
 - Kernel Version: 6.8.0-1007-azure
-- Image Version: 20240430.1.0
+- Image Version: 20240516.4.0
 - Systemd version: 255.4-1ubuntu8
 
 ## Installed Software
@@ -15,7 +20,7 @@
 - GNU C++: 12.3.0, 13.2.0, 14.0.1
 - GNU Fortran: 12.3.0, 13.2.0, 14.0.1
 - Julia 1.10.3
-- Node.js 20.12.2
+- Node.js 20.13.1
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -23,14 +28,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.14.4
-- Homebrew 4.2.20
+- Homebrew 4.3.0
 - Miniconda 24.3.0
-- Npm 10.5.0
+- Npm 10.5.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit c591ac646)
+- Vcpkg (build from commit 66a252f70)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -50,53 +55,67 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.7
-- Lerna 8.1.2
+- Lerna 8.1.3
 - Maven 3.8.8
 
 ### Tools
 - Ansible 2.16.6
 - apt-fast 1.10.0
 - AzCopy 10.24.0 - available by `azcopy` and `azcopy10` aliases
-- Bicep 0.26.170
-- CMake 3.29.2
-- CodeQL Action Bundle 2.17.1
-- Docker Amazon ECR Credential Helper 0.7.1
+- Bazel 7.1.2
+- Bazelisk 1.19.0
+- Bicep 0.27.1
+- Buildah 1.33.7
+- CMake 3.29.3
+- CodeQL Action Bundle 2.17.2
+- Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.0
 - Docker-Buildx 0.14.0
 - Docker Client 26.1.0
 - Docker Server 26.1.0
-- Git 2.43.2
+- Fastlane 2.220.0
+- Git 2.45.1
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
-- Kind 0.22.0
-- Kubectl 1.30.0
+- Kind 0.23.0
+- Kubectl 1.30.1
 - Kustomize 5.4.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
-- Minikube 1.33.0
+- Minikube 1.33.1
 - n 9.2.3
 - Newman 6.1.2
 - OpenSSL 3.0.13-0ubuntu3
 - Parcel 2.12.0
-- Pulumi 3.114.0
+- Podman 4.9.3
+- Pulumi 3.116.1
+- Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
-- yq 4.43.1
+- yq 4.44.1
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.15.42
+- AWS CLI 2.15.51
 - AWS CLI Session Manager Plugin 1.2.553.0
 - AWS SAM CLI 1.116.0
 - Azure CLI 2.60.0
-- Azure CLI (azure-devops) 1.0.0
-- GitHub CLI 2.49.0
+- Azure CLI (azure-devops) 1.0.1
+- GitHub CLI 2.49.2
+
+### Java
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.412+8           | JAVA_HOME_8_X64      |
+| 11.0.23+9           | JAVA_HOME_11_X64     |
+| 17.0.11+9 (default) | JAVA_HOME_17_X64     |
+| 21.0.3+9            | JAVA_HOME_21_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.7.4
+- Composer 2.7.6
 - PHPUnit 8.5.38
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -104,24 +123,24 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Haskell Tools
 - Cabal 3.10.3.0
-- GHC 9.8.2
+- GHC 9.10.1
 - GHCup 0.1.22.0
-- Stack 2.15.5
+- Stack 2.15.7
 
 ### Rust Tools
-- Cargo 1.77.2
-- Rust 1.77.2
-- Rustdoc 1.77.2
-- Rustup 1.27.0
+- Cargo 1.78.0
+- Rust 1.78.0
+- Rustdoc 1.78.0
+- Rustup 1.27.1
 
 #### Packages
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 124.0.6367.118
-- ChromeDriver 124.0.6367.91
-- Chromium 124.0.6367.0
-- Selenium server 4.20.0
+- Google Chrome 125.0.6422.60
+- ChromeDriver 125.0.6422.60
+- Chromium 125.0.6422.0
+- Selenium server 4.21.0
 
 #### Environment variables
 | Name              | Value                                 |
@@ -132,14 +151,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.104
+- .NET Core SDK: 8.0.300
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.2
+- PostgreSQL 16.3
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -155,12 +174,34 @@ MySQL service is disabled by default.
 Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
 ```
 
+### Cached Tools
+
+#### Go
+- 1.20.14
+- 1.21.10
+- 1.22.3
+
+#### Node.js
+- 16.20.2
+- 18.20.2
+- 20.13.1
+
+#### Python
+- 3.9.19
+- 3.10.14
+- 3.11.9
+- 3.12.3
+
+#### PyPy
+- 3.9.19 [PyPy 7.3.16]
+- 3.10.14 [PyPy 7.3.16]
+
 ### PowerShell Tools
 - PowerShell 7.4.2
 
 #### PowerShell Modules
 - Az: 11.5.0
-- Microsoft.Graph: 2.18.0
+- Microsoft.Graph: 2.19.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.22.0
 
@@ -262,3 +303,4 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.6.1+really5.4.5-1   |
 | zip                    | 3.0-13build1          |
 | zsync                  | 0.6.2-5build1         |
+

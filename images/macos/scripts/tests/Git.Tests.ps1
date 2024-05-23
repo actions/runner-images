@@ -9,4 +9,7 @@ Describe "Git" {
     It "git lfs is installed" -Skip:($os.IsBigSur) {
         "git lfs version" | Should -ReturnZeroExitCode
     }
+    It "GIT_CLONE_PROTECTION_ACTIVE environment variable should be equal false" {
+        $env:GIT_CLONE_PROTECTION_ACTIVE | Should -BeExactly false
+    }
 }

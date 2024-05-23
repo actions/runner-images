@@ -118,7 +118,7 @@ Describe "Ansible" {
     }
 }
 
-Describe "Bazel" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Bazel" {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bazel" }
         @{ ToolName = "bazelisk" }
@@ -244,6 +244,10 @@ Describe "Git" {
     It "git-ftp" {
         "git-ftp --version" | Should -ReturnZeroExitCode
     }
+
+    It "GIT_CLONE_PROTECTION_ACTIVE environment variable should be equal false" {
+        $env:GIT_CLONE_PROTECTION_ACTIVE | Should -BeExactly false
+    }
 }
 
 Describe "Git-lfs" {
@@ -329,7 +333,7 @@ Describe "Phantomjs" -Skip:(-not (Test-IsUbuntu20)) {
     }
 }
 
-Describe "Containers" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Containers" {
     $testCases = @("podman", "buildah", "skopeo") | ForEach-Object { @{ContainerCommand = $_} }
 
     It "<ContainerCommand>" -TestCases $testCases {

@@ -6,7 +6,12 @@
             "platform" : "linux",
             "platform_version": "24.04",
             "arch": "x64",
-            "versions": []
+            "versions": [
+                "3.9.*",
+                "3.10.*",
+                "3.11.*",
+                "3.12.*"
+            ]
         },
         {
             "name": "PyPy",
@@ -22,15 +27,23 @@
             "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
             "platform" : "linux",
             "arch": "x64",
-            "versions": []
+            "versions": [
+                "16.*",
+                "18.*",
+                "20.*"
+            ]
         },
         {
             "name": "go",
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "arch": "x64",
             "platform" : "linux",
-            "versions": [],
-            "default": "*"
+            "versions": [
+                "1.20.*",
+                "1.21.*",
+                "1.22.*"
+            ],
+            "default": "1.22.*"
         },
         {
             "name": "Ruby",
@@ -48,6 +61,8 @@
         }
     ],
     "java": {
+        "default": "17",
+        "versions": [ "8", "11", "17", "21"],
         "maven": "3.8.8"
     },
     "android": {
@@ -78,11 +93,8 @@
     "azureModules": [
         {
             "name": "az",
-            "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
                 "11.5.0"
-            ],
-            "zip_versions": [
             ]
         }
     ],
@@ -110,6 +122,7 @@
             "gnupg2",
             "iproute2",
             "iputils-ping",
+            "libyaml-dev",
             "libtool",
             "libssl-dev",
             "locales",
@@ -206,9 +219,13 @@
     ],
     "dotnet": {
         "aptPackages": [
+            "dotnet-sdk-6.0",
+            "dotnet-sdk-7.0",
             "dotnet-sdk-8.0"
         ],
         "versions": [
+            "6.0",
+            "7.0",
             "8.0"
         ],
         "tools": [
@@ -221,7 +238,7 @@
             "17",
             "18"
         ],
-        "default_version": "17"
+        "default_version": "18"
     },
     "gcc": {
         "versions": [
