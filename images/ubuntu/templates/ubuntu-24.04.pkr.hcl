@@ -387,12 +387,12 @@ provisioner "shell" {
 
   provisioner "file" {
     destination = "/tmp/"
-    source      = "${path.root}/../assets/ubuntu2204.conf"
+    source      = "${path.root}/../assets/ubuntu2404.conf"
   }
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["mkdir -p /etc/vsts", "cp /tmp/ubuntu2204.conf /etc/vsts/machine_instance.conf"]
+    inline          = ["mkdir -p /etc/vsts", "cp /tmp/ubuntu2404.conf /etc/vsts/machine_instance.conf"]
   }
 
   provisioner "shell" {
