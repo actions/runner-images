@@ -8,7 +8,7 @@ Stop-Service -Name w3svc
 
 # Install latest apache in chocolatey
 $installDir = "C:\tools"
-Install-ChocoPackage apache-httpd -ArgumentList "--force", "--params", "/installLocation:$installDir /port:80"
+Install-ChocoPackage apache-httpd -ArgumentList "--force", "--params", "/installLocation:$installDir /port:8080"
 
 # Stop and disable Apache service
 Stop-Service -Name Apache
