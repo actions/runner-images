@@ -27,13 +27,7 @@ sudo apt-get update -y && sudo apt-get install -y kubectl
 rm -f /etc/apt/sources.list.d/kubernetes.list
 
 # Install Helm
-# Temporary pin version v3.14.4 due to strange release of v3.15.0
-helm_version="v3.14.4"
-download_with_retry "https://get.helm.sh/helm-$helm_version-linux-amd64.tar.gz" /tmp/helm.tar.gz
-mkdir -p /tmp/helm
-tar xzf /tmp/helm.tar.gz -C /tmp/helm
-cp /tmp/helm/linux-amd64/helm /usr/local/bin/helm
-chmod +x /usr/local/bin/helm
+curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
 # Download minikube
 curl -fsSL -O https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
