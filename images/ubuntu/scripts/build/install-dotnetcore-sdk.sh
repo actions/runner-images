@@ -63,13 +63,15 @@ apt-get update
 sdks=()
 for version in ${dotnet_versions[@]}; do
     release_url="https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${version}/releases.json"
-    releases=$(cat "$(download_with_retry "$release_url")")
-    if [[ $version == "6.0" ]]; then
-        sdks=("${sdks[@]}" $(echo "${releases}" | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))'))
-    else
-        sdks=("${sdks[@]}" $(echo "${releases}" | jq -r '.releases[].sdk.version | select(contains("preview") or contains("rc") | not)'))
-        sdks=("${sdks[@]}" $(echo "${releases}" | jq -r '.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not)'))
-    fi
+    releases=$(download_with_retry "$release_url")
+
+    # Extract SDK versions from the releases metadata
+    sdk_versions=($(echo "$releases" | jq -r '.releases[].sdk.version | select(contains("preview") or contains("rc") | not)'))
+    sdks+=("${sdk_versions[@]}")
+
+    # Extract additional SDK versions from the releases metadata
+    additional_sdks=($(echo "$releases" | jq -r '.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not)'))
+    sdks+=("${additional_sdks[@]}")
 done
 
 sorted_sdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -r | uniq -w 5)
