@@ -188,6 +188,11 @@ build {
     script          = "${path.root}/../scripts/build/configure-apt-mock.sh"
   }
 
+  provisioner "file" {
+    destination = "${var.helper_script_folder}"
+    source      = "${path.root}/../scripts/helpers"
+  }
+
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
@@ -203,10 +208,10 @@ build {
     script          = "${path.root}/../scripts/build/configure-limits.sh"
   }
 
-  provisioner "file" {
-    destination = "${var.helper_script_folder}"
-    source      = "${path.root}/../scripts/helpers"
-  }
+  // provisioner "file" {
+  //   destination = "${var.helper_script_folder}"
+  //   source      = "${path.root}/../scripts/helpers"
+  // }
 
   provisioner "file" {
     destination = "${var.installer_script_folder}"
@@ -385,15 +390,15 @@ build {
     scripts          = ["${path.root}/../scripts/build/configure-system.sh"]
   }
 
-  provisioner "file" {
-    destination = "/tmp/"
-    source      = "${path.root}/../assets/ubuntu2404.conf"
-  }
+  // provisioner "file" {
+  //   destination = "/tmp/"
+  //   source      = "${path.root}/../assets/ubuntu2404.conf"
+  // }
 
-  provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["mkdir -p /etc/vsts", "cp /tmp/ubuntu2404.conf /etc/vsts/machine_instance.conf"]
-  }
+  // provisioner "shell" {
+  //   execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+  //   inline          = ["mkdir -p /etc/vsts", "cp /tmp/ubuntu2404.conf /etc/vsts/machine_instance.conf"]
+  // }
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
