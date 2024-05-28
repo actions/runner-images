@@ -19,6 +19,6 @@ external_hash=$(get_checksum_from_url "$hash_url" "linux_amd64.deb" "SHA256")
 use_checksum_comparison "$gh_cli_deb_path" "$external_hash"
 
 # Install GitHub CLI
-apt install "$gh_cli_deb_path"
+apt-get install "$gh_cli_deb_path"
 
 invoke_tests "CLI.Tools" "GitHub CLI"
