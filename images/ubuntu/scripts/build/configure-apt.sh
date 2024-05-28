@@ -4,6 +4,8 @@
 ##  Desc:  Configure apt, install jq and apt-fast packages.
 ################################################################################
 
+source $HELPER_SCRIPTS/os.sh
+
 # Stop and disable apt-daily upgrade services;
 systemctl stop apt-daily.timer
 systemctl disable apt-daily.timer

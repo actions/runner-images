@@ -119,6 +119,9 @@ $buildToolsList = Get-AndroidBuildToolPackages `
     -minVersion $androidToolset.build_tools_min_version
 Install-AndroidSDKPackages $buildToolsList
 
+# Install Android Emulator
+Install-AndroidSDKPackages "emulator"
+
 # Install extras, add-ons and additional tools
 Write-Host "Installing Android SDK extras, add-ons and additional tools..."
 Install-AndroidSDKPackages ($androidToolset.extras | ForEach-Object { "extras;$_" })
