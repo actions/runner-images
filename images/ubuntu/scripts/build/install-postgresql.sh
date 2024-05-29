@@ -20,7 +20,7 @@ toolset_version=$(get_toolset_value '.postgresql.version')
 # Install PostgreSQL
 echo "Install PostgreSQL"
 apt update
-apt install postgresql-$toolset_version
+apt-get install postgresql-$toolset_version
 
 echo "Install libpq-dev"
 apt-get install libpq-dev

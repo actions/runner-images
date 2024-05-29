@@ -21,7 +21,7 @@ curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${GPG_FINGER
 echo "deb $REPO_URL $(lsb_release -cs) main" > $REPO_PATH
 
 apt-get update
-apt-get install --target-release 'o=LP-PPA-mozillateam' -y firefox
+apt-get install --target-release 'o=LP-PPA-mozillateam' firefox
 rm $REPO_PATH
 
 # Document apt source repo's
