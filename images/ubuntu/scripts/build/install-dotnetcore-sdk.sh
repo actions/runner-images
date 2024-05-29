@@ -48,7 +48,7 @@ for latest_package in ${latest_dotnet_packages[@]}; do
     echo "Determining if .NET Core ($latest_package) is installed"
     if ! dpkg -S $latest_package &> /dev/null; then
         echo "Could not find .NET Core ($latest_package), installing..."
-        apt-get install $latest_package -y
+        apt-get install $latest_package
     else
         echo ".NET Core ($latest_package) is already installed"
     fi

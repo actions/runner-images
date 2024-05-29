@@ -14,7 +14,7 @@ if is_ubuntu22; then
     echo "deb http://archive.ubuntu.com/ubuntu/ focal-security main" | tee "${focal_list}"
     apt-get update --quiet
 
-    apt-get install --no-install-recommends --yes libssl1.1
+    apt-get install --no-install-recommends libssl1.1
 
     rm "${focal_list}"
     apt-get update --quiet

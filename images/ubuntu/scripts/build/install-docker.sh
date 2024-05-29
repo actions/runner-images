@@ -24,10 +24,10 @@ components=$(get_toolset_value '.docker.components[] .package')
 for package in $components; do
     version=$(get_toolset_value ".docker.components[] | select(.package == \"$package\") | .version")
     if [[ $version == "latest" ]]; then
-        apt-get install -y --no-install-recommends "$package"
+        apt-get install --no-install-recommends "$package"
     else
         version_string=$(apt-cache madison "$package" | awk '{ print $3 }' | grep "$version" | grep "$os_codename" | head -1)
-        apt-get install -y --no-install-recommends "${package}=${version_string}"
+        apt-get install --no-install-recommends "${package}=${version_string}"
     fi
 done
 
