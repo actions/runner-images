@@ -1,11 +1,10 @@
 | Announcements |
 |-|
-| [[Windows-2022] Multiple VC Build Tools will be removed on May, 13](https://github.com/actions/runner-images/issues/9701) |
 | [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
 ***
 # Windows Server 2019
-- OS Version: 10.0.17763 Build 5820
-- Image Version: 20240514.1.0
+- OS Version: 10.0.17763 Build 5830
+- Image Version: 20240526.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -16,9 +15,9 @@
 - Bash 5.2.26(1)-release
 - Go 1.21.10
 - Julia 1.10.3
-- Kotlin 1.9.24
+- Kotlin 2.0.0
 - LLVM 16.0.6
-- Node 18.20.2
+- Node 18.20.3
 - Perl 5.32.1
 - PHP 8.3.7
 - Python 3.7.9
@@ -27,14 +26,14 @@
 ### Package Management
 - Chocolatey 2.2.2
 - Composer 2.7.6
-- Helm 3.14.4
-- Miniconda 24.3.0 (pre-installed on the image but not added to PATH)
-- NPM 10.5.0
-- NuGet 6.9.1.3
+- Helm 3.15.0
+- Miniconda 24.4.0 (pre-installed on the image but not added to PATH)
+- NPM 10.7.0
+- NuGet 6.10.0.107
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit bd2b54836)
+- Vcpkg (build from commit 01f602195)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -50,7 +49,7 @@
 - sbt 1.10.0
 
 ### Tools
-- 7zip 23.01
+- 7zip 24.05
 - aria2 1.37.0
 - azcopy 10.24.0
 - Bazel 7.1.2
@@ -58,20 +57,20 @@
 - Bicep 0.27.1
 - Cabal 3.10.3.0
 - CMake 3.29.3
-- CodeQL Action Bundle 2.17.2
+- CodeQL Action Bundle 2.17.3
 - Docker 24.0.7
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.23.3
-- Docker-wincred 0.8.1
+- Docker-wincred 0.8.2
 - ghc 9.10.1
 - Git 2.45.1.windows.1
 - Git LFS 3.5.1
-- Google Cloud CLI 476.0.0
+- Google Cloud CLI 477.0.0
 - ImageMagick 7.1.1-29
 - InnoSetup 6.2.2
 - jq 1.7.1
 - Kind 0.23.0
-- Kubectl 1.30.0
+- Kubectl 1.30.1
 - Mercurial 5.0
 - gcc 8.1.0
 - gdb 8.1
@@ -79,9 +78,9 @@
 - Newman 6.1.2
 - NSIS 3.10
 - OpenSSL 1.1.1w
-- Packer 1.10.2
+- Packer 1.10.3
 - Parcel 2.12.0
-- Pulumi 3.116.0
+- Pulumi 3.117.0
 - R 4.4.0
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.15.7
@@ -94,12 +93,12 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.205
-- AWS CLI 2.15.48
-- AWS SAM CLI 1.116.0
+- Alibaba Cloud CLI 3.0.207
+- AWS CLI 2.15.58
+- AWS SAM CLI 1.117.0
 - AWS Session Manager CLI 1.2.553.0
-- Azure CLI 2.60.0
-- Azure DevOps CLI extension 1.0.0
+- Azure CLI 2.61.0
+- Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 6.53.0
 - GitHub CLI 2.49.2
 
@@ -118,14 +117,14 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 124.0.6367.208
-- Chrome Driver 124.0.6367.207
-- Microsoft Edge 124.0.2478.97
-- Microsoft Edge Driver 124.0.2478.97
+- Google Chrome 125.0.6422.113
+- Chrome Driver 125.0.6422.78
+- Microsoft Edge 125.0.2535.67
+- Microsoft Edge Driver 125.0.2535.67
 - Mozilla Firefox 126.0
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
-- Selenium server 4.20.0
+- Selenium server 4.21.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -172,7 +171,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 16.20.2
-- 18.20.2
+- 18.20.3
 - 20.13.1
 
 #### Python
@@ -215,7 +214,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 5.0.26.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.16.0
+- Azure CosmosDb Emulator 2.14.18.0
 - DacFx 162.2.111.2
 - MySQL 5.7.44.0
 - SQL OLEDB Driver 18.6.7.0
@@ -476,10 +475,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft Visual C++ 2013 Minimum Runtime    | x86          | 12.0.21005  |
 | Microsoft Visual C++ 2019 Debug Runtime      | x64          | 14.29.30153 |
 | Microsoft Visual C++ 2019 Debug Runtime      | x86          | 14.29.30153 |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.38.33135 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.38.33135 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.38.33135 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.38.33135 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.40.33810 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.40.33810 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.40.33810 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.40.33810 |
 
 #### Installed Windows SDKs
 - 10.0.14393.0
@@ -509,7 +508,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.579
+- AWSPowershell: 4.1.587
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.19.0
@@ -552,9 +551,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:21e238b7a784c14fb02717859a9ac0cb39109c15e1a340400d3e3c2cccbc081d  | 2024-04-09 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:504e7de522e227c46da6408894c19a4454b9979ab06b8577dae1fa5885795450  | 2024-04-09 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:46e393cbb7c915c504a810639e35f40cb516f8e886e4cbcf8a3b49f86705a070  | 2024-04-09 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:b7be163b2b65da14d4552cc03037134a89d9d739200e0ffeb84bd03e378e0d7a  | 2024-05-14 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:a49ce9e1f3138559b80d570e1607df34306bb4c5e36b99e4e20a36c34d3a8c2e  | 2024-05-14 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:0d1c957268d62a7c23e93d5502a858785dd15f36fbc09a534ca3135dd530e2fd  | 2024-05-21 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:6f62243adf70b086613cb4b4596c276fe73bab1e5152037eb5b156c915886be8  | 2024-05-10 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:3c97a5c1c32ddb346c190f00a588da6e682a9a8160869f4969edfd7c6e4d1c03  | 2024-05-10 |
 
