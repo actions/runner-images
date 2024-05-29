@@ -20,7 +20,7 @@ if [[ -n "$gems_to_install" ]]; then
 fi
 
 # Install Ruby requirements
-apt-get install -y libz-dev openssl libssl-dev
+apt-get install libz-dev openssl libssl-dev
 
 echo "Install Ruby from toolset..."
 package_tar_names=$(curl -fsSL "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
