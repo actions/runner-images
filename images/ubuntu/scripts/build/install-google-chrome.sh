@@ -37,7 +37,7 @@ get_chromium_revision() {
 # Download and install Google Chrome
 CHROME_DEB_URL="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
 chrome_deb_path=$(download_with_retry "$CHROME_DEB_URL")
-apt install "$chrome_deb_path" -f
+apt-get install "$chrome_deb_path" -f
 set_etc_environment_variable "CHROME_BIN" "/usr/bin/google-chrome"
 
 # Remove Google Chrome repo

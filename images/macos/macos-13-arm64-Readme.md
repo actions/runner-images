@@ -1,7 +1,7 @@
 # macOS 13
-- OS Version: macOS 13.6.6 (22G630)
+- OS Version: macOS 13.6.7 (22G720)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240514.3
+- Image Version: 20240524.2
 
 ## Installed Software
 
@@ -12,11 +12,11 @@
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 11 (Homebrew GCC 11.4.0) - available by `gcc-11` alias
 - GCC 12 (Homebrew GCC 12.3.0) - available by `gcc-12` alias
-- GCC 13 (Homebrew GCC 13.2.0) - available by `gcc-13` alias
+- GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
-- GNU Fortran 13 (Homebrew GCC 13.2.0) - available by `gfortran-13` alias
-- Kotlin 1.9.24-release-822
+- GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
+- Kotlin 2.0.0-release-341
 - Mono 6.12.0.188
 - Node.js 20.13.1
 - Perl 5.38.2
@@ -27,13 +27,13 @@
 - Bundler 2.5.10
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Homebrew 4.3.0
+- Homebrew 4.3.1
 - NPM 10.5.2
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
 - Pipx 1.5.0
 - RubyGems 3.5.10
-- Yarn 1.22.19
+- Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.14
@@ -62,16 +62,16 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.15.50
-- AWS SAM CLI 1.116.0
+- AWS CLI 2.15.58
+- AWS SAM CLI 1.117.0
 - AWS Session Manager CLI 1.2.553.0
-- Azure CLI 2.60.0
-- Azure CLI (azure-devops) 1.0.0
+- Azure CLI 2.61.0
+- Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.27.1
 - Cmake 3.29.3
-- CodeQL Action Bundle 2.17.2
+- CodeQL Action Bundle 2.17.3
 - Fastlane 2.220.0
-- SwiftFormat 0.53.9
+- SwiftFormat 0.53.10
 - Xcbeautify 2.3.1
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.4.1
@@ -79,12 +79,12 @@
 ### Linters
 
 ### Browsers
-- Safari 17.4.1 (18618.1.15.111.8)
-- SafariDriver 17.4.1 (18618.1.15.111.8)
-- Google Chrome 124.0.6367.208
-- Google Chrome for Testing 124.0.6367.207
-- ChromeDriver 124.0.6367.207
-- Selenium server 4.20.0
+- Safari 17.5 (18618.2.12.111.5)
+- SafariDriver 17.5 (18618.2.12.111.5)
+- Google Chrome 125.0.6422.113
+- Google Chrome for Testing 125.0.6422.78
+- ChromeDriver 125.0.6422.78
+- Selenium server 4.21.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -110,7 +110,7 @@
 
 #### Node.js
 - 16.20.1
-- 18.20.2
+- 18.20.3
 - 20.13.1
 
 #### Go
@@ -132,7 +132,7 @@
 - PowerShell 7.4.2
 
 #### PowerShell Modules
-- Az: 11.6.0
+- Az: 12.0.0
 - Pester: 5.5.0
 - PSScriptAnalyzer: 1.22.0
 
@@ -213,7 +213,7 @@
 | Package Name               | Version                                                                                                                                               |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                  |
-| Android Emulator           | 34.2.13                                                                                                                                               |
+| Android Emulator           | 34.2.14                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                |

@@ -13,8 +13,7 @@ GIT_REPO="ppa:git-core/ppa"
 ## Install git
 add-apt-repository $GIT_REPO -y
 apt-get update
-apt-get install git -y
-git --version
+apt-get install git
 
 # Git version 2.35.2 introduces security fix that breaks action\checkout https://github.com/actions/checkout/issues/760
 cat <<EOF >> /etc/gitconfig
@@ -27,7 +26,7 @@ set_etc_environment_variable "GIT_CLONE_PROTECTION_ACTIVE" 'false'
 reload_etc_environment
 
 # Install git-ftp
-apt-get install git-ftp -y
+apt-get install git-ftp
 
 # Remove source repo's
 add-apt-repository --remove $GIT_REPO

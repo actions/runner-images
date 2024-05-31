@@ -14,7 +14,7 @@ unzip -qq "$awscliv2_archive_path" -d /tmp
 /tmp/aws/install -i /usr/local/aws-cli -b /usr/local/bin
 
 smplugin_deb_path=$(download_with_retry "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb")
-apt install "$smplugin_deb_path"
+apt-get install "$smplugin_deb_path"
 
 # Download the latest aws sam cli release
 aws_sam_cli_archive_name="aws-sam-cli-linux-x86_64.zip"
