@@ -37,6 +37,9 @@ EOF
 # Uninstall unattended-upgrades
 apt-get purge unattended-upgrades
 
+# Uninstall needrestart
+is_ubuntu24 && apt-get purge needrestart
+
 echo 'APT sources'
 cat /etc/apt/sources.list
 
