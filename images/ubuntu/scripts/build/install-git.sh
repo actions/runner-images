@@ -6,7 +6,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
-source $HELPER_SCRIPTS/etc-environment.sh
 
 GIT_REPO="ppa:git-core/ppa"
 
@@ -20,10 +19,6 @@ cat <<EOF >> /etc/gitconfig
 [safe]
         directory = *
 EOF
-
-# Revert to the old behaviour and avoid the Git LFS problems (https://github.blog/2024-05-14-securing-git-addressing-5-new-vulnerabilities/)
-set_etc_environment_variable "GIT_CLONE_PROTECTION_ACTIVE" 'false'
-reload_etc_environment
 
 # Install git-ftp
 apt-get install git-ftp
