@@ -16,7 +16,6 @@
 - Go 1.21.10
 - Julia 1.10.3
 - Kotlin 2.0.0
-- LLVM 16.0.6
 - Node 18.20.3
 - Perl 5.32.1
 - PHP 8.3.7
