@@ -6,7 +6,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.4 LTS
 - Kernel Version: 6.5.0-1021-azure
-- Image Version: 20240526.1.0
+- Image Version: 20240603.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -32,15 +32,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.1
-- Homebrew 4.3.1
+- Homebrew 4.3.3
 - Miniconda 24.4.0
 - Npm 10.7.0
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.5.0
+- Pipx 1.6.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 01f602195)
+- Vcpkg (build from commit 67cc1677c)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,7 +59,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 8.7
+- Gradle 8.8
 - Lerna 8.1.3
 - Maven 3.8.8
 - Sbt 1.10.0
@@ -67,12 +67,12 @@ to accomplish this.
 ### Tools
 - Ansible 2.16.7
 - apt-fast 1.10.0
-- AzCopy 10.24.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.25.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.1.2
 - Bazelisk 1.19.0
 - Bicep 0.27.1
 - Buildah 1.23.1
-- CMake 3.29.3
+- CMake 3.29.4
 - CodeQL Action Bundle 2.17.3
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v1 1.29.2
@@ -81,7 +81,7 @@ to accomplish this.
 - Docker Client 24.0.9
 - Docker Server 24.0.9
 - Fastlane 2.220.0
-- Git 2.45.1
+- Git 2.45.2
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
@@ -98,10 +98,10 @@ to accomplish this.
 - Newman 6.1.2
 - nvm 0.39.7
 - OpenSSL 3.0.2-0ubuntu1.15
-- Packer 1.10.3
+- Packer 1.11.0
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.117.0
+- Pulumi 3.118.0
 - R 4.4.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -113,17 +113,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.207
-- AWS CLI 2.15.58
-- AWS CLI Session Manager Plugin 1.2.553.0
-- AWS SAM CLI 1.117.0
+- AWS CLI 2.16.0
+- AWS CLI Session Manager Plugin 1.2.633.0
+- AWS SAM CLI 1.118.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.49.2
-- Google Cloud CLI 477.0.0
-- Netlify CLI 17.23.8
-- OpenShift CLI 4.15.14
-- ORAS CLI 1.1.0
-- Vercel CLI 34.2.3
+- GitHub CLI 2.50.0
+- Google Cloud CLI 478.0.0
+- Netlify CLI 17.25.0
+- OpenShift CLI 4.15.15
+- ORAS CLI 1.2.0
+- Vercel CLI 34.2.4
 
 ### Java
 | Version             | Environment Variable |
@@ -162,13 +162,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 125.0.6422.112
-- ChromeDriver 125.0.6422.78
+- Google Chrome 125.0.6422.141
+- ChromeDriver 125.0.6422.141
 - Chromium 125.0.6422.0
-- Microsoft Edge 125.0.2535.67
-- Microsoft Edge WebDriver 125.0.2535.67
+- Microsoft Edge 125.0.2535.79
+- Microsoft Edge WebDriver 125.0.2535.79
 - Selenium server 4.21.0
-- Mozilla Firefox 126.0
+- Mozilla Firefox 126.0.2
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -180,7 +180,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.422, 7.0.409, 8.0.300
+- .NET Core SDK: 6.0.423, 7.0.410, 8.0.301
 - nbgv 3.6.133+2d32d93cb1
 
 ### Databases
@@ -217,7 +217,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 16.20.2
 - 18.20.3
-- 20.13.1
+- 20.14.0
 
 #### Python
 - 3.7.17
@@ -234,7 +234,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.14 [PyPy 7.3.16]
 
 #### Ruby
-- 3.1.5
+- 3.1.6
 
 ### PowerShell Tools
 - PowerShell 7.4.2
@@ -287,8 +287,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
 | node:18              | sha256:b08b1356559e2e9945f47ded630c9eb9d4e3ca04f111ab20d55652442cf14aee  | 2024-05-21 |
 | node:18-alpine       | sha256:5069da655539e2e986ce3fd1757f24a41b846958566c89ff4a48874434d73749  | 2024-05-22 |
-| node:20              | sha256:d6925dc84f8c0d1c1f8df4ea6a9a54e57d430241cb734b1b0c45ed6d26e8e9c0  | 2024-05-14 |
-| node:20-alpine       | sha256:a7b980c958bfe4d84ee9263badd95a40c8bb50ad5afdb87902c187fefaef0e24  | 2024-05-22 |
+| node:20              | sha256:ab71b9da5ba19445dc5bb76bf99c218941db2c4d70ff4de4e0d9ec90920bfe3f  | 2024-05-28 |
+| node:20-alpine       | sha256:928b24aaadbd47c1a7722c563b471195ce54788bf8230ce807e1dd500aec0549  | 2024-05-28 |
 | ubuntu:20.04         | sha256:874aca52f79ae5f8258faff03e10ce99ae836f6e7d2df6ecd3da5c1cad3a912b  | 2024-04-27 |
 | ubuntu:22.04         | sha256:a6d2b38300ce017add71440577d5b0a90460d0e57fd7aec21dd0d1b0761bbfb2  | 2024-04-27 |
 
@@ -326,7 +326,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.7                     |
+| libc6-dev              | 2.35-0ubuntu3.8                     |
 | libcurl4               | 7.81.0-1ubuntu1.16                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.2          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -343,7 +343,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.7                     |
+| locales                | 2.35-0ubuntu3.8                     |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
