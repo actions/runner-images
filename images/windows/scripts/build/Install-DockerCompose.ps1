@@ -17,7 +17,6 @@ Add-MachinePathItem $dockerComposev1Dir
 Update-Environment
 
 Write-Host "Install-Package Docker-Compose v2"
-# Temporaty pinned to v2.23.3 due https://github.com/actions/runner-images/issues/9172
 $toolsetVersion = (Get-ToolsetContent).docker.components.compose
 $composeVersion = (Get-GithubReleasesByVersion -Repo "docker/compose" -Version "${toolsetVersion}").version
 $dockerComposev2Url = "https://github.com/docker/compose/releases/download/v${composeVersion}/docker-compose-windows-x86_64.exe"
