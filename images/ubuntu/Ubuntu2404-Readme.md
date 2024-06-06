@@ -6,7 +6,7 @@
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
 - Kernel Version: 6.8.0-1007-azure
-- Image Version: 20240516.4.0
+- Image Version: 20240604.1.0
 - Systemd version: 255.4-1ubuntu8
 
 ## Installed Software
@@ -20,22 +20,22 @@
 - GNU C++: 12.3.0, 13.2.0, 14.0.1
 - GNU Fortran: 12.3.0, 13.2.0, 14.0.1
 - Julia 1.10.3
-- Node.js 20.13.1
+- Node.js 20.14.0
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
 
 ### Package Management
 - cpan 1.64
-- Helm 3.14.4
-- Homebrew 4.3.0
-- Miniconda 24.3.0
-- Npm 10.5.2
+- Helm 3.15.1
+- Homebrew 4.3.3
+- Miniconda 24.4.0
+- Npm 10.7.0
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit 66a252f70)
+- Vcpkg (build from commit 9760ce619)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,43 +54,42 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.7
+- Gradle 8.8
 - Lerna 8.1.3
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.16.6
-- apt-fast 1.10.0
-- AzCopy 10.24.0 - available by `azcopy` and `azcopy10` aliases
+- Ansible 2.16.7
+- AzCopy 10.25.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.1.2
 - Bazelisk 1.19.0
 - Bicep 0.27.1
 - Buildah 1.33.7
-- CMake 3.29.3
-- CodeQL Action Bundle 2.17.2
+- CMake 3.29.4
+- CodeQL Action Bundle 2.17.3
 - Docker Amazon ECR Credential Helper 0.8.0
-- Docker Compose v2 2.27.0
-- Docker-Buildx 0.14.0
+- Docker Compose v2 2.27.1
+- Docker-Buildx 0.14.1
 - Docker Client 26.1.0
 - Docker Server 26.1.0
 - Fastlane 2.220.0
-- Git 2.45.1
+- Git 2.45.2
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.23.0
 - Kubectl 1.30.1
-- Kustomize 5.4.1
+- Kustomize 5.4.2
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.33.1
 - n 9.2.3
 - Newman 6.1.2
-- OpenSSL 3.0.13-0ubuntu3
+- OpenSSL 3.0.13-0ubuntu3.1
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.116.1
+- Pulumi 3.118.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -98,12 +97,12 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.15.51
-- AWS CLI Session Manager Plugin 1.2.553.0
-- AWS SAM CLI 1.116.0
-- Azure CLI 2.60.0
+- AWS CLI 2.16.0
+- AWS CLI Session Manager Plugin 1.2.633.0
+- AWS SAM CLI 1.118.0
+- Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.49.2
+- GitHub CLI 2.50.0
 
 ### Java
 | Version             | Environment Variable |
@@ -137,8 +136,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 125.0.6422.60
-- ChromeDriver 125.0.6422.60
+- Google Chrome 125.0.6422.141
+- ChromeDriver 125.0.6422.141
 - Chromium 125.0.6422.0
 - Selenium server 4.21.0
 
@@ -151,8 +150,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.300
-- nbgv 3.6.133+2d32d93cb1
+- .NET Core SDK: 8.0.105
+- nbgv 3.6.139+a9e8765620
 
 ### Databases
 - sqlite3 3.45.1
@@ -183,8 +182,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 16.20.2
-- 18.20.2
-- 20.13.1
+- 18.20.3
+- 20.14.0
 
 #### Python
 - 3.9.19
@@ -262,9 +261,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.1.0-1ubuntu6        |
 | iputils-ping           | 3:20240117-1build1    |
 | jq                     | 1.7.1-3build1         |
-| libssl-dev             | 3.0.13-0ubuntu3       |
+| libssl-dev             | 3.0.13-0ubuntu3.1     |
 | libtool                | 2.4.7-7build1         |
-| locales                | 2.39-0ubuntu8.1       |
+| libyaml-dev            | 0.2.5-1build1         |
+| locales                | 2.39-0ubuntu8.2       |
 | lz4                    | 1.9.4-1build1         |
 | m4                     | 1.4.19-4build1        |
 | make                   | 4.3-4.1build2         |
@@ -295,6 +295,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 7.1-3build2           |
 | time                   | 1.9-0.2build1         |
 | tk                     | 8.6.14build1          |
+| tree                   | 2.1.1-2ubuntu3        |
 | tzdata                 | 2024a-2ubuntu1        |
 | unzip                  | 6.0-28ubuntu4         |
 | upx                    | 4.2.2-3               |
