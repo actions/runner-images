@@ -367,7 +367,7 @@
         "version": "3.10"
     },
     "llvm": {
-        "version": "16"
+        "version": "18"
     },
     "php": {
         "version": "8.3"

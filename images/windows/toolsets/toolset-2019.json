@@ -469,7 +469,7 @@
         "version": "8.3"
     },
     "llvm": {
-        "version": "16"
+        "version": "18"
     },
     "postgresql": {
         "version": "14.12.1",
