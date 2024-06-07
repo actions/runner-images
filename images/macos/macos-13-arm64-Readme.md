@@ -1,12 +1,12 @@
 # macOS 13
 - OS Version: macOS 13.6.7 (22G720)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240524.2
+- Image Version: 20240603.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.409, 8.0.101, 8.0.204, 8.0.300
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.301
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -18,39 +18,39 @@
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - Kotlin 2.0.0-release-341
 - Mono 6.12.0.188
-- Node.js 20.13.1
+- Node.js 20.14.0
 - Perl 5.38.2
 - Python3 3.12.3
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.10
+- Bundler 2.5.11
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Homebrew 4.3.1
-- NPM 10.5.2
+- Homebrew 4.3.3
+- NPM 10.7.0
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
-- Pipx 1.5.0
-- RubyGems 3.5.10
+- Pipx 1.6.0
+- RubyGems 3.5.11
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.14
-- Apache Maven 3.9.6
-- Gradle 8.7
+- Apache Maven 3.9.7
+- Gradle 8.8
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.24.0
+- azcopy 10.25.0
 - bazel 7.1.2
 - bazelisk 1.20.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.4.0
-- Git 2.45.1
+- Git 2.45.2
 - Git LFS 3.5.1
-- GitHub CLI 2.49.2
+- GitHub CLI 2.50.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -62,9 +62,9 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.15.58
-- AWS SAM CLI 1.117.0
-- AWS Session Manager CLI 1.2.553.0
+- AWS CLI 2.16.0
+- AWS SAM CLI 1.118.0
+- AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.27.1
@@ -81,9 +81,9 @@
 ### Browsers
 - Safari 17.5 (18618.2.12.111.5)
 - SafariDriver 17.5 (18618.2.12.111.5)
-- Google Chrome 125.0.6422.113
-- Google Chrome for Testing 125.0.6422.78
-- ChromeDriver 125.0.6422.78
+- Google Chrome 125.0.6422.142
+- Google Chrome for Testing 125.0.6422.141
+- ChromeDriver 125.0.6422.141
 - Selenium server 4.21.0
 
 #### Environment variables
@@ -111,7 +111,7 @@
 #### Node.js
 - 16.20.1
 - 18.20.3
-- 20.13.1
+- 20.14.0
 
 #### Go
 - 1.20.14
@@ -213,7 +213,7 @@
 | Package Name               | Version                                                                                                                                               |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                  |
-| Android Emulator           | 34.2.14                                                                                                                                               |
+| Android Emulator           | 34.2.15                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
 | Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                |
