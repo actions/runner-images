@@ -28,27 +28,36 @@ foreach ($release in $targetReleases) {
 # Sorting and getting the last one
 $targetMinorVersions = ($minorVersions | Sort-Object)[-1]
 
-# Install latest PostgreSQL
 # In order to get rid of error messages (we know we will have them), force ErrorAction to SilentlyContinue
 $errorActionOldValue = $ErrorActionPreference
 $ErrorActionPreference = 'SilentlyContinue'
-# Starting from number 9 and going down, check if the installer is available. If yes, break the loop.
-# If an installer with $targetMinorVersions is not to be found, the $targetMinorVersions will be decreased by 1
-$increment = 9
-do {
-    $url = "https://get.enterprisedb.com/postgresql/postgresql-$toolsetVersion.$targetMinorVersions-$increment-windows-x64.exe"
-    $checkAccess = [System.Net.WebRequest]::Create($url)
-    $response = $null
-    $response = $checkAccess.GetResponse()
-    if ($response) {
-        $installerUrl = $response.ResponseUri.OriginalString
-    } elseif (!$response -and ($increment -eq 0)) {
-        $increment = 9
-        $targetMinorVersions--
-    } else {
-        $increment--
-    }
-} while (!$response)
+
+$versionMatches = $toolsetVersion | Select-String -Pattern '\d+\.\d+\.\d+'
+if ($null -ne $versionMatches) {
+    $majorVersion = ([version]$toolsetVersion).Major
+    $minorVersion = ([version]$toolsetVersion).Minor
+    $patchVersion = ([version]$toolsetVersion).Build
+    $installerUrl = "https://get.enterprisedb.com/postgresql/postgresql-$majorVersion.$minorVersion-$patchVersion-windows-x64.exe"
+} else {
+    # Install latest PostgreSQL
+    # Starting from number 9 and going down, check if the installer is available. If yes, break the loop.
+    # If an installer with $targetMinorVersions is not to be found, the $targetMinorVersions will be decreased by 1
+    $increment = 9
+    do {
+        $url = "https://get.enterprisedb.com/postgresql/postgresql-$toolsetVersion.$targetMinorVersions-$increment-windows-x64.exe"
+        $checkAccess = [System.Net.WebRequest]::Create($url)
+        $response = $null
+        $response = $checkAccess.GetResponse()
+        if ($response) {
+            $installerUrl = $response.ResponseUri.OriginalString
+        } elseif (!$response -and ($increment -eq 0)) {
+            $increment = 9
+            $targetMinorVersions--
+        } else {
+            $increment--
+        }
+    } while (!$response)
+}
 
 # Return the previous value of ErrorAction and invoke Install-Binary function
 $ErrorActionPreference = $errorActionOldValue
