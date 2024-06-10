@@ -68,3 +68,7 @@ fi
 if is_ubuntu22; then
     sed -i 's/openssl_conf = openssl_init/#openssl_conf = openssl_init/g' /etc/ssl/openssl.cnf
 fi
+
+# Disable apparmor
+systemctl is-active --quiet apparmor.service && systemctl stop apparmor.service
+systemctl disable apparmor.service
