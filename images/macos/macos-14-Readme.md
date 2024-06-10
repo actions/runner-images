@@ -1,7 +1,7 @@
 # macOS 14
 - OS Version: macOS 14.5 (23F79)
 - Kernel Version: Darwin 23.5.0
-- Image Version: 20240603.1
+- Image Version: 20240609.1
 
 ## Installed Software
 
@@ -20,7 +20,7 @@
 - Mono 6.12.0.188
 - Node.js 20.14.0
 - Perl 5.38.2
-- PHP 8.3.7
+- PHP 8.3.8
 - Python3 3.12.3
 - Ruby 3.0.7p220
 
@@ -64,14 +64,14 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.16.0
+- AWS CLI 2.16.4
 - AWS SAM CLI 1.118.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.27.1
-- Cmake 3.29.3
-- CodeQL Action Bundle 2.17.3
+- Bicep CLI 0.28.1
+- Cmake 3.29.5
+- CodeQL Action Bundle 2.17.4
 - Fastlane 2.220.0
 - SwiftFormat 0.53.10
 - Xcbeautify 2.3.1
@@ -87,8 +87,8 @@
 - Google Chrome 125.0.6422.142
 - Google Chrome for Testing 125.0.6422.141
 - ChromeDriver 125.0.6422.141
-- Microsoft Edge 125.0.2535.79
-- Microsoft Edge WebDriver 125.0.2535.79
+- Microsoft Edge 125.0.2535.92
+- Microsoft Edge WebDriver 125.0.2535.92
 - Mozilla Firefox 126.0.1
 - geckodriver 0.34.0
 - Selenium server 4.21.0
@@ -126,8 +126,8 @@
 
 #### Go
 - 1.20.14
-- 1.21.10
-- 1.22.3
+- 1.21.11
+- 1.22.4
 
 ### Rust Tools
 - Cargo 1.78.0
@@ -144,7 +144,7 @@
 
 #### PowerShell Modules
 - Az: 12.0.0
-- Pester: 5.5.0
+- Pester: 5.6.0
 - PSScriptAnalyzer: 1.22.0
 
 ### Xcode
@@ -202,8 +202,8 @@
 | visionOS 1.2                                            | xros1.2                                       | 15.4          |
 | Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
 | DriverKit 23.0                                          | driverkit23.0                                 | 15.0.1        |
 | DriverKit 23.2                                          | driverkit23.2                                 | 15.1, 15.2    |
@@ -235,7 +235,7 @@
 | Android Command Line Tools | 11.0                                                                                                                                                  |
 | Android Emulator           | 34.2.15                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                |
 | CMake                      | 3.22.1                                                                                                                                                |
