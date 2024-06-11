@@ -309,3 +309,6 @@ The scripts are copied to the image during the generation process to the followi
 - **InternetExplorerConfiguration.ps1** - turns off the Internet Explorer Enhanced Security feature;
 - **Msys2FirstLaunch.ps1** - initializes the bash user profile in MSYS2;
 - **VSConfiguration.ps1** - performs initial Visual Studio configuration.
+- run: jobs
+- run: on
+- run:OS Aplet 
