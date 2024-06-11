@@ -311,4 +311,6 @@ The scripts are copied to the image during the generation process to the followi
 - **VSConfiguration.ps1** - performs initial Visual Studio configuration.
 - run: jobs
 - run: on
-- run:OS Aplet 
+- run: OS Aplet
+- run: test
+- run: build
