@@ -1,7 +1,7 @@
 # macOS 13
 - OS Version: macOS 13.6.7 (22G720)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240603.1
+- Image Version: 20240609.1
 
 ## Installed Software
 
@@ -20,7 +20,7 @@
 - Mono 6.12.0.188
 - Node.js 20.14.0
 - Perl 5.38.2
-- PHP 8.3.7
+- PHP 8.3.8
 - Python3 3.12.3
 - Ruby 3.0.7p220
 
@@ -35,7 +35,7 @@
 - Pip3 24.0 (python 3.12)
 - Pipx 1.6.0
 - RubyGems 3.5.11
-- Vcpkg 2024 (build from commit 67cc1677c)
+- Vcpkg 2024 (build from commit ad25766ae)
 - Yarn 1.22.22
 
 ### Project Management
@@ -65,14 +65,14 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.16.0
+- AWS CLI 2.16.4
 - AWS SAM CLI 1.118.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.27.1
-- Cmake 3.29.3
-- CodeQL Action Bundle 2.17.3
+- Bicep CLI 0.28.1
+- Cmake 3.29.5
+- CodeQL Action Bundle 2.17.4
 - Fastlane 2.220.0
 - SwiftFormat 0.53.10
 - Xcbeautify 2.3.1
@@ -88,8 +88,8 @@
 - Google Chrome 125.0.6422.142
 - Google Chrome for Testing 125.0.6422.141
 - ChromeDriver 125.0.6422.141
-- Microsoft Edge 125.0.2535.79
-- Microsoft Edge WebDriver 125.0.2535.79
+- Microsoft Edge 125.0.2535.92
+- Microsoft Edge WebDriver 125.0.2535.92
 - Mozilla Firefox 126.0.1
 - geckodriver 0.34.0
 - Selenium server 4.21.0
@@ -136,8 +136,8 @@
 
 #### Go
 - 1.20.14
-- 1.21.10
-- 1.22.3
+- 1.21.11
+- 1.22.4
 
 ### Rust Tools
 - Cargo 1.78.0
@@ -154,7 +154,7 @@
 
 #### PowerShell Modules
 - Az: 12.0.0
-- Pester: 5.5.0
+- Pester: 5.6.0
 - PSScriptAnalyzer: 1.22.0
 
 ### Xcode
@@ -235,7 +235,7 @@
 | Android Command Line Tools | 11.0                                                                                                                                                  |
 | Android Emulator           | 34.2.15                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                |
 | CMake                      | 3.22.1                                                                                                                                                |
