@@ -6,7 +6,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1064-azure
-- Image Version: 20240603.1.0
+- Image Version: 20240609.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -21,7 +21,7 @@
 - Erlang rebar3 3.23.0
 - GNU C++: 10.5.0
 - GNU Fortran: 10.5.0
-- Julia 1.10.3
+- Julia 1.10.4
 - Kotlin 2.0.0-release-341
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -29,7 +29,7 @@
 - Perl 5.30.0
 - Python 3.8.10
 - Ruby 2.7.0p0
-- Swift 5.10
+- Swift 5.10.1
 
 ### Package Management
 - cpan 1.64
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.6.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit 67cc1677c)
+- Vcpkg (build from commit ad25766ae)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -72,16 +72,16 @@ to accomplish this.
 - AzCopy 10.25.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.1.2
 - Bazelisk 1.19.0
-- Bicep 0.27.1
+- Bicep 0.28.1
 - Buildah 1.22.3
-- CMake 3.29.4
-- CodeQL Action Bundle 2.17.3
+- CMake 3.29.5
+- CodeQL Action Bundle 2.17.4
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.23.3
+- Docker Compose v2 2.27.1
 - Docker-Buildx 0.14.1
-- Docker Client 24.0.9
-- Docker Server 24.0.9
+- Docker Client 26.1.3
+- Docker Server 26.1.3
 - Fastlane 2.220.0
 - Git 2.45.2
 - Git LFS 3.5.1
@@ -105,29 +105,29 @@ to accomplish this.
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.118.0
+- Pulumi 3.119.0
 - R 4.4.0
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.8.4
+- Terraform 1.8.5
 - yamllint 1.35.1
 - yq 4.44.1
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.16.0
+- AWS CLI 2.16.4
 - AWS CLI Session Manager Plugin 1.2.633.0
 - AWS SAM CLI 1.118.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.50.0
-- Google Cloud CLI 478.0.0
-- Netlify CLI 17.25.0
-- OpenShift CLI 4.15.15
+- Google Cloud CLI 479.0.0
+- Netlify CLI 17.26.1
+- OpenShift CLI 4.15.16
 - ORAS CLI 1.2.0
-- Vercel CLI 34.2.4
+- Vercel CLI 34.2.6
 
 ### Java
 | Version             | Environment Variable |
@@ -138,7 +138,7 @@ to accomplish this.
 | 21.0.3+9            | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.28, 8.2.19, 8.3.7
+- PHP: 7.4.33, 8.0.30, 8.1.29, 8.2.20, 8.3.8
 - Composer 2.7.6
 - PHPUnit 8.5.38
 ```
@@ -169,8 +169,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 125.0.6422.141
 - ChromeDriver 125.0.6422.141
 - Chromium 125.0.6422.0
-- Microsoft Edge 125.0.2535.79
-- Microsoft Edge WebDriver 125.0.2535.79
+- Microsoft Edge 125.0.2535.92
+- Microsoft Edge WebDriver 125.0.2535.92
 - Selenium server 4.21.0
 - Mozilla Firefox 126.0.2
 - Geckodriver 0.34.0
@@ -185,10 +185,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 6.0.423, 7.0.410, 8.0.301
-- nbgv 3.6.133+2d32d93cb1
+- nbgv 3.6.139+a9e8765620
 
 ### Databases
-- MongoDB 5.0.26
+- MongoDB 5.0.27
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -210,14 +210,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 162.2.111.2
+- SqlPackage 162.3.563.1
 
 ### Cached Tools
 
 #### Go
 - 1.20.14
-- 1.21.10
-- 1.22.3
+- 1.21.11
+- 1.22.4
 
 #### Node.js
 - 16.20.2
@@ -251,7 +251,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 11.3.1
 - MarkdownPS: 1.9
 - Microsoft.Graph: 2.19.0
-- Pester: 5.5.0
+- Pester: 5.6.0
 - PSScriptAnalyzer: 1.22.0
 
 ### Web Servers
@@ -266,7 +266,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 9.0                                                                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                         |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                            |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                        |
 | Google Play services       | 49                                                                                                                                                                                                |
@@ -296,10 +296,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
 | node:18              | sha256:b08b1356559e2e9945f47ded630c9eb9d4e3ca04f111ab20d55652442cf14aee  | 2024-05-21 |
-| node:18-alpine       | sha256:5069da655539e2e986ce3fd1757f24a41b846958566c89ff4a48874434d73749  | 2024-05-22 |
+| node:18-alpine       | sha256:6937be95129321422103452e2883021cc4a96b63c32d7947187fcb25df84fc3f  | 2024-06-04 |
 | node:20              | sha256:ab71b9da5ba19445dc5bb76bf99c218941db2c4d70ff4de4e0d9ec90920bfe3f  | 2024-05-28 |
-| node:20-alpine       | sha256:928b24aaadbd47c1a7722c563b471195ce54788bf8230ce807e1dd500aec0549  | 2024-05-28 |
-| ubuntu:20.04         | sha256:874aca52f79ae5f8258faff03e10ce99ae836f6e7d2df6ecd3da5c1cad3a912b  | 2024-04-27 |
+| node:20-alpine       | sha256:66c7d989b6dabba6b4305b88f40912679aebd9f387a5b16ffa76dfb9ae90b060  | 2024-06-04 |
+| ubuntu:20.04         | sha256:0b897358ff6624825fb50d20ffb605ab0eaea77ced0adb8c6a4b756513dec6fc  | 2024-06-03 |
 
 ### Installed apt packages
 | Name                   | Version                           |
