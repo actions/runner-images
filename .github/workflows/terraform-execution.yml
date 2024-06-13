@@ -31,7 +31,7 @@ jobs:
     
       - name: Run script to extract image version
         run: |
-          bash actions-scripts/get-image-version.sh
+          bash ${{ github.workspace }}/actions-scripts/get-image-version.sh
         shell: bash
 
       - name: Terraform fmt
