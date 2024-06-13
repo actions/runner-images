@@ -24,7 +24,7 @@ resource "azurerm_shared_image_gallery" "imageGallery" {
 }
 
 resource "azurerm_shared_image" "image" {
-  name                = var.image_type
+  name                = "${var.image_type}-${var.image_type_version}-action-runner"
   gallery_name        = azurerm_shared_image_gallery.imageGallery.name
   resource_group_name = azurerm_resource_group.automation_resource_group.name
   location            = azurerm_resource_group.automation_resource_group.location
