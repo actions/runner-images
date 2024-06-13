@@ -37,6 +37,11 @@ resource "azurerm_shared_image" "image" {
   }
 }
 
+resource "time_rotating" "time-rotation" {
+  rfc3339         = "2024-06-13T00:00:00Z"
+  rotation_months = 1
+}
+
 resource "azurerm_resource_group" "automation_resource_group" {
   name     = "rg-${local.prefix}"
   location = var.location
@@ -45,6 +50,7 @@ resource "azurerm_resource_group" "automation_resource_group" {
 resource "null_resource" "packer_init" {
   triggers = {
     dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/ubuntu", "**") : filesha1("${path.cwd}/../images/ubuntu/${f}")]))
+    build_month = time_rotating.time-rotation.id
   }
 
   provisioner "local-exec" {
@@ -58,6 +64,7 @@ resource "null_resource" "packer_init" {
 resource "null_resource" "packer_runner" {
   triggers = {
     dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/ubuntu", "**") : filesha1("${path.cwd}/../images/ubuntu/${f}")]))
+    build_month = time_rotating.time-rotation.id
   }
 
   provisioner "local-exec" {
@@ -77,6 +84,7 @@ resource "null_resource" "packer_runner" {
              -color=false \
              "${local.imagePath}" 
     EOT
+    
     environment = {
       POWERSHELL_TELEMETRY_OPTOUT = 1
     }
