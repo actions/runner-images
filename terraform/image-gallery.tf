@@ -62,7 +62,7 @@ resource "null_resource" "packer_runner" {
              -var "client_secret=${var.spn-client-secret}" \
              -var "location=${var.location}" \
              -var "subscription_id=${var.subscription-id}" \
-             -var "temp_resource_group_name=temp-rg-${local.prefix}" \
+             -var "temp_resource_group_name=temp-rg-${local.prefix}-${var.image_version}" \
              -var "tenant_id=${var.spn-tenant-id}" \
              -var "virtual_network_name=$null" \
              -var "virtual_network_resource_group_name=$null" \
