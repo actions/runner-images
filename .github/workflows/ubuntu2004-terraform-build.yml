@@ -1,4 +1,4 @@
-name: Ubuntu20.04 by Terraform
+name: Ubuntu 20.04 by Terraform
 run-name: Ubuntu20.04
 
 on:

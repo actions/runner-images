@@ -1,4 +1,4 @@
-name: Ubuntu22.04 by Terraform
+name: Ubuntu 22.04 by Terraform
 run-name: Ubuntu22.04
 
 on:
