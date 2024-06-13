@@ -33,6 +33,7 @@ jobs:
         run: |
           bash ./actions-scripts/get-image-version.sh
         shell: bash
+        
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
