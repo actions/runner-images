@@ -31,7 +31,7 @@ jobs:
     
       - name: Run script to extract image version
         run: |
-          bash ${{ github.workspace }}/actions-scripts/get-image-version.sh ${{ github.workspace }}/images/${{ github.events.inputs.image_type }}/Ubuntu2404-Readme.md
+          bash ${{ github.workspace }}/actions-scripts/get-image-version.sh ${{ github.workspace }}/images/${{ inputs.image_type }}/Ubuntu2404-Readme.md
         shell: bash
 
       - name: Terraform fmt
@@ -49,5 +49,5 @@ jobs:
     
       - name: Terraform Plan
         id: plan
-        run: terraform plan -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ github.events.inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ github.events.inputs.image_type_version }}"
+        run: terraform plan -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ inputs.image_type_version }}"
         continue-on-error: false
