@@ -31,9 +31,9 @@ jobs:
     
       - name: Run script to extract image version
         run: |
-          bash ./actions-scripts/get-image-version.sh
+          bash actions-scripts/get-image-version.sh
         shell: bash
-        
+
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
