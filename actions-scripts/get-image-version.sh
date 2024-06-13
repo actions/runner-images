@@ -1,8 +1,6 @@
 #!/bin/bash
 # Read the README_PATH from parameter
 README_PATH="$1"
-# Path to the local README file
-README_PATH="./readme.md"
 
 # Read the content of the README file
 if [ -f "$README_PATH" ]; then
