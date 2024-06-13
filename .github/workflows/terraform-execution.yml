@@ -51,3 +51,8 @@ jobs:
         id: plan
         run: terraform plan -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ inputs.image_type_version }}"
         continue-on-error: false
+       
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply --auto-approve -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ inputs.image_type_version }}"
+        continue-on-error: false        
