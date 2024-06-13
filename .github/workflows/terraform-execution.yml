@@ -40,6 +40,7 @@ jobs:
           node-version: 20
     
       - name: Run script to extract image version
+        if: ${{ inputs.directory == './terraform' }}
         run: |
           bash ${{ github.workspace }}/actions-scripts/get-image-version.sh ${{ github.workspace }}/images/${{ inputs.image_readme_path }}
         shell: bash
