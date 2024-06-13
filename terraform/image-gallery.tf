@@ -1,6 +1,6 @@
 locals {
   prefix    = "community-gallery"
-  imagePath = "../runner-images-main/images/${var.image_type}/templates/${var.image_type}-${var.image_type_version}.pkr.hcl"
+  imagePath = "../images/${var.image_type}/templates/${var.image_type}-${var.image_type_version}.pkr.hcl"
 }
 
 
@@ -44,7 +44,7 @@ resource "azurerm_resource_group" "automation_resource_group" {
 
 resource "null_resource" "packer_init" {
   triggers = {
-    dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/runner-images-main/images/ubuntu", "**") : filesha1("${path.cwd}/runner-images-main/images/ubuntu/${f}")]))
+    dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/ubuntu", "**") : filesha1("${path.cwd}/../images/ubuntu/${f}")]))
   }
 
   provisioner "local-exec" {
@@ -57,8 +57,7 @@ resource "null_resource" "packer_init" {
 
 resource "null_resource" "packer_runner" {
   triggers = {
-    dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/runner-images-main/images/ubuntu", "**") : filesha1("${path.cwd}/runner-images-main/images/ubuntu/${f}")]))
-    build_month = time_rotating.time-rotation.id
+    dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/ubuntu", "**") : filesha1("${path.cwd}/../images/ubuntu/${f}")]))
   }
 
   provisioner "local-exec" {
@@ -78,7 +77,6 @@ resource "null_resource" "packer_runner" {
              -color=false \
              "${local.imagePath}" 
     EOT
-            #  -var "run_validation_diskspace=false" \
     environment = {
       POWERSHELL_TELEMETRY_OPTOUT = 1
     }
