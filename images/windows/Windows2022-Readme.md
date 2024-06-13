@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2461
-- Image Version: 20240603.1.0
+- Image Version: 20240610.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,19 +13,19 @@
 
 ### Language and Runtime
 - Bash 5.2.26(1)-release
-- Go 1.21.10
-- Julia 1.10.3
+- Go 1.21.11
+- Julia 1.10.4
 - Kotlin 2.0.0
-- LLVM 16.0.6
+- LLVM 18.1.6
 - Node 18.20.3
 - Perl 5.32.1
-- PHP 8.3.7
+- PHP 8.3.8
 - Python 3.9.13
 - Ruby 3.0.7p220
 
 ### Package Management
-- Chocolatey 2.2.2
-- Composer 2.7.6
+- Chocolatey 2.3.0
+- Composer 2.7.7
 - Helm 3.15.0
 - Miniconda 24.4.0 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
@@ -33,7 +33,7 @@
 - pip 24.0 (python 3.9)
 - Pipx 1.6.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit 67cc1677c)
+- Vcpkg (build from commit 795f2f137)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -52,21 +52,21 @@
 - 7zip 24.06
 - aria2 1.37.0
 - azcopy 10.25.0
-- Bazel 7.1.2
+- Bazel 7.2.0
 - Bazelisk 1.19.0
-- Bicep 0.27.1
+- Bicep 0.28.1
 - Cabal 3.10.3.0
-- CMake 3.29.3
-- CodeQL Action Bundle 2.17.3
-- Docker 24.0.7
+- CMake 3.29.5
+- CodeQL Action Bundle 2.17.4
+- Docker 26.1.3
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.23.3
+- Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
 - ghc 9.10.1
 - Git 2.45.2.windows.1
 - Git LFS 3.5.1
 - ImageMagick 7.1.1-29
-- InnoSetup 6.2.2
+- InnoSetup 6.3.0
 - jq 1.7.1
 - Kind 0.23.0
 - Kubectl 1.30.1
@@ -74,11 +74,11 @@
 - gcc 12.2.0
 - gdb 11.2
 - GNU Binutils 2.39
-- Newman 6.1.2
+- Newman 6.1.3
 - NSIS 3.10
 - OpenSSL 1.1.1w
-- Packer 1.10.3
-- Pulumi 3.118.0
+- Packer 1.11.0
+- Pulumi 3.119.0
 - R 4.4.0
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.15.7
@@ -92,7 +92,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.207
-- AWS CLI 2.15.62
+- AWS CLI 2.16.4
 - AWS SAM CLI 1.118.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
@@ -116,8 +116,8 @@
 ### Browsers and Drivers
 - Google Chrome 125.0.6422.142
 - Chrome Driver 125.0.6422.141
-- Microsoft Edge 125.0.2535.79
-- Microsoft Edge Driver 125.0.2535.79
+- Microsoft Edge 125.0.2535.92
+- Microsoft Edge Driver 125.0.2535.92
 - Mozilla Firefox 126.0.1
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
@@ -160,8 +160,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.20.14
-- 1.21.10
-- 1.22.3
+- 1.21.11
+- 1.22.4
 
 #### Node.js
 - 16.20.2
@@ -204,11 +204,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.26.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.27.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.18.0
-- DacFx 162.2.111.2
+- DacFx 162.3.563.1
 - MySQL 8.0.37.0
 - SQL OLEDB Driver 18.6.7.0
 - SQLPS 1.0
@@ -492,7 +492,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.29, 6.0.30, 6.0.31, 7.0.5, 7.0.20, 8.0.5
 - Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.29, 6.0.30, 6.0.31, 7.0.5, 7.0.20, 8.0.5
 - Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.30, 6.0.31, 7.0.5, 7.0.20, 8.0.5
-- nbgv 3.6.133+2d32d93cb1
+- nbgv 3.6.139+a9e8765620
 
 ### PowerShell Tools
 - PowerShell 7.4.2
@@ -503,11 +503,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.591
+- AWSPowershell: 4.1.596
 - DockerMsftProvider: 1.0.0.8
-- MarkdownPS: 1.9
+- MarkdownPS: 1.10
 - Microsoft.Graph: 2.19.0
-- Pester: 3.4.0, 5.5.0
+- Pester: 3.4.0, 5.6.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.22.0
 - PSWindowsUpdate: 2.2.1.4
@@ -525,7 +525,7 @@ All other versions are saved but not installed.
 | Android Command Line Tools | 8.0                                                                                                                                                                                               |
 | Android Emulator           | 34.2.15                                                                                                                                                                                           |
 | Android SDK Build-tools    | 34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                         |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                            |
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                  |

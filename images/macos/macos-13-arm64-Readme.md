@@ -1,7 +1,7 @@
 # macOS 13
 - OS Version: macOS 13.6.7 (22G720)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240603.1
+- Image Version: 20240609.1
 
 ## Installed Software
 
@@ -62,14 +62,14 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.16.0
+- AWS CLI 2.16.4
 - AWS SAM CLI 1.118.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.27.1
-- Cmake 3.29.3
-- CodeQL Action Bundle 2.17.3
+- Bicep CLI 0.28.1
+- Cmake 3.29.5
+- CodeQL Action Bundle 2.17.4
 - Fastlane 2.220.0
 - SwiftFormat 0.53.10
 - Xcbeautify 2.3.1
@@ -115,8 +115,8 @@
 
 #### Go
 - 1.20.14
-- 1.21.10
-- 1.22.3
+- 1.21.11
+- 1.22.4
 
 ### Rust Tools
 - Cargo 1.78.0
@@ -133,7 +133,7 @@
 
 #### PowerShell Modules
 - Az: 12.0.0
-- Pester: 5.5.0
+- Pester: 5.6.0
 - PSScriptAnalyzer: 1.22.0
 
 ### Xcode
@@ -180,8 +180,8 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
+| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
@@ -215,7 +215,7 @@
 | Android Command Line Tools | 11.0                                                                                                                                                  |
 | Android Emulator           | 34.2.15                                                                                                                                               |
 | Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.1                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                |
 | CMake                      | 3.22.1                                                                                                                                                |
