@@ -5,9 +5,6 @@ on:
       image_type:
         required: true
         type: string
-      image_version:
-        required: true
-        type: string
       image_type_version: 
         required: true
         type: string
@@ -32,6 +29,10 @@ jobs:
         with:
           node-version: 20
     
+      - name: Run script to extract image version
+        run: |
+          bash .github/workflows/scripts/get-image-version.sh
+        shell: bash
       - name: Terraform fmt
         id: fmt
         run: terraform fmt -check
@@ -47,5 +48,5 @@ jobs:
     
       - name: Terraform Plan
         id: plan
-        run: terraform plan -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ github.event.inputs.image_type }}" -var="image_version=${{ github.event.inputs.image_version }}" -var="image_type_version=${{ github.event.inputs.image_type_version }}"
+        run: terraform plan -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ github.event.inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ github.event.inputs.image_type_version }}"
         continue-on-error: false
