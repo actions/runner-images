@@ -1,4 +1,4 @@
-name: Trigger Ubuntu24.04 CI
+name: Trigger Ubuntu24.04 CI using Terraform
 run-name: Ubuntu24.04 - ${{ github.event.pull_request.title }}
 
 on:
@@ -6,7 +6,8 @@ on:
       paths:
       - 'images/ubuntu/**'
       branches:
-        - main      
+        - main     
+  workflow_dispatch: 
 
 jobs:
   Ubuntu_2404:
