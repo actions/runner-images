@@ -21,14 +21,12 @@ on:
         type: string
         default: './terraform'
 
-defaults:
-  run:
-    working-directory: ${{ inputs.directory }}
-        
 jobs:
   terraform-image-build:
     runs-on: ubuntu-latest
-    
+    defaults:
+      run:
+        working-directory: ${{ inputs.directory }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
