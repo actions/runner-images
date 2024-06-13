@@ -8,8 +8,18 @@ on:
       branches:
       - main     
   workflow_dispatch: 
-
+    
 jobs:
+  CommunityGallery:
+    uses: ./.github/workflows/terraform-execution.yml
+    with:
+      image_type: 'ubuntu'
+      image_type_version: '20.04'
+      image_readme_path: 'ubuntu/Ubuntu2004-Readme.md'
+      short_image_name: 'u'
+      state: tf-community-gallery-base.tfstate
+      directory: './terraform_base'
+    secrets: inherit
   Ubuntu_2404:
     uses: ./.github/workflows/terraform-execution.yml
     with:
@@ -17,4 +27,5 @@ jobs:
       image_type_version: '20.04'
       image_readme_path: 'ubuntu/Ubuntu2004-Readme.md'
       short_image_name: 'u'
+      state: tf-ubuntu-2004.tfstate
     secrets: inherit

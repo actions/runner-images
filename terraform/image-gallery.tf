@@ -3,13 +3,21 @@ locals {
   imagePath = "../images/${var.image_type}/templates/${var.image_type}-${var.image_type_version}.pkr.hcl"
 }
 
-
 data "azurerm_client_config" "current" {}
+
+data "azurerm_resource_group" "automation_resource_group" {
+  name     = "rg-${local.prefix}"
+}
+
+data "azurerm_shared_image_gallery" "example" {
+  name                = "azureway_community_gallery"
+  resource_group_name = data.azurerm_resource_group.automation_resource_group.name
+}
 
 resource "azurerm_shared_image_gallery" "imageGallery" {
   name                = "azureway_community_gallery"
-  resource_group_name = azurerm_resource_group.automation_resource_group.name
-  location            = azurerm_resource_group.automation_resource_group.location
+  resource_group_name = data.azurerm_resource_group.automation_resource_group.name
+  location            = data.azurerm_resource_group.automation_resource_group.location
 
   sharing {
     permission = "Community"
@@ -25,9 +33,9 @@ resource "azurerm_shared_image_gallery" "imageGallery" {
 
 resource "azurerm_shared_image" "image" {
   name                = "azureway-${var.short_image_name}-${var.image_type_version}"
-  gallery_name        = azurerm_shared_image_gallery.imageGallery.name
-  resource_group_name = azurerm_resource_group.automation_resource_group.name
-  location            = azurerm_resource_group.automation_resource_group.location
+  gallery_name        = data.azurerm_shared_image_gallery.imageGallery.name
+  resource_group_name = data.azurerm_resource_group.automation_resource_group.name
+  location            = data.azurerm_resource_group.automation_resource_group.location
   os_type             = "Linux"
 
   identifier {
@@ -42,14 +50,11 @@ resource "time_rotating" "time-rotation" {
   rotation_months = 1
 }
 
-resource "azurerm_resource_group" "automation_resource_group" {
-  name     = "rg-${local.prefix}"
-  location = var.location
-}
+
 
 resource "null_resource" "packer_init" {
   triggers = {
-    dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/ubuntu", "**") : filesha1("${path.cwd}/../images/ubuntu/${f}")]))
+    dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/${var.image_type}", "**") : filesha1("${path.cwd}/../images/${var.image_type}/${f}")]))
     build_month = time_rotating.time-rotation.id
   }
 
@@ -63,7 +68,7 @@ resource "null_resource" "packer_init" {
 
 resource "null_resource" "packer_runner" {
   triggers = {
-    dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/ubuntu", "**") : filesha1("${path.cwd}/../images/ubuntu/${f}")]))
+    dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/${var.image_type}", "**") : filesha1("${path.cwd}/../images/${var.image_type}/${f}")]))
     build_month = time_rotating.time-rotation.id
   }
 
@@ -80,7 +85,7 @@ resource "null_resource" "packer_runner" {
              -var "virtual_network_resource_group_name=$null" \
              -var "virtual_network_subnet_name=$null" \
              -var "managed_image_name=${azurerm_shared_image.image.name}" \
-             -var "managed_image_resource_group_name=${azurerm_resource_group.automation_resource_group.name}" \
+             -var "managed_image_resource_group_name=${data.azurerm_resource_group.automation_resource_group.name}" \
              -color=false \
              "${local.imagePath}" 
     EOT
@@ -95,7 +100,7 @@ resource "null_resource" "packer_runner" {
 
 data "azurerm_image" "image" {
   name                = azurerm_shared_image.image.name
-  resource_group_name = azurerm_resource_group.automation_resource_group.name
+  resource_group_name = data.azurerm_resource_group.automation_resource_group.name
 
   depends_on = [null_resource.packer_runner]
 }
