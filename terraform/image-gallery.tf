@@ -24,7 +24,7 @@ resource "azurerm_shared_image_gallery" "imageGallery" {
 }
 
 resource "azurerm_shared_image" "image" {
-  name                = "azureway-ubu-${var.image_type_version}"
+  name                = "azureway-${var.short_image_name}-${var.image_type_version}"
   gallery_name        = azurerm_shared_image_gallery.imageGallery.name
   resource_group_name = azurerm_resource_group.automation_resource_group.name
   location            = azurerm_resource_group.automation_resource_group.location
@@ -84,7 +84,7 @@ resource "null_resource" "packer_runner" {
              -color=false \
              "${local.imagePath}" 
     EOT
-    
+
     environment = {
       POWERSHELL_TELEMETRY_OPTOUT = 1
     }

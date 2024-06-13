@@ -30,6 +30,10 @@ variable "image_type_version" {
   
 }
 
+variable "short_image_name" {
+  
+}
+
 variable "subscription-id" {
   description = "Subscription for service principal"
 }

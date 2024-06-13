@@ -1,0 +1,20 @@
+name: Windows 2019 by Terraform
+run-name: Windows2019
+
+on:
+  push:
+      paths:
+      - 'images/windows/**'
+      branches:
+      - main     
+  workflow_dispatch: 
+
+jobs:
+  Ubuntu_2404:
+    uses: ./.github/workflows/terraform-execution.yml
+    with:
+      image_type: 'windows'
+      image_type_version: '2019'
+      image_readme_path: 'windows/Windows2019-Readme.md'
+      short_image_name: 'w'
+    secrets: inherit

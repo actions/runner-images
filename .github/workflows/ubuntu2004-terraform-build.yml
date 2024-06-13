@@ -1,5 +1,5 @@
-name: Ubuntu24.04 by Terraform
-run-name: Ubuntu24.04
+name: Ubuntu20.04 by Terraform
+run-name: Ubuntu20.04
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
     uses: ./.github/workflows/terraform-execution.yml
     with:
       image_type: 'ubuntu'
-      image_type_version: '24.04'
-      image_readme_path: 'ubuntu/Ubuntu2404-Readme.md'
+      image_type_version: '20.04'
+      image_readme_path: 'ubuntu/Ubuntu2004-Readme.md'
       short_image_name: 'u'
     secrets: inherit
