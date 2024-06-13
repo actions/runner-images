@@ -1,0 +1,24 @@
+name: Trigger Ubuntu24.04 CI
+run-name: Ubuntu24.04 - ${{ github.event.pull_request.title }}
+
+on:
+  push:
+      paths:
+      - 'images/ubuntu/**'
+      branches:
+        - main      
+
+jobs:
+  Ubuntu_2404:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run script to extract image version
+        run: |
+          bash .github/workflows/scripts/get-image-version.sh
+      - name: Terraform execution
+        uses: ./.github/workflows/terraform-execution.yml
+        with:
+          image_type: 'ubuntu'
+          image_type_version: '24.04'
+          image_version: ${{ env.IMAGE_VERSION }}
+        secrets: inherit

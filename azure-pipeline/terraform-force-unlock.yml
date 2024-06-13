@@ -1,0 +1,34 @@
+pool:
+  vmImage: 'ubuntu-latest'
+
+trigger: none
+
+parameters:
+- name: LockId
+  displayName: Lock Id
+  type: string
+
+stages:
+- stage: Terraform_plan
+  displayName: 'Create terraform plan'
+  variables:
+  - template: variable_groups/terraform-sample-variables.yml
+  - group: terraform-sample
+  jobs:
+    - job: CreatePlan
+      steps:
+      - task: ms-devlabs.custom-terraform-tasks.custom-terraform-installer-task.TerraformInstaller@0
+        displayName: Install Terraform $(terraform-version)
+        inputs:
+          terraformVersion: $(terraform-version)
+      - task: CmdLine@2
+        displayName: Terraform Init
+        inputs:
+          script: terraform init -backend-config="access_key=$(access_key)" -backend-config="storage_account_name=$(storage_account_name)" -backend-config="container_name=$(container_name)" -backend-config="key=$(key)"
+          workingDirectory: $(terafform-workdir)
+      - task: CmdLine@2
+        condition: gt(length('${{ parameters.LockId }}'), 5)
+        displayName: Terraform Force unlock
+        inputs:
+          script: terraform force-unlock -force ${{ parameters.LockId }}
+          workingDirectory: $(terafform-workdir)

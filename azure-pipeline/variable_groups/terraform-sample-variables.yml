@@ -1,0 +1,22 @@
+variables:
+# Terraform backend configuration
+- name: container_name
+  value: azure-way-packer-image
+- name: key
+  value: tf-$(container_name).tfstate
+- name: storage_account_name
+  value: azurewaysa
+# Terraform configuration file for environment  
+# Terraform service principal data  
+- name: spn_client_id
+  value: 9aeb467e-73d6-44dd-af4f-f4351ea20cf7
+- name: spn_tenant_id
+  value: 45cb38f2-ede5-461d-a41c-e0c118243263
+# Terraform workdir and version  
+- name: terafform-workdir
+  value: terraform
+- name: terraform-version
+  value: 1.8.5
+# Subscription details  
+- name: subscription_id
+  value: 73f1730b-007e-4da5-919a-54500cd572a9
