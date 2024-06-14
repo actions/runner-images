@@ -23,7 +23,7 @@ resource "azurerm_shared_image" "image" {
 
   identifier {
     publisher = var.self_hosted_image_publisher
-    offer     = var.self_hosted_image_offer
+    offer     = "${var.self_hosted_image_offer} ${var.image_type}-${var.image_type_version}"
     sku       = var.self_hosted_image_sku
   }
 }
