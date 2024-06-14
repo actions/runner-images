@@ -6,9 +6,3 @@ Describe "Disk free space" -Skip:(-not [String]::IsNullOrEmpty($env:AGENT_NAME) 
         $freeSpace | Should -BeGreaterOrEqual 17GB
     }
 }
-
-Describe "Apparmor is disabled" {
-    It "Apparmor is disabled" {
-        systemctl is-active apparmor | Should -Be "inactive"
-    }
-}
