@@ -20,7 +20,7 @@ jobs:
       state: tf-community-gallery-base.tfstate
       directory: './terraform_base'
     secrets: inherit  
-  Ubuntu_2404:
+  Ubuntu_2204:
     uses: ./.github/workflows/terraform-execution.yml
     needs: CommunityGallery
     with:

@@ -1,5 +1,5 @@
-name: Windows 2019 by Terraform
-run-name: Windows2019
+name: Windows 2022 by Terraform
+run-name: Windows2022
 
 on:
   push:
@@ -10,11 +10,23 @@ on:
   workflow_dispatch: 
 
 jobs:
-  Ubuntu_2404:
+  CommunityGallery:
     uses: ./.github/workflows/terraform-execution.yml
     with:
       image_type: 'windows'
       image_type_version: '2019'
       image_readme_path: 'windows/Windows2019-Readme.md'
       short_image_name: 'w'
+      state: tf-community-gallery-base.tfstate
+      directory: './terraform_base'
+    secrets: inherit    
+  win2022:
+    uses: ./.github/workflows/terraform-execution.yml
+    needs: CommunityGallery
+    with:
+      image_type: 'windows'
+      image_type_version: '2022'
+      image_readme_path: 'windows/Windows2022-Readme.md'
+      short_image_name: 'w'
+      state: tf-windows-2022.tfstate
     secrets: inherit
