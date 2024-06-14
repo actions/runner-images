@@ -33,12 +33,17 @@ resource "time_rotating" "time-rotation" {
   rotation_months = 1
 }
 
+resource "time_rotating" "time-rotation_quick" {
+  rfc3339         = "2024-06-13T00:00:00Z"
+  rotation_minutes = 1
+}
+
 
 
 resource "null_resource" "packer_init" {
   triggers = {
     dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/${var.image_type}", "**") : filesha1("${path.cwd}/../images/${var.image_type}/${f}")]))
-    build_month = time_rotating.time-rotation.id
+    build_month = time_rotating.time-rotation_quick.id
   }
 
   provisioner "local-exec" {
