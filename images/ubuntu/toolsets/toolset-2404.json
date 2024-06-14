@@ -134,6 +134,7 @@
             "rpm",
             "texinfo",
             "tk",
+            "tree",
             "tzdata",
             "upx",
             "xvfb",
@@ -187,11 +188,11 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "26.1.0"
+                "version": "26.1.3"
             },
             {
                 "package": "docker-ce",
-                "version": "26.1.0"
+                "version": "26.1.3"
             }
         ],
         "plugins": [
@@ -202,7 +203,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "latest",
+                "version": "2.27.1",
                 "asset": "linux-x86_64"
             }
         ]
@@ -219,13 +220,9 @@
     ],
     "dotnet": {
         "aptPackages": [
-            "dotnet-sdk-6.0",
-            "dotnet-sdk-7.0",
             "dotnet-sdk-8.0"
         ],
         "versions": [
-            "6.0",
-            "7.0",
             "8.0"
         ],
         "tools": [

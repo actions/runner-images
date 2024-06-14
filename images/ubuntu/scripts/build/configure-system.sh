@@ -4,8 +4,8 @@
 ##  Desc: Post deployment system configuration actions
 ################################################################################
 
-# Source the helpers for use with the script
 source $HELPER_SCRIPT_FOLDER/etc-environment.sh
+source $HELPER_SCRIPT_FOLDER/os.sh
 
 mv -f /imagegeneration/post-generation /opt
 
@@ -30,4 +30,11 @@ fi
 
 if npm --version; then
     npm cache clean --force
+fi
+
+if is_ubuntu24; then
+# Prevent needrestart from restarting the provisioner service.
+# Currently only happens on Ubuntu 24.04, so make it conditional for the time being
+# as configuration is too different between Ubuntu versions.
+    sed -i '/^\s*};/i \    qr(^runner-provisioner) => 0,' /etc/needrestart/needrestart.conf
 fi

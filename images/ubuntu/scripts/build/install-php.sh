@@ -21,7 +21,7 @@ php_versions=$(get_toolset_value '.php.versions[]')
 
 for version in $php_versions; do
     echo "Installing PHP $version"
-    apt-get install -y --no-install-recommends \
+    apt-get install --no-install-recommends \
         php$version \
         php$version-amqp \
         php$version-apcu \
@@ -67,24 +67,24 @@ for version in $php_versions; do
         php$version-zip \
         php$version-zmq
 
-        apt-get install -y --no-install-recommends php$version-pcov
+        apt-get install --no-install-recommends php$version-pcov
 
         # Disable PCOV, as Xdebug is enabled by default
         # https://github.com/krakjoe/pcov#interoperability
         phpdismod -v $version pcov
 
     if [[ $version == "7.2" || $version == "7.3" || $version == "7.4" ]]; then
-        apt-get install -y --no-install-recommends php$version-recode
+        apt-get install --no-install-recommends php$version-recode
     fi
 
     if [[ $version != "8.0" && $version != "8.1" && $version != "8.2" && $version != "8.3" ]]; then
-        apt-get install -y --no-install-recommends php$version-xmlrpc php$version-json
+        apt-get install --no-install-recommends php$version-xmlrpc php$version-json
     fi
 done
 
-apt-get install -y --no-install-recommends php-pear
+apt-get install --no-install-recommends php-pear
 
-apt-get install -y --no-install-recommends snmp
+apt-get install --no-install-recommends snmp
 
 # Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"

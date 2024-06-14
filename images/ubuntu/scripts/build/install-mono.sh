@@ -23,7 +23,7 @@ echo "deb [signed-by=$GPG_KEY] $REPO_URL stable-$os_label main" > $REPO_PATH
 
 # Install Mono
 apt-get update
-apt-get install -y --no-install-recommends apt-transport-https mono-complete nuget
+apt-get install --no-install-recommends apt-transport-https mono-complete nuget
 
 # Remove Mono's apt repo
 rm $REPO_PATH
