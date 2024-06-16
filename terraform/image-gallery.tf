@@ -14,6 +14,12 @@ data "azurerm_shared_image_gallery" "imageGallery" {
   resource_group_name = data.azurerm_resource_group.automation_resource_group.name
 }
 
+resource "random_password" "password" {
+  length           = 16
+  special          = true
+  override_special = "!#$%&*()-_=+[]{}<>:?"
+}
+
 resource "azurerm_shared_image" "image" {
   name                = "azureway-${var.short_image_name}-${var.image_type_version}"
   gallery_name        = data.azurerm_shared_image_gallery.imageGallery.name
@@ -66,6 +72,7 @@ resource "null_resource" "packer_runner" {
         packer build -var "client_id=${var.spn-client-id}" \
              -var "client_secret=${var.spn-client-secret}" \
              -var "location=${var.location}" \
+             -var "install_password=${random_password.password.result} " \
              -var "subscription_id=${var.subscription-id}" \
              -var "temp_resource_group_name=temp-rg-${var.image_version}-${var.image_type}-${var.image_type_version}" \
              -var "tenant_id=${var.spn-tenant-id}" \
