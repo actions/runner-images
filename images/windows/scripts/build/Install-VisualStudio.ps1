@@ -34,12 +34,14 @@ if (Test-IsWin19) {
         -Url 'https://go.microsoft.com/fwlink/p/?LinkId=838916' `
         -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.WindowsSoftwareDevelopmentKit") `
         -ExpectedSignature 'C91545B333C52C4465DE8B90A3FAF4E1D9C58DFA'
+                            
 
     # Install Windows 11 SDK version 10.0.22621.0
     Install-Binary -Type EXE `
         -Url 'https://go.microsoft.com/fwlink/p/?linkid=2196241' `
         -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
-        -ExpectedSignature 'E4C5C5FCDB68B930EE4E19BC25D431EF6D864C51'   
+        -ExpectedSignature 'E4C5C5FCDB68B930EE4E19BC25D431EF6D864C51'  
+         
 }
 
 if (Test-IsWin22) {    
