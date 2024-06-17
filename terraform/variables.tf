@@ -34,6 +34,14 @@ variable "short_image_name" {
   
 }
 
+variable "os_type_map" {
+  type = map(string)
+  default = {
+    "ubuntu" = "Linux"
+    "windows" = "Windows"
+  }
+}
+
 variable "subscription-id" {
   description = "Subscription for service principal"
 }

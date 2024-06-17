@@ -19,7 +19,7 @@ resource "azurerm_shared_image" "image" {
   gallery_name        = data.azurerm_shared_image_gallery.imageGallery.name
   resource_group_name = data.azurerm_resource_group.automation_resource_group.name
   location            = data.azurerm_resource_group.automation_resource_group.location
-  os_type             = "Linux"
+  os_type             = var.os_type_map[var.image_type]
 
   identifier {
     publisher = var.self_hosted_image_publisher
