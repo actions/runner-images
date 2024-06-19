@@ -6,7 +6,7 @@
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
 - Kernel Version: 6.8.0-1007-azure
-- Image Version: 20240604.1.0
+- Image Version: 20240617.1.0
 - Systemd version: 255.4-1ubuntu8
 
 ## Installed Software
@@ -19,7 +19,7 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.3.0, 13.2.0, 14.0.1
 - GNU Fortran: 12.3.0, 13.2.0, 14.0.1
-- Julia 1.10.3
+- Julia 1.10.4
 - Node.js 20.14.0
 - Perl 5.38.2
 - Python 3.12.3
@@ -27,15 +27,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.15.1
-- Homebrew 4.3.3
+- Helm 3.15.2
+- Homebrew 4.3.6
 - Miniconda 24.4.0
 - Npm 10.7.0
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit 9760ce619)
+- Vcpkg (build from commit 40616a5e9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,19 +59,19 @@ to accomplish this.
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.16.7
-- AzCopy 10.25.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.1.2
+- Ansible 2.17.1
+- AzCopy 10.25.1 - available by `azcopy` and `azcopy10` aliases
+- Bazel 7.2.0
 - Bazelisk 1.19.0
-- Bicep 0.27.1
+- Bicep 0.28.1
 - Buildah 1.33.7
-- CMake 3.29.4
-- CodeQL Action Bundle 2.17.3
+- CMake 3.29.6
+- CodeQL Action Bundle 2.17.5
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.14.1
-- Docker Client 26.1.0
-- Docker Server 26.1.0
+- Docker-Buildx 0.15.0
+- Docker Client 26.1.3
+- Docker Server 26.1.3
 - Fastlane 2.220.0
 - Git 2.45.2
 - Git LFS 3.5.1
@@ -79,30 +79,30 @@ to accomplish this.
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.23.0
-- Kubectl 1.30.1
+- Kubectl 1.30.2
 - Kustomize 5.4.2
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.33.1
 - n 9.2.3
-- Newman 6.1.2
+- Newman 6.1.3
 - OpenSSL 3.0.13-0ubuntu3.1
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.118.0
+- Pulumi 3.120.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
-- yq 4.44.1
+- yq 4.44.2
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.16.0
+- AWS CLI 2.16.10
 - AWS CLI Session Manager Plugin 1.2.633.0
-- AWS SAM CLI 1.118.0
+- AWS SAM CLI 1.119.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.50.0
+- GitHub CLI 2.51.0
 
 ### Java
 | Version             | Environment Variable |
@@ -114,7 +114,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.7.6
+- Composer 2.7.7
 - PHPUnit 8.5.38
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -127,18 +127,18 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.15.7
 
 ### Rust Tools
-- Cargo 1.78.0
-- Rust 1.78.0
-- Rustdoc 1.78.0
+- Cargo 1.79.0
+- Rust 1.79.0
+- Rustdoc 1.79.0
 - Rustup 1.27.1
 
 #### Packages
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 125.0.6422.141
-- ChromeDriver 125.0.6422.141
-- Chromium 125.0.6422.0
+- Google Chrome 126.0.6478.61
+- ChromeDriver 126.0.6478.61
+- Chromium 126.0.6478.0
 - Selenium server 4.21.0
 
 #### Environment variables
@@ -165,7 +165,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.36-2ubuntu3
+- MySQL 8.0.37-0ubuntu0.24.04.1
 ```
 User: root
 Password: root
@@ -177,8 +177,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.20.14
-- 1.21.10
-- 1.22.3
+- 1.21.11
+- 1.22.4
 
 #### Node.js
 - 16.20.2
@@ -189,7 +189,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.19
 - 3.10.14
 - 3.11.9
-- 3.12.3
+- 3.12.4
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -201,7 +201,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 11.5.0
 - Microsoft.Graph: 2.19.0
-- Pester: 5.5.0
+- Pester: 5.6.0
 - PSScriptAnalyzer: 1.22.0
 
 ### Web Servers
@@ -215,7 +215,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 12.0                                                                                                                            |
 | Android SDK Build-tools    | 34.0.0                                                                                                                          |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
+| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                          |
 | Google Play services       | 49                                                                                                                              |
 | Google Repository          | 58                                                                                                                              |
@@ -296,7 +296,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | time                   | 1.9-0.2build1         |
 | tk                     | 8.6.14build1          |
 | tree                   | 2.1.1-2ubuntu3        |
-| tzdata                 | 2024a-2ubuntu1        |
+| tzdata                 | 2024a-3ubuntu1.1      |
 | unzip                  | 6.0-28ubuntu4         |
 | upx                    | 4.2.2-3               |
 | wget                   | 1.21.4-1ubuntu4       |
