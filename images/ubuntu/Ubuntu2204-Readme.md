@@ -5,8 +5,8 @@
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.4 LTS
-- Kernel Version: 6.5.0-1021-azure
-- Image Version: 20240609.1.0
+- Kernel Version: 6.5.0-1022-azure
+- Image Version: 20240616.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -31,8 +31,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.15.1
-- Homebrew 4.3.3
+- Helm 3.15.2
+- Homebrew 4.3.5
 - Miniconda 24.4.0
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -40,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.6.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit ad25766ae)
+- Vcpkg (build from commit f7423ee18)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -67,17 +67,17 @@ to accomplish this.
 ### Tools
 - Ansible 2.17.0
 - apt-fast 1.10.0
-- AzCopy 10.25.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.1.2
+- AzCopy 10.25.1 - available by `azcopy` and `azcopy10` aliases
+- Bazel 7.2.0
 - Bazelisk 1.19.0
 - Bicep 0.28.1
 - Buildah 1.23.1
 - CMake 3.29.5
-- CodeQL Action Bundle 2.17.4
+- CodeQL Action Bundle 2.17.5
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.14.1
+- Docker-Buildx 0.15.0
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.220.0
@@ -88,42 +88,42 @@ to accomplish this.
 - Heroku 8.11.5
 - jq 1.6
 - Kind 0.23.0
-- Kubectl 1.30.1
+- Kubectl 1.30.2
 - Kustomize 5.4.2
 - Leiningen 2.11.2
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.33.1
 - n 9.2.3
-- Newman 6.1.2
+- Newman 6.1.3
 - nvm 0.39.7
 - OpenSSL 3.0.2-0ubuntu1.15
 - Packer 1.11.0
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.119.0
+- Pulumi 3.120.0
 - R 4.4.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.8.5
 - yamllint 1.35.1
-- yq 4.44.1
+- yq 4.44.2
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.207
-- AWS CLI 2.16.4
+- AWS CLI 2.16.9
 - AWS CLI Session Manager Plugin 1.2.633.0
-- AWS SAM CLI 1.118.0
+- AWS SAM CLI 1.119.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.50.0
-- Google Cloud CLI 479.0.0
-- Netlify CLI 17.26.1
-- OpenShift CLI 4.15.16
+- GitHub CLI 2.51.0
+- Google Cloud CLI 480.0.0
+- Netlify CLI 17.27.0
+- OpenShift CLI 4.15.17
 - ORAS CLI 1.2.0
-- Vercel CLI 34.2.6
+- Vercel CLI 34.2.7
 
 ### Java
 | Version             | Environment Variable |
@@ -135,7 +135,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.7.6
+- Composer 2.7.7
 - PHPUnit 8.5.38
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -148,25 +148,25 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 2.15.7
 
 ### Rust Tools
-- Cargo 1.78.0
-- Rust 1.78.0
-- Rustdoc 1.78.0
+- Cargo 1.79.0
+- Rust 1.79.0
+- Rustdoc 1.79.0
 - Rustup 1.27.1
 
 #### Packages
 - Bindgen 0.69.4
 - Cargo audit 0.20.0
-- Cargo clippy 0.1.78
+- Cargo clippy 0.1.79
 - Cargo outdated 0.15.0
 - Cbindgen 0.26.0
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 125.0.6422.141
-- ChromeDriver 125.0.6422.141
-- Chromium 125.0.6422.0
-- Microsoft Edge 125.0.2535.92
-- Microsoft Edge WebDriver 125.0.2535.92
+- Google Chrome 126.0.6478.61
+- ChromeDriver 126.0.6478.61
+- Chromium 126.0.6478.0
+- Microsoft Edge 126.0.2592.56
+- Microsoft Edge WebDriver 126.0.2592.56
 - Selenium server 4.21.0
 - Mozilla Firefox 126.0.2
 - Geckodriver 0.34.0
@@ -195,7 +195,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.36-0ubuntu0.22.04.1
+- MySQL 8.0.37-0ubuntu0.22.04.3
 ```
 User: root
 Password: root
@@ -225,7 +225,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.19
 - 3.10.14
 - 3.11.9
-- 3.12.3
+- 3.12.4
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -241,7 +241,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 11.3.1
-- MarkdownPS: 1.9
+- MarkdownPS: 1.10
 - Microsoft.Graph: 2.19.0
 - Pester: 5.6.0
 - PSScriptAnalyzer: 1.22.0
@@ -280,14 +280,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.16          | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
 | alpine:3.17          | sha256:53cf9478b76f4c8fae126acbdfb79bed6e69e628faff572ebe4a029d3d247d98  | 2024-01-27 |
 | alpine:3.18          | sha256:11e21d7b981a59554b3f822c49f6e9f57b6068bb74f49c4cd5cc4c663c7e5160  | 2024-01-27 |
-| debian:10            | sha256:6e7bd55a5705914837aad8db01b349f4617510c11e47ccae8e87f6f14e489626  | 2024-05-14 |
-| debian:11            | sha256:2c7a92a41cb814c00e7d455b2bc0c90ccdb9a4ced2ffdc10e562c7a84a186032  | 2024-05-14 |
-| moby/buildkit:latest | sha256:9194b5ec1be368f41c516df7f93f7f540630ea06136056b2ffebb62226ed4ad6  | 2024-04-25 |
+| debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
+| debian:11            | sha256:d584e02c85bc9b3bd8df01662e4f605a66e1b9a04f9dea0e288f56da474269a0  | 2024-06-13 |
+| moby/buildkit:latest | sha256:21ca05626f03ebe128d268d6d7512024217b0f3adf7881047bdc5e83968ada87  | 2024-06-11 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:b08b1356559e2e9945f47ded630c9eb9d4e3ca04f111ab20d55652442cf14aee  | 2024-05-21 |
+| node:18              | sha256:4149a450f71699db7d695eeae3bc443e5aa97a7ff2f3a881a97e88f0d5568ee6  | 2024-06-13 |
 | node:18-alpine       | sha256:6937be95129321422103452e2883021cc4a96b63c32d7947187fcb25df84fc3f  | 2024-06-04 |
-| node:20              | sha256:ab71b9da5ba19445dc5bb76bf99c218941db2c4d70ff4de4e0d9ec90920bfe3f  | 2024-05-28 |
+| node:20              | sha256:d0a9a2399581a9de1ff962a48a28b5cfe700678a6a5df8e31a63aaa47bebb923  | 2024-06-13 |
 | node:20-alpine       | sha256:66c7d989b6dabba6b4305b88f40912679aebd9f387a5b16ffa76dfb9ae90b060  | 2024-06-04 |
 | ubuntu:20.04         | sha256:0b897358ff6624825fb50d20ffb605ab0eaea77ced0adb8c6a4b756513dec6fc  | 2024-06-03 |
 | ubuntu:22.04         | sha256:19478ce7fc2ffbce89df29fea5725a8d12e57de52eb9ea570890dc5852aac1ac  | 2024-06-03 |
