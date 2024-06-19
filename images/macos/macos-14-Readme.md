@@ -1,7 +1,7 @@
 # macOS 14
 - OS Version: macOS 14.5 (23F79)
 - Kernel Version: Darwin 23.5.0
-- Image Version: 20240612.5
+- Image Version: 20240616.1
 
 ## Installed Software
 
@@ -25,7 +25,7 @@
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.11
+- Bundler 2.5.13
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.7
@@ -34,7 +34,7 @@
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
 - Pipx 1.6.0
-- RubyGems 3.5.11
+- RubyGems 3.5.13
 - Yarn 1.22.22
 
 ### Project Management
@@ -45,14 +45,14 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.25.0
+- azcopy 10.25.1
 - bazel 7.2.0
 - bazelisk 1.20.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.8.0
 - Git 2.45.2
 - Git LFS 3.5.1
-- GitHub CLI 2.50.0
+- GitHub CLI 2.51.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -60,18 +60,18 @@
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
-- yq 4.44.1
+- yq 4.44.2
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.16.7
-- AWS SAM CLI 1.118.0
+- AWS CLI 2.16.9
+- AWS SAM CLI 1.119.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.28.1
 - Cmake 3.29.5
-- CodeQL Action Bundle 2.17.4
+- CodeQL Action Bundle 2.17.5
 - Fastlane 2.220.0
 - SwiftFormat 0.54.0
 - Xcbeautify 2.3.1
@@ -84,11 +84,11 @@
 ### Browsers
 - Safari 17.5 (19618.2.12.11.6)
 - SafariDriver 17.5 (19618.2.12.11.6)
-- Google Chrome 126.0.6478.57
-- Google Chrome for Testing 126.0.6478.55
-- ChromeDriver 126.0.6478.55
-- Microsoft Edge 125.0.2535.92
-- Microsoft Edge WebDriver 125.0.2535.92
+- Google Chrome 126.0.6478.62
+- Google Chrome for Testing 126.0.6478.61
+- ChromeDriver 126.0.6478.61
+- Microsoft Edge 126.0.2592.56
+- Microsoft Edge WebDriver 126.0.2592.56
 - Mozilla Firefox 127.0
 - geckodriver 0.34.0
 - Selenium server 4.21.0
@@ -130,13 +130,13 @@
 - 1.22.4
 
 ### Rust Tools
-- Cargo 1.78.0
-- Rust 1.78.0
-- Rustdoc 1.78.0
+- Cargo 1.79.0
+- Rust 1.79.0
+- Rustdoc 1.79.0
 - Rustup 1.27.1
 
 #### Packages
-- Clippy 0.1.78
+- Clippy 0.1.79
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
@@ -207,10 +207,10 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
 | visionOS 1.1                                            | xros1.1                                       | 15.3          |
-| visionOS 1.2                                            | xros1.2                                       | 15.4          |
 | Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
-| Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0          |
+| visionOS 1.2                                            | xros1.2                                       | 15.4          |
 | visionOS 2.0                                            | xros2.0                                       | 16.0          |
+| Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
