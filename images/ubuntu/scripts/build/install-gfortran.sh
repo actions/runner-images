@@ -14,4 +14,7 @@ for version in ${versions[*]}; do
     apt-get install $version
 done
 
+echo "Install versionless gfortran (latest)"
+apt-get install gfortran
+
 invoke_tests "Tools" "gfortran"

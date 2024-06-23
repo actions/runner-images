@@ -268,7 +268,6 @@
             "Microsoft.VisualStudio.Component.AspNet45",
             "Microsoft.VisualStudio.Component.Azure.Kubernetes.Tools",
             "Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools",
-            "Microsoft.VisualStudio.Component.Azure.Storage.AzCopy",
             "Microsoft.VisualStudio.Component.Debugger.JustInTime",
             "Microsoft.VisualStudio.Component.DslTools",
             "Microsoft.VisualStudio.Component.EntityFramework",
