@@ -397,3 +397,5 @@ launch.json
 
 # Ignore dynamic template
 images/*/*-temp.json
+terraform_base/.terraform.lock.hcl
+terraform_base/.terraform/*
