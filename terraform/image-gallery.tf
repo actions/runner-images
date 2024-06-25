@@ -79,7 +79,7 @@ resource "null_resource" "packer_runner" {
              -var "virtual_network_name=$null" \
              -var "virtual_network_resource_group_name=$null" \
              -var "virtual_network_subnet_name=$null" \
-             -var "managed_image_name=${data.azurerm_shared_image.image.name}" \
+             -var "managed_image_name=${var.image_version}-${data.azurerm_shared_image.image.name}" \
              -var "managed_image_resource_group_name=${data.azurerm_resource_group.automation_resource_group.name}" \
              -color=false \
              "${local.imagePath}" 
@@ -94,7 +94,7 @@ resource "null_resource" "packer_runner" {
 }
 
 data "azurerm_image" "image" {
-  name                = data.azurerm_shared_image.image.name
+  name                = "${var.image_version}-${data.azurerm_shared_image.image.name}"
   resource_group_name = data.azurerm_resource_group.automation_resource_group.name
 
   depends_on = [null_resource.packer_runner]
