@@ -21,13 +21,14 @@ on:
         type: string
         default: './terraform'
 
+permissions:
+  contents: read
+  packages: write
+  actions: write
+
 jobs:
   terraform-image-build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      actions: write
     defaults:
       run:
         working-directory: ${{ inputs.directory }}
