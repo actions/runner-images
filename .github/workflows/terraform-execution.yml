@@ -24,6 +24,10 @@ on:
 jobs:
   terraform-image-build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      actions: write
     defaults:
       run:
         working-directory: ${{ inputs.directory }}
