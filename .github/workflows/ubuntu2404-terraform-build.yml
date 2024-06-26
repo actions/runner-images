@@ -9,11 +9,6 @@ on:
       - main     
   workflow_dispatch: 
 
-permissions:
-  contents: read
-  packages: write
-  actions: write    
-  
 jobs:
   CommunityGallery:
     uses: ./.github/workflows/terraform-execution.yml
