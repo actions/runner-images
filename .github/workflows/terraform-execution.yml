@@ -69,7 +69,7 @@ jobs:
         uses: peterrhodesdev/build-a-badge@v1.3.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          filename: ${{ inputs.image_type }}-${{ inputs.image_type_version }}-${{ env.IMAGE_VERSION }}
+          filename: ${{ inputs.image_type }}-${{ inputs.image_type_version }}
           label: ${{ inputs.image_type }}-${{ inputs.image_type_version }}
           message: "version: ${{ env.IMAGE_VERSION }}"
           namedLogo: github
@@ -80,7 +80,7 @@ jobs:
         uses: peterrhodesdev/build-a-badge@v1.3.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          filename: ${{ inputs.image_type }}-${{ inputs.image_type_version }}-${{ env.IMAGE_VERSION }}
+          filename: ${{ inputs.image_type }}-${{ inputs.image_type_version }}
           label: ${{ inputs.image_type }}-${{ inputs.image_type_version }}
           message: "version: ${{ env.IMAGE_VERSION }}"
           namedLogo: github
