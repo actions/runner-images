@@ -65,7 +65,7 @@ jobs:
         continue-on-error: false        
 
       - name: Build-A-Badge-Success
-        if: ${{ inputs.directory == './terraform' }} && success()
+        if: ${{ inputs.directory == './terraform' && success() }} 
         uses: peterrhodesdev/build-a-badge@v1.3.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -76,7 +76,7 @@ jobs:
           labelColor: "#008000"
           color: "#3272d3"
       - name: Build-A-Badge-Failure
-        if: ${{ inputs.directory == './terraform' }} && failure()
+        if: ${{ inputs.directory == './terraform' && failure() }} 
         uses: peterrhodesdev/build-a-badge@v1.3.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
