@@ -64,12 +64,25 @@ jobs:
         run: terraform apply --auto-approve -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ inputs.image_type_version }}" -var="short_image_name=${{ inputs.short_image_name }}"
         continue-on-error: false        
 
-      - name: Build-A-Badge
-        if: ${{ inputs.directory == './terraform' }}
+      - name: Build-A-Badge-Success
+        if: ${{ inputs.directory == './terraform' }} && success()
         uses: peterrhodesdev/build-a-badge@v1.3.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           filename: ${{ inputs.image_type }}-${{ inputs.image_type_version }}-${{ env.IMAGE_VERSION }}
           label: ${{ inputs.image_type }}-${{ inputs.image_type_version }}
-          message: ${{ env.IMAGE_VERSION }}
-          style: social
+          message: "version: ${{ env.IMAGE_VERSION }}"
+          namedLogo: github
+          labelColor: "#008000"
+          color: "#3272d3"
+      - name: Build-A-Badge-Failure
+        if: ${{ inputs.directory == './terraform' }} && failure()
+        uses: peterrhodesdev/build-a-badge@v1.3.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          filename: ${{ inputs.image_type }}-${{ inputs.image_type_version }}-${{ env.IMAGE_VERSION }}
+          label: ${{ inputs.image_type }}-${{ inputs.image_type_version }}
+          message: "version: ${{ env.IMAGE_VERSION }}"
+          namedLogo: github
+          labelColor: "#FF0000"
+          color: "#3272d3"               
