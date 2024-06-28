@@ -3,8 +3,8 @@
 | [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
 ***
 # Windows Server 2022
-- OS Version: 10.0.20348 Build 2527
-- Image Version: 20240618.1.0
+- OS Version: 10.0.20348 Build 2529
+- Image Version: 20240624.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -30,10 +30,10 @@
 - Miniconda 24.4.0 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
 - NuGet 6.10.0.107
-- pip 24.0 (python 3.9)
+- pip 24.1 (python 3.9)
 - Pipx 1.6.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit ded971709)
+- Vcpkg (build from commit c4467cb68)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -49,7 +49,7 @@
 - sbt 1.10.0
 
 ### Tools
-- 7zip 24.06
+- 7zip 24.07
 - aria2 1.37.0
 - azcopy 10.25.1
 - Bazel 7.2.0
@@ -65,7 +65,7 @@
 - ghc 9.10.1
 - Git 2.45.2.windows.1
 - Git LFS 3.5.1
-- ImageMagick 7.1.1-33
+- ImageMagick 7.1.1-34
 - InnoSetup 6.3.1
 - jq 1.7.1
 - Kind 0.23.0
@@ -78,7 +78,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.0
-- Pulumi 3.120.0
+- Pulumi 3.121.0
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.15.7
@@ -91,13 +91,13 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.207
-- AWS CLI 2.16.9
+- Alibaba Cloud CLI 3.0.208
+- AWS CLI 2.17.0
 - AWS SAM CLI 1.119.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.51.0
+- GitHub CLI 2.52.0
 
 ### Rust Tools
 - Cargo 1.79.0
@@ -114,14 +114,14 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 126.0.6478.115
-- Chrome Driver 126.0.6478.62
-- Microsoft Edge 126.0.2592.56
-- Microsoft Edge Driver 126.0.2592.61
-- Mozilla Firefox 127.0
+- Google Chrome 126.0.6478.127
+- Chrome Driver 126.0.6478.126
+- Microsoft Edge 126.0.2592.68
+- Microsoft Edge Driver 126.0.2592.68
+- Mozilla Firefox 127.0.1
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
-- Selenium server 4.21.0
+- Selenium server 4.22.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -166,7 +166,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 16.20.2
 - 18.20.3
-- 20.14.0
+- 20.15.0
 
 #### Python
 - 3.7.9
@@ -208,9 +208,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.18.0
-- DacFx 162.3.563.1
+- DacFx 162.3.566.1
 - MySQL 8.0.37.0
-- SQL OLEDB Driver 18.6.7.0
+- SQL OLEDB Driver 18.7.2.0
 - SQLPS 1.0
 
 ### Web Servers
@@ -495,7 +495,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.6.139+a9e8765620
 
 ### PowerShell Tools
-- PowerShell 7.4.2
+- PowerShell 7.4.3
 
 #### Powershell Modules
 - Az: 11.3.1
@@ -503,7 +503,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.602
+- AWSPowershell: 4.1.605
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.19.0
@@ -546,9 +546,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:cb3c91c48940491d2feba172e85e2ea4f03344364ec2a7012fc8d1bac2fe9f2d  | 2024-06-11 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:94feada17ac5850a3f6e197d5afe5d17a57680fc47cd94c1e3a5c3726c58626f  | 2024-06-11 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:911befeaae3153f396e5178b3c27f50d19ab985f58f99ecb86f7a05e41eb321c  | 2024-06-11 |
-| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:c06c984319aecc48f4582824fe88ea2aa44933ff7793d8a81aab0ce41c1fedc3  | 2024-06-07 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:0a1c928d2334433a43f2384a933bb4b22f626228d9c48ffa388b16a5a232c9f9  | 2024-06-07 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:4facc7844cdbbdca6d7e7a1c5f4339e327007727629d849521792eb8daf6c196  | 2024-06-21 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:50d36436c9de72c01919d26aa4ae23e7aab99fbb90aa428eac91f312367df341  | 2024-06-21 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:190a72ac933d75741d402f38ba3e8791235cd5fa8df851b80f87950e617da93c  | 2024-06-21 |
+| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:31c8aa02d47af7d65c11da9c3a279c8407c32afd3fc6bec2e9a544db8e3715b3  | 2024-06-19 |
+| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:92c6ddbf87a6d6696a83f26e3df912983477844e22dd686c3e82bac4cf5b49c2  | 2024-06-19 |
 
