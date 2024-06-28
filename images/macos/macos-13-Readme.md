@@ -1,7 +1,7 @@
 # macOS 13
 - OS Version: macOS 13.6.7 (22G720)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240616.1
+- Image Version: 20240623.1
 
 ## Installed Software
 
@@ -18,29 +18,29 @@
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - Kotlin 2.0.0-release-341
 - Mono 6.12.0.188
-- Node.js 20.14.0
+- Node.js 20.15.0
 - Perl 5.38.2
 - PHP 8.3.8
 - Python3 3.12.4
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.13
+- Bundler 2.5.14
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.7
-- Homebrew 4.3.5
+- Homebrew 4.3.6
 - NPM 10.7.0
 - NuGet 6.3.1.1
-- Pip3 24.0 (python 3.12)
+- Pip3 24.1 (python 3.12)
 - Pipx 1.6.0
-- RubyGems 3.5.13
-- Vcpkg 2024 (build from commit f7423ee18)
+- RubyGems 3.5.14
+- Vcpkg 2024 (build from commit c4467cb68)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.14
-- Apache Maven 3.9.7
+- Apache Maven 3.9.8
 - Gradle 8.8
 
 ### Utilities
@@ -65,17 +65,17 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.16.9
+- AWS CLI 2.17.0
 - AWS SAM CLI 1.119.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.28.1
-- Cmake 3.29.5
+- Cmake 3.29.6
 - CodeQL Action Bundle 2.17.5
-- Fastlane 2.220.0
+- Fastlane 2.221.1
 - SwiftFormat 0.54.0
-- Xcbeautify 2.3.1
+- Xcbeautify 2.4.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.4.1
 
@@ -85,14 +85,14 @@
 ### Browsers
 - Safari 17.5 (18618.2.12.111.5)
 - SafariDriver 17.5 (18618.2.12.111.5)
-- Google Chrome 126.0.6478.62
-- Google Chrome for Testing 126.0.6478.61
-- ChromeDriver 126.0.6478.61
-- Microsoft Edge 126.0.2592.56
-- Microsoft Edge WebDriver 126.0.2592.56
-- Mozilla Firefox 127.0
+- Google Chrome 126.0.6478.115
+- Google Chrome for Testing 126.0.6478.63
+- ChromeDriver 126.0.6478.63
+- Microsoft Edge 126.0.2592.68
+- Microsoft Edge WebDriver 126.0.2592.68
+- Mozilla Firefox 127.0.1
 - geckodriver 0.34.0
-- Selenium server 4.21.0
+- Selenium server 4.22.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -150,7 +150,7 @@
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.2
+- PowerShell 7.4.3
 
 #### PowerShell Modules
 - Az: 12.0.0
@@ -230,18 +230,18 @@
 | watchOS 10.2 | 14.1<br>14.2<br>14.3.1<br>15.0.1<br>15.1<br>15.2 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm) |
 
 ### Android
-| Package Name               | Version                                                                                                                                               |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 11.0                                                                                                                                                  |
-| Android Emulator           | 34.2.15                                                                                                                                               |
-| Android SDK Build-tools    | 34.0.0<br>33.0.2 33.0.3                                                                                                                               |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
-| Android SDK Platform-Tools | 35.0.1                                                                                                                                                |
-| Android Support Repository | 47.0.0                                                                                                                                                |
-| CMake                      | 3.22.1                                                                                                                                                |
-| Google Play services       | 49                                                                                                                                                    |
-| Google Repository          | 58                                                                                                                                                    |
-| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264 (default)                                                                                               |
+| Package Name               | Version                                                                                                                                                                     |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 11.0                                                                                                                                                                        |
+| Android Emulator           | 34.2.15                                                                                                                                                                     |
+| Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                           |
+| Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
+| Android SDK Platform-Tools | 35.0.1                                                                                                                                                                      |
+| Android Support Repository | 47.0.0                                                                                                                                                                      |
+| CMake                      | 3.22.1                                                                                                                                                                      |
+| Google Play services       | 49                                                                                                                                                                          |
+| Google Repository          | 58                                                                                                                                                                          |
+| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264 (default)                                                                                                                     |
 
 #### Environment variables
 | Name                    | Value                                               |
