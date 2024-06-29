@@ -5,9 +5,9 @@
 ***
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
-- Kernel Version: 6.8.0-1007-azure
-- Image Version: 20240617.1.0
-- Systemd version: 255.4-1ubuntu8
+- Kernel Version: 6.8.0-1008-azure
+- Image Version: 20240624.1.0
+- Systemd version: 255.4-1ubuntu8.1
 
 ## Installed Software
 
@@ -20,7 +20,7 @@
 - GNU C++: 12.3.0, 13.2.0, 14.0.1
 - GNU Fortran: 12.3.0, 13.2.0, 14.0.1
 - Julia 1.10.4
-- Node.js 20.14.0
+- Node.js 20.15.0
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -28,14 +28,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.2
-- Homebrew 4.3.6
+- Homebrew 4.3.7
 - Miniconda 24.4.0
 - Npm 10.7.0
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit 40616a5e9)
+- Vcpkg (build from commit c4467cb68)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,7 +55,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.8
-- Lerna 8.1.3
+- Lerna 8.1.5
 - Maven 3.8.8
 
 ### Tools
@@ -69,10 +69,10 @@ to accomplish this.
 - CodeQL Action Bundle 2.17.5
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.15.0
+- Docker-Buildx 0.15.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.220.0
+- Fastlane 2.221.1
 - Git 2.45.2
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
@@ -89,7 +89,7 @@ to accomplish this.
 - OpenSSL 3.0.13-0ubuntu3.1
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.120.0
+- Pulumi 3.121.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -97,12 +97,12 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.16.10
+- AWS CLI 2.17.0
 - AWS CLI Session Manager Plugin 1.2.633.0
 - AWS SAM CLI 1.119.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.51.0
+- GitHub CLI 2.52.0
 
 ### Java
 | Version             | Environment Variable |
@@ -136,10 +136,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 126.0.6478.61
-- ChromeDriver 126.0.6478.61
+- Google Chrome 126.0.6478.126
+- ChromeDriver 126.0.6478.126
 - Chromium 126.0.6478.0
-- Selenium server 4.21.0
+- Selenium server 4.22.0
 
 #### Environment variables
 | Name              | Value                                 |
@@ -183,7 +183,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 16.20.2
 - 18.20.3
-- 20.14.0
+- 20.15.0
 
 #### Python
 - 3.9.19
@@ -211,15 +211,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | nginx   | 1.24.0  | /etc/nginx/nginx.conf     | inactive      | 80         |
 
 ### Android
-| Package Name               | Version                                                                                                                         |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 12.0                                                                                                                            |
-| Android SDK Build-tools    | 34.0.0                                                                                                                          |
-| Android SDK Platforms      | android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
-| Android Support Repository | 47.0.0                                                                                                                          |
-| Google Play services       | 49                                                                                                                              |
-| Google Repository          | 58                                                                                                                              |
-| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264 (default)                                                                         |
+| Package Name               | Version                                                                                                                                               |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 12.0                                                                                                                                                  |
+| Android SDK Build-tools    | 35.0.0<br>34.0.0                                                                                                                                      |
+| Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
+| Android Support Repository | 47.0.0                                                                                                                                                |
+| Google Play services       | 49                                                                                                                                                    |
+| Google Repository          | 58                                                                                                                                                    |
+| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264 (default)                                                                                               |
 
 #### Environment variables
 | Name                    | Value                                        |
