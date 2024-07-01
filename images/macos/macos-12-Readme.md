@@ -1,7 +1,12 @@
+| Announcements |
+|-|
+| [[macOS] Default Xcode on macOS 14 Sonoma will be set to Xcode 15.4 on July, 22](https://github.com/actions/runner-images/issues/10121) |
+| [[macOS] Default Xcode on macOS 13 Ventura will be set to Xcode 15.2 on July, 15](https://github.com/actions/runner-images/issues/10120) |
+***
 # macOS 12
 - OS Version: macOS 12.7.5 (21H1222)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240623.1
+- Image Version: 20240630.1
 
 ## Installed Software
 
@@ -11,11 +16,13 @@
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 11 (Homebrew GCC 11.4.0) - available by `gcc-11` alias
-- GCC 12 (Homebrew GCC 12.3.0) - available by `gcc-12` alias
+- GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
+- GCC 14 (Homebrew GCC 14.1.0_1) - available by `gcc-14` alias
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
-- GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
+- GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
+- GNU Fortran 14 (Homebrew GCC 14.1.0_1) - available by `gfortran-14` alias
 - Julia 1.10.4
 - Kotlin 2.0.0-release-341
 - Go 1.21.11
@@ -36,15 +43,15 @@
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.7
-- Homebrew 4.3.6
-- Miniconda 24.4.0
+- Homebrew 4.3.7
+- Miniconda 24.5.0
 - NPM 10.7.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip3 24.1 (python 3.12)
+- Pip3 24.1.1 (python 3.12)
 - Pipx 1.6.0
 - RubyGems 3.5.14
-- Vcpkg 2024 (build from commit c4467cb68)
+- Vcpkg 2024 (build from commit afa12e729)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -63,17 +70,17 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.25.1
-- bazel 7.2.0
+- bazel 7.2.1
 - bazelisk 1.20.0
 - bsdtar 3.5.1 - available by 'tar' alias
 - Curl 8.8.0
 - Git 2.45.2
 - Git LFS 3.5.1
-- GitHub CLI 2.51.0
+- GitHub CLI 2.52.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
-- ImageMagick 7.1.1-33
+- ImageMagick 7.1.1-34
 - jq 1.7.1
 - mongo 5.0.27
 - mongod 5.0.27
@@ -92,15 +99,15 @@
 
 ### Tools
 - App Center CLI 3.0.1
-- AWS CLI 2.17.0
-- AWS SAM CLI 1.119.0
+- AWS CLI 2.17.5
+- AWS SAM CLI 1.120.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.28.1
 - Cabal 3.10.3.0
 - Cmake 3.29.6
-- CodeQL Action Bundle 2.17.5
+- CodeQL Action Bundle 2.17.6
 - Colima 0.6.9
 - Fastlane 2.221.1
 - GHC 9.10.1
@@ -111,7 +118,7 @@
 - Swig 4.2.1
 - Xcbeautify 1.6.0
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
-- Xcodes 1.4.1
+- Xcodes 1.5.0
 
 ### Linters
 - SwiftLint 0.53.0
@@ -120,12 +127,12 @@
 ### Browsers
 - Safari 17.5 (17618.2.12.111.5)
 - SafariDriver 17.5 (17618.2.12.111.5)
-- Google Chrome 126.0.6478.115
-- Google Chrome for Testing 126.0.6478.63
-- ChromeDriver 126.0.6478.63
-- Microsoft Edge 126.0.2592.68
-- Microsoft Edge WebDriver 126.0.2592.68
-- Mozilla Firefox 127.0.1
+- Google Chrome 126.0.6478.127
+- Google Chrome for Testing 126.0.6478.126
+- ChromeDriver 126.0.6478.126
+- Microsoft Edge 126.0.2592.81
+- Microsoft Edge WebDriver 126.0.2592.81
+- Mozilla Firefox 127.0.2
 - geckodriver 0.34.0
 - Selenium server 4.22.0
 
@@ -168,7 +175,7 @@
 #### Node.js
 - 16.20.2
 - 18.20.3
-- 20.14.0
+- 20.15.0
 
 #### Go
 - 1.20.14
@@ -359,10 +366,11 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v19/19.4.0-54962/ParallelsDesktop-19.4.0-54962.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v19/19.4.1-54985/ParallelsDesktop-19.4.1-54985.dmg |
 
 ##### Notes
 ```
 If you want to use Parallels Desktop you should download a package from URL stored in
 PARALLELS_DMG_URL environment variable. A system extension is allowed for this version.
 ```
+
