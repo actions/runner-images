@@ -3,7 +3,7 @@
         "default": "15.0.1",
         "x64": {
             "versions": [
-                { "link": "16.0", "version": "16.0.0-Beta+16A5171c", "install_runtimes": "false", "sha256": "e7baf4aa1b1715a49770b50e8a5b8686dfe39f4d513d0b248912f41ded6c6ae6"},
+                { "link": "16.0", "version": "16.0.0-Beta.2+16A5171r", "install_runtimes": "false", "sha256": "86b4fd563d80c997887d37a528f69161f82987932b5ebe6119ad5dd548352ad3"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
                 { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
                 { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
@@ -14,7 +14,7 @@
         },
         "arm64":{
             "versions": [
-                { "link": "16.0", "version": "16.0.0-Beta+16A5171c", "install_runtimes": "true", "sha256": "e7baf4aa1b1715a49770b50e8a5b8686dfe39f4d513d0b248912f41ded6c6ae6"},
+                { "link": "16.0", "version": "16.0.0-Beta.2+16A5171r", "install_runtimes": "true", "sha256": "86b4fd563d80c997887d37a528f69161f82987932b5ebe6119ad5dd548352ad3"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
                 { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
                 { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
@@ -92,7 +92,8 @@
         "versions": [
             "11",
             "12",
-            "13"
+            "13",
+            "14"
         ]
     },
     "dotnet": {
