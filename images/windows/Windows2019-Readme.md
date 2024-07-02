@@ -1,10 +1,10 @@
 | Announcements |
 |-|
-| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 29](https://github.com/actions/runner-images/issues/9692) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 5936
-- Image Version: 20240624.1.0
+- Image Version: 20240630.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -27,13 +27,13 @@
 - Chocolatey 2.3.0
 - Composer 2.7.7
 - Helm 3.15.1
-- Miniconda 24.4.0 (pre-installed on the image but not added to PATH)
+- Miniconda 24.5.0 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
 - NuGet 6.10.0.107
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit c4467cb68)
+- Vcpkg (build from commit afa12e729)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -52,12 +52,12 @@
 - 7zip 24.07
 - aria2 1.37.0
 - azcopy 10.25.1
-- Bazel 7.2.0
+- Bazel 7.2.1
 - Bazelisk 1.19.0
 - Bicep 0.28.1
-- Cabal 3.10.3.0
+- Cabal 3.12.1.0
 - CMake 3.29.6
-- CodeQL Action Bundle 2.17.5
+- CodeQL Action Bundle 2.17.6
 - Docker 26.1.3
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.27.1
@@ -65,9 +65,9 @@
 - ghc 9.10.1
 - Git 2.45.2.windows.1
 - Git LFS 3.5.1
-- Google Cloud CLI 481.0.0
-- ImageMagick 7.1.1-33
-- InnoSetup 6.3.1
+- Google Cloud CLI 482.0.0
+- ImageMagick 7.1.1-34
+- InnoSetup 6.3.2
 - jq 1.7.1
 - Kind 0.23.0
 - Kubectl 1.30.2
@@ -93,13 +93,13 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.208
-- AWS CLI 2.17.0
-- AWS SAM CLI 1.119.0
+- Alibaba Cloud CLI 3.0.210
+- AWS CLI 2.17.5
+- AWS SAM CLI 1.120.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure DevOps CLI extension 1.0.1
-- Cloud Foundry CLI 6.53.0
+- Cloud Foundry CLI 8.7.10
 - GitHub CLI 2.52.0
 
 ### Rust Tools
@@ -119,9 +119,9 @@
 ### Browsers and Drivers
 - Google Chrome 126.0.6478.127
 - Chrome Driver 126.0.6478.126
-- Microsoft Edge 126.0.2592.68
-- Microsoft Edge Driver 126.0.2592.68
-- Mozilla Firefox 127.0.1
+- Microsoft Edge 126.0.2592.81
+- Microsoft Edge Driver 126.0.2592.81
+- Mozilla Firefox 127.0.2
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
 - Selenium server 4.22.0
@@ -507,7 +507,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.605
+- AWSPowershell: 4.1.610
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.19.0
