@@ -1,7 +1,12 @@
+| Announcements |
+|-|
+| [[macOS] Default Xcode on macOS 14 Sonoma will be set to Xcode 15.4 on July, 22](https://github.com/actions/runner-images/issues/10121) |
+| [[macOS] Default Xcode on macOS 13 Ventura will be set to Xcode 15.2 on July, 15](https://github.com/actions/runner-images/issues/10120) |
+***
 # macOS 14
 - OS Version: macOS 14.5 (23F79)
 - Kernel Version: Darwin 23.5.0
-- Image Version: 20240624.1
+- Image Version: 20240701.1
 
 ## Installed Software
 
@@ -11,11 +16,13 @@
 - Clang/LLVM 14.0.3
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 11 (Homebrew GCC 11.4.0) - available by `gcc-11` alias
-- GCC 12 (Homebrew GCC 12.3.0) - available by `gcc-12` alias
+- GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
+- GCC 14 (Homebrew GCC 14.1.0_1) - available by `gcc-14` alias
 - GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
-- GNU Fortran 12 (Homebrew GCC 12.3.0) - available by `gfortran-12` alias
+- GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
+- GNU Fortran 14 (Homebrew GCC 14.1.0_1) - available by `gfortran-14` alias
 - Kotlin 2.0.0-release-341
 - Mono 6.12.0.188
 - Node.js 20.15.0
@@ -29,10 +36,10 @@
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.7
-- Homebrew 4.3.6
+- Homebrew 4.3.8
 - NPM 10.7.0
 - NuGet 6.3.1.1
-- Pip3 24.1 (python 3.12)
+- Pip3 24.1.1 (python 3.12)
 - Pipx 1.6.0
 - RubyGems 3.5.14
 - Yarn 1.22.22
@@ -46,13 +53,13 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.25.1
-- bazel 7.2.0
+- bazel 7.2.1
 - bazelisk 1.20.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.8.0
 - Git 2.45.2
 - Git LFS 3.5.1
-- GitHub CLI 2.51.0
+- GitHub CLI 2.52.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -64,19 +71,19 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.0
-- AWS SAM CLI 1.119.0
+- AWS CLI 2.17.5
+- AWS SAM CLI 1.120.0
 - AWS Session Manager CLI 1.2.633.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.28.1
 - Cmake 3.29.6
-- CodeQL Action Bundle 2.17.5
+- CodeQL Action Bundle 2.17.6
 - Fastlane 2.221.1
 - SwiftFormat 0.54.0
 - Xcbeautify 2.4.0
 - Xcode Command Line Tools 15.3.0.0.1.1708646388
-- Xcodes 1.4.1
+- Xcodes 1.5.0
 
 ### Linters
 - SwiftLint 0.55.1
@@ -84,12 +91,12 @@
 ### Browsers
 - Safari 17.5 (19618.2.12.11.6)
 - SafariDriver 17.5 (19618.2.12.11.6)
-- Google Chrome 126.0.6478.115
-- Google Chrome for Testing 126.0.6478.63
-- ChromeDriver 126.0.6478.63
-- Microsoft Edge 126.0.2592.68
-- Microsoft Edge WebDriver 126.0.2592.68
-- Mozilla Firefox 127.0.1
+- Google Chrome 126.0.6478.127
+- Google Chrome for Testing 126.0.6478.126
+- ChromeDriver 126.0.6478.126
+- Microsoft Edge 126.0.2592.81
+- Microsoft Edge WebDriver 126.0.2592.81
+- Mozilla Firefox 127.0.2
 - geckodriver 0.34.0
 - Selenium server 4.22.0
 
@@ -150,7 +157,7 @@
 ### Xcode
 | Version          | Build    | Path                           |
 | ---------------- | -------- | ------------------------------ |
-| 16.0 (beta)      | 16A5171c | /Applications/Xcode_16.0.app   |
+| 16.0 (beta)      | 16A5171r | /Applications/Xcode_16.0.app   |
 | 15.4             | 15F31d   | /Applications/Xcode_15.4.app   |
 | 15.3             | 15E204a  | /Applications/Xcode_15.3.app   |
 | 15.2             | 15C500b  | /Applications/Xcode_15.2.app   |
@@ -207,8 +214,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
 | visionOS 1.1                                            | xros1.1                                       | 15.3          |
-| Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | visionOS 1.2                                            | xros1.2                                       | 15.4          |
+| Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0          |
 | visionOS 2.0                                            | xros2.0                                       | 16.0          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
@@ -263,3 +270,4 @@
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
+
