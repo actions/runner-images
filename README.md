@@ -29,7 +29,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | macOS 13 | `macos-13` or `macos-13-large` | [macOS-13] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fshamil-mubarakshin%2Ffeddf2f2b1120c2d682eeb00438c4977%2Fraw%2Fmacos-13.json) |
 | macOS 13 Arm64 | `macos-13-xlarge` | [macOS-13-arm64] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fshamil-mubarakshin%2Ffeddf2f2b1120c2d682eeb00438c4977%2Fraw%2Fmacos-13-arm64.json) |
 | macOS 12 | `macos-12` or `macos-12-large`| [macOS-12] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fshamil-mubarakshin%2Ffeddf2f2b1120c2d682eeb00438c4977%2Fraw%2Fmacos-12.json) |
-| macOS 11 <sup>deprecated</sup> | `macos-11`| [macOS-11] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fshamil-mubarakshin%2Ffeddf2f2b1120c2d682eeb00438c4977%2Fraw%2FmacOS-11.json) |
+| macOS 11 <sup>deprecated</sup> | `macos-11`| [macOS-11] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fijunaidm%2F0b5459bbe18604a639e1d2f7accd204f%2Fraw%2FmacOS-11.json) |
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fijunaidm%2F0b5459bbe18604a639e1d2f7accd204f%2Fraw%2Fwin22.json) |
 | Windows Server 2019 | `windows-2019` | [windows-2019] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fijunaidm%2F0b5459bbe18604a639e1d2f7accd204f%2Fraw%2Fwin19.json) |
 
