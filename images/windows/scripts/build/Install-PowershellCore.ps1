@@ -23,11 +23,10 @@ try {
         }
     }
 
-    $installerName = Split-Path $downloadUrl -Leaf
-    $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
-        -Url ($downloadUrl -replace $installerName, "hashes.sha256") `
-        -FileName $installerName
-    Install-Binary -Url $downloadUrl -ExpectedSHA256Sum $externalHash
+    Install-Binary `
+        -Url $downloadUrl `
+        -ExpectedSHA256Sum (Get-ToolsetContent).pwsh.checksum
+
 } finally {
     # Restore original value
     [Net.ServicePointManager]::SecurityProtocol = $originalValue
