@@ -1,12 +1,12 @@
 | Announcements |
 |-|
 | [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
-| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 9](https://github.com/actions/runner-images/issues/9692) |
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 29](https://github.com/actions/runner-images/issues/9692) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1064-azure
-- Image Version: 20240624.2.0
+- Image Version: 20240701.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -34,15 +34,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.2
-- Homebrew 4.3.7
-- Miniconda 24.4.0
+- Homebrew 4.3.8
+- Miniconda 24.5.0
 - Npm 10.7.0
 - NuGet 6.6.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.6.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit c4467cb68)
+- Vcpkg (build from commit dec6c5bf4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -70,12 +70,12 @@ to accomplish this.
 - Ansible 2.13.13
 - apt-fast 1.10.0
 - AzCopy 10.25.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.2.0
+- Bazel 7.2.1
 - Bazelisk 1.19.0
 - Bicep 0.28.1
 - Buildah 1.22.3
 - CMake 3.29.6
-- CodeQL Action Bundle 2.17.5
+- CodeQL Action Bundle 2.17.6
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.27.1
@@ -101,7 +101,7 @@ to accomplish this.
 - Newman 6.1.3
 - nvm 0.39.7
 - OpenSSL 1.1.1f-1ubuntu2.22
-- Packer 1.11.0
+- Packer 1.11.1
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
@@ -110,24 +110,24 @@ to accomplish this.
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.8.5
+- Terraform 1.9.0
 - yamllint 1.35.1
 - yq 4.44.2
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.17.0
+- AWS CLI 2.17.6
 - AWS CLI Session Manager Plugin 1.2.633.0
-- AWS SAM CLI 1.119.0
+- AWS SAM CLI 1.120.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.52.0
-- Google Cloud CLI 481.0.0
-- Netlify CLI 17.29.0
-- OpenShift CLI 4.15.18
+- Google Cloud CLI 482.0.0
+- Netlify CLI 17.31.0
+- OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 34.2.7
+- Vercel CLI 34.2.8
 
 ### Java
 | Version             | Environment Variable |
@@ -146,7 +146,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Haskell Tools
-- Cabal 3.10.3.0
+- Cabal 3.12.1.0
 - GHC 9.10.1
 - GHCup 0.1.22.0
 - Stack 2.15.7
@@ -169,10 +169,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 126.0.6478.126
 - ChromeDriver 126.0.6478.126
 - Chromium 126.0.6478.0
-- Microsoft Edge 126.0.2592.68
-- Microsoft Edge WebDriver 126.0.2592.68
+- Microsoft Edge 126.0.2592.81
+- Microsoft Edge WebDriver 126.0.2592.81
 - Selenium server 4.22.0
-- Mozilla Firefox 126.0.2
+- Mozilla Firefox 127.0.2
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -251,7 +251,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 11.3.1
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.19.0
-- Pester: 5.6.0
+- Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
 ### Web Servers
@@ -297,8 +297,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
 | node:18              | sha256:d0bbfdbad0bff8253e6159dcbee42141db4fc309365d5b8bcfce46ed71569078  | 2024-05-21 |
 | node:18-alpine       | sha256:e37da457874383fa9217067867ec85fe8fe59f0bfa351ec9752a95438680056e  | 2024-06-04 |
-| node:20              | sha256:02cd2205818f121c13612721876f28c18bd50148bb8af532ea121c96ffcb59bf  | 2024-05-28 |
-| node:20-alpine       | sha256:804aa6a6476a7e2a5df8db28804aa6c1c97904eefb01deed5d6af24bb51d0c81  | 2024-06-04 |
+| node:20              | sha256:b849bc4078c3e16a38d72749ab8faeacbcc6c3bdb742399b4a5974a89fc93261  | 2024-06-24 |
+| node:20-alpine       | sha256:df01469346db2bf1cfc1f7261aeab86b2960efa840fe2bd46d83ff339f463665  | 2024-06-24 |
 | ubuntu:20.04         | sha256:0b897358ff6624825fb50d20ffb605ab0eaea77ced0adb8c6a4b756513dec6fc  | 2024-06-03 |
 
 ### Installed apt packages
@@ -386,7 +386,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | tzdata                 | 2024a-0ubuntu0.20.04              |
 | unzip                  | 6.0-25ubuntu1.2                   |
 | upx                    | 3.95-2build1                      |
-| wget                   | 1.20.3-1ubuntu2                   |
+| wget                   | 1.20.3-1ubuntu2.1                 |
 | xorriso                | 1.5.2-1                           |
 | xvfb                   | 2:1.20.13-1ubuntu1\~20.04.17      |
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
