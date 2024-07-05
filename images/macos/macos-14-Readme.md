@@ -1,4 +1,4 @@
-| Announcements |
+ | Announcements |
 |-|
 | [[macOS] Default Xcode on macOS 14 Sonoma will be set to Xcode 15.4 on July, 22](https://github.com/actions/runner-images/issues/10121) |
 | [[macOS] Default Xcode on macOS 13 Ventura will be set to Xcode 15.2 on July, 15](https://github.com/actions/runner-images/issues/10120) |
