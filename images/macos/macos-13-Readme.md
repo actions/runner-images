@@ -4,9 +4,9 @@
 | [[macOS] Default Xcode on macOS 13 Ventura will be set to Xcode 15.2 on July, 15](https://github.com/actions/runner-images/issues/10120) |
 ***
 # macOS 13
-- OS Version: macOS 13.6.7 (22G807)
+- OS Version: macOS 13.6.7 (22G810)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240630.1
+- Image Version: 20240707.2
 
 ## Installed Software
 
@@ -27,7 +27,7 @@
 - Mono 6.12.0.188
 - Node.js 20.15.0
 - Perl 5.38.2
-- PHP 8.3.8
+- PHP 8.3.9
 - Python3 3.12.4
 - Ruby 3.0.7p220
 
@@ -36,13 +36,13 @@
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.7
-- Homebrew 4.3.7
+- Homebrew 4.3.8
 - NPM 10.7.0
 - NuGet 6.3.1.1
-- Pip3 24.1.1 (python 3.12)
+- Pip3 24.1.2 (python 3.12)
 - Pipx 1.6.0
 - RubyGems 3.5.14
-- Vcpkg 2024 (build from commit afa12e729)
+- Vcpkg 2024 (build from commit 576379156)
 - Yarn 1.22.22
 
 ### Project Management
@@ -72,13 +72,13 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.5
+- AWS CLI 2.17.9
 - AWS SAM CLI 1.120.0
-- AWS Session Manager CLI 1.2.633.0
+- AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.28.1
-- Cmake 3.29.6
+- Cmake 3.30.0
 - CodeQL Action Bundle 2.17.6
 - Fastlane 2.221.1
 - SwiftFormat 0.54.0
@@ -90,13 +90,13 @@
 - SwiftLint 0.55.1
 
 ### Browsers
-- Safari 17.6 (18618.3.7.1)
-- SafariDriver 17.6 (18618.3.7.1)
+- Safari 18.0 (18619.1.18.111.4)
+- SafariDriver 18.0 (18619.1.18.111.4)
 - Google Chrome 126.0.6478.127
 - Google Chrome for Testing 126.0.6478.126
 - ChromeDriver 126.0.6478.126
-- Microsoft Edge 126.0.2592.81
-- Microsoft Edge WebDriver 126.0.2592.81
+- Microsoft Edge 126.0.2592.87
+- Microsoft Edge WebDriver 126.0.2592.87
 - Mozilla Firefox 127.0.2
 - geckodriver 0.34.0
 - Selenium server 4.22.0
@@ -143,8 +143,8 @@
 
 #### Go
 - 1.20.14
-- 1.21.11
-- 1.22.4
+- 1.21.12
+- 1.22.5
 
 ### Rust Tools
 - Cargo 1.79.0
@@ -161,7 +161,7 @@
 
 #### PowerShell Modules
 - Az: 12.0.0
-- Pester: 5.6.0
+- Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
 ### Xcode
@@ -208,8 +208,8 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
+| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
