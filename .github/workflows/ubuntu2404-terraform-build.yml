@@ -10,19 +10,8 @@ on:
   workflow_dispatch: 
 
 jobs:
-  CommunityGallery:
-    uses: ./.github/workflows/terraform-execution.yml
-    with:
-      image_type: 'ubuntu'
-      image_type_version: '24.04'
-      image_readme_path: 'ubuntu/Ubuntu2004-Readme.md'
-      short_image_name: 'u'
-      state: tf-community-gallery-base.tfstate
-      directory: './terraform_base'
-    secrets: inherit  
   Ubuntu_2404:
     uses: ./.github/workflows/terraform-execution.yml
-    needs: CommunityGallery
     with:
       image_type: 'ubuntu'
       image_type_version: '24.04'

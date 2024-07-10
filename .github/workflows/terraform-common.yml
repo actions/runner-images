@@ -1,0 +1,60 @@
+name: Images Common Resources
+
+on:
+  workflow_dispatch:    
+
+jobs:
+  CommunityGalleryUbuntu2004:
+    uses: ./.github/workflows/terraform-execution.yml
+    with:
+      image_type: 'ubuntu'
+      image_type_version: '20.04'
+      image_readme_path: 'ubuntu/Ubuntu2004-Readme.md'
+      short_image_name: 'u'
+      state: tf-community-gallery-base.tfstate
+      directory: './terraform_base'
+    secrets: inherit
+  CommunityGalleryUbuntu2204:
+    uses: ./.github/workflows/terraform-execution.yml
+    needs: CommunityGalleryUbuntu2004
+    with:
+        image_type: 'ubuntu'
+        image_type_version: '22.04'
+        image_readme_path: 'ubuntu/Ubuntu2204-Readme.md'
+        short_image_name: 'u'
+        state: tf-community-gallery-base.tfstate
+        directory: './terraform_base'
+    secrets: inherit  
+  CommunityGalleryUbuntu2404:
+    uses: ./.github/workflows/terraform-execution.yml
+    needs: CommunityGalleryUbuntu2204
+    with:
+        image_type: 'ubuntu'
+        image_type_version: '24.04'
+        image_readme_path: 'ubuntu/Ubuntu2204-Readme.md'
+        short_image_name: 'u'
+        state: tf-community-gallery-base.tfstate
+        directory: './terraform_base'
+    secrets: inherit      
+  CommunityGalleryWindows2019:
+    uses: ./.github/workflows/terraform-execution.yml
+    needs: CommunityGalleryUbuntu2404
+    with:
+        image_type: 'windows'
+        image_type_version: '2019'
+        image_readme_path: 'windows/Windows2019-Readme.md'
+        short_image_name: 'w'
+        state: tf-community-gallery-base.tfstate
+        directory: './terraform_base'
+    secrets: inherit     
+  CommunityGallery:
+    uses: ./.github/workflows/terraform-execution.yml
+    needs: CommunityGalleryWindows2019
+    with:
+        image_type: 'windows'
+        image_type_version: '2022'
+        image_readme_path: 'windows/Windows2022-Readme.md'
+        short_image_name: 'w'
+        state: tf-community-gallery-base.tfstate
+        directory: './terraform_base'
+    secrets: inherit    

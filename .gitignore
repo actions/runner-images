@@ -399,3 +399,4 @@ launch.json
 images/*/*-temp.json
 terraform_base/.terraform.lock.hcl
 terraform_base/.terraform/*
+terraform-macos/*
