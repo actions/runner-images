@@ -19,7 +19,7 @@ Expand-7ZipArchive -Path $cloudFoundryArchPath -DestinationPath $cloudFoundryCli
 # Add cf to path
 Add-MachinePathItem $cloudFoundryCliPath
 
-# Validate cf signature thumbprint
+# Validate cf signature
 $cloudFoundrySignatureThumbprint = "2C6B2F1562698503A6E4A25F2DF058E12E23A190"
 Test-FileSignature -Path "$cloudFoundryCliPath\cf.exe" -ExpectedThumbprint $cloudFoundrySignatureThumbprint
 

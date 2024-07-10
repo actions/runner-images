@@ -6,7 +6,8 @@
             "platform" : "win32",
             "versions": [
                 "3.0",
-                "3.1"
+                "3.1",
+                "3.2"
             ],
             "default": "3.0"
         },
@@ -176,7 +177,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "signature": "C2048FB509F1C37A8C3E9EC6648118458AA01780",
+        "signature": "F9A7CF9FBE13BAC767F4781061332DA6E8B4E0EE",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
