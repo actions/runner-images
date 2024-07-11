@@ -5,8 +5,8 @@
 ***
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
-- Kernel Version: 6.8.0-1008-azure
-- Image Version: 20240630.1.0
+- Kernel Version: 6.8.0-1009-azure
+- Image Version: 20240707.1.0
 - Systemd version: 255.4-1ubuntu8.1
 
 ## Installed Software
@@ -28,14 +28,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.2
-- Homebrew 4.3.7
+- Homebrew 4.3.8
 - Miniconda 24.5.0
 - Npm 10.7.0
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit afa12e729)
+- Vcpkg (build from commit 576379156)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,7 +55,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.8
-- Lerna 8.1.5
+- Lerna 8.1.6
 - Maven 3.8.8
 
 ### Tools
@@ -65,7 +65,7 @@ to accomplish this.
 - Bazelisk 1.19.0
 - Bicep 0.28.1
 - Buildah 1.33.7
-- CMake 3.29.6
+- CMake 3.30.0
 - CodeQL Action Bundle 2.17.6
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.1
@@ -89,7 +89,7 @@ to accomplish this.
 - OpenSSL 3.0.13-0ubuntu3.1
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.121.0
+- Pulumi 3.122.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -97,8 +97,8 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.17.5
-- AWS CLI Session Manager Plugin 1.2.633.0
+- AWS CLI 2.17.9
+- AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.120.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
@@ -123,7 +123,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.12.1.0
 - GHC 9.10.1
-- GHCup 0.1.22.0
+- GHCup 0.1.30.0
 - Stack 2.15.7
 
 ### Rust Tools
@@ -177,8 +177,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.20.14
-- 1.21.11
-- 1.22.4
+- 1.21.12
+- 1.22.5
 
 #### Node.js
 - 16.20.2
@@ -200,8 +200,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 11.5.0
-- Microsoft.Graph: 2.19.0
-- Pester: 5.6.0
+- Microsoft.Graph: 2.20.0
+- Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
 ### Web Servers
@@ -272,7 +272,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 6.7.2-1ubuntu2        |
 | net-tools              | 2.10-0.1ubuntu4       |
 | netcat                 | 1.226-1ubuntu2        |
-| openssh-client         | 1:9.6p1-3ubuntu13     |
+| openssh-client         | 1:9.6p1-3ubuntu13.3   |
 | p7zip-full             | 16.02+transitional.1  |
 | p7zip-rar              | 16.02+transitional.1  |
 | parallel               | 20231122+ds-1         |
@@ -286,7 +286,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | shellcheck             | 0.9.0-1               |
 | sphinxsearch           | 2.2.11-8build1        |
 | sqlite3                | 3.45.1-1ubuntu2       |
-| ssh                    | 1:9.6p1-3ubuntu13     |
+| ssh                    | 1:9.6p1-3ubuntu13.3   |
 | sshpass                | 1.09-1                |
 | sudo                   | 1.9.15p5-3ubuntu5     |
 | swig                   | 4.2.0-2ubuntu1        |
