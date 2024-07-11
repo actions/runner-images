@@ -6,7 +6,7 @@
 # macOS 14
 - OS Version: macOS 14.5 (23F79)
 - Kernel Version: Darwin 23.5.0
-- Image Version: 20240701.9
+- Image Version: 20240707.1
 
 ## Installed Software
 
@@ -69,13 +69,13 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.5
+- AWS CLI 2.17.9
 - AWS SAM CLI 1.120.0
-- AWS Session Manager CLI 1.2.633.0
+- AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.28.1
-- Cmake 3.29.6
+- Cmake 3.30.0
 - CodeQL Action Bundle 2.17.6
 - Fastlane 2.221.1
 - SwiftFormat 0.54.0
@@ -121,8 +121,8 @@
 
 #### Go
 - 1.20.14
-- 1.21.11
-- 1.22.4
+- 1.21.12
+- 1.22.5
 
 ### Rust Tools
 - Cargo 1.79.0
@@ -198,14 +198,14 @@
 | Simulator - watchOS 10.4                                | watchsimulator10.4                            | 15.3          |
 | Simulator - watchOS 10.5                                | watchsimulator10.5                            | 15.4          |
 | Simulator - watchOS 11.0                                | watchsimulator11.0                            | 16.0          |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
+| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.1                                            | xros1.1                                       | 15.3          |
 | Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
 | Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | visionOS 1.2                                            | xros1.2                                       | 15.4          |
-| visionOS 2.0                                            | xros2.0                                       | 16.0          |
 | Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0          |
+| visionOS 2.0                                            | xros2.0                                       | 16.0          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
