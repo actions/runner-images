@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2529
-- Image Version: 20240630.1.0
+- Image Version: 20240707.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,13 +13,13 @@
 
 ### Language and Runtime
 - Bash 5.2.26(1)-release
-- Go 1.21.11
+- Go 1.21.12
 - Julia 1.10.4
 - Kotlin 2.0.0
 - LLVM 18.1.6
 - Node 18.20.3
 - Perl 5.32.1
-- PHP 8.3.8
+- PHP 8.3.9
 - Python 3.9.13
 - Ruby 3.0.7p220
 
@@ -30,10 +30,10 @@
 - Miniconda 24.5.0 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
 - NuGet 6.10.0.107
-- pip 24.1.1 (python 3.9)
+- pip 24.1.2 (python 3.9)
 - Pipx 1.6.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit afa12e729)
+- Vcpkg (build from commit 576379156)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,7 +56,7 @@
 - Bazelisk 1.19.0
 - Bicep 0.28.1
 - Cabal 3.12.1.0
-- CMake 3.29.6
+- CMake 3.30.0
 - CodeQL Action Bundle 2.17.6
 - Docker 26.1.3
 - Docker Compose v1 1.29.2
@@ -78,7 +78,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.0
-- Pulumi 3.121.0
+- Pulumi 3.122.0
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 2.15.7
@@ -92,9 +92,9 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.210
-- AWS CLI 2.17.5
+- AWS CLI 2.17.9
 - AWS SAM CLI 1.120.0
-- AWS Session Manager CLI 1.2.633.0
+- AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.61.0
 - Azure DevOps CLI extension 1.0.1
 - GitHub CLI 2.52.0
@@ -116,8 +116,8 @@
 ### Browsers and Drivers
 - Google Chrome 126.0.6478.127
 - Chrome Driver 126.0.6478.126
-- Microsoft Edge 126.0.2592.81
-- Microsoft Edge Driver 126.0.2592.81
+- Microsoft Edge 126.0.2592.87
+- Microsoft Edge Driver 126.0.2592.87
 - Mozilla Firefox 127.0.2
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
@@ -160,8 +160,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.20.14
-- 1.21.11
-- 1.22.4
+- 1.21.12
+- 1.22.5
 
 #### Node.js
 - 16.20.2
@@ -186,6 +186,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Ruby
 - 3.0.7
 - 3.1.6
+- 3.2.4
 
 ### Databases
 
@@ -209,7 +210,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Database tools
 - Azure CosmosDb Emulator 2.14.18.0
 - DacFx 162.3.566.1
-- MySQL 8.0.37.0
+- MySQL 8.0.38.0
 - SQL OLEDB Driver 18.7.2.0
 - SQLPS 1.0
 
@@ -503,15 +504,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.610
+- AWSPowershell: 4.1.614
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.19.0
-- Pester: 3.4.0, 5.6.0
+- Microsoft.Graph: 2.20.0
+- Pester: 3.4.0, 5.6.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.22.0
 - PSWindowsUpdate: 2.2.1.4
-- SqlServer: 22.2.0
+- SqlServer: 22.3.0
 - VSSetup: 2.2.16
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
