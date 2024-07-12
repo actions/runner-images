@@ -48,9 +48,9 @@ variable "vm_username" {
   sensitive = true
 }
 
-variable "vm_key_file" {
+variable "vm_password" {
   type      = string
-  default   = ""
+  sensitive = true
 }
 
 variable "github_api_pat" {
