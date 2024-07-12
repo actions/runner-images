@@ -6,7 +6,7 @@
 # macOS 13
 - OS Version: macOS 13.6.7 (22G720)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240701.1
+- Image Version: 20240708.1
 
 ## Installed Software
 
@@ -34,7 +34,7 @@
 - Bundler 2.5.14
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Homebrew 4.3.8
+- Homebrew 4.3.9
 - NPM 10.7.0
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
@@ -69,13 +69,13 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.5
+- AWS CLI 2.17.9
 - AWS SAM CLI 1.120.0
-- AWS Session Manager CLI 1.2.633.0
+- AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.28.1
-- Cmake 3.29.6
+- Cmake 3.30.0
 - CodeQL Action Bundle 2.17.6
 - Fastlane 2.221.1
 - SwiftFormat 0.54.0
@@ -122,8 +122,8 @@
 
 #### Go
 - 1.20.14
-- 1.21.11
-- 1.22.4
+- 1.21.12
+- 1.22.5
 
 ### Rust Tools
 - Cargo 1.79.0
@@ -140,7 +140,7 @@
 
 #### PowerShell Modules
 - Az: 12.0.0
-- Pester: 5.6.0
+- Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
 ### Xcode
@@ -190,8 +190,8 @@
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
