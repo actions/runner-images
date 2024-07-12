@@ -53,6 +53,11 @@ variable "vm_password" {
   sensitive = true
 }
 
+variable "vm_key_file" {
+  type      = string
+  default   = ""
+}
+
 variable "github_api_pat" {
   type    = string
   default = ""
@@ -97,7 +102,7 @@ source "null" "template" {
   ssh_host = "${var.source_vm_name}"
   ssh_port = "${var.source_vm_port}"
   ssh_username = "${var.vm_username}"
-  ssh_private_key_file = "${var.vm_password}"
+  ssh_private_key_file = "${var.vm_key_file}"
   ssh_proxy_host = "${var.socks_proxy}"
 }
 
