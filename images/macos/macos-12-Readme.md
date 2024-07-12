@@ -6,7 +6,7 @@
 # macOS 12
 - OS Version: macOS 12.7.5 (21H1222)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240630.1
+- Image Version: 20240707.1
 
 ## Installed Software
 
@@ -25,14 +25,14 @@
 - GNU Fortran 14 (Homebrew GCC 14.1.0_1) - available by `gfortran-14` alias
 - Julia 1.10.4
 - Kotlin 2.0.0-release-341
-- Go 1.21.11
+- Go 1.21.12
 - Mono 6.12.0.188
 - Node.js 18.20.3
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - NVM 0.39.7
 - NVM - Cached node versions: 16.20.2, 18.20.3, 20.15.0
 - Perl 5.38.2
-- PHP 8.3.8
+- PHP 8.3.9
 - Python 2.7.18
 - Python3 3.12.4
 - R 4.4.1
@@ -43,15 +43,15 @@
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.7
-- Homebrew 4.3.7
+- Homebrew 4.3.8
 - Miniconda 24.5.0
 - NPM 10.7.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
-- Pip3 24.1.1 (python 3.12)
+- Pip3 24.1.2 (python 3.12)
 - Pipx 1.6.0
 - RubyGems 3.5.14
-- Vcpkg 2024 (build from commit afa12e729)
+- Vcpkg 2024 (build from commit 576379156)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -99,19 +99,19 @@
 
 ### Tools
 - App Center CLI 3.0.1
-- AWS CLI 2.17.5
+- AWS CLI 2.17.9
 - AWS SAM CLI 1.120.0
-- AWS Session Manager CLI 1.2.633.0
+- AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.61.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.28.1
 - Cabal 3.10.3.0
-- Cmake 3.29.6
+- Cmake 3.30.0
 - CodeQL Action Bundle 2.17.6
 - Colima 0.6.9
 - Fastlane 2.221.1
 - GHC 9.10.1
-- GHCup 0.1.22.0
+- GHCup 0.1.30.0
 - Jazzy 0.15.1
 - Stack 2.15.7
 - SwiftFormat 0.54.0
@@ -130,8 +130,8 @@
 - Google Chrome 126.0.6478.127
 - Google Chrome for Testing 126.0.6478.126
 - ChromeDriver 126.0.6478.126
-- Microsoft Edge 126.0.2592.81
-- Microsoft Edge WebDriver 126.0.2592.81
+- Microsoft Edge 126.0.2592.87
+- Microsoft Edge WebDriver 126.0.2592.87
 - Mozilla Firefox 127.0.2
 - geckodriver 0.34.0
 - Selenium server 4.22.0
@@ -179,8 +179,8 @@
 
 #### Go
 - 1.20.14
-- 1.21.11
-- 1.22.4
+- 1.21.12
+- 1.22.5
 
 ### Rust Tools
 - Cargo 1.79.0
@@ -202,13 +202,13 @@
 #### PowerShell Modules
 - Az: 12.0.0
 - MarkdownPS: 1.10
-- Pester: 5.6.0
+- Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
 ### Web Servers
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.59  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| httpd | 2.4.61  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
 | nginx | 1.27.0  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
