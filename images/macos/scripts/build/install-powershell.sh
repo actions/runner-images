@@ -10,6 +10,8 @@ echo Installing PowerShell...
 arch=$(get_arch)
 
 metadata_json_path=$(download_with_retry "https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json")
+echo $metadata_json_path
+cat $metadata_json_path
 pwshVersionToolset=$(get_toolset_value '.pwsh.version')
 pwshVersions=$(jq -r '.LTSReleaseTag[]' $metadata_json_path)
 
