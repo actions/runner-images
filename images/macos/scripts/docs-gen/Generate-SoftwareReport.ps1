@@ -311,7 +311,7 @@ if ($os.IsBigSur -or $os.IsMonterey) {
     $miscellaneous.AddToolVersion("Zlib", $(Get-ZlibVersion))
 }
 
-if ($os.IsMonterey) {
+if ($os.IsMonterey -or $os.IsSonomaX64) {
     $miscellaneousEnv = $miscellaneous.AddHeader("Environment variables")
     $miscellaneousEnv.AddTable($(Build-MiscellaneousEnvironmentTable))
 
