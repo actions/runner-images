@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "15.0.1",
+        "default": "15.4",
         "x64": {
             "versions": [
                 { "link": "16.0", "version": "16.0.0-Beta.2+16A5171r", "install_runtimes": "false", "sha256": "86b4fd563d80c997887d37a528f69161f82987932b5ebe6119ad5dd548352ad3"},
