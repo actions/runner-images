@@ -215,6 +215,7 @@
             "alpine:3.16",
             "alpine:3.17",
             "alpine:3.18",
+            "alpine:3.19",
             "debian:9",
             "debian:10",
             "debian:11",

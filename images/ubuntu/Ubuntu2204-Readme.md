@@ -1,7 +1,12 @@
+| Announcements |
+|-|
+| [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 29](https://github.com/actions/runner-images/issues/9692) |
+***
 # Ubuntu 22.04
 - OS Version: 22.04.4 LTS
-- Kernel Version: 6.5.0-1022-aws
-- Image Version: dev
+- Kernel Version: 6.5.0-1023-azure
+- Image Version: 20240714.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -18,7 +23,7 @@
 - Kotlin 2.0.0-release-341
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 18.20.3
+- Node.js 18.20.4
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
@@ -26,8 +31,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.15.2
-- Homebrew 4.3.8
+- Helm 3.15.3
+- Homebrew 4.3.9
 - Miniconda 24.5.0
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -35,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.6.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 49ac2134b)
+- Vcpkg (build from commit 7aeffc910)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,10 +59,10 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 8.8
-- Lerna 8.1.5
+- Gradle 8.9
+- Lerna 8.1.6
 - Maven 3.8.8
-- Sbt 1.10.0
+- Sbt 1.10.1
 
 ### Tools
 - Ansible 2.17.1
@@ -68,11 +73,11 @@ to accomplish this.
 - Bicep 0.28.1
 - Buildah 1.23.1
 - CMake 3.30.0
-- CodeQL Action Bundle 2.17.6
+- CodeQL Action Bundle 2.18.0
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.15.1
+- Docker-Buildx 0.16.0
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.221.1
@@ -96,29 +101,29 @@ to accomplish this.
 - Packer 1.11.1
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.122.0
+- Pulumi 3.124.0
 - R 4.4.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.9.1
+- Terraform 1.9.2
 - yamllint 1.35.1
 - yq 4.44.2
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.210
-- AWS CLI 2.17.8
+- Alibaba Cloud CLI 3.0.213
+- AWS CLI 2.17.13
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.120.0
-- Azure CLI 2.61.0
+- Azure CLI 2.62.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.52.0
 - Google Cloud CLI 483.0.0
-- Netlify CLI 17.32.1
-- OpenShift CLI 4.16.1
+- Netlify CLI 17.33.3
+- OpenShift CLI 4.16.2
 - ORAS CLI 1.2.0
-- Vercel CLI 34.3.0
+- Vercel CLI 34.3.1
 
 ### Java
 | Version             | Environment Variable |
@@ -131,7 +136,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.1.2
 - Composer 2.7.7
-- PHPUnit 8.5.38
+- PHPUnit 8.5.39
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -139,7 +144,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.12.1.0
 - GHC 9.10.1
-- GHCup 0.1.22.0
+- GHCup 0.1.30.0
 - Stack 2.15.7
 
 ### Rust Tools
@@ -160,10 +165,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 126.0.6478.126
 - ChromeDriver 126.0.6478.126
 - Chromium 126.0.6478.0
-- Microsoft Edge 126.0.2592.87
-- Microsoft Edge WebDriver 126.0.2592.87
+- Microsoft Edge 126.0.2592.102
+- Microsoft Edge WebDriver 126.0.2592.102
 - Selenium server 4.22.0
-- Mozilla Firefox 127.0.2
+- Mozilla Firefox 128.0
 - Geckodriver 0.34.0
 
 #### Environment variables
@@ -175,7 +180,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.423, 7.0.410, 8.0.302
+- .NET Core SDK: 6.0.424, 7.0.410, 8.0.303
 - nbgv 3.6.139+a9e8765620
 
 ### Databases
@@ -211,8 +216,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 16.20.2
-- 18.20.3
-- 20.15.0
+- 18.20.4
+- 20.15.1
 
 #### Python
 - 3.7.17
@@ -238,7 +243,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 11.3.1
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.19.0
+- Microsoft.Graph: 2.20.0
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
@@ -271,33 +276,23 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Cached Docker images
-| Repository:Tag                                           | Digest                                                                   | Created    |
-| -------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.16                                              | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
-| alpine:3.17                                              | sha256:a6063e988bcd597b4f1f7cfd4ec38402b02edd0c79250f00c9e14dc1e94bebbc  | 2024-06-20 |
-| alpine:3.18                                              | sha256:1875c923b73448b558132e7d4a44b815d078779ed7a73f76209c6372de95ea8d  | 2024-06-20 |
-| debian:10                                                | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11                                                | sha256:b6b4a479a3bc1b8dfda5544f00b72aafb230bb835a43974a147b220c38df882e  | 2024-07-02 |
-| mcr.microsoft.com/mssql/server:2019-latest               | sha256:fdd59b5c286899100531cd9f23ad74a8cb75df335513924a8de59964ef9b38d5  | 2024-06-11 |
-| moby/buildkit:latest                                     | sha256:5d410bbb6d22b01fcaead1345936c5e0a0963eb6c3b190e38694e015467640fe  | 2024-06-18 |
-| node:16                                                  | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
-| node:16-alpine                                           | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18                                                  | sha256:70ae166dcb03837ebe1abbb78919a1a4bdc79cc970344d56f33b6c753f4b46cc  | 2024-05-21 |
-| node:18-alpine                                           | sha256:e37da457874383fa9217067867ec85fe8fe59f0bfa351ec9752a95438680056e  | 2024-06-04 |
-| node:20                                                  | sha256:93d2e801dabc677ea0b30b47d3d729fab63ecb20be7ac0ab204cc3c65731297a  | 2024-06-24 |
-| node:20-alpine                                           | sha256:df01469346db2bf1cfc1f7261aeab86b2960efa840fe2bd46d83ff339f463665  | 2024-06-24 |
-| osixia/openldap:latest                                   | sha256:3f68751292b43564a2586fc29fb7337573e2dad692b92d4e78e49ad5c22e567b  | 2021-02-19 |
-| osixia/phpldapadmin:latest                               | sha256:9831569a2f3d1d764aabcb5abe6e463771b9595f1565fe3007fe77c4c3979043  | 2021-02-19 |
-| public.ecr.aws/docker/library/debian:bookworm-slim       | sha256:f528891ab1aa484bf7233dbcc84f3c806c3e427571d75510a9d74bb5ec535b33  | 2024-07-02 |
-| public.ecr.aws/docker/library/golang:latest              | sha256:fcae9e0e7313c6467a7c6632ebb5e5fab99bd39bd5eb6ee34a211353e647827a  | 2024-07-02 |
-| public.ecr.aws/docker/library/postgres:latest            | sha256:0aafd2ae7e6c391f39fb6b7621632d79f54068faebc726caf469e87bd1d301c0  | 2024-05-09 |
-| public.ecr.aws/docker/library/python:3.11                | sha256:a87accdfc2fd5cca7e2ffeabb5c32749b932bc3d1e5a25c3b6adc0c26af7fce8  | 2024-06-26 |
-| public.ecr.aws/docker/library/python:3.11-slim           | sha256:aad3c9cb248194ddd1b98860c2bf41ea7239c384ed51829cf38dcb3569deb7f1  | 2024-06-26 |
-| public.ecr.aws/docker/library/rabbitmq:management-alpine | sha256:9f6b397995605e7896241188939abf6cb9832026766c50c1ff2a94a891822aee  | 2024-02-22 |
-| public.ecr.aws/hashicorp/consul:latest                   | sha256:05baa180b8a505d1bbe60725920544f8ad74bea1f82f45a2c7d89f79b02721ed  | 2024-06-12 |
-| public.ecr.aws/hashicorp/vault:latest                    | sha256:0ba7c9c2922b5645c07fb363a7862fd79eee235004b8bcf7ecba26ccfbc48526  | 2024-06-25 |
-| ubuntu:20.04                                             | sha256:0b897358ff6624825fb50d20ffb605ab0eaea77ced0adb8c6a4b756513dec6fc  | 2024-06-03 |
-| ubuntu:22.04                                             | sha256:340d9b015b194dc6e2a13938944e0d016e57b9679963fdeb9ce021daac430221  | 2024-06-27 |
+| Repository:Tag       | Digest                                                                   | Created    |
+| -------------------- | ------------------------------------------------------------------------ | ---------- |
+| alpine:3.16          | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
+| alpine:3.17          | sha256:a6063e988bcd597b4f1f7cfd4ec38402b02edd0c79250f00c9e14dc1e94bebbc  | 2024-06-20 |
+| alpine:3.18          | sha256:1875c923b73448b558132e7d4a44b815d078779ed7a73f76209c6372de95ea8d  | 2024-06-20 |
+| alpine:3.19          | sha256:af4785ccdbcd5cde71bfd5b93eabd34250b98651f19fe218c91de6c8d10e21c5  | 2024-06-20 |
+| debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
+| debian:11            | sha256:b6b4a479a3bc1b8dfda5544f00b72aafb230bb835a43974a147b220c38df882e  | 2024-07-02 |
+| moby/buildkit:latest | sha256:33fe47b4c06972ac6720a7ee34d6fdea3b61972f81bcc9b1f73e46ed2a090fa1  | 2024-07-11 |
+| node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
+| node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
+| node:18              | sha256:aabbaf118c7c0a6e9a3bda69bd2a94b0f6c4150bf80c501ef1c87ffcb5687365  | 2024-07-09 |
+| node:18-alpine       | sha256:1edb14175eeb14a14a3abe059339cbd97a0bbb76b6a210d2bb395d63fa4bc4ef  | 2024-07-09 |
+| node:20              | sha256:786005cf39792f7046bcd66491056c26d2dbcc669c072d1a1e4ef4fcdddd26eb  | 2024-07-09 |
+| node:20-alpine       | sha256:34b7aa411056c85dbf71d240d26516949b3f72b318d796c26b57caaa1df5639a  | 2024-07-09 |
+| ubuntu:20.04         | sha256:0b897358ff6624825fb50d20ffb605ab0eaea77ced0adb8c6a4b756513dec6fc  | 2024-06-03 |
+| ubuntu:22.04         | sha256:340d9b015b194dc6e2a13938944e0d016e57b9679963fdeb9ce021daac430221  | 2024-06-27 |
 
 ### Installed apt packages
 | Name                   | Version                             |
@@ -388,7 +383,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1.1                   |
 | xorriso                | 1.5.4-2                             |
-| xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.10       |
+| xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.11       |
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
+
