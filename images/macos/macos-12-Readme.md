@@ -2,12 +2,11 @@
 |-|
 | [[macOS] GCC 11 will be removed from all macOS images on August 12](https://github.com/actions/runner-images/issues/10213) |
 | [[macOS] Default Xcode on macOS 14 Sonoma will be set to Xcode 15.4 on July, 22](https://github.com/actions/runner-images/issues/10121) |
-| [[macOS] Default Xcode on macOS 13 Ventura will be set to Xcode 15.2 on July, 15](https://github.com/actions/runner-images/issues/10120) |
 ***
 # macOS 12
 - OS Version: macOS 12.7.5 (21H1222)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240714.2
+- Image Version: 20240721.1
 
 ## Installed Software
 
@@ -40,19 +39,19 @@
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.15
+- Bundler 2.5.16
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.7
-- Homebrew 4.3.9
+- Homebrew 4.3.10
 - Miniconda 24.5.0
 - NPM 10.7.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 24.1.2 (python 3.12)
 - Pipx 1.6.0
-- RubyGems 3.5.15
-- Vcpkg 2024 (build from commit 7aeffc910)
+- RubyGems 3.5.16
+- Vcpkg 2024 (build from commit 821100d96)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -77,11 +76,11 @@
 - Curl 8.8.0
 - Git 2.45.2
 - Git LFS 3.5.1
-- GitHub CLI 2.52.0
+- GitHub CLI 2.53.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
-- ImageMagick 7.1.1-34
+- ImageMagick 7.1.1-35
 - jq 1.7.1
 - mongo 5.0.28
 - mongod 5.0.28
@@ -100,16 +99,16 @@
 
 ### Tools
 - App Center CLI 3.0.1
-- AWS CLI 2.17.13
+- AWS CLI 2.17.14
 - AWS SAM CLI 1.120.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.62.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.28.1
+- Bicep CLI 0.29.45
 - Cabal 3.10.3.0
-- Cmake 3.30.0
+- Cmake 3.30.1
 - CodeQL Action Bundle 2.18.0
-- Colima 0.6.9
+- Colima 0.6.10
 - Fastlane 2.221.1
 - GHC 9.10.1
 - GHCup 0.1.30.0
@@ -128,14 +127,14 @@
 ### Browsers
 - Safari 17.5 (17618.2.12.111.5)
 - SafariDriver 17.5 (17618.2.12.111.5)
-- Google Chrome 126.0.6478.127
-- Google Chrome for Testing 126.0.6478.126
-- ChromeDriver 126.0.6478.126
-- Microsoft Edge 126.0.2592.102
+- Google Chrome 126.0.6478.183
+- Google Chrome for Testing 126.0.6478.182
+- ChromeDriver 126.0.6478.182
+- Microsoft Edge 126.0.2592.113
 - Microsoft Edge WebDriver 126.0.2592.102
 - Mozilla Firefox 128.0
 - geckodriver 0.34.0
-- Selenium server 4.22.0
+- Selenium server 4.23.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -147,10 +146,10 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.412+8 (default) | JAVA_HOME_8_X64      |
-| 11.0.23+9           | JAVA_HOME_11_X64     |
-| 17.0.11+9           | JAVA_HOME_17_X64     |
-| 21.0.3+9.0          | JAVA_HOME_21_X64     |
+| 8.0.422+5 (default) | JAVA_HOME_8_X64      |
+| 11.0.24+8           | JAVA_HOME_11_X64     |
+| 17.0.12+7           | JAVA_HOME_17_X64     |
+| 21.0.4+7.0          | JAVA_HOME_21_X64     |
 
 ### Cached Tools
 
@@ -209,7 +208,7 @@
 ### Web Servers
 | Name  | Version | ConfigFile                      | ServiceStatus | ListenPort |
 | ----- | ------- | ------------------------------- | ------------- | ---------- |
-| httpd | 2.4.61  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
+| httpd | 2.4.62  | /usr/local/etc/httpd/httpd.conf | none          | 80         |
 | nginx | 1.27.0  | /usr/local/etc/nginx/nginx.conf | none          | 80         |
 
 ### Xamarin
