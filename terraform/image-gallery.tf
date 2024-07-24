@@ -63,7 +63,6 @@ resource "null_resource" "packer_init" {
 resource "null_resource" "packer_runner" {
   triggers = {
     dir_sha1 = sha1(join("", [for f in fileset("${path.cwd}/../images/${var.image_type}", "**") : filesha1("${path.cwd}/../images/${var.image_type}/${f}")]))
-    build_month = time_rotating.time-rotation.id
   }
 
   provisioner "local-exec" {
