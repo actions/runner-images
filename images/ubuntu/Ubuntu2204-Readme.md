@@ -5,8 +5,8 @@
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.4 LTS
-- Kernel Version: 6.5.0-1023-azure
-- Image Version: 20240714.1.0
+- Kernel Version: 6.5.0-1024-azure
+- Image Version: 20240721.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -32,7 +32,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.3
-- Homebrew 4.3.9
+- Homebrew 4.3.10
 - Miniconda 24.5.0
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -40,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.6.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 7aeffc910)
+- Vcpkg (build from commit 821100d96)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,24 +60,24 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.12
 - Gradle 8.9
-- Lerna 8.1.6
+- Lerna 8.1.7
 - Maven 3.8.8
 - Sbt 1.10.1
 
 ### Tools
-- Ansible 2.17.1
+- Ansible 2.17.2
 - apt-fast 1.10.0
 - AzCopy 10.25.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.2.1
 - Bazelisk 1.19.0
-- Bicep 0.28.1
+- Bicep 0.29.45
 - Buildah 1.23.1
-- CMake 3.30.0
+- CMake 3.30.1
 - CodeQL Action Bundle 2.18.0
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.16.0
+- Docker-Buildx 0.16.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.221.1
@@ -85,11 +85,11 @@ to accomplish this.
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 8.11.5
+- Heroku 9.0.0
 - jq 1.6
 - Kind 0.23.0
-- Kubectl 1.30.2
-- Kustomize 5.4.2
+- Kubectl 1.30.3
+- Kustomize 5.4.3
 - Leiningen 2.11.2
 - MediaInfo 21.09
 - Mercurial 6.1.1
@@ -101,7 +101,7 @@ to accomplish this.
 - Packer 1.11.1
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.124.0
+- Pulumi 3.125.0
 - R 4.4.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -112,18 +112,18 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.213
-- AWS CLI 2.17.13
+- Alibaba Cloud CLI 3.0.214
+- AWS CLI 2.17.14
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.120.0
 - Azure CLI 2.62.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.52.0
-- Google Cloud CLI 483.0.0
-- Netlify CLI 17.33.3
-- OpenShift CLI 4.16.2
+- GitHub CLI 2.53.0
+- Google Cloud CLI 484.0.0
+- Netlify CLI 17.33.4
+- OpenShift CLI 4.16.3
 - ORAS CLI 1.2.0
-- Vercel CLI 34.3.1
+- Vercel CLI 35.1.0
 
 ### Java
 | Version             | Environment Variable |
@@ -162,12 +162,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 126.0.6478.126
-- ChromeDriver 126.0.6478.126
+- Google Chrome 126.0.6478.182
+- ChromeDriver 126.0.6478.182
 - Chromium 126.0.6478.0
-- Microsoft Edge 126.0.2592.102
+- Microsoft Edge 126.0.2592.113
 - Microsoft Edge WebDriver 126.0.2592.102
-- Selenium server 4.22.0
+- Selenium server 4.23.0
 - Mozilla Firefox 128.0
 - Geckodriver 0.34.0
 
@@ -333,7 +333,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.2          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
-| libgtk-3-0             | 3.24.33-1ubuntu2.1                  |
+| libgtk-3-0             | 3.24.33-1ubuntu2.2                  |
 | libmagic-dev           | 1:5.41-3ubuntu0.1                   |
 | libmagickcore-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 |
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.3 |

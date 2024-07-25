@@ -5,9 +5,9 @@
 ***
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
-- Kernel Version: 6.8.0-1009-azure
-- Image Version: 20240714.1.0
-- Systemd version: 255.4-1ubuntu8.1
+- Kernel Version: 6.8.0-1010-azure
+- Image Version: 20240721.1.0
+- Systemd version: 255.4-1ubuntu8.2
 
 ## Installed Software
 
@@ -28,14 +28,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.3
-- Homebrew 4.3.9
+- Homebrew 4.3.10
 - Miniconda 24.5.0
 - Npm 10.7.0
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit 7aeffc910)
+- Vcpkg (build from commit 821100d96)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,21 +55,21 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.9
-- Lerna 8.1.6
+- Lerna 8.1.7
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.17.1
+- Ansible 2.17.2
 - AzCopy 10.25.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.2.1
 - Bazelisk 1.19.0
-- Bicep 0.28.1
+- Bicep 0.29.45
 - Buildah 1.33.7
-- CMake 3.30.0
+- CMake 3.30.1
 - CodeQL Action Bundle 2.18.0
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.16.0
+- Docker-Buildx 0.16.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.221.1
@@ -79,8 +79,8 @@ to accomplish this.
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.23.0
-- Kubectl 1.30.2
-- Kustomize 5.4.2
+- Kubectl 1.30.3
+- Kustomize 5.4.3
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.33.1
@@ -89,7 +89,7 @@ to accomplish this.
 - OpenSSL 3.0.13-0ubuntu3.1
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.124.0
+- Pulumi 3.125.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -97,12 +97,12 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.17.13
+- AWS CLI 2.17.14
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.120.0
 - Azure CLI 2.62.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.52.0
+- GitHub CLI 2.53.0
 
 ### Java
 | Version             | Environment Variable |
@@ -136,10 +136,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 126.0.6478.126
-- ChromeDriver 126.0.6478.126
+- Google Chrome 126.0.6478.182
+- ChromeDriver 126.0.6478.182
 - Chromium 126.0.6478.0
-- Selenium server 4.22.0
+- Selenium server 4.23.0
 
 #### Environment variables
 | Name              | Value                                 |
