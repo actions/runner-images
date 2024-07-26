@@ -162,6 +162,9 @@
             ]
         }
     },
+    "mingw": {
+        "version": "8.5.0"
+    },
     "MsysPackages": {
         "msys2": [
             "base-devel",
