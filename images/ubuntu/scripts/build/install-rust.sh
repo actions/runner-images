@@ -24,7 +24,7 @@ if is_ubuntu22; then
 fi
 
 if is_ubuntu20; then
-    cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
+    cargo install bindgen-cli cbindgen cargo-audit cargo-outdated
 fi
 
 # Cleanup Cargo cache
