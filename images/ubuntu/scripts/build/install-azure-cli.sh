@@ -12,4 +12,11 @@ echo "azure-cli https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-lin
 rm -f /etc/apt/sources.list.d/azure-cli.list
 rm -f /etc/apt/sources.list.d/azure-cli.list.save
 
+echo "Warmup 'az'"
+az --help > /dev/null
+if [ $? -ne 0 ]; then
+    echo "Command 'az --help' failed"
+    exit 1
+fi
+
 invoke_tests "CLI.Tools" "Azure CLI"
