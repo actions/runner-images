@@ -84,7 +84,7 @@
         {"name": "PowerShellGet"},
         {"name": "PSScriptAnalyzer"},
         {"name": "PSWindowsUpdate"},
-        {"name": "SqlServer"},
+        {"name": "SqlServer", "versions": ["22.2.0"]},
         {"name": "VSSetup"},
         {"name": "Microsoft.Graph"},
         {"name": "AWSPowershell"}
