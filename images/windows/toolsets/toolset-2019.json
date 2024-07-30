@@ -424,7 +424,7 @@
             { "name": "aria2" },
             { "name": "azcopy10" },
             { "name": "Bicep" },
-            { "name": "gitversion.portable" },
+            { "name": "gitversion.portable", "args": [ "--version", "5.12.0"] },
             { "name": "innosetup" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
