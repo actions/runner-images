@@ -41,7 +41,7 @@ for package in $cask_packages; do
 done
 
 # Load "Parallels International GmbH"
-if is_Monterey || is_SonomaX64; then
+if is_Monterey || is_Sonoma; then
     sudo kextload /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
 fi
 
@@ -72,7 +72,7 @@ if is_Monterey; then
 fi
 
 # Validate "Parallels International GmbH" kext
-if is_Monterey || is_SonomaX64; then
+if is_Monterey || is_Sonoma; then
     echo "Closing System Preferences window if it is still opened"
     killall "System Preferences" || true
 
