@@ -32,6 +32,7 @@ Test-FileSignature -Path "$edgeDriverPath\msedgedriver.exe" -ExpectedThumbprint 
 
 Write-Host "Setting the environment variables..."
 [Environment]::SetEnvironmentVariable("EdgeWebDriver", $EdgeDriverPath, "Machine")
+[Environment]::SetEnvironmentVariable("EDGEDRIVER_VERSION", $latestVersion, "Machine")
 Add-MachinePathItem "$edgeDriverPath\"
 
 Invoke-PesterTests -TestFile "Browsers" -TestName "Edge"

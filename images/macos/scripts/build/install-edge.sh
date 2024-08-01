@@ -34,6 +34,7 @@ unzip -qq $edge_driver_archive_path -d $EDGE_DRIVER_DIR
 ln -s $EDGE_DRIVER_DIR/msedgedriver /usr/local/bin/msedgedriver
 
 echo "export EDGEWEBDRIVER=${EDGE_DRIVER_DIR}" >> ${HOME}/.bashrc
+echo "export EDGEDRIVER_VERSION=${edge_driver_latest_version}" >> ${HOME}/.bashrc
 
 # Configure Edge Updater to prevent auto update
 # https://learn.microsoft.com/en-us/deployedge/edge-learnmore-edgeupdater-for-macos
