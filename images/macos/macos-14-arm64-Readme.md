@@ -1,12 +1,11 @@
 | Announcements |
 |-|
 | [[macOS] GCC 11 will be removed from all macOS images on August 12](https://github.com/actions/runner-images/issues/10213) |
-| [[macOS] Default Xcode on macOS 14 Sonoma will be set to Xcode 15.4 on July, 22](https://github.com/actions/runner-images/issues/10121) |
 ***
 # macOS 14
 - OS Version: macOS 14.5 (23F79)
 - Kernel Version: Darwin 23.5.0
-- Image Version: 20240722.3
+- Image Version: 20240728.1
 
 ## Installed Software
 
@@ -69,17 +68,17 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.14
+- AWS CLI 2.17.18
 - AWS SAM CLI 1.120.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.62.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.29.45
+- Bicep CLI 0.29.47
 - Cmake 3.30.1
-- CodeQL Action Bundle 2.18.0
-- Fastlane 2.221.1
+- CodeQL Action Bundle 2.18.1
+- Fastlane 2.222.0
 - SwiftFormat 0.54.2
-- Xcbeautify 2.4.1
+- Xcbeautify 2.5.0
 - Xcode Command Line Tools 15.3.0.0.1.1708646388
 - Xcodes 1.5.0
 
@@ -88,9 +87,9 @@
 ### Browsers
 - Safari 17.5 (19618.2.12.11.6)
 - SafariDriver 17.5 (19618.2.12.11.6)
-- Google Chrome 126.0.6478.183
-- Google Chrome for Testing 126.0.6478.182
-- ChromeDriver 126.0.6478.182
+- Google Chrome 127.0.6533.73
+- Google Chrome for Testing 127.0.6533.72
+- ChromeDriver 127.0.6533.72
 - Selenium server 4.23.0
 
 #### Environment variables
@@ -117,7 +116,7 @@
 
 #### Node.js
 - 18.20.4
-- 20.15.1
+- 20.16.0
 
 #### Go
 - 1.20.14
@@ -125,17 +124,17 @@
 - 1.22.5
 
 ### Rust Tools
-- Cargo 1.79.0
-- Rust 1.79.0
-- Rustdoc 1.79.0
+- Cargo 1.80.0
+- Rust 1.80.0
+- Rustdoc 1.80.0
 - Rustup 1.27.1
 
 #### Packages
-- Clippy 0.1.79
+- Clippy 0.1.80
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.3
+- PowerShell 7.4.4
 
 #### PowerShell Modules
 - Az: 12.1.0
@@ -145,7 +144,7 @@
 ### Xcode
 | Version        | Build    | Path                              |
 | -------------- | -------- | --------------------------------- |
-| 16.0 (beta)    | 16A5202i | /Applications/Xcode_16_beta_3.app |
+| 16.0 (beta)    | 16A5211f | /Applications/Xcode_16_beta_4.app |
 | 15.4 (default) | 15F31d   | /Applications/Xcode_15.4.app      |
 | 15.3           | 15E204a  | /Applications/Xcode_15.3.app      |
 | 15.2           | 15C500b  | /Applications/Xcode_15.2.app      |
@@ -198,12 +197,12 @@
 | Simulator - watchOS 10.4                                | watchsimulator10.4                            | 15.3          |
 | Simulator - watchOS 10.5                                | watchsimulator10.5                            | 15.4          |
 | Simulator - watchOS 11.0                                | watchsimulator11.0                            | 16.0          |
-| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
-| Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
+| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | visionOS 1.1                                            | xros1.1                                       | 15.3          |
-| Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
+| Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
 | visionOS 1.2                                            | xros1.2                                       | 15.4          |
+| Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0          |
 | visionOS 2.0                                            | xros2.0                                       | 16.0          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
