@@ -311,6 +311,9 @@ if ($os.IsBigSur -or $os.IsMonterey) {
     $miscellaneous.AddToolVersion("Zlib", $(Get-ZlibVersion))
 }
 
+if ($os.IsSonoma -or $os.IsVentura) {
+    $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
+}
 if ($os.IsMonterey -or $os.IsSonoma -or $os.IsVentura) {
 
     Write-Host "Adding environment variables for parallels"
