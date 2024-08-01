@@ -58,10 +58,7 @@ function Get-CMakeVersion {
     return $cmakeVersion
 }
 
-function Get-DockerComposeV1Version {
-    $composeVersion = docker-compose -v | Get-StringPart -Part 2 | Get-StringPart -Part 0 -Delimiter ","
-    return $composeVersion
-}
+
 
 function Get-DockerComposeV2Version {
     $composeVersion = docker compose version | Get-StringPart -Part 3 | Get-StringPart -Part 0 -Delimiter "v"
