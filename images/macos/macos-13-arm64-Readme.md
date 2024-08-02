@@ -1,12 +1,11 @@
 | Announcements |
 |-|
 | [[macOS] GCC 11 will be removed from all macOS images on August 12](https://github.com/actions/runner-images/issues/10213) |
-| [[macOS] Default Xcode on macOS 14 Sonoma will be set to Xcode 15.4 on July, 22](https://github.com/actions/runner-images/issues/10121) |
 ***
 # macOS 13
 - OS Version: macOS 13.6.7 (22G720)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240721.1
+- Image Version: 20240728.2
 
 ## Installed Software
 
@@ -69,17 +68,17 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.14
+- AWS CLI 2.17.18
 - AWS SAM CLI 1.120.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.62.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.29.45
+- Bicep CLI 0.29.47
 - Cmake 3.30.1
-- CodeQL Action Bundle 2.18.0
-- Fastlane 2.221.1
-- SwiftFormat 0.54.1
-- Xcbeautify 2.4.1
+- CodeQL Action Bundle 2.18.1
+- Fastlane 2.222.0
+- SwiftFormat 0.54.3
+- Xcbeautify 2.5.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.5.0
 
@@ -88,9 +87,9 @@
 ### Browsers
 - Safari 17.5 (18618.2.12.111.5)
 - SafariDriver 17.5 (18618.2.12.111.5)
-- Google Chrome 126.0.6478.183
-- Google Chrome for Testing 126.0.6478.182
-- ChromeDriver 126.0.6478.182
+- Google Chrome 127.0.6533.73
+- Google Chrome for Testing 127.0.6533.72
+- ChromeDriver 127.0.6533.72
 - Selenium server 4.23.0
 
 #### Environment variables
@@ -118,7 +117,7 @@
 #### Node.js
 - 16.20.1
 - 18.20.4
-- 20.15.1
+- 20.16.0
 
 #### Go
 - 1.20.14
@@ -126,17 +125,17 @@
 - 1.22.5
 
 ### Rust Tools
-- Cargo 1.79.0
-- Rust 1.79.0
-- Rustdoc 1.79.0
+- Cargo 1.80.0
+- Rust 1.80.0
+- Rustdoc 1.80.0
 - Rustup 1.27.1
 
 #### Packages
-- Clippy 0.1.79
+- Clippy 0.1.80
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.3
+- PowerShell 7.4.4
 
 #### PowerShell Modules
 - Az: 12.1.0
@@ -187,11 +186,11 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
+| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
