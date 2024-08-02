@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [[All OSes] Android NDK versions <=25 will be removed from images on August 19](https://github.com/actions/runner-images/issues/10342) |
 | [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 29](https://github.com/actions/runner-images/issues/9692) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6054
-- Image Version: 20240721.1.0
+- Image Version: 20240730.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -33,7 +34,7 @@
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 821100d96)
+- Vcpkg (build from commit 136a0d8b8)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,19 +55,19 @@
 - azcopy 10.25.1
 - Bazel 7.2.1
 - Bazelisk 1.19.0
-- Bicep 0.29.45
+- Bicep 0.29.47
 - Cabal 3.12.1.0
 - CMake 3.30.1
-- CodeQL Action Bundle 2.18.0
+- CodeQL Action Bundle 2.18.1
 - Docker 26.1.3
 - Docker Compose v1 1.29.2
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
 - ghc 9.10.1
-- Git 2.45.2.windows.1
+- Git 2.46.0.windows.1
 - Git LFS 3.5.1
-- Google Cloud CLI 484.0.0
-- ImageMagick 7.1.1-35
+- Google Cloud CLI 485.0.0
+- ImageMagick 7.1.1-36
 - InnoSetup 6.3.3
 - jq 1.7.1
 - Kind 0.23.0
@@ -80,10 +81,10 @@
 - OpenSSL 1.1.1w
 - Packer 1.11.0
 - Parcel 2.12.0
-- Pulumi 3.125.0
+- Pulumi 3.127.0
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
-- Stack 2.15.7
+- Stack 3.1.1
 - Subversion (SVN) 1.14.2
 - Swig 4.1.1
 - VSWhere 3.1.7
@@ -93,8 +94,8 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.214
-- AWS CLI 2.17.14
+- Alibaba Cloud CLI 3.0.216
+- AWS CLI 2.17.19
 - AWS SAM CLI 1.120.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.62.0
@@ -103,9 +104,9 @@
 - GitHub CLI 2.53.0
 
 ### Rust Tools
-- Cargo 1.79.0
-- Rust 1.79.0
-- Rustdoc 1.79.0
+- Cargo 1.80.0
+- Rust 1.80.0
+- Rustdoc 1.80.0
 - Rustup 1.27.1
 
 #### Packages
@@ -113,15 +114,15 @@
 - cargo-audit 0.20.0
 - cargo-outdated 0.15.0
 - cbindgen 0.26.0
-- Clippy 0.1.79
+- Clippy 0.1.80
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 126.0.6478.183
-- Chrome Driver 126.0.6478.182
-- Microsoft Edge 126.0.2592.113
-- Microsoft Edge Driver 126.0.2592.113
-- Mozilla Firefox 128.0
+- Google Chrome 127.0.6533.73
+- Chrome Driver 127.0.6533.72
+- Microsoft Edge 127.0.2651.74
+- Microsoft Edge Driver 127.0.2651.74
+- Mozilla Firefox 128.0.3
 - Gecko Driver 0.34.0
 - IE Driver 4.14.0.0
 - Selenium server 4.23.0
@@ -172,7 +173,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 16.20.2
 - 18.20.4
-- 20.15.1
+- 20.16.0
 
 #### Python
 - 3.7.9
@@ -193,7 +194,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Ruby
 - 3.0.7
 - 3.1.6
-- 3.2.4
+- 3.2.5
 
 ### Databases
 
@@ -500,7 +501,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.6.139+a9e8765620
 
 ### PowerShell Tools
-- PowerShell 7.4.3
+- PowerShell 7.4.4
 
 #### Powershell Modules
 - Az: 11.3.1
@@ -508,15 +509,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.619
+- AWSPowershell: 4.1.624
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.20.0
+- Microsoft.Graph: 2.21.0
 - Pester: 3.4.0, 5.6.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.22.0
 - PSWindowsUpdate: 2.2.1.5
-- SqlServer: 22.3.0
+- SqlServer: 22.2.0
 - VSSetup: 2.2.16
 ```
 Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
@@ -537,16 +538,16 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                            |
 | Google Repository          | 58                                                                                                                                                                                                                                            |
-| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264                                                                                                                                                                                                 |
+| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264<br>27.0.12077973                                                                                                                                                                                |
 
 #### Environment variables
 | Name                    | Value                                    |
 | ----------------------- | ---------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                   |
-| ANDROID_NDK             | C:\Android\android-sdk\ndk\25.2.9519653  |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\25.2.9519653  |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\26.3.11579264 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\25.2.9519653  |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\27.0.12077973 |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.0.12077973 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\27.0.12077973 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.0.12077973 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 
 ### Cached Docker images
