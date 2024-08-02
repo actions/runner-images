@@ -47,7 +47,7 @@ fi
 
 # Execute AppleScript to change security preferences
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
-if is_Monterey; then
+if is_Monterey || is_Sonoma || is_Ventura; then
     if is_Veertu; then
         for retry in {4..0}; do
             echo "Executing AppleScript to change security preferences. Retries left: $retry"
