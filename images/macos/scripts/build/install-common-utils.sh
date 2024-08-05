@@ -46,7 +46,7 @@ if is_Monterey; then
 fi
 
 if is_Sonoma || is_Ventura; then
-    sudo kextload -b com.parallels.hypervisor /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/prl_hypervisor.kext || true
+    sudo kextload -b com.parallels.kext.hypervisor /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
 fi
 
 # Execute AppleScript to change security preferences
