@@ -41,8 +41,12 @@ for package in $cask_packages; do
 done
 
 # Load "Parallels International GmbH"
-if is_Monterey || is_Sonoma || is_Ventura; then
+if is_Monterey; then
     sudo kextload /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
+fi
+
+if is_Sonoma || is_Ventura; then
+    sudo kextload -b com.parallels.hypervisor /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/prl_hypervisor.kext || true
 fi
 
 # Execute AppleScript to change security preferences
