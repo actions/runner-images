@@ -84,7 +84,7 @@
         {"name": "PowerShellGet"},
         {"name": "PSScriptAnalyzer"},
         {"name": "PSWindowsUpdate"},
-        {"name": "SqlServer"},
+        {"name": "SqlServer", "versions": ["22.2.0"]},
         {"name": "VSSetup"},
         {"name": "Microsoft.Graph"},
         {"name": "AWSPowershell"}
@@ -156,9 +156,9 @@
             "cmake;3.22.1"
         ],
         "ndk": {
-            "default": "25",
+            "default": "27",
             "versions": [
-                "24", "25", "26"
+                "24", "25", "26" , "27"
             ]
         }
     },
@@ -424,7 +424,7 @@
             { "name": "aria2" },
             { "name": "azcopy10" },
             { "name": "Bicep" },
-            { "name": "gitversion.portable" },
+            { "name": "gitversion.portable", "args": [ "--version", "5.12.0"] },
             { "name": "innosetup" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },

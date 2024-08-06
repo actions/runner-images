@@ -79,9 +79,9 @@
         "additional_tools": [
         ],
         "ndk": {
-            "default": "26",
+            "default": "27",
             "versions": [
-                "24", "25", "26"
+                "24", "25", "26", "27"
             ]
         }
     },
