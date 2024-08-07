@@ -7,7 +7,7 @@
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
 - Kernel Version: 6.8.0-1010-azure
-- Image Version: 20240730.3.0
+- Image Version: 20240804.1.0
 - Systemd version: 255.4-1ubuntu8.2
 
 ## Installed Software
@@ -36,7 +36,7 @@
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit 136a0d8b8)
+- Vcpkg (build from commit fe1cde61e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,12 +61,12 @@ to accomplish this.
 
 ### Tools
 - Ansible 2.17.2
-- AzCopy 10.25.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.2.1
 - Bazelisk 1.19.0
 - Bicep 0.29.47
 - Buildah 1.33.7
-- CMake 3.30.1
+- CMake 3.30.2
 - CodeQL Action Bundle 2.18.1
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.1
@@ -87,7 +87,7 @@ to accomplish this.
 - Minikube 1.33.1
 - n 9.2.3
 - Newman 6.1.3
-- OpenSSL 3.0.13-0ubuntu3.1
+- OpenSSL 3.0.13-0ubuntu3.2
 - Parcel 2.12.0
 - Podman 4.9.3
 - Pulumi 3.127.0
@@ -98,12 +98,12 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.17.19
+- AWS CLI 2.17.22
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.121.0
 - Azure CLI 2.62.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.53.0
+- GitHub CLI 2.54.0
 
 ### Java
 | Version             | Environment Variable |
@@ -137,8 +137,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 127.0.6533.72
-- ChromeDriver 127.0.6533.72
+- Google Chrome 127.0.6533.88
+- ChromeDriver 127.0.6533.88
 - Chromium 127.0.6533.0
 - Selenium server 4.23.0
 
@@ -166,7 +166,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.37-0ubuntu0.24.04.1
+- MySQL 8.0.39-0ubuntu0.24.04.1
 ```
 User: root
 Password: root
@@ -201,7 +201,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 11.5.0
-- Microsoft.Graph: 2.21.0
+- Microsoft.Graph: 2.21.1
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
@@ -262,7 +262,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.1.0-1ubuntu6             |
 | iputils-ping           | 3:20240117-1build1         |
 | jq                     | 1.7.1-3build1              |
-| libssl-dev             | 3.0.13-0ubuntu3.1          |
+| libssl-dev             | 3.0.13-0ubuntu3.2          |
 | libtool                | 2.4.7-7build1              |
 | libyaml-dev            | 0.2.5-1build1              |
 | locales                | 2.39-0ubuntu8.2            |
