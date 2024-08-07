@@ -7,7 +7,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1068-azure
-- Image Version: 20240730.2.0
+- Image Version: 20240804.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -43,7 +43,7 @@
 - Pip3 20.0.2
 - Pipx 1.6.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit 136a0d8b8)
+- Vcpkg (build from commit fe1cde61e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -70,12 +70,12 @@ to accomplish this.
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.10.0
-- AzCopy 10.25.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.2.1
 - Bazelisk 1.19.0
 - Bicep 0.29.47
 - Buildah 1.22.3
-- CMake 3.30.1
+- CMake 3.30.2
 - CodeQL Action Bundle 2.18.1
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.1
@@ -87,7 +87,7 @@ to accomplish this.
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 9.0.0
+- Heroku 9.1.0
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.23.0
@@ -99,8 +99,8 @@ to accomplish this.
 - Minikube 1.33.1
 - n 9.2.3
 - Newman 6.1.3
-- nvm 0.39.7
-- OpenSSL 1.1.1f-1ubuntu2.22
+- nvm 0.40.0
+- OpenSSL 1.1.1f-1ubuntu2.23
 - Packer 1.11.2
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
@@ -117,17 +117,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.17.19
+- AWS CLI 2.17.22
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.121.0
 - Azure CLI 2.62.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.53.0
+- GitHub CLI 2.54.0
 - Google Cloud CLI 486.0.0
-- Netlify CLI 17.33.4
+- Netlify CLI 17.33.5
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 35.2.1
+- Vercel CLI 35.2.3
 
 ### Java
 | Version             | Environment Variable |
@@ -138,7 +138,7 @@ to accomplish this.
 | 21.0.4+7            | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.29, 8.2.21, 8.3.9
+- PHP: 7.4.33, 8.0.30, 8.1.29, 8.2.22, 8.3.10
 - Composer 2.7.7
 - PHPUnit 8.5.39
 ```
@@ -166,11 +166,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 127.0.6533.72
-- ChromeDriver 127.0.6533.72
+- Google Chrome 127.0.6533.88
+- ChromeDriver 127.0.6533.88
 - Chromium 127.0.6533.0
-- Microsoft Edge 127.0.2651.74
-- Microsoft Edge WebDriver 127.0.2651.72
+- Microsoft Edge 127.0.2651.86
+- Microsoft Edge WebDriver 127.0.2651.87
 - Selenium server 4.23.0
 - Mozilla Firefox 128.0
 - Geckodriver 0.34.0
@@ -200,7 +200,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.37-0ubuntu0.20.04.3
+- MySQL 8.0.39-0ubuntu0.20.04.1
 ```
 User: root
 Password: root
@@ -251,7 +251,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 11.3.1
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.21.0
+- Microsoft.Graph: 2.21.1
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
