@@ -41,17 +41,13 @@ for package in $cask_packages; do
 done
 
 # Load "Parallels International GmbH"
-if is_Monterey; then
+if is_Monterey || is_Sonoma || is_Ventura; then
     sudo kextload /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
-fi
-
-if is_Sonoma || is_Ventura; then
-    sudo kextload -b com.parallels.kext.hypervisor /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
 fi
 
 # Execute AppleScript to change security preferences
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
-if is_Monterey || is_Sonoma || is_Ventura; then
+if is_Monterey; then
     if is_Veertu; then
         for retry in {4..0}; do
             echo "Executing AppleScript to change security preferences. Retries left: $retry"
@@ -72,6 +68,31 @@ if is_Monterey || is_Sonoma || is_Ventura; then
     else
         echo "Executing AppleScript to change security preferences"
         osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
+    fi
+fi
+
+# Execute AppleScript to change security preferences for macOS13 and macOS14
+if is_Sonoma || is_Ventura; then
+    if is_Veertu; then
+        for retry in {4..0}; do
+            echo "Executing AppleScript to change security preferences. Retries left: $retry"
+            {
+                set -e
+                osascript -e 'tell application "System Events" to get application processes where visible is true'
+                osascript $HOME/utils/confirm-identified-developers-macos.scpt $USER_PASSWORD
+            } && break
+
+            if [[ $retry -eq 0 ]]; then
+                echo "Executing AppleScript failed. No retries left"
+                exit 1
+            fi
+
+            echo "Executing AppleScript failed. Sleeping for 10 seconds and retrying"
+            sleep 10
+        done
+    else
+        echo "Executing AppleScript to change security preferences"
+        osascript $HOME/utils/confirm-identified-developers-macos.scpt $USER_PASSWORD
     fi
 fi
 
