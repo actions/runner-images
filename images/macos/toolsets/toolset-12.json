@@ -339,6 +339,7 @@
     },
     "node": {
         "default": "18",
+        "nvm_installer": "0.39.7",
         "nvm_versions": [
             "16",
             "18",
