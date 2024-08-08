@@ -101,6 +101,10 @@ function Build-BrowserWebdriversEnvironmentTable {
             "Value" = $env:EDGEWEBDRIVER
         },
         @{
+            "Name" = "EDGEDRIVER_VERSION"
+            "Value" = $env:EDGEDRIVER_VERSION
+        },
+        @{
             "Name" = "GECKOWEBDRIVER"
             "Value" = $env:GECKOWEBDRIVER
         }

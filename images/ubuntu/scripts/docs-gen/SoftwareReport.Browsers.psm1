@@ -49,6 +49,10 @@ function Build-BrowserWebdriversEnvironmentTable {
             "Value" = $env:EDGEWEBDRIVER
         },
         [PSCustomObject] @{
+            "Name"  = "EDGEDRIVER_VERSION"
+            "Value" = $env:EDGEDRIVER_VERSION
+        },
+        [PSCustomObject] @{
             "Name"  = "GECKOWEBDRIVER"
             "Value" = $env:GECKOWEBDRIVER
         },
