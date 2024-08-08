@@ -45,6 +45,18 @@ is_Arm64() {
     [ "$(arch)" = "arm64" ]
 }
 
+is_Sequoia() {
+    [ "$OSTYPE" = "darwin24" ]
+}
+
+is_SequoiaArm64() {
+    is_Sequoia && is_Arm64
+}
+
+is_SequoiaX64() {
+    is_Sequoia && ! is_Arm64
+}
+
 is_Sonoma() {
     [ "$OSTYPE" = "darwin23" ]
 }
