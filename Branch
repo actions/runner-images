@@ -1,0 +1,93 @@
+oryxBuildBinary
+<script src="https://gist.github.com/MMONSTER124/a01f577ac0cc8e163cee00d549df0242.js"></script>
+{
+    "certificado": verdadeiro,
+    "apagado": falso,
+    "docker_image_digest": "sha256:8fe2e9013edf348f000e8d941fd95ce772eb2afb5c0b5cdd6a8bc488d88a648f",
+    "docker_image_id": "e3bbedc9c70f7740979a9df7cf46cd7c",
+    "image_id": "ba500718fe3ab16dc64a845542e2d6e229d7e5def3d823960791ff32b9d56597",
+    "dados_analisados": {
+        "arquitetura": "amd64",
+        "criado": "2024-07-23 03:12:06.742918455 +0000 UTC",
+        "image_id": "sha256:8fe2e9013edf348f000e8d941fd95ce772eb2afb5c0b5cdd6a8bc488d88a648f",
+        "rótulos": [
+            {
+                "nome": "operadores.operatorframework.io.test.mediatype.v1",
+                "valor": "scorecard+v1"
+            },
+            {
+                "nome": "operadores.operatorframework.io.bundle.mediatype.v1",
+                "valor": "registro+v1"
+            },
+            {
+                "nome": "operadores.operatorframework.io.bundle.package.v1",
+                "valor": "e2e-webonly-operator"
+            },
+            {
+                "nome": "operadores.operatorframework.io.metrics.builder",
+                "valor": "operador-sdk-v1.28.1"
+            },
+            {
+                "nome": "operadores.operatorframework.io.test.config.v1",
+                "valor": "testes/scorecard/"
+            },
+            {
+                "nome": "operadores.operatorframework.io.bundle.metadata.v1",
+                "valor": "metadados/"
+            },
+            {
+                "nome": "operadores.operatorframework.io.metrics.mediatype.v1",
+                "valor": "métricas+v1"
+            },
+            {
+                "nome": "operadores.operatorframework.io.metrics.project_layout",
+                "valor": "ansible.sdk.operatorframework.io/v1"
+            },
+            {
+                "nome": "com.redhat.openshift.versions",
+                "valor": "v4.10-v4.14"
+            },
+            {
+                "nome": "io.buildah.versão",
+                "valor": "1.26.2"
+            },
+            {
+                "nome": "operadores.operatorframework.io.bundle.channels.v1",
+                "valor": "alfa"
+            },
+            {
+                "nome": "operadores.operatorframework.io.bundle.manifests.v1",
+                "valor": "manifestos/"
+            }
+        ],
+        "camadas": [
+            "sha256:721d5decdf57af7f5833b0c757809f08b507f68170aba767eb6b66f2f28d1b37"
+        ],
+        "os": "linux",
+        "tamanho": 426,
+        "tamanhos_de_camadas_descompactadas": [
+            {
+                "layer_id": "sha256:01863590af9bcce8fac71e79a0c5c7716a4018067a6597ed813cb4771d4a812f",
+                "tamanho_bytes": 29696
+            }
+        ]
+    },
+    "arquitetura": "amd64",
+    "raw_config": "{\"criado\":\"2024-07-23T03:12:06.742918455Z\",\"container\":\"1bc005398ead3ceb00611fdd347f93157a3abbf9c61ca5ef4d1ffe79bd84af9d\",\"container_config\":{\"Nome do host\":\"305cc1ccba29\",\"Nome do domínio\":\"\",\"Usuário\":\"\",\"AttachStdin\":false,\"AttachStdout\":fa lse,\"AttachStderr\":false,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[],\"Imagem\":\"\",\"Volumes\":{},\"WorkingDir\":\"\",\"Entrypoint\":[],\"OnBuild\":[],\"Lab els\":{\"com.redhat.openshift.versions\":\"v4.10-v4.14\",\"io.buildah.version\":\"1.26.2\",\"operadores.operatorframework.io.bundle.channels.v1\":\"alfa\",\"operadores.operatorframework.io.bundle.manifestos.v1\":\"manifestos/\",\"operadores.operatorframework.io.b undle.mediatype.v1\":\"registro+v1\",\"operadores.operatorframework.io.bundle.metadata.v1\":\"metadados/\",\"operadores.operatorframework.io.bundle.pacote.v1\":\"e2e-webonly-operator\",\"operadores.operatorframework.io.metrics.builder\":\"operador-sdk-v1.28.1\",\"operadores.operatorframework.io.metrics.mediatype.v1\":\"métricas+v1\",\"operadores.operatorframework.io.metrics.project_layout\":\"ansible.sdk.operatorframework.io/v1\",\"operadores.operatorframework.io.test.config.v1\":\"testes/scorecard/\",\"operadores.operador framework.io.test.mediatype.v1\":\"scorecard+v1\"}},\"config\":{\"Nome do host\":\"305cc1ccba29\",\"Nome do domínio\":\"\",\"Usuário\":\"\",\"AttachStdin\":false,\"AttachStdout\":false,\"AttachStderr\":false,\"Tty\":false,\"OpenStdin\":false,\"StdinOnce\":false,\"Env\":[\ "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\"],\"Cmd\":[],\"Imagem\":\"\",\"Volumes\":{},\"WorkingDir\":\"\",\"Entrypoint\":[],\"OnBuild\":[],\"Labels\":{\"com.redhat.openshift.versions\":\"v4.10-v4.14\",\"io.buildah.version\":\"1.26.2\" ,\"operators.operatorframework.io.bundle.channels.v1\":\"alfa\",\"operators.operatorframework.io.bundle.manifests.v1\":\"manifestos/\",\"operators.operatorframework.io.bundle.mediatype.v1\":\"registro+v1\",\"operators.operatorframework.io.bundle.metadata.v1\":\"metadados/\",\"operadores.operatorframework.io.bundle.package.v1\":\"e2e-webonly-operator\",\"operadores.operatorframework.io.metrics.builder\":\"operador-sdk-v1.28.1\",\"operadores.operatorframework.io.metrics.mediatype.v1\":\"métricas+v1\",\"operadores.operatorframework.io.metrics.project_layout\":\"ansible.sdk.operatorframework.io/v1\",\"operadores.operatorframework .io.test.config.v1\":\"testes/scorecard/\",\"operadores.operatorframework.io.test.mediatype.v1\":\"scorecard+v1\"}},\"arquitetura\":\"amd64\",\"sistema operacional\":\"linux\",\"rootfs\":{\"tipo\":\"la yers\",\"diff_ids\":[\"sha256:01863590af9bcce8fac71e79a0c5c7716a4018067a6597ed813cb4771d4a812f\"]},\"history\":[{\"criado\":\"2024-07-23T03:12:06.524282603Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operadores.operatorframework.io.bundle.mediatype.v1='registro+v1'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524299876Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operadores.operatorframework.io.bundle.manifests.v1='manifestos/'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524315747Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operadores.operatorframework.io.bundle.metadata.v1='metadados/'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524340187Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operadores.operatorframework.io.bundle.package.v1='e2e-webonly-operator'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524361416Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operadores.operatorframework.io.bundle.channels.v1='alfa'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524382784Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operadores.operatorframework.io.metrics.builder='operator-sdk-v1.28.1'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524399369Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operadores.operatorframework.io.metrics.mediatype.v1='métricas+v1'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524418744Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operadores.operatorframework.io.metrics.project_layout='ansible.sdk.operatorframework.io/v1'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524436205Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operadores.operatorframework.io.test.mediatype.v1='scorecard+v1'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524452913Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO operators.operatorframework.io.test.config.v1='testes/scorecard/'\",\"camada_vazia\":true},{\"criado\":\"2024-07-23T03:12:06.524464497Z\",\"criado_por\":\"/bin/sh -c #(nop) RÓTULO com.redhat.openshift.versions='v4.10-v4.14'\",\"empty_layer\":true},{\"criado\":\"2024-07-23T03:12:06.636451387Z\",\"criado_por\":\"/bin/sh -c #(nop) COPIAR dir:8340fba1fb3353fd7322e7cde84d3411ee254ec5c3bcde6faa1ab59e988fced4 em /manifestos/ \",\"empty_layer\":true},{\"criado\":\"2024-07-23T03:12:06.743865343Z\",\"criado_por\":\"/bin/sh -c #(nop) COPIAR diretório:2f968d91fb192e141869b0cd74911e0350e75959447035fd0ad0164d9aa796fb em /metadados/ \"}]}",
+    "repositórios": [
+        {
+            "publicado": falso,
+            "push_date": "2024-07-23T03:34:57Z",
+            "registro": "quay.io",
+            "repositório": "operador-pipeline-estágio/e2e-webonly-operator",
+            "Tag": [
+                {
+                    "added_date": "2024-07-23T03:34:57Z",
+                    "nome": "0.0.191"
+                }
+            ]
+        }
+    ],
+    "tamanho_da_camada_de_soma_bytes": 29696,
+    "uncompressed_top_layer_id": "sha256:01863590af9bcce8fac71e79a0c5c7716a4018067a6597ed813cb4771d4a812f"
+}
