@@ -15,6 +15,13 @@ if is_ubuntu20; then
     gem install public_suffix -v 5.1.1
 fi
 
+# Ensure proper permissions on the Ruby installation directory
+ruby_dir="/opt/ruby"
+if [[ ! -d $ruby_dir ]]; then
+    mkdir -p $ruby_dir
+    chmod o-x $ruby_dir
+fi
+
 # Install ruby gems from toolset
 gems_to_install=$(get_toolset_value ".rubygems[] .name")
 if [[ -n "$gems_to_install" ]]; then
@@ -45,6 +52,7 @@ for toolset_version in ${toolset_versions[@]}; do
 
     echo "Create Ruby $ruby_version directory..."
     mkdir -p $ruby_version_path
+    chmod o-x $ruby_version_path
 
     echo "Downloading tar archive $package_tar_name"
     download_url="https://github.com/ruby/ruby-builder/releases/download/toolcache/${package_tar_name}"
