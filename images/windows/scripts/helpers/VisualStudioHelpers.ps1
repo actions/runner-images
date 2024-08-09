@@ -29,7 +29,7 @@ Function Install-VisualStudio {
         [Parameter(Mandatory)] [String] $Channel,
         [Parameter(Mandatory)] [String[]] $RequiredComponents,
         [String] $ExtraArgs = "",
-        [Parameter(Mandatory)] [String] $SignatureThumbprint
+        [Parameter(Mandatory)] [String[]] $SignatureThumbprint
     )
 
     $bootstrapperUrl = "https://aka.ms/vs/${Version}/${Channel}/vs_${Edition}.exe"
