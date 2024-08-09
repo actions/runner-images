@@ -158,6 +158,7 @@ build {
       "mv ${local.image_folder}/xamarin-selector ${local.image_folder}/assets",
       "mkdir ~/utils",
       "mv ${local.image_folder}/helpers/confirm-identified-developers.scpt ~/utils",
+      "mv ${local.image_folder}/helpers/confirm-identified-developers-macos.scpt ~/utils",
       "mv ${local.image_folder}/helpers/invoke-tests.sh ~/utils",
       "mv ${local.image_folder}/helpers/utils.sh ~/utils",
       "mv ${local.image_folder}/helpers/xamarin-utils.sh ~/utils"

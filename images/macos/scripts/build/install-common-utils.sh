@@ -35,7 +35,7 @@ for package in $cask_packages; do
 done
 
 # Load "Parallels International GmbH"
-if is_Monterey; then
+if is_Monterey || is_Sonoma || is_Ventura; then
     sudo kextload /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
 fi
 
@@ -61,7 +61,7 @@ if is_Monterey; then
 fi
 
 # Validate "Parallels International GmbH" kext
-if is_Monterey; then
+if is_Monterey || is_Sonoma || is_Ventura; then
     echo "Closing System Preferences window if it is still opened"
     killall "System Preferences" || true
 
@@ -73,6 +73,8 @@ if is_Monterey; then
     if [[ -z $kext ]]; then
         echo "Parallels International GmbH not found"
         exit 1
+    else
+        echo "Kext Value = $kext"
     fi
 
     # Create env variable

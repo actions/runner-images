@@ -30,6 +30,11 @@ systemValuesArray=(
     "'kTCCServiceSystemPolicyAllFiles','com.microsoft.wdav.epsext',0,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,0,1643970979"
     "'kTCCServiceSystemPolicyNetworkVolumes','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
     "'kTCCServiceSystemPolicyNetworkVolumes','com.apple.Terminal',0,2,4,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,0,'UNUSED',NULL,0,1678990068"
+    # Allow Parallels International GmbH for approving Kernel Extension
+    "'kTCCServiceSystemPolicyAllFiles','com.parallels.kext.netbridge',0,2,1,1,NULL,NULL,NULL,'UNUSED',NULL,0,1691505705"
+    "'kTCCServiceSystemPolicyAllFiles','com.parallels.kext.hypervisor',0,2,1,1,NULL,NULL,NULL,'UNUSED',NULL,0,1691505705"
+    "'kTCCServiceSystemPolicyAllFiles','com.parallels.kext.vnic',0,2,1,1,NULL,NULL,NULL,'UNUSED',NULL,0,1691505705"
+    "'kTCCServiceSystemPolicyAllFiles','com.parallels.kext.usbconnect',0,2,1,1,NULL,NULL,NULL,'UNUSED',NULL,0,1691505705"
 )
 for values in "${systemValuesArray[@]}"; do
     if is_Sonoma; then
