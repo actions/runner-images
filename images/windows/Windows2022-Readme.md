@@ -5,7 +5,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2582
-- Image Version: 20240729.2.0
+- Image Version: 20240807.2.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -14,13 +14,13 @@
 
 ### Language and Runtime
 - Bash 5.2.26(1)-release
-- Go 1.21.12
+- Go 1.21.13
 - Julia 1.10.4
-- Kotlin 2.0.0
+- Kotlin 2.0.10
 - LLVM 18.1.8
 - Node 18.20.3
 - Perl 5.32.1
-- PHP 8.3.9
+- PHP 8.3.10
 - Python 3.9.13
 - Ruby 3.0.7p220
 
@@ -34,7 +34,7 @@
 - pip 24.2 (python 3.9)
 - Pipx 1.6.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit cacf59943)
+- Vcpkg (build from commit f5398d978)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -52,19 +52,18 @@
 ### Tools
 - 7zip 24.07
 - aria2 1.37.0
-- azcopy 10.25.1
+- azcopy 10.26.0
 - Bazel 7.2.1
 - Bazelisk 1.19.0
 - Bicep 0.29.47
 - Cabal 3.12.1.0
-- CMake 3.30.1
+- CMake 3.30.2
 - CodeQL Action Bundle 2.18.1
 - Docker 26.1.3
-- Docker Compose v1 1.29.2
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
 - ghc 9.10.1
-- Git 2.45.2.windows.1
+- Git 2.46.0.windows.1
 - Git LFS 3.5.1
 - ImageMagick 7.1.1-36
 - InnoSetup 6.3.3
@@ -79,7 +78,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.0
-- Pulumi 3.127.0
+- Pulumi 3.128.0
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -93,12 +92,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.216
-- AWS CLI 2.17.18
-- AWS SAM CLI 1.120.0
+- AWS CLI 2.17.25
+- AWS SAM CLI 1.121.0
 - AWS Session Manager CLI 1.2.650.0
-- Azure CLI 2.62.0
+- Azure CLI 2.63.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.53.0
+- GitHub CLI 2.54.0
 
 ### Rust Tools
 - Cargo 1.80.0
@@ -115,12 +114,12 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 127.0.6533.73
-- Chrome Driver 127.0.6533.72
-- Microsoft Edge 127.0.2651.74
-- Microsoft Edge Driver 127.0.2651.74
-- Mozilla Firefox 128.0.3
-- Gecko Driver 0.34.0
+- Google Chrome 127.0.6533.100
+- Chrome Driver 127.0.6533.99
+- Microsoft Edge 127.0.2651.86
+- Microsoft Edge Driver 127.0.2651.86
+- Mozilla Firefox 129.0
+- Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
 - Selenium server 4.23.0
 
@@ -161,8 +160,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.20.14
-- 1.21.12
-- 1.22.5
+- 1.21.13
+- 1.22.6
 
 #### Node.js
 - 16.20.2
@@ -500,15 +499,15 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - PowerShell 7.4.4
 
 #### Powershell Modules
-- Az: 11.3.1
+- Az: 12.1.0
 - Azure: 2.1.0 (Default), 5.3.0
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.623
+- AWSPowershell: 4.1.630
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.20.0
+- Microsoft.Graph: 2.21.1
 - Pester: 3.4.0, 5.6.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.22.0
@@ -528,7 +527,7 @@ All other versions are saved but not installed.
 | Android Emulator           | 34.2.16                                                                                                                                                                                                                 |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                     |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
-| Android SDK Platform-Tools | 35.0.1                                                                                                                                                                                                                  |
+| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                  |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                  |
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                                        |
 | Google Play services       | 49                                                                                                                                                                                                                      |
