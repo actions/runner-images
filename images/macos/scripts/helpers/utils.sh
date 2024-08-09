@@ -73,14 +73,6 @@ is_Monterey() {
     [ "$OSTYPE" = "darwin21" ]
 }
 
-is_BigSur() {
-    [ "$OSTYPE" = "darwin20" ]
-}
-
-is_Veertu() {
-    [[ -d "/Library/Application Support/Veertu" ]]
-}
-
 get_toolset_value() {
     local toolset_path=$(echo "$IMAGE_FOLDER/toolset.json")
     local query=$1
