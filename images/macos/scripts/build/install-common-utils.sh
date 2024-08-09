@@ -84,6 +84,8 @@ if is_Monterey || is_Sonoma || is_Ventura; then
     if [[ -z $kext ]]; then
         echo "Parallels International GmbH not found"
         exit 1
+    else
+        echo "Kext Value = $kext"
     fi
 
     # Create env variable
