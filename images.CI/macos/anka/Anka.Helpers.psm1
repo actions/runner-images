@@ -139,10 +139,7 @@ function Set-AnkaVMVideoController {
     )
 
     $command = "anka modify $VMName set display -c $Controller"
-    # Apple Metal is available starting from Big Sur
-    if (-not $ShortMacOSVersion.StartsWith("10.")) {
-        $null = Invoke-AnkaCommand -Command $command
-    }
+    $null = Invoke-AnkaCommand -Command $command
 }
 
 function Set-AnkaVMDisplayResolution {

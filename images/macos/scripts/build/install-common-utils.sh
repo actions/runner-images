@@ -6,12 +6,6 @@
 
 source ~/utils/utils.sh
 
-# Download and install YQ in cases when it is not available in the formulae as for macOS 11: https://formulae.brew.sh/formula/yq
-if is_BigSur; then
-    binary_path=$(download_with_retry "https://github.com/mikefarah/yq/releases/latest/download/yq_darwin_amd64")
-    sudo install "$binary_path" /usr/local/bin/yq
-fi
-
 # Monterey needs future review:
 # aliyun-cli, gnupg, helm have issues with building from the source code.
 # Added gmp for now, because toolcache ruby needs its libs. Remove it when php starts to build from source code.
@@ -48,27 +42,22 @@ fi
 # Execute AppleScript to change security preferences
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
 if is_Monterey; then
-    if is_Veertu; then
-        for retry in {4..0}; do
-            echo "Executing AppleScript to change security preferences. Retries left: $retry"
-            {
-                set -e
-                osascript -e 'tell application "System Events" to get application processes where visible is true'
-                osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
-            } && break
+    for retry in {4..0}; do
+        echo "Executing AppleScript to change security preferences. Retries left: $retry"
+        {
+            set -e
+            osascript -e 'tell application "System Events" to get application processes where visible is true'
+            osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
+        } && break
 
-            if [[ $retry -eq 0 ]]; then
-                echo "Executing AppleScript failed. No retries left"
-                exit 1
-            fi
+        if [[ $retry -eq 0 ]]; then
+            echo "Executing AppleScript failed. No retries left"
+            exit 1
+        fi
 
-            echo "Executing AppleScript failed. Sleeping for 10 seconds and retrying"
-            sleep 10
-        done
-    else
-        echo "Executing AppleScript to change security preferences"
-        osascript $HOME/utils/confirm-identified-developers.scpt $USER_PASSWORD
-    fi
+        echo "Executing AppleScript failed. Sleeping for 10 seconds and retrying"
+        sleep 10
+    done
 fi
 
 # Validate "Parallels International GmbH" kext
@@ -95,10 +84,8 @@ if is_Monterey; then
     echo "export PARALLELS_DMG_URL=$url" >> ${HOME}/.bashrc
 fi
 
-if ! is_BigSur; then
-    # Install Azure DevOps extension for Azure Command Line Interface
-    az extension add -n azure-devops
-fi
+# Install Azure DevOps extension for Azure Command Line Interface
+az extension add -n azure-devops
 
 # Invoke tests for all basic tools
 invoke_tests "BasicTools"

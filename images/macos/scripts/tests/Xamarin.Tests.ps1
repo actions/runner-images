@@ -8,7 +8,7 @@ if ($os.IsVentura -or $os.IsSonoma) {
     $XAMARIN_IOS_VERSIONS = @()
     $XAMARIN_MAC_VERSIONS = @()
     $XAMARIN_ANDROID_VERSIONS = @()
-} elseif ($os.IsBigSur -or $os.IsMonterey) {
+} elseif ($os.IsMonterey) {
     $MONO_VERSIONS = (Get-ToolsetContent).xamarin.mono_versions
     $XAMARIN_IOS_VERSIONS = (Get-ToolsetContent).xamarin.ios_versions
     $XAMARIN_MAC_VERSIONS = (Get-ToolsetContent).xamarin.mac_versions
