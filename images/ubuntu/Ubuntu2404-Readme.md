@@ -6,8 +6,8 @@
 ***
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
-- Kernel Version: 6.8.0-1010-azure
-- Image Version: 20240804.1.0
+- Kernel Version: 6.8.0-1012-azure
+- Image Version: 20240811.1.0
 - Systemd version: 255.4-1ubuntu8.2
 
 ## Installed Software
@@ -29,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.3
-- Homebrew 4.3.12
+- Homebrew 4.3.14
 - Miniconda 24.5.0
 - Npm 10.8.1
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit fe1cde61e)
+- Vcpkg (build from commit e590c2b30)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,7 +56,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.9
-- Lerna 8.1.7
+- Lerna 8.1.8
 - Maven 3.8.8
 
 ### Tools
@@ -90,18 +90,18 @@ to accomplish this.
 - OpenSSL 3.0.13-0ubuntu3.2
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.127.0
+- Pulumi 3.128.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
-- yq 4.44.2
+- yq 4.44.3
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.17.22
+- AWS CLI 2.17.27
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.121.0
-- Azure CLI 2.62.0
+- Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.54.0
 
@@ -128,19 +128,19 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.1.1
 
 ### Rust Tools
-- Cargo 1.80.0
-- Rust 1.80.0
-- Rustdoc 1.80.0
+- Cargo 1.80.1
+- Rust 1.80.1
+- Rustdoc 1.80.1
 - Rustup 1.27.1
 
 #### Packages
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 127.0.6533.88
-- ChromeDriver 127.0.6533.88
+- Google Chrome 127.0.6533.99
+- ChromeDriver 127.0.6533.99
 - Chromium 127.0.6533.0
-- Selenium server 4.23.0
+- Selenium server 4.23.1
 
 #### Environment variables
 | Name              | Value                                 |
@@ -152,13 +152,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.107
-- nbgv 3.6.139+a9e8765620
+- nbgv 3.6.141+d2035fb7be
 
 ### Databases
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.3
+- PostgreSQL 16.4
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -178,8 +178,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.20.14
-- 1.21.12
-- 1.22.5
+- 1.21.13
+- 1.22.6
 
 #### Node.js
 - 16.20.2
@@ -200,7 +200,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - PowerShell 7.4.2
 
 #### PowerShell Modules
-- Az: 11.5.0
+- Az: 12.1.0
 - Microsoft.Graph: 2.21.1
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
@@ -244,7 +244,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.1.0-2build2              |
 | bzip2                  | 1.0.8-5.1                  |
 | coreutils              | 9.4-3ubuntu6               |
-| curl                   | 8.5.0-2ubuntu10.1          |
+| curl                   | 8.5.0-2ubuntu10.2          |
 | dbus                   | 1.14.10-4ubuntu4           |
 | dnsutils               | 1:9.18.28-0ubuntu0.24.04.1 |
 | dpkg                   | 1.22.6ubuntu6              |
