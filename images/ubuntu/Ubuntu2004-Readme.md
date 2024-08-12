@@ -6,8 +6,8 @@
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
-- Kernel Version: 5.15.0-1068-azure
-- Image Version: 20240804.1.0
+- Kernel Version: 5.15.0-1070-azure
+- Image Version: 20240811.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -23,7 +23,7 @@
 - GNU C++: 10.5.0
 - GNU Fortran: 10.5.0
 - Julia 1.10.4
-- Kotlin 2.0.0-release-341
+- Kotlin 2.0.10-release-540
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.20.4
@@ -35,7 +35,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.3
-- Homebrew 4.3.12
+- Homebrew 4.3.14
 - Miniconda 24.5.0
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -43,7 +43,7 @@
 - Pip3 20.0.2
 - Pipx 1.6.0
 - RubyGems 3.1.2
-- Vcpkg (build from commit fe1cde61e)
+- Vcpkg (build from commit e590c2b30)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -63,7 +63,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.7
 - Gradle 8.9
-- Lerna 8.1.7
+- Lerna 8.1.8
 - Maven 3.8.8
 - Sbt 1.10.1
 
@@ -105,29 +105,29 @@ to accomplish this.
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.127.0
+- Pulumi 3.128.0
 - R 4.4.1
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.9.3
+- Terraform 1.9.4
 - yamllint 1.35.1
-- yq 4.44.2
+- yq 4.44.3
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.17.22
+- AWS CLI 2.17.27
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.121.0
-- Azure CLI 2.62.0
+- Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.54.0
-- Google Cloud CLI 486.0.0
-- Netlify CLI 17.33.5
+- Google Cloud CLI 487.0.0
+- Netlify CLI 17.34.0
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 35.2.3
+- Vercel CLI 35.2.4
 
 ### Java
 | Version             | Environment Variable |
@@ -152,9 +152,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.1.1
 
 ### Rust Tools
-- Cargo 1.80.0
-- Rust 1.80.0
-- Rustdoc 1.80.0
+- Cargo 1.80.1
+- Rust 1.80.1
+- Rustdoc 1.80.1
 - Rustup 1.27.1
 
 #### Packages
@@ -162,18 +162,18 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo audit 0.20.0
 - Cargo clippy 0.1.80
 - Cargo outdated 0.15.0
-- Cbindgen 0.26.0
+- Cbindgen 0.27.0
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 127.0.6533.88
-- ChromeDriver 127.0.6533.88
+- Google Chrome 127.0.6533.99
+- ChromeDriver 127.0.6533.99
 - Chromium 127.0.6533.0
-- Microsoft Edge 127.0.2651.86
+- Microsoft Edge 127.0.2651.98
 - Microsoft Edge WebDriver 127.0.2651.87
-- Selenium server 4.23.0
+- Selenium server 4.23.1
 - Mozilla Firefox 128.0
-- Geckodriver 0.34.0
+- Geckodriver 0.35.0
 
 #### Environment variables
 | Name              | Value                                 |
@@ -185,14 +185,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 6.0.424, 7.0.410, 8.0.303
-- nbgv 3.6.139+a9e8765620
+- nbgv 3.6.141+d2035fb7be
 
 ### Databases
 - MongoDB 5.0.28
 - sqlite3 3.31.1
 
 #### PostgreSQL
-- PostgreSQL 14.12
+- PostgreSQL 14.13
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -216,8 +216,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.20.14
-- 1.21.12
-- 1.22.5
+- 1.21.13
+- 1.22.6
 
 #### Node.js
 - 16.20.2
@@ -249,7 +249,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - PowerShell 7.4.4
 
 #### PowerShell Modules
-- Az: 11.3.1
+- Az: 12.1.0
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.21.1
 - Pester: 5.6.1
@@ -315,7 +315,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.7-6ubuntu0.1                  |
 | bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
-| curl                   | 7.68.0-1ubuntu2.22                |
+| curl                   | 7.68.0-1ubuntu2.23                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
 | dnsutils               | 1:9.18.28-0ubuntu0.20.04.1        |
 | dpkg                   | 1.19.7ubuntu3.2                   |
@@ -338,7 +338,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
 | libc6-dev              | 2.31-0ubuntu9.16                  |
-| libcurl4               | 7.68.0-1ubuntu2.22                |
+| libcurl4               | 7.68.0-1ubuntu2.23                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6+deb10u1build0.20.04.1  |
