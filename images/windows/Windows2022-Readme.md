@@ -5,7 +5,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2582
-- Image Version: 20240807.2.0
+- Image Version: 20240811.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -30,11 +30,11 @@
 - Helm 3.15.2
 - Miniconda 24.5.0 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
-- NuGet 6.10.1.5
+- NuGet 6.10.2.8
 - pip 24.2 (python 3.9)
 - Pipx 1.6.0
 - RubyGems 3.2.33
-- Vcpkg (build from commit f5398d978)
+- Vcpkg (build from commit e590c2b30)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -92,7 +92,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.216
-- AWS CLI 2.17.25
+- AWS CLI 2.17.27
 - AWS SAM CLI 1.121.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.63.0
@@ -100,24 +100,24 @@
 - GitHub CLI 2.54.0
 
 ### Rust Tools
-- Cargo 1.80.0
-- Rust 1.80.0
-- Rustdoc 1.80.0
+- Cargo 1.80.1
+- Rust 1.80.1
+- Rustdoc 1.80.1
 - Rustup 1.27.1
 
 #### Packages
 - bindgen 0.69.4
 - cargo-audit 0.20.0
 - cargo-outdated 0.15.0
-- cbindgen 0.26.0
+- cbindgen 0.27.0
 - Clippy 0.1.80
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
 - Google Chrome 127.0.6533.100
 - Chrome Driver 127.0.6533.99
-- Microsoft Edge 127.0.2651.86
-- Microsoft Edge Driver 127.0.2651.86
+- Microsoft Edge 127.0.2651.98
+- Microsoft Edge Driver 127.0.2651.98
 - Mozilla Firefox 129.0
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
@@ -208,7 +208,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 5.0.28.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.18.0
+- Azure CosmosDb Emulator 2.14.19.0
 - DacFx 162.3.566.1
 - MySQL 8.0.39.0
 - SQL OLEDB Driver 18.7.4.0
@@ -493,7 +493,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.32, 7.0.5, 7.0.20, 8.0.7
 - Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.32, 7.0.5, 7.0.20, 8.0.7
 - Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.32, 7.0.5, 7.0.20, 8.0.7
-- nbgv 3.6.139+a9e8765620
+- nbgv 3.6.141+d2035fb7be
 
 ### PowerShell Tools
 - PowerShell 7.4.4
@@ -504,7 +504,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.630
+- AWSPowershell: 4.1.632
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.21.1
