@@ -43,7 +43,7 @@ Describe "AWS" {
     It "AWS CLI" {
         "aws --version" | Should -ReturnZeroExitCode
     }
-    It "AWS SAM CLI" -Skip:($os.IsBigSur) {
+    It "AWS SAM CLI" {
         "sam --version" | Should -ReturnZeroExitCode
     }
 
@@ -123,7 +123,7 @@ Describe "Go" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "VirtualBox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
+Describe "VirtualBox" -Skip:($os.IsVentura -or $os.IsSonoma) {
     It "Check kext kernel modules" {
         kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }

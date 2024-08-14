@@ -17,14 +17,7 @@ sudo rm -f /var/vm/sleepimage
 defaults write NSGlobalDomain NSAppSleepDisabled -bool YES
 
 # Disable Keyboard Setup Assistant window
-if is_Veertu; then
-    sudo defaults write /Library/Preferences/com.apple.keyboardtype "keyboardtype" -dict-add "3-7582-0" -int 40
-fi
-
-# Change screen resolution to the maximum supported for 4Mb video memory
-if [[ -d "/Library/Application Support/VMware Tools" ]]; then
-    sudo "/Library/Application Support/VMware Tools/vmware-resolutionSet" 1176 885
-fi
+sudo defaults write /Library/Preferences/com.apple.keyboardtype "keyboardtype" -dict-add "3-7582-0" -int 40
 
 # Update VoiceOver Utility to allow VoiceOver to be controlled with AppleScript
 # by creating a special Accessibility DB file (SIP must be disabled) and
@@ -39,7 +32,6 @@ defaults write com.apple.VoiceOver4/default SCREnableAppleScript -bool YES
 # Rotate the certificate before expiration to ensure your apps are installed and signed with an active certificate.
 # Confirm that the correct intermediate certificate is installed by verifying the expiration date is set to 2030.
 # sudo security delete-certificate -Z FF6797793A3CD798DC5B2ABEF56F73EDC9F83A64 /Library/Keychains/System.keychain
-# Big Sur requires user interaction to add a cert https://developer.apple.com/forums/thread/671582, we need to use a workaround with SecItemAdd swift method
 
 swiftc -suppress-warnings "${HOME}/image-generation/add-certificate.swift"
 
@@ -58,7 +50,7 @@ done
 rm -f ./add-certificate
 
 # enable-automationmode-without-authentication
-if ! is_BigSur; then
+
 retry=10
 while [[ $retry -gt 0 ]]; do
 {
@@ -84,16 +76,15 @@ EOF
     sleep 10
 done
 
-    echo "Getting terminal windows"
-    term_service=$(launchctl list | grep -i terminal | cut -f3)
-    echo "Close terminal windows: gui/501/${term_service}"
-    launchctl bootout gui/501/${term_service} && sleep 5
+echo "Getting terminal windows"
+term_service=$(launchctl list | grep -i terminal | cut -f3)
+echo "Close terminal windows: gui/501/${term_service}"
+launchctl bootout gui/501/${term_service} && sleep 5
 
-    # test enable-automationmode-without-authentication
-    if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
-        echo "Failed to enable enable-automationmode-without-authentication option"
-        exit 1
-    fi
+# test enable-automationmode-without-authentication
+if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
+    echo "Failed to enable enable-automationmode-without-authentication option"
+    exit 1
 fi
 
 # Create symlink for tests running
