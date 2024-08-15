@@ -3,9 +3,9 @@
 | [[macOS] GCC 11 will be removed from all macOS images on August 12](https://github.com/actions/runner-images/issues/10213) |
 ***
 # macOS 13
-- OS Version: macOS 13.6.8 (22G820)
+- OS Version: macOS 13.6.9 (22G830)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240804.1
+- Image Version: 20240811.1
 
 ## Installed Software
 
@@ -14,15 +14,13 @@
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
-- GCC 11 (Homebrew GCC 11.4.0) - available by `gcc-11` alias
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
 - GCC 14 (Homebrew GCC 14.1.0_2) - available by `gcc-14` alias
-- GNU Fortran 11 (Homebrew GCC 11.4.0) - available by `gfortran-11` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.1.0_2) - available by `gfortran-14` alias
-- Kotlin 2.0.0-release-341
+- Kotlin 2.0.10-release-540
 - Mono 6.12.0.188
 - Node.js 20.16.0
 - Perl 5.38.2
@@ -33,7 +31,7 @@
 - Bundler 2.5.17
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Homebrew 4.3.12
+- Homebrew 4.3.14
 - NPM 10.8.1
 - NuGet 6.3.1.1
 - Pip3 24.0 (python 3.12)
@@ -64,21 +62,21 @@
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
-- yq 4.44.2
+- yq 4.44.3
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.22
+- AWS CLI 2.17.27
 - AWS SAM CLI 1.121.0
 - AWS Session Manager CLI 1.2.650.0
-- Azure CLI 2.62.0
+- Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.29.47
 - Cmake 3.30.2
 - CodeQL Action Bundle 2.18.1
 - Fastlane 2.222.0
 - SwiftFormat 0.54.3
-- Xcbeautify 2.7.0
+- Xcbeautify 2.10.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.5.0
 
@@ -87,9 +85,9 @@
 ### Browsers
 - Safari 17.6 (18618.3.11.11.7)
 - SafariDriver 17.6 (18618.3.11.11.7)
-- Google Chrome 127.0.6533.89
-- Google Chrome for Testing 127.0.6533.88
-- ChromeDriver 127.0.6533.88
+- Google Chrome 127.0.6533.100
+- Google Chrome for Testing 127.0.6533.99
+- ChromeDriver 127.0.6533.99
 - Selenium server 4.23.0
 
 #### Environment variables
@@ -121,13 +119,13 @@
 
 #### Go
 - 1.20.14
-- 1.21.12
-- 1.22.5
+- 1.21.13
+- 1.22.6
 
 ### Rust Tools
-- Cargo 1.80.0
-- Rust 1.80.0
-- Rustdoc 1.80.0
+- Cargo 1.80.1
+- Rust 1.80.1
+- Rustdoc 1.80.1
 - Rustup 1.27.1
 
 #### Packages
@@ -138,7 +136,7 @@
 - PowerShell 7.4.4
 
 #### PowerShell Modules
-- Az: 12.1.0
+- Az: 12.2.0
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
@@ -222,7 +220,7 @@
 | Android Emulator           | 34.2.16                                                                                                                                                                     |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                           |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
-| Android SDK Platform-Tools | 35.0.1                                                                                                                                                                      |
+| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                      |
 | Android Support Repository | 47.0.0                                                                                                                                                                      |
 | CMake                      | 3.22.1                                                                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                          |
