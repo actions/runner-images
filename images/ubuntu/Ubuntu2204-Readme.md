@@ -1,7 +1,13 @@
+| Announcements |
+|-|
+| [[All OSes] Android NDK versions <=25 will be removed from images on August 19](https://github.com/actions/runner-images/issues/10342) |
+| [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
+| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 29](https://github.com/actions/runner-images/issues/9692) |
+***
 # Ubuntu 22.04
 - OS Version: 22.04.4 LTS
-- Kernel Version: 6.5.0-1024-aws
-- Image Version: dev
+- Kernel Version: 6.5.0-1025-azure
+- Image Version: 20240811.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -27,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.3
-- Homebrew 4.3.15
+- Homebrew 4.3.14
 - Miniconda 24.5.0
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -35,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.6.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 333ba63a1)
+- Vcpkg (build from commit e590c2b30)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,10 +66,10 @@ to accomplish this.
 - Sbt 1.10.1
 
 ### Tools
-- Ansible 2.17.3
+- Ansible 2.17.2
 - apt-fast 1.10.0
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.3.0
+- Bazel 7.2.1
 - Bazelisk 1.19.0
 - Bicep 0.29.47
 - Buildah 1.23.1
@@ -82,7 +88,7 @@ to accomplish this.
 - Heroku 9.1.0
 - jq 1.6
 - Kind 0.23.0
-- Kubectl 1.31.0
+- Kubectl 1.30.3
 - Kustomize 5.4.3
 - Leiningen 2.11.2
 - MediaInfo 21.09
@@ -95,7 +101,7 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.129.0
+- Pulumi 3.128.0
 - R 4.4.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -106,16 +112,16 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.218
-- AWS CLI 2.17.29
+- Alibaba Cloud CLI 3.0.216
+- AWS CLI 2.17.27
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.121.0
 - Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.54.0
-- Google Cloud CLI 488.0.0
-- Netlify CLI 17.34.1
-- OpenShift CLI 4.16.7
+- Google Cloud CLI 487.0.0
+- Netlify CLI 17.34.0
+- OpenShift CLI 4.16.6
 - ORAS CLI 1.2.0
 - Vercel CLI 35.2.4
 
@@ -156,8 +162,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 127.0.6533.119
-- ChromeDriver 127.0.6533.119
+- Google Chrome 127.0.6533.99
+- ChromeDriver 127.0.6533.99
 - Chromium 127.0.6533.0
 - Microsoft Edge 127.0.2651.98
 - Microsoft Edge WebDriver 127.0.2651.87
@@ -174,7 +180,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.425, 7.0.410, 8.0.400
+- .NET Core SDK: 6.0.424, 7.0.410, 8.0.303
 - nbgv 3.6.141+d2035fb7be
 
 ### Databases
@@ -219,7 +225,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.19
 - 3.10.14
 - 3.11.9
-- 3.12.5
+- 3.12.4
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -237,7 +243,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 12.1.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.22.0
+- Microsoft.Graph: 2.21.1
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
@@ -270,34 +276,23 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Cached Docker images
-| Repository:Tag                                           | Digest                                                                   | Created    |
-| -------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.16                                              | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
-| alpine:3.17                                              | sha256:ef813b2faa3dd1a37f9ef6ca98347b72cd0f55e4ab29fb90946f1b853bf032d9  | 2024-07-22 |
-| alpine:3.18                                              | sha256:5292533eb4efd4b5cf35e93b5a2b7d0e07ea193224c49446c7802c19ee4f2da5  | 2024-07-22 |
-| alpine:3.19                                              | sha256:95c16745f100f44cf9a0939fd3f357905f845f8b6fa7d0cde0e88c9764060185  | 2024-07-22 |
-| debian:10                                                | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11                                                | sha256:0bb606aad3307370c8b4502eff11fde298e5b7721e59a0da3ce9b30cb92045ed  | 2024-08-13 |
-| mcr.microsoft.com/mssql/server:2019-latest               | sha256:d7f2c670f0cd807b4dc466b8887bd2b39a4561f624c154896f5564ea38efd13a  | 2024-07-26 |
-| moby/buildkit:latest                                     | sha256:0a5641c72659aa246458914fedcf941892aa15b8a49a79a0e8f3a4cc8246d5f9  | 2024-07-25 |
-| node:16                                                  | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
-| node:16-alpine                                           | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18                                                  | sha256:a7ff16657263663c1e92ba3060cdbba0e77329a0a4cb3c27bbbbe90c6e20bd87  | 2024-07-09 |
-| node:18-alpine                                           | sha256:17514b20acef0e79691285e7a59f3ae561f7a1702a9adc72a515aef23f326729  | 2024-07-09 |
-| node:20                                                  | sha256:d3c8ababe9566f9f3495d0d365a5c4b393f607924647dd52e75bf4f8a54effd3  | 2024-07-24 |
-| node:20-alpine                                           | sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52  | 2024-07-24 |
-| osixia/openldap:latest                                   | sha256:3f68751292b43564a2586fc29fb7337573e2dad692b92d4e78e49ad5c22e567b  | 2021-02-19 |
-| osixia/phpldapadmin:latest                               | sha256:9831569a2f3d1d764aabcb5abe6e463771b9595f1565fe3007fe77c4c3979043  | 2021-02-19 |
-| public.ecr.aws/docker/library/debian:bookworm-slim       | sha256:2ccc7e39b0a6f504d252f807da1fc4b5bcd838e83e4dec3e2f57b2a4a64e7214  | 2024-08-13 |
-| public.ecr.aws/docker/library/golang:latest              | sha256:c4be4de3bbe3b7a642b05d9dee30abb3fdd9cd43536df00ebcb33c1fa283eedd  | 2024-08-13 |
-| public.ecr.aws/docker/library/postgres:latest            | sha256:59c554e6f26822fd489ebbdef431457db2debd0c5762b24f11f603db5b91dfcc  | 2024-08-08 |
-| public.ecr.aws/docker/library/python:3.11                | sha256:a23661e4d5dacf56028a800d3af100397a99b120d0f0de5892db61437fd9eb6c  | 2024-07-29 |
-| public.ecr.aws/docker/library/python:3.11-slim           | sha256:ad5dadd957a398226996bc4846e522c39f2a77340b531b28aaab85b2d361210b  | 2024-07-29 |
-| public.ecr.aws/docker/library/rabbitmq:management-alpine | sha256:49620b2432b0167d7e047bf06e84815d9d897022b98f4f0c83f52f23c6d78ca9  | 2024-02-22 |
-| public.ecr.aws/hashicorp/consul:latest                   | sha256:9d4df355904121f79113ecdcea52452357cf191308fd8f926bdfa0c282690aad  | 2024-07-11 |
-| public.ecr.aws/hashicorp/vault:latest                    | sha256:6dbaf64766d3ff02493bfe492fa12cb3c28a0f294a689f1356b6388e3be89bf2  | 2024-08-06 |
-| ubuntu:20.04                                             | sha256:0b897358ff6624825fb50d20ffb605ab0eaea77ced0adb8c6a4b756513dec6fc  | 2024-06-03 |
-| ubuntu:22.04                                             | sha256:340d9b015b194dc6e2a13938944e0d016e57b9679963fdeb9ce021daac430221  | 2024-06-27 |
+| Repository:Tag       | Digest                                                                   | Created    |
+| -------------------- | ------------------------------------------------------------------------ | ---------- |
+| alpine:3.16          | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
+| alpine:3.17          | sha256:ef813b2faa3dd1a37f9ef6ca98347b72cd0f55e4ab29fb90946f1b853bf032d9  | 2024-07-22 |
+| alpine:3.18          | sha256:5292533eb4efd4b5cf35e93b5a2b7d0e07ea193224c49446c7802c19ee4f2da5  | 2024-07-22 |
+| alpine:3.19          | sha256:95c16745f100f44cf9a0939fd3f357905f845f8b6fa7d0cde0e88c9764060185  | 2024-07-22 |
+| debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
+| debian:11            | sha256:7aef2e7d061743fdb57973dac3ddbceb0b0912746ca7e0ee7535016c38286561  | 2024-07-23 |
+| moby/buildkit:latest | sha256:0a5641c72659aa246458914fedcf941892aa15b8a49a79a0e8f3a4cc8246d5f9  | 2024-07-25 |
+| node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
+| node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
+| node:18              | sha256:11b742eda0142d9ea809fad8c506cbcadb2802c7d4b32e044e6b976691df36b1  | 2024-07-09 |
+| node:18-alpine       | sha256:17514b20acef0e79691285e7a59f3ae561f7a1702a9adc72a515aef23f326729  | 2024-07-09 |
+| node:20              | sha256:1ae9ba874435551280e95c8a8e74adf8a48d72b564bf9dfe4718231f2144c88f  | 2024-07-24 |
+| node:20-alpine       | sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52  | 2024-07-24 |
+| ubuntu:20.04         | sha256:0b897358ff6624825fb50d20ffb605ab0eaea77ced0adb8c6a4b756513dec6fc  | 2024-06-03 |
+| ubuntu:22.04         | sha256:340d9b015b194dc6e2a13938944e0d016e57b9679963fdeb9ce021daac430221  | 2024-06-27 |
 
 ### Installed apt packages
 | Name                   | Version                             |
@@ -392,3 +387,4 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
+
