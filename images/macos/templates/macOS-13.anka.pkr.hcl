@@ -157,7 +157,7 @@ build {
       "mv ${local.image_folder}/docs-gen ${local.image_folder}/software-report",
       "mv ${local.image_folder}/xamarin-selector ${local.image_folder}/assets",
       "mkdir ~/utils",
-      "mv ${local.image_folder}/helpers/confirm-identified-developers.scpt ~/utils",
+      "mv ${local.image_folder}/helpers/confirm-identified-developers-macos13.scpt ~/utils",
       "mv ${local.image_folder}/helpers/invoke-tests.sh ~/utils",
       "mv ${local.image_folder}/helpers/utils.sh ~/utils",
       "mv ${local.image_folder}/helpers/xamarin-utils.sh ~/utils"
