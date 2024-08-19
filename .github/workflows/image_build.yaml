@@ -28,10 +28,6 @@ jobs:
         with:
           version: latest
 
-      - name: Run `packer init`
-        id: init
-        run: "packer init ."
-
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
