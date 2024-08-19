@@ -28,6 +28,10 @@ jobs:
         with:
           version: latest
 
+      - name: Run `packer init`
+        id: init
+        run: "packer init ubuntu-22.04.pkr.hcl"
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:

@@ -156,12 +156,15 @@ source "amazon-ebs" "build_image" {
 
   subnet_filter {
     filters = {
-      "tag:Packer" : "true"
+      "tag:Environment" : "github-actions-runners"
+      "tag:Name" : "*-public-*"
     }
     random = true
   }
 
-  ssh_interface = "private_ip"
+  associate_public_ip_address = true
+
+  ssh_interface = "public_ip"
 
   spot_instance_types = [
     "c7a.xlarge",
@@ -210,7 +213,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}","DEBIAN_FRONTEND=noninteractive"]
+    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts = [
       "${path.root}/../scripts/build/install-ms-repos.sh",
