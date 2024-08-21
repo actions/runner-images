@@ -54,8 +54,9 @@ variable "vm_password" {
 }
 
 variable "github_api_pat" {
-  type    = string
-  default = ""
+  type      = string
+  sensitive = true
+  default   = ""
 }
 
 variable "xcode_install_storage_url" {
