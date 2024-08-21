@@ -2,12 +2,11 @@
 |-|
 | [[All OSes] Android NDK versions <=25 will be removed from images on August 19](https://github.com/actions/runner-images/issues/10342) |
 | [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
-| [[Ubuntu, Windows] Docker Compose v1 will be removed from images on July, 29](https://github.com/actions/runner-images/issues/9692) |
 ***
 # Ubuntu 24.04 LTS
 - OS Version: 24.04 LTS
 - Kernel Version: 6.8.0-1012-azure
-- Image Version: 20240811.1.0
+- Image Version: 20240818.1.0
 - Systemd version: 255.4-1ubuntu8.2
 
 ## Installed Software
@@ -28,15 +27,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.15.3
-- Homebrew 4.3.14
+- Helm 3.15.4
+- Homebrew 4.3.16
 - Miniconda 24.5.0
 - Npm 10.8.1
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit e590c2b30)
+- Vcpkg (build from commit 2f210a9c1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,19 +54,19 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.9
+- Gradle 8.10
 - Lerna 8.1.8
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.17.2
+- Ansible 2.17.3
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.2.1
+- Bazel 7.3.0
 - Bazelisk 1.19.0
 - Bicep 0.29.47
 - Buildah 1.33.7
 - CMake 3.30.2
-- CodeQL Action Bundle 2.18.1
+- CodeQL Action Bundle 2.18.2
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.16.2
@@ -79,18 +78,18 @@ to accomplish this.
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
-- Kind 0.23.0
-- Kubectl 1.30.3
+- Kind 0.24.0
+- Kubectl 1.31.0
 - Kustomize 5.4.3
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.33.1
 - n 9.2.3
-- Newman 6.1.3
+- Newman 6.2.0
 - OpenSSL 3.0.13-0ubuntu3.2
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.128.0
+- Pulumi 3.129.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -98,9 +97,9 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.17.27
+- AWS CLI 2.17.32
 - AWS CLI Session Manager Plugin 1.2.650.0
-- AWS SAM CLI 1.121.0
+- AWS SAM CLI 1.122.0
 - Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.54.0
@@ -137,8 +136,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 127.0.6533.99
-- ChromeDriver 127.0.6533.99
+- Google Chrome 127.0.6533.119
+- ChromeDriver 127.0.6533.119
 - Chromium 127.0.6533.0
 - Selenium server 4.23.1
 
@@ -151,7 +150,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.107
+- .NET Core SDK: 8.0.108
 - nbgv 3.6.141+d2035fb7be
 
 ### Databases
@@ -190,7 +189,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.19
 - 3.10.14
 - 3.11.9
-- 3.12.4
+- 3.12.5
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -201,7 +200,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 12.1.0
-- Microsoft.Graph: 2.21.1
+- Microsoft.Graph: 2.22.0
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
@@ -212,15 +211,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | nginx   | 1.24.0  | /etc/nginx/nginx.conf     | inactive      | 80         |
 
 ### Android
-| Package Name               | Version                                                                                                                                               |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 12.0                                                                                                                                                  |
-| Android SDK Build-tools    | 35.0.0<br>34.0.0                                                                                                                                      |
-| Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
-| Android Support Repository | 47.0.0                                                                                                                                                |
-| Google Play services       | 49                                                                                                                                                    |
-| Google Repository          | 58                                                                                                                                                    |
-| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264<br>27.0.12077973 (default)                                                                              |
+| Package Name               | Version                                                                                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 12.0                                                                                                                                                                                                          |
+| Android SDK Build-tools    | 35.0.0<br>34.0.0                                                                                                                                                                                              |
+| Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                        |
+| Google Play services       | 49                                                                                                                                                                                                            |
+| Google Repository          | 58                                                                                                                                                                                                            |
+| NDK                        | 26.3.11579264<br>27.0.12077973 (default)                                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                        |

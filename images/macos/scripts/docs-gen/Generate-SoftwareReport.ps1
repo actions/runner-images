@@ -290,7 +290,13 @@ if ($os.IsMonterey) {
     $miscellaneous.AddToolVersion("Zlib", $(Get-ZlibVersion))
 }
 
-if ($os.IsMonterey) {
+if ($os.IsSonomaX64 -or $os.IsVenturaX64) {
+    $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
+}
+if ($os.IsMonterey -or $os.IsSonomaX64 -or $os.IsVenturaX64) {
+
+    Write-Host "Adding environment variables for parallels"
+
     $miscellaneousEnv = $miscellaneous.AddHeader("Environment variables")
     $miscellaneousEnv.AddTable($(Build-MiscellaneousEnvironmentTable))
 
