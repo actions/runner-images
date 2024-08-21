@@ -11,7 +11,8 @@ close_finder_window
 
 # Remove Parallels Desktop
 # https://github.com/actions/runner-images/issues/6105
-if is_Monterey; then
+# https://github.com/actions/runner-images/issues/10143
+if is_Monterey || is_SonomaX64 || is_VenturaX64; then
     brew uninstall parallels
 fi
 
