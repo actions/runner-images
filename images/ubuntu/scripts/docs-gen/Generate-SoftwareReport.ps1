@@ -48,7 +48,7 @@ if (Test-IsUbuntu20) {
 $languageAndRuntime.AddToolVersionsListInline("GNU C++", $(Get-CPPVersions), "^\d+")
 $languageAndRuntime.AddToolVersionsListInline("GNU Fortran", $(Get-FortranVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if ((Test-IsUbuntu20) -or (Test-IsUbuntu22) -or (Test-IsUbuntu24)) {
     $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
 }
 if (-not $(Test-IsUbuntu24)) {
