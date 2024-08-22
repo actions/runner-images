@@ -1,0 +1,58 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+# This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
+# For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
+
+name: Ruby
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby-version: ['2.6', '2.7', '3.0']
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Ruby
+    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
+    # change this to (see https://github.com/ruby/setup-ruby#versioning):
+    # uses: ruby/setup-ruby@v1
+      uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+      with:
+        ruby-version: ${{ matrix.ruby-version }}
+        bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+    - name: Run tests
+      run: bundle exec rake
+            - name: Cache
+  uses: actions/cache@v4.0.2
+  with:
+    # A list of files, directories, and wildcard patterns to cache and restore
+    path: 
+    # An explicit key for restoring and saving the cache
+    key: 
+    # An ordered list of keys to use for restoring stale cache if no cache hit occurred for key. Note `cache-hit` returns false in this case.
+    restore-keys: # optional
+    # The chunk size used to split up large files during upload, in bytes
+    upload-chunk-size: # optional
+    # An optional boolean when enabled, allows windows runners to save or restore caches that can be restored or saved respectively on other platforms
+    enableCrossOsArchive: # optional
+    # Fail the workflow if cache entry is not found
+    fail-on-cache-miss: # optional
+    # Check if a cache entry exists for the given input(s) (key, restore-keys) without downloading the cache
+    lookup-only: # optional, default is false
+    # Run the post step to save the cache even if another step before fails
+    save-always: # optional
+        
