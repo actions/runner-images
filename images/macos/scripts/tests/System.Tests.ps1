@@ -35,23 +35,8 @@ Describe "Audio device" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "Screen Resolution" -Skip:(isVeertu) {
-    It "Screen Resolution" {
-        system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885|1920 x 1080"
-    }
-}
-
-Describe "Open windows" -Skip:(isVeertu) {
-    It "Opened windows not found" {
-        'tell application id "com.apple.systemevents" to get every window of (every process whose class of windows contains window)' | Tee-Object /tmp/windows.osascript
-        $cmd = "osascript /tmp/windows.osascript"
-        $openWindows = bash -c $cmd
-        $openWindows.Split(",").Trim() | Where-Object { $_ -notmatch "NotificationCenter" } | Should -BeNullOrEmpty
-    }
-}
-
 Describe "AutomationModeTool" {
-    It "Does not require user authentication" -Skip:($os.IsBigSur) {
+    It "Does not require user authentication" {
         automationmodetool | Out-String | Should -Match "DOES NOT REQUIRE"
     }
 }

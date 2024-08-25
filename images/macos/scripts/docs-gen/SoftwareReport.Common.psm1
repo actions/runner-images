@@ -367,11 +367,6 @@ function Get-BazeliskVersion {
     return ($bazeliskVersion -replace "^bazelisk").Trim()
 }
 
-function Get-HelmVersion {
-    $helmVersion = Run-Command "helm version --short"
-    return $helmVersion
-}
-
 function Get-MongoVersion {
     $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
     return $mongo.TrimStart("v").Trim()
@@ -395,11 +390,6 @@ function Get-GnuTarVersion {
 function Get-BsdtarVersion {
     $bsdtar = Run-Command "tar --version" | Take-Part -Part 1
     return "$bsdtar - available by 'tar' alias"
-}
-
-function Get-NewmanVersion {
-    $newmanVersion = Run-Command "newman --version"
-    return $newmanVersion
 }
 
 function Get-VirtualBoxVersion {
@@ -455,11 +445,6 @@ function Get-AWSSAMCLIVersion {
 function Get-AWSSessionManagerCLIVersion {
     $awsSessionManagerVersion = Run-Command "session-manager-plugin --version"
     return $awsSessionManagerVersion
-}
-
-function Get-AliyunCLIVersion {
-    $aliyunVersion = Run-Command "aliyun --version" | Select-String "Alibaba Cloud Command Line Interface Version " | Take-Part -Part 6
-    return $aliyunVersion
 }
 
 function Get-GHCupVersion {

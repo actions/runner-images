@@ -53,7 +53,7 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersionsListInline("NVM - Cached node versions", $(Get-NVMNodeVersionList), '^\d+')
 }
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
-if ((-not $os.IsBigSur) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
 }
 
@@ -63,7 +63,7 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
 
 $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
 
-if ((-not $os.IsVentura) -and (-not $os.IsSonoma) -and (-not $os.IsBigSur)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("R", $(Get-RVersion))
 }
 
@@ -74,7 +74,7 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
 $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
 $packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
-if ((-not $os.IsBigSur) -and (-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
+if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
     $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
 }
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
@@ -118,26 +118,18 @@ $utilities.AddToolVersion("bazelisk", $(Get-BazeliskVersion))
 $utilities.AddToolVersion("bsdtar", $(Get-BsdtarVersion))
 $utilities.AddToolVersion("Curl", $(Get-CurlVersion))
 $utilities.AddToolVersion("Git", $(Get-GitVersion))
-if (-not $os.IsBigSur) {
-    $utilities.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
-}
+$utilities.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $utilities.AddToolVersion("GitHub CLI", $(Get-GitHubCLIVersion))
 $utilities.AddToolVersion("GNU Tar", $(Get-GnuTarVersion))
 $utilities.AddToolVersion("GNU Wget", $(Get-WgetVersion))
 $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
-if ($os.IsBigSur) {
-    $utilities.AddToolVersion("helm", $(Get-HelmVersion))
-}
-if ((-not $os.IsBigSur) -and (-not $os.IsVentura) -and (-not $os.IsSonoma)) {
+if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $utilities.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 }
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $utilities.AddToolVersion("mongo", $(Get-MongoVersion))
     $utilities.AddToolVersion("mongod", $(Get-MongodVersion))
-}
-if ($os.IsBigSur) {
-    $utilities.AddToolVersion("Newman", $(Get-NewmanVersion))
 }
 $utilities.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $utilities.AddToolVersion("Packer", $(Get-PackerVersion))
@@ -158,21 +150,14 @@ $utilities.AddToolVersion("zstd", $(Get-ZstdVersion))
 
 # Tools
 $tools = $installedSoftware.AddHeader("Tools")
-if ($os.IsBigSur) {
-    $tools.AddToolVersion("Aliyun CLI", $(Get-AliyunCLIVersion))
-}
 if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("App Center CLI", $(Get-AppCenterCLIVersion))
 }
 $tools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
-if (-not $os.IsBigSur) {
-    $tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
-}
+$tools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMCLIVersion))
 $tools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerCLIVersion))
-if (-not $os.IsBigSur) {
-    $tools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
-    $tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
-}
+$tools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
+$tools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
 $tools.AddToolVersion("Bicep CLI", $(Get-BicepVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
@@ -193,13 +178,9 @@ $tools.AddToolVersion("SwiftFormat", $(Get-SwiftFormatVersion))
 if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
     $tools.AddToolVersion("Swig", $(Get-SwigVersion))
 }
-if (-not $os.IsBigSur) {
-    $tools.AddToolVersion("Xcbeautify", $(Get-XcbeautifyVersion))
-}
+$tools.AddToolVersion("Xcbeautify", $(Get-XcbeautifyVersion))
 $tools.AddToolVersion("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVersion))
-if (-not $os.IsBigSur) {
-    $tools.AddToolVersion("Xcodes", $(Get-XcodesVersion))
-}
+$tools.AddToolVersion("Xcodes", $(Get-XcodesVersion))
 
 # Linters
 $linters = $installedSoftware.AddHeader("Linters")
@@ -225,7 +206,6 @@ $toolcache = $installedSoftware.AddHeader("Cached Tools")
 $toolcache.AddNodes($(Build-ToolcacheSection))
 
 # Rust
-if (-not $os.IsBigSur) {
 $rust = $installedSoftware.AddHeader("Rust Tools")
 $rust.AddToolVersion("Cargo", $(Get-RustCargoVersion))
 $rust.AddToolVersion("Rust", $(Get-RustVersion))
@@ -241,7 +221,6 @@ if ((-not $os.IsVentura) -and (-not $os.IsSonoma)) {
 }
 $rustPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
 $rustPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
-}
 
 # PowerShell
 $powerShell = $installedSoftware.AddHeader("PowerShell Tools")
@@ -303,7 +282,7 @@ $android.AddTable($androidTable)
 $androidEnv = $android.AddHeader("Environment variables")
 $androidEnv.AddTable($(Build-AndroidEnvironmentTable))
 
-if ($os.IsBigSur -or $os.IsMonterey) {
+if ($os.IsMonterey) {
     $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
     $miscellaneous.AddToolVersion("libXext", $(Get-LibXextVersion))
     $miscellaneous.AddToolVersion("libXft", $(Get-LibXftVersion))
@@ -311,7 +290,13 @@ if ($os.IsBigSur -or $os.IsMonterey) {
     $miscellaneous.AddToolVersion("Zlib", $(Get-ZlibVersion))
 }
 
-if ($os.IsMonterey) {
+if ($os.IsSonomaX64 -or $os.IsVenturaX64) {
+    $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
+}
+if ($os.IsMonterey -or $os.IsSonomaX64 -or $os.IsVenturaX64) {
+
+    Write-Host "Adding environment variables for parallels"
+
     $miscellaneousEnv = $miscellaneous.AddHeader("Environment variables")
     $miscellaneousEnv.AddTable($(Build-MiscellaneousEnvironmentTable))
 
