@@ -1,7 +1,7 @@
 # macOS 13
 - OS Version: macOS 13.6.9 (22G830)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240818.3
+- Image Version: 20240826.1
 
 ## Installed Software
 
@@ -12,13 +12,13 @@
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
-- GCC 14 (Homebrew GCC 14.1.0_2) - available by `gcc-14` alias
+- GCC 14 (Homebrew GCC 14.2.0) - available by `gcc-14` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
-- GNU Fortran 14 (Homebrew GCC 14.1.0_2) - available by `gfortran-14` alias
-- Kotlin 2.0.10-release-540
+- GNU Fortran 14 (Homebrew GCC 14.2.0) - available by `gfortran-14` alias
+- Kotlin 2.0.20-release-360
 - Mono 6.12.0.188
-- Node.js 20.16.0
+- Node.js 20.17.0
 - Perl 5.38.2
 - Python3 3.12.5
 - Ruby 3.0.7p220
@@ -27,11 +27,11 @@
 - Bundler 2.5.17
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Homebrew 4.3.16
-- NPM 10.8.1
+- Homebrew 4.3.17
+- NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.12)
-- Pipx 1.6.0
+- Pipx 1.7.1
 - RubyGems 3.5.17
 - Yarn 1.22.22
 
@@ -44,13 +44,13 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.26.0
-- bazel 7.3.0
+- bazel 7.3.1
 - bazelisk 1.20.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.46.0
 - Git LFS 3.5.1
-- GitHub CLI 2.54.0
+- GitHub CLI 2.55.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -62,8 +62,8 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.32
-- AWS SAM CLI 1.122.0
+- AWS CLI 2.17.37
+- AWS SAM CLI 1.123.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
@@ -81,10 +81,10 @@
 ### Browsers
 - Safari 17.6 (18618.3.11.11.7)
 - SafariDriver 17.6 (18618.3.11.11.7)
-- Google Chrome 127.0.6533.120
-- Google Chrome for Testing 127.0.6533.119
-- ChromeDriver 127.0.6533.119
-- Selenium server 4.23.0
+- Google Chrome 128.0.6613.85
+- Google Chrome for Testing 128.0.6613.84
+- ChromeDriver 128.0.6613.84
+- Selenium server 4.23.1
 
 #### Environment variables
 | Name            | Value                                   |
@@ -111,7 +111,7 @@
 #### Node.js
 - 16.20.1
 - 18.20.4
-- 20.16.0
+- 20.17.0
 
 #### Go
 - 1.20.14
@@ -129,7 +129,7 @@
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.4
+- PowerShell 7.4.5
 
 #### PowerShell Modules
 - Az: 12.2.0
@@ -183,8 +183,8 @@
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
