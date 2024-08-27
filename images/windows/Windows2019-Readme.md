@@ -556,4 +556,3 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:bfb078e34f8c28cf122fc693b265686a58aa46f7e6c9ee46aaae7371d0ed5772  | 2024-08-13 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:7f6649348a11655e3576463fd6d55c29248f97405f8e643cab2409009339f520  | 2024-08-11 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:f67e2252b22f6f8c9916fdcb099548d01b920d49af2039349e1b883f79c9e0ef  | 2024-08-11 |
-

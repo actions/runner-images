@@ -45,20 +45,10 @@ jobs:
           bash ${{ github.workspace }}/actions-scripts/get-image-version.sh ${{ github.workspace }}/images/${{ inputs.image_readme_path }}
         shell: bash
 
-      # - name: Terraform fmt
-      #   id: fmt
-      #   run: terraform fmt -check
-      #   continue-on-error: true
-
       - name: Terraform Init
         id: init
         run: terraform init -backend-config="access_key=${{secrets.access_key}}" -backend-config="storage_account_name=${{secrets.storage_account_name}}" -backend-config="container_name=${{secrets.container_name}}" -backend-config="key=${{ env.IMAGE_VERSION }}-${{ inputs.state }}"
-    
-      # - name: Terraform Plan
-      #   id: plan
-      #   run: terraform plan -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ inputs.image_type_version }}"
-      #   continue-on-error: false
-       
+           
       - name: Terraform Apply
         id: apply
         run: terraform apply --auto-approve -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ inputs.image_type_version }}" -var="short_image_name=${{ inputs.short_image_name }}"
