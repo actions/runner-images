@@ -1,7 +1,7 @@
 # macOS 13
 - OS Version: macOS 13.6.9 (22G830)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240819.2
+- Image Version: 20240825.1
 
 ## Installed Software
 
@@ -16,9 +16,9 @@
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.1.0_2) - available by `gfortran-14` alias
-- Kotlin 2.0.10-release-540
+- Kotlin 2.0.20-release-360
 - Mono 6.12.0.188
-- Node.js 20.16.0
+- Node.js 20.17.0
 - Perl 5.38.2
 - PHP 8.3.10
 - Python3 3.12.5
@@ -28,14 +28,14 @@
 - Bundler 2.5.17
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Composer 2.7.7
+- Composer 2.7.8
 - Homebrew 4.3.17
-- NPM 10.8.1
+- NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.12)
-- Pipx 1.6.0
+- Pipx 1.7.1
 - RubyGems 3.5.17
-- Vcpkg 2024 (build from commit a993be073)
+- Vcpkg 2024 (build from commit 350898514)
 - Yarn 1.22.22
 
 ### Project Management
@@ -53,7 +53,7 @@
 - Curl 8.9.1
 - Git 2.46.0
 - Git LFS 3.5.1
-- GitHub CLI 2.54.0
+- GitHub CLI 2.55.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -65,8 +65,8 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.32
-- AWS SAM CLI 1.122.0
+- AWS CLI 2.17.37
+- AWS SAM CLI 1.123.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
@@ -80,19 +80,19 @@
 - Xcodes 1.5.0
 
 ### Linters
-- SwiftLint 0.56.1
+- SwiftLint 0.56.2
 
 ### Browsers
 - Safari 17.6 (18618.3.11.11.7)
 - SafariDriver 17.6 (18618.3.11.11.7)
-- Google Chrome 127.0.6533.120
-- Google Chrome for Testing 127.0.6533.119
-- ChromeDriver 127.0.6533.119
-- Microsoft Edge 127.0.2651.105
-- Microsoft Edge WebDriver 127.0.2651.107
-- Mozilla Firefox 129.0.1
-- geckodriver 0.34.0
-- Selenium server 4.23.0
+- Google Chrome 128.0.6613.85
+- Google Chrome for Testing 128.0.6613.84
+- ChromeDriver 128.0.6613.84
+- Microsoft Edge 128.0.2739.42
+- Microsoft Edge WebDriver 128.0.2739.41
+- Mozilla Firefox 129.0.2
+- geckodriver 0.35.0
+- Selenium server 4.23.1
 
 #### Environment variables
 | Name            | Value                                 |
@@ -132,7 +132,7 @@
 #### Node.js
 - 16.20.2
 - 18.20.4
-- 20.16.0
+- 20.17.0
 
 #### Go
 - 1.20.14
@@ -150,7 +150,7 @@
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.4
+- PowerShell 7.4.5
 
 #### PowerShell Modules
 - Az: 12.2.0
@@ -201,11 +201,11 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
+| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
