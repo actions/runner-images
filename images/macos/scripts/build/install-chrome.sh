@@ -19,13 +19,13 @@ echo "Google Chrome version is $full_chrome_version"
 # Get Google Chrome versions information
 chrome_platform="mac-$arch"
 CHROME_VERSIONS_URL="https://googlechromelabs.github.io/chrome-for-testing/latest-patch-versions-per-build-with-downloads.json"
-chrome_versions_json="$(cat $(download_with_retry "$CHROME_VERSIONS_URL"))"
+chrome_versions_json=$(download_with_retry "$CHROME_VERSIONS_URL")
 
 # Download and unpack the latest release of Chrome Driver
-chromedriver_version=$(echo $chrome_versions_json | jq -r '.builds["'"$chrome_version"'"].version')
+chromedriver_version=$(cat $chrome_versions_json | jq -r '.builds["'"$chrome_version"'"].version')
 echo "Installing Chrome Driver version $chromedriver_version"
 
-chromedriver_url=$(echo $chrome_versions_json | jq -r '.builds["'"$chrome_version"'"].downloads.chromedriver[] | select(.platform=="'"${chrome_platform}"'").url')
+chromedriver_url=$(cat $chrome_versions_json | jq -r '.builds["'"$chrome_version"'"].downloads.chromedriver[] | select(.platform=="'"${chrome_platform}"'").url')
 chromedriver_dir="/usr/local/share/chromedriver-$chrome_platform"
 chromedriver_bin="$chromedriver_dir/chromedriver"
 
@@ -36,10 +36,10 @@ ln -s $chromedriver_bin /usr/local/bin/chromedriver
 echo "export CHROMEWEBDRIVER=$chromedriver_dir" >> ${HOME}/.bashrc
 
 # Download and unpack the latest release of Google Chrome for Testing
-chrome_for_testing_version=$(echo $chrome_versions_json | jq -r '.builds["'"$chrome_version"'"].version')
+chrome_for_testing_version=$(cat $chrome_versions_json | jq -r '.builds["'"$chrome_version"'"].version')
 echo "Installing Google Chrome for Testing version $chrome_for_testing_version"
 
-chrome_for_testing_url=$(echo $chrome_versions_json | jq -r '.builds["'"$chrome_version"'"].downloads.chrome[] | select(.platform=="'"${chrome_platform}"'").url')
+chrome_for_testing_url=$(cat $chrome_versions_json | jq -r '.builds["'"$chrome_version"'"].downloads.chrome[] | select(.platform=="'"${chrome_platform}"'").url')
 chrome_for_testing_app="Google Chrome for Testing.app"
 
 chrome_for_testing_archive_path=$(download_with_retry $chrome_for_testing_url)
