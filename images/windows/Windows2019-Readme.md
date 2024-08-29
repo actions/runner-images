@@ -4,7 +4,7 @@
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6189
-- Image Version: 20240818.1.0
+- Image Version: 20240825.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -15,7 +15,7 @@
 - Bash 5.2.26(1)-release
 - Go 1.21.13
 - Julia 1.10.4
-- Kotlin 2.0.10
+- Kotlin 2.0.20
 - LLVM 18.1.8
 - Node 18.20.3
 - Perl 5.32.1
@@ -25,15 +25,15 @@
 
 ### Package Management
 - Chocolatey 2.3.0
-- Composer 2.7.7
+- Composer 2.7.8
 - Helm 3.15.3
-- Miniconda 24.5.0 (pre-installed on the image but not added to PATH)
+- Miniconda 24.7.1 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
 - NuGet 6.11.0.119
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 2f210a9c1)
+- Vcpkg (build from commit 350898514)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -44,7 +44,7 @@
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.8
+- Gradle 8.10
 - Maven 3.8.7
 - sbt 1.10.1
 
@@ -52,7 +52,7 @@
 - 7zip 24.08
 - aria2 1.37.0
 - azcopy 10.26.0
-- Bazel 7.3.0
+- Bazel 7.3.1
 - Bazelisk 1.19.0
 - Bicep 0.29.47
 - Cabal 3.12.1.0
@@ -64,7 +64,7 @@
 - ghc 9.10.1
 - Git 2.46.0.windows.1
 - Git LFS 3.5.1
-- Google Cloud CLI 488.0.0
+- Google Cloud CLI 489.0.0
 - ImageMagick 7.1.1-36
 - InnoSetup 6.3.3
 - jq 1.7.1
@@ -74,12 +74,12 @@
 - gcc 8.1.0
 - gdb 8.1
 - GNU Binutils 2.30
-- Newman 6.2.0
+- Newman 6.2.1
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.0
 - Parcel 2.12.0
-- Pulumi 3.129.0
+- Pulumi 3.130.0
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -93,13 +93,13 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.219
-- AWS CLI 2.17.32
-- AWS SAM CLI 1.122.0
+- AWS CLI 2.17.37
+- AWS SAM CLI 1.123.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.63.0
 - Azure DevOps CLI extension 1.0.1
-- Cloud Foundry CLI 8.7.11
-- GitHub CLI 2.54.0
+- Cloud Foundry CLI 8.8.0
+- GitHub CLI 2.55.0
 
 ### Rust Tools
 - Cargo 1.80.1
@@ -108,7 +108,7 @@
 - Rustup 1.27.1
 
 #### Packages
-- bindgen 0.70.0
+- bindgen 0.70.1
 - cargo-audit 0.20.1
 - cargo-outdated 0.15.0
 - cbindgen 0.27.0
@@ -116,11 +116,11 @@
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 127.0.6533.120
-- Chrome Driver 127.0.6533.119
-- Microsoft Edge 127.0.2651.105
-- Microsoft Edge Driver 127.0.2651.105
-- Mozilla Firefox 129.0.1
+- Google Chrome 128.0.6613.85
+- Chrome Driver 128.0.6613.84
+- Microsoft Edge 128.0.2739.42
+- Microsoft Edge Driver 128.0.2739.42
+- Mozilla Firefox 129.0.2
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
 - Selenium server 4.23.0
@@ -171,7 +171,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 16.20.2
 - 18.20.4
-- 20.16.0
+- 20.17.0
 
 #### Python
 - 3.7.9
@@ -499,7 +499,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.6.141+d2035fb7be
 
 ### PowerShell Tools
-- PowerShell 7.4.4
+- PowerShell 7.4.5
 
 #### Powershell Modules
 - Az: 12.1.0
@@ -507,7 +507,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.637
+- AWSPowershell: 4.1.642
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.22.0
