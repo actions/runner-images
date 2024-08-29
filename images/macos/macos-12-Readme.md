@@ -1,7 +1,7 @@
 # macOS 12
 - OS Version: macOS 12.7.6 (21H1320)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240819.7
+- Image Version: 20240825.1
 
 ## Installed Software
 
@@ -17,13 +17,13 @@
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.1.0_2) - available by `gfortran-14` alias
 - Julia 1.10.4
-- Kotlin 2.0.10-release-540
+- Kotlin 2.0.20-release-360
 - Go 1.21.13
 - Mono 6.12.0.188
 - Node.js 18.20.4
 - MSBuild 16.10.1.51301 (Mono 6.12.0.188)
 - NVM 0.39.7
-- NVM - Cached node versions: 16.20.2, 18.20.4, 20.16.0
+- NVM - Cached node versions: 16.20.2, 18.20.4, 20.17.0
 - Perl 5.38.2
 - PHP 8.3.10
 - Python 2.7.18
@@ -35,16 +35,16 @@
 - Bundler 2.5.17
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Composer 2.7.7
+- Composer 2.7.8
 - Homebrew 4.3.17
-- Miniconda 24.5.0
+- Miniconda 24.7.1
 - NPM 10.7.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 24.2 (python 3.12)
-- Pipx 1.6.0
+- Pipx 1.7.1
 - RubyGems 3.5.17
-- Vcpkg 2024 (build from commit a993be073)
+- Vcpkg 2024 (build from commit 350898514)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -69,11 +69,11 @@
 - Curl 8.9.1
 - Git 2.46.0
 - Git LFS 3.5.1
-- GitHub CLI 2.54.0
+- GitHub CLI 2.55.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
-- ImageMagick 7.1.1-36
+- ImageMagick 7.1.1-37
 - jq 1.7.1
 - mongo 5.0.28
 - mongod 5.0.28
@@ -92,7 +92,7 @@
 
 ### Tools
 - App Center CLI 3.0.1
-- AWS CLI 2.17.33
+- AWS CLI 2.17.37
 - AWS SAM CLI 1.123.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.63.0
@@ -101,7 +101,7 @@
 - Cabal 3.10.3.0
 - Cmake 3.30.2
 - CodeQL Action Bundle 2.18.2
-- Colima 0.7.3
+- Colima 0.7.4
 - Fastlane 2.222.0
 - GHC 9.10.1
 - GHCup 0.1.30.0
@@ -120,14 +120,14 @@
 ### Browsers
 - Safari 17.6 (17618.3.11.11.7)
 - SafariDriver 17.6 (17618.3.11.11.7)
-- Google Chrome 127.0.6533.120
-- Google Chrome for Testing 127.0.6533.119
-- ChromeDriver 127.0.6533.119
-- Microsoft Edge 127.0.2651.105
-- Microsoft Edge WebDriver 127.0.2651.107
-- Mozilla Firefox 129.0.1
-- geckodriver 0.34.0
-- Selenium server 4.23.0
+- Google Chrome 128.0.6613.85
+- Google Chrome for Testing 128.0.6613.84
+- ChromeDriver 128.0.6613.84
+- Microsoft Edge 128.0.2739.42
+- Microsoft Edge WebDriver 128.0.2739.41
+- Mozilla Firefox 129.0.2
+- geckodriver 0.35.0
+- Selenium server 4.23.1
 
 #### Environment variables
 | Name            | Value                                 |
@@ -168,7 +168,7 @@
 #### Node.js
 - 16.20.2
 - 18.20.4
-- 20.16.0
+- 20.17.0
 
 #### Go
 - 1.20.14
@@ -182,7 +182,7 @@
 - Rustup 1.27.1
 
 #### Packages
-- Bindgen 0.70.0
+- Bindgen 0.70.1
 - Cargo-audit 0.20.1
 - Cargo-outdated 0.15.0
 - Cbindgen 0.27.0
@@ -190,7 +190,7 @@
 - Rustfmt 1.7.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.4
+- PowerShell 7.4.5
 
 #### PowerShell Modules
 - Az: 12.2.0
