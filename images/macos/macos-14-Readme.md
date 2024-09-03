@@ -1,7 +1,13 @@
+| Announcements |
+|-|
+| [[Macos] go version 1.20.0 will be removed on September 16,2024.](https://github.com/actions/runner-images/issues/10531) |
+| [[Macos] Android NDK 24 will be removed on September 16,2024](https://github.com/actions/runner-images/issues/10530) |
+| [[Macos-12] Python version 3.7 will be removed from the macos-12 image on September 16,2024](https://github.com/actions/runner-images/issues/10529) |
+***
 # macOS 14
 - OS Version: macOS 14.6.1 (23G93)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20240827.1
+- Image Version: 20240902.6
 
 ## Installed Software
 
@@ -20,7 +26,7 @@
 - Mono 6.12.0.188
 - Node.js 20.17.0
 - Perl 5.38.2
-- PHP 8.3.10
+- PHP 8.3.11
 - Python3 3.12.5
 - Ruby 3.0.7p220
 
@@ -29,7 +35,7 @@
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.8
-- Homebrew 4.3.18
+- Homebrew 4.3.19
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.12)
@@ -38,7 +44,7 @@
 - Yarn 1.22.22
 
 ### Project Management
-- Apache Ant 1.10.14
+- Apache Ant 1.10.15
 - Apache Maven 3.9.9
 - Gradle 8.10
 
@@ -64,14 +70,14 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.38
+- AWS CLI 2.17.42
 - AWS SAM CLI 1.123.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.29.47
-- Cmake 3.30.2
-- CodeQL Action Bundle 2.18.2
+- Cmake 3.30.3
+- CodeQL Action Bundle 2.18.3
 - Fastlane 2.222.0
 - SwiftFormat 0.54.3
 - Xcbeautify 2.11.0
@@ -84,14 +90,14 @@
 ### Browsers
 - Safari 17.6 (19618.3.11.11.5)
 - SafariDriver 17.6 (19618.3.11.11.5)
-- Google Chrome 128.0.6613.85
-- Google Chrome for Testing 128.0.6613.84
-- ChromeDriver 128.0.6613.84
-- Microsoft Edge 128.0.2739.42
-- Microsoft Edge WebDriver 128.0.2739.41
+- Google Chrome 128.0.6613.120
+- Google Chrome for Testing 128.0.6613.119
+- ChromeDriver 128.0.6613.119
+- Microsoft Edge 128.0.2739.54
+- Microsoft Edge WebDriver 128.0.2739.59
 - Mozilla Firefox 129.0.2
 - geckodriver 0.35.0
-- Selenium server 4.23.1
+- Selenium server 4.24.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -213,8 +219,8 @@
 | Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
 | Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | visionOS 1.2                                            | xros1.2                                       | 15.4          |
-| Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0, 16.1    |
 | visionOS 2.0                                            | xros2.0                                       | 16.0, 16.1    |
+| Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0, 16.1    |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
@@ -252,7 +258,7 @@
 | Package Name               | Version                                                                                                                                                                                                                             |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                |
-| Android Emulator           | 34.2.16                                                                                                                                                                                                                             |
+| Android Emulator           | 35.1.20                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                   |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                              |
@@ -284,3 +290,4 @@
 If you want to use Parallels Desktop you should download a package from URL stored in
 PARALLELS_DMG_URL environment variable. A system extension is allowed for this version.
 ```
+
