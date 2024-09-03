@@ -25,7 +25,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Audio device" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }

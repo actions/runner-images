@@ -37,12 +37,12 @@ function Build-ToolcacheSection {
 
     $nodes = @()
 
-    if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonoma)) {
+    if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonoma) -and (-not $os.IsSequoia)) {
         $nodes += @(
             [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', "List")
         )
     }
-    if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
+    if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64) -and (-not $os.IsSequoiaArm64)) {
         $nodes += @(
             [ToolVersionsListNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', "List")
         )
