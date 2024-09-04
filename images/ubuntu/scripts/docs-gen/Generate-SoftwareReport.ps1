@@ -225,10 +225,9 @@ if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $browsersTools.AddToolVersion("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
 }
 $browsersTools.AddToolVersion("Selenium server", $(Get-SeleniumVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $browsersTools.AddToolVersion("Mozilla Firefox", $(Get-FirefoxVersion))
-    $browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
-}
+$browsersTools.AddToolVersion("Mozilla Firefox", $(Get-FirefoxVersion))
+$browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
+
 
 # Environment variables
 $browsersTools.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))
