@@ -1,7 +1,13 @@
+| Announcements |
+|-|
+| [[Macos] go version 1.20.0 will be removed on September 16,2024.](https://github.com/actions/runner-images/issues/10531) |
+| [[Macos] Android NDK 24 will be removed on September 16,2024](https://github.com/actions/runner-images/issues/10530) |
+| [[Macos-12] Python version 3.7 will be removed from the macos-12 image on September 16,2024](https://github.com/actions/runner-images/issues/10529) |
+***
 # macOS 13
 - OS Version: macOS 13.6.9 (22G830)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240826.1
+- Image Version: 20240901.2
 
 ## Installed Software
 
@@ -24,19 +30,19 @@
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.17
+- Bundler 2.5.18
 - Carthage 0.39.1
 - CocoaPods 1.15.2
-- Homebrew 4.3.17
+- Homebrew 4.3.18
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.12)
 - Pipx 1.7.1
-- RubyGems 3.5.17
+- RubyGems 3.5.18
 - Yarn 1.22.22
 
 ### Project Management
-- Apache Ant 1.10.14
+- Apache Ant 1.10.15
 - Apache Maven 3.9.9
 - Gradle 8.10
 
@@ -62,14 +68,14 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.37
+- AWS CLI 2.17.42
 - AWS SAM CLI 1.123.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.29.47
-- Cmake 3.30.2
-- CodeQL Action Bundle 2.18.2
+- Cmake 3.30.3
+- CodeQL Action Bundle 2.18.3
 - Fastlane 2.222.0
 - SwiftFormat 0.54.3
 - Xcbeautify 2.11.0
@@ -81,10 +87,10 @@
 ### Browsers
 - Safari 17.6 (18618.3.11.11.7)
 - SafariDriver 17.6 (18618.3.11.11.7)
-- Google Chrome 128.0.6613.85
-- Google Chrome for Testing 128.0.6613.84
-- ChromeDriver 128.0.6613.84
-- Selenium server 4.23.1
+- Google Chrome 128.0.6613.114
+- Google Chrome for Testing 128.0.6613.86
+- ChromeDriver 128.0.6613.86
+- Selenium server 4.24.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -213,7 +219,7 @@
 | Package Name               | Version                                                                                                                                                                                                                             |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                |
-| Android Emulator           | 34.2.16                                                                                                                                                                                                                             |
+| Android Emulator           | 35.1.20                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                   |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                              |
@@ -232,3 +238,4 @@
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
+
