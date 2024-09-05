@@ -89,7 +89,7 @@ class HeaderNode: BaseNode {
     }
      
     [void] AddTable([PSCustomObject[]] $Table) {
-       $this.AddNode([TableNode]::FromObjectsArray($Table))
+        $this.AddNode([TableNode]::FromObjectsArray($Table))
     }
 
     [void] AddNote([String] $Content) {
