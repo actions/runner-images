@@ -310,6 +310,7 @@ provisioner "shell" {
       "${path.root}/../scripts/build/install-rust.sh",
       "${path.root}/../scripts/build/install-julia.sh",
       "${path.root}/../scripts/build/install-selenium.sh",
+      "${path.root}/../scripts/build/install-packer.sh",
       "${path.root}/../scripts/build/install-vcpkg.sh",
       "${path.root}/../scripts/build/configure-dpkg.sh",
       "${path.root}/../scripts/build/install-yq.sh",

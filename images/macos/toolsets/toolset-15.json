@@ -1,0 +1,202 @@
+{
+    "xcode": {
+        "default": "16.1_beta",
+        "x64": {
+            "versions": [
+                { "link": "16.1_beta", "version": "16.1.0-Beta+16B5001e", "symlinks": ["16.1"], "install_runtimes": "false", "sha256": "8848aacb32bdc0abbd7e14e4b712e07c98f4b6e5a23a8d77db03ab21dcb3c777"},
+                { "link": "16_beta_6", "version": "16.0.0-Beta.6+16A5230g", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "ab0b9a4f6d723420ee0e39ff1cf6a628665dfe832053f66b6b72e013a6bbb244"}
+            ]
+        },
+        "arm64":{
+            "versions": [
+                { "link": "16.1_beta", "version": "16.1.0-Beta+16B5001e", "symlinks": ["16.1"], "install_runtimes": "true", "sha256": "8848aacb32bdc0abbd7e14e4b712e07c98f4b6e5a23a8d77db03ab21dcb3c777"},
+                { "link": "16_beta_6", "version": "16.0.0-Beta.6+16A5230g", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "ab0b9a4f6d723420ee0e39ff1cf6a628665dfe832053f66b6b72e013a6bbb244"}
+            ]
+        }
+    },
+    "java": {
+        "x64": {
+            "default": "21",
+            "versions": [ "11", "17", "21"]
+        },
+        "arm64": {
+            "default": "21",
+            "versions": [ "11", "17", "21"]
+        }
+    },
+    "android": {
+        "cmdline-tools": "commandlinetools-mac-12172612_latest.zip",
+        "sdk-tools": "sdk-tools-darwin-4333796.zip",
+        "platform_min_version": "35",
+        "build_tools_min_version": "35.0.2",
+        "extras": [
+            "android;m2repository", "google;m2repository", "google;google_play_services"
+        ],
+        "addons": [],
+        "additional_tools": [
+            "cmake;3.22.1"
+        ],
+        "ndk": {
+            "default": "27",
+            "versions": [
+                "25", "26", "27"
+            ]
+        }
+    },
+    "powershellModules": [
+        { "name": "Az" },
+        { "name": "Pester" },
+        { "name": "PSScriptAnalyzer" }
+    ],
+    "brew": {
+        "common_packages": [
+            "ant",
+            "aria2",
+            "azure-cli",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "kotlin",
+            "libpq",
+            "libsodium",
+            "p7zip",
+            "packer",
+            "perl",
+            "pkg-config",
+            "swiftformat",
+            "zstd",
+            "gmp",
+            "yq",
+            "unxip",
+            "xcbeautify",
+            "xcodes"
+        ],
+        "cask_packages": [
+            ""
+        ]
+    },
+    "gcc": {
+        "versions": [
+            "12",
+            "13",
+            "14"
+        ]
+    },
+    "dotnet": {
+        "arch":{
+            "x64": {
+               "versions": [
+                   "7.0",
+                   "8.0"
+                ]
+            },
+            "arm64": {
+                "versions": [
+                    "7.0",
+                    "8.0"
+                ]
+            }
+        }
+    },
+    "ruby": {
+        "default": "3.3",
+        "rubygems": [
+            "cocoapods",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "3.9.*",
+                        "3.10.*",
+                        "3.11.*",
+                        "3.12.*"
+                    ]
+                },
+                "arm64": {
+                    "versions": [
+                        "3.9.*",
+                        "3.10.*",
+                        "3.11.*",
+                        "3.12.*"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "18.*",
+                        "20.*"
+                    ]
+                },
+                "arm64": {
+                    "versions": [
+                        "18.*",
+                        "20.*"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": {
+                "x64": {
+                    "variable_template" : "GOROOT_{0}_{1}_X64",
+                    "versions": [
+                        "1.21.*",
+                        "1.22.*",
+                        "1.23.*"
+                    ]
+                },
+                "arm64": {
+                    "variable_template" : "GOROOT_{0}_{1}_ARM64",
+                    "versions": [
+                        "1.21.*",
+                        "1.22.*",
+                        "1.23.*"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Ruby",
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "3.1.*",
+                        "3.2.*"
+                    ]
+                }
+            }
+        }
+    ],
+    "node": {
+        "default": "22"
+    },
+    "llvm": {
+        "version": "18"
+    },
+    "php": {
+        "version": "8.3"
+    },
+    "pwsh": {
+        "version": "7.4"
+    }
+}
