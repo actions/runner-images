@@ -240,6 +240,11 @@ Function GenerateResourcesAndImage {
 
     try {
         # Login to Azure subscription
+        try {
+            $azAccount = az account show -o none
+            Write-Warning "Already logged in..."
+        }
+        catch {
         if ([string]::IsNullOrEmpty($AzureClientId)) {
             Write-Verbose "No AzureClientId was provided, will use interactive login."
             az login --output none
@@ -247,6 +252,7 @@ Function GenerateResourcesAndImage {
         else {
             Write-Verbose "AzureClientId was provided, will use service principal login."
             az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
+          }
         }
         az account set --subscription $SubscriptionId
         if ($LastExitCode -ne 0) {
