@@ -186,35 +186,30 @@ function Build-XcodeSimulatorsTable {
             $runtimes += $_
         }
     }
-
     $runtimes = $runtimes | Sort-Object @{ Expression = { $_.identifier } } -Unique
-
     return $runtimes | ForEach-Object {
         $runtime = $_
         $runtimeDevices = @()
-        $xcodeList = @()
-
         $xcodeInfo.Values | ForEach-Object {
             $runtimeFound = $_.SimulatorsInfo.runtimes | Where-Object { $_.identifier -eq $runtime.identifier } | Select-Object -First 1
             if ($runtimeFound) {
                 $devicesToAdd = Build-XcodeDevicesList -XcodeInfo $_ -Runtime $runtimeFound
                 $runtimeDevices += $devicesToAdd | Select-Object -ExpandProperty name
-                $xcodeList += $_.VersionInfo.Version
             }
         }
-
-        $xcodeList = $xcodeList | Sort-Object
         $runtimeDevices = $runtimeDevices | ForEach-Object { Format-XcodeSimulatorName $_ } | Select-Object -Unique
-        $sortedRuntimeDevices = $runtimeDevices | Sort-Object @{
-            Expression = { $_.Split(" ")[0] };
-            Descending = $true;
-        }, {
-            $_.Split(" ") | Select-Object -Skip 1 | Join-String -Separator " "
+        If (($runtimeDevices | Where-Object { -not ([string]::IsNullOrWhitespace($_)) }).Count -eq 0) {
+            $sortedRuntimeDevices = @("N/A")
+        } else {
+            $sortedRuntimeDevices = $runtimeDevices | Sort-Object @{
+                Expression = { $_.Split(" ")[0] };
+                Descending = $true;
+            }, {
+                $_.Split(" ") | Select-Object -Skip 1 | Join-String -Separator " "
+            }
         }
-
         return [PSCustomObject] @{
             "OS" = $runtime.name
-            "Xcode Version" = [String]::Join("<br>", $xcodeList)
             "Simulators" = [String]::Join("<br>", $sortedRuntimeDevices)
         }
     } | Sort-Object {
