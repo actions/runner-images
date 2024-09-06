@@ -1,7 +1,13 @@
+| Announcements |
+|-|
+| [[Macos] go version 1.20.0 will be removed on September 16,2024.](https://github.com/actions/runner-images/issues/10531) |
+| [[Macos] Android NDK 24 will be removed on September 16,2024](https://github.com/actions/runner-images/issues/10530) |
+| [[Macos-12] Python version 3.7 will be removed from the macos-12 image on September 16,2024](https://github.com/actions/runner-images/issues/10529) |
+***
 # macOS 12
 - OS Version: macOS 12.7.6 (21H1320)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240825.1
+- Image Version: 20240901.2
 
 ## Installed Software
 
@@ -12,11 +18,11 @@
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
-- GCC 14 (Homebrew GCC 14.1.0_2) - available by `gcc-14` alias
+- GCC 14 (Homebrew GCC 14.2.0) - available by `gcc-14` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
-- GNU Fortran 14 (Homebrew GCC 14.1.0_2) - available by `gfortran-14` alias
-- Julia 1.10.4
+- GNU Fortran 14 (Homebrew GCC 14.2.0) - available by `gfortran-14` alias
+- Julia 1.10.5
 - Kotlin 2.0.20-release-360
 - Go 1.21.13
 - Mono 6.12.0.188
@@ -25,26 +31,26 @@
 - NVM 0.39.7
 - NVM - Cached node versions: 16.20.2, 18.20.4, 20.17.0
 - Perl 5.38.2
-- PHP 8.3.10
+- PHP 8.3.11
 - Python 2.7.18
 - Python3 3.12.5
 - R 4.4.1
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.17
+- Bundler 2.5.18
 - Carthage 0.39.1
 - CocoaPods 1.15.2
 - Composer 2.7.8
-- Homebrew 4.3.17
+- Homebrew 4.3.18
 - Miniconda 24.7.1
 - NPM 10.7.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 24.2 (python 3.12)
 - Pipx 1.7.1
-- RubyGems 3.5.17
-- Vcpkg 2024 (build from commit 350898514)
+- RubyGems 3.5.18
+- Vcpkg 2024 (build from commit 0f88ecb85)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,7 +60,7 @@
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 ### Project Management
-- Apache Ant 1.10.14
+- Apache Ant 1.10.15
 - Apache Maven 3.9.9
 - Gradle 8.10
 - Sbt 1.10.1
@@ -75,8 +81,8 @@
 - gpg (GnuPG) 2.4.5
 - ImageMagick 7.1.1-37
 - jq 1.7.1
-- mongo 5.0.28
-- mongod 5.0.28
+- mongo 5.0.29
+- mongod 5.0.29
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.9.4
 - pkg-config 0.29.2
@@ -92,16 +98,16 @@
 
 ### Tools
 - App Center CLI 3.0.1
-- AWS CLI 2.17.37
+- AWS CLI 2.17.42
 - AWS SAM CLI 1.123.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.29.47
 - Cabal 3.10.3.0
-- Cmake 3.30.2
-- CodeQL Action Bundle 2.18.2
-- Colima 0.7.4
+- Cmake 3.30.3
+- CodeQL Action Bundle 2.18.3
+- Colima 0.7.5
 - Fastlane 2.222.0
 - GHC 9.10.1
 - GHCup 0.1.30.0
@@ -120,14 +126,14 @@
 ### Browsers
 - Safari 17.6 (17618.3.11.11.7)
 - SafariDriver 17.6 (17618.3.11.11.7)
-- Google Chrome 128.0.6613.85
-- Google Chrome for Testing 128.0.6613.84
-- ChromeDriver 128.0.6613.84
-- Microsoft Edge 128.0.2739.42
-- Microsoft Edge WebDriver 128.0.2739.41
+- Google Chrome 128.0.6613.114
+- Google Chrome for Testing 128.0.6613.86
+- ChromeDriver 128.0.6613.86
+- Microsoft Edge 128.0.2739.54
+- Microsoft Edge WebDriver 128.0.2739.59
 - Mozilla Firefox 129.0.2
 - geckodriver 0.35.0
-- Selenium server 4.23.1
+- Selenium server 4.24.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -147,11 +153,11 @@
 ### Cached Tools
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.16]
+- 2.7.18 [PyPy 7.3.17]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.14 [PyPy 7.3.16]
+- 3.10.14 [PyPy 7.3.17]
 
 #### Ruby
 - 3.0.7
@@ -330,7 +336,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                                                                                                                                         |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                             |
-| Android Emulator           | 34.2.16                                                                                                                                                                                                                                                                         |
+| Android Emulator           | 35.1.20                                                                                                                                                                                                                                                                         |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                             |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                          |
@@ -366,3 +372,4 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 If you want to use Parallels Desktop you should download a package from URL stored in
 PARALLELS_DMG_URL environment variable. A system extension is allowed for this version.
 ```
+
