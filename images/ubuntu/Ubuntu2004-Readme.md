@@ -1,12 +1,12 @@
 | Announcements |
 |-|
-| [[All OSes] Android NDK versions <=25 will be removed from images on August 19](https://github.com/actions/runner-images/issues/10342) |
+| [[Ubuntu 20.04 and Ubuntu 22.04  Oses] Go  1.22.x  will be set as default on September, 20](https://github.com/actions/runner-images/issues/10500) |
 | [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1071-azure
-- Image Version: 20240825.1.0
+- Image Version: 20240901.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -18,10 +18,10 @@
 - Clang-tidy: 10.0.0, 11.0.0, 12.0.0
 - Dash 0.5.10.2-6
 - Erlang 25.3 (Eshell 13.2)
-- Erlang rebar3 3.23.0
+- Erlang rebar3 3.24.0
 - GNU C++: 10.5.0
 - GNU Fortran: 10.5.0
-- Julia 1.10.4
+- Julia 1.10.5
 - Kotlin 2.0.20-release-360
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -34,7 +34,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.4
-- Homebrew 4.3.17
+- Homebrew 4.3.18
 - Miniconda 24.7.1
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 350898514)
+- Vcpkg (build from commit 0f88ecb85)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -74,8 +74,8 @@ to accomplish this.
 - Bazelisk 1.19.0
 - Bicep 0.29.47
 - Buildah 1.22.3
-- CMake 3.30.2
-- CodeQL Action Bundle 2.18.2
+- CMake 3.30.3
+- CodeQL Action Bundle 2.18.3
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.16.2
@@ -86,7 +86,7 @@ to accomplish this.
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 9.1.0
+- Heroku 9.2.0
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.24.0
@@ -98,7 +98,7 @@ to accomplish this.
 - Minikube 1.33.1
 - n 9.2.3
 - Newman 6.2.1
-- nvm 0.40.0
+- nvm 0.40.1
 - OpenSSL 1.1.1f-1ubuntu2.23
 - Packer 1.11.2
 - Parcel 2.12.0
@@ -116,17 +116,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.17.37
+- AWS CLI 2.17.42
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.123.0
 - Azure CLI 2.63.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.55.0
-- Google Cloud CLI 489.0.0
-- Netlify CLI 17.34.2
+- Google Cloud CLI 490.0.0
+- Netlify CLI 17.34.3
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 37.1.1
+- Vercel CLI 37.2.1
 
 ### Java
 | Version             | Environment Variable |
@@ -137,7 +137,7 @@ to accomplish this.
 | 21.0.4+7            | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.29, 8.2.22, 8.3.10
+- PHP: 7.4.33, 8.0.30, 8.1.29, 8.2.23, 8.3.11
 - Composer 2.7.8
 - PHPUnit 8.5.39
 ```
@@ -165,12 +165,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.0
 
 ### Browsers and Drivers
-- Google Chrome 128.0.6613.84
-- ChromeDriver 128.0.6613.84
+- Google Chrome 128.0.6613.113
+- ChromeDriver 128.0.6613.86
 - Chromium 128.0.6613.0
-- Microsoft Edge 128.0.2739.42
-- Microsoft Edge WebDriver 128.0.2739.38
-- Selenium server 4.23.1
+- Microsoft Edge 128.0.2739.54
+- Microsoft Edge WebDriver 128.0.2739.56
+- Selenium server 4.24.0
 - Mozilla Firefox 129.0.2
 - Geckodriver 0.35.0
 
@@ -184,7 +184,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 6.0.425, 7.0.410, 8.0.401
-- nbgv 3.6.141+d2035fb7be
+- nbgv 3.6.143+57d4199a9c
 
 ### Databases
 - MongoDB 5.0.28
@@ -232,12 +232,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.12.5
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.16]
+- 2.7.18 [PyPy 7.3.17]
 - 3.6.12 [PyPy 7.3.3]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.14 [PyPy 7.3.16]
+- 3.10.14 [PyPy 7.3.17]
 
 #### Ruby
 - 3.0.7
