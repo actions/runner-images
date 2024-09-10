@@ -1,7 +1,8 @@
-Describe "Firefox" 
+Describe "Firefox" {
     It "Firefox" {
         "firefox --version" | Should -ReturnZeroExitCode
     }
+}
 
     It "Geckodriver" {
         "geckodriver --version" | Should -ReturnZeroExitCode
