@@ -123,6 +123,11 @@ variable "tenant_id" {
   default = "${env("ARM_TENANT_ID")}"
 }
 
+variable "use_azure_cli_auth" {
+  type    = bool
+  default = false
+}
+
 variable "virtual_network_name" {
   type    = string
   default = "${env("VNET_NAME")}"
@@ -161,6 +166,7 @@ source "azure-arm" "build_image" {
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
+  use_azure_cli_auth                     = "${var.use_azure_cli_auth}"
   virtual_network_name                   = "${var.virtual_network_name}"
   virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
   virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"

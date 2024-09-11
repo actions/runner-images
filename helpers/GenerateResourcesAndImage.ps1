@@ -144,10 +144,12 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [switch] $Force,
         [Parameter(Mandatory = $False)]
-        [switch] $ReuseResourceGroup,
+        [switch] $ReuseResourceGroup, 
         [Parameter(Mandatory = $False)]
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
+        [Parameter(Mandatory = $False)]
+        [switch] $UseAzureCliAuth = $False,
         [Parameter(Mandatory = $False)]
         [hashtable] $Tags = @{}
     )
@@ -231,6 +233,7 @@ Function GenerateResourcesAndImage {
         "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
         "-var=install_password=$($InstallPassword)" `
         "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+        "-var=use_azure_cli_auth=$($UseAzureCliAuth.ToString().ToLower())" `
         "-var=azure_tags=$($TagsJson)" `
         $TemplatePath
 
@@ -240,7 +243,10 @@ Function GenerateResourcesAndImage {
 
     try {
         # Login to Azure subscription
-        if ([string]::IsNullOrEmpty($AzureClientId)) {
+        if ($UseAzureCliAuth) {
+            Write-Verbose "UseAzureCliAuth was set. Trying to use already active az login session."
+        }
+        elseif ([string]::IsNullOrEmpty($AzureClientId)) {
             Write-Verbose "No AzureClientId was provided, will use interactive login."
             az login --output none
         }
@@ -328,7 +334,7 @@ Function GenerateResourcesAndImage {
         }
 
         # Create service principal
-        if ([string]::IsNullOrEmpty($AzureClientId)) {
+        if ([string]::IsNullOrEmpty($AzureClientId) -and $UseAzureCliAuth -eq $False) {
             Write-Host "Creating service principal for packer..."
             $ADCleanupRequired = $true
 
@@ -364,6 +370,7 @@ Function GenerateResourcesAndImage {
             -var "managed_image_resource_group_name=$($ResourceGroupName)" `
             -var "install_password=$($InstallPassword)" `
             -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+            -var "use_azure_cli_auth=$($UseAzureCliAuth.ToString().ToLower())" `
             -var "azure_tags=$($TagsJson)" `
             $TemplatePath
 
