@@ -113,6 +113,8 @@ Function GenerateResourcesAndImage {
                 cleanup - attempt to cleanup and then abort
                 run-cleanup-provisioner - run the cleanup provisioner and then abort
             The default is 'ask'.
+        .PARAMETER UseAzureCliAuth
+            If set, it will try to use an already active and existent Azure CLI login session. It will set the session to the input Azure subscription id.
         .PARAMETER Tags
             Tags to be applied to the Azure resources created.
         .EXAMPLE
@@ -144,7 +146,7 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [switch] $Force,
         [Parameter(Mandatory = $False)]
-        [switch] $ReuseResourceGroup, 
+        [switch] $ReuseResourceGroup,
         [Parameter(Mandatory = $False)]
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
