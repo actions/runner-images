@@ -4,7 +4,7 @@
         "x64": {
             "versions": [
                 { "link": "16.1_beta", "version": "16.1.0-Beta+16B5001e", "symlinks": ["16.1"], "install_runtimes": "true", "sha256": "8848aacb32bdc0abbd7e14e4b712e07c98f4b6e5a23a8d77db03ab21dcb3c777"},
-                { "link": "16_beta_6", "version": "16.0.0-Beta.6+16A5230g", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "ab0b9a4f6d723420ee0e39ff1cf6a628665dfe832053f66b6b72e013a6bbb244"},
+                { "link": "16_Release_Candidate", "version": "16.0.0-Release.Candidate+16A242", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "84588e4d781307191892add603ea51504955de39e05c270a88833a38a929825d"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
                 { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
                 { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
@@ -16,7 +16,7 @@
         "arm64":{
             "versions": [
                 { "link": "16.1_beta", "version": "16.1.0-Beta+16B5001e", "symlinks": ["16.1"], "install_runtimes": "true", "sha256": "8848aacb32bdc0abbd7e14e4b712e07c98f4b6e5a23a8d77db03ab21dcb3c777"},
-                { "link": "16_beta_6", "version": "16.0.0-Beta.6+16A5230g", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "ab0b9a4f6d723420ee0e39ff1cf6a628665dfe832053f66b6b72e013a6bbb244"},
+                { "link": "16_Release_Candidate", "version": "16.0.0-Release.Candidate+16A242", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "84588e4d781307191892add603ea51504955de39e05c270a88833a38a929825d"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
                 { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
                 { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},

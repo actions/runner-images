@@ -57,9 +57,8 @@ $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
 $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
-}
+$languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
+
 
 # Package Management
 $packageManagement = $installedSoftware.AddHeader("Package Management")
