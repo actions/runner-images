@@ -115,6 +115,7 @@ Function GenerateResourcesAndImage {
             The default is 'ask'.
         .PARAMETER UseAzureCliAuth
             If set, it will try to use an already active and existent Azure CLI login session. It will set the session to the input Azure subscription id.
+            It will then use the azure-arm builder option 'use_azure_cli_auth' for the packer build.
         .PARAMETER Tags
             Tags to be applied to the Azure resources created.
         .EXAMPLE
