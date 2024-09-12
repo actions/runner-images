@@ -114,8 +114,12 @@ Function GenerateResourcesAndImage {
                 run-cleanup-provisioner - run the cleanup provisioner and then abort
             The default is 'ask'.
         .PARAMETER UseAzureCliAuth
-            If set, it will try to use an already active and existent Azure CLI login session. It will set the session subscription to the input Azure subscription id.
-            It will then use the azure-arm builder option 'use_azure_cli_auth' for the packer build.
+            Flag to use Azure CLI authentication. Defaults to false. 
+            CLI auth will use the information from an active az login session to connect to Azure and set the subscription id and tenant id associated to the signed in account. 
+            If enabled, it will use the authentication provided by the az CLI. 
+            Azure CLI authentication will use the credential marked as isDefault and can be verified using az account show. 
+            Works with normal authentication (az login) and service principals (az login --service-principal --username APP_ID --password PASSWORD --tenant TENANT_ID). 
+            Ignores all other configurations if enabled.
         .PARAMETER Tags
             Tags to be applied to the Azure resources created.
         .EXAMPLE
