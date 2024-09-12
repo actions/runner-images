@@ -114,7 +114,7 @@ Function GenerateResourcesAndImage {
                 run-cleanup-provisioner - run the cleanup provisioner and then abort
             The default is 'ask'.
         .PARAMETER UseAzureCliAuth
-            Flag to use Azure CLI authentication. Defaults to false. 
+            If set, switches to use Azure CLI authentication for Packer. Defaults to false. 
             CLI auth will use the information from an active az login session to connect to Azure and set the subscription id and tenant id associated to the signed in account. 
             If enabled, it will use the authentication provided by the az CLI. 
             Azure CLI authentication will use the credential marked as isDefault and can be verified using az account show. 
