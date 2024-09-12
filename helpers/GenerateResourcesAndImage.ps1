@@ -156,7 +156,7 @@ Function GenerateResourcesAndImage {
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
         [Parameter(Mandatory = $False)]
-        [switch] $UseAzureCliAuth = $False,
+        [switch] $UseAzureCliAuth,
         [Parameter(Mandatory = $False)]
         [hashtable] $Tags = @{}
     )
