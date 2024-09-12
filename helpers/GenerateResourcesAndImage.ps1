@@ -250,17 +250,21 @@ Function GenerateResourcesAndImage {
 
     try {
         # Login to Azure subscription
-        if ($UseAzureCliAuth) {
-            Write-Verbose "UseAzureCliAuth was set. Trying to use already active az login session."
+        try {
+            az account show -o none
+            Write-Verbose "Already logged in..."
         }
-        elseif ([string]::IsNullOrEmpty($AzureClientId)) {
-            Write-Verbose "No AzureClientId was provided, will use interactive login."
-            az login --output none
+        catch {
+            if ([string]::IsNullOrEmpty($AzureClientId)) {
+                Write-Verbose "No AzureClientId was provided, will use interactive login."
+                az login --output none
+            }
+            else {
+                Write-Verbose "AzureClientId was provided, will use service principal login."
+                az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
+            }
         }
-        else {
-            Write-Verbose "AzureClientId was provided, will use service principal login."
-            az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
-        }
+        
         az account set --subscription $SubscriptionId
         if ($LastExitCode -ne 0) {
             throw "Failed to login to Azure subscription '$SubscriptionId'."
@@ -341,7 +345,7 @@ Function GenerateResourcesAndImage {
         }
 
         # Create service principal
-        if ([string]::IsNullOrEmpty($AzureClientId) -and $UseAzureCliAuth -eq $False) {
+        if ([string]::IsNullOrEmpty($AzureClientId) -and $UseAzureCliAuth -ne $True) {
             Write-Host "Creating service principal for packer..."
             $ADCleanupRequired = $true
 
