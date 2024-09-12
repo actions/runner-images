@@ -123,7 +123,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER Tags
             Tags to be applied to the Azure resources created.
         .EXAMPLE
-            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2004 -AzureLocation "East US"
+            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2204 -AzureLocation "East US"
     #>
     param (
         [Parameter(Mandatory = $True)]
