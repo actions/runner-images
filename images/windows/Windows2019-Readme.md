@@ -1,6 +1,6 @@
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6189
-- Image Version: 20240902.1.0
+- Image Version: 20240908.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -21,15 +21,15 @@
 
 ### Package Management
 - Chocolatey 2.3.0
-- Composer 2.7.8
-- Helm 3.15.3
+- Composer 2.7.9
+- Helm 3.15.4
 - Miniconda 24.7.1 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
 - NuGet 6.11.0.119
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 0f88ecb85)
+- Vcpkg (build from commit eba7c6a89)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -49,7 +49,7 @@
 - aria2 1.37.0
 - azcopy 10.26.0
 - Bazel 7.3.1
-- Bazelisk 1.19.0
+- Bazelisk 1.21.0
 - Bicep 0.29.47
 - Cabal 3.12.1.0
 - CMake 3.30.3
@@ -60,8 +60,8 @@
 - ghc 9.10.1
 - Git 2.46.0.windows.1
 - Git LFS 3.5.1
-- Google Cloud CLI 490.0.0
-- ImageMagick 7.1.1-37
+- Google Cloud CLI 491.0.0
+- ImageMagick 7.1.1-38
 - InnoSetup 6.3.3
 - jq 1.7.1
 - Kind 0.24.0
@@ -75,7 +75,7 @@
 - OpenSSL 1.1.1w
 - Packer 1.11.0
 - Parcel 2.12.0
-- Pulumi 3.130.0
+- Pulumi 3.131.0
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -89,18 +89,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.221
-- AWS CLI 2.17.42
+- AWS CLI 2.17.44
 - AWS SAM CLI 1.123.0
 - AWS Session Manager CLI 1.2.650.0
-- Azure CLI 2.63.0
+- Azure CLI 2.64.0
 - Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 8.8.0
 - GitHub CLI 2.55.0
 
 ### Rust Tools
-- Cargo 1.80.1
-- Rust 1.80.1
-- Rustdoc 1.80.1
+- Cargo 1.81.0
+- Rust 1.81.0
+- Rustdoc 1.81.0
 - Rustup 1.27.1
 
 #### Packages
@@ -108,15 +108,15 @@
 - cargo-audit 0.20.1
 - cargo-outdated 0.15.0
 - cbindgen 0.27.0
-- Clippy 0.1.80
-- Rustfmt 1.7.0
+- Clippy 0.1.81
+- Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 128.0.6613.114
-- Chrome Driver 128.0.6613.86
-- Microsoft Edge 128.0.2739.54
-- Microsoft Edge Driver 128.0.2739.54
-- Mozilla Firefox 129.0.2
+- Google Chrome 128.0.6613.120
+- Chrome Driver 128.0.6613.119
+- Microsoft Edge 128.0.2739.67
+- Microsoft Edge Driver 128.0.2739.67
+- Mozilla Firefox 130.0
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
 - Selenium server 4.24.0
@@ -162,7 +162,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.20.14
 - 1.21.13
-- 1.22.6
+- 1.22.7
 
 #### Node.js
 - 16.20.2
@@ -503,10 +503,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.647
+- AWSPowershell: 4.1.651
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.22.0
+- Microsoft.Graph: 2.23.0
 - Pester: 3.4.0, 5.6.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.22.0
@@ -532,16 +532,16 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                    |
-| NDK                        | 26.3.11579264<br>27.0.12077973                                                                                                                                                                                                                                                                        |
+| NDK                        | 26.3.11579264<br>27.1.12297006                                                                                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                    |
 | ----------------------- | ---------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                   |
-| ANDROID_NDK             | C:\Android\android-sdk\ndk\27.0.12077973 |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.0.12077973 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\27.0.12077973 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.0.12077973 |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\27.1.12297006 |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.1.12297006 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\27.1.12297006 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.1.12297006 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 
 ### Cached Docker images
