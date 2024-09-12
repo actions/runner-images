@@ -251,7 +251,7 @@ Function GenerateResourcesAndImage {
     try {
         # Login to Azure subscription
         try {
-            az account show -o none 2>&1
+            az account show -o none 2>$null || Write-Error $_
             Write-Verbose "Already logged in..."
         }
         catch {
