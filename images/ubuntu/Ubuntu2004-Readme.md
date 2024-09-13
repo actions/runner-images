@@ -6,7 +6,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1071-azure
-- Image Version: 20240901.1.0
+- Image Version: 20240908.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -34,7 +34,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.15.4
-- Homebrew 4.3.18
+- Homebrew 4.3.19
 - Miniconda 24.7.1
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 0f88ecb85)
+- Vcpkg (build from commit eba7c6a89)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -71,7 +71,7 @@ to accomplish this.
 - apt-fast 1.10.0
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.3.1
-- Bazelisk 1.19.0
+- Bazelisk 1.21.0
 - Bicep 0.29.47
 - Buildah 1.22.3
 - CMake 3.30.3
@@ -86,7 +86,7 @@ to accomplish this.
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 9.2.0
+- Heroku 9.2.1
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.24.0
@@ -96,7 +96,7 @@ to accomplish this.
 - MediaInfo 19.09
 - Mercurial 5.3.1
 - Minikube 1.33.1
-- n 9.2.3
+- n 10.0.0
 - Newman 6.2.1
 - nvm 0.40.1
 - OpenSSL 1.1.1f-1ubuntu2.23
@@ -104,7 +104,7 @@ to accomplish this.
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.130.0
+- Pulumi 3.131.0
 - R 4.4.1
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -116,17 +116,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.17.42
+- AWS CLI 2.17.46
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.123.0
-- Azure CLI 2.63.0
+- Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.55.0
-- Google Cloud CLI 490.0.0
-- Netlify CLI 17.34.3
+- Google Cloud CLI 491.0.0
+- Netlify CLI 17.35.0
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 37.2.1
+- Vercel CLI 37.4.0
 
 ### Java
 | Version             | Environment Variable |
@@ -138,7 +138,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 7.4.33, 8.0.30, 8.1.29, 8.2.23, 8.3.11
-- Composer 2.7.8
+- Composer 2.7.9
 - PHPUnit 8.5.39
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -151,25 +151,25 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.1.1
 
 ### Rust Tools
-- Cargo 1.80.1
-- Rust 1.80.1
-- Rustdoc 1.80.1
+- Cargo 1.81.0
+- Rust 1.81.0
+- Rustdoc 1.81.0
 - Rustup 1.27.1
 
 #### Packages
 - Bindgen 0.70.1
 - Cargo audit 0.20.1
-- Cargo clippy 0.1.80
+- Cargo clippy 0.1.81
 - Cargo outdated 0.15.0
 - Cbindgen 0.27.0
-- Rustfmt 1.7.0
+- Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 128.0.6613.113
-- ChromeDriver 128.0.6613.86
+- Google Chrome 128.0.6613.119
+- ChromeDriver 128.0.6613.119
 - Chromium 128.0.6613.0
-- Microsoft Edge 128.0.2739.54
-- Microsoft Edge WebDriver 128.0.2739.56
+- Microsoft Edge 128.0.2739.67
+- Microsoft Edge WebDriver 128.0.2739.68
 - Selenium server 4.24.0
 - Mozilla Firefox 129.0.2
 - Geckodriver 0.35.0
@@ -216,7 +216,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.20.14
 - 1.21.13
-- 1.22.6
+- 1.22.7
 
 #### Node.js
 - 16.20.2
@@ -250,7 +250,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 12.1.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.22.0
+- Microsoft.Graph: 2.23.0
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
@@ -271,35 +271,35 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                                                                              |
-| NDK                        | 26.3.11579264<br>27.0.12077973 (default)                                                                                                                                                                                                                                        |
+| NDK                        | 26.3.11579264<br>27.1.12297006 (default)                                                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                        |
 | ----------------------- | -------------------------------------------- |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                   |
-| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.0.12077973 |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.0.12077973 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.0.12077973 |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.0.12077973 |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Cached Docker images
 | Repository:Tag       | Digest                                                                   | Created    |
 | -------------------- | ------------------------------------------------------------------------ | ---------- |
 | alpine:3.16          | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
-| alpine:3.17          | sha256:ef813b2faa3dd1a37f9ef6ca98347b72cd0f55e4ab29fb90946f1b853bf032d9  | 2024-07-22 |
-| alpine:3.18          | sha256:5292533eb4efd4b5cf35e93b5a2b7d0e07ea193224c49446c7802c19ee4f2da5  | 2024-07-22 |
-| alpine:3.19          | sha256:95c16745f100f44cf9a0939fd3f357905f845f8b6fa7d0cde0e88c9764060185  | 2024-07-22 |
+| alpine:3.17          | sha256:3451da08fc6ef554a100da3e2df5ac6d598c82f2a774d5f6ed465c3d80cd163a  | 2024-09-06 |
+| alpine:3.18          | sha256:3ddf7bf1d408188f9849efbf4f902720ae08f5131bb39013518b918aa056d0de  | 2024-09-06 |
+| alpine:3.19          | sha256:ae65dbf8749a7d4527648ccee1fa3deb6bfcae34cbc30fc67aa45c44dcaa90ee  | 2024-09-06 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:0bb606aad3307370c8b4502eff11fde298e5b7721e59a0da3ce9b30cb92045ed  | 2024-08-13 |
+| debian:11            | sha256:8ccc486c29a3ad02ad5af7f1156e2152dff3ba5634eec9be375269ef123457d8  | 2024-09-04 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest | sha256:e0b10610709509aded9b101a61a090e24a5161f46d5eb8a479297fe96aa5d8ac  | 2024-08-15 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:a7ff16657263663c1e92ba3060cdbba0e77329a0a4cb3c27bbbbe90c6e20bd87  | 2024-07-09 |
-| node:18-alpine       | sha256:17514b20acef0e79691285e7a59f3ae561f7a1702a9adc72a515aef23f326729  | 2024-07-09 |
-| node:20              | sha256:a4d1de4c7339eabcf78a90137dfd551b798829e3ef3e399e0036ac454afa1291  | 2024-08-21 |
-| node:20-alpine       | sha256:1a526b97cace6b4006256570efa1a29cd1fe4b96a5301f8d48e87c5139438a45  | 2024-08-21 |
+| node:18              | sha256:ca07c02d13baf021ff5aadb3b48bcd1fcdd454826266ac313ce858676e8c1548  | 2024-07-09 |
+| node:18-alpine       | sha256:02376a266c84acbf45bd19440e08e48b1c8b98037417334046029ab585de03e2  | 2024-07-09 |
+| node:20              | sha256:48db4f6ea21d134be744207225753a1730c4bc1b4cdf836d44511c36bf0e34d7  | 2024-08-21 |
+| node:20-alpine       | sha256:2d07db07a2df6830718ae2a47db6fedce6745f5bcd174c398f2acdda90a11c03  | 2024-08-21 |
 | ubuntu:20.04         | sha256:fa17826afb526a9fc7250e0fbcbfd18d03fe7a54849472f86879d8bf562c629e  | 2024-08-13 |
 
 ### Installed apt packages
