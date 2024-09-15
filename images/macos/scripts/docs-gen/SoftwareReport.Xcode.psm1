@@ -86,20 +86,60 @@ function Build-XcodeTable {
         [Parameter(Mandatory)]
         [hashtable] $xcodeInfo
     )
-
+    # Sorting rules for Xcode versions
     $sortRules = @{
         Expression = { $_.Version }
         Descending = $true
     }
-
+    # Process the Xcode version info and sort it
     $xcodeList = $xcodeInfo.Values | ForEach-Object { $_.VersionInfo } | Sort-Object $sortRules
+    # Return a processed list with version, build, path, and symlink path
     return $xcodeList | ForEach-Object {
+        # Determine the postfixes for default and beta versions
         $defaultPostfix = If ($_.IsDefault) { " (default)" } else { "" }
         $betaPostfix = If ($_.IsStable) { "" } else { " (beta)" }
+        # Extract the base name of the app from the Path property
+        $inputPath = $_.Path
+        $baseName = [System.IO.Path]::GetFileNameWithoutExtension($inputPath)
+        # Initialize the symlink path
+        $symlinkPath = ""
+        # Function to check if a version ends with '.0' or '.0.x'
+        function EnsureDotZero ($name) {
+            if ($name -notmatch '\.\d+$') {
+                return "${name}.0"
+            }
+            return $name
+        }
+        # Check for different patterns and adjust symlink path
+        if ($baseName -match '_beta_\d+$') {
+            # Handle paths like 'Xcode_16_beta_5.app' and map to 'Xcode_16.0.app'
+            $newBaseName = $baseName -replace '_beta_\d+$', ''
+            $symlinkPath = "/Applications/$(EnsureDotZero $newBaseName).app"
+        } elseif ($baseName -match '_beta$') {
+            # Handle paths like 'Xcode_16_beta.app' and map to 'Xcode_16.0.app'
+            $newBaseName = $baseName -replace '_beta$', ''
+            $symlinkPath = "/Applications/$(EnsureDotZero $newBaseName).app"
+        } elseif ($baseName -match '_(Release_Candidate|RC)$') {
+            # Handle paths like 'Xcode_16_Release_Candidate.app' and map to 'Xcode_16.0.app'
+            $newBaseName = $baseName -replace '_(Release_Candidate|RC)$', ''
+            $symlinkPath = "/Applications/$(EnsureDotZero $newBaseName).app"
+        } elseif ($baseName -match '^\w+_\d+\.\d+\.\d+$') {
+            # Handle paths like 'Xcode_15.0.1.app' and map to 'Xcode_15.0.app'
+            $newBaseName = $baseName -replace '\.\d+$', ''
+            $symlinkPath = "/Applications/$newBaseName.app"
+        } elseif ($baseName -match '^\w+_\d+\.\d+$') {
+            # Handle paths like 'Xcode_15.3.app' and map to 'Xcode_15.3.0.app'
+            $symlinkPath = "/Applications/$(EnsureDotZero $baseName).app"
+        } else {
+            # Handle non-beta versions
+            $symlinkPath = "/Applications/$baseName.app"
+        }
+        # Create and return a custom object with the desired properties
         return [PSCustomObject] @{
-            "Version" = $_.Version.ToString() + $betaPostfix + $defaultPostfix
-            "Build" = $_.Build
-            "Path" = $_.Path
+            "Version"     = $_.Version.ToString() + $betaPostfix + $defaultPostfix
+            "Build"       = $_.Build
+            "Path"        = $_.Path
+            "SymlinkPath" = $symlinkPath
         }
     }
 }
