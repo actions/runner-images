@@ -48,9 +48,7 @@ if (Test-IsUbuntu20) {
 $languageAndRuntime.AddToolVersionsListInline("GNU C++", $(Get-CPPVersions), "^\d+")
 $languageAndRuntime.AddToolVersionsListInline("GNU Fortran", $(Get-FortranVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
-}
+$languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
 if (-not $(Test-IsUbuntu24)) {
     $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MsbuildVersion))
@@ -59,9 +57,8 @@ $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
 $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
-}
+$languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
+
 
 # Package Management
 $packageManagement = $installedSoftware.AddHeader("Package Management")
@@ -142,9 +139,7 @@ if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
     $tools.AddToolVersion("nvm", $(Get-NvmVersion))
 }
 $tools.AddToolVersion("OpenSSL", $(Get-OpensslVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $tools.AddToolVersion("Packer", $(Get-PackerVersion))
-}
+$tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
 if (Test-IsUbuntu20) {
     $tools.AddToolVersion("PhantomJS", $(Get-PhantomJSVersion))
@@ -224,15 +219,13 @@ $browsersTools = $installedSoftware.AddHeader("Browsers and Drivers")
 $browsersTools.AddToolVersion("Google Chrome", $(Get-ChromeVersion))
 $browsersTools.AddToolVersion("ChromeDriver", $(Get-ChromeDriverVersion))
 $browsersTools.AddToolVersion("Chromium", $(Get-ChromiumVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $browsersTools.AddToolVersion("Microsoft Edge", $(Get-EdgeVersion))
-    $browsersTools.AddToolVersion("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
-}
+$browsersTools.AddToolVersion("Microsoft Edge", $(Get-EdgeVersion))
+$browsersTools.AddToolVersion("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
+
 $browsersTools.AddToolVersion("Selenium server", $(Get-SeleniumVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
-    $browsersTools.AddToolVersion("Mozilla Firefox", $(Get-FirefoxVersion))
-    $browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
-}
+$browsersTools.AddToolVersion("Mozilla Firefox", $(Get-FirefoxVersion))
+$browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
+
 
 # Environment variables
 $browsersTools.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))

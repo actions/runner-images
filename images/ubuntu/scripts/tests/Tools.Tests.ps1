@@ -331,7 +331,7 @@ Describe "Conda" {
     }
 }
 
-Describe "Packer" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Packer" {
     It "packer" {
         "packer --version" | Should -ReturnZeroExitCode
     }
@@ -402,7 +402,7 @@ Describe "yq" {
     }
 }
 
-Describe "Kotlin" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Kotlin" {
     It "kapt" {
         "kapt -version" | Should -ReturnZeroExitCode
     }
