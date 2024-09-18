@@ -1,6 +1,6 @@
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2700
-- Image Version: 20240912.1.0
+- Image Version: 20240915.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -22,14 +22,14 @@
 ### Package Management
 - Chocolatey 2.3.0
 - Composer 2.7.9
-- Helm 3.15.4
+- Helm 3.16.0
 - Miniconda 24.7.1 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
 - NuGet 6.11.0.119
 - pip 24.2 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 9f11f2df3)
+- Vcpkg (build from commit 86fba1306)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -53,7 +53,7 @@
 - Bicep 0.29.47
 - Cabal 3.12.1.0
 - CMake 3.30.3
-- CodeQL Action Bundle 2.18.3
+- CodeQL Action Bundle 2.18.4
 - Docker 26.1.3
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
@@ -64,7 +64,7 @@
 - InnoSetup 6.3.3
 - jq 1.7.1
 - Kind 0.24.0
-- Kubectl 1.31.0
+- Kubectl 1.31.1
 - Mercurial 5.0
 - gcc 12.2.0
 - gdb 11.2
@@ -73,7 +73,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.0
-- Pulumi 3.131.0
+- Pulumi 3.132.0
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -87,7 +87,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.222
-- AWS CLI 2.17.48
+- AWS CLI 2.17.51
 - AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
@@ -112,7 +112,7 @@
 - Google Chrome 128.0.6613.138
 - Chrome Driver 128.0.6613.137
 - Microsoft Edge 128.0.2739.79
-- Microsoft Edge Driver 128.0.2739.67
+- Microsoft Edge Driver 128.0.2739.79
 - Mozilla Firefox 130.0
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
@@ -456,7 +456,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | wasm.tools                                                                | 8.0.824.36612   |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects2022                  | 3.0.4           |
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 3.0.1           |
-| SSIS.MicrosoftDataToolsIntegrationServices                                | 1.4             |
+| SSIS.MicrosoftDataToolsIntegrationServices                                | 1.5             |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.1           |
 | Windows Driver Kit                                                        | 10.1.22621.2428 |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.26100.10   |
@@ -499,7 +499,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.654
+- AWSPowershell: 4.1.656
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.23.0
