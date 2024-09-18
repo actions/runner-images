@@ -15,6 +15,11 @@ if ($os.IsVentura -or $os.IsSonoma) {
     $XAMARIN_ANDROID_VERSIONS = (Get-ToolsetContent).xamarin.android_versions
 } elseif ($os.IsSequoia) {
     Write-Host "Skipping all the Mono and Xamarin tests as deprecated"
+    # Dummy workaround for the issue with the tests discovery
+    $MONO_VERSIONS = @()
+    $XAMARIN_IOS_VERSIONS = @()
+    $XAMARIN_MAC_VERSIONS = @()
+    $XAMARIN_ANDROID_VERSIONS = @()
 }
 
 BeforeAll {
