@@ -17,4 +17,5 @@ if [[ $arch == "arm64" ]]; then
   /opt/homebrew/bin/brew shellenv >> ~/.bashrc
   # Workaround for the issue (#10624) with the Homebrew PATH in the bashrc
   sed -i '' '/; export PATH;/d' ~/.bashrc
+  echo 'export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"' >> ~/.bashrc
 fi
