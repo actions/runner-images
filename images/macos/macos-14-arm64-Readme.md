@@ -1,11 +1,13 @@
 | Announcements |
 |-|
+| [[Macos 13 and 14] Android NDK versions <=25 will be removed from images on October 07,2024](https://github.com/actions/runner-images/issues/10614) |
+| [[Macos 13 and 14] Go version 1.20.0 will be removed on October 07,2024.](https://github.com/actions/runner-images/issues/10612) |
 | [[macOS] Xcodes visionOS platform will be removed from macOS-14 images on September 23, 2024](https://github.com/actions/runner-images/issues/10559) |
 ***
 # macOS 14
 - OS Version: macOS 14.6.1 (23G93)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20240911.3
+- Image Version: 20240915.3
 
 ## Installed Software
 
@@ -31,7 +33,7 @@
 - Bundler 2.5.18
 - Carthage 0.40.0
 - CocoaPods 1.15.2
-- Homebrew 4.3.20
+- Homebrew 4.3.21
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.12)
@@ -52,7 +54,7 @@
 - bazelisk 1.21.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.46.0
+- Git 2.46.1
 - Git LFS 3.5.1
 - GitHub CLI 2.56.0
 - GNU Tar 1.35 - available by 'gtar' alias
@@ -66,16 +68,16 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.49
-- AWS SAM CLI 1.123.0
+- AWS CLI 2.17.51
+- AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.29.47
 - Cmake 3.30.3
-- CodeQL Action Bundle 2.18.3
+- CodeQL Action Bundle 2.18.4
 - Fastlane 2.222.0
-- SwiftFormat 0.54.4
+- SwiftFormat 0.54.5
 - Xcbeautify 2.11.0
 - Xcode Command Line Tools 15.3.0.0.1.1708646388
 - Xcodes 1.5.0
@@ -120,6 +122,7 @@
 - 1.20.14
 - 1.21.13
 - 1.22.7
+- 1.23.1
 
 ### Rust Tools
 - Cargo 1.81.0
@@ -201,10 +204,10 @@
 | Simulator - watchOS 11.0                                | watchsimulator11.0                            | 16.0, 16.1    |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
-| Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
 | visionOS 1.1                                            | xros1.1                                       | 15.3          |
-| visionOS 1.2                                            | xros1.2                                       | 15.4          |
+| Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
 | Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
+| visionOS 1.2                                            | xros1.2                                       | 15.4          |
 | Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0, 16.1    |
 | visionOS 2.0                                            | xros2.0                                       | 16.0, 16.1    |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
@@ -257,7 +260,7 @@
 | CMake                      | 3.22.1                                                                                                                                                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                                  |
 | Google Repository          | 58                                                                                                                                                                                                                                  |
-| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264 (default)                                                                                                                                                                             |
+| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264 (default)<br>27.1.12297006                                                                                                                                                            |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -265,7 +268,7 @@
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
