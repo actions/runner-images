@@ -1,16 +1,16 @@
 {
     "xcode": {
-        "default": "16.1_beta",
+        "default": "16",
         "x64": {
             "versions": [
-                { "link": "16.1_beta", "version": "16.1.0-Beta+16B5001e", "symlinks": ["16.1"], "install_runtimes": "false", "sha256": "8848aacb32bdc0abbd7e14e4b712e07c98f4b6e5a23a8d77db03ab21dcb3c777"},
-                { "link": "16_beta_6", "version": "16.0.0-Beta.6+16A5230g", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "ab0b9a4f6d723420ee0e39ff1cf6a628665dfe832053f66b6b72e013a6bbb244"}
+                { "link": "16.1_beta_2", "version": "16.1.0-Beta.2+16B5014f", "symlinks": ["16.1"], "install_runtimes": "true", "sha256": "a07a709b4b196be118ff5bab7ea19a16a4ca273cad876d73dec5926c8a6da34a"},
+                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"}
             ]
         },
         "arm64":{
             "versions": [
-                { "link": "16.1_beta", "version": "16.1.0-Beta+16B5001e", "symlinks": ["16.1"], "install_runtimes": "true", "sha256": "8848aacb32bdc0abbd7e14e4b712e07c98f4b6e5a23a8d77db03ab21dcb3c777"},
-                { "link": "16_beta_6", "version": "16.0.0-Beta.6+16A5230g", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "ab0b9a4f6d723420ee0e39ff1cf6a628665dfe832053f66b6b72e013a6bbb244"}
+                { "link": "16.1_beta_2", "version": "16.1.0-Beta.2+16B5014f", "symlinks": ["16.1"], "install_runtimes": "true", "sha256": "a07a709b4b196be118ff5bab7ea19a16a4ca273cad876d73dec5926c8a6da34a"},
+                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"}
             ]
         }
     },
@@ -125,8 +125,6 @@
                 },
                 "arm64": {
                     "versions": [
-                        "3.9.*",
-                        "3.10.*",
                         "3.11.*",
                         "3.12.*"
                     ]
