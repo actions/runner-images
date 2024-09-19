@@ -1,6 +1,6 @@
 # Windows Server 2019
-- OS Version: 10.0.17763 Build 6189
-- Image Version: 20240908.1.0
+- OS Version: 10.0.17763 Build 6293
+- Image Version: 20240915.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -22,14 +22,14 @@
 ### Package Management
 - Chocolatey 2.3.0
 - Composer 2.7.9
-- Helm 3.15.4
+- Helm 3.16.0
 - Miniconda 24.7.1 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
 - NuGet 6.11.0.119
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit eba7c6a89)
+- Vcpkg (build from commit 86fba1306)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -53,19 +53,19 @@
 - Bicep 0.29.47
 - Cabal 3.12.1.0
 - CMake 3.30.3
-- CodeQL Action Bundle 2.18.3
+- CodeQL Action Bundle 2.18.4
 - Docker 26.1.3
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
 - ghc 9.10.1
 - Git 2.46.0.windows.1
 - Git LFS 3.5.1
-- Google Cloud CLI 491.0.0
+- Google Cloud CLI 492.0.0
 - ImageMagick 7.1.1-38
 - InnoSetup 6.3.3
 - jq 1.7.1
 - Kind 0.24.0
-- Kubectl 1.31.0
+- Kubectl 1.31.1
 - Mercurial 5.0
 - gcc 8.1.0
 - gdb 8.1
@@ -75,7 +75,7 @@
 - OpenSSL 1.1.1w
 - Packer 1.11.0
 - Parcel 2.12.0
-- Pulumi 3.131.0
+- Pulumi 3.132.0
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -88,14 +88,14 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.221
-- AWS CLI 2.17.44
-- AWS SAM CLI 1.123.0
+- Alibaba Cloud CLI 3.0.222
+- AWS CLI 2.17.51
+- AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure DevOps CLI extension 1.0.1
-- Cloud Foundry CLI 8.8.0
-- GitHub CLI 2.55.0
+- Cloud Foundry CLI 8.8.1
+- GitHub CLI 2.56.0
 
 ### Rust Tools
 - Cargo 1.81.0
@@ -112,10 +112,10 @@
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 128.0.6613.120
-- Chrome Driver 128.0.6613.119
-- Microsoft Edge 128.0.2739.67
-- Microsoft Edge Driver 128.0.2739.67
+- Google Chrome 128.0.6613.138
+- Chrome Driver 128.0.6613.137
+- Microsoft Edge 128.0.2739.79
+- Microsoft Edge Driver 128.0.2739.79
 - Mozilla Firefox 130.0
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
@@ -175,7 +175,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.9.13
 - 3.10.11
 - 3.11.9
-- 3.12.5
+- 3.12.6
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.17]
@@ -223,14 +223,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.27.1  | C:\tools\nginx-1.27.1\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
-| Name                          | Version         | Path                                                           |
-| ----------------------------- | --------------- | -------------------------------------------------------------- |
-| Visual Studio Enterprise 2019 | 16.11.35130.168 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
+| Name                          | Version        | Path                                                           |
+| ----------------------------- | -------------- | -------------------------------------------------------------- |
+| Visual Studio Enterprise 2019 | 16.11.35229.62 | C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| Component.Android.NDK.R16B                                                | 16.11.35112.186 |
+| Component.Android.NDK.R16B                                                | 16.11.35213.202 |
 | Component.Android.SDK25.Private                                           | 16.0.28625.61   |
 | Component.Android.SDK30                                                   | 16.10.31205.252 |
 | Component.Ant                                                             | 1.9.3.8         |
@@ -503,7 +503,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.651
+- AWSPowershell: 4.1.656
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.23.0
@@ -547,8 +547,8 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:da9b18ec1c7ea94841f3351a3494c9651d9e2557b1c84a75046dc915029df45e  | 2024-08-13 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:572083af53735695423a97dc6648f210ac85491269432660b151ba3033f7cb03  | 2024-08-13 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:bfb078e34f8c28cf122fc693b265686a58aa46f7e6c9ee46aaae7371d0ed5772  | 2024-08-13 |
-| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:7f6649348a11655e3576463fd6d55c29248f97405f8e643cab2409009339f520  | 2024-08-11 |
-| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:f67e2252b22f6f8c9916fdcb099548d01b920d49af2039349e1b883f79c9e0ef  | 2024-08-11 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2019  | sha256:c643acadeb3c8f13a65817fbe7dfbb478f30e7293d99439918c9907f936b7b44  | 2024-09-10 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019 | sha256:0e30e7c4226044ff72eea68884894c397202eaacd73c4cb340a28896e617fee5  | 2024-09-10 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:563e2e986c7c3fce79ebb0757c475980e3d3dde05d1d2e53d4323b0e99580840  | 2024-09-10 |
+| mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:b1c10aada142b0729d6cdbddd4d4119499c2cdbc32e75573c36cfe1a6149b3ee  | 2024-09-06 |
+| mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:9fd56cf2f100d69f66f0de4af2c4fdd154e9e7be65eec3bf789a8088a881475a  | 2024-09-06 |
