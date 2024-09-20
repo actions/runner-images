@@ -1,14 +1,13 @@
 | Announcements |
 |-|
+| [[Macos 13 and 14] Android NDK versions <=25 will be removed from images on October 07,2024](https://github.com/actions/runner-images/issues/10614) |
+| [[Macos 13 and 14] Go version 1.20.0 will be removed on October 07,2024.](https://github.com/actions/runner-images/issues/10612) |
 | [[macOS] Xcodes visionOS platform will be removed from macOS-14 images on September 23, 2024](https://github.com/actions/runner-images/issues/10559) |
-| [[Macos] go version 1.20.0 will be removed on September 16,2024.](https://github.com/actions/runner-images/issues/10531) |
-| [[Macos] Android NDK 24 will be removed on September 16,2024](https://github.com/actions/runner-images/issues/10530) |
-| [[Macos-12] Python version 3.7 will be removed from the macos-12 image on September 16,2024](https://github.com/actions/runner-images/issues/10529) |
 ***
 # macOS 13
 - OS Version: macOS 13.6.9 (22G830)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240908.1
+- Image Version: 20240916.98
 
 ## Installed Software
 
@@ -28,27 +27,27 @@
 - Node.js 20.17.0
 - Perl 5.38.2
 - PHP 8.3.11
-- Python3 3.12.5
+- Python3 3.12.6
 - Ruby 3.0.7p220
 
 ### Package Management
 - Bundler 2.5.18
-- Carthage 0.39.1
+- Carthage 0.40.0
 - CocoaPods 1.15.2
 - Composer 2.7.9
-- Homebrew 4.3.19
+- Homebrew 4.3.21
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.12)
 - Pipx 1.7.1
 - RubyGems 3.5.18
-- Vcpkg 2024 (build from commit eba7c6a89)
+- Vcpkg 2024 (build from commit 86fba1306)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.10
+- Gradle 8.10.1
 
 ### Utilities
 - 7-Zip 17.05
@@ -57,10 +56,10 @@
 - bazel 7.3.1
 - bazelisk 1.21.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.9.1
-- Git 2.46.0
+- Curl 8.10.0
+- Git 2.46.1
 - Git LFS 3.5.1
-- GitHub CLI 2.55.0
+- GitHub CLI 2.56.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -72,16 +71,16 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.46
-- AWS SAM CLI 1.123.0
+- AWS CLI 2.17.51
+- AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.29.47
 - Cmake 3.30.3
-- CodeQL Action Bundle 2.18.3
+- CodeQL Action Bundle 2.18.4
 - Fastlane 2.222.0
-- SwiftFormat 0.54.4
+- SwiftFormat 0.54.5
 - Xcbeautify 2.11.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.5.0
@@ -92,11 +91,11 @@
 ### Browsers
 - Safari 17.6 (18618.3.11.11.7)
 - SafariDriver 17.6 (18618.3.11.11.7)
-- Google Chrome 128.0.6613.120
-- Google Chrome for Testing 128.0.6613.119
-- ChromeDriver 128.0.6613.119
-- Microsoft Edge 128.0.2739.67
-- Microsoft Edge WebDriver 128.0.2739.69
+- Google Chrome 128.0.6613.138
+- Google Chrome for Testing 128.0.6613.137
+- ChromeDriver 128.0.6613.137
+- Microsoft Edge 128.0.2739.79
+- Microsoft Edge WebDriver 128.0.2739.81
 - Mozilla Firefox 130.0
 - geckodriver 0.35.0
 - Selenium server 4.24.0
@@ -128,13 +127,15 @@
 #### Ruby
 - 3.0.7
 - 3.1.6
+- 3.2.5
+- 3.3.5
 
 #### Python
 - 3.8.18
-- 3.9.19
-- 3.10.14
+- 3.9.20
+- 3.10.15
 - 3.11.9
-- 3.12.5
+- 3.12.6
 
 #### Node.js
 - 16.20.2
@@ -145,6 +146,7 @@
 - 1.20.14
 - 1.21.13
 - 1.22.7
+- 1.23.1
 
 ### Rust Tools
 - Cargo 1.81.0
@@ -211,8 +213,8 @@
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
@@ -248,7 +250,7 @@
 | CMake                      | 3.22.1                                                                                                                                                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                                  |
 | Google Repository          | 58                                                                                                                                                                                                                                  |
-| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264 (default)                                                                                                                                                                             |
+| NDK                        | 24.0.8215888<br>25.2.9519653<br>26.3.11579264 (default)<br>27.1.12297006                                                                                                                                                            |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -256,7 +258,7 @@
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
@@ -265,7 +267,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v19/19.4.1-54985/ParallelsDesktop-19.4.1-54985.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.0.0-55653/ParallelsDesktop-20.0.0-55653.dmg |
 
 ##### Notes
 ```

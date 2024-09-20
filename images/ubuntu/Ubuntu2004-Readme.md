@@ -1,12 +1,12 @@
 | Announcements |
 |-|
-| [[Ubuntu 20.04 and Ubuntu 22.04  Oses] Go  1.22.x  will be set as default on September, 20](https://github.com/actions/runner-images/issues/10500) |
+| [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
 | [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1071-azure
-- Image Version: 20240908.1.0
+- Image Version: 20240915.1.0
 - Systemd version: 245.4-4ubuntu3.23
 
 ## Installed Software
@@ -33,8 +33,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.15.4
-- Homebrew 4.3.19
+- Helm 3.16.1
+- Homebrew 4.3.21
 - Miniconda 24.7.1
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit eba7c6a89)
+- Vcpkg (build from commit 86fba1306)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,7 +61,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.10
+- Gradle 8.10.1
 - Lerna 8.1.8
 - Maven 3.8.8
 - Sbt 1.10.1
@@ -75,10 +75,10 @@ to accomplish this.
 - Bicep 0.29.47
 - Buildah 1.22.3
 - CMake 3.30.3
-- CodeQL Action Bundle 2.18.3
+- CodeQL Action Bundle 2.18.4
 - Docker Amazon ECR Credential Helper 0.8.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.16.2
+- Docker-Buildx 0.17.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.222.0
@@ -90,12 +90,12 @@ to accomplish this.
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.24.0
-- Kubectl 1.31.0
+- Kubectl 1.31.1
 - Kustomize 5.4.3
 - Leiningen 2.11.2
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.33.1
+- Minikube 1.34.0
 - n 10.0.0
 - Newman 6.2.1
 - nvm 0.40.1
@@ -104,7 +104,7 @@ to accomplish this.
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.131.0
+- Pulumi 3.132.0
 - R 4.4.1
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -116,17 +116,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.17.46
+- AWS CLI 2.17.51
 - AWS CLI Session Manager Plugin 1.2.650.0
-- AWS SAM CLI 1.123.0
+- AWS SAM CLI 1.124.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.55.0
-- Google Cloud CLI 491.0.0
-- Netlify CLI 17.35.0
+- GitHub CLI 2.56.0
+- Google Cloud CLI 492.0.0
+- Netlify CLI 17.36.0
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 37.4.0
+- Vercel CLI 37.4.2
 
 ### Java
 | Version             | Environment Variable |
@@ -165,11 +165,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 128.0.6613.119
-- ChromeDriver 128.0.6613.119
+- Google Chrome 128.0.6613.137
+- ChromeDriver 128.0.6613.137
 - Chromium 128.0.6613.0
-- Microsoft Edge 128.0.2739.67
-- Microsoft Edge WebDriver 128.0.2739.68
+- Microsoft Edge 128.0.2739.79
+- Microsoft Edge WebDriver 128.0.2739.81
 - Selenium server 4.24.0
 - Mozilla Firefox 129.0.2
 - Geckodriver 0.35.0
@@ -226,10 +226,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Python
 - 3.7.17
 - 3.8.18
-- 3.9.19
-- 3.10.14
-- 3.11.9
-- 3.12.5
+- 3.9.20
+- 3.10.15
+- 3.11.10
+- 3.12.6
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.17]
@@ -293,7 +293,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
 | debian:11            | sha256:8ccc486c29a3ad02ad5af7f1156e2152dff3ba5634eec9be375269ef123457d8  | 2024-09-04 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest | sha256:e0b10610709509aded9b101a61a090e24a5161f46d5eb8a479297fe96aa5d8ac  | 2024-08-15 |
+| moby/buildkit:latest | sha256:bc1fe18224dbcb92599139db0c745696c48ba9fd4ac24038d1fa81fdd7dcac27  | 2024-09-10 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
 | node:18              | sha256:ca07c02d13baf021ff5aadb3b48bcd1fcdd454826266ac313ce858676e8c1548  | 2024-07-09 |
