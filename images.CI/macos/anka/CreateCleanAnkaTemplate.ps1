@@ -95,7 +95,7 @@ function Invoke-SoftwareUpdate {
     switch -regex ($guestMacosVersion[1]) {
         '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma|macOS Sequoia' }
         '13.\d' { $nextOSVersion = 'macOS Sonoma|macOS Sequoia' }
-        '14.\d' { $nextOSVersion = 'macOS Sequia' }
+        '14.\d' { $nextOSVersion = 'macOS Sequoia' }
     }
 
     Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"
