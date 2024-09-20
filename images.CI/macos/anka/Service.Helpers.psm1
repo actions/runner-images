@@ -41,7 +41,7 @@ function Invoke-SoftwareUpdateArm64 {
     switch -regex ($guestMacosVersion[1]) {
         '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma|macOS Sequoia' }
         '13.\d' { $nextOSVersion = 'macOS Sonoma|macOS Sequoia' }
-        '14.\d' { $nextOSVersion = 'macOS Sequia' }
+        '14.\d' { $nextOSVersion = 'macOS Sequoia' }
     }
 
     $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/assets/auto-software-update-arm64.exp"
