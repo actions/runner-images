@@ -15,5 +15,5 @@ sudo chsh -s /bin/bash root
 if [[ $arch == "arm64" ]]; then
   echo "Adding Homebrew environment to bash"
   # Discussed here: https://github.com/Homebrew/brew/pull/18366
-  echo "eval $(/opt/homebrew/bin/brew shellenv)" >> ~/.bashrc
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bashrc
 fi
