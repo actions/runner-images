@@ -1,13 +1,13 @@
 | Announcements |
 |-|
+| [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 | [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
-| [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
-- Kernel Version: 5.15.0-1071-azure
-- Image Version: 20240915.1.0
-- Systemd version: 245.4-4ubuntu3.23
+- Kernel Version: 5.15.0-1073-azure
+- Image Version: 20240922.1.0
+- Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
 
@@ -29,12 +29,12 @@
 - Perl 5.30.0
 - Python 3.8.10
 - Ruby 2.7.0p0
-- Swift 5.10.1
+- Swift 6.0
 
 ### Package Management
 - cpan 1.64
 - Helm 3.16.1
-- Homebrew 4.3.21
+- Homebrew 4.3.23
 - Miniconda 24.7.1
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -42,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 86fba1306)
+- Vcpkg (build from commit 98aa63962)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -64,7 +64,7 @@ to accomplish this.
 - Gradle 8.10.1
 - Lerna 8.1.8
 - Maven 3.8.8
-- Sbt 1.10.1
+- Sbt 1.10.2
 
 ### Tools
 - Ansible 2.13.13
@@ -72,17 +72,17 @@ to accomplish this.
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.3.1
 - Bazelisk 1.21.0
-- Bicep 0.29.47
+- Bicep 0.30.3
 - Buildah 1.22.3
 - CMake 3.30.3
-- CodeQL Action Bundle 2.18.4
-- Docker Amazon ECR Credential Helper 0.8.0
+- CodeQL Action Bundle 2.19.0
+- Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.17.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.222.0
-- Git 2.46.0
+- Git 2.46.1
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.1
@@ -104,29 +104,29 @@ to accomplish this.
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.132.0
+- Pulumi 3.133.0
 - R 4.4.1
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.9.5
+- Terraform 1.9.6
 - yamllint 1.35.1
 - yq 4.44.3
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.17.51
+- AWS CLI 2.17.56
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.124.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.56.0
-- Google Cloud CLI 492.0.0
-- Netlify CLI 17.36.0
+- GitHub CLI 2.57.0
+- Google Cloud CLI 493.0.0
+- Netlify CLI 17.36.2
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 37.4.2
+- Vercel CLI 37.5.3
 
 ### Java
 | Version             | Environment Variable |
@@ -139,7 +139,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 7.4.33, 8.0.30, 8.1.29, 8.2.23, 8.3.11
 - Composer 2.7.9
-- PHPUnit 8.5.39
+- PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -165,13 +165,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 128.0.6613.137
-- ChromeDriver 128.0.6613.137
-- Chromium 128.0.6613.0
-- Microsoft Edge 128.0.2739.79
-- Microsoft Edge WebDriver 128.0.2739.81
-- Selenium server 4.24.0
-- Mozilla Firefox 129.0.2
+- Google Chrome 129.0.6668.58
+- ChromeDriver 129.0.6668.58
+- Chromium 129.0.6668.0
+- Microsoft Edge 129.0.2792.52
+- Microsoft Edge WebDriver 129.0.2792.53
+- Selenium server 4.25.0
+- Mozilla Firefox 130.0.1
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -209,7 +209,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 162.3.566.1
+- SqlPackage 162.4.92.3
 
 ### Cached Tools
 
@@ -314,7 +314,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.7-6ubuntu0.1                  |
 | bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
-| curl                   | 7.68.0-1ubuntu2.23                |
+| curl                   | 7.68.0-1ubuntu2.24                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
 | dnsutils               | 1:9.18.28-0ubuntu0.20.04.1        |
 | dpkg                   | 1.19.7ubuntu3.2                   |
@@ -337,7 +337,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
 | libc6-dev              | 2.31-0ubuntu9.16                  |
-| libcurl4               | 7.68.0-1ubuntu2.23                |
+| libcurl4               | 7.68.0-1ubuntu2.24                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6+deb10u1build0.20.04.1  |
