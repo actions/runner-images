@@ -7,7 +7,7 @@
 # macOS 14
 - OS Version: macOS 14.6.1 (23G93)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20240918.8
+- Image Version: 20240922.1
 
 ## Installed Software
 
@@ -68,14 +68,14 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.54
+- AWS CLI 2.17.56
 - AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.30.3
 - Cmake 3.30.3
-- CodeQL Action Bundle 2.18.4
+- CodeQL Action Bundle 2.19.0
 - Fastlane 2.222.0
 - SwiftFormat 0.54.5
 - Xcbeautify 2.11.0
@@ -90,7 +90,7 @@
 - Google Chrome 129.0.6668.59
 - Google Chrome for Testing 129.0.6668.58
 - ChromeDriver 129.0.6668.58
-- Selenium server 4.24.0
+- Selenium server 4.25.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -208,8 +208,8 @@
 | Simulator - watchOS 11.1                                | watchsimulator11.1                            | 16.1          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
-| visionOS 1.1                                            | xros1.1                                       | 15.3          |
 | Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
+| visionOS 1.1                                            | xros1.1                                       | 15.3          |
 | Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | visionOS 1.2                                            | xros1.2                                       | 15.4          |
 | visionOS 2.0                                            | xros2.0                                       | 16.0          |
@@ -217,8 +217,8 @@
 | Simulator - visionOS 2.1                                | xrsimulator2.1                                | 16.1          |
 | visionOS 2.1                                            | xros2.1                                       | 16.1          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
 | DriverKit 23.0                                          | driverkit23.0                                 | 15.0.1        |
 | DriverKit 23.2                                          | driverkit23.2                                 | 15.1, 15.2    |
@@ -251,11 +251,6 @@
 | watchOS 10.5 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm)                                                                 |
 | watchOS 11.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm) |
 | watchOS 11.1 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm) |
-| visionOS 1.0 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| visionOS 1.1 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| visionOS 1.2 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| visionOS 2.0 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| visionOS 2.1 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                             |
