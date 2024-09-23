@@ -7,7 +7,7 @@
 # macOS 14
 - OS Version: macOS 14.6.1 (23G93)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20240915.3
+- Image Version: 20240918.8
 
 ## Installed Software
 
@@ -30,15 +30,15 @@
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.18
+- Bundler 2.5.19
 - Carthage 0.40.0
 - CocoaPods 1.15.2
-- Homebrew 4.3.21
+- Homebrew 4.3.23
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.12)
 - Pipx 1.7.1
-- RubyGems 3.5.18
+- RubyGems 3.5.19
 - Yarn 1.22.22
 
 ### Project Management
@@ -56,7 +56,7 @@
 - Curl 8.7.1
 - Git 2.46.1
 - Git LFS 3.5.1
-- GitHub CLI 2.56.0
+- GitHub CLI 2.57.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -68,18 +68,18 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.51
+- AWS CLI 2.17.54
 - AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.29.47
+- Bicep CLI 0.30.3
 - Cmake 3.30.3
 - CodeQL Action Bundle 2.18.4
 - Fastlane 2.222.0
 - SwiftFormat 0.54.5
 - Xcbeautify 2.11.0
-- Xcode Command Line Tools 15.3.0.0.1.1708646388
+- Xcode Command Line Tools 16.0.0.0.1.1724870825
 - Xcodes 1.5.0
 
 ### Linters
@@ -87,9 +87,9 @@
 ### Browsers
 - Safari 17.6 (19618.3.11.11.5)
 - SafariDriver 17.6 (19618.3.11.11.5)
-- Google Chrome 128.0.6613.138
-- Google Chrome for Testing 128.0.6613.137
-- ChromeDriver 128.0.6613.137
+- Google Chrome 129.0.6668.59
+- Google Chrome for Testing 129.0.6668.58
+- ChromeDriver 129.0.6668.58
 - Selenium server 4.24.0
 
 #### Environment variables
@@ -143,16 +143,16 @@
 - PSScriptAnalyzer: 1.22.0
 
 ### Xcode
-| Version        | Build    | Path                                         |
-| -------------- | -------- | -------------------------------------------- |
-| 16.1 (beta)    | 16B5001e | /Applications/Xcode_16.1_beta.app            |
-| 16.0           | 16A242   | /Applications/Xcode_16_Release_Candidate.app |
-| 15.4 (default) | 15F31d   | /Applications/Xcode_15.4.app                 |
-| 15.3           | 15E204a  | /Applications/Xcode_15.3.app                 |
-| 15.2           | 15C500b  | /Applications/Xcode_15.2.app                 |
-| 15.1           | 15C65    | /Applications/Xcode_15.1.app                 |
-| 15.0.1         | 15A507   | /Applications/Xcode_15.0.1.app               |
-| 14.3.1         | 14E300c  | /Applications/Xcode_14.3.1.app               |
+| Version        | Build    | Path                                |
+| -------------- | -------- | ----------------------------------- |
+| 16.1 (beta)    | 16B5014f | /Applications/Xcode_16.1_beta_2.app |
+| 16.0           | 16A242d  | /Applications/Xcode_16.app          |
+| 15.4 (default) | 15F31d   | /Applications/Xcode_15.4.app        |
+| 15.3           | 15E204a  | /Applications/Xcode_15.3.app        |
+| 15.2           | 15C500b  | /Applications/Xcode_15.2.app        |
+| 15.1           | 15C65    | /Applications/Xcode_15.1.app        |
+| 15.0.1         | 15A507   | /Applications/Xcode_15.0.1.app      |
+| 14.3.1         | 14E300c  | /Applications/Xcode_14.3.1.app      |
 
 #### Installed SDKs
 | SDK                                                     | SDK Name                                      | Xcode Version |
@@ -183,33 +183,39 @@
 | tvOS 17.2                                               | appletvos17.2                                 | 15.1, 15.2    |
 | tvOS 17.4                                               | appletvos17.4                                 | 15.3          |
 | tvOS 17.5                                               | appletvos17.5                                 | 15.4          |
-| tvOS 18.0                                               | appletvos18.0                                 | 16.0, 16.1    |
+| tvOS 18.0                                               | appletvos18.0                                 | 16.0          |
+| tvOS 18.1                                               | appletvos18.1                                 | 16.1          |
 | Simulator - tvOS 16.4                                   | appletvsimulator16.4                          | 14.3.1        |
 | Simulator - tvOS 17.0                                   | appletvsimulator17.0                          | 15.0.1        |
 | Simulator - tvOS 17.2                                   | appletvsimulator17.2                          | 15.1, 15.2    |
 | Simulator - tvOS 17.4                                   | appletvsimulator17.4                          | 15.3          |
 | Simulator - tvOS 17.5                                   | appletvsimulator17.5                          | 15.4          |
-| Simulator - tvOS 18.0                                   | appletvsimulator18.0                          | 16.0, 16.1    |
+| Simulator - tvOS 18.0                                   | appletvsimulator18.0                          | 16.0          |
+| Simulator - tvOS 18.1                                   | appletvsimulator18.1                          | 16.1          |
 | watchOS 9.4                                             | watchos9.4                                    | 14.3.1        |
 | watchOS 10.0                                            | watchos10.0                                   | 15.0.1        |
 | watchOS 10.2                                            | watchos10.2                                   | 15.1, 15.2    |
 | watchOS 10.4                                            | watchos10.4                                   | 15.3          |
 | watchOS 10.5                                            | watchos10.5                                   | 15.4          |
-| watchOS 11.0                                            | watchos11.0                                   | 16.0, 16.1    |
+| watchOS 11.0                                            | watchos11.0                                   | 16.0          |
+| watchOS 11.1                                            | watchos11.1                                   | 16.1          |
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
 | Simulator - watchOS 10.4                                | watchsimulator10.4                            | 15.3          |
 | Simulator - watchOS 10.5                                | watchsimulator10.5                            | 15.4          |
-| Simulator - watchOS 11.0                                | watchsimulator11.0                            | 16.0, 16.1    |
+| Simulator - watchOS 11.0                                | watchsimulator11.0                            | 16.0          |
+| Simulator - watchOS 11.1                                | watchsimulator11.1                            | 16.1          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.1                                            | xros1.1                                       | 15.3          |
 | Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
 | Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | visionOS 1.2                                            | xros1.2                                       | 15.4          |
-| Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0, 16.1    |
-| visionOS 2.0                                            | xros2.0                                       | 16.0, 16.1    |
+| visionOS 2.0                                            | xros2.0                                       | 16.0          |
+| Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0          |
+| Simulator - visionOS 2.1                                | xrsimulator2.1                                | 16.1          |
+| visionOS 2.1                                            | xros2.1                                       | 16.1          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
@@ -237,22 +243,25 @@
 | tvOS 17.4    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | tvOS 17.5    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | tvOS 18.0    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| tvOS 18.1    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | watchOS 9.4  | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Ultra (49mm)                                                                                                                                                             |
 | watchOS 10.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm)                                                                 |
 | watchOS 10.2 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm)                                                                 |
 | watchOS 10.4 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm)                                                                 |
 | watchOS 10.5 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm)                                                                 |
 | watchOS 11.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm) |
+| watchOS 11.1 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm) |
 | visionOS 1.0 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | visionOS 1.1 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | visionOS 1.2 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | visionOS 2.0 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| visionOS 2.1 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                             |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                |
-| Android Emulator           | 35.1.20                                                                                                                                                                                                                             |
+| Android Emulator           | 35.1.21                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                   |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                              |
