@@ -5,9 +5,9 @@
 | [[macOS] Xcodes visionOS platform will be removed from macOS-14 images on September 23, 2024](https://github.com/actions/runner-images/issues/10559) |
 ***
 # macOS 14
-- OS Version: macOS 14.6.1 (23G93)
+- OS Version: macOS 14.7 (23H124)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20240918.7
+- Image Version: 20240923.101
 
 ## Installed Software
 
@@ -70,14 +70,14 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.54
+- AWS CLI 2.17.56
 - AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.30.3
 - Cmake 3.30.3
-- CodeQL Action Bundle 2.18.4
+- CodeQL Action Bundle 2.19.0
 - Fastlane 2.222.0
 - SwiftFormat 0.54.5
 - Xcbeautify 2.11.0
@@ -88,16 +88,16 @@
 - SwiftLint 0.57.0
 
 ### Browsers
-- Safari 17.6 (19618.3.11.11.5)
-- SafariDriver 17.6 (19618.3.11.11.5)
+- Safari 18.0 (19619.1.26.111.10)
+- SafariDriver 18.0 (19619.1.26.111.10)
 - Google Chrome 129.0.6668.59
 - Google Chrome for Testing 129.0.6668.58
 - ChromeDriver 129.0.6668.58
-- Microsoft Edge 128.0.2739.79
-- Microsoft Edge WebDriver 128.0.2739.86
+- Microsoft Edge 129.0.2792.52
+- Microsoft Edge WebDriver 129.0.2792.46
 - Mozilla Firefox 130.0.1
 - geckodriver 0.35.0
-- Selenium server 4.24.0
+- Selenium server 4.25.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -220,19 +220,19 @@
 | Simulator - watchOS 10.5                                | watchsimulator10.5                            | 15.4          |
 | Simulator - watchOS 11.0                                | watchsimulator11.0                            | 16.0          |
 | Simulator - watchOS 11.1                                | watchsimulator11.1                            | 16.1          |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
-| Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
+| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.1                                            | xros1.1                                       | 15.3          |
+| Simulator - visionOS 1.1                                | xrsimulator1.1                                | 15.3          |
 | Simulator - visionOS 1.2                                | xrsimulator1.2                                | 15.4          |
 | visionOS 1.2                                            | xros1.2                                       | 15.4          |
-| visionOS 2.0                                            | xros2.0                                       | 16.0          |
 | Simulator - visionOS 2.0                                | xrsimulator2.0                                | 16.0          |
+| visionOS 2.0                                            | xros2.0                                       | 16.0          |
 | visionOS 2.1                                            | xros2.1                                       | 16.1          |
 | Simulator - visionOS 2.1                                | xrsimulator2.1                                | 16.1          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
 | DriverKit 23.0                                          | driverkit23.0                                 | 15.0.1        |
 | DriverKit 23.2                                          | driverkit23.2                                 | 15.1, 15.2    |
