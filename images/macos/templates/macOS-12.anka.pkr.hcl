@@ -266,7 +266,8 @@ build {
       "${path.root}/../scripts/build/install-pypy.sh",
       "${path.root}/../scripts/build/install-pipx-packages.sh",
       "${path.root}/../scripts/build/install-bicep.sh",
-      "${path.root}/../scripts/build/install-codeql-bundle.sh"
+      "${path.root}/../scripts/build/install-codeql-bundle.sh",
+      "${path.root}/../scripts/build/install-compilable-brew-packages.sh"
     ]
   }
 
