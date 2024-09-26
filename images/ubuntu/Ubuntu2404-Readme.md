@@ -1,12 +1,12 @@
 | Announcements |
 |-|
+| [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 | [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
-| [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
 - Kernel Version: 6.8.0-1014-azure
-- Image Version: 20240915.1.0
+- Image Version: 20240922.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -25,19 +25,19 @@
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 5.10.1
+- Swift 6.0
 
 ### Package Management
 - cpan 1.64
 - Helm 3.16.1
-- Homebrew 4.3.21
+- Homebrew 4.3.23
 - Miniconda 24.7.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit 86fba1306)
+- Vcpkg (build from commit 98aa63962)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -65,17 +65,17 @@ to accomplish this.
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.3.1
 - Bazelisk 1.21.0
-- Bicep 0.29.47
+- Bicep 0.30.3
 - Buildah 1.33.7
 - CMake 3.30.3
-- CodeQL Action Bundle 2.18.4
-- Docker Amazon ECR Credential Helper 0.8.0
+- CodeQL Action Bundle 2.19.0
+- Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.17.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.222.0
-- Git 2.46.0
+- Git 2.46.1
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
@@ -92,7 +92,7 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.132.0
+- Pulumi 3.133.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -100,12 +100,12 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.17.51
+- AWS CLI 2.17.56
 - AWS CLI Session Manager Plugin 1.2.650.0
 - AWS SAM CLI 1.124.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.56.0
+- GitHub CLI 2.57.0
 
 ### Java
 | Version             | Environment Variable |
@@ -118,7 +118,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.3.6
 - Composer 2.7.9
-- PHPUnit 8.5.39
+- PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -139,13 +139,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 128.0.6613.137
-- ChromeDriver 128.0.6613.137
-- Chromium 128.0.6613.0
-- Microsoft Edge 128.0.2739.79
-- Microsoft Edge WebDriver 128.0.2739.81
-- Selenium server 4.24.0
-- Mozilla Firefox 130.0
+- Google Chrome 129.0.6668.58
+- ChromeDriver 129.0.6668.58
+- Chromium 129.0.6668.0
+- Microsoft Edge 129.0.2792.52
+- Microsoft Edge WebDriver 129.0.2792.53
+- Selenium server 4.25.0
+- Mozilla Firefox 130.0.1
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -250,7 +250,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.1.0-2build2               |
 | bzip2                  | 1.0.8-5.1build0.1           |
 | coreutils              | 9.4-3ubuntu6                |
-| curl                   | 8.5.0-2ubuntu10.3           |
+| curl                   | 8.5.0-2ubuntu10.4           |
 | dbus                   | 1.14.10-4ubuntu4.1          |
 | dnsutils               | 1:9.18.28-0ubuntu0.24.04.1  |
 | dpkg                   | 1.22.6ubuntu6.1             |
