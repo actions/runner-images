@@ -25,7 +25,7 @@ param(
     [bool] $EnableAutoLogon = $true,
     [int] $CPUCount = 6,
     [int] $RamSizeGb = 7,
-    [int] $DiskSizeGb = 300,
+    [int] $DiskSizeGb = 325,
     [string] $DisplayResolution = "1920x1080",
     [string] $TagName = [DateTimeOffset]::Now.ToUnixTimeSeconds(),
     [string] $Uuid = "4203018E-580F-C1B5-9525-B745CECA79EB"
@@ -93,8 +93,9 @@ function Invoke-SoftwareUpdate {
     $command = "sw_vers"
     $guestMacosVersion = Invoke-SSHPassCommand -HostName $ipAddress -Command $command
     switch -regex ($guestMacosVersion[1]) {
-        '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma' }
-        '13.\d' { $nextOSVersion = 'macOS Sonoma'  }
+        '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma|macOS Sequoia' }
+        '13.\d' { $nextOSVersion = 'macOS Sonoma|macOS Sequoia' }
+        '14.\d' { $nextOSVersion = 'macOS Sequoia' }
     }
 
     Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"
@@ -175,10 +176,10 @@ if ([string]::IsNullOrEmpty($TemplateName)) {
     $osArch = $(arch)
     if ($osArch -eq "arm64") {
         $macOSInstaller = Get-MacOSIPSWInstaller -MacOSVersion $MacOSVersion -DownloadLatestVersion $DownloadLatestVersion -BetaSearch $BetaSearch
-        $TemplateName = "clean_macos_${shortMacOSVersion}_${osArch}_${DiskSizeGb}gb"
+        $TemplateName = "clean_macos_${shortMacOSVersion}_${osArch}"
     } else {
         $macOSInstaller = Get-MacOSInstaller -MacOSVersion $MacOSVersion -DownloadLatestVersion $DownloadLatestVersion -BetaSearch $BetaSearch
-        $TemplateName = "clean_macos_${shortMacOSVersion}_${DiskSizeGb}gb"
+        $TemplateName = "clean_macos_${shortMacOSVersion}"
     }
 }
 

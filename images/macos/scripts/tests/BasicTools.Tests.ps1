@@ -26,7 +26,7 @@ Describe "cmake" {
     }
 }
 
-Describe "Subversion" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Subversion" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Subversion" {
         "svn --version" | Should -ReturnZeroExitCode
     }
@@ -87,7 +87,7 @@ Describe "7-Zip" {
     }
 }
 
-Describe "Apache Ant" {
+Describe "Apache Ant" -Skip:($os.IsMonterey) {
     It "Apache Ant" {
         "ant -version" | Should -ReturnZeroExitCode
     }
@@ -111,7 +111,7 @@ Describe "bazel" {
     }
 }
 
-Describe "Julia" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Julia" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Julia" {
         "julia --version" | Should -ReturnZeroExitCode
     }
@@ -135,19 +135,19 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "vagrant" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "vagrant" {
         "vagrant --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "virtualbox" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "virtualbox" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "virtualbox" {
         "vboxmanage -v" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "R" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "R" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "R" {
         "R --version" | Should -ReturnZeroExitCode
     }
@@ -159,17 +159,11 @@ Describe "Homebrew" {
     }
 }
 
-Describe "Kotlin" {
+Describe "Kotlin" -Skip:($os.IsMonterey) {
     $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
 
     It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
         "$toolName -version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "sbt" -Skip:($os.IsVentura -or $os.IsSonoma) {
-    It "sbt" {
-        "sbt -version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -179,7 +173,7 @@ Describe "yq" {
     }
 }
 
-Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "imagemagick" {
         "magick -version" | Should -ReturnZeroExitCode
     }

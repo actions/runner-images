@@ -1,12 +1,12 @@
 | Announcements |
 |-|
-| [[All OSes] Android NDK versions <=25 will be removed from images on August 19](https://github.com/actions/runner-images/issues/10342) |
-| [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
+| [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
+| [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
 ***
 # Ubuntu 22.04
-- OS Version: 22.04.4 LTS
-- Kernel Version: 6.5.0-1025-azure
-- Image Version: 20240818.1.0
+- OS Version: 22.04.5 LTS
+- Kernel Version: 6.8.0-1014-azure
+- Image Version: 20240922.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -19,28 +19,28 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.10.4
-- Kotlin 2.0.10-release-540
+- Julia 1.10.5
+- Kotlin 2.0.20-release-360
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.20.4
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 5.10.1
+- Swift 6.0
 
 ### Package Management
 - cpan 1.64
-- Helm 3.15.4
-- Homebrew 4.3.16
-- Miniconda 24.5.0
+- Helm 3.16.1
+- Homebrew 4.3.23
+- Miniconda 24.7.1
 - Npm 10.7.0
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.6.0
+- Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 2f210a9c1)
+- Vcpkg (build from commit 98aa63962)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,70 +59,70 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 8.10
+- Gradle 8.10.1
 - Lerna 8.1.8
 - Maven 3.8.8
-- Sbt 1.10.1
+- Sbt 1.10.2
 
 ### Tools
-- Ansible 2.17.3
+- Ansible 2.17.4
 - apt-fast 1.10.0
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.3.0
-- Bazelisk 1.19.0
-- Bicep 0.29.47
+- Bazel 7.3.1
+- Bazelisk 1.21.0
+- Bicep 0.30.3
 - Buildah 1.23.1
-- CMake 3.30.2
-- CodeQL Action Bundle 2.18.2
-- Docker Amazon ECR Credential Helper 0.8.0
+- CMake 3.30.3
+- CodeQL Action Bundle 2.19.0
+- Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.16.2
+- Docker-Buildx 0.17.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.222.0
-- Git 2.46.0
+- Git 2.46.1
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 9.1.0
+- Heroku 9.2.1
 - jq 1.6
 - Kind 0.24.0
-- Kubectl 1.31.0
+- Kubectl 1.31.1
 - Kustomize 5.4.3
 - Leiningen 2.11.2
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.33.1
-- n 9.2.3
-- Newman 6.2.0
-- nvm 0.40.0
-- OpenSSL 3.0.2-0ubuntu1.17
+- Minikube 1.34.0
+- n 10.0.0
+- Newman 6.2.1
+- nvm 0.40.1
+- OpenSSL 3.0.2-0ubuntu1.18
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.129.0
+- Pulumi 3.133.0
 - R 4.4.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.9.4
+- Terraform 1.9.6
 - yamllint 1.35.1
 - yq 4.44.3
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.219
-- AWS CLI 2.17.32
+- Alibaba Cloud CLI 3.0.223
+- AWS CLI 2.17.56
 - AWS CLI Session Manager Plugin 1.2.650.0
-- AWS SAM CLI 1.122.0
-- Azure CLI 2.63.0
+- AWS SAM CLI 1.124.0
+- Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.54.0
-- Google Cloud CLI 488.0.0
-- Netlify CLI 17.34.1
-- OpenShift CLI 4.16.7
+- GitHub CLI 2.57.0
+- Google Cloud CLI 493.0.0
+- Netlify CLI 17.36.2
+- OpenShift CLI 4.16.13
 - ORAS CLI 1.2.0
-- Vercel CLI 36.0.0
+- Vercel CLI 37.5.3
 
 ### Java
 | Version             | Environment Variable |
@@ -134,8 +134,8 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.7.7
-- PHPUnit 8.5.39
+- Composer 2.7.9
+- PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -147,27 +147,27 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.1.1
 
 ### Rust Tools
-- Cargo 1.80.1
-- Rust 1.80.1
-- Rustdoc 1.80.1
+- Cargo 1.81.0
+- Rust 1.81.0
+- Rustdoc 1.81.0
 - Rustup 1.27.1
 
 #### Packages
-- Bindgen 0.70.0
+- Bindgen 0.70.1
 - Cargo audit 0.20.1
-- Cargo clippy 0.1.80
+- Cargo clippy 0.1.81
 - Cargo outdated 0.15.0
 - Cbindgen 0.27.0
-- Rustfmt 1.7.0
+- Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 127.0.6533.119
-- ChromeDriver 127.0.6533.119
-- Chromium 127.0.6533.0
-- Microsoft Edge 127.0.2651.105
-- Microsoft Edge WebDriver 127.0.2651.107
-- Selenium server 4.23.1
-- Mozilla Firefox 129.0.1
+- Google Chrome 129.0.6668.58
+- ChromeDriver 129.0.6668.58
+- Chromium 129.0.6668.0
+- Microsoft Edge 129.0.2792.52
+- Microsoft Edge WebDriver 129.0.2792.53
+- Selenium server 4.25.0
+- Mozilla Firefox 130.0.1
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -180,7 +180,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 6.0.425, 7.0.410, 8.0.401
-- nbgv 3.6.141+d2035fb7be
+- nbgv 3.6.143+57d4199a9c
 
 ### Databases
 - sqlite3 3.37.2
@@ -204,45 +204,45 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 162.3.566.1
+- SqlPackage 162.4.92.3
 
 ### Cached Tools
 
 #### Go
 - 1.20.14
 - 1.21.13
-- 1.22.6
+- 1.22.7
 
 #### Node.js
 - 16.20.2
 - 18.20.4
-- 20.16.0
+- 20.17.0
 
 #### Python
 - 3.7.17
 - 3.8.18
-- 3.9.19
-- 3.10.14
-- 3.11.9
-- 3.12.5
+- 3.9.20
+- 3.10.15
+- 3.11.10
+- 3.12.6
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.14 [PyPy 7.3.16]
+- 3.10.14 [PyPy 7.3.17]
 
 #### Ruby
 - 3.1.6
 - 3.2.5
 
 ### PowerShell Tools
-- PowerShell 7.4.4
+- PowerShell 7.4.5
 
 #### PowerShell Modules
 - Az: 12.1.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.22.0
+- Microsoft.Graph: 2.23.0
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
@@ -262,36 +262,36 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                                                                              |
-| NDK                        | 26.3.11579264<br>27.0.12077973 (default)                                                                                                                                                                                                                                        |
+| NDK                        | 26.3.11579264<br>27.1.12297006 (default)                                                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                        |
 | ----------------------- | -------------------------------------------- |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                   |
-| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.0.12077973 |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.0.12077973 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.0.12077973 |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.0.12077973 |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Cached Docker images
 | Repository:Tag       | Digest                                                                   | Created    |
 | -------------------- | ------------------------------------------------------------------------ | ---------- |
 | alpine:3.16          | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
-| alpine:3.17          | sha256:ef813b2faa3dd1a37f9ef6ca98347b72cd0f55e4ab29fb90946f1b853bf032d9  | 2024-07-22 |
-| alpine:3.18          | sha256:5292533eb4efd4b5cf35e93b5a2b7d0e07ea193224c49446c7802c19ee4f2da5  | 2024-07-22 |
-| alpine:3.19          | sha256:95c16745f100f44cf9a0939fd3f357905f845f8b6fa7d0cde0e88c9764060185  | 2024-07-22 |
+| alpine:3.17          | sha256:3451da08fc6ef554a100da3e2df5ac6d598c82f2a774d5f6ed465c3d80cd163a  | 2024-09-06 |
+| alpine:3.18          | sha256:3ddf7bf1d408188f9849efbf4f902720ae08f5131bb39013518b918aa056d0de  | 2024-09-06 |
+| alpine:3.19          | sha256:ae65dbf8749a7d4527648ccee1fa3deb6bfcae34cbc30fc67aa45c44dcaa90ee  | 2024-09-06 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:0bb606aad3307370c8b4502eff11fde298e5b7721e59a0da3ce9b30cb92045ed  | 2024-08-13 |
-| moby/buildkit:latest | sha256:e0b10610709509aded9b101a61a090e24a5161f46d5eb8a479297fe96aa5d8ac  | 2024-08-15 |
+| debian:11            | sha256:8ccc486c29a3ad02ad5af7f1156e2152dff3ba5634eec9be375269ef123457d8  | 2024-09-04 |
+| moby/buildkit:latest | sha256:bc1fe18224dbcb92599139db0c745696c48ba9fd4ac24038d1fa81fdd7dcac27  | 2024-09-10 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:a7ff16657263663c1e92ba3060cdbba0e77329a0a4cb3c27bbbbe90c6e20bd87  | 2024-07-09 |
-| node:18-alpine       | sha256:17514b20acef0e79691285e7a59f3ae561f7a1702a9adc72a515aef23f326729  | 2024-07-09 |
-| node:20              | sha256:d3c8ababe9566f9f3495d0d365a5c4b393f607924647dd52e75bf4f8a54effd3  | 2024-07-24 |
-| node:20-alpine       | sha256:eb8101caae9ac02229bd64c024919fe3d4504ff7f329da79ca60a04db08cef52  | 2024-07-24 |
+| node:18              | sha256:ca07c02d13baf021ff5aadb3b48bcd1fcdd454826266ac313ce858676e8c1548  | 2024-07-09 |
+| node:18-alpine       | sha256:02376a266c84acbf45bd19440e08e48b1c8b98037417334046029ab585de03e2  | 2024-07-09 |
+| node:20              | sha256:48db4f6ea21d134be744207225753a1730c4bc1b4cdf836d44511c36bf0e34d7  | 2024-08-21 |
+| node:20-alpine       | sha256:2d07db07a2df6830718ae2a47db6fedce6745f5bcd174c398f2acdda90a11c03  | 2024-08-21 |
 | ubuntu:20.04         | sha256:fa17826afb526a9fc7250e0fbcbfd18d03fe7a54849472f86879d8bf562c629e  | 2024-08-13 |
-| ubuntu:22.04         | sha256:adbb90115a21969d2fe6fa7f9af4253e16d45f8d4c1e930182610c4731962658  | 2024-08-13 |
+| ubuntu:22.04         | sha256:58b87898e82351c6cf9cf5b9f3c20257bb9e2dcf33af051e12ce532d7f94e3fe  | 2024-09-11 |
 
 ### Installed apt packages
 | Name                   | Version                             |
@@ -305,7 +305,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.9-2build6                       |
 | bzip2                  | 1.0.8-5build1                       |
 | coreutils              | 8.32-4.1ubuntu1.2                   |
-| curl                   | 7.81.0-1ubuntu1.17                  |
+| curl                   | 7.81.0-1ubuntu1.18                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
 | dnsutils               | 1:9.18.28-0ubuntu0.22.04.1          |
 | dpkg                   | 1.21.1ubuntu2.3                     |
@@ -328,7 +328,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.8                     |
-| libcurl4               | 7.81.0-1ubuntu1.17                  |
+| libcurl4               | 7.81.0-1ubuntu1.18                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.2          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
@@ -338,7 +338,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libsecret-1-dev        | 0.20.5-2                            |
 | libsqlite3-dev         | 3.37.2-2ubuntu0.3                   |
-| libssl-dev             | 3.0.2-0ubuntu1.17                   |
+| libssl-dev             | 3.0.2-0ubuntu1.18                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
