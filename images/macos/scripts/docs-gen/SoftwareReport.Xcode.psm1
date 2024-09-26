@@ -186,35 +186,30 @@ function Build-XcodeSimulatorsTable {
             $runtimes += $_
         }
     }
-
     $runtimes = $runtimes | Sort-Object @{ Expression = { $_.identifier } } -Unique
-
     return $runtimes | ForEach-Object {
         $runtime = $_
         $runtimeDevices = @()
-        $xcodeList = @()
-
         $xcodeInfo.Values | ForEach-Object {
             $runtimeFound = $_.SimulatorsInfo.runtimes | Where-Object { $_.identifier -eq $runtime.identifier } | Select-Object -First 1
             if ($runtimeFound) {
                 $devicesToAdd = Build-XcodeDevicesList -XcodeInfo $_ -Runtime $runtimeFound
                 $runtimeDevices += $devicesToAdd | Select-Object -ExpandProperty name
-                $xcodeList += $_.VersionInfo.Version
             }
         }
-
-        $xcodeList = $xcodeList | Sort-Object
         $runtimeDevices = $runtimeDevices | ForEach-Object { Format-XcodeSimulatorName $_ } | Select-Object -Unique
-        $sortedRuntimeDevices = $runtimeDevices | Sort-Object @{
-            Expression = { $_.Split(" ")[0] };
-            Descending = $true;
-        }, {
-            $_.Split(" ") | Select-Object -Skip 1 | Join-String -Separator " "
+        If (($runtimeDevices | Where-Object { -not ([string]::IsNullOrWhitespace($_)) }).Count -eq 0) {
+            $sortedRuntimeDevices = @("N/A")
+        } else {
+            $sortedRuntimeDevices = $runtimeDevices | Sort-Object @{
+                Expression = { $_.Split(" ")[0] };
+                Descending = $true;
+            }, {
+                $_.Split(" ") | Select-Object -Skip 1 | Join-String -Separator " "
+            }
         }
-
         return [PSCustomObject] @{
             "OS" = $runtime.name
-            "Xcode Version" = [String]::Join("<br>", $xcodeList)
             "Simulators" = [String]::Join("<br>", $sortedRuntimeDevices)
         }
     } | Sort-Object {
@@ -236,7 +231,7 @@ function Build-XcodeSupportToolsSection {
     $xcversion = Run-Command "xcversion --version" | Select-String "^[0-9]"
 
     $toolNodes += [ToolVersionNode]::new("xcpretty", $xcpretty)
-    if ($os.IsBigSur -or $os.IsMonterey) {
+    if ($os.IsMonterey) {
         $toolNodes += [ToolVersionNode]::new("xcversion", $xcversion)
     }
 
@@ -244,11 +239,6 @@ function Build-XcodeSupportToolsSection {
     $nomadCLI = [regex]::matches($nomadOutput, "(\d+.){2}\d+").Value
     $nomadShenzhenOutput = Run-Command "ipa -version"
     $nomadShenzhen = [regex]::matches($nomadShenzhenOutput, "(\d+.){2}\d+").Value
-
-    if ($os.IsBigSur) {
-        $toolNodes += [ToolVersionNode]::new("Nomad CLI", $nomadCLI)
-        $toolNodes += [ToolVersionNode]::new("Nomad shenzhen CLI", $nomadShenzhen)
-    }
 
     return $toolNodes
 }

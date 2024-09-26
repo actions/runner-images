@@ -39,14 +39,15 @@ function Invoke-SoftwareUpdateArm64 {
     $command = "sw_vers"
     $guestMacosVersion = Invoke-SSHPassCommand -HostName $HostName -Command $command
     switch -regex ($guestMacosVersion[1]) {
-        '13.\d' { $nextOSVersion = 'Sonoma'         }
-        '14.\d' { $nextOSVersion = 'NotYetDefined'  }
+        '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma|macOS Sequoia' }
+        '13.\d' { $nextOSVersion = 'macOS Sonoma|macOS Sequoia' }
+        '14.\d' { $nextOSVersion = 'macOS Sequoia' }
     }
 
     $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/assets/auto-software-update-arm64.exp"
     $script = Invoke-RestMethod -Uri $url
-    foreach ($update in $listOfUpdates) {
-        if ($update -notmatch "$nextOSVersion") {
+    foreach ($update in $ListOfUpdates) {
+        if ($update -notmatch $nextOSVersion) {
             $updatedScript = $script.Replace("MACOSUPDATE", $($($update.trim()).Replace(" ","\ ")))
             $base64 = [Convert]::ToBase64String($updatedScript.ToCharArray())
             $command = "echo $base64 | base64 --decode > ./auto-software-update-arm64.exp;chmod +x ./auto-software-update-arm64.exp; ./auto-software-update-arm64.exp ${Password};rm ./auto-software-update-arm64.exp"

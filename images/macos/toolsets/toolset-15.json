@@ -1,35 +1,23 @@
 {
     "xcode": {
-        "default": "15.4",
+        "default": "16",
         "x64": {
             "versions": [
-                { "link": "16.1_beta_2", "version": "16.1.0-Beta.2+16B5014f", "symlinks": ["16.1"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "a07a709b4b196be118ff5bab7ea19a16a4ca273cad876d73dec5926c8a6da34a"},
-                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
-                { "link": "15.4", "version": "15.4.0+15F31d", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
-                { "link": "15.3", "version": "15.3.0+15E204a", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
-                { "link": "15.2", "version": "15.2.0+15C500b", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
-                { "link": "15.1", "version": "15.1.0+15C65", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
-                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
-                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"}
+                { "link": "16.1_beta_2", "version": "16.1.0-Beta.2+16B5014f", "symlinks": ["16.1"], "install_runtimes": "true", "sha256": "a07a709b4b196be118ff5bab7ea19a16a4ca273cad876d73dec5926c8a6da34a"},
+                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"}
             ]
         },
         "arm64":{
             "versions": [
-                { "link": "16.1_beta_2", "version": "16.1.0-Beta.2+16B5014f", "symlinks": ["16.1"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "a07a709b4b196be118ff5bab7ea19a16a4ca273cad876d73dec5926c8a6da34a"},
-                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
-                { "link": "15.4", "version": "15.4.0+15F31d", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
-                { "link": "15.3", "version": "15.3.0+15E204a", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
-                { "link": "15.2", "version": "15.2.0+15C500b", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
-                { "link": "15.1", "version": "15.1.0+15C65", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
-                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
-                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"}
+                { "link": "16.1_beta_2", "version": "16.1.0-Beta.2+16B5014f", "symlinks": ["16.1"], "install_runtimes": "true", "sha256": "a07a709b4b196be118ff5bab7ea19a16a4ca273cad876d73dec5926c8a6da34a"},
+                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"}
             ]
         }
     },
     "java": {
         "x64": {
             "default": "21",
-            "versions": [ "8", "11", "17", "21"]
+            "versions": [ "11", "17", "21"]
         },
         "arm64": {
             "default": "21",
@@ -37,10 +25,10 @@
         }
     },
     "android": {
-        "cmdline-tools": "commandlinetools-mac-10406996_latest.zip",
+        "cmdline-tools": "commandlinetools-mac-12172612_latest.zip",
         "sdk-tools": "sdk-tools-darwin-4333796.zip",
-        "platform_min_version": "33",
-        "build_tools_min_version": "33.0.2",
+        "platform_min_version": "35",
+        "build_tools_min_version": "35.0.2",
         "extras": [
             "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
@@ -49,9 +37,9 @@
             "cmake;3.22.1"
         ],
         "ndk": {
-            "default": "26",
+            "default": "27",
             "versions": [
-                "24", "25", "26", "27"
+                "26", "27"
             ]
         }
     },
@@ -87,7 +75,7 @@
             "xcodes"
         ],
         "cask_packages": [
-            "parallels"
+            ""
         ]
     },
     "gcc": {
@@ -101,20 +89,18 @@
         "arch":{
             "x64": {
                "versions": [
-                   "7.0",
                    "8.0"
                 ]
             },
             "arm64": {
                 "versions": [
-                    "7.0",
                     "8.0"
                 ]
             }
         }
     },
     "ruby": {
-        "default": "3.0",
+        "default": "3.3",
         "rubygems": [
             "cocoapods",
             "bundler",
@@ -137,8 +123,6 @@
                 },
                 "arm64": {
                     "versions": [
-                        "3.9.*",
-                        "3.10.*",
                         "3.11.*",
                         "3.12.*"
                     ]
@@ -172,7 +156,6 @@
                 "x64": {
                     "variable_template" : "GOROOT_{0}_{1}_X64",
                     "versions": [
-                        "1.20.*",
                         "1.21.*",
                         "1.22.*",
                         "1.23.*"
@@ -181,7 +164,6 @@
                 "arm64": {
                     "variable_template" : "GOROOT_{0}_{1}_ARM64",
                     "versions": [
-                        "1.20.*",
                         "1.21.*",
                         "1.22.*",
                         "1.23.*"
@@ -194,35 +176,23 @@
             "arch": {
                 "x64": {
                     "versions": [
-                        "3.0.*",
                         "3.1.*",
-                        "3.2.*",
-                        "3.3.*"
+                        "3.2.*"
                     ]
                 }
             }
         }
     ],
     "node": {
-        "default": "20"
+        "default": "22"
     },
     "llvm": {
-        "version": "15"
+        "version": "18"
     },
     "php": {
         "version": "8.3"
     },
     "pwsh": {
         "version": "7.4"
-    },
-    "mono": {
-        "framework":{
-            "version": "6.12.0.188",
-            "sha256": "07cdd4e5e72b562892960b7fc73af470db7a4ffc2f68bb834eb3d0a874bbd12c"
-        },
-        "nunit": {
-            "version": "3.15.4",
-            "sha256": "356dab61433b5be76b76fd0e2e979bda56d164f6d85a900e55c3a4a5fffa28de"
-        }
     }
 }

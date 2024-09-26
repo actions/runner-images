@@ -28,6 +28,13 @@ Describe "Xcode" {
         $defaultXcodeTestCase = @{ DefaultXcode = $defaultXcode }
         It "Default Xcode is <DefaultXcode>" -TestCases $defaultXcodeTestCase {
             "xcodebuild -version" | Should -ReturnZeroExitCode
+            If ($DefaultXcode -ilike "*_*") {
+                Write-Host "Composite version detected (beta/RC/preview)"
+                $DefaultXcode = $DefaultXcode.split("_")[0]
+                If ($DefaultXcode -notlike "*.*") {
+                    $DefaultXcode = "${DefaultXcode}.0"
+                }
+            }
             (Get-CommandResult "xcodebuild -version").Output | Should -BeLike "Xcode ${DefaultXcode}*"
         }
 

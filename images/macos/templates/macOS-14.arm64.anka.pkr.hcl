@@ -54,8 +54,9 @@ variable "vm_password" {
 }
 
 variable "github_api_pat" {
-  type    = string
-  default = ""
+  type      = string
+  sensitive = true
+  default   = ""
 }
 
 variable "xcode_install_storage_url" {
@@ -97,7 +98,7 @@ source "null" "template" {
   ssh_host = "${var.source_vm_name}"
   ssh_port = "${var.source_vm_port}"
   ssh_username = "${var.vm_username}"
-  ssh_private_key_file = "${var.vm_password}"
+  ssh_password = "${var.vm_password}"
   ssh_proxy_host = "${var.socks_proxy}"
 }
 
