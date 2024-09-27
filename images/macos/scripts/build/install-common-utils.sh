@@ -17,7 +17,12 @@ for package in $common_packages; do
         xcbeautify_path=$(download_with_retry "https://raw.githubusercontent.com/Homebrew/homebrew-core/d3653e83f9c029a3fddb828ac804b07ac32f7b3b/Formula/x/xcbeautify.rb")
         brew install "$xcbeautify_path"
     else
-        brew_smart_install "$package"
+        if [[ $package == "packer" ]]; then
+            # Packer has been deprecated in Homebrew. Use tap to install Packer.
+            brew install hashicorp/tap/packer
+        else
+            brew_smart_install "$package"
+        fi
     fi
 done
 
