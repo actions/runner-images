@@ -184,7 +184,6 @@
     },
     "brew": {
         "common_packages": [
-            "ant",
             "aria2",
             "azure-cli",
             "bazelisk",
@@ -194,13 +193,11 @@
             "gh",
             "gnupg",
             "gnu-tar",
-            "kotlin",
             "libpq",
             "p7zip",
             "packer",
             "perl",
             "pkg-config",
-            "sbt",
             "subversion",
             "swiftformat",
             "swig",
@@ -222,6 +219,11 @@
             "vagrant",
             "virtualbox",
             "parallels"
+        ],
+        "compilable_packages": [
+            "ant",
+            "kotlin",
+            "sbt"
         ]
     },
     "gcc": {

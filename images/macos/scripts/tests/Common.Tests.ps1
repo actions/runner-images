@@ -146,3 +146,19 @@ Describe "Colima" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
         "colima version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Compiled" -Skip:(-not $os.IsMonterey) {
+    It "Apache Ant" {
+        "ant -version" | Should -ReturnZeroExitCode
+    }
+
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
+
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
+        "$toolName -version" | Should -ReturnZeroExitCode
+    }
+
+    It "sbt" {
+        "sbt -version" | Should -ReturnZeroExitCode
+    }
+}
