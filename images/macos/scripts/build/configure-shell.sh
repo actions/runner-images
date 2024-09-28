@@ -14,8 +14,6 @@ sudo chsh -s /bin/bash root
 # Check MacOS architecture and add HOMEBREW PATH to bashrc
 if [[ $arch == "arm64" ]]; then
   echo "Adding Homebrew environment to bash"
-  /opt/homebrew/bin/brew shellenv >> ~/.bashrc
-  # Workaround for the issue (#10624) with the Homebrew PATH in the bashrc
-  sed -i '' '/; export PATH;/d' ~/.bashrc
-  echo 'export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"' >> ~/.bashrc
+  # Discussed here: https://github.com/Homebrew/brew/pull/18366
+  echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.bashrc
 fi
