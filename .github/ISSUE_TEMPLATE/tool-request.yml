@@ -65,6 +65,8 @@ body:
         - label: macOS 13 Arm64
         - label: macOS 14
         - label: macOS 14 Arm64
+        - label: macOS 15
+        - label: macOS 15 Arm64
         - label: Windows Server 2019
         - label: Windows Server 2022
   - type: textarea

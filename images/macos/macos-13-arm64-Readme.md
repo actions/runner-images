@@ -5,9 +5,9 @@
 | [[macOS] Xcodes visionOS platform will be removed from macOS-14 images on September 23, 2024](https://github.com/actions/runner-images/issues/10559) |
 ***
 # macOS 13
-- OS Version: macOS 13.6.9 (22G830)
+- OS Version: macOS 13.7 (22H123)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240916.74
+- Image Version: 20240923.116
 
 ## Installed Software
 
@@ -30,15 +30,15 @@
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.18
+- Bundler 2.5.19
 - Carthage 0.40.0
 - CocoaPods 1.15.2
-- Homebrew 4.3.21
+- Homebrew 4.3.23
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.12)
 - Pipx 1.7.1
-- RubyGems 3.5.18
+- RubyGems 3.5.19
 - Yarn 1.22.22
 
 ### Project Management
@@ -56,7 +56,7 @@
 - Curl 8.7.1
 - Git 2.46.1
 - Git LFS 3.5.1
-- GitHub CLI 2.56.0
+- GitHub CLI 2.57.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -68,14 +68,14 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.51
+- AWS CLI 2.17.56
 - AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.29.47
+- Bicep CLI 0.30.3
 - Cmake 3.30.3
-- CodeQL Action Bundle 2.18.4
+- CodeQL Action Bundle 2.19.0
 - Fastlane 2.222.0
 - SwiftFormat 0.54.5
 - Xcbeautify 2.11.0
@@ -85,12 +85,12 @@
 ### Linters
 
 ### Browsers
-- Safari 17.6 (18618.3.11.11.7)
-- SafariDriver 17.6 (18618.3.11.11.7)
-- Google Chrome 128.0.6613.138
-- Google Chrome for Testing 128.0.6613.137
-- ChromeDriver 128.0.6613.137
-- Selenium server 4.24.0
+- Safari 18.0 (18619.1.26.111.10)
+- SafariDriver 18.0 (18619.1.26.111.10)
+- Google Chrome 129.0.6668.59
+- Google Chrome for Testing 129.0.6668.58
+- ChromeDriver 129.0.6668.58
+- Selenium server 4.25.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -220,7 +220,7 @@
 | Package Name               | Version                                                                                                                                                                                                                             |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                |
-| Android Emulator           | 35.1.20                                                                                                                                                                                                                             |
+| Android Emulator           | 35.1.21                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                   |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                              |

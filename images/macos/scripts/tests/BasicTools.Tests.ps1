@@ -87,7 +87,7 @@ Describe "7-Zip" {
     }
 }
 
-Describe "Apache Ant" {
+Describe "Apache Ant" -Skip:($os.IsMonterey) {
     It "Apache Ant" {
         "ant -version" | Should -ReturnZeroExitCode
     }
@@ -159,17 +159,11 @@ Describe "Homebrew" {
     }
 }
 
-Describe "Kotlin" {
+Describe "Kotlin" -Skip:($os.IsMonterey) {
     $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
 
     It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
         "$toolName -version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "sbt" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "sbt" {
-        "sbt -version" | Should -ReturnZeroExitCode
     }
 }
 
