@@ -12,7 +12,7 @@ For detailed information about using prebuilt images in your self-hosted agent, 
 
 ## Overview
 
-This repository is a fork of [GitHub Actions runner images](https://github.com/actions/runner-images). I've added the Terraform wrapper for Packer; the image definition remains the same as in the fork.
+This repository is a fork of [GitHub Actions runner images](https://github.com/actions/runner-images). I've added the Terraform wrapper for Packer; the image definition remains the same as in the main repo.
 
 ## Features
 
