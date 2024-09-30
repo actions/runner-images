@@ -196,9 +196,9 @@ build {
   provisioner "file" {
     destination = "${var.image_folder}\\"
     sources     = [
-      "${path.root}/../assets",
-      "${path.root}/../scripts",
-      "${path.root}/../toolsets"
+      # "${path.root}/../assets",
+      # "${path.root}/../scripts",
+      # "${path.root}/../toolsets"
     ]
   }
 
@@ -256,15 +256,15 @@ build {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "AGENT_TOOLSDIRECTORY=${var.agent_tools_directory}", "IMAGEDATA_FILE=${var.imagedata_file}", "IMAGE_FOLDER=${var.image_folder}"]
     execution_policy = "unrestricted"
     scripts          = [
-      "${path.root}/../scripts/build/Configure-WindowsDefender.ps1",
-      "${path.root}/../scripts/build/Configure-PowerShell.ps1",
-      "${path.root}/../scripts/build/Install-PowerShellModules.ps1",
-      "${path.root}/../scripts/build/Install-WindowsFeatures.ps1",
-      "${path.root}/../scripts/build/Install-Chocolatey.ps1",
-      "${path.root}/../scripts/build/Configure-BaseImage.ps1",
-      "${path.root}/../scripts/build/Configure-ImageDataFile.ps1",
-      "${path.root}/../scripts/build/Configure-SystemEnvironment.ps1",
-      "${path.root}/../scripts/build/Configure-DotnetSecureChannel.ps1"
+      # "${path.root}/../scripts/build/Configure-WindowsDefender.ps1",
+      # "${path.root}/../scripts/build/Configure-PowerShell.ps1",
+      # "${path.root}/../scripts/build/Install-PowerShellModules.ps1",
+      # "${path.root}/../scripts/build/Install-WindowsFeatures.ps1",
+      # "${path.root}/../scripts/build/Install-Chocolatey.ps1",
+      # "${path.root}/../scripts/build/Configure-BaseImage.ps1",
+      # "${path.root}/../scripts/build/Configure-ImageDataFile.ps1",
+      # "${path.root}/../scripts/build/Configure-SystemEnvironment.ps1",
+      # "${path.root}/../scripts/build/Configure-DotnetSecureChannel.ps1"
     ]
   }
 
@@ -279,14 +279,14 @@ build {
   provisioner "powershell" {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
     scripts          = [
-      "${path.root}/../scripts/build/Install-VCRedist.ps1",
-      "${path.root}/../scripts/build/Install-Docker.ps1",
-      "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
-      "${path.root}/../scripts/build/Install-DockerCompose.ps1",
-      "${path.root}/../scripts/build/Install-PowershellCore.ps1",
-      "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1",
-      "${path.root}/../scripts/build/Install-Runner.ps1",
-      "${path.root}/../scripts/build/Install-TortoiseSvn.ps1"
+      # "${path.root}/../scripts/build/Install-VCRedist.ps1",
+      # "${path.root}/../scripts/build/Install-Docker.ps1",
+      # "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
+      # "${path.root}/../scripts/build/Install-DockerCompose.ps1",
+      # "${path.root}/../scripts/build/Install-PowershellCore.ps1",
+      # "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1",
+      # "${path.root}/../scripts/build/Install-Runner.ps1",
+      # "${path.root}/../scripts/build/Install-TortoiseSvn.ps1"
     ]
   }
 
@@ -299,9 +299,9 @@ build {
     elevated_user     = "${var.install_user}"
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}"]
     scripts           = [
-      "${path.root}/../scripts/build/Install-VisualStudio.ps1",
-      "${path.root}/../scripts/build/Install-KubernetesTools.ps1",
-      "${path.root}/../scripts/build/Install-NET48-devpack.ps1"
+      # "${path.root}/../scripts/build/Install-VisualStudio.ps1",
+      # "${path.root}/../scripts/build/Install-KubernetesTools.ps1",
+      # "${path.root}/../scripts/build/Install-NET48-devpack.ps1"
     ]
     valid_exit_codes  = [0, 3010]
   }
@@ -309,15 +309,15 @@ build {
   provisioner "powershell" {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
     scripts          = [
-      "${path.root}/../scripts/build/Install-Wix.ps1",
-      "${path.root}/../scripts/build/Install-WDK.ps1",
-      "${path.root}/../scripts/build/Install-VSExtensions.ps1",
-      "${path.root}/../scripts/build/Install-AzureCli.ps1",
-      "${path.root}/../scripts/build/Install-AzureDevOpsCli.ps1",
-      "${path.root}/../scripts/build/Install-ChocolateyPackages.ps1",
-      "${path.root}/../scripts/build/Install-JavaTools.ps1",
-      "${path.root}/../scripts/build/Install-Kotlin.ps1",
-      "${path.root}/../scripts/build/Install-OpenSSL.ps1"
+      # "${path.root}/../scripts/build/Install-Wix.ps1",
+      # "${path.root}/../scripts/build/Install-WDK.ps1",
+      # "${path.root}/../scripts/build/Install-VSExtensions.ps1",
+      # "${path.root}/../scripts/build/Install-AzureCli.ps1",
+      # "${path.root}/../scripts/build/Install-AzureDevOpsCli.ps1",
+      # "${path.root}/../scripts/build/Install-ChocolateyPackages.ps1",
+      # "${path.root}/../scripts/build/Install-JavaTools.ps1",
+      # "${path.root}/../scripts/build/Install-Kotlin.ps1",
+      # "${path.root}/../scripts/build/Install-OpenSSL.ps1"
     ]
   }
 
