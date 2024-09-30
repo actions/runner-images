@@ -255,7 +255,6 @@ build {
 provisioner "powershell" {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
     scripts          = [
-      "${path.root}/../scripts/build/Install-Mingw64.ps1",
       "${path.root}/../scripts/build/Install-ActionsCache.ps1",
       "${path.root}/../scripts/build/Install-Ruby.ps1",
       "${path.root}/../scripts/build/Install-PyPy.ps1",
@@ -286,6 +285,7 @@ provisioner "powershell" {
       "${path.root}/../scripts/build/Install-SQLPowerShellTools.ps1",
       "${path.root}/../scripts/build/Install-SQLOLEDBDriver.ps1",
       "${path.root}/../scripts/build/Install-DotnetSDK.ps1",
+      "${path.root}/../scripts/build/Install-Mingw64.ps1",
       "${path.root}/../scripts/build/Install-Haskell.ps1",
       "${path.root}/../scripts/build/Install-Stack.ps1",
       "${path.root}/../scripts/build/Install-Miniconda.ps1",
