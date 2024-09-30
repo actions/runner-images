@@ -6,13 +6,13 @@
 ![Build Status](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wiki/azure-way/actions-runner-images/windows-2022.md)
 ![Build Status](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/wiki/azure-way/actions-runner-images/windows-2019.md)
 
-This repository demonstrates how to set up and configure a self-hosted Azure DevOps agent using prebuilt images. The guide provides a comprehensive overview of the steps needed to deploy and manage your own agent to optimize CI/CD pipelines.
+This repository demonstrates how to build GitHub Actions Runner Image in the Azure Compute Gallery. Later on, you can use those images to create an Azure DevOps private Agent Pool.
+
+For detailed information about using prebuilt images in your self-hosted agent, refer to the [full guide here](https://azureway.cloud/azure-devops-self-hosted-agent-using-prebuilt-images/).
 
 ## Overview
 
-Azure DevOps allows users to configure self-hosted agents for build and release pipelines. By using prebuilt images, we can simplify the agent setup process and increase efficiency. This approach minimizes the configuration overhead and provides a faster setup for development teams.
-
-For detailed information about using prebuilt images in your self-hosted agent, refer to the [full guide here](https://azureway.cloud/azure-devops-self-hosted-agent-using-prebuilt-images/).
+This repository is a fork of [GitHub Actions runner images](https://github.com/actions/runner-images). I've added the Terraform wrapper for Packer; the image definition remains the same as in the fork.
 
 ## Features
 
