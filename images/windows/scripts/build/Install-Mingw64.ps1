@@ -9,7 +9,7 @@ if (Test-IsWin19) {
 
     $("mingw32", "mingw64") | ForEach-Object {
         if ($_ -eq "mingw32") {
-            $url = "https://downloads.sourceforge.net/project/mingw-w64/Toolchains targetting Win32/Personal Builds/mingw-builds/8.1.0/threads-posix/dwarf/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z?ts=gAAAAABm-Ff3SXF6en4mDgG8rFtRH-XvSw41O8U9xxkJcEgjzQlVoaQn-lRV78_mwqRTkM4h_tPvFQ9tmNLBbZB-0tiOBYGWhA==&r=https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/8.1.0/threads-posix/dwarf/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z/download"
+            $url = "https://downloads.sourceforge.net/project/mingw-w64/mingw-w64/mingw-w64-release/mingw-w64-v11.0.0.tar.bz2?ts=gAAAAABm-t-OC99JEhgzCDOIw-0zSeQ0vgDlPUNijEfbKu5guIJbT2t36s4VSvJR_0cbWNxoO45GhSFYZlrXdQPiT7wy_Sl3Zw%3D%3D&r=https%3A%2F%2Fsourceforge.net%2Fprojects%2Fmingw-w64%2Ffiles%2Flatest%2Fdownload"
             $sha256sum = 'adb84b70094c0225dd30187ff995e311d19424b1eb8f60934c60e4903297f946'
         } elseif ($_ -eq "mingw64") {
             $url = "$baseUrl/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/seh/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z/download"
