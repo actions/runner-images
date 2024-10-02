@@ -23,5 +23,5 @@ jobs:
       image_readme_path: 'ubuntu/Ubuntu2404-Readme.md'
       short_image_name: 'u'
       state: tf-ubuntu-2404.tfstate
-      run_packer: ${{ github.event.inputs.run_packer }}
+      run_packer: '${{ github.event.inputs.run_packer }}'
     secrets: inherit
