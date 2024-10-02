@@ -400,3 +400,6 @@ images/*/*-temp.json
 terraform_base/.terraform.lock.hcl
 terraform_base/.terraform/*
 terraform-macos/*
+terraform/conf/*
+terraform/.terraform/*
+*.lock.hcl
