@@ -4,7 +4,7 @@
 - Image Version: 20240923.103
 
 ## Installed Software
-
+#images/macos/macos-14-Readme.md
 ### Language and Runtime
 - .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.401
 - Bash 3.2.57(1)-release
@@ -106,7 +106,7 @@
 | 21.0.4+7.0 (default) | JAVA_HOME_21_X64     |
 
 ### Cached Tools
-
+#metaQuen.al
 #### Ruby
 - 3.1.6
 - 3.2.5
@@ -199,7 +199,7 @@
 #### Environment variables
 | Name                    | Value                                               |
 | ----------------------- | --------------------------------------------------- |
-| ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
+| ANDROID_metaQuen          | /Users/MetaQuen.Library/Android/sdk   a                |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
