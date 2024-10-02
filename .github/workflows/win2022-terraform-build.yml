@@ -23,5 +23,5 @@ jobs:
       image_readme_path: 'windows/Windows2022-Readme.md'
       short_image_name: 'w'
       state: tf-windows-2022.tfstate
-      run_packer: ${{ github.event_name == 'run_packer' || fromJSON(inputs.build) }}
+      run_packer: '${{ inputs.run_packer }}'
     secrets: inherit
