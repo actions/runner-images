@@ -1,12 +1,12 @@
 # macOS 15
 - OS Version: macOS 15.0 (24A335)
 - Kernel Version: Darwin 24.0.0
-- Image Version: 20240919.100
+- Image Version: 20240921.108
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.401
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.401
 - Bash 3.2.57(1)-release
 - Clang/LLVM 16.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
@@ -60,7 +60,7 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.54
+- AWS CLI 2.17.56
 - AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
@@ -82,7 +82,7 @@
 - Google Chrome 129.0.6668.59
 - Google Chrome for Testing 129.0.6668.58
 - ChromeDriver 129.0.6668.58
-- Selenium server 4.24.0
+- Selenium server 4.25.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -154,10 +154,10 @@
 | watchOS 11.1             | watchos11.1          | 16.1          |
 | Simulator - watchOS 11.0 | watchsimulator11.0   | 16.0          |
 | Simulator - watchOS 11.1 | watchsimulator11.1   | 16.1          |
-| visionOS 2.0             | xros2.0              | 16.0          |
 | Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
-| Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
+| visionOS 2.0             | xros2.0              | 16.0          |
 | visionOS 2.1             | xros2.1              | 16.1          |
+| Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
 | DriverKit 24.0           | driverkit24.0        | 16.0          |
 | DriverKit 24.1           | driverkit24.1        | 16.1          |
 
@@ -183,7 +183,7 @@
 | CMake                      | 3.22.1                                                                                                                                                                                  |
 | Google Play services       | 49                                                                                                                                                                                      |
 | Google Repository          | 58                                                                                                                                                                                      |
-| NDK                        | 25.2.9519653<br>26.3.11579264<br>27.1.12297006 (default)                                                                                                                                |
+| NDK                        | 26.3.11579264<br>27.1.12297006 (default)                                                                                                                                                |
 
 #### Environment variables
 | Name                    | Value                                               |
