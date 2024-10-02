@@ -23,5 +23,5 @@ jobs:
       image_readme_path: 'ubuntu/Ubuntu2004-Readme.md'
       short_image_name: 'u'
       state: tf-ubuntu-2004.tfstate
-      run_packer: ${{ github.event_name == 'run_packer' || fromJSON(inputs.build) }}
+      run_packer: '${{ inputs.run_packer }}'
     secrets: inherit
