@@ -42,6 +42,12 @@ variable "os_type_map" {
   }
 }
 
+variable "run_packer" {
+  description = "Run packer flag"
+  type = bool
+  default = false
+}
+
 variable "subscription-id" {
   description = "Subscription for service principal"
 }

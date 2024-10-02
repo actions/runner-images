@@ -20,6 +20,9 @@ on:
       directory:
         type: string
         default: './terraform'
+      run_packer:
+        required: true
+        type: boolean
 
 jobs:
   terraform-image-build:
@@ -51,7 +54,7 @@ jobs:
            
       - name: Terraform Apply
         id: apply
-        run: terraform apply --auto-approve -input=false -input=false -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ inputs.image_type_version }}" -var="short_image_name=${{ inputs.short_image_name }}"
+        run: terraform apply --auto-approve -input=false -input=false -var="run_packer=${{inputs.run_packer}}" -var="spn-client-id=${{secrets.spn_client_id}}" -var="spn-client-secret=${{secrets.spn_client_secret}}" -var="spn-tenant-id=${{secrets.AZURE_TENANT_ID}}" -var="subscription-id=${{secrets.subscription_id}}" -var="image_type=${{ inputs.image_type }}" -var="image_version=${{ env.IMAGE_VERSION }}" -var="image_type_version=${{ inputs.image_type_version }}" -var="short_image_name=${{ inputs.short_image_name }}"
         continue-on-error: false        
 
       - name: Build-A-Badge-Success

@@ -8,6 +8,11 @@ on:
       branches:
       - main     
   workflow_dispatch: 
+    inputs:
+      run_packer:
+        type: boolean
+        description: Run Packer to build image
+        default: false
 
 jobs:
   win2019:
@@ -18,4 +23,5 @@ jobs:
       image_readme_path: 'windows/Windows2019-Readme.md'
       short_image_name: 'w'
       state: tf-windows-2019.tfstate
+      run_packer: ${{ github.event.inputs.run_packer }}
     secrets: inherit
