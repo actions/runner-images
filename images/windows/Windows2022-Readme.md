@@ -1,6 +1,6 @@
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2700
-- Image Version: 20240922.1.0
+- Image Version: 20240929.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -8,14 +8,14 @@
 ## Installed Software
 
 ### Language and Runtime
-- Bash 5.2.32(1)-release
+- Bash 5.2.37(1)-release
 - Go 1.21.13
 - Julia 1.10.5
 - Kotlin 2.0.20
 - LLVM 18.1.8
 - Node 18.20.3
 - Perl 5.32.1
-- PHP 8.3.11
+- PHP 8.3.12
 - Python 3.9.13
 - Ruby 3.0.7p220
 
@@ -29,7 +29,7 @@
 - pip 24.2 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 98aa63962)
+- Vcpkg (build from commit 76d153790)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -50,15 +50,15 @@
 - azcopy 10.26.0
 - Bazel 7.3.1
 - Bazelisk 1.21.0
-- Bicep 0.30.3
+- Bicep 0.30.23
 - Cabal 3.12.1.0
-- CMake 3.30.3
+- CMake 3.30.4
 - CodeQL Action Bundle 2.19.0
 - Docker 26.1.3
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
 - ghc 9.10.1
-- Git 2.46.1.windows.1
+- Git 2.46.2.windows.1
 - Git LFS 3.5.1
 - ImageMagick 7.1.1-38
 - InnoSetup 6.3.3
@@ -72,8 +72,8 @@
 - Newman 6.2.1
 - NSIS 3.10
 - OpenSSL 1.1.1w
-- Packer 1.11.0
-- Pulumi 3.133.0
+- Packer 1.11.2
+- Pulumi 3.134.1
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -86,9 +86,9 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.223
-- AWS CLI 2.17.56
-- AWS SAM CLI 1.124.0
+- Alibaba Cloud CLI 3.0.224
+- AWS CLI 2.17.61
+- AWS SAM CLI 1.125.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure DevOps CLI extension 1.0.1
@@ -109,10 +109,10 @@
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 129.0.6668.59
-- Chrome Driver 129.0.6668.58
-- Microsoft Edge 129.0.2792.52
-- Microsoft Edge Driver 129.0.2792.52
+- Google Chrome 129.0.6668.71
+- Chrome Driver 129.0.6668.70
+- Microsoft Edge 129.0.2792.65
+- Microsoft Edge Driver 129.0.2792.65
 - Mozilla Firefox 130.0.1
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
@@ -499,7 +499,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.661
+- AWSPowershell: 4.1.666
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.23.0
