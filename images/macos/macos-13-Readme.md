@@ -1,18 +1,19 @@
 | Announcements |
 |-|
+| [[macOS] Support policy changes; Xcode 14 and 16 will be removed from macOS 14 on October 28](https://github.com/actions/runner-images/issues/10703) |
+| [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 | [[Macos 13 and 14] Android NDK versions <=25 will be removed from images on October 07,2024](https://github.com/actions/runner-images/issues/10614) |
 | [[Macos 13 and 14] Go version 1.20.0 will be removed on October 07,2024.](https://github.com/actions/runner-images/issues/10612) |
-| [[macOS] Xcodes visionOS platform will be removed from macOS-14 images on September 23, 2024](https://github.com/actions/runner-images/issues/10559) |
 ***
 # macOS 13
-- OS Version: macOS 13.6.9 (22G830)
+- OS Version: macOS 13.7 (22H123)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20240916.98
+- Image Version: 20240930.147
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.401
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.402
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -26,28 +27,28 @@
 - Mono 6.12.0.188
 - Node.js 20.17.0
 - Perl 5.38.2
-- PHP 8.3.11
+- PHP 8.3.12
 - Python3 3.12.6
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.18
+- Bundler 2.5.20
 - Carthage 0.40.0
 - CocoaPods 1.15.2
 - Composer 2.7.9
-- Homebrew 4.3.21
+- Homebrew 4.3.24
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.12)
 - Pipx 1.7.1
-- RubyGems 3.5.18
-- Vcpkg 2024 (build from commit 86fba1306)
+- RubyGems 3.5.20
+- Vcpkg 2024 (build from commit 76d153790)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.10.1
+- Gradle 8.10.2
 
 ### Utilities
 - 7-Zip 17.05
@@ -56,30 +57,30 @@
 - bazel 7.3.1
 - bazelisk 1.21.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.10.0
-- Git 2.46.1
+- Curl 8.10.1
+- Git 2.46.2
 - Git LFS 3.5.1
-- GitHub CLI 2.56.0
+- GitHub CLI 2.57.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
 - jq 1.7.1
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.9.4
+- Packer 1.11.2
 - pkg-config 0.29.2
 - yq 4.44.3
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.51
-- AWS SAM CLI 1.124.0
+- AWS CLI 2.17.61
+- AWS SAM CLI 1.125.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.29.47
-- Cmake 3.30.3
-- CodeQL Action Bundle 2.18.4
-- Fastlane 2.222.0
+- Bicep CLI 0.30.23
+- Cmake 3.30.4
+- CodeQL Action Bundle 2.19.0
+- Fastlane 2.223.1
 - SwiftFormat 0.54.5
 - Xcbeautify 2.11.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
@@ -89,16 +90,16 @@
 - SwiftLint 0.57.0
 
 ### Browsers
-- Safari 17.6 (18618.3.11.11.7)
-- SafariDriver 17.6 (18618.3.11.11.7)
-- Google Chrome 128.0.6613.138
-- Google Chrome for Testing 128.0.6613.137
-- ChromeDriver 128.0.6613.137
-- Microsoft Edge 128.0.2739.79
-- Microsoft Edge WebDriver 128.0.2739.81
-- Mozilla Firefox 130.0
+- Safari 18.0 (18619.1.26.111.10)
+- SafariDriver 18.0 (18619.1.26.111.10)
+- Google Chrome 129.0.6668.71
+- Google Chrome for Testing 129.0.6668.70
+- ChromeDriver 129.0.6668.70
+- Microsoft Edge 129.0.2792.65
+- Microsoft Edge WebDriver 129.0.2792.65
+- Mozilla Firefox 130.0.1
 - geckodriver 0.35.0
-- Selenium server 4.24.0
+- Selenium server 4.25.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -210,11 +211,11 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
+| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
@@ -242,7 +243,7 @@
 | Package Name               | Version                                                                                                                                                                                                                             |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                |
-| Android Emulator           | 35.1.20                                                                                                                                                                                                                             |
+| Android Emulator           | 35.1.21                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                   |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                              |
@@ -267,7 +268,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.0.0-55653/ParallelsDesktop-20.0.0-55653.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.0.1-55659/ParallelsDesktop-20.0.1-55659.dmg |
 
 ##### Notes
 ```
