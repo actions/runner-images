@@ -12,7 +12,7 @@ on:
       run_packer:
         type: boolean
         description: Run Packer to build image
-        default: false
+        default: true
     
 jobs:
   Ubuntu_2004:
