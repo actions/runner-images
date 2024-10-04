@@ -9,6 +9,7 @@
 echo "Enabling automatic GUI login for the '$USERNAME' user.."
 python3 $HOME/bootstrap/kcpassword.py "$PASSWORD"
 /usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUser "$USERNAME"
+/usr/bin/defaults write /Library/Preferences/com.apple.loginwindow autoLoginUserScreenLocked -bool false
 
 : '
 The MIT License (MIT)
