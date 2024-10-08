@@ -28,9 +28,9 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "16.*",
                 "18.*",
-                "20.*"
+                "20.*",
+                "22.*"
             ]
         },
         {
@@ -263,7 +263,7 @@
         "version": "4"
     },
     "node": {
-        "default": "20"
+        "default": "22"
     },
     "node_modules": [
         {
