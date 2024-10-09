@@ -1,6 +1,6 @@
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 2700
-- Image Version: 20240929.1.0
+- Image Version: 20241006.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -21,15 +21,15 @@
 
 ### Package Management
 - Chocolatey 2.3.0
-- Composer 2.7.9
+- Composer 2.8.1
 - Helm 3.16.0
 - Miniconda 24.7.1 (pre-installed on the image but not added to PATH)
 - NPM 10.7.0
-- NuGet 6.11.0.119
+- NuGet 6.11.1.2
 - pip 24.2 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 76d153790)
+- Vcpkg (build from commit 7adc2e4d4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -48,8 +48,8 @@
 - 7zip 24.08
 - aria2 1.37.0
 - azcopy 10.26.0
-- Bazel 7.3.1
-- Bazelisk 1.21.0
+- Bazel 7.3.2
+- Bazelisk 1.22.0
 - Bicep 0.30.23
 - Cabal 3.12.1.0
 - CMake 3.30.4
@@ -73,7 +73,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.2
-- Pulumi 3.134.1
+- Pulumi 3.135.1
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -87,12 +87,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.224
-- AWS CLI 2.17.61
+- AWS CLI 2.18.0
 - AWS SAM CLI 1.125.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.57.0
+- GitHub CLI 2.58.0
 
 ### Rust Tools
 - Cargo 1.81.0
@@ -109,11 +109,11 @@
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 129.0.6668.71
-- Chrome Driver 129.0.6668.70
-- Microsoft Edge 129.0.2792.65
-- Microsoft Edge Driver 129.0.2792.65
-- Mozilla Firefox 130.0.1
+- Google Chrome 129.0.6668.90
+- Chrome Driver 129.0.6668.89
+- Microsoft Edge 129.0.2792.79
+- Microsoft Edge Driver 129.0.2792.79
+- Mozilla Firefox 131.0
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
 - Selenium server 4.25.0
@@ -156,7 +156,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.20.14
 - 1.21.13
-- 1.22.7
+- 1.22.8
 
 #### Node.js
 - 16.20.2
@@ -169,7 +169,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.9.13
 - 3.10.11
 - 3.11.9
-- 3.12.6
+- 3.12.7
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.17]
@@ -200,7 +200,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.28.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.29.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.20.0
@@ -213,7 +213,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.27.1  | C:\tools\nginx-1.27.1\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.27.2  | C:\tools\nginx-1.27.2\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version         | Path                                                     |
@@ -499,10 +499,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.666
+- AWSPowershell: 4.1.671
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.23.0
+- Microsoft.Graph: 2.24.0
 - Pester: 3.4.0, 5.6.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.22.0
@@ -519,7 +519,7 @@ All other versions are saved but not installed.
 | Package Name               | Version                                                                                                                                                                                                                                                                         |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                             |
-| Android Emulator           | 35.1.21                                                                                                                                                                                                                                                                         |
+| Android Emulator           | 35.2.10                                                                                                                                                                                                                                                                         |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                             |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                          |
