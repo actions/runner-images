@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and ADO](https://github.com/actions/runner-images/issues/10721) |
 | [[macOS] Support policy changes; Xcode 14 and 16 will be removed from macOS 14 on October 28](https://github.com/actions/runner-images/issues/10703) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 | [[Macos 13 and 14] Android NDK versions <=25 will be removed from images on October 07,2024](https://github.com/actions/runner-images/issues/10614) |
@@ -8,7 +9,7 @@
 # macOS 15
 - OS Version: macOS 15.0 (24A335)
 - Kernel Version: Darwin 24.0.0
-- Image Version: 20240930.153
+- Image Version: 20241007.173
 
 ## Installed Software
 
@@ -27,19 +28,19 @@
 - Node.js 22.9.0
 - Perl 5.38.2
 - PHP 8.3.12
-- Python3 3.12.6
+- Python3 3.12.7
 - Ruby 3.3.5
 
 ### Package Management
-- Bundler 2.5.20
+- Bundler 2.5.21
 - Carthage 0.40.0
 - CocoaPods 1.15.2
-- Composer 2.7.9
-- Homebrew 4.3.24
+- Composer 2.8.1
+- Homebrew 4.4.0
 - NPM 10.8.3
 - Pip3 24.2 (python 3.12)
 - Pipx 1.7.1
-- RubyGems 3.5.20
+- RubyGems 3.5.21
 - Yarn 1.22.22
 
 ### Project Management
@@ -51,13 +52,13 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.26.0
-- bazel 7.3.1
+- bazel 7.3.2
 - bazelisk 1.22.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.10.1
 - Git 2.46.2
 - Git LFS 3.5.1
-- GitHub CLI 2.57.0
+- GitHub CLI 2.58.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -69,7 +70,7 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.17.61
+- AWS CLI 2.18.0
 - AWS SAM CLI 1.125.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
@@ -77,7 +78,7 @@
 - Bicep CLI 0.30.23
 - Cmake 3.30.4
 - CodeQL Action Bundle 2.19.0
-- Fastlane 2.223.1
+- Fastlane 2.224.0
 - SwiftFormat 0.54.5
 - Xcbeautify 2.11.0
 - Xcode Command Line Tools 16.0.0.0.1.1724870825
@@ -89,12 +90,12 @@
 ### Browsers
 - Safari 18.0 (20619.1.26.31.6)
 - SafariDriver 18.0 (20619.1.26.31.6)
-- Google Chrome 129.0.6668.71
-- Google Chrome for Testing 129.0.6668.70
-- ChromeDriver 129.0.6668.70
-- Microsoft Edge 129.0.2792.65
-- Microsoft Edge WebDriver 129.0.2792.65
-- Mozilla Firefox 130.0.1
+- Google Chrome 129.0.6668.90
+- Google Chrome for Testing 129.0.6668.89
+- ChromeDriver 129.0.6668.89
+- Microsoft Edge 129.0.2792.79
+- Microsoft Edge WebDriver 129.0.2792.82
+- Mozilla Firefox 131.0
 - geckodriver 0.35.0
 - Selenium server 4.25.0
 
@@ -122,7 +123,7 @@
 - 3.9.20
 - 3.10.15
 - 3.11.9
-- 3.12.6
+- 3.12.7
 
 #### Node.js
 - 18.20.4
@@ -130,8 +131,8 @@
 
 #### Go
 - 1.21.13
-- 1.22.7
-- 1.23.1
+- 1.22.8
+- 1.23.2
 
 ### Rust Tools
 - Cargo 1.81.0
@@ -194,7 +195,7 @@
 ### Android
 | Package Name               | Version                                                                                                                                                                                 |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Emulator           | 35.1.21                                                                                                                                                                                 |
+| Android Emulator           | 35.2.10                                                                                                                                                                                 |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                  |
 | Android Support Repository | 47.0.0                                                                                                                                                                                  |
