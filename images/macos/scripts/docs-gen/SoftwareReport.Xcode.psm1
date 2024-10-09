@@ -94,12 +94,26 @@ function Build-XcodeTable {
 
     $xcodeList = $xcodeInfo.Values | ForEach-Object { $_.VersionInfo } | Sort-Object $sortRules
     return $xcodeList | ForEach-Object {
-        $defaultPostfix = If ($_.IsDefault) { " (default)" } else { "" }
-        $betaPostfix = If ($_.IsStable) { "" } else { " (beta)" }
+        $defaultPostfix = if ($_.IsDefault) { " (default)" } else { "" }
+        $betaPostfix = if ($_.IsStable) { "" } else { " (beta)" }
+        $targetPath = $_.Path
+        $symlinks = @()
+        Get-ChildItem -Path "/Applications" | ForEach-Object {
+            if ($_.LinkType -eq 'SymbolicLink') {
+                $linkTarget = & readlink $_.FullName
+                if ($linkTarget -eq $targetPath) {
+                    $symlinks += $_.FullName
+                }
+            }
+        }
+        if ($null -eq $symlinks) {
+            $symlinks = @("N/A")
+        }
         return [PSCustomObject] @{
             "Version" = $_.Version.ToString() + $betaPostfix + $defaultPostfix
             "Build" = $_.Build
             "Path" = $_.Path
+            "Symlinks" = [String]::Join("<br>", $symlinks)
         }
     }
 }
