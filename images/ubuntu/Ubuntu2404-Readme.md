@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu 24 ] Node.js version 16 will be removed on October 21,2024.](https://github.com/actions/runner-images/issues/10677) |
 | [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 | [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
-- Kernel Version: 6.8.0-1014-azure
-- Image Version: 20240922.1.0
+- Kernel Version: 6.8.0-1015-azure
+- Image Version: 20241006.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -21,23 +22,23 @@
 - GNU Fortran: 12.3.0, 13.2.0, 14.0.1
 - Julia 1.10.5
 - Kotlin 2.0.20-release-360
-- Node.js 20.17.0
+- Node.js 20.18.0
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 6.0
+- Swift 6.0.1
 
 ### Package Management
 - cpan 1.64
 - Helm 3.16.1
-- Homebrew 4.3.23
+- Homebrew 4.4.0
 - Miniconda 24.7.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit 98aa63962)
+- Vcpkg (build from commit 7adc2e4d4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,26 +57,26 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.10.1
+- Gradle 8.10.2
 - Lerna 8.1.8
 - Maven 3.8.8
 
 ### Tools
 - Ansible 2.17.4
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.3.1
-- Bazelisk 1.21.0
-- Bicep 0.30.3
+- Bazel 7.3.2
+- Bazelisk 1.22.0
+- Bicep 0.30.23
 - Buildah 1.33.7
-- CMake 3.30.3
+- CMake 3.30.4
 - CodeQL Action Bundle 2.19.0
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.17.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.222.0
-- Git 2.46.1
+- Fastlane 2.224.0
+- Git 2.46.2
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
@@ -92,7 +93,7 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.133.0
+- Pulumi 3.135.1
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -100,12 +101,12 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.17.56
+- AWS CLI 2.18.0
 - AWS CLI Session Manager Plugin 1.2.650.0
-- AWS SAM CLI 1.124.0
+- AWS SAM CLI 1.125.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.57.0
+- GitHub CLI 2.58.0
 
 ### Java
 | Version             | Environment Variable |
@@ -117,7 +118,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.7.9
+- Composer 2.8.1
 - PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -139,13 +140,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 129.0.6668.58
-- ChromeDriver 129.0.6668.58
+- Google Chrome 129.0.6668.89
+- ChromeDriver 129.0.6668.89
 - Chromium 129.0.6668.0
-- Microsoft Edge 129.0.2792.52
-- Microsoft Edge WebDriver 129.0.2792.53
+- Microsoft Edge 129.0.2792.79
+- Microsoft Edge WebDriver 129.0.2792.73
 - Selenium server 4.25.0
-- Mozilla Firefox 130.0.1
+- Mozilla Firefox 131.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -184,8 +185,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.21.13
-- 1.22.7
-- 1.23.1
+- 1.22.8
+- 1.23.2
 
 #### Node.js
 - 16.20.2
@@ -196,7 +197,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.20
 - 3.10.15
 - 3.11.10
-- 3.12.6
+- 3.12.7
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -207,7 +208,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 12.1.0
-- Microsoft.Graph: 2.23.0
+- Microsoft.Graph: 2.24.0
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
@@ -304,7 +305,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | tk                     | 8.6.14build1                |
 | tree                   | 2.1.1-2ubuntu3              |
 | tzdata                 | 2024a-3ubuntu1.1            |
-| unzip                  | 6.0-28ubuntu4               |
+| unzip                  | 6.0-28ubuntu4.1             |
 | upx                    | 4.2.2-3                     |
 | wget                   | 1.21.4-1ubuntu4.1           |
 | xvfb                   | 2:21.1.12-1ubuntu1          |
