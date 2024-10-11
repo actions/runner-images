@@ -39,7 +39,7 @@ function Invoke-PesterTests {
         [string] $TestName
     )
 
-    $testPath = "C:\image\tests\${TestFile}.Tests.ps1"
+    $testPath = "$env:IMAGE_FOLDER\tests\${TestFile}.Tests.ps1"
     if (-not (Test-Path $testPath)) {
         throw "Unable to find test file '$TestFile' on '$testPath'."
     }
@@ -53,7 +53,7 @@ function Invoke-PesterTests {
     }
     if ($TestFile -eq "*") {
         $configuration.TestResult.Enabled = $true
-        $configuration.TestResult.OutputPath = "C:\image\tests\testResults.xml"
+        $configuration.TestResult.OutputPath = "$env:IMAGE_FOLDER\tests\testResults.xml"
     }
 
     # Update environment variables without reboot
