@@ -60,6 +60,7 @@ to accomplish this.
 - Gradle 8.10.2
 - Lerna 8.1.8
 - Maven 3.8.8
+- Sbt 1.10.2
 
 ### Tools
 - Ansible 2.17.4

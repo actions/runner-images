@@ -45,6 +45,7 @@
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
 - Gradle 8.10.2
+- Sbt 1.10.2
 
 ### Utilities
 - 7-Zip 17.05

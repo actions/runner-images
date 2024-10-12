@@ -72,6 +72,7 @@
             "gnupg",
             "gnu-tar",
             "kotlin",
+            "sbt",
             "libpq",
             "libsodium",
             "p7zip",

@@ -68,6 +68,7 @@
             "gnupg",
             "gnu-tar",
             "kotlin",
+            "sbt",
             "libpq",
             "p7zip",
             "packer",
