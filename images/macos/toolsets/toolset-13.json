@@ -74,7 +74,6 @@
             "perl",
             "pkg-config",
             "swiftformat",
-            "tcl-tk",
             "zstd",
             "gmp",
             "yq",
