@@ -284,7 +284,7 @@
 #### Environment variables
 | Name                    | Value                                               |
 | ----------------------- | --------------------------------------------------- |
-| ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
+| ANDROID_HOME            | /Users/runner/Library/Android/sdk                  |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
