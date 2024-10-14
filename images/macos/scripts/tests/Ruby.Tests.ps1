@@ -3,7 +3,7 @@ Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
-Describe "Ruby" -Skip:(-not $os.IsArm64) {
+Describe "Ruby" {
     It "Ruby is available" {
         "ruby --version" | Should -ReturnZeroExitCode
     }
@@ -13,7 +13,11 @@ Describe "Ruby" -Skip:(-not $os.IsArm64) {
     }
 
     It "Ruby tools are consistent" {
-        $expectedPrefix = "/opt/homebrew"
+        if ($os.IsArm64) {
+            $expectedPrefix = "/opt/homebrew"
+        } else {
+            $expectedPrefix = "/usr/local"
+        }
         Get-ToolPath "ruby" | Should -Match "$($expectedPrefix)*"
         Get-ToolPath "gem" | Should -Match "$($expectedPrefix)*"
         Get-ToolPath "bundler" | Should -Match "$($expectedPrefix)*"
