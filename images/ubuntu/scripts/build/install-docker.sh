@@ -24,10 +24,10 @@ components=$(get_toolset_value '.docker.components[] .package')
 for package in $components; do
     version=$(get_toolset_value ".docker.components[] | select(.package == \"$package\") | .version")
     if [[ $version == "latest" ]]; then
-        apt-get install -y --no-install-recommends "$package"
+        apt-get install --no-install-recommends "$package"
     else
         version_string=$(apt-cache madison "$package" | awk '{ print $3 }' | grep "$version" | grep "$os_codename" | head -1)
-        apt-get install -y --no-install-recommends "${package}=${version_string}"
+        apt-get install --no-install-recommends "${package}=${version_string}"
     fi
 done
 
@@ -47,8 +47,14 @@ done
 # docker from official repo introduced different GID generation: https://github.com/actions/runner-images/issues/8157
 gid=$(cut -d ":" -f 3 /etc/group | grep "^1..$" | sort -n | tail -n 1 | awk '{ print $1+1 }')
 groupmod -g "$gid" docker
-chgrp -hR docker /run/docker.sock
-chgrp -hR docker /var/run/docker.sock
+
+# Create systemd-tmpfiles configuration for Docker
+cat <<EOF | sudo tee /etc/tmpfiles.d/docker.conf
+L /run/docker.sock - - - - root docker 0770
+EOF
+
+# Reload systemd-tmpfiles to apply the new configuration
+systemd-tmpfiles --create /etc/tmpfiles.d/docker.conf
 
 # Enable docker.service
 systemctl is-active --quiet docker.service || systemctl start docker.service

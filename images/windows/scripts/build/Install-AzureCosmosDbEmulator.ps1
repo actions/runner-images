@@ -5,6 +5,6 @@
 
 Install-Binary -Type MSI `
     -Url "https://aka.ms/cosmosdb-emulator" `
-    -ExpectedSHA256Sum "6312237EE3E06C730F8DCFB3D26F5202D9E713C0603039231A72DB56DD2605B4"
+    -ExpectedSHA256Sum "DB9D5E496C5FDAE17C12C03385D2BAC973DA61C280023D9FDC9A6020220BEE41"
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Azure Cosmos DB Emulator"

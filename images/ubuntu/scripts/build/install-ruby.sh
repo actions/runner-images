@@ -10,6 +10,11 @@ source $HELPER_SCRIPTS/install.sh
 
 apt-get install ruby-full
 
+# temporary fix for fastlane installation https://github.com/sporkmonger/addressable/issues/541
+if is_ubuntu20; then
+    gem install public_suffix -v 5.1.1
+fi
+
 # Install ruby gems from toolset
 gems_to_install=$(get_toolset_value ".rubygems[] .name")
 if [[ -n "$gems_to_install" ]]; then
@@ -20,7 +25,7 @@ if [[ -n "$gems_to_install" ]]; then
 fi
 
 # Install Ruby requirements
-apt-get install -y libz-dev openssl libssl-dev
+apt-get install libz-dev openssl libssl-dev
 
 echo "Install Ruby from toolset..."
 package_tar_names=$(curl -fsSL "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')

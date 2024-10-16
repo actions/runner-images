@@ -85,7 +85,7 @@ for jdkVersionToInstall in ${jdkVersionsToInstall[@]}; do
 done
 
 # Install Ant
-apt-get install -y --no-install-recommends ant ant-optional
+apt-get install --no-install-recommends ant ant-optional
 set_etc_environment_variable "ANT_HOME" "/usr/share/ant"
 
 # Install Maven

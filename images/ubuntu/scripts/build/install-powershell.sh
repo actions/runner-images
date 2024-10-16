@@ -17,5 +17,5 @@ if is_ubuntu24; then
     package_path=$(download_with_retry "https://github.com/PowerShell/PowerShell/releases/download/v7.4.2/powershell-lts_7.4.2-1.deb_amd64.deb")
     sudo dpkg -i "$package_path"
 else
-    apt-get install -y powershell=$pwsh_version*
+    apt-get install powershell=$pwsh_version*
 fi

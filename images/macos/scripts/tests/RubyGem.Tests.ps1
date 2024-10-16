@@ -20,25 +20,19 @@ Describe "Bundler" {
     }
 }
 
-Describe "Nomad shenzhen CLI" -Skip:($os.IsMonterey -or $os.IsVentura -or $os.IsSonoma) {
-    It "Nomad shenzhen CLI" {
-        "ipa --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Fastlane" {
     It "Fastlane" {
         "fastlane --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "xcpretty" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "xcpretty" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "xcpretty" {
         "xcpretty --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "jazzy" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "jazzy" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "jazzy" {
         "jazzy --version" | Should -ReturnZeroExitCode
     }

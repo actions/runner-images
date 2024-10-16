@@ -4,6 +4,8 @@
 ##  Desc:  Configure apt, install jq and apt-fast packages.
 ################################################################################
 
+source $HELPER_SCRIPTS/os.sh
+
 # Stop and disable apt-daily upgrade services;
 systemctl stop apt-daily.timer
 systemctl disable apt-daily.timer
@@ -36,7 +38,11 @@ EOF
 apt-get purge unattended-upgrades
 
 echo 'APT sources'
-cat /etc/apt/sources.list
+if ! is_ubuntu24; then
+    cat /etc/apt/sources.list
+else
+    cat /etc/apt/sources.list.d/ubuntu.sources
+fi
 
 apt-get update
 # Install jq

@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "15.0.1",
+        "default": "15.2",
         "x64": {
             "versions": [
                 { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
@@ -9,7 +9,6 @@
                 { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "true", "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"},
                 { "link": "14.2", "version": "14.2.0+14C18", "install_runtimes": "true", "sha256": "686B9D53CA49E50D563BC0104B1E8B4F7CCFE80064A6D689965FB819BF8EFE72"},
                 { "link": "14.1", "version": "14.1.0+14B47b", "install_runtimes": "true", "sha256": "12F8A3AEF78BF354470AD8B351ADDD925C8EDAD888137D138CA50A8130EB9F2F"}
-
                 ]
         },
         "arm64":{
@@ -48,7 +47,7 @@
         "ndk": {
             "default": "26",
             "versions": [
-                "24", "25", "26"
+                "26", "27"
             ]
         }
     },
@@ -75,6 +74,7 @@
             "perl",
             "pkg-config",
             "swiftformat",
+            "tcl-tk",
             "zstd",
             "gmp",
             "yq",
@@ -83,14 +83,14 @@
             "xcodes"
         ],
         "cask_packages": [
-            ""
+            "parallels"
         ]
     },
     "gcc": {
         "versions": [
-            "11",
             "12",
-            "13"
+            "13",
+            "14"
         ]
     },
     "dotnet": {
@@ -129,7 +129,8 @@
                         "3.9.*",
                         "3.10.*",
                         "3.11.*",
-                        "3.12.*"
+                        "3.12.*",
+                        "3.13.*"
                     ]
                 },
                 "arm64": {
@@ -137,7 +138,8 @@
                         "3.9.*",
                         "3.10.*",
                         "3.11.*",
-                        "3.12.*"
+                        "3.12.*",
+                        "3.13.*"
                     ]
                 }
             }
@@ -186,17 +188,17 @@
                 "x64": {
                     "variable_template" : "GOROOT_{0}_{1}_X64",
                     "versions": [
-                        "1.20.*",
                         "1.21.*",
-                        "1.22.*"
+                        "1.22.*",
+                        "1.23.*"
                     ]
                 },
                 "arm64": {
                     "variable_template" : "GOROOT_{0}_{1}_ARM64",
                     "versions": [
-                        "1.20.*",
                         "1.21.*",
-                        "1.22.*"
+                        "1.22.*",
+                        "1.23.*"
                     ]
                 }
             }
@@ -207,7 +209,9 @@
                 "x64": {
                     "versions": [
                         "3.0.*",
-                        "3.1.*"
+                        "3.1.*",
+                        "3.2.*",
+                        "3.3.*"
                     ]
                 }
             }

@@ -1,24 +1,28 @@
 {
     "xcode": {
-        "default": "15.0.1",
+        "default": "15.4",
         "x64": {
             "versions": [
-                { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
-                { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
-                { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
-                { "link": "15.1", "version": "15.1.0+15C65", "install_runtimes": "true", "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
-                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true", "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
-                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "true", "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"}
+                { "link": "16.1_beta_3", "version": "16.1.0-Beta.3+16B5029d", "symlinks": ["16.1"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "e92ffd3cf7bb3ecb830ba94e8b2cbeb62743a80c6d73a5ae52ae792e4a897e5f"},
+                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
+                { "link": "15.4", "version": "15.4.0+15F31d", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
+                { "link": "15.3", "version": "15.3.0+15E204a", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
+                { "link": "15.2", "version": "15.2.0+15C500b", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
+                { "link": "15.1", "version": "15.1.0+15C65", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
+                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
+                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"}
             ]
         },
         "arm64":{
             "versions": [
-                { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
-                { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
-                { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
-                { "link": "15.1", "version": "15.1.0+15C65", "install_runtimes": "true", "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
-                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true", "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
-                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "true", "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"}
+                { "link": "16.1_beta_3", "version": "16.1.0-Beta.3+16B5029d", "symlinks": ["16.1"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "e92ffd3cf7bb3ecb830ba94e8b2cbeb62743a80c6d73a5ae52ae792e4a897e5f"},
+                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
+                { "link": "15.4", "version": "15.4.0+15F31d", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
+                { "link": "15.3", "version": "15.3.0+15E204a", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
+                { "link": "15.2", "version": "15.2.0+15C500b", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
+                { "link": "15.1", "version": "15.1.0+15C65", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
+                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
+                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"}
             ]
         }
     },
@@ -47,7 +51,7 @@
         "ndk": {
             "default": "26",
             "versions": [
-                "24", "25", "26"
+                "26", "27"
             ]
         }
     },
@@ -75,6 +79,7 @@
             "perl",
             "pkg-config",
             "swiftformat",
+            "tcl-tk",
             "zstd",
             "gmp",
             "yq",
@@ -83,14 +88,14 @@
             "xcodes"
         ],
         "cask_packages": [
-            ""
+            "parallels"
         ]
     },
     "gcc": {
         "versions": [
-            "11",
             "12",
-            "13"
+            "13",
+            "14"
         ]
     },
     "dotnet": {
@@ -128,7 +133,8 @@
                         "3.9.*",
                         "3.10.*",
                         "3.11.*",
-                        "3.12.*"
+                        "3.12.*",
+                        "3.13.*"
                     ]
                 },
                 "arm64": {
@@ -136,7 +142,8 @@
                         "3.9.*",
                         "3.10.*",
                         "3.11.*",
-                        "3.12.*"
+                        "3.12.*",
+                        "3.13.*"
                     ]
                 }
             }
@@ -168,17 +175,17 @@
                 "x64": {
                     "variable_template" : "GOROOT_{0}_{1}_X64",
                     "versions": [
-                        "1.20.*",
                         "1.21.*",
-                        "1.22.*"
+                        "1.22.*",
+                        "1.23.*"
                     ]
                 },
                 "arm64": {
                     "variable_template" : "GOROOT_{0}_{1}_ARM64",
                     "versions": [
-                        "1.20.*",
                         "1.21.*",
-                        "1.22.*"
+                        "1.22.*",
+                        "1.23.*"
                     ]
                 }
             }
@@ -189,7 +196,9 @@
                 "x64": {
                     "versions": [
                         "3.0.*",
-                        "3.1.*"
+                        "3.1.*",
+                        "3.2.*",
+                        "3.3.*"
                     ]
                 }
             }
