@@ -9,7 +9,7 @@
 # macOS 13
 - OS Version: macOS 13.7 (22H123)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20241008.189
+- Image Version: 20241014.218
 
 ## Installed Software
 
@@ -24,11 +24,11 @@
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.2.0) - available by `gfortran-14` alias
-- Kotlin 2.0.20-release-360
+- Kotlin 2.0.21-release-482
 - Mono 6.12.0.188
 - Node.js 20.18.0
 - Perl 5.38.2
-- Python3 3.12.7
+- Python3 3.13.0
 - Ruby 3.0.7p220
 
 ### Package Management
@@ -38,7 +38,7 @@
 - Homebrew 4.4.0
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 24.2 (python 3.12)
+- Pip3 24.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.5.21
 - Yarn 1.22.22
@@ -70,16 +70,16 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.18.1
+- AWS CLI 2.18.5
 - AWS SAM CLI 1.125.0
-- AWS Session Manager CLI 1.2.650.0
+- AWS Session Manager CLI 1.2.677.0
 - Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.30.23
-- Cmake 3.30.4
+- Cmake 3.30.5
 - CodeQL Action Bundle 2.19.1
 - Fastlane 2.224.0
-- SwiftFormat 0.54.5
+- SwiftFormat 0.54.6
 - Xcbeautify 2.11.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.5.0
@@ -89,9 +89,9 @@
 ### Browsers
 - Safari 18.0.1 (18619.1.26.111.11)
 - SafariDriver 18.0.1 (18619.1.26.111.11)
-- Google Chrome 129.0.6668.90
-- Google Chrome for Testing 129.0.6668.89
-- ChromeDriver 129.0.6668.89
+- Google Chrome 129.0.6668.101
+- Google Chrome for Testing 129.0.6668.100
+- ChromeDriver 129.0.6668.100
 - Selenium server 4.25.0
 
 #### Environment variables
@@ -115,6 +115,7 @@
 - 3.10.11
 - 3.11.9
 - 3.12.7
+- 3.13.0
 
 #### Node.js
 - 16.20.1
@@ -142,17 +143,17 @@
 #### PowerShell Modules
 - Az: 12.4.0
 - Pester: 5.6.1
-- PSScriptAnalyzer: 1.22.0
+- PSScriptAnalyzer: 1.23.0
 
 ### Xcode
-| Version        | Build   | Path                           |
-| -------------- | ------- | ------------------------------ |
-| 15.2 (default) | 15C500b | /Applications/Xcode_15.2.app   |
-| 15.1           | 15C65   | /Applications/Xcode_15.1.app   |
-| 15.0.1         | 15A507  | /Applications/Xcode_15.0.1.app |
-| 14.3.1         | 14E300c | /Applications/Xcode_14.3.1.app |
-| 14.2           | 14C18   | /Applications/Xcode_14.2.app   |
-| 14.1           | 14B47b  | /Applications/Xcode_14.1.app   |
+| Version        | Build   | Path                           | Symlinks                                                  |
+| -------------- | ------- | ------------------------------ | --------------------------------------------------------- |
+| 15.2 (default) | 15C500b | /Applications/Xcode_15.2.app   | /Applications/Xcode_15.2.0.app<br>/Applications/Xcode.app |
+| 15.1           | 15C65   | /Applications/Xcode_15.1.app   | /Applications/Xcode_15.1.0.app                            |
+| 15.0.1         | 15A507  | /Applications/Xcode_15.0.1.app | /Applications/Xcode_15.0.app                              |
+| 14.3.1         | 14E300c | /Applications/Xcode_14.3.1.app | /Applications/Xcode_14.3.app                              |
+| 14.2           | 14C18   | /Applications/Xcode_14.2.app   | /Applications/Xcode_14.2.0.app                            |
+| 14.1           | 14B47b  | /Applications/Xcode_14.1.app   | /Applications/Xcode_14.1.0.app                            |
 
 #### Installed SDKs
 | SDK                                                     | SDK Name                                      | Xcode Version |
@@ -191,8 +192,8 @@
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |

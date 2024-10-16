@@ -19,6 +19,13 @@ export PIPX_HOME=/opt/pipx
 if is_ubuntu24; then
     apt-get install --no-install-recommends pipx
     pipx ensurepath
+
+# Create temporary workaround to allow user to continue using pip
+    sudo cat <<EOF > /etc/pip.conf
+[global]
+break-system-packages = true
+EOF
+
 else
     python3 -m pip install pipx
     python3 -m pipx ensurepath
