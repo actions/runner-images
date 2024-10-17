@@ -113,10 +113,17 @@ Function GenerateResourcesAndImage {
                 cleanup - attempt to cleanup and then abort
                 run-cleanup-provisioner - run the cleanup provisioner and then abort
             The default is 'ask'.
+        .PARAMETER UseAzureCliAuth
+            If set, switches to use Azure CLI authentication for Packer. Defaults to false. 
+            CLI auth will use the information from an active az login session to connect to Azure and set the subscription id and tenant id associated to the signed in account. 
+            If enabled, it will use the authentication provided by the az CLI. 
+            Azure CLI authentication will use the credential marked as isDefault and can be verified using az account show. 
+            Works with normal authentication (az login) and service principals (az login --service-principal --username APP_ID --password PASSWORD --tenant TENANT_ID). 
+            Ignores all other configurations if enabled.
         .PARAMETER Tags
             Tags to be applied to the Azure resources created.
         .EXAMPLE
-            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2004 -AzureLocation "East US"
+            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2204 -AzureLocation "East US"
     #>
     param (
         [Parameter(Mandatory = $True)]
@@ -148,6 +155,8 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
+        [Parameter(Mandatory = $False)]
+        [switch] $UseAzureCliAuth,
         [Parameter(Mandatory = $False)]
         [hashtable] $Tags = @{}
     )
@@ -231,6 +240,7 @@ Function GenerateResourcesAndImage {
         "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
         "-var=install_password=$($InstallPassword)" `
         "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+        "-var=use_azure_cli_auth=$($UseAzureCliAuth.ToString().ToLower())" `
         "-var=azure_tags=$($TagsJson)" `
         $TemplatePath
 
@@ -240,14 +250,21 @@ Function GenerateResourcesAndImage {
 
     try {
         # Login to Azure subscription
-        if ([string]::IsNullOrEmpty($AzureClientId)) {
-            Write-Verbose "No AzureClientId was provided, will use interactive login."
-            az login --output none
+        try {
+            az account show -o none 2>$null || Write-Error $_
+            Write-Verbose "Already logged in..."
         }
-        else {
-            Write-Verbose "AzureClientId was provided, will use service principal login."
-            az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
+        catch {
+            if ([string]::IsNullOrEmpty($AzureClientId)) {
+                Write-Verbose "No AzureClientId was provided, will use interactive login."
+                az login --output none
+            }
+            else {
+                Write-Verbose "AzureClientId was provided, will use service principal login."
+                az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
+            }
         }
+        
         az account set --subscription $SubscriptionId
         if ($LastExitCode -ne 0) {
             throw "Failed to login to Azure subscription '$SubscriptionId'."
@@ -328,7 +345,7 @@ Function GenerateResourcesAndImage {
         }
 
         # Create service principal
-        if ([string]::IsNullOrEmpty($AzureClientId)) {
+        if ([string]::IsNullOrEmpty($AzureClientId) -and $UseAzureCliAuth -ne $True) {
             Write-Host "Creating service principal for packer..."
             $ADCleanupRequired = $true
 
@@ -364,6 +381,7 @@ Function GenerateResourcesAndImage {
             -var "managed_image_resource_group_name=$($ResourceGroupName)" `
             -var "install_password=$($InstallPassword)" `
             -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+            -var "use_azure_cli_auth=$($UseAzureCliAuth.ToString().ToLower())" `
             -var "azure_tags=$($TagsJson)" `
             $TemplatePath
 
