@@ -7,7 +7,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
 - Kernel Version: 6.8.0-1015-azure
-- Image Version: 20241006.1.0
+- Image Version: 20241016.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -18,10 +18,10 @@
 - Clang-format: 16.0.6, 17.0.6, 18.1.3
 - Clang-tidy: 16.0.6, 17.0.6, 18.1.3
 - Dash 0.5.12-6ubuntu5
-- GNU C++: 12.3.0, 13.2.0, 14.0.1
-- GNU Fortran: 12.3.0, 13.2.0, 14.0.1
-- Julia 1.10.5
-- Kotlin 2.0.20-release-360
+- GNU C++: 12.3.0, 13.2.0, 14.2.0
+- GNU Fortran: 12.3.0, 13.2.0, 14.2.0
+- Julia 1.11.0
+- Kotlin 2.0.21-release-482
 - Node.js 20.18.0
 - Perl 5.38.2
 - Python 3.12.3
@@ -30,15 +30,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.16.1
-- Homebrew 4.4.0
+- Helm 3.16.2
+- Homebrew 4.4.1
 - Miniconda 24.7.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit 7adc2e4d4)
+- Vcpkg (build from commit e63bd09dc)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,28 +62,28 @@ to accomplish this.
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.17.4
+- Ansible 2.17.5
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.3.2
 - Bazelisk 1.22.0
 - Bicep 0.30.23
 - Buildah 1.33.7
-- CMake 3.30.4
-- CodeQL Action Bundle 2.19.0
+- CMake 3.30.5
+- CodeQL Action Bundle 2.19.1
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.17.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.224.0
-- Git 2.46.2
+- Git 2.47.0
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.24.0
 - Kubectl 1.31.1
-- Kustomize 5.4.3
+- Kustomize 5.5.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.34.0
@@ -93,7 +93,7 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.135.1
+- Pulumi 3.136.1
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -101,10 +101,10 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.18.0
-- AWS CLI Session Manager Plugin 1.2.650.0
+- AWS CLI 2.18.7
+- AWS CLI Session Manager Plugin 1.2.677.0
 - AWS SAM CLI 1.125.0
-- Azure CLI 2.64.0
+- Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.58.0
 
@@ -140,13 +140,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 129.0.6668.89
-- ChromeDriver 129.0.6668.89
-- Chromium 129.0.6668.0
-- Microsoft Edge 129.0.2792.79
-- Microsoft Edge WebDriver 129.0.2792.73
+- Google Chrome 130.0.6723.58
+- ChromeDriver 130.0.6723.58
+- Chromium 130.0.6723.0
+- Microsoft Edge 129.0.2792.89
+- Microsoft Edge WebDriver 129.0.2792.93
 - Selenium server 4.25.0
-- Mozilla Firefox 131.0
+- Mozilla Firefox 131.0.2
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -158,7 +158,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.108
+- .NET Core SDK: 8.0.110
 - nbgv 3.6.143+57d4199a9c
 
 ### Databases
@@ -191,7 +191,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 16.20.2
 - 18.20.4
-- 20.17.0
+- 20.18.0
 
 #### Python
 - 3.9.20
@@ -210,7 +210,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 12.1.0
 - Microsoft.Graph: 2.24.0
 - Pester: 5.6.1
-- PSScriptAnalyzer: 1.22.0
+- PSScriptAnalyzer: 1.23.0
 
 ### Web Servers
 | Name    | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -246,7 +246,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.37.0+debian-1build3       |
 | autoconf               | 2.71-3                      |
 | automake               | 1:1.16.5-1.3ubuntu1         |
-| binutils               | 2.42-4ubuntu2               |
+| binutils               | 2.42-4ubuntu2.3             |
 | bison                  | 2:3.8.2+dfsg-1build2        |
 | brotli                 | 1.1.0-2build2               |
 | bzip2                  | 1.0.8-5.1build0.1           |
