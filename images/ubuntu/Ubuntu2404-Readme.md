@@ -1,12 +1,13 @@
 | Announcements |
 |-|
-| [[Ubuntu 20.04 and Ubuntu 22.04  Oses] Go  1.22.x  will be set as default on September, 20](https://github.com/actions/runner-images/issues/10500) |
-| [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
+| [[Ubuntu 24 ] Node.js version 16 will be removed on October 21,2024.](https://github.com/actions/runner-images/issues/10677) |
+| [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
+| [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
-- Kernel Version: 6.8.0-1013-azure
-- Image Version: 20240908.1.0
+- Kernel Version: 6.8.0-1015-azure
+- Image Version: 20241016.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -17,26 +18,27 @@
 - Clang-format: 16.0.6, 17.0.6, 18.1.3
 - Clang-tidy: 16.0.6, 17.0.6, 18.1.3
 - Dash 0.5.12-6ubuntu5
-- GNU C++: 12.3.0, 13.2.0, 14.0.1
-- GNU Fortran: 12.3.0, 13.2.0, 14.0.1
-- Julia 1.10.5
-- Kotlin 2.0.20-release-360
-- Node.js 20.17.0
+- GNU C++: 12.3.0, 13.2.0, 14.2.0
+- GNU Fortran: 12.3.0, 13.2.0, 14.2.0
+- Julia 1.11.0
+- Kotlin 2.0.21-release-482
+- Node.js 20.18.0
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
+- Swift 6.0.1
 
 ### Package Management
 - cpan 1.64
-- Helm 3.15.4
-- Homebrew 4.3.19
+- Helm 3.16.2
+- Homebrew 4.4.1
 - Miniconda 24.7.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.4.3
 - RubyGems 3.4.20
-- Vcpkg (build from commit eba7c6a89)
+- Vcpkg (build from commit e63bd09dc)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,43 +57,43 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.10
+- Gradle 8.10.2
 - Lerna 8.1.8
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.17.3
+- Ansible 2.17.5
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.3.1
-- Bazelisk 1.21.0
-- Bicep 0.29.47
+- Bazel 7.3.2
+- Bazelisk 1.22.0
+- Bicep 0.30.23
 - Buildah 1.33.7
-- CMake 3.30.3
-- CodeQL Action Bundle 2.18.3
-- Docker Amazon ECR Credential Helper 0.8.0
+- CMake 3.30.5
+- CodeQL Action Bundle 2.19.1
+- Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.16.2
+- Docker-Buildx 0.17.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.222.0
-- Git 2.46.0
+- Fastlane 2.224.0
+- Git 2.47.0
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.24.0
-- Kubectl 1.31.0
-- Kustomize 5.4.3
+- Kubectl 1.31.1
+- Kustomize 5.5.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
-- Minikube 1.33.1
+- Minikube 1.34.0
 - n 10.0.0
 - Newman 6.2.1
 - OpenSSL 3.0.13-0ubuntu3.4
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.131.0
+- Pulumi 3.136.1
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -99,12 +101,12 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.17.46
-- AWS CLI Session Manager Plugin 1.2.650.0
-- AWS SAM CLI 1.123.0
-- Azure CLI 2.64.0
+- AWS CLI 2.18.7
+- AWS CLI Session Manager Plugin 1.2.677.0
+- AWS SAM CLI 1.125.0
+- Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.55.0
+- GitHub CLI 2.58.0
 
 ### Java
 | Version             | Environment Variable |
@@ -116,8 +118,8 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.7.9
-- PHPUnit 8.5.39
+- Composer 2.8.1
+- PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -138,21 +140,25 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 128.0.6613.119
-- ChromeDriver 128.0.6613.119
-- Chromium 128.0.6613.0
-- Selenium server 4.24.0
+- Google Chrome 130.0.6723.58
+- ChromeDriver 130.0.6723.58
+- Chromium 130.0.6723.0
+- Microsoft Edge 129.0.2792.89
+- Microsoft Edge WebDriver 129.0.2792.93
+- Selenium server 4.25.0
+- Mozilla Firefox 131.0.2
+- Geckodriver 0.35.0
 
 #### Environment variables
 | Name              | Value                                 |
 | ----------------- | ------------------------------------- |
 | CHROMEWEBDRIVER   | /usr/local/share/chromedriver-linux64 |
-| EDGEWEBDRIVER     |                                       |
-| GECKOWEBDRIVER    |                                       |
+| EDGEWEBDRIVER     | /usr/local/share/edge_driver          |
+| GECKOWEBDRIVER    | /usr/local/share/gecko_driver         |
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.108
+- .NET Core SDK: 8.0.110
 - nbgv 3.6.143+57d4199a9c
 
 ### Databases
@@ -178,20 +184,20 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.20.14
 - 1.21.13
-- 1.22.7
+- 1.22.8
+- 1.23.2
 
 #### Node.js
 - 16.20.2
 - 18.20.4
-- 20.17.0
+- 20.18.0
 
 #### Python
-- 3.9.19
-- 3.10.14
-- 3.11.9
-- 3.12.5
+- 3.9.20
+- 3.10.15
+- 3.11.10
+- 3.12.7
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -202,9 +208,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 12.1.0
-- Microsoft.Graph: 2.23.0
+- Microsoft.Graph: 2.24.0
 - Pester: 5.6.1
-- PSScriptAnalyzer: 1.22.0
+- PSScriptAnalyzer: 1.23.0
 
 ### Web Servers
 | Name    | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -240,12 +246,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.37.0+debian-1build3       |
 | autoconf               | 2.71-3                      |
 | automake               | 1:1.16.5-1.3ubuntu1         |
-| binutils               | 2.42-4ubuntu2               |
+| binutils               | 2.42-4ubuntu2.3             |
 | bison                  | 2:3.8.2+dfsg-1build2        |
 | brotli                 | 1.1.0-2build2               |
 | bzip2                  | 1.0.8-5.1build0.1           |
 | coreutils              | 9.4-3ubuntu6                |
-| curl                   | 8.5.0-2ubuntu10.3           |
+| curl                   | 8.5.0-2ubuntu10.4           |
 | dbus                   | 1.14.10-4ubuntu4.1          |
 | dnsutils               | 1:9.18.28-0ubuntu0.24.04.1  |
 | dpkg                   | 1.22.6ubuntu6.1             |
@@ -299,7 +305,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | tk                     | 8.6.14build1                |
 | tree                   | 2.1.1-2ubuntu3              |
 | tzdata                 | 2024a-3ubuntu1.1            |
-| unzip                  | 6.0-28ubuntu4               |
+| unzip                  | 6.0-28ubuntu4.1             |
 | upx                    | 4.2.2-3                     |
 | wget                   | 1.21.4-1ubuntu4.1           |
 | xvfb                   | 2:21.1.12-1ubuntu1          |

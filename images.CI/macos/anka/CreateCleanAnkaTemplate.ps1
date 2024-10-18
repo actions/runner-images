@@ -93,8 +93,9 @@ function Invoke-SoftwareUpdate {
     $command = "sw_vers"
     $guestMacosVersion = Invoke-SSHPassCommand -HostName $ipAddress -Command $command
     switch -regex ($guestMacosVersion[1]) {
-        '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma' }
-        '13.\d' { $nextOSVersion = 'macOS Sonoma'  }
+        '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma|macOS Sequoia' }
+        '13.\d' { $nextOSVersion = 'macOS Sonoma|macOS Sequoia' }
+        '14.\d' { $nextOSVersion = 'macOS Sequoia' }
     }
 
     Write-Host "`t[*] Fetching Software Updates ready to install on '$TemplateName' VM:"

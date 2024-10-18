@@ -1,12 +1,13 @@
 | Announcements |
 |-|
-| [[Ubuntu 20.04 and Ubuntu 22.04  Oses] Go  1.22.x  will be set as default on September, 20](https://github.com/actions/runner-images/issues/10500) |
-| [Ubuntu 24.04 is now available](https://github.com/actions/runner-images/issues/9848) |
+| [[Ubuntu 24 ] Node.js version 16 will be removed on October 21,2024.](https://github.com/actions/runner-images/issues/10677) |
+| [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
+| [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
 ***
 # Ubuntu 22.04
-- OS Version: 22.04.4 LTS
+- OS Version: 22.04.5 LTS
 - Kernel Version: 6.5.0-1025-azure
-- Image Version: 20240908.1.0
+- Image Version: 20241006.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -27,12 +28,12 @@
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 5.10.1
+- Swift 6.0.1
 
 ### Package Management
 - cpan 1.64
-- Helm 3.15.4
-- Homebrew 4.3.19
+- Helm 3.16.1
+- Homebrew 4.4.0
 - Miniconda 24.7.1
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -40,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit eba7c6a89)
+- Vcpkg (build from commit 7adc2e4d4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,40 +60,40 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 8.10
+- Gradle 8.10.2
 - Lerna 8.1.8
 - Maven 3.8.8
-- Sbt 1.10.1
+- Sbt 1.10.2
 
 ### Tools
-- Ansible 2.17.3
+- Ansible 2.17.4
 - apt-fast 1.10.0
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.3.1
-- Bazelisk 1.21.0
-- Bicep 0.29.47
+- Bazel 7.3.2
+- Bazelisk 1.22.0
+- Bicep 0.30.23
 - Buildah 1.23.1
-- CMake 3.30.3
-- CodeQL Action Bundle 2.18.3
-- Docker Amazon ECR Credential Helper 0.8.0
+- CMake 3.30.4
+- CodeQL Action Bundle 2.19.0
+- Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.16.2
+- Docker-Buildx 0.17.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.222.0
-- Git 2.46.0
+- Fastlane 2.224.0
+- Git 2.46.2
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 9.2.1
+- Heroku 9.3.0
 - jq 1.6
 - Kind 0.24.0
-- Kubectl 1.31.0
+- Kubectl 1.31.1
 - Kustomize 5.4.3
 - Leiningen 2.11.2
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.33.1
+- Minikube 1.34.0
 - n 10.0.0
 - Newman 6.2.1
 - nvm 0.40.1
@@ -100,29 +101,29 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.131.0
+- Pulumi 3.135.1
 - R 4.4.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.9.5
+- Terraform 1.9.7
 - yamllint 1.35.1
 - yq 4.44.3
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.221
-- AWS CLI 2.17.46
+- Alibaba Cloud CLI 3.0.224
+- AWS CLI 2.18.0
 - AWS CLI Session Manager Plugin 1.2.650.0
-- AWS SAM CLI 1.123.0
+- AWS SAM CLI 1.125.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.55.0
-- Google Cloud CLI 491.0.0
-- Netlify CLI 17.35.0
-- OpenShift CLI 4.16.10
+- GitHub CLI 2.58.0
+- Google Cloud CLI 495.0.0
+- Netlify CLI 17.36.4
+- OpenShift CLI 4.17.0
 - ORAS CLI 1.2.0
-- Vercel CLI 37.4.0
+- Vercel CLI 37.6.1
 
 ### Java
 | Version             | Environment Variable |
@@ -134,8 +135,8 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.7.9
-- PHPUnit 8.5.39
+- Composer 2.8.1
+- PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -161,13 +162,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 128.0.6613.119
-- ChromeDriver 128.0.6613.119
-- Chromium 128.0.6613.0
-- Microsoft Edge 128.0.2739.67
-- Microsoft Edge WebDriver 128.0.2739.68
-- Selenium server 4.24.0
-- Mozilla Firefox 130.0
+- Google Chrome 129.0.6668.89
+- ChromeDriver 129.0.6668.89
+- Chromium 129.0.6668.0
+- Microsoft Edge 129.0.2792.79
+- Microsoft Edge WebDriver 129.0.2792.73
+- Selenium server 4.25.0
+- Mozilla Firefox 131.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -179,7 +180,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.425, 7.0.410, 8.0.401
+- .NET Core SDK: 6.0.425, 7.0.410, 8.0.402
 - nbgv 3.6.143+57d4199a9c
 
 ### Databases
@@ -204,14 +205,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 162.3.566.1
+- SqlPackage 162.4.92.3
 
 ### Cached Tools
 
 #### Go
 - 1.20.14
 - 1.21.13
-- 1.22.7
+- 1.22.8
 
 #### Node.js
 - 16.20.2
@@ -221,10 +222,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Python
 - 3.7.17
 - 3.8.18
-- 3.9.19
-- 3.10.14
-- 3.11.9
-- 3.12.5
+- 3.9.20
+- 3.10.15
+- 3.11.10
+- 3.12.7
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -242,7 +243,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 12.1.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.23.0
+- Microsoft.Graph: 2.24.0
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.22.0
 
@@ -282,16 +283,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:3ddf7bf1d408188f9849efbf4f902720ae08f5131bb39013518b918aa056d0de  | 2024-09-06 |
 | alpine:3.19          | sha256:ae65dbf8749a7d4527648ccee1fa3deb6bfcae34cbc30fc67aa45c44dcaa90ee  | 2024-09-06 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:8ccc486c29a3ad02ad5af7f1156e2152dff3ba5634eec9be375269ef123457d8  | 2024-09-04 |
-| moby/buildkit:latest | sha256:e0b10610709509aded9b101a61a090e24a5161f46d5eb8a479297fe96aa5d8ac  | 2024-08-15 |
+| debian:11            | sha256:152b9a5dc2a03f18ddfd88fbe7b1df41bd2b16be9f2df573a373caf46ce78c08  | 2024-09-27 |
+| moby/buildkit:latest | sha256:bc1fe18224dbcb92599139db0c745696c48ba9fd4ac24038d1fa81fdd7dcac27  | 2024-09-10 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:ca07c02d13baf021ff5aadb3b48bcd1fcdd454826266ac313ce858676e8c1548  | 2024-07-09 |
+| node:18              | sha256:f910225c96b0f77b0149f350a3184568a9ba6cddba2a7c7805cc125a50591605  | 2024-07-09 |
 | node:18-alpine       | sha256:02376a266c84acbf45bd19440e08e48b1c8b98037417334046029ab585de03e2  | 2024-07-09 |
-| node:20              | sha256:48db4f6ea21d134be744207225753a1730c4bc1b4cdf836d44511c36bf0e34d7  | 2024-08-21 |
-| node:20-alpine       | sha256:2d07db07a2df6830718ae2a47db6fedce6745f5bcd174c398f2acdda90a11c03  | 2024-08-21 |
-| ubuntu:20.04         | sha256:fa17826afb526a9fc7250e0fbcbfd18d03fe7a54849472f86879d8bf562c629e  | 2024-08-13 |
-| ubuntu:22.04         | sha256:adbb90115a21969d2fe6fa7f9af4253e16d45f8d4c1e930182610c4731962658  | 2024-08-13 |
+| node:20              | sha256:fffa89e023a3351904c04284029105d9e2ac7020886d683775a298569591e5bb  | 2024-10-04 |
+| node:20-alpine       | sha256:c13b26e7e602ef2f1074aef304ce6e9b7dd284c419b35d89fcf3cc8e44a8def9  | 2024-10-04 |
+| ubuntu:20.04         | sha256:6d8d9799fe6ab3221965efac00b4c34a2bcc102c086a58dff9e19a08b913c7ef  | 2024-09-18 |
+| ubuntu:22.04         | sha256:58b87898e82351c6cf9cf5b9f3c20257bb9e2dcf33af051e12ce532d7f94e3fe  | 2024-09-11 |
 
 ### Installed apt packages
 | Name                   | Version                             |
@@ -305,7 +306,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.9-2build6                       |
 | bzip2                  | 1.0.8-5build1                       |
 | coreutils              | 8.32-4.1ubuntu1.2                   |
-| curl                   | 7.81.0-1ubuntu1.17                  |
+| curl                   | 7.81.0-1ubuntu1.18                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
 | dnsutils               | 1:9.18.28-0ubuntu0.22.04.1          |
 | dpkg                   | 1.21.1ubuntu2.3                     |
@@ -328,7 +329,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.8                     |
-| libcurl4               | 7.81.0-1ubuntu1.17                  |
+| libcurl4               | 7.81.0-1ubuntu1.18                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.2          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
