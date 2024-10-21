@@ -7,7 +7,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.5.0-1025-azure
-- Image Version: 20241015.1.0
+- Image Version: 20241020.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -20,7 +20,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.11.0
+- Julia 1.11.1
 - Kotlin 2.0.21-release-482
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -41,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit e63bd09dc)
+- Vcpkg (build from commit d567b667a)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -63,7 +63,7 @@ to accomplish this.
 - Gradle 8.10.2
 - Lerna 8.1.8
 - Maven 3.8.8
-- Sbt 1.10.2
+- Sbt 1.10.3
 
 ### Tools
 - Ansible 2.17.5
@@ -101,29 +101,29 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.136.1
+- Pulumi 3.137.0
 - R 4.4.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.9.7
+- Terraform 1.9.8
 - yamllint 1.35.1
 - yq 4.44.3
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.227
-- AWS CLI 2.18.7
+- AWS CLI 2.18.10
 - AWS CLI Session Manager Plugin 1.2.677.0
-- AWS SAM CLI 1.125.0
+- AWS SAM CLI 1.126.0
 - Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.58.0
+- GitHub CLI 2.59.0
 - Google Cloud CLI 497.0.0
-- Netlify CLI 17.37.0
-- OpenShift CLI 4.17.0
+- Netlify CLI 17.37.1
+- OpenShift CLI 4.17.1
 - ORAS CLI 1.2.0
-- Vercel CLI 37.8.0
+- Vercel CLI 37.11.0
 
 ### Java
 | Version             | Environment Variable |
@@ -148,15 +148,15 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.1.1
 
 ### Rust Tools
-- Cargo 1.81.0
-- Rust 1.81.0
-- Rustdoc 1.81.0
+- Cargo 1.82.0
+- Rust 1.82.0
+- Rustdoc 1.82.0
 - Rustup 1.27.1
 
 #### Packages
 - Bindgen 0.70.1
 - Cargo audit 0.20.1
-- Cargo clippy 0.1.81
+- Cargo clippy 0.1.82
 - Cargo outdated 0.15.0
 - Cbindgen 0.27.0
 - Rustfmt 1.7.1
@@ -165,10 +165,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 130.0.6723.58
 - ChromeDriver 130.0.6723.58
 - Chromium 130.0.6723.0
-- Microsoft Edge 129.0.2792.89
-- Microsoft Edge WebDriver 129.0.2792.93
+- Microsoft Edge 130.0.2849.46
+- Microsoft Edge WebDriver 130.0.2849.46
 - Selenium server 4.25.0
-- Mozilla Firefox 131.0.2
+- Mozilla Firefox 131.0.3
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -181,7 +181,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 6.0.427, 7.0.410, 8.0.403
-- nbgv 3.6.143+57d4199a9c
+- nbgv 3.6.146+392592327a
 
 ### Databases
 - sqlite3 3.37.2
@@ -263,16 +263,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                                                                              |
-| NDK                        | 26.3.11579264<br>27.1.12297006 (default)                                                                                                                                                                                                                                        |
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                        |
 | ----------------------- | -------------------------------------------- |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                   |
-| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Cached Docker images
@@ -283,16 +283,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:3ddf7bf1d408188f9849efbf4f902720ae08f5131bb39013518b918aa056d0de  | 2024-09-06 |
 | alpine:3.19          | sha256:ae65dbf8749a7d4527648ccee1fa3deb6bfcae34cbc30fc67aa45c44dcaa90ee  | 2024-09-06 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:152b9a5dc2a03f18ddfd88fbe7b1df41bd2b16be9f2df573a373caf46ce78c08  | 2024-09-27 |
+| debian:11            | sha256:d0036be35fe0a4d2649bf074ca467a37dab8c5b26bbbdfca0375b4dc682f011d  | 2024-10-17 |
 | moby/buildkit:latest | sha256:bc1fe18224dbcb92599139db0c745696c48ba9fd4ac24038d1fa81fdd7dcac27  | 2024-09-10 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:f910225c96b0f77b0149f350a3184568a9ba6cddba2a7c7805cc125a50591605  | 2024-07-09 |
+| node:18              | sha256:ddd173cd94537e155b378342056e0968e8299eb3da9dd5d412d3b7f796ac38c0  | 2024-07-09 |
 | node:18-alpine       | sha256:02376a266c84acbf45bd19440e08e48b1c8b98037417334046029ab585de03e2  | 2024-07-09 |
-| node:20              | sha256:fffa89e023a3351904c04284029105d9e2ac7020886d683775a298569591e5bb  | 2024-10-04 |
+| node:20              | sha256:a5e0ed56f2c20b9689e0f7dd498cac7e08d2a3a283e92d9304e7b9b83e3c6ff3  | 2024-10-04 |
 | node:20-alpine       | sha256:c13b26e7e602ef2f1074aef304ce6e9b7dd284c419b35d89fcf3cc8e44a8def9  | 2024-10-04 |
-| ubuntu:20.04         | sha256:e341aa0d58bb9480bd092a137658bd1a7a5e8ae4fca31769df0eb7d6c4b8266e  | 2024-10-11 |
-| ubuntu:22.04         | sha256:58b87898e82351c6cf9cf5b9f3c20257bb9e2dcf33af051e12ce532d7f94e3fe  | 2024-09-11 |
+| ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
+| ubuntu:22.04         | sha256:0e5e4a57c2499249aafc3b40fcd541e9a456aab7296681a3994d631587203f97  | 2024-09-11 |
 
 ### Installed apt packages
 | Name                   | Version                             |
