@@ -7,7 +7,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.5.0-1025-azure
-- Image Version: 20241006.1.0
+- Image Version: 20241015.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -20,8 +20,8 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.10.5
-- Kotlin 2.0.20-release-360
+- Julia 1.11.0
+- Kotlin 2.0.21-release-482
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.20.4
@@ -32,8 +32,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.16.1
-- Homebrew 4.4.0
+- Helm 3.16.2
+- Homebrew 4.4.1
 - Miniconda 24.7.1
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -41,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 7adc2e4d4)
+- Vcpkg (build from commit e63bd09dc)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -66,30 +66,30 @@ to accomplish this.
 - Sbt 1.10.2
 
 ### Tools
-- Ansible 2.17.4
+- Ansible 2.17.5
 - apt-fast 1.10.0
 - AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.3.2
 - Bazelisk 1.22.0
 - Bicep 0.30.23
 - Buildah 1.23.1
-- CMake 3.30.4
-- CodeQL Action Bundle 2.19.0
+- CMake 3.30.5
+- CodeQL Action Bundle 2.19.1
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.17.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.224.0
-- Git 2.46.2
+- Git 2.47.0
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 9.3.0
+- Heroku 9.3.1
 - jq 1.6
 - Kind 0.24.0
 - Kubectl 1.31.1
-- Kustomize 5.4.3
+- Kustomize 5.5.0
 - Leiningen 2.11.2
 - MediaInfo 21.09
 - Mercurial 6.1.1
@@ -101,7 +101,7 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 3.4.4
-- Pulumi 3.135.1
+- Pulumi 3.136.1
 - R 4.4.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -112,18 +112,18 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.224
-- AWS CLI 2.18.0
-- AWS CLI Session Manager Plugin 1.2.650.0
+- Alibaba Cloud CLI 3.0.227
+- AWS CLI 2.18.7
+- AWS CLI Session Manager Plugin 1.2.677.0
 - AWS SAM CLI 1.125.0
-- Azure CLI 2.64.0
+- Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.58.0
-- Google Cloud CLI 495.0.0
-- Netlify CLI 17.36.4
+- Google Cloud CLI 497.0.0
+- Netlify CLI 17.37.0
 - OpenShift CLI 4.17.0
 - ORAS CLI 1.2.0
-- Vercel CLI 37.6.1
+- Vercel CLI 37.8.0
 
 ### Java
 | Version             | Environment Variable |
@@ -162,13 +162,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 129.0.6668.89
-- ChromeDriver 129.0.6668.89
-- Chromium 129.0.6668.0
-- Microsoft Edge 129.0.2792.79
-- Microsoft Edge WebDriver 129.0.2792.73
+- Google Chrome 130.0.6723.58
+- ChromeDriver 130.0.6723.58
+- Chromium 130.0.6723.0
+- Microsoft Edge 129.0.2792.89
+- Microsoft Edge WebDriver 129.0.2792.93
 - Selenium server 4.25.0
-- Mozilla Firefox 131.0
+- Mozilla Firefox 131.0.2
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -180,7 +180,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.425, 7.0.410, 8.0.402
+- .NET Core SDK: 6.0.427, 7.0.410, 8.0.403
 - nbgv 3.6.143+57d4199a9c
 
 ### Databases
@@ -210,14 +210,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.20.14
 - 1.21.13
 - 1.22.8
+- 1.23.2
 
 #### Node.js
 - 16.20.2
 - 18.20.4
-- 20.17.0
+- 20.18.0
 
 #### Python
 - 3.7.17
@@ -245,7 +245,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.24.0
 - Pester: 5.6.1
-- PSScriptAnalyzer: 1.22.0
+- PSScriptAnalyzer: 1.23.0
 
 ### Web Servers
 | Name    | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -291,7 +291,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:18-alpine       | sha256:02376a266c84acbf45bd19440e08e48b1c8b98037417334046029ab585de03e2  | 2024-07-09 |
 | node:20              | sha256:fffa89e023a3351904c04284029105d9e2ac7020886d683775a298569591e5bb  | 2024-10-04 |
 | node:20-alpine       | sha256:c13b26e7e602ef2f1074aef304ce6e9b7dd284c419b35d89fcf3cc8e44a8def9  | 2024-10-04 |
-| ubuntu:20.04         | sha256:6d8d9799fe6ab3221965efac00b4c34a2bcc102c086a58dff9e19a08b913c7ef  | 2024-09-18 |
+| ubuntu:20.04         | sha256:e341aa0d58bb9480bd092a137658bd1a7a5e8ae4fca31769df0eb7d6c4b8266e  | 2024-10-11 |
 | ubuntu:22.04         | sha256:58b87898e82351c6cf9cf5b9f3c20257bb9e2dcf33af051e12ce532d7f94e3fe  | 2024-09-11 |
 
 ### Installed apt packages
