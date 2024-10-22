@@ -1,15 +1,15 @@
 | Announcements |
 |-|
+| [[macOS] OpenSSL 1.1 will be removed  and  OpenSSL 3 will be the default for all macOS images from November 4](https://github.com/actions/runner-images/issues/10817) |
+| [[macOS] Python 3.9 and 3.10 will be removed from macOS13 arm64 and  macOS14 arm64 on November 18.](https://github.com/actions/runner-images/issues/10812) |
 | [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and ADO](https://github.com/actions/runner-images/issues/10721) |
 | [[macOS] Support policy changes; Xcode 14 and 16 will be removed from macOS 14 on October 28](https://github.com/actions/runner-images/issues/10703) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
-| [[Macos 13 and 14] Android NDK versions <=25 will be removed from images on October 07,2024](https://github.com/actions/runner-images/issues/10614) |
-| [[Macos 13 and 14] Go version 1.20.0 will be removed on October 07,2024.](https://github.com/actions/runner-images/issues/10612) |
 ***
 # macOS 15
-- OS Version: macOS 15.0 (24A335)
+- OS Version: macOS 15.0.1 (24A348)
 - Kernel Version: Darwin 24.0.0
-- Image Version: 20241014.193
+- Image Version: 20241021.239
 
 ## Installed Software
 
@@ -31,14 +31,14 @@
 - Ruby 3.3.5
 
 ### Package Management
-- Bundler 2.5.21
+- Bundler 2.5.22
 - Carthage 0.40.0
 - CocoaPods 1.15.2
-- Homebrew 4.4.0
+- Homebrew 4.4.2
 - NPM 10.8.3
 - Pip3 24.2 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.5.21
+- RubyGems 3.5.22
 - Yarn 1.22.22
 
 ### Project Management
@@ -56,7 +56,7 @@
 - Curl 8.7.1
 - Git 2.47.0
 - Git LFS 3.5.1
-- GitHub CLI 2.58.0
+- GitHub CLI 2.59.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -68,28 +68,28 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.18.5
-- AWS SAM CLI 1.125.0
+- AWS CLI 2.18.10
+- AWS SAM CLI 1.126.0
 - AWS Session Manager CLI 1.2.677.0
 - Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.30.23
 - Cmake 3.30.5
 - CodeQL Action Bundle 2.19.1
-- Fastlane 2.224.0
+- Fastlane 2.225.0
 - SwiftFormat 0.54.6
-- Xcbeautify 2.11.0
+- Xcbeautify 2.14.0
 - Xcode Command Line Tools 16.0.0.0.1.1724870825
 - Xcodes 1.5.0
 
 ### Linters
 
 ### Browsers
-- Safari 18.0 (20619.1.26.31.6)
-- SafariDriver 18.0 (20619.1.26.31.6)
-- Google Chrome 129.0.6668.101
-- Google Chrome for Testing 129.0.6668.100
-- ChromeDriver 129.0.6668.100
+- Safari 18.0.1 (20619.1.26.31.7)
+- SafariDriver 18.0.1 (20619.1.26.31.7)
+- Google Chrome 130.0.6723.59
+- Google Chrome for Testing 130.0.6723.58
+- ChromeDriver 130.0.6723.58
 - Selenium server 4.25.0
 
 #### Environment variables
@@ -100,11 +100,11 @@
 | GECKOWEBDRIVER  |                                         |
 
 ### Java
-| Version              | Environment Variable |
-| -------------------- | -------------------- |
-| 11.0.24+8            | JAVA_HOME_11_arm64   |
-| 17.0.12+7            | JAVA_HOME_17_arm64   |
-| 21.0.4+7.0 (default) | JAVA_HOME_21_arm64   |
+| Version               | Environment Variable |
+| --------------------- | -------------------- |
+| 11.0.24+8             | JAVA_HOME_11_arm64   |
+| 17.0.13+11            | JAVA_HOME_17_arm64   |
+| 21.0.5+11.0 (default) | JAVA_HOME_21_arm64   |
 
 ### Cached Tools
 
@@ -116,6 +116,7 @@
 #### Node.js
 - 18.20.4
 - 20.18.0
+- 22.10.0
 
 #### Go
 - 1.21.13
@@ -123,13 +124,13 @@
 - 1.23.2
 
 ### Rust Tools
-- Cargo 1.81.0
-- Rust 1.81.0
-- Rustdoc 1.81.0
+- Cargo 1.82.0
+- Rust 1.82.0
+- Rustdoc 1.82.0
 - Rustup 1.27.1
 
 #### Packages
-- Clippy 0.1.81
+- Clippy 0.1.82
 - Rustfmt 1.7.1-stable
 
 ### PowerShell Tools
@@ -163,10 +164,10 @@
 | watchOS 11.1             | watchos11.1          | 16.1          |
 | Simulator - watchOS 11.0 | watchsimulator11.0   | 16.0          |
 | Simulator - watchOS 11.1 | watchsimulator11.1   | 16.1          |
-| Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
 | visionOS 2.0             | xros2.0              | 16.0          |
-| visionOS 2.1             | xros2.1              | 16.1          |
+| Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
 | Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
+| visionOS 2.1             | xros2.1              | 16.1          |
 | DriverKit 24.0           | driverkit24.0        | 16.0          |
 | DriverKit 24.1           | driverkit24.1        | 16.1          |
 
@@ -192,15 +193,15 @@
 | CMake                      | 3.22.1                                                                                                                                                                                  |
 | Google Play services       | 49                                                                                                                                                                                      |
 | Google Repository          | 58                                                                                                                                                                                      |
-| NDK                        | 26.3.11579264<br>27.1.12297006 (default)                                                                                                                                                |
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                |
 
 #### Environment variables
 | Name                    | Value                                               |
 | ----------------------- | --------------------------------------------------- |
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
