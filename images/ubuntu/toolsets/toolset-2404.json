@@ -28,7 +28,6 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "16.*",
                 "18.*",
                 "20.*"
             ]
