@@ -9,12 +9,12 @@
 # macOS 14
 - OS Version: macOS 14.7 (23H124)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20241007.165
+- Image Version: 20241014.202
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.402
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.403
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.3
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -24,12 +24,12 @@
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.2.0) - available by `gfortran-14` alias
-- Kotlin 2.0.20-release-360
+- Kotlin 2.0.21-release-482
 - Mono 6.12.0.188
 - Node.js 20.18.0
 - Perl 5.38.2
 - PHP 8.3.12
-- Python3 3.12.7
+- Python3 3.13.0
 - Ruby 3.0.7p220
 
 ### Package Management
@@ -40,7 +40,7 @@
 - Homebrew 4.4.0
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 24.2 (python 3.12)
+- Pip3 24.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.5.21
 - Yarn 1.22.22
@@ -58,7 +58,7 @@
 - bazelisk 1.22.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.10.1
-- Git 2.46.2
+- Git 2.47.0
 - Git LFS 3.5.1
 - GitHub CLI 2.58.0
 - GNU Tar 1.35 - available by 'gtar' alias
@@ -72,16 +72,16 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.18.0
+- AWS CLI 2.18.5
 - AWS SAM CLI 1.125.0
-- AWS Session Manager CLI 1.2.650.0
-- Azure CLI 2.64.0
+- AWS Session Manager CLI 1.2.677.0
+- Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.30.23
-- Cmake 3.30.4
-- CodeQL Action Bundle 2.19.0
+- Cmake 3.30.5
+- CodeQL Action Bundle 2.19.1
 - Fastlane 2.224.0
-- SwiftFormat 0.54.5
+- SwiftFormat 0.54.6
 - Xcbeautify 2.11.0
 - Xcode Command Line Tools 16.0.0.0.1.1724870825
 - Xcodes 1.5.0
@@ -92,12 +92,12 @@
 ### Browsers
 - Safari 18.0.1 (19619.1.26.111.11)
 - SafariDriver 18.0.1 (19619.1.26.111.11)
-- Google Chrome 129.0.6668.90
-- Google Chrome for Testing 129.0.6668.89
-- ChromeDriver 129.0.6668.89
-- Microsoft Edge 129.0.2792.79
-- Microsoft Edge WebDriver 129.0.2792.82
-- Mozilla Firefox 131.0
+- Google Chrome 129.0.6668.101
+- Google Chrome for Testing 129.0.6668.100
+- ChromeDriver 129.0.6668.100
+- Microsoft Edge 129.0.2792.89
+- Microsoft Edge WebDriver 129.0.2792.91
+- Mozilla Firefox 131.0.2
 - geckodriver 0.35.0
 - Selenium server 4.25.0
 
@@ -129,10 +129,11 @@
 - 3.10.15
 - 3.11.9
 - 3.12.7
+- 3.13.0
 
 #### Node.js
 - 18.20.4
-- 20.17.0
+- 20.18.0
 
 #### Go
 - 1.21.13
@@ -153,21 +154,21 @@
 - PowerShell 7.4.5
 
 #### PowerShell Modules
-- Az: 12.3.0
+- Az: 12.4.0
 - Pester: 5.6.1
-- PSScriptAnalyzer: 1.22.0
+- PSScriptAnalyzer: 1.23.0
 
 ### Xcode
-| Version        | Build    | Path                                |
-| -------------- | -------- | ----------------------------------- |
-| 16.1 (beta)    | 16B5014f | /Applications/Xcode_16.1_beta_2.app |
-| 16.0           | 16A242d  | /Applications/Xcode_16.app          |
-| 15.4 (default) | 15F31d   | /Applications/Xcode_15.4.app        |
-| 15.3           | 15E204a  | /Applications/Xcode_15.3.app        |
-| 15.2           | 15C500b  | /Applications/Xcode_15.2.app        |
-| 15.1           | 15C65    | /Applications/Xcode_15.1.app        |
-| 15.0.1         | 15A507   | /Applications/Xcode_15.0.1.app      |
-| 14.3.1         | 14E300c  | /Applications/Xcode_14.3.1.app      |
+| Version        | Build    | Path                                | Symlinks                                                       |
+| -------------- | -------- | ----------------------------------- | -------------------------------------------------------------- |
+| 16.1 (beta)    | 16B5029d | /Applications/Xcode_16.1_beta_3.app | /Applications/Xcode_16.1.0.app<br>/Applications/Xcode_16.1.app |
+| 16.0           | 16A242d  | /Applications/Xcode_16.app          | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app |
+| 15.4 (default) | 15F31d   | /Applications/Xcode_15.4.app        | /Applications/Xcode_15.4.0.app<br>/Applications/Xcode.app      |
+| 15.3           | 15E204a  | /Applications/Xcode_15.3.app        | /Applications/Xcode_15.3.0.app                                 |
+| 15.2           | 15C500b  | /Applications/Xcode_15.2.app        | /Applications/Xcode_15.2.0.app                                 |
+| 15.1           | 15C65    | /Applications/Xcode_15.1.app        | /Applications/Xcode_15.1.0.app                                 |
+| 15.0.1         | 15A507   | /Applications/Xcode_15.0.1.app      | /Applications/Xcode_15.0.app                                   |
+| 14.3.1         | 14E300c  | /Applications/Xcode_14.3.1.app      | /Applications/Xcode_14.3.app                                   |
 
 #### Installed SDKs
 | SDK                                                     | SDK Name                                      | Xcode Version |
@@ -232,8 +233,8 @@
 | Simulator - visionOS 2.1                                | xrsimulator2.1                                | 16.1          |
 | visionOS 2.1                                            | xros2.1                                       | 16.1          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
 | DriverKit 23.0                                          | driverkit23.0                                 | 15.0.1        |
 | DriverKit 23.2                                          | driverkit23.2                                 | 15.1, 15.2    |
@@ -292,11 +293,12 @@
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
 ### Miscellaneous
+- Tcl/Tk 8.6.15
 
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.0.1-55659/ParallelsDesktop-20.0.1-55659.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.1.0-55732/ParallelsDesktop-20.1.0-55732.dmg |
 
 ##### Notes
 ```
