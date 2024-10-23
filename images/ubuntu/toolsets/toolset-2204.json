@@ -226,7 +226,6 @@
             "node:16-alpine",
             "node:18-alpine",
             "node:20-alpine",
-            "node:22-alpine"
             "node:22-alpine",
             "ubuntu:20.04",
             "ubuntu:22.04"
