@@ -3,26 +3,20 @@
         "default": "15.4",
         "x64": {
             "versions": [
-                { "link": "16.1_Release_Candidate", "version": "16.1_Release_Candidate+16B40", "symlinks": ["16.1"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
-                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
-                { "link": "15.4", "version": "15.4.0+15F31d", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
-                { "link": "15.3", "version": "15.3.0+15E204a", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
-                { "link": "15.2", "version": "15.2.0+15C500b", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
-                { "link": "15.1", "version": "15.1.0+15C65", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
-                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
-                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"}
+                { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
+                { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
+                { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
+                { "link": "15.1", "version": "15.1.0+15C65", "install_runtimes": "true", "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
+                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true", "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"}
             ]
         },
         "arm64":{
             "versions": [
-                { "link": "16.1_Release_Candidate", "version": "16.1_Release_Candidate+16B40", "symlinks": ["16.1"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
-                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
-                { "link": "15.4", "version": "15.4.0+15F31d", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
-                { "link": "15.3", "version": "15.3.0+15E204a", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
-                { "link": "15.2", "version": "15.2.0+15C500b", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
-                { "link": "15.1", "version": "15.1.0+15C65", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
-                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
-                { "link": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"}
+                { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
+                { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
+                { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
+                { "link": "15.1", "version": "15.1.0+15C65", "install_runtimes": "true", "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
+                { "link": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "true", "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"}
             ]
         }
     },
