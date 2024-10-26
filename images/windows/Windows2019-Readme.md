@@ -1,6 +1,6 @@
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6414
-- Image Version: 20241015.1.0
+- Image Version: 20241021.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -29,7 +29,7 @@
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 9b44f143b)
+- Vcpkg (build from commit 3a747a4fc)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -42,14 +42,14 @@
 - Ant 1.10.14
 - Gradle 8.10
 - Maven 3.8.7
-- sbt 1.10.2
+- sbt 1.10.3
 
 ### Tools
 - 7zip 24.08
 - aria2 1.37.0
 - azcopy 10.26.0
 - Bazel 7.3.2
-- Bazelisk 1.22.0
+- Bazelisk 1.22.1
 - Bicep 0.30.23
 - Cabal 3.12.1.0
 - CMake 3.30.5
@@ -75,11 +75,11 @@
 - OpenSSL 1.1.1w
 - Packer 1.11.2
 - Parcel 2.12.0
-- Pulumi 3.136.1
+- Pulumi 3.137.0
 - R 4.4.1
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
-- Subversion (SVN) 1.14.2
+- Subversion (SVN) 1.14.4
 - Swig 4.1.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
@@ -88,19 +88,19 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.226
-- AWS CLI 2.18.4
-- AWS SAM CLI 1.125.0
+- Alibaba Cloud CLI 3.0.227
+- AWS CLI 2.18.10
+- AWS SAM CLI 1.126.0
 - AWS Session Manager CLI 1.2.677.0
 - Azure CLI 2.65.0
 - Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 8.8.2
-- GitHub CLI 2.58.0
+- GitHub CLI 2.59.0
 
 ### Rust Tools
-- Cargo 1.81.0
-- Rust 1.81.0
-- Rustdoc 1.81.0
+- Cargo 1.82.0
+- Rust 1.82.0
+- Rustdoc 1.82.0
 - Rustup 1.27.1
 
 #### Packages
@@ -108,14 +108,14 @@
 - cargo-audit 0.20.1
 - cargo-outdated 0.15.0
 - cbindgen 0.27.0
-- Clippy 0.1.81
+- Clippy 0.1.82
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
 - Google Chrome 130.0.6723.59
 - Chrome Driver 130.0.6723.58
-- Microsoft Edge 129.0.2792.89
-- Microsoft Edge Driver 129.0.2792.89
+- Microsoft Edge 130.0.2849.46
+- Microsoft Edge Driver 130.0.2849.46
 - Mozilla Firefox 131.0.3
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
@@ -132,10 +132,10 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.422+5 (default) | JAVA_HOME_8_X64      |
-| 11.0.24+8           | JAVA_HOME_11_X64     |
-| 17.0.12+7           | JAVA_HOME_17_X64     |
-| 21.0.4+7.0          | JAVA_HOME_21_X64     |
+| 8.0.432+6 (default) | JAVA_HOME_8_X64      |
+| 11.0.25+9           | JAVA_HOME_11_X64     |
+| 17.0.13+11          | JAVA_HOME_17_X64     |
+| 21.0.5+11.0         | JAVA_HOME_21_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -492,7 +492,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.35, 7.0.5, 7.0.20, 8.0.6, 8.0.10
 - Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.35, 7.0.5, 7.0.20, 8.0.6, 8.0.10
 - Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.35, 7.0.5, 7.0.20, 8.0.6, 8.0.10
-- nbgv 3.6.143+57d4199a9c
+- nbgv 3.6.146+392592327a
 
 ### PowerShell Tools
 - PowerShell 7.4.5
@@ -503,7 +503,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.677
+- AWSPowershell: 4.1.681
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.24.0
@@ -532,16 +532,16 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                    |
-| NDK                        | 26.3.11579264<br>27.1.12297006                                                                                                                                                                                                                                                                        |
+| NDK                        | 26.3.11579264<br>27.2.12479018                                                                                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                    |
 | ----------------------- | ---------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                   |
-| ANDROID_NDK             | C:\Android\android-sdk\ndk\27.1.12297006 |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.1.12297006 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\27.1.12297006 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.1.12297006 |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\27.2.12479018 |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.2.12479018 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\27.2.12479018 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.2.12479018 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 
 ### Cached Docker images
