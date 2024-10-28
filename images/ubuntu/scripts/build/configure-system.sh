@@ -24,11 +24,11 @@ replace_etc_environment_variable "PATH" "${ENVPATH}"
 echo "Updated /etc/environment: $(cat /etc/environment)"
 
 # Clean yarn and npm cache
-if yarn --version > /dev/null; then
+if type yarn > /dev/null; then
     yarn cache clean
 fi
 
-if npm --version; then
+if type npm > /dev/null; then
     npm cache clean --force
 fi
 
