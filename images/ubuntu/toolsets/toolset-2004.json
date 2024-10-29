@@ -36,7 +36,8 @@
             "versions": [
                 "16.*",
                 "18.*",
-                "20.*"
+                "20.*",
+                "22.*"
             ]
         },
         {
@@ -223,9 +224,11 @@
             "node:16",
             "node:18",
             "node:20",
+            "node:22",
             "node:16-alpine",
             "node:18-alpine",
             "node:20-alpine",
+            "node:22-alpine",
             "ubuntu:20.04"
         ],
         "components": [
