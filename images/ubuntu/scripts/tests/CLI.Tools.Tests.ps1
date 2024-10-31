@@ -36,7 +36,7 @@ Describe "GitHub CLI" {
     }
 }
 
-Describe "Google Cloud CLI" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Google Cloud CLI" {
     It "Google Cloud CLI" {
         "gcloud --version" | Should -ReturnZeroExitCode
     }
