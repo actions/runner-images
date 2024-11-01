@@ -12,7 +12,7 @@ param(
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet,
     [String] [Parameter (Mandatory=$false)] $AllowedInboundIpAddresses = "[]",
-    [hashtable] [Parameter(Mandatory = $False)] $AzureTags = @{}
+    [hashtable] [Parameter(Mandatory = $false)] $AzureTags = @{}
 )
 
 if (-not (Test-Path $TemplatePath))
