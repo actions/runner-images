@@ -11,7 +11,8 @@ param(
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet,
-    [String] [Parameter (Mandatory=$false)] $AllowedInboundIpAddresses = "[]"
+    [String] [Parameter (Mandatory=$false)] $AllowedInboundIpAddresses = "[]",
+    [hashtable] [Parameter(Mandatory = $False)] $AzureTags = @{}
 )
 
 if (-not (Test-Path $TemplatePath))
@@ -32,6 +33,23 @@ $SensitiveData = @(
     'TemplateUriReadOnlySas',
     ':  ->'
 )
+
+#Region Prepare optional Azure tags
+$AzureTags.GetEnumerator() | ForEach-Object { Write-Debug "Azure tag: '$($_.Key)' = '$($_.Value)'" }
+$AzureTagsJson = $AzureTags | ConvertTo-Json -Compress
+
+# Replace double quotes with escaped double quotes in JSON for PowerShell 5 and 7.0-7.2
+# Kudo to authors of 'helpers/GenerateResourcesAndImage.ps1'.
+if ($PSVersionTable.PSVersion.Major -eq 5) {
+    Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in tags JSON."
+    $AzureTagsJson = $AzureTagsJson -replace '"', '\"'
+}
+elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
+    Write-Verbose "PowerShell 7.0-7.2 detected. Replacing double quotes with escaped double quotes in tags JSON."
+    $AzureTagsJson = $AzureTagsJson -replace '"', '\"'
+}
+Write-Debug "Azure tags JSON: $AzureTagsJson."
+#EndRegion Prepare optional Azure tags
 
 Write-Host "Show Packer Version"
 packer --version
@@ -56,6 +74,7 @@ packer build    -var "client_id=$ClientId" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
                 -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+                -var "azure_tags=$($AzureTagsJson)" `
                 -color=false `
                 $TemplatePath `
         | Where-Object {
