@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[Ubuntu 20 and 22] Node.js version 16 will be removed on November 18,2024.](https://github.com/actions/runner-images/issues/10896) |
 | [[Ubuntu 24 ] Node.js version 16 will be removed on October 21,2024.](https://github.com/actions/runner-images/issues/10677) |
 | [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 | [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
-- Kernel Version: 5.15.0-1073-azure
-- Image Version: 20241006.1.0
+- Kernel Version: 5.15.0-1074-azure
+- Image Version: 20241103.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -22,28 +23,28 @@
 - Erlang rebar3 3.24.0
 - GNU C++: 10.5.0
 - GNU Fortran: 10.5.0
-- Julia 1.10.5
-- Kotlin 2.0.20-release-360
+- Julia 1.11.1
+- Kotlin 2.0.21-release-482
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.20.4
 - Perl 5.30.0
 - Python 3.8.10
 - Ruby 2.7.0p0
-- Swift 6.0.1
+- Swift 6.0.2
 
 ### Package Management
 - cpan 1.64
-- Helm 3.16.1
-- Homebrew 4.4.0
-- Miniconda 24.7.1
+- Helm 3.16.2
+- Homebrew 4.4.3
+- Miniconda 24.9.2
 - Npm 10.7.0
 - NuGet 6.6.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 7adc2e4d4)
+- Vcpkg (build from commit 4f746bc66)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -63,36 +64,36 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.7
 - Gradle 8.10.2
-- Lerna 8.1.8
+- Lerna 8.1.9
 - Maven 3.8.8
-- Sbt 1.10.2
+- Sbt 1.10.4
 
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.10.0
-- AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.3.2
-- Bazelisk 1.22.0
+- AzCopy 10.27.0 - available by `azcopy` and `azcopy10` aliases
+- Bazel 7.4.0
+- Bazelisk 1.22.1
 - Bicep 0.30.23
 - Buildah 1.22.3
-- CMake 3.30.4
-- CodeQL Action Bundle 2.19.0
+- CMake 3.30.5
+- CodeQL Action Bundle 2.19.2
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.17.1
+- Docker-Buildx 0.18.0
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.224.0
-- Git 2.46.2
+- Fastlane 2.225.0
+- Git 2.47.0
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 9.3.0
+- Heroku 9.3.2
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.24.0
-- Kubectl 1.31.1
-- Kustomize 5.4.3
+- Kubectl 1.31.2
+- Kustomize 5.5.0
 - Leiningen 2.11.2
 - MediaInfo 19.09
 - Mercurial 5.3.1
@@ -105,41 +106,41 @@ to accomplish this.
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.135.1
+- Pulumi 3.137.0
 - R 4.4.1
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.9.7
+- Terraform 1.9.8
 - yamllint 1.35.1
 - yq 4.44.3
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.18.0
-- AWS CLI Session Manager Plugin 1.2.650.0
-- AWS SAM CLI 1.125.0
-- Azure CLI 2.64.0
+- AWS CLI 2.19.1
+- AWS CLI Session Manager Plugin 1.2.677.0
+- AWS SAM CLI 1.127.0
+- Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.58.0
-- Google Cloud CLI 495.0.0
-- Netlify CLI 17.36.4
+- GitHub CLI 2.60.1
+- Google Cloud CLI 499.0.0
+- Netlify CLI 17.37.2
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 37.6.1
+- Vercel CLI 37.14.0
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.422+5           | JAVA_HOME_8_X64      |
-| 11.0.24+8 (default) | JAVA_HOME_11_X64     |
-| 17.0.12+7           | JAVA_HOME_17_X64     |
-| 21.0.4+7            | JAVA_HOME_21_X64     |
+| 8.0.432+6           | JAVA_HOME_8_X64      |
+| 11.0.25+9 (default) | JAVA_HOME_11_X64     |
+| 17.0.13+11          | JAVA_HOME_17_X64     |
+| 21.0.5+11           | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.30, 8.2.24, 8.3.12
-- Composer 2.8.1
+- PHP: 7.4.33, 8.0.30, 8.1.30, 8.2.25, 8.3.13
+- Composer 2.8.2
 - PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -152,27 +153,27 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.1.1
 
 ### Rust Tools
-- Cargo 1.81.0
-- Rust 1.81.0
-- Rustdoc 1.81.0
+- Cargo 1.82.0
+- Rust 1.82.0
+- Rustdoc 1.82.0
 - Rustup 1.27.1
 
 #### Packages
 - Bindgen 0.70.1
-- Cargo audit 0.20.1
-- Cargo clippy 0.1.81
+- Cargo audit 0.21.0
+- Cargo clippy 0.1.82
 - Cargo outdated 0.15.0
 - Cbindgen 0.27.0
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 129.0.6668.89
-- ChromeDriver 129.0.6668.89
-- Chromium 129.0.6668.0
-- Microsoft Edge 129.0.2792.79
-- Microsoft Edge WebDriver 129.0.2792.73
-- Selenium server 4.25.0
-- Mozilla Firefox 131.0
+- Google Chrome 130.0.6723.91
+- ChromeDriver 130.0.6723.91
+- Chromium 130.0.6723.0
+- Microsoft Edge 130.0.2849.56
+- Microsoft Edge WebDriver 130.0.2849.68
+- Selenium server 4.26.0
+- Mozilla Firefox 132.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -184,11 +185,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.425, 7.0.410, 8.0.402
-- nbgv 3.6.143+57d4199a9c
+- .NET Core SDK: 6.0.427, 7.0.410, 8.0.403
+- nbgv 3.6.146+392592327a
 
 ### Databases
-- MongoDB 5.0.29
+- MongoDB 5.0.30
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -215,14 +216,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.20.14
 - 1.21.13
 - 1.22.8
+- 1.23.2
 
 #### Node.js
 - 16.20.2
 - 18.20.4
-- 20.17.0
+- 20.18.0
+- 22.10.0
 
 #### Python
 - 3.7.17
@@ -243,17 +245,17 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Ruby
 - 3.0.7
 - 3.1.6
-- 3.2.5
+- 3.2.6
 
 ### PowerShell Tools
-- PowerShell 7.4.5
+- PowerShell 7.4.6
 
 #### PowerShell Modules
 - Az: 12.1.0
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.24.0
 - Pester: 5.6.1
-- PSScriptAnalyzer: 1.22.0
+- PSScriptAnalyzer: 1.23.0
 
 ### Web Servers
 | Name      | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -272,16 +274,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                                                                              |
-| NDK                        | 26.3.11579264<br>27.1.12297006 (default)                                                                                                                                                                                                                                        |
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                        |
 | ----------------------- | -------------------------------------------- |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                   |
-| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Cached Docker images
@@ -292,16 +294,18 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:3ddf7bf1d408188f9849efbf4f902720ae08f5131bb39013518b918aa056d0de  | 2024-09-06 |
 | alpine:3.19          | sha256:ae65dbf8749a7d4527648ccee1fa3deb6bfcae34cbc30fc67aa45c44dcaa90ee  | 2024-09-06 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:152b9a5dc2a03f18ddfd88fbe7b1df41bd2b16be9f2df573a373caf46ce78c08  | 2024-09-27 |
+| debian:11            | sha256:d0036be35fe0a4d2649bf074ca467a37dab8c5b26bbbdfca0375b4dc682f011d  | 2024-10-17 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest | sha256:bc1fe18224dbcb92599139db0c745696c48ba9fd4ac24038d1fa81fdd7dcac27  | 2024-09-10 |
+| moby/buildkit:latest | sha256:8e8898b54dbaccc8e0b56e02e5d5b3d6b947a26c24b37899c5c652bba7c60b47  | 2024-10-30 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:f910225c96b0f77b0149f350a3184568a9ba6cddba2a7c7805cc125a50591605  | 2024-07-09 |
+| node:18              | sha256:ddd173cd94537e155b378342056e0968e8299eb3da9dd5d412d3b7f796ac38c0  | 2024-07-09 |
 | node:18-alpine       | sha256:02376a266c84acbf45bd19440e08e48b1c8b98037417334046029ab585de03e2  | 2024-07-09 |
-| node:20              | sha256:fffa89e023a3351904c04284029105d9e2ac7020886d683775a298569591e5bb  | 2024-10-04 |
+| node:20              | sha256:a5e0ed56f2c20b9689e0f7dd498cac7e08d2a3a283e92d9304e7b9b83e3c6ff3  | 2024-10-04 |
 | node:20-alpine       | sha256:c13b26e7e602ef2f1074aef304ce6e9b7dd284c419b35d89fcf3cc8e44a8def9  | 2024-10-04 |
-| ubuntu:20.04         | sha256:6d8d9799fe6ab3221965efac00b4c34a2bcc102c086a58dff9e19a08b913c7ef  | 2024-09-18 |
+| node:22              | sha256:de4c8be8232b7081d8846360d73ce6dbff33c6636f2259cd14d82c0de1ac3ff2  | 2024-10-29 |
+| node:22-alpine       | sha256:f265794478aa0b1a23d85a492c8311ed795bc527c3fe7e43453b3c872dcd71a3  | 2024-10-29 |
+| ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
 
 ### Installed apt packages
 | Name                   | Version                           |
@@ -390,7 +394,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2.1                 |
 | xorriso                | 1.5.2-1                           |
-| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.17      |
+| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.18      |
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
