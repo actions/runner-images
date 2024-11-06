@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[Ubuntu 20 and 22] Node.js version 16 will be removed on November 18,2024.](https://github.com/actions/runner-images/issues/10896) |
 | [[Ubuntu 24 ] Node.js version 16 will be removed on October 21,2024.](https://github.com/actions/runner-images/issues/10677) |
 | [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 | [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
-- Kernel Version: 6.8.0-1015-azure
-- Image Version: 20241016.1.0
+- Kernel Version: 6.8.0-1016-azure
+- Image Version: 20241103.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -20,25 +21,25 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.3.0, 13.2.0, 14.2.0
 - GNU Fortran: 12.3.0, 13.2.0, 14.2.0
-- Julia 1.11.0
+- Julia 1.11.1
 - Kotlin 2.0.21-release-482
 - Node.js 20.18.0
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 6.0.1
+- Swift 6.0.2
 
 ### Package Management
 - cpan 1.64
 - Helm 3.16.2
-- Homebrew 4.4.1
-- Miniconda 24.7.1
+- Homebrew 4.4.3
+- Miniconda 24.9.2
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
-- Pipx 1.4.3
+- Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit e63bd09dc)
+- Vcpkg (build from commit 4f746bc66)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -58,42 +59,43 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.10.2
-- Lerna 8.1.8
+- Lerna 8.1.9
 - Maven 3.8.8
 
 ### Tools
 - Ansible 2.17.5
-- AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.3.2
-- Bazelisk 1.22.0
+- AzCopy 10.27.0 - available by `azcopy` and `azcopy10` aliases
+- Bazel 7.4.0
+- Bazelisk 1.22.1
 - Bicep 0.30.23
 - Buildah 1.33.7
 - CMake 3.30.5
-- CodeQL Action Bundle 2.19.1
+- CodeQL Action Bundle 2.19.2
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.17.1
+- Docker-Buildx 0.18.0
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.224.0
+- Fastlane 2.225.0
 - Git 2.47.0
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.24.0
-- Kubectl 1.31.1
+- Kubectl 1.31.2
 - Kustomize 5.5.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.34.0
 - n 10.0.0
 - Newman 6.2.1
+- nvm 0.40.1
 - OpenSSL 3.0.13-0ubuntu3.4
 - Packer 1.11.2
 - Parcel 2.12.0
 - Podman 4.9.3
-- Pulumi 3.136.1
+- Pulumi 3.137.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -101,24 +103,25 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.18.7
+- AWS CLI 2.19.1
 - AWS CLI Session Manager Plugin 1.2.677.0
-- AWS SAM CLI 1.125.0
+- AWS SAM CLI 1.127.0
 - Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.58.0
+- GitHub CLI 2.60.1
+- Google Cloud CLI 499.0.0
 
 ### Java
-| Version             | Environment Variable |
-| ------------------- | -------------------- |
-| 8.0.422+5           | JAVA_HOME_8_X64      |
-| 11.0.24+8           | JAVA_HOME_11_X64     |
-| 17.0.12+7 (default) | JAVA_HOME_17_X64     |
-| 21.0.4+7            | JAVA_HOME_21_X64     |
+| Version              | Environment Variable |
+| -------------------- | -------------------- |
+| 8.0.432+6            | JAVA_HOME_8_X64      |
+| 11.0.25+9            | JAVA_HOME_11_X64     |
+| 17.0.13+11 (default) | JAVA_HOME_17_X64     |
+| 21.0.5+11            | JAVA_HOME_21_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.1
+- Composer 2.8.2
 - PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -131,22 +134,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.1.1
 
 ### Rust Tools
-- Cargo 1.81.0
-- Rust 1.81.0
-- Rustdoc 1.81.0
+- Cargo 1.82.0
+- Rust 1.82.0
+- Rustdoc 1.82.0
 - Rustup 1.27.1
 
 #### Packages
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 130.0.6723.58
-- ChromeDriver 130.0.6723.58
+- Google Chrome 130.0.6723.91
+- ChromeDriver 130.0.6723.91
 - Chromium 130.0.6723.0
-- Microsoft Edge 129.0.2792.89
-- Microsoft Edge WebDriver 129.0.2792.93
-- Selenium server 4.25.0
-- Mozilla Firefox 131.0.2
+- Microsoft Edge 130.0.2849.56
+- Microsoft Edge WebDriver 130.0.2849.68
+- Selenium server 4.26.0
+- Mozilla Firefox 132.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -159,7 +162,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.110
-- nbgv 3.6.143+57d4199a9c
+- nbgv 3.6.146+392592327a
 
 ### Databases
 - sqlite3 3.45.1
@@ -189,9 +192,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.23.2
 
 #### Node.js
-- 16.20.2
 - 18.20.4
 - 20.18.0
+- 22.10.0
 
 #### Python
 - 3.9.20
@@ -227,16 +230,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Android Support Repository | 47.0.0                                                                                                                                                                                                        |
 | Google Play services       | 49                                                                                                                                                                                                            |
 | Google Repository          | 58                                                                                                                                                                                                            |
-| NDK                        | 26.3.11579264<br>27.1.12297006 (default)                                                                                                                                                                      |
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                      |
 
 #### Environment variables
 | Name                    | Value                                        |
 | ----------------------- | -------------------------------------------- |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                   |
-| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.1.12297006 |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Installed apt packages
@@ -308,7 +311,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | unzip                  | 6.0-28ubuntu4.1             |
 | upx                    | 4.2.2-3                     |
 | wget                   | 1.21.4-1ubuntu4.1           |
-| xvfb                   | 2:21.1.12-1ubuntu1          |
+| xvfb                   | 2:21.1.12-1ubuntu1.1        |
 | xz-utils               | 5.6.1+really5.4.5-1build0.1 |
 | zip                    | 3.0-13build1                |
 | zsync                  | 0.6.2-5build1               |
