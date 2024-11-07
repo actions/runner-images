@@ -619,3 +619,8 @@ function Get-XcodesVersion {
     $XcodesVersion = Run-Command "xcodes version"
     return $XcodesVersion
 }
+
+function Get-UnxipVersion {
+    $unxipVersion = Run-Command "unxip --version" | Take-Part -Part 1
+    return $unxipVersion
+}
