@@ -7,6 +7,13 @@ Describe "OpenSSL" {
         }
     }
 
+    Context "OpenSSL 1.1 Path Check" {
+        It "OpenSSL 1.1 path exists" {
+            $openSSLpath = brew --prefix openssl@1.1
+            $openSSLpath | Should -Exist
+        }
+    }
+
     Context "OpenSSL 1.1 is default" {
         It "Default OpenSSL version is 1.1" {
             $commandResult = Get-CommandResult "openssl version"
