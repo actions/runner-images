@@ -149,6 +149,7 @@ if ($os.IsMonterey) {
     $utilities.AddToolVersion("Vagrant", $(Get-VagrantVersion))
     $utilities.AddToolVersion("VirtualBox", $(Get-VirtualBoxVersion))
 }
+$utilities.AddToolVersion("Unxip", $(Get-UnxipVersion))
 $utilities.AddToolVersion("yq", $(Get-YqVersion))
 $utilities.AddToolVersion("zstd", $(Get-ZstdVersion))
 
