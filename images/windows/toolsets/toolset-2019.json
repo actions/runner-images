@@ -147,9 +147,8 @@
             "addon-google_apis-google-21"
         ],
         "additional_tools": [
-            "cmake;3.10.2.4988404",
-            "cmake;3.18.1",
-            "cmake;3.22.1"
+            "cmake;3.22.1",
+            "cmake;3.31.0"
         ],
         "ndk": {
             "default": "27",
