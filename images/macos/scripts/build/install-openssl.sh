@@ -19,9 +19,4 @@ echo "export OPENSSL=${OPENSSL}" >> ${HOME}/.bashrc
 
 ln -sf /usr/local/openssl/bin/openssl /usr/local/bin/openssl
 
-if ! is_Arm64; then
-  # Most of build systems and scripts look up ssl here
-  ln -sf $(brew --cellar openssl@1.1)/1.1* /usr/local/opt/openssl
-fi
-
 invoke_tests "OpenSSL"
