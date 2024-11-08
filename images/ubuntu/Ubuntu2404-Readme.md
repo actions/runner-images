@@ -228,6 +228,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Android SDK Build-tools    | 35.0.0<br>34.0.0                                                                                                                                                                                              |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                        |
+| CMake                      | 3.22.1<br>3.31.0                                                                                                                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                            |
 | Google Repository          | 58                                                                                                                                                                                                            |
 | NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                      |
@@ -315,4 +316,3 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.6.1+really5.4.5-1build0.1 |
 | zip                    | 3.0-13build1                |
 | zsync                  | 0.6.2-5build1               |
-

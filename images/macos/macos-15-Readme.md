@@ -201,7 +201,7 @@
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                  |
 | Android Support Repository | 47.0.0                                                                                                                                                                                  |
-| CMake                      | 3.22.1                                                                                                                                                                                  |
+| CMake                      | 3.22.1<br>3.31.0                                                                                                                                                                        |
 | Google Play services       | 49                                                                                                                                                                                      |
 | Google Repository          | 58                                                                                                                                                                                      |
 | NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                |
@@ -215,4 +215,3 @@
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
-

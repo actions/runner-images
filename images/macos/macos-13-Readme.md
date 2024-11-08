@@ -250,7 +250,7 @@
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                              |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                              |
-| CMake                      | 3.22.1                                                                                                                                                                                                                              |
+| CMake                      | 3.22.1<br>3.31.0                                                                                                                                                                                                                    |
 | Google Play services       | 49                                                                                                                                                                                                                                  |
 | Google Repository          | 58                                                                                                                                                                                                                                  |
 | NDK                        | 26.3.11579264 (default)<br>27.2.12479018                                                                                                                                                                                            |
@@ -278,4 +278,3 @@
 If you want to use Parallels Desktop you should download a package from URL stored in
 PARALLELS_DMG_URL environment variable. A system extension is allowed for this version.
 ```
-
