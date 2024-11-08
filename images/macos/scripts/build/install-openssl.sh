@@ -6,20 +6,22 @@
 
 source ~/utils/utils.sh
 
-echo "Install openssl@3"
-brew_smart_install "openssl@3"
+echo "Install openssl@1.1"
+
+openssl_pkg=$(download_with_retry "https://www.openssl.org/source/openssl-1.1.1w.tar.gz")
+tar -xvf $openssl_pkg
+cd openssl-1.1.1w
+./config --prefix=/usr/local/openssl
+make
+sudo make install
+export OPENSSL="/usr/local/openssl/bin"
+echo "export OPENSSL=${OPENSSL}" >> ${HOME}/.bashrc
 
 if ! is_Arm64; then
-  # Symlink brew openssl@3 to `/usr/local/bin` as Homebrew refuses
-  ln -sf $(brew --prefix openssl@3)/bin/openssl /usr/local/bin/openssl
+  ln -sf ${OPENSSL}/openssl /usr/local/bin/openssl
+  ln -sf ${OPENSSL}/openssl /usr/local/opt/openssl
 else
-  # arm64 has a different installation prefix for brew
-  ln -sf $(brew --prefix openssl@3)/bin/openssl /opt/homebrew/bin/openssl
-fi
-
-if ! is_Arm64; then
-  # Most of build systems and scripts look up ssl here
-  ln -sf $(brew --cellar openssl@3)/3* /usr/local/opt/openssl
+  ln -sf ${OPENSSL}/openssl /opt/homebrew/bin/openssl
 fi
 
 invoke_tests "OpenSSL"
