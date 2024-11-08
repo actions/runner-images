@@ -42,7 +42,7 @@
         ],
         "addons": [],
         "additional_tools": [
-            "cmake;3.22.1"
+            "cmake;3.31.0"
         ],
         "ndk": {
             "default": "26",
