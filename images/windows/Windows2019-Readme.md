@@ -1,11 +1,11 @@
 | Announcements |
 |-|
-| [[Windows] .NET 7.x will be removed from the images on December 6, 2024](https://github.com/actions/runner-images/issues/10894) |
-| [[Windows] Python 3.7.x will be removed from  December 6 ,2024](https://github.com/actions/runner-images/issues/10893) |
+| [[Windows & Ubuntu] .NET 7.x will be removed from the images on December 6, 2024](https://github.com/actions/runner-images/issues/10894) |
+| [[Windows & Ubuntu] Python 3.7.x will be removed from  December 6 ,2024](https://github.com/actions/runner-images/issues/10893) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6414
-- Image Version: 20241104.2.0
+- Image Version: 20241110.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -34,7 +34,7 @@
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 2a3138723)
+- Vcpkg (build from commit 813a241fb)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -47,29 +47,29 @@
 - Ant 1.10.14
 - Gradle 8.10
 - Maven 3.8.7
-- sbt 1.10.4
+- sbt 1.10.5
 
 ### Tools
 - 7zip 24.08
 - aria2 1.37.0
 - azcopy 10.27.0
 - Bazel 7.4.0
-- Bazelisk 1.22.1
-- Bicep 0.30.23
+- Bazelisk 1.23.0
+- Bicep 0.31.34
 - Cabal 3.12.1.0
-- CMake 3.30.5
-- CodeQL Action Bundle 2.19.2
+- CMake 3.31.0
+- CodeQL Action Bundle 2.19.3
 - Docker 26.1.3
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
 - ghc 9.10.1
 - Git 2.47.0.windows.1
 - Git LFS 3.5.1
-- Google Cloud CLI 499.0.0
+- Google Cloud CLI 500.0.0
 - ImageMagick 7.1.1-39
 - InnoSetup 6.3.3
 - jq 1.7.1
-- Kind 0.24.0
+- Kind 0.25.0
 - Kubectl 1.31.2
 - Mercurial 5.0
 - gcc 8.1.0
@@ -80,7 +80,7 @@
 - OpenSSL 1.1.1w
 - Packer 1.11.2
 - Parcel 2.12.0
-- Pulumi 3.137.0
+- Pulumi 3.138.0
 - R 4.4.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -93,14 +93,14 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.227
-- AWS CLI 2.19.1
+- Alibaba Cloud CLI 3.0.228
+- AWS CLI 2.19.4
 - AWS SAM CLI 1.127.0
-- AWS Session Manager CLI 1.2.677.0
+- AWS Session Manager CLI 1.2.688.0
 - Azure CLI 2.65.0
 - Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 8.8.3
-- GitHub CLI 2.60.1
+- GitHub CLI 2.61.0
 
 ### Rust Tools
 - Cargo 1.82.0
@@ -117,10 +117,10 @@
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 130.0.6723.92
-- Chrome Driver 130.0.6723.91
-- Microsoft Edge 130.0.2849.68
-- Microsoft Edge Driver 130.0.2849.68
+- Google Chrome 130.0.6723.117
+- Chrome Driver 130.0.6723.116
+- Microsoft Edge 130.0.2849.80
+- Microsoft Edge Driver 130.0.2849.80
 - Mozilla Firefox 132.0.1
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
@@ -167,12 +167,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.20.14
 - 1.21.13
-- 1.22.8
+- 1.22.9
+- 1.23.3
 
 #### Node.js
 - 16.20.2
 - 18.20.4
 - 20.18.0
+- 22.11.0
 
 #### Python
 - 3.7.9
@@ -508,7 +510,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.691
+- AWSPowershell: 4.1.694
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.24.0
