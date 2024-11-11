@@ -264,7 +264,17 @@
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm",
             "Component.Microsoft.Windows.DriverKit",
-            "wasm.tools"
+            "wasm.tools",
+            "Microsoft.Component.MSBuild",
+            "Microsoft.VisualStudio.Component.CoreEditor",
+            "Microsoft.VisualStudio.Component.NuGet",
+            "Microsoft.VisualStudio.Component.Roslyn.Compiler",
+            "Microsoft.VisualStudio.Component.TextTemplating",
+            "Microsoft.VisualStudio.Component.VC.CoreIde",
+            "Microsoft.VisualStudio.Component.VC.Redist.14.Latest",
+            "Microsoft.VisualStudio.Component.Windows10SDK",
+            "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core",
+            "Microsoft.VisualStudio.Workload.CoreEditor"
         ],
         "vsix": [
             "SSIS.MicrosoftDataToolsIntegrationServices",
