@@ -14,9 +14,6 @@ if (Test-IsWin19) {
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2166289"
     $wdkSignatureThumbprint = "914A09C2E02C696AF394048BCB8D95449BCD5B9E"
     $wdkExtensionPath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"
-
-    # Need to install the VSIX to get the build targets when running VSBuild
-    Install-VSIXFromFile (Resolve-Path -Path $wdkExtensionPath)
 } elseif (Test-IsWin22) {
     # SDK is available through Visual Studio
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2294834"
@@ -31,5 +28,8 @@ Install-Binary -Type EXE `
     -InstallArgs @("/features", "+", "/quiet") `
     -ExpectedSignature $wdkSignatureThumbprint
 
-
+if (Test-IsWin19){
+    # Need to install the VSIX to get the build targets when running VSBuild
+    Install-VSIXFromFile (Resolve-Path -Path $wdkExtensionPath)
+}
 Invoke-PesterTests -TestFile "WDK"
