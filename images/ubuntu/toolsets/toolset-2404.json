@@ -220,7 +220,8 @@
     ],
     "dotnet": {
         "aptPackages": [
-            "dotnet-sdk-8.0"
+            "dotnet-sdk-8.0",
+            "dotnet-sdk-9.0"
         ],
         "versions": [
             "8.0"
