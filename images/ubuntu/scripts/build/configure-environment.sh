@@ -31,6 +31,7 @@ set_etc_environment_variable "XDG_CONFIG_HOME" '$HOME/.config'
 AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
 mkdir $AGENT_TOOLSDIRECTORY
 set_etc_environment_variable "AGENT_TOOLSDIRECTORY" "${AGENT_TOOLSDIRECTORY}"
+set_etc_environment_variable "RUNNER_TOOL_CACHE" "${AGENT_TOOLSDIRECTORY}"
 chmod -R 777 $AGENT_TOOLSDIRECTORY
 
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html

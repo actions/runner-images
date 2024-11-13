@@ -7,6 +7,7 @@ name: Create SBOM for the release
 #
 # Current SYFT tool issues:
 # macOS (major): prompt privilegies that blocking process indefinetely (https://github.com/anchore/syft/issues/1367)
+run-name: Collecting SBOM for ${{ github.event.client_payload.ReleaseBranchName || 'unknown release' }}
 on:
   repository_dispatch:
     types: [generate-sbom]
@@ -58,7 +59,7 @@ jobs:
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b D:/syft
       - name: Install SYFT tool on Ubuntu or macOS
         if: ${{ runner.os != 'Windows' }}
-        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin v0.100.0
+        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
       #Running section.
       - name: Run SYFT on Windows
         if: ${{ runner.os == 'Windows' }}

@@ -5,14 +5,14 @@
 
 if (Test-IsWin19) {
     # If Windows 2019, install version 8.1.0 form sourceforge
-    $baseUrl = "https://sourceforge.net/projects/mingw-w64/files"
+    $baseUrl = "https://download.qt.io/development_releases/prebuilt"
 
     $("mingw32", "mingw64") | ForEach-Object {
         if ($_ -eq "mingw32") {
-            $url = "$baseUrl/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/8.1.0/threads-posix/dwarf/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z/download"
+            $url = "$baseUrl/mingw_32/i686-8.1.0-release-posix-dwarf-rt_v6-rev0.7z"
             $sha256sum = 'adb84b70094c0225dd30187ff995e311d19424b1eb8f60934c60e4903297f946'
         } elseif ($_ -eq "mingw64") {
-            $url = "$baseUrl/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/8.1.0/threads-posix/seh/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z/download"
+            $url = "$baseUrl/mingw_64/x86_64-8.1.0-release-posix-seh-rt_v6-rev0.7z"
             $sha256sum = '853970527b5de4a55ec8ca4d3fd732c00ae1c69974cc930c82604396d43e79f8'
         } else {
             throw "Unknown architecture $_"

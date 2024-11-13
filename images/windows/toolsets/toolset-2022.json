@@ -60,7 +60,8 @@
             "versions": [
                 "16.*",
                 "18.*",
-                "20.*"
+                "20.*",
+                "22.*"
             ]
         },
         {
@@ -71,7 +72,8 @@
             "versions": [
                 "1.20.*",
                 "1.21.*",
-                "1.22.*"
+                "1.22.*",
+                "1.23.*"
             ],
             "default": "1.21.*"
         }
@@ -177,7 +179,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "signature": "F9A7CF9FBE13BAC767F4781061332DA6E8B4E0EE",
+        "signature": "C2048FB509F1C37A8C3E9EC6648118458AA01780",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -237,6 +239,7 @@
             "Microsoft.VisualStudio.Component.Windows10SDK.20348",
             "Microsoft.VisualStudio.Component.Windows11SDK.22000",
             "Microsoft.VisualStudio.Component.Windows11SDK.22621",
+            "Microsoft.VisualStudio.Component.Windows11SDK.26100",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
@@ -315,7 +318,8 @@
     "dotnet": {
         "versions": [
             "6.0",
-            "7.0"
+            "7.0",
+            "8.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }

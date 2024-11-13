@@ -1,19 +1,18 @@
 | Announcements |
 |-|
-| [[macOS] Xcodes visionOS platform will be removed from macOS-14 images on September 23, 2024](https://github.com/actions/runner-images/issues/10559) |
-| [[Macos] go version 1.20.0 will be removed on September 16,2024.](https://github.com/actions/runner-images/issues/10531) |
-| [[Macos] Android NDK 24 will be removed on September 16,2024](https://github.com/actions/runner-images/issues/10530) |
-| [[Macos-12] Python version 3.7 will be removed from the macos-12 image on September 16,2024](https://github.com/actions/runner-images/issues/10529) |
+| [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
+| [[Macos 13 and 14] Android NDK versions <=25 will be removed from images on October 07,2024](https://github.com/actions/runner-images/issues/10614) |
+| [[Macos 13 and 14] Go version 1.20.0 will be removed on October 07,2024.](https://github.com/actions/runner-images/issues/10612) |
 ***
 # macOS 12
 - OS Version: macOS 12.7.6 (21H1320)
 - Kernel Version: Darwin 21.6.0
-- Image Version: 20240908.1
+- Image Version: 20240926.174
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 6.0.425, 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.401
+- .NET Core SDK: 6.0.425, 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.402
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -34,24 +33,24 @@
 - Perl 5.38.2
 - PHP 8.3.11
 - Python 2.7.18
-- Python3 3.12.5
+- Python3 3.12.6
 - R 4.4.1
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.18
-- Carthage 0.39.1
+- Bundler 2.5.20
+- Carthage 0.40.0
 - CocoaPods 1.15.2
 - Composer 2.7.9
-- Homebrew 4.3.19
+- Homebrew 4.3.24
 - Miniconda 24.7.1
 - NPM 10.7.0
 - NuGet 6.3.1.1
 - Pip 20.3.4 (python 2.7)
 - Pip3 24.2 (python 3.12)
 - Pipx 1.7.1
-- RubyGems 3.5.18
-- Vcpkg 2024 (build from commit eba7c6a89)
+- RubyGems 3.5.20
+- Vcpkg 2024 (build from commit 3d8959985)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -63,8 +62,8 @@
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.10
-- Sbt 1.10.1
+- Gradle 8.10.2
+- Sbt 1.10.2
 
 ### Utilities
 - 7-Zip 17.05
@@ -73,10 +72,10 @@
 - bazel 7.3.1
 - bazelisk 1.21.0
 - bsdtar 3.5.1 - available by 'tar' alias
-- Curl 8.9.1
-- Git 2.46.0
+- Curl 8.10.1
+- Git 2.46.2
 - Git LFS 3.5.1
-- GitHub CLI 2.55.0
+- GitHub CLI 2.57.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
 - gpg (GnuPG) 2.4.5
@@ -99,22 +98,22 @@
 
 ### Tools
 - App Center CLI 3.0.1
-- AWS CLI 2.17.46
-- AWS SAM CLI 1.123.0
+- AWS CLI 2.17.59
+- AWS SAM CLI 1.124.0
 - AWS Session Manager CLI 1.2.650.0
 - Azure CLI 2.64.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.29.47
+- Bicep CLI 0.30.23
 - Cabal 3.10.3.0
 - Cmake 3.30.3
-- CodeQL Action Bundle 2.18.3
+- CodeQL Action Bundle 2.19.0
 - Colima 0.7.5
 - Fastlane 2.222.0
 - GHC 9.10.1
 - GHCup 0.1.30.0
-- Jazzy 0.15.1
+- Jazzy 0.15.2
 - Stack 3.1.1
-- SwiftFormat 0.54.4
+- SwiftFormat 0.54.5
 - Swig 4.2.1
 - Xcbeautify 1.6.0
 - Xcode Command Line Tools 14.2.0.0.1.1668646533
@@ -127,14 +126,14 @@
 ### Browsers
 - Safari 17.6 (17618.3.11.11.7)
 - SafariDriver 17.6 (17618.3.11.11.7)
-- Google Chrome 128.0.6613.120
-- Google Chrome for Testing 128.0.6613.119
-- ChromeDriver 128.0.6613.119
-- Microsoft Edge 128.0.2739.67
-- Microsoft Edge WebDriver 128.0.2739.69
-- Mozilla Firefox 130.0
+- Google Chrome 129.0.6668.71
+- Google Chrome for Testing 129.0.6668.70
+- ChromeDriver 129.0.6668.70
+- Microsoft Edge 129.0.2792.52
+- Microsoft Edge WebDriver 129.0.2792.46
+- Mozilla Firefox 130.0.1
 - geckodriver 0.35.0
-- Selenium server 4.24.0
+- Selenium server 4.25.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -163,14 +162,16 @@
 #### Ruby
 - 3.0.7
 - 3.1.6
+- 3.2.5
+- 3.3.5
 
 #### Python
 - 3.7.17
 - 3.8.18
-- 3.9.19
-- 3.10.14
+- 3.9.20
+- 3.10.15
 - 3.11.9
-- 3.12.5
+- 3.12.6
 
 #### Node.js
 - 16.20.2
@@ -181,6 +182,7 @@
 - 1.20.14
 - 1.21.13
 - 1.22.7
+- 1.23.1
 
 ### Rust Tools
 - Cargo 1.81.0
@@ -337,7 +339,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | Package Name               | Version                                                                                                                                                                                                                                                                         |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                             |
-| Android Emulator           | 35.1.20                                                                                                                                                                                                                                                                         |
+| Android Emulator           | 35.1.21                                                                                                                                                                                                                                                                         |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                             |
 | Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                          |
@@ -345,7 +347,7 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | CMake                      | 3.18.1<br>3.22.1                                                                                                                                                                                                                                                                |
 | Google Play services       | 49                                                                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                                                                              |
-| NDK                        | 24.0.8215888<br>25.2.9519653 (default)<br>26.3.11579264                                                                                                                                                                                                                         |
+| NDK                        | 24.0.8215888<br>25.2.9519653 (default)<br>26.3.11579264<br>27.1.12297006                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -353,20 +355,20 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/27.1.12297006 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/25.2.9519653  |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
 ### Miscellaneous
 - libXext 1.3.6
 - libXft 2.3.8
-- Tcl/Tk 8.6.14
+- Tcl/Tk 8.6.15
 - Zlib 1.3.1
 
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v19/19.4.1-54985/ParallelsDesktop-19.4.1-54985.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.0.1-55659/ParallelsDesktop-20.0.1-55659.dmg |
 
 ##### Notes
 ```
