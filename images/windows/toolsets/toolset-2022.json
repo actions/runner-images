@@ -265,7 +265,9 @@
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm",
             "Component.Microsoft.Windows.DriverKit",
-            "wasm.tools"
+            "wasm.tools",
+            "Microsoft.Component.MSBuild"
+            
         ],
         "vsix": [
             "SSIS.MicrosoftDataToolsIntegrationServices",
