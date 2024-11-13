@@ -271,7 +271,8 @@
         "aptPackages": [
             "dotnet-sdk-6.0",
             "dotnet-sdk-7.0",
-            "dotnet-sdk-8.0"
+            "dotnet-sdk-8.0",
+            "dotnet-sdk-9.0"
         ],
         "versions": [
             "6.0",
