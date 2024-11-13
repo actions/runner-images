@@ -1,14 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu] Breaking Change: runner user will have UID 1001 instead of 1000 for larger runners](https://github.com/actions/runner-images/issues/10936) |
 | [[Ubuntu 20 and 22] Node.js version 16 will be removed on November 18,2024.](https://github.com/actions/runner-images/issues/10896) |
-| [[Ubuntu 24 ] Node.js version 16 will be removed on October 21,2024.](https://github.com/actions/runner-images/issues/10677) |
 | [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
-| [[Ubuntu 20 and 22] Go version 1.20.0 will be removed on October 14,2024.](https://github.com/actions/runner-images/issues/10607) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1074-azure
-- Image Version: 20241103.1.0
+- Image Version: 20241110.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -36,7 +35,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.16.2
-- Homebrew 4.4.3
+- Homebrew 4.4.4
 - Miniconda 24.9.2
 - Npm 10.7.0
 - NuGet 6.6.1.2
@@ -44,7 +43,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 4f746bc66)
+- Vcpkg (build from commit 813a241fb)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -66,18 +65,18 @@ to accomplish this.
 - Gradle 8.10.2
 - Lerna 8.1.9
 - Maven 3.8.8
-- Sbt 1.10.4
+- Sbt 1.10.5
 
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.10.0
-- AzCopy 10.27.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.4.0
-- Bazelisk 1.22.1
-- Bicep 0.30.23
+- Bazelisk 1.23.0
+- Bicep 0.31.34
 - Buildah 1.22.3
-- CMake 3.30.5
-- CodeQL Action Bundle 2.19.2
+- CMake 3.31.0
+- CodeQL Action Bundle 2.19.3
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.18.0
@@ -91,14 +90,14 @@ to accomplish this.
 - Heroku 9.3.2
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
-- Kind 0.24.0
+- Kind 0.25.0
 - Kubectl 1.31.2
 - Kustomize 5.5.0
 - Leiningen 2.11.2
 - MediaInfo 19.09
 - Mercurial 5.3.1
 - Minikube 1.34.0
-- n 10.0.0
+- n 10.1.0
 - Newman 6.2.1
 - nvm 0.40.1
 - OpenSSL 1.1.1f-1ubuntu2.23
@@ -106,8 +105,8 @@ to accomplish this.
 - Parcel 2.12.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.137.0
-- R 4.4.1
+- Pulumi 3.138.0
+- R 4.4.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
@@ -118,13 +117,13 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.19.1
-- AWS CLI Session Manager Plugin 1.2.677.0
+- AWS CLI 2.19.4
+- AWS CLI Session Manager Plugin 1.2.688.0
 - AWS SAM CLI 1.127.0
 - Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.60.1
-- Google Cloud CLI 499.0.0
+- GitHub CLI 2.61.0
+- Google Cloud CLI 500.0.0
 - Netlify CLI 17.37.2
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
@@ -167,13 +166,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 130.0.6723.91
-- ChromeDriver 130.0.6723.91
+- Google Chrome 130.0.6723.116
+- ChromeDriver 130.0.6723.116
 - Chromium 130.0.6723.0
-- Microsoft Edge 130.0.2849.56
-- Microsoft Edge WebDriver 130.0.2849.68
+- Microsoft Edge 130.0.2849.80
+- Microsoft Edge WebDriver 130.0.2849.78
 - Selenium server 4.26.0
-- Mozilla Firefox 132.0
+- Mozilla Firefox 132.0.1
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -217,14 +216,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.21.13
-- 1.22.8
-- 1.23.2
+- 1.22.9
+- 1.23.3
 
 #### Node.js
 - 16.20.2
 - 18.20.4
 - 20.18.0
-- 22.10.0
+- 22.11.0
 
 #### Python
 - 3.7.17
@@ -296,7 +295,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
 | debian:11            | sha256:d0036be35fe0a4d2649bf074ca467a37dab8c5b26bbbdfca0375b4dc682f011d  | 2024-10-17 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest | sha256:8e8898b54dbaccc8e0b56e02e5d5b3d6b947a26c24b37899c5c652bba7c60b47  | 2024-10-30 |
+| moby/buildkit:latest | sha256:918e92e639651fdfd0bd97f31bab0dd91756edd14e6f73f43a896715617c59a0  | 2024-11-07 |
 | node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
 | node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
 | node:18              | sha256:ddd173cd94537e155b378342056e0968e8299eb3da9dd5d412d3b7f796ac38c0  | 2024-07-09 |
