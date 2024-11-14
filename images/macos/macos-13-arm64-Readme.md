@@ -10,7 +10,7 @@
 # macOS 13
 - OS Version: macOS 13.7.1 (22H221)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20241108.368
+- Image Version: 20241111.372
 
 ## Installed Software
 
@@ -72,7 +72,7 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.19.3
+- AWS CLI 2.19.4
 - AWS SAM CLI 1.127.0
 - AWS Session Manager CLI 1.2.688.0
 - Azure CLI 2.65.0
@@ -82,7 +82,7 @@
 - CodeQL Action Bundle 2.19.3
 - Fastlane 2.225.0
 - SwiftFormat 0.54.6
-- Xcbeautify 2.14.1
+- Xcbeautify 2.15.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
 
@@ -195,8 +195,8 @@
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
@@ -246,5 +246,5 @@
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
 ### Miscellaneous
-- Tcl/Tk 8.6.15
+- Tcl/Tk 9.0.0
 
