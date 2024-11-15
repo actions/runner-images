@@ -214,7 +214,8 @@ build {
       "${path.root}/../scripts/build/install-rubygems.sh",
       "${path.root}/../scripts/build/install-git.sh",
       "${path.root}/../scripts/build/install-node.sh",
-      "${path.root}/../scripts/build/install-common-utils.sh"
+      "${path.root}/../scripts/build/install-common-utils.sh",
+      "${path.root}/../scripts/build/install-pkg-config.sh"
     ]
   }
 
