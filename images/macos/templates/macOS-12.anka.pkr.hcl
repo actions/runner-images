@@ -54,8 +54,9 @@ variable "vm_password" {
 }
 
 variable "github_api_pat" {
-  type    = string
-  default = ""
+  type      = string
+  sensitive = true
+  default   = ""
 }
 
 variable "xcode_install_storage_url" {
@@ -265,7 +266,8 @@ build {
       "${path.root}/../scripts/build/install-pypy.sh",
       "${path.root}/../scripts/build/install-pipx-packages.sh",
       "${path.root}/../scripts/build/install-bicep.sh",
-      "${path.root}/../scripts/build/install-codeql-bundle.sh"
+      "${path.root}/../scripts/build/install-codeql-bundle.sh",
+      "${path.root}/../scripts/build/install-compilable-brew-packages.sh"
     ]
   }
 

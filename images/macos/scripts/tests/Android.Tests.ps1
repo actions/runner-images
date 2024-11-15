@@ -57,7 +57,7 @@ Describe "Android" {
                 Sdkmanager  = "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
             }
         )
-        if ($os.IsBigSur -or $os.IsMonterey) {
+        if ($os.IsMonterey) {
             $testCases += @(
                 @{
                     PackageName = "SDK tools"

@@ -54,8 +54,9 @@ variable "vm_password" {
 }
 
 variable "github_api_pat" {
-  type    = string
-  default = ""
+  type      = string
+  sensitive = true
+  default   = ""
 }
 
 variable "xcode_install_storage_url" {
@@ -178,6 +179,7 @@ build {
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
     scripts          = [
       "${path.root}/../scripts/build/configure-tccdb-macos.sh",
+      "${path.root}/../scripts/build/configure-autologin.sh",
       "${path.root}/../scripts/build/configure-auto-updates.sh",
       "${path.root}/../scripts/build/configure-ntpconf.sh",
       "${path.root}/../scripts/build/configure-shell.sh"
@@ -217,7 +219,8 @@ build {
       "${path.root}/../scripts/build/install-rubygems.sh",
       "${path.root}/../scripts/build/install-git.sh",
       "${path.root}/../scripts/build/install-node.sh",
-      "${path.root}/../scripts/build/install-common-utils.sh"
+      "${path.root}/../scripts/build/install-common-utils.sh",
+      "${path.root}/../scripts/build/install-unxip.sh"
     ]
   }
 

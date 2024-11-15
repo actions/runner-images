@@ -33,7 +33,7 @@ Describe "GCC" {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64 -or $os.IsSonoma) {
+Describe "vcpkg" -Skip:($os.IsVenturaArm64 -or $os.IsSonoma -or $os.IsSequoia) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -43,7 +43,7 @@ Describe "AWS" {
     It "AWS CLI" {
         "aws --version" | Should -ReturnZeroExitCode
     }
-    It "AWS SAM CLI" -Skip:($os.IsBigSur) {
+    It "AWS SAM CLI" {
         "sam --version" | Should -ReturnZeroExitCode
     }
 
@@ -58,7 +58,7 @@ Describe "AzCopy" {
     }
 }
 
-Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Conda" {
         [System.Environment]::GetEnvironmentVariable("CONDA") | Should -Not -BeNullOrEmpty
         $condaBinPath = Join-Path $env:CONDA "bin" "conda"
@@ -66,7 +66,7 @@ Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "Stack" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Stack" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Stack" {
         "stack --version" | Should -ReturnZeroExitCode
     }
@@ -78,7 +78,7 @@ Describe "CocoaPods" {
     }
 }
 
-Describe "VSMac" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "VSMac" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     $vsMacVersions = (Get-ToolsetContent).xamarin.vsmac.versions
     $defaultVSMacVersion = (Get-ToolsetContent).xamarin.vsmac.default
 
@@ -105,7 +105,7 @@ Describe "VSMac" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "Swig" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Swig" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Swig" {
         "swig -version" | Should -ReturnZeroExitCode
     }
@@ -117,13 +117,13 @@ Describe "Bicep" {
     }
 }
 
-Describe "Go" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Go" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Go" {
         "go version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "VirtualBox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
+Describe "VirtualBox" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Check kext kernel modules" {
         kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }
@@ -141,8 +141,30 @@ Describe "CodeQL Bundle" {
     }
 }
 
-Describe "Colima" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Colima" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Colima" {
         "colima version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Compiled" -Skip:(-not $os.IsMonterey) {
+    It "Apache Ant" {
+        "ant -version" | Should -ReturnZeroExitCode
+    }
+
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
+
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
+        "$toolName -version" | Should -ReturnZeroExitCode
+    }
+
+    It "sbt" {
+        "sbt -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Unxip" {
+    It "Unxip" {
+        "unxip --version" | Should -ReturnZeroExitCode
     }
 }
