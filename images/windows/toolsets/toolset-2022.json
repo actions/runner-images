@@ -179,7 +179,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "signature": "C2048FB509F1C37A8C3E9EC6648118458AA01780",
+        "signature": "8F985BE8FD256085C90A95D3C74580511A1DB975",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -264,7 +264,9 @@
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm",
             "Component.Microsoft.Windows.DriverKit",
-            "wasm.tools"
+            "wasm.tools",
+            "Microsoft.Component.MSBuild"
+            
         ],
         "vsix": [
             "SSIS.MicrosoftDataToolsIntegrationServices",
