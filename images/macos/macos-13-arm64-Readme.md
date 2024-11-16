@@ -1,15 +1,16 @@
 | Announcements |
 |-|
+| [[ macOS ] Node.js version 16 will be removed from macOS13 and macOS13 arm64 images on November, 18.](https://github.com/actions/runner-images/issues/10873) |
 | [[macOS] OpenSSL 1.1 will be removed  and  OpenSSL 3 will be the default for all macOS images from November 4](https://github.com/actions/runner-images/issues/10817) |
 | [[macOS] Python 3.9 and 3.10 will be removed from macOS13 arm64 and  macOS14 arm64 on November 18.](https://github.com/actions/runner-images/issues/10812) |
 | [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and ADO](https://github.com/actions/runner-images/issues/10721) |
-| [[macOS] Support policy changes; Xcode 14 and 16 will be removed from macOS 14 on October 28](https://github.com/actions/runner-images/issues/10703) |
+| [[macOS] Support policy changes; Xcode 14 and 16 will be removed from macOS 14 on November 4](https://github.com/actions/runner-images/issues/10703) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 ***
 # macOS 13
-- OS Version: macOS 13.7 (22H123)
+- OS Version: macOS 13.7.1 (22H221)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20241021.263
+- Image Version: 20241108.368
 
 ## Installed Software
 
@@ -20,27 +21,27 @@
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
-- GCC 14 (Homebrew GCC 14.2.0) - available by `gcc-14` alias
+- GCC 14 (Homebrew GCC 14.2.0_1) - available by `gcc-14` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
-- GNU Fortran 14 (Homebrew GCC 14.2.0) - available by `gfortran-14` alias
+- GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
 - Kotlin 2.0.21-release-482
 - Mono 6.12.0.188
 - Node.js 20.18.0
-- Perl 5.38.2
+- Perl 5.40.0
 - Python3 3.13.0
 - Ruby 3.0.7p220
 
 ### Package Management
-- Bundler 2.5.22
+- Bundler 2.5.23
 - Carthage 0.40.0
-- CocoaPods 1.15.2
-- Homebrew 4.4.2
+- CocoaPods 1.16.2
+- Homebrew 4.4.4
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.2 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.5.22
+- RubyGems 3.5.23
 - Yarn 1.22.22
 
 ### Project Management
@@ -52,47 +53,48 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.26.0
-- bazel 7.3.2
-- bazelisk 1.22.0
+- bazel 7.4.0
+- bazelisk 1.23.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.47.0
 - Git LFS 3.5.1
-- GitHub CLI 2.59.0
+- GitHub CLI 2.61.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.24.5
-- gpg (GnuPG) 2.4.5
+- gpg (GnuPG) 2.4.6
 - jq 1.7.1
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.11.2
 - pkg-config 0.29.2
+- Unxip 3.1
 - yq 4.44.3
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.18.11
-- AWS SAM CLI 1.126.0
-- AWS Session Manager CLI 1.2.677.0
+- AWS CLI 2.19.3
+- AWS SAM CLI 1.127.0
+- AWS Session Manager CLI 1.2.688.0
 - Azure CLI 2.65.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.30.23
-- Cmake 3.30.5
-- CodeQL Action Bundle 2.19.1
+- Bicep CLI 0.31.34
+- Cmake 3.31.0
+- CodeQL Action Bundle 2.19.3
 - Fastlane 2.225.0
 - SwiftFormat 0.54.6
-- Xcbeautify 2.14.0
+- Xcbeautify 2.14.1
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
-- Xcodes 1.5.0
+- Xcodes 1.6.0
 
 ### Linters
 
 ### Browsers
-- Safari 18.0.1 (18619.1.26.111.11)
-- SafariDriver 18.0.1 (18619.1.26.111.11)
-- Google Chrome 130.0.6723.59
-- Google Chrome for Testing 130.0.6723.58
-- ChromeDriver 130.0.6723.58
-- Selenium server 4.25.0
+- Safari 18.1 (18619.2.8.111.5)
+- SafariDriver 18.1 (18619.2.8.111.5)
+- Google Chrome 130.0.6723.117
+- Google Chrome for Testing 130.0.6723.116
+- ChromeDriver 130.0.6723.116
+- Selenium server 4.26.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -104,7 +106,7 @@
 ### Java
 | Version              | Environment Variable |
 | -------------------- | -------------------- |
-| 11.0.24+8            | JAVA_HOME_11_arm64   |
+| 11.0.25+9            | JAVA_HOME_11_arm64   |
 | 17.0.13+11 (default) | JAVA_HOME_17_arm64   |
 | 21.0.5+11.0          | JAVA_HOME_21_arm64   |
 
@@ -121,12 +123,12 @@
 - 16.20.1
 - 18.20.4
 - 20.18.0
-- 22.10.0
+- 22.11.0
 
 #### Go
 - 1.21.13
-- 1.22.8
-- 1.23.2
+- 1.22.9
+- 1.23.3
 
 ### Rust Tools
 - Cargo 1.82.0
@@ -139,7 +141,7 @@
 - Rustfmt 1.7.1-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.5
+- PowerShell 7.4.6
 
 #### PowerShell Modules
 - Az: 12.4.0
