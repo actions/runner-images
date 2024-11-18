@@ -197,7 +197,7 @@
             "p7zip",
             "packer",
             "perl",
-            "pkg-config",
+            "pkgconf",
             "subversion",
             "swiftformat",
             "swig",
