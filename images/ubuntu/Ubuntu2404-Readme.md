@@ -7,7 +7,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
 - Kernel Version: 6.8.0-1017-azure
-- Image Version: 20241112.1.0
+- Image Version: 20241117.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -30,7 +30,7 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.16.2
+- Helm 3.16.3
 - Homebrew 4.4.5
 - Miniconda 24.9.2
 - Npm 10.8.2
@@ -38,7 +38,7 @@
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 89f00b3b8)
+- Vcpkg (build from commit 435a9415c)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -63,10 +63,10 @@ to accomplish this.
 
 ### Tools
 - Ansible 2.17.6
-- AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.4.1
 - Bazelisk 1.23.0
-- Bicep 0.31.34
+- Bicep 0.31.92
 - Buildah 1.33.7
 - CMake 3.31.0
 - CodeQL Action Bundle 2.19.3
@@ -94,20 +94,20 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.13.0
 - Podman 4.9.3
-- Pulumi 3.138.0
+- Pulumi 3.139.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
-- yq 4.44.3
+- yq 4.44.5
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.20.0
+- AWS CLI 2.21.3
 - AWS CLI Session Manager Plugin 1.2.688.0
-- AWS SAM CLI 1.128.0
+- AWS SAM CLI 1.129.0
 - Azure CLI 2.66.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.61.0
+- GitHub CLI 2.62.0
 - Google Cloud CLI 501.0.0
 
 ### Java
@@ -120,7 +120,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.2
+- Composer 2.8.3
 - PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -145,10 +145,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 131.0.6778.69
 - ChromeDriver 131.0.6778.69
 - Chromium 131.0.6778.0
-- Microsoft Edge 130.0.2849.80
-- Microsoft Edge WebDriver 130.0.2849.78
+- Microsoft Edge 131.0.2903.51
+- Microsoft Edge WebDriver 131.0.2903.52
 - Selenium server 4.26.0
-- Mozilla Firefox 132.0.1
+- Mozilla Firefox 132.0.2
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -167,7 +167,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.4
+- PostgreSQL 16.5
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -191,7 +191,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.23.3
 
 #### Node.js
-- 18.20.4
+- 18.20.5
 - 20.18.0
 - 22.11.0
 
@@ -244,7 +244,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Installed apt packages
 | Name                   | Version                     |
 | ---------------------- | --------------------------- |
-| acl                    | 2.3.2-1build1               |
+| acl                    | 2.3.2-1build1.1             |
 | aria2                  | 1.37.0+debian-1build3       |
 | autoconf               | 2.71-3                      |
 | automake               | 1:1.16.5-1.3ubuntu1         |
