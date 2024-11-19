@@ -52,7 +52,12 @@
         }
     },
     "powershellModules": [
-        { "name": "Az" },
+        {
+            "name": "Az",
+            "versions": [
+                "12.4.0"
+            ]
+        },
         { "name": "Pester" },
         { "name": "PSScriptAnalyzer" }
     ],
