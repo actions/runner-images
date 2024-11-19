@@ -258,7 +258,6 @@
             "Microsoft.VisualStudio.Workload.Node",
             "Microsoft.VisualStudio.Workload.Office",
             "Microsoft.VisualStudio.Workload.Python",
-            "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm",
