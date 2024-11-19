@@ -244,7 +244,7 @@
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
             "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
-            "Microsoft.VisualStudio.ComponentGroup.UWP.VC.v142.BuildTools",
+            "Microsoft.VisualStudio.ComponentGroup.UWP.VC.BuildTools",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
             "Microsoft.VisualStudio.Workload.Azure",
             "Microsoft.VisualStudio.Workload.Data",
