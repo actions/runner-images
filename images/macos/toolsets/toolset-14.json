@@ -54,7 +54,12 @@
         }
     },
     "powershellModules": [
-        { "name": "Az" },
+        {
+            "name": "Az",
+            "versions": [
+                "12.4.0"
+            ]
+        },
         { "name": "Pester" },
         { "name": "PSScriptAnalyzer" }
     ],
@@ -136,6 +141,8 @@
                 },
                 "arm64": {
                     "versions": [
+                        "3.9.*",
+                        "3.10.*",
                         "3.11.*",
                         "3.12.*",
                         "3.13.*"
