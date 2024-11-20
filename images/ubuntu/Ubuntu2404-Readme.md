@@ -58,7 +58,7 @@ to accomplish this.
 - Ant 1.10.14
 - Gradle 8.11.1
 - Lerna 8.1.9
-- Maven 3.8.8
+- Maven 3.9.9
 
 ### Tools
 - Ansible 2.18.0
@@ -313,4 +313,3 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.6.1+really5.4.5-1build0.1 |
 | zip                    | 3.0-13build1                |
 | zsync                  | 0.6.2-5build1               |
-

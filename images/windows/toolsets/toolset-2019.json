@@ -452,7 +452,7 @@
         "default": "18.*"
     },
     "maven": {
-        "version": "3.8"
+        "version": "3.9"
     },
     "mysql": {
         "version": "5.7",
