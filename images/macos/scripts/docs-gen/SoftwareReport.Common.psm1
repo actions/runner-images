@@ -538,7 +538,7 @@ function Get-LibXextVersion {
 }
 
 function Get-TclTkVersion {
-    $tcltkVersion = (Run-Command "brew info --json tcl-tk" | ConvertFrom-Json).installed.version
+    $tcltkVersion = (Run-Command "brew info --json tcl-tk@8" | ConvertFrom-Json).installed.version
     return $tcltkVersion
 }
 

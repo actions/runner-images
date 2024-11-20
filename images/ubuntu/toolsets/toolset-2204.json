@@ -32,7 +32,6 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "16.*",
                 "18.*",
                 "20.*",
                 "22.*"
@@ -219,11 +218,9 @@
             "debian:10",
             "debian:11",
             "moby/buildkit:latest",
-            "node:16",
             "node:18",
             "node:20",
             "node:22",
-            "node:16-alpine",
             "node:18-alpine",
             "node:20-alpine",
             "node:22-alpine",
