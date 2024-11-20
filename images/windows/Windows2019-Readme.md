@@ -46,7 +46,7 @@
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.11
-- Maven 3.8.7
+- Maven 3.9.9
 - sbt 1.10.5
 
 ### Tools
@@ -559,4 +559,3 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:5c61a6c5cd84002f31b40d365e505a2c2310acec806faa30b8e2cc209150dd54  | 2024-11-12 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:d3bd9a71fc0c0e7f768c607fdbc60cba66ace7a2fc833bcb01992c247d7d78df  | 2024-11-01 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:d14e163a476ddf6bfe08997551777cf1382288784825158263e002d1f4eeb29c  | 2024-11-01 |
-

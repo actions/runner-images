@@ -64,7 +64,7 @@ to accomplish this.
 - Ant 1.10.7
 - Gradle 8.10.2
 - Lerna 8.1.9
-- Maven 3.8.8
+- Maven 3.9.9
 - Sbt 1.10.5
 
 ### Tools
@@ -397,4 +397,3 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
-
