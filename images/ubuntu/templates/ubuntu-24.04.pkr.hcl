@@ -152,7 +152,7 @@ source "azure-arm" "build_image" {
   tenant_id                              = "${var.tenant_id}"
 
   location                          = "${var.location}"
-  managed_image_name                = "${var.resource_group}-${var.name}-runner-${var.suffix}"
+  managed_image_name                = "${var.resource_group}-actions-runner-${var.suffix}"
   managed_image_resource_group_name = "${var.resource_group}"
   use_azure_cli_auth = true
 
