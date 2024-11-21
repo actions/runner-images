@@ -26,6 +26,10 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
+variable "resource_group" {
+  type = string
+}
+
 variable "client_id" {
   type    = string
   default = "${env("ARM_CLIENT_ID")}"
