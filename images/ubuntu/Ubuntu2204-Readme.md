@@ -7,7 +7,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.5.0-1025-azure
-- Image Version: 20241112.1.0
+- Image Version: 20241117.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -32,7 +32,7 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.16.2
+- Helm 3.16.3
 - Homebrew 4.4.5
 - Miniconda 24.9.2
 - Npm 10.8.2
@@ -41,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 89f00b3b8)
+- Vcpkg (build from commit 435a9415c)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -68,10 +68,10 @@ to accomplish this.
 ### Tools
 - Ansible 2.17.6
 - apt-fast 1.10.0
-- AzCopy 10.26.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.4.1
 - Bazelisk 1.23.0
-- Bicep 0.31.34
+- Bicep 0.31.92
 - Buildah 1.23.1
 - CMake 3.31.0
 - CodeQL Action Bundle 2.19.3
@@ -85,7 +85,7 @@ to accomplish this.
 - Git LFS 3.5.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 9.4.0
+- Heroku 9.5.0
 - jq 1.6
 - Kind 0.25.0
 - Kubectl 1.31.2
@@ -101,29 +101,29 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.13.0
 - Podman 3.4.4
-- Pulumi 3.138.0
+- Pulumi 3.139.0
 - R 4.4.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.9.8
 - yamllint 1.35.1
-- yq 4.44.3
+- yq 4.44.5
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.231
-- AWS CLI 2.20.0
+- Alibaba Cloud CLI 3.0.233
+- AWS CLI 2.21.3
 - AWS CLI Session Manager Plugin 1.2.688.0
-- AWS SAM CLI 1.128.0
+- AWS SAM CLI 1.129.0
 - Azure CLI 2.66.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.61.0
+- GitHub CLI 2.62.0
 - Google Cloud CLI 501.0.0
 - Netlify CLI 17.37.2
-- OpenShift CLI 4.17.3
+- OpenShift CLI 4.17.4
 - ORAS CLI 1.2.0
-- Vercel CLI 38.0.0
+- Vercel CLI 39.0.2
 
 ### Java
 | Version             | Environment Variable |
@@ -135,7 +135,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.8.2
+- Composer 2.8.3
 - PHPUnit 8.5.40
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -165,10 +165,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 131.0.6778.69
 - ChromeDriver 131.0.6778.69
 - Chromium 131.0.6778.0
-- Microsoft Edge 130.0.2849.80
-- Microsoft Edge WebDriver 130.0.2849.78
+- Microsoft Edge 131.0.2903.51
+- Microsoft Edge WebDriver 131.0.2903.52
 - Selenium server 4.26.0
-- Mozilla Firefox 132.0.1
+- Mozilla Firefox 132.0.2
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -187,7 +187,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.37.2
 
 #### PostgreSQL
-- PostgreSQL 14.13
+- PostgreSQL 14.14
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -215,8 +215,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.23.3
 
 #### Node.js
-- 16.20.2
-- 18.20.4
+- 18.20.5
 - 20.18.0
 - 22.11.0
 
@@ -286,13 +285,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
 | debian:11            | sha256:01559430c84e6bc864bed554345d1bfbfa94ac108ab68f39915cae34604b15c3  | 2024-11-11 |
 | moby/buildkit:latest | sha256:918e92e639651fdfd0bd97f31bab0dd91756edd14e6f73f43a896715617c59a0  | 2024-11-07 |
-| node:16              | sha256:f77a1aef2da8d83e45ec990f45df50f1a286c5fe8bbfb8c6e4246c6389705c0b  | 2023-09-07 |
-| node:16-alpine       | sha256:a1f9d027912b58a7c75be7716c97cfbc6d3099f3a97ed84aa490be9dee20e787  | 2023-08-10 |
-| node:18              | sha256:d8bdb5bedbfdb7c941c117b94db88a2250a56fe33c2883f7a3ad62825bf31128  | 2024-07-09 |
+| node:18              | sha256:c5c88762e9097e7fa405e5713731ea924fa52da33a13929ed64d8a6b79b95c89  | 2024-07-09 |
 | node:18-alpine       | sha256:a25c1e4ecc284985f4cbc449021e9259560c644dd9611e5a72d9c4750f24f6c7  | 2024-07-09 |
-| node:20              | sha256:0c73476fa7c1435f0caee56a429fa506e36ec0e0666149eec5ea8e5f60fb5efa  | 2024-10-04 |
+| node:20              | sha256:a7a3b7ec6de4b11bb2d673b31de9d28c6da09c557ee65453672c8e4f754c23fc  | 2024-10-04 |
 | node:20-alpine       | sha256:b1e0880c3af955867bc2f1944b49d20187beb7afa3f30173e15a97149ab7f5f1  | 2024-10-04 |
-| node:22              | sha256:db556c2974040f7812c7f39c15afb1e8b1901d6e23f1975ff71b5236a1244e52  | 2024-10-29 |
+| node:22              | sha256:5c76d05034644fa8ecc9c2aa84e0a83cd981d0ef13af5455b87b9adf5b216561  | 2024-10-29 |
 | node:22-alpine       | sha256:b64ced2e7cd0a4816699fe308ce6e8a08ccba463c757c00c14cd372e3d2c763e  | 2024-10-29 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
 | ubuntu:22.04         | sha256:0e5e4a57c2499249aafc3b40fcd541e9a456aab7296681a3994d631587203f97  | 2024-09-11 |
