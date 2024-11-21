@@ -80,6 +80,7 @@
             "p7zip",
             "packer",
             "perl",
+            "pkgconf",
             "swiftformat",
             "tcl-tk@8",
             "zstd",
