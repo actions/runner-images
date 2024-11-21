@@ -106,6 +106,10 @@ variable "subscription_id" {
   default = "${env("ARM_SUBSCRIPTION_ID")}"
 }
 
+variable "suffix" {
+  type = string
+}
+
 variable "temp_resource_group_name" {
   type    = string
   default = "${env("TEMP_RESOURCE_GROUP_NAME")}"
