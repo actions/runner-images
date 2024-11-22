@@ -4,18 +4,13 @@
 ##  Supply chain security: Git - checksum validation, Hub CLI - managed by package manager
 ################################################################################
 
-# Install the latest version of Git for Windows
+# Fetch the latest release info from GitHub API
+$response = Invoke-RestMethod -Uri "https://api.github.com/repos/git-for-windows/git/releases/latest"
+$asset = $response.assets | Where-Object { $_.name -match "Git-.*-64-bit.exe" }
 
-$downloadUrl = Resolve-GithubReleaseAssetUrl `
-    -Repo "git-for-windows/git" `
-    -Version "latest" `
-    -UrlMatchPattern "Git-*-64-bit.exe"
-
-$externalHash = Get-ChecksumFromGithubRelease `
-    -Repo "git-for-windows/git" `
-    -Version "latest" `
-    -FileName (Split-Path $downloadUrl -Leaf) `
-    -HashType "SHA256"
+# Download URL and SHA256 checksum
+$downloadUrl = $asset.browser_download_url
+$externalHash = (Invoke-WebRequest -Uri $downloadUrl).Content | Get-FileHash -Algorithm SHA256 | Select-Object -ExpandProperty Hash
 
 Install-Binary `
     -Url $downloadUrl `
