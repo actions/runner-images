@@ -72,6 +72,7 @@
             "p7zip",
             "packer",
             "perl",
+            "pkgconf",
             "swiftformat",
             "zstd",
             "gmp",
