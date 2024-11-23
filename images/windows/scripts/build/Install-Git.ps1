@@ -10,7 +10,7 @@ $asset = $response.assets | Where-Object { $_.name -match "Git-.*-64-bit.exe" }
 
 # Download URL and SHA256 checksum
 $downloadUrl = $asset.browser_download_url
-$externalHash = (Invoke-WebRequest -Uri $downloadUrl).Content | Get-FileHash -Algorithm SHA256 | Select-Object -ExpandProperty Hash
+$externalHash = "83c618dcc50b63f0f7afc86a7a125169bd59559ff680683f1d915c45e05ff4cc"
 
 Install-Binary `
     -Url $downloadUrl `
