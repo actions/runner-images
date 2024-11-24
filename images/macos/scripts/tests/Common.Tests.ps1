@@ -168,9 +168,3 @@ Describe "Unxip" {
         "unxip --version" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "pkg-config" {
-    It "pkg-config" {
-        "pkg-config --version" | Should -ReturnZeroExitCode
-    }
-}

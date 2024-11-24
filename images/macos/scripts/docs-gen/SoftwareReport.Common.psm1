@@ -605,9 +605,9 @@ function Get-ColimaVersion {
     return $colimaVersion
 }
 
-function Get-PKGConfigVersion {
-    $pkgconfigVersion = Run-Command "pkg-config --version"
-    return $pkgconfigVersion
+function Get-PKGConfVersion {
+    $pkgconfVersion = Run-Command "pkgconf --version"
+    return $pkgconfVersion
 }
 
 function Get-XcbeautifyVersion {

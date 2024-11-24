@@ -178,3 +178,9 @@ Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) 
         "magick -version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "pkgconf" {
+    It "pkgconf" {
+        "pkgconf --version" | Should -ReturnZeroExitCode
+    }
+}
