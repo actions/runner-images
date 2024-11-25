@@ -8,8 +8,11 @@ Describe "Disk free space" {
         # 10GB here: https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#capabilities-and-limitations
         # 14GB here: https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
         # 30GB due to: https://github.com/actions/runner-images/issues/10511
-        $freeSpace = (Get-PSDrive "/").Free
-        $freeSpace | Should -BeGreaterOrEqual 30GB
+        $diskInfo = Get-PSDrive "/"
+        $totalSpaceGB = [math]::Floor(($diskInfo.Used + $diskInfo.Free) / 1GB)
+        $freeSpaceGB = [math]::Floor($diskInfo.Free / 1GB)
+        Write-Host "  [i] Disk size: ${totalSpaceGB} GB; Free space: ${freeSpaceGB} GB"
+        $freeSpaceGB | Should -BeGreaterOrEqual 30
     }
 }
 
