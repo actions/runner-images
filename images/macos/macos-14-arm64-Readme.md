@@ -10,7 +10,7 @@
 # macOS 14
 - OS Version: macOS 14.7.1 (23H222)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20241119.509
+- Image Version: 20241125.556
 
 ## Installed Software
 
@@ -27,7 +27,7 @@
 - GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
 - Kotlin 2.0.21-release-482
 - Mono 6.12.0.188
-- Node.js 20.18.0
+- Node.js 20.18.1
 - Perl 5.40.0
 - Python3 3.13.0
 - Ruby 3.0.7p220
@@ -47,18 +47,18 @@
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.11
+- Gradle 8.11.1
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.27.1
 - bazel 7.4.1
-- bazelisk 1.23.0
+- bazelisk 1.24.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.47.0
-- Git LFS 3.5.1
+- Git LFS 3.6.0
 - GitHub CLI 2.62.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
@@ -66,22 +66,22 @@
 - jq 1.7.1
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.11.2
-- pkg-config 0.29.2
+- pkgconf 2.3.0
 - Unxip 3.1
 - yq 4.44.5
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.22.0
-- AWS SAM CLI 1.129.0
-- AWS Session Manager CLI 1.2.688.0
+- AWS CLI 2.22.4
+- AWS SAM CLI 1.131.0
+- AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.31.92
-- Cmake 3.31.0
+- Cmake 3.31.1
 - CodeQL Action Bundle 2.19.3
 - Fastlane 2.225.0
-- SwiftFormat 0.55.0
+- SwiftFormat 0.55.2
 - Xcbeautify 2.15.0
 - Xcode Command Line Tools 16.1.0.0.1.1729049160
 - Xcodes 1.6.0
@@ -112,16 +112,20 @@
 
 ### Cached Tools
 
+#### Ruby
+- 3.0.7
+- 3.1.6
+- 3.2.6
+- 3.3.6
+
 #### Python
-- 3.9.13
-- 3.10.11
 - 3.11.9
 - 3.12.7
 - 3.13.0
 
 #### Node.js
 - 18.20.5
-- 20.18.0
+- 20.18.1
 - 22.11.0
 
 #### Go
@@ -203,12 +207,12 @@
 | Simulator - watchOS 10.5 | watchsimulator10.5   | 15.4          |
 | Simulator - watchOS 11.0 | watchsimulator11.0   | 16.0          |
 | Simulator - watchOS 11.1 | watchsimulator11.1   | 16.1          |
-| visionOS 1.0             | xros1.0              | 15.2          |
 | Simulator - visionOS 1.0 | xrsimulator1.0       | 15.2          |
-| visionOS 1.1             | xros1.1              | 15.3          |
+| visionOS 1.0             | xros1.0              | 15.2          |
 | Simulator - visionOS 1.1 | xrsimulator1.1       | 15.3          |
-| Simulator - visionOS 1.2 | xrsimulator1.2       | 15.4          |
+| visionOS 1.1             | xros1.1              | 15.3          |
 | visionOS 1.2             | xros1.2              | 15.4          |
+| Simulator - visionOS 1.2 | xrsimulator1.2       | 15.4          |
 | Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
 | visionOS 2.0             | xros2.0              | 16.0          |
 | Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
