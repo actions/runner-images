@@ -144,4 +144,27 @@ $disableTaskNames | ForEach-Object {
     Disable-ScheduledTask @PSItem -ErrorAction Ignore
 } | Out-Null
 
+if (Test-IsWin25) {
+    $directoriesToCompact = @(
+        'C:\ProgramData\Microsoft\VisualStudio\Packages',
+        'C:\ProgramData\Package Cache',
+        'C:\Windows\assembly',
+        'C:\Windows\WinSxS'
+    )
+    Write-Host "Starting Image slimming process"
+    $start = get-date
+    $ErrorActionPreviousValue = $ErrorActionPreference
+    $ErrorActionPreference = 'SilentlyContinue'
+    Write-Host "Removing 'C:\Windows\Installer' directory"
+    Remove-Item "$env:windir\Installer" -Recurse -Force | Out-Null
+    foreach ($directory in $directoriesToCompact) {
+        Write-Host "Compressing '$directory' directory"
+        & compact /s:"$directory" /c /a /i /EXE:LZX * | Out-Null
+    }
+    $ErrorActionPreference = $ErrorActionPreviousValue
+    $finish = get-date
+    $time = "$(($finish - $start).Minutes):$(($finish - $start).Seconds)"
+    Write-Host "The process took a total of $time (in minutes:seconds)"
+}
+
 Write-Host "Configure-System.ps1 - completed"

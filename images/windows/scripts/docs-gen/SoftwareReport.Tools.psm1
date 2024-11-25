@@ -314,3 +314,7 @@ function Get-ImageMagickVersion {
     $magickVersion = $Matches.Version
     return $magickVersion
 }
+
+function Get-MongoshVersion {
+    return $(mongosh --version)
+}

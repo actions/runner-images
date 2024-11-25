@@ -307,6 +307,22 @@ function Get-TCToolVersionPath {
     return Join-Path $foundVersion $Arch
 }
 
+function Test-IsWin25 {
+    <#
+    .SYNOPSIS
+        Checks if the current Windows operating system is Windows Server 2025.
+    .DESCRIPTION
+        This function uses the Get-CimInstance cmdlet to retrieve information
+        about the current Windows operating system. It then checks if the Caption
+        property of the Win32_OperatingSystem class contains the string "2025",
+        indicating that the operating system is Windows Server 2025.
+    .OUTPUTS
+        Returns $true if the current Windows operating system is Windows Server 2025.
+        Otherwise, returns $false.
+    #>
+    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption -match "2025"
+}
+
 function Test-IsWin22 {
     <#
     .SYNOPSIS

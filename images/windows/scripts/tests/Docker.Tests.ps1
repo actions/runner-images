@@ -25,7 +25,7 @@ Describe "DockerWinCred" {
     }
 }
 
-Describe "DockerImages" {
+Describe "DockerImages" -Skip:(Test-IsWin25) {
     Context "docker images" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 
