@@ -7,7 +7,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
 - Kernel Version: 6.8.0-1017-azure
-- Image Version: 20241117.1.0
+- Image Version: 20241124.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -22,7 +22,7 @@
 - GNU Fortran: 12.3.0, 13.2.0, 14.2.0
 - Julia 1.11.1
 - Kotlin 2.0.21-release-482
-- Node.js 20.18.0
+- Node.js 20.18.1
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -31,14 +31,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.16.3
-- Homebrew 4.4.5
+- Homebrew 4.4.6
 - Miniconda 24.9.2
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 435a9415c)
+- Vcpkg (build from commit 5e5d0e1cd)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,18 +57,18 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.11
+- Gradle 8.11.1
 - Lerna 8.1.9
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.17.6
+- Ansible 2.18.0
 - AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.4.1
-- Bazelisk 1.23.0
+- Bazelisk 1.24.0
 - Bicep 0.31.92
 - Buildah 1.33.7
-- CMake 3.31.0
+- CMake 3.31.1
 - CodeQL Action Bundle 2.19.3
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
@@ -77,12 +77,12 @@ to accomplish this.
 - Docker Server 26.1.3
 - Fastlane 2.225.0
 - Git 2.47.0
-- Git LFS 3.5.1
+- Git LFS 3.6.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.25.0
-- Kubectl 1.31.2
+- Kubectl 1.31.3
 - Kustomize 5.5.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -94,7 +94,7 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.13.0
 - Podman 4.9.3
-- Pulumi 3.139.0
+- Pulumi 3.141.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -102,13 +102,13 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.21.3
-- AWS CLI Session Manager Plugin 1.2.688.0
-- AWS SAM CLI 1.129.0
-- Azure CLI 2.66.0
+- AWS CLI 2.22.4
+- AWS CLI Session Manager Plugin 1.2.694.0
+- AWS SAM CLI 1.131.0
+- Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.62.0
-- Google Cloud CLI 501.0.0
+- Google Cloud CLI 502.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -142,10 +142,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.69
-- ChromeDriver 131.0.6778.69
+- Google Chrome 131.0.6778.85
+- ChromeDriver 131.0.6778.85
 - Chromium 131.0.6778.0
-- Microsoft Edge 131.0.2903.51
+- Microsoft Edge 131.0.2903.63
 - Microsoft Edge WebDriver 131.0.2903.52
 - Selenium server 4.26.0
 - Mozilla Firefox 132.0.2
@@ -167,7 +167,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.5
+- PostgreSQL 16.6
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -192,7 +192,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 18.20.5
-- 20.18.0
+- 20.18.1
 - 22.11.0
 
 #### Python
@@ -210,7 +210,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 12.1.0
-- Microsoft.Graph: 2.24.0
+- Microsoft.Graph: 2.25.0
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.23.0
 
@@ -221,15 +221,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | nginx   | 1.24.0  | /etc/nginx/nginx.conf     | inactive      | 80         |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                       |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 12.0                                                                                                                                                                                                          |
-| Android SDK Build-tools    | 35.0.0<br>34.0.0                                                                                                                                                                                              |
-| Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                        |
-| Google Play services       | 49                                                                                                                                                                                                            |
-| Google Repository          | 58                                                                                                                                                                                                            |
-| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                      |
+| Package Name               | Version                                                                                                                                                                                                                                   |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 12.0                                                                                                                                                                                                                                      |
+| Android SDK Build-tools    | 35.0.0<br>34.0.0                                                                                                                                                                                                                          |
+| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                    |
+| Google Play services       | 49                                                                                                                                                                                                                                        |
+| Google Repository          | 58                                                                                                                                                                                                                                        |
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                                                  |
 
 #### Environment variables
 | Name                    | Value                                        |
@@ -253,7 +253,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.1.0-2build2               |
 | bzip2                  | 1.0.8-5.1build0.1           |
 | coreutils              | 9.4-3ubuntu6                |
-| curl                   | 8.5.0-2ubuntu10.4           |
+| curl                   | 8.5.0-2ubuntu10.5           |
 | dbus                   | 1.14.10-4ubuntu4.1          |
 | dnsutils               | 1:9.18.28-0ubuntu0.24.04.1  |
 | dpkg                   | 1.22.6ubuntu6.1             |
