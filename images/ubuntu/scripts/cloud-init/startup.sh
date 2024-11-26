@@ -15,7 +15,7 @@ export AZDO_POOL=$(curl -s -H Metadata:true --noproxy "*" "http://169.254.169.25
 
 ## Create log file that enableagent.sh for some reason requires to exist
 sudo mkdir -p /var/log/azure/Microsoft.VisualStudio.Services.TeamServicesAgentLinux
-touch /var/log/azure/Microsoft.VisualStudio.Services.TeamServicesAgentLinux/enableagent.log
+sudo touch /var/log/azure/Microsoft.VisualStudio.Services.TeamServicesAgentLinux/enableagent.log
 
 ## ENABLE SCRIPTS
 sudo chmod +x /agent/*.sh
