@@ -5,7 +5,7 @@
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6532
-- Image Version: 20241113.3.0
+- Image Version: 20241125.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,21 +20,21 @@
 - LLVM 18.1.8
 - Node 18.20.5
 - Perl 5.32.1
-- PHP 8.3.13
+- PHP 8.3.14
 - Python 3.7.9
 - Ruby 3.0.7p220
 
 ### Package Management
 - Chocolatey 2.4.0
-- Composer 2.8.2
-- Helm 3.16.1
+- Composer 2.8.3
+- Helm 3.16.2
 - Miniconda 24.9.2 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
-- NuGet 6.11.1.2
+- NuGet 6.12.1.1
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 772f784ba)
+- Vcpkg (build from commit 5e5d0e1cd)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -52,10 +52,10 @@
 ### Tools
 - 7zip 24.08
 - aria2 1.37.0
-- azcopy 10.27.0 INFO: azcopy.exe 10.27.0: A newer version 10.27.1 is available to download 
+- azcopy 10.27.1
 - Bazel 7.4.1
-- Bazelisk 1.23.0
-- Bicep 0.31.34
+- Bazelisk 1.24.0
+- Bicep 0.31.92
 - Cabal 3.12.1.0
 - CMake 3.31.0
 - CodeQL Action Bundle 2.19.3
@@ -65,12 +65,12 @@
 - ghc 9.10.1
 - Git 2.47.0.windows.1
 - Git LFS 3.5.1
-- Google Cloud CLI 501.0.0
-- ImageMagick 7.1.1-40
+- Google Cloud CLI 502.0.0
+- ImageMagick 7.1.1-41
 - InnoSetup 6.3.3
 - jq 1.7.1
 - Kind 0.25.0
-- Kubectl 1.31.2
+- Kubectl 1.31.3
 - Mercurial 5.0
 - gcc 8.1.0
 - gdb 8.1
@@ -79,8 +79,8 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.2
-- Parcel 2.13.0
-- Pulumi 3.138.0
+- Parcel 2.13.1
+- Pulumi 3.141.0
 - R 4.4.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -93,14 +93,14 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.232
-- AWS CLI 2.19.5
-- AWS SAM CLI 1.128.0
-- AWS Session Manager CLI 1.2.688.0
-- Azure CLI 2.66.0
+- Alibaba Cloud CLI 3.0.234
+- AWS CLI 2.22.4
+- AWS SAM CLI 1.131.0
+- AWS Session Manager CLI 1.2.694.0
+- Azure CLI 2.67.0
 - Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 8.8.3
-- GitHub CLI 2.61.0
+- GitHub CLI 2.62.0
 
 ### Rust Tools
 - Cargo 1.82.0
@@ -117,14 +117,14 @@
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.70
-- Chrome Driver 131.0.6778.69
-- Microsoft Edge 130.0.2849.80
-- Microsoft Edge Driver 130.0.2849.80
+- Google Chrome 131.0.6778.86
+- Chrome Driver 131.0.6778.85
+- Microsoft Edge 131.0.2903.63
+- Microsoft Edge Driver 131.0.2903.63
 - Mozilla Firefox 132.0.2
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
-- Selenium server 4.26.0
+- Selenium server 4.27.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -173,7 +173,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 16.20.2
 - 18.20.5
-- 20.18.0
+- 20.18.1
 - 22.11.0
 
 #### Python
@@ -214,11 +214,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 5.0.29.0 | MongoDB     | Stopped       | Disabled         |
+| 5.0.30.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.20.0
-- DacFx 162.4.92.3
+- Azure CosmosDb Emulator 2.14.21.0
+- DacFx 162.5.57.1
 - MySQL 5.7.44.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
@@ -494,11 +494,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.22621.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 7.0.120, 7.0.203, 7.0.317, 7.0.410, 8.0.111, 8.0.206, 8.0.307, 8.0.404
+- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 7.0.120, 7.0.203, 7.0.317, 7.0.410, 8.0.111, 8.0.206, 8.0.307, 8.0.404, 9.0.100
 - .NET Framework: 4.7.2, 4.8
-- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11
-- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11
-- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11, 9.0.0
+- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11, 9.0.0
+- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11, 9.0.0
 - nbgv 3.6.146+392592327a
 
 ### PowerShell Tools
@@ -510,10 +510,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.696
+- AWSPowershell: 4.1.705
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.24.0
+- Microsoft.Graph: 2.25.0
 - Pester: 3.4.0, 5.6.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.23.0
@@ -527,19 +527,19 @@ All other versions are saved but not installed.
 ```
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                                               |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                   |
-| Android Emulator           | 35.2.10                                                                                                                                                                                                                                                                                               |
-| Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0<br>30.0.2                                                                                                                                                                                                                         |
-| Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3) |
-| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                |
-| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                                            |
-| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                              |
-| Google Play services       | 49                                                                                                                                                                                                                                                                                                    |
-| Google Repository          | 58                                                                                                                                                                                                                                                                                                    |
-| NDK                        | 26.3.11579264<br>27.2.12479018                                                                                                                                                                                                                                                                        |
+| Package Name               | Version                                                                                                                                                                                                                                                                                                                           |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                               |
+| Android Emulator           | 35.2.10                                                                                                                                                                                                                                                                                                                           |
+| Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0<br>30.0.2                                                                                                                                                                                                                                                     |
+| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3) |
+| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                                            |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                            |
+| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                                                                        |
+| Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                          |
+| Google Play services       | 49                                                                                                                                                                                                                                                                                                                                |
+| Google Repository          | 58                                                                                                                                                                                                                                                                                                                                |
+| NDK                        | 26.3.11579264<br>27.2.12479018                                                                                                                                                                                                                                                                                                    |
 
 #### Environment variables
 | Name                    | Value                                    |
