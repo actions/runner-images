@@ -7,7 +7,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1074-azure
-- Image Version: 20241117.1.0
+- Image Version: 20241124.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -35,7 +35,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.16.3
-- Homebrew 4.4.5
+- Homebrew 4.4.6
 - Miniconda 24.9.2
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -43,7 +43,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 435a9415c)
+- Vcpkg (build from commit 5e5d0e1cd)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,7 +62,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.11
+- Gradle 8.11.1
 - Lerna 8.1.9
 - Maven 3.8.8
 - Sbt 1.10.5
@@ -72,10 +72,10 @@ to accomplish this.
 - apt-fast 1.10.0
 - AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.4.1
-- Bazelisk 1.23.0
+- Bazelisk 1.24.0
 - Bicep 0.31.92
 - Buildah 1.22.3
-- CMake 3.31.0
+- CMake 3.31.1
 - CodeQL Action Bundle 2.19.3
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
@@ -84,14 +84,14 @@ to accomplish this.
 - Docker Server 26.1.3
 - Fastlane 2.225.0
 - Git 2.47.0
-- Git LFS 3.5.1
+- Git LFS 3.6.0
 - Git-ftp 1.6.0
 - Haveged 1.9.1
 - Heroku 9.5.0
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.25.0
-- Kubectl 1.31.2
+- Kubectl 1.31.3
 - Kustomize 5.5.0
 - Leiningen 2.11.2
 - MediaInfo 19.09
@@ -105,7 +105,7 @@ to accomplish this.
 - Parcel 2.13.0
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.139.0
+- Pulumi 3.141.0
 - R 4.4.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -117,17 +117,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.21.3
-- AWS CLI Session Manager Plugin 1.2.688.0
-- AWS SAM CLI 1.129.0
-- Azure CLI 2.66.0
+- AWS CLI 2.22.4
+- AWS CLI Session Manager Plugin 1.2.694.0
+- AWS SAM CLI 1.131.0
+- Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.62.0
-- Google Cloud CLI 501.0.0
+- Google Cloud CLI 502.0.0
 - Netlify CLI 17.37.2
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 39.0.2
+- Vercel CLI 39.1.1
 
 ### Java
 | Version             | Environment Variable |
@@ -138,7 +138,7 @@ to accomplish this.
 | 21.0.5+11           | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.30, 8.2.25, 8.3.13
+- PHP: 7.4.33, 8.0.30, 8.1.31, 8.2.26, 8.3.14
 - Composer 2.8.3
 - PHPUnit 8.5.40
 ```
@@ -166,10 +166,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.7.1
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.69
-- ChromeDriver 131.0.6778.69
+- Google Chrome 131.0.6778.85
+- ChromeDriver 131.0.6778.85
 - Chromium 131.0.6778.0
-- Microsoft Edge 131.0.2903.51
+- Microsoft Edge 131.0.2903.63
 - Microsoft Edge WebDriver 131.0.2903.52
 - Selenium server 4.26.0
 - Mozilla Firefox 132.0.2
@@ -192,7 +192,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.31.1
 
 #### PostgreSQL
-- PostgreSQL 14.14
+- PostgreSQL 14.15
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -210,7 +210,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 162.4.92.3
+- SqlPackage 162.5.57.1
 
 ### Cached Tools
 
@@ -221,7 +221,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 18.20.5
-- 20.18.0
+- 20.18.1
 - 22.11.0
 
 #### Python
@@ -251,7 +251,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 12.1.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.24.0
+- Microsoft.Graph: 2.25.0
 - Pester: 5.6.1
 - PSScriptAnalyzer: 1.23.0
 
@@ -263,16 +263,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | nginx     | 1.18.0  | /etc/nginx/nginx.conf     | inactive      | 80         |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                         |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 9.0                                                                                                                                                                                                                                                                             |
-| Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                             |
-| Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                          |
-| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                      |
-| Google Play services       | 49                                                                                                                                                                                                                                                                              |
-| Google Repository          | 58                                                                                                                                                                                                                                                                              |
-| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                                                                                        |
+| Package Name               | Version                                                                                                                                                                                                                                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 9.0                                                                                                                                                                                                                                                                                                         |
+| Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                                                         |
+| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                      |
+| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                                                  |
+| Google Play services       | 49                                                                                                                                                                                                                                                                                                          |
+| Google Repository          | 58                                                                                                                                                                                                                                                                                                          |
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                                                                                                                    |
 
 #### Environment variables
 | Name                    | Value                                        |
@@ -294,11 +294,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
 | debian:11            | sha256:01559430c84e6bc864bed554345d1bfbfa94ac108ab68f39915cae34604b15c3  | 2024-11-11 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest | sha256:918e92e639651fdfd0bd97f31bab0dd91756edd14e6f73f43a896715617c59a0  | 2024-11-07 |
-| node:18              | sha256:c5c88762e9097e7fa405e5713731ea924fa52da33a13929ed64d8a6b79b95c89  | 2024-07-09 |
-| node:18-alpine       | sha256:a25c1e4ecc284985f4cbc449021e9259560c644dd9611e5a72d9c4750f24f6c7  | 2024-07-09 |
-| node:20              | sha256:a7a3b7ec6de4b11bb2d673b31de9d28c6da09c557ee65453672c8e4f754c23fc  | 2024-10-04 |
-| node:20-alpine       | sha256:b1e0880c3af955867bc2f1944b49d20187beb7afa3f30173e15a97149ab7f5f1  | 2024-10-04 |
+| moby/buildkit:latest | sha256:91b72a6d6963df39567b0b7266e51822e9cc09f963af8693a0ab2abbc75f8b6a  | 2024-11-22 |
+| node:18              | sha256:83eb05700940a88b14f21fb31cc92e9571a34b1db1a5d8781b466fc26cbb1472  | 2024-11-15 |
+| node:18-alpine       | sha256:7e43a2d633d91e8655a6c0f45d2ed987aa4930f0792f6d9dd3bffc7496e44882  | 2024-11-15 |
+| node:20              | sha256:f99a6bd6fb137cfc683e1ff60e7d67aa8d5fcf45a6a64c01c37b4f433a6238b6  | 2024-11-20 |
+| node:20-alpine       | sha256:b5b9467fe7b33aad47f1ec3f6e0646a658f85f05c18d4243024212a91f3b7554  | 2024-11-20 |
 | node:22              | sha256:5c76d05034644fa8ecc9c2aa84e0a83cd981d0ef13af5455b87b9adf5b216561  | 2024-10-29 |
 | node:22-alpine       | sha256:b64ced2e7cd0a4816699fe308ce6e8a08ccba463c757c00c14cd372e3d2c763e  | 2024-10-29 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
