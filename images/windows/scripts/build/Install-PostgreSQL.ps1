@@ -60,7 +60,7 @@ if ($null -ne ($toolsetVersion | Select-String -Pattern '\d+\.\d+\.\d+')) {
 
 # Return the previous value of ErrorAction and invoke Install-Binary function
 $ErrorActionPreference = $errorActionOldValue
-$installerArgs = @("--install_runtimes 0", "--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
+$installerArgs = @("--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
 Install-Binary `
     -Url $installerUrl `
     -InstallArgs $installerArgs `
