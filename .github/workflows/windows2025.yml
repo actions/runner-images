@@ -1,0 +1,20 @@
+name: Trigger Windows25 CI
+run-name: Windows2025 - ${{ github.event.pull_request.title }}
+
+on:
+  pull_request_target:
+    types: labeled
+    paths:
+    - 'images/windows/**'
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  Windows_2022:
+    if: github.event.label.name == 'CI windows-all' || github.event.label.name == 'CI windows-2025'
+    uses: ./.github/workflows/trigger-ubuntu-win-build.yml
+    with:
+      image_type: 'windows2025'
+    secrets: inherit
