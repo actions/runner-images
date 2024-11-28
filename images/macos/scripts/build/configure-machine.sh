@@ -91,9 +91,9 @@ if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
 fi
 
 # Create symlink for tests running
-if [[ ! -d "/usr/local/bin" ]];then
-    sudo mkdir -p -m 775 /usr/local/bin
-    sudo chown $USER:admin /usr/local/bin
-fi
-chmod +x $HOME/utils/invoke-tests.sh
-sudo ln -s $HOME/utils/invoke-tests.sh /usr/local/bin/#invoke_tests
+# if [[ ! -d "/usr/local/bin" ]];then
+#     sudo mkdir -p -m 775 /usr/local/bin
+#     sudo chown $USER:admin /usr/local/bin
+# fi
+# chmod +x $HOME/utils/invoke-tests.sh
+# sudo ln -s $HOME/utils/invoke-tests.sh /usr/local/bin/#invoke_tests
