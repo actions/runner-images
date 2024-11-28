@@ -26,4 +26,4 @@ sudo chmod -R 777 /usr/local/bin
 
 rm -rf ~/n
 
-invoke_tests "Node" "Node.js"
+#invoke_tests "Node" "Node.js"

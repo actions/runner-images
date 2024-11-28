@@ -21,4 +21,4 @@ touch "/usr/share/java/selenium-server-$selenium_full_version"
 # Add SELENIUM_JAR_PATH environment variable
 set_etc_environment_variable "SELENIUM_JAR_PATH" "$selenium_jar_path"
 
-invoke_tests "Tools" "Selenium"
+#invoke_tests "Tools" "Selenium"

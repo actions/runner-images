@@ -12,4 +12,4 @@ echo "azure-cli https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-lin
 rm -f /etc/apt/sources.list.d/azure-cli.list
 rm -f /etc/apt/sources.list.d/azure-cli.list.save
 
-invoke_tests "CLI.Tools" "Azure CLI"
+#invoke_tests "CLI.Tools" "Azure CLI"

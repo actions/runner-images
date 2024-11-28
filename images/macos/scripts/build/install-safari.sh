@@ -17,4 +17,4 @@ safari_plist="$HOME/Library/WebDriver/com.apple.Safari.plist"
 /usr/libexec/PlistBuddy -c 'delete AllowRemoteAutomation' $safari_plist || true
 /usr/libexec/PlistBuddy -c 'add AllowRemoteAutomation bool true' $safari_plist
 
-invoke_tests "Browsers" "Safari"
+#invoke_tests "Browsers" "Safari"

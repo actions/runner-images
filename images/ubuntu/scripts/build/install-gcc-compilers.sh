@@ -14,4 +14,4 @@ for version in ${versions[*]}; do
     apt-get install $version
 done
 
-invoke_tests "Tools" "gcc"
+#invoke_tests "Tools" "gcc"

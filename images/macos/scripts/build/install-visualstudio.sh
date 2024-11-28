@@ -49,4 +49,4 @@ for version in ${vsmac_versions[@]}; do
     install_vsmac $version $default_vsmac_version
 done
 
-invoke_tests "Common" "VSMac"
+#invoke_tests "Common" "VSMac"

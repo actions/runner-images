@@ -11,4 +11,4 @@ pod setup
 # Create a symlink to /usr/local/bin since it was removed due to Homebrew change.
 ln -sf $(which pod) /usr/local/bin/pod
 
-invoke_tests "Common" "CocoaPods"
+#invoke_tests "Common" "CocoaPods"

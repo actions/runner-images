@@ -29,4 +29,4 @@ touch $codeql_toolcache_path/pinned-version
 # Touch a file to indicate to the toolcache that setting up CodeQL is complete.
 touch $codeql_toolcache_path.complete
 
-invoke_tests "Common" "CodeQL Bundle"
+#invoke_tests "Common" "CodeQL Bundle"

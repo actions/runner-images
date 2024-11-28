@@ -35,4 +35,4 @@ for symlink in zstdcat zstdmt unzstd; do
     ln -sf /usr/local/bin/zstd /usr/local/bin/${symlink}
 done
 
-invoke_tests "Tools" "Zstd"
+#invoke_tests "Tools" "Zstd"

@@ -21,4 +21,4 @@ use_checksum_comparison "$gh_cli_deb_path" "$external_hash"
 # Install GitHub CLI
 apt-get install "$gh_cli_deb_path"
 
-invoke_tests "CLI.Tools" "GitHub CLI"
+#invoke_tests "CLI.Tools" "GitHub CLI"

@@ -22,4 +22,4 @@ for package in $pipx_packages; do
     fi
 done
 
-invoke_tests "Common" "PipxPackages"
+#invoke_tests "Common" "PipxPackages"

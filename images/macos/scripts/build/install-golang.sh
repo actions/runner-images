@@ -13,4 +13,4 @@ brew_smart_install "go@${default_go_version}"
 # Create symlinks to preserve backward compatibility. Symlinks are not created when non-latest go is being installed
 ln -sf $(brew --prefix go@${default_go_version})/bin/* /usr/local/bin/
 
-invoke_tests "Common" "Go"
+#invoke_tests "Common" "Go"

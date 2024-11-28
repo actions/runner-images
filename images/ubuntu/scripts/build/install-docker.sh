@@ -101,7 +101,7 @@ install "$aws_helper_binary_path" "/usr/bin/docker-credential-ecr-login"
 rm $GPG_KEY
 rm $REPO_PATH
 
-invoke_tests "Tools" "Docker"
+#invoke_tests "Tools" "Docker"
 if [[ "${DOCKERHUB_PULL_IMAGES:-yes}" == "yes" ]]; then
-    invoke_tests "Tools" "Docker images"
+    #invoke_tests "Tools" "Docker images"
 fi

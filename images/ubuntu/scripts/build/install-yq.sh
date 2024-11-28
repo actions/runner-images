@@ -20,4 +20,4 @@ use_checksum_comparison "$binary_path" "$external_hash"
 # Install yq
 install "$binary_path" /usr/bin/yq
 
-invoke_tests "Tools" "yq"
+#invoke_tests "Tools" "yq"

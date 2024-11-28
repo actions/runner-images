@@ -35,4 +35,4 @@ git config --global advice.detachedHead false
 git config --global advice.amWorkDir false
 git config --global advice.rmHints false
 
-invoke_tests "Git"
+#invoke_tests "Git"

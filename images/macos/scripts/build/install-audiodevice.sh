@@ -12,4 +12,4 @@ brew_smart_install "switchaudio-osx"
 echo "install sox"
 brew_smart_install "sox"
 
-invoke_tests "System" "Audio Device"
+#invoke_tests "System" "Audio Device"

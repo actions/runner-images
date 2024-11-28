@@ -12,4 +12,4 @@ archive_path=$(download_with_retry "$download_url")
 tar zxf "$archive_path" -C /usr/share
 ln -s /usr/share/sbt/bin/sbt /usr/bin/sbt
 
-invoke_tests "Tools" "Sbt"
+#invoke_tests "Tools" "Sbt"

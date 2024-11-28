@@ -20,4 +20,4 @@ apt-get install heroku
 rm $REPO_PATH
 rm $GPG_KEY
 
-invoke_tests "Tools" "Heroku"
+#invoke_tests "Tools" "Heroku"

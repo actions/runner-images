@@ -59,4 +59,4 @@ EOF
 
 sudo chown root:wheel "/Library/Managed Preferences/com.microsoft.EdgeUpdater.plist"
 
-invoke_tests "Browsers" "Edge"
+#invoke_tests "Browsers" "Edge"

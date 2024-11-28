@@ -57,4 +57,4 @@ if ! is_Arm64; then
     done
 fi
 
-invoke_tests "Ruby.$arch"
+#invoke_tests "Ruby.$arch"

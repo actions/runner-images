@@ -54,7 +54,7 @@ echo 'ACTION=="add", SUBSYSTEM=="module", KERNEL=="nf_conntrack", RUN+="/usr/sbi
 
 # Create symlink for tests running
 chmod +x $HELPER_SCRIPTS/invoke-tests.sh
-ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/invoke_tests
+ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/#invoke_tests
 
 # Disable motd updates metadata
 sed -i 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news

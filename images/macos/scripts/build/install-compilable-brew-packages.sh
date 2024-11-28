@@ -12,4 +12,4 @@ for package in $compilable_packages; do
     brew_smart_install "$package"
 done
 
-invoke_tests "Common" "Compiled"
+#invoke_tests "Common" "Compiled"

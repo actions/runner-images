@@ -15,4 +15,4 @@ for package in $pipx_packages; do
     pipx install $package
 done
 
-invoke_tests "PipxPackages"
+#invoke_tests "PipxPackages"

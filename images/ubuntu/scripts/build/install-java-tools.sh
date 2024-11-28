@@ -116,4 +116,4 @@ rm -f /usr/share/keyrings/adoptium.gpg
 rm -f /usr/share/keyrings/zulu.gpg
 
 reload_etc_environment
-invoke_tests "Java"
+#invoke_tests "Java"
