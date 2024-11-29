@@ -58,9 +58,16 @@ if ($null -ne ($toolsetVersion | Select-String -Pattern '\d+\.\d+\.\d+')) {
     } while (!$response)
 }
 
+# Postgres 14 requires the vs 17 redistributable
+$vs17RedistUrl = "https://aka.ms/vs/17/release/vc_redist.x64.exe"
+Install-Binary `
+    -Url $vs17RedistUrl `
+    -InstallArgs @("/install", "/quiet", "/norestart") `
+    -ExpectedSignature (Get-ToolsetContent).postgresql.vcRedistSignature
+
 # Return the previous value of ErrorAction and invoke Install-Binary function
 $ErrorActionPreference = $errorActionOldValue
-$installerArgs = @("--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
+$installerArgs = @("--install_runtimes 0", "--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
 Install-Binary `
     -Url $installerUrl `
     -InstallArgs $installerArgs `
