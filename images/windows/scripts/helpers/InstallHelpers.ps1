@@ -605,8 +605,17 @@ function Get-GithubReleasesByVersion {
         )
     }
 
-    # Sort releases by version
-    $releases = $releases | Sort-Object -Descending { [version] $_.version }
+    # Sort releases by version, then by tag name parts if version is the same
+    $releases = $releases | Sort-Object -Descending {
+        [version] $_.version
+    }, {
+        $cleanTagName = $_.tag_name -replace '^v', ''
+        $parts = $cleanTagName -split '[.\-]'
+        $parsedParts = $parts | ForEach-Object {
+            if ($_ -match '^\d+$') { [int]$_ } else { $_ }
+        }
+        $parsedParts
+    }
 
     # Select releases matching version
     if ($Version -eq "latest") {
