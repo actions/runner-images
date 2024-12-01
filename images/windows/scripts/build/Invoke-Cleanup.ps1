@@ -15,7 +15,7 @@ Write-Host "Clean up various directories"
     "$env:SystemRoot\logs",
     "$env:SystemRoot\winsxs\manifestcache",
     "$env:SystemRoot\Temp",
-    "$env:SystemRoot\Installer",
+    "$env:SystemRoot\Installer\*",
     "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp",
     "$env:TEMP",
     "$env:AZURE_CONFIG_DIR\logs",
@@ -52,18 +52,17 @@ if ($LASTEXITCODE -ne 0) {
 
 if (Test-IsWin25) {
     $directoriesToCompact = @(
-        'C:\Windows\assembly',
-        'C:\Windows\WinSxS'
+        "$env:SystemRoot\assembly",
+        "$env:SystemRoot\WinSxS"
     )
     Write-Host "Starting Image slimming process"
     $start = get-date
     $ErrorActionPreviousValue = $ErrorActionPreference
     $ErrorActionPreference = 'SilentlyContinue'
-    Write-Host "Removing 'C:\Windows\Installer' directory"
-    Remove-Item "$env:windir\Installer" -Recurse -Force | Out-Null
     foreach ($directory in $directoriesToCompact) {
         Write-Host "Compressing '$directory' directory"
-        & compact /s:"$directory" /c /a /i /EXE:LZX * | Out-Null
+        $compressionResult =  & compact /s:"$directory" /c /a /i /EXE:LZX *
+        $compressionResult | Select-Object -Last 3
     }
     $ErrorActionPreference = $ErrorActionPreviousValue
     $finish = get-date
