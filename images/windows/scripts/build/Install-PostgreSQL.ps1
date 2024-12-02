@@ -70,46 +70,12 @@ if ((Get-ToolsetContent).postgresql.installVcRedist) {
 # Return the previous value of ErrorAction and invoke Install-Binary function
 $ErrorActionPreference = $errorActionOldValue
 $installerArgs = @("--install_runtimes 0", "--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
-try {
-    Install-Binary `
-        -Url $installerUrl `
-        -InstallArgs $installerArgs `
-        -ExpectedSignature (Get-ToolsetContent).postgresql.signature
-} catch {
-    # Recursively search for install-postgres.log
-    $installPostgresLog = Get-ChildItem -Path $env:TEMP -Recurse -Filter "install-postgresql.log" -ErrorAction SilentlyContinue | Select-Object -First 1
 
-    if ($installPostgresLog) {
-        Write-Output "install-postgres.log found at: $($installPostgresLog.FullName)"
-        Write-Output "Content of install-postgres.log:"
-        Get-Content -Path $installPostgresLog.FullName | ForEach-Object { Write-Output $_ }
-    } else {
-        Write-Output "install-postgres.log not found."
-
-        # Recursively search for bitrock_installer.log or bitrock_installer_*.log
-        $bitrockInstallerLogs = @(
-            Get-ChildItem -Path $tempPath -Recurse -Filter "bitrock_installer.log" -ErrorAction SilentlyContinue,
-            Get-ChildItem -Path $tempPath -Recurse -Filter "bitrock_installer_*.log" -ErrorAction SilentlyContinue
-        )
-
-        # Flatten the array to remove nested arrays
-        $bitrockInstallerLogs = $bitrockInstallerLogs | Where-Object { $_ }
-
-        foreach ($log in $bitrockInstallerLogs) {
-            if ($log) {
-                Write-Output "Found log file: $($log.FullName)"
-                Write-Output "Content of bitrock_install*.log:"
-                Get-Content -Path $log.FullName | ForEach-Object { Write-Output $_ }
-                break
-            }
-        }
-
-        # If no log files were found
-        if (-not $log) {
-            Write-Warning "No relevant log files found in the temporary directory."
-        }
-    }
-}
+Install-Binary `
+    -Url $installerUrl `
+    -InstallArgs $installerArgs `
+    -ExpectedSignature (Get-ToolsetContent).postgresql.signature
+    -InstallerLogPath "$env:TEMP/**/postgresql-install.log"
 
 # Get Path to pg_ctl.exe
 $pgPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
