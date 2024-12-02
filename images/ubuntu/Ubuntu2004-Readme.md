@@ -1,13 +1,12 @@
 | Announcements |
 |-|
 | [[Ubuntu] Breaking Change: runner user will have UID 1001 instead of 1000 for larger runners](https://github.com/actions/runner-images/issues/10936) |
-| [[Ubuntu 20 and 22] Node.js version 16 will be removed on November 18,2024.](https://github.com/actions/runner-images/issues/10896) |
 | [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1074-azure
-- Image Version: 20241124.1.0
+- Image Version: 20241201.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -23,7 +22,7 @@
 - GNU C++: 10.5.0
 - GNU Fortran: 10.5.0
 - Julia 1.11.1
-- Kotlin 2.0.21-release-482
+- Kotlin 2.1.0-release-394
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.20.5
@@ -35,7 +34,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.16.3
-- Homebrew 4.4.6
+- Homebrew 4.4.8
 - Miniconda 24.9.2
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -43,7 +42,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 5e5d0e1cd)
+- Vcpkg (build from commit cd124b84f)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -65,25 +64,25 @@ to accomplish this.
 - Gradle 8.11.1
 - Lerna 8.1.9
 - Maven 3.8.8
-- Sbt 1.10.5
+- Sbt 1.10.6
 
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.10.0
 - AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 7.4.1
-- Bazelisk 1.24.0
+- Bazelisk 1.24.1
 - Bicep 0.31.92
 - Buildah 1.22.3
 - CMake 3.31.1
 - CodeQL Action Bundle 2.19.3
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.18.0
+- Docker-Buildx 0.19.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.225.0
-- Git 2.47.0
+- Git 2.47.1
 - Git LFS 3.6.0
 - Git-ftp 1.6.0
 - Haveged 1.9.1
@@ -102,32 +101,32 @@ to accomplish this.
 - nvm 0.40.1
 - OpenSSL 1.1.1f-1ubuntu2.23
 - Packer 1.11.2
-- Parcel 2.13.0
+- Parcel 2.13.2
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.141.0
+- Pulumi 3.142.0
 - R 4.4.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.9.8
+- Terraform 1.10.0
 - yamllint 1.35.1
 - yq 4.44.5
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.22.4
+- AWS CLI 2.22.7
 - AWS CLI Session Manager Plugin 1.2.694.0
 - AWS SAM CLI 1.131.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.62.0
+- GitHub CLI 2.63.0
 - Google Cloud CLI 502.0.0
 - Netlify CLI 17.37.2
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.0
-- Vercel CLI 39.1.1
+- Vercel CLI 39.1.2
 
 ### Java
 | Version             | Environment Variable |
@@ -152,27 +151,27 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.1.1
 
 ### Rust Tools
-- Cargo 1.82.0
-- Rust 1.82.0
-- Rustdoc 1.82.0
+- Cargo 1.83.0
+- Rust 1.83.0
+- Rustdoc 1.83.0
 - Rustup 1.27.1
 
 #### Packages
 - Bindgen 0.70.1
 - Cargo audit 0.21.0
-- Cargo clippy 0.1.82
+- Cargo clippy 0.1.83
 - Cargo outdated 0.15.0
 - Cbindgen 0.27.0
-- Rustfmt 1.7.1
+- Rustfmt 1.8.0
 
 ### Browsers and Drivers
 - Google Chrome 131.0.6778.85
 - ChromeDriver 131.0.6778.85
 - Chromium 131.0.6778.0
-- Microsoft Edge 131.0.2903.63
+- Microsoft Edge 131.0.2903.70
 - Microsoft Edge WebDriver 131.0.2903.52
-- Selenium server 4.26.0
-- Mozilla Firefox 132.0.2
+- Selenium server 4.27.0
+- Mozilla Firefox 133.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -294,7 +293,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
 | debian:11            | sha256:01559430c84e6bc864bed554345d1bfbfa94ac108ab68f39915cae34604b15c3  | 2024-11-11 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest | sha256:91b72a6d6963df39567b0b7266e51822e9cc09f963af8693a0ab2abbc75f8b6a  | 2024-11-22 |
+| moby/buildkit:latest | sha256:36c65534fcd9e8b2c38f7e549aeae3ed5b5389fe6de2f44996f313112ebf0e18  | 2024-11-26 |
 | node:18              | sha256:83eb05700940a88b14f21fb31cc92e9571a34b1db1a5d8781b466fc26cbb1472  | 2024-11-15 |
 | node:18-alpine       | sha256:7e43a2d633d91e8655a6c0f45d2ed987aa4930f0792f6d9dd3bffc7496e44882  | 2024-11-15 |
 | node:20              | sha256:f99a6bd6fb137cfc683e1ff60e7d67aa8d5fcf45a6a64c01c37b4f433a6238b6  | 2024-11-20 |
