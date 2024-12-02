@@ -160,7 +160,7 @@ Describe "Homebrew" {
 }
 
 Describe "Kotlin" -Skip:($os.IsMonterey) {
-    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlinc-js")
 
     It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
         "$toolName -version" | Should -ReturnZeroExitCode
@@ -176,5 +176,11 @@ Describe "yq" {
 Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "imagemagick" {
         "magick -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "pkgconf" {
+    It "pkgconf" {
+        "pkgconf --version" | Should -ReturnZeroExitCode
     }
 }
