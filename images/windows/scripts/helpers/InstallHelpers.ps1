@@ -128,7 +128,7 @@ function Install-Binary {
             Write-Host "Installation process returned unexpected exit code: $exitCode"
             Write-Host "Time elapsed: $installCompleteTime seconds"
 
-            if ($InstallerLogPath -and (Test-Path -Path $InstallerLogPath)) {
+            if ($InstallerLogPath) {
                 Write-Host "Searching for logs maching $InstallerLogPath pattern"
                 Get-ChildItem -Path $InstallerLogPath | ForEach-Object {
                     Write-Output "Found Installer Log: $InstallerLogPath"
