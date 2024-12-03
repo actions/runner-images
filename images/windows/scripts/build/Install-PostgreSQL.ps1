@@ -74,7 +74,7 @@ $installerArgs = @("--install_runtimes 0", "--superpassword root", "--enable_acl
 Install-Binary `
     -Url $installerUrl `
     -InstallArgs $installerArgs `
-    -ExpectedSignature (Get-ToolsetContent).postgresql.signature
+    -ExpectedSignature (Get-ToolsetContent).postgresql.signature `
     -InstallerLogPath "$env:TEMP/**/postgresql-install.log"
 
 # Get Path to pg_ctl.exe
