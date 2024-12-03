@@ -28,7 +28,7 @@ if (Test-IsWin25) {
     $softwareUrl = "${githubUrl}/win19/$imageMajorVersion.$imageMinorVersion/images/windows/Windows2019-Readme.md"
     $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win19%2F$imageMajorVersion.$imageMinorVersion"
 } else {
-    throw "Invalid platform version is found. Either Windows Server 2019 or 2022 are required"
+    throw "Invalid platform version is found. Either Windows Server 2019, 2022 or 2025 are required"
 }
 
 $json = @"
