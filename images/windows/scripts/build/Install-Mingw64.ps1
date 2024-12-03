@@ -27,13 +27,13 @@ if (Test-IsWin19) {
         $path = "C:\$_\bin\mingw32-make.exe" | Get-Item
         Copy-Item -Path $path -Destination (Join-Path $path.Directory 'make.exe')
     }
-    
+
     Add-MachinePathItem "C:\mingw64\bin"
 
 }
 
-if (Test-IsWin22) {
-    # If Windows 2022, install version specified in the toolset
+if (-not (Test-IsWin19)) {
+    # If Windows 2022 0r 2025 install version specified in the toolset
     $version = (Get-ToolsetContent).mingw.version
     $runtime = (Get-ToolsetContent).mingw.runtime
 
