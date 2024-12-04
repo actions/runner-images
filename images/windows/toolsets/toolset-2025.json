@@ -293,7 +293,7 @@
         ]
     },
     "node": {
-        "default": "22"
+        "default": "22.*"
     },
     "maven": {
         "version": "3.9"
