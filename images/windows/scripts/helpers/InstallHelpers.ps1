@@ -130,7 +130,7 @@ function Install-Binary {
 
             if ($InstallerLogPath) {
                 Write-Host "Searching for logs maching $InstallerLogPath pattern"
-                Get-ChildItem -Path $InstallerLogPath | ForEach-Object {
+                Get-ChildItem -Recurse -Path $InstallerLogPath | ForEach-Object {
                     Write-Output "Found Installer Log: $InstallerLogPath"
                     Get-Content -Path $InstallerLogPath
                 }
