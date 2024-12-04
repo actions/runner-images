@@ -59,7 +59,7 @@ variable "image_folder" {
 
 variable "image_os" {
   type    = string
-  default = "win22"
+  default = "win25"
 }
 
 variable "image_version" {
