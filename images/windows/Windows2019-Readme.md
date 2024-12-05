@@ -5,7 +5,7 @@
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6532
-- Image Version: 20241125.1.0
+- Image Version: 20241201.2.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -16,7 +16,7 @@
 - Bash 5.2.37(1)-release
 - Go 1.21.13
 - Julia 1.10.5
-- Kotlin 2.0.21
+- Kotlin 2.1.0
 - LLVM 18.1.8
 - Node 18.20.5
 - Perl 5.32.1
@@ -34,7 +34,7 @@
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 5e5d0e1cd)
+- Vcpkg (build from commit cd124b84f)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -47,24 +47,24 @@
 - Ant 1.10.14
 - Gradle 8.11
 - Maven 3.8.7
-- sbt 1.10.5
+- sbt 1.10.6
 
 ### Tools
-- 7zip 24.08
+- 7zip 24.09
 - aria2 1.37.0
 - azcopy 10.27.1
 - Bazel 7.4.1
-- Bazelisk 1.24.0
+- Bazelisk 1.24.1
 - Bicep 0.31.92
 - Cabal 3.12.1.0
-- CMake 3.31.0
+- CMake 3.31.1
 - CodeQL Action Bundle 2.19.3
 - Docker 26.1.3
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
 - ghc 9.10.1
-- Git 2.47.0.windows.1
-- Git LFS 3.5.1
+- Git 2.47.1.windows.1
+- Git LFS 3.6.0
 - Google Cloud CLI 502.0.0
 - ImageMagick 7.1.1-41
 - InnoSetup 6.3.3
@@ -79,8 +79,8 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.2
-- Parcel 2.13.1
-- Pulumi 3.141.0
+- Parcel 2.13.2
+- Pulumi 3.142.0
 - R 4.4.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -94,18 +94,18 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.234
-- AWS CLI 2.22.4
+- AWS CLI 2.22.7
 - AWS SAM CLI 1.131.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 8.8.3
-- GitHub CLI 2.62.0
+- GitHub CLI 2.63.0
 
 ### Rust Tools
-- Cargo 1.82.0
-- Rust 1.82.0
-- Rustdoc 1.82.0
+- Cargo 1.83.0
+- Rust 1.83.0
+- Rustdoc 1.83.0
 - Rustup 1.27.1
 
 #### Packages
@@ -113,15 +113,15 @@
 - cargo-audit 0.21.0
 - cargo-outdated 0.15.0
 - cbindgen 0.27.0
-- Clippy 0.1.82
-- Rustfmt 1.7.1
+- Clippy 0.1.83
+- Rustfmt 1.8.0
 
 ### Browsers and Drivers
 - Google Chrome 131.0.6778.86
 - Chrome Driver 131.0.6778.85
-- Microsoft Edge 131.0.2903.63
-- Microsoft Edge Driver 131.0.2903.63
-- Mozilla Firefox 132.0.2
+- Microsoft Edge 131.0.2903.70
+- Microsoft Edge Driver 131.0.2903.70
+- Mozilla Firefox 133.0
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
 - Selenium server 4.27.0
@@ -227,7 +227,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.27.2  | C:\tools\nginx-1.27.2\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.27.3  | C:\tools\nginx-1.27.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
@@ -510,7 +510,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.705
+- AWSPowershell: 4.1.708
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.25.0
