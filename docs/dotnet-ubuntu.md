@@ -4,7 +4,7 @@
 
 This document gives an overview of these change and the impact this has on the `runner-images`.
 
-## .NET Core for Ubuntu 2004 and 2024
+## .NET Core for Ubuntu 2004 and 2204
 
 2004 and 2024 use the [Microsoft Package repository](https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet8&pivots=os-linux-ubuntu-2004) to install .NET deb files built and published by the .NET team.
 
