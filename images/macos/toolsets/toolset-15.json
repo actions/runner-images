@@ -31,7 +31,7 @@
     "android": {
         "cmdline-tools": "commandlinetools-mac-12266719_latest.zip",
         "sdk-tools": "sdk-tools-darwin-4333796.zip",
-        "platform_min_version": "35",
+        "platform_min_version": "34",
         "build_tools_min_version": "35.0.0",
         "extras": [
             "android;m2repository", "google;m2repository", "google;google_play_services"
