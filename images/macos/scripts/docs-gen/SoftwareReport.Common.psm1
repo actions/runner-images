@@ -538,7 +538,7 @@ function Get-LibXextVersion {
 }
 
 function Get-TclTkVersion {
-    $tcltkVersion = (Run-Command "brew info --json tcl-tk" | ConvertFrom-Json).installed.version
+    $tcltkVersion = (Run-Command "brew info --json tcl-tk@8" | ConvertFrom-Json).installed.version
     return $tcltkVersion
 }
 
@@ -605,9 +605,9 @@ function Get-ColimaVersion {
     return $colimaVersion
 }
 
-function Get-PKGConfigVersion {
-    $pkgconfigVersion = Run-Command "pkg-config --version"
-    return $pkgconfigVersion
+function Get-PKGConfVersion {
+    $pkgconfVersion = Run-Command "pkgconf --version"
+    return $pkgconfVersion
 }
 
 function Get-XcbeautifyVersion {

@@ -49,7 +49,9 @@
             "name": "Ruby",
             "platform_version": "24.04",
             "arch": "x64",
-            "versions": []
+            "versions": [
+                "3.2.*"
+            ]
         },
         {
             "name": "CodeQL",
