@@ -21,7 +21,13 @@ for package in $common_packages; do
             # Packer has been deprecated in Homebrew. Use tap to install Packer.
             brew install hashicorp/tap/packer
         else
-            brew_smart_install "$package"
+            if [[ $package == "tcl-tk@8" ]]; then
+                brew_smart_install "$package"
+                # Fix for https://github.com/actions/runner-images/issues/11074
+                ln -sf $(brew --prefix tcl-tk@8) /usr/local/opt/tcl-tk
+            else
+                brew_smart_install "$package"
+            fi
         fi
     fi
 done
