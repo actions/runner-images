@@ -44,8 +44,7 @@ Describe "Rust" {
 
     Context "Cargo dependencies" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
         It "bindgen" {
-            # temparory modification
-            "bindgen --help" | Should -ReturnZeroExitCode
+            "bindgen --version" | Should -ReturnZeroExitCode
         }
 
         It "cbindgen" {
