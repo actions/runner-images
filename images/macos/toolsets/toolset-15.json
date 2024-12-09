@@ -3,7 +3,7 @@
         "default": "16",
         "x64": {
             "versions": [
-                { "link": "16.2_beta_3", "version": "16.2.0-Beta.3+16C5023f", "symlinks": ["16.2"], "install_runtimes": "true", "sha256": "04f3a3e3daf5d07e5ecfdf3cd7fc34fcf0a654884388d56f9f69942a9e3b1e66"},
+                { "link": "16.2_Release_Candidate", "version": "16.2_Release_Candidate+16C5031c", "symlinks": ["16.2"], "install_runtimes": "true", "sha256": "2f6566cf6c2339030be05607827b0643c4957ed695f15e197d9a0623b76d21f0"},
                 { "link": "16.1", "version": "16.1+16B40", "install_runtimes": "true", "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
                 { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"}
@@ -11,7 +11,7 @@
         },
         "arm64":{
             "versions": [
-                { "link": "16.2_beta_3", "version": "16.2.0-Beta.3+16C5023f", "symlinks": ["16.2"], "install_runtimes": "true", "sha256": "04f3a3e3daf5d07e5ecfdf3cd7fc34fcf0a654884388d56f9f69942a9e3b1e66"},
+                { "link": "16.2_Release_Candidate", "version": "16.2_Release_Candidate+16C5031c", "symlinks": ["16.2"], "install_runtimes": "true", "sha256": "2f6566cf6c2339030be05607827b0643c4957ed695f15e197d9a0623b76d21f0"},
                 { "link": "16.1", "version": "16.1+16B40", "install_runtimes": "true", "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
                 { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"}
