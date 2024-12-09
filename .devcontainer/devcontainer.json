@@ -1,0 +1,7 @@
+{
+  "tasks": {
+    "test": "pwsh -Command \"Invoke-Pester -Output Detailed 'helpers/software-report-base/tests'\"",
+    "build": "cat docs/create-image-and-azure-resources.md",
+    "launch": "cat docs/create-image-and-azure-resources.md"
+  }
+}
