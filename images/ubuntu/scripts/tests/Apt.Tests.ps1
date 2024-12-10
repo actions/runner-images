@@ -6,16 +6,17 @@ Describe "Apt" {
 
     It "<toolName> is available" -TestCases $testCases {
         switch ($toolName) {
-            "acl"          { $toolName = "getfacl"; break }
-            "aria2"        { $toolName = "aria2c"; break }
-            "p7zip-full"   { $toolName = "p7zip"; break }
-            "subversion"   { $toolName = "svn"; break }
-            "sphinxsearch" { $toolName = "searchd"; break }
-            "binutils"     { $toolName = "strings"; break }
-            "coreutils"    { $toolName = "tr"; break }
-            "net-tools"    { $toolName = "netstat"; break }
-            "mercurial"    { $toolName = "hg"; break }
-            "findutils"    { $toolName = "find"; break }
+            "acl"               { $toolName = "getfacl"; break }
+            "aria2"             { $toolName = "aria2c"; break }
+            "p7zip-full"        { $toolName = "p7zip"; break }
+            "subversion"        { $toolName = "svn"; break }
+            "sphinxsearch"      { $toolName = "searchd"; break }
+            "binutils"          { $toolName = "strings"; break }
+            "coreutils"         { $toolName = "tr"; break }
+            "net-tools"         { $toolName = "netstat"; break }
+            "mercurial"         { $toolName = "hg"; break }
+            "findutils"         { $toolName = "find"; break }
+            "systemd-coredump"  { $toolName = "coredumpctl"; break }
         }
 
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
