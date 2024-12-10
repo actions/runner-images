@@ -11,15 +11,21 @@ source $HELPER_SCRIPTS/os.sh
 
 extract_dotnet_sdk() {
     local archive_name=$1
+    source $HELPER_SCRIPTS/os.sh
 
     set -e
-    destination="./tmp-$(basename -s .tar.gz $archive_name)"
+    destination="$(dirname $archive_name)/tmp-$(basename -s .tar.gz $archive_name)"
+    if is_ubuntu24; then
+        dotnet_path="/usr/lib/dotnet"
+    else
+        dotnet_path="/usr/share/dotnet"
+    fi
 
     echo "Extracting $archive_name to $destination"
     mkdir "$destination" && tar -C "$destination" -xzf "$archive_name"
-    rsync -qav --remove-source-files "$destination/shared/" /usr/share/dotnet/shared/
-    rsync -qav --remove-source-files "$destination/host/" /usr/share/dotnet/host/
-    rsync -qav --remove-source-files "$destination/sdk/" /usr/share/dotnet/sdk/
+    rsync -qav --remove-source-files "$destination/shared/" "$dotnet_path/shared/"
+    rsync -qav --remove-source-files "$destination/host/" "$dotnet_path/host/"
+    rsync -qav --remove-source-files "$destination/sdk/" "$dotnet_path/sdk/"
     rm -rf "$destination" "$archive_name"
 }
 
@@ -82,7 +88,7 @@ parallel --jobs 0 --halt soon,fail=1 \
     'url="https://dotnetcli.blob.core.windows.net/dotnet/Sdk/{}/dotnet-sdk-{}-linux-x64.tar.gz"; \
     download_with_retry $url' ::: "${sorted_sdks[@]}"
 
-find . -name "*.tar.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
+find /tmp -regex ".+dotnet-sdk-.+-linux-x64\.tar\.gz" | parallel --halt soon,fail=1 'extract_dotnet_sdk {}'
 
 # NuGetFallbackFolder at /usr/share/dotnet/sdk/NuGetFallbackFolder is warmed up by smoke test
 # Additional FTE will just copy to ~/.dotnet/NuGet which provides no benefit on a fungible machine
