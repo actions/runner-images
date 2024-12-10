@@ -97,6 +97,11 @@ variable "tenant_id" {
   default = "${env("ARM_TENANT_ID")}"
 }
 
+variable "use_azure_cli_auth" {
+  type    = bool
+  default = false
+}
+
 variable "virtual_network_name" {
   type    = string
   default = "${env("VNET_NAME")}"
@@ -121,11 +126,12 @@ source "azure-arm" "build_image" {
   location = "${var.location}"
 
   // Auth
-  tenant_id        = "${var.tenant_id}"
-  subscription_id  = "${var.subscription_id}"
-  client_id        = "${var.client_id}"
-  client_secret    = "${var.client_secret}"
-  client_cert_path = "${var.client_cert_path}"
+  tenant_id          = "${var.tenant_id}"
+  subscription_id    = "${var.subscription_id}"
+  client_id          = "${var.client_id}"
+  client_secret      = "${var.client_secret}"
+  client_cert_path   = "${var.client_cert_path}"
+  use_azure_cli_auth = "${var.use_azure_cli_auth}"
 
   // Base image
   image_offer     = "0001-com-ubuntu-server-jammy"
