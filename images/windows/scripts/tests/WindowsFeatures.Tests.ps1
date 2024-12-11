@@ -82,3 +82,9 @@ Describe "Windows Updates" {
         $State | Should -BeIn $expect
     }
 }
+
+Describe "WSL2" {
+    It "WSL status should return zero exit code" {
+        "wsl --status" | Should -ReturnZeroExitCode
+    }
+}
