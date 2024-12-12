@@ -43,18 +43,24 @@ function Get-VisualStudioExtensions {
     )
 
     # WDK
-    $wdkVersion = Get-WDKVersion
+    if (-not (Test-IsWin25)) {
+        $wdkVersion = Get-WDKVersion
+        $wdkPackages = @(
+            @{Package = 'Windows Driver Kit'; Version = $wdkVersion }
+        )
+    }
+
+    # WDK extension
     $wdkExtensionVersion = Get-VSExtensionVersion -packageName 'Microsoft.Windows.DriverKit'
-    $wdkPackages = @(
-        @{Package = 'Windows Driver Kit'; Version = $wdkVersion }
+    $wdkExtensions = @(
         @{Package = 'Windows Driver Kit Visual Studio Extension'; Version = $wdkExtensionVersion }
     )
 
     $extensions = @(
         $vsixs
-        $ssdtPackages
         $sdkPackages
         $wdkPackages
+        $wdkExtensions
     )
 
     $extensions | Foreach-Object {
