@@ -172,6 +172,7 @@
             "ssh",
             "sshpass",
             "sudo",
+            "systemd-coredump",
             "swig",
             "telnet",
             "time",
