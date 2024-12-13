@@ -274,10 +274,6 @@
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
             { "name": "packer" },
-            {
-                "name": "strawberryperl" ,
-                "args": [ "--version", "5.40.0.1" ]
-            },
             { "name": "pulumi" },
             { "name": "swig" },
             { "name": "vswhere" },
@@ -288,6 +284,10 @@
             {
                 "name": "cmake.install",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
+            },
+            {
+                "name": "strawberryperl" ,
+                "args": [ "--version", "5.40.0.1" ]
             },
             { "name": "imagemagick" }
         ]
