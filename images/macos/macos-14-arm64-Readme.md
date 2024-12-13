@@ -1,13 +1,12 @@
 | Announcements |
 |-|
-| [[macOS] OpenSSL 1.1 will be removed  and  OpenSSL 3 will be the default for all macOS images once [date not determined]](https://github.com/actions/runner-images/issues/10817) |
-| [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and ADO](https://github.com/actions/runner-images/issues/10721) |
+| [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and by 01/13/25 for ADO](https://github.com/actions/runner-images/issues/10721) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 ***
 # macOS 14
 - OS Version: macOS 14.7.1 (23H222)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20241202.580
+- Image Version: 20241211.616
 
 ## Installed Software
 
@@ -26,17 +25,17 @@
 - Mono 6.12.0.188
 - Node.js 20.18.1
 - Perl 5.40.0
-- Python3 3.13.0
+- Python3 3.13.1
 - Ruby 3.0.7p220
 
 ### Package Management
 - Bundler 2.5.23
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.8
+- Homebrew 4.4.11
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 24.2 (python 3.13)
+- Pip3 24.3.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.5.23
 - Yarn 1.22.22
@@ -50,13 +49,13 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.27.1
-- bazel 7.4.1
-- bazelisk 1.24.1
+- bazel 8.0.0
+- bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.47.1
 - Git LFS 3.6.0
-- GitHub CLI 2.63.0
+- GitHub CLI 2.63.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.6
@@ -65,21 +64,21 @@
 - Packer 1.11.2
 - pkgconf 2.3.0
 - Unxip 3.1
-- yq 4.44.5
+- yq 4.44.6
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.22.8
+- AWS CLI 2.22.14
 - AWS SAM CLI 1.131.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.31.92
-- Cmake 3.31.1
-- CodeQL Action Bundle 2.19.3
-- Fastlane 2.225.0
+- Bicep CLI 0.32.4
+- Cmake 3.31.2
+- CodeQL Action Bundle 2.20.0
+- Fastlane 2.226.0
 - SwiftFormat 0.55.3
-- Xcbeautify 2.15.0
+- Xcbeautify 2.16.0
 - Xcode Command Line Tools 16.1.0.0.1.1729049160
 - Xcodes 1.6.0
 
@@ -88,9 +87,9 @@
 ### Browsers
 - Safari 18.1.1 (19619.2.8.111.7)
 - SafariDriver 18.1.1 (19619.2.8.111.7)
-- Google Chrome 131.0.6778.86
-- Google Chrome for Testing 131.0.6778.85
-- ChromeDriver 131.0.6778.85
+- Google Chrome 131.0.6778.140
+- Google Chrome for Testing 131.0.6778.108
+- ChromeDriver 131.0.6778.108
 - Selenium server 4.27.0
 
 #### Environment variables
@@ -117,18 +116,18 @@
 
 #### Python
 - 3.11.9
-- 3.12.7
-- 3.13.0
+- 3.12.8
+- 3.13.1
 
 #### Node.js
 - 18.20.5
 - 20.18.1
-- 22.11.0
+- 22.12.0
 
 #### Go
 - 1.21.13
-- 1.22.9
-- 1.23.3
+- 1.22.10
+- 1.23.4
 
 ### Rust Tools
 - Cargo 1.83.0
@@ -206,8 +205,8 @@
 | Simulator - watchOS 11.1 | watchsimulator11.1   | 16.1          |
 | visionOS 1.0             | xros1.0              | 15.2          |
 | Simulator - visionOS 1.0 | xrsimulator1.0       | 15.2          |
-| visionOS 1.1             | xros1.1              | 15.3          |
 | Simulator - visionOS 1.1 | xrsimulator1.1       | 15.3          |
+| visionOS 1.1             | xros1.1              | 15.3          |
 | Simulator - visionOS 1.2 | xrsimulator1.2       | 15.4          |
 | visionOS 1.2             | xros1.2              | 15.4          |
 | Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |

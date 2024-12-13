@@ -1,11 +1,13 @@
 | Announcements |
 |-|
-| [[Windows & Ubuntu] .NET 7.x will be removed from the images on December 6, 2024](https://github.com/actions/runner-images/issues/10894) |
-| [[Windows & Ubuntu] Python 3.7.x will be removed from  December 6 ,2024](https://github.com/actions/runner-images/issues/10893) |
+| [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from January 10,2025](https://github.com/actions/runner-images/issues/11104) |
+| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 10,2025](https://github.com/actions/runner-images/issues/11093) |
+| [[Windows & Ubuntu] .NET 7.x will be removed from the images on January 10,2025](https://github.com/actions/runner-images/issues/10894) |
+| [[Windows & Ubuntu] Python 3.7.x will be removed from  January 10 ,2025](https://github.com/actions/runner-images/issues/10893) |
 ***
 # Windows Server 2022
-- OS Version: 10.0.20348 Build 2849
-- Image Version: 20241201.2.0
+- OS Version: 10.0.20348 Build 2966
+- Image Version: 20241211.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -25,8 +27,8 @@
 - Ruby 3.0.7p220
 
 ### Package Management
-- Chocolatey 2.4.0
-- Composer 2.8.3
+- Chocolatey 2.4.1
+- Composer 2.8.4
 - Helm 3.16.2
 - Miniconda 24.9.2 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
@@ -34,7 +36,7 @@
 - pip 24.3.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit cd124b84f)
+- Vcpkg (build from commit b7601ed37)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -53,12 +55,12 @@
 - 7zip 24.09
 - aria2 1.37.0
 - azcopy 10.27.1
-- Bazel 7.4.1
-- Bazelisk 1.24.1
-- Bicep 0.31.92
+- Bazel 8.0.0
+- Bazelisk 1.25.0
+- Bicep 0.32.4
 - Cabal 3.12.1.0
-- CMake 3.31.1
-- CodeQL Action Bundle 2.19.3
+- CMake 3.31.2
+- CodeQL Action Bundle 2.20.0
 - Docker 26.1.3
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
@@ -82,7 +84,7 @@
 - R 4.4.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
-- Subversion (SVN) 1.14.4
+- Subversion (SVN) 1.14.5
 - Swig 4.1.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
@@ -91,13 +93,13 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.234
-- AWS CLI 2.22.7
+- Alibaba Cloud CLI 3.0.235
+- AWS CLI 2.22.13
 - AWS SAM CLI 1.131.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.63.0
+- GitHub CLI 2.63.2
 
 ### Rust Tools
 - Cargo 1.83.0
@@ -106,19 +108,19 @@
 - Rustup 1.27.1
 
 #### Packages
-- bindgen 0.70.1
+- bindgen 0.71.1
 - cargo-audit 0.21.0
-- cargo-outdated 0.15.0
+- cargo-outdated 0.16.0
 - cbindgen 0.27.0
 - Clippy 0.1.83
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.86
-- Chrome Driver 131.0.6778.85
-- Microsoft Edge 131.0.2903.70
-- Microsoft Edge Driver 131.0.2903.70
-- Mozilla Firefox 133.0
+- Google Chrome 131.0.6778.140
+- Chrome Driver 131.0.6778.108
+- Microsoft Edge 131.0.2903.86
+- Microsoft Edge Driver 131.0.2903.86
+- Mozilla Firefox 133.0.3
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
 - Selenium server 4.27.0
@@ -161,14 +163,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.20.14
 - 1.21.13
-- 1.22.9
-- 1.23.3
+- 1.22.10
+- 1.23.4
 
 #### Node.js
 - 16.20.2
 - 18.20.5
 - 20.18.1
-- 22.11.0
+- 22.12.0
 
 #### Python
 - 3.7.9
@@ -176,7 +178,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.9.13
 - 3.10.11
 - 3.11.9
-- 3.12.7
+- 3.12.8
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.17]
@@ -225,7 +227,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version         | Path                                                     |
 | ----------------------------- | --------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.12.35521.163 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.12.35527.113 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -251,7 +253,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Unreal                                                          | 17.12.35410.122 |
 | Component.Unreal.Android                                                  | 17.12.35410.122 |
 | Component.Unreal.Ide                                                      | 17.12.35410.122 |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.12.35519.222 |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.12.35527.66  |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
@@ -299,8 +301,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.NetCore.Component.DevelopmentTools                              | 17.12.35410.122 |
 | Microsoft.NetCore.Component.Runtime.6.0                                   | 17.12.35504.99  |
 | Microsoft.NetCore.Component.Runtime.8.0                                   | 17.12.35504.99  |
-| Microsoft.NetCore.Component.Runtime.9.0                                   | 17.12.35504.99  |
-| Microsoft.NetCore.Component.SDK                                           | 17.12.35504.99  |
+| Microsoft.NetCore.Component.Runtime.9.0                                   | 17.12.35527.66  |
+| Microsoft.NetCore.Component.SDK                                           | 17.12.35527.66  |
 | Microsoft.NetCore.Component.Web                                           | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.AspNet                                   | 17.12.35410.122 |
@@ -334,7 +336,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.HLSL                                     | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.IISExpress                               | 17.12.35410.122 |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 17.12.35410.122 |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 17.12.35527.102 |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 17.12.35410.122 |
@@ -379,7 +381,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.VC.CLI.Support                           | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.VC.CMake.Project                         | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.VC.CoreIde                               | 17.12.35410.122 |
-| Microsoft.VisualStudio.Component.VC.DiagnosticTools                       | 17.12.35410.122 |
+| Microsoft.VisualStudio.Component.VC.DiagnosticTools                       | 17.12.35527.67  |
 | Microsoft.VisualStudio.Component.VC.Llvm.Clang                            | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset                     | 17.12.35410.122 |
 | Microsoft.VisualStudio.Component.VC.MFC.ARM                               | 17.12.35410.122 |
@@ -492,7 +494,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 7.0.120, 7.0.203, 7.0.317, 7.0.410, 8.0.111, 8.0.206, 8.0.307, 8.0.404, 9.0.100
+- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 7.0.120, 7.0.203, 7.0.317, 7.0.410, 8.0.111, 8.0.206, 8.0.307, 8.0.404, 9.0.101
 - .NET Framework: 4.8, 4.8.1
 - Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.35, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11, 9.0.0
 - Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.35, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11, 9.0.0
@@ -508,7 +510,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.708
+- AWSPowershell: 4.1.715
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.25.0
@@ -551,9 +553,9 @@ All other versions are saved but not installed.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:47cb8e127d15d489c8f8344b59aa46091ac155da400a204a9094a63dc6177f9f  | 2024-11-12 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:6ce38ea0a094cefdd0ef89b54c1492490c64dac1e34698ce3c15f9ccd53d8498  | 2024-11-12 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:6825e3532d36741b62ea87bd7fd984cf4eea0be568b6669f52cc211126e67f52  | 2024-11-12 |
-| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:be37c9e8bf388c4e3ef27b4a2592b94adab551e231644ce3c9d4d3dc0a50af41  | 2024-11-02 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:87837eac4a78e1c67a6f6db1333a57a1a39207549c689905bd69cce40d063d5d  | 2024-11-02 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:c49042631c866daf7ce7337cff2e8c881c8b15e3be6abfed03e0b22b685d4b49  | 2024-12-10 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:81845776459f460d3e50bc4e3fcb0db08f9f36722f5314c4281da3951cbb2fd4  | 2024-12-10 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:5dfdecd584d2f7c6852e4e807b6bb308da8f8350a0131ddef3cb0a0e6237523c  | 2024-12-10 |
+| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:eb59dfa1056e41b65cb12b679280e29f10d64e2b569b877710e227a77fef223f  | 2024-12-05 |
+| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:cd409960f9b87fcc02e1c236fea3852e1323ffb16d9522bf693330ebf878f5c0  | 2024-12-05 |
 
