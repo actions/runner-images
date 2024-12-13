@@ -62,10 +62,10 @@ Describe "Perl" {
     }
 }
 
-Describe "Tcl/Tk" {
+Describe "Tcl/Tk" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
     It "libtcl" {
-        "file /usr/local/lib/libtcl8.6.dylib" | Should -ReturnZeroExitCode
-        "file /usr/local/lib/libtk8.6.dylib" | Should -ReturnZeroExitCode
+        [ -f /usr/local/lib/libtcl8.6.dylib ] | Should -ReturnZeroExitCode
+        [ -f /usr/local/lib/libtk8.6.dylib ] | Should -ReturnZeroExitCode
     }
 }
 
