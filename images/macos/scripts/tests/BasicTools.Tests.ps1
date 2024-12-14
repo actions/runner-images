@@ -64,8 +64,8 @@ Describe "Perl" {
 
 Describe "Tcl/Tk" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64 -or $os.IsSequoia) {
     It "libtcl" {
-        [ -f /usr/local/lib/libtcl8.6.dylib ] | Should -ReturnZeroExitCode
-        [ -f /usr/local/lib/libtk8.6.dylib ] | Should -ReturnZeroExitCode
+        Test-Path "/usr/local/lib/libtcl8.6.dylib" | Should -BeTrue
+        Test-Path "/usr/local/lib/libtk8.6.dylib" | Should -BeTrue
     }
 }
 
