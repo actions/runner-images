@@ -31,7 +31,7 @@
 - NVM 0.39.7
 - NVM - Cached node versions: 16.20.2, 18.20.4, 20.17.0
 - Perl 5.38.2
-- PHP 8.3.11
+- PHP 8.4.1
 - Python 2.7.18
 - Python3 3.12.6
 - R 4.4.1
@@ -375,4 +375,3 @@ mv "/Applications/Visual Studio 2019.app" "/Applications/Visual Studio.app"
 If you want to use Parallels Desktop you should download a package from URL stored in
 PARALLELS_DMG_URL environment variable. A system extension is allowed for this version.
 ```
-

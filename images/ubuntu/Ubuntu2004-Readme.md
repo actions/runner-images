@@ -138,7 +138,7 @@ to accomplish this.
 | 21.0.5+11           | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.31, 8.2.26, 8.3.14
+- PHP: 7.4.33, 8.0.30, 8.1.31, 8.2.26, 8.3.14, 8.4.1
 - Composer 2.8.3
 - PHPUnit 8.5.41
 ```
@@ -395,4 +395,3 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
-

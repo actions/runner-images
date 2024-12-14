@@ -22,7 +22,7 @@
 - LLVM 18.1.8
 - Node 18.20.5
 - Perl 5.32.1
-- PHP 8.3.14
+- PHP 8.4.1
 - Python 3.9.13
 - Ruby 3.0.7p220
 
@@ -558,4 +558,3 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:5dfdecd584d2f7c6852e4e807b6bb308da8f8350a0131ddef3cb0a0e6237523c  | 2024-12-10 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:eb59dfa1056e41b65cb12b679280e29f10d64e2b569b877710e227a77fef223f  | 2024-12-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:cd409960f9b87fcc02e1c236fea3852e1323ffb16d9522bf693330ebf878f5c0  | 2024-12-05 |
-
