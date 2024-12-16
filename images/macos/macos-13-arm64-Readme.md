@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[macOS 14] Xcode 16.0 will be replaced by Xcode 16.2 in macOS-14 images on January 6, 2025](https://github.com/actions/runner-images/issues/11203) |
 | [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and by 01/13/25 for ADO](https://github.com/actions/runner-images/issues/10721) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 ***
 # macOS 13
-- OS Version: macOS 13.7.1 (22H221)
+- OS Version: macOS 13.7.2 (22H313)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20241211.503
+- Image Version: 20241216.537
 
 ## Installed Software
 
@@ -68,8 +69,8 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.22.14
-- AWS SAM CLI 1.131.0
+- AWS CLI 2.22.17
+- AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
@@ -85,8 +86,8 @@
 ### Linters
 
 ### Browsers
-- Safari 18.1.1 (18619.2.8.111.7)
-- SafariDriver 18.1.1 (18619.2.8.111.7)
+- Safari 18.2 (18620.1.16.111.6)
+- SafariDriver 18.2 (18620.1.16.111.6)
 - Google Chrome 131.0.6778.140
 - Google Chrome for Testing 131.0.6778.108
 - ChromeDriver 131.0.6778.108
@@ -191,8 +192,8 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
+| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
@@ -245,5 +246,5 @@
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
 ### Miscellaneous
-- Tcl/Tk 8.6.15
+- Tcl/Tk 8.6.16
 
