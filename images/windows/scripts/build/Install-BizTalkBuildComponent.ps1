@@ -9,7 +9,7 @@ $signatureThumbprint = "8740DF4ACB749640AD318E4BE842F72EC651AD80"
 Write-Host "Downloading BizTalk Project Build Component archive..."
 $zipFile = Invoke-DownloadWithRetry $downloadUrl
 
-$setupPath = Join-Path $env:TEMP "BizTalkBuildComponent"
+$setupPath = Join-Path $env:TEMP_DIR "BizTalkBuildComponent"
 if (-not (Test-Path -Path $setupPath)) {
     New-Item -Path $setupPath -ItemType Directory -Force | Out-Null
 }

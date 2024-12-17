@@ -218,8 +218,7 @@ build {
       "${path.root}/../scripts/build/install-git.sh",
       "${path.root}/../scripts/build/install-node.sh",
       "${path.root}/../scripts/build/install-common-utils.sh",
-      "${path.root}/../scripts/build/install-unxip.sh",
-      "${path.root}/../scripts/build/install-pkg-config.sh"
+      "${path.root}/../scripts/build/install-unxip.sh"
     ]
   }
 

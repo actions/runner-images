@@ -59,7 +59,7 @@ variable "image_folder" {
 
 variable "image_os" {
   type    = string
-  default = "win19"
+  default = "win25"
 }
 
 variable "image_version" {
@@ -133,11 +133,6 @@ variable "tenant_id" {
   default = "${env("ARM_TENANT_ID")}"
 }
 
-variable "use_azure_cli_auth" {
-  type    = bool
-  default = false
-}
-
 variable "virtual_network_name" {
   type    = string
   default = "${env("VNET_NAME")}"
@@ -167,19 +162,18 @@ source "azure-arm" "image" {
   communicator                           = "winrm"
   image_offer                            = "WindowsServer"
   image_publisher                        = "MicrosoftWindowsServer"
-  image_sku                              = "2019-Datacenter"
+  image_sku                              = "2025-Datacenter"
   location                               = "${var.location}"
   managed_image_name                     = "${local.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   managed_image_storage_account_type     = "${var.managed_image_storage_account_type}"
   object_id                              = "${var.object_id}"
-  os_disk_size_gb                        = "256"
+  os_disk_size_gb                        = "150"
   os_type                                = "Windows"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
-  use_azure_cli_auth                     = "${var.use_azure_cli_auth}"
   virtual_network_name                   = "${var.virtual_network_name}"
   virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
   virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
@@ -231,7 +225,7 @@ build {
       "Move-Item '${var.image_folder}\\scripts\\tests\\Helpers.psm1' '${var.helper_script_folder}\\TestsHelpers\\TestsHelpers.psm1'",
       "Move-Item '${var.image_folder}\\scripts\\tests' '${var.image_folder}\\tests'",
       "Remove-Item -Recurse '${var.image_folder}\\scripts'",
-      "Move-Item '${var.image_folder}\\toolsets\\toolset-2019.json' '${var.image_folder}\\toolset.json'",
+      "Move-Item '${var.image_folder}\\toolsets\\toolset-2025.json' '${var.image_folder}\\toolset.json'",
       "Remove-Item -Recurse '${var.image_folder}\\toolsets'"
     ]
   }
@@ -256,17 +250,6 @@ build {
   }
 
   provisioner "powershell" {
-    elevated_password = "${var.install_password}"
-    elevated_user     = "${var.install_user}"
-    scripts           = ["${path.root}/../scripts/build/Install-NET48.ps1"]
-    valid_exit_codes  = [0, 3010]
-  }
-
-  provisioner "windows-restart" {
-    restart_timeout = "10m"
-  }
-
-  provisioner "powershell" {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "AGENT_TOOLSDIRECTORY=${var.agent_tools_directory}", "IMAGEDATA_FILE=${var.imagedata_file}", "IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     execution_policy = "unrestricted"
     scripts          = [
@@ -283,7 +266,9 @@ build {
   }
 
   provisioner "windows-restart" {
-    restart_timeout = "30m"
+    check_registry        = true
+    restart_check_command = "powershell -command \"& {while ( (Get-WindowsOptionalFeature -Online -FeatureName Containers -ErrorAction SilentlyContinue).State -ne 'Enabled' ) { Start-Sleep 30; Write-Output 'InProgress' }}\""
+    restart_timeout       = "10m"
   }
 
   provisioner "powershell" {
@@ -293,19 +278,17 @@ build {
   provisioner "powershell" {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
-      "${path.root}/../scripts/build/Install-VCRedist.ps1",
       "${path.root}/../scripts/build/Install-Docker.ps1",
       "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
       "${path.root}/../scripts/build/Install-DockerCompose.ps1",
       "${path.root}/../scripts/build/Install-PowershellCore.ps1",
       "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1",
-      "${path.root}/../scripts/build/Install-Runner.ps1",
-      "${path.root}/../scripts/build/Install-TortoiseSvn.ps1"
+      "${path.root}/../scripts/build/Install-Runner.ps1"
     ]
   }
 
   provisioner "windows-restart" {
-    restart_timeout = "10m"
+    restart_timeout = "30m"
   }
 
   provisioner "powershell" {
@@ -314,17 +297,21 @@ build {
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts           = [
       "${path.root}/../scripts/build/Install-VisualStudio.ps1",
-      "${path.root}/../scripts/build/Install-KubernetesTools.ps1",
-      "${path.root}/../scripts/build/Install-NET48-devpack.ps1"
+      "${path.root}/../scripts/build/Install-KubernetesTools.ps1"
     ]
     valid_exit_codes  = [0, 3010]
   }
 
+  provisioner "windows-restart" {
+    check_registry  = true
+    restart_timeout = "10m"
+  }
+
   provisioner "powershell" {
+    pause_before     = "2m0s"
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
       "${path.root}/../scripts/build/Install-Wix.ps1",
-      "${path.root}/../scripts/build/Install-WDK.ps1",
       "${path.root}/../scripts/build/Install-VSExtensions.ps1",
       "${path.root}/../scripts/build/Install-AzureCli.ps1",
       "${path.root}/../scripts/build/Install-AzureDevOpsCli.ps1",
@@ -343,10 +330,6 @@ build {
 
   provisioner "windows-restart" {
     restart_timeout = "10m"
-  }
-
-  provisioner "windows-shell" {
-    inline = ["wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"]
   }
 
   provisioner "powershell" {
@@ -387,32 +370,29 @@ build {
       "${path.root}/../scripts/build/Install-Stack.ps1",
       "${path.root}/../scripts/build/Install-Miniconda.ps1",
       "${path.root}/../scripts/build/Install-AzureCosmosDbEmulator.ps1",
-      "${path.root}/../scripts/build/Install-Mercurial.ps1",
       "${path.root}/../scripts/build/Install-Zstd.ps1",
-      "${path.root}/../scripts/build/Install-NSIS.ps1",
-      "${path.root}/../scripts/build/Install-CloudFoundryCli.ps1",
       "${path.root}/../scripts/build/Install-Vcpkg.ps1",
-      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
       "${path.root}/../scripts/build/Install-Bazel.ps1",
-      "${path.root}/../scripts/build/Install-AliyunCli.ps1",
       "${path.root}/../scripts/build/Install-RootCA.ps1",
       "${path.root}/../scripts/build/Install-MongoDB.ps1",
-      "${path.root}/../scripts/build/Install-GoogleCloudCLI.ps1",
       "${path.root}/../scripts/build/Install-CodeQLBundle.ps1",
-      "${path.root}/../scripts/build/Install-BizTalkBuildComponent.ps1",
-      "${path.root}/../scripts/build/Configure-Diagnostics.ps1",
-      "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
-      "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
-      "${path.root}/../scripts/build/Configure-Shell.ps1",
-      "${path.root}/../scripts/build/Configure-DeveloperMode.ps1",
-      "${path.root}/../scripts/build/Install-LLVM.ps1"
+      "${path.root}/../scripts/build/Configure-Diagnostics.ps1"
     ]
   }
 
   provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
-    scripts           = ["${path.root}/../scripts/build/Install-WindowsUpdates.ps1"]
+    environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
+    scripts           = [
+      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
+      "${path.root}/../scripts/build/Install-WindowsUpdates.ps1",
+      "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
+      "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
+      "${path.root}/../scripts/build/Configure-Shell.ps1",
+      "${path.root}/../scripts/build/Configure-DeveloperMode.ps1",
+      "${path.root}/../scripts/build/Install-LLVM.ps1"
+    ]
   }
 
   provisioner "windows-restart" {
@@ -445,7 +425,7 @@ build {
   }
 
   provisioner "file" {
-    destination = "${path.root}/../Windows2019-Readme.md"
+    destination = "${path.root}/../Windows2025-Readme.md"
     direction   = "download"
     source      = "C:\\software-report.md"
   }
@@ -473,7 +453,7 @@ build {
   provisioner "powershell" {
     inline = [
       "if( Test-Path $env:SystemRoot\\System32\\Sysprep\\unattend.xml ){ rm $env:SystemRoot\\System32\\Sysprep\\unattend.xml -Force}",
-      "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
+      "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /mode:vm /quiet /quit",
       "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10 } else { break } }"
     ]
   }

@@ -72,6 +72,11 @@ variable "imagedata_file" {
   default = "C:\\imagedata.json"
 }
 
+variable "temp_dir" {
+  type    = string
+  default = "D:\\temp"
+}
+
 variable "install_password" {
   type      = string
   default   = ""
@@ -196,7 +201,10 @@ build {
   sources = ["source.azure-arm.image"]
 
   provisioner "powershell" {
-    inline = ["New-Item -Path ${var.image_folder} -ItemType Directory -Force"]
+    inline = [
+      "New-Item -Path ${var.image_folder} -ItemType Directory -Force",
+      "New-Item -Path ${var.temp_dir} -ItemType Directory -Force"
+    ]
   }
 
   provisioner "file" {
@@ -248,7 +256,7 @@ build {
   }
 
   provisioner "powershell" {
-    environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "AGENT_TOOLSDIRECTORY=${var.agent_tools_directory}", "IMAGEDATA_FILE=${var.imagedata_file}", "IMAGE_FOLDER=${var.image_folder}"]
+    environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "AGENT_TOOLSDIRECTORY=${var.agent_tools_directory}", "IMAGEDATA_FILE=${var.imagedata_file}", "IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     execution_policy = "unrestricted"
     scripts          = [
       "${path.root}/../scripts/build/Configure-WindowsDefender.ps1",
@@ -274,7 +282,7 @@ build {
   }
 
   provisioner "powershell" {
-    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
       "${path.root}/../scripts/build/Install-Docker.ps1",
       "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
@@ -293,7 +301,7 @@ build {
   provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
-    environment_vars  = ["IMAGE_FOLDER=${var.image_folder}"]
+    environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts           = [
       "${path.root}/../scripts/build/Install-VisualStudio.ps1",
       "${path.root}/../scripts/build/Install-KubernetesTools.ps1"
@@ -308,7 +316,7 @@ build {
 
   provisioner "powershell" {
     pause_before     = "2m0s"
-    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
       "${path.root}/../scripts/build/Install-Wix.ps1",
       "${path.root}/../scripts/build/Install-WDK.ps1",
@@ -324,7 +332,7 @@ build {
 
   provisioner "powershell" {
     execution_policy = "remotesigned"
-    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = ["${path.root}/../scripts/build/Install-ServiceFabricSDK.ps1"]
   }
 
@@ -337,7 +345,7 @@ build {
   }
 
   provisioner "powershell" {
-    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
       "${path.root}/../scripts/build/Install-ActionsCache.ps1",
       "${path.root}/../scripts/build/Install-Ruby.ps1",
@@ -391,7 +399,7 @@ build {
   provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
-    environment_vars  = ["IMAGE_FOLDER=${var.image_folder}"]
+    environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts           = [
       "${path.root}/../scripts/build/Install-WindowsUpdates.ps1",
       "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
@@ -410,9 +418,10 @@ build {
 
   provisioner "powershell" {
     pause_before     = "2m0s"
-    environment_vars = ["IMAGE_FOLDER=${var.image_folder}"]
+    environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
       "${path.root}/../scripts/build/Install-WindowsUpdatesAfterReboot.ps1",
+      "${path.root}/../scripts/build/Invoke-Cleanup.ps1",
       "${path.root}/../scripts/tests/RunAll-Tests.ps1"
     ]
   }

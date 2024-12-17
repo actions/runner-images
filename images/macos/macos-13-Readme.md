@@ -1,21 +1,17 @@
 | Announcements |
 |-|
-| [[ macOS ] Node.js version 16 will be removed from macOS13 and macOS13 arm64 images on November, 18.](https://github.com/actions/runner-images/issues/10873) |
-| [[macOS] OpenSSL 1.1 will be removed  and  OpenSSL 3 will be the default for all macOS images from November 4](https://github.com/actions/runner-images/issues/10817) |
-| [[macOS] Python 3.9 and 3.10 will be removed from macOS13 arm64 and  macOS14 arm64 on November 18.](https://github.com/actions/runner-images/issues/10812) |
-| [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and ADO](https://github.com/actions/runner-images/issues/10721) |
-| [[macOS] Support policy changes; Xcode 14 and 16 will be removed from macOS 14 on November 4](https://github.com/actions/runner-images/issues/10703) |
+| [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and by 01/13/25 for ADO](https://github.com/actions/runner-images/issues/10721) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 ***
 # macOS 13
 - OS Version: macOS 13.7.1 (22H221)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20241108.324
+- Image Version: 20241211.456
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.403
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.404
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -25,84 +21,84 @@
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
-- Kotlin 2.0.21-release-482
+- Kotlin 2.1.0-release-394
 - Mono 6.12.0.188
-- Node.js 20.18.0
+- Node.js 20.18.1
 - Perl 5.40.0
-- PHP 8.3.13
-- Python3 3.13.0
+- PHP 8.4.1
+- Python3 3.13.1
 - Ruby 3.0.7p220
 
 ### Package Management
 - Bundler 2.5.23
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.2
-- Homebrew 4.4.4
+- Composer 2.8.3
+- Homebrew 4.4.11
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.3.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.5.23
-- Vcpkg 2024 (build from commit 6046e4816)
+- Vcpkg 2024 (build from commit b7601ed37)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.10.2
+- Gradle 8.11.1
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.26.0
-- bazel 7.4.0
-- bazelisk 1.23.0
+- azcopy 10.27.1
+- bazel 8.0.0
+- bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.11.0
-- Git 2.47.0
-- Git LFS 3.5.1
-- GitHub CLI 2.61.0
+- Git 2.47.1
+- Git LFS 3.6.0
+- GitHub CLI 2.63.2
 - GNU Tar 1.35 - available by 'gtar' alias
-- GNU Wget 1.24.5
+- GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.6
 - jq 1.7.1
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.11.2
-- pkg-config 0.29.2
+- pkgconf 2.3.0
 - Unxip 3.1
-- yq 4.44.3
+- yq 4.44.6
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.19.3
-- AWS SAM CLI 1.127.0
-- AWS Session Manager CLI 1.2.688.0
-- Azure CLI 2.65.0
+- AWS CLI 2.22.14
+- AWS SAM CLI 1.131.0
+- AWS Session Manager CLI 1.2.694.0
+- Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.31.34
-- Cmake 3.31.0
-- CodeQL Action Bundle 2.19.3
-- Fastlane 2.225.0
-- SwiftFormat 0.54.6
-- Xcbeautify 2.14.1
+- Bicep CLI 0.32.4
+- Cmake 3.31.2
+- CodeQL Action Bundle 2.20.0
+- Fastlane 2.226.0
+- SwiftFormat 0.55.3
+- Xcbeautify 2.16.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
 
 ### Linters
-- SwiftLint 0.57.0
+- SwiftLint 0.57.1
 
 ### Browsers
-- Safari 18.1 (18619.2.8.111.5)
-- SafariDriver 18.1 (18619.2.8.111.5)
-- Google Chrome 130.0.6723.117
-- Google Chrome for Testing 130.0.6723.116
-- ChromeDriver 130.0.6723.116
-- Microsoft Edge 130.0.2849.80
-- Microsoft Edge WebDriver 130.0.2849.81
-- Mozilla Firefox 132.0.1
+- Safari 18.1.1 (18619.2.8.111.7)
+- SafariDriver 18.1.1 (18619.2.8.111.7)
+- Google Chrome 131.0.6778.140
+- Google Chrome for Testing 131.0.6778.108
+- ChromeDriver 131.0.6778.108
+- Microsoft Edge 131.0.2903.86
+- Microsoft Edge WebDriver 131.0.2903.87
+- Mozilla Firefox 133.0
 - geckodriver 0.35.0
-- Selenium server 4.26.0
+- Selenium server 4.27.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -139,29 +135,28 @@
 - 3.9.20
 - 3.10.15
 - 3.11.9
-- 3.12.7
-- 3.13.0
+- 3.12.8
+- 3.13.1
 
 #### Node.js
-- 16.20.2
-- 18.20.4
-- 20.18.0
-- 22.11.0
+- 18.20.5
+- 20.18.1
+- 22.12.0
 
 #### Go
 - 1.21.13
-- 1.22.9
-- 1.23.3
+- 1.22.10
+- 1.23.4
 
 ### Rust Tools
-- Cargo 1.82.0
-- Rust 1.82.0
-- Rustdoc 1.82.0
+- Cargo 1.83.0
+- Rust 1.83.0
+- Rustdoc 1.83.0
 - Rustup 1.27.1
 
 #### Packages
-- Clippy 0.1.82
-- Rustfmt 1.7.1-stable
+- Clippy 0.1.83
+- Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
 - PowerShell 7.4.6
@@ -215,8 +210,8 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
+| visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
@@ -244,18 +239,18 @@
 | watchOS 10.2 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 8 (41mm)<br>Apple Watch Series 8 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra (49mm)<br>Apple Watch Ultra 2 (49mm) |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                             |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 11.0                                                                                                                                                                                                                                |
-| Android Emulator           | 35.2.10                                                                                                                                                                                                                             |
-| Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                   |
-| Android SDK Platforms      | android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
-| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                              |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                              |
-| CMake                      | 3.22.1                                                                                                                                                                                                                              |
-| Google Play services       | 49                                                                                                                                                                                                                                  |
-| Google Repository          | 58                                                                                                                                                                                                                                  |
-| NDK                        | 26.3.11579264 (default)<br>27.2.12479018                                                                                                                                                                                            |
+| Package Name               | Version                                                                                                                                                                                                                                                         |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 11.0                                                                                                                                                                                                                                                            |
+| Android Emulator           | 35.2.10                                                                                                                                                                                                                                                         |
+| Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                               |
+| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
+| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                          |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                          |
+| CMake                      | 3.31.0                                                                                                                                                                                                                                                          |
+| Google Play services       | 49                                                                                                                                                                                                                                                              |
+| Google Repository          | 58                                                                                                                                                                                                                                                              |
+| NDK                        | 26.3.11579264 (default)<br>27.2.12479018                                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -273,7 +268,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.1.1-55740/ParallelsDesktop-20.1.1-55740.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.1.2-55742/ParallelsDesktop-20.1.2-55742.dmg |
 
 ##### Notes
 ```
