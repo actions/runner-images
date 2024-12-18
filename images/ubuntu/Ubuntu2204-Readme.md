@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 10,2025](https://github.com/actions/runner-images/issues/11093) |
 | [[Ubuntu] Breaking Change: runner user will have UID 1001 instead of 1000 for larger runners](https://github.com/actions/runner-images/issues/10936) |
 | [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.5.0-1025-azure
-- Image Version: 20241201.1.0
+- Image Version: 20241215.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -19,7 +20,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.11.1
+- Julia 1.11.2
 - Kotlin 2.1.0-release-394
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -27,12 +28,12 @@
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.0.2
+- Swift 6.0.3
 
 ### Package Management
 - cpan 1.64
 - Helm 3.16.3
-- Homebrew 4.4.8
+- Homebrew 4.4.11
 - Miniconda 24.9.2
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -40,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit cd124b84f)
+- Vcpkg (build from commit b545373a9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -65,29 +66,29 @@ to accomplish this.
 - Sbt 1.10.6
 
 ### Tools
-- Ansible 2.17.6
+- Ansible 2.17.7
 - apt-fast 1.10.0
 - AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.4.1
-- Bazelisk 1.24.1
-- Bicep 0.31.92
+- Bazel 8.0.0
+- Bazelisk 1.25.0
+- Bicep 0.32.4
 - Buildah 1.23.1
-- CMake 3.31.1
-- CodeQL Action Bundle 2.19.3
+- CMake 3.31.2
+- CodeQL Action Bundle 2.20.0
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.19.1
+- Docker-Buildx 0.19.2
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.225.0
+- Fastlane 2.226.0
 - Git 2.47.1
 - Git LFS 3.6.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 9.5.0
+- Heroku 10.0.0
 - jq 1.6
 - Kind 0.25.0
-- Kubectl 1.31.3
+- Kubectl 1.32.0
 - Kustomize 5.5.0
 - Leiningen 2.11.2
 - MediaInfo 21.09
@@ -100,29 +101,29 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.13.2
 - Podman 3.4.4
-- Pulumi 3.142.0
+- Pulumi 3.143.0
 - R 4.4.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.10.0
+- Terraform 1.10.2
 - yamllint 1.35.1
-- yq 4.44.5
+- yq 4.44.6
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.234
-- AWS CLI 2.22.7
+- Alibaba Cloud CLI 3.0.237
+- AWS CLI 2.22.17
 - AWS CLI Session Manager Plugin 1.2.694.0
-- AWS SAM CLI 1.131.0
+- AWS SAM CLI 1.132.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.63.0
-- Google Cloud CLI 502.0.0
-- Netlify CLI 17.37.2
-- OpenShift CLI 4.17.6
-- ORAS CLI 1.2.0
-- Vercel CLI 39.1.2
+- GitHub CLI 2.63.2
+- Google Cloud CLI 503.0.0
+- Netlify CLI 17.38.0
+- OpenShift CLI 4.17.8
+- ORAS CLI 1.2.1
+- Vercel CLI 39.2.2
 
 ### Java
 | Version             | Environment Variable |
@@ -134,8 +135,8 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.8.3
-- PHPUnit 8.5.40
+- Composer 2.8.4
+- PHPUnit 8.5.41
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -153,19 +154,19 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustup 1.27.1
 
 #### Packages
-- Bindgen 0.70.1
+- Bindgen 0.71.1
 - Cargo audit 0.21.0
 - Cargo clippy 0.1.83
-- Cargo outdated 0.15.0
+- Cargo outdated 0.16.0
 - Cbindgen 0.27.0
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.85
-- ChromeDriver 131.0.6778.85
+- Google Chrome 131.0.6778.139
+- ChromeDriver 131.0.6778.108
 - Chromium 131.0.6778.0
-- Microsoft Edge 131.0.2903.70
-- Microsoft Edge WebDriver 131.0.2903.52
+- Microsoft Edge 131.0.2903.99
+- Microsoft Edge WebDriver 131.0.2903.87
 - Selenium server 4.27.0
 - Mozilla Firefox 133.0
 - Geckodriver 0.35.0
@@ -180,7 +181,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 6.0.428, 7.0.410, 8.0.404
-- nbgv 3.6.146+392592327a
+- nbgv 3.7.112+63bbe780b0
 
 ### Databases
 - sqlite3 3.37.2
@@ -210,21 +211,21 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.21.13
-- 1.22.9
-- 1.23.3
+- 1.22.10
+- 1.23.4
 
 #### Node.js
 - 18.20.5
 - 20.18.1
-- 22.11.0
+- 22.12.0
 
 #### Python
 - 3.7.17
 - 3.8.18
 - 3.9.20
 - 3.10.15
-- 3.11.10
-- 3.12.7
+- 3.11.11
+- 3.12.8
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -282,14 +283,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:2995c82e8e723d9a5c8585cb8e901d1c50e3c2759031027d3bff577449435157  | 2024-09-06 |
 | alpine:3.19          | sha256:7a85bf5dc56c949be827f84f9185161265c58f589bb8b2a6b6bb6d3076c1be21  | 2024-09-06 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:01559430c84e6bc864bed554345d1bfbfa94ac108ab68f39915cae34604b15c3  | 2024-11-11 |
-| moby/buildkit:latest | sha256:36c65534fcd9e8b2c38f7e549aeae3ed5b5389fe6de2f44996f313112ebf0e18  | 2024-11-26 |
-| node:18              | sha256:83eb05700940a88b14f21fb31cc92e9571a34b1db1a5d8781b466fc26cbb1472  | 2024-11-15 |
-| node:18-alpine       | sha256:7e43a2d633d91e8655a6c0f45d2ed987aa4930f0792f6d9dd3bffc7496e44882  | 2024-11-15 |
-| node:20              | sha256:f99a6bd6fb137cfc683e1ff60e7d67aa8d5fcf45a6a64c01c37b4f433a6238b6  | 2024-11-20 |
-| node:20-alpine       | sha256:b5b9467fe7b33aad47f1ec3f6e0646a658f85f05c18d4243024212a91f3b7554  | 2024-11-20 |
-| node:22              | sha256:5c76d05034644fa8ecc9c2aa84e0a83cd981d0ef13af5455b87b9adf5b216561  | 2024-10-29 |
-| node:22-alpine       | sha256:b64ced2e7cd0a4816699fe308ce6e8a08ccba463c757c00c14cd372e3d2c763e  | 2024-10-29 |
+| debian:11            | sha256:e91d1b0684e0f26a29c2353c52d4814f4d153e10b1faddf9fbde473ed71e2fcf  | 2024-12-02 |
+| moby/buildkit:latest | sha256:58e6d150a3c5a4b92e99ea8df2cbe976ad6d2ae5beab39214e84fada05b059d5  | 2024-12-04 |
+| node:18              | sha256:b57ae84fe7880a23b389f8260d726b784010ed470c2ee26d4e2cbdb955d25b12  | 2024-11-15 |
+| node:18-alpine       | sha256:6eb9c3d9bd191bd2cc6ce7ec3d5ec4c2127616140c8586af96a6bec8f28689d1  | 2024-12-05 |
+| node:20              | sha256:f4755c9039bdeec5c736b2e0dd5b47700d6393b65688b9e9f807ec12f54a8690  | 2024-11-20 |
+| node:20-alpine       | sha256:426f843809ae05f324883afceebaa2b9cab9cb697097dbb1a2a7a41c5701de72  | 2024-12-05 |
+| node:22              | sha256:35a5dd72bcac4bce43266408b58a02be6ff0b6098ffa6f5435aeea980a8951d7  | 2024-12-03 |
+| node:22-alpine       | sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97  | 2024-12-05 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
 | ubuntu:22.04         | sha256:0e5e4a57c2499249aafc3b40fcd541e9a456aab7296681a3994d631587203f97  | 2024-09-11 |
 
@@ -329,7 +330,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.8                     |
 | libcurl4               | 7.81.0-1ubuntu1.19                  |
-| libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.2          |
+| libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.3          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
 | libgtk-3-0             | 3.24.33-1ubuntu2.2                  |
@@ -372,6 +373,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.4                    |
 | swig                   | 4.0.2-1ubuntu1                      |
+| systemd-coredump       | 249.11-0ubuntu3.12                  |
 | tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
