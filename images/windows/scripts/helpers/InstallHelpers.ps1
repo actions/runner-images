@@ -454,8 +454,8 @@ function Get-WindowsUpdateStates {
             }
         }
 
-        # Skip update started event if it was already completed
-        if ( $state -eq "Running" -and $completedUpdates.ContainsKey($title) ) {
+        # Skip update events if it was already completed
+        if ( ($state -eq "Running" -or $state -eq "Failed") -and $completedUpdates.ContainsKey($title) ) {
             continue
         }
 
