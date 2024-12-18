@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[macOS 14] Xcode 16.0 will be replaced by Xcode 16.2 in macOS-14 images on January 6, 2025](https://github.com/actions/runner-images/issues/11203) |
 | [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and by 01/13/25 for ADO](https://github.com/actions/runner-images/issues/10721) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 ***
 # macOS 13
-- OS Version: macOS 13.7.1 (22H221)
+- OS Version: macOS 13.7.2 (22H313)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20241211.456
+- Image Version: 20241216.479
 
 ## Installed Software
 
@@ -33,14 +34,14 @@
 - Bundler 2.5.23
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.3
+- Composer 2.8.4
 - Homebrew 4.4.11
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.3.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.5.23
-- Vcpkg 2024 (build from commit b7601ed37)
+- Vcpkg 2024 (build from commit b545373a9)
 - Yarn 1.22.22
 
 ### Project Management
@@ -55,7 +56,7 @@
 - bazel 8.0.0
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.11.0
+- Curl 8.11.1
 - Git 2.47.1
 - Git LFS 3.6.0
 - GitHub CLI 2.63.2
@@ -71,8 +72,8 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.22.14
-- AWS SAM CLI 1.131.0
+- AWS CLI 2.22.17
+- AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
@@ -89,14 +90,14 @@
 - SwiftLint 0.57.1
 
 ### Browsers
-- Safari 18.1.1 (18619.2.8.111.7)
-- SafariDriver 18.1.1 (18619.2.8.111.7)
+- Safari 18.2 (18620.1.16.111.6)
+- SafariDriver 18.2 (18620.1.16.111.6)
 - Google Chrome 131.0.6778.140
 - Google Chrome for Testing 131.0.6778.108
 - ChromeDriver 131.0.6778.108
-- Microsoft Edge 131.0.2903.86
+- Microsoft Edge 131.0.2903.99
 - Microsoft Edge WebDriver 131.0.2903.87
-- Mozilla Firefox 133.0
+- Mozilla Firefox 133.0.3
 - geckodriver 0.35.0
 - Selenium server 4.27.0
 
@@ -263,7 +264,7 @@
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
 ### Miscellaneous
-- Tcl/Tk 8.6.15
+- Tcl/Tk 8.6.16
 
 #### Environment variables
 | Name              | Value                                                                                     |
