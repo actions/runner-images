@@ -48,6 +48,7 @@ body:
         - label: macOS 15 Arm64
         - label: Windows Server 2019
         - label: Windows Server 2022
+        - label: Windows Server 2025
   - type: textarea
     attributes:
       label: Mitigation ways
