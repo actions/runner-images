@@ -7,7 +7,7 @@
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6659
-- Image Version: 20241211.1.0
+- Image Version: 20241215.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -36,7 +36,7 @@
 - pip 24.0 (python 3.7)
 - Pipx 1.2.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit b7601ed37)
+- Vcpkg (build from commit b545373a9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -72,7 +72,7 @@
 - InnoSetup 6.3.3
 - jq 1.7.1
 - Kind 0.25.0
-- Kubectl 1.31.3
+- Kubectl 1.32.0
 - Mercurial 5.0
 - gcc 8.1.0
 - gdb 8.1
@@ -82,7 +82,7 @@
 - OpenSSL 1.1.1w
 - Packer 1.11.2
 - Parcel 2.13.2
-- Pulumi 3.142.0
+- Pulumi 3.143.0
 - R 4.4.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.1.1
@@ -95,9 +95,9 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.235
-- AWS CLI 2.22.13
-- AWS SAM CLI 1.131.0
+- Alibaba Cloud CLI 3.0.237
+- AWS CLI 2.22.17
+- AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure DevOps CLI extension 1.0.1
@@ -121,8 +121,8 @@
 ### Browsers and Drivers
 - Google Chrome 131.0.6778.140
 - Chrome Driver 131.0.6778.108
-- Microsoft Edge 131.0.2903.86
-- Microsoft Edge Driver 131.0.2903.86
+- Microsoft Edge 131.0.2903.99
+- Microsoft Edge Driver 131.0.2903.99
 - Mozilla Firefox 133.0.3
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
@@ -501,7 +501,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11, 9.0.0
 - Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11, 9.0.0
 - Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 7.0.5, 7.0.20, 8.0.6, 8.0.11, 9.0.0
-- nbgv 3.6.146+392592327a
+- nbgv 3.7.112+63bbe780b0
 
 ### PowerShell Tools
 - PowerShell 7.4.6
@@ -512,7 +512,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.715
+- AWSPowershell: 4.1.718
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.25.0
