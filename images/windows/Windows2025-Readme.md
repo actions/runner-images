@@ -195,7 +195,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - MySQL 8.0.40.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.3.6
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
