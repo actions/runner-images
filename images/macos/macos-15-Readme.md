@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[macOS 14] Xcode 16.0 will be replaced by Xcode 16.2 in macOS-14 images on January 6, 2025](https://github.com/actions/runner-images/issues/11203) |
 | [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and by 01/13/25 for ADO](https://github.com/actions/runner-images/issues/10721) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 ***
 # macOS 15
-- OS Version: macOS 15.1.1 (24B91)
-- Kernel Version: Darwin 24.1.0
-- Image Version: 20241211.462
+- OS Version: macOS 15.2 (24C101)
+- Kernel Version: Darwin 24.2.0
+- Image Version: 20241217.493
 
 ## Installed Software
 
@@ -29,15 +30,15 @@
 - Ruby 3.3.6
 
 ### Package Management
-- Bundler 2.5.23
+- Bundler 2.6.0
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.3
-- Homebrew 4.4.11
+- Composer 2.8.4
+- Homebrew 4.4.12
 - NPM 10.9.0
 - Pip3 24.3.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.5.23
+- RubyGems 3.6.0
 - Yarn 1.22.22
 
 ### Project Management
@@ -52,7 +53,7 @@
 - bazel 8.0.0
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.11.0
+- Curl 8.11.1
 - Git 2.47.1
 - Git LFS 3.6.0
 - GitHub CLI 2.63.2
@@ -68,8 +69,8 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.22.14
-- AWS SAM CLI 1.131.0
+- AWS CLI 2.22.18
+- AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
@@ -79,21 +80,21 @@
 - Fastlane 2.226.0
 - SwiftFormat 0.55.3
 - Xcbeautify 2.16.0
-- Xcode Command Line Tools 16.1.0.0.1.1729049160
+- Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.0
 
 ### Linters
 - SwiftLint 0.57.1
 
 ### Browsers
-- Safari 18.1.1 (20619.2.8.11.12)
-- SafariDriver 18.1.1 (20619.2.8.11.12)
+- Safari 18.2 (20620.1.16.11.8)
+- SafariDriver 18.2 (20620.1.16.11.8)
 - Google Chrome 131.0.6778.140
 - Google Chrome for Testing 131.0.6778.108
 - ChromeDriver 131.0.6778.108
-- Microsoft Edge 131.0.2903.86
+- Microsoft Edge 131.0.2903.99
 - Microsoft Edge WebDriver 131.0.2903.87
-- Mozilla Firefox 133.0
+- Mozilla Firefox 133.0.3
 - geckodriver 0.35.0
 - Selenium server 4.27.0
 
@@ -119,8 +120,8 @@
 - 3.3.6
 
 #### Python
-- 3.9.20
-- 3.10.15
+- 3.9.21
+- 3.10.16
 - 3.11.9
 - 3.12.8
 - 3.13.1
@@ -154,12 +155,12 @@
 - PSScriptAnalyzer: 1.23.0
 
 ### Xcode
-| Version        | Build    | Path                                           | Symlinks                                                                                  |
-| -------------- | -------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 16.2           | 16C5031c | /Applications/Xcode_16.2_Release_Candidate.app | /Applications/Xcode_16.2.0.app<br>/Applications/Xcode_16.2.app                            |
-| 16.1           | 16B40    | /Applications/Xcode_16.1.app                   | /Applications/Xcode_16.1.0.app                                                            |
-| 16.0 (default) | 16A242d  | /Applications/Xcode_16.app                     | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app<br>/Applications/Xcode.app |
-| 15.4           | 15F31d   | /Applications/Xcode_15.4.app                   | /Applications/Xcode_15.4.0.app                                                            |
+| Version        | Build    | Path                         | Symlinks                                                                                  |
+| -------------- | -------- | ---------------------------- | ----------------------------------------------------------------------------------------- |
+| 16.2           | 16C5032a | /Applications/Xcode_16.2.app | /Applications/Xcode_16.2.0.app                                                            |
+| 16.1           | 16B40    | /Applications/Xcode_16.1.app | /Applications/Xcode_16.1.0.app                                                            |
+| 16.0 (default) | 16A242d  | /Applications/Xcode_16.app   | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app<br>/Applications/Xcode.app |
+| 15.4           | 15F31d   | /Applications/Xcode_15.4.app | /Applications/Xcode_15.4.0.app                                                            |
 
 #### Installed SDKs
 | SDK                      | SDK Name             | Xcode Version |
@@ -192,12 +193,12 @@
 | Simulator - watchOS 11.0 | watchsimulator11.0   | 16.0          |
 | Simulator - watchOS 11.1 | watchsimulator11.1   | 16.1          |
 | Simulator - watchOS 11.2 | watchsimulator11.2   | 16.2          |
-| visionOS 1.2             | xros1.2              | 15.4          |
 | Simulator - visionOS 1.2 | xrsimulator1.2       | 15.4          |
+| visionOS 1.2             | xros1.2              | 15.4          |
 | Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
 | visionOS 2.0             | xros2.0              | 16.0          |
-| Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
 | visionOS 2.1             | xros2.1              | 16.1          |
+| Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
 | Simulator - visionOS 2.2 | xrsimulator2.2       | 16.2          |
 | visionOS 2.2             | xros2.2              | 16.2          |
 | DriverKit 23.5           | driverkit23.5        | 15.4          |
@@ -206,20 +207,20 @@
 | DriverKit 24.2           | driverkit24.2        | 16.2          |
 
 #### Installed Simulators
-| OS           | Simulators                                                                                                                                                                                                                                                                                                                                                             |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 17.5     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                            |
-| iOS 18.0     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                            |
-| iOS 18.1     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |
-| iOS 18.2     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |
-| tvOS 17.5    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
-| tvOS 18.0    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
-| tvOS 18.1    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
-| tvOS 18.2    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
-| watchOS 10.5 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm) |
-| watchOS 11.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                         |
-| watchOS 11.1 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                         |
-| watchOS 11.2 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                         |
+| OS           | Simulators                                                                                                                                                                                                                                                  |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iOS 17.5     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
+| iOS 18.0     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
+| iOS 18.1     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)        |
+| iOS 18.2     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)        |
+| tvOS 17.5    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                         |
+| tvOS 18.0    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                         |
+| tvOS 18.1    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                         |
+| tvOS 18.2    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                         |
+| watchOS 10.5 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)                                                                                |
+| watchOS 11.0 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                              |
+| watchOS 11.1 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                              |
+| watchOS 11.2 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                              |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                   |
