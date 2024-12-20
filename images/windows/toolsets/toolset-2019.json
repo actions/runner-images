@@ -449,7 +449,7 @@
         ]
     },
     "node": {
-        "default": "18"
+        "default": "18.*"
     },
     "maven": {
         "version": "3.8"

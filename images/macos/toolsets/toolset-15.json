@@ -3,7 +3,7 @@
         "default": "16",
         "x64": {
             "versions": [
-                { "link": "16.2_beta_3", "version": "16.2.0-Beta.3+16C5023f", "symlinks": ["16.2"], "install_runtimes": "true", "sha256": "04f3a3e3daf5d07e5ecfdf3cd7fc34fcf0a654884388d56f9f69942a9e3b1e66"},
+                { "link": "16.2", "version": "16.2+16C5032a", "install_runtimes": "true", "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de"},
                 { "link": "16.1", "version": "16.1+16B40", "install_runtimes": "true", "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
                 { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"}
@@ -11,13 +11,13 @@
         },
         "arm64":{
             "versions": [
-                { "link": "16.2_beta_3", "version": "16.2.0-Beta.3+16C5023f", "symlinks": ["16.2"], "install_runtimes": "true", "sha256": "04f3a3e3daf5d07e5ecfdf3cd7fc34fcf0a654884388d56f9f69942a9e3b1e66"},
+                { "link": "16.2", "version": "16.2+16C5032a", "install_runtimes": "true", "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de"},
                 { "link": "16.1", "version": "16.1+16B40", "install_runtimes": "true", "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
                 { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"}
             ]
         }
-    },
+    },    
     "java": {
         "x64": {
             "default": "21",
@@ -31,7 +31,7 @@
     "android": {
         "cmdline-tools": "commandlinetools-mac-12266719_latest.zip",
         "sdk-tools": "sdk-tools-darwin-4333796.zip",
-        "platform_min_version": "35",
+        "platform_min_version": "34",
         "build_tools_min_version": "35.0.0",
         "extras": [
             "android;m2repository", "google;m2repository", "google;google_play_services"

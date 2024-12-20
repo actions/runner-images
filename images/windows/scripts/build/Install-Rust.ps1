@@ -39,13 +39,13 @@ rustup component add rustfmt clippy
 if ($LASTEXITCODE -ne 0) {
     throw "Rust component installation failed with exit code $LASTEXITCODE"
 }
-
-cargo install bindgen-cli cbindgen cargo-audit cargo-outdated
-if ($LASTEXITCODE -ne 0) {
-    throw "Rust tools installation failed with exit code $LASTEXITCODE"
+if (-not (Test-IsWin25)) {
+    cargo install bindgen-cli cbindgen cargo-audit cargo-outdated
+    if ($LASTEXITCODE -ne 0) {
+        throw "Rust tools installation failed with exit code $LASTEXITCODE"
+    }
+    # Cleanup Cargo crates cache
+    Remove-Item "${env:CARGO_HOME}\registry\*" -Recurse -Force
 }
-
-# Cleanup Cargo crates cache
-Remove-Item "${env:CARGO_HOME}\registry\*" -Recurse -Force
 
 Invoke-PesterTests -TestFile "Rust"

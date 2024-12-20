@@ -22,6 +22,7 @@ Export-ModuleMember -Function @(
     'Get-ToolsetContent'
     'Get-TCToolPath'
     'Get-TCToolVersionPath'
+    'Test-IsWin25'
     'Test-IsWin22'
     'Test-IsWin19'
     'Expand-7ZipArchive'
