@@ -165,8 +165,6 @@ source "azure-arm" "build_image" {
       value = azure_tag.value
     }
   }
-
-  custom_data_file = "${path.root}/../scripts/cloud-init/startup.sh"
 }
 
 build {
