@@ -205,11 +205,6 @@ build {
   }
 
   provisioner "file" {
-    destination = "${var.installer_script_folder}"
-    source      = "${path.root}/../scripts/cloud-init"
-  }
-
-  provisioner "file" {
     destination = "${var.image_folder}"
     sources     = [
       "${path.root}/../assets/post-gen",
