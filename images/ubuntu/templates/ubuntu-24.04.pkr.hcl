@@ -26,20 +26,13 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
-variable "client_cert_path" {
-  type    = string
-  default = "${env("ARM_CLIENT_CERT_PATH")}"
+variable "resource_group" {
+  type = string
 }
 
 variable "client_id" {
   type    = string
   default = "${env("ARM_CLIENT_ID")}"
-}
-
-variable "client_secret" {
-  type      = string
-  default   = "${env("ARM_CLIENT_SECRET")}"
-  sensitive = true
 }
 
 variable "dockerhub_login" {
@@ -113,6 +106,10 @@ variable "subscription_id" {
   default = "${env("ARM_SUBSCRIPTION_ID")}"
 }
 
+variable "suffix" {
+  type = string
+}
+
 variable "temp_resource_group_name" {
   type    = string
   default = "${env("TEMP_RESOURCE_GROUP_NAME")}"
@@ -145,25 +142,20 @@ variable "vm_size" {
 
 source "azure-arm" "build_image" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
-  build_resource_group_name              = "${var.build_resource_group_name}"
-  client_cert_path                       = "${var.client_cert_path}"
-  client_id                              = "${var.client_id}"
-  client_secret                          = "${var.client_secret}"
   image_offer                            = "ubuntu-24_04-lts"
   image_publisher                        = "canonical"
   image_sku                              = "server-gen1"
-  location                               = "${var.location}"
-  managed_image_name                     = "${local.managed_image_name}"
-  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   os_disk_size_gb                        = "75"
   os_type                                = "Linux"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   subscription_id                        = "${var.subscription_id}"
-  temp_resource_group_name               = "${var.temp_resource_group_name}"
   tenant_id                              = "${var.tenant_id}"
-  virtual_network_name                   = "${var.virtual_network_name}"
-  virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
-  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
+
+  location                          = "${var.location}"
+  managed_image_name                = "${var.resource_group}-actions-runner-${var.suffix}"
+  managed_image_resource_group_name = "${var.resource_group}"
+  use_azure_cli_auth = true
+
   vm_size                                = "${var.vm_size}"
 
   dynamic "azure_tag" {
@@ -202,7 +194,6 @@ build {
       "${path.root}/../scripts/build/configure-apt.sh"
     ]
   }
-
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     script          = "${path.root}/../scripts/build/configure-limits.sh"
