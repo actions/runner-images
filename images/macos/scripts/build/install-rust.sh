@@ -25,4 +25,4 @@ fi
 echo "Cleanup Cargo registry cached data..."
 rm -rf $CARGO_HOME/registry/*
 
-#invoke_tests "Rust"
+invoke_tests "Rust"

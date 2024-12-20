@@ -33,4 +33,4 @@ echo "git-core $GIT_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 ssh-keyscan -t rsa,ecdsa,ed25519 github.com >> /etc/ssh/ssh_known_hosts
 ssh-keyscan -t rsa ssh.dev.azure.com >> /etc/ssh/ssh_known_hosts
 
-#invoke_tests "Tools" "Git"
+invoke_tests "Tools" "Git"

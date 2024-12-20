@@ -33,4 +33,4 @@ else
     echo "Node version manager installation failed"
 fi
 
-#invoke_tests "Node" "nvm"
+invoke_tests "Node" "nvm"

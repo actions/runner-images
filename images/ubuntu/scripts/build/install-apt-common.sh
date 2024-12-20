@@ -15,4 +15,4 @@ for package in $common_packages $cmd_packages; do
     apt-get install --no-install-recommends $package
 done
 
-#invoke_tests "Apt"
+invoke_tests "Apt"

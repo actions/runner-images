@@ -28,4 +28,4 @@ if [[ -e $gfortran ]]; then
     rm $gfortran
 fi
 
-#invoke_tests "Tools" "Homebrew"
+invoke_tests "Tools" "Homebrew"

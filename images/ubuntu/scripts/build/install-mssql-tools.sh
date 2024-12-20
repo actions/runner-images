@@ -11,4 +11,4 @@ apt-get install mssql-tools unixodbc-dev
 apt-get -f install
 ln -s /opt/mssql-tools/bin/* /usr/local/bin/
 
-#invoke_tests "Tools" "MSSQLCommandLineTools"
+invoke_tests "Tools" "MSSQLCommandLineTools"

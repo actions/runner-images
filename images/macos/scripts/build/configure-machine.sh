@@ -96,4 +96,4 @@ fi
 #     sudo chown $USER:admin /usr/local/bin
 # fi
 # chmod +x $HOME/utils/invoke-tests.sh
-# sudo ln -s $HOME/utils/invoke-tests.sh /usr/local/bin/#invoke_tests
+# sudo ln -s $HOME/utils/invoke-tests.sh /usr/local/bin/invoke_tests

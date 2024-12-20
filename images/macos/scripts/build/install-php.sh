@@ -13,4 +13,4 @@ brew_smart_install "php@${phpVersionToolset}"
 echo Installing composer
 brew_smart_install "composer"
 
-#invoke_tests "PHP"
+invoke_tests "PHP"

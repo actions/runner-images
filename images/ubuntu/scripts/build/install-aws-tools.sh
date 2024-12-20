@@ -29,4 +29,4 @@ use_checksum_comparison "$aws_sam_cli_archive_path" "$aws_sam_cli_hash"
 unzip "$aws_sam_cli_archive_path" -d /tmp
 /tmp/install
 
-#invoke_tests "CLI.Tools" "AWS"
+invoke_tests "CLI.Tools" "AWS"

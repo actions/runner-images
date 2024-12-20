@@ -129,4 +129,4 @@ if [ "$sdk_tools_version" != "null" ]; then
     unzip -o -qq "$sdk_tools_archive_path" -d "${ANDROID_SDK_ROOT}"
 fi
 
-#invoke_tests "Android"
+invoke_tests "Android"

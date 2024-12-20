@@ -24,4 +24,4 @@ ln -sf $VCPKG_INSTALLATION_ROOT/vcpkg /usr/local/bin
 
 rm -rf /Users/runner/.vcpkg
 
-#invoke_tests "Common" "vcpkg"
+invoke_tests "Common" "vcpkg"

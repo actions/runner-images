@@ -110,4 +110,4 @@ if is_ubuntu20; then
     apt-get update
 fi
 
-#invoke_tests "Common" "PHP"
+invoke_tests "Common" "PHP"

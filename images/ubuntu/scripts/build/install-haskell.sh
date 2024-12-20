@@ -41,4 +41,4 @@ ln -s $GHCUP_INSTALL_BASE_PREFIX/.ghcup /etc/skel/.ghcup
 # Install the latest stable release of haskell stack
 curl -fsSL https://get.haskellstack.org/ | bash
 
-#invoke_tests "Haskell"
+invoke_tests "Haskell"

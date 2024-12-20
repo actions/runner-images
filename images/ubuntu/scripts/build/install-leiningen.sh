@@ -19,4 +19,4 @@ LEIN_JAR=$(find $LEIN_HOME -name "leiningen-*-standalone.jar")
 set_etc_environment_variable "LEIN_JAR" "${LEIN_JAR}"
 set_etc_environment_variable "LEIN_HOME" "${LEIN_HOME}"
 
-#invoke_tests "Tools" "Leiningen"
+invoke_tests "Tools" "Leiningen"

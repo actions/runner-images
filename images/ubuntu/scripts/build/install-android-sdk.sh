@@ -118,4 +118,4 @@ chmod -R a+rwx ${ANDROID_SDK_ROOT}
 
 reload_etc_environment
 
-#invoke_tests "Android"
+invoke_tests "Android"

@@ -16,4 +16,4 @@ geckoPath="$(brew --prefix geckodriver)/bin"
 echo "Add GECKOWEBDRIVER to bashrc..."
 echo "export GECKOWEBDRIVER=${geckoPath}" >> ${HOME}/.bashrc
 
-#invoke_tests "Browsers" "Firefox"
+invoke_tests "Browsers" "Firefox"

@@ -18,4 +18,4 @@ if [[ $gfortranPath ]]; then
     rm $gfortranPath
 fi
 
-#invoke_tests "Common" "GCC"
+invoke_tests "Common" "GCC"

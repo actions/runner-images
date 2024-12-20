@@ -21,4 +21,4 @@ fi
 
 echo "export CONDA=/usr/local/miniconda" >> $HOME/.bashrc
 
-#invoke_tests "Common" "Miniconda"
+invoke_tests "Common" "Miniconda"

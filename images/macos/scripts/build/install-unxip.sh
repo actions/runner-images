@@ -12,4 +12,4 @@ unxip_pkg_sha256="926ecd7bffa201c7b2b8a729fc70fbf228cf624a0e6856c13f935a97fa4fc7
 use_checksum_comparison $unxip_pkg $unxip_pkg_sha256
 install "$unxip_pkg" /usr/local/bin/unxip
 
-#invoke_tests "Common" "Unxip"
+invoke_tests "Common" "Unxip"

@@ -115,4 +115,4 @@ fi
 az extension add -n azure-devops
 
 # Invoke tests for all basic tools
-#invoke_tests "BasicTools"
+invoke_tests "BasicTools"

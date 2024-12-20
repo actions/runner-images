@@ -20,4 +20,4 @@ cp $extract_path/azcopy /usr/local/bin/azcopy
 chmod +x /usr/local/bin/azcopy
 
 
-#invoke_tests "Common" "AzCopy"
+invoke_tests "Common" "AzCopy"

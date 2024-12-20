@@ -48,4 +48,4 @@ echo "Creating short symlink '${mono_version_short}'..."
 sudo ln -s ${MONO_VERSIONS_PATH}/${mono_version} ${MONO_VERSIONS_PATH}/${mono_version_short}
 
 # Invoke tests for Xamarin and Mono
-#invoke_tests "Xamarin" "Mono"
+invoke_tests "Xamarin" "Mono"

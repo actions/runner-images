@@ -11,4 +11,4 @@ apt-get install nginx
 systemctl is-active --quiet nginx.service && systemctl stop nginx.service
 systemctl disable nginx.service
 
-#invoke_tests "WebServers" "Nginx"
+invoke_tests "WebServers" "Nginx"

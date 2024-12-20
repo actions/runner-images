@@ -49,4 +49,4 @@ mv "/tmp/chrome-$chrome_platform/$chrome_for_testing_app" "/Applications/$chrome
 echo "Installing Selenium"
 brew_smart_install "selenium-server"
 
-#invoke_tests "Browsers" "Chrome"
+invoke_tests "Browsers" "Chrome"

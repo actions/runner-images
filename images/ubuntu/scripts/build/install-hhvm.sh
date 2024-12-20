@@ -20,4 +20,4 @@ apt-get install hhvm
 rm $REPO_PATH
 rm $GPG_KEY
 
-#invoke_tests "Tools" "HHVM"
+invoke_tests "Tools" "HHVM"
