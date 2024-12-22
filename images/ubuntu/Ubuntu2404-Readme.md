@@ -24,7 +24,7 @@
 - Kotlin 2.1.0-release-394
 - Node.js 20.18.1
 - Perl 5.38.2
-- Python 3.12.3
+- Python 3.12.3 (non-externally managed)
 - Ruby 3.2.3
 - Swift 6.0.3
 

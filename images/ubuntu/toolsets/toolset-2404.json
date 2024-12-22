@@ -11,7 +11,8 @@
                 "3.10.*",
                 "3.11.*",
                 "3.12.*"
-            ]
+            ],
+            "non_externally_managed": true
         },
         {
             "name": "PyPy",
