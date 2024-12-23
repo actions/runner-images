@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[macOS 14] Xcode 16.0 will be replaced by Xcode 16.2 in macOS-14 images on January 6, 2025](https://github.com/actions/runner-images/issues/11203) |
 | [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and by 01/13/25 for ADO](https://github.com/actions/runner-images/issues/10721) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 ***
 # macOS 15
-- OS Version: macOS 15.1.1 (24B91)
-- Kernel Version: Darwin 24.1.0
-- Image Version: 20241211.459
+- OS Version: macOS 15.2 (24C101)
+- Kernel Version: Darwin 24.2.0
+- Image Version: 20241217.490
 
 ## Installed Software
 
@@ -28,14 +29,14 @@
 - Ruby 3.3.6
 
 ### Package Management
-- Bundler 2.5.23
+- Bundler 2.6.0
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.11
+- Homebrew 4.4.12
 - NPM 10.9.0
 - Pip3 24.3.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.5.23
+- RubyGems 3.6.0
 - Yarn 1.22.22
 
 ### Project Management
@@ -66,8 +67,8 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.22.14
-- AWS SAM CLI 1.131.0
+- AWS CLI 2.22.18
+- AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
@@ -77,14 +78,14 @@
 - Fastlane 2.226.0
 - SwiftFormat 0.55.3
 - Xcbeautify 2.16.0
-- Xcode Command Line Tools 16.1.0.0.1.1729049160
+- Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.0
 
 ### Linters
 
 ### Browsers
-- Safari 18.1.1 (20619.2.8.11.12)
-- SafariDriver 18.1.1 (20619.2.8.11.12)
+- Safari 18.2 (20620.1.16.11.8)
+- SafariDriver 18.2 (20620.1.16.11.8)
 - Google Chrome 131.0.6778.140
 - Google Chrome for Testing 131.0.6778.108
 - ChromeDriver 131.0.6778.108
@@ -145,12 +146,12 @@
 - PSScriptAnalyzer: 1.23.0
 
 ### Xcode
-| Version        | Build    | Path                                           | Symlinks                                                                                  |
-| -------------- | -------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 16.2           | 16C5031c | /Applications/Xcode_16.2_Release_Candidate.app | /Applications/Xcode_16.2.0.app<br>/Applications/Xcode_16.2.app                            |
-| 16.1           | 16B40    | /Applications/Xcode_16.1.app                   | /Applications/Xcode_16.1.0.app                                                            |
-| 16.0 (default) | 16A242d  | /Applications/Xcode_16.app                     | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app<br>/Applications/Xcode.app |
-| 15.4           | 15F31d   | /Applications/Xcode_15.4.app                   | /Applications/Xcode_15.4.0.app                                                            |
+| Version        | Build    | Path                         | Symlinks                                                                                  |
+| -------------- | -------- | ---------------------------- | ----------------------------------------------------------------------------------------- |
+| 16.2           | 16C5032a | /Applications/Xcode_16.2.app | /Applications/Xcode_16.2.0.app                                                            |
+| 16.1           | 16B40    | /Applications/Xcode_16.1.app | /Applications/Xcode_16.1.0.app                                                            |
+| 16.0 (default) | 16A242d  | /Applications/Xcode_16.app   | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app<br>/Applications/Xcode.app |
+| 15.4           | 15F31d   | /Applications/Xcode_15.4.app | /Applications/Xcode_15.4.0.app                                                            |
 
 #### Installed SDKs
 | SDK                      | SDK Name             | Xcode Version |
@@ -185,10 +186,10 @@
 | Simulator - watchOS 11.2 | watchsimulator11.2   | 16.2          |
 | visionOS 1.2             | xros1.2              | 15.4          |
 | Simulator - visionOS 1.2 | xrsimulator1.2       | 15.4          |
-| Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
 | visionOS 2.0             | xros2.0              | 16.0          |
-| visionOS 2.1             | xros2.1              | 16.1          |
+| Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
 | Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
+| visionOS 2.1             | xros2.1              | 16.1          |
 | Simulator - visionOS 2.2 | xrsimulator2.2       | 16.2          |
 | visionOS 2.2             | xros2.2              | 16.2          |
 | DriverKit 23.5           | driverkit23.5        | 15.4          |

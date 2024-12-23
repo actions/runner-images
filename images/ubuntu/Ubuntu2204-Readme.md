@@ -7,7 +7,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.5.0-1025-azure
-- Image Version: 20241211.1.0
+- Image Version: 20241215.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -28,7 +28,7 @@
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.0.2
+- Swift 6.0.3
 
 ### Package Management
 - cpan 1.64
@@ -41,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit b7601ed37)
+- Vcpkg (build from commit b545373a9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -88,7 +88,7 @@ to accomplish this.
 - Heroku 10.0.0
 - jq 1.6
 - Kind 0.25.0
-- Kubectl 1.31.4
+- Kubectl 1.32.0
 - Kustomize 5.5.0
 - Leiningen 2.11.2
 - MediaInfo 21.09
@@ -101,7 +101,7 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.13.2
 - Podman 3.4.4
-- Pulumi 3.142.0
+- Pulumi 3.143.0
 - R 4.4.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -112,10 +112,10 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.235
-- AWS CLI 2.22.14
+- Alibaba Cloud CLI 3.0.237
+- AWS CLI 2.22.17
 - AWS CLI Session Manager Plugin 1.2.694.0
-- AWS SAM CLI 1.131.0
+- AWS SAM CLI 1.132.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.63.2
@@ -123,7 +123,7 @@ to accomplish this.
 - Netlify CLI 17.38.0
 - OpenShift CLI 4.17.8
 - ORAS CLI 1.2.1
-- Vercel CLI 39.2.0
+- Vercel CLI 39.2.2
 
 ### Java
 | Version             | Environment Variable |
@@ -165,7 +165,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 131.0.6778.139
 - ChromeDriver 131.0.6778.108
 - Chromium 131.0.6778.0
-- Microsoft Edge 131.0.2903.86
+- Microsoft Edge 131.0.2903.99
 - Microsoft Edge WebDriver 131.0.2903.87
 - Selenium server 4.27.0
 - Mozilla Firefox 133.0
@@ -181,7 +181,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 6.0.428, 7.0.410, 8.0.404
-- nbgv 3.6.146+392592327a
+- nbgv 3.7.112+63bbe780b0
 
 ### Databases
 - sqlite3 3.37.2
