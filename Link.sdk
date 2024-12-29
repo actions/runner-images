@@ -1,0 +1,40 @@
+<
+```//.npm install --save react-plaid-link
+With yarn:
+
+yarn add react-plaid-link
+Then import the necessary components and types:
+
+import {
+  usePlaidLink,
+  PlaidLinkOptions,
+  PlaidLinkOnSuccess,
+} from 'react-plaid-link';
+CSP directives
+If you are using a Content Security Policy (CSP), use the following directives to allow Link traffic:
+
+default-src https://cdn.plaid.com/;
+script-src 'unsafe-inline' https://cdn.plaid.com/link/v2/stable/link-initialize.js;
+frame-src https://cdn.plaid.com/;
+connect-src https://production.plaid.com/;
+npm install --save react-plaid-link
+With yarn:
+
+yarn add react-plaid-link
+Then import the necessary components and types:
+
+import {
+  usePlaidLink,
+  PlaidLinkOptions,
+  PlaidLinkOnSuccess,
+} from 'react-plaid-link';
+CSP directives
+If you are using a Content Security Policy (CSP), use the following directives to allow Link traffic:
+
+default-src https://cdn.plaid.com/;
+script-src 'unsafe-inline' https://cdn.plaid.com/link/v2/stable/link-initialize.js;
+frame-src https://cdn.plaid.com/;
+connect-src https://production.plaid.com/;
+
+```
+>
