@@ -21,6 +21,9 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -Disa
 $softwareReport = [SoftwareReport]::new($(Build-OSInfoSection))
 $optionalFeatures = $softwareReport.Root.AddHeader("Windows features")
 $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
+if (Test-IsWin25) {
+    $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (Default, WSLv2):", $(Get-WSL2Version))
+}
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
 # Language and Runtime
