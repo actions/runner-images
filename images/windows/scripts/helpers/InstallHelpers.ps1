@@ -462,6 +462,7 @@ function Get-WindowsUpdateStates {
         [PSCustomObject]@{
             State = $state
             Title = $title
+            TimeCreated = $event.TimeCreated
         }
     }
 }

@@ -66,10 +66,10 @@ Describe "Windows Updates" {
         "$env:windir\WindowsUpdateDone.txt" | Should -Exist
     }
 
-    $testCases = Get-WindowsUpdateStates | Sort-Object Title | ForEach-Object {
+    $testCases = Get-WindowsUpdateStates | Sort-Object TimeCreated | Group-Object Title | ForEach-Object {
         @{
-            Title = $_.Title
-            State = $_.State
+            Title = $_.Group[-1].Title
+            State = $_.Group[-1].State
         }
     }
 
