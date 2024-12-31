@@ -1,0 +1,34 @@
+{
+	"name": "Internal Windows Server 2025",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"context": ".",
+		"args": {
+			"INSTALL_DEPENDENCIES": "true"
+		}
+	},
+	"features": {
+		"ghcr.io/elanhasson/devcontainer-features/dotnet-aspire-daily:1": {},
+		"ghcr.io/nikiforovall/devcontainer-features/dotnet-aspire:1": {},
+		"ghcr.io/nikiforovall/devcontainer-features/dotnet-csharpier:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cmake-tools",
+				"ms-dotnettools.csharp",
+				"ms-vscode.cpptools",
+				"ms-python.python",
+				"ms-vscode.powershell"
+			]
+		}
+	},
+	"forwardPorts": [55787],
+	"postCreateCommand": "gcc --version && cmake . && make && ./run_tests",
+	"remoteUser": "root",
+	"mounts": [
+		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+	],
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+	"workspaceFolder": "/workspace/runner-images"
+}
