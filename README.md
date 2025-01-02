@@ -31,6 +31,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | macOS 13 | `macos-13` or `macos-13-large` | [macOS-13] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-13.json) |
 | macOS 13 Arm64 | `macos-13-xlarge` | [macOS-13-arm64] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-13-arm64.json) |
 | macOS 12 <sup>deprecated</sup> | `macos-12` or `macos-12-large`| [macOS-12] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-12.json) |
+| Windows Server 2025 <sup>beta</sup> | `windows-2025` | [windows-2025] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fwin25.json) |
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fwin22.json) |
 | Windows Server 2019 | `windows-2019` | [windows-2019] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fwin19.json) |
 
@@ -42,6 +43,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [ubuntu-24.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
 [ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
 [ubuntu-20.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2004-Readme.md
+[windows-2025]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
 [windows-2022]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
 [windows-2019]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2019-Readme.md
 [macOS-12]: https://github.com/actions/runner-images/blob/main/images/macos/macos-12-Readme.md

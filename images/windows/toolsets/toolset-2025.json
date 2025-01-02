@@ -86,8 +86,8 @@
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-12266719_latest.zip",
         "hash": "F9088C04A44F1F37A8A3A228A7663E11AE9445FA07529C96CEF38ACB985A88F3",
-        "platform_min_version": "35",
-        "build_tools_min_version": "35.0.0",
+        "platform_min_version": "34",
+        "build_tools_min_version": "34.0.0",
         "extras": [
             "android;m2repository",
             "google;m2repository",
@@ -274,10 +274,6 @@
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
             { "name": "packer" },
-            {
-                "name": "strawberryperl" ,
-                "args": [ "--version", "5.40.0.1" ]
-            },
             { "name": "pulumi" },
             { "name": "swig" },
             { "name": "vswhere" },
@@ -289,11 +285,15 @@
                 "name": "cmake.install",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
+            {
+                "name": "strawberryperl" ,
+                "args": [ "--version", "5.40.0.1" ]
+            },
             { "name": "imagemagick" }
         ]
     },
     "node": {
-        "default": "22"
+        "default": "22.*"
     },
     "maven": {
         "version": "3.9"
