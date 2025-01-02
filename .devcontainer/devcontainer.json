@@ -35,8 +35,3 @@
   "workspaceFolder": "/workspace/runner-images",
   "initializeCommand": "PORT=$(shuf -i 55000-55999 -n 1) && echo $PORT"
 }
-		"source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
-	],
-	"workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
-	"workspaceFolder": "/workspace/runner-images"
-}
