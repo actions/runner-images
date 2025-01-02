@@ -1,0 +1,37 @@
+{
+  "os": {
+    "name": "Ubuntu",
+    "version": "24.04",
+    "base_image": "ubuntu:24.04"
+  },
+  "packages": {
+    "preinstalled": [
+      "clang-18",
+      "python3.12",
+      "nodejs-20",
+      "libsdl2-dev",
+      "astyle",
+      "ccache"
+    ],
+    "removed": [
+      "terraform",
+      "mono"
+    ]
+  },
+  "toolchains": [
+    {
+      "name": "clang",
+      "version": "18.0.0",
+      "path": "/usr/bin/clang"
+    },
+    {
+      "name": "gcc",
+      "version": "14.0.0",
+      "path": "/usr/bin/gcc"
+    }
+  ],
+  "compatibility": {
+    "preferred_lts": "22.04",
+    "notes": "Transitioning to 24.04 image. Recommended to update dependencies."
+  }
+}
