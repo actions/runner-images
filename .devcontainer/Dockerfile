@@ -1,20 +1,16 @@
-# Use the base image for C++ development
-FROM mcr.microsoft.com/devcontainers/cpp:1-debian-12
+# Use base images for C++ development
+FROM mcr.microsoft.com/devcontainers/cpp:1-ubuntu-24.04 AS ubuntu-base
+FROM mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022 AS windows-base
 
-# Set the CMake version to reinstall if needed
+# Ubuntu Environment Setup
+FROM ubuntu-base AS ubuntu-setup
 ARG REINSTALL_CMAKE_VERSION_FROM_SOURCE="none"
-
-# Copy the script to reinstall CMake from source
 COPY ./reinstall-cmake.sh /tmp/
-
-# Reinstall CMake if a specific version is provided
 RUN if [ "${REINSTALL_CMAKE_VERSION_FROM_SOURCE}" != "none" ]; then \
         chmod +x /tmp/reinstall-cmake.sh && /tmp/reinstall-cmake.sh ${REINSTALL_CMAKE_VERSION_FROM_SOURCE}; \
     fi \
-    && rm -f /tmp/reinstall-cmake.sh
-
-# Install additional system packages for debugging
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
+    && rm -f /tmp/reinstall-cmake.sh \
+    && apt-get update && export DEBIAN_FRONTEND=noninteractive \
     && apt-get -y install --no-install-recommends \
        python3-pip \
        nodejs \
@@ -24,6 +20,9 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
        valgrind \
        lsof \
        git \
+       clang-18 \
+       libstdc++-12-dev \
+       glibc-source \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Python setup
@@ -33,15 +32,39 @@ RUN python3 -m pip install --upgrade pip
 RUN npm install -g yarn
 
 # Install vcpkg if not already present
+ENV VCPKG_INSTALLATION_ROOT=/vcpkg
 RUN git clone https://github.com/microsoft/vcpkg.git $VCPKG_INSTALLATION_ROOT \
     && cd $VCPKG_INSTALLATION_ROOT \
     && ./bootstrap-vcpkg.sh
 
 # Copy project files into the container
 COPY . /workspace
-
-# Set the working directory in the container
 WORKDIR /workspace
-
-# Default command to launch a debugging shell
 CMD ["bash"]
+
+# Windows Environment Setup
+FROM windows-base AS windows-setup
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+RUN iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1')); \
+    choco install -y \
+    msys2 \
+    cmake \
+    clang \
+    python \
+    nodejs \
+    git \
+    jdk17 \
+    visualstudio2022buildtools --package-parameters "--add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
+
+# Setup environment variables
+ENV PATH="${PATH};C:\msys64\usr\bin;C:\Program Files\Git\cmd"
+
+# Install vcpkg for Windows
+RUN git clone https://github.com/microsoft/vcpkg.git C:\vcpkg \
+    && cd C:\vcpkg \
+    && .\bootstrap-vcpkg.bat
+
+# Copy project files into the container
+COPY . C:\workspace
+WORKDIR C:\workspace
+CMD ["powershell"]
