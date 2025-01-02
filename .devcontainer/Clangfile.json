@@ -1,0 +1,35 @@
+{
+  "version": "2025",
+  "clang_versions": {
+    "default": "18.0.0",
+    "supported": ["14.0.0", "16.0.0", "18.0.0"]
+  },
+  "toolchain": {
+    "compiler": "clang++",
+    "options": {
+      "optimization": "-O2",
+      "warnings": "-Wall",
+      "standard": "c++20"
+    }
+  },
+  "tasks": [
+    {
+      "name": "Build Project",
+      "command": "clang++ -O2 -Wall -std=c++20 main.cpp -o main"
+    },
+    {
+      "name": "Run Tests",
+      "command": "./test_suite --run"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "libstdc++",
+      "version": ">=12.0"
+    },
+    {
+      "name": "glibc",
+      "version": ">=2.31"
+    }
+  ]
+}
