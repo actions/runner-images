@@ -573,6 +573,7 @@
               "Versions": [
                 "1.21.13",
                 "1.22.10",
+                "1.23.10",
                 "1.23.4"
               ],
               "MajorVersionRegex": "^\\d+\\.\\d+",
@@ -589,3 +590,22 @@
               "MajorVersionRegex": "^\\d+",
               "ListType": "List"
             },
+
+            },
+            {
+              "NodeType": "ToolVersionsListNode",
+              "ToolName": "Node.js",
+              "Versions": [
+                "18.20.5",
+                "20.18.1",
+                "22.12.0"
+              ],
+              "MajorVersionRegex": "^\\d+",
+              "ListType": "List"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+
