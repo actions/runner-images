@@ -19,6 +19,13 @@ if command -v journalctl; then
     journalctl --vacuum-time=1s
 fi
 
+# remove redundant folders from azcli
+if [[ -z "${AZURE_CONFIG_DIR}" ]]; then
+    rm -rf $AZURE_CONFIG_DIR/logs
+    rm -rf $AZURE_CONFIG_DIR/commands
+    rm -rf $AZURE_CONFIG_DIR/telemetry
+fi
+
 # delete all .gz and rotated file
 find /var/log -type f -regex ".*\.gz$" -delete
 find /var/log -type f -regex ".*\.[0-9]$" -delete
