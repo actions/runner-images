@@ -1,0 +1,288 @@
+name: BroadcastingRabbitEmulation-CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup-environment:
+    name: Setup Environment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y docker.io clang python3-pip
+          pip3 install blockcypher
+
+  build-protocol:
+    name: Build Rabbit Protocol
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Setup Environment
+        run: |
+          if [[ $RUNNER_OS == "Windows" ]]; then
+            choco install golang docker
+          else
+            sudo apt install -y docker.io clang
+            go mod tidy
+
+      - name: 🐇 Build Rabbit Protocol
+        run: clang ./cmd/main.go -o rabbit_protocol_${{ matrix.os }}
+
+      - name: 🐇 Save Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: rabbit_protocol_${{ matrix.os }}
+
+  broadcast-emulation:
+    name: Simulate Broadcasting and Emulation
+    runs-on: ubuntu-latest
+    needs: [setup-environment, build-protocol]
+
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+
+      - name: 🐇 Emulate Broadcasting
+        run: |
+          echo "Starting Rabbit Protocol Emulation..."
+          python3 <<EOF
+import time, json
+from blockcypher import simple_spend
+
+api_token = "your-api-token"
+private_key = "your-private-key"
+sender_address = "your-sender-address"
+recipient_address = "emulated-recipient-address"
+amount_btc = 0.01
+message = "Emulating Rabbit Protocol Broadcast"
+
+def broadcast_transaction():
+    print(f"Broadcasting from {sender_address} to {recipient_address}...")
+    try:
+        response = simple_spend(
+            from_privkey=private_key,
+            to_address=recipient_address,
+            to_satoshis=int(amount_btc * 1e8),
+            api_key=api_token
+        )
+        print("Broadcast response:", json.dumps(response, indent=2))
+    except Exception as e:
+        print("Error during broadcast:", str(e))
+
+broadcast_transaction()
+EOF
+
+  validate-results:
+    name: Validate Emulation Results
+    runs-on: ubuntu-latest
+    needs: broadcast-emulation
+
+    steps:
+      - name: 🐇 Check Logs
+        run: |
+          echo "Checking broadcast logs..."
+          cat ./broadcast.log || echo "No logs found."
+
+      - name: 🐇 Validate Results
+        run: |
+          echo "Validating results..."
+          if grep -q "Broadcast response" broadcast.log; then
+            echo "Broadcast successful!"
+          else
+            echo "Broadcast failed. Check logs."
+
+name: BroadcastingRabbitEmulation-CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup-environment:
+    name: Setup Environment
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Install Dependencies
+        run: |
+          sudo apt update
+          sudo apt install -y docker.io clang golang python3-pip
+          pip3 install blockcypher
+
+  build-protocol:
+    name: Build Rabbit Protocol
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Setup Environment
+        run: |
+          if [[ $RUNNER_OS == "Windows" ]]; then
+            choco install golang docker
+          else
+            sudo apt install -y docker.io clang golang
+            go mod tidy
+
+      - name: 🐇 Build Rabbit Protocol
+        run: |
+          echo "Building Rabbit Protocol for ${{ matrix.os }}..."
+          go build -o rabbit_protocol_go ./cmd/main.go
+          clang ./cmd/main.go -o rabbit_protocol_clang
+
+      - name: 🐇 Save Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: build-artifacts
+          path: |
+            rabbit_protocol_go
+            rabbit_protocol_clang
+
+  pesterbot-scan:
+    name: Scan and Log Pesterbot Code
+    runs-on: ubuntu-latest
+    needs: build-protocol
+
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Scan for Pesterbot Code
+        run: |
+          echo "Scanning for rogue 'pesterbot' code..."
+          grep -r "pesterbot" ./cmd || echo "No pesterbot found!" > pesterbot_scan.log
+
+      - name: 🐇 Log Pesterbot Issues
+        run: |
+          echo "Logging pesterbot issues..."
+          if grep -q "pesterbot" pesterbot_scan.log; then
+            echo "Pesterbot code found!" >> pesterbot_scan.log
+          else
+            echo "No rogue code found." >> pesterbot_scan.log
+
+      - name: 🐇 Upload Pesterbot Logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: pesterbot-scan-log
+          path: pesterbot_scan.log
+
+  broadcast-emulation:
+    name: Simulate Broadcasting and Emulation
+    runs-on: ubuntu-latest
+    needs: [setup-environment, build-protocol, pesterbot-scan]
+
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: build-artifacts
+
+      - name: 🐇 Emulate Broadcasting
+        run: |
+          echo "Starting Rabbit Protocol Emulation..."
+          python3 <<EOF
+import time, json
+from blockcypher import simple_spend
+
+api_token = "your-api-token"
+private_key = "your-private-key"
+sender_address = "your-sender-address"
+recipient_address = "emulated-recipient-address"
+amount_btc = 0.01
+message = "Emulating Rabbit Protocol Broadcast"
+
+def broadcast_transaction():
+    print(f"Broadcasting from {sender_address} to {recipient_address}...")
+    try:
+        response = simple_spend(
+            from_privkey=private_key,
+            to_address=recipient_address,
+            to_satoshis=int(amount_btc * 1e8),
+            api_key=api_token
+        )
+        print("Broadcast response:", json.dumps(response, indent=2))
+    except Exception as e:
+        print("Error during broadcast:", str(e))
+
+broadcast_transaction()
+EOF
+
+  bugzap-validation:
+    name: BugZap Validation and Logging
+    runs-on: ubuntu-latest
+    needs: broadcast-emulation
+
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Validate BugZap Logs
+        run: |
+          echo "Validating and logging BugZap issues..."
+          if grep -q "error" broadcast.log; then
+            echo "Issues found during broadcasting. Check logs!" >> bugzap.log
+          else
+            echo "No errors found in broadcast." >> bugzap.log
+
+      - name: 🐇 Upload BugZap Logs
+        uses: actions/upload-artifact@v3
+        with:
+          name: bugzap-log
+          path: bugzap.log
+
+  validate-results:
+    name: Validate Emulation Results
+    runs-on: ubuntu-latest
+    needs: bugzap-validation
+
+    steps:
+      - name: 🐇 Check Logs
+        run: |
+          echo "Checking broadcast logs..."
+          cat ./broadcast.log || echo "No logs found."
+
+      - name: 🐇 Validate Results
+        run: |
+          echo "Validating results..."
+          if grep -q "Broadcast response" broadcast.log; then
+            echo "Broadcast successful!"
+          else
+            echo "Broadcast failed. Check logs."
+
