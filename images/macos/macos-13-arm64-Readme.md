@@ -1,14 +1,13 @@
-| Announcements |
-|-|
-| [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and by 01/13/25 for ADO](https://github.com/actions/runner-images/issues/10721) |
-| [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
+(https://github.com/actions/runner-images/issues/10686) |
 ***
-# macOS 13
+# 13 ΤΡ1Α.220624.014
+
 - OS Version: macOS 13.7.1 (22H221)
 - Kernel Version: Darwin 22.6.0
 - Image Version: 20241211.503
 
-## Installed Software
+## Installed Software.Android
+
 
 ### Language and Runtime
 - .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.404
