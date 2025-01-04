@@ -1,0 +1,226 @@
+@@ -0,0 +1,251 @@
+name: RabbitProtocol-CI/CD
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  rabbit-build:
+    name: 🛠️ Build the Rabbit Protocol
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-2025, macos-15]
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+      - name: 🐇 Setup Environment
+        run: |
+          if [[ "${{ matrix.os }}" == "windows-2025" ]]; then
+            choco install -y golang docker-desktop
+            powershell Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/main/helpful_tools/Install-DockerCE/install-docker-ce.ps1" -OutFile install-docker-ce.ps1
+            powershell .\install-docker-ce.ps1
+          elif [[ "${{ matrix.os }}" == "macos-15" ]]; then
+            brew install go docker
+          else
+            sudo apt-get update
+            sudo apt-get install -y docker.io clang
+      - name: 🐇 Install Dependencies
+        run: |
+          go mod tidy
+          go mod vendor
+      - name: 🐇 Build Docker and Clang ISOs
+        if: ${{ matrix.os == 'ubuntu-latest' }}
+        run: |
+          mkdir -p iso_mount
+          dd if=/dev/zero of=docker_iso.img bs=1M count=1024
+          mkfs.ext4 docker_iso.img
+          dd if=/dev/zero of=clang_iso.img bs=1M count=1024
+          mkfs.ext4 clang_iso.img
+      - name: 🐇 Build the Rabbit Protocol
+        run: |
+          if [[ "${{ matrix.os }}" == "windows-2025" ]]; then
+            powershell clang ./cmd/main.go -o rabbit_protocol_clang.exe
+          else
+            clang ./cmd/main.go -o rabbit_protocol_clang
+      - name: 🐇 Save Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: rabbit_protocol_${{ matrix.os }}
+          path: |
+            rabbit_protocol_clang
+            docker_iso.img
+            clang_iso.img
+  rabbit-run:
+    name: 🚀 Run the Rabbit Protocol
+    runs-on: ${{ matrix.os }}
+    needs: rabbit-build
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+      - name: 🐇 Run Docker and Clang Tests
+        run: |
+          if [[ "${{ matrix.os }}" == "windows-2025" ]]; then
+            powershell docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app docker_iso_tool rabbit_protocol_clang.exe
+          else
+            docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app docker_iso_tool ./rabbit_protocol_clang
+  bugzap-pesterbot:
+    name: 🐇 BugZap PesterBot
+    runs-on: ubuntu-latest
+    needs: rabbit-run
+    steps:
+      - name: 🐇 Scan for Rogue Code
+        run: |
+          echo "Scanning for pesterbot code..."
+          grep -r "pesterbot" ./cmd || echo "No pesterbot found!"
+      - name: 🐇 Fix and Remove Bugs
+        run: |
+          sed -i '/pesterbot/d' ./cmd/main.go
+  package-toolbelt:
+    name: 📦 Package Toolbelt/Kit
+    runs-on: ubuntu-latest
+    needs: bugzap-pesterbot
+    steps:
+      - name: 🐇 Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: rabbit_protocol_${{ matrix.os }}
+          path: ./builds
+      - name: 🐇 Create Container Image
+        run: |
+          mkdir -p container
+          mv ./builds/* ./container/
+          docker build -t rabbit_toolbelt:latest ./container
+      - name: 🐇 Push Container to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - run: |
+          docker tag rabbit_toolbelt:latest ghcr.io/${{ github.repository }}/rabbit_toolbelt:latest
+          docker push ghcr.io/${{ github.repository }}/rabbit_toolbelt:latest
+name: RabbitProtocol-CI/CD
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  rabbit-build:
+    name: 🛠️ Build the Rabbit Protocol
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-24.04, windows-2025, macos-15, ios-latest, android-latest]
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+      - name: 🐇 Setup Environment
+        run: |
+          if [[ "${{ matrix.os }}" == "windows-2025" ]]; then
+            choco install -y golang docker-desktop
+            powershell Invoke-WebRequest -UseBasicParsing "https://raw.githubusercontent.com/microsoft/Windows-Containers/main/helpful_tools/Install-DockerCE/install-docker-ce.ps1" -OutFile install-docker-ce.ps1
+            powershell .\install-docker-ce.ps1
+          elif [[ "${{ matrix.os }}" == "macos-15" ]]; then
+            brew install go docker
+          elif [[ "${{ matrix.os }}" == "ios-latest" ]]; then
+            gem install cocoapods
+            brew install go
+          elif [[ "${{ matrix.os }}" == "android-latest" ]]; then
+            sudo apt-get install -y android-sdk-go
+          else
+            sudo apt-get update
+            sudo apt-get install -y docker.io clang
+      - name: 🐇 Install Dependencies
+        run: |
+          go mod tidy
+          go mod vendor
+      - name: 🐇 Build for Specific Platform
+        run: |
+          if [[ "${{ matrix.os }}" == "ios-latest" ]]; then
+            xcodebuild -scheme RabbitProtocol -sdk iphoneos
+          elif [[ "${{ matrix.os }}" == "android-latest" ]]; then
+            ./gradlew build
+          else
+            clang ./cmd/main.go -o rabbit_protocol_clang
+      - name: 🐇 Save Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: rabbit_protocol_${{ matrix.os }}
+          path: |
+            rabbit_protocol_clang
+            ios_build
+            android_build
+  rabbit-run:
+    name: 🚀 Run the Rabbit Protocol
+    runs-on: ${{ matrix.os }}
+    needs: rabbit-build
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+      - name: 🐇 Run Tests on Specific Platforms
+        run: |
+          if [[ "${{ matrix.os }}" == "ios-latest" ]]; then
+            xcodebuild test -scheme RabbitProtocol -sdk iphoneos
+          elif [[ "${{ matrix.os }}" == "android-latest" ]]; then
+            ./gradlew test
+          else
+            docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app docker_iso_tool ./rabbit_protocol_clang
+  bugzap-pesterbot:
+    name: 🐇 BugZap PesterBot
+    runs-on: ubuntu-latest
+    needs: rabbit-run
+    steps:
+      - name: 🐇 Scan for Rogue Code
+        run: |
+          echo "Scanning for pesterbot code..."
+          grep -r "pesterbot" ./cmd || echo "No pesterbot found!"
+      - name: 🐇 Fix and Remove Bugs
+        run: |
+          sed -i '/pesterbot/d' ./cmd/main.go
+  azure-pmll:
+    name: 🚀 Azure PMLL Integration
+    runs-on: ubuntu-latest
+    needs: bugzap-pesterbot
+    steps:
+      - name: 🐇 Set Up Azure PMLL
+        run: |
+          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+          az pmll create --name RabbitProtocolDB --tier Premium --size 15GB --region eastus
+      - name: 🐇 Run Azure PMLL Tests
+        run: |
+          az pmll test --name RabbitProtocolDB
+  package-toolbelt:
+    name: 📦 Package Toolbelt/Kit
+    runs-on: ubuntu-latest
+    needs: azure-pmll
+    steps:
+      - name: 🐇 Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: rabbit_protocol_${{ matrix.os }}
+          path: ./builds
+      - name: 🐇 Create Container Image
+        run: |
+          mkdir -p container
+          mv ./builds/* ./container/
+          docker build -t rabbit_toolbelt:latest ./container
+      - name: 🐇 Push Container to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - run: |
+          docker tag rabbit_toolbelt:latest ghcr.io/${{ github.repository }}/rabbit_toolbelt:latest
+          docker push ghcr.io/${{ github.repository }}/rabbit_toolbelt:latest
+0 commit comments
+Comments
+0
+ (0)
