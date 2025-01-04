@@ -1,4 +1,3 @@
-
 # GitHub Actions Runner Images
 
 **Table of Contents**
@@ -16,6 +15,10 @@
 
 This repository contains the source code used to create the VM images for [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) used for Actions, as well as for [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines.
 To build a VM machine from this repo's source, see the [instructions](docs/create-image-and-azure-resources.md).
+
+This repository includes a script that assists in generating images in Azure. The [GenerateResourcesAndImage](helpers/GenerateResourcesAndImage.ps1) script can be used to automate the creation of VM images.
+
+After successful image generation, a Virtual Machine can be created from the generated image using the [CreateAzureVMFromPackerTemplate](helpers/CreateAzureVMFromPackerTemplate.ps1) script.
 
 ## Available Images
 
