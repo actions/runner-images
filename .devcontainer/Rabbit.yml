@@ -1,0 +1,121 @@
+name: RabbitProtocol-CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  rabbit-build:
+    name: 🛠️ Build the Rabbit Protocol
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-24.04, windows-2025, macos-2025]
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Setup Go Environment
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.20'
+
+      - name: 🐇 Install Dependencies
+        run: |
+          go mod tidy
+          go mod vendor
+
+      - name: 🐇 Install Docker and Clang
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y docker.io clang
+
+      - name: 🐇 Build Docker and Clang ISOs
+        run: |
+          mkdir -p iso_mount
+          echo "Building Docker ISO..."
+          dd if=/dev/zero of=docker_iso.img bs=1M count=1024
+          mkfs.ext4 docker_iso.img
+          echo "Building Clang ISO..."
+          dd if=/dev/zero of=clang_iso.img bs=1M count=1024
+          mkfs.ext4 clang_iso.img
+
+      - name: 🐇 Mount Docker ISO
+        run: |
+          sudo mount -o loop docker_iso.img iso_mount
+          docker build -t docker_iso_tool ./iso_mount
+
+      - name: 🐇 Build with Clang
+        run: |
+          sudo mount -o loop clang_iso.img iso_mount
+          clang --version
+          clang ./cmd/main.go -o rabbit_protocol_clang
+
+      - name: 🐇 Save Build Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: rabbit_protocol_${{ matrix.os }}
+          path: |
+            rabbit_protocol
+            rabbit_protocol_clang
+            docker_iso.img
+            clang_iso.img
+
+  rabbit-run:
+    name: 🚀 Run the Rabbit Protocol
+    runs-on: ${{ matrix.os }}
+    needs: rabbit-build
+    steps:
+      - name: 🐇 Checkout Code
+        uses: actions/checkout@v3
+
+      - name: 🐇 Run Docker and Clang Tests
+        run: |
+          docker run --rm -v $(pwd):/usr/src/app -w /usr/src/app docker_iso_tool ./rabbit_protocol
+          ./rabbit_protocol_clang
+
+  bugzap-pesterbot:
+    name: 🐇 BugZap PesterBot
+    runs-on: ubuntu-latest
+    needs: rabbit-run
+    steps:
+      - name: 🐇 Scan for Rogue Code
+        run: |
+          echo "Scanning for pesterbot code..."
+          grep -r "pesterbot" ./cmd || echo "No pesterbot found!"
+
+      - name: 🐇 Fix and Remove Bugs
+        run: |
+          # Example remediation
+          sed -i '/pesterbot/d' ./cmd/main.go
+
+  package-toolbelt:
+    name: 📦 Package Toolbelt/Kit
+    runs-on: ubuntu-latest
+    needs: bugzap-pesterbot
+    steps:
+      - name: 🐇 Download Build Artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: rabbit_protocol_${{ matrix.os }}
+          path: ./builds
+
+      - name: 🐇 Create Container Image
+        run: |
+          mkdir -p container
+          mv ./builds/* ./container/
+          docker build -t rabbit_toolbelt:latest ./container
+
+      - name: 🐇 Push Container to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - run: |
+          docker tag rabbit_toolbelt:latest ghcr.io/${{ github.repository }}/rabbit_toolbelt:latest
+          docker push ghcr.io/${{ github.repository }}/rabbit_toolbelt:latest
