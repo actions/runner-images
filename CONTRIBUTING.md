@@ -16,6 +16,8 @@ Please note that this project is released with a [Contributor Code of Conduct][c
 1. Create a new branch: `git checkout -b my-branch-name`.
 1. Make your changes, ensuring that they include steps to install, validate post-install, and update the software report (please see [How to add a new tool](CONTRIBUTING.md#how-to-add-a-new-tool) for details).
 1. Test your changes by [creating an image and deploying a VM](docs/create-image-and-azure-resources.md).
+1. Use the [GenerateResourcesAndImage](helpers/GenerateResourcesAndImage.ps1) script to automate the creation of VM images.
+1. After successful image generation, create a Virtual Machine from the generated image using the [CreateAzureVMFromPackerTemplate](helpers/CreateAzureVMFromPackerTemplate.ps1) script.
 1. Push to your fork and [submit a pull request][pr].
 
 Here are a few things you can do that will increase the likelihood of your pull request being accepted:
