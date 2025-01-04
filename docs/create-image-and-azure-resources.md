@@ -29,6 +29,7 @@ After successful completion of all installation steps, Packer creates a managed 
   - [Running scripts](#running-scripts)
   - [Script Details: Ubuntu](#script-details-ubuntu)
   - [Script Details: Windows](#script-details-windows)
+- [Troubleshooting](#troubleshooting)
 
 ## Build Agent Preparation
 
@@ -309,3 +310,17 @@ The scripts are copied to the image during the generation process to the followi
 - **InternetExplorerConfiguration.ps1** - turns off the Internet Explorer Enhanced Security feature;
 - **Msys2FirstLaunch.ps1** - initializes the bash user profile in MSYS2;
 - **VSConfiguration.ps1** - performs initial Visual Studio configuration.
+
+## Troubleshooting
+
+To troubleshoot issues during the image generation process, follow these steps:
+
+* **Check the logs**: Review the logs generated during the image creation process. Logs can provide detailed information about what went wrong. For example, the `GenerateResourcesAndImage` function in `helpers/GenerateResourcesAndImage.ps1` and the `CreateAzureVMFromPackerTemplate` script in `helpers/CreateAzureVMFromPackerTemplate.ps1` can help identify issues.
+* **Validate Packer templates**: Ensure that the Packer templates are correctly configured. Use the `packer validate` command to check for syntax errors and other issues in the template files, such as `images/ubuntu/templates/ubuntu-20.04.pkr.hcl` and `images/windows/templates/windows-2019.pkr.hcl`.
+* **Check Azure resources**: Verify that the necessary Azure resources, such as resource groups, virtual networks, and network interfaces, are correctly created and configured. The `GenerateResourcesAndImage` function in `helpers/GenerateResourcesAndImage.ps1` handles the creation of these resources.
+* **Review environment variables**: Ensure that all required environment variables are set correctly. For example, variables like `SubscriptionId`, `ResourceGroupName`, `AzureLocation`, and `ImageType` are essential for the image generation process.
+* **Check network security settings**: Verify that the network security settings allow the necessary connections. For example, ensure that WinRM (TCP port 5986) and SSH (TCP port 22) connections are allowed both outgoing for the build agent and incoming for the temporary VM. Refer to the "Network Security" section in `docs/create-image-and-azure-resources.md`.
+* **Verify service principal credentials**: Ensure that the service principal credentials used for authentication are correct and have the necessary permissions. The `GenerateResourcesAndImage` function in `helpers/GenerateResourcesAndImage.ps1` can create a service principal if needed.
+* **Check for resource group conflicts**: If the resource group already exists, ensure that it is either reused or deleted as needed. The `GenerateResourcesAndImage` function in `helpers/GenerateResourcesAndImage.ps1` handles resource group creation and deletion.
+* **Review post-generation scripts**: Ensure that the post-generation scripts, such as those in the `images/ubuntu/assets/post-gen` and `images/windows/assets/post-gen` directories, are correctly executed. These scripts perform additional configurations on the deployed VM.
+* **Run tests**: Execute the provided tests to verify the image's functionality. For example, the `RunAll-Tests.ps1` script in the `images/ubuntu/scripts/tests` and `images/windows/scripts/tests` directories can help identify issues.
