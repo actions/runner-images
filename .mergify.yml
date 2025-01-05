@@ -21,5 +21,37 @@ commands_restrictions:
     conditions:
       - ""
       - sender-permission >= reader
-queue_rules:
-  - name: "100"
+pull_request_rules:
+  - name: Make sure PR are update before merging with rebase
+    description: This automatically rebases PRs when they are out-of-date with the
+      base branch to avoid semantic conflicts (next step us switch to merge
+      queue).
+    conditions:
+      - "#commits-behind >= 10"
+    actions:
+      rebase:
+  - name: Add a queue label when PR is queued
+    description: Toggle the queue label when a pull request is (un)queued.
+    conditions:
+      - queue-position > 0
+    actions:
+      label:
+        toggle:
+          - merge-queued
+  - name: Request review from team
+    description: Request review from a specific team when checks are green.
+    conditions:
+      - -closed
+      - "#approved-reviews-by = 0"
+      - "#changes-requested-reviews-by = 0"
+      - review-requested != @TEAM_NAME_HERE
+    actions:
+      request_reviews:
+        teams:
+          - TEAM_NAME_HERE
+  - name: Automatic merge
+    description: Merge when PR passes all branch protection and has label automerge
+    conditions:
+      - label = automerge
+    actions:
+      merge:
