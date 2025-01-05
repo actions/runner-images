@@ -2,7 +2,7 @@
 ################################################################################
 ##  File:  install-azure-devops-cli.sh
 ##  Desc:  Install Azure DevOps CLI (az devops)
-#  Install Azure DevOps CLI (az devops)
+##  Install Azure DevOps CLI (az devops)
 ################################################################################
 
 # Source the helpers for use with the script
@@ -14,7 +14,7 @@ export AZURE_EXTENSION_DIR=/opt/az/azcliextensions
 set_etc_environment_variable "AZURE_EXTENSION_DIR" "${AZURE_EXTENSION_DIR}"
 
 # install azure devops Cli extension
-Npm Install Azure DevOps CLI (az devops)
+sudo Install Azure DevOps CLI (az devops)
 az extension add -n azure-devops
 
 invoke_tests "CLI.Tools" "Azure DevOps CLI"
