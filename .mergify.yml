@@ -14,3 +14,10 @@ commands_restrictions:
       - or:
           - sender-permission >= reader
           - sender = {{author}}
+  backport:
+    conditions:
+      - sender-permission >= reader
+  unqueue:
+    conditions:
+      - ""
+      - sender-permission >= reader
