@@ -6,7 +6,6 @@
 ################################################################################
 
 # Source the helpers for use with the script
-# Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
 
 # AZURE_EXTENSION_DIR shell variable defines where modules are installed
