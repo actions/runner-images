@@ -27,3 +27,95 @@ commands_restrictions:
   requeue:
     conditions:
       - sender-permission >= reader
+
+import yaml
+import os
+import subprocess
+
+# Path to your Mergify config file
+MERGIFY_CONFIG_PATH = ".mergify.yml"
+BACKUP_CONFIG_PATH = ".mergify.yml.bak"
+
+def backup_mergify_config():
+    """Backup the Mergify config."""
+    if not os.path.exists(MERGIFY_CONFIG_PATH):
+        print(f"Mergify config not found at {MERGIFY_CONFIG_PATH}")
+        return False
+
+    # Create a backup
+    with open(MERGIFY_CONFIG_PATH, "r") as original, open(BACKUP_CONFIG_PATH, "w") as backup:
+        backup.write(original.read())
+    print(f"Backup created: {BACKUP_CONFIG_PATH}")
+    return True
+
+def comment_out_rules():
+    """Comment out all rules in the Mergify config."""
+    with open(MERGIFY_CONFIG_PATH, "r") as file:
+        config = yaml.safe_load(file)
+
+    if "pull_request_rules" in config:
+        for rule in config["pull_request_rules"]:
+            rule["disabled"] = True  # Disable all rules
+        print("All pull request rules disabled.")
+
+    # Save updated config
+    with open(MERGIFY_CONFIG_PATH, "w") as file:
+        yaml.dump(config, file, default_flow_style=False)
+    print(f"Updated config written to {MERGIFY_CONFIG_PATH}")
+
+def push_changes():
+    """Push changes to the Git repository."""
+    try:
+        subprocess.run(["git", "add", MERGIFY_CONFIG_PATH], check=True)
+        subprocess.run(["git", "commit", "-m", "Temporarily disable Mergify rules"], check=True)
+        subprocess.run(["git", "push"], check=True)
+        print("Changes pushed successfully.")
+    except subprocess.CalledProcessError as e:
+        print(f"Error during git operations: {e}")
+        restore_backup()
+
+def restore_backup():
+    """Restore the original Mergify config."""
+    if os.path.exists(BACKUP_CONFIG_PATH):
+        with open(BACKUP_CONFIG_PATH, "r") as backup, open(MERGIFY_CONFIG_PATH, "w") as original:
+            original.write(backup.read())
+        print("Backup restored.")
+    else:
+        print("Backup not found. Cannot restore.")
+
+def main():
+    """Main function to disable Mergify rules."""
+    if not backup_mergify_config():
+        return
+
+    try:
+        comment_out_rules()
+        push_changes()
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        restore_backup()
+
+if __name__ == "__main__":
+    main()
+commands_restrictions:
+  update:
+    conditions:
+      - or:
+          - sender-permission: reader  # Adjusted permission level
+          - sender: "{{author}}"     # Allowed if sender is the author
+  rebase:
+    conditions:
+      - or:
+          - sender-permission: reader # Adjusted permission level
+          - sender: "{{author}}"     # Allowed if sender is the author
+  squash:
+    conditions:
+      - or:
+          - sender-permission: reader  # Adjusted permission level
+          - sender: "{{author}}"     # Allowed if sender is the author
+  backport:
+    conditions:
+      - sender-permission: reader # Adjusted permission level
+  unqueue:
+    conditions:
+      - sender-permission: reader  # Adjusted permission leve
