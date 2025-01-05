@@ -4,3 +4,13 @@ commands_restrictions:
       - or:
           - sender-permission >= reader
           - sender = {{author}}
+  rebase:
+    conditions:
+      - or:
+          - sender-permission >= reader
+          - sender = {{author}}
+  squash:
+    conditions:
+      - or:
+          - sender-permission >= reader
+          - sender = {{author}}
