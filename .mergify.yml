@@ -1,0 +1,6 @@
+commands_restrictions:
+  update:
+    conditions:
+      - or:
+          - sender-permission >= reader
+          - sender = {{author}}
