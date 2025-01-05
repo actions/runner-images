@@ -1,7 +1,7 @@
 #!/bin/bash -e
 ################################################################################
 ##  File:  install-azure-devops-cli.sh
-##  Desc:
+##  Desc:#  File:  install-azure-devops-cli.sh
   Install Azure DevOps CLI (az devops)
 ################################################################################
 
