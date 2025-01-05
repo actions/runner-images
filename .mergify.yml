@@ -24,3 +24,6 @@ commands_restrictions:
   queue:
     conditions:
       - sender-permission >= reader
+  requeue:
+    conditions:
+      - sender-permission >= reader
