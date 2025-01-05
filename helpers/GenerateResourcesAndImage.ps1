@@ -371,7 +371,7 @@ Function GenerateResourcesAndImage {
             throw "Failed to build image."
         }
     } catch {
-        Write-Error $_
+        Write-Error "An error occurred: $_"
     } finally {
         Write-Verbose "`nCleaning up..."
 

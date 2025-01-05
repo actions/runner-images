@@ -397,3 +397,25 @@ launch.json
 
 # Ignore dynamic template
 images/*/*-temp.json
+
+# Common OS-specific files
+.DS_Store
+Thumbs.db
+
+# Common IDE-specific files
+.vscode/
+.idea/
+*.suo
+
+# Build artifacts
+bin/
+obj/
+dist/
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Sensitive files
+.env
+*.key
