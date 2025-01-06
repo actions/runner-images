@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 10,2025](https://github.com/actions/runner-images/issues/11093) |
 | [[Ubuntu] Breaking Change: runner user will have UID 1001 instead of 1000 for larger runners](https://github.com/actions/runner-images/issues/10936) |
 | [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
 - Kernel Version: 6.8.0-1017-azure
-- Image Version: 20241201.1.0
+- Image Version: 20241215.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -17,27 +18,27 @@
 - Clang-format: 16.0.6, 17.0.6, 18.1.3
 - Clang-tidy: 16.0.6, 17.0.6, 18.1.3
 - Dash 0.5.12-6ubuntu5
-- GNU C++: 12.3.0, 13.2.0, 14.2.0
-- GNU Fortran: 12.3.0, 13.2.0, 14.2.0
-- Julia 1.11.1
+- GNU C++: 12.3.0, 13.3.0, 14.2.0
+- GNU Fortran: 12.3.0, 13.3.0, 14.2.0
+- Julia 1.11.2
 - Kotlin 2.1.0-release-394
 - Node.js 20.18.1
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 6.0.2
+- Swift 6.0.3
 
 ### Package Management
 - cpan 1.64
 - Helm 3.16.3
-- Homebrew 4.4.8
+- Homebrew 4.4.11
 - Miniconda 24.9.2
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit cd124b84f)
+- Vcpkg (build from commit b545373a9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,27 +62,27 @@ to accomplish this.
 - Maven 3.8.8
 
 ### Tools
-- Ansible 2.18.0
+- Ansible 2.18.1
 - AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 7.4.1
-- Bazelisk 1.24.1
-- Bicep 0.31.92
+- Bazel 8.0.0
+- Bazelisk 1.25.0
+- Bicep 0.32.4
 - Buildah 1.33.7
-- CMake 3.31.1
-- CodeQL Action Bundle 2.19.3
+- CMake 3.31.2
+- CodeQL Action Bundle 2.20.0
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.19.1
+- Docker-Buildx 0.19.2
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.225.0
+- Fastlane 2.226.0
 - Git 2.47.1
 - Git LFS 3.6.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.25.0
-- Kubectl 1.31.3
+- Kubectl 1.32.0
 - Kustomize 5.5.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -93,21 +94,21 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.13.2
 - Podman 4.9.3
-- Pulumi 3.142.0
+- Pulumi 3.143.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
-- yq 4.44.5
+- yq 4.44.6
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.22.7
+- AWS CLI 2.22.17
 - AWS CLI Session Manager Plugin 1.2.694.0
-- AWS SAM CLI 1.131.0
+- AWS SAM CLI 1.132.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.63.0
-- Google Cloud CLI 502.0.0
+- GitHub CLI 2.63.2
+- Google Cloud CLI 503.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -119,8 +120,8 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.3
-- PHPUnit 8.5.40
+- Composer 2.8.4
+- PHPUnit 8.5.41
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -141,11 +142,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.85
-- ChromeDriver 131.0.6778.85
+- Google Chrome 131.0.6778.139
+- ChromeDriver 131.0.6778.108
 - Chromium 131.0.6778.0
-- Microsoft Edge 131.0.2903.70
-- Microsoft Edge WebDriver 131.0.2903.52
+- Microsoft Edge 131.0.2903.99
+- Microsoft Edge WebDriver 131.0.2903.87
 - Selenium server 4.27.0
 - Mozilla Firefox 133.0
 - Geckodriver 0.35.0
@@ -159,8 +160,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.110
-- nbgv 3.6.146+392592327a
+- .NET Core SDK: 8.0.111
+- nbgv 3.7.112+63bbe780b0
 
 ### Databases
 - sqlite3 3.45.1
@@ -186,19 +187,19 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.21.13
-- 1.22.9
-- 1.23.3
+- 1.22.10
+- 1.23.4
 
 #### Node.js
 - 18.20.5
 - 20.18.1
-- 22.11.0
+- 22.12.0
 
 #### Python
 - 3.9.20
 - 3.10.15
-- 3.11.10
-- 3.12.7
+- 3.11.11
+- 3.12.8
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -278,7 +279,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | m4                     | 1.4.19-4build1              |
 | make                   | 4.3-4.1build2               |
 | mediainfo              | 24.01.1-1build2             |
-| mercurial              | 6.7.2-1ubuntu2              |
+| mercurial              | 6.7.2-1ubuntu2.2            |
 | net-tools              | 2.10-0.1ubuntu4             |
 | netcat                 | 1.226-1ubuntu2              |
 | openssh-client         | 1:9.6p1-3ubuntu13.5         |
@@ -299,6 +300,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sshpass                | 1.09-1                      |
 | sudo                   | 1.9.15p5-3ubuntu5           |
 | swig                   | 4.2.0-2ubuntu1              |
+| systemd-coredump       | 255.4-1ubuntu8.4            |
 | tar                    | 1.35+dfsg-3build1           |
 | telnet                 | 0.17+2.5-3ubuntu4           |
 | texinfo                | 7.1-3build2                 |
@@ -311,6 +313,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | wget                   | 1.21.4-1ubuntu4.1           |
 | xvfb                   | 2:21.1.12-1ubuntu1.1        |
 | xz-utils               | 5.6.1+really5.4.5-1build0.1 |
-| zip                    | 3.0-13build1                |
+| zip                    | 3.0-13ubuntu0.1             |
 | zsync                  | 0.6.2-5build1               |
 
