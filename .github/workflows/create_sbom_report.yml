@@ -44,7 +44,7 @@ jobs:
   building-sbom:
     needs: sbom-check
     if: ${{ needs.sbom-check.outputs.check_status == 'okay' }}
-    runs-on: ${{ github.event.client_payload.agentSpec }}
+    runs-on: ubuntu-latest
     steps:
       - name: Available image version check for ${{ github.event.client_payload.ReleaseBranchName }}
         run: |
