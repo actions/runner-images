@@ -1,0 +1,183 @@
+FROM ubuntu:22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV HELPER_SCRIPTS=/imagegeneration/helpers
+ENV INSTALLER_SCRIPT_FOLDER=/imagegeneration/installers
+ENV IMAGE_VERSION=dev
+ENV IMAGE_OS=ubuntu22
+ENV IMAGE_FOLDER=/imagegeneration
+
+# Create necessary directories
+RUN mkdir -p ${IMAGE_FOLDER} \
+    && chmod 777 ${IMAGE_FOLDER}
+
+# Copy helper and installation scripts
+COPY images/ubuntu/scripts/helpers ${HELPER_SCRIPTS}/
+COPY images/ubuntu/scripts/build ${INSTALLER_SCRIPT_FOLDER}/
+COPY images/ubuntu/assets/post-gen ${IMAGE_FOLDER}/post-gen/
+COPY images/ubuntu/scripts/tests ${IMAGE_FOLDER}/tests/
+# todo packer says that multiple sources put files in docs-gen dir
+COPY images/ubuntu/scripts/docs-gen ${IMAGE_FOLDER}/docs-gen/
+COPY helpers/software-report-base ${IMAGE_FOLDER}/docs-gen/
+COPY images/ubuntu/toolsets/toolset-2204.json ${INSTALLER_SCRIPT_FOLDER}/toolset.json
+
+# ---------------------------------- START: CUSTOM ----------------------------------
+## add all the systemd etc bits to make things work well in the dzboot world 
+## TODO: add dzboot at the end based on existing runner image 
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -y \
+    && apt-get install -y software-properties-common \
+    && add-apt-repository -y ppa:git-core/ppa \
+    && apt-get update -y \
+    && apt-get install -y --no-install-recommends \
+    systemd \
+    systemd-sysv \
+    libsystemd0 \
+    ca-certificates \
+    dbus \
+    iptables \
+    iproute2 \
+    kmod \
+    locales \
+    sudo \
+    curl \
+    git \
+    vim \
+    nano \
+    ssh \
+    build-essential \
+    htop \
+    dnsutils \
+    net-tools \
+    less \
+    wget \
+    zip \
+    unzip \
+    udev \
+    jq
+
+## needed for configure-apt-sources.sh
+RUN mkdir -p /etc/cloud/templates/
+
+## this is generally set in configure-environment.sh, but depending on
+### how the scripts are executed, the env var might not be set as we expect,
+### or might not persist between layers (this is being a bit defensive to get 
+### it to work reliably)
+ARG AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
+# ---------------------------------- END: CUSTOM ---------------------------------- 
+
+# Configure initial setup
+RUN bash ${INSTALLER_SCRIPT_FOLDER}/configure-apt-mock.sh \
+    && bash ${INSTALLER_SCRIPT_FOLDER}/install-ms-repos.sh \
+    && bash ${INSTALLER_SCRIPT_FOLDER}/configure-apt-sources.sh \
+    && bash ${INSTALLER_SCRIPT_FOLDER}/configure-apt.sh \
+    && bash ${INSTALLER_SCRIPT_FOLDER}/configure-limits.sh
+
+# Move directories
+RUN mv ${IMAGE_FOLDER}/docs-gen ${IMAGE_FOLDER}/SoftwareReport \
+    && mv ${IMAGE_FOLDER}/post-gen ${IMAGE_FOLDER}/post-generation
+
+# Configure environment
+RUN bash ${INSTALLER_SCRIPT_FOLDER}/configure-environment.sh
+
+# Install core packages
+RUN bash ${INSTALLER_SCRIPT_FOLDER}/install-apt-vital.sh \
+    && bash ${INSTALLER_SCRIPT_FOLDER}/install-powershell.sh
+
+# Install PowerShell modules
+RUN pwsh -f ${INSTALLER_SCRIPT_FOLDER}/Install-PowerShellModules.ps1 \
+    && pwsh -f ${INSTALLER_SCRIPT_FOLDER}/Install-PowerShellAzModules.ps1
+
+# Install all tools
+RUN bash ${INSTALLER_SCRIPT_FOLDER}/install-actions-cache.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-runner-package.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-apt-common.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-azcopy.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-azure-cli.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-azure-devops-cli.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-bicep.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-aliyun-cli.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-apache.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-aws-tools.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-clang.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-swift.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-cmake.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-codeql-bundle.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-container-tools.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-dotnetcore-sdk.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-firefox.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-microsoft-edge.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-gcc-compilers.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-gfortran.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-git.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-git-lfs.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-github-cli.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-google-chrome.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-google-cloud-cli.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-haskell.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-heroku.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-java-tools.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-kubernetes-tools.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-oc-cli.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-leiningen.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-miniconda.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-mono.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-kotlin.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-mysql.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-mssql-tools.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-sqlpackage.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-nginx.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-nvm.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-nodejs.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-bazel.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-oras-cli.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-php.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-postgresql.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-pulumi.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-ruby.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-rlang.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-rust.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-julia.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-sbt.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-selenium.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-terraform.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-packer.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-vcpkg.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/configure-dpkg.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-yq.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-android-sdk.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-pypy.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-python.sh && \
+    bash ${INSTALLER_SCRIPT_FOLDER}/install-zstd.sh
+
+## docker daemon won't/can't be running, hence we can't pull images
+ARG DOCKERHUB_PULL_IMAGES=no
+RUN bash ${INSTALLER_SCRIPT_FOLDER}/install-docker.sh
+
+# Configure toolset
+RUN pwsh -f ${INSTALLER_SCRIPT_FOLDER}/Install-Toolset.ps1 \
+    && pwsh -f ${INSTALLER_SCRIPT_FOLDER}/Configure-Toolset.ps1
+
+# Install additional packages
+ENV PATH="$PATH:/opt/pipx_bin:/root/.local/bin"
+RUN bash ${INSTALLER_SCRIPT_FOLDER}/install-pipx-packages.sh \
+    && bash ${INSTALLER_SCRIPT_FOLDER}/install-homebrew.sh \
+    && bash ${INSTALLER_SCRIPT_FOLDER}/configure-snap.sh
+
+# Cleanup and system configuration
+RUN bash ${INSTALLER_SCRIPT_FOLDER}/cleanup.sh \
+    && bash ${INSTALLER_SCRIPT_FOLDER}/configure-system.sh
+
+# Generate reports
+# RUN pwsh -File ${IMAGE_FOLDER}/SoftwareReport/Generate-SoftwareReport.ps1 -OutputDirectory ${IMAGE_FOLDER} \
+#     && pwsh -File ${IMAGE_FOLDER}/tests/RunAll-Tests.ps1 -OutputDirectory ${IMAGE_FOLDER}
+
+# Configure machine instance
+COPY images/ubuntu/assets/ubuntu2204.conf /tmp/
+RUN mkdir -p /etc/vsts \
+    && cp /tmp/ubuntu2204.conf /etc/vsts/machine_instance.conf
+
+# Final cleanup
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+

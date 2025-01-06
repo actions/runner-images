@@ -48,21 +48,23 @@ done
 gid=$(cut -d ":" -f 3 /etc/group | grep "^1..$" | sort -n | tail -n 1 | awk '{ print $1+1 }')
 groupmod -g "$gid" docker
 
-# Create systemd-tmpfiles configuration for Docker
-cat <<EOF | sudo tee /etc/tmpfiles.d/docker.conf
-L /run/docker.sock - - - - root docker 0770
-EOF
+# DEVZERO START - disabling as a hack cuz docker image and can't run things;
+# # Create systemd-tmpfiles configuration for Docker
+# cat <<EOF | sudo tee /etc/tmpfiles.d/docker.conf
+# L /run/docker.sock - - - - root docker 0770
+# EOF
 
-# Reload systemd-tmpfiles to apply the new configuration
-systemd-tmpfiles --create /etc/tmpfiles.d/docker.conf
+# # Reload systemd-tmpfiles to apply the new configuration
+# systemd-tmpfiles --create /etc/tmpfiles.d/docker.conf
 
-# Enable docker.service
-systemctl is-active --quiet docker.service || systemctl start docker.service
-systemctl is-enabled --quiet docker.service || systemctl enable docker.service
+# # Enable docker.service
+# systemctl is-active --quiet docker.service || systemctl start docker.service
+# systemctl is-enabled --quiet docker.service || systemctl enable docker.service
 
-# Docker daemon takes time to come up after installing
-sleep 10
-docker info
+# # Docker daemon takes time to come up after installing
+# sleep 10
+# docker info
+# DEVZERO STOP
 
 if [[ "${DOCKERHUB_PULL_IMAGES:-yes}" == "yes" ]]; then
     # If credentials are provided, attempt to log into Docker Hub

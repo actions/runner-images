@@ -21,6 +21,9 @@ prepend_etc_environment_path "/snap/bin"
 # a unix socket may die, restart snapd.service (and therefore snapd.socket)
 # to make sure the socket is alive.
 
-systemctl restart snapd.socket
-systemctl restart snapd
-snap set system refresh.hold="$(date --date='today+60 days' +%Y-%m-%dT%H:%M:%S%:z)"
+# DEVZERO START - disabling as a hack cuz docker image and can't run things; also snap isn't present in this base image
+apt install -y snapd
+# DEVZERO STOP
+# systemctl restart snapd.socket
+# systemctl restart snapd
+# snap set system refresh.hold="$(date --date='today+60 days' +%Y-%m-%dT%H:%M:%S%:z)"
