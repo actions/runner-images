@@ -1,0 +1,37 @@
+name: '[Docker] Build and Publish Runner Images'
+
+on:
+  pull_request:
+    paths:
+      - "images/ubuntu/**"
+  workflow_dispatch:
+
+jobs:
+  build-images:
+    name: Build Ubuntu ${{ matrix.version }}
+    strategy:
+      matrix:
+        version: [22.04, 24.04]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: images/ubuntu/dockerfiles/Dockerfile.${{ matrix.version }}
+          push: false
+          tags: |
+            ghcr.io/${{ github.repository }}/actions:${{ matrix.version }}
