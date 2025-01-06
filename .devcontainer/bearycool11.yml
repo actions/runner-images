@@ -1,0 +1,46 @@
+commands_restrictions:
+  update:
+    conditions:
+      - or:
+          - sender-permission: write
+          - sender = "bearycool11"
+  rebase:
+    conditions:
+      - or:
+          - sender-permission: write
+          - sender = "bearycool11"
+  squash:
+    conditions:
+      - or:
+          - sender-permission: write
+          - sender = "bearycool11"
+  backport:
+    conditions:
+      - sender-permission: write
+      - sender = "bearycool11"
+  unqueue:
+    conditions:
+      - or:
+          - sender-permission: write
+          - sender = "bearycool11"
+
+pull_request_rules:
+  - name: Ensure PRs are updated before merging
+    conditions:
+      - "#commits-behind >= 10"
+    actions:
+      rebase:
+  - name: Assign Sysadmin for specific operations
+    conditions:
+      - label = "high-priority"
+    actions:
+      request_reviews:
+        users:
+          - "bearycool11"
+  - name: Automatic merge for Sysadmin-approved PRs
+    conditions:
+      - label = automerge
+      - approved-reviews-by = "bearycool11"
+    actions:
+      merge:
+
