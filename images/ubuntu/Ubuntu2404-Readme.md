@@ -316,3 +316,33 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | zip                    | 3.0-13ubuntu0.1             |
 | zsync                  | 0.6.2-5build1               |
 
+### Missing Tools and Packages
+- NuGet
+- sqlpackage
+- Mono
+- Terraform
+- Heroku
+- Leiningen
+- R
+- SVN
+- Alibaba Cloud CLI
+- Netlify CLI
+- OpenShift CLI
+- ORAS CLI
+- Vercel CLI
+- Bindgen / Cbindgen
+- Cargo audit/clippy/outdated
+- MS SQL Server Client Tools
+- MarkdownPS Module
+- Cached Docker images
+
+### Mitigation Steps
+- If you see any issues with your workflows during the transition period:
+  - Switch back to Ubuntu 22 by changing workflow YAML to use `runs-on: ubuntu-22.04`. We support two latest LTS Ubuntu versions, so Ubuntu 22 will still be maintained for the next 2 years.
+  - File an issue in this repository.
+- For Python package installation issues, use the `actions/setup-python` action to install the required Python version in your workflow.
+- For Mono issues, consider using the official Mono repository to install Mono on Ubuntu 24.04.
+- For gcloud issues, install the Google Cloud CLI using the official installation instructions.
+- For NuGet issues, use `dotnet restore` instead of `nuget restore` in your workflow.
+- For Terraform issues, install Terraform using the official installation instructions.
+- For SQL Server Client Tools issues, install the tools manually using the official installation instructions.
