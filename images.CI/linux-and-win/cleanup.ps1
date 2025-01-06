@@ -1,26 +1,19 @@
 param(
-    [String] [Parameter (Mandatory=$true)] $Image,
-    [String] [Parameter (Mandatory=$true)] $ResourcesNamePrefix,
-    [String] [Parameter (Mandatory=$true)] $StorageAccount,
-    [String] [Parameter (Mandatory=$true)] $ClientId,
-    [String] [Parameter (Mandatory=$true)] $ClientSecret,
-    [String] [Parameter (Mandatory=$true)] $SubscriptionId,
-    [String] [Parameter (Mandatory=$true)] $TenantId
+    [Parameter (Mandatory=$true)] [string] $TempResourceGroupName,
+    [Parameter (Mandatory=$true)] [string] $SubscriptionId,
+    [Parameter (Mandatory=$true)] [string] $ClientId,
+    [Parameter (Mandatory=$true)] [string] $ClientSecret,
+    [Parameter (Mandatory=$true)] [string] $TenantId
 )
 
-az login --service-principal --username $ClientId --password $ClientSecret --tenant $TenantId | Out-Null
+az login --service-principal --username $ClientId --password=$ClientSecret --tenant $TenantId | Out-Null
+az account set --subscription $SubscriptionId | Out-Null
 
-$TempResourceGroupName = "${ResourcesNamePrefix}_${Image}"
-
-$groupExist = az group exists --name $TempResourceGroupName --subscription $SubscriptionId
+$groupExist = az group exists --name $TempResourceGroupName
 if ($groupExist -eq "true") {
-    $osDiskName = az deployment group list --resource-group $TempResourceGroupName --query "[].properties.parameters.osDiskName.value" -o tsv
     Write-Host "Found a match, deleting temporary files"
-    az group delete --name $TempResourceGroupName --subscription $SubscriptionId --yes | Out-Null
+    az group delete --name $TempResourceGroupName --yes | Out-Null
     Write-Host "Temporary group was deleted successfully"
-    Write-Host "Deleting OS disk"
-    az storage remove --account-name $StorageAccount -c "images" -n "$osDiskName.vhd" --only-show-errors | Out-Null
-    Write-Host "OS disk deleted"
 } else {
     Write-Host "No temporary groups found"
 }

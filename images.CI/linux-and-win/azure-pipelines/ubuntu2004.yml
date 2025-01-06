@@ -18,3 +18,4 @@ jobs:
   parameters:
     image_type: ubuntu2004
     image_readme_name: Ubuntu2004-Readme.md
+    image_template_name: ubuntu-20.04.pkr.hcl

@@ -5,7 +5,8 @@ enum ImageType {
     Windows2022   = 2
     Ubuntu2004    = 3
     Ubuntu2204    = 4
-    UbuntuMinimal = 5
+    Ubuntu2404    = 5
+    UbuntuMinimal = 6
 }
 
 Function Get-PackerTemplatePath {
@@ -17,20 +18,24 @@ Function Get-PackerTemplatePath {
     )
 
     switch ($ImageType) {
+        # Note: Double Join-Path is required to support PowerShell 5.1
         ([ImageType]::Windows2019) {
-            $relativeTemplatePath = Join-Path "win" "windows2019.json"
+            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2019.pkr.hcl"
         }
         ([ImageType]::Windows2022) {
-            $relativeTemplatePath = Join-Path "win" "windows2022.json"
+            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2022.pkr.hcl"
         }
         ([ImageType]::Ubuntu2004) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu2004.json"
+            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-20.04.pkr.hcl"
         }
         ([ImageType]::Ubuntu2204) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntu2204.pkr.hcl"
+            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-22.04.pkr.hcl"
+        }
+        ([ImageType]::Ubuntu2404) {
+            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-24.04.pkr.hcl"
         }
         ([ImageType]::UbuntuMinimal) {
-            $relativeTemplatePath = Join-Path "linux" "ubuntuminimal.pkr.hcl"
+            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-minimal.pkr.hcl"
         }
         default { throw "Unknown type of image" }
     }
@@ -77,6 +82,8 @@ Function GenerateResourcesAndImage {
             The name of the resource group to create the Azure resources in.
         .PARAMETER ImageType
             The type of image to generate. Valid values are: Windows2019, Windows2022, Ubuntu2004, Ubuntu2204, UbuntuMinimal.
+        .PARAMETER ManagedImageName
+            The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation
             The Azure location where the Azure resources will be created. For example: "East US"
         .PARAMETER ImageGenerationRepositoryRoot
@@ -94,12 +101,10 @@ Function GenerateResourcesAndImage {
             This parameter cannot be used in combination with the virtual_network_name packer parameter.
         .PARAMETER Force
             Delete the resource group if it exists without user confirmation.
+            This parameter is deprecated and will be removed in a future release.
         .PARAMETER ReuseResourceGroup
             Reuse the resource group if it exists without user confirmation.
-        .PARAMETER AllowBlobPublicAccess
-            Allow public access to the generated image blob.
-        .PARAMETER EnableHttpsTrafficOnly
-            Enable https traffic only for the generated image blob.
+            This parameter is deprecated and will be removed in a future release.
         .PARAMETER OnError
             Specify how packer handles an error during image creation.
             Options:
@@ -120,6 +125,8 @@ Function GenerateResourcesAndImage {
         [string] $ResourceGroupName,
         [Parameter(Mandatory = $True)]
         [ImageType] $ImageType,
+        [Parameter(Mandatory = $False)]
+        [string] $ManagedImageName = "Runner-Image-$($ImageType)",
         [Parameter(Mandatory = $True)]
         [string] $AzureLocation,
         [Parameter(Mandatory = $False)]
@@ -139,20 +146,20 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [switch] $ReuseResourceGroup,
         [Parameter(Mandatory = $False)]
-        [bool] $AllowBlobPublicAccess = $False,
-        [Parameter(Mandatory = $False)]
-        [bool] $EnableHttpsTrafficOnly = $False,
-        [Parameter(Mandatory = $False)]
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
         [Parameter(Mandatory = $False)]
         [hashtable] $Tags = @{}
     )
 
+    if ($Force -or $ReuseResourceGroup) {
+        Write-Warning "The `ReuseResourceGroup` and `Force` parameters are deprecated and will be removed in a future release. The resource group will be reused when it already exists and an error will be thrown when it doesn't. If you want to delete the resource group, please delete it manually."
+    }
+
     if ($Force -and $ReuseResourceGroup) {
         throw "Force and ReuseResourceGroup cannot be used together."
     }
-    
+
     Show-LatestCommit -ErrorAction SilentlyContinue
 
     # Validate packer is installed
@@ -173,22 +180,20 @@ Function GenerateResourcesAndImage {
         }
 
         Write-Host "Access to packer generated VM will be restricted to agent IP Address: $AgentIp."
-        if ($TemplatePath.Contains("pkr.hcl")) {
-            if ($PSVersionTable.PSVersion.Major -eq 5) {
-                Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
-                $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
-            } else {
-                $AllowedInboundIpAddresses = '["{0}"]' -f $AgentIp
-            }
-        } else {
-            $AllowedInboundIpAddresses = $AgentIp
+        if ($PSVersionTable.PSVersion.Major -eq 5) {
+            Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
+            $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
         }
-    } else {
-        if ($TemplatePath.Contains("pkr.hcl")) {
-            $AllowedInboundIpAddresses = "[]"
-        } else {
-            $AllowedInboundIpAddresses = ""
+        elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
+            Write-Verbose "PowerShell 7.0-7.2 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
+            $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
         }
+        else {
+            $AllowedInboundIpAddresses = '["{0}"]' -f $AgentIp
+        }
+    }
+    else {
+        $AllowedInboundIpAddresses = "[]"
     }
     Write-Debug "Allowed inbound IP addresses: $AllowedInboundIpAddresses."
 
@@ -200,19 +205,20 @@ Function GenerateResourcesAndImage {
         Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in tags JSON."
         $TagsJson = $TagsJson -replace '"', '\"'
     }
-    Write-Debug "Tags JSON: $TagsJson."
-    if ($TemplatePath.Contains(".json")) {
-        Write-Verbose "Injecting tags into packer template."
-        if ($Tags) {
-            $BuilderScriptPathInjected = $TemplatePath.Replace(".json", "-temp.json")
-            $PackerTemplateContent = Get-Content -Path $TemplatePath | ConvertFrom-Json
-            $PackerTemplateContent.builders | Add-Member -Name "azure_tags" -Value $Tags -MemberType NoteProperty
-            $PackerTemplateContent | ConvertTo-Json -Depth 3 | Out-File -Encoding Ascii $BuilderScriptPathInjected
-            $TemplatePath = $BuilderScriptPathInjected
-        }
+    elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
+        Write-Verbose "PowerShell 7.0-7.2 detected. Replacing double quotes with escaped double quotes in tags JSON."
+        $TagsJson = $TagsJson -replace '"', '\"'
     }
+    Write-Debug "Tags JSON: $TagsJson."
 
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
+
+    Write-Host "Downloading packer plugins..."
+    & $PackerBinary init $TemplatePath
+
+    if ($LastExitCode -ne 0) {
+        throw "Packer plugins download failed."
+    }
 
     Write-Host "Validating packer template..."
     & $PackerBinary validate `
@@ -221,13 +227,13 @@ Function GenerateResourcesAndImage {
         "-var=subscription_id=$($SubscriptionId)" `
         "-var=tenant_id=fake" `
         "-var=location=$($AzureLocation)" `
-        "-var=resource_group=$($ResourceGroupName)" `
-        "-var=storage_account=fake" `
+        "-var=managed_image_name=$($ManagedImageName)" `
+        "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
         "-var=install_password=$($InstallPassword)" `
         "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
         "-var=azure_tags=$($TagsJson)" `
         $TemplatePath
-    
+
     if ($LastExitCode -ne 0) {
         throw "Packer template validation failed."
     }
@@ -237,9 +243,10 @@ Function GenerateResourcesAndImage {
         if ([string]::IsNullOrEmpty($AzureClientId)) {
             Write-Verbose "No AzureClientId was provided, will use interactive login."
             az login --output none
-        } else {
+        }
+        else {
             Write-Verbose "AzureClientId was provided, will use service principal login."
-            az login --service-principal --username $AzureClientId --password $AzureClientSecret --tenant $AzureTenantId --output none
+            az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
         }
         az account set --subscription $SubscriptionId
         if ($LastExitCode -ne 0) {
@@ -263,17 +270,25 @@ Function GenerateResourcesAndImage {
                 }
                 Write-Host "Resource group '$ResourceGroupName' was deleted."
                 $ResourceGroupExists = $false
-            } else {
-                # Resource group already exists, ask the user what to do
-                $title = "Resource group '$ResourceGroupName' already exists"
-                $message = "Do you want to delete the resource group and all resources in it?"
-                
-                $options = @(
-                    [System.Management.Automation.Host.ChoiceDescription]::new("&Yes", "Delete the resource group and all resources in it."),
-                    [System.Management.Automation.Host.ChoiceDescription]::new("&No", "Keep the resource group and continue."),
-                    [System.Management.Automation.Host.ChoiceDescription]::new("&Abort", "Abort execution.")
-                )
-                $result = $Host.UI.PromptForChoice($title, $message, $options, 0)
+            }
+            else {
+                # are we running in a non-interactive session?
+                # https://stackoverflow.com/questions/9738535/powershell-test-for-noninteractive-mode
+                if ([System.Console]::IsOutputRedirected -or ![Environment]::UserInteractive -or !!([Environment]::GetCommandLineArgs() | Where-Object { $_ -ilike '-noni*' })) {
+                    throw "Non-interactive mode, resource group '$ResourceGroupName' already exists, either specify -Force to delete it, or -ReuseResourceGroup to reuse."
+                }
+                else {
+                    # Resource group already exists, ask the user what to do
+                    $title = "Resource group '$ResourceGroupName' already exists"
+                    $message = "Do you want to delete the resource group and all resources in it?"
+
+                    $options = @(
+                        [System.Management.Automation.Host.ChoiceDescription]::new("&Yes", "Delete the resource group and all resources in it."),
+                        [System.Management.Automation.Host.ChoiceDescription]::new("&No", "Keep the resource group and continue."),
+                        [System.Management.Automation.Host.ChoiceDescription]::new("&Abort", "Abort execution.")
+                    )
+                    $result = $Host.UI.PromptForChoice($title, $message, $options, 0)
+                }
 
                 switch ($result) {
                     0 {
@@ -303,44 +318,12 @@ Function GenerateResourcesAndImage {
             Write-Host "Creating resource group '$ResourceGroupName' in location '$AzureLocation'..."
             if ($TagsList) {
                 az group create --name $ResourceGroupName --location $AzureLocation --tags $TagsList --query id
-            } else {
+            }
+            else {
                 az group create --name $ResourceGroupName --location $AzureLocation --query id
             }
             if ($LastExitCode -ne 0) {
                 throw "Failed to create resource group '$ResourceGroupName'."
-            }
-        }
-
-        # Generate proper name for the storage account that follows the recommended naming conventions for azure resources
-        $StorageAccountName = $ResourceGroupName
-        if ($ResourceGroupName.EndsWith("-rg")) {
-            $StorageAccountName = $ResourceGroupName.Substring(0, $ResourceGroupName.Length - 3)
-        }
-        $StorageAccountName = $StorageAccountName.Replace("-", "").Replace("_", "").Replace("(", "").Replace(")", "").ToLower()
-        $StorageAccountName += "001"
-        if ($StorageAccountName.Length -gt 24) {
-            $StorageAccountName = $StorageAccountName.Substring(0, 24)
-        }
-        
-        try {
-            $StorageAccountId = (az storage account show --name $StorageAccountName --resource-group $ResourceGroupName --query id 2>$null)
-            $StorageAccountExists = "$StorageAccountId" -ne ""
-        } catch {
-            $StorageAccountExists = $false
-        }
-
-        # Create storage account
-        if ($StorageAccountExists) {
-            Write-Verbose "Storage account '$StorageAccountName' already exists."
-        } else {
-            Write-Host "Creating storage account..."
-            if ($TagsList) {
-                az storage account create --name $StorageAccountName --resource-group $ResourceGroupName --location $AzureLocation --sku Standard_LRS --allow-blob-public-access $AllowBlobPublicAccess --https-only $EnableHttpsTrafficOnly --min-tls-version TLS1_2 --tags $TagsList --query id
-            } else {
-                az storage account create --name $StorageAccountName --resource-group $ResourceGroupName --location $AzureLocation --sku Standard_LRS --allow-blob-public-access $AllowBlobPublicAccess --https-only $EnableHttpsTrafficOnly --min-tls-version TLS1_2 --query id
-            }
-            if ($LastExitCode -ne 0) {
-                throw "Failed to create storage account '$StorageAccountName'."
             }
         }
 
@@ -354,7 +337,7 @@ Function GenerateResourcesAndImage {
             if ($LastExitCode -ne 0) {
                 throw "Failed to create service principal '$ServicePrincipalName'."
             }
-            
+
             $ServicePrincipalAppId = $ServicePrincipal.appId
             $ServicePrincipalPassword = $ServicePrincipal.password
             $TenantId = $ServicePrincipal.tenant
@@ -362,7 +345,8 @@ Function GenerateResourcesAndImage {
             Write-Verbose "Waiting for service principal to propagate..."
             Start-Sleep $SecondsToWaitForServicePrincipalSetup
             Write-Host "Service principal created with id '$ServicePrincipalAppId'. It will be deleted after the build."
-        } else {
+        }
+        else {
             $ServicePrincipalAppId = $AzureClientId
             $ServicePrincipalPassword = $AzureClientSecret
             $TenantId = $AzureTenantId
@@ -376,8 +360,8 @@ Function GenerateResourcesAndImage {
             -var "subscription_id=$($SubscriptionId)" `
             -var "tenant_id=$($TenantId)" `
             -var "location=$($AzureLocation)" `
-            -var "resource_group=$($ResourceGroupName)" `
-            -var "storage_account=$($StorageAccountName)" `
+            -var "managed_image_name=$($ManagedImageName)" `
+            -var "managed_image_resource_group_name=$($ResourceGroupName)" `
             -var "install_password=$($InstallPassword)" `
             -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
             -var "azure_tags=$($TagsJson)" `
@@ -390,7 +374,7 @@ Function GenerateResourcesAndImage {
         Write-Error $_
     } finally {
         Write-Verbose "`nCleaning up..."
-        
+
         # Remove ADServicePrincipal and ADApplication
         if ($ADCleanupRequired) {
             Write-Host "Removing ADServicePrincipal..."

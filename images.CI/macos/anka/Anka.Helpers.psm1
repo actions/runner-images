@@ -13,7 +13,7 @@ function Push-AnkaTemplateToRegistry {
         [string] $TemplateName
     )
 
-    # if registry uuid doesn't match than delete an image in registry
+    # if registry uuid doesn't match then delete an image in registry
     $AnkaCaCrtPath="$HOME/.config/anka/certs/anka-ca-crt.pem"
     $images = anka --machine-readable registry --cacert $AnkaCaCrtPath --registry-path $RegistryUrl list | ConvertFrom-Json | ForEach-Object body
     $images | Where-Object name -eq $TemplateName | ForEach-Object {
@@ -67,7 +67,7 @@ function Invoke-AnkaCommand {
         [string] $Command
     )
 
-    $result = bash -c "$Command 2>&1" | Out-String
+    $result = bash -c "$Command 2>&1"
     if ($LASTEXITCODE -ne 0) {
         Write-Error "There is an error during command execution:`n$result"
         exit 1
@@ -139,10 +139,7 @@ function Set-AnkaVMVideoController {
     )
 
     $command = "anka modify $VMName set display -c $Controller"
-    # Apple Metal is available starting from Big Sur
-    if (-not $ShortMacOSVersion.StartsWith("10.")) {
-        $null = Invoke-AnkaCommand -Command $command
-    }
+    $null = Invoke-AnkaCommand -Command $command
 }
 
 function Set-AnkaVMDisplayResolution {
@@ -232,4 +229,20 @@ function Wait-AnkaVMSSHService {
         Write-Host "`t[x] SSH port is closed"
         exit 1
     }
+}
+
+function Set-AnkaVMUuid {
+    param(
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $VMName,
+
+        [Parameter(Mandatory)]
+        [ValidateNotNullOrEmpty()]
+        [string] $Uuid
+    )
+
+    $command = "anka modify $VMName set custom-variable hw.uuid $Uuid"
+    Write-Host "`t[*] Setting $VMName uuid to $Uuid"
+    Invoke-AnkaCommand -Command $command
 }
