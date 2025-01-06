@@ -1,7 +1,10 @@
+@@ -1,18 +1,114 @@
+#!/bin/bash -e
 #!/bin/bash
 
 ################################################################################
 ##  File:  install-azure-devops-cli.sh
+##  Desc:  Install Azure DevOps CLI (az devops)
 ##  Desc:  Install and upgrade Azure DevOps CLI (az devops) with robust error handling
 ################################################################################
 
@@ -13,12 +16,17 @@ RETRY_COUNT=3
 RETRY_INTERVAL=5  # in seconds
 
 # Source the helpers for use with the script
+source $HELPER_SCRIPTS/etc-environment.sh
 source /path/to/helpers.sh  # Update to the actual path of helpers.sh
 
+# AZURE_EXTENSION_DIR shell variable defines where modules are installed
+# https://docs.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview
 # Set Azure CLI extension directory
 export AZURE_EXTENSION_DIR=/opt/az/azcliextensions
 set_etc_environment_variable "AZURE_EXTENSION_DIR" "${AZURE_EXTENSION_DIR}"
 
+# install azure devops Cli extension
+az extension add -n azure-devops
 # Log function
 function log_message() {
     local message="$1"
