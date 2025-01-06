@@ -43,3 +43,20 @@ The following post-generation scripts are executed to configure the `UbuntuMinim
 - `cleanup-logs.sh`: Cleans up log files to reduce the image size.
 - `environment-variables.sh`: Configures environment variables for the default user.
 - `systemd-linger.sh`: Enables user session on boot, not on login.
+
+## Repository Investigation
+
+The repository has been investigated to understand its structure, main steps for creating VM images, available image types, customization options, troubleshooting, automation, environment variables, network security, resource group management, adding new tools, and security considerations.
+
+### Repository Structure
+
+- The repository includes various configuration files such as `.gitattributes`, `.gitignore`, and `.vscode` settings.
+- The `.github` directory contains GitHub-specific configurations, including issue templates, workflows, and a code owners file.
+- The `README.md` file provides an overview of the repository, available images, announcements, image definitions, and support policies.
+- The `docs/create-image-and-azure-resources.md` file contains detailed instructions for creating VM images, including build agent preparation, manual and automated image generation, and post-generation scripts.
+- The `helpers/GenerateResourcesAndImage.ps1` script includes functions for generating Azure resources and images, with support for various image types.
+- The `helpers/CreateAzureVMFromPackerTemplate.ps1` script provides a function to create a VM from a generated image.
+- Packer templates for different operating systems are located in the `images/ubuntu/templates` and `images/windows/templates` directories.
+- The `CONTRIBUTING.md` file provides guidelines for contributing to the project, including how to submit a pull request and add new tools.
+- The `SECURITY.md` file outlines the security policies and procedures for the repository.
+- The `images/ubuntu/assets/post-gen/cleanup-logs.sh` script removes all build process logs from the machine.
