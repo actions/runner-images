@@ -127,6 +127,7 @@
             "libyaml-dev",
             "libtool",
             "libssl-dev",
+            "libsqlite3-dev",
             "locales",
             "mercurial",
             "openssh-client",
