@@ -22,4 +22,11 @@ jobs:
         run: |
             $ErrorActionPreference = "Stop"
             Invoke-Pester -Output Detailed "helpers/software-report-base/tests"
-        
+
+# This workflow is used to run PowerShell tests for the specified paths.
+# It uses the Pester testing framework to run the tests and provides detailed output.
+# Learn more about Pester at https://github.com/pester/Pester
+
+# To customize this workflow for different test types, you can modify the `paths` section above.
+# For example, to add support for additional directories, you can add more paths to the `paths` section.
+# You can also customize the test execution and output by modifying the corresponding steps.

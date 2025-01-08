@@ -91,3 +91,11 @@ jobs:
           asset_path: ./sbom.json.zip
           asset_name: sbom.${{ github.event.client_payload.agentSpec }}.json.zip
           asset_content_type: application/zip
+
+# This workflow is used to create a Software Bill of Materials (SBOM) for the specified release.
+# It uses the SYFT tool to generate the SBOM and uploads it as a release asset.
+# Learn more about SYFT at https://github.com/anchore/syft
+
+# To customize this workflow for different SBOM report types, you can modify the inputs to the SYFT tool.
+# For example, to exclude additional directories, you can add more `--exclude` options to the SYFT command.
+# You can also customize the output format and other details by modifying the corresponding inputs.

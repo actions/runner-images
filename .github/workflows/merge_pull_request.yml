@@ -4,7 +4,6 @@ on:
   repository_dispatch:
     types: [merge-pr]
 
-
 jobs:
   Merge_pull_request:
     runs-on: ubuntu-latest
@@ -46,3 +45,11 @@ jobs:
             pull_number: ${{ github.event.client_payload.PullRequestNumber }},
             merge_method: "squash"
           })
+
+# This workflow is used to merge a pull request for the specified branch.
+# It uses the actions/github-script to approve and merge the pull request with the provided details.
+# Learn more about the github-script at https://github.com/actions/github-script
+
+# To customize this workflow for different merge types, you can modify the inputs to the github-script.
+# For example, to use a different merge method, you can change the `merge_method` input to "merge" or "rebase".
+# You can also customize the pull request approval and merge details by modifying the corresponding inputs.

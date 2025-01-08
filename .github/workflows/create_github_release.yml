@@ -4,7 +4,6 @@ on:
   repository_dispatch:
     types: [create-github-release]
 
-
 jobs:
   Create_GitHub_release:
     runs-on: ubuntu-latest
@@ -20,3 +19,11 @@ jobs:
         body: ${{ github.event.client_payload.ReleaseBody }}
         prerelease: ${{ github.event.client_payload.Prerelease }}
         commit: ${{ github.event.client_payload.Commitish }}
+
+# This workflow is used to create a GitHub release for the specified branch.
+# It uses the ncipollo/release-action to create the release with the provided details.
+# Learn more about the release-action at https://github.com/ncipollo/release-action
+
+# To customize this workflow for different release types, you can modify the inputs to the release-action.
+# For example, to create a draft release, you can add the `draft: true` input to the release-action.
+# You can also customize the release title, body, and other details by modifying the corresponding inputs.

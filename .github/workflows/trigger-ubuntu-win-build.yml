@@ -45,3 +45,11 @@ jobs:
           } catch {
             throw "$($_.exception[0].message)"
           }
+
+# This workflow is used to trigger a build workflow for the specified image type.
+# It uses the workflow_call event to accept inputs and then triggers the build workflow using the provided details.
+# Learn more about workflow_call at https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#workflow_call
+
+# To customize this workflow for different build types, you can modify the inputs and the event type.
+# For example, to trigger a different build workflow, you can change the event type in the $eventType variable.
+# You can also customize the build details by modifying the corresponding inputs and environment variables.
