@@ -129,7 +129,8 @@ The `-latest` migration process is gradual and happens over 1-2 months in order 
 ### Package managers usage
 
 We use third-party package managers to install software during the image generation process. The table below lists the package managers and the software installed.
-> **Note**: third-party repositories are re-evaluated every year to identify if they are still useful and secure.
+> [!NOTE]
+> Third-party repositories are re-evaluated every year to identify if they are still useful and secure.
 
 | Operating system | Package manager                       | Third-party repos and packages |
 | :---             |        :---:                          |                           ---: |
