@@ -1,0 +1,22 @@
+# This directory contains various scripts used in the project.
+# Each script is documented with comments explaining its functionality and purpose.
+# All scripts follow a consistent coding style and format.
+
+# Example script: hello_world.sh
+# This script prints "Hello, World!" to the console.
+
+#!/bin/bash
+
+# Function to print a message
+print_message() {
+  local message=$1
+  echo "$message"
+}
+
+# Main script execution
+main() {
+  print_message "Hello, World!"
+}
+
+# Call the main function
+main

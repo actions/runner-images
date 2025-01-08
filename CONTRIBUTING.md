@@ -60,8 +60,29 @@ Use existing scripts such as [github-cli.sh](images/ubuntu/scripts/build/github-
 The macOS source lives in this repository and is available for everyone. However, the macOS image-generation CI doesn't support external contributions yet, so we are not able to accept pull requests for now.
 We are in the process of preparing the macOS CI to accept contributions. Until then, we appreciate your patience and ask that you continue to make tool requests by filing issues.
 
-## Resources
+## How to write and run tests
 
-- [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
-- [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
-- [GitHub Help](https://help.github.com)
+### Writing tests
+
+- Use the appropriate testing framework for the platform (e.g., Pester for Windows, Shell scripts for Linux).
+- Ensure that tests are simple and do not change the image content.
+- Write tests that cover different edge cases and scenarios to ensure the reliability and correctness of the scripts.
+
+### Running tests
+
+- For Windows, use the `Invoke-PesterTests` function to run the tests.
+- For Linux, execute the validation scripts directly or use a test runner if available.
+- Ensure that all tests pass before submitting a pull request.
+
+## How to update documentation
+
+### Updating documentation
+
+- Update the relevant documentation files (e.g., README.md, image-specific README files) to reflect the changes made.
+- Ensure that the documentation is clear, concise, and easy to understand.
+- Follow the existing style and format of the documentation.
+
+### Submitting documentation updates
+
+- Include the updated documentation files in your pull request.
+- Ensure that the documentation changes are reviewed and approved along with the code changes.

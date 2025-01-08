@@ -34,3 +34,10 @@ jobs:
       - name: Checking shebang lines in MacOS and Ubuntu releases.
         run: ./images.CI/shebang-linter.ps1
         shell: pwsh
+
+# This workflow is used to lint JSON, Markdown, and Shell script files in the repository.
+# It uses the github/super-linter action to perform the linting.
+# Learn more about the super-linter at https://github.com/github/super-linter
+
+# To customize this workflow for different file types, you can modify the `paths` section above.
+# For example, to add support for YAML files, you can add '**.yml' to the paths section.

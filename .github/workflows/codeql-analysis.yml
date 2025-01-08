@@ -9,6 +9,10 @@
 # the `language` matrix defined below to confirm you have the correct set of
 # supported CodeQL languages.
 #
+# This workflow is used to perform CodeQL analysis on the repository.
+# CodeQL is a semantic code analysis engine that helps find security vulnerabilities.
+# Learn more about CodeQL at https://codeql.github.com/
+
 name: "CodeQL"
 
 on:
@@ -70,3 +74,8 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
+
+# To customize this workflow for different languages, you can modify the `language` matrix above.
+# For example, to add support for JavaScript, you can change the matrix to:
+# matrix:
+#   language: [ 'python', 'ruby', 'javascript' ]

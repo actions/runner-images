@@ -10,6 +10,8 @@
 - [Software and Image Support](#software-and-image-support)
 - [How to Interact with the Repo](#how-to-interact-with-the-repo)
 - [FAQs](#faqs)
+- [Contributing](#contributing)
+- [Reporting Issues and Requesting Features](#reporting-issues-and-requesting-features)
 
 ## About
 
@@ -216,3 +218,11 @@ Please create an issue and get an approval from us to add this tool to the image
 We strongly encourage customers to build their own images using the main branch.
 This repository contains multiple branches and releases that serve as document milestones to reflect what software is installed in the images at certain point of time. Current builds are not idempotent and if one tries to build a runner image using the specific tag it is not guaranteed that the build will succeed.
 </details>
+
+## Contributing
+
+We welcome contributions to this project! If you would like to contribute, please follow the guidelines in the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+
+## Reporting Issues and Requesting Features
+
+If you encounter any issues or have feature requests, please open an issue in this repository. Make sure to provide as much detail as possible to help us understand and address the issue or request.
