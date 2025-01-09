@@ -1,16 +1,6 @@
+# Repository Overview
 
-# GitHub Actions Runner Images
-
-**Table of Contents**
-
-- [About](#about)
-- [Available Images](#available-images)
-- [Announcements](#announcements)
-- [Image Definitions](#image-definitions)
-- [Image Releases](#image-releases)
-- [Software and Image Support](#software-and-image-support)
-- [How to Interact with the Repo](#how-to-interact-with-the-repo)
-- [FAQs](#faqs)
+This repository contains the source code used to create VM images for GitHub-hosted runners and Microsoft-hosted agents.
 
 ## About
 
