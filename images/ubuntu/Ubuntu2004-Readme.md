@@ -1,13 +1,13 @@
 | Announcements |
 |-|
-| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 10,2025](https://github.com/actions/runner-images/issues/11093) |
+| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 17,2025](https://github.com/actions/runner-images/issues/11093) |
 | [[Ubuntu] Breaking Change: runner user will have UID 1001 instead of 1000 for larger runners](https://github.com/actions/runner-images/issues/10936) |
 | [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1074-azure
-- Image Version: 20241215.1.0
+- Image Version: 20250105.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -18,7 +18,7 @@
 - Clang-format: 10.0.0, 11.0.0, 12.0.0
 - Clang-tidy: 10.0.0, 11.0.0, 12.0.0
 - Dash 0.5.10.2-6
-- Erlang 25.3 (Eshell 13.2)
+- Erlang 25.3.2 (Eshell 13.2.2)
 - Erlang rebar3 3.24.0
 - GNU C++: 10.5.0
 - GNU Fortran: 10.5.0
@@ -34,16 +34,16 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.16.3
-- Homebrew 4.4.11
-- Miniconda 24.9.2
+- Helm 3.16.4
+- Homebrew 4.4.14
+- Miniconda 24.11.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit b545373a9)
+- Vcpkg (build from commit 65be70199)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,10 +62,10 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.11.1
+- Gradle 8.12
 - Lerna 8.1.9
 - Maven 3.8.8
-- Sbt 1.10.6
+- Sbt 1.10.7
 
 ### Tools
 - Ansible 2.13.13
@@ -75,11 +75,11 @@ to accomplish this.
 - Bazelisk 1.25.0
 - Bicep 0.32.4
 - Buildah 1.22.3
-- CMake 3.31.2
+- CMake 3.31.3
 - CodeQL Action Bundle 2.20.0
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.19.2
+- Docker-Buildx 0.19.3
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.226.0
@@ -90,7 +90,7 @@ to accomplish this.
 - Heroku 10.0.0
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
-- Kind 0.25.0
+- Kind 0.26.0
 - Kubectl 1.32.0
 - Kustomize 5.5.0
 - Leiningen 2.11.2
@@ -102,32 +102,32 @@ to accomplish this.
 - nvm 0.40.1
 - OpenSSL 1.1.1f-1ubuntu2.23
 - Packer 1.11.2
-- Parcel 2.13.2
+- Parcel 2.13.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.143.0
+- Pulumi 3.144.1
 - R 4.4.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.10.2
+- Terraform 1.10.3
 - yamllint 1.35.1
 - yq 4.44.6
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.22.17
+- AWS CLI 2.22.28
 - AWS CLI Session Manager Plugin 1.2.694.0
 - AWS SAM CLI 1.132.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.63.2
-- Google Cloud CLI 503.0.0
-- Netlify CLI 17.38.0
+- GitHub CLI 2.64.0
+- Google Cloud CLI 504.0.1
+- Netlify CLI 17.38.1
 - OpenShift CLI 4.15.19
-- ORAS CLI 1.2.1
-- Vercel CLI 39.2.2
+- ORAS CLI 1.2.2
+- Vercel CLI 39.2.5
 
 ### Java
 | Version             | Environment Variable |
@@ -138,7 +138,7 @@ to accomplish this.
 | 21.0.5+11           | JAVA_HOME_21_X64     |
 
 ### PHP Tools
-- PHP: 7.4.33, 8.0.30, 8.1.31, 8.2.26, 8.3.14
+- PHP: 7.4.33, 8.0.30, 8.1.31, 8.2.27, 8.3.15
 - Composer 2.8.4
 - PHPUnit 8.5.41
 ```
@@ -146,10 +146,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Haskell Tools
-- Cabal 3.12.1.0
-- GHC 9.10.1
-- GHCup 0.1.30.0
-- Stack 3.1.1
+- Cabal 3.14.1.1
+- GHC 9.12.1
+- GHCup 0.1.40.0
+- Stack 3.3.1
 
 ### Rust Tools
 - Cargo 1.83.0
@@ -166,13 +166,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.139
-- ChromeDriver 131.0.6778.108
+- Google Chrome 131.0.6778.204
+- ChromeDriver 131.0.6778.204
 - Chromium 131.0.6778.0
-- Microsoft Edge 131.0.2903.99
-- Microsoft Edge WebDriver 131.0.2903.87
+- Microsoft Edge 131.0.2903.112
+- Microsoft Edge WebDriver 131.0.2903.112
 - Selenium server 4.27.0
-- Mozilla Firefox 133.0
+- Mozilla Firefox 133.0.3
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -225,10 +225,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 22.12.0
 
 #### Python
-- 3.7.17
 - 3.8.18
-- 3.9.20
-- 3.10.15
+- 3.9.21
+- 3.10.16
 - 3.11.11
 - 3.12.8
 
@@ -267,7 +266,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 9.0                                                                                                                                                                                                                                                                                                         |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                                                         |
-| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
+| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                      |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                                                  |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                          |
@@ -292,14 +291,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:2995c82e8e723d9a5c8585cb8e901d1c50e3c2759031027d3bff577449435157  | 2024-09-06 |
 | alpine:3.19          | sha256:7a85bf5dc56c949be827f84f9185161265c58f589bb8b2a6b6bb6d3076c1be21  | 2024-09-06 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:e91d1b0684e0f26a29c2353c52d4814f4d153e10b1faddf9fbde473ed71e2fcf  | 2024-12-02 |
+| debian:11            | sha256:21b74d95871e8676a0cf47df9caebb1021b2af60b9a6e4777ce92f92f98e3a90  | 2024-12-23 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest | sha256:58e6d150a3c5a4b92e99ea8df2cbe976ad6d2ae5beab39214e84fada05b059d5  | 2024-12-04 |
-| node:18              | sha256:b57ae84fe7880a23b389f8260d726b784010ed470c2ee26d4e2cbdb955d25b12  | 2024-11-15 |
+| moby/buildkit:latest | sha256:86c0ad9d1137c186e9d455912167df20e530bdf7f7c19de802e892bb8ca16552  | 2024-12-16 |
+| node:18              | sha256:7f31a1eb14c61719b8bb0eaa029310cc33851f71d3578cc422b390f8096977c5  | 2024-11-15 |
 | node:18-alpine       | sha256:6eb9c3d9bd191bd2cc6ce7ec3d5ec4c2127616140c8586af96a6bec8f28689d1  | 2024-12-05 |
-| node:20              | sha256:f4755c9039bdeec5c736b2e0dd5b47700d6393b65688b9e9f807ec12f54a8690  | 2024-11-20 |
+| node:20              | sha256:d17aaa2a2fd82e09bd6a6da7cc4a79741340d2a3e39d172d1b30f295b1a850ff  | 2024-11-20 |
 | node:20-alpine       | sha256:426f843809ae05f324883afceebaa2b9cab9cb697097dbb1a2a7a41c5701de72  | 2024-12-05 |
-| node:22              | sha256:35a5dd72bcac4bce43266408b58a02be6ff0b6098ffa6f5435aeea980a8951d7  | 2024-12-03 |
+| node:22              | sha256:0e910f435308c36ea60b4cfd7b80208044d77a074d16b768a81901ce938a62dc  | 2024-12-03 |
 | node:22-alpine       | sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97  | 2024-12-05 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
 
@@ -315,7 +314,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.7-6ubuntu0.1                  |
 | bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
-| curl                   | 7.68.0-1ubuntu2.24                |
+| curl                   | 7.68.0-1ubuntu2.25                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
 | dnsutils               | 1:9.18.28-0ubuntu0.20.04.1        |
 | dpkg                   | 1.19.7ubuntu3.2                   |
@@ -338,7 +337,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
 | libc6-dev              | 2.31-0ubuntu9.16                  |
-| libcurl4               | 7.68.0-1ubuntu2.24                |
+| libcurl4               | 7.68.0-1ubuntu2.25                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6+deb10u1build0.20.04.1  |
