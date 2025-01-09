@@ -22,13 +22,13 @@ Describe "Bicep" {
     }
 }
 
-Describe "GitVersion" -Skip:(Test-IsWin22) {
+Describe "GitVersion" -Skip:(-not (Test-IsWin19)) {
     It "gitversion is installed" {
         "gitversion /version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "InnoSetup" {
+Describe "InnoSetup" -Skip:(Test-IsWin25) {
     It "InnoSetup" {
         (Get-Command -Name iscc).CommandType | Should -BeExactly "Application"
     }
@@ -64,7 +64,7 @@ Describe "Pulumi" {
     }
 }
 
-Describe "Svn" {
+Describe "Svn" -Skip:(Test-IsWin25) {
     It "svn" {
         "svn --version --quiet" | Should -ReturnZeroExitCode
     }

@@ -59,7 +59,7 @@ variable "image_folder" {
 
 variable "image_os" {
   type    = string
-  default = "win22"
+  default = "win25"
 }
 
 variable "image_version" {
@@ -162,13 +162,13 @@ source "azure-arm" "image" {
   communicator                           = "winrm"
   image_offer                            = "WindowsServer"
   image_publisher                        = "MicrosoftWindowsServer"
-  image_sku                              = "2022-Datacenter"
+  image_sku                              = "2025-Datacenter"
   location                               = "${var.location}"
   managed_image_name                     = "${local.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   managed_image_storage_account_type     = "${var.managed_image_storage_account_type}"
   object_id                              = "${var.object_id}"
-  os_disk_size_gb                        = "256"
+  os_disk_size_gb                        = "150"
   os_type                                = "Windows"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   subscription_id                        = "${var.subscription_id}"
@@ -225,7 +225,7 @@ build {
       "Move-Item '${var.image_folder}\\scripts\\tests\\Helpers.psm1' '${var.helper_script_folder}\\TestsHelpers\\TestsHelpers.psm1'",
       "Move-Item '${var.image_folder}\\scripts\\tests' '${var.image_folder}\\tests'",
       "Remove-Item -Recurse '${var.image_folder}\\scripts'",
-      "Move-Item '${var.image_folder}\\toolsets\\toolset-2022.json' '${var.image_folder}\\toolset.json'",
+      "Move-Item '${var.image_folder}\\toolsets\\toolset-2025.json' '${var.image_folder}\\toolset.json'",
       "Remove-Item -Recurse '${var.image_folder}\\toolsets'"
     ]
   }
@@ -243,7 +243,7 @@ build {
     inline = ["if (-not ((net localgroup Administrators) -contains '${var.install_user}')) { exit 1 }"]
   }
 
-  provisioner "powershell" {
+provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
     inline            = ["bcdedit.exe /set TESTSIGNING ON"]
@@ -256,6 +256,7 @@ build {
       "${path.root}/../scripts/build/Configure-WindowsDefender.ps1",
       "${path.root}/../scripts/build/Configure-PowerShell.ps1",
       "${path.root}/../scripts/build/Install-PowerShellModules.ps1",
+      "${path.root}/../scripts/build/Install-WSL2.ps1",
       "${path.root}/../scripts/build/Install-WindowsFeatures.ps1",
       "${path.root}/../scripts/build/Install-Chocolatey.ps1",
       "${path.root}/../scripts/build/Configure-BaseImage.ps1",
@@ -283,8 +284,7 @@ build {
       "${path.root}/../scripts/build/Install-DockerCompose.ps1",
       "${path.root}/../scripts/build/Install-PowershellCore.ps1",
       "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1",
-      "${path.root}/../scripts/build/Install-Runner.ps1",
-      "${path.root}/../scripts/build/Install-TortoiseSvn.ps1"
+      "${path.root}/../scripts/build/Install-Runner.ps1"
     ]
   }
 
@@ -313,7 +313,6 @@ build {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
       "${path.root}/../scripts/build/Install-Wix.ps1",
-      "${path.root}/../scripts/build/Install-WDK.ps1",
       "${path.root}/../scripts/build/Install-VSExtensions.ps1",
       "${path.root}/../scripts/build/Install-AzureCli.ps1",
       "${path.root}/../scripts/build/Install-AzureDevOpsCli.ps1",
@@ -332,10 +331,6 @@ build {
 
   provisioner "windows-restart" {
     restart_timeout = "10m"
-  }
-
-  provisioner "windows-shell" {
-    inline = ["wmic product where \"name like '%%microsoft azure powershell%%'\" call uninstall /nointeractive"]
   }
 
   provisioner "powershell" {
@@ -376,13 +371,9 @@ build {
       "${path.root}/../scripts/build/Install-Stack.ps1",
       "${path.root}/../scripts/build/Install-Miniconda.ps1",
       "${path.root}/../scripts/build/Install-AzureCosmosDbEmulator.ps1",
-      "${path.root}/../scripts/build/Install-Mercurial.ps1",
       "${path.root}/../scripts/build/Install-Zstd.ps1",
-      "${path.root}/../scripts/build/Install-NSIS.ps1",
       "${path.root}/../scripts/build/Install-Vcpkg.ps1",
-      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
       "${path.root}/../scripts/build/Install-Bazel.ps1",
-      "${path.root}/../scripts/build/Install-AliyunCli.ps1",
       "${path.root}/../scripts/build/Install-RootCA.ps1",
       "${path.root}/../scripts/build/Install-MongoDB.ps1",
       "${path.root}/../scripts/build/Install-CodeQLBundle.ps1",
@@ -395,6 +386,7 @@ build {
     elevated_user     = "${var.install_user}"
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts           = [
+      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
       "${path.root}/../scripts/build/Install-WindowsUpdates.ps1",
       "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
       "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
@@ -434,7 +426,7 @@ build {
   }
 
   provisioner "file" {
-    destination = "${path.root}/../Windows2022-Readme.md"
+    destination = "${path.root}/../Windows2025-Readme.md"
     direction   = "download"
     source      = "C:\\software-report.md"
   }

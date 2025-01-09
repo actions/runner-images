@@ -13,7 +13,7 @@ Function Install-Asset {
     )
 
     $releaseAssetName = [System.IO.Path]::GetFileNameWithoutExtension($ReleaseAsset.filename)
-    $assetFolderPath = Join-Path $env:TEMP $releaseAssetName
+    $assetFolderPath = Join-Path $env:TEMP_DIR $releaseAssetName
     $assetArchivePath = Invoke-DownloadWithRetry $ReleaseAsset.download_url
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."

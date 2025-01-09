@@ -25,14 +25,20 @@ Describe "Visual Studio" {
     }
 }
 
-Describe "Windows 10 SDK" {
-    It "Verifies 17763 SDK is installed" -Skip:(Test-IsWin19) {
+Describe "Windows 10 SDK" -Skip:((Test-IsWin19) -or (Test-IsWin25)) {
+    It "Verifies 17763 SDK is installed" {
         "${env:ProgramFiles(x86)}\Windows Kits\10\DesignTime\CommonConfiguration\Neutral\UAP\10.0.17763.0\UAP.props" | Should -Exist
     }
 }
 
-Describe "Windows 11 SDK" {
-    It "Verifies 22621 SDK is installed" -Skip:(Test-IsWin22) {
+Describe "Windows 11 SDK" -Skip:(-not (Test-IsWin19)) {
+    It "Verifies 22621 SDK is installed" {
         "${env:ProgramFiles(x86)}\Windows Kits\10\DesignTime\CommonConfiguration\Neutral\UAP\10.0.22621.0\UAP.props" | Should -Exist
+    }
+}
+
+Describe "Windows 11 SDK" -Skip:(Test-IsWin19) {
+    It "Verifies 26100 SDK is installed" {
+        "${env:ProgramFiles(x86)}\Windows Kits\10\DesignTime\CommonConfiguration\Neutral\UAP\10.0.26100.0\UAP.props" | Should -Exist
     }
 }

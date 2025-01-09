@@ -7,7 +7,6 @@
             "platform_version": "22.04",
             "arch": "x64",
             "versions": [
-                "3.7.*",
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
@@ -32,7 +31,6 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "16.*",
                 "18.*",
                 "20.*",
                 "22.*"
@@ -202,6 +200,7 @@
             "sshpass",
             "subversion",
             "sudo",
+            "systemd-coredump",
             "swig",
             "telnet",
             "time",
@@ -219,11 +218,9 @@
             "debian:10",
             "debian:11",
             "moby/buildkit:latest",
-            "node:16",
             "node:18",
             "node:20",
             "node:22",
-            "node:16-alpine",
             "node:18-alpine",
             "node:20-alpine",
             "node:22-alpine",
@@ -270,12 +267,10 @@
     "dotnet": {
         "aptPackages": [
             "dotnet-sdk-6.0",
-            "dotnet-sdk-7.0",
             "dotnet-sdk-8.0"
         ],
         "versions": [
             "6.0",
-            "7.0",
             "8.0"
         ],
         "tools": [

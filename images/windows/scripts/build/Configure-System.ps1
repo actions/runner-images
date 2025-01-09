@@ -3,12 +3,6 @@
 ##  Desc:  Applies various configuration settings to the final image
 ################################################################################
 
-Write-Host "Cleanup WinSxS"
-dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
-if ($LASTEXITCODE -ne 0) {
-    throw "Failed to cleanup WinSxS"
-}
-
 # Set default version to 1 for WSL (aka LXSS - Linux Subsystem)
 # The value should be set in the default user registry hive
 # https://github.com/actions/runner-images/issues/5760
@@ -31,51 +25,8 @@ if (Test-IsWin22) {
     $key.SetValue("DefaultVersion", "1", "DWord")
     $key.Handle.Close()
     [System.GC]::Collect()
-    
+
     Dismount-RegistryHive "HKLM\DEFAULT"
-}
-
-Write-Host "Clean up various directories"
-@(
-    "$env:SystemDrive\Recovery",
-    "$env:SystemRoot\logs",
-    "$env:SystemRoot\winsxs\manifestcache",
-    "$env:SystemRoot\Temp",
-    "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp",
-    "$env:TEMP",
-    "$env:AZURE_CONFIG_DIR\logs",
-    "$env:AZURE_CONFIG_DIR\commands",
-    "$env:AZURE_CONFIG_DIR\telemetry"
-) | ForEach-Object {
-    if (Test-Path $_) {
-        Write-Host "Removing $_"
-        cmd /c "takeown /d Y /R /f $_ 2>&1" | Out-Null
-        if ($LASTEXITCODE -ne 0) {
-            throw "Failed to take ownership of $_"
-        }
-        cmd /c "icacls $_ /grant:r administrators:f /t /c /q 2>&1" | Out-Null
-        if ($LASTEXITCODE -ne 0) {
-            throw "Failed to grant administrators full control of $_"
-        }
-        Remove-Item $_ -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
-    }
-}
-
-$winInstallDir = "$env:SystemRoot\Installer"
-New-Item -Path $winInstallDir -ItemType Directory -Force | Out-Null
-
-# Remove AllUsersAllHosts profile
-Remove-Item $profile.AllUsersAllHosts -Force -ErrorAction SilentlyContinue | Out-Null
-
-# Clean yarn and npm cache
-cmd /c "yarn cache clean 2>&1" | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    throw "Failed to clean yarn cache"
-}
-
-cmd /c "npm cache clean --force 2>&1" | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    throw "Failed to clean npm cache"
 }
 
 # allow msi to write to temp folder
@@ -142,11 +93,11 @@ $servicesToDisable = @(
     'wuauserv'
     'DiagTrack'
     'dmwappushservice'
-    'PcaSvc'
+    $(if(-not (Test-IsWin25)){'PcaSvc'})
     'SysMain'
     'gupdate'
     'gupdatem'
-    'StorSvc'
+    $(if(-not (Test-IsWin25)){'StorSvc'})
 ) | Get-Service -ErrorAction SilentlyContinue
 Stop-Service $servicesToDisable
 $servicesToDisable.WaitForStatus('Stopped', "00:01:00")

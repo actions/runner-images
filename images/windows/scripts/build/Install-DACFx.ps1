@@ -5,6 +5,6 @@
 
 Install-Binary -Type MSI `
     -Url 'https://aka.ms/dacfx-msi' `
-    -ExpectedSignature 'C2048FB509F1C37A8C3E9EC6648118458AA01780'
+    -ExpectedSignature '8F985BE8FD256085C90A95D3C74580511A1DB975'
 
 Invoke-PesterTests -TestFile "Tools" -TestName "DACFx"
