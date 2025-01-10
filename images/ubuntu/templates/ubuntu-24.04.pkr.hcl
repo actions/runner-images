@@ -408,4 +408,16 @@ provisioner "shell" {
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline           = ["export PATH=/opt/standalone-python/bin:$PATH"]
   }
+
+  provisioner "shell" {
+    environment_vars = ["EXTERNALLY_MANAGED=true"]
+    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    script           = "${path.root}/../scripts/build/install-python.sh"
+  }
+
+  provisioner "shell" {
+    environment_vars = ["EXTERNALLY_MANAGED="]
+    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    inline           = ["unset EXTERNALLY_MANAGED"]
+  }
 }
