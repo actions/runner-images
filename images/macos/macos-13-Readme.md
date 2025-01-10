@@ -28,7 +28,7 @@
 - Perl 5.40.0
 - PHP 8.4.2
 - Python3 3.13.1
-- Ruby 3.0.7p220
+- Ruby 3.3.6
 
 ### Package Management
 - Bundler 2.5.23
@@ -126,7 +126,6 @@
 - 3.10.14 [PyPy 7.3.17]
 
 #### Ruby
-- 3.0.7
 - 3.1.6
 - 3.2.6
 - 3.3.6
