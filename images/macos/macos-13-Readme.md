@@ -194,14 +194,14 @@
 | Simulator - iOS 16.4                                    | iphonesimulator16.4                           | 14.3.1        |
 | Simulator - iOS 17.0                                    | iphonesimulator17.0                           | 15.0.1        |
 | Simulator - iOS 17.2                                    | iphonesimulator17.2                           | 15.1, 15.2    |
-| tvOS 16.1                                               | appletvos16.1                                 | 14.1, 14.2    |
-| tvOS 16.4                                               | appletvos16.4                                 | 14.3.1        |
-| tvOS 17.0                                               | appletvos17.0                                 | 15.0.1        |
-| tvOS 17.2                                               | appletvos17.2                                 | 15.1, 15.2    |
-| Simulator - tvOS 16.1                                   | appletvsimulator16.1                          | 14.1, 14.2    |
-| Simulator - tvOS 16.4                                   | appletvsimulator16.4                          | 14.3.1        |
-| Simulator - tvOS 17.0                                   | appletvsimulator17.0                          | 15.0.1        |
-| Simulator - tvOS 17.2                                   | appletvsimulator17.2                          | 15.1, 15.2    |
+| tvOS 16.1                                                | appletvos16.1                                  | 14.1, 14.2    |
+| tvOS 16.4                                                | appletvos16.4                                  | 14.3.1        |
+| tvOS 17.0                                                | appletvos17.0                                  | 15.0.1        |
+| tvOS 17.2                                                | appletvos17.2                                  | 15.1, 15.2    |
+| Simulator - tvOS 16.1                                    | appletvsimulator16.1                           | 14.1, 14.2    |
+| Simulator - tvOS 16.4                                    | appletvsimulator16.4                           | 14.3.1        |
+| Simulator - tvOS 17.0                                    | appletvsimulator17.0                           | 15.0.1        |
+| Simulator - tvOS 17.2                                    | appletvsimulator17.2                           | 15.1, 15.2    |
 | watchOS 9.1                                             | watchos9.1                                    | 14.1, 14.2    |
 | watchOS 9.4                                             | watchos9.4                                    | 14.3.1        |
 | watchOS 10.0                                            | watchos10.0                                   | 15.0.1        |
