@@ -326,8 +326,7 @@ Describe "Packer" {
 }
 
 Describe "Pulumi" {
-    It "pulumi" {
-        "pulumi version" | Should -ReturnZeroExitCode
+    It "pulumi version" | Should -ReturnZeroExitCode
     }
 }
 
