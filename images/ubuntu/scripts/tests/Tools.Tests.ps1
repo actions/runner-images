@@ -411,3 +411,9 @@ Describe "Kotlin" {
         "kotlinc-js -version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "SQLite3" {
+    It "sqlite3" {
+        "sqlite3 --version" | Should -ReturnZeroExitCode
+    }
+}
