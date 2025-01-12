@@ -58,6 +58,8 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 See notable upcoming changes by viewing issues with the [Announcement](https://github.com/actions/runner-images/labels/Announcement) label.
 
+- [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636)
+
 ## Image Definitions
 
 ### Beta
