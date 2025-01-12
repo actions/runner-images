@@ -58,71 +58,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 See notable upcoming changes by viewing issues with the [Announcement](https://github.com/actions/runner-images/labels/Announcement) label.
 
-### Ubuntu-latest workflows will use Ubuntu-24.04 image
-
-Rollout will begin on December 5th and will complete on January 17th, 2025.
-
-**Breaking changes**
-Ubuntu 24.04 is ready to be the default version for the "ubuntu-latest" label in GitHub Actions and Azure DevOps.
-
-**Target date**
-This change will be rolled out over a period of several weeks beginning December 5th and will complete on January 17th, 2025.
-
-**The motivation for the changes**
-GitHub Actions and Azure DevOps have supported Ubuntu 24.04 in preview mode since May 2024, and starting from July 2024 Ubuntu 24.04 is generally available for all customers. We have monitored customer feedback to improve the Ubuntu 24.04 image stability and now we are ready to set it as the latest. There are a set of packages listed below that we have removed from the Ubuntu 24 image. Please review the list carefully to see if you will be impacted by these changes. We have made cuts to the list of packages so that we can maintain our SLA for free disk space. The images have grown so large we are in danger of violating our SLA if we keep the package list as-is. 
-
-The factors we took into consideration when removing packages are as follows:
-- How long does it take to install the tool at runtime?
-- How much space does it take up on the image?
-- How many users are there of the tool? 
-
-We understand that our reasoning may not make sense to some of you out there, but please bear in mind that we tried to keep disruptions as minimal as possible, and tried to keep the best interests of the community at large in mind. There is a very large and diverse community using our images, and as much as we would like to, we cannot pre-install every tool on these images.
-
-**Platforms affected**
-- [x]  Azure DevOps
-- [x]  GitHub Actions
-
-**Mitigation ways**
-Steps or options for impact mitigation
-If you see any issues with your workflows during transition period:
-
-- Switch back to Ubuntu 22 by changing workflow YAML to use `runs-on: ubuntu-22.04` We support two latest LTS Ubuntu versions, so Ubuntu 22 will still be maintained for the next 2 years.
-- File an issue in this repository
-
-**Software Differences**
-The Ubuntu 22.04 image has a different set of software than Ubuntu 24.04. The most significant changes are listed in the table below:
-| Tool name | Ubuntu 22.04 | Ubuntu 24.04 | Notes |
-|-----------|--------------|--------------|-------|
-| Clang | <ul><li>13.* </li><li>14.* (default)</li><li>15.* </li></ul> | <ul><li>16.* </li><li>17.* </li><li>18.* (default)</li></ul> | The most recent versions are installed |
-| GCC / GNU C++ / GNU Fortran | <ul><li>9.* </li><li>10.* </li><li>11.* </li><li>12.* </li><li>13.* </li></ul> | <ul><li>12.* </li><li>13.* </li><li>14.* </li></ul> | The most recent versions are installed |
-| PHP | 8.1.* | 8.3.* | The most recent version are installed |
-| Java | <ul><li>8.* </li><li>11.* (default)</li><li>17.* </li><li>21.* </li></ul> | <ul><li>8.* </li><li>11.* </li><li>17.* (default)</li><li>21.* </li></ul> | Default Java switched to 17.* for Ubuntu 24.04 image. |
-| Python | <ul><li>3.7.* (cached)</li><li>3.8.* (cached)</li><li>3.9.* (cached)</li><li>3.10.* (default)</li><li>3.11.* (cached)</li><li>3.12.* (cached)</li></ul> | <ul><li>3.9.* (cached)</li><li>3.10.* (cached)</li><li>3.11.* (cached)</li><li>3.12.* (default)</li></ul> | Pre-cached versions currently unavailable. Default version switched to the latest one. On GitHub Actions, [actions/setup-python](https://github.com/actions/setup-python) can install any version on-flight so this change doesn't impact users |
-| Go | <ul><li>1.20.* (cached)</li><li>1.21.* (default)</li><li>1.22.* (cached)</li></ul> | <ul><li>1.21.* (cached)</li><li>1.22.* (cached)</li><li>1.23.* (default)</li></ul> | If your use-case requires using any of these versions, consider using tasks to install Go on-flight: <ul><li>[actions/setup-go](https://github.com/actions/setup-go) (GitHub Actions) </li><li>[Go Tool Installer](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/tool/go-tool?view=azure-devops) (Azure DevOps)</li></ul> |
-| PyPy | <ul><li>3.7.* (cached)</li><li>3.8.* (cached)</li><li>3.9.* (cached)</li><li>3.10.* (cached)</li></ul> | <ul><li>3.9.* (cached)</li><li>3.10.* (cached)</li></ul> | Deprecated all the versions besides the most recent ones |
-| Ruby | <ul><li>3.0.* (default)</li><li>3.1.* (cached)</li></ul> | <ul><li>3.2.* (default)</li></ul> | We need to update 3.3.5 |
-| Node.js | <ul><li>16.* (cached)</li><li>18.* (default)</li><li>20.* (cached)</li></ul> | <ul><li>16.* (cached)</li><li>18.* (cached)</li><li>20.* (default)</li></ul> | If your use-case requires using any of these versions, consider using tasks to install Node.js on-flight: <ul><li>[actions/setup-node](https://github.com/actions/setup-node) (GitHub Actions) </li><li>[Node.js Tool Installer](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/tool/node-js?view=azure-devops) (Azure DevOps)</li><li> Node 16 will be replaced with Node 22 </li></ul> |
-| Heroku | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| Leiningen | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| Mono / MSBuild / NuGet | latest available | - | Software is not available for Ubuntu 24 at the moment. |
-| Terraform | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| R | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| SVN | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| Alibaba Cloud CLI | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| Netlify CLI | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| OpenShift CLI | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| ORAS CLI | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| Vercel CLI | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| Bindgen / Cbindgen | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| Cargo audit/clippy/outdated | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| .NET Core SDK | <ul><li>6.* </li><li>7.* </li><li>8.* </li></ul> | <ul><li>8.* </li></ul> | Please consider using tasks to install any version on-flight: <ul><li>[actions/setup-dotnet](https://github.com/actions/setup-dotnet) (GitHub Actions) </li><li>[Use .NET Core](https://docs.microsoft.com/en-us/azure/devops/pipelines/tasks/tool/dotnet-core-tool-installer?view=azure-devops) (Azure DevOps)</li></ul> |
-| PostgreSQL | 14.* | 16.* | More recent version are installed |
- MS SQL Server Client Tools | sqlcmd / SqlPackage | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| MarkdownPS Module | latest available | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
-| Android Command Line Tools | 9.0 | 12.0 | The most recent version are installed |
-| Android SDK Build-tools | <ul><li>34.0.0 </li><li>33.0.0 </li><li>33.0.1 </li><li>33.0.2 </li><li>33.0.3 </li><li>32.0.0 </li><li>31.0.0</li></ul> | <ul><li>34.0.0</li></ul> | The most recent version are installed |
-| Android NDK | <ul><li>25.* (default)</li><li>26.* </li></ul> | <ul><li>27.* (default)</li><li>26.* </li></ul> | The most recent version are installed |
-| Cached Docker images | <ul><li>alpine:3.16</li><li>alpine:3.17</li><li>alpine:3.18</li><li>debian:10</li><li>debian:11</li><li>moby/buildkit:latest</li><li>node:16</li><li>node:16-alpine</li><li>node:18</li><li>node:18-alpine</li><li>node:20</li><li>node:20-alpine</li><li>ubuntu:20.04</li><li>ubuntu:22.04</li></ul> | - | Removed from the Ubuntu 24.04 image due to maintenance reasons. |
+- [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636)
 
 ## Image Definitions
 
