@@ -11,7 +11,8 @@ param(
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet,
-    [String] [Parameter (Mandatory=$false)] $AllowedInboundIpAddresses = "[]"
+    [String] [Parameter (Mandatory=$false)] $AllowedInboundIpAddresses = "[]",
+    [hashtable] [Parameter (Mandatory=$False)] $Tags = @{}
 )
 
 if (-not (Test-Path $TemplatePath))
@@ -32,6 +33,8 @@ $SensitiveData = @(
     'TemplateUriReadOnlySas',
     ':  ->'
 )
+
+$azure_tags = $Tags.GetEnumerator() | ForEach-Object { "{0}={1}" -f $_.Key, $_.Value } | Join-String -Separator ","
 
 Write-Host "Show Packer Version"
 packer --version
@@ -56,6 +59,7 @@ packer build    -var "client_id=$ClientId" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
                 -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+                -var "azure_tags={$azure_tags}" `
                 -color=false `
                 $TemplatePath `
         | Where-Object {
