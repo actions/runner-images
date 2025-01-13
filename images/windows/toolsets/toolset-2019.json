@@ -424,6 +424,7 @@
             { "name": "7zip.install" },
             { "name": "aria2" },
             { "name": "Bicep" },
+            { "name": "azcopy10" },
             { "name": "gitversion.portable"},
             { "name": "innosetup" },
             { "name": "jq" },
