@@ -42,4 +42,8 @@ if is_ubuntu20; then
     echo "containers $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
 fi
 
+if is_ubuntu24; then 
+ systemctl enable --now podman.socket
+fi
+
 invoke_tests "Tools" "Containers"
