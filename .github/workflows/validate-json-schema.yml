@@ -1,0 +1,16 @@
+name: Validate JSON Schema
+
+on: [push, pull_request]
+
+jobs:
+  validate-json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Validate Toolset JSON files against schema
+        uses: cardinalby/schema-validator-action@v3
+        with:
+          file: '**/toolset-*.json'
+          schema: 'schemas/toolset-schema.json'
