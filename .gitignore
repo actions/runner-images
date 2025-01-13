@@ -397,3 +397,4 @@ launch.json
 
 # Ignore dynamic template
 images/*/*-temp.json
+.github/workflows/validate-json-schema.yml

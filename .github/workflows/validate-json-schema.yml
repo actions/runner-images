@@ -13,4 +13,4 @@ jobs:
         run: |
           wget https://github.com/neilpa/yajsv/releases/download/v1.4.1/yajsv.linux.amd64
           chmod +x yajsv.linux.amd64
-          ./yajsv.linux.amd64 -s ./schemas/toolset-schema.json ./**/toolset-*.json  
+          ./yajsv.linux.amd64 -s ./schemas/toolset-schema.json $(find . -name 'toolset-*.json' | tr '\n' ' ') 
