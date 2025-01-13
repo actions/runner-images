@@ -9,8 +9,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Validate Toolset JSON files against schema
-        uses: cardinalby/schema-validator-action@v3
-        with:
-          file: '**/toolset-*.json'
-          schema: 'schemas/toolset-schema.json'
+      - name: Run JSON Schema validation
+        run: |
+          wget https://github.com/neilpa/yajsv/releases/download/v1.4.1/yajsv.linux.amd64
+          chmod +x yajsv.linux.amd64
+          ./yajsv.linux.amd64 -s ./schemas/toolset-schema.json ./**/toolset-*.json  
