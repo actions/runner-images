@@ -86,8 +86,8 @@
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-12266719_latest.zip",
         "hash": "F9088C04A44F1F37A8A3A228A7663E11AE9445FA07529C96CEF38ACB985A88F3",
-        "platform_min_version": "35",
-        "build_tools_min_version": "35.0.0",
+        "platform_min_version": "34",
+        "build_tools_min_version": "34.0.0",
         "extras": [
             "android;m2repository",
             "google;m2repository",
@@ -136,8 +136,6 @@
             "Component.Linux.CMake",
             "Component.UnityEngine.x64",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
-            "Microsoft.Net.Component.4.7.TargetingPack",
-            "Microsoft.Net.Component.4.7.2.TargetingPack",
             "Microsoft.Net.Component.4.8.1.SDK",
             "Microsoft.Net.Component.4.8.1.TargetingPack",
             "Microsoft.VisualStudio.Component.AspNet45",

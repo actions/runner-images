@@ -243,7 +243,7 @@ build {
     inline = ["if (-not ((net localgroup Administrators) -contains '${var.install_user}')) { exit 1 }"]
   }
 
-  provisioner "powershell" {
+provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
     inline            = ["bcdedit.exe /set TESTSIGNING ON"]
@@ -256,6 +256,7 @@ build {
       "${path.root}/../scripts/build/Configure-WindowsDefender.ps1",
       "${path.root}/../scripts/build/Configure-PowerShell.ps1",
       "${path.root}/../scripts/build/Install-PowerShellModules.ps1",
+      "${path.root}/../scripts/build/Install-WSL2.ps1",
       "${path.root}/../scripts/build/Install-WindowsFeatures.ps1",
       "${path.root}/../scripts/build/Install-Chocolatey.ps1",
       "${path.root}/../scripts/build/Configure-BaseImage.ps1",

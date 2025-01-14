@@ -93,11 +93,11 @@ $servicesToDisable = @(
     'wuauserv'
     'DiagTrack'
     'dmwappushservice'
-    'PcaSvc'
+    $(if(-not (Test-IsWin25)){'PcaSvc'})
     'SysMain'
     'gupdate'
     'gupdatem'
-    'StorSvc'
+    $(if(-not (Test-IsWin25)){'StorSvc'})
 ) | Get-Service -ErrorAction SilentlyContinue
 Stop-Service $servicesToDisable
 $servicesToDisable.WaitForStatus('Stopped', "00:01:00")

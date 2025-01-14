@@ -7,7 +7,6 @@
             "platform_version": "22.04",
             "arch": "x64",
             "versions": [
-                "3.7.*",
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
@@ -70,7 +69,7 @@
     "java": {
         "default": "11",
         "versions": [ "8", "11", "17", "21"],
-        "maven": "3.8.8"
+        "maven": "3.9.9"
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
@@ -268,12 +267,10 @@
     "dotnet": {
         "aptPackages": [
             "dotnet-sdk-6.0",
-            "dotnet-sdk-7.0",
             "dotnet-sdk-8.0"
         ],
         "versions": [
             "6.0",
-            "7.0",
             "8.0"
         ],
         "tools": [

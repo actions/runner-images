@@ -1,13 +1,15 @@
 | Announcements |
 |-|
-| [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from January 10,2025](https://github.com/actions/runner-images/issues/11104) |
-| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 10,2025](https://github.com/actions/runner-images/issues/11093) |
-| [[Windows & Ubuntu] .NET 7.x will be removed from the images on January 10,2025](https://github.com/actions/runner-images/issues/10894) |
+| [[Windows ] Breaking change : PHP 8.3.* version will be updated to PHP 8.4.* from January 31,2025](https://github.com/actions/runner-images/issues/11256) |
+| [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
+| [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from January 17,2025](https://github.com/actions/runner-images/issues/11104) |
+| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 17,2025](https://github.com/actions/runner-images/issues/11093) |
+| [[Windows & Ubuntu] .NET 7.x will be removed from the images on January 17,2025](https://github.com/actions/runner-images/issues/10894) |
 | [[Windows & Ubuntu] Python 3.7.x will be removed from  January 10 ,2025](https://github.com/actions/runner-images/issues/10893) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6659
-- Image Version: 20241215.1.0
+- Image Version: 20250105.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -22,21 +24,21 @@
 - LLVM 18.1.8
 - Node 18.20.5
 - Perl 5.32.1
-- PHP 8.3.14
-- Python 3.7.9
+- PHP 8.3.15
+- Python 3.9.13
 - Ruby 3.0.7p220
 
 ### Package Management
 - Chocolatey 2.4.1
 - Composer 2.8.4
-- Helm 3.16.2
-- Miniconda 24.9.2 (pre-installed on the image but not added to PATH)
+- Helm 3.16.3
+- Miniconda 24.11.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.12.1.1
-- pip 24.0 (python 3.7)
-- Pipx 1.2.1
+- pip 24.3.1 (python 3.9)
+- Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit b545373a9)
+- Vcpkg (build from commit 65be70199)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -47,9 +49,9 @@
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.11
+- Gradle 8.12
 - Maven 3.8.7
-- sbt 1.10.6
+- sbt 1.10.7
 
 ### Tools
 - 7zip 24.09
@@ -58,20 +60,20 @@
 - Bazel 8.0.0
 - Bazelisk 1.25.0
 - Bicep 0.32.4
-- Cabal 3.12.1.0
-- CMake 3.31.2
+- Cabal 3.14.1.1
+- CMake 3.31.3
 - CodeQL Action Bundle 2.20.0
 - Docker 26.1.3
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
-- ghc 9.10.1
+- ghc 9.12.1
 - Git 2.47.1.windows.1
 - Git LFS 3.6.0
-- Google Cloud CLI 503.0.0
-- ImageMagick 7.1.1-41
+- Google Cloud CLI 504.0.1
+- ImageMagick 7.1.1-43
 - InnoSetup 6.3.3
 - jq 1.7.1
-- Kind 0.25.0
+- Kind 0.26.0
 - Kubectl 1.32.0
 - Mercurial 5.0
 - gcc 8.1.0
@@ -81,28 +83,28 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.2
-- Parcel 2.13.2
-- Pulumi 3.143.0
+- Parcel 2.13.3
+- Pulumi 3.144.1
 - R 4.4.2
 - Service Fabric SDK 9.1.1436.9590
-- Stack 3.1.1
+- Stack 3.3.1
 - Subversion (SVN) 1.14.5
 - Swig 4.1.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.14.1.8722
-- yamllint 1.32.0
+- yamllint 1.35.1
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.237
-- AWS CLI 2.22.17
+- Alibaba Cloud CLI 3.0.244
+- AWS CLI 2.22.28
 - AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 8.9.0
-- GitHub CLI 2.63.2
+- GitHub CLI 2.64.0
 
 ### Rust Tools
 - Cargo 1.83.0
@@ -119,10 +121,10 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.140
-- Chrome Driver 131.0.6778.108
-- Microsoft Edge 131.0.2903.99
-- Microsoft Edge Driver 131.0.2903.99
+- Google Chrome 131.0.6778.205
+- Chrome Driver 131.0.6778.204
+- Microsoft Edge 131.0.2903.112
+- Microsoft Edge Driver 131.0.2903.112
 - Mozilla Firefox 133.0.3
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
@@ -179,7 +181,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 22.12.0
 
 #### Python
-- 3.7.9
 - 3.8.10
 - 3.9.13
 - 3.10.11
@@ -512,7 +513,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 2.1.0 (Default), 6.13.1
 - Azure (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip
 - AzureRM (Cached): 3.8.0.zip, 4.2.1.zip, 5.1.1.zip, 6.7.0.zip
-- AWSPowershell: 4.1.718
+- AWSPowershell: 4.1.729
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.25.0
@@ -534,7 +535,7 @@ All other versions are saved but not installed.
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                               |
 | Android Emulator           | 35.2.10                                                                                                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0<br>30.0.2                                                                                                                                                                                                                                                     |
-| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3) |
+| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                            |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                                                                        |
