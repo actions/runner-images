@@ -1,13 +1,11 @@
 | Announcements |
 |-|
-| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 10,2025](https://github.com/actions/runner-images/issues/11093) |
-| [[Ubuntu] Breaking Change: runner user will have UID 1001 instead of 1000 for larger runners](https://github.com/actions/runner-images/issues/10936) |
-| [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
+| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 17,2025](https://github.com/actions/runner-images/issues/11093) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
 - Kernel Version: 6.8.0-1017-azure
-- Image Version: 20250105.1.0
+- Image Version: 20250113.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -31,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.16.4
-- Homebrew 4.4.14
+- Homebrew 4.4.16
 - Miniconda 24.11.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 65be70199)
+- Vcpkg (build from commit d7112d1a4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,7 +57,7 @@ to accomplish this.
 - Ant 1.10.14
 - Gradle 8.12
 - Lerna 8.1.9
-- Maven 3.8.8
+- Maven 3.9.9
 
 ### Tools
 - Ansible 2.18.1
@@ -68,15 +66,15 @@ to accomplish this.
 - Bazelisk 1.25.0
 - Bicep 0.32.4
 - Buildah 1.33.7
-- CMake 3.31.3
-- CodeQL Action Bundle 2.20.0
+- CMake 3.31.4
+- CodeQL Action Bundle 2.20.1
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.19.3
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.226.0
-- Git 2.47.1
+- Git 2.48.0
 - Git LFS 3.6.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
@@ -94,21 +92,21 @@ to accomplish this.
 - Packer 1.11.2
 - Parcel 2.13.3
 - Podman 4.9.3
-- Pulumi 3.144.1
+- Pulumi 3.145.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
-- yq 4.44.6
+- yq 4.45.1
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.22.28
+- AWS CLI 2.22.33
 - AWS CLI Session Manager Plugin 1.2.694.0
 - AWS SAM CLI 1.132.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.64.0
-- Google Cloud CLI 504.0.1
+- GitHub CLI 2.65.0
+- Google Cloud CLI 505.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -133,22 +131,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.3.1
 
 ### Rust Tools
-- Cargo 1.83.0
-- Rust 1.83.0
-- Rustdoc 1.83.0
+- Cargo 1.84.0
+- Rust 1.84.0
+- Rustdoc 1.84.0
 - Rustup 1.27.1
 
 #### Packages
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.204
-- ChromeDriver 131.0.6778.204
+- Google Chrome 131.0.6778.264
+- ChromeDriver 131.0.6778.264
 - Chromium 131.0.6778.0
 - Microsoft Edge 131.0.2903.112
 - Microsoft Edge WebDriver 131.0.2903.112
 - Selenium server 4.27.0
-- Mozilla Firefox 133.0.3
+- Mozilla Firefox 134.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -161,7 +159,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.111
-- nbgv 3.7.112+63bbe780b0
+- nbgv 3.7.115+d31f50f4d1
 
 ### Databases
 - sqlite3 3.45.1
@@ -193,7 +191,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 18.20.5
 - 20.18.1
-- 22.12.0
+- 22.13.0
 
 #### Python
 - 3.9.21
@@ -211,7 +209,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 12.1.0
 - Microsoft.Graph: 2.25.0
-- Pester: 5.6.1
+- Pester: 5.7.1
 - PSScriptAnalyzer: 1.23.0
 
 ### Web Servers
@@ -255,7 +253,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 9.4-3ubuntu6                |
 | curl                   | 8.5.0-2ubuntu10.6           |
 | dbus                   | 1.14.10-4ubuntu4.1          |
-| dnsutils               | 1:9.18.28-0ubuntu0.24.04.1  |
+| dnsutils               | 1:9.18.30-0ubuntu0.24.04.1  |
 | dpkg                   | 1.22.6ubuntu6.1             |
 | dpkg-dev               | 1.22.6ubuntu6.1             |
 | fakeroot               | 1.33-1                      |
@@ -271,6 +269,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.1.0-1ubuntu6              |
 | iputils-ping           | 3:20240117-1build1          |
 | jq                     | 1.7.1-3build1               |
+| libsqlite3-dev         | 3.45.1-1ubuntu2             |
 | libssl-dev             | 3.0.13-0ubuntu3.4           |
 | libtool                | 2.4.7-7build1               |
 | libyaml-dev            | 0.2.5-1build1               |
