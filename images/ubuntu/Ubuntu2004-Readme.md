@@ -1,13 +1,11 @@
 | Announcements |
 |-|
 | [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 17,2025](https://github.com/actions/runner-images/issues/11093) |
-| [[Ubuntu] Breaking Change: runner user will have UID 1001 instead of 1000 for larger runners](https://github.com/actions/runner-images/issues/10936) |
-| [Ubuntu-latest workflows will use Ubuntu-24.04 image](https://github.com/actions/runner-images/issues/10636) |
 ***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1074-azure
-- Image Version: 20250105.1.0
+- Image Version: 20250113.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -35,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.16.4
-- Homebrew 4.4.14
+- Homebrew 4.4.16
 - Miniconda 24.11.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -43,7 +41,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 65be70199)
+- Vcpkg (build from commit d7112d1a4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -64,7 +62,7 @@ to accomplish this.
 - Ant 1.10.7
 - Gradle 8.12
 - Lerna 8.1.9
-- Maven 3.8.8
+- Maven 3.9.9
 - Sbt 1.10.7
 
 ### Tools
@@ -75,19 +73,19 @@ to accomplish this.
 - Bazelisk 1.25.0
 - Bicep 0.32.4
 - Buildah 1.22.3
-- CMake 3.31.3
-- CodeQL Action Bundle 2.20.0
+- CMake 3.31.4
+- CodeQL Action Bundle 2.20.1
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.19.3
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.226.0
-- Git 2.47.1
+- Git 2.48.0
 - Git LFS 3.6.0
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 10.0.0
+- Heroku 10.0.2
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.26.0
@@ -105,29 +103,29 @@ to accomplish this.
 - Parcel 2.13.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.144.1
+- Pulumi 3.145.0
 - R 4.4.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.10.3
+- Terraform 1.10.4
 - yamllint 1.35.1
-- yq 4.44.6
+- yq 4.45.1
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.22.28
+- AWS CLI 2.22.33
 - AWS CLI Session Manager Plugin 1.2.694.0
 - AWS SAM CLI 1.132.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.64.0
-- Google Cloud CLI 504.0.1
-- Netlify CLI 17.38.1
+- GitHub CLI 2.65.0
+- Google Cloud CLI 505.0.0
+- Netlify CLI 18.0.0
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.2
-- Vercel CLI 39.2.5
+- Vercel CLI 39.2.6
 
 ### Java
 | Version             | Environment Variable |
@@ -152,27 +150,27 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.3.1
 
 ### Rust Tools
-- Cargo 1.83.0
-- Rust 1.83.0
-- Rustdoc 1.83.0
+- Cargo 1.84.0
+- Rust 1.84.0
+- Rustdoc 1.84.0
 - Rustup 1.27.1
 
 #### Packages
 - Bindgen 0.71.1
 - Cargo audit 0.21.0
-- Cargo clippy 0.1.83
+- Cargo clippy 0.1.84
 - Cargo outdated 0.16.0
 - Cbindgen 0.27.0
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.204
-- ChromeDriver 131.0.6778.204
+- Google Chrome 131.0.6778.264
+- ChromeDriver 131.0.6778.264
 - Chromium 131.0.6778.0
 - Microsoft Edge 131.0.2903.112
 - Microsoft Edge WebDriver 131.0.2903.112
 - Selenium server 4.27.0
-- Mozilla Firefox 133.0.3
+- Mozilla Firefox 134.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -184,8 +182,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.428, 7.0.410, 8.0.404
-- nbgv 3.7.112+63bbe780b0
+- .NET Core SDK: 6.0.428, 8.0.404
+- nbgv 3.7.115+d31f50f4d1
 
 ### Databases
 - MongoDB 5.0.30
@@ -222,7 +220,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 18.20.5
 - 20.18.1
-- 22.12.0
+- 22.13.0
 
 #### Python
 - 3.8.18
@@ -251,7 +249,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 12.1.0
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.25.0
-- Pester: 5.6.1
+- Pester: 5.7.1
 - PSScriptAnalyzer: 1.23.0
 
 ### Web Servers
@@ -288,18 +286,18 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | -------------------- | ------------------------------------------------------------------------ | ---------- |
 | alpine:3.16          | sha256:452e7292acee0ee16c332324d7de05fa2c99f9994ecc9f0779c602916a672ae4  | 2024-01-27 |
 | alpine:3.17          | sha256:8fc3dacfb6d69da8d44e42390de777e48577085db99aa4e4af35f483eb08b989  | 2024-09-06 |
-| alpine:3.18          | sha256:2995c82e8e723d9a5c8585cb8e901d1c50e3c2759031027d3bff577449435157  | 2024-09-06 |
-| alpine:3.19          | sha256:7a85bf5dc56c949be827f84f9185161265c58f589bb8b2a6b6bb6d3076c1be21  | 2024-09-06 |
+| alpine:3.18          | sha256:dd60c75fba961ecc5e918961c713f3c42dd5665171c58f9b2ef5aafe081ad5a0  | 2025-01-08 |
+| alpine:3.19          | sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f  | 2025-01-08 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
 | debian:11            | sha256:21b74d95871e8676a0cf47df9caebb1021b2af60b9a6e4777ce92f92f98e3a90  | 2024-12-23 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest | sha256:86c0ad9d1137c186e9d455912167df20e530bdf7f7c19de802e892bb8ca16552  | 2024-12-16 |
 | node:18              | sha256:7f31a1eb14c61719b8bb0eaa029310cc33851f71d3578cc422b390f8096977c5  | 2024-11-15 |
-| node:18-alpine       | sha256:6eb9c3d9bd191bd2cc6ce7ec3d5ec4c2127616140c8586af96a6bec8f28689d1  | 2024-12-05 |
+| node:18-alpine       | sha256:a24108da7089c2d293ceaa61fb8969ec10821e8efe25572e5abb10b1841eb70b  | 2024-12-05 |
 | node:20              | sha256:d17aaa2a2fd82e09bd6a6da7cc4a79741340d2a3e39d172d1b30f295b1a850ff  | 2024-11-20 |
-| node:20-alpine       | sha256:426f843809ae05f324883afceebaa2b9cab9cb697097dbb1a2a7a41c5701de72  | 2024-12-05 |
-| node:22              | sha256:0e910f435308c36ea60b4cfd7b80208044d77a074d16b768a81901ce938a62dc  | 2024-12-03 |
-| node:22-alpine       | sha256:6e80991f69cc7722c561e5d14d5e72ab47c0d6b6cfb3ae50fb9cf9a7b30fdf97  | 2024-12-05 |
+| node:20-alpine       | sha256:24fb6aa7020d9a20b00d6da6d1714187c45ed00d1eb4adb01395843c338b9372  | 2024-12-05 |
+| node:22              | sha256:99981c3d1aac0d98cd9f03f74b92dddf30f30ffb0b34e6df8bd96283f62f12c6  | 2025-01-07 |
+| node:22-alpine       | sha256:f2dc6eea95f787e25f173ba9904c9d0647ab2506178c7b5b7c5a3d02bc4af145  | 2025-01-07 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
 
 ### Installed apt packages
@@ -316,7 +314,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 8.30-3ubuntu2                     |
 | curl                   | 7.68.0-1ubuntu2.25                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
-| dnsutils               | 1:9.18.28-0ubuntu0.20.04.1        |
+| dnsutils               | 1:9.18.30-0ubuntu0.20.04.1        |
 | dpkg                   | 1.19.7ubuntu3.2                   |
 | dpkg-dev               | 1.19.7ubuntu3.2                   |
 | fakeroot               | 1.24-1                            |
