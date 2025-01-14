@@ -470,13 +470,23 @@
     },
     "postgresql": {
         "version": "14.12.1",
-        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9",
+        "pinnedDetails": {
+            "link": "https://github.com/EnterpriseDB/edb-installers/issues/196#issuecomment-2489021239",
+            "reason": "this was pinned due to a downstream issue with the installer",
+            "review-at": "2023-12-31"
+        }
     },
     "kotlin": {
         "version": "latest"
     },
     "openssl": {
-        "version": "1.1.1"
+        "version": "1.1.1",
+        "pinnedDetails": {
+            "link": "https://github.com/somelink",
+            "reason": "this was pinned due to a downstream issue with the installer",
+            "review-at": "2025-01-30"
+        }
     },
     "pwsh": {
         "version": "7.4"
