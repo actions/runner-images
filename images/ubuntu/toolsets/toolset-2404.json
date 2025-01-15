@@ -107,6 +107,7 @@
             "g++",
             "gcc",
             "make",
+            "ninja-build",
             "jq",
             "tar",
             "unzip",
