@@ -93,7 +93,6 @@
         {
             "name": "azurerm",
             "versions": [
-                "2.1.0",
                 "6.13.1"
             ],
             "zip_versions": [
