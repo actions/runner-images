@@ -367,11 +367,6 @@ function Get-BazeliskVersion {
     return ($bazeliskVersion -replace "^bazelisk").Trim()
 }
 
-function Get-HelmVersion {
-    $helmVersion = Run-Command "helm version --short"
-    return $helmVersion
-}
-
 function Get-MongoVersion {
     $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
     return $mongo.TrimStart("v").Trim()
@@ -395,11 +390,6 @@ function Get-GnuTarVersion {
 function Get-BsdtarVersion {
     $bsdtar = Run-Command "tar --version" | Take-Part -Part 1
     return "$bsdtar - available by 'tar' alias"
-}
-
-function Get-NewmanVersion {
-    $newmanVersion = Run-Command "newman --version"
-    return $newmanVersion
 }
 
 function Get-VirtualBoxVersion {
@@ -455,11 +445,6 @@ function Get-AWSSAMCLIVersion {
 function Get-AWSSessionManagerCLIVersion {
     $awsSessionManagerVersion = Run-Command "session-manager-plugin --version"
     return $awsSessionManagerVersion
-}
-
-function Get-AliyunCLIVersion {
-    $aliyunVersion = Run-Command "aliyun --version" | Select-String "Alibaba Cloud Command Line Interface Version " | Take-Part -Part 6
-    return $aliyunVersion
 }
 
 function Get-GHCupVersion {
@@ -553,7 +538,7 @@ function Get-LibXextVersion {
 }
 
 function Get-TclTkVersion {
-    $tcltkVersion = (Run-Command "brew info --json tcl-tk" | ConvertFrom-Json).installed.version
+    $tcltkVersion = (Run-Command "brew info --json tcl-tk@8" | ConvertFrom-Json).installed.version
     return $tcltkVersion
 }
 
@@ -620,9 +605,9 @@ function Get-ColimaVersion {
     return $colimaVersion
 }
 
-function Get-PKGConfigVersion {
-    $pkgconfigVersion = Run-Command "pkg-config --version"
-    return $pkgconfigVersion
+function Get-PKGConfVersion {
+    $pkgconfVersion = Run-Command "pkgconf --version"
+    return $pkgconfVersion
 }
 
 function Get-XcbeautifyVersion {
@@ -633,4 +618,9 @@ function Get-XcbeautifyVersion {
 function Get-XcodesVersion {
     $XcodesVersion = Run-Command "xcodes version"
     return $XcodesVersion
+}
+
+function Get-UnxipVersion {
+    $unxipVersion = Run-Command "unxip --version" | Take-Part -Part 1
+    return $unxipVersion
 }

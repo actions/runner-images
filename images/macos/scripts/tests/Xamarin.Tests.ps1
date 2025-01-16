@@ -8,11 +8,18 @@ if ($os.IsVentura -or $os.IsSonoma) {
     $XAMARIN_IOS_VERSIONS = @()
     $XAMARIN_MAC_VERSIONS = @()
     $XAMARIN_ANDROID_VERSIONS = @()
-} elseif ($os.IsBigSur -or $os.IsMonterey) {
+} elseif ($os.IsMonterey) {
     $MONO_VERSIONS = (Get-ToolsetContent).xamarin.mono_versions
     $XAMARIN_IOS_VERSIONS = (Get-ToolsetContent).xamarin.ios_versions
     $XAMARIN_MAC_VERSIONS = (Get-ToolsetContent).xamarin.mac_versions
     $XAMARIN_ANDROID_VERSIONS = (Get-ToolsetContent).xamarin.android_versions
+} elseif ($os.IsSequoia) {
+    Write-Host "Skipping all the Mono and Xamarin tests as deprecated"
+    # Dummy workaround for the issue with the tests discovery
+    $MONO_VERSIONS = @()
+    $XAMARIN_IOS_VERSIONS = @()
+    $XAMARIN_MAC_VERSIONS = @()
+    $XAMARIN_ANDROID_VERSIONS = @()
 }
 
 BeforeAll {
@@ -26,7 +33,7 @@ BeforeAll {
     }
 }
 
-Describe "Mono" {
+Describe "Mono" -Skip:($os.IsSequoia) {
     $MONO_VERSIONS | ForEach-Object {
         Context "$_" {
             $MONO_VERSIONS_PATH = "/Library/Frameworks/Mono.framework/Versions"
@@ -90,7 +97,7 @@ Describe "Mono" {
     }
 }
 
-Describe "Xamarin.iOS" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Xamarin.iOS" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     $XAMARIN_IOS_VERSIONS | ForEach-Object {
         Context "$_" {
             $XAMARIN_IOS_VERSIONS_PATH = "/Library/Frameworks/Xamarin.iOS.framework/Versions"
@@ -123,7 +130,7 @@ Describe "Xamarin.iOS" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "Xamarin.Mac" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Xamarin.Mac" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     $XAMARIN_MAC_VERSIONS | ForEach-Object {
         Context "$_" {
             $XAMARIN_MAC_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Mac.framework/Versions"
@@ -156,7 +163,7 @@ Describe "Xamarin.Mac" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "Xamarin.Android" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Xamarin.Android" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     $XAMARIN_ANDROID_VERSIONS | ForEach-Object {
         Context "$_" {
             $XAMARIN_ANDROID_VERSIONS_PATH = "/Library/Frameworks/Xamarin.Android.framework/Versions"
@@ -196,7 +203,7 @@ Describe "Xamarin.Android" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "Xamarin Bundles" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Xamarin Bundles" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     BeforeAll {
         $MONO_VERSIONS_PATH = "/Library/Frameworks/Mono.framework/Versions"
         $XAMARIN_IOS_VERSIONS_PATH = "/Library/Frameworks/Xamarin.iOS.framework/Versions"
@@ -303,7 +310,7 @@ Describe "Xamarin Bundles" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "Nuget" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Nuget" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Nuget config contains nuget.org feed" {
         Get-Content $env:HOME/.config/NuGet/NuGet.Config | Out-String | Should -Match "nuget.org"
     }

@@ -11,18 +11,20 @@ close_finder_window
 
 # Remove Parallels Desktop
 # https://github.com/actions/runner-images/issues/6105
-if is_Monterey; then
+# https://github.com/actions/runner-images/issues/10143
+if is_Monterey || is_SonomaX64 || is_VenturaX64; then
     brew uninstall parallels
 fi
 
 # Put documentation to $HOME root
 cp $HOME/image-generation/output/software-report/systeminfo.* $HOME/
 
-# Put build vm assets scripts to proper directory
-mkdir -p /usr/local/opt/$USER/scripts
-mv $HOME/image-generation/assets/* /usr/local/opt/$USER/scripts
-
-find /usr/local/opt/$USER/scripts -type f -name "*\.sh" -exec chmod +x {} \;
+# Put build vm assets (xamarin-selector) scripts to proper directory
+if is_Monterey || is_Sonoma || is_Ventura; then
+    mkdir -p /usr/local/opt/$USER/scripts
+    mv $HOME/image-generation/assets/* /usr/local/opt/$USER/scripts
+    find /usr/local/opt/$USER/scripts -type f -name "*\.sh" -exec chmod +x {} \;
+fi
 
 # Remove fastlane cached cookie
 rm -rf ~/.fastlane
@@ -45,3 +47,9 @@ echo "Indexing completed"
 
 # delete symlink for tests running
 sudo rm -f /usr/local/bin/invoke_tests
+
+# Clean Homebrew downloads
+sudo rm -rf /Users/$USER/Library/Caches/Homebrew/downloads/*
+
+# Uninstall expect used in configure-machine.sh
+brew uninstall expect

@@ -55,11 +55,6 @@ function Get-DockerVersion {
     return $dockerVersion
 }
 
-function Get-DockerComposeVersion {
-    $dockerComposeVersion = docker-compose version --short
-    return $dockerComposeVersion
-}
-
 function Get-DockerComposeVersionV2 {
     $dockerComposeVersion = docker compose version --short
     return $dockerComposeVersion
@@ -318,4 +313,12 @@ function Get-ImageMagickVersion {
     (magick -version | Select-String -Pattern "Version") -match "(?<version>\d+\.\d+\.\d+-\d+)" | Out-Null
     $magickVersion = $Matches.Version
     return $magickVersion
+}
+
+function Get-MongoshVersion {
+    return $(mongosh --version)
+}
+
+function Get-WSL2Version {
+    return $((Get-AppxPackage -Name "MicrosoftCorporationII.WindowsSubsystemForLinux").version)
 }

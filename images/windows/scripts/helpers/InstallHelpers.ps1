@@ -70,7 +70,7 @@ function Install-Binary {
         } else {
             $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
         }
-        $filePath = Invoke-DownloadWithRetry -Url $Url -Path "${env:Temp}\$fileName"
+        $filePath = Invoke-DownloadWithRetry -Url $Url -Path "${env:TEMP_DIR}\$fileName"
     }
 
     if ($PSBoundParameters.ContainsKey('ExpectedSignature')) {
@@ -92,7 +92,7 @@ function Install-Binary {
     if ($ExtraInstallArgs -and $InstallArgs) {
         throw "InstallArgs and ExtraInstallArgs parameters cannot be used together."
     }
- 
+
     if ($Type -eq "MSI") {
         # MSI binaries should be installed via msiexec.exe
         if ($ExtraInstallArgs) {
@@ -153,7 +153,7 @@ function Invoke-DownloadWithRetry {
     .EXAMPLE
         Invoke-DownloadWithRetry -Url "https://example.com/file.zip"
         Downloads the file from the specified URL and saves it to a temporary path.
-    
+
     .OUTPUTS
         The path where the downloaded file is saved.
     #>
@@ -174,7 +174,7 @@ function Invoke-DownloadWithRetry {
         if ([String]::IsNullOrEmpty($fileName)) {
             $fileName = [System.IO.Path]::GetRandomFileName()
         }
-        $Path = Join-Path -Path "${env:Temp}" -ChildPath $fileName
+        $Path = Join-Path -Path "${env:TEMP_DIR}" -ChildPath $fileName
     }
 
     Write-Host "Downloading package from $Url to $Path..."
@@ -198,7 +198,7 @@ function Invoke-DownloadWithRetry {
                 $retries = 0
             }
         }
-            
+
         if ($retries -eq 0) {
             $totalSeconds = [math]::Round(($(Get-Date) - $downloadStartTime).TotalSeconds, 2)
             throw "Package download failed after $totalSeconds seconds"
@@ -305,6 +305,22 @@ function Get-TCToolVersionPath {
     }
 
     return Join-Path $foundVersion $Arch
+}
+
+function Test-IsWin25 {
+    <#
+    .SYNOPSIS
+        Checks if the current Windows operating system is Windows Server 2025.
+    .DESCRIPTION
+        This function uses the Get-CimInstance cmdlet to retrieve information
+        about the current Windows operating system. It then checks if the Caption
+        property of the Win32_OperatingSystem class contains the string "2025",
+        indicating that the operating system is Windows Server 2025.
+    .OUTPUTS
+        Returns $true if the current Windows operating system is Windows Server 2025.
+        Otherwise, returns $false.
+    #>
+    (Get-CimInstance -ClassName Win32_OperatingSystem).Caption -match "2025"
 }
 
 function Test-IsWin22 {
@@ -519,7 +535,7 @@ function Get-GithubReleasesByVersion {
     .PARAMETER AllowPrerelease
         Specifies whether to include prerelease versions in the results. By default,
         prerelease versions are excluded.
-    
+
     .PARAMETER WithAssetsOnly
         Specifies whether to exclude releases without assets. By default, releases without
         assets are included.
@@ -549,7 +565,7 @@ function Get-GithubReleasesByVersion {
         [switch] $WithAssetsOnly
     )
 
-    $localCacheFile = Join-Path ${env:TEMP} "github-releases_$($Repository -replace "/", "_").json"
+    $localCacheFile = Join-Path ${env:TEMP_DIR} "github-releases_$($Repository -replace "/", "_").json"
 
     if (Test-Path $localCacheFile) {
         $releases = Get-Content $localCacheFile | ConvertFrom-Json
@@ -589,8 +605,17 @@ function Get-GithubReleasesByVersion {
         )
     }
 
-    # Sort releases by version
-    $releases = $releases | Sort-Object -Descending { [version] $_.version }
+    # Sort releases by version, then by tag name parts if version is the same
+    $releases = $releases | Sort-Object -Descending {
+        [version] $_.version
+    }, {
+        $cleanTagName = $_.tag_name -replace '^v', ''
+        $parts = $cleanTagName -split '[.\-]'
+        $parsedParts = $parts | ForEach-Object {
+            if ($_ -match '^\d+$') { [int]$_ } else { $_ }
+        }
+        $parsedParts
+    }
 
     # Select releases matching version
     if ($Version -eq "latest") {
@@ -783,7 +808,7 @@ function Get-ChecksumFromGithubRelease {
     }
 
     $hash = $matchedLine | Select-String -Pattern $pattern | ForEach-Object { $_.Matches.Value }
-        
+
     if ([string]::IsNullOrEmpty($hash)) {
         throw "Found '${FileName}' in body of release ${matchedVersion}, but failed to get hash from it.`nLine: ${matchedLine}"
     }
@@ -827,7 +852,7 @@ function Get-ChecksumFromUrl {
         [string] $HashType
     )
 
-    $tempFile = Join-Path -Path $env:TEMP -ChildPath ([System.IO.Path]::GetRandomFileName())
+    $tempFile = Join-Path -Path $env:TEMP_DIR -ChildPath ([System.IO.Path]::GetRandomFileName())
     $checksums = (Invoke-DownloadWithRetry -Url $Url -Path $tempFile | Get-Item | Get-Content) -as [string[]]
     Remove-Item -Path $tempFile
 
@@ -860,30 +885,30 @@ function Test-FileChecksum {
     <#
     .SYNOPSIS
         Verifies the checksum of a file.
-    
+
     .DESCRIPTION
         The Test-FileChecksum function verifies the SHA256 or SHA512 checksum of a file against an expected value. 
         If the checksum does not match the expected value, the function throws an error.
-    
+
     .PARAMETER Path
         The path to the file for which to verify the checksum.
-    
+
     .PARAMETER ExpectedSHA256Sum
         The expected SHA256 checksum. If this parameter is provided, the function will calculate the SHA256 checksum of the file and compare it to this value.
-    
+
     .PARAMETER ExpectedSHA512Sum
         The expected SHA512 checksum. If this parameter is provided, the function will calculate the SHA512 checksum of the file and compare it to this value.
-    
+
     .EXAMPLE
         Test-FileChecksum -Path "C:\temp\file.txt" -ExpectedSHA256Sum "ABC123"
-    
+
         Verifies that the SHA256 checksum of the file at C:\temp\file.txt is ABC123.
-    
+
     .EXAMPLE
         Test-FileChecksum -Path "C:\temp\file.txt" -ExpectedSHA512Sum "DEF456"
-    
+
         Verifies that the SHA512 checksum of the file at C:\temp\file.txt is DEF456.
-    
+
     #>
 
     param (
@@ -944,7 +969,7 @@ function Test-FileSignature {
         This example tests the signature of the file "C:\Path\To\File.exe" against the expected thumbprint "A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0".
 
     #>
-    
+
     param(
         [Parameter(Mandatory = $true, Position = 0)]
         [string] $Path,
@@ -957,7 +982,7 @@ function Test-FileSignature {
     if ($signature.Status -ne "Valid") {
         throw "Signature status is not valid. Status: $($signature.Status)"
     }
-    
+
     foreach ($thumbprint in $ExpectedThumbprint) {
         if ($signature.SignerCertificate.Thumbprint.Contains($thumbprint)) {
             Write-Output "Signature for $Path is valid"
@@ -992,8 +1017,8 @@ function Update-Environment {
     )
 
     # Update PATH variable
-    $pathItems = $locations | ForEach-Object { 
-        (Get-Item $_).GetValue('PATH').Split(';') 
+    $pathItems = $locations | ForEach-Object {
+        (Get-Item $_).GetValue('PATH').Split(';')
     } | Select-Object -Unique
     $env:PATH = $pathItems -join ';'
 
@@ -1004,7 +1029,7 @@ function Update-Environment {
             $value = $key.GetValue($name)
             if (-not ($name -ieq 'PATH')) {
                 Set-Item -Path Env:$name -Value $value
-            } 
+            }
         }
     }
 }

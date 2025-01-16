@@ -7,7 +7,6 @@
             "platform_version": "22.04",
             "arch": "x64",
             "versions": [
-                "3.7.*",
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
@@ -32,9 +31,9 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "16.*",
                 "18.*",
-                "20.*"
+                "20.*",
+                "22.*"
             ]
         },
         {
@@ -43,18 +42,19 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.20.*",
                 "1.21.*",
-                "1.22.*"
+                "1.22.*",
+                "1.23.*"
             ],
-            "default": "1.21.*"
+            "default": "1.23.*"
         },
         {
             "name": "Ruby",
             "platform_version": "22.04",
             "arch": "x64",
             "versions": [
-                "3.1.*"
+                "3.1.*",
+                "3.2.*"
             ]
         },
         {
@@ -69,7 +69,7 @@
     "java": {
         "default": "11",
         "versions": [ "8", "11", "17", "21"],
-        "maven": "3.8.8"
+        "maven": "3.9.9"
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
@@ -88,9 +88,9 @@
             "cmake;3.22.1"
         ],
         "ndk": {
-            "default": "25",
+            "default": "27",
             "versions": [
-                "24", "25", "26"
+                "26", "27"
             ]
         }
     },
@@ -104,7 +104,7 @@
         {
             "name": "az",
             "versions": [
-                "11.3.1"
+                "12.1.0"
             ]
         }
     ],
@@ -200,6 +200,7 @@
             "sshpass",
             "subversion",
             "sudo",
+            "systemd-coredump",
             "swig",
             "telnet",
             "time",
@@ -213,15 +214,16 @@
             "alpine:3.16",
             "alpine:3.17",
             "alpine:3.18",
+            "alpine:3.19",
             "debian:10",
             "debian:11",
             "moby/buildkit:latest",
-            "node:16",
             "node:18",
             "node:20",
-            "node:16-alpine",
+            "node:22",
             "node:18-alpine",
             "node:20-alpine",
+            "node:22-alpine",
             "ubuntu:20.04",
             "ubuntu:22.04"
         ],
@@ -265,12 +267,10 @@
     "dotnet": {
         "aptPackages": [
             "dotnet-sdk-6.0",
-            "dotnet-sdk-7.0",
             "dotnet-sdk-8.0"
         ],
         "versions": [
             "6.0",
-            "7.0",
             "8.0"
         ],
         "tools": [

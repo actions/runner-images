@@ -29,6 +29,7 @@ gpg --keyserver hkps://keyserver.ubuntu.com:443 \
       '8A74 9566 2C3C D4AE 18D9  5637 FAF6 989E 1BC1 6FEA' \
       'E813 C892 820A 6FA1 3755  B268 F167 DF1A CF9C E069' \
       '52BB 7E3D E28A 71BE 22EC  05FF EF80 A866 B47A 981F'
+
 gpg --keyserver hkps://keyserver.ubuntu.com:443 --refresh-keys Swift
 
 # Download and verify signature

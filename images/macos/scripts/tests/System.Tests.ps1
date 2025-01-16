@@ -3,11 +3,16 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 $os = Get-OSVersion
 
 Describe "Disk free space" {
-    It "Image has more than 10GB free space" {
-        # we should have at least 10 GB of free space on macOS images
-        # https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#capabilities-and-limitations
-        $freeSpace = (Get-PSDrive "/").Free
-        $freeSpace | Should -BeGreaterOrEqual 10GB
+    It "Image has more than 30GB free space" {
+        # we should have at least 30 GB of free space on macOS images
+        # 10GB here: https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#capabilities-and-limitations
+        # 14GB here: https://docs.github.com/en/actions/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+        # 30GB due to: https://github.com/actions/runner-images/issues/10511
+        $diskInfo = Get-PSDrive "/"
+        $totalSpaceGB = [math]::Floor(($diskInfo.Used + $diskInfo.Free) / 1GB)
+        $freeSpaceGB = [math]::Floor($diskInfo.Free / 1GB)
+        Write-Host "  [i] Disk size: ${totalSpaceGB} GB; Free space: ${freeSpaceGB} GB"
+        $freeSpaceGB | Should -BeGreaterOrEqual 30
     }
 }
 
@@ -25,7 +30,7 @@ Describe "Certificate" {
     }
 }
 
-Describe "Audio device" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Audio device" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Sox is installed" {
         "sox --version" | Should -ReturnZeroExitCode
     }
@@ -35,23 +40,8 @@ Describe "Audio device" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 }
 
-Describe "Screen Resolution" -Skip:(isVeertu) {
-    It "Screen Resolution" {
-        system_profiler SPDisplaysDataType | Select-String "Resolution" | Should -Match "1176 x 885|1920 x 1080"
-    }
-}
-
-Describe "Open windows" -Skip:(isVeertu) {
-    It "Opened windows not found" {
-        'tell application id "com.apple.systemevents" to get every window of (every process whose class of windows contains window)' | Tee-Object /tmp/windows.osascript
-        $cmd = "osascript /tmp/windows.osascript"
-        $openWindows = bash -c $cmd
-        $openWindows.Split(",").Trim() | Where-Object { $_ -notmatch "NotificationCenter" } | Should -BeNullOrEmpty
-    }
-}
-
 Describe "AutomationModeTool" {
-    It "Does not require user authentication" -Skip:($os.IsBigSur) {
+    It "Does not require user authentication" {
         automationmodetool | Out-String | Should -Match "DOES NOT REQUIRE"
     }
 }

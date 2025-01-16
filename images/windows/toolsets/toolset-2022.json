@@ -6,7 +6,8 @@
             "platform" : "win32",
             "versions": [
                 "3.0",
-                "3.1"
+                "3.1",
+                "3.2"
             ],
             "default": "3.0"
         },
@@ -16,7 +17,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "3.7.*",
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
@@ -31,7 +31,6 @@
             "arch": "x86",
             "platform" : "win32",
             "versions": [
-                "3.7.*",
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
@@ -59,7 +58,8 @@
             "versions": [
                 "16.*",
                 "18.*",
-                "20.*"
+                "20.*",
+                "22.*"
             ]
         },
         {
@@ -70,7 +70,8 @@
             "versions": [
                 "1.20.*",
                 "1.21.*",
-                "1.22.*"
+                "1.22.*",
+                "1.23.*"
             ],
             "default": "1.21.*"
         }
@@ -118,7 +119,7 @@
         {
             "name": "az",
             "versions": [
-                "11.3.1"
+                "12.1.0"
             ],
             "zip_versions": [
 
@@ -145,9 +146,9 @@
             "cmake;3.22.1"
         ],
         "ndk": {
-            "default": "25",
+            "default": "27",
             "versions": [
-                "24", "25", "26"
+                "26", "27"
             ]
         }
     },
@@ -176,7 +177,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "signature": "C2048FB509F1C37A8C3E9EC6648118458AA01780",
+        "signature": "8F985BE8FD256085C90A95D3C74580511A1DB975",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -184,6 +185,7 @@
             "Component.Unreal.Android",
             "Component.Xamarin",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
+            "Microsoft.Net.Component.4.7.2.SDK",
             "Microsoft.Net.Component.4.7.TargetingPack",
             "Microsoft.Net.Component.4.7.2.TargetingPack",
             "Microsoft.Net.Component.4.8.1.SDK",
@@ -236,6 +238,7 @@
             "Microsoft.VisualStudio.Component.Windows10SDK.20348",
             "Microsoft.VisualStudio.Component.Windows11SDK.22000",
             "Microsoft.VisualStudio.Component.Windows11SDK.22621",
+            "Microsoft.VisualStudio.Component.Windows11SDK.26100",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
@@ -259,7 +262,10 @@
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm",
-            "wasm.tools"
+            "Component.Microsoft.Windows.DriverKit",
+            "wasm.tools",
+            "Microsoft.Component.MSBuild"
+            
         ],
         "vsix": [
             "SSIS.MicrosoftDataToolsIntegrationServices",
@@ -313,7 +319,8 @@
     "dotnet": {
         "versions": [
             "6.0",
-            "7.0"
+            "8.0",
+            "9.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
@@ -335,7 +342,6 @@
                 "args": [ "--version", "5.32.1.1" ]
             },
             { "name": "pulumi" },
-            { "name": "tortoisesvn" },
             { "name": "swig" },
             { "name": "vswhere" },
             {
@@ -350,10 +356,10 @@
         ]
     },
     "node": {
-        "default": "18"
+        "default": "18.*"
     },
     "maven": {
-        "version": "3.8"
+        "version": "3.9"
     },
     "mysql": {
         "version": "8.0",
@@ -367,13 +373,13 @@
         "version": "3.10"
     },
     "llvm": {
-        "version": "16"
+        "version": "18"
     },
     "php": {
         "version": "8.3"
     },
     "postgresql": {
-        "version": "14",
+        "version": "14.12.1",
         "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {

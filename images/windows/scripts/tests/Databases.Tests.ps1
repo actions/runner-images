@@ -1,7 +1,11 @@
 Describe "MongoDB" {
     Context "Version" {
         It "<ToolName>" -TestCases @(
-            @{ ToolName = "mongo" }
+            if (Test-IsWin25) {
+                @{ ToolName = "mongos" }
+            } else {
+                @{ ToolName = "mongo" }
+            }
             @{ ToolName = "mongod" }
         ) {
             $toolsetVersion = (Get-ToolsetContent).mongodb.version
@@ -23,6 +27,12 @@ Describe "MongoDB" {
 
         It "<Name> service is disabled" -TestCases $mongoServiceTests {
             $StartType | Should -Be "Disabled"
+        }
+    }
+
+    Context "Shell" -Skip:(-not (Test-IsWin25)) {
+        It "mongosh" {
+            "mongosh --version" | Should -ReturnZeroExitCode
         }
     }
 }
@@ -72,8 +82,8 @@ Describe "PostgreSQL" {
     }
 
     Context "PostgreSQL version" {
-        It "PostgreSQL version should correspond to the version in the toolset" {
-            $toolsetVersion = (Get-ToolsetContent).postgresql.version
+        It "PostgreSQL version should correspond to the Major version in the toolset" {
+            $toolsetVersion = (Get-ToolsetContent).postgresql.version.Split(".")[0]
             # Client version
             (& $env:PGBIN\psql --version).split()[-1] | Should -BeLike "$toolsetVersion*"
             # Server version
