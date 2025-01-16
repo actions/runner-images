@@ -1,18 +1,18 @@
 | Announcements |
 |-|
-| [[macOS 14] Xcode 16.0 will be replaced by Xcode 16.2 in macOS-14 images on January 6, 2025](https://github.com/actions/runner-images/issues/11203) |
+| [[macOS] Ruby version 3.0 will be removed from the images on Feb 10, 2025 and 3.3 will be set as default. ](https://github.com/actions/runner-images/issues/11345) |
 | [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and by 01/13/25 for ADO](https://github.com/actions/runner-images/issues/10721) |
 | [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
 ***
 # macOS 13
 - OS Version: macOS 13.7.2 (22H313)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20241216.537
+- Image Version: 20250113.628
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.404
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.404, 9.0.101
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -33,7 +33,7 @@
 - Bundler 2.5.23
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.11
+- Homebrew 4.4.15
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.3.1 (python 3.13)
@@ -44,7 +44,7 @@
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.11.1
+- Gradle 8.12
 
 ### Utilities
 - 7-Zip 17.05
@@ -54,32 +54,32 @@
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.47.1
+- Git 2.48.0
 - Git LFS 3.6.0
-- GitHub CLI 2.63.2
+- GitHub CLI 2.65.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.4.6
+- gpg (GnuPG) 2.4.7
 - jq 1.7.1
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.11.2
 - pkgconf 2.3.0
 - Unxip 3.1
-- yq 4.44.6
+- yq 4.45.1
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.22.17
+- AWS CLI 2.22.33
 - AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.32.4
-- Cmake 3.31.2
-- CodeQL Action Bundle 2.20.0
+- Cmake 3.31.4
+- CodeQL Action Bundle 2.20.1
 - Fastlane 2.226.0
-- SwiftFormat 0.55.3
-- Xcbeautify 2.16.0
+- SwiftFormat 0.55.4
+- Xcbeautify 2.17.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
 
@@ -88,9 +88,9 @@
 ### Browsers
 - Safari 18.2 (18620.1.16.111.6)
 - SafariDriver 18.2 (18620.1.16.111.6)
-- Google Chrome 131.0.6778.140
-- Google Chrome for Testing 131.0.6778.108
-- ChromeDriver 131.0.6778.108
+- Google Chrome 131.0.6778.265
+- Google Chrome for Testing 131.0.6778.264
+- ChromeDriver 131.0.6778.264
 - Selenium server 4.27.0
 
 #### Environment variables
@@ -114,6 +114,7 @@
 - 3.1.6
 - 3.2.6
 - 3.3.6
+- 3.4.1
 
 #### Python
 - 3.11.9
@@ -123,7 +124,7 @@
 #### Node.js
 - 18.20.5
 - 20.18.1
-- 22.12.0
+- 22.13.0
 
 #### Go
 - 1.21.13
@@ -131,13 +132,13 @@
 - 1.23.4
 
 ### Rust Tools
-- Cargo 1.83.0
-- Rust 1.83.0
-- Rustdoc 1.83.0
+- Cargo 1.84.0
+- Rust 1.84.0
+- Rustdoc 1.84.0
 - Rustup 1.27.1
 
 #### Packages
-- Clippy 0.1.83
+- Clippy 0.1.84
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
@@ -145,7 +146,7 @@
 
 #### PowerShell Modules
 - Az: 12.4.0
-- Pester: 5.6.1
+- Pester: 5.7.1
 - PSScriptAnalyzer: 1.23.0
 
 ### Xcode
@@ -195,8 +196,8 @@
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
@@ -225,9 +226,9 @@
 | Package Name               | Version                                                                                                                                                                                                                                                         |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                            |
-| Android Emulator           | 35.2.10                                                                                                                                                                                                                                                         |
+| Android Emulator           | 35.3.11                                                                                                                                                                                                                                                         |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                               |
-| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 1)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
+| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                          |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                          |
 | CMake                      | 3.31.0                                                                                                                                                                                                                                                          |
