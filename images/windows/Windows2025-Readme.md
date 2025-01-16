@@ -2,14 +2,13 @@
 |-|
 | [[Windows ] Breaking change : PHP 8.3.* version will be updated to PHP 8.4.* from January 31,2025](https://github.com/actions/runner-images/issues/11256) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
-| [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from January 17,2025](https://github.com/actions/runner-images/issues/11104) |
+| [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from February 07,2025](https://github.com/actions/runner-images/issues/11104) |
 | [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 17,2025](https://github.com/actions/runner-images/issues/11093) |
 | [[Windows & Ubuntu] .NET 7.x will be removed from the images on January 17,2025](https://github.com/actions/runner-images/issues/10894) |
-| [[Windows & Ubuntu] Python 3.7.x will be removed from  January 10 ,2025](https://github.com/actions/runner-images/issues/10893) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 2605
-- Image Version: 20250105.1.0
+- Image Version: 20250113.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -23,7 +22,7 @@
 - Julia 1.10.5
 - Kotlin 2.1.0
 - LLVM 19.1.5
-- Node 22.12.0
+- Node 22.13.0
 - Perl 5.40.0
 - PHP 8.3.15
 - Python 3.9.13
@@ -32,14 +31,14 @@
 ### Package Management
 - Chocolatey 2.4.1
 - Composer 2.8.4
-- Helm 3.16.3
+- Helm 3.16.4
 - Miniconda 24.11.1 (pre-installed on the image but not added to PATH)
-- NPM 10.9.0
-- NuGet 6.12.1.1
+- NPM 10.9.2
+- NuGet 6.12.2.1
 - pip 24.3.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 65be70199)
+- Vcpkg (build from commit d7112d1a4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,8 +61,8 @@
 - Bazelisk 1.25.0
 - Bicep 0.32.4
 - Cabal 3.14.1.1
-- CMake 3.31.3
-- CodeQL Action Bundle 2.20.0
+- CMake 3.31.4
+- CodeQL Action Bundle 2.20.1
 - Docker 26.1.3
 - Docker Compose v2 2.27.1
 - Docker-wincred 0.8.2
@@ -80,7 +79,7 @@
 - Newman 6.2.1
 - OpenSSL 3.4.0
 - Packer 1.11.2
-- Pulumi 3.144.1
+- Pulumi 3.145.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.3.1
@@ -92,29 +91,29 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.22.28
+- AWS CLI 2.22.33
 - AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.67.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.64.0
+- GitHub CLI 2.65.0
 
 ### Rust Tools
-- Cargo 1.83.0
-- Rust 1.83.0
-- Rustdoc 1.83.0
+- Cargo 1.84.0
+- Rust 1.84.0
+- Rustdoc 1.84.0
 - Rustup 1.27.1
 
 #### Packages
-- Clippy 0.1.83
+- Clippy 0.1.84
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 131.0.6778.205
-- Chrome Driver 131.0.6778.204
-- Microsoft Edge 131.0.2903.112
-- Microsoft Edge Driver 131.0.2903.112
-- Mozilla Firefox 133.0.3
+- Google Chrome 131.0.6778.265
+- Chrome Driver 131.0.6778.264
+- Microsoft Edge 131.0.2903.146
+- Microsoft Edge Driver 131.0.2903.146
+- Mozilla Firefox 134.0
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
 - Selenium server 4.27.0
@@ -162,7 +161,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 18.20.5
 - 20.18.1
-- 22.12.0
+- 22.13.0
 
 #### Python
 - 3.9.13
@@ -205,7 +204,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - MySQL 8.0.40.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.3.7
+- MongoDB Shell (mongosh) 2.3.8
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
@@ -477,18 +476,18 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 6.0.36, 8.0.6, 8.0.11, 9.0.0
 - Microsoft.NETCore.App: 6.0.36, 8.0.6, 8.0.11, 9.0.0
 - Microsoft.WindowsDesktop.App: 6.0.36, 8.0.6, 8.0.11, 9.0.0
-- nbgv 3.7.112+63bbe780b0
+- nbgv 3.7.115+d31f50f4d1
 
 ### PowerShell Tools
 - PowerShell 7.4.6
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.729
+- AWSPowershell: 4.1.734
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.25.0
-- Pester: 3.4.0, 5.6.1
+- Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.23.0
 - PSWindowsUpdate: 2.2.1.5
@@ -499,7 +498,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                             |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                |
-| Android Emulator           | 35.2.10                                                                                                                                                                             |
+| Android Emulator           | 35.3.11                                                                                                                                                                             |
 | Android SDK Build-tools    | 35.0.0<br>34.0.0                                                                                                                                                                    |
 | Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                              |
