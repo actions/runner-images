@@ -92,29 +92,22 @@
         {
             "name": "azurerm",
             "versions": [
-                "2.1.0",
                 "6.13.1"
             ],
             "zip_versions": [
-                "3.8.0",
-                "4.2.1",
-                "5.1.1",
                 "6.7.0"
             ],
-            "default": "2.1.0"
+            "default": "6.13.1"
         },
         {
             "name": "azure",
             "versions": [
-                "2.1.0",
                 "5.3.0"
             ],
             "zip_versions": [
-                "3.8.0",
-                "4.2.1",
                 "5.1.1"
             ],
-            "default": "2.1.0"
+            "default": "5.3.0"
         },
         {
             "name": "az",
