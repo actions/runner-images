@@ -3,10 +3,11 @@ $ErrorActionPreference = 'Stop'
 enum ImageType {
     Windows2019   = 1
     Windows2022   = 2
-    Ubuntu2004    = 3
-    Ubuntu2204    = 4
-    Ubuntu2404    = 5
-    UbuntuMinimal = 6
+    Windows2025   = 3
+    Ubuntu2004    = 4
+    Ubuntu2204    = 5
+    Ubuntu2404    = 6
+    UbuntuMinimal = 7
 }
 
 Function Get-PackerTemplatePath {
@@ -24,6 +25,9 @@ Function Get-PackerTemplatePath {
         }
         ([ImageType]::Windows2022) {
             $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2022.pkr.hcl"
+        }
+        ([ImageType]::Windows2025) {
+            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2025.pkr.hcl"
         }
         ([ImageType]::Ubuntu2004) {
             $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-20.04.pkr.hcl"
@@ -81,7 +85,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER ResourceGroupName
             The name of the resource group to create the Azure resources in.
         .PARAMETER ImageType
-            The type of image to generate. Valid values are: Windows2019, Windows2022, Ubuntu2004, Ubuntu2204, UbuntuMinimal.
+            The type of image to generate. Valid values are: Windows2019, Windows2022, Windows2025, Ubuntu2004, Ubuntu2204, Ubuntu2404, UbuntuMinimal.
         .PARAMETER ManagedImageName
             The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation
