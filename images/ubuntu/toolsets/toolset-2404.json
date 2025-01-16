@@ -65,7 +65,7 @@
     "java": {
         "default": "17",
         "versions": [ "8", "11", "17", "21"],
-        "maven": "3.8.8"
+        "maven": "3.9.9"
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-11076708_latest.zip",
@@ -127,6 +127,7 @@
             "libyaml-dev",
             "libtool",
             "libssl-dev",
+            "libsqlite3-dev",
             "locales",
             "mercurial",
             "openssh-client",
