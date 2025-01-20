@@ -2,6 +2,7 @@
 
 **Table of Contents**
 
+- [Repository Overview](#repository-overview)
 - [About](#about)
 - [Available Images](#available-images)
 - [Announcements](#announcements)
@@ -11,10 +12,14 @@
 - [How to Interact with the Repo](#how-to-interact-with-the-repo)
 - [FAQs](#faqs)
 
-## About
+## Repository Overview
 
 This repository contains the source code used to create the VM images for [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) used for Actions, as well as for [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines.
 To build a VM machine from this repo's source, see the [instructions](docs/create-image-and-azure-resources.md).
+
+## About
+
+This repository provides the necessary resources to build and manage VM images for GitHub-hosted runners and Microsoft-hosted agents. It includes various configuration files, scripts, and documentation to facilitate the creation and maintenance of these images.
 
 ## Available Images
 
