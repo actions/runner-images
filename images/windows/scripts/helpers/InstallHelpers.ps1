@@ -438,13 +438,15 @@ function Get-WindowsUpdateStates {
             19 {
                 $state = "Installed"
                 $title = $event.Properties[0].Value
-                $completedUpdates[$title] = ""
+                $completedUpdates[$title] = $state
                 break
             }
             20 {
                 $state = "Failed"
                 $title = $event.Properties[1].Value
-                $completedUpdates[$title] = ""
+                if (-not $completedUpdates.ContainsKey($title)) {
+                    $completedUpdates[$title] = $state
+                }
                 break
             }
             43 {
@@ -454,8 +456,13 @@ function Get-WindowsUpdateStates {
             }
         }
 
-        # Skip update started event if it was already completed
-        if ( $state -eq "Running" -and $completedUpdates.ContainsKey($title) ) {
+        # Skip Running update event if it was already completed
+        if ( ($state -eq "Running") -and $completedUpdates.ContainsKey($title) ) {
+            continue
+        }
+
+        # Skip Failed update event if it was already successfully installed
+        if ( ($state -eq "Failed") -and $completedUpdates[$title] -eq "Installed" ) {
             continue
         }
 

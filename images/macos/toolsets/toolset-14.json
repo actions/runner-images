@@ -3,8 +3,8 @@
         "default": "15.4",
         "x64": {
             "versions": [
+                { "link": "16.2", "version": "16.2+16C5032a", "install_runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de"},
                 { "link": "16.1", "version": "16.1+16B40", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
-                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
                 { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
                 { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
@@ -14,8 +14,8 @@
         },
         "arm64":{
             "versions": [
+                { "link": "16.2", "version": "16.2+16C5032a", "install_runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de"},
                 { "link": "16.1", "version": "16.1+16B40", "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
-                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "runtimes": ["iOS", "watchOS", "tvOS"], "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
                 { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"},
                 { "link": "15.3", "version": "15.3.0+15E204a", "install_runtimes": "true", "sha256": "f13f6a2e2df432c3008e394640b8549a18c285acd7fd148d6c4bac8c3a5af234"},
                 { "link": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "true", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
@@ -104,15 +104,17 @@
     "dotnet": {
         "arch":{
             "x64": {
-               "versions": [
-                   "7.0",
-                   "8.0"
+                "versions": [
+                    "7.0",
+                    "8.0",
+                    "9.0"
                 ]
             },
             "arm64": {
                 "versions": [
                     "7.0",
-                    "8.0"
+                    "8.0",
+                    "9.0"
                 ]
             }
         }
@@ -201,7 +203,8 @@
                         "3.0.*",
                         "3.1.*",
                         "3.2.*",
-                        "3.3.*"
+                        "3.3.*",
+                        "3.4.*"
                     ]
                 },
                 "arm64": {
@@ -209,7 +212,8 @@
                         "3.0.*",
                         "3.1.*",
                         "3.2.*",
-                        "3.3.*"
+                        "3.3.*",
+                        "3.4.*"
                     ]
                 }
             }
