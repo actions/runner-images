@@ -31,7 +31,7 @@ Write-Host "Clean up various directories"
         if ($LASTEXITCODE -ne 0) {
             throw "Failed to grant administrators full control of $_"
         }
-        Remove-Item $_ -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+        Get-ChildItem $_ -Recurse -Force | % { Remove-Item $_ -Force -ErrorAction SilentlyContinue } | Out-Null
     }
 }
 
