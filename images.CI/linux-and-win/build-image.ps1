@@ -34,7 +34,7 @@ $SensitiveData = @(
     ':  ->'
 )
 
-$azure_tags = $Tags.GetEnumerator() | ForEach-Object { "{0}={1}" -f $_.Key, $_.Value } | Join-String -Separator ","
+$azure_tags = ($Tags.GetEnumerator() | ForEach-Object { "{0}={1}" -f $_.Key, $_.Value }) -join ","
 
 Write-Host "Show Packer Version"
 packer --version
