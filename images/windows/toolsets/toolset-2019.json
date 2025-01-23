@@ -21,7 +21,8 @@
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
-                "3.12.*"
+                "3.12.*",
+                "3.13.*"
             ],
             "default": "3.9.*"
         },
@@ -35,7 +36,8 @@
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
-                "3.12.*"
+                "3.12.*",
+                "3.13.*"
             ]
         },
         {
@@ -412,8 +414,8 @@
     "choco": {
         "common_packages": [
             { "name": "7zip.install" },
-            { "name": "aria2" },
             { "name": "azcopy10" },
+            { "name": "aria2" },
             { "name": "Bicep" },
             { "name": "gitversion.portable"},
             { "name": "innosetup" },
@@ -462,8 +464,10 @@
         "version": "18"
     },
     "postgresql": {
-        "version": "14.12.1",
-        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9",
+        "version": "14",
+        "vcRedistSignature": "245D262748012A4FE6CE8BA6C951A4C4AFBC3E5D",
+        "installVcRedist": true
     },
     "kotlin": {
         "version": "latest"
