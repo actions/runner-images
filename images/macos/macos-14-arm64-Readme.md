@@ -7,12 +7,12 @@
 # macOS 14
 - OS Version: macOS 14.7.2 (23H311)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250113.751
+- Image Version: 20250120.774
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.404, 9.0.101
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.405, 9.0.102
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -25,7 +25,7 @@
 - Kotlin 2.1.0-release-394
 - Mono 6.12.0.188
 - Node.js 20.18.1
-- Perl 5.40.0
+- Perl 5.40.1
 - Python3 3.13.1
 - Ruby 3.0.7p220
 
@@ -33,7 +33,7 @@
 - Bundler 2.5.23
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.15
+- Homebrew 4.4.16
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.3.1 (python 3.13)
@@ -50,12 +50,12 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.27.1
-- bazel 8.0.0
+- bazel 8.0.1
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.48.0
-- Git LFS 3.6.0
+- Git 2.48.1
+- Git LFS 3.6.1
 - GitHub CLI 2.65.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
@@ -69,10 +69,10 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.22.33
+- AWS CLI 2.23.2
 - AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
-- Azure CLI 2.67.0
+- Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.32.4
 - Cmake 3.31.4
@@ -88,9 +88,9 @@
 ### Browsers
 - Safari 18.2 (19620.1.16.111.6)
 - SafariDriver 18.2 (19620.1.16.111.6)
-- Google Chrome 131.0.6778.265
-- Google Chrome for Testing 131.0.6778.264
-- ChromeDriver 131.0.6778.264
+- Google Chrome 132.0.6834.84
+- Google Chrome for Testing 132.0.6834.83
+- ChromeDriver 132.0.6834.83
 - Selenium server 4.27.0
 
 #### Environment variables
@@ -113,7 +113,7 @@
 - 3.0.7
 - 3.1.6
 - 3.2.6
-- 3.3.6
+- 3.3.7
 - 3.4.1
 
 #### Python
@@ -211,10 +211,10 @@
 | visionOS 1.1             | xros1.1              | 15.3          |
 | visionOS 1.2             | xros1.2              | 15.4          |
 | Simulator - visionOS 1.2 | xrsimulator1.2       | 15.4          |
-| Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
 | visionOS 2.1             | xros2.1              | 16.1          |
-| visionOS 2.2             | xros2.2              | 16.2          |
+| Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
 | Simulator - visionOS 2.2 | xrsimulator2.2       | 16.2          |
+| visionOS 2.2             | xros2.2              | 16.2          |
 | DriverKit 23.0           | driverkit23.0        | 15.0.1        |
 | DriverKit 23.2           | driverkit23.2        | 15.1, 15.2    |
 | DriverKit 23.4           | driverkit23.4        | 15.3          |
@@ -249,7 +249,7 @@
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                            |
 | Android Emulator           | 35.3.11                                                                                                                                                                                                                                                         |
-| Android SDK Build-tools    | 35.0.0<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                               |
+| Android SDK Build-tools    | 35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                        |
 | Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                          |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                          |
