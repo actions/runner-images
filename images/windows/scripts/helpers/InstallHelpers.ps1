@@ -30,6 +30,10 @@ function Install-Binary {
     .PARAMETER ExpectedSHA512Sum
         The expected SHA512 sum of the binary. If specified, the binary's SHA512 sum is checked before installation.
 
+    .PARAMETER InstallerLogPath
+        The path to the log file which is produced when the installation fails. This can be used for debugging purposes.
+        This is only displayed when the installation fails.
+
     .EXAMPLE
         Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Type EXE -InstallArgs ("/features", "+", "/quiet") -ExpectedSignature "A5C7D5B7C838D5F89DDBEDB85B2C566B4CDA881F"
     #>
@@ -46,7 +50,8 @@ function Install-Binary {
         [String[]] $ExtraInstallArgs,
         [String[]] $ExpectedSignature,
         [String] $ExpectedSHA256Sum,
-        [String] $ExpectedSHA512Sum
+        [String] $ExpectedSHA512Sum,
+        [String] $InstallerLogPath
     )
 
     if ($PSCmdlet.ParameterSetName -eq "LocalPath") {
@@ -122,6 +127,15 @@ function Install-Binary {
         } else {
             Write-Host "Installation process returned unexpected exit code: $exitCode"
             Write-Host "Time elapsed: $installCompleteTime seconds"
+
+            if ($InstallerLogPath) {
+                Write-Host "Searching for logs maching $InstallerLogPath pattern"
+                Get-ChildItem -Recurse -Path $InstallerLogPath | ForEach-Object {
+                    Write-Output "Found Installer Log: $InstallerLogPath"
+                    Write-Output "File content:"
+                    Get-Content -Path $_.FullName
+                }
+            }
             exit $exitCode
         }
     } catch {
@@ -438,13 +452,15 @@ function Get-WindowsUpdateStates {
             19 {
                 $state = "Installed"
                 $title = $event.Properties[0].Value
-                $completedUpdates[$title] = ""
+                $completedUpdates[$title] = $state
                 break
             }
             20 {
                 $state = "Failed"
                 $title = $event.Properties[1].Value
-                $completedUpdates[$title] = ""
+                if (-not $completedUpdates.ContainsKey($title)) {
+                    $completedUpdates[$title] = $state
+                }
                 break
             }
             43 {
@@ -454,8 +470,13 @@ function Get-WindowsUpdateStates {
             }
         }
 
-        # Skip update started event if it was already completed
-        if ( $state -eq "Running" -and $completedUpdates.ContainsKey($title) ) {
+        # Skip Running update event if it was already completed
+        if ( ($state -eq "Running") -and $completedUpdates.ContainsKey($title) ) {
+            continue
+        }
+
+        # Skip Failed update event if it was already successfully installed
+        if ( ($state -eq "Failed") -and $completedUpdates[$title] -eq "Installed" ) {
             continue
         }
 
