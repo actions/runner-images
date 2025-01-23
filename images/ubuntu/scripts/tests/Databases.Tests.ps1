@@ -44,7 +44,8 @@ Describe "SQLite3" {
     }
 
     It "SQLite3 Library Loading" {
-        $dllPath = "/usr/lib/x86_64-linux-gnu/libsqlite3.so"
-        Test-Path $dllPath | Should -Be $true
+        $sqlite3LibPath = "/usr/lib/x86_64-linux-gnu/libsqlite3.so"
+        $sqlite3LibPath | Should -Exist
+        "ldd $sqlite3LibPath" | Should -Not -OutputTextMatchingRegex "not found"
     }
 }
