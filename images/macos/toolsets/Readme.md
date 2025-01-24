@@ -6,19 +6,19 @@
   - `link` property points to the place where Xcode will be located on image. `/Applications/Xcode_<link>.app`  
   - `version` points to Xcode version that will be downloaded and installed
   - `symlinks` describes the list of aliases where symlinks will be created to
-  - `install_runtimes` is boolean function to control over the related simulator runtimes
+  - `install_runtimes` is an array or boolean function to control over the related simulator runtimes, set of possible values: [ `iOS`, `watchOS`, `visionOS`, `tvOS` ], use `true` if you want to install all runtimes, use `false` if you want to skip runtimes installation
   - `sha256` used to check integrity of the Xcode installer file
 - `default` - version of Xcode to set as default (should be metched with any `link` in `versions` property)
     **Example:** `"11.2"`  
 
 **Note:**
 
-- If `version` is specified with spaces, it is considered as exact Xcode name like `12.1.1 Release Candidate`.
-- If `version` doesn't contain spaces, the latest version will be resolved with the following priority:  
-  - stable version like `12.1`
-  - release candidate version like `12.1 Release Candidate N` (the latest N will be chosen)
-  - GM version like `12.1 GM Seed N` (the latest N will be chosen)
-  - beta version like `12.1 beta N` (the latest N will be chosen)
+- `version` is specified with `+` or `-`, exact Xcode name should be like `16.2.0-Beta.3+16C5023f` or `16.2_Release_Candidate+16C5031c` and will be matching `.xip` file name.
+- `link` is specified with `_` and doesn't contain spaces, example: `16.2_Release_Candidate` or `16.1`; pattern description:
+  - DOWNLOAD_URL="https://download.developer.apple.com/Developer_Tools/$SOURCE_FILE_LOCATION/$SOURCE_FILE_NAME.$FILE_EXTENSION"
+  - SOURCE_FILE_NAME: "Xcode_$link"
+  - SOURCE_FILE_LOCATION: "Xcode_$link"
+  - FILE_EXTENSION: xip
 
 **Example:**
 
