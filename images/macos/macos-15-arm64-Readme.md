@@ -7,12 +7,12 @@
 # macOS 15
 - OS Version: macOS 15.2 (24C101)
 - Kernel Version: Darwin 24.2.0
-- Image Version: 20250113.563
+- Image Version: 20250120.596
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.404, 9.0.101
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.405, 9.0.102
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
@@ -24,19 +24,19 @@
 - GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
 - Kotlin 2.1.0-release-394
 - Node.js 22.13.0
-- Perl 5.40.0
+- Perl 5.40.1
 - Python3 3.13.1
-- Ruby 3.3.6
+- Ruby 3.3.7
 
 ### Package Management
-- Bundler 2.6.2
+- Bundler 2.6.3
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.15
+- Homebrew 4.4.16
 - NPM 10.9.2
 - Pip3 24.3.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.6.2
+- RubyGems 3.6.3
 - Yarn 1.22.22
 
 ### Project Management
@@ -48,12 +48,12 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.27.1
-- bazel 8.0.0
+- bazel 8.0.1
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.48.0
-- Git LFS 3.6.0
+- Git 2.48.1
+- Git LFS 3.6.1
 - GitHub CLI 2.65.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
@@ -67,10 +67,10 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.22.33
+- AWS CLI 2.23.2
 - AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
-- Azure CLI 2.67.0
+- Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.32.4
 - Cmake 3.31.4
@@ -86,9 +86,9 @@
 ### Browsers
 - Safari 18.2 (20620.1.16.11.8)
 - SafariDriver 18.2 (20620.1.16.11.8)
-- Google Chrome 131.0.6778.265
-- Google Chrome for Testing 131.0.6778.264
-- ChromeDriver 131.0.6778.264
+- Google Chrome 132.0.6834.84
+- Google Chrome for Testing 132.0.6834.83
+- ChromeDriver 132.0.6834.83
 - Selenium server 4.27.0
 
 #### Environment variables
@@ -110,7 +110,7 @@
 #### Ruby
 - 3.1.6
 - 3.2.6
-- 3.3.6
+- 3.3.7
 - 3.4.1
 
 #### Python
@@ -185,12 +185,13 @@
 | Simulator - watchOS 11.0 | watchsimulator11.0   | 16.0          |
 | Simulator - watchOS 11.1 | watchsimulator11.1   | 16.1          |
 | Simulator - watchOS 11.2 | watchsimulator11.2   | 16.2          |
-| visionOS 1.2             | xros1.2              | 15.4          |
 | Simulator - visionOS 1.2 | xrsimulator1.2       | 15.4          |
-| Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
+| visionOS 1.2             | xros1.2              | 15.4          |
 | visionOS 2.0             | xros2.0              | 16.0          |
-| Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
+| Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
 | visionOS 2.1             | xros2.1              | 16.1          |
+| Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
+| Simulator - visionOS 2.2 | xrsimulator2.2       | 16.2          |
 | visionOS 2.2             | xros2.2              | 16.2          |
 | Simulator - visionOS 2.2 | xrsimulator2.2       | 16.2          |
 | DriverKit 23.5           | driverkit23.5        | 15.4          |
@@ -223,7 +224,7 @@
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                      |
 | Android Emulator           | 35.3.11                                                                                                                                                                                                                                   |
-| Android SDK Build-tools    | 35.0.0                                                                                                                                                                                                                                    |
+| Android SDK Build-tools    | 35.0.0 35.0.1                                                                                                                                                                                                                             |
 | Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                    |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                    |
