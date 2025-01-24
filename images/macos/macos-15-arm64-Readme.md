@@ -193,6 +193,7 @@
 | Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
 | Simulator - visionOS 2.2 | xrsimulator2.2       | 16.2          |
 | visionOS 2.2             | xros2.2              | 16.2          |
+| Simulator - visionOS 2.2 | xrsimulator2.2       | 16.2          |
 | DriverKit 23.5           | driverkit23.5        | 15.4          |
 | DriverKit 24.0           | driverkit24.0        | 16.0          |
 | DriverKit 24.1           | driverkit24.1        | 16.1          |
