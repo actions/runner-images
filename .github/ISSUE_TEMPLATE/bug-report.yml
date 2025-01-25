@@ -22,7 +22,6 @@ body:
         - label: Ubuntu 20.04
         - label: Ubuntu 22.04
         - label: Ubuntu 24.04
-        - label: macOS 12
         - label: macOS 13
         - label: macOS 13 Arm64
         - label: macOS 14

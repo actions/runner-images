@@ -29,7 +29,6 @@ function Get-OSVersion {
         Version        = $osVersion.Version
         Platform       = $osVersion.Platform
         IsArm64        = $processorArchitecture -eq "arm64"
-        IsMonterey     = $osVersion.Version.Major -eq "12"
         IsVentura      = $($osVersion.Version.Major -eq "13")
         IsVenturaArm64 = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -eq "arm64")
         IsVenturaX64   = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -ne "arm64")
