@@ -8,7 +8,7 @@ packer {
 }
 
 locals {
-  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
+  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "ubuntu-24.04-ga"
 }
 
 variable "allowed_inbound_ip_addresses" {
@@ -69,7 +69,7 @@ variable "image_os" {
 
 variable "image_version" {
   type    = string
-  default = "dev"
+  default = "GA"
 }
 
 variable "imagedata_file" {

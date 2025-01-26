@@ -315,3 +315,5 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | zip                    | 3.0-13ubuntu0.1             |
 | zsync                  | 0.6.2-5build1               |
 
+### Note
+The `beta` tag for Ubuntu 24.04 has been removed.
