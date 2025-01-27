@@ -1,14 +1,13 @@
 | Announcements |
 |-|
+| [[Windows] Removal of Azure and Azure Powershell module from windows images from Febraury 14](https://github.com/actions/runner-images/issues/11483) |
 | [[Windows ] Breaking change : PHP 8.3.* version will be updated to PHP 8.4.* from January 31,2025](https://github.com/actions/runner-images/issues/11256) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 | [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from February 07,2025](https://github.com/actions/runner-images/issues/11104) |
-| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 17,2025](https://github.com/actions/runner-images/issues/11093) |
-| [[Windows & Ubuntu] .NET 7.x will be removed from the images on January 17,2025](https://github.com/actions/runner-images/issues/10894) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 3091
-- Image Version: 20250120.2.0
+- Image Version: 20250127.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -19,25 +18,25 @@
 - Bash 5.2.37(1)-release
 - Go 1.21.13
 - Julia 1.10.5
-- Kotlin 2.1.0
+- Kotlin 2.1.10
 - LLVM 18.1.8
-- Node 18.20.5
+- Node 18.20.6
 - Perl 5.32.1
-- PHP 8.3.16
+- PHP 8.4.3
 - Python 3.9.13
 - Ruby 3.0.7p220
 
 ### Package Management
 - Chocolatey 2.4.1
-- Composer 2.8.4
+- Composer 2.8.5
 - Helm 3.16.4
 - Miniconda 24.11.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.12.2.1
-- pip 24.3.1 (python 3.9)
+- pip 25.0 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit cf035d991)
+- Vcpkg (build from commit f3a67b0c4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -58,7 +57,7 @@
 - azcopy 10.27.1
 - Bazel 8.0.1
 - Bazelisk 1.25.0
-- Bicep 0.32.4
+- Bicep 0.33.13
 - Cabal 3.14.1.1
 - CMake 3.31.4
 - CodeQL Action Bundle 2.20.1
@@ -81,7 +80,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.11.2
-- Pulumi 3.146.0
+- Pulumi 3.147.0
 - R 4.4.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.3.1
@@ -94,8 +93,8 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.248
-- AWS CLI 2.23.2
+- Alibaba Cloud CLI 3.0.250
+- AWS CLI 2.23.6
 - AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.68.0
@@ -117,11 +116,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.84
-- Chrome Driver 132.0.6834.83
-- Microsoft Edge 132.0.2957.115
-- Microsoft Edge Driver 132.0.2957.115
-- Mozilla Firefox 134.0.1
+- Google Chrome 132.0.6834.111
+- Chrome Driver 132.0.6834.110
+- Microsoft Edge 132.0.2957.127
+- Microsoft Edge Driver 132.0.2957.127
+- Mozilla Firefox 134.0.2
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
 - Selenium server 4.28.0
@@ -137,10 +136,10 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.432+6 (default) | JAVA_HOME_8_X64      |
-| 11.0.25+9           | JAVA_HOME_11_X64     |
-| 17.0.13+11          | JAVA_HOME_17_X64     |
-| 21.0.5+11.0         | JAVA_HOME_21_X64     |
+| 8.0.442+6 (default) | JAVA_HOME_8_X64      |
+| 11.0.26+4           | JAVA_HOME_11_X64     |
+| 17.0.14+7           | JAVA_HOME_17_X64     |
+| 21.0.6+7.0          | JAVA_HOME_21_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -164,14 +163,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.20.14
 - 1.21.13
-- 1.22.10
-- 1.23.4
+- 1.22.11
+- 1.23.5
 
 #### Node.js
 - 16.20.2
-- 18.20.5
-- 20.18.1
-- 22.13.0
+- 18.20.6
+- 20.18.2
+- 22.13.1
 
 #### Python
 - 3.8.10
@@ -179,6 +178,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.11
 - 3.11.9
 - 3.12.8
+- 3.13.1
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.17]
@@ -191,6 +191,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.0.7
 - 3.1.6
 - 3.2.6
+- 3.3.7
 
 ### Databases
 
@@ -198,7 +199,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.12                                                                                                                                |
+| Version              | 14.15                                                                                                                                |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -214,7 +215,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Database tools
 - Azure CosmosDb Emulator 2.14.21.0
 - DacFx 162.5.57.1
-- MySQL 8.0.40.0
+- MySQL 8.0.41.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
 
@@ -502,7 +503,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.7.115+d31f50f4d1
 
 ### PowerShell Tools
-- PowerShell 7.4.6
+- PowerShell 7.4.7
 
 #### Powershell Modules
 - Az: 12.1.0
@@ -510,7 +511,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 6.13.1
 - Azure (Cached): 5.1.1.zip
 - AzureRM (Cached): 6.7.0.zip
-- AWSPowershell: 4.1.739
+- AWSPowershell: 4.1.743
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.25.0
