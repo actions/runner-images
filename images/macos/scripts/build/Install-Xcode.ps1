@@ -33,17 +33,7 @@ Write-Host "Configuring Xcode versions..."
 $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
-
-    if ($_.install_runtimes -eq 'true') {
-        # Additional simulator runtimes are included by default for Xcode < 14
-        Install-AdditionalSimulatorRuntimes -Version $_.link
-    }
-
-    ForEach($runtime in $_.runtimes) {
-        Write-Host "Installing Additional runtimes for Xcode '$runtime' ..."
-        $xcodebuildPath = Get-XcodeToolPath -Version $_.link -ToolName 'xcodebuild'
-        Invoke-ValidateCommand "sudo $xcodebuildPath -downloadPlatform $runtime" | Out-Null
-    }
+    Install-AdditionalSimulatorRuntimes -Version $_.link -Runtimes $_.install_runtimes
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
