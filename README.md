@@ -10,6 +10,7 @@
 - [Software and Image Support](#software-and-image-support)
 - [How to Interact with the Repo](#how-to-interact-with-the-repo)
 - [FAQs](#faqs)
+- [Cloning the Repository](#cloning-the-repository)
 
 ## About
 
@@ -214,3 +215,11 @@ Please create an issue and get an approval from us to add this tool to the image
 We strongly encourage customers to build their own images using the main branch.
 This repository contains multiple branches and releases that serve as document milestones to reflect what software is installed in the images at certain point of time. Current builds are not idempotent and if one tries to build a runner image using the specific tag it is not guaranteed that the build will succeed.
 </details>
+
+## Cloning the Repository
+
+To clone this repository using GitHub CLI, use the following command:
+
+```sh
+gh repo clone actions/runner-images
+```
