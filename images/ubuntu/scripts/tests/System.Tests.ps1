@@ -6,3 +6,10 @@ Describe "Disk free space" -Skip:(-not [String]::IsNullOrEmpty($env:AGENT_NAME) 
         $freeSpace | Should -BeGreaterOrEqual 17GB
     }
 }
+
+Describe "Check apparmor unprivileged userns restrictions" {
+    It "kernel.apparmor_restrict_unprivileged_userns == 0" {
+        $value = Get-Content /proc/sys/kernel/apparmor_restrict_unprivileged_userns
+        $value | Should -BeEqual 0
+    }
+}
