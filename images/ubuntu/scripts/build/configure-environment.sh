@@ -45,6 +45,9 @@ echo 'fs.inotify.max_user_instances=1280' | tee -a /etc/sysctl.conf
 # https://github.com/actions/runner-images/issues/9491
 echo 'vm.mmap_rnd_bits=28' | tee -a /etc/sysctl.conf
 
+# https://github.com/actions/runner-images/issues/10443
+echo 'kernel.apparmor_restrict_unprivileged_userns=0' | tee -a /etc/sysctl.conf
+
 # https://github.com/actions/runner-images/pull/7860
 netfilter_rule='/etc/udev/rules.d/50-netfilter.rules'
 rules_directory="$(dirname "${netfilter_rule}")"
