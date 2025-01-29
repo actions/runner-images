@@ -57,14 +57,6 @@ Describe "Android" {
                 Sdkmanager  = "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
             }
         )
-        if ($os.IsMonterey) {
-            $testCases += @(
-                @{
-                    PackageName = "SDK tools"
-                    Sdkmanager  = "$env:ANDROID_HOME/tools/bin/sdkmanager"
-                }
-            )
-        }
 
         It "Sdkmanager from <PackageName> is available" -TestCases $testCases {
             "$Sdkmanager --version" | Should -ReturnZeroExitCode

@@ -47,5 +47,5 @@ sudo mv $nunit3_console_wrapper "${MONO_VERSIONS_PATH}/${mono_version}/Commands/
 echo "Creating short symlink '${mono_version_short}'..."
 sudo ln -s ${MONO_VERSIONS_PATH}/${mono_version} ${MONO_VERSIONS_PATH}/${mono_version_short}
 
-# Invoke tests for Xamarin and Mono
-invoke_tests "Xamarin" "Mono"
+# Invoke tests and Mono
+invoke_tests "Mono"

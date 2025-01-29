@@ -1,11 +1,7 @@
-| Announcements |
-|-|
-| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 17,2025](https://github.com/actions/runner-images/issues/11093) |
-***
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
 - Kernel Version: 6.8.0-1020-azure
-- Image Version: 20250120.5.0
+- Image Version: 20250126.1.0
 - Systemd version: 255.4-1ubuntu8.4
 
 ## Installed Software
@@ -18,9 +14,9 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.3.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
-- Julia 1.11.2
+- Julia 1.11.3
 - Kotlin 2.1.0-release-394
-- Node.js 20.18.1
+- Node.js 20.18.2
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -36,7 +32,7 @@
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit cf035d991)
+- Vcpkg (build from commit 57c08a322)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,7 +51,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.12
+- Gradle 8.12.1
 - Lerna 8.1.9
 - Maven 3.9.9
 
@@ -64,13 +60,13 @@ to accomplish this.
 - AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.0.1
 - Bazelisk 1.25.0
-- Bicep 0.32.4
+- Bicep 0.33.13
 - Buildah 1.33.7
-- CMake 3.31.4
+- CMake 3.31.5
 - CodeQL Action Bundle 2.20.1
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.20.0
+- Docker-Buildx 0.20.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.226.0
@@ -89,10 +85,10 @@ to accomplish this.
 - Newman 6.2.1
 - nvm 0.40.1
 - OpenSSL 3.0.13-0ubuntu3.4
-- Packer 1.11.2
+- Packer 1.12.0
 - Parcel 2.13.3
 - Podman 4.9.3
-- Pulumi 3.146.0
+- Pulumi 3.147.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -100,25 +96,25 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.23.2
+- AWS CLI 2.23.6
 - AWS CLI Session Manager Plugin 1.2.694.0
 - AWS SAM CLI 1.132.0
 - Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.65.0
-- Google Cloud CLI 506.0.0
+- Google Cloud CLI 507.0.0
 
 ### Java
-| Version              | Environment Variable |
-| -------------------- | -------------------- |
-| 8.0.432+6            | JAVA_HOME_8_X64      |
-| 11.0.25+9            | JAVA_HOME_11_X64     |
-| 17.0.13+11 (default) | JAVA_HOME_17_X64     |
-| 21.0.5+11            | JAVA_HOME_21_X64     |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.442+6           | JAVA_HOME_8_X64      |
+| 11.0.26+4           | JAVA_HOME_11_X64     |
+| 17.0.14+7 (default) | JAVA_HOME_17_X64     |
+| 21.0.6+7            | JAVA_HOME_21_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.4
+- Composer 2.8.5
 - PHPUnit 8.5.41
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -140,13 +136,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.83
-- ChromeDriver 132.0.6834.83
+- Google Chrome 132.0.6834.110
+- ChromeDriver 132.0.6834.110
 - Chromium 132.0.6834.0
-- Microsoft Edge 132.0.2957.115
-- Microsoft Edge WebDriver 132.0.2957.115
-- Selenium server 4.28.0
-- Mozilla Firefox 134.0.1
+- Microsoft Edge 132.0.2957.127
+- Microsoft Edge WebDriver 132.0.2957.127
+- Selenium server 4.28.1
+- Mozilla Firefox 134.0.2
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -185,26 +181,31 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.21.13
-- 1.22.10
-- 1.23.4
+- 1.22.11
+- 1.23.5
 
 #### Node.js
-- 18.20.5
-- 20.18.1
-- 22.13.0
+- 18.20.6
+- 20.18.2
+- 22.13.1
 
 #### Python
 - 3.9.21
 - 3.10.16
 - 3.11.11
 - 3.12.8
+- 3.13.1
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
 - 3.10.14 [PyPy 7.3.17]
 
+#### Ruby
+- 3.2.6
+- 3.3.7
+
 ### PowerShell Tools
-- PowerShell 7.4.6
+- PowerShell 7.4.7
 
 #### PowerShell Modules
 - Az: 12.1.0
@@ -314,4 +315,3 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.6.1+really5.4.5-1build0.1 |
 | zip                    | 3.0-13ubuntu0.1             |
 | zsync                  | 0.6.2-5build1               |
-
