@@ -18,10 +18,6 @@ CARGO_HOME=$HOME/.cargo
 echo "Install common tools..."
 rustup component add rustfmt clippy
 
-if is_Monterey; then
-    cargo install bindgen-cli cbindgen cargo-audit cargo-outdated
-fi
-
 echo "Cleanup Cargo registry cached data..."
 rm -rf $CARGO_HOME/registry/*
 
