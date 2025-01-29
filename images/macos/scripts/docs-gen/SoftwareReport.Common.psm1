@@ -10,20 +10,6 @@ function Get-DotnetVersionList {
     return $sdkRawList | ForEach-Object { Take-Part $_ -Part 0 }
 }
 
-function Get-GoVersion {
-    $goOutput = Run-Command "go version" | Take-Part -Part 2
-    if ($goOutput.StartsWith("go")) {
-        $goOutput = $goOutput.Substring(2)
-    }
-
-    return $goOutput
-}
-
-function Get-RVersion {
-    $rVersion = Run-Command "R --version | grep 'R version'" | Take-Part -Part 2
-    return $rVersion
-}
-
 function Get-RustVersion {
     $rustVersion = Run-Command "rustc --version" | Take-Part -Part 1
     return $rustVersion
@@ -47,26 +33,6 @@ function Get-RustCargoVersion {
 function Get-RustClippyVersion {
     $version = Run-Command "cargo clippy --version" | Take-Part -Part 1
     return $version
-}
-
-function Get-Bindgen {
-    $bindgenVersion = Run-Command "bindgen --version" | Take-Part -Part 1
-    return $bindgenVersion
-}
-
-function Get-Cbindgen {
-    $cbindgenVersion = Run-Command "cbindgen --version" | Take-Part -Part 1
-    return $cbindgenVersion
-}
-
-function Get-Cargooutdated {
-    $cargoOutdatedVersion = Run-Command "cargo outdated --version" | Take-Part -Part 1
-    return $cargoOutdatedVersion
-}
-
-function Get-Cargoaudit {
-    $cargoAuditVersion = Run-Command "cargo-audit --version" | Take-Part -Part 1
-    return $cargoAuditVersion
 }
 
 function Get-RustupVersion {
@@ -114,20 +80,8 @@ function Get-ClangLLVMVersions {
     )
 }
 
-function Get-NVMVersion {
-    $nvmPath = Join-Path $env:HOME ".nvm" "nvm.sh"
-    $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
-    $nodejsVersion = Run-Command "${nvmInitCommand} && nvm --version"
-    return $nodejsVersion
-}
-
-function Get-PipVersion {
-    param (
-        [Parameter(Mandatory)][ValidateRange(2, 3)]
-        [int] $Version
-    )
-
-    $command = If ($Version -eq 2) { "/Library/Frameworks/Python.framework/Versions/2.7/bin/pip --version" } Else { "pip3 --version" }
+function Get-Pip3Version {
+    $command = "pip3 --version"
     $commandOutput = Run-Command $command
     $versionPart1 = $commandOutput | Take-Part -Part 1
     $versionPart2 = $commandOutput | Take-Part -Part 4
@@ -138,14 +92,6 @@ function Get-PipVersion {
 function Get-PipxVersion {
     $pipxVersion = Run-Command "pipx --version" -SuppressStderr
     return $pipxVersion
-}
-
-function Get-NVMNodeVersionList {
-    $nvmPath = Join-Path $env:HOME ".nvm" "nvm.sh"
-    $nvmInitCommand = ". ${nvmPath} > /dev/null 2>&1 || true"
-    $nodejsVersionsRaw = Run-Command "${nvmInitCommand} && nvm ls"
-    $nodeVersions = $nodejsVersionsRaw | ForEach-Object { $_.TrimStart(" ").TrimEnd(" *") } | Where-Object { $_.StartsWith("v") }
-    return $nodeVersions | ForEach-Object { $_.TrimStart("v") }
 }
 
 function Build-OSInfoSection {
@@ -173,12 +119,6 @@ function Get-MonoVersion {
     return $monoVersion
 }
 
-function Get-MSBuildVersion {
-    $msbuildVersion = Run-Command "msbuild -version" | Select-Object -Last 1
-    $monoVersion = Get-MonoVersion
-    return "$msbuildVersion (Mono $monoVersion)"
-}
-
 function Get-NodeVersion {
     $nodeVersion = Run-Command "node --version"
     return $nodeVersion.TrimStart("v")
@@ -187,11 +127,6 @@ function Get-NodeVersion {
 function Get-PerlVersion {
     $version = Run-Command "perl -e 'print substr(`$^V,1)'"
     return $version
-}
-
-function Get-PythonVersion {
-    $pythonVersion = Run-Command "/Library/Frameworks/Python.framework/Versions/2.7/bin/python --version"
-    return ($pythonVersion -replace "^Python").Trim()
 }
 
 function Get-Python3Version {
@@ -207,11 +142,6 @@ function Get-RubyVersion {
 function Get-PHPVersion {
     $PHPVersion = Run-Command "php --version" | Select-Object -First 1 | Take-Part -Part 0,1
     return ($PHPVersion -replace "^PHP").Trim()
-}
-
-function Get-JuliaVersion {
-    $juliaVersion = Run-Command "julia --version" | Take-Part -Part 0,2
-    return ($juliaVersion -replace "^Julia").Trim()
 }
 
 function Get-BundlerVersion {
@@ -247,11 +177,6 @@ function Get-YarnVersion {
 function Get-NuGetVersion {
     $nugetVersion = Run-Command "nuget help" | Select-Object -First 1 | Take-Part -Part 2
     return $nugetVersion
-}
-
-function Get-CondaVersion {
-    $condaVersion = Run-Command "conda --version"
-    return ($condaVersion -replace "^conda").Trim()
 }
 
 function Get-RubyGemsVersion {
@@ -305,11 +230,6 @@ function Get-WgetVersion {
     return $wgetVersion
 }
 
-function Get-SVNVersion {
-    $svnVersion = Run-Command "svn --version --quiet"
-    return $svnVersion
-}
-
 function Get-PackerVersion {
     # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
     $result = Run-Command "packer --version"
@@ -330,16 +250,6 @@ function Get-JqVersion {
 function Get-GPGVersion {
     $gpgVersion = Run-Command "gpg --version" | Select-String 'gpg (GnuPG)' -SimpleMatch
     return ($gpgVersion.Line -replace "^gpg \(GnuPG\)").Trim()
-}
-
-function Get-PostgresClientVersion {
-    $postgresClientVersion = Run-Command "psql --version"
-    return ($postgresClientVersion -replace "^psql \(PostgreSQL\)").Trim()
-}
-
-function Get-PostgresServerVersion {
-    $postgresServerVersion = Run-Command "pg_config --version"
-    return ($postgresServerVersion -replace "^PostgreSQL").Trim()
 }
 
 function Get-Aria2Version {
@@ -367,16 +277,6 @@ function Get-BazeliskVersion {
     return ($bazeliskVersion -replace "^bazelisk").Trim()
 }
 
-function Get-MongoVersion {
-    $mongo = Run-Command "mongo --version" | Select-String "MongoDB shell version" | Take-Part -Part 3
-    return $mongo.TrimStart("v").Trim()
-}
-
-function Get-MongodVersion {
-    $mongod = Run-Command "mongod --version" | Select-String "db version " | Take-Part -Part 2
-    return $mongod.TrimStart("v").Trim()
-}
-
 function Get-7zipVersion {
     $7zip = Run-Command "7z i" | Select-String "7-Zip" | Take-Part -Part 0,2
     return ($7zip -replace "^7-Zip").Trim()
@@ -392,16 +292,6 @@ function Get-BsdtarVersion {
     return "$bsdtar - available by 'tar' alias"
 }
 
-function Get-VirtualBoxVersion {
-    $virtualBox = Run-Command "vboxmanage -v"
-    return $virtualBox
-}
-
-function Get-VagrantVersion {
-    $vagrant = Run-Command "vagrant -v"
-    return ($vagrant -replace "^Vagrant").Trim()
-}
-
 function Get-ParallelVersion {
     $parallelVersion = Run-Command "parallel --version" | Select-String "GNU parallel" | Select-Object -First 1
     return ($parallelVersion -replace "^GNU parallel").Trim()
@@ -415,11 +305,6 @@ function Get-FastlaneVersion {
 function Get-CmakeVersion {
     $cmakeVersion = Run-Command "cmake --version" | Select-Object -First 1 | Take-Part -Part 2
     return $cmakeVersion
-}
-
-function Get-AppCenterCLIVersion {
-    $appcenterCLIVersion = Run-Command "appcenter --version" | Take-Part -Part 2
-    return $appcenterCLIVersion
 }
 
 function Get-AzureCLIVersion {
@@ -447,44 +332,9 @@ function Get-AWSSessionManagerCLIVersion {
     return $awsSessionManagerVersion
 }
 
-function Get-GHCupVersion {
-    $ghcUpVersion = (Run-Command "ghcup --version" | Take-Part -Part 5).Replace('v','')
-    return $ghcUpVersion
-}
-
-function Get-GHCVersion {
-    $ghcVersion = Run-Command "ghc --version" | Take-Part -Part 7
-    return $ghcVersion
-}
-
-function Get-CabalVersion {
-    $cabalVersion = Run-Command "cabal --version" | Take-Part -Part 3
-    return $cabalVersion
-}
-
-function Get-SwitchAudioOsxVersion {
-    $switchAudioVersion = Get-BrewPackageVersion -CommandName "SwitchAudioSource"
-    return $switchAudioVersion
-}
-
-function Get-SoxVersion {
-    $soxVersion = Get-BrewPackageVersion -CommandName "sox"
-    return $soxVersion
-}
-
-function Get-StackVersion {
-    $stackVersion = Run-Command "stack --version" | Take-Part -Part 1 | ForEach-Object {$_.replace(",","")}
-    return $stackVersion
-}
-
 function Get-SwiftFormatVersion {
     $swiftFormatVersion = Run-Command "swiftformat --version"
     return $swiftFormatVersion
-}
-
-function Get-YamllintVersion {
-    $yamllintVersion = Run-Command "yamllint --version"
-    return ($yamllintVersion -replace "^Yamllint").Trim()
 }
 
 function Get-SwiftLintVersion {
@@ -497,11 +347,6 @@ function Get-PowershellVersion {
     return ($powershellVersion -replace "^PowerShell").Trim()
 }
 
-function Get-SwigVersion {
-    $swigVersion = Run-Command "swig -version" | Select-Object -First 2 | Take-Part -Part 2
-    return $swigVersion
-}
-
 function Get-BicepVersion {
     $bicepVersion = Run-Command "bicep --version" | Take-Part -Part 3
     return $bicepVersion
@@ -510,31 +355,6 @@ function Get-BicepVersion {
 function Get-KotlinVersion {
     $kotlinVersion = Run-Command "kotlin -version" | Take-Part -Part 2
     return $kotlinVersion
-}
-
-function Get-SbtVersion {
-    $sbtVersion = Run-Command "sbt -version" | Take-Part -Part 3
-    return $sbtVersion
-}
-
-function Get-JazzyVersion {
-    $jazzyVersion = Run-Command "jazzy --version" | Take-Part -Part 2
-    return $jazzyVersion
-}
-
-function Get-ZlibVersion {
-	$zlibVersion = (Run-Command "brew info --json zlib" | ConvertFrom-Json).installed.version
-	return $zlibVersion
-}
-
-function Get-LibXftVersion {
-    $libXftVersion = (Run-Command "brew info --json libxft" | ConvertFrom-Json).installed.version
-    return $libXftVersion
-}
-
-function Get-LibXextVersion {
-    $libXextVersion = (Run-Command "brew info --json libxext" | ConvertFrom-Json).installed.version
-    return $libXextVersion
 }
 
 function Get-TclTkVersion {
@@ -546,35 +366,6 @@ function Get-YqVersion {
     $yqVersion = Run-Command "yq --version"
     $yqVersion -match "\d{1,2}\.\d{1,2}\.\d{1,2}" | Out-Null
     return ($Matches[0])
-}
-
-function Get-ImageMagickVersion {
-    $imagemagickVersion = Run-Command "magick --version" | Select-Object -First 1 | Take-Part -Part 1,2
-    return ($imagemagickVersion -replace "^ImageMagick").Trim()
-}
-
-function Build-PackageManagementEnvironmentTable {
-    $node = [HeaderNode]::new("Environment variables")
-
-    $table = @(
-        @{
-            "Name" = "CONDA"
-            "Value" = $env:CONDA
-        },
-        @{
-            "Name" = "VCPKG_INSTALLATION_ROOT"
-            "Value" = $env:VCPKG_INSTALLATION_ROOT
-        }
-    ) | ForEach-Object {
-        [PSCustomObject] @{
-            "Name" = $_.Name
-            "Value" = $_.Value
-        }
-    }
-
-    $node.AddTable($table)
-
-    return $node
 }
 
 function Build-MiscellaneousEnvironmentTable {
@@ -591,18 +382,12 @@ function Build-MiscellaneousEnvironmentTable {
     }
 }
 
-
 function Get-CodeQLBundleVersion {
     $CodeQLVersionWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql"
     $CodeQLVersion = & $CodeQLPath version --quiet
     return $CodeQLVersion
-}
-
-function Get-ColimaVersion {
-    $colimaVersion = Run-Command "colima version" | Select-String "colima version" | Take-Part -Part 2
-    return $colimaVersion
 }
 
 function Get-PKGConfVersion {
