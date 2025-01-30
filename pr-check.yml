@@ -1,0 +1,248 @@
+name: PR Check
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  codeql-analysis:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    strategy:
+      fail-fast: false
+      matrix:
+        language: [ 'python' ]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+
+  linter:
+    name: Lint JSON & MD files
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Lint Code Base
+        uses: github/super-linter/slim@v4
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_JSON: true
+          VALIDATE_MARKDOWN: true
+          DEFAULT_BRANCH: ${{ github.base_ref }}
+          FILTER_REGEX_EXCLUDE: .*images/*/.*-Readme.md
+      - name: Checking shebang lines in MacOS and Ubuntu releases.
+        run: ./images.CI/shebang-linter.ps1
+        shell: pwsh
+
+  powershell-tests:
+    name: PowerShell tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Run Software Report module tests
+        shell: pwsh
+        run: |
+            $ErrorActionPreference = "Stop"
+            Invoke-Pester -Output Detailed "helpers/software-report-base/tests"
+
+  trigger-ubuntu2004:
+    name: Trigger Ubuntu20.04 CI
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'CI ubuntu-all' || github.event.label.name == 'CI ubuntu-2004'
+    steps:
+      - name: Trigger Build workflow
+        env:
+          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          CI_PR: ${{ secrets.CI_REPO }}
+        run: |
+          $headers = @{
+            Authorization="Bearer $env:CI_PR_TOKEN"
+          }
+          $apiRepoUrl = "https://api.github.com/repos/$env:CI_PR"
+          $eventType = "trigger-ubuntu2004-build"
+          $body = @{
+            event_type = $eventType;
+            client_payload = @{
+              pr_title = "$env:PR_TITLE"
+              custom_repo = "${{ github.event.pull_request.head.repo.full_name }}"
+              custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
+            }
+          }
+          $bodyString = $body | ConvertTo-Json
+          try {
+            Invoke-WebRequest -Uri "$apiRepoUrl/dispatches" -Method Post -Headers $headers -Body $bodyString | Out-Null
+          } catch {
+            throw "$($_.exception[0].message)"
+          }
+
+  trigger-ubuntu2204:
+    name: Trigger Ubuntu22.04 CI
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'CI ubuntu-all' || github.event.label.name == 'CI ubuntu-2204'
+    steps:
+      - name: Trigger Build workflow
+        env:
+          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          CI_PR: ${{ secrets.CI_REPO }}
+        run: |
+          $headers = @{
+            Authorization="Bearer $env:CI_PR_TOKEN"
+          }
+          $apiRepoUrl = "https://api.github.com/repos/$env:CI_PR"
+          $eventType = "trigger-ubuntu2204-build"
+          $body = @{
+            event_type = $eventType;
+            client_payload = @{
+              pr_title = "$env:PR_TITLE"
+              custom_repo = "${{ github.event.pull_request.head.repo.full_name }}"
+              custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
+            }
+          }
+          $bodyString = $body | ConvertTo-Json
+          try {
+            Invoke-WebRequest -Uri "$apiRepoUrl/dispatches" -Method Post -Headers $headers -Body $bodyString | Out-Null
+          } catch {
+            throw "$($_.exception[0].message)"
+          }
+
+  trigger-ubuntu2404:
+    name: Trigger Ubuntu24.04 CI
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'CI ubuntu-all' || github.event.label.name == 'CI ubuntu-2404'
+    steps:
+      - name: Trigger Build workflow
+        env:
+          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          CI_PR: ${{ secrets.CI_REPO }}
+        run: |
+          $headers = @{
+            Authorization="Bearer $env:CI_PR_TOKEN"
+          }
+          $apiRepoUrl = "https://api.github.com/repos/$env:CI_PR"
+          $eventType = "trigger-ubuntu2404-build"
+          $body = @{
+            event_type = $eventType;
+            client_payload = @{
+              pr_title = "$env:PR_TITLE"
+              custom_repo = "${{ github.event.pull_request.head.repo.full_name }}"
+              custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
+            }
+          }
+          $bodyString = $body | ConvertTo-Json
+          try {
+            Invoke-WebRequest -Uri "$apiRepoUrl/dispatches" -Method Post -Headers $headers -Body $bodyString | Out-Null
+          } catch {
+            throw "$($_.exception[0].message)"
+          }
+
+  trigger-windows2019:
+    name: Trigger Windows19 CI
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'CI windows-all' || github.event.label.name == 'CI windows-2019'
+    steps:
+      - name: Trigger Build workflow
+        env:
+          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          CI_PR: ${{ secrets.CI_REPO }}
+        run: |
+          $headers = @{
+            Authorization="Bearer $env:CI_PR_TOKEN"
+          }
+          $apiRepoUrl = "https://api.github.com/repos/$env:CI_PR"
+          $eventType = "trigger-windows2019-build"
+          $body = @{
+            event_type = $eventType;
+            client_payload = @{
+              pr_title = "$env:PR_TITLE"
+              custom_repo = "${{ github.event.pull_request.head.repo.full_name }}"
+              custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
+            }
+          }
+          $bodyString = $body | ConvertTo-Json
+          try {
+            Invoke-WebRequest -Uri "$apiRepoUrl/dispatches" -Method Post -Headers $headers -Body $bodyString | Out-Null
+          } catch {
+            throw "$($_.exception[0].message)"
+          }
+
+  trigger-windows2022:
+    name: Trigger Windows22 CI
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'CI windows-all' || github.event.label.name == 'CI windows-2022'
+    steps:
+      - name: Trigger Build workflow
+        env:
+          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          CI_PR: ${{ secrets.CI_REPO }}
+        run: |
+          $headers = @{
+            Authorization="Bearer $env:CI_PR_TOKEN"
+          }
+          $apiRepoUrl = "https://api.github.com/repos/$env:CI_PR"
+          $eventType = "trigger-windows2022-build"
+          $body = @{
+            event_type = $eventType;
+            client_payload = @{
+              pr_title = "$env:PR_TITLE"
+              custom_repo = "${{ github.event.pull_request.head.repo.full_name }}"
+              custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
+            }
+          }
+          $bodyString = $body | ConvertTo-Json
+          try {
+            Invoke-WebRequest -Uri "$apiRepoUrl/dispatches" -Method Post -Headers $headers -Body $bodyString | Out-Null
+          } catch {
+            throw "$($_.exception[0].message)"
+          }
+
+  trigger-windows2025:
+    name: Trigger Windows25 CI
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'CI windows-all' || github.event.label.name == 'CI windows-2025'
+    steps:
+      - name: Trigger Build workflow
+        env:
+          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          CI_PR: ${{ secrets.CI_REPO }}
+        run: |
+          $headers = @{
+            Authorization="Bearer $env:CI_PR_TOKEN"
+          }
+          $apiRepoUrl = "https://api.github.com/repos/$env:CI_PR"
+          $eventType = "trigger-windows2025-build"
+          $body = @{
+            event_type = $eventType;
+            client_payload = @{
+              pr_title = "$env:PR_TITLE"
+              custom_repo = "${{ github.event.pull_request.head.repo.full_name }}"
+              custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
+            }
+          }
+          $bodyString = $body | ConvertTo-Json
+          try {
+            Invoke-WebRequest -Uri "$apiRepoUrl/dispatches" -Method Post -Headers $headers -Body $bodyString | Out-Null
+          } catch {
+            throw "$($_.exception[0].message)"
+          }
