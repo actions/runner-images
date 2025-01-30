@@ -110,9 +110,7 @@ function Get-MacOSIPSWInstaller {
         [bool] $BetaSearch = $false
     )
 
-    if ($MacOSVersion -eq [version] "12.0") {
-        $MacOSName = "macOS Monterey"
-    } elseif ($MacOSVersion -eq [version] "13.0") {
+    if ($MacOSVersion -eq [version] "13.0") {
         $MacOSName = "macOS Ventura"
     } elseif ($MacOSVersion -eq [version] "14.0") {
         $MacOSName = "macOS Sonoma"
