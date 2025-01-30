@@ -7,7 +7,7 @@
 # macOS 13
 - OS Version: macOS 13.7.2 (22H313)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250120.653
+- Image Version: 20250127.672
 
 ## Installed Software
 
@@ -24,7 +24,7 @@
 - GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
 - Kotlin 2.1.0-release-394
 - Mono 6.12.0.188
-- Node.js 20.18.1
+- Node.js 20.18.2
 - Perl 5.40.1
 - Python3 3.13.1
 - Ruby 3.0.7p220
@@ -33,7 +33,7 @@
 - Bundler 2.5.23
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.16
+- Homebrew 4.4.17
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 24.3.1 (python 3.13)
@@ -44,7 +44,7 @@
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.12
+- Gradle 8.12.1
 
 ### Utilities
 - 7-Zip 17.05
@@ -62,24 +62,24 @@
 - gpg (GnuPG) 2.4.7
 - jq 1.7.1
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.11.2
+- Packer 1.12.0
 - pkgconf 2.3.0
 - Unxip 3.1
 - yq 4.45.1
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.23.2
+- AWS CLI 2.23.6
 - AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.32.4
-- Cmake 3.31.4
+- Bicep CLI 0.33.13
+- Cmake 3.31.5
 - CodeQL Action Bundle 2.20.1
 - Fastlane 2.226.0
-- SwiftFormat 0.55.4
-- Xcbeautify 2.17.0
+- SwiftFormat 0.55.5
+- Xcbeautify 2.23.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
 
@@ -88,10 +88,10 @@
 ### Browsers
 - Safari 18.2 (18620.1.16.111.6)
 - SafariDriver 18.2 (18620.1.16.111.6)
-- Google Chrome 132.0.6834.84
-- Google Chrome for Testing 132.0.6834.83
-- ChromeDriver 132.0.6834.83
-- Selenium server 4.27.0
+- Google Chrome 132.0.6834.111
+- Google Chrome for Testing 132.0.6834.110
+- ChromeDriver 132.0.6834.110
+- Selenium server 4.28.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -101,11 +101,11 @@
 | GECKOWEBDRIVER  |                                         |
 
 ### Java
-| Version              | Environment Variable |
-| -------------------- | -------------------- |
-| 11.0.25+9            | JAVA_HOME_11_arm64   |
-| 17.0.13+11 (default) | JAVA_HOME_17_arm64   |
-| 21.0.5+11.0          | JAVA_HOME_21_arm64   |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 11.0.26+4           | JAVA_HOME_11_arm64   |
+| 17.0.14+7 (default) | JAVA_HOME_17_arm64   |
+| 21.0.6+7.0          | JAVA_HOME_21_arm64   |
 
 ### Cached Tools
 
@@ -122,14 +122,14 @@
 - 3.13.1
 
 #### Node.js
-- 18.20.5
-- 20.18.1
-- 22.13.0
+- 18.20.6
+- 20.18.2
+- 22.13.1
 
 #### Go
 - 1.21.13
-- 1.22.10
-- 1.23.4
+- 1.22.11
+- 1.23.5
 
 ### Rust Tools
 - Cargo 1.84.0
@@ -142,7 +142,7 @@
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.6
+- PowerShell 7.4.7
 
 #### PowerShell Modules
 - Az: 12.4.0
@@ -193,11 +193,11 @@
 | Simulator - watchOS 9.4                                 | watchsimulator9.4                             | 14.3.1        |
 | Simulator - watchOS 10.0                                | watchsimulator10.0                            | 15.0.1        |
 | Simulator - watchOS 10.2                                | watchsimulator10.2                            | 15.1, 15.2    |
-| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
+| Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
