@@ -150,7 +150,13 @@
     },
     "mingw": {
         "version": "12.2.0",
-        "runtime": "ucrt"
+        "runtime": "ucrt",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2025-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
     },
     "MsysPackages": {
         "msys2": [],
@@ -384,7 +390,13 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "1.1.1"
+        "version": "1.1.1",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2024-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
     },
     "pwsh": {
         "version": "7.4"
