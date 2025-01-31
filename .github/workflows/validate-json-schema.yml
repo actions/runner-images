@@ -9,8 +9,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Run JSON Schema validation
-        run: |
-          wget -q https://github.com/neilpa/yajsv/releases/download/v1.4.1/yajsv.linux.amd64
-          chmod +x yajsv.linux.amd64
-          ./yajsv.linux.amd64 -s ./schemas/toolset-schema.json $(find . -name 'toolset-*.json' | tr '\n' ' ') 
+      - name: Validate JSON Schema
+        shell: pwsh
+        run: ./helpers/CheckJsonSchema.ps1
