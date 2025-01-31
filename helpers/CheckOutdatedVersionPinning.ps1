@@ -67,7 +67,11 @@ if ($expiringPins) {
 
     if ($env:GITHUB_ACTIONS -eq 'true') {
         # In GitHub Actions, create an issue
-        $issueBody | gh issue create --title "Version Pinning Review Found Expired Pinned Versions" --body -
+        Write-Host "Creating issue"
+        $tempFile = [System.IO.Path]::GetTempFileName()
+        Set-Content -Path $tempFile -Value $issueBody
+        gh issue create --title "Version Pinning Review Found Expired Pinned Versions" --body-file $tempFile
+        Remove-Item -Path $tempFile
     }
     
     Write-Host "`nIssue Content:`n"
