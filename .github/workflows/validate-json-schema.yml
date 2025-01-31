@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  validate-json:
+  validate-json-schema:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
