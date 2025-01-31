@@ -377,10 +377,21 @@
     },
     "aliyunCli": {
         "version": "3.0.174",
-        "sha256": "0c51028a7a32fc02c8de855f73e273556f957115eb5624565738f9b9f83a50ba"
+        "sha256": "0c51028a7a32fc02c8de855f73e273556f957115eb5624565738f9b9f83a50ba",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2025-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
     },
     "ocCli": {
-        "version": "4.15.19"
-    } 
-      
+        "version": "4.15.19",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2025-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
+    }
 }

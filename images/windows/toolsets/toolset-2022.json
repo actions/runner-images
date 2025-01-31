@@ -380,13 +380,25 @@
     },
     "postgresql": {
         "version": "14.12.1",
-        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2025-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
     },
     "kotlin": {
         "version": "latest"
     },
     "openssl": {
-        "version": "1.1.1"
+        "version": "1.1.1",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2024-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
     },
     "pwsh": {
         "version": "7.4"
