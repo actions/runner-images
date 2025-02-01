@@ -474,7 +474,12 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "1.1.1"
+        "version": "1.1.1",
+        "pinnedDetails": {
+            "link": "https://github.com/somelink",
+            "reason": "this was pinned due to a downstream issue with the installer",
+            "review-at": "2025-01-30"
+        }
     },
     "pwsh": {
         "version": "7.4"
