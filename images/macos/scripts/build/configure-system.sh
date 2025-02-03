@@ -12,19 +12,12 @@ close_finder_window
 # Remove Parallels Desktop
 # https://github.com/actions/runner-images/issues/6105
 # https://github.com/actions/runner-images/issues/10143
-if is_Monterey || is_SonomaX64 || is_VenturaX64; then
+if is_SonomaX64 || is_VenturaX64; then
     brew uninstall parallels
 fi
 
 # Put documentation to $HOME root
 cp $HOME/image-generation/output/software-report/systeminfo.* $HOME/
-
-# Put build vm assets (xamarin-selector) scripts to proper directory
-if is_Monterey || is_Sonoma || is_Ventura; then
-    mkdir -p /usr/local/opt/$USER/scripts
-    mv $HOME/image-generation/assets/* /usr/local/opt/$USER/scripts
-    find /usr/local/opt/$USER/scripts -type f -name "*\.sh" -exec chmod +x {} \;
-fi
 
 # Remove fastlane cached cookie
 rm -rf ~/.fastlane
