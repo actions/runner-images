@@ -246,6 +246,8 @@
             "ubuntu:20.04",
             "ubuntu:22.04",
             "mcr.microsoft.com/mssql/server:2019-latest",
+            "ollama/ollama:latest",
+            "cr.weaviate.io/semitechnologies/weaviate:latest",
             "osixia/openldap:latest",
             "osixia/phpldapadmin",
             "public.ecr.aws/docker/library/debian:bookworm-slim",
