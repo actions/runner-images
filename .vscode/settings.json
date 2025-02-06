@@ -21,5 +21,14 @@
   ],
   "shellcheck.customArgs": [
     "-x"
-  ]
+  ],
+  "json.schemas": [
+    {
+        "fileMatch": [
+            "**/toolset-*.json"
+        ],
+        "url": "./schemas/toolset-schema.json"
+    }
+]
+
 }
