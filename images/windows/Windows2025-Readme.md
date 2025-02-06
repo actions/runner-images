@@ -1,13 +1,13 @@
 | Announcements |
 |-|
-| [[Windows] Removal of Azure and Azure Powershell module from windows images from Febraury 14](https://github.com/actions/runner-images/issues/11483) |
-| [[Windows ] Breaking change : PHP 8.3.* version will be updated to PHP 8.4.* from January 31,2025](https://github.com/actions/runner-images/issues/11256) |
+| [[Windows] Removal of Azure and Azure Powershell module from windows images from 14-02-2025](https://github.com/actions/runner-images/issues/11483) |
+| [[Windows ] Breaking change : PHP 8.3.* version will be updated to PHP 8.4.* from 2025-01-31](https://github.com/actions/runner-images/issues/11256) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 | [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from February 07,2025](https://github.com/actions/runner-images/issues/11104) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 2894
-- Image Version: 20250127.1.0
+- Image Version: 20250203.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -28,7 +28,7 @@
 - Ruby 3.3.7
 
 ### Package Management
-- Chocolatey 2.4.1
+- Chocolatey 2.4.2
 - Composer 2.8.5
 - Helm 3.16.4
 - Miniconda 24.11.1 (pre-installed on the image but not added to PATH)
@@ -37,7 +37,7 @@
 - pip 25.0 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit f3a67b0c4)
+- Vcpkg (build from commit 0ca64b4e1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,12 +55,12 @@
 ### Tools
 - 7zip 24.09
 - aria2 1.37.0
-- azcopy 10.27.1
+- azcopy 10.28.0
 - Bazel 8.0.1
 - Bazelisk 1.25.0
 - Bicep 0.33.13
 - Cabal 3.14.1.1
-- CMake 3.31.4
+- CMake 3.31.5
 - CodeQL Action Bundle 2.20.1
 - Docker 26.1.3
 - Docker Compose v2 2.27.1
@@ -78,7 +78,7 @@
 - Newman 6.2.1
 - OpenSSL 3.4.0
 - Packer 1.11.2
-- Pulumi 3.147.0
+- Pulumi 3.148.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.3.1
@@ -90,17 +90,17 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.23.6
+- AWS CLI 2.23.11
 - AWS SAM CLI 1.132.0
 - AWS Session Manager CLI 1.2.694.0
 - Azure CLI 2.68.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.65.0
+- GitHub CLI 2.66.1
 
 ### Rust Tools
-- Cargo 1.84.0
-- Rust 1.84.0
-- Rustdoc 1.84.0
+- Cargo 1.84.1
+- Rust 1.84.1
+- Rustdoc 1.84.1
 - Rustup 1.27.1
 
 #### Packages
@@ -108,10 +108,10 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.111
-- Chrome Driver 132.0.6834.110
+- Google Chrome 132.0.6834.160
+- Chrome Driver 132.0.6834.159
 - Microsoft Edge 132.0.2957.127
-- Microsoft Edge Driver 132.0.2957.127
+- Microsoft Edge Driver 132.0.2957.140
 - Mozilla Firefox 134.0.2
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
@@ -481,7 +481,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.743
+- AWSPowershell: 4.1.748
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.25.0
