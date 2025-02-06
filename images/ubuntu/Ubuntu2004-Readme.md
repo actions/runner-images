@@ -1,7 +1,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1078-azure
-- Image Version: 20250126.1.0
+- Image Version: 20250202.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -17,7 +17,7 @@
 - GNU C++: 10.5.0
 - GNU Fortran: 10.5.0
 - Julia 1.11.3
-- Kotlin 2.1.0-release-394
+- Kotlin 2.1.10-release-473
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.20.6
@@ -29,7 +29,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.0
-- Homebrew 4.4.17
+- Homebrew 4.4.19
 - Miniconda 24.11.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -37,7 +37,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 57c08a322)
+- Vcpkg (build from commit 0ca64b4e1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -64,10 +64,10 @@ to accomplish this.
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.10.0
-- AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.28.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.0.1
 - Bazelisk 1.25.0
-- Bicep 0.33.13
+- Bicep 0.33.93
 - Buildah 1.22.3
 - CMake 3.31.5
 - CodeQL Action Bundle 2.20.1
@@ -99,7 +99,7 @@ to accomplish this.
 - Parcel 2.13.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.147.0
+- Pulumi 3.148.0
 - R 4.4.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -111,17 +111,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.23.6
+- AWS CLI 2.23.11
 - AWS CLI Session Manager Plugin 1.2.694.0
 - AWS SAM CLI 1.132.0
 - Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.65.0
-- Google Cloud CLI 507.0.0
-- Netlify CLI 18.0.2
+- GitHub CLI 2.66.1
+- Google Cloud CLI 508.0.0
+- Netlify CLI 18.0.3
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.2
-- Vercel CLI 39.3.0
+- Vercel CLI 40.1.0
 
 ### Java
 | Version             | Environment Variable |
@@ -146,9 +146,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.3.1
 
 ### Rust Tools
-- Cargo 1.84.0
-- Rust 1.84.0
-- Rustdoc 1.84.0
+- Cargo 1.84.1
+- Rust 1.84.1
+- Rustdoc 1.84.1
 - Rustup 1.27.1
 
 #### Packages
@@ -160,11 +160,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.110
-- ChromeDriver 132.0.6834.110
+- Google Chrome 132.0.6834.159
+- ChromeDriver 132.0.6834.159
 - Chromium 132.0.6834.0
-- Microsoft Edge 132.0.2957.127
-- Microsoft Edge WebDriver 132.0.2957.127
+- Microsoft Edge 132.0.2957.140
+- Microsoft Edge WebDriver 132.0.2957.140
 - Selenium server 4.28.1
 - Mozilla Firefox 134.0.2
 - Geckodriver 0.35.0
@@ -182,7 +182,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
-- MongoDB 5.0.30
+- MongoDB 5.0.31
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -194,7 +194,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.40-0ubuntu0.20.04.1
+- MySQL 8.0.41-0ubuntu0.20.04.1
 ```
 User: root
 Password: root
@@ -312,7 +312,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 8.30-3ubuntu2                     |
 | curl                   | 7.68.0-1ubuntu2.25                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
-| dnsutils               | 1:9.18.30-0ubuntu0.20.04.1        |
+| dnsutils               | 1:9.18.30-0ubuntu0.20.04.2        |
 | dpkg                   | 1.19.7ubuntu3.2                   |
 | dpkg-dev               | 1.19.7ubuntu3.2                   |
 | fakeroot               | 1.24-1                            |
@@ -381,7 +381,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
 | tk                     | 8.6.9+1                           |
-| tzdata                 | 2024a-0ubuntu0.20.04.1            |
+| tzdata                 | 2024b-0ubuntu0.20.04              |
 | unzip                  | 6.0-25ubuntu1.2                   |
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2.1                 |
