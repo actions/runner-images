@@ -1,7 +1,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.5.0-1025-azure
-- Image Version: 20250126.1.0
+- Image Version: 20250202.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -15,7 +15,7 @@
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
 - Julia 1.11.3
-- Kotlin 2.1.0-release-394
+- Kotlin 2.1.10-release-473
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.20.6
@@ -27,7 +27,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.0
-- Homebrew 4.4.17
+- Homebrew 4.4.19
 - Miniconda 24.11.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -35,7 +35,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 57c08a322)
+- Vcpkg (build from commit 0ca64b4e1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,12 +60,12 @@ to accomplish this.
 - Sbt 1.10.7
 
 ### Tools
-- Ansible 2.17.7
+- Ansible 2.17.8
 - apt-fast 1.10.0
-- AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.28.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.0.1
 - Bazelisk 1.25.0
-- Bicep 0.33.13
+- Bicep 0.33.93
 - Buildah 1.23.1
 - CMake 3.31.5
 - CodeQL Action Bundle 2.20.1
@@ -95,7 +95,7 @@ to accomplish this.
 - Packer 1.12.0
 - Parcel 2.13.3
 - Podman 3.4.4
-- Pulumi 3.147.0
+- Pulumi 3.148.0
 - R 4.4.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -107,17 +107,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.250
-- AWS CLI 2.23.6
+- AWS CLI 2.23.11
 - AWS CLI Session Manager Plugin 1.2.694.0
 - AWS SAM CLI 1.132.0
 - Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.65.0
-- Google Cloud CLI 507.0.0
-- Netlify CLI 18.0.2
-- OpenShift CLI 4.17.12
+- GitHub CLI 2.66.1
+- Google Cloud CLI 508.0.0
+- Netlify CLI 18.0.3
+- OpenShift CLI 4.17.14
 - ORAS CLI 1.2.2
-- Vercel CLI 39.3.0
+- Vercel CLI 40.1.0
 
 ### Java
 | Version             | Environment Variable |
@@ -142,9 +142,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.3.1
 
 ### Rust Tools
-- Cargo 1.84.0
-- Rust 1.84.0
-- Rustdoc 1.84.0
+- Cargo 1.84.1
+- Rust 1.84.1
+- Rustdoc 1.84.1
 - Rustup 1.27.1
 
 #### Packages
@@ -156,11 +156,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.110
-- ChromeDriver 132.0.6834.110
+- Google Chrome 132.0.6834.159
+- ChromeDriver 132.0.6834.159
 - Chromium 132.0.6834.0
-- Microsoft Edge 132.0.2957.127
-- Microsoft Edge WebDriver 132.0.2957.127
+- Microsoft Edge 132.0.2957.140
+- Microsoft Edge WebDriver 132.0.2957.140
 - Selenium server 4.28.1
 - Mozilla Firefox 134.0.2
 - Geckodriver 0.35.0
@@ -189,7 +189,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.40-0ubuntu0.22.04.1
+- MySQL 8.0.41-0ubuntu0.22.04.1
 ```
 User: root
 Password: root
@@ -303,7 +303,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 8.32-4.1ubuntu1.2                   |
 | curl                   | 7.81.0-1ubuntu1.20                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
-| dnsutils               | 1:9.18.30-0ubuntu0.22.04.1          |
+| dnsutils               | 1:9.18.30-0ubuntu0.22.04.2          |
 | dpkg                   | 1.21.1ubuntu2.3                     |
 | dpkg-dev               | 1.21.1ubuntu2.3                     |
 | fakeroot               | 1.28-1ubuntu1                       |
@@ -374,7 +374,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
 | tk                     | 8.6.11+1build2                      |
-| tzdata                 | 2024a-0ubuntu0.22.04.1              |
+| tzdata                 | 2024b-0ubuntu0.22.04                |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1.1                   |
