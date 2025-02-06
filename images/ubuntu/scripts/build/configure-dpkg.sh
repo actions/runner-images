@@ -6,7 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
-
+source $HELPER_SCRIPTS/os.sh
 # This is the anti-frontend. It never interacts with you  at  all,
 # and  makes  the  default  answers  be used for all questions. It
 # might mail error messages to root, but that's it;  otherwise  it
@@ -30,3 +30,9 @@ cat <<EOF >> /etc/apt/apt.conf.d/10apt-autoremove
 APT::Get::AutomaticRemove "0";
 APT::Get::HideAutoRemove "1";
 EOF
+
+# Install libicu70 package for Ubuntu 24
+if  is_ubuntu24 ; then
+  wget http://archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu70_70.1-2_amd64.deb
+  sudo apt-get install -y ./libicu70_70.1-2_amd64.deb
+fi

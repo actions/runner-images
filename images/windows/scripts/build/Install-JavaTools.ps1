@@ -110,7 +110,6 @@ foreach ($jdkVersionToInstall in $jdkVersionsToInstall) {
 # Install Java tools
 # Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
 Install-ChocoPackage ant -ArgumentList "--ignore-dependencies"
-# Maven 3.9.x has multiple compatibilities problems
 $toolsetMavenVersion = (Get-ToolsetContent).maven.version
 $versionToInstall = Resolve-ChocoPackageVersion -PackageName "maven" -TargetVersion $toolsetMavenVersion
 

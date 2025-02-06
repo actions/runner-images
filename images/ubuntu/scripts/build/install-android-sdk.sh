@@ -110,6 +110,9 @@ available_build_tools=$(echo ${all_build_tools[@]//*rc[0-9]/})
 add_filtered_installation_components $minimum_platform_version "${available_platforms[@]}"
 add_filtered_installation_components $minimum_build_tool_version "${available_build_tools[@]}"
 
+# Add platform tools to the list of components to install
+components+=("platform-tools")
+
 # Install components
 echo "y" | $SDKMANAGER ${components[@]}
 

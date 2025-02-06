@@ -26,12 +26,6 @@ Describe "cmake" {
     }
 }
 
-Describe "Subversion" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "Subversion" {
-        "svn --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "SwiftFormat" {
     It "SwiftFormat" {
         "swiftformat --version" | Should -ReturnZeroExitCode
@@ -62,10 +56,10 @@ Describe "Perl" {
     }
 }
 
-Describe "Tcl/Tk" {
+Describe "Tcl/Tk" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64 -or $os.IsSequoia) {
     It "libtcl" {
-        "file /usr/local/lib/libtcl8.6.dylib" | Should -ReturnZeroExitCode
-        "file /usr/local/lib/libtk8.6.dylib" | Should -ReturnZeroExitCode
+        Test-Path "/usr/local/lib/libtcl8.6.dylib" | Should -BeTrue
+        Test-Path "/usr/local/lib/libtk8.6.dylib" | Should -BeTrue
     }
 }
 
@@ -87,7 +81,7 @@ Describe "7-Zip" {
     }
 }
 
-Describe "Apache Ant" -Skip:($os.IsMonterey) {
+Describe "Apache Ant" {
     It "Apache Ant" {
         "ant -version" | Should -ReturnZeroExitCode
     }
@@ -111,12 +105,6 @@ Describe "bazel" {
     }
 }
 
-Describe "Julia" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "Julia" {
-        "julia --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "jq" {
     It "jq" {
         "jq --version" | Should -ReturnZeroExitCode
@@ -135,32 +123,14 @@ Describe "wget" {
     }
 }
 
-Describe "vagrant" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "vagrant" {
-        "vagrant --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "virtualbox" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "virtualbox" {
-        "vboxmanage -v" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "R" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "R" {
-        "R --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Homebrew" {
     It "Homebrew" {
         "brew --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Kotlin" -Skip:($os.IsMonterey) {
-    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
+Describe "Kotlin" {
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlinc-js")
 
     It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
         "$toolName -version" | Should -ReturnZeroExitCode
@@ -173,8 +143,8 @@ Describe "yq" {
     }
 }
 
-Describe "imagemagick" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "imagemagick" {
-        "magick -version" | Should -ReturnZeroExitCode
+Describe "pkgconf" {
+    It "pkgconf" {
+        "pkgconf --version" | Should -ReturnZeroExitCode
     }
 }

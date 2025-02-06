@@ -98,7 +98,7 @@ Finally, run the `GenerateResourcesAndImage` function, setting the mandatory arg
 - `SubscriptionId` - your Azure Subscription ID;
 - `ResourceGroupName` - the name of the resource group that will be created within your subscription (e.g., "imagegen-test");
 - `AzureLocation` - the location where resources will be created (e.g., "East US");
-- `ImageType` - the type of image to build (we suggest choosing "UbuntuMinimal" here; other valid options are "Windows2019", "Windows2022", "Ubuntu2004", "Ubuntu2204").
+- `ImageType` - the type of image to build (we suggest choosing "UbuntuMinimal" here; other valid options are "Windows2019", "Windows2022", "Windows2025", "Ubuntu2004", "Ubuntu2204", "Ubuntu2404").
 
 This function automatically creates all required Azure resources and initiates the Packer image generation for the selected image type.
 

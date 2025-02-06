@@ -7,7 +7,8 @@
             "versions": [
                 "3.0",
                 "3.1",
-                "3.2"
+                "3.2",
+                "3.3"
             ],
             "default": "3.0"
         },
@@ -17,12 +18,12 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "3.7.*",
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
-                "3.12.*"
+                "3.12.*",
+                "3.13.*"
             ],
             "default": "3.9.*"
         },
@@ -32,12 +33,12 @@
             "arch": "x86",
             "platform" : "win32",
             "versions": [
-                "3.7.*",
                 "3.8.*",
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
-                "3.12.*"
+                "3.12.*",
+                "3.13.*"
             ]
         },
         {
@@ -94,29 +95,22 @@
         {
             "name": "azurerm",
             "versions": [
-                "2.1.0",
                 "6.13.1"
             ],
             "zip_versions": [
-                "3.8.0",
-                "4.2.1",
-                "5.1.1",
                 "6.7.0"
             ],
-            "default": "2.1.0"
+            "default": "6.13.1"
         },
         {
             "name": "azure",
             "versions": [
-                "2.1.0",
                 "5.3.0"
             ],
             "zip_versions": [
-                "3.8.0",
-                "4.2.1",
                 "5.1.1"
             ],
-            "default": "2.1.0"
+            "default": "5.3.0"
         },
         {
             "name": "az",
@@ -156,7 +150,13 @@
     },
     "mingw": {
         "version": "12.2.0",
-        "runtime": "ucrt"
+        "runtime": "ucrt",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2025-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
     },
     "MsysPackages": {
         "msys2": [],
@@ -187,6 +187,7 @@
             "Component.Unreal.Android",
             "Component.Xamarin",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
+            "Microsoft.Net.Component.4.7.2.SDK",
             "Microsoft.Net.Component.4.7.TargetingPack",
             "Microsoft.Net.Component.4.7.2.TargetingPack",
             "Microsoft.Net.Component.4.8.1.SDK",
@@ -320,8 +321,8 @@
     "dotnet": {
         "versions": [
             "6.0",
-            "7.0",
-            "8.0"
+            "8.0",
+            "9.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
@@ -357,10 +358,10 @@
         ]
     },
     "node": {
-        "default": "18"
+        "default": "18.*"
     },
     "maven": {
-        "version": "3.8"
+        "version": "3.9"
     },
     "mysql": {
         "version": "8.0",
@@ -368,7 +369,7 @@
     },
     "mongodb": {
         "version": "5.0",
-        "signature": "F2D7C28591847BB2CB2B1C2A0C59459FDC728A38"
+        "signature": "A5BBE2A6DA1D2A6E057EF870267E6A91E4D56BAA"
     },
     "nsis": {
         "version": "3.10"
@@ -377,17 +378,25 @@
         "version": "18"
     },
     "php": {
-        "version": "8.3"
+        "version": "8.4"
     },
     "postgresql": {
-        "version": "14.12.1",
-        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9",
+        "version": "14",
+        "vcRedistSignature": "245D262748012A4FE6CE8BA6C951A4C4AFBC3E5D",
+        "installVcRedist": true
     },
     "kotlin": {
         "version": "latest"
     },
     "openssl": {
-        "version": "1.1.1"
+        "version": "1.1.1",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2024-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
     },
     "pwsh": {
         "version": "7.4"

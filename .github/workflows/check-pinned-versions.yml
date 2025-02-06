@@ -1,0 +1,22 @@
+name: Check Outdated Version Pinning
+
+on:
+  schedule:
+    - cron: '0 12 * * 1'  # Run at 12:00 UTC every Monday
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  check-pinning-dates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Validate JSON Schema
+        shell: pwsh
+        run: ./helpers/CheckOutdatedVersionPinning.ps1
+        env:
+          GH_TOKEN: ${{ github.token }}

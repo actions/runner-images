@@ -17,7 +17,7 @@ Function Install-VisualStudio {
 
     .PARAMETER RequiredComponents
         The list of required components. Required parameter.
-    
+
     .PARAMETER ExtraArgs
         The extra arguments to pass to the bootstrapper. Optional parameter.
     #>
@@ -85,10 +85,10 @@ Function Install-VisualStudio {
             }
 
             # Expand the zip file
-            Expand-Archive -Path "$env:TEMP\vslogs.zip" -DestinationPath "$env:TEMP\vslogs"
+            Expand-Archive -Path "$env:TEMP_DIR\vslogs.zip" -DestinationPath "$env:TEMP_DIR\vslogs"
 
             # Print logs
-            $vsLogsPath = "$env:TEMP\vslogs"
+            $vsLogsPath = "$env:TEMP_DIR\vslogs"
             $vsLogs = Get-ChildItem -Path $vsLogsPath -Recurse | Where-Object { -not $_.PSIsContainer } | Select-Object -ExpandProperty FullName
             foreach ($log in $vsLogs) {
                 Write-Host "============================"
@@ -96,7 +96,7 @@ Function Install-VisualStudio {
                 Write-Host "============================"
                 Get-Content -Path $log -ErrorAction Continue
             }
-            
+
             exit $exitCode
         }
     }

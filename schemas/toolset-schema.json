@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "patternProperties": {
+    "^.*$": {
+      "if": {
+        "type": "object",
+        "required": [
+          "version"
+        ],
+        "properties": {
+          "version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+.*$"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "pinnedDetails"
+        ],
+        "properties": {
+          "pinnedDetails": {
+            "type": "object",
+            "properties": {
+              "reason": {
+                "type": "string"
+              },
+              "link": {
+                "type": "string"
+              },
+              "review-at": {
+                "type": "string",
+                "format": "date"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

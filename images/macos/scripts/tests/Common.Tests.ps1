@@ -58,74 +58,15 @@ Describe "AzCopy" {
     }
 }
 
-Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "Conda" {
-        [System.Environment]::GetEnvironmentVariable("CONDA") | Should -Not -BeNullOrEmpty
-        $condaBinPath = Join-Path $env:CONDA "bin" "conda"
-        "$condaBinPath --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Stack" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "Stack" {
-        "stack --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "CocoaPods" {
     It "CocoaPods" {
         "pod --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "VSMac" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    $vsMacVersions = (Get-ToolsetContent).xamarin.vsmac.versions
-    $defaultVSMacVersion = (Get-ToolsetContent).xamarin.vsmac.default
-
-    $testCases = $vsMacVersions | ForEach-Object {
-        $vsPath = "/Applications/Visual Studio $_.app"
-        if ($_ -eq $defaultVSMacVersion) {
-            $vsPath = "/Applications/Visual Studio.app"
-        }
-
-        @{ vsversion = $_ ; vspath = $vsPath }
-    }
-
-    It "Visual Studio <vsversion> for Mac is installed" -TestCases $testCases {
-        $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
-        $vsPath | Should -Exist
-        $vstoolPath | Should -Exist
-    }
-
-    It "Visual Studio $defaultVSMacVersion for Mac is default" {
-        $vsPath = "/Applications/Visual Studio.app"
-        $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
-        $vsPath | Should -Exist
-        $vstoolPath | Should -Exist
-    }
-}
-
-Describe "Swig" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "Swig" {
-        "swig -version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Bicep" {
     It "Bicep" {
         "bicep --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Go" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "Go" {
-        "go version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "VirtualBox" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "Check kext kernel modules" {
-        kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }
 }
 
@@ -138,28 +79,6 @@ Describe "CodeQL Bundle" {
 
         $CodeQLPacksPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
         $CodeQLPacksPath | Should -Exist
-    }
-}
-
-Describe "Colima" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "Colima" {
-        "colima version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Compiled" -Skip:(-not $os.IsMonterey) {
-    It "Apache Ant" {
-        "ant -version" | Should -ReturnZeroExitCode
-    }
-
-    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm", "kotlin-dce-js")
-
-    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
-        "$toolName -version" | Should -ReturnZeroExitCode
-    }
-
-    It "sbt" {
-        "sbt -version" | Should -ReturnZeroExitCode
     }
 }
 
