@@ -13,7 +13,7 @@ Please note that this project is released with a [Contributor Code of Conduct][c
 ## Submitting a pull request
 
 1. [Fork][fork] and clone the repository.
-1. Create a new branch: `git checkout -b my-branch-name`.
+1. Create a new branch: `git checkout -b Validate .
 1. Make your changes, ensuring that they include steps to install, validate post-install, and update the software report (please see [How to add a new tool](CONTRIBUTING.md#how-to-add-a-new-tool) for details).
 1. Test your changes by [creating an image and deploying a VM](docs/create-image-and-azure-resources.md).
 1. Push to your fork and [submit a pull request][pr].
