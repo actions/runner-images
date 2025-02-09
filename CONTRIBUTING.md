@@ -1,4 +1,4 @@
-# Contributing
+tab# Contributing
 
 [fork]: https://github.com/actions/runner-images/fork
 [pr]: https://github.com//actions/runner-images/compare
@@ -47,7 +47,7 @@ We use [Pester v5](https://github.com/pester/pester) for validation scripts. If 
 Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at the end of the installation script to ensure that your tests will be run.
 - Add changes to the software report generator `images/windows/scripts/docs-gen/Generate-SoftwareReport.ps1`. The software report generator is used to generate an image's README file, e.g. [Windows2019-Readme.md](images/windows/Windows2019-Readme.md) and uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
 
-### Ubuntu
+esc### Ubuntu
 
 - Add a script that will install and validate the tool and put the script in the `scripts/build` folder.
 Use existing scripts such as [github-cli.sh](images/ubuntu/scripts/build/github-cli.sh) as a starting point.
@@ -55,7 +55,7 @@ Use existing scripts such as [github-cli.sh](images/ubuntu/scripts/build/github-
   - The validation part should `exit 1` if there is any issue with the installation.
 - Add changes to the software report generator `images/ubuntu/scripts/docs-gen/Generate-SoftwareReport.ps1`. The software report generator is used to generate an image's README file, e.g. [Ubuntu2004-Readme.md](images/ubuntu/Ubuntu2004-README.md) and it uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
 
-### macOS
+tab### macOS
 
 The macOS source lives in this repository and is available for everyone. However, the macOS image-generation CI doesn't support external contributions yet, so we are not able to accept pull requests for now.
 We are in the process of preparing the macOS CI to accept contributions. Until then, we appreciate your patience and ask that you continue to make tool requests by filing issues.
