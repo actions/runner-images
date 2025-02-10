@@ -453,7 +453,7 @@
     },
     "mongodb": {
         "version": "5.0",
-        "signature": "F2D7C28591847BB2CB2B1C2A0C59459FDC728A38"
+        "signature": "A5BBE2A6DA1D2A6E057EF870267E6A91E4D56BAA"
     },
     "nsis": {
         "version": "3.10"
@@ -474,7 +474,12 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "1.1.1"
+        "version": "1.1.1",
+        "pinnedDetails": {
+            "link": "https://github.com/somelink",
+            "reason": "this was pinned due to a downstream issue with the installer",
+            "review-at": "2025-01-30"
+        }
     },
     "pwsh": {
         "version": "7.4"
