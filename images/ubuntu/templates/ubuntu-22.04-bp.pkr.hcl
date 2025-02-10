@@ -98,29 +98,29 @@ build {
     inline          = ["mkdir ${var.image_folder}", "chmod 777 ${var.image_folder}"]
   }
 
-  provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/apt-mock.sh"
+  provisioner "file" {
+    destination = "${var.helper_script_folder}"
+    source      = "${path.root}/../scripts/helpers"
   }
 
   provisioner "shell" {
-    environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    script          = "${path.root}/../scripts/build/configure-apt-mock.sh"
+  }
+
+  provisioner "shell" {
+    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}","DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/repos.sh",
-                        "${path.root}/../scripts/build/apt-ubuntu-archive.sh",
-                        "${path.root}/../scripts/build/apt.sh"
+      "${path.root}/../scripts/build/install-ms-repos.sh",
+      "${path.root}/../scripts/build/configure-apt-sources.sh",
+      "${path.root}/../scripts/build/configure-apt.sh"
     ]
   }
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/limits.sh"
-  }
-
-  provisioner "file" {
-    destination = "${var.helper_script_folder}"
-    source      = "${path.root}/../scripts/helpers"
+    script          = "${path.root}/../scripts/build/configure-limits.sh"
   }
 
   provisioner "file" {
@@ -158,7 +158,7 @@ build {
   provisioner "shell" {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGEDATA_FILE=${var.imagedata_file}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/preimagedata.sh"]
+    scripts          = ["${path.root}/../scripts/build/configure-image-data.sh"]
   }
 
   provisioner "shell" {
@@ -170,13 +170,13 @@ build {
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/apt-vital.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-apt-vital.sh"]
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}"]
+    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/complete-snap-setup.sh", "${path.root}/../scripts/build/powershellcore.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-powershell.sh"]
   }
 
   provisioner "shell" {
@@ -189,47 +189,48 @@ build {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/action-archive-cache.sh",
-                        "${path.root}/../scripts/build/runner-package.sh",
-                        "${path.root}/../scripts/build/apt-common.sh",
-                        "${path.root}/../scripts/build/apache.sh",
-                        "${path.root}/../scripts/build/aws.sh",
-                        "${path.root}/../scripts/build/clang.sh",
-                        "${path.root}/../scripts/build/cmake.sh",
-                        "${path.root}/../scripts/build/codeql-bundle.sh",
-                        "${path.root}/../scripts/build/containers.sh",
-                        "${path.root}/../scripts/build/dotnetcore-sdk.sh",
-                        "${path.root}/../scripts/build/firefox.sh",
-                        "${path.root}/../scripts/build/microsoft-edge.sh",
-                        "${path.root}/../scripts/build/gcc.sh",
-                        "${path.root}/../scripts/build/gfortran.sh",
-                        "${path.root}/../scripts/build/git.sh",
-                        "${path.root}/../scripts/build/git-lfs.sh",
-                        "${path.root}/../scripts/build/github-cli.sh",
-                        "${path.root}/../scripts/build/google-chrome.sh",
-                        "${path.root}/../scripts/build/java-tools.sh",
-                        "${path.root}/../scripts/build/kubernetes-tools.sh",
-                        "${path.root}/../scripts/build/mysql.sh",
-                        "${path.root}/../scripts/build/mssql-cmd-tools.sh",
-                        "${path.root}/../scripts/build/nginx.sh",
-                        "${path.root}/../scripts/build/nvm.sh",
-                        "${path.root}/../scripts/build/nodejs.sh",
-                        "${path.root}/../scripts/build/postgresql.sh",
-                        "${path.root}/../scripts/build/ruby.sh",
-                        "${path.root}/../scripts/build/selenium.sh",
-                        "${path.root}/../scripts/build/terraform.sh",
-                        "${path.root}/../scripts/build/packer.sh",
-                        "${path.root}/../scripts/build/dpkg-config.sh",
-                        "${path.root}/../scripts/build/yq.sh",
-                        "${path.root}/../scripts/build/pypy.sh",
-                        "${path.root}/../scripts/build/python.sh"
-                        ]
+      "${path.root}/../scripts/build/install-actions-cache.sh",
+      "${path.root}/../scripts/build/install-runner-package.sh",
+      "${path.root}/../scripts/build/install-apt-common.sh",
+      "${path.root}/../scripts/build/install-apache.sh",
+      "${path.root}/../scripts/build/install-aws-tools.sh",
+      "${path.root}/../scripts/build/install-clang.sh",
+      "${path.root}/../scripts/build/install-cmake.sh",
+      "${path.root}/../scripts/build/install-codeql-bundle.sh",
+      "${path.root}/../scripts/build/install-container-tools.sh",
+      "${path.root}/../scripts/build/install-dotnetcore-sdk.sh",
+      "${path.root}/../scripts/build/install-firefox.sh",
+      "${path.root}/../scripts/build/install-microsoft-edge.sh",
+      "${path.root}/../scripts/build/install-gcc-compilers.sh",
+      "${path.root}/../scripts/build/install-gfortran.sh",
+      "${path.root}/../scripts/build/install-git.sh",
+      "${path.root}/../scripts/build/install-git-lfs.sh",
+      "${path.root}/../scripts/build/install-github-cli.sh",
+      "${path.root}/../scripts/build/install-google-chrome.sh",
+      "${path.root}/../scripts/build/install-java-tools.sh",
+      "${path.root}/../scripts/build/install-kubernetes-tools.sh",
+      "${path.root}/../scripts/build/install-mysql.sh",
+      "${path.root}/../scripts/build/install-mssql-tools.sh",
+      "${path.root}/../scripts/build/install-nginx.sh",
+      "${path.root}/../scripts/build/install-nvm.sh",
+      "${path.root}/../scripts/build/install-nodejs.sh",
+      "${path.root}/../scripts/build/install-postgresql.sh",
+      "${path.root}/../scripts/build/install-ruby.sh",
+      "${path.root}/../scripts/build/install-rust.sh",
+      "${path.root}/../scripts/build/install-selenium.sh",
+      "${path.root}/../scripts/build/install-terraform.sh",
+      "${path.root}/../scripts/build/install-packer.sh",
+      "${path.root}/../scripts/build/configure-dpkg.sh",
+      "${path.root}/../scripts/build/install-yq.sh",
+      "${path.root}/../scripts/build/install-pypy.sh",
+      "${path.root}/../scripts/build/install-python.sh",
+    ]
   }
 
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DOCKERHUB_LOGIN=${var.dockerhub_login}", "DOCKERHUB_PASSWORD=${var.dockerhub_password}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/docker-compose.sh", "${path.root}/../scripts/build/docker.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-docker.sh"]
   }
 
   provisioner "shell" {
@@ -241,18 +242,19 @@ build {
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/pipx-packages.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-pipx-packages.sh"]
   }
 
   provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/snap.sh"
+    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}"]
+    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    scripts          = ["${path.root}/../scripts/build/configure-snap.sh"]
   }
 
   provisioner "shell" {
-    execute_command   = "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+    execute_command   = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     expect_disconnect = true
-    scripts           = ["${path.root}/../scripts/build/reboot.sh"]
+    inline            = ["echo 'Reboot VM'", "sudo reboot"]
   }
 
   provisioner "shell" {
@@ -263,19 +265,9 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/apt-mock-remove.sh"
-  }
-
-  provisioner "shell" {
     environment_vars = ["HELPER_SCRIPT_FOLDER=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "IMAGE_FOLDER=${var.image_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/post-deployment.sh"]
-  }
-
-  provisioner "shell" {
-    environment_vars = ["RUN_VALIDATION=${var.run_validation_diskspace}"]
-    scripts          = ["${path.root}/../scripts/build/validate-disk-space.sh"]
+    scripts          = ["${path.root}/../scripts/build/configure-system.sh"]
   }
 
   provisioner "file" {
