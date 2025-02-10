@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    amazon = {
+      source = "github.com/hashicorp/amazon"
+      version = "~> 1"
+    }
+  }
+}
+
 variable "dockerhub_login" {
   type    = string
   default = "${env("DOCKERHUB_LOGIN")}"

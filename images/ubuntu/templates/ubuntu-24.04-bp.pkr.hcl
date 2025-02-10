@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    amazon = {
+      source = "github.com/hashicorp/amazon"
+      version = "~> 1"
+    }
+  }
+}
+
 variable "dockerhub_login" {
   type    = string
   default = "${env("DOCKERHUB_LOGIN")}"
@@ -69,14 +78,14 @@ source "amazon-ebs" "build_ami" {
     delete_on_termination = true
     device_name = "/dev/sda1"
     volume_size = 86
-    volume_type = "gp2"
+    volume_type = "gp3"
   }
   profile = "dev"
   region = "us-east-1"
   # snapshot_users = "${var.aws_accounts}"
   source_ami_filter {
     filters = {
-      name = "ubuntu/images/hvm-ssd/ubuntu-noble-24.04-amd64-server-*"
+      name = "ubuntu/images/hvm-ssd-gp3/ubuntu-noble-24.04-amd64-server-*"
       root-device-type = "ebs"
       virtualization-type = "hvm"
     }
