@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    azure = {
+      source  = "github.com/hashicorp/azure"
+      version = "1.4.5"
+    }
+  }
+}
+
 locals {
   image_os = "ubuntu22"
 
@@ -26,9 +35,9 @@ variable "build_resource_group_name" {
   default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
 }
 
-variable "managed_image_name" {
+variable "client_cert_path" {
   type    = string
-  default = ""
+  default = "${env("ARM_CLIENT_CERT_PATH")}"
 }
 
 variable "client_id" {
@@ -42,24 +51,15 @@ variable "client_secret" {
   sensitive = true
 }
 
-variable "client_cert_path" {
-  type      = string
-  default   = "${env("ARM_CLIENT_CERT_PATH")}"
-}
-
-variable "commit_url" {
-  type      = string
-  default   = ""
-}
-
 variable "image_version" {
   type    = string
   default = "dev"
 }
 
 variable "install_password" {
-  type  = string
-  default = ""
+  type      = string
+  default   = ""
+  sensitive = true
 }
 
 variable "location" {
@@ -67,9 +67,9 @@ variable "location" {
   default = "${env("ARM_RESOURCE_LOCATION")}"
 }
 
-variable "private_virtual_network_with_public_ip" {
-  type    = bool
-  default = false
+variable "managed_image_name" {
+  type    = string
+  default = ""
 }
 
 variable "managed_image_resource_group_name" {
@@ -77,7 +77,7 @@ variable "managed_image_resource_group_name" {
   default = "${env("ARM_RESOURCE_GROUP")}"
 }
 
-variable "run_validation_diskspace" {
+variable "private_virtual_network_with_public_ip" {
   type    = bool
   default = false
 }
@@ -149,7 +149,7 @@ source "azure-arm" "build_image" {
 
   // VM Configuration
   vm_size         = "${var.vm_size}"
-  os_disk_size_gb = "86"
+  os_disk_size_gb = "75"
   os_type         = "Linux"
 
   dynamic "azure_tag" {
@@ -167,35 +167,34 @@ build {
   // Create folder to store temporary data
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["mkdir ${local.image_folder}",
-                       "chmod 777 ${local.image_folder}"]
+    inline          = ["mkdir ${local.image_folder}", "chmod 777 ${local.image_folder}"]
+  }
+
+  provisioner "file" {
+    destination = "${local.helper_script_folder}"
+    source      = "${path.root}/../scripts/helpers"
   }
 
   // Add apt wrapper to implement retries
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/apt-mock.sh"
+    script          = "${path.root}/../scripts/build/configure-apt-mock.sh"
   }
 
   // Install MS package repos, Configure apt
   provisioner "shell" {
-    environment_vars = ["DEBIAN_FRONTEND=noninteractive"]
+    environment_vars = ["HELPER_SCRIPTS=${local.helper_script_folder}","DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/repos.sh",
-                        "${path.root}/../scripts/build/apt.sh"
+      "${path.root}/../scripts/build/install-ms-repos.sh",
+      "${path.root}/../scripts/build/configure-apt.sh"
     ]
   }
 
   // Configure limits
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/limits.sh"
-  }
-
-  provisioner "file" {
-    destination = "${local.helper_script_folder}"
-    source      = "${path.root}/../scripts/helpers"
+    script          = "${path.root}/../scripts/build/configure-limits.sh"
   }
 
   provisioner "file" {
@@ -225,7 +224,7 @@ build {
   provisioner "shell" {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGEDATA_FILE=${local.imagedata_file}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/preimagedata.sh"]
+    scripts          = ["${path.root}/../scripts/build/configure-image-data.sh"]
   }
 
   // Create /etc/environment, configure waagent etc.
@@ -238,13 +237,13 @@ build {
   provisioner "shell" {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/apt-vital.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-apt-vital.sh"]
   }
 
   provisioner "shell" {
-    environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}"]
+    environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/powershellcore.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-powershell.sh"]
   }
 
   provisioner "shell" {
@@ -257,17 +256,17 @@ build {
     environment_vars = ["DEBIAN_FRONTEND=noninteractive", "HELPER_SCRIPTS=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-                        "${path.root}/../scripts/build/git.sh",
-                        "${path.root}/../scripts/build/git-lfs.sh",
-                        "${path.root}/../scripts/build/github-cli.sh",
-                        "${path.root}/../scripts/build/zstd.sh"
+      "${path.root}/../scripts/build/install-git.sh",
+      "${path.root}/../scripts/build/install-git-lfs.sh",
+      "${path.root}/../scripts/build/install-github-cli.sh",
+      "${path.root}/../scripts/build/install-zstd.sh"
     ]
   }
 
   provisioner "shell" {
-    execute_command   = "/bin/sh -c '{{ .Vars }} {{ .Path }}'"
+    execute_command   = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     expect_disconnect = true
-    scripts           = ["${path.root}/../scripts/build/reboot.sh"]
+    inline            = ["echo 'Reboot VM'", "sudo reboot"]
   }
 
   provisioner "shell" {
@@ -278,19 +277,9 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    script          = "${path.root}/../scripts/build/apt-mock-remove.sh"
-  }
-
-  provisioner "shell" {
     environment_vars = ["HELPER_SCRIPT_FOLDER=${local.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${local.installer_script_folder}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/post-deployment.sh"]
-  }
-
-  provisioner "shell" {
-    environment_vars = ["RUN_VALIDATION=${var.run_validation_diskspace}"]
-    scripts          = ["${path.root}/../scripts/build/validate-disk-space.sh"]
+    scripts          = ["${path.root}/../scripts/build/configure-system.sh"]
   }
 
   provisioner "shell" {

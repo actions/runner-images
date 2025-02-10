@@ -20,7 +20,6 @@ function Get-AndroidInstalledPackages {
     return $androidSDKManagerList
 }
 
-
 function Build-AndroidTable {
     $packageInfo = Get-AndroidInstalledPackages
     return @(
@@ -43,10 +42,6 @@ function Build-AndroidTable {
         @{
             "Package" = "Android SDK Platforms"
             "Version" = Get-AndroidPlatformVersions -PackageInfo $packageInfo
-        },
-        @{
-            "Package" = "Android SDK Tools"
-            "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Tools"
         },
         @{
             "Package" = "Android Support Repository"
@@ -79,7 +74,7 @@ function Build-AndroidTable {
     ) | Where-Object { $_.Version } | ForEach-Object {
         [PSCustomObject] @{
             "Package Name" = $_.Package
-            "Version" = $_.Version
+            "Version"      = $_.Version
         }
     }
 }
@@ -92,7 +87,7 @@ function Get-AndroidPackageVersions {
         [object] $MatchedString
     )
 
-    $versions = $packageInfo | Where-Object { $_ -Match $MatchedString } | ForEach-Object {
+    $versions = $PackageInfo | Where-Object { $_ -Match $MatchedString } | ForEach-Object {
         $packageInfoParts = Split-TableRowByColumns $_
         return $packageInfoParts[1]
     }
@@ -105,7 +100,7 @@ function Get-AndroidPlatformVersions {
         [object] $PackageInfo
     )
 
-    $versions = $packageInfo | Where-Object { $_ -Match "Android SDK Platform " } | ForEach-Object {
+    $versions = $PackageInfo | Where-Object { $_ -Match "Android SDK Platform " } | ForEach-Object {
         $packageInfoParts = Split-TableRowByColumns $_
         $revision = $packageInfoParts[1]
         $version = $packageInfoParts[0].split(";")[1]
@@ -128,7 +123,7 @@ function Get-AndroidBuildToolVersions {
         [object] $PackageInfo
     )
 
-    $versions = $packageInfo | Where-Object { $_ -Match "Android SDK Build-Tools" } | ForEach-Object {
+    $versions = $PackageInfo | Where-Object { $_ -Match "Android SDK Build-Tools" } | ForEach-Object {
         $packageInfoParts = Split-TableRowByColumns $_
         return $packageInfoParts[1]
     }
@@ -146,7 +141,7 @@ function Get-AndroidGoogleAPIsVersions {
         [object] $PackageInfo
     )
 
-    $versions = $packageInfo | Where-Object { $_ -Match "Google APIs" } | ForEach-Object {
+    $versions = $PackageInfo | Where-Object { $_ -Match "Google APIs" } | ForEach-Object {
         $packageInfoParts = Split-TableRowByColumns $_
         return $packageInfoParts[0].split(";")[1]
     }
@@ -156,7 +151,7 @@ function Get-AndroidGoogleAPIsVersions {
 function Get-AndroidNDKVersions {
     $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
     $versions = Get-ChildItem -Path $ndkFolderPath -Name
-    $ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
+    $ndkDefaultVersion = (Get-ToolsetContent).android.ndk.default
     $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
 
     return ($versions | ForEach-Object {
@@ -171,7 +166,7 @@ function Build-AndroidEnvironmentTable {
     $shouldResolveLink = 'ANDROID_NDK', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
     return $androidVersions | Sort-Object -Property Name | ForEach-Object {
         [PSCustomObject] @{
-            "Name" = $_.Name
+            "Name"  = $_.Name
             "Value" = if ($shouldResolveLink.Contains($_.Name )) { Get-PathWithLink($_.Value) } else {$_.Value}
         }
     }

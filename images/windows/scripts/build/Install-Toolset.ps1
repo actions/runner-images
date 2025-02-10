@@ -13,16 +13,16 @@ Function Install-Asset {
     )
 
     $releaseAssetName = [System.IO.Path]::GetFileNameWithoutExtension($ReleaseAsset.filename)
-    $assetFolderPath = Join-Path $env:TEMP $releaseAssetName
-    $assetArchivePath = Start-DownloadWithRetry -Url $ReleaseAsset.download_url -Name $ReleaseAsset.filename
+    $assetFolderPath = Join-Path $env:TEMP_DIR $releaseAssetName
+    $assetArchivePath = Invoke-DownloadWithRetry $ReleaseAsset.download_url
 
     Write-Host "Extract $($ReleaseAsset.filename) content..."
     if ($assetArchivePath.EndsWith(".tar.gz")) {
         $assetTarPath = $assetArchivePath.TrimEnd(".tar.gz")
-        Extract-7Zip -Path $assetArchivePath -DestinationPath $assetTarPath
-        Extract-7Zip -Path $assetTarPath -DestinationPath $assetFolderPath
+        Expand-7ZipArchive -Path $assetArchivePath -DestinationPath $assetTarPath
+        Expand-7ZipArchive -Path $assetTarPath -DestinationPath $assetFolderPath
     } else {
-        Extract-7Zip -Path $assetArchivePath -DestinationPath $assetFolderPath
+        Expand-7ZipArchive -Path $assetArchivePath -DestinationPath $assetFolderPath
     }
 
     Write-Host "Invoke installation script..."
@@ -32,27 +32,29 @@ Function Install-Asset {
 }
 
 # Get toolcache content from toolset
-$ToolsToInstall = @("Python", "Node", "Go")
-
-$tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object { $ToolsToInstall -contains $_.Name }
+$toolsToInstall = @("Python", "Node", "Go")
+$tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object { $toolsToInstall -contains $_.Name }
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
-    $assets = Invoke-SBWithRetry -Command { Invoke-RestMethod $tool.url }
+    # Invoke-RestMethod doesn't support retry in PowerShell 5.1
+    $assets = Invoke-ScriptBlockWithRetry -Command {
+        Invoke-RestMethod $tool.url
+    }
 
     # Get github release asset for each version
     foreach ($toolVersion in $tool.versions) {
-        $asset = $assets | Where-Object version -like $toolVersion `
-                         | Select-Object -ExpandProperty files `
-                         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) -and ($_.toolset -eq $tool.toolset) } `
-                         | Select-Object -First 1
+        $asset = $assets `
+        | Where-Object version -like $toolVersion `
+        | Select-Object -ExpandProperty files `
+        | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $tool.arch) -and ($_.toolset -eq $tool.toolset) } `
+        | Select-Object -First 1
+
+        if (-not $asset) {
+            throw "Asset for $($tool.name) $toolVersion $($tool.arch) not found in versions manifest"
+        }
 
         Write-Host "Installing $($tool.name) $toolVersion $($tool.arch)..."
-        if ($null -ne $asset) {
-            Install-Asset -ReleaseAsset $asset
-        } else {
-            Write-Host "Asset was not found in versions manifest"
-            exit 1
-        }
+        Install-Asset -ReleaseAsset $asset
     }
 }

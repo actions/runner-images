@@ -4,34 +4,78 @@
 ##  Supply chain security: checksum validation
 ################################################################################
 
+# Actual Android SDK installation directory
+$SDKInstallRoot = "C:\Program Files (x86)\Android\android-sdk"
+
+# Hardlink to the Android SDK installation directory with no spaces in the path.
+# ANDROID_NDK* env vars should not contain spaces, otherwise ndk-build.cmd gives an error
+# https://github.com/actions/runner-images/issues/1122
+$SDKRootPath = "C:\Android\android-sdk"
+
+#region functions
+function Install-AndroidSDKPackages {
+    <#
+    .SYNOPSIS
+        This function installs the specified Android SDK packages.
+
+    .DESCRIPTION
+        The Install-AndroidSDKPackages function takes an array of package names as a parameter and installs each of them using the sdkmanager.bat script.
+
+    .PARAMETER Packages
+        An array of package names in the format of SDK-style paths to be installed.
+
+    .EXAMPLE
+        Install-AndroidSDKPackages -Packages "platforms;android-29", "build-tools;29.0.2"
+
+        This command installs the Android SDK Platform 29 and Build-Tools 29.0.2.
+
+    #>
+    Param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyCollection()]
+        [AllowNull()]
+        [string[]] $Packages
+    )
+    
+    # The sdkmanager.bat script is used to install Android SDK packages.
+    $SDKManager = "$SDKRootPath\cmdline-tools\latest\bin\sdkmanager.bat"
+
+    $errors = @()
+
+    foreach ($package in $Packages) {
+        & $SDKManager --install "$package" --sdk_root=$SDKRootPath
+        if ($LASTEXITCODE -ne 0) {
+            $errors += "Failed to install package $package with exit code $LASTEXITCODE"
+        }
+    }
+
+    if ($errors.Count -gt 0) {
+        throw $errors
+    }
+}
+#endregion
+
 # get packages to install from the toolset
 $androidToolset = (Get-ToolsetContent).android
 # Newer version(s) require Java 11 by default
 # See https://github.com/actions/runner-images/issues/6960
 $cmdlineToolsUrl = $androidToolset.commandline_tools_url
-$cmdlineToolsArchPath = Start-DownloadWithRetry -Url $cmdlineToolsUrl -Name "cmdline-tools.zip"
+$cmdlineToolsArchPath = Invoke-DownloadWithRetry $cmdlineToolsUrl
 
-#region Supply chain security
-$localFileHash = (Get-FileHash -Path $cmdlineToolsArchPath -Algorithm SHA256).Hash
+Test-FileChecksum $cmdlineToolsArchPath -ExpectedSHA256Sum $androidToolset.hash
 
-Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $androidToolset.hash
-#endregion
+Expand-7ZipArchive -Path $cmdlineToolsArchPath -DestinationPath "${SDKInstallRoot}\cmdline-tools"
 
-$sdkInstallRoot = "C:\Program Files (x86)\Android\android-sdk"
-$sdkRoot = "C:\Android\android-sdk"
-Extract-7Zip -Path $cmdlineToolsArchPath -DestinationPath "${sdkInstallRoot}\cmdline-tools"
-
-# cmdline tools should be installed in ${sdkInstallRoot}\cmdline-tools\latest\bin, but archive contains ${sdkInstallRoot}\cmdline-tools\bin 
+# cmdline tools should be installed in ${SDKInstallRoot}\cmdline-tools\latest\bin, but archive contains ${SDKInstallRoot}\cmdline-tools\bin 
 # we need to create the proper folder structure
-Invoke-SBWithRetry -Command {
-    Rename-Item "${sdkInstallRoot}\cmdline-tools\cmdline-tools" "latest" -ErrorAction Stop
+Invoke-ScriptBlockWithRetry -Command {
+    Rename-Item "${SDKInstallRoot}\cmdline-tools\cmdline-tools" "latest" -ErrorAction Stop
 }
 
-# ANDROID_NDK_PATH/HOME should not contain spaces. Otherwise, the script ndk-build.cmd gives an error https://github.com/actions/runner-images/issues/1122
-# create "C:\Android" directory and a hardlink inside pointed to sdk in Program Files
-New-Item -Path "C:\Android" -ItemType Directory
-New-Item -Path "$sdkRoot" -ItemType SymbolicLink -Value "$sdkInstallRoot"
-$sdkManager = "$sdkRoot\cmdline-tools\latest\bin\sdkmanager.bat"
+# Create hardlink at $SDKRootPath pointing to SDK installation directory in Program Files
+New-Item -Path (Split-Path $SDKRootPath -Parent) -ItemType Directory -Force
+New-Item -Path "$SDKRootPath" -ItemType SymbolicLink -Value "$SDKInstallRoot"
 
 # Install the standard Android SDK licenses. Currently, there isn't a better way to do this,
 # so we are base64-encoded a zip of the licenses directory from another installation.
@@ -42,92 +86,76 @@ $sdkManager = "$sdkRoot\cmdline-tools\latest\bin\sdkmanager.bat"
 #     $base64Content = [Convert]::ToBase64String([IO.File]::ReadAllBytes($LicensesZipFileName))
 #     echo $base64Content
 # Another possible solution that works in powershell core:
-# Write-Ouptut "y" | $sdkManager <packagename>
+# Write-Ouptut "y" | $sdkmanager.bat <packagename>
 $licenseContentBase64 = "UEsDBBQAAAAAAKNK11IAAAAAAAAAAAAAAAAJAAAAbGljZW5zZXMvUEsDBAoAAAAAAJ1K11K7n0IrKgAAACoAAAAhAAAAbGljZW5zZXMvYW5kcm9pZC1nb29nbGV0di1saWNlbnNlDQo2MDEwODViOTRjZDc3ZjBiNTRmZjg2NDA2OTU3MDk5ZWJlNzljNGQ2UEsDBAoAAAAAAKBK11LzQumJKgAAACoAAAAkAAAAbGljZW5zZXMvYW5kcm9pZC1zZGstYXJtLWRidC1saWNlbnNlDQo4NTlmMzE3Njk2ZjY3ZWYzZDdmMzBhNTBhNTU2MGU3ODM0YjQzOTAzUEsDBAoAAAAAAKFK11IKSOJFKgAAACoAAAAcAAAAbGljZW5zZXMvYW5kcm9pZC1zZGstbGljZW5zZQ0KMjQzMzNmOGE2M2I2ODI1ZWE5YzU1MTRmODNjMjgyOWIwMDRkMWZlZVBLAwQKAAAAAACiStdSec1a4SoAAAAqAAAAJAAAAGxpY2Vuc2VzL2FuZHJvaWQtc2RrLXByZXZpZXctbGljZW5zZQ0KODQ4MzFiOTQwOTY0NmE5MThlMzA1NzNiYWI0YzljOTEzNDZkOGFiZFBLAwQKAAAAAACiStdSk6vQKCoAAAAqAAAAGwAAAGxpY2Vuc2VzL2dvb2dsZS1nZGstbGljZW5zZQ0KMzNiNmEyYjY0NjA3ZjExYjc1OWYzMjBlZjlkZmY0YWU1YzQ3ZDk3YVBLAwQKAAAAAACiStdSrE3jESoAAAAqAAAAJAAAAGxpY2Vuc2VzL2ludGVsLWFuZHJvaWQtZXh0cmEtbGljZW5zZQ0KZDk3NWY3NTE2OThhNzdiNjYyZjEyNTRkZGJlZWQzOTAxZTk3NmY1YVBLAwQKAAAAAACjStdSkb1vWioAAAAqAAAAJgAAAGxpY2Vuc2VzL21pcHMtYW5kcm9pZC1zeXNpbWFnZS1saWNlbnNlDQplOWFjYWI1YjVmYmI1NjBhNzJjZmFlY2NlODk0Njg5NmZmNmFhYjlkUEsBAj8AFAAAAAAAo0rXUgAAAAAAAAAAAAAAAAkAJAAAAAAAAAAQAAAAAAAAAGxpY2Vuc2VzLwoAIAAAAAAAAQAYACIHOBcRaNcBIgc4FxFo1wHBTVQTEWjXAVBLAQI/AAoAAAAAAJ1K11K7n0IrKgAAACoAAAAhACQAAAAAAAAAIAAAACcAAABsaWNlbnNlcy9hbmRyb2lkLWdvb2dsZXR2LWxpY2Vuc2UKACAAAAAAAAEAGACUEFUTEWjXAZQQVRMRaNcB6XRUExFo1wFQSwECPwAKAAAAAACgStdS80LpiSoAAAAqAAAAJAAkAAAAAAAAACAAAACQAAAAbGljZW5zZXMvYW5kcm9pZC1zZGstYXJtLWRidC1saWNlbnNlCgAgAAAAAAABABgAsEM0FBFo1wGwQzQUEWjXAXb1MxQRaNcBUEsBAj8ACgAAAAAAoUrXUgpI4kUqAAAAKgAAABwAJAAAAAAAAAAgAAAA/AAAAGxpY2Vuc2VzL2FuZHJvaWQtc2RrLWxpY2Vuc2UKACAAAAAAAAEAGAAsMGUVEWjXASwwZRURaNcB5whlFRFo1wFQSwECPwAKAAAAAACiStdSec1a4SoAAAAqAAAAJAAkAAAAAAAAACAAAABgAQAAbGljZW5zZXMvYW5kcm9pZC1zZGstcHJldmlldy1saWNlbnNlCgAgAAAAAAABABgA7s3WFRFo1wHuzdYVEWjXAfGm1hURaNcBUEsBAj8ACgAAAAAAokrXUpOr0CgqAAAAKgAAABsAJAAAAAAAAAAgAAAAzAEAAGxpY2Vuc2VzL2dvb2dsZS1nZGstbGljZW5zZQoAIAAAAAAAAQAYAGRDRxYRaNcBZENHFhFo1wFfHEcWEWjXAVBLAQI/AAoAAAAAAKJK11KsTeMRKgAAACoAAAAkACQAAAAAAAAAIAAAAC8CAABsaWNlbnNlcy9pbnRlbC1hbmRyb2lkLWV4dHJhLWxpY2Vuc2UKACAAAAAAAAEAGADGsq0WEWjXAcayrRYRaNcBxrKtFhFo1wFQSwECPwAKAAAAAACjStdSkb1vWioAAAAqAAAAJgAkAAAAAAAAACAAAACbAgAAbGljZW5zZXMvbWlwcy1hbmRyb2lkLXN5c2ltYWdlLWxpY2Vuc2UKACAAAAAAAAEAGAA4LjgXEWjXATguOBcRaNcBIgc4FxFo1wFQSwUGAAAAAAgACACDAwAACQMAAAAA"
 $licenseContent = [System.Convert]::FromBase64String($licenseContentBase64)
-Set-Content -Path "$sdkInstallRoot\android-sdk-licenses.zip" -Value $licenseContent -Encoding Byte
-Extract-7Zip -Path "$sdkInstallRoot\android-sdk-licenses.zip" -DestinationPath $sdkInstallRoot
+Set-Content -Path "$SDKInstallRoot\android-sdk-licenses.zip" -Value $licenseContent -Encoding Byte
+Expand-7ZipArchive -Path "$SDKInstallRoot\android-sdk-licenses.zip" -DestinationPath $SDKInstallRoot
 
-# install platform-tools
-$platformToolsPath = Join-Path -Path $sdkInstallRoot -ChildPath "platform-tools"
-# Remove outdated platform-tools that was brought by Visual Studio Android package
-if (Test-Path $platformToolsPath)
-{
+# Install platform-tools
+$platformToolsPath = Join-Path -Path $SDKInstallRoot -ChildPath "platform-tools"
+if (Test-Path $platformToolsPath) {
     Write-Host "Removing previous platform-tools installation from Visual Studio component"
     Remove-Item $platformToolsPath -Recurse -Force
 }
+Install-AndroidSDKPackages "platform-tools"
 
-Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
-                -AndroidSDKRootPath $sdkRoot `
-                -AndroidPackages "platform-tools"
+# Get Android SDK packages list
+$androidPackages = Get-AndroidPackages -SDKRootPath $SDKRootPath
 
-# get packages info
-$androidPackages = Get-AndroidPackages -AndroidSDKManagerPath $sdkManager
+# Install Android platform versions
+# that are greater than or equal to the minimum version
+Write-Host "Installing Android SDK packages for platforms..."
+$platformList = Get-AndroidPlatformPackages `
+    -SDKRootPath $SDKRootPath `
+    -minVersion $androidToolset.platform_min_version
+Install-AndroidSDKPackages $platformList
 
-# platforms
-[int]$platformMinVersion = $androidToolset.platform_min_version
-$platformList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
-                -PrefixPackageName "platforms;" `
-                -MinimumVersion $platformMinVersion `
-                -Delimiter "-" `
-                -Index 1
+# Install Android build-tools versions
+# that are greater than or equal to the minimum version
+Write-Host "Installing Android SDK packages for build tools..."
+$buildToolsList = Get-AndroidBuildToolPackages `
+    -SDKRootPath $SDKRootPath `
+    -minVersion $androidToolset.build_tools_min_version
+Install-AndroidSDKPackages $buildToolsList
 
-# build-tools
-[version]$buildToolsMinVersion = $androidToolset.build_tools_min_version
-$buildToolsList = Get-AndroidPackagesByVersion -AndroidPackages $androidPackages `
-                -PrefixPackageName "build-tools;" `
-                -MinimumVersion $buildToolsMinVersion `
-                -Delimiter ";" `
-                -Index 1
+# Install Android Emulator
+Install-AndroidSDKPackages "emulator"
 
-Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
-                -AndroidSDKRootPath $sdkRoot `
-                -AndroidPackages $platformList
+# Install extras, add-ons and additional tools
+Write-Host "Installing Android SDK extras, add-ons and additional tools..."
+Install-AndroidSDKPackages ($androidToolset.extras | ForEach-Object { "extras;$_" })
+Install-AndroidSDKPackages ($androidToolset.addons | ForEach-Object { "add-ons;$_" })
+Install-AndroidSDKPackages ($androidToolset.additional_tools)
 
-Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
-                -AndroidSDKRootPath $sdkRoot `
-                -AndroidPackages $buildToolsList
-
-Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
-                -AndroidSDKRootPath $sdkRoot `
-                -AndroidPackages $androidToolset.extra_list `
-                -PrefixPackageName "extras;"
-
-Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
-                -AndroidSDKRootPath $sdkRoot `
-                -AndroidPackages $androidToolset.addon_list `
-                -PrefixPackageName "add-ons;"
-
-Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
-                -AndroidSDKRootPath $sdkRoot `
-                -AndroidPackages $androidToolset.additional_tools
-
-# NDKs
+# Install NDKs
 $ndkMajorVersions = $androidToolset.ndk.versions
 $ndkDefaultMajorVersion = $androidToolset.ndk.default
 $ndkLatestMajorVersion = $ndkMajorVersions | Select-Object -Last 1
 
-$androidNDKs = $ndkMajorVersions | Foreach-Object {
-    Get-AndroidPackagesByName -AndroidPackages $androidPackages -PrefixPackageName "ndk;$_" | Sort-Object -Unique | Select-Object -Last 1
+$androidNDKs = @()
+foreach ($version in $ndkMajorVersions) {
+    $packageNamePrefix = "ndk;$version"
+    $package = $androidPackages | Where-Object { $_.StartsWith($packageNamePrefix) } | Sort-Object -Unique | Select-Object -Last 1
+    $androidNDKs += $package
 }
 
-Install-AndroidSDKPackages -AndroidSDKManagerPath $sdkManager `
-                -AndroidSDKRootPath $sdkRoot `
-                -AndroidPackages $androidNDKs
+Write-Host "Installing Android SDK packages for NDKs..."
+Install-AndroidSDKPackages $androidNDKs
 
 $ndkLatestVersion = ($androidNDKs | Where-Object { $_ -match "ndk;$ndkLatestMajorVersion" }).Split(';')[1]
 $ndkDefaultVersion = ($androidNDKs | Where-Object { $_ -match "ndk;$ndkDefaultMajorVersion" }).Split(';')[1]
-$ndkRoot = "$sdkRoot\ndk\$ndkDefaultVersion"
+$ndkRoot = "$SDKRootPath\ndk\$ndkDefaultVersion"
 
 # Create env variables
-[Environment]::SetEnvironmentVariable("ANDROID_HOME", $sdkRoot, "Machine")
-[Environment]::SetEnvironmentVariable("ANDROID_SDK_ROOT", $sdkRoot, "Machine")
+[Environment]::SetEnvironmentVariable("ANDROID_HOME", $SDKRootPath, "Machine")
+[Environment]::SetEnvironmentVariable("ANDROID_SDK_ROOT", $SDKRootPath, "Machine")
 # ANDROID_NDK, ANDROID_NDK_HOME, and ANDROID_NDK_ROOT variables should be set as many customer builds depend on them https://github.com/actions/runner-images/issues/5879
 [Environment]::SetEnvironmentVariable("ANDROID_NDK", $ndkRoot, "Machine")
 [Environment]::SetEnvironmentVariable("ANDROID_NDK_HOME", $ndkRoot, "Machine")
 [Environment]::SetEnvironmentVariable("ANDROID_NDK_ROOT", $ndkRoot, "Machine")
 
-$ndkLatestPath = "$sdkRoot\ndk\$ndkLatestVersion"
+$ndkLatestPath = "$SDKRootPath\ndk\$ndkLatestVersion"
 if (Test-Path $ndkLatestPath) {
     [Environment]::SetEnvironmentVariable("ANDROID_NDK_LATEST_HOME", $ndkLatestPath, "Machine")
 } else {

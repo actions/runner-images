@@ -1,4 +1,4 @@
-name: Create and upload a SBOM to release assets
+name: Create SBOM for the release
 # Inherited variables:
 # github.event.client_payload.agentSpec - Current YAML Label
 # github.event.client_payload.ReleaseID - Current release ID
@@ -7,6 +7,7 @@ name: Create and upload a SBOM to release assets
 #
 # Current SYFT tool issues:
 # macOS (major): prompt privilegies that blocking process indefinetely (https://github.com/anchore/syft/issues/1367)
+run-name: Collecting SBOM for ${{ github.event.client_payload.ReleaseBranchName || 'unknown release' }}
 on:
   repository_dispatch:
     types: [generate-sbom]
@@ -14,8 +15,35 @@ defaults:
   run:
     shell: pwsh
 jobs:
-  #Checking image version on available runner
-  version-check:
+  #Checking current release for SBOM
+  sbom-check:
+    outputs:
+      check_status: ${{ steps.check.outputs.status }}
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check release for ${{ github.event.client_payload.ReleaseBranchName }}
+      id: check
+      shell: pwsh
+      run: |
+        $apiUrl = "https://api.github.com/repos/actions/runner-images/releases/${{ github.event.client_payload.ReleaseID }}"
+        $response = Invoke-RestMethod -Uri $apiUrl -Method Get -SkipHttpErrorCheck
+        if ($response.message -ilike "Not Found") {
+          echo "status=release_not_found" >> $env:GITHUB_OUTPUT
+          Write-Error "Release ${{ github.event.client_payload.ReleaseID }} wasn't found"
+          exit 1
+        }
+        foreach ($asset in $response.assets) {
+          if ($asset.name -like '*sbom*') {
+            echo "status=sbom_exists" >> $env:GITHUB_OUTPUT
+            return "Release ${{ github.event.client_payload.ReleaseID }} already contains a SBOM"
+          }
+        }
+        Write-Host "Release has been found, SBOM is not attached, starting generation."
+        echo "status=okay" >> $env:GITHUB_OUTPUT
+  #Generating SBOM
+  building-sbom:
+    needs: sbom-check
+    if: ${{ needs.sbom-check.outputs.check_status == 'okay' }}
     runs-on: ${{ github.event.client_payload.agentSpec }}
     steps:
       - name: Available image version check for ${{ github.event.client_payload.ReleaseBranchName }}
@@ -26,15 +54,9 @@ jobs:
           if ("$imageMajorVersion.$imageMinorVersion" -ne '${{ github.event.client_payload.imageVersion }}') {
             throw "Current runner $imageMajorVersion.$imageMinorVersion image version doesn't match ${{ github.event.client_payload.imageVersion }}."
           }
-  #Install and run SYFT, compress SBOM, upload it to release assets
-  create-sbom:
-    needs: version-check
-    runs-on: ${{ github.event.client_payload.agentSpec }}
-    steps:
-      #Installation section
       - name: Install SYFT tool on Windows
         if: ${{ runner.os == 'Windows' }}
-        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b D:/syft v0.84.1
+        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b D:/syft
       - name: Install SYFT tool on Ubuntu or macOS
         if: ${{ runner.os != 'Windows' }}
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
@@ -53,7 +75,7 @@ jobs:
       - name: Compress SBOM file
         run: Compress-Archive sbom.json sbom.json.zip
       #Upload artifact action
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: sbom-${{ github.event.client_payload.agentSpec }}-${{ github.event.client_payload.imageVersion }}
           path: sbom.json.zip

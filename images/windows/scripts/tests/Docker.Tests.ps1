@@ -13,10 +13,6 @@ Describe "Docker" {
 }
 
 Describe "DockerCompose" {
-    It "docker-compose is installed" {
-        "docker-compose --version" | Should -ReturnZeroExitCode
-    }
-
     It "docker compose v2" {
         "docker compose version" | Should -ReturnZeroExitCode
     }
@@ -29,7 +25,7 @@ Describe "DockerWinCred" {
     }
 }
 
-Describe "DockerImages" {
+Describe "DockerImages" -Skip:(Test-IsWin25) {
     Context "docker images" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 

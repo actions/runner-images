@@ -1,53 +1,60 @@
 #!/bin/bash -e -o pipefail
 
-download_with_retries() {
-# Due to restrictions of bash functions, positional arguments are used here.
-# In case if you using latest argument NAME, you should also set value to all previous parameters.
-# Example: download_with_retries $ANDROID_SDK_URL "." "android_sdk.zip"
-    local URL="$1"
-    local DEST="${2:-.}"
-    local NAME="${3:-${URL##*/}}"
-    local COMPRESSED="$4"
+download_with_retry() {
+    url=$1
+    download_path=$2
 
-    if [[ $COMPRESSED == "compressed" ]]; then
-        local COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME' -w '%{http_code}'"
-    else
-        local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
+    if [ -z "$download_path" ]; then
+        download_path="/tmp/$(basename "$url")"
     fi
 
-    # Save current errexit state and disable it to prevent unexpected exit on error
-    if echo $SHELLOPTS | grep '\(^\|:\)errexit\(:\|$\)' > /dev/null;
-    then
-        local ERR_EXIT_ENABLED=true
-    else
-        local ERR_EXIT_ENABLED=false
-    fi
-    set +e
+    echo "Downloading package from $url to $download_path..." >&2
 
-    echo "Downloading '$URL' to '${DEST}/${NAME}'..."
-    retries=20
     interval=30
-    while [ $retries -gt 0 ]; do
-        ((retries--))
-        test "$ERR_EXIT_ENABLED" = true && set +e
-        http_code=$(eval $COMMAND)
-        exit_code=$?
-        test "$ERR_EXIT_ENABLED" = true && set -e
-        if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
-            echo "Download completed"
-            return 0
+    download_start_time=$(date +%s)
+
+    for ((retries=20; retries>0; retries--)); do
+        attempt_start_time=$(date +%s)
+        if http_code=$(curl -4sSLo "$download_path" "$url" -w '%{http_code}'); then
+            attempt_seconds=$(($(date +%s) - attempt_start_time))
+            if [ "$http_code" -eq 200 ]; then
+                echo "Package downloaded in $attempt_seconds seconds" >&2
+                break
+            else
+                echo "Received HTTP status code $http_code after $attempt_seconds seconds" >&2
+            fi
         else
-            echo "Error — Either HTTP response code for '$URL' is wrong - '$http_code' or exit code is not 0 - '$exit_code'. Waiting $interval seconds before the next attempt, $retries attempts left"
-            sleep 30
+            attempt_seconds=$(($(date +%s) - attempt_start_time))
+            echo "Package download failed in $attempt_seconds seconds" >&2
         fi
+
+        if [ $retries -eq 0 ]; then
+            total_seconds=$(($(date +%s) - download_start_time))
+            echo "Package download failed after $total_seconds seconds" >&2
+            exit 1
+        fi
+
+        echo "Waiting $interval seconds before retrying (retries left: $retries)..." >&2
+        sleep $interval
     done
 
-    echo "Could not download $URL"
-    return 1
+    echo "$download_path"
 }
 
 is_Arm64() {
     [ "$(arch)" = "arm64" ]
+}
+
+is_Sequoia() {
+    [ "$OSTYPE" = "darwin24" ]
+}
+
+is_SequoiaArm64() {
+    is_Sequoia && is_Arm64
+}
+
+is_SequoiaX64() {
+    is_Sequoia && ! is_Arm64
 }
 
 is_Sonoma() {
@@ -74,58 +81,10 @@ is_VenturaX64() {
     is_Ventura && ! is_Arm64
 }
 
-is_Monterey() {
-    [ "$OSTYPE" = "darwin21" ]
-}
-
-is_BigSur() {
-    [ "$OSTYPE" = "darwin20" ]
-}
-
-is_Veertu() {
-    [ -d "/Library/Application Support/Veertu" ]
-}
-
-get_toolset_path() {
-    echo "$HOME/image-generation/toolset.json"
-}
-
 get_toolset_value() {
-    local toolset_path=$(get_toolset_path)
+    local toolset_path=$(echo "$IMAGE_FOLDER/toolset.json")
     local query=$1
     echo "$(jq -r "$query" $toolset_path)"
-}
-
-verlte() {
-    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
-    [  "$1" = "$sortedVersion" ]
-}
-
-brew_cask_install_ignoring_sha256() {
-    local TOOL_NAME=$1
-
-    CASK_DIR="$(brew --repo homebrew/cask)/Casks"
-    chmod a+w "$CASK_DIR/$TOOL_NAME.rb"
-    SHA=$(grep "sha256" "$CASK_DIR/$TOOL_NAME.rb" | awk '{print $2}')
-    sed -i '' "s/$SHA/:no_check/" "$CASK_DIR/$TOOL_NAME.rb"
-    brew install --cask $TOOL_NAME
-    pushd $CASK_DIR
-    git checkout HEAD -- "$TOOL_NAME.rb"
-    popd
-}
-
-get_brew_os_keyword() {
-    if is_BigSur; then
-        echo "big_sur"
-    elif is_Monterey; then
-        echo "monterey"
-    elif is_Ventura; then
-        echo "ventura"
-    elif is_Sonoma; then
-        echo "sonoma"
-    else
-        echo "null"
-    fi
 }
 
 # brew provides package bottles for different macOS versions
@@ -177,7 +136,6 @@ brew_smart_install() {
 
 configure_system_tccdb () {
     local values=$1
-
     local dbPath="/Library/Application Support/com.apple.TCC/TCC.db"
     local sqlQuery="INSERT OR IGNORE INTO access VALUES($values);"
     sudo sqlite3 "$dbPath" "$sqlQuery"
@@ -185,46 +143,38 @@ configure_system_tccdb () {
 
 configure_user_tccdb () {
     local values=$1
-
     local dbPath="$HOME/Library/Application Support/com.apple.TCC/TCC.db"
     local sqlQuery="INSERT OR IGNORE INTO access VALUES($values);"
     sqlite3 "$dbPath" "$sqlQuery"
 }
 
-get_github_package_download_url() {
-    local REPO_ORG=$1
-    local FILTER=$2
-    local VERSION=$3
-    local API_PAT=$4
-    local SEARCH_IN_COUNT="100"
+resolve_github_release_asset_url() {
+    local repo=$1
+    local filter=$2
+    local version=${3:-"*"}
+    local api_pat=$4
 
-    [ -n "$API_PAT" ] && authString=(-H "Authorization: token ${API_PAT}")
+    page_size="100"
 
-    failed=true
-    for i in {1..10}; do
-        curl "${authString[@]}" -fsSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}" >/tmp/get_github_package_download_url.json && failed=false || sleep 60
-        [ "$failed" = false ] && break
-    done
+    [ -n "$api_pat" ] && authString=(-H "Authorization: token ${api_pat}")
 
-    if [ "$failed" = true ]; then
-       echo "Failed: get_github_package_download_url"
-       exit 1;
-    fi
+    json=$(curl "${authString[@]}" -fsSL "https://api.github.com/repos/${repo}/releases?per_page=${page_size}")
 
-    json=$(cat /tmp/get_github_package_download_url.json)
-
-    if [[ "$VERSION" == "latest" ]]; then
-        tagName=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0)).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | tail -1)
+    if [[ $version == "latest" ]]; then
+        tag_name=$(echo $json | jq -r '.[].tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | tail -n 1)
+    elif [[ $version == *"*"* ]]; then
+        tag_name=$(echo $json | jq -r '.[].tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "${version}" | tail -n 1)
     else
-        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]" | egrep "\w*${VERSION}" | tail -1)
+        tag_name=$(echo $json | jq -r '.[].tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "${version}")
     fi
 
-    downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
-    if [ -z "$downloadUrl" ]; then
-        echo "Failed to parse a download url for the '${tagName}' tag using '${FILTER}' filter"
+    download_url=$(echo $json | jq -r ".[] | select(.tag_name==\"${tag_name}\").assets[].browser_download_url | select(${filter})" | head -n 1)
+    if [ -z "$download_url" ]; then
+        echo "Failed to parse a download url for the '${tag_name}' tag using '${filter}' filter"
         exit 1
     fi
-    echo $downloadUrl
+
+    echo $download_url
 }
 
 # Close all finder windows because they can interfere with UI tests
@@ -238,5 +188,27 @@ get_arch() {
         echo "arm64"
     else
         echo "x64"
+    fi
+}
+
+use_checksum_comparison() {
+    local file_path=$1
+    local checksum=$2
+    local sha_type=${3:-"256"}
+
+    echo "Performing checksum verification"
+
+    if [[ ! -f "$file_path" ]]; then
+        echo "File not found: $file_path"
+        exit 1
+    fi
+
+    local_file_hash=$(shasum --algorithm "$sha_type" "$file_path" | awk '{print $1}')
+
+    if [[ "$local_file_hash" != "$checksum" ]]; then
+        echo "Checksum verification failed. Expected hash: $checksum; Actual hash: $local_file_hash."
+        exit 1
+    else
+        echo "Checksum verification passed"
     fi
 }

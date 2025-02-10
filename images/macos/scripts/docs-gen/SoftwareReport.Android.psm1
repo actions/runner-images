@@ -1,10 +1,11 @@
-Import-Module "$PSScriptRoot/../helpers/SoftwareReport.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/SoftwareReport.Helpers.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 function Split-TableRowByColumns {
-    param(
+    param (
         [string] $Row
     )
+
     return $Row.Split("|") | ForEach-Object { $_.trim() }
 }
 
@@ -46,6 +47,7 @@ function Get-AndroidPackages {
 function Build-AndroidTable {
     Write-Host "Build-AndroidTable"
     $packageInfo = Get-AndroidInstalledPackages
+
     return @(
         @{
             "Package" = "Android Command Line Tools"
@@ -62,7 +64,7 @@ function Build-AndroidTable {
         @{
             "Package" = "Android SDK Platforms"
             "Version" = Get-AndroidPlatformVersions -PackageInfo $packageInfo
-        },       
+        },
         @{
             "Package" = "Android SDK Platform-Tools"
             "Version" = Get-AndroidPackageVersions -PackageInfo $packageInfo -MatchedString "Android SDK Platform-Tools"
@@ -111,6 +113,7 @@ function Build-AndroidEnvironmentTable {
     $androidVersions = Get-Item env:ANDROID_*
 
     $shoulddResolveLink = 'ANDROID_NDK', 'ANDROID_NDK_HOME', 'ANDROID_NDK_ROOT', 'ANDROID_NDK_LATEST_HOME'
+
     return $androidVersions | Sort-Object -Property Name | ForEach-Object {
         [PSCustomObject] @{
             "Name" = $_.Name
@@ -191,7 +194,7 @@ function Get-AndroidGoogleAPIsVersions {
 function Get-AndroidNDKVersions {
     $ndkFolderPath = Join-Path (Get-AndroidSDKRoot) "ndk"
     $versions += Get-ChildItem -Path $ndkFolderPath -Name
-    $ndkDefaultVersion = Get-ToolsetValue "android.ndk.default"
+    $ndkDefaultVersion = (Get-ToolsetContent).android.ndk.default
     $ndkDefaultFullVersion = Get-ChildItem "$env:ANDROID_HOME/ndk/$ndkDefaultVersion.*" -Name | Select-Object -Last 1
 
     return ($versions | ForEach-Object {

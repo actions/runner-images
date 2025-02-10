@@ -1,6 +1,8 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
 Describe "Clang/LLVM" {
     BeforeAll {
-        $toolsetVersion = Get-ToolsetValue 'llvm.version'
+        $toolsetVersion = (Get-ToolsetContent).llvm.version
     }
 
     It "Clang/LLVM <toolsetVersion> is installed and version is correct" {

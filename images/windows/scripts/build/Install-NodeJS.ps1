@@ -4,24 +4,33 @@
 ##         Must run after python is configured
 ################################################################################
 
-$PrefixPath = 'C:\npm\prefix'
-$CachePath = 'C:\npm\cache'
+$prefixPath = 'C:\npm\prefix'
+$cachePath = 'C:\npm\cache'
 
-New-Item -Path $PrefixPath -Force -ItemType Directory
-New-Item -Path $CachePath -Force -ItemType Directory
+New-Item -Path $prefixPath -Force -ItemType Directory
+New-Item -Path $cachePath -Force -ItemType Directory
 
 $defaultVersion = (Get-ToolsetContent).node.default
-$versionToInstall = Get-LatestChocoPackageVersion -TargetVersion $defaultVersion -PackageName "nodejs"
+$nodeVersion = (Get-GithubReleasesByVersion -Repo "nodejs/node" -Version "${defaultVersion}").version | Select-Object -First 1
+$downloadUrl = "https://nodejs.org/dist/v${nodeVersion}/node-v${nodeVersion}-x64.msi"
 
-Choco-Install -PackageName nodejs -ArgumentList "--version=$versionToInstall"
+$packageName = Split-Path $downloadUrl -Leaf
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url ($downloadUrl -replace $packageName, "SHASUMS256.txt") `
+    -FileName $packageName
 
-Add-MachinePathItem $PrefixPath
-$env:Path = Get-MachinePath
+Install-Binary -Type MSI `
+    -Url $downloadUrl `
+    -ExtraInstallArgs @('ADDLOCAL=ALL') `
+    -ExpectedSHA256Sum $externalHash
 
-[Environment]::SetEnvironmentVariable("npm_config_prefix", $PrefixPath, "Machine")
-$env:npm_config_prefix = $PrefixPath
+Add-MachinePathItem $prefixPath
+Update-Environment
 
-npm config set cache $CachePath --global
+[Environment]::SetEnvironmentVariable("npm_config_prefix", $prefixPath, "Machine")
+$env:npm_config_prefix = $prefixPath
+
+npm config set cache $cachePath --global
 npm config set registry https://registry.npmjs.org/
 
 $globalNpmPackages = (Get-ToolsetContent).npm.global_packages

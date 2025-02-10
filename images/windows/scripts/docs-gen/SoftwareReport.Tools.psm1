@@ -25,7 +25,7 @@ function Get-BazeliskVersion {
 }
 
 function Get-BicepVersion {
-    (bicep --version | Out-String) -match  "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    (bicep --version | Out-String) -match "bicep cli version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $bicepVersion = $Matches.Version
     return $bicepVersion
 }
@@ -37,13 +37,13 @@ function Get-RVersion {
 }
 
 function Get-CMakeVersion {
-    ($(cmake -version) | Out-String) -match  "cmake version (?<version>\d+\.\d+\.\d+)" | Out-Null
+    ($(cmake -version) | Out-String) -match "cmake version (?<version>\d+\.\d+\.\d+)" | Out-Null
     $cmakeVersion = $Matches.Version
     return $cmakeVersion
 }
 
 function Get-CodeQLBundleVersion {
-    $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+    $CodeQLVersionsWildcard = Join-Path $env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
     $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Select-Object -First 1 -Expand FullName
     $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
     $CodeQLVersion = & $CodeQLPath version --quiet
@@ -55,23 +55,18 @@ function Get-DockerVersion {
     return $dockerVersion
 }
 
-function Get-DockerComposeVersion {
-    $dockerComposeVersion = docker-compose version --short
-    return $dockerComposeVersion
-}
-
 function Get-DockerComposeVersionV2 {
     $dockerComposeVersion = docker compose version --short
     return $dockerComposeVersion
 }
 
 function Get-DockerWincredVersion {
-    $dockerCredVersion = docker-credential-wincred version | Take-Part -Part 2 | Take-Part -Part 0 -Delimiter "v"
+    $dockerCredVersion = docker-credential-wincred version | Get-StringPart -Part 2 | Get-StringPart -Part 0 -Delimiter "v"
     return $dockerCredVersion
 }
 
 function Get-GitVersion {
-    $gitVersion = git --version | Take-Part -Part -1
+    $gitVersion = git --version | Get-StringPart -Part -1
     return $gitVersion
 }
 
@@ -92,7 +87,7 @@ function Get-JQVersion {
 }
 
 function Get-KubectlVersion {
-    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v','')
+    $kubectlVersion = (kubectl version --client --output=json | ConvertFrom-Json).clientVersion.gitVersion.Replace('v', '')
     return $kubectlVersion
 }
 
@@ -138,7 +133,7 @@ function Get-MercurialVersion {
 }
 
 function Get-NSISVersion {
-    $nsisVersion =  &"c:\Program Files (x86)\NSIS\makensis.exe" "/Version"
+    $nsisVersion = & "c:\Program Files (x86)\NSIS\makensis.exe" "/Version"
     return $nsisVersion.TrimStart("v")
 }
 
@@ -149,7 +144,7 @@ function Get-OpenSSLVersion {
 }
 
 function Get-PackerVersion {
-    $packerVersion = packer --version
+    $packerVersion = (packer --version | Select-String "^Packer").Line.Replace('v','') | Get-StringPart -Part 1
     return $packerVersion
 }
 
@@ -234,7 +229,7 @@ function Get-AlibabaCLIVersion {
 }
 
 function Get-CloudFoundryVersion {
-    $(cf version) -match  "(?<version>\d+\.\d+\.\d+)" | Out-Null
+    $(cf version) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
     $cfVersion = $Matches.Version
     return $cfVersion
 }
@@ -318,4 +313,12 @@ function Get-ImageMagickVersion {
     (magick -version | Select-String -Pattern "Version") -match "(?<version>\d+\.\d+\.\d+-\d+)" | Out-Null
     $magickVersion = $Matches.Version
     return $magickVersion
+}
+
+function Get-MongoshVersion {
+    return $(mongosh --version)
+}
+
+function Get-WSL2Version {
+    return $((Get-AppxPackage -Name "MicrosoftCorporationII.WindowsSubsystemForLinux").version)
 }

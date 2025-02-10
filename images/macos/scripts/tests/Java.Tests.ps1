@@ -1,5 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 $arch = Get-Architecture
@@ -14,7 +14,7 @@ function Get-NativeVersionFormat {
 
 Describe "Java" {
     BeforeAll {
-        function Validate-JavaVersion {
+        function Confirm-JavaVersion {
             param($JavaCommand, $ExpectedVersion)
 
             $commandResult = Get-CommandResult $JavaCommand
@@ -26,7 +26,7 @@ Describe "Java" {
         }
     }
 
-    $toolsetJava = Get-ToolsetValue "java"
+    $toolsetJava = (Get-ToolsetContent).java
     $defaultVersion = $toolsetJava.$arch.default
     $jdkVersions = $toolsetJava.$arch.versions
 
@@ -44,14 +44,14 @@ Describe "Java" {
             }
 
             It "Java <Version>" -TestCases $_ {
-                $envVariablePath = Get-EnvironmentVariable $EnvVariable
+                $envVariablePath = [System.Environment]::GetEnvironmentVariable($EnvVariable)
                 $javaBinPath = Join-Path $envVariablePath "/bin/java"
-                Validate-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
+                Confirm-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
             }
 
             if ($_.Title -eq "Default") {
                 It "Version is default" -TestCases $_ {
-                    Validate-JavaVersion -JavaCommand "java -version" -ExpectedVersion $Version
+                    Confirm-JavaVersion -JavaCommand "java -version" -ExpectedVersion $Version
                 }
             }
         }

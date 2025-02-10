@@ -1,14 +1,14 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
 Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Android.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
 Describe "Android" {
     $androidSdkManagerPackages = Get-AndroidPackages
-    [int]$platformMinVersion = Get-ToolsetValue "android.platform_min_version"
-    [version]$buildToolsMinVersion = Get-ToolsetValue "android.build_tools_min_version"
-    [array]$ndkVersions = Get-ToolsetValue "android.ndk.versions"
+    [int]$platformMinVersion = (Get-ToolsetContent).android.platform_min_version
+    [version]$buildToolsMinVersion = (Get-ToolsetContent).android.build_tools_min_version
+    [array]$ndkVersions = (Get-ToolsetContent).android.ndk.versions
     $ndkFullVersions = $ndkVersions | ForEach-Object { Get-ChildItem "$env:ANDROID_HOME/ndk/${_}.*" -Name | Select-Object -Last 1 } | ForEach-Object { "ndk/${_}" }
     # Platforms starting with a letter are the preview versions, which is not installed on the image
     $platformVersionsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', '' | Where-Object { $_ -match "^\d" } | Sort-Object -Unique
@@ -25,9 +25,9 @@ Describe "Android" {
         $platformsInstalled,
         $buildTools,
         $ndkFullVersions,
-        (Get-ToolsetValue "android.extra-list" | ForEach-Object { "extras/${_}" }),
-        (Get-ToolsetValue "android.addon-list" | ForEach-Object { "add-ons/${_}" }),
-        (Get-ToolsetValue "android.additional-tools")
+        ((Get-ToolsetContent).android.extras | ForEach-Object { "extras/${_}" }),
+        ((Get-ToolsetContent).android.addons | ForEach-Object { "add-ons/${_}" }),
+        ((Get-ToolsetContent).android.additional_tools)
     ) | ForEach-Object { $_ }
 
     # Remove empty strings from array to avoid possible issues
@@ -36,10 +36,10 @@ Describe "Android" {
     BeforeAll {
         $ANDROID_SDK_DIR = Join-Path $env:HOME "Library" "Android" "sdk"
 
-        function Validate-AndroidPackage {
+        function Confirm-AndroidPackage {
             param (
                 [Parameter(Mandatory = $true)]
-                [string]$PackageName
+                [string] $PackageName
             )
 
             # Convert 'm2repository;com;android;support;constraint;constraint-layout-solver;1.0.0-beta1' ->
@@ -57,14 +57,6 @@ Describe "Android" {
                 Sdkmanager  = "$env:ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
             }
         )
-        if ($os.IsBigSur -or $os.IsMonterey) {
-            $testCases += @(
-                @{
-                    PackageName = "SDK tools"
-                    Sdkmanager  = "$env:ANDROID_HOME/tools/bin/sdkmanager"
-                }
-            )
-        }
 
         It "Sdkmanager from <PackageName> is available" -TestCases $testCases {
             "$Sdkmanager --version" | Should -ReturnZeroExitCode
@@ -76,7 +68,7 @@ Describe "Android" {
 
         It "<PackageName>" -TestCases $testCases {
             param ([string] $PackageName)
-            Validate-AndroidPackage $PackageName
+            Confirm-AndroidPackage $PackageName
         }
     }
 }

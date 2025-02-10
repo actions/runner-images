@@ -13,11 +13,11 @@ Set-PSRepository -InstallationPolicy Trusted -Name PSGallery
 Write-Host 'Warmup PSModuleAnalysisCachePath (speedup first powershell invocation by 20s)'
 $PSModuleAnalysisCachePath = 'C:\PSModuleAnalysisCachePath\ModuleAnalysisCache'
 
-[Environment]::SetEnvironmentVariable('PSModuleAnalysisCachePath', $PSModuleAnalysisCachePath, [System.EnvironmentVariableTarget]::Machine)
+[Environment]::SetEnvironmentVariable('PSModuleAnalysisCachePath', $PSModuleAnalysisCachePath, "Machine")
 # make variable to be available in the current session
 ${env:PSModuleAnalysisCachePath} = $PSModuleAnalysisCachePath
 
-$null = New-Item -Path $PSModuleAnalysisCachePath  -ItemType 'File'  -Force
+New-Item -Path $PSModuleAnalysisCachePath -ItemType 'File' -Force | Out-Null
 #endregion
 
 #region User (current user, image generation only)

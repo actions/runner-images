@@ -13,7 +13,7 @@ function Push-AnkaTemplateToRegistry {
         [string] $TemplateName
     )
 
-    # if registry uuid doesn't match than delete an image in registry
+    # if registry uuid doesn't match then delete an image in registry
     $AnkaCaCrtPath="$HOME/.config/anka/certs/anka-ca-crt.pem"
     $images = anka --machine-readable registry --cacert $AnkaCaCrtPath --registry-path $RegistryUrl list | ConvertFrom-Json | ForEach-Object body
     $images | Where-Object name -eq $TemplateName | ForEach-Object {
@@ -139,10 +139,7 @@ function Set-AnkaVMVideoController {
     )
 
     $command = "anka modify $VMName set display -c $Controller"
-    # Apple Metal is available starting from Big Sur
-    if (-not $ShortMacOSVersion.StartsWith("10.")) {
-        $null = Invoke-AnkaCommand -Command $command
-    }
+    $null = Invoke-AnkaCommand -Command $command
 }
 
 function Set-AnkaVMDisplayResolution {

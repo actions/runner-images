@@ -1,19 +1,23 @@
 Describe "MongoDB" {
     Context "Version" {
         It "<ToolName>" -TestCases @(
-            @{ ToolName = "mongo" }
+            if (Test-IsWin25) {
+                @{ ToolName = "mongos" }
+            } else {
+                @{ ToolName = "mongo" }
+            }
             @{ ToolName = "mongod" }
         ) {
             $toolsetVersion = (Get-ToolsetContent).mongodb.version
-            (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
+            (& $ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
         }
     }
 
     Context "Service" {
         $mongoService = Get-Service -Name mongodb -ErrorAction Ignore
         $mongoServiceTests = @{
-            Name = $mongoService.Name
-            Status = $mongoService.Status
+            Name      = $mongoService.Name
+            Status    = $mongoService.Status
             StartType = $mongoService.StartType
         }
 
@@ -25,13 +29,19 @@ Describe "MongoDB" {
             $StartType | Should -Be "Disabled"
         }
     }
+
+    Context "Shell" -Skip:(-not (Test-IsWin25)) {
+        It "mongosh" {
+            "mongosh --version" | Should -ReturnZeroExitCode
+        }
+    }
 }
 
 Describe "PostgreSQL" {
     $psqlTests = @(
-        @{envVar = "PGROOT"; pgPath = Get-EnvironmentVariable "PGROOT"}
-        @{envVar = "PGBIN"; pgPath = Get-EnvironmentVariable "PGBIN"}
-        @{envVar = "PGDATA"; pgPath = Get-EnvironmentVariable "PGDATA"}
+        @{envVar = "PGROOT"; pgPath = Get-EnvironmentVariable "PGROOT" }
+        @{envVar = "PGBIN"; pgPath = Get-EnvironmentVariable "PGBIN" }
+        @{envVar = "PGDATA"; pgPath = Get-EnvironmentVariable "PGDATA" }
     )
 
     Context "Environment variable" {
@@ -57,8 +67,8 @@ Describe "PostgreSQL" {
     Context "Service" {
         $psqlService = Get-Service -Name postgresql*
         $psqlServiceTests = @{
-            Name = $psqlService.Name
-            Status = $psqlService.Status
+            Name      = $psqlService.Name
+            Status    = $psqlService.Status
             StartType = $psqlService.StartType
         }
 
@@ -72,12 +82,12 @@ Describe "PostgreSQL" {
     }
 
     Context "PostgreSQL version" {
-        It "PostgreSQL version should correspond to the version in the toolset" {
-            $toolsetVersion = (Get-ToolsetContent).postgresql.version
+        It "PostgreSQL version should correspond to the Major version in the toolset" {
+            $toolsetVersion = (Get-ToolsetContent).postgresql.version.Split(".")[0]
             # Client version
-            (&$Env:PGBIN\psql --version).split()[-1] | Should -BeLike "$toolsetVersion*"
+            (& $env:PGBIN\psql --version).split()[-1] | Should -BeLike "$toolsetVersion*"
             # Server version
-            (&$Env:PGBIN\pg_config --version).split()[-1] | Should -BeLike "$toolsetVersion*"
+            (& $env:PGBIN\pg_config --version).split()[-1] | Should -BeLike "$toolsetVersion*"
         }
     }
 }

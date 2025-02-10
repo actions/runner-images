@@ -24,7 +24,7 @@ function Set-JavaPath {
 
     if ($Default) {
         # Clean up any other Java folders from PATH to make sure that they won't conflict with each other
-        $currentPath = Get-MachinePath
+        $currentPath = [System.Environment]::GetEnvironmentVariable("PATH", "Machine")
 
         $pathSegments = $currentPath.Split(';')
         $newPathSegments = @()
@@ -39,7 +39,7 @@ function Set-JavaPath {
         $newPath = $javaPath + '\bin;' + $newPath
 
         Write-Host "Add $javaPath\bin to PATH"
-        Set-MachinePath -NewPath $newPath
+        [Environment]::SetEnvironmentVariable("PATH", $newPath, "Machine")
 
         Write-Host "Set JAVA_HOME environmental variable as $javaPath"
         [Environment]::SetEnvironmentVariable("JAVA_HOME", $javaPath, "Machine")
@@ -63,13 +63,8 @@ function Install-JavaJDK {
 
     # Download and extract java binaries to temporary folder
     $downloadUrl = $asset.binary.package.link
-    $archivePath = Start-DownloadWithRetry -Url $downloadUrl -Name $([IO.Path]::GetFileName($downloadUrl))
-
-    #region Supply chain security - JDK
-    $fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
-    $externalHash = $asset.binary.package.checksum
-    Use-ChecksumComparison $fileHash $externalHash
-    #endregion
+    $archivePath = Invoke-DownloadWithRetry $downloadUrl
+    Test-FileChecksum $archivePath -ExpectedSHA256Sum $asset.binary.package.checksum
 
     # We have to replace '+' sign in the version to '-' due to the issue with incorrect path in Android builds https://github.com/actions/runner-images/issues/3014
     $fullJavaVersion = $asset.version.semver -replace '\+', '-'
@@ -89,8 +84,8 @@ function Install-JavaJDK {
     New-Item -ItemType Directory -Path $javaVersionPath -Force | Out-Null
 
     # Complete the installation by extracting Java binaries to toolcache and creating the complete file
-    Extract-7Zip -Path $archivePath -DestinationPath $javaVersionPath
-    Invoke-SBWithRetry -Command {
+    Expand-7ZipArchive -Path $archivePath -DestinationPath $javaVersionPath
+    Invoke-ScriptBlockWithRetry -Command {
         Get-ChildItem -Path $javaVersionPath | Rename-Item -NewName $javaArchPath -ErrorAction Stop
     }
     New-Item -ItemType File -Path $javaVersionPath -Name "$Architecture.complete" | Out-Null
@@ -114,34 +109,31 @@ foreach ($jdkVersionToInstall in $jdkVersionsToInstall) {
 
 # Install Java tools
 # Force chocolatey to ignore dependencies on Ant and Maven or else they will download the Oracle JDK
-Choco-Install -PackageName ant -ArgumentList "-i"
-# Maven 3.9.x has multiple compatibilities problems
+Install-ChocoPackage ant -ArgumentList "--ignore-dependencies"
 $toolsetMavenVersion = (Get-ToolsetContent).maven.version
-$versionToInstall = Get-LatestChocoPackageVersion -TargetVersion $toolsetMavenVersion -PackageName "maven"
+$versionToInstall = Resolve-ChocoPackageVersion -PackageName "maven" -TargetVersion $toolsetMavenVersion
 
-Choco-Install -PackageName maven -ArgumentList "--version=$versionToInstall"
-Choco-Install -PackageName gradle
+Install-ChocoPackage maven -ArgumentList "--version=$versionToInstall"
+Install-ChocoPackage gradle
 
 # Add maven env variables to Machine
-[string]$m2 = (Get-MachinePath).Split(";") -match "maven"
-$maven_opts = '-Xms256m'
+[string] $m2Path = ([Environment]::GetEnvironmentVariable("PATH", "Machine")).Split(";") -match "maven"
 
-$m2_repo = 'C:\ProgramData\m2'
-New-Item -Path $m2_repo -ItemType Directory -Force | Out-Null
+$m2RepoPath = 'C:\ProgramData\m2'
+New-Item -Path $m2RepoPath -ItemType Directory -Force | Out-Null
 
-[Environment]::SetEnvironmentVariable("M2", $m2, "Machine")
-[Environment]::SetEnvironmentVariable("M2_REPO", $m2_repo, "Machine")
-[Environment]::SetEnvironmentVariable("MAVEN_OPTS", $maven_opts, "Machine")
+[Environment]::SetEnvironmentVariable("M2", $m2Path, "Machine")
+[Environment]::SetEnvironmentVariable("M2_REPO", $m2RepoPath, "Machine")
+[Environment]::SetEnvironmentVariable("MAVEN_OPTS", "-Xms256m", "Machine")
 
 # Download cobertura jars
 $uri = 'https://repo1.maven.org/maven2/net/sourceforge/cobertura/cobertura/2.1.1/cobertura-2.1.1-bin.zip'
 $sha256sum = '79479DDE416B082F38ECD1F2F7C6DEBD4D0C2249AF80FD046D1CE05D628F2EC6'
 $coberturaPath = "C:\cobertura-2.1.1"
 
-$archivePath = Start-DownloadWithRetry -Url $uri -Name "cobertura.zip"
-$fileHash = (Get-FileHash -Path $archivePath -Algorithm SHA256).Hash
-Use-ChecksumComparison $fileHash $sha256sum
-Extract-7Zip -Path $archivePath -DestinationPath "C:\"
+$archivePath = Invoke-DownloadWithRetry $uri
+Test-FileChecksum $archivePath -ExpectedSHA256Sum $sha256sum
+Expand-7ZipArchive -Path $archivePath -DestinationPath "C:\"
 
 [Environment]::SetEnvironmentVariable("COBERTURA_HOME", $coberturaPath, "Machine")
 

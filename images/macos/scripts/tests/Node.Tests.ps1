@@ -1,5 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
@@ -9,7 +9,7 @@ Describe "Node.js" {
     }
 
     It "Node.js version should correspond to the version in the toolset" {
-        node --version | Should -BeLike "v$(Get-ToolsetValue 'node.default')*"
+        node --version | Should -BeLike "v$((Get-ToolsetContent).node.default)*"
     }
 
     It "NPM is installed" {
@@ -21,7 +21,7 @@ Describe "Node.js" {
     }
 }
 
-Describe "nvm" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "nvm" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     BeforeAll {
         $nvmPath = Join-Path $env:HOME ".nvm" "nvm.sh"
         $nvmInitCommand = ". $nvmPath > /dev/null 2>&1 || true"
@@ -33,7 +33,7 @@ Describe "nvm" -Skip:($os.IsVentura -or $os.IsSonoma) {
     }
 
     Context "nvm versions" {
-        [array]$nvmVersions = Get-ToolsetValue 'node.nvm_versions'
+        [array]$nvmVersions = (Get-ToolsetContent).node.nvm_versions
         $testCases = $nvmVersions | ForEach-Object { @{NvmVersion = $_} }
 
         It "<NvmVersion>" -TestCases $testCases {
@@ -47,7 +47,7 @@ Describe "nvm" -Skip:($os.IsVentura -or $os.IsSonoma) {
 }
 
 Describe "Global NPM Packages" {
-    $globalNpmPackages = Get-ToolsetValue "npm.global_packages"
+    $globalNpmPackages = (Get-ToolsetContent).npm.global_packages
     $globalNpmPackagesWithTests = $globalNpmPackages | Where-Object { $_.test } | ForEach-Object { @{ Name = $_.name; Test = $_.test } }
 
     It "<Name>" -TestCases $globalNpmPackagesWithTests {

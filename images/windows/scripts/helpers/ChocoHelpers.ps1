@@ -1,4 +1,25 @@
-function Choco-Install {
+function Install-ChocoPackage {
+    <#
+    .SYNOPSIS
+        A function to install a Chocolatey package with retries.
+
+    .DESCRIPTION
+        This function attempts to install a specified Chocolatey package. If the 
+        installation fails, it retries a specified number of times.
+
+    .PARAMETER PackageName
+        The name of the Chocolatey package to install.
+
+    .PARAMETER ArgumentList
+        An array of arguments to pass to the choco install command.
+
+    .PARAMETER RetryCount
+        The number of times to retry the installation if it fails. Default is 5.
+
+    .EXAMPLE
+        Install-ChocoPackage -PackageName "git" -RetryCount 3
+    #>
+
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
@@ -9,17 +30,15 @@ function Choco-Install {
 
     process {
         $count = 1
-        while($true)
-        {
+        while ($true) {
             Write-Host "Running [#$count]: choco install $packageName -y $argumentList"
-            choco install $packageName -y @argumentList --no-progress
+            choco install $packageName -y @argumentList --no-progress --require-checksums
 
             $pkg = choco list --localonly $packageName --exact --all --limitoutput
             if ($pkg) {
                 Write-Host "Package installed: $pkg"
                 break
-            }
-            else {
+            } else {
                 $count++
                 if ($count -ge $retryCount) {
                     Write-Host "Could not install $packageName after $count attempts"
@@ -31,20 +50,26 @@ function Choco-Install {
     }
 }
 
-function Send-RequestToChocolateyPackages {
-    param(
-        [Parameter(Mandatory)]
-        [string] $FilterQuery,
-        [string] $Url = "https://community.chocolatey.org/api",
-        [int] $ApiVersion = 2
-    )
+function Resolve-ChocoPackageVersion {
+    <#
+    .SYNOPSIS
+        Resolves the latest version of a Chocolatey package.
 
-    $response = Invoke-RestMethod "$Url/v$ApiVersion/Packages()?$filterQuery"
+    .DESCRIPTION
+        This function takes a package name and a target version as input and returns the latest
+        version of the package that is greater than or equal to the target version.
 
-    return $response
-}
+    .PARAMETER PackageName
+        The name of the Chocolatey package.
 
-function Get-LatestChocoPackageVersion {
+    .PARAMETER TargetVersion
+        The target version of the package.
+
+    .EXAMPLE
+        Resolve-ChocoPackageVersion -PackageName "example-package" -TargetVersion "1.0.0"
+        Returns the latest version of the "example-package" that is greater than or equal to "1.0.0".
+    #>
+
     param(
         [Parameter(Mandatory)]
         [string] $PackageName,
@@ -52,13 +77,12 @@ function Get-LatestChocoPackageVersion {
         [string] $TargetVersion
     )
 
-    $versionNumbers = $TargetVersion.Split(".")
-    [int]$versionNumbers[-1] += 1
-    $incrementedVersion = $versionNumbers -join "."
-    $filterQuery = "`$filter=(Id eq '$PackageName') and (IsPrerelease eq false) and (Version ge '$TargetVersion') and (Version lt '$incrementedVersion')"
-    $latestVersion = (Send-RequestToChocolateyPackages -FilterQuery $filterQuery).properties.Version |
-        Where-Object {$_ -Like "$TargetVersion.*" -or $_ -eq $TargetVersion} |
-        Sort-Object {[version]$_} |
+    $searchResult = choco search $PackageName --exact --all-versions --approved-only --limit-output | 
+        ConvertFrom-CSV -Delimiter '|' -Header 'Name', 'Version'
+
+    $latestVersion = $searchResult.Version | 
+        Where-Object { $_ -Like "$TargetVersion.*" -or $_ -eq $TargetVersion } | 
+        Sort-Object { [version] $_ } | 
         Select-Object -Last 1
 
     return $latestVersion

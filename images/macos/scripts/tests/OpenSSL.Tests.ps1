@@ -13,7 +13,7 @@ Describe "OpenSSL" {
             $openSSLpath | Should -Exist
         }
     }
-    
+
     Context "OpenSSL 1.1 is default" {
         It "Default OpenSSL version is 1.1" {
             $commandResult = Get-CommandResult "openssl version"

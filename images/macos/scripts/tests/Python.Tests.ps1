@@ -1,15 +1,21 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 
-Describe "Python3" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
+Describe "Python3" {
     It "Python 3 is available" {
         "python3 --version" | Should -ReturnZeroExitCode
     }
-
-    It "Python 3 is installed under /usr/local/bin" {
-        Get-WhichTool "python3" | Should -BeLike "/usr/local/bin*"
+    
+    if ($os.IsVenturaArm64 -or $os.IsSonomaArm64 -or $os.IsSequoiaArm64) {
+        It "Python 3 is installed under /opt/homebrew/bin/" {
+            Get-ToolPath "python3" | Should -BeLike "/opt/homebrew/bin/*"
+        }
+    } else {
+        It "Python 3 is installed under /usr/local/bin" {
+            Get-ToolPath "python3" | Should -BeLike "/usr/local/bin*"
+        }
     }
 
     It "Pip 3 is available" {
@@ -28,7 +34,7 @@ Describe "Python3" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
 
 }
 
-Describe "Python2" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Python2" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Python 2 is available" {
         "/Library/Frameworks/Python.framework/Versions/2.7/bin/python --version" | Should -ReturnZeroExitCode
     }

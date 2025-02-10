@@ -1,20 +1,17 @@
 #!/bin/bash -e
 ################################################################################
-##  File:  install-helpers.sh
-##  Desc:  Helper functions for installing tools
+##  File:  os.sh
+##  Desc:  Helper functions for OS releases
 ################################################################################
 
-function isUbuntu20
-{
-    lsb_release -d | grep -q 'Ubuntu 20'
+is_ubuntu20() {
+    lsb_release -rs | grep -q '20.04'
 }
 
-function isUbuntu22
-{
-    lsb_release -d | grep -q 'Ubuntu 22'
+is_ubuntu22() {
+    lsb_release -rs | grep -q '22.04'
 }
 
-function getOSVersionLabel
-{
-    lsb_release -cs
+is_ubuntu24() {
+    lsb_release -rs | grep -q '24.04'
 }

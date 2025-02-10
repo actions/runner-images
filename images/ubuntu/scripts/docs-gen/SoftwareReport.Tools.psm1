@@ -10,18 +10,18 @@ function Get-AptFastVersion {
 }
 
 function Get-AzCopyVersion {
-    $azcopyVersion = azcopy --version | Take-OutputPart -Part 2
+    $azcopyVersion = [string]$(azcopy --version) | Get-StringPart -Part 2
     return "$azcopyVersion - available by ``azcopy`` and ``azcopy10`` aliases"
 }
 
 function Get-BazelVersion {
-    $bazelVersion = bazel --version | Select-String "bazel" | Take-OutputPart -Part 1
+    $bazelVersion = bazel --version | Select-String "bazel" | Get-StringPart -Part 1
     return $bazelVersion
 }
 
 function Get-BazeliskVersion {
     $result = Get-CommandResult "bazelisk version" -Multiline
-    $bazeliskVersion = $result.Output | Select-String "Bazelisk version:" | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter "v"
+    $bazeliskVersion = $result.Output | Select-String "Bazelisk version:" | Get-StringPart -Part 2 | Get-StringPart -Part 0 -Delimiter "v"
     return $bazeliskVersion
 }
 
@@ -39,32 +39,29 @@ function Get-CodeQLBundleVersion {
 }
 
 function Get-PodManVersion {
-    $podmanVersion = podman --version | Take-OutputPart -Part 2
+    $podmanVersion = podman --version | Get-StringPart -Part 2
     return $podmanVersion
 }
 
 function Get-BuildahVersion {
-    $buildahVersion = buildah --version | Take-OutputPart -Part 2
+    $buildahVersion = buildah --version | Get-StringPart -Part 2
     return $buildahVersion
 }
 
 function Get-SkopeoVersion {
-    $skopeoVersion = skopeo --version | Take-OutputPart -Part 2
+    $skopeoVersion = skopeo --version | Get-StringPart -Part 2
     return $skopeoVersion
 }
 
 function Get-CMakeVersion {
-    $cmakeVersion = cmake --version | Select-Object -First 1 | Take-OutputPart -Part 2
+    $cmakeVersion = cmake --version | Select-Object -First 1 | Get-StringPart -Part 2
     return $cmakeVersion
 }
 
-function Get-DockerComposeV1Version {
-    $composeVersion = docker-compose -v | Take-OutputPart -Part 2 | Take-OutputPart -Part 0 -Delimiter ","
-    return $composeVersion
-}
+
 
 function Get-DockerComposeV2Version {
-    $composeVersion = docker compose version | Take-OutputPart -Part 3 | Take-OutputPart -Part 0 -Delimiter "v"
+    $composeVersion = docker compose version | Get-StringPart -Part 3 | Get-StringPart -Part 0 -Delimiter "v"
     return $composeVersion
 }
 
@@ -79,62 +76,62 @@ function Get-DockerServerVersion {
 }
 
 function Get-DockerBuildxVersion {
-    $buildxVersion = docker buildx version  | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "v"
+    $buildxVersion = docker buildx version  | Get-StringPart -Part 1 | Get-StringPart -Part 0 -Delimiter "v"
     return $buildxVersion
 }
 
 function Get-DockerAmazonECRCredHelperVersion {
-    $ecrVersion = docker-credential-ecr-login -v | Select-String "Version:" | Take-OutputPart -Part 1
+    $ecrVersion = docker-credential-ecr-login -v | Select-String "Version:" | Get-StringPart -Part 1
     return $ecrVersion
 }
 
 function Get-GitVersion {
-    $gitVersion = git --version | Take-OutputPart -Part -1
+    $gitVersion = git --version | Get-StringPart -Part -1
     return $gitVersion
 }
 
 function Get-GitLFSVersion {
     $result = Get-CommandResult "git-lfs --version"
-    $gitlfsversion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $gitlfsversion = $result.Output | Get-StringPart -Part 0 | Get-StringPart -Part 1 -Delimiter "/"
     return $gitlfsversion
 }
 
 function Get-GitFTPVersion {
-    $gitftpVersion = git-ftp --version | Take-OutputPart -Part 2
+    $gitftpVersion = git-ftp --version | Get-StringPart -Part 2
     return $gitftpVersion
 }
 
 function Get-GoogleCloudCLIVersion {
-    return (gcloud --version | Select-Object -First 1) | Take-OutputPart -Part 3
+    return (gcloud --version | Select-Object -First 1) | Get-StringPart -Part 3
 }
 
 function Get-HavegedVersion {
-    $havegedVersion = dpkg-query --showformat='${Version}' --show haveged | Take-OutputPart -Part 0 -Delimiter "-"
+    $havegedVersion = dpkg-query --showformat='${Version}' --show haveged | Get-StringPart -Part 0 -Delimiter "-"
     return $havegedVersion
 }
 
 function Get-HerokuVersion {
-    $herokuVersion = heroku version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $herokuVersion = heroku version | Get-StringPart -Part 0 | Get-StringPart -Part 1 -Delimiter "/"
     return $herokuVersion
 }
 
 function Get-HHVMVersion {
-    $hhvmVersion = hhvm --version | Select-Object -First 1 | Take-OutputPart -Part 2
+    $hhvmVersion = hhvm --version | Select-Object -First 1 | Get-StringPart -Part 2
     return $hhvmVersion
 }
 
 function Get-SVNVersion {
-    $svnVersion = svn --version | Select-Object -First 1 | Take-OutputPart -Part 2
+    $svnVersion = svn --version | Select-Object -First 1 | Get-StringPart -Part 2
     return $svnVersion
 }
 
 function Get-KustomizeVersion {
-    $kustomizeVersion = kustomize version --short | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "v"
+    $kustomizeVersion = kustomize version --short | Get-StringPart -Part 0 | Get-StringPart -Part 1 -Delimiter "v"
     return $kustomizeVersion
 }
 
 function Get-KindVersion {
-    $kindVersion = kind version | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "v"
+    $kindVersion = kind version | Get-StringPart -Part 1 | Get-StringPart -Part 0 -Delimiter "v"
     return $kindVersion
 }
 
@@ -144,21 +141,21 @@ function Get-KubectlVersion {
 }
 
 function Get-MinikubeVersion {
-    $minikubeVersion = minikube version --short | Take-OutputPart -Part 0 -Delimiter "v"
+    $minikubeVersion = minikube version --short | Get-StringPart -Part 0 -Delimiter "v"
     return $minikubeVersion
 }
 
 function Get-HGVersion {
-    $hgVersion = hg --version | Select-Object -First 1 | Take-OutputPart -Part -1 | Take-OutputPart -Part 0 -Delimiter ")"
+    $hgVersion = hg --version | Select-Object -First 1 | Get-StringPart -Part -1 | Get-StringPart -Part 0 -Delimiter ")"
     return $hgVersion
 }
 
 function Get-LeiningenVersion {
-    return "$(lein -v | Take-OutputPart -Part 1)"
+    return "$(lein -v | Get-StringPart -Part 1)"
 }
 
 function Get-MediainfoVersion {
-    $mediainfoVersion = (mediainfo --version | Select-Object -Index 1 | Take-OutputPart -Part 2).Replace('v', '')
+    $mediainfoVersion = (mediainfo --version | Select-Object -Index 1 | Get-StringPart -Part 2).Replace('v', '')
     return $mediainfoVersion
 }
 
@@ -177,7 +174,7 @@ function Get-NvmVersion {
 }
 
 function Get-PackerVersion {
-    $packerVersion = packer --version
+    $packerVersion = (packer --version | Select-String "^Packer").Line.Replace('v','') | Get-StringPart -Part 1
     return $packerVersion
 }
 
@@ -187,11 +184,11 @@ function Get-PhantomJSVersion {
 }
 
 function Get-TerraformVersion {
-    return (terraform version | Select-String "^Terraform").Line.Replace('v','') | Take-OutputPart -Part 1
+    return (terraform version | Select-String "^Terraform").Line.Replace('v','') | Get-StringPart -Part 1
 }
 
 function Get-JqVersion {
-    $jqVersion = jq --version | Take-OutputPart -Part 1 -Delimiter "-"
+    $jqVersion = jq --version | Get-StringPart -Part 1 -Delimiter "-"
     return $jqVersion
 }
 
@@ -211,7 +208,7 @@ function Get-AlibabaCloudCliVersion {
 
 function Get-AWSCliVersion {
     $result = Get-CommandResult "aws --version"
-    $awsVersion = $result.Output | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $awsVersion = $result.Output | Get-StringPart -Part 0 | Get-StringPart -Part 1 -Delimiter "/"
     return $awsVersion
 }
 
@@ -221,21 +218,21 @@ function Get-AWSCliSessionManagerPluginVersion {
 }
 
 function Get-AWSSAMVersion {
-    return $(sam --version | Take-OutputPart -Part -1)
+    return $(sam --version | Get-StringPart -Part -1)
 }
 
 function Get-FastlaneVersion {
-    $fastlaneVersion = fastlane --version | Select-String "^fastlane [0-9]" | Take-OutputPart -Part 1
+    $fastlaneVersion = fastlane --version | Select-String "^fastlane [0-9]" | Get-StringPart -Part 1
     return $fastlaneVersion
 }
 
 function Get-GitHubCliVersion {
-    $ghVersion = gh --version | Select-String "gh version" | Take-OutputPart -Part 2
+    $ghVersion = gh --version | Select-String "gh version" | Get-StringPart -Part 2
     return $ghVersion
 }
 
 function Get-NetlifyCliVersion {
-    $netlifyVersion = netlify --version | Take-OutputPart -Part 0 | Take-OutputPart -Part 1 -Delimiter "/"
+    $netlifyVersion = netlify --version | Get-StringPart -Part 0 | Get-StringPart -Part 1 -Delimiter "/"
     return $netlifyVersion
 }
 
@@ -245,7 +242,7 @@ function Get-OCCliVersion {
 }
 
 function Get-ORASCliVersion {
-    $orasVersion = oras version | Select-String "^Version:" | Take-OutputPart -Part 1
+    $orasVersion = oras version | Select-String "^Version:" | Get-StringPart -Part 1
     return $orasVersion
 }
 
@@ -255,30 +252,30 @@ function Get-VerselCliversion {
 }
 
 function Get-PulumiVersion {
-    $pulumiVersion = pulumi version | Take-OutputPart -Part 0 -Delimiter "v"
+    $pulumiVersion = pulumi version | Get-StringPart -Part 0 -Delimiter "v"
     return $pulumiVersion
 }
 
 function Get-RVersion {
-    $rVersion = (Get-CommandResult "R --version | grep 'R version'").Output |  Take-OutputPart -Part 2
+    $rVersion = (Get-CommandResult "R --version | grep 'R version'").Output |  Get-StringPart -Part 2
     return $rVersion
 }
 
 function Get-SphinxVersion {
-    $sphinxVersion = searchd -h | Select-Object -First 1 | Take-OutputPart -Part 1 | Take-OutputPart -Part 0 -Delimiter "-"
+    $sphinxVersion = searchd -h | Select-Object -First 1 | Get-StringPart -Part 1 | Get-StringPart -Part 0 -Delimiter "-"
     return $sphinxVersion
 }
 
 function Get-YamllintVersion {
-    return $(yamllint --version) | Take-OutputPart -Part 1
+    return $(yamllint --version) | Get-StringPart -Part 1
 }
 
 function Get-ZstdVersion {
-    $zstdVersion = zstd --version | Take-OutputPart -Part 1 -Delimiter "v" | Take-OutputPart -Part 0 -Delimiter ","
+    $zstdVersion = zstd --version | Get-StringPart -Part 1 -Delimiter "v" | Get-StringPart -Part 0 -Delimiter ","
     return "$zstdVersion"
 }
 
 function Get-YqVersion {
-    $yqVersion = $(yq -V) | Take-OutputPart -Part 3
+    $yqVersion = $(yq -V) | Get-StringPart -Part 3
     return $yqVersion.TrimStart("v").Trim()
 }

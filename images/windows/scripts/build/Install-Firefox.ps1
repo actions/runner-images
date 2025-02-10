@@ -5,59 +5,59 @@
 ################################################################################
 
 # Install and configure Firefox browser
-Write-Host "Install latest Firefox browser..."
-$VersionsManifest = Invoke-RestMethod "https://product-details.mozilla.org/1.0/firefox_versions.json"
-$InstallerUrl = "https://download.mozilla.org/?product=firefox-$($VersionsManifest.LATEST_FIREFOX_VERSION)&os=win64&lang=en-US"
-$packagePath = Start-DownloadWithRetry -Url $InstallerUrl -Name "FirefoxSetup.exe"
+Write-Host "Get the latest Firefox version..."
+$versionsManifest = Invoke-RestMethod "https://product-details.mozilla.org/1.0/firefox_versions.json"
 
-#region Supply chain security - Stack
-$fileHash = (Get-FileHash -Path $packagePath -Algorithm SHA256).Hash
-$hashUrl = "https://archive.mozilla.org/pub/firefox/releases/$($VersionsManifest.LATEST_FIREFOX_VERSION)/SHA256SUMS"
-$externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*win64/en-US/Firefox Setup*exe*" }).Split(' ')[0]
-Use-ChecksumComparison $fileHash $externalHash
-#endregion
+Write-Host "Install Firefox browser..."
+$installerUrl = "https://download.mozilla.org/?product=firefox-$($versionsManifest.LATEST_FIREFOX_VERSION)&os=win64&lang=en-US"
+$hashUrl = "https://archive.mozilla.org/pub/firefox/releases/$($versionsManifest.LATEST_FIREFOX_VERSION)/SHA256SUMS"
 
-Install-Binary -FilePath $packagePath -ArgumentList "/silent", "/install"
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url $hashUrl `
+    -FileName "win64/en-US/Firefox Setup*exe"
+
+Install-Binary -Type EXE `
+    -Url $installerUrl `
+    -InstallArgs @("/silent", "/install") `
+    -ExpectedSHA256Sum $externalHash
 
 Write-Host "Disable autoupdate..."
-$FirefoxDirectoryPath = Join-Path $env:ProgramFiles "Mozilla Firefox"
-New-Item -path $FirefoxDirectoryPath -Name 'mozilla.cfg' -Value '//
+$firefoxDirectoryPath = Join-Path $env:ProgramFiles "Mozilla Firefox"
+New-Item -path $firefoxDirectoryPath -Name 'mozilla.cfg' -Value '//
 pref("browser.shell.checkDefaultBrowser", false);
 pref("app.update.enabled", false);' -ItemType file -force
 
-$FirefoxPreferencesFolder = Join-Path $FirefoxDirectoryPath "defaults\pref"
-New-Item -path $FirefoxPreferencesFolder -Name 'local-settings.js' -Value 'pref("general.config.obscure_value", 0);
+$firefoxPreferencesFolder = Join-Path $firefoxDirectoryPath "defaults\pref"
+New-Item -path $firefoxPreferencesFolder -Name 'local-settings.js' -Value 'pref("general.config.obscure_value", 0);
 pref("general.config.filename", "mozilla.cfg");' -ItemType file -force
 
 # Download and install Gecko WebDriver
 Write-Host "Install Gecko WebDriver..."
-$GeckoDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\GeckoDriver"
-if (-not (Test-Path -Path $GeckoDriverPath))
-{
-    New-Item -Path $GeckoDriverPath -ItemType Directory -Force
+$geckoDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\GeckoDriver"
+if (-not (Test-Path -Path $geckoDriverPath)) {
+    New-Item -Path $geckoDriverPath -ItemType Directory -Force
 }
 
 Write-Host "Get the Gecko WebDriver version..."
-$GeckoDriverJson = Invoke-RestMethod "https://api.github.com/repos/mozilla/geckodriver/releases/latest"
-$GeckoDriverWindowsAsset = $GeckoDriverJson.assets | Where-Object { $_.name -Match "win64" } | Select-Object -First 1
-$GeckoDriverVersion = $GeckoDriverJson.tag_name
-$GeckoDriverVersion.Substring(1) | Out-File -FilePath "$GeckoDriverPath\versioninfo.txt" -Force;
+$geckoDriverVersion = (Get-GithubReleasesByVersion -Repo "mozilla/geckodriver" -Version "latest").version
+$geckoDriverVersion | Out-File -FilePath "$geckoDriverPath\versioninfo.txt" -Force
 
 Write-Host "Download Gecko WebDriver WebDriver..."
-$GeckoDriverArchName = $GeckoDriverWindowsAsset.name
-$GeckoDriverDownloadUrl = $GeckoDriverWindowsAsset.browser_download_url
-
-$GeckoDriverArchPath = Start-DownloadWithRetry -Url $GeckoDriverDownloadUrl -Name $GeckoDriverArchName
+$geckoDriverDownloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "mozilla/geckodriver" `
+    -Version $geckoDriverVersion `
+    -UrlMatchPattern "geckodriver-*-win64.zip"
+$geckoDriverArchPath = Invoke-DownloadWithRetry $geckoDriverDownloadUrl
 
 Write-Host "Expand Gecko WebDriver archive..."
-Extract-7Zip -Path $GeckoDriverArchPath -DestinationPath $GeckoDriverPath
+Expand-7ZipArchive -Path $geckoDriverArchPath -DestinationPath $geckoDriverPath
 
 # Validate Gecko WebDriver signature
-$GeckoDriverSignatureThumbprint = "1326B39C3D5D2CA012F66FB439026F7B59CB1974"
-Test-FileSignature -FilePath "$GeckoDriverPath/geckodriver.exe" -ExpectedThumbprint $GeckoDriverSignatureThumbprint
+$geckoDriverSignatureThumbprint = "40890F2FE1ACAE18072FA7F3C0AE456AACC8570D"
+Test-FileSignature -Path "$geckoDriverPath/geckodriver.exe" -ExpectedThumbprint $geckoDriverSignatureThumbprint
 
 Write-Host "Setting the environment variables..."
-Add-MachinePathItem -PathItem $GeckoDriverPath
-[Environment]::SetEnvironmentVariable("GeckoWebDriver", $GeckoDriverPath, "Machine")
+Add-MachinePathItem -PathItem $geckoDriverPath
+[Environment]::SetEnvironmentVariable("GeckoWebDriver", $geckoDriverPath, "Machine")
 
 Invoke-PesterTests -TestFile "Browsers" -TestName "Firefox"

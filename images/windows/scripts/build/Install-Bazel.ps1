@@ -3,8 +3,11 @@
 ##  Desc:  Install Bazel and Bazelisk (A user-friendly launcher for Bazel)
 ################################################################################
 
-Choco-Install -PackageName bazel
+Install-ChocoPackage bazel
 
 npm install -g @bazel/bazelisk
+if ($LASTEXITCODE -ne 0) {
+    throw "Command 'npm install -g @bazel/bazelisk' failed"
+}
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Bazel"

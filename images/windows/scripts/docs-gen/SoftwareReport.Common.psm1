@@ -5,7 +5,7 @@ function Initialize-RustEnvironment {
 }
 
 function Get-OSName {
-    return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption | Take-Part -Part 1,2,3
+    return (Get-CimInstance -ClassName Win32_OperatingSystem).Caption | Get-StringPart -Part 1,2,3
 }
 
 function Get-OSVersion {
@@ -26,75 +26,75 @@ function Get-BashVersion {
 }
 
 function Get-RustVersion {
-    rustc --version | Take-Part -Part 1
+    rustc --version | Get-StringPart -Part 1
 }
 
 function Get-RustupVersion {
-    cmd /c "rustup --version 2>NUL" | Take-Part -Part 1
+    cmd /c "rustup --version 2>NUL" | Get-StringPart -Part 1
 }
 
 function Get-RustCargoVersion {
-    cargo --version | Take-Part -Part 1
+    cargo --version | Get-StringPart -Part 1
 }
 
 function Get-RustdocVersion {
-    rustdoc --version | Take-Part -Part 1
+    rustdoc --version | Get-StringPart -Part 1
 }
 
 function Get-RustfmtVersion {
-    rustfmt --version | Take-Part -Part 1 | Take-Part -Part 0 -Delimiter ('-')
+    rustfmt --version | Get-StringPart -Part 1 | Get-StringPart -Part 0 -Delimiter ('-')
 }
 
 function Get-RustClippyVersion {
-    cargo clippy --version | Take-Part -Part 1
+    cargo clippy --version | Get-StringPart -Part 1
 }
 
 function Get-BindgenVersion {
-    bindgen --version | Take-Part -Part 1
+    bindgen --version | Get-StringPart -Part 1
 }
 
 function Get-CbindgenVersion {
-    cbindgen --version | Take-Part -Part 1
+    cbindgen --version | Get-StringPart -Part 1
 }
 
 function Get-CargoAuditVersion {
-    cargo-audit --version | Take-Part -Part 1
+    cargo-audit --version | Get-StringPart -Part 1
 }
 
 function Get-CargoOutdatedVersion {
-    cargo outdated --version | Take-Part -Part 1
+    cargo outdated --version | Get-StringPart -Part 1
 }
 
 function Get-PythonVersion {
-    python --version | Take-Part -Part 1
+    python --version | Get-StringPart -Part 1
 }
 
 function Get-PowershellCoreVersion {
-    pwsh --version | Take-Part -Part 1
+    pwsh --version | Get-StringPart -Part 1
 }
 
 function Get-RubyVersion {
-    ruby --version | Take-Part -Part 1
+    ruby --version | Get-StringPart -Part 1
 }
 
 function Get-GoVersion {
-    go version | Take-Part -Part 2 | Take-Part -Part 1 -Delimiter ('o')
+    go version | Get-StringPart -Part 2 | Get-StringPart -Part 1 -Delimiter ('o')
 }
 
 function Get-KotlinVersion {
-    cmd /c "kotlinc -version 2>&1" | Take-Part -Part 2
+    cmd /c "kotlinc -version 2>&1" | Get-StringPart -Part 2
 }
 
 function Get-PHPVersion {
-    php --version | Out-String | Take-Part -Part 1
+    php --version | Out-String | Get-StringPart -Part 1
 }
 
 function Get-JuliaVersion {
-    julia --version | Take-Part -Part 2
+    julia --version | Get-StringPart -Part 2
 }
 
 function Get-LLVMVersion {
-    (clang --version) -match "clang" | Take-Part -Part 2
+    (clang --version) -match "clang" | Get-StringPart -Part 2
 }
 
 function Get-PerlVersion {
@@ -104,7 +104,7 @@ function Get-PerlVersion {
 }
 
 function Get-NodeVersion {
-    node --version | Take-Part -Part 0 -Delimiter ('v')
+    node --version | Get-StringPart -Part 0 -Delimiter ('v')
 }
 
 function Get-ChocoVersion {
@@ -135,7 +135,7 @@ function Get-HelmVersion {
 }
 
 function Get-PipVersion {
-    (pip --version) -match "pip" | Take-Part -Part 1,4,5
+    (pip --version) -match "pip" | Get-StringPart -Part 1, 4, 5
 }
 
 function Get-CondaVersion {
@@ -144,19 +144,19 @@ function Get-CondaVersion {
 }
 
 function Get-ComposerVersion {
-    composer --version | Take-Part -Part 2
+    composer --version | Get-StringPart -Part 2
 }
 
 function Get-NugetVersion {
-    (nuget help) -match "Nuget Version" | Take-Part -Part 2
+    (nuget help) -match "Nuget Version" | Get-StringPart -Part 2
 }
 
 function Get-AntVersion {
-    ant -version | Take-Part -Part 3
+    ant -version | Get-StringPart -Part 3
 }
 
 function Get-MavenVersion {
-    (mvn -version) -match "Apache Maven" | Take-Part -Part 2
+    (mvn -version) -match "Apache Maven" | Get-StringPart -Part 2
 }
 
 function Get-GradleVersion {
@@ -166,16 +166,16 @@ function Get-GradleVersion {
 }
 
 function Get-SbtVersion {
-    (sbt -version) -match "sbt script" | Take-Part -Part 3
+    (sbt -version) -match "sbt script" | Get-StringPart -Part 3
 }
 
 function Get-DotnetSdks {
     $sdksRawList = dotnet --list-sdks
-    $sdkVersions = $sdksRawList | Foreach-Object {$_.Split()[0]}
+    $sdkVersions = $sdksRawList | Foreach-Object { $_.Split()[0] }
     $sdkPath = $sdksRawList[0].Split(' ', 2)[1] -replace '\[|]'
     [PSCustomObject]@{
         Versions = $sdkVersions
-        Path = $sdkPath
+        Path     = $sdkPath
     }
 }
 
@@ -185,7 +185,7 @@ function Get-DotnetTools {
 
     $toolsList = @()
 
-    foreach  ($dotnetTool in $dotnetTools) {
+    foreach ($dotnetTool in $dotnetTools) {
         $version = Invoke-Expression $dotnetTool.getversion
         $toolsList += [ToolVersionNode]::new($dotnetTool.name, $version)
     }
@@ -194,21 +194,21 @@ function Get-DotnetTools {
 
 function Get-DotnetRuntimes {
     $runtimesRawList = dotnet --list-runtimes
-    $runtimesRawList | Group-Object {$_.Split()[0]} | ForEach-Object {
+    $runtimesRawList | Group-Object { $_.Split()[0] } | ForEach-Object {
         $runtimeName = $_.Name
-        $runtimeVersions = $_.Group | Foreach-Object {$_.split()[1]}
+        $runtimeVersions = $_.Group | Foreach-Object { $_.split()[1] }
         $runtimePath = $_.Group[0].Split(' ', 3)[2] -replace '\[|]'
         [PSCustomObject]@{
-            "Runtime" = $runtimeName
+            "Runtime"  = $runtimeName
             "Versions" = $runtimeVersions
-            "Path" = $runtimePath
+            "Path"     = $runtimePath
         }
     }
 }
 
 function Get-DotnetFrameworkVersions {
     $path = "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX * Tools"
-    return Get-ChildItem -Path $path -Directory | ForEach-Object { $_.Name | Take-Part -Part 1 }
+    return Get-ChildItem -Path $path -Directory | ForEach-Object { $_.Name | Get-StringPart -Part 1 }
 }
 
 function Get-PowerShellAzureModules {
@@ -276,20 +276,21 @@ function Get-CachedDockerImagesTableData {
         $parts = $_.Split("|")
         [PSCustomObject] @{
             "Repository:Tag" = $parts[0]
-            "Digest" = $parts[1]
-            "Created" = $parts[2].split(' ')[0]
+            "Digest"         = $parts[1]
+            "Created"        = $parts[2].split(' ')[0]
         }
     } | Sort-Object -Property "Repository:Tag"
 }
 
 function Get-ShellTarget {
-    return Get-ChildItem C:\shells -File | Select-Object Name, @{n="Target";e={
-        if ($_.Name -eq "msys2bash.cmd") {
-            "C:\msys64\usr\bin\bash.exe"
-        } else {
-            @($_.Target)[0]
+    return Get-ChildItem C:\shells -File | Select-Object Name, @{n = "Target"; e = {
+            if ($_.Name -eq "msys2bash.cmd") {
+                "C:\msys64\usr\bin\bash.exe"
+            } else {
+                @($_.Target)[0]
+            }
         }
-    }} | Sort-Object Name
+    } | Sort-Object Name
 }
 
 function Get-PacmanVersion {
@@ -302,7 +303,7 @@ function Get-PacmanVersion {
 }
 
 function Get-YAMLLintVersion {
-    yamllint --version | Take-Part -Part 1
+    yamllint --version | Get-StringPart -Part 1
 }
 
 function Get-BizTalkVersion {

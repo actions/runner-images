@@ -10,7 +10,9 @@ param(
     [String] [Parameter (Mandatory=$true)] $TenantId,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
-    [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet
+    [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet,
+    [String] [Parameter (Mandatory=$false)] $AllowedInboundIpAddresses = "[]",
+    [hashtable] [Parameter (Mandatory=$False)] $Tags = @{}
 )
 
 if (-not (Test-Path $TemplatePath))
@@ -22,8 +24,6 @@ if (-not (Test-Path $TemplatePath))
 $ImageTemplateName = [io.path]::GetFileName($TemplatePath).Split(".")[0]
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 
-packer validate -syntax-only $TemplatePath
-
 $SensitiveData = @(
     'OSType',
     'StorageAccountLocation',
@@ -34,8 +34,16 @@ $SensitiveData = @(
     ':  ->'
 )
 
+$azure_tags = ($Tags.GetEnumerator() | ForEach-Object { "{0}={1}" -f $_.Key, $_.Value }) -join ","
+
 Write-Host "Show Packer Version"
 packer --version
+
+Write-Host "Download packer plugins"
+packer init $TemplatePath
+
+Write-Host "Validate packer template"
+packer validate -syntax-only $TemplatePath
 
 Write-Host "Build $ImageTemplateName VM"
 packer build    -var "client_id=$ClientId" `
@@ -50,7 +58,8 @@ packer build    -var "client_id=$ClientId" `
                 -var "virtual_network_name=$VirtualNetworkName" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
-                -var "run_validation_diskspace=$env:RUN_VALIDATION_FLAG" `
+                -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+                -var "azure_tags={$azure_tags}" `
                 -color=false `
                 $TemplatePath `
         | Where-Object {

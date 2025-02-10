@@ -1,5 +1,5 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
-Import-Module "$PSScriptRoot/../helpers/Tests.Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
 
 Describe "Powershell" {
     Context "Powershell is installed" {
@@ -9,7 +9,7 @@ Describe "Powershell" {
     }
 
     Context "Powershell Modules" {
-        $modules = Get-ToolsetValue powershellModules
+        $modules = (Get-ToolsetContent).powershellModules
         $withoutVersionsModules = $modules | Where-Object {-not $_.versions} | ForEach-Object {
             @{moduleName = $_.name}
         }
@@ -20,7 +20,7 @@ Describe "Powershell" {
                 @{moduleName = $moduleName; expectedVersion = $_}
             }
         }
-    
+
         It "<moduleName> is installed" -TestCases $withoutVersionsModules {
             param (
                 [string] $moduleName
@@ -28,7 +28,7 @@ Describe "Powershell" {
 
             Get-Module -Name $moduleName -ListAvailable | Should -BeTrue
         }
-    
+
         if ($withVersionsModules) {
             It "<moduleName> with <expectedVersion> is installed" -TestCases $withVersionsModules {
                 param (

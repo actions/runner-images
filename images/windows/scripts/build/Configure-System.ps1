@@ -3,46 +3,38 @@
 ##  Desc:  Applies various configuration settings to the final image
 ################################################################################
 
-Write-Host "Cleanup WinSxS"
-Dism.exe /online /Cleanup-Image /StartComponentCleanup /ResetBase
-
-# Sets the default install version to v1 for new distributions
+# Set default version to 1 for WSL (aka LXSS - Linux Subsystem)
+# The value should be set in the default user registry hive
 # https://github.com/actions/runner-images/issues/5760
 if (Test-IsWin22) {
-    Write-Host "Sets the default install version to v1 for new distributions"
-    Add-DefaultItem -DefaultVariable "DefaultVersion" -Value 1 -Name "DEFAULT\Software\Microsoft\Windows\CurrentVersion\Lxss" -Kind "DWord"
-}
+    Write-Host "Setting WSL default version to 1"
 
-Write-Host "Clean up various directories"
-@(
-    "$env:SystemDrive\Recovery",
-    "$env:SystemRoot\logs",
-    "$env:SystemRoot\winsxs\manifestcache",
-    "$env:SystemRoot\Temp",
-    "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp",
-    "$env:TEMP"
-) | ForEach-Object {
-    if (Test-Path $_) {
-        Write-Host "Removing $_"
-        cmd /c "takeown /d Y /R /f $_ 2>&1" | Out-Null
-        cmd /c "icacls $_ /grant:r administrators:f /t /c /q 2>&1" | Out-Null
-        Remove-Item $_ -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+    Mount-RegistryHive `
+        -FileName "C:\Users\Default\NTUSER.DAT" `
+        -SubKey "HKLM\DEFAULT"
+
+    # Create the key if it doesn't exist
+    $keyPath = "DEFAULT\Software\Microsoft\Windows\CurrentVersion\Lxss"
+    if (-not (Test-Path $keyPath)) {
+        Write-Host "Creating $keyPath key"
+        New-Item -Path (Join-Path "HKLM:\" $keyPath) -Force | Out-Null
     }
+
+    # Set the DefaultVersion value to 1
+    $key = [Microsoft.Win32.Registry]::LocalMachine.OpenSubKey($keyPath, $true)
+    $key.SetValue("DefaultVersion", "1", "DWord")
+    $key.Handle.Close()
+    [System.GC]::Collect()
+
+    Dismount-RegistryHive "HKLM\DEFAULT"
 }
-
-$winInstallDir = "$env:SystemRoot\Installer"
-New-Item -Path $winInstallDir -ItemType Directory -Force | Out-Null
-
-# Remove AllUsersAllHosts profile
-Remove-Item $profile.AllUsersAllHosts -Force -ErrorAction SilentlyContinue | Out-Null
-
-# Clean yarn and npm cache
-cmd /c "yarn cache clean 2>&1" | Out-Null
-cmd /c "npm cache clean --force 2>&1" | Out-Null
 
 # allow msi to write to temp folder
 # see https://github.com/actions/runner-images/issues/1704
 cmd /c "icacls $env:SystemRoot\Temp /grant Users:f /t /c /q 2>&1" | Out-Null
+if ($LASTEXITCODE -ne 0) {
+    throw "Failed to grant Users full control of $env:SystemRoot\Temp"
+}
 
 # Registry settings
 $registrySettings = @(
@@ -67,9 +59,11 @@ $registrySettings = @(
 )
 
 $registrySettings | ForEach-Object {
-    $regPath = $PSItem.Path
-    New-ItemPath -Path $regPath
-    New-ItemProperty @PSItem -Force -ErrorAction Ignore
+    $regPath = $_.Path
+    if (-not (Test-Path $regPath)) {
+        New-Item -Path $regPath -Force -ErrorAction Ignore | Out-Null
+    }
+    New-ItemProperty @_ -Force -ErrorAction Ignore
 } | Out-Null
 
 # Disable Template Services / User Services added by Desktop Experience
@@ -83,7 +77,9 @@ $regUserServicesToDisables = @(
 
 $regUserServicesToDisables | ForEach-Object {
     $regPath = $_
-    New-ItemPath -Path $regPath
+    if (-not (Test-Path $regPath)) {
+        New-Item -Path $regPath -Force -ErrorAction Ignore | Out-Null
+    }
     New-ItemProperty -Path $regPath -Name "Start" -Value 4 -PropertyType DWORD -Force -ErrorAction Ignore
     New-ItemProperty -Path $regPath -Name "UserServiceFlags" -Value 0 -PropertyType DWORD -Force -ErrorAction Ignore
 } | Out-Null
@@ -97,15 +93,15 @@ $servicesToDisable = @(
     'wuauserv'
     'DiagTrack'
     'dmwappushservice'
-    'PcaSvc'
+    $(if(-not (Test-IsWin25)){'PcaSvc'})
     'SysMain'
     'gupdate'
     'gupdatem'
-    'StorSvc'
-)
-
-$servicesToDisable | Stop-SvcWithErrHandling
-$servicesToDisable | Set-SvcWithErrHandling -Arguments @{StartupType = "Disabled"}
+    $(if(-not (Test-IsWin25)){'StorSvc'})
+) | Get-Service -ErrorAction SilentlyContinue
+Stop-Service $servicesToDisable
+$servicesToDisable.WaitForStatus('Stopped', "00:01:00")
+$servicesToDisable | Set-Service -StartupType Disabled
 
 # Disable scheduled tasks
 $allTasksInTaskPath = @(
@@ -148,4 +144,4 @@ $disableTaskNames | ForEach-Object {
     Disable-ScheduledTask @PSItem -ErrorAction Ignore
 } | Out-Null
 
-Write-Host "Finalize-VM.ps1 - completed"
+Write-Host "Configure-System.ps1 - completed"

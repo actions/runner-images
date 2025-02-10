@@ -39,14 +39,15 @@ function Invoke-SoftwareUpdateArm64 {
     $command = "sw_vers"
     $guestMacosVersion = Invoke-SSHPassCommand -HostName $HostName -Command $command
     switch -regex ($guestMacosVersion[1]) {
-        '13.\d' { $nextOSVersion = 'Sonoma'         }
-        '14.\d' { $nextOSVersion = 'NotYetDefined'  }
+        '12.\d' { $nextOSVersion = 'macOS Ventura|macOS Sonoma|macOS Sequoia' }
+        '13.\d' { $nextOSVersion = 'macOS Sonoma|macOS Sequoia' }
+        '14.\d' { $nextOSVersion = 'macOS Sequoia' }
     }
 
     $url = "https://raw.githubusercontent.com/actions/runner-images/main/images/macos/assets/auto-software-update-arm64.exp"
     $script = Invoke-RestMethod -Uri $url
-    foreach ($update in $listOfUpdates) {
-        if ($update -notmatch "$nextOSVersion") {
+    foreach ($update in $ListOfUpdates) {
+        if ($update -notmatch $nextOSVersion) {
             $updatedScript = $script.Replace("MACOSUPDATE", $($($update.trim()).Replace(" ","\ ")))
             $base64 = [Convert]::ToBase64String($updatedScript.ToCharArray())
             $command = "echo $base64 | base64 --decode > ./auto-software-update-arm64.exp;chmod +x ./auto-software-update-arm64.exp; ./auto-software-update-arm64.exp ${Password};rm ./auto-software-update-arm64.exp"
@@ -109,9 +110,7 @@ function Get-MacOSIPSWInstaller {
         [bool] $BetaSearch = $false
     )
 
-    if ($MacOSVersion -eq [version] "12.0") {
-        $MacOSName = "macOS Monterey"
-    } elseif ($MacOSVersion -eq [version] "13.0") {
+    if ($MacOSVersion -eq [version] "13.0") {
         $MacOSName = "macOS Ventura"
     } elseif ($MacOSVersion -eq [version] "14.0") {
         $MacOSName = "macOS Sonoma"
@@ -171,11 +170,11 @@ function Get-MacOSInstaller {
         Write-Host "`t[*] Beta Version requested. Enrolling machine to DeveloperSeed"
         sudo $seedutil enroll DeveloperSeed | Out-Null
     } else {
-        Write-Host "`t[*] Reseting the seed before requesting stable versions"
+        Write-Host "`t[*] Resetting the seed before requesting stable versions"
         sudo $seedutil unenroll | Out-Null
     }
 
-    # Validate there is no softwareupdate at the moment
+    # Validate there is no software update at the moment
     Test-SoftwareUpdate
 
     # Validate availability OSVersion
@@ -266,36 +265,13 @@ function Install-SoftwareUpdate {
         [array] $listOfUpdates,
         [string] $Password
     )
-    # If an update is happening on macOS 12 or 13 we will use the prepared list of updates, otherwise, we will install all updates.
-    $command = "sw_vers"
-    $guestMacosVersion = Invoke-SSHPassCommand -HostName $HostName -Command $command
-    if ($guestMacosVersion[1] -match "12") {
-        foreach ($update in $listOfUpdates) {
-            # Filtering updates that contain "Ventura" word
-            if ($update -notmatch "Ventura") {
-                $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
-                Invoke-SSHPassCommand -HostName $HostName -Command $command
-            }
-        }
-    } elseif ($guestMacosVersion[1] -match "13") {
-        $osArch = $(arch)
-        if ($osArch -eq "arm64") {
-            Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password -ListOfUpdates $listOfUpdates
-        } else {
-            foreach ($update in $listOfUpdates) {
-                # Filtering updates that contain "Sonoma" word
-                if ($update -notmatch "Sonoma") {
-                    $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
-                    Invoke-SSHPassCommand -HostName $HostName -Command $command
-                }
-            }
-        }
+    # If an update is happening on macOS arm64 we will use the additional tool to install updates.
+    $osArch = $(arch)
+    if ($osArch -eq "arm64") {
+        Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password -ListOfUpdates $listOfUpdates
     } else {
-        $osArch = $(arch)
-        if ($osArch -eq "arm64") {
-            Invoke-SoftwareUpdateArm64 -HostName $HostName -Password $Password -ListOfUpdates $listOfUpdates
-        } else {
-            $command = "sudo /usr/sbin/softwareupdate --all --install --restart --verbose"
+        foreach ($update in $listOfUpdates) {
+            $command = "sudo /usr/sbin/softwareupdate --restart --verbose --install '$($update.trim())'"
             Invoke-SSHPassCommand -HostName $HostName -Command $command
         }
     }
@@ -348,14 +324,17 @@ function Invoke-WithRetry {
         [int] $RetryCount = 20,
         [int] $Seconds = 60
     )
-
     while ($RetryCount -gt 0) {
-        if ($Command) {
-            $result = & $Command
-        }
+        try {
+            if ($Command) {
+                $result = & $Command
+            }
 
-        if (& $BreakCondition) {
-            return $result
+            if (& $BreakCondition) {
+                return $result
+            }
+        } catch {
+            Write-Host "`t    [!] Error during command execution: $_"
         }
 
         $RetryCount--

@@ -1,3 +1,8 @@
+################################################################################
+##  File:  Install-RootCA.ps1
+##  Desc:  Install Root CA certificates
+################################################################################
+
 # https://www.sysadmins.lv/blog-en/how-to-retrieve-certificate-purposes-property-with-cryptoapi-and-powershell.aspx
 # https://www.sysadmins.lv/blog-en/dump-authroot-and-disallowed-certificates-with-powershell.aspx
 # https://www.sysadmins.lv/blog-en/constraining-extended-key-usages-in-microsoft-windows.aspx
@@ -26,14 +31,14 @@ function Add-ExtendedCertType {
 
 function Get-CertificatesWithoutPropId {
     # List installed certificates
-    $certs = Get-ChildItem -Path Cert:\LocalMachine\Root
+    $certs = Get-ChildItem -Path "Cert:\LocalMachine\Root"
 
     Write-Host "Certificates without CERT_NOT_BEFORE_FILETIME_PROP_ID property"
     $certsWithoutPropId = @{}
     $certs | ForEach-Object -Process {
         $certHandle = $_.Handle
         $isPropertySet = [PKI.Cert]::CertGetCertificateContextProperty(
-            $certHandle, $CERT_NOT_BEFORE_FILETIME_PROP_ID, $null, [ref]$null
+            $certHandle, $CERT_NOT_BEFORE_FILETIME_PROP_ID, $null, [ref] $null
         )
         if (-not $isPropertySet) {
             Write-Host "Subject: $($_.Subject)"
@@ -43,31 +48,17 @@ function Get-CertificatesWithoutPropId {
     $certsWithoutPropId
 }
 
-function Invoke-WithRetry {
-     <#
-        .SYNOPSIS
-        Runs $command block until $BreakCondition or $RetryCount is reached.
-     #>
-
-     param([ScriptBlock]$Command, [ScriptBlock] $BreakCondition, [int] $RetryCount=5, [int] $Sleep=10)
-     
-     $c = 0
-     while($c -lt $RetryCount){
-        $result = & $Command
-        if(& $BreakCondition){
-            break
-        }
-        Start-Sleep $Sleep
-        $c++
-     }
-     $result
-}
-
 function Import-SSTFromWU {
     # Serialized Certificate Store File
     $sstFile = "$env:TEMP\roots.sst"
     # Generate SST from Windows Update
-    $result = Invoke-WithRetry { certutil.exe -generateSSTFromWU $sstFile } {$LASTEXITCODE -eq 0}
+    $result = Invoke-ScriptBlockWithRetry -RetryCount 5 -RetryIntervalSeconds 10 -Command {
+        $r = certutil.exe -generateSSTFromWU $sstFile
+        if ($LASTEXITCODE -ne 0) {
+            throw "failed to generate $sstFile sst file`n$o"
+        }
+        return $r
+    }
     if ($LASTEXITCODE -ne 0) {
         Write-Host "[Error]: failed to generate $sstFile sst file`n$result"
         exit $LASTEXITCODE
@@ -79,16 +70,13 @@ function Import-SSTFromWU {
         exit $LASTEXITCODE
     }
 
-    try {
-        Import-Certificate -FilePath $sstFile -CertStoreLocation Cert:\LocalMachine\Root
-    } catch {
-        Write-Host "[Error]: failed to import ROOT CA`n$_"
-        exit 1
-    }
+    Import-Certificate -FilePath $sstFile -CertStoreLocation Cert:\LocalMachine\Root
 }
 
 function Clear-CertificatesPropId {
-    param([hashtable]$CertsWithoutPropId)
+    param(
+        [hashtable] $CertsWithoutPropId
+    )
 
     # List installed certificates
     $certs = Get-ChildItem -Path Cert:\LocalMachine\Root

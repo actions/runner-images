@@ -6,43 +6,32 @@
 # Disable Edge auto-updates
 Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
 
-# Install Microsoft Edge WebDriver
-Write-Host "Install Edge WebDriver..."
-$EdgeDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\EdgeDriver"
-if (-not (Test-Path -Path $EdgeDriverPath)) {
-    New-Item -Path $EdgeDriverPath -ItemType Directory -Force
+Write-Host "Get the Microsoft Edge WebDriver version..."
+$edgeBinaryPath = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe").'(default)'
+[version] $edgeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($edgeBinaryPath).ProductVersion
+
+$edgeDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\EdgeDriver"
+if (-not (Test-Path -Path $edgeDriverPath)) {
+    New-Item -Path $edgeDriverPath -ItemType Directory -Force
 }
 
-Write-Host "Get the Microsoft Edge WebDriver version..."
-$RegistryPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths"
-$EdgePath = (Get-ItemProperty "$RegistryPath\msedge.exe").'(default)'
-[version]$EdgeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($EdgePath).ProductVersion
-$EdgeDriverVersionUrl = "https://msedgedriver.azureedge.net/LATEST_RELEASE_$($EdgeVersion.Major)_WINDOWS"
-
-$EdgeDriverVersionFile = Start-DownloadWithRetry -Url $EdgeDriverVersionUrl -Name "versioninfo.txt" -DownloadPath $EdgeDriverPath
+$versionInfoUrl = "https://msedgedriver.azureedge.net/LATEST_RELEASE_$($edgeVersion.Major)_WINDOWS"
+$versionInfoFile = Invoke-DownloadWithRetry -Url $versionInfoUrl -Path "$edgeDriverPath\versioninfo.txt"
+$latestVersion = Get-Content -Path $versionInfoFile
 
 Write-Host "Download Microsoft Edge WebDriver..."
-$EdgeDriverLatestVersion = Get-Content -Path $EdgeDriverVersionFile
-$EdgeDriverArchName = "edgedriver_win64.zip"
-
-
-$EdgeDriverDownloadUrl = "https://msedgedriver.azureedge.net/${EdgeDriverLatestVersion}/${EdgeDriverArchName}"
-
-$EdgeDriverArchPath = Start-DownloadWithRetry -Url $EdgeDriverDownloadUrl -Name $EdgeDriverArchName
+$downloadUrl = "https://msedgedriver.azureedge.net/$latestVersion/edgedriver_win64.zip"
+$archivePath = Invoke-DownloadWithRetry $downloadUrl
 
 Write-Host "Expand Microsoft Edge WebDriver archive..."
-Extract-7Zip -Path $EdgeDriverArchPath -DestinationPath $EdgeDriverPath
+Expand-7ZipArchive -Path $archivePath -DestinationPath $edgeDriverPath
 
 #Validate the EdgeDriver signature
-$EdgeDriverSignatureThumbprint = ("7C94971221A799907BB45665663BBFD587BAC9F8", "70E52D50651BB9E8DC08DE566C4DD5713833B038")
-Test-FileSignature -FilePath "$EdgeDriverPath\msedgedriver.exe" -ExpectedThumbprint $EdgeDriverSignatureThumbprint
+$signatureThumbprint = "7920AC8FB05E0FFFE21E8FF4B4F03093BA6AC16E"
+Test-FileSignature -Path "$edgeDriverPath\msedgedriver.exe" -ExpectedThumbprint $signatureThumbprint
 
 Write-Host "Setting the environment variables..."
 [Environment]::SetEnvironmentVariable("EdgeWebDriver", $EdgeDriverPath, "Machine")
-
-$regEnvKey = 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Environment\'
-$PathValue = Get-ItemPropertyValue -Path $regEnvKey -Name 'Path'
-$PathValue += ";$EdgeDriverPath\"
-Set-ItemProperty -Path $regEnvKey -Name 'Path' -Value $PathValue
+Add-MachinePathItem "$edgeDriverPath\"
 
 Invoke-PesterTests -TestFile "Browsers" -TestName "Edge"

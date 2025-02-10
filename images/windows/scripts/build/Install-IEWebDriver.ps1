@@ -4,29 +4,21 @@
 ################################################################################
 
 $seleniumMajorVersion = (Get-ToolsetContent).selenium.version
-$ieDriverUrl = Get-GitHubPackageDownloadUrl `
-    -RepoOwner "SeleniumHQ" `
-    -RepoName "selenium" `
-    -BinaryName "IEDriverServer_x64" `
-    -Version $seleniumMajorVersion `
-    -UrlFilter "*{BinaryName}_{Version}.zip" `
-    -LatestReleaseOnly $false
+$ieDriverUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "SeleniumHQ/selenium" `
+    -Version "$seleniumMajorVersion.*" `
+    -Asset "IEDriverServer_x64_*.zip"
 
 # Download IE selenium driver
-try {
-    Write-Host "Selenium IEDriverServer download and install..."
-    $driverZipFile = Start-DownloadWithRetry -Url $ieDriverUrl -Name "SeleniumWebDrivers.zip"
-} catch {
-    Write-Error "[!] Failed to download $ieDriverUrl"
-    exit 1
-}
+Write-Host "Selenium IEDriverServer download and install..."
+$driverZipFile = Invoke-DownloadWithRetry $ieDriverUrl
 
 $ieDriverPath = "C:\SeleniumWebDrivers\IEDriver"
 if (-not (Test-Path -Path $ieDriverPath)) {
-    $null = New-Item -Path $ieDriverPath -ItemType Directory -Force
+    New-Item -Path $ieDriverPath -ItemType Directory -Force | Out-Null
 }
 
-Extract-7Zip -Path $driverZipFile -DestinationPath $ieDriverPath
+Expand-7ZipArchive -Path $driverZipFile -DestinationPath $ieDriverPath
 Remove-Item $driverZipFile
 
 Write-Host "Get the IEDriver version..."

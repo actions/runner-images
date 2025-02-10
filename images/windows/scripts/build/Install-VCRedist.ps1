@@ -1,16 +1,20 @@
 ################################################################################
 ##  File:  Install-VCRedist.ps1
 ##  Desc:  Install Visual C++ Redistributable
+##  Supply chain security: checksum validation
 ################################################################################
 
-$vc2010x86Name = "vcredist_x86.exe"
-$vc2010x86URI = "https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/${vc2010x86Name}"
-$vc2010x64Name = "vcredist_x64.exe"
-$vc2010x64URI = "https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC/${Vc2010x64Name}"
+$baseUrl = "https://download.microsoft.com/download/1/6/5/165255E7-1014-4D0A-B094-B6A430A6BFFC"
 $argumentList = ("/install", "/quiet", "/norestart")
-$vcSignatureThumbprint = "ABDCA79AF9DD48A0EA702AD45260B3C03093FB4B"
 
-Install-Binary -Url $vc2010x86URI -Name $vc2010x86Name -ArgumentList $argumentList -ExpectedSignature $vcSignatureThumbprint
-Install-Binary -Url $vc2010x64URI -Name $vc2010x64Name -ArgumentList $argumentList -ExpectedSignature $vcSignatureThumbprint
+Install-Binary `
+    -Url "${baseUrl}/vcredist_x86.exe" `
+    -InstallArgs $argumentList `
+    -ExpectedSHA256Sum '99DCE3C841CC6028560830F7866C9CE2928C98CF3256892EF8E6CF755147B0D8'
+
+Install-Binary `
+    -Url "${baseUrl}/vcredist_x64.exe" `
+    -InstallArgs $argumentList `
+    -ExpectedSHA256Sum 'F3B7A76D84D23F91957AA18456A14B4E90609E4CE8194C5653384ED38DADA6F3'
 
 Invoke-PesterTests -TestFile "Tools" -TestName "VCRedist"

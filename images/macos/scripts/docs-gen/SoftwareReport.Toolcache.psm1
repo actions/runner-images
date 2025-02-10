@@ -37,14 +37,14 @@ function Build-ToolcacheSection {
 
     $nodes = @()
 
-    if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64)) {
+    if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonoma) -and (-not $os.IsSequoia)) {
         $nodes += @(
-            [ToolVersionsListNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', "List"),
             [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', "List")
         )
     }
 
     $nodes += @(
+        [ToolVersionsListNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', "List")
         [ToolVersionsListNode]::new("Python", $(Get-ToolcachePythonVersions), '^\d+\.\d+', "List"),
         [ToolVersionsListNode]::new("Node.js", $(Get-ToolcacheNodeVersions), '^\d+', "List"),
         [ToolVersionsListNode]::new("Go", $(Get-ToolcacheGoVersions), '^\d+\.\d+', "List")
@@ -54,7 +54,7 @@ function Build-ToolcacheSection {
 }
 
 function Get-PowerShellModules {
-    $modules = (Get-ToolsetValue powershellModules).name
+    $modules = ((Get-ToolsetContent).powershellModules).name
     $modules | ForEach-Object {
         $moduleName = $_
         $moduleVersions = Get-Module -Name $moduleName -ListAvailable | Select-Object -ExpandProperty Version | Sort-Object -Unique

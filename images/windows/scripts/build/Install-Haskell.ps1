@@ -2,7 +2,6 @@
 ##  File:  Install-Haskell.ps1
 ##  Desc:  Install Haskell for Windows
 ################################################################################
-Import-Module "$env:ChocolateyInstall\helpers\chocolateyProfile.psm1"
 
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
 Write-Host 'Installing ghcup...'
@@ -21,35 +20,50 @@ $ghcupDownloadURL = "https://downloads.haskell.org/~ghcup/x86_64-mingw64-ghcup.e
 
 New-Item -Path "$ghcupPrefix\ghcup" -ItemType 'directory' -ErrorAction SilentlyContinue | Out-Null
 New-Item -Path "$ghcupPrefix\ghcup\bin" -ItemType 'directory' -ErrorAction SilentlyContinue | Out-Null
-Start-DownloadWithRetry -Url $ghcupDownloadURL -Name "ghcup.exe" -DownloadPath "$ghcupPrefix\ghcup\bin"
+Invoke-DownloadWithRetry -Url $ghcupDownloadURL -Path "$ghcupPrefix\ghcup\bin\ghcup.exe"
 
-[System.Environment]::SetEnvironmentVariable("GHCUP_INSTALL_BASE_PREFIX", $ghcupPrefix, "Machine")
-[System.Environment]::SetEnvironmentVariable("GHCUP_MSYS2", $msysPath, "Machine")
-[System.Environment]::SetEnvironmentVariable("CABAL_DIR", $cabalDir, "Machine")
+[Environment]::SetEnvironmentVariable("GHCUP_INSTALL_BASE_PREFIX", $ghcupPrefix, "Machine")
+[Environment]::SetEnvironmentVariable("GHCUP_MSYS2", $msysPath, "Machine")
+[Environment]::SetEnvironmentVariable("CABAL_DIR", $cabalDir, "Machine")
 Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
+Update-Environment
 
-Update-SessionEnvironment
-
-# Get 3 latest versions of GHC
-$Versions = ghcup list -t ghc -r | Where-Object {$_ -notlike "prerelease"}
-$VersionsOutput = [Version[]]($Versions | ForEach-Object{ $_.Split(' ')[1]; })
-$LatestMajorMinor = $VersionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version]$_.Name } | Select-Object -last 3
-$VersionsList = $LatestMajorMinor | ForEach-Object { $_.Group | Select-Object -Last 1 } | Sort-Object
+# Get 1 or 3 latest versions of GHC depending on the OS version
+If (Test-IsWin25) {
+    $numberOfVersions = 1
+} else {
+    $numberOfVersions = 3
+}
+$versions = ghcup list -t ghc -r | Where-Object { $_ -notlike "prerelease" }
+$versionsOutput = [version[]]($versions | ForEach-Object { $_.Split(' ')[1]; })
+$latestMajorMinor = $versionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version] $_.Name } | Select-Object -last $numberOfVersions
+$versionsList = $latestMajorMinor | ForEach-Object { $_.Group | Select-Object -Last 1 } | Sort-Object
 
 # The latest version will be installed as a default
-ForEach ($version in $VersionsList)
-{
+foreach ($version in $versionsList) {
     Write-Host "Installing ghc $version..."
     ghcup install ghc $version
+    if ($LastExitCode -ne 0) {
+        throw "GHC installation failed with exit code $LastExitCode"
+    }
     ghcup set ghc $version
+    if ($LastExitCode -ne 0) {
+        throw "Setting GHC version failed with exit code $LastExitCode"
+    }
 }
 
 # Add default version of GHC to path
-$DefaultGhcVersion = $VersionsList | Select-Object -Last 1
-ghcup set ghc $DefaultGhcVersion
+$defaultGhcVersion = $versionsList | Select-Object -Last 1
+ghcup set ghc $defaultGhcVersion
+if ($LastExitCode -ne 0) {
+    throw "Setting default GHC version failed with exit code $LastExitCode"
+}
 
 Write-Host 'Installing cabal...'
 ghcup install cabal latest
+if ($LastExitCode -ne 0) {
+    throw "Cabal installation failed with exit code $LastExitCode"
+}
 
 Invoke-PesterTests -TestFile 'Haskell'

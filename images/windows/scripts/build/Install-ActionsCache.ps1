@@ -4,16 +4,24 @@
 ##  Maintainer: #actions-runtime and @TingluoHuang
 ################################################################################
 
-if (-not (Test-Path $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE)) {
+$actionArchiveCache = "C:\actionarchivecache\"
+
+if (-not (Test-Path $actionArchiveCache)) {
     Write-Host "Creating action archive cache folder"
-    New-Item -ItemType Directory -Path $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE | Out-Null
+    New-Item -ItemType Directory -Path $actionArchiveCache | Out-Null
 }
 
-$downloadUrl = Get-GitHubPackageDownloadUrl -RepoOwner "actions" -RepoName "action-versions" -Version "latest" -UrlFilter "*/v{Version}/action-versions.zip"
+$downloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "actions/action-versions" `
+    -Version "latest" `
+    -Asset "action-versions.zip"
+
 Write-Host "Download Latest action-versions archive from $downloadUrl"
-$actionVersionsArchivePath = Start-DownloadWithRetry -Url $downloadUrl -Name "action-versions.zip"
+$actionVersionsArchivePath = Invoke-DownloadWithRetry $downloadUrl
 
 Write-Host "Expand action-versions archive"
-Extract-7Zip -Path $actionVersionsArchivePath -DestinationPath $env:ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE
+Expand-7ZipArchive -Path $actionVersionsArchivePath -DestinationPath $actionArchiveCache
+
+[Environment]::SetEnvironmentVariable("ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE", $actionArchiveCache, "Machine")
 
 Invoke-PesterTests -TestFile "ActionArchiveCache"

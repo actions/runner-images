@@ -13,11 +13,15 @@ Describe "WindowsFeatures" {
     it "Check WSL is on path" {
         (Get-Command -Name 'wsl') | Should -BeTrue
     }
+
+    it "Check WLAN service is stopped" {
+        (Get-Service -Name wlansvc).Status | Should -Be "Stopped"
+    }
 }
 
 Describe "DiskSpace" {
     It "The image has enough disk space"{
-        $availableSpaceMB =  [math]::Round((Get-PSDrive -Name C).Free / 1MB)
+        $availableSpaceMB = [math]::Round((Get-PSDrive -Name C).Free / 1MB)
         $minimumFreeSpaceMB = 18 * 1024
 
         $availableSpaceMB | Should -BeGreaterThan $minimumFreeSpaceMB
@@ -26,7 +30,7 @@ Describe "DiskSpace" {
 
 Describe "DynamicPorts" {
     It "Test TCP dynamicport start=49152 num=16384" {
-        $tcpPorts = Get-NetTCPSetting | Where-Object {$_.SettingName -ne "Automatic"} | Where-Object {
+        $tcpPorts = Get-NetTCPSetting | Where-Object { $_.SettingName -ne "Automatic" } | Where-Object {
             $_.DynamicPortRangeStartPort -ne 49152 -or $_.DynamicPortRangeNumberOfPorts -ne 16384
         }
 
@@ -52,7 +56,7 @@ Describe "GDIProcessHandleQuota" {
 }
 
 Describe "Test Signed Drivers" {
-    It "bcdedit testsigning should be Yes"{
+    It "bcdedit testsigning should be Yes" {
         "$(bcdedit)" | Should -Match "testsigning\s+Yes"
     }
 }
@@ -62,19 +66,25 @@ Describe "Windows Updates" {
         "$env:windir\WindowsUpdateDone.txt" | Should -Exist
     }
 
-    $testCases = Get-WindowsUpdatesHistory | Sort-Object Title | ForEach-Object {
+    $testCases = Get-WindowsUpdateStates | Sort-Object Title | ForEach-Object {
         @{
             Title = $_.Title
-            Status = $_.Status
+            State = $_.State
         }
     }
 
     It "<Title>" -TestCases $testCases {
-        $expect = "Successful"
+        $expect = "Installed"
         if ( $Title -match "Microsoft Defender Antivirus" ) {
-            $expect = "Successful", "Failure", "InProgress"
+            $expect = "Installed", "Failed", "Running"
         }
 
-        $Status | Should -BeIn $expect
+        $State | Should -BeIn $expect
+    }
+}
+
+Describe "WSL2" -Skip:((Test-IsWin19) -or (Test-IsWin22)) {
+    It "WSL status should return zero exit code" {
+        "wsl --status" | Should -ReturnZeroExitCode
     }
 }

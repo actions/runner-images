@@ -4,188 +4,219 @@
 ##  Desc:  Helper functions for installing tools
 ################################################################################
 
-download_with_retries() {
-# Due to restrictions of bash functions, positional arguments are used here.
-# In case if you using latest argument NAME, you should also set value to all previous parameters.
-# Example: download_with_retries $ANDROID_SDK_URL "." "android_sdk.zip"
-    local URL="$1"
-    local DEST="${2:-.}"
-    local NAME="${3:-${URL##*/}}"
-    local COMPRESSED="$4"
+download_with_retry() {
+    local url=$1
+    local download_path=$2
 
-    if [[ $COMPRESSED == "compressed" ]]; then
-        local COMMAND="curl $URL -4 -sL --compressed -o '$DEST/$NAME' -w '%{http_code}'"
-    else
-        local COMMAND="curl $URL -4 -sL -o '$DEST/$NAME' -w '%{http_code}'"
+    if [ -z "$download_path" ]; then
+        download_path="/tmp/$(basename "$url")"
     fi
 
-    # Save current errexit state and disable it to prevent unexpected exit on error
-    if echo $SHELLOPTS | grep '\(^\|:\)errexit\(:\|$\)' > /dev/null;
-    then
-        local ERR_EXIT_ENABLED=true
-    else
-        local ERR_EXIT_ENABLED=false
-    fi
-    set +e
+    echo "Downloading package from $url to $download_path..." >&2
 
-    echo "Downloading '$URL' to '${DEST}/${NAME}'..."
-    retries=20
     interval=30
-    while [ $retries -gt 0 ]; do
-        ((retries--))
-        test "$ERR_EXIT_ENABLED" = true && set +e
-        http_code=$(eval $COMMAND)
-        exit_code=$?
-        test "$ERR_EXIT_ENABLED" = true && set -e
-        if [ $http_code -eq 200 ] && [ $exit_code -eq 0 ]; then
-            echo "Download completed"
-            return 0
+    download_start_time=$(date +%s)
+
+    for ((retries=20; retries>0; retries--)); do
+        attempt_start_time=$(date +%s)
+        if http_code=$(curl -4sSLo "$download_path" "$url" -w '%{http_code}'); then
+            attempt_seconds=$(($(date +%s) - attempt_start_time))
+            if [ "$http_code" -eq 200 ]; then
+                echo "Package downloaded in $attempt_seconds seconds" >&2
+                break
+            else
+                echo "Received HTTP status code $http_code after $attempt_seconds seconds" >&2
+            fi
         else
-            echo "Error — Either HTTP response code for '$URL' is wrong - '$http_code' or exit code is not 0 - '$exit_code'. Waiting $interval seconds before the next attempt, $retries attempts left"
-            sleep $interval
+            attempt_seconds=$(($(date +%s) - attempt_start_time))
+            echo "Package download failed in $attempt_seconds seconds" >&2
         fi
+
+        if [ "$retries" -le 1 ]; then
+            total_seconds=$(($(date +%s) - download_start_time))
+            echo "Package download failed after $total_seconds seconds" >&2
+            exit 1
+        fi
+
+        echo "Waiting $interval seconds before retrying (retries left: $retries)..." >&2
+        sleep $interval
     done
 
-    echo "Could not download $URL"
-    return 1
-}
-
-## Use dpkg to figure out if a package has already been installed
-## Example use:
-## if ! IsPackageInstalled packageName; then
-##     echo "packageName is not installed!"
-## fi
-IsPackageInstalled() {
-    dpkg -S $1 &> /dev/null
-}
-
-verlte() {
-    sortedVersion=$(echo -e "$1\n$2" | sort -V | head -n1)
-    [  "$1" = "$sortedVersion" ]
-}
-
-get_toolset_path() {
-    echo "/imagegeneration/installers/toolset.json"
+    echo "$download_path"
 }
 
 get_toolset_value() {
-    local toolset_path=$(get_toolset_path)
+    local toolset_path="${INSTALLER_SCRIPT_FOLDER}/toolset.json"
     local query=$1
+
     echo "$(jq -r "$query" $toolset_path)"
 }
 
-get_github_package_download_url() {
-    local REPO_ORG=$1
-    local FILTER=$2
-    local VERSION=$3
-    local SEARCH_IN_COUNT="100"
+get_github_releases_by_version() {
+    local repo=$1
+    local version=${2:-".+"}
+    local allow_pre_release=${3:-false}
+    local with_assets_only=${4:-false}
 
-    json=$(curl -fsSL "https://api.github.com/repos/${REPO_ORG}/releases?per_page=${SEARCH_IN_COUNT}")
+    page_size="100"
 
-    if [ -n "$VERSION" ]; then
-        tagName=$(echo $json | jq -r '.[] | select(.prerelease==false).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | egrep "\w*${VERSION}" | tail -1)
-    else
-        tagName=$(echo $json | jq -r '.[] | select((.prerelease==false) and (.assets | length > 0)).tag_name' | sort --unique --version-sort | egrep -v ".*-[a-z]|beta" | tail -1)
-    fi
+    json=$(curl -fsSL "https://api.github.com/repos/${repo}/releases?per_page=${page_size}")
 
-    downloadUrl=$(echo $json | jq -r ".[] | select(.tag_name==\"${tagName}\").assets[].browser_download_url | select(${FILTER})" | head -n 1)
-    if [ -z "$downloadUrl" ]; then
-        echo "Failed to parse a download url for the '${tagName}' tag using '${FILTER}' filter"
+    if [[ -z "$json" ]]; then
+        echo "Failed to get releases" >&2
         exit 1
     fi
-    echo $downloadUrl
+
+    if [[ $with_assets_only == "true" ]]; then
+        json=$(echo $json | jq -r '.[] | select(.assets | length > 0)')
+    else
+        json=$(echo $json | jq -r '.[]')
+    fi
+
+    if [[ $allow_pre_release == "true" ]]; then
+        json=$(echo $json | jq -r '.')
+    else
+        json=$(echo $json | jq -r '. | select(.prerelease==false)')
+    fi
+
+    # Filter out rc/beta/etc releases, convert to numeric version and sort
+    json=$(echo $json | jq '. | select(.tag_name | test(".*-[a-z]|beta") | not)' | jq '.tag_name |= gsub("[^\\d.]"; "")' | jq -s 'sort_by(.tag_name | split(".") | map(tonumber))')
+
+    # Select releases matching version
+    if [[ $version == "latest" ]]; then
+        json_filtered=$(echo $json | jq .[-1])
+    elif [[ $version == *"+"* ]] || [[ $version == *"*"* ]]; then
+        json_filtered=$(echo $json | jq --arg version $version '.[] | select(.tag_name | test($version))')
+    else
+        json_filtered=$(echo $json | jq --arg version $version '.[] | select(.tag_name | contains($version))')
+    fi
+
+    if [[ -z "$json_filtered" ]]; then
+        echo "Failed to get releases from ${repo} matching version ${version}" >&2
+        echo "Available versions: $(echo "$json" | jq -r '.tag_name')" >&2
+        exit 1
+    fi
+
+    echo $json_filtered
 }
 
-get_github_package_hash() {
-    local repo_owner=$1
-    local repo_name=$2
-    local file_name=$3
-    local url=$4
-    local version=${5:-"latest"}
-    local prerelease=${6:-false}
-    local delimiter=${7:-'|'}
-    local word_number=${8:-2}
+resolve_github_release_asset_url() {
+    local repo=$1
+    local url_filter=$2
+    local version=${3:-".+"}
+    local allow_pre_release=${4:-false}
+    local allow_multiple_matches=${5:-false}
 
-    if [[ -z "$file_name" ]]; then
-        echo "File name is not specified."
+    matching_releases=$(get_github_releases_by_version "${repo}" "${version}" "${allow_pre_release}" "true")
+    matched_url=$(echo $matching_releases | jq -r ".assets[].browser_download_url | select(${url_filter})")
+
+    if [[ -z "$matched_url" ]]; then
+        echo "Found no download urls matching pattern: ${url_filter}" >&2
+        echo "Available download urls: $(echo "$matching_releases" | jq -r '.assets[].browser_download_url')" >&2
         exit 1
     fi
 
-    if [[ -n "$url" ]]; then
-        release_url="$url"
-    else
-        if [ "$version" == "latest" ]; then
-            release_url="https://api.github.com/repos/${repo_owner}/${repo_name}/releases/latest"
+    if [[ "$(echo "$matched_url" | wc -l)" -gt 1 ]]; then
+        if [[ $allow_multiple_matches == "true" ]]; then
+            matched_url=$(echo "$matched_url" | tail -n 1)
         else
-            json=$(curl -fsSL "https://api.github.com/repos/${repo_owner}/${repo_name}/releases?per_page=100")
-            tags=$(echo "$json" | jq -r --arg prerelease "$prerelease" '.[] | select(.prerelease == ($prerelease | test("true"; "i"))) | .tag_name')
-            tag=$(echo "$tags" | grep -o "$version")
-            if [[ "$(echo "$tag" | wc -l)" -gt 1 ]]; then
-                echo "Multiple tags found matching the version $version. Please specify a more specific version."
-                exit 1
-            fi
-            if [[ -z "$tag" ]]; then
-                echo "Failed to get a tag name for version $version."
-                exit 1
-            fi
-            release_url="https://api.github.com/repos/${repo_owner}/${repo_name}/releases/tags/$tag"
+            echo "Multiple matches found for ${version} version and ${url_filter} URL filter. Please make filters more specific" >&2
+            exit 1
         fi
     fi
 
-    body=$(curl -fsSL "$release_url" | jq -r '.body' | tr -d '`')
-    matching_line=$(echo "$body" | grep "$file_name")
-    if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
-        echo "Multiple lines found included the file $file_name. Please specify a more specific file name."
-        exit 1
-    fi
-    if [[ -z "$matching_line" ]]; then
-        echo "File name '$file_name' not found in release body."
-        exit 1
-    fi
-
-    result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
-    if [[ -z "$result" ]]; then
-        echo "Empty result. Check parameters delimiter and/or word_number for the matching line."
-        exit 1
-    fi
-
-    echo "$result"
+    echo $matched_url
 }
 
-get_hash_from_remote_file() {
+get_checksum_from_github_release() {
+    local repo=$1
+    local file_name=$2
+    local version=${3:-".+"}
+    local hash_type=$4
+    local allow_pre_release=${5:-false}
+
+    if [[ -z "$file_name" ]]; then
+        echo "File name is not specified." >&2
+        exit 1
+    fi
+
+    if [[ "$hash_type" == "SHA256" ]]; then
+        hash_pattern="[A-Fa-f0-9]{64}"
+    elif [[ "$hash_type" == "SHA512" ]]; then
+        hash_pattern="[A-Fa-f0-9]{128}"
+    else
+        echo "Unknown hash type: ${hash_type}" >&2
+        exit 1
+    fi
+
+    matching_releases=$(get_github_releases_by_version "${repo}" "${version}" "${allow_pre_release}" "true")
+    matched_line=$(printf "$(echo $matching_releases | jq '.body')\n" | grep "$file_name")
+
+    if [[ -z "$matched_line" ]]; then
+        echo "File name ${file_name} not found in release body" >&2
+        exit 1
+    fi
+
+    if [[ "$(echo "$matched_line" | wc -l)" -gt 1 ]]; then
+        echo "Multiple matches found for ${file_name} in release body: ${matched_line}" >&2
+        exit 1
+    fi
+
+    hash=$(echo $matched_line | grep -oP "$hash_pattern")
+
+    if [[ -z "$hash" ]]; then
+        echo "Found ${file_name} in body of release, but failed to get hash from it: ${matched_line}" >&2
+        exit 1
+    fi
+
+    echo "$hash"
+}
+
+get_checksum_from_url() {
     local url=$1
-    local keywords=("$2" "$3")
-    local delimiter=${4:-' '}
-    local word_number=${5:-1}
+    local file_name=$2
+    local hash_type=$3
+    local use_custom_search_pattern=${4:-false}
+    local delimiter=${5:-' '}
+    local word_number=${6:-1}
 
-    if [[ -z "${keywords[0]}" || -z "$url" ]]; then
-        echo "File name and/or URL is not specified."
+    if [[ "$hash_type" == "SHA256" ]]; then
+        hash_pattern="[A-Fa-f0-9]{64}"
+    elif [[ "$hash_type" == "SHA512" ]]; then
+        hash_pattern="[A-Fa-f0-9]{128}"
+    else
+        echo "Unknown hash type: ${hash_type}" >&2
         exit 1
     fi
 
-    matching_line=$(curl -fsSL "$url" | sed 's/  */ /g' | tr -d '`')
-    for keyword in "${keywords[@]}"; do
-        matching_line=$(echo "$matching_line" | grep "$keyword")
-    done
+    checksums_file_path=$(download_with_retry "$url")
+    checksums=$(cat "$checksums_file_path")
+    rm "$checksums_file_path"
 
-    if [[ "$(echo "$matching_line" | wc -l)" -gt 1 ]]; then
-        echo "Multiple lines found including the words: ${keywords[*]}. Please use a more specific filter."
+    matched_line=$(printf "$checksums\n" | grep "$file_name")
+
+    if [[ "$(echo "$matched_line" | wc -l)" -gt 1 ]]; then
+        echo "Found multiple lines matching file name ${file_name} in checksum file." >&2
         exit 1
     fi
 
-    if [[ -z "$matching_line" ]]; then
-        echo "Keywords (${keywords[*]}) not found in the file with hashes."
+    if [[ -z "$matched_line" ]]; then
+        echo "File name ${file_name} not found in checksum file." >&2
         exit 1
     fi
 
-    result=$(echo "$matching_line" | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
-    if [[ ${#result} -ne 64 && ${#result} -ne 128 ]]; then
-        echo "Invalid result length. Expected 64 or 128 characters. Please check delimiter and/or word_number parameters."
-        echo "Result: $result"
+    if [[ $use_custom_search_pattern == "true" ]]; then
+        hash=$(echo "$matched_line" | sed 's/  */ /g' | cut -d "$delimiter" -f "$word_number" | tr -d -c '[:alnum:]')
+    else
+        hash=$(echo $matched_line | grep -oP "$hash_pattern")
+    fi
+
+    if [[ -z "$hash" ]]; then
+        echo "Found ${file_name} in checksum file, but failed to get hash from it: ${matched_line}" >&2
         exit 1
     fi
 
-    echo "$result"
+    echo "$hash"
 }
 
 use_checksum_comparison() {

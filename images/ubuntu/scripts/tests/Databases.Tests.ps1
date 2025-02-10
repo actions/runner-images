@@ -1,17 +1,17 @@
-Describe "MongoDB" -Skip:(Test-IsUbuntu22) {
+Describe "MongoDB" -Skip:(-not (Test-IsUbuntu20)) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "mongo" }
         @{ ToolName = "mongod" }
     ) {
         $toolsetVersion = (Get-ToolsetContent).mongodb.version
-        (&$ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
+        (& $ToolName --version)[2].Split('"')[-2] | Should -BeLike "$toolsetVersion*"
     }
 }
 
 Describe "PostgreSQL" {
     It "PostgreSQL Service" {
         "sudo systemctl start postgresql" | Should -ReturnZeroExitCode
-        "pg_isready" | Should -MatchCommandOutput "/var/run/postgresql:5432 - accepting connections"
+        "pg_isready" | Should -OutputTextMatchingRegex "/var/run/postgresql:5432 - accepting connections"
         "sudo systemctl stop postgresql" | Should -ReturnZeroExitCode
     }
 

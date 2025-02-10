@@ -1,54 +1,81 @@
+################################################################################
+##  File:  Install-PostgreSQL.ps1
+##  Desc:  Install PostgreSQL
+################################################################################
+
 # Define user and password for PostgreSQL database
 $pgUser = "postgres"
 $pgPwd = "root"
 
 # Prepare environment variable for validation
-[System.Environment]::SetEnvironmentVariable("PGUSER", $pgUser, "Machine")
-[System.Environment]::SetEnvironmentVariable("PGPASSWORD", $pgPwd, "Machine")
+[Environment]::SetEnvironmentVariable("PGUSER", $pgUser, "Machine")
+[Environment]::SetEnvironmentVariable("PGPASSWORD", $pgPwd, "Machine")
 
-# Define latest available version to install based on version specified in the toolset
 $toolsetVersion = (Get-ToolsetContent).postgresql.version
-$getPostgreReleases = Invoke-WebRequest -Uri "https://git.postgresql.org/gitweb/?p=postgresql.git;a=tags" -UseBasicParsing
-# Getting all links matched to the pattern (e.g.a=log;h=refs/tags/REL_14)
-$TargetReleases = $getPostgreReleases.Links.href | Where-Object { $_ -match "a=log;h=refs/tags/REL_$toolsetVersion" }
-[Int32]$OutNumber = $null
-$MinorVersions = @()
-foreach ($release in $TargetReleases) {
-    $version = $release.split('/')[-1]
-    # Checking if the latest symbol of the release version is actually a number. If yes, add to $MinorVersions array
-    if ([Int32]::TryParse($($version.Split('_')[-1]), [ref]$OutNumber)) {
-        $MinorVersions += $OutNumber
+if ($null -ne ($toolsetVersion | Select-String -Pattern '\d+\.\d+\.\d+')) {
+    $majorVersion = ([version]$toolsetVersion).Major
+    $minorVersion = ([version]$toolsetVersion).Minor
+    $patchVersion = ([version]$toolsetVersion).Build
+    $installerUrl = "https://get.enterprisedb.com/postgresql/postgresql-$majorVersion.$minorVersion-$patchVersion-windows-x64.exe"
+} else {
+    # Define latest available version to install based on version specified in the toolset
+    $getPostgreReleases = Invoke-WebRequest -Uri "https://git.postgresql.org/gitweb/?p=postgresql.git;a=tags" -UseBasicParsing
+    # Getting all links matched to the pattern (e.g.a=log;h=refs/tags/REL_14)
+    $targetReleases = $getPostgreReleases.Links.href | Where-Object { $_ -match "a=log;h=refs/tags/REL_$toolsetVersion" }
+    [Int32] $outNumber = $null
+    $minorVersions = @()
+    foreach ($release in $targetReleases) {
+        $version = $release.split('/')[-1]
+        # Checking if the latest symbol of the release version is actually a number. If yes, add to $minorVersions array
+        if ([Int32]::TryParse($($version.Split('_')[-1]), [ref] $outNumber)) {
+            $minorVersions += $outNumber
+        }
     }
-}
-# Sorting and getting the last one
-$TargetMinorVersions = ($MinorVersions | Sort-Object)[-1]
+    # Sorting and getting the last one
+    $targetMinorVersions = ($minorVersions | Sort-Object)[-1]
 
-# Install latest PostgreSQL
-# In order to get rid of error messages (we know we will have them), force ErrorAction to SilentlyContinue
-$ErrorActionOldValue = $ErrorActionPreference
-$ErrorActionPreference = 'SilentlyContinue'
-# Starting from number 9 and going down, check if the installer is available. If yes, break the loop.
-# If an installer with $TargetMinorVersions is not to be found, the $TargetMinorVersions will be decreased by 1
-$increment = 9
-do {
-    $url = "https://get.enterprisedb.com/postgresql/postgresql-$toolsetVersion.$TargetMinorVersions-$increment-windows-x64.exe"
-    $checkaccess = [System.Net.WebRequest]::Create($url)
-    $response = $null
-    $response = $checkaccess.GetResponse()
-    if ($response) {
-        $InstallerUrl = $response.ResponseUri.OriginalString
-    } elseif (!$response -and ($increment -eq 0)) {
-        $increment = 9
-        $TargetMinorVersions--
-    } else {
-        $increment--
-    }
-} while (!$response)
+    # In order to get rid of error messages (we know we will have them), force ErrorAction to SilentlyContinue
+    $errorActionOldValue = $ErrorActionPreference
+    $ErrorActionPreference = 'SilentlyContinue'
+
+    # Install latest PostgreSQL
+    # Starting from number 9 and going down, check if the installer is available. If yes, break the loop.
+    # If an installer with $targetMinorVersions is not to be found, the $targetMinorVersions will be decreased by 1
+    $increment = 9
+    do {
+        $url = "https://get.enterprisedb.com/postgresql/postgresql-$toolsetVersion.$targetMinorVersions-$increment-windows-x64.exe"
+        $checkAccess = [System.Net.WebRequest]::Create($url)
+        $response = $null
+        $response = $checkAccess.GetResponse()
+        if ($response) {
+            $installerUrl = $response.ResponseUri.OriginalString
+        } elseif (!$response -and ($increment -eq 0)) {
+            $increment = 9
+            $targetMinorVersions--
+        } else {
+            $increment--
+        }
+    } while (!$response)
+}
+
+if ((Get-ToolsetContent).postgresql.installVcRedist) {
+    # Postgres 14 requires the vs 17 redistributable
+    $vs17RedistUrl = "https://aka.ms/vs/17/release/vc_redist.x64.exe"
+    Install-Binary `
+        -Url $vs17RedistUrl `
+        -InstallArgs @("/install", "/quiet", "/norestart") `
+        -ExpectedSignature (Get-ToolsetContent).postgresql.vcRedistSignature
+}
+
 # Return the previous value of ErrorAction and invoke Install-Binary function
-$ErrorActionPreference = $ErrorActionOldValue
-$InstallerName = $InstallerUrl.Split('/')[-1]
-$ArgumentList = ("--install_runtimes 0", "--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
-Install-Binary -Url $InstallerUrl -Name $InstallerName -ArgumentList $ArgumentList -ExpectedSignature (Get-ToolsetContent).postgresql.signature
+$ErrorActionPreference = $errorActionOldValue
+$installerArgs = @("--install_runtimes 0", "--superpassword root", "--enable_acledit 1", "--unattendedmodeui none", "--mode unattended")
+
+Install-Binary `
+    -Url $installerUrl `
+    -InstallArgs $installerArgs `
+    -ExpectedSignature (Get-ToolsetContent).postgresql.signature `
+    -InstallerLogPath "$env:TEMP\**\install-postgresql.log"
 
 # Get Path to pg_ctl.exe
 $pgPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").PathName
@@ -69,13 +96,13 @@ if ($exitCode -ne 0) {
 }
 
 # Added PostgreSQL environment variable
-[System.Environment]::SetEnvironmentVariable("PGBIN", $pgBin, "Machine")
-[System.Environment]::SetEnvironmentVariable("PGROOT", $pgRoot, "Machine")
-[System.Environment]::SetEnvironmentVariable("PGDATA", $pgData, "Machine")
+[Environment]::SetEnvironmentVariable("PGBIN", $pgBin, "Machine")
+[Environment]::SetEnvironmentVariable("PGROOT", $pgRoot, "Machine")
+[Environment]::SetEnvironmentVariable("PGDATA", $pgData, "Machine")
 
 # Stop and disable PostgreSQL service
 $pgService = Get-Service -Name postgresql*
-Stop-Service -InputObject $pgService
-Set-Service -InputObject $pgService -StartupType Disabled
+Stop-Service $pgService
+$pgService | Set-Service -StartupType Disabled
 
 Invoke-PesterTests -TestFile "Databases" -TestName "PostgreSQL"

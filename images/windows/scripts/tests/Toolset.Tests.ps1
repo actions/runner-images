@@ -12,7 +12,7 @@ $toolsExecutables = @{
         @{ Binary = "npm"; Arguments = "--version" }
     )
     Go = @(
-        @{ Binary =  "bin\go.exe"; Arguments = "version" }
+        @{ Binary = "bin\go.exe"; Arguments = "version" }
     )
     Ruby = @(
         @{ Binary = "bin\ruby.exe"; Arguments = "--version" }
@@ -35,7 +35,7 @@ function Test-Binaries {
         @{ Name = $Name; Version = $Version; Arch = $Arch; Binary = $_.Binary; Arguments = $_.Arguments }
     }
     It "<Binary> <Arguments>" -TestCases $testCases {
-        $binaryFullPath = Join-Path (Get-ToolsetToolFullPath -Name $Name -Version $Version -Arch $Arch) $Binary
+        $binaryFullPath = Join-Path (Get-TCToolVersionPath -Name $Name -Version $Version -Arch $Arch) $Binary
         "$binaryFullPath $Arguments" | Should -ReturnZeroExitCode
     }
 }
@@ -49,14 +49,14 @@ function Test-DefaultVersion {
     $binaryName = [IO.Path]::GetFileNameWithoutExtension($ToolExecs[0].Binary)
     $testCase = @{ Binary = $binaryName; Arguments = $ToolExecs[0].Arguments; ExpectedVersion = $ExpectedVersion }
     It "<ExpectedVersion> is default version" -TestCases $testCase {
-        $commandResult = Get-CommandResult "$Binary $Arguments"
-        $commandResult.ExitCode | Should -Be 0
-        $commandResult.Output | Should -Match $ExpectedVersion
+        $outputLines = (& $env:comspec /c "$Binary $Arguments 2>&1") -as [string[]]
+        $LASTEXITCODE | Should -Be 0
+        $outputLines | Should -Match $ExpectedVersion
     }
 
     It "default version is located in tool-cache" -TestCases $testCase {
-        $binaryFullPath = Get-WhichTool $Binary
-        $toolcacheDirectory = Get-ToolcacheToolDirectory -ToolName $Name
+        $binaryFullPath = (Get-Command $Binary).Path
+        $toolcacheDirectory = Get-TCToolPath -ToolName $Name
         $binaryFullPath | Should -Match ([Regex]::Escape($toolcacheDirectory))
     }
 }
@@ -70,7 +70,7 @@ foreach ($tool in $tools) {
             Context "$version" {
                 $toolInfo = @{ Name = $tool.name; Version = $version; Arch = $tool.arch }
                 It "tool-cache directory exists" -TestCases $toolInfo {
-                    $toolFullPath = Get-ToolsetToolFullPath -Name $Name -Version $Version -Arch $Arch
+                    $toolFullPath = Get-TCToolVersionPath -Name $Name -Version $Version -Arch $Arch
                     $toolFullPath | Should -Exist
                 }
 

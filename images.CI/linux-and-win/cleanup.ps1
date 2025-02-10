@@ -6,7 +6,7 @@ param(
     [Parameter (Mandatory=$true)] [string] $TenantId
 )
 
-az login --service-principal --username $ClientId --password $ClientSecret --tenant $TenantId | Out-Null
+az login --service-principal --username $ClientId --password=$ClientSecret --tenant $TenantId | Out-Null
 az account set --subscription $SubscriptionId | Out-Null
 
 $groupExist = az group exists --name $TempResourceGroupName

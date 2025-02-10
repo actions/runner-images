@@ -21,6 +21,9 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -Disa
 $softwareReport = [SoftwareReport]::new($(Build-OSInfoSection))
 $optionalFeatures = $softwareReport.Root.AddHeader("Windows features")
 $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
+if (Test-IsWin25) {
+    $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (Default, WSLv2):", $(Get-WSL2Version))
+}
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
 # Language and Runtime
@@ -71,7 +74,6 @@ $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
 $tools.AddToolVersion("CMake", $(Get-CMakeVersion))
 $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 $tools.AddToolVersion("Docker", $(Get-DockerVersion))
-$tools.AddToolVersion("Docker Compose v1", $(Get-DockerComposeVersion))
 $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeVersionV2))
 $tools.AddToolVersion("Docker-wincred", $(Get-DockerWincredVersion))
 $tools.AddToolVersion("ghc", $(Get-GHCVersion))
@@ -81,16 +83,22 @@ if (Test-IsWin19) {
     $tools.AddToolVersion("Google Cloud CLI", $(Get-GoogleCloudCLIVersion))
 }
 $tools.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
-$tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))
+if (-not (Test-IsWin25)) {
+    $tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))
+}
 $tools.AddToolVersion("jq", $(Get-JQVersion))
 $tools.AddToolVersion("Kind", $(Get-KindVersion))
 $tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
-$tools.AddToolVersion("Mercurial", $(Get-MercurialVersion))
+if (-not (Test-IsWin25)) {
+    $tools.AddToolVersion("Mercurial", $(Get-MercurialVersion))
+}
 $tools.AddToolVersion("gcc", $(Get-GCCVersion))
 $tools.AddToolVersion("gdb", $(Get-GDBVersion))
 $tools.AddToolVersion("GNU Binutils", $(Get-GNUBinutilsVersion))
 $tools.AddToolVersion("Newman", $(Get-NewmanVersion))
-$tools.AddToolVersion("NSIS", $(Get-NSISVersion))
+if (-not (Test-IsWin25)) {
+    $tools.AddToolVersion("NSIS", $(Get-NSISVersion))
+}
 $tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 if (Test-IsWin19) {
@@ -100,7 +108,9 @@ $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
 $tools.AddToolVersion("R", $(Get-RVersion))
 $tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
 $tools.AddToolVersion("Stack", $(Get-StackVersion))
-$tools.AddToolVersion("Subversion (SVN)", $(Get-SVNVersion))
+if (-not (Test-IsWin25)) {
+    $tools.AddToolVersion("Subversion (SVN)", $(Get-SVNVersion))
+}
 $tools.AddToolVersion("Swig", $(Get-SwigVersion))
 $tools.AddToolVersion("VSWhere", $(Get-VSWhereVersion))
 $tools.AddToolVersion("WinAppDriver", $(Get-WinAppDriver))
@@ -110,7 +120,9 @@ $tools.AddToolVersion("zstd", $(Get-ZstdVersion))
 
 # CLI Tools
 $cliTools = $installedSoftware.AddHeader("CLI Tools")
-$cliTools.AddToolVersion("Alibaba Cloud CLI", $(Get-AlibabaCLIVersion))
+if (-not (Test-IsWin25)) {
+    $cliTools.AddToolVersion("Alibaba Cloud CLI", $(Get-AlibabaCLIVersion))
+}
 $cliTools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
 $cliTools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMVersion))
 $cliTools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerVersion))
@@ -130,10 +142,12 @@ $rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
 $rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
 
 $rustToolsPackages = $rustTools.AddHeader("Packages")
-$rustToolsPackages.AddToolVersion("bindgen", $(Get-BindgenVersion))
-$rustToolsPackages.AddToolVersion("cargo-audit", $(Get-CargoAuditVersion))
-$rustToolsPackages.AddToolVersion("cargo-outdated", $(Get-CargoOutdatedVersion))
-$rustToolsPackages.AddToolVersion("cbindgen", $(Get-CbindgenVersion))
+if (-not (Test-IsWin25)) {
+    $rustToolsPackages.AddToolVersion("bindgen", $(Get-BindgenVersion))
+    $rustToolsPackages.AddToolVersion("cargo-audit", $(Get-CargoAuditVersion))
+    $rustToolsPackages.AddToolVersion("cargo-outdated", $(Get-CargoOutdatedVersion))
+    $rustToolsPackages.AddToolVersion("cbindgen", $(Get-CbindgenVersion))
+}
 $rustToolsPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
 $rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 
@@ -180,6 +194,9 @@ $databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
 $databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
 $databaseTools.AddToolVersion("SQL OLEDB Driver", $(Get-SQLOLEDBDriverVersion))
 $databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
+if (Test-IsWin25) {
+    $databaseTools.AddToolVersion("MongoDB Shell (mongosh)", $(Get-MongoshVersion))
+}
 
 # Web Servers
 $installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersSection))
@@ -223,7 +240,9 @@ Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
 and are available via 'Get-Module -ListAvailable'.
 All other versions are saved but not installed.
 '@
-$psModules.AddNote($azPsNotes)
+if (-not (Test-IsWin25)) {
+    $psModules.AddNote($azPsNotes)
+}
 
 # Android
 $android = $installedSoftware.AddHeader("Android")
@@ -232,7 +251,9 @@ $android.AddTable($(Build-AndroidTable))
 $android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
 
 # Cached Docker images
-$installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
+if (-not (Test-IsWin25)) {
+    $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
+}
 
 # Generate reports
 $softwareReport.ToJson() | Out-File -FilePath "C:\software-report.json" -Encoding UTF8NoBOM

@@ -23,19 +23,19 @@ Describe "Bazel" {
 
 Describe "CodeQL Bundle" {
     It "Single distribution installed" {
-        $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $CodeQLVersionsWildcard = Join-Path $env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
         $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Should -HaveCount 1
     }
 
     It "Contains CodeQL executable" {
-        $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $CodeQLVersionsWildcard = Join-Path $env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
         $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
         $CodeQLPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "codeql.exe"
         "$CodeQLPath version --quiet" | Should -ReturnZeroExitCode
     }
 
     It "Contains CodeQL packs" {
-        $CodeQLVersionsWildcard = Join-Path $Env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
+        $CodeQLVersionsWildcard = Join-Path $env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath "*"
         $CodeQLVersionPath = Get-ChildItem $CodeQLVersionsWildcard | Sort-Object -Descending | Select-Object -First 1 -Expand FullName
         $CodeQLPacksPath = Join-Path $CodeQLVersionPath -ChildPath "x64" | Join-Path -ChildPath "codeql" | Join-Path -ChildPath "qlpacks"
         $CodeQLPacksPath | Should -Exist
@@ -55,19 +55,19 @@ Describe "DACFx" {
         "${sqlPackagePath}" | Should -Exist
     }
 
-    It "SqlLocalDB" -Skip:(Test-IsWin22) {
+    It "SqlLocalDB" -Skip:(-not (Test-IsWin19)) {
         $sqlLocalDBPath = 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe'
         "${sqlLocalDBPath}" | Should -Exist
     }
 }
 
-Describe "DotnetTLS" -Skip:(Test-IsWin22) {
+Describe "DotnetTLS" -Skip:(-not (Test-IsWin19)) {
     It "Tls 1.2 is enabled" {
         [Net.ServicePointManager]::SecurityProtocol -band "Tls12" | Should -Be Tls12
     }
 }
 
-Describe "Mercurial" {
+Describe "Mercurial" -Skip:(Test-IsWin25) {
     It "Mercurial" {
         "hg --version" | Should -ReturnZeroExitCode
     }
@@ -101,7 +101,7 @@ Describe "Mingw64" {
     }
 }
 
-Describe "GoogleCloudCLI" -Skip:(Test-IsWin22) {
+Describe "GoogleCloudCLI" -Skip:(-not (Test-IsWin19)) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
@@ -117,9 +117,9 @@ Describe "NET48" {
     }
 }
 
-Describe "NSIS" {
+Describe "NSIS" -Skip:(Test-IsWin25) {
     It "NSIS" {
-       "makensis /VERSION" | Should -ReturnZeroExitCode
+        "makensis /VERSION" | Should -ReturnZeroExitCode
     }
 }
 
@@ -141,7 +141,13 @@ Describe "Sbt" {
 
 Describe "ServiceFabricSDK" {
     It "PowerShell Module" {
-        Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
+        # Ignore PowerShell version check if running in PowerShell Core
+        # https://github.com/microsoft/service-fabric/issues/1343
+        if ($PSVersionTable.PSEdition -eq 'Core') {
+            Get-Module -Name ServiceFabric -SkipEditionCheck -ListAvailable | Should -Not -BeNullOrEmpty
+        } else {
+            Get-Module -Name ServiceFabric -ListAvailable | Should -Not -BeNullOrEmpty
+        }
     }
 
     It "ServiceFabricSDK version" {
@@ -169,7 +175,7 @@ Describe "Vcpkg" {
     }
 }
 
-Describe "VCRedist" -Skip:(Test-IsWin22) {
+Describe "VCRedist" -Skip:(-not (Test-IsWin19)) {
     It "vcredist_2010_x64" {
         "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
         "C:\Windows\System32\msvcr100.dll" | Should -Exist
@@ -195,9 +201,9 @@ Describe "Pipx" {
 }
 
 Describe "Kotlin" {
-    $kotlinPackages =  @("kapt", "kotlin", "kotlinc", "kotlin-dce-js", "kotlinc-jvm")
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-js", "kotlinc-jvm")
 
-    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } })  {
+    It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
         "$toolName -version" | Should -ReturnZeroExitCode
     }
 }

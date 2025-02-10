@@ -10,17 +10,18 @@ $env:CARGO_HOME = "C:\Users\Default\.cargo"
 
 # Download the latest rustup-init.exe for Windows x64
 # See https://rustup.rs/#
-$rustupPath = Start-DownloadWithRetry -Url "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe" -Name "rustup-init.exe"
+$rustupPath = Invoke-DownloadWithRetry "https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe"
 
 #region Supply chain security
-$localFileHash = (Get-FileHash -Path (Join-Path ${env:TEMP} 'rustup-init.exe') -Algorithm SHA256).Hash
 $distributorFileHash = (Invoke-RestMethod -Uri 'https://static.rust-lang.org/rustup/dist/x86_64-pc-windows-msvc/rustup-init.exe.sha256').Trim()
-
-Use-ChecksumComparison -LocalFileHash $localFileHash -DistributorFileHash $distributorFileHash
+Test-FileChecksum $rustupPath -ExpectedSHA256Sum $distributorFileHash
 #endregion
 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)
 & $rustupPath -y --default-toolchain=stable --profile=minimal
+if ($LASTEXITCODE -ne 0) {
+    throw "Rust installation failed with exit code $LASTEXITCODE"
+}
 
 # Add %USERPROFILE%\.cargo\bin to USER PATH
 Add-DefaultPathItem "%USERPROFILE%\.cargo\bin"
@@ -35,9 +36,16 @@ rustup target add x86_64-pc-windows-gnu
 
 # Install common tools
 rustup component add rustfmt clippy
-cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
-
-# Cleanup Cargo crates cache
-Remove-Item "${env:CARGO_HOME}\registry\*" -Recurse -Force
+if ($LASTEXITCODE -ne 0) {
+    throw "Rust component installation failed with exit code $LASTEXITCODE"
+}
+if (-not (Test-IsWin25)) {
+    cargo install bindgen-cli cbindgen cargo-audit cargo-outdated
+    if ($LASTEXITCODE -ne 0) {
+        throw "Rust tools installation failed with exit code $LASTEXITCODE"
+    }
+    # Cleanup Cargo crates cache
+    Remove-Item "${env:CARGO_HOME}\registry\*" -Recurse -Force
+}
 
 Invoke-PesterTests -TestFile "Rust"

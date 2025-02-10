@@ -1,44 +1,39 @@
 [CmdletBinding()]
 param()
 
-function Get-CommandResult {
-    Param (
-        [Parameter(Mandatory)][string] $Command
-    )
-    # CMD trick to suppress and show error output because some commands write to stderr (for example, "python --version")
-    [string[]]$output = & $env:comspec /c "$Command 2>&1"
-    $exitCode = $LASTEXITCODE
-
-    return @{
-        Output   = $output
-        ExitCode = $exitCode
-    }
-}
-
-# Gets path to the tool, analogue of 'which tool'
-function Get-WhichTool($tool) {
-    return (Get-Command $tool).Path
-}
-
 # Gets value of environment variable by the name
 function Get-EnvironmentVariable($variable) {
     return [System.Environment]::GetEnvironmentVariable($variable, "Machine")
 }
 
-# Update environment variables without reboot
-function Update-Environment {
-    $variables = [Environment]::GetEnvironmentVariables("Machine")
-    $variables.Keys | ForEach-Object {
-        $key = $_
-        $value = $variables[$key]
-        Set-Item -Path "env:$key" -Value $value
-    }
-    # We need to refresh PATH the latest one because it could include other variables "%M2_HOME%/bin"
-    $env:PATH = [Environment]::GetEnvironmentVariable("PATH", "Machine")
-}
-
-# Run Pester tests for specific tool
 function Invoke-PesterTests {
+    <#
+    .SYNOPSIS
+        Runs Pester tests based on the provided test file and test name.
+
+    .DESCRIPTION
+        The Invoke-PesterTests function runs Pester tests based on the provided test file and test name.
+        It supports filtering tests by name and generating test result output.
+
+    .PARAMETER TestFile
+        The name of the test file to run. This should be the base name of the test file without the extension.
+
+    .PARAMETER TestName
+        The name of the specific test to run. If provided, only the test with the matching name will be executed.
+
+    .EXAMPLE
+        Invoke-PesterTests -TestFile "MyTests" -TestName "Test1"
+        Runs the test named "Test1" from the test file "MyTests.Tests.ps1".
+
+    .EXAMPLE
+        Invoke-PesterTests -TestFile "*" -TestName "Test2"
+        Runs all tests from all test files and generates the test result output.
+
+    .NOTES
+        This function requires the Pester module to be installed.
+
+    #>
+
     Param(
         [Parameter(Mandatory)][string] $TestFile,
         [string] $TestName
@@ -77,23 +72,47 @@ function Invoke-PesterTests {
     }
 }
 
-# Pester Assert to check exit code of command
 function ShouldReturnZeroExitCode {
+    <#
+    .SYNOPSIS
+        Implements a custom Should-operator for the Pester framework.
+
+    .DESCRIPTION
+        This function is used to check if a command has returned a zero exit code.
+        It can be used by registering it using the Add-ShouldOperator function in Pester.
+
+    .PARAMETER ActualValue
+        The actual value to be checked.
+
+    .PARAMETER Negate
+        A switch parameter that, when specified, negates the result of the check.
+
+    .PARAMETER Because
+        An optional string that provides additional context or explanation for the check.
+
+    .NOTES
+        This function is designed to be used with the Pester framework.
+
+    .LINK
+        https://pester.dev/docs/assertions/custom-assertions
+    #>
+
     Param(
-        [String] $ActualValue,
+        [string] $ActualValue,
         [switch] $Negate,
         [string] $Because
     )
 
-    $result = Get-CommandResult $ActualValue
+    $outputLines = (& $env:comspec /c "$ActualValue 2>&1") -as [string[]]
+    $exitCode = $LASTEXITCODE
 
-    [bool]$succeeded = $result.ExitCode -eq 0
+    [bool] $succeeded = $exitCode -eq 0
     if ($Negate) { $succeeded = -not $succeeded }
 
     if (-not $succeeded) {
         $commandOutputIndent = " " * 4
-        $commandOutput = ($result.Output | ForEach-Object { "${commandOutputIndent}${_}" }) -join "`n"
-        $failureMessage = "Command '${ActualValue}' has finished with exit code ${actualExitCode}`n${commandOutput}"
+        $commandOutput = ($outputLines | ForEach-Object { "${commandOutputIndent}${_}" }) -join "`n"
+        $failureMessage = "Command '${ActualValue}' has finished with exit code ${exitCode} and output:`n${commandOutput}"
     }
 
     return [PSCustomObject] @{
@@ -102,53 +121,41 @@ function ShouldReturnZeroExitCode {
     }
 }
 
-#  Pester Assert to check exit code of command with given parameter, the assertion performed up to 3 checks (without '-', with 1 and 2 '-') until succeeded
-function ShouldReturnZeroExitCodeWithParam {
-    param (
-        [Parameter(Mandatory)] [string] $ActualValue,
-        [switch] $Negate,
-        [string] $CallParameter = "version",
-        [string] $CallerSessionState
-    )
+function ShouldOutputTextMatchingRegex {
+    <#
+    .SYNOPSIS
+        Implements a custom Should-operator for the Pester framework.
 
-    $delimiterCharacter = ""
+    .DESCRIPTION
+        This function is used to check if a command outputs text that matches a regular expression.
+        It can be used by registering it using the Add-ShouldOperator function in Pester.
 
-    while ($delimiterCharacter.Length -le 2) {
-        $callParameterWithDelimiter = $delimiterCharacter + $CallParameter
-        $commandToCheck = "$ActualValue $callParameterWithDelimiter"
-        [bool]$succeeded = (ShouldReturnZeroExitCode -ActualValue $commandToCheck).Succeeded
-        
-        if ($succeeded) {
-            break
-        }
-        $delimiterCharacter += '-'
-    }
-    if ($Negate) { $succeeded = -not $succeeded }
+    .PARAMETER ActualValue
+        The actual value to be checked.
 
-    if (-not $succeeded) {
-        $failureMessage = "Tool '$ActualValue' has not returned 0 exit code for any of these flags: '$CallParameter' or '-$CallParameter' or '--$CallParameter'"
-    }
+    .PARAMETER Negate
+        A switch parameter that, when specified, negates the result of the check.
 
-    return [PSCustomObject] @{
-        Succeeded      = $succeeded
-        FailureMessage = $failureMessage
-    }
-}
+    .PARAMETER Because
+        An optional string that provides additional context or explanation for the check.
 
-# Pester Assert to match output of command
-function ShouldMatchCommandOutput {
+    .NOTES
+        This function is designed to be used with the Pester framework.
+
+    .LINK
+        https://pester.dev/docs/assertions/custom-assertions
+    #>
+
     Param(
         [String] $ActualValue,
         [String] $RegularExpression,
         [switch] $Negate
     )
 
-    $output = (Get-CommandResult $ActualValue).Output | Out-String
+    [string] $output = (& $env:comspec /c "$ActualValue 2>&1")
     [bool] $succeeded = $output -cmatch $RegularExpression
 
-    if ($Negate) {
-        $succeeded = -not $succeeded
-    }
+    if ($Negate) { $succeeded = -not $succeeded }
 
     $failureMessage = ''
 
@@ -168,11 +175,10 @@ function ShouldMatchCommandOutput {
 
 If (Get-Command -Name Add-ShouldOperator -ErrorAction SilentlyContinue) {
     Add-ShouldOperator -Name ReturnZeroExitCode -InternalName ShouldReturnZeroExitCode -Test ${function:ShouldReturnZeroExitCode}
-    Add-ShouldOperator -Name ReturnZeroExitCodeWithParam -InternalName ShouldReturnZeroExitCodeWithParam -Test ${function:ShouldReturnZeroExitCodeWithParam}
-    Add-ShouldOperator -Name MatchCommandOutput -InternalName ShouldMatchCommandOutput -Test ${function:ShouldMatchCommandOutput}
+    Add-ShouldOperator -Name OutputTextMatchingRegex -InternalName ShouldOutputTextMatchingRegex -Test ${function:ShouldOutputTextMatchingRegex}
 }
 
-Function Get-ModuleVersionAsJob {
+function Get-ModuleVersionAsJob {
     Param (
         [Parameter(Mandatory)]
         [String] $modulePath,
@@ -197,10 +203,7 @@ Function Get-ModuleVersionAsJob {
     Remove-Job $testJob
 }
 
-
 Export-ModuleMember -Function @(
-    'Get-CommandResult'
-    'Get-WhichTool'
     'Get-EnvironmentVariable'
     'Invoke-PesterTests'
     'Get-ModuleVersionAsJob'

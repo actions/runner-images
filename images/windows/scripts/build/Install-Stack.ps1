@@ -5,28 +5,31 @@
 ################################################################################
 
 Write-Host "Get the latest Stack version..."
-$StackReleasesJson = Invoke-RestMethod "https://api.github.com/repos/commercialhaskell/stack/releases/latest"
-$Version = $StackReleasesJson.name.TrimStart("v")
-$DownloadFilePattern = "windows-x86_64.zip"
-$DownloadUrl = $StackReleasesJson.assets | Where-Object { $_.name.EndsWith($DownloadFilePattern) } | Select-Object -ExpandProperty "browser_download_url" -First 1
+
+$version = (Get-GithubReleasesByVersion -Repo "commercialhaskell/stack" -Version "latest" -WithAssetsOnly).version
+
+$downloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "commercialhaskell/stack" `
+    -Version $version `
+    -UrlMatchPattern "stack-*-windows-x86_64.zip"
 
 Write-Host "Download stack archive"
-$StackToolcachePath = Join-Path $Env:AGENT_TOOLSDIRECTORY "stack\$Version"
-$DestinationPath = Join-Path $StackToolcachePath "x64"
-$StackArchivePath = Start-DownloadWithRetry -Url $DownloadUrl
+$stackToolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY "stack\$version"
+$destinationPath = Join-Path $stackToolcachePath "x64"
+$stackArchivePath = Invoke-DownloadWithRetry $downloadUrl
 
 #region Supply chain security - Stack
-$fileHash = (Get-FileHash -Path $StackArchivePath -Algorithm SHA256).Hash
-$hashUrl = $StackReleasesJson.assets | Where-Object { $_.name.EndsWith("$DownloadFilePattern.sha256") } | Select-Object -ExpandProperty "browser_download_url" -First 1
-$externalHash = (Invoke-RestMethod -Uri $hashURL).ToString().Split("`n").Where({ $_ -ilike "*$DownloadFilePattern*" }).Split(' ')[0]
-Use-ChecksumComparison $fileHash $externalHash
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url "$downloadUrl.sha256" `
+    -FileName (Split-Path $downloadUrl -Leaf)
+Test-FileChecksum $stackArchivePath -ExpectedSHA256Sum $externalHash
 #endregion
 
 Write-Host "Expand stack archive"
-Extract-7Zip -Path $StackArchivePath -DestinationPath $DestinationPath
+Expand-7ZipArchive -Path $stackArchivePath -DestinationPath $destinationPath
 
-New-Item -Name "x64.complete" -Path $StackToolcachePath
+New-Item -Name "x64.complete" -Path $stackToolcachePath
 
-Add-MachinePathItem -PathItem $DestinationPath
+Add-MachinePathItem -PathItem $destinationPath
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Stack"

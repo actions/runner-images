@@ -1,0 +1,20 @@
+name: Validate JSON Schema
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  validate-json-schema:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Validate JSON Schema
+        shell: pwsh
+        run: ./helpers/CheckJsonSchema.ps1

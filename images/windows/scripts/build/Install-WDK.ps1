@@ -4,33 +4,32 @@
 ################################################################################
 
 # Requires Windows SDK with the same version number as the WDK
-if (Test-IsWin22) {
-    # SDK available through Visual Studio
-    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2249371"
-    $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2022\*\WDK.vsix"
-    $wdkSignatureThumbprint = "7C94971221A799907BB45665663BBFD587BAC9F8"
-} elseif (Test-IsWin19) {
-    $winSdkUrl = "https://go.microsoft.com/fwlink/?linkid=2173743"
+if (Test-IsWin19) {
+    # Install all features without showing the GUI using winsdksetup.exe
+    Install-Binary -Type EXE `
+        -Url 'https://go.microsoft.com/fwlink/?linkid=2173743' `
+        -InstallArgs @("/features", "+", "/quiet") `
+        -ExpectedSignature '44796EB5BD439B4BFB078E1DC2F8345AE313CBB1'
+
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2166289"
-    $FilePath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"
     $wdkSignatureThumbprint = "914A09C2E02C696AF394048BCB8D95449BCD5B9E"
-    $winSdkSignatureThumbprint = "44796EB5BD439B4BFB078E1DC2F8345AE313CBB1"
+    $wdkExtensionPath = "C:\Program Files (x86)\Windows Kits\10\Vsix\VS2019\WDK.vsix"
+} elseif (Test-IsWin22) {
+    # SDK is available through Visual Studio
+    $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2294834"
+    $wdkSignatureThumbprint = "7920AC8FB05E0FFFE21E8FF4B4F03093BA6AC16E"
 } else {
     throw "Invalid version of Visual Studio is found. Either 2019 or 2022 are required"
 }
 
-$argumentList = ("/features", "+", "/quiet")
+# Install all features without showing the GUI using wdksetup.exe
+Install-Binary -Type EXE `
+    -Url $wdkUrl `
+    -InstallArgs @("/features", "+", "/quiet") `
+    -ExpectedSignature $wdkSignatureThumbprint
 
-if (Test-IsWin19) {
-    # `winsdksetup.exe /features + /quiet` installs all features without showing the GUI
-    Install-Binary -Url $winSdkUrl -Name "winsdksetup.exe" -ArgumentList $argumentList -ExpectedSignature $winSdkSignatureThumbprint
+if (Test-IsWin19){
+    # Need to install the VSIX to get the build targets when running VSBuild
+    Install-VSIXFromFile (Resolve-Path -Path $wdkExtensionPath)
 }
-
-# `wdksetup.exe /features + /quiet` installs all features without showing the GUI
-Install-Binary -Url $wdkUrl -Name "wdksetup.exe" -ArgumentList $argumentList -ExpectedSignature $wdkSignatureThumbprint
-
-# Need to install the VSIX to get the build targets when running VSBuild
-$FilePath = Resolve-Path -Path $FilePath
-Install-VsixExtension -FilePath $FilePath -Name "WDK.vsix" -InstallOnly
-
 Invoke-PesterTests -TestFile "WDK"

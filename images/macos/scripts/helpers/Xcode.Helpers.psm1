@@ -28,14 +28,15 @@ function Get-XcodeToolPath {
 }
 
 function Get-XcodeVersionInfo {
-    param(
+    param (
         [Parameter(Mandatory)]
-        [string]$XcodeRootPath
+        [string] $XcodeRootPath
     )
 
     $xcodebuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
     [string]$output = Invoke-Expression "$xcodebuildPath -version"
     $versionOutputParts = $output.Split(" ")
+
     return @{
         Version = [System.Version]::Parse($versionOutputParts[1])
         Build = $versionOutputParts[4]
@@ -72,11 +73,12 @@ function Test-XcodeStableRelease {
 
     $licenseInfoPlistPath = Join-Path $XcodeRootPath "Contents" "Resources" "LicenseInfo.plist"
     $releaseType = & defaults read $licenseInfoPlistPath "licenseType"
+
     return -not ($releaseType -match "beta")
 }
 
 function Get-XcodeSimulatorsInfo {
-    param(
+    param (
         [string] $Filter
     )
 
@@ -106,6 +108,7 @@ function Get-XcodeDevicesList {
             $result += "$runtimeName $deviceName"
         }
     }
+
     return $result
 }
 
@@ -120,12 +123,13 @@ function Get-XcodePairsList {
         $phoneName = $_.Value.phone.name
         $result += "$watchName $phoneName"
     }
+
     return $result
 }
 
 #Helper function for execution of xcversion due to: https://github.com/fastlane/fastlane/issues/18161
 function Invoke-XCVersion {
-    param(
+    param (
         [Parameter(Mandatory)]
         [string] $Arguments,
         [Parameter()]
@@ -133,7 +137,7 @@ function Invoke-XCVersion {
         [Parameter()]
         [int] $PauseDurationSecs = 1
     )
-    
+
     $Command = "xcversion $Arguments"
     Write-Host "Execute [$Command]"
     for ($Attempt=1; $Attempt -le $RetryAttempts; $Attempt++) {
@@ -150,7 +154,7 @@ function Invoke-XCVersion {
     }
     if ($result.ExitCode -ne 0) {
         throw "Command [$Command] has finished with non-zero exit code."
-    } 
+    }
 }
 
 function Get-BrokenXcodeSimulatorsList {

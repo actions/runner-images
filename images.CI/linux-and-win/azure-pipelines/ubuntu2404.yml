@@ -1,0 +1,21 @@
+schedules:
+- cron: "0 0 * * *"
+  displayName: Daily
+  branches:
+    include:
+    - main
+  always: true
+
+trigger: none
+pr:
+  autoCancel: true
+  branches:
+    include:
+    - main
+
+jobs:
+- template: image-generation.yml
+  parameters:
+    image_type: ubuntu2404
+    image_readme_name: Ubuntu2404-Readme.md
+    image_template_name: ubuntu-24.04.pkr.hcl

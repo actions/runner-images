@@ -5,34 +5,26 @@
 
 $azureDevOpsCliConfigPath = 'C:\azureDevOpsCli'
 # Store azure-devops-cli cache outside of the provisioning user's profile
-[Environment]::SetEnvironmentVariable('AZURE_DEVOPS_EXT_CONFIG_DIR', $azureDevOpsCliConfigPath, [System.EnvironmentVariableTarget]::Machine)
-# make variable to be available in the current session
-${env:AZURE_DEVOPS_EXT_CONFIG_DIR} = $azureDevOpsCliConfigPath
+[Environment]::SetEnvironmentVariable('AZ_DEVOPS_GLOBAL_CONFIG_DIR', $azureDevOpsCliConfigPath, "Machine")
 
 $azureDevOpsCliCachePath = Join-Path $azureDevOpsCliConfigPath 'cache'
-$null = New-Item -ItemType 'Directory' -Path $azureDevOpsCliCachePath
+New-Item -ItemType 'Directory' -Path $azureDevOpsCliCachePath | Out-Null
+[Environment]::SetEnvironmentVariable('AZURE_DEVOPS_CACHE_DIR', $azureDevOpsCliCachePath, "Machine")
 
-[Environment]::SetEnvironmentVariable('AZURE_DEVOPS_CACHE_DIR', $azureDevOpsCliCachePath, [System.EnvironmentVariableTarget]::Machine)
-# make variable to be available in the current session
-${env:AZURE_DEVOPS_CACHE_DIR} = $azureDevOpsCliCachePath
+Update-Environment
 
 az extension add -n azure-devops
-if ($LASTEXITCODE -ne 0)
-{
-   throw "Command 'az extension add -n azure-devops' failed"
+if ($LASTEXITCODE -ne 0) {
+    throw "Command 'az extension add -n azure-devops' failed"
 }
 
 # Warm-up Azure DevOps CLI
-
 Write-Host "Warmup 'az-devops'"
 @('devops', 'pipelines', 'boards', 'repos', 'artifacts') | ForEach-Object {
-
     az $_ --help
-    if ($LASTEXITCODE -ne 0)
-    {
-       throw "Command 'az $_ --help' failed"
+    if ($LASTEXITCODE -ne 0) {
+        throw "Command 'az $_ --help' failed"
     }
-
 }
 
 # calling az devops login to force it to install `keyring`. Login will actually fail, redirecting error to null

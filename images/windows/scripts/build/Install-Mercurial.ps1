@@ -3,10 +3,9 @@
 ##  Desc:  Install Mercurial
 ################################################################################
 
-Choco-Install -PackageName hg -ArgumentList "--version", "5.0.0"
+Install-ChocoPackage hg -ArgumentList "--version", "5.0.0"
 
-$hgPath = "${env:ProgramFiles}\Mercurial\"
-Add-MachinePathItem $hgPath
-$env:Path = Get-MachinePath
+Add-MachinePathItem "${env:ProgramFiles}\Mercurial\"
+Update-Environment
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Mercurial"
