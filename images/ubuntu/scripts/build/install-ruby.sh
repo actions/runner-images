@@ -20,7 +20,7 @@ gems_to_install=$(get_toolset_value ".rubygems[] .name")
 if [[ -n "$gems_to_install" ]]; then
     for gem in $gems_to_install; do
         echo "Installing gem $gem"
-        gem install $gem
+        gem install --no-document $gem
     done
 fi
 

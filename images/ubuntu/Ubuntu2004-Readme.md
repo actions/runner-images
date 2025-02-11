@@ -1,11 +1,7 @@
-| Announcements |
-|-|
-| [[Windows & Ubuntu] Breaking change : Maven 3.8.* version will be updated to  Maven 3.9.*  from January 17,2025](https://github.com/actions/runner-images/issues/11093) |
-***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1078-azure
-- Image Version: 20250120.2.0
+- Image Version: 20250202.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -20,11 +16,11 @@
 - Erlang rebar3 3.24.0
 - GNU C++: 10.5.0
 - GNU Fortran: 10.5.0
-- Julia 1.11.2
-- Kotlin 2.1.0-release-394
+- Julia 1.11.3
+- Kotlin 2.1.10-release-473
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 18.20.5
+- Node.js 18.20.6
 - Perl 5.30.0
 - Python 3.8.10
 - Ruby 2.7.0p0
@@ -33,7 +29,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.0
-- Homebrew 4.4.17
+- Homebrew 4.4.19
 - Miniconda 24.11.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -41,7 +37,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit cf035d991)
+- Vcpkg (build from commit 0ca64b4e1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,7 +56,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.12
+- Gradle 8.12.1
 - Lerna 8.1.9
 - Maven 3.9.9
 - Sbt 1.10.7
@@ -68,16 +64,16 @@ to accomplish this.
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.10.0
-- AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.28.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.0.1
 - Bazelisk 1.25.0
-- Bicep 0.32.4
+- Bicep 0.33.93
 - Buildah 1.22.3
-- CMake 3.31.4
+- CMake 3.31.5
 - CodeQL Action Bundle 2.20.1
 - Docker Amazon ECR Credential Helper 0.9.0
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.20.0
+- Docker-Buildx 0.20.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.226.0
@@ -99,45 +95,45 @@ to accomplish this.
 - Newman 6.2.1
 - nvm 0.40.1
 - OpenSSL 1.1.1f-1ubuntu2.23
-- Packer 1.11.2
+- Packer 1.12.0
 - Parcel 2.13.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.146.0
+- Pulumi 3.148.0
 - R 4.4.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.10.4
+- Terraform 1.10.5
 - yamllint 1.35.1
 - yq 4.45.1
 - zstd 1.5.6
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.23.2
+- AWS CLI 2.23.11
 - AWS CLI Session Manager Plugin 1.2.694.0
 - AWS SAM CLI 1.132.0
 - Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.65.0
-- Google Cloud CLI 506.0.0
-- Netlify CLI 18.0.1
+- GitHub CLI 2.66.1
+- Google Cloud CLI 508.0.0
+- Netlify CLI 18.0.3
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.2
-- Vercel CLI 39.3.0
+- Vercel CLI 40.1.0
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.432+6           | JAVA_HOME_8_X64      |
-| 11.0.25+9 (default) | JAVA_HOME_11_X64     |
-| 17.0.13+11          | JAVA_HOME_17_X64     |
-| 21.0.5+11           | JAVA_HOME_21_X64     |
+| 8.0.442+6           | JAVA_HOME_8_X64      |
+| 11.0.26+4 (default) | JAVA_HOME_11_X64     |
+| 17.0.14+7           | JAVA_HOME_17_X64     |
+| 21.0.6+7            | JAVA_HOME_21_X64     |
 
 ### PHP Tools
 - PHP: 7.4.33, 8.0.30, 8.1.31, 8.2.27, 8.3.16
-- Composer 2.8.4
+- Composer 2.8.5
 - PHPUnit 8.5.41
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -150,9 +146,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.3.1
 
 ### Rust Tools
-- Cargo 1.84.0
-- Rust 1.84.0
-- Rustdoc 1.84.0
+- Cargo 1.84.1
+- Rust 1.84.1
+- Rustdoc 1.84.1
 - Rustup 1.27.1
 
 #### Packages
@@ -164,13 +160,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.83
-- ChromeDriver 132.0.6834.83
+- Google Chrome 132.0.6834.159
+- ChromeDriver 132.0.6834.159
 - Chromium 132.0.6834.0
-- Microsoft Edge 132.0.2957.115
-- Microsoft Edge WebDriver 132.0.2957.115
-- Selenium server 4.28.0
-- Mozilla Firefox 134.0.1
+- Microsoft Edge 132.0.2957.140
+- Microsoft Edge WebDriver 132.0.2957.140
+- Selenium server 4.28.1
+- Mozilla Firefox 134.0.2
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -182,11 +178,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.428, 8.0.405
+- .NET Core SDK: 6.0.428, 8.0.405, 9.0.102
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
-- MongoDB 5.0.30
+- MongoDB 5.0.31
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -198,7 +194,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.40-0ubuntu0.20.04.1
+- MySQL 8.0.41-0ubuntu0.20.04.1
 ```
 User: root
 Password: root
@@ -214,13 +210,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.21.13
-- 1.22.10
-- 1.23.4
+- 1.22.11
+- 1.23.5
 
 #### Node.js
-- 18.20.5
-- 20.18.1
-- 22.13.0
+- 18.20.6
+- 20.18.2
+- 22.13.1
 
 #### Python
 - 3.8.18
@@ -228,6 +224,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.16
 - 3.11.11
 - 3.12.8
+- 3.13.1
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.17]
@@ -241,9 +238,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.0.7
 - 3.1.6
 - 3.2.6
+- 3.3.7
 
 ### PowerShell Tools
-- PowerShell 7.4.6
+- PowerShell 7.4.7
 
 #### PowerShell Modules
 - Az: 12.1.0
@@ -292,12 +290,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | debian:11            | sha256:e5bfb7364038fd100c2faebdd674145bd1bc758a57f3c67023cced99d0eff0f7  | 2025-01-13 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest | sha256:14aa1b4dd92ea0a4cd03a54d0c6079046ea98cd0c0ae6176bdd7036ba370cbbe  | 2025-01-20 |
-| node:18              | sha256:8b7f2b36c945174b27fe833689fcc47b78dd47de0eda2d6e868e6e4ec2c63ae0  | 2024-11-15 |
-| node:18-alpine       | sha256:a24108da7089c2d293ceaa61fb8969ec10821e8efe25572e5abb10b1841eb70b  | 2024-12-05 |
-| node:20              | sha256:968ca0550acc7589a8b1324401ec6e39ace53b2c82d2aed3a278e9ff491c2b1c  | 2024-11-20 |
-| node:20-alpine       | sha256:24fb6aa7020d9a20b00d6da6d1714187c45ed00d1eb4adb01395843c338b9372  | 2024-12-05 |
-| node:22              | sha256:fa54405993eaa6bab6b6e460f5f3e945a2e2f07942ba31c0e297a7d9c2041f62  | 2025-01-07 |
-| node:22-alpine       | sha256:f2dc6eea95f787e25f173ba9904c9d0647ab2506178c7b5b7c5a3d02bc4af145  | 2025-01-07 |
+| node:18              | sha256:720eeea325b3da50e108ba34dde0fd69feeb3c59485199c5e22b0ea49a792aa5  | 2025-01-22 |
+| node:18-alpine       | sha256:974afb6cbc0314dc6502b14243b8a39fbb2d04d975e9059dd066be3e274fbb25  | 2025-01-22 |
+| node:20              | sha256:bc3d86568d9a9e062cdf7036367f6e2ce201925e2912758bcd3b0e2657875a63  | 2025-01-22 |
+| node:20-alpine       | sha256:2cd2a6f4cb37cf8a007d5f1e9aef090ade6b62974c7a274098c390599e8c72b4  | 2025-01-22 |
+| node:22              | sha256:ae2f3d4cc65d251352eca01ba668824f651a2ee4d2a37e2efb22649521a483fd  | 2025-01-22 |
+| node:22-alpine       | sha256:e2b39f7b64281324929257d0f8004fb6cb4bf0fdfb9aa8cedb235a766aec31da  | 2025-01-22 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
 
 ### Installed apt packages
@@ -314,7 +312,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 8.30-3ubuntu2                     |
 | curl                   | 7.68.0-1ubuntu2.25                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
-| dnsutils               | 1:9.18.30-0ubuntu0.20.04.1        |
+| dnsutils               | 1:9.18.30-0ubuntu0.20.04.2        |
 | dpkg                   | 1.19.7ubuntu3.2                   |
 | dpkg-dev               | 1.19.7ubuntu3.2                   |
 | fakeroot               | 1.24-1                            |
@@ -383,7 +381,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
 | tk                     | 8.6.9+1                           |
-| tzdata                 | 2024a-0ubuntu0.20.04.1            |
+| tzdata                 | 2024b-0ubuntu0.20.04              |
 | unzip                  | 6.0-25ubuntu1.2                   |
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2.1                 |
@@ -392,4 +390,3 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
-
