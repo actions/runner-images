@@ -542,7 +542,7 @@ All other versions are saved but not installed.
 | Google APIs                | addon-google_apis-google-21<br>addon-google_apis-google-22<br>addon-google_apis-google-23<br>addon-google_apis-google-24                                                                                                                                                                                                          |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                |
-| NDK                        | 26.3.11579264<br>27.2.12479018                                                                                                                                                                                                                                                                                                    |
+| NDK                        | 26.3.11579264<br>27.2.12479018<br>28.0.13004108                                                                                                                                                                                                                                                                                   |
 
 #### Environment variables
 | Name                    | Value                                    |
@@ -562,4 +562,3 @@ All other versions are saved but not installed.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:f1a2e331287782ecc403dfd56717fbd32fdae9486ffaacaab8cb1798ee214e6d  | 2024-12-10 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:579994616649b876dd2e4009dae4af92f6e53561045230b8cdd53b3baf2f99d0  | 2024-12-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:0cb5fd75c08e7246afc6cc16bfe769d91af54fdb72ca58df150ebf5e3a2972ad  | 2024-12-05 |
-
