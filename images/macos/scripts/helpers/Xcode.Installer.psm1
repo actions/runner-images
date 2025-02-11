@@ -165,10 +165,6 @@ function Invoke-XcodeRunFirstLaunch {
         [string] $Version
     )
 
-    if ($Version.StartsWith("8") -or $Version.StartsWith("9")) {
-        return
-    }
-
     Write-Host "Running 'runFirstLaunch' for Xcode $Version..."
     $xcodeRootPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
     Invoke-ValidateCommand "sudo $xcodeRootPath -runFirstLaunch"
@@ -177,12 +173,36 @@ function Invoke-XcodeRunFirstLaunch {
 function Install-AdditionalSimulatorRuntimes {
     param (
         [Parameter(Mandatory)]
-        [string] $Version
+        [string] $Version,
+        [Parameter(Mandatory)]
+        [array] $Runtimes
     )
 
     Write-Host "Installing Simulator Runtimes for Xcode $Version ..."
-    $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName "xcodebuild"
-    Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms" | Out-Null
+    $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName 'xcodebuild'
+    $validRuntimes = @("iOS", "watchOS", "tvOS", "visionOS")
+    # Install all runtimes / skip all runtimes installation
+    if ($Runtimes.Count -eq 1) {
+        if ($Runtimes[0] -eq "true") {
+            Write-Host "Installing all runtimes for Xcode $Version ..."
+            Invoke-ValidateCommand "sudo $xcodebuildPath -downloadAllPlatforms" | Out-Null
+            return
+        } elseif ($Runtimes[0] -eq "false") {
+            Write-Host "Skipping runtimes installation for Xcode $Version ..."
+            return
+        }
+    }
+
+    # Validate and install specified runtimes
+    $invalidRuntimes = $Runtimes | Where-Object { $_ -notin $validRuntimes }
+    if ($invalidRuntimes) {
+        throw "Error: Invalid runtimes detected: $($invalidRuntimes -join ', '). Valid values are: $validRuntimes."
+    }
+    
+    foreach ($runtime in $Runtimes) {
+        Write-Host "Installing runtime $runtime ..."
+        Invoke-ValidateCommand "sudo $xcodebuildPath -downloadPlatform $runtime" | Out-Null
+    }
 }
 
 function Build-XcodeSymlinks {
