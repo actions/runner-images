@@ -324,7 +324,7 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "3.4.0",
+        "version": "3.4.1",
         "pinnedDetails": {
             "link": "https://github.com/actions/runner-images-internal/pull/6702",
             "reason": "Meaningful reason must be added at next update.",
