@@ -10,6 +10,7 @@ Install-VisualStudio `
     -Version $vsToolset.subversion `
     -Edition $vsToolset.edition `
     -Channel $vsToolset.channel `
+    -InstallChannel $vsToolset.installChannel `
     -RequiredComponents $vsToolset.workloads `
     -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
     -SignatureThumbprint $vsToolset.signature
