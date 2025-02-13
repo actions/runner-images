@@ -4,6 +4,17 @@
 ################################################################################
 
 $vsToolset = (Get-ToolsetContent).visualStudio
+$installChannel = if (-not (Test-IsWin19)) { $vsToolset.installChannel }
+
+Install-VisualStudio `
+    -Version $vsToolset.subversion `
+    -Edition $vsToolset.edition `
+    -Channel $vsToolset.channel `
+    -InstallChannel $installChannel `
+    -RequiredComponents $vsToolset.workloads `
+    -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
+    -SignatureThumbprint $vsToolset.signature
+
 
 # Install VS
 Install-VisualStudio `
