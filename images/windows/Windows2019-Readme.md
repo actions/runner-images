@@ -1,13 +1,12 @@
 | Announcements |
 |-|
-| [[Windows] Removal of Azure and Azure Powershell module from windows images from 14-02-2025](https://github.com/actions/runner-images/issues/11483) |
-| [[Windows ] Breaking change : PHP 8.3.* version will be updated to PHP 8.4.* from 2025-01-31](https://github.com/actions/runner-images/issues/11256) |
+| [[Windows] Removal of Azure and Azure Powershell module from windows images from 2025-03-01](https://github.com/actions/runner-images/issues/11483) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
-| [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from February 07,2025](https://github.com/actions/runner-images/issues/11104) |
+| [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from 2025-03-07](https://github.com/actions/runner-images/issues/11104) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6775
-- Image Version: 20250203.1.0
+- Image Version: 20250209.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -30,13 +29,13 @@
 - Chocolatey 2.4.2
 - Composer 2.8.5
 - Helm 3.16.4
-- Miniconda 24.11.1 (pre-installed on the image but not added to PATH)
+- Miniconda 25.1.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.12.2.1
-- pip 25.0 (python 3.9)
+- pip 25.0.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 0ca64b4e1)
+- Vcpkg (build from commit 74ec888e38)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -67,7 +66,7 @@
 - ghc 9.12.1
 - Git 2.47.1.windows.2
 - Git LFS 3.6.1
-- Google Cloud CLI 508.0.0
+- Google Cloud CLI 509.0.0
 - ImageMagick 7.1.1-43
 - InnoSetup 6.4.0
 - jq 1.7.1
@@ -80,9 +79,9 @@
 - Newman 6.2.1
 - NSIS 3.10
 - OpenSSL 1.1.1w
-- Packer 1.11.2
+- Packer 1.12.0
 - Parcel 2.13.3
-- Pulumi 3.148.0
+- Pulumi 3.149.0
 - R 4.4.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.3.1
@@ -95,10 +94,10 @@
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.250
-- AWS CLI 2.23.11
-- AWS SAM CLI 1.132.0
-- AWS Session Manager CLI 1.2.694.0
+- Alibaba Cloud CLI 3.0.251
+- AWS CLI 2.24.0
+- AWS SAM CLI 1.133.0
+- AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.68.0
 - Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 8.9.0
@@ -119,11 +118,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.160
-- Chrome Driver 132.0.6834.159
-- Microsoft Edge 132.0.2957.127
+- Google Chrome 133.0.6943.60
+- Chrome Driver 133.0.6943.53
+- Microsoft Edge 132.0.2957.140
 - Microsoft Edge Driver 132.0.2957.140
-- Mozilla Firefox 134.0.2
+- Mozilla Firefox 135.0
 - Gecko Driver 0.35.0
 - IE Driver 4.14.0.0
 - Selenium server 4.28.0
@@ -169,8 +168,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.20.14
 - 1.21.13
-- 1.22.11
-- 1.23.5
+- 1.22.12
+- 1.23.6
 
 #### Node.js
 - 16.20.2
@@ -183,21 +182,21 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.9.13
 - 3.10.11
 - 3.11.9
-- 3.12.8
-- 3.13.1
+- 3.12.9
+- 3.13.2
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.17]
+- 2.7.18 [PyPy 7.3.18]
 - 3.6.12 [PyPy 7.3.3]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.14 [PyPy 7.3.17]
+- 3.10.16 [PyPy 7.3.18]
 
 #### Ruby
 - 3.0.7
 - 3.1.6
-- 3.2.6
+- 3.2.7
 - 3.3.7
 
 ### Databases
@@ -230,7 +229,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.27.3  | C:\tools\nginx-1.27.3\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.27.4  | C:\tools\nginx-1.27.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version         | Path                                                           |
@@ -513,7 +512,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AzureRM: 6.13.1
 - Azure (Cached): 5.1.1.zip
 - AzureRM (Cached): 6.7.0.zip
-- AWSPowershell: 4.1.748
+- AWSPowershell: 4.1.753
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.25.0

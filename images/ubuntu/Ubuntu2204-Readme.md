@@ -1,7 +1,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.5.0-1025-azure
-- Image Version: 20250202.1.0
+- Image Version: 20250209.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -27,15 +27,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.0
-- Homebrew 4.4.19
-- Miniconda 24.11.1
+- Homebrew 4.4.20
+- Miniconda 25.1.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 0ca64b4e1)
+- Vcpkg (build from commit 74ec888e38)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -79,7 +79,7 @@ to accomplish this.
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.0.2
+- Heroku 10.1.0
 - jq 1.6
 - Kind 0.26.0
 - Kubectl 1.32.1
@@ -95,7 +95,7 @@ to accomplish this.
 - Packer 1.12.0
 - Parcel 2.13.3
 - Podman 3.4.4
-- Pulumi 3.148.0
+- Pulumi 3.149.0
 - R 4.4.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -106,18 +106,18 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.250
-- AWS CLI 2.23.11
-- AWS CLI Session Manager Plugin 1.2.694.0
-- AWS SAM CLI 1.132.0
+- Alibaba Cloud CLI 3.0.251
+- AWS CLI 2.24.0
+- AWS CLI Session Manager Plugin 1.2.707.0
+- AWS SAM CLI 1.133.0
 - Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.66.1
-- Google Cloud CLI 508.0.0
-- Netlify CLI 18.0.3
-- OpenShift CLI 4.17.14
+- Google Cloud CLI 509.0.0
+- Netlify CLI 18.0.4
+- OpenShift CLI 4.17.15
 - ORAS CLI 1.2.2
-- Vercel CLI 40.1.0
+- Vercel CLI 41.0.2
 
 ### Java
 | Version             | Environment Variable |
@@ -156,13 +156,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.159
-- ChromeDriver 132.0.6834.159
-- Chromium 132.0.6834.0
+- Google Chrome 133.0.6943.53
+- ChromeDriver 133.0.6943.53
+- Chromium 133.0.6943.0
 - Microsoft Edge 132.0.2957.140
 - Microsoft Edge WebDriver 132.0.2957.140
 - Selenium server 4.28.1
-- Mozilla Firefox 134.0.2
+- Mozilla Firefox 135.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -205,8 +205,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.21.13
-- 1.22.11
-- 1.23.5
+- 1.22.12
+- 1.23.6
 
 #### Node.js
 - 18.20.6
@@ -218,18 +218,18 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.21
 - 3.10.16
 - 3.11.11
-- 3.12.8
-- 3.13.1
+- 3.12.9
+- 3.13.2
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.14 [PyPy 7.3.17]
+- 3.10.16 [PyPy 7.3.18]
 
 #### Ruby
 - 3.1.6
-- 3.2.6
+- 3.2.7
 - 3.3.7
 
 ### PowerShell Tools
@@ -253,6 +253,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 9.0                                                                                                                                                                                                                                                                                                         |
 | Android SDK Build-tools    | 35.0.0 35.0.1<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                                                  |
+| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                      |
 | Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                      |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                                                  |
@@ -278,16 +279,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:dd60c75fba961ecc5e918961c713f3c42dd5665171c58f9b2ef5aafe081ad5a0  | 2025-01-08 |
 | alpine:3.19          | sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f  | 2025-01-08 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:e5bfb7364038fd100c2faebdd674145bd1bc758a57f3c67023cced99d0eff0f7  | 2025-01-13 |
+| debian:11            | sha256:63904b1442dc0bb1e7a7a7065b3ba0d10d4e300f984115a40d371827fe4e3a85  | 2025-02-03 |
 | moby/buildkit:latest | sha256:14aa1b4dd92ea0a4cd03a54d0c6079046ea98cd0c0ae6176bdd7036ba370cbbe  | 2025-01-20 |
-| node:18              | sha256:720eeea325b3da50e108ba34dde0fd69feeb3c59485199c5e22b0ea49a792aa5  | 2025-01-22 |
+| node:18              | sha256:f12d34408955b2081f82078e8f96c3299ca0f38d11e76086cb9b9b1b669977e4  | 2025-01-22 |
 | node:18-alpine       | sha256:974afb6cbc0314dc6502b14243b8a39fbb2d04d975e9059dd066be3e274fbb25  | 2025-01-22 |
-| node:20              | sha256:bc3d86568d9a9e062cdf7036367f6e2ce201925e2912758bcd3b0e2657875a63  | 2025-01-22 |
+| node:20              | sha256:3496cba96d3548fc484a7febc77edebffcae693aff6a067bc34ec6d8c1f7affe  | 2025-01-22 |
 | node:20-alpine       | sha256:2cd2a6f4cb37cf8a007d5f1e9aef090ade6b62974c7a274098c390599e8c72b4  | 2025-01-22 |
-| node:22              | sha256:ae2f3d4cc65d251352eca01ba668824f651a2ee4d2a37e2efb22649521a483fd  | 2025-01-22 |
+| node:22              | sha256:5145c882f9e32f07dd7593962045d97f221d57a1b609f5bf7a807eb89deff9d6  | 2025-01-22 |
 | node:22-alpine       | sha256:e2b39f7b64281324929257d0f8004fb6cb4bf0fdfb9aa8cedb235a766aec31da  | 2025-01-22 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
-| ubuntu:22.04         | sha256:0e5e4a57c2499249aafc3b40fcd541e9a456aab7296681a3994d631587203f97  | 2024-09-11 |
+| ubuntu:22.04         | sha256:ed1544e454989078f5dec1bfdabd8c5cc9c48e0705d07b678ab6ae3fb61952d2  | 2025-01-26 |
 
 ### Installed apt packages
 | Name                   | Version                             |
@@ -323,7 +324,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.8                     |
+| libc6-dev              | 2.35-0ubuntu3.9                     |
 | libcurl4               | 7.81.0-1ubuntu1.20                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.3          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -340,7 +341,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.8                     |
+| locales                | 2.35-0ubuntu3.9                     |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
