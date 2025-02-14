@@ -2,6 +2,7 @@
 ##  File:  Install-VisualStudio.ps1
 ##  Desc:  Install Visual Studio
 ################################################################################
+$vsToolset = (Get-ToolsetContent).visualStudio
 
 $parameters = @{
     Version = $vsToolset.subversion
