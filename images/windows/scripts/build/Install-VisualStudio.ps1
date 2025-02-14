@@ -4,20 +4,24 @@
 ################################################################################
 $vsToolset = (Get-ToolsetContent).visualStudio
 
-$parameters = @{
-    Version = $vsToolset.subversion
-    Edition = $vsToolset.edition
-    Channel = $vsToolset.channel
-    RequiredComponents = $vsToolset.workloads
-    ExtraArgs = "--allWorkloads --includeRecommended --remove Component.CPython3.x64"
-    SignatureThumbprint = $vsToolset.signature
-}
-
 if (-not (Test-IsWin19)) {
-    $parameters.InstallChannel = $vsToolset.installChannel
-}
-
-Install-VisualStudio @parameters
+   Install-VisualStudio `
+    -Version $vsToolset.subversion `
+    -Edition $vsToolset.edition `
+    -Channel $vsToolset.channel `
+    -InstallChannel $vsToolset.installChannel `
+    -RequiredComponents $vsToolset.workloads `
+    -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
+    -SignatureThumbprint $vsToolset.signature
+    } else {
+     Install-VisualStudio `
+    -Version $vsToolset.subversion `
+    -Edition $vsToolset.edition `
+    -Channel $vsToolset.channel `
+    -RequiredComponents $vsToolset.workloads `
+    -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
+    -SignatureThumbprint $vsToolset.signature
+    }
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
