@@ -15,7 +15,6 @@ if (Test-IsWin19) {
         -SignatureThumbprint $vsToolset.signature
 }
 
-# Check if the OS is Windows 22
 if (Test-IsWin22) {
     # Install Visual Studio for Windows 22 with InstallChannel
     Install-VisualStudio `
