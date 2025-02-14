@@ -3,18 +3,20 @@
 ##  Desc:  Install Visual Studio
 ################################################################################
 
-$vsToolset = (Get-ToolsetContent).visualStudio
-$installChannel = if (-not (Test-IsWin19)) { $vsToolset.installChannel }
+$parameters = @{
+    Version = $vsToolset.subversion
+    Edition = $vsToolset.edition
+    Channel = $vsToolset.channel
+    RequiredComponents = $vsToolset.workloads
+    ExtraArgs = "--allWorkloads --includeRecommended --remove Component.CPython3.x64"
+    SignatureThumbprint = $vsToolset.signature
+}
 
-# Install VS
-Install-VisualStudio `
-    -Version $vsToolset.subversion `
-    -Edition $vsToolset.edition `
-    -Channel $vsToolset.channel `
-    -InstallChannel $installChannel `
-    -RequiredComponents $vsToolset.workloads `
-    -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
-    -SignatureThumbprint $vsToolset.signature
+if (-not (Test-IsWin19)) {
+    $parameters.InstallChannel = $vsToolset.installChannel
+}
+
+Install-VisualStudio @parameters
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
