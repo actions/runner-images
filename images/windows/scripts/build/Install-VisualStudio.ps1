@@ -6,6 +6,7 @@
 $vsToolset = (Get-ToolsetContent).visualStudio
 $installChannel = if (-not (Test-IsWin19)) { $vsToolset.installChannel }
 
+# Install VS
 Install-VisualStudio `
     -Version $vsToolset.subversion `
     -Edition $vsToolset.edition `
@@ -14,18 +15,6 @@ Install-VisualStudio `
     -RequiredComponents $vsToolset.workloads `
     -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
     -SignatureThumbprint $vsToolset.signature
-
-
-# Install VS
-Install-VisualStudio `
-    -Version $vsToolset.subversion `
-    -Edition $vsToolset.edition `
-    -Channel $vsToolset.channel `
-    -InstallChannel (if (-not (Test-IsWin19)) { $vsToolset.installChannel }) `
-    -RequiredComponents $vsToolset.workloads `
-    -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
-    -SignatureThumbprint $vsToolset.signature
-    
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
