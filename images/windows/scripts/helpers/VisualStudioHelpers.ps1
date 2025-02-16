@@ -37,7 +37,7 @@ Function Install-VisualStudio {
     )
     
     
-    if (-not (Test-IsWin19)) {
+    if ($InstallChannel) {
         $bootstrapperUrl = "https://aka.ms/vs/${Version}/postGRO-${Channel}/vs_${Edition}.exe"
     } else {
         $bootstrapperUrl = "https://aka.ms/vs/${Version}/${Channel}/vs_${Edition}.exe"
