@@ -7,7 +7,14 @@
 source ~/utils/utils.sh
 
 echo "Installing Git..."
-brew_smart_install "git"
+#brew_smart_install "git"
+
+COMMIT=aecf26f53d0d1d15d42f658ae2db243f87746af6
+FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/g/git.rb"
+FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/g/git.rb"
+mkdir -p "$(dirname $FORMULA_PATH)"
+curl -fsSL $FORMULA_URL -o $FORMULA_PATH
+HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install git
 
 git config --global --add safe.directory "*"
 
