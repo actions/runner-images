@@ -16,7 +16,7 @@ if (Test-IsWin19) {
 }
 
 if ( (Test-IsWin22) -or (Test-IsWin25) ) {
-    # Install Visual Studio for Windows 22 with InstallChannel
+    # Install Visual Studio for Windows 22 and 25 with InstallChannel
     Install-VisualStudio `
         -Version $vsToolset.subversion `
         -Edition $vsToolset.edition `
