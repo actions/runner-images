@@ -126,6 +126,8 @@ Function GenerateResourcesAndImage {
             Ignores all other configurations if enabled.
         .PARAMETER Tags
             Tags to be applied to the Azure resources created.
+        .PARAMETER PluginVersion
+            Specify the version of the packer Azure plugin to use. The default is "2.2.1".
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2204 -AzureLocation "East US"
     #>
@@ -150,6 +152,8 @@ Function GenerateResourcesAndImage {
         [string] $AzureClientSecret,
         [Parameter(Mandatory = $False)]
         [string] $AzureTenantId,
+        [Parameter(Mandatory = $False)]
+        [string] $PluginVersion = "2.2.1",
         [Parameter(Mandatory = $False)]
         [switch] $RestrictToAgentIpAddress,
         [Parameter(Mandatory = $False)]
@@ -227,7 +231,7 @@ Function GenerateResourcesAndImage {
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
 
     Write-Host "Downloading packer plugins..."
-    & $PackerBinary init $TemplatePath
+    & $PackerBinary plugins install github.com/hashicorp/azure $PluginVersion
 
     if ($LastExitCode -ne 0) {
         throw "Packer plugins download failed."
