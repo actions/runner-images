@@ -1,8 +1,8 @@
 # Ubuntu 24.04
 - OS Version: 24.04.1 LTS
-- Kernel Version: 6.8.0-1020-azure
-- Image Version: 20250126.1.0
-- Systemd version: 255.4-1ubuntu8.4
+- Kernel Version: 6.8.0-1021-azure
+- Image Version: 20250209.1.0
+- Systemd version: 255.4-1ubuntu8.5
 
 ## Installed Software
 
@@ -15,7 +15,7 @@
 - GNU C++: 12.3.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
 - Julia 1.11.3
-- Kotlin 2.1.0-release-394
+- Kotlin 2.1.10-release-473
 - Node.js 20.18.2
 - Perl 5.38.2
 - Python 3.12.3
@@ -25,14 +25,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.0
-- Homebrew 4.4.17
-- Miniconda 24.11.1
+- Homebrew 4.4.20
+- Miniconda 25.1.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 57c08a322)
+- Vcpkg (build from commit 74ec888e38)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,11 +56,11 @@ to accomplish this.
 - Maven 3.9.9
 
 ### Tools
-- Ansible 2.18.1
-- AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
+- Ansible 2.18.2
+- AzCopy 10.28.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.0.1
 - Bazelisk 1.25.0
-- Bicep 0.33.13
+- Bicep 0.33.93
 - Buildah 1.33.7
 - CMake 3.31.5
 - CodeQL Action Bundle 2.20.1
@@ -88,7 +88,7 @@ to accomplish this.
 - Packer 1.12.0
 - Parcel 2.13.3
 - Podman 4.9.3
-- Pulumi 3.147.0
+- Pulumi 3.149.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -96,13 +96,13 @@ to accomplish this.
 - zstd 1.5.6
 
 ### CLI Tools
-- AWS CLI 2.23.6
-- AWS CLI Session Manager Plugin 1.2.694.0
-- AWS SAM CLI 1.132.0
+- AWS CLI 2.24.0
+- AWS CLI Session Manager Plugin 1.2.707.0
+- AWS SAM CLI 1.133.0
 - Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.65.0
-- Google Cloud CLI 507.0.0
+- GitHub CLI 2.66.1
+- Google Cloud CLI 509.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -127,22 +127,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.3.1
 
 ### Rust Tools
-- Cargo 1.84.0
-- Rust 1.84.0
-- Rustdoc 1.84.0
+- Cargo 1.84.1
+- Rust 1.84.1
+- Rustdoc 1.84.1
 - Rustup 1.27.1
 
 #### Packages
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.110
-- ChromeDriver 132.0.6834.110
-- Chromium 132.0.6834.0
-- Microsoft Edge 132.0.2957.127
-- Microsoft Edge WebDriver 132.0.2957.127
+- Google Chrome 133.0.6943.53
+- ChromeDriver 133.0.6943.53
+- Chromium 133.0.6943.0
+- Microsoft Edge 132.0.2957.140
+- Microsoft Edge WebDriver 132.0.2957.140
 - Selenium server 4.28.1
-- Mozilla Firefox 134.0.2
+- Mozilla Firefox 135.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -169,7 +169,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.40-0ubuntu0.24.04.1
+- MySQL 8.0.41-0ubuntu0.24.04.1
 ```
 User: root
 Password: root
@@ -181,8 +181,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.21.13
-- 1.22.11
-- 1.23.5
+- 1.22.12
+- 1.23.6
 
 #### Node.js
 - 18.20.6
@@ -193,15 +193,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.21
 - 3.10.16
 - 3.11.11
-- 3.12.8
-- 3.13.1
+- 3.12.9
+- 3.13.2
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.14 [PyPy 7.3.17]
+- 3.10.16 [PyPy 7.3.18]
 
 #### Ruby
-- 3.2.6
+- 3.2.7
 - 3.3.7
 
 ### PowerShell Tools
@@ -224,6 +224,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 12.0                                                                                                                                                                                                                                      |
 | Android SDK Build-tools    | 35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                   |
+| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                    |
 | Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                    |
 | Google Play services       | 49                                                                                                                                                                                                                                        |
@@ -254,7 +255,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 9.4-3ubuntu6                |
 | curl                   | 8.5.0-2ubuntu10.6           |
 | dbus                   | 1.14.10-4ubuntu4.1          |
-| dnsutils               | 1:9.18.30-0ubuntu0.24.04.1  |
+| dnsutils               | 1:9.18.30-0ubuntu0.24.04.2  |
 | dpkg                   | 1.22.6ubuntu6.1             |
 | dpkg-dev               | 1.22.6ubuntu6.1             |
 | fakeroot               | 1.33-1                      |
@@ -270,11 +271,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.1.0-1ubuntu6              |
 | iputils-ping           | 3:20240117-1build1          |
 | jq                     | 1.7.1-3build1               |
-| libsqlite3-dev         | 3.45.1-1ubuntu2             |
+| libsqlite3-dev         | 3.45.1-1ubuntu2.1           |
 | libssl-dev             | 3.0.13-0ubuntu3.4           |
 | libtool                | 2.4.7-7build1               |
 | libyaml-dev            | 0.2.5-1build1               |
-| locales                | 2.39-0ubuntu8.3             |
+| locales                | 2.39-0ubuntu8.4             |
 | lz4                    | 1.9.4-1build1.1             |
 | m4                     | 1.4.19-4build1              |
 | make                   | 4.3-4.1build2               |
@@ -295,23 +296,23 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-1ubuntu1.2            |
 | shellcheck             | 0.9.0-1                     |
 | sphinxsearch           | 2.2.11-8build1              |
-| sqlite3                | 3.45.1-1ubuntu2             |
+| sqlite3                | 3.45.1-1ubuntu2.1           |
 | ssh                    | 1:9.6p1-3ubuntu13.5         |
 | sshpass                | 1.09-1                      |
 | sudo                   | 1.9.15p5-3ubuntu5           |
 | swig                   | 4.2.0-2ubuntu1              |
-| systemd-coredump       | 255.4-1ubuntu8.4            |
+| systemd-coredump       | 255.4-1ubuntu8.5            |
 | tar                    | 1.35+dfsg-3build1           |
 | telnet                 | 0.17+2.5-3ubuntu4           |
 | texinfo                | 7.1-3build2                 |
 | time                   | 1.9-0.2build1               |
 | tk                     | 8.6.14build1                |
 | tree                   | 2.1.1-2ubuntu3              |
-| tzdata                 | 2024a-3ubuntu1.1            |
+| tzdata                 | 2024b-0ubuntu0.24.04.1      |
 | unzip                  | 6.0-28ubuntu4.1             |
 | upx                    | 4.2.2-3                     |
 | wget                   | 1.21.4-1ubuntu4.1           |
 | xvfb                   | 2:21.1.12-1ubuntu1.1        |
 | xz-utils               | 5.6.1+really5.4.5-1build0.1 |
-| zip                    | 3.0-13ubuntu0.1             |
+| zip                    | 3.0-13ubuntu0.2             |
 | zsync                  | 0.6.2-5build1               |

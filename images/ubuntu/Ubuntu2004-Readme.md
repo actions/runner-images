@@ -1,7 +1,7 @@
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1078-azure
-- Image Version: 20250126.1.0
+- Image Version: 20250209.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -17,7 +17,7 @@
 - GNU C++: 10.5.0
 - GNU Fortran: 10.5.0
 - Julia 1.11.3
-- Kotlin 2.1.0-release-394
+- Kotlin 2.1.10-release-473
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 18.20.6
@@ -29,15 +29,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.0
-- Homebrew 4.4.17
-- Miniconda 24.11.1
+- Homebrew 4.4.20
+- Miniconda 25.1.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
 - Pip 20.0.2
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 57c08a322)
+- Vcpkg (build from commit 74ec888e38)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -64,10 +64,10 @@ to accomplish this.
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.10.0
-- AzCopy 10.27.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.28.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.0.1
 - Bazelisk 1.25.0
-- Bicep 0.33.13
+- Bicep 0.33.93
 - Buildah 1.22.3
 - CMake 3.31.5
 - CodeQL Action Bundle 2.20.1
@@ -81,7 +81,7 @@ to accomplish this.
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 10.0.2
+- Heroku 10.1.0
 - HHVM (HipHop VM) 4.172.1
 - jq 1.6
 - Kind 0.26.0
@@ -99,7 +99,7 @@ to accomplish this.
 - Parcel 2.13.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.147.0
+- Pulumi 3.149.0
 - R 4.4.2
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
@@ -111,17 +111,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.23.6
-- AWS CLI Session Manager Plugin 1.2.694.0
-- AWS SAM CLI 1.132.0
+- AWS CLI 2.24.0
+- AWS CLI Session Manager Plugin 1.2.707.0
+- AWS SAM CLI 1.133.0
 - Azure CLI 2.68.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.65.0
-- Google Cloud CLI 507.0.0
-- Netlify CLI 18.0.2
+- GitHub CLI 2.66.1
+- Google Cloud CLI 509.0.0
+- Netlify CLI 18.0.4
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.2
-- Vercel CLI 39.3.0
+- Vercel CLI 41.0.2
 
 ### Java
 | Version             | Environment Variable |
@@ -146,9 +146,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.3.1
 
 ### Rust Tools
-- Cargo 1.84.0
-- Rust 1.84.0
-- Rustdoc 1.84.0
+- Cargo 1.84.1
+- Rust 1.84.1
+- Rustdoc 1.84.1
 - Rustup 1.27.1
 
 #### Packages
@@ -160,13 +160,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 132.0.6834.110
-- ChromeDriver 132.0.6834.110
-- Chromium 132.0.6834.0
-- Microsoft Edge 132.0.2957.127
-- Microsoft Edge WebDriver 132.0.2957.127
+- Google Chrome 133.0.6943.53
+- ChromeDriver 133.0.6943.53
+- Chromium 133.0.6943.0
+- Microsoft Edge 132.0.2957.140
+- Microsoft Edge WebDriver 132.0.2957.140
 - Selenium server 4.28.1
-- Mozilla Firefox 134.0.2
+- Mozilla Firefox 135.0
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -182,7 +182,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
-- MongoDB 5.0.30
+- MongoDB 5.0.31
 - sqlite3 3.31.1
 
 #### PostgreSQL
@@ -194,7 +194,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.40-0ubuntu0.20.04.1
+- MySQL 8.0.41-0ubuntu0.20.04.1
 ```
 User: root
 Password: root
@@ -210,8 +210,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.21.13
-- 1.22.11
-- 1.23.5
+- 1.22.12
+- 1.23.6
 
 #### Node.js
 - 18.20.6
@@ -223,21 +223,21 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.9.21
 - 3.10.16
 - 3.11.11
-- 3.12.8
-- 3.13.1
+- 3.12.9
+- 3.13.2
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.17]
+- 2.7.18 [PyPy 7.3.18]
 - 3.6.12 [PyPy 7.3.3]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.14 [PyPy 7.3.17]
+- 3.10.16 [PyPy 7.3.18]
 
 #### Ruby
 - 3.0.7
 - 3.1.6
-- 3.2.6
+- 3.2.7
 - 3.3.7
 
 ### PowerShell Tools
@@ -262,6 +262,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 9.0                                                                                                                                                                                                                                                                                                         |
 | Android SDK Build-tools    | 35.0.0 35.0.1<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                                                  |
+| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                      |
 | Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                      |
 | CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                                                                                                                  |
@@ -287,14 +288,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:dd60c75fba961ecc5e918961c713f3c42dd5665171c58f9b2ef5aafe081ad5a0  | 2025-01-08 |
 | alpine:3.19          | sha256:6380aa6b04faa579332d4c9d1f65bd7093012ba6e01d9bbcd5e2d8a4f9fae38f  | 2025-01-08 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:e5bfb7364038fd100c2faebdd674145bd1bc758a57f3c67023cced99d0eff0f7  | 2025-01-13 |
+| debian:11            | sha256:63904b1442dc0bb1e7a7a7065b3ba0d10d4e300f984115a40d371827fe4e3a85  | 2025-02-03 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
 | moby/buildkit:latest | sha256:14aa1b4dd92ea0a4cd03a54d0c6079046ea98cd0c0ae6176bdd7036ba370cbbe  | 2025-01-20 |
-| node:18              | sha256:720eeea325b3da50e108ba34dde0fd69feeb3c59485199c5e22b0ea49a792aa5  | 2025-01-22 |
+| node:18              | sha256:f12d34408955b2081f82078e8f96c3299ca0f38d11e76086cb9b9b1b669977e4  | 2025-01-22 |
 | node:18-alpine       | sha256:974afb6cbc0314dc6502b14243b8a39fbb2d04d975e9059dd066be3e274fbb25  | 2025-01-22 |
-| node:20              | sha256:bc3d86568d9a9e062cdf7036367f6e2ce201925e2912758bcd3b0e2657875a63  | 2025-01-22 |
+| node:20              | sha256:3496cba96d3548fc484a7febc77edebffcae693aff6a067bc34ec6d8c1f7affe  | 2025-01-22 |
 | node:20-alpine       | sha256:2cd2a6f4cb37cf8a007d5f1e9aef090ade6b62974c7a274098c390599e8c72b4  | 2025-01-22 |
-| node:22              | sha256:ae2f3d4cc65d251352eca01ba668824f651a2ee4d2a37e2efb22649521a483fd  | 2025-01-22 |
+| node:22              | sha256:5145c882f9e32f07dd7593962045d97f221d57a1b609f5bf7a807eb89deff9d6  | 2025-01-22 |
 | node:22-alpine       | sha256:e2b39f7b64281324929257d0f8004fb6cb4bf0fdfb9aa8cedb235a766aec31da  | 2025-01-22 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
 
@@ -312,7 +313,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 8.30-3ubuntu2                     |
 | curl                   | 7.68.0-1ubuntu2.25                |
 | dbus                   | 1.12.16-2ubuntu2.3                |
-| dnsutils               | 1:9.18.30-0ubuntu0.20.04.1        |
+| dnsutils               | 1:9.18.30-0ubuntu0.20.04.2        |
 | dpkg                   | 1.19.7ubuntu3.2                   |
 | dpkg-dev               | 1.19.7ubuntu3.2                   |
 | fakeroot               | 1.24-1                            |
@@ -332,7 +333,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu1.5          |
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
-| libc6-dev              | 2.31-0ubuntu9.16                  |
+| libc6-dev              | 2.31-0ubuntu9.17                  |
 | libcurl4               | 7.68.0-1ubuntu2.25                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
@@ -348,7 +349,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1                         |
 | libxss1                | 1:1.2.3-1                         |
 | libyaml-dev            | 0.2.2-1                           |
-| locales                | 2.31-0ubuntu9.16                  |
+| locales                | 2.31-0ubuntu9.17                  |
 | m4                     | 1.4.18-4                          |
 | make                   | 4.2.1-1.2                         |
 | mediainfo              | 19.09-1build1                     |
@@ -381,7 +382,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
 | tk                     | 8.6.9+1                           |
-| tzdata                 | 2024a-0ubuntu0.20.04.1            |
+| tzdata                 | 2024b-0ubuntu0.20.04              |
 | unzip                  | 6.0-25ubuntu1.2                   |
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2.1                 |
