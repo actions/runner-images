@@ -1,7 +1,7 @@
 param(
     [String] [Parameter (Mandatory=$true)] $TemplatePath,
     [String] [Parameter (Mandatory=$true)] $ClientId,
-    [String] [Parameter (Mandatory=$true)] $ClientSecret,
+    [String] [Parameter (Mandatory=$false)] $ClientSecret,
     [String] [Parameter (Mandatory=$true)] $Location,
     [String] [Parameter (Mandatory=$true)] $ImageName,
     [String] [Parameter (Mandatory=$true)] $ImageResourceGroupName,
@@ -13,7 +13,7 @@ param(
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet,
     [String] [Parameter (Mandatory=$false)] $AllowedInboundIpAddresses = "[]",
-    [hashtable] [Parameter (Mandatory=$False)] $Tags = @{}
+    [hashtable] [Parameter (Mandatory=$false)] $Tags = @{}
 )
 
 if (-not (Test-Path $TemplatePath))
