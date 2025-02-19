@@ -1,18 +1,18 @@
 | Announcements |
 |-|
-| [[macOS] Ruby version 3.0 will be removed from the images on Feb 10, 2025 and 3.3 will be set as default. ](https://github.com/actions/runner-images/issues/11345) |
-| [[macOS] The macOS 12 Actions runner image will begin deprecation on 10/7/24 and will be fully unsupported by 12/3/24 for GitHub and by 01/13/25 for ADO](https://github.com/actions/runner-images/issues/10721) |
-| [macOS 15 (Sequoia) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/10686) |
+| [[ macOS ] .NET 7.x will be removed from macOS-13 and macOS-14 images on February 24,2025.](https://github.com/actions/runner-images/issues/11501) |
+| [macOS 15 (Sequoia) will be generally available in GitHub Actions and Azure DevOps from February, 25](https://github.com/actions/runner-images/issues/11486) |
+| [[macOS] Ruby version 3.0 will be removed from the images on Feb 17, 2025 and 3.3 will be set as default. ](https://github.com/actions/runner-images/issues/11345) |
 ***
 # macOS 13
-- OS Version: macOS 13.7.2 (22H313)
+- OS Version: macOS 13.7.4 (22H420)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250127.672
+- Image Version: 20250214.206
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.405, 9.0.102
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.406, 9.0.102, 9.0.200
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -22,23 +22,23 @@
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
-- Kotlin 2.1.0-release-394
+- Kotlin 2.1.10-release-473
 - Mono 6.12.0.188
-- Node.js 20.18.2
+- Node.js 20.18.3
 - Perl 5.40.1
-- Python3 3.13.1
-- Ruby 3.0.7p220
+- Python3 3.13.2
+- Ruby 3.3.7
 
 ### Package Management
-- Bundler 2.5.23
+- Bundler 2.6.3
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.17
+- Homebrew 4.4.20
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 24.3.1 (python 3.13)
+- Pip3 25.0 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.5.23
+- RubyGems 3.6.3
 - Yarn 1.22.22
 
 ### Project Management
@@ -49,14 +49,14 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.27.1
-- bazel 8.0.1
+- azcopy 10.28.0
+- bazel 8.1.0
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.48.1
+- Git 2.47.1
 - Git LFS 3.6.1
-- GitHub CLI 2.65.0
+- GitHub CLI 2.67.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.7
@@ -69,29 +69,29 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.23.6
-- AWS SAM CLI 1.132.0
-- AWS Session Manager CLI 1.2.694.0
-- Azure CLI 2.68.0
+- AWS CLI 2.24.5
+- AWS SAM CLI 1.133.0
+- AWS Session Manager CLI 1.2.707.0
+- Azure CLI 2.69.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.33.13
+- Bicep CLI 0.33.93
 - Cmake 3.31.5
 - CodeQL Action Bundle 2.20.1
 - Fastlane 2.226.0
 - SwiftFormat 0.55.5
-- Xcbeautify 2.23.0
+- Xcbeautify 2.25.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
 
 ### Linters
 
 ### Browsers
-- Safari 18.2 (18620.1.16.111.6)
-- SafariDriver 18.2 (18620.1.16.111.6)
-- Google Chrome 132.0.6834.111
-- Google Chrome for Testing 132.0.6834.110
-- ChromeDriver 132.0.6834.110
-- Selenium server 4.28.0
+- Safari 18.3 (18620.2.4.111.8)
+- SafariDriver 18.3 (18620.2.4.111.8)
+- Google Chrome 133.0.6943.99
+- Google Chrome for Testing 133.0.6943.98
+- ChromeDriver 133.0.6943.98
+- Selenium server 4.28.1
 
 #### Environment variables
 | Name            | Value                                   |
@@ -110,31 +110,30 @@
 ### Cached Tools
 
 #### Ruby
-- 3.0.7
 - 3.1.6
-- 3.2.6
+- 3.2.7
 - 3.3.7
 - 3.4.1
 
 #### Python
 - 3.11.9
-- 3.12.8
-- 3.13.1
+- 3.12.9
+- 3.13.2
 
 #### Node.js
 - 18.20.6
-- 20.18.2
-- 22.13.1
+- 20.18.3
+- 22.14.0
 
 #### Go
 - 1.21.13
-- 1.22.11
-- 1.23.5
+- 1.22.12
+- 1.23.6
 
 ### Rust Tools
-- Cargo 1.84.0
-- Rust 1.84.0
-- Rustdoc 1.84.0
+- Cargo 1.84.1
+- Rust 1.84.1
+- Rustdoc 1.84.1
 - Rustup 1.27.1
 
 #### Packages
