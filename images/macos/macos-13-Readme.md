@@ -1,18 +1,18 @@
 | Announcements |
 |-|
 | [[ macOS ] .NET 7.x will be removed from macOS-13 and macOS-14 images on February 24,2025.](https://github.com/actions/runner-images/issues/11501) |
-| [macOS 15 (Sequoia) will be generally available in GitHub Actions and Azure DevOps from February, 17](https://github.com/actions/runner-images/issues/11486) |
-| [[macOS] Ruby version 3.0 will be removed from the images on Feb 10, 2025 and 3.3 will be set as default. ](https://github.com/actions/runner-images/issues/11345) |
+| [macOS 15 (Sequoia) will be generally available in GitHub Actions and Azure DevOps from February, 25](https://github.com/actions/runner-images/issues/11486) |
+| [[macOS] Ruby version 3.0 will be removed from the images on Feb 17, 2025 and 3.3 will be set as default. ](https://github.com/actions/runner-images/issues/11345) |
 ***
 # macOS 13
-- OS Version: macOS 13.7.2 (22H313)
+- OS Version: macOS 13.7.4 (22H420)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250129.634
+- Image Version: 20250218.701
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.405, 9.0.102
+- .NET Core SDK: 7.0.102, 7.0.202, 7.0.306, 7.0.410, 8.0.101, 8.0.204, 8.0.303, 8.0.406, 9.0.102, 9.0.200
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -24,24 +24,24 @@
 - GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
 - Kotlin 2.1.10-release-473
 - Mono 6.12.0.188
-- Node.js 20.18.2
+- Node.js 20.18.3
 - Perl 5.40.1
-- PHP 8.4.3
-- Python3 3.13.1
-- Ruby 3.0.7p220
+- PHP 8.4.4
+- Python3 3.13.2
+- Ruby 3.3.7
 
 ### Package Management
-- Bundler 2.5.23
+- Bundler 2.6.4
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.5
-- Homebrew 4.4.19
+- Homebrew 4.4.21
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 25.0 (python 3.13)
+- Pip3 25.0.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.5.23
-- Vcpkg 2025 (build from commit ab42fb303)
+- RubyGems 3.6.4
+- Vcpkg 2025 (build from commit d5ec528843)
 - Yarn 1.22.22
 
 ### Project Management
@@ -53,13 +53,13 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.28.0
-- bazel 8.0.1
+- bazel 8.1.0
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.11.1
-- Git 2.48.1
+- Curl 8.12.1
+- Git 2.47.1
 - Git LFS 3.6.1
-- GitHub CLI 2.65.0
+- GitHub CLI 2.67.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.7
@@ -72,17 +72,17 @@
 - zstd 1.5.6
 
 ### Tools
-- AWS CLI 2.23.8
-- AWS SAM CLI 1.132.0
-- AWS Session Manager CLI 1.2.694.0
-- Azure CLI 2.68.0
+- AWS CLI 2.24.6
+- AWS SAM CLI 1.133.0
+- AWS Session Manager CLI 1.2.707.0
+- Azure CLI 2.69.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.33.13
+- Bicep CLI 0.33.93
 - Cmake 3.31.5
 - CodeQL Action Bundle 2.20.1
 - Fastlane 2.226.0
 - SwiftFormat 0.55.5
-- Xcbeautify 2.23.0
+- Xcbeautify 2.25.1
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
 
@@ -92,14 +92,14 @@
 ### Browsers
 - Safari 18.3 (18620.2.4.111.8)
 - SafariDriver 18.3 (18620.2.4.111.8)
-- Google Chrome 132.0.6834.160
-- Google Chrome for Testing 132.0.6834.159
-- ChromeDriver 132.0.6834.159
-- Microsoft Edge 132.0.2957.127
-- Microsoft Edge WebDriver 132.0.2957.127
-- Mozilla Firefox 134.0.2
+- Google Chrome 133.0.6943.99
+- Google Chrome for Testing 133.0.6943.98
+- ChromeDriver 133.0.6943.98
+- Microsoft Edge 133.0.3065.69
+- Microsoft Edge WebDriver 133.0.3065.69
+- Mozilla Firefox 135.0
 - geckodriver 0.35.0
-- Selenium server 4.28.0
+- Selenium server 4.28.1
 
 #### Environment variables
 | Name            | Value                                 |
@@ -119,41 +119,40 @@
 ### Cached Tools
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.17]
+- 2.7.18 [PyPy 7.3.18]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.14 [PyPy 7.3.17]
+- 3.10.16 [PyPy 7.3.18]
 
 #### Ruby
-- 3.0.7
 - 3.1.6
-- 3.2.6
+- 3.2.7
 - 3.3.7
-- 3.4.1
+- 3.4.2
 
 #### Python
 - 3.8.18
 - 3.9.21
 - 3.10.16
 - 3.11.9
-- 3.12.8
-- 3.13.1
+- 3.12.9
+- 3.13.2
 
 #### Node.js
 - 18.20.6
-- 20.18.2
-- 22.13.1
+- 20.18.3
+- 22.14.0
 
 #### Go
 - 1.21.13
-- 1.22.11
-- 1.23.5
+- 1.22.12
+- 1.23.6
 
 ### Rust Tools
-- Cargo 1.84.0
-- Rust 1.84.0
-- Rustdoc 1.84.0
+- Cargo 1.84.1
+- Rust 1.84.1
+- Rustdoc 1.84.1
 - Rustup 1.27.1
 
 #### Packages
@@ -215,8 +214,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
@@ -270,7 +269,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.2.0-55872/ParallelsDesktop-20.2.0-55872.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.2.1-55876/ParallelsDesktop-20.2.1-55876.dmg |
 
 ##### Notes
 ```
