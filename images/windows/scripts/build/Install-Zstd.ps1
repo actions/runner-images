@@ -2,10 +2,10 @@
 ##  File:  Install-Zstd.ps1
 ##  Desc:  Install zstd
 ################################################################################
-
+# Temporarily pin the version
 $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "facebook/zstd" `
-    -Version "latest" `
+    -Version "1.5.6" `
     -UrlMatchPattern "zstd-*-win64.zip"
 $zstdArchivePath = Invoke-DownloadWithRetry $downloadUrl
 $zstdName = [IO.Path]::GetFileNameWithoutExtension($zstdArchivePath)
