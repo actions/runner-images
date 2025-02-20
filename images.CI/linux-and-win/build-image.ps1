@@ -35,7 +35,7 @@ $SensitiveData = @(
     ':  ->'
 )
 
-$azure_tags = ($Tags.GetEnumerator() | ForEach-Object { "{0}={1}" -f $_.Key, $_.Value }) -join ","
+$azure_tags = $Tags | ConvertTo-Json -Compress
 
 Write-Host "Show Packer Version"
 packer --version
@@ -60,7 +60,7 @@ packer build    -var "client_id=$ClientId" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
                 -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-                -var "azure_tags={$azure_tags}" `
+                -var "azure_tags=$azure_tags" `
                 -color=false `
                 $TemplatePath `
         | Where-Object {
