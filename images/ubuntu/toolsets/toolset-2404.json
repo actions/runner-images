@@ -81,11 +81,12 @@
         "addon_list": [
         ],
         "additional_tools": [
+            "cmake;3.31.5"
         ],
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27"
+                "26", "27", "28"
             ]
         }
     },
