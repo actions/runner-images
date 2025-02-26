@@ -235,14 +235,6 @@ $psTools.AddToolVersion("PowerShell", $(Get-PowershellCoreVersion))
 $psModules = $psTools.AddHeader("Powershell Modules")
 $psModules.AddNodes($(Get-PowerShellModules))
 
-$azPsNotes = @'
-Azure PowerShell module 2.1.0 and AzureRM PowerShell module 2.1.0 are installed
-and are available via 'Get-Module -ListAvailable'.
-All other versions are saved but not installed.
-'@
-if (-not (Test-IsWin25)) {
-    $psModules.AddNote($azPsNotes)
-}
 
 # Android
 $android = $installedSoftware.AddHeader("Android")
