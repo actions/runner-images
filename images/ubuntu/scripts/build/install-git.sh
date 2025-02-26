@@ -7,12 +7,20 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
-GIT_REPO="ppa:git-core/ppa"
+# Temporary fix for git version 2.48 breaking change impacting checkout action
+# Note: The PPA has removed the 2.47.1 version, even in superseeded packages for Noble and others
+#       the fallback here is to use the 2.47.1 version from the PPA for an earlier version of Ubuntu
+wget -O git.deb https://launchpad.net/~git-core/+archive/ubuntu/ppa/+files/git_2.47.1-0ppa1~ubuntu16.04.1_amd64.deb
+wget -O git-man.deb https://launchpad.net/~git-core/+archive/ubuntu/ppa/+files/git-man_2.47.1-0ppa1~ubuntu16.04.1_all.deb 
 
-## Install git
-add-apt-repository $GIT_REPO -y
-apt-get update
-apt-get install git
+apt-get install -y ./git.deb ./git-man.deb
+
+# GIT_REPO="ppa:git-core/ppa"
+
+# ## Install git
+# add-apt-repository $GIT_REPO -y
+# apt-get update
+# apt-get install git=1:2.47.1-*
 
 # Git version 2.35.2 introduces security fix that breaks action\checkout https://github.com/actions/checkout/issues/760
 cat <<EOF >> /etc/gitconfig
@@ -24,10 +32,10 @@ EOF
 apt-get install git-ftp
 
 # Remove source repo's
-add-apt-repository --remove $GIT_REPO
+# add-apt-repository --remove $GIT_REPO
 
 # Document apt source repo's
-echo "git-core $GIT_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
+# echo "git-core $GIT_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 
 # Add well-known SSH host keys to known_hosts
 ssh-keyscan -t rsa,ecdsa,ed25519 github.com >> /etc/ssh/ssh_known_hosts
