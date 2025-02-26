@@ -83,7 +83,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER SubscriptionId
             The Azure subscription id where the Azure resources will be created.
         .PARAMETER ResourceGroupName
-            The name of the resource group to create the Azure resources in.
+            The name of the resource group to store the resulting artifact. Resource group must already exist.
         .PARAMETER ImageType
             The type of image to generate. Valid values are: Windows2019, Windows2022, Windows2025, Ubuntu2004, Ubuntu2204, Ubuntu2404, UbuntuMinimal.
         .PARAMETER ManagedImageName
