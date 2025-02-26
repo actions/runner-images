@@ -3,7 +3,7 @@
         "default": "16",
         "x64": {
             "versions": [
-                { "link": "16.3_beta", "version": "16.3.0-Beta+16E5104o", "symlinks": ["16.3"], "install_runtimes": "true", "sha256": "bedc4c411d65f65afe03e38d8703b133b9d1158942a30bec0ca96be0e3435c2d"},
+                { "link": "16.3_beta", "version": "16.3.0-Beta+16E5104o", "symlinks": ["16.3"], "install_runtimes": "false", "sha256": "bedc4c411d65f65afe03e38d8703b133b9d1158942a30bec0ca96be0e3435c2d"},
                 { "link": "16.2", "version": "16.2+16C5032a", "install_runtimes": "true", "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de"},
                 { "link": "16.1", "version": "16.1+16B40", "install_runtimes": "true", "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
                 { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
@@ -12,7 +12,7 @@
         },
         "arm64":{
             "versions": [
-                { "link": "16.3_beta", "version": "16.3.0-Beta+16E5104o", "symlinks": ["16.3"], "install_runtimes": "true", "sha256": "bedc4c411d65f65afe03e38d8703b133b9d1158942a30bec0ca96be0e3435c2d"},
+                { "link": "16.3_beta", "version": "16.3.0-Beta+16E5104o", "symlinks": ["16.3"], "install_runtimes": "false", "sha256": "bedc4c411d65f65afe03e38d8703b133b9d1158942a30bec0ca96be0e3435c2d"},
                 { "link": "16.2", "version": "16.2+16C5032a", "install_runtimes": "true", "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de"},
                 { "link": "16.1", "version": "16.1+16B40", "install_runtimes": "true", "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
                 { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "true", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
