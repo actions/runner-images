@@ -1,7 +1,7 @@
 # Ubuntu 24.04
-- OS Version: 24.04.1 LTS
+- OS Version: 24.04.2 LTS
 - Kernel Version: 6.8.0-1021-azure
-- Image Version: 20250209.1.0
+- Image Version: 20250223.1.0
 - Systemd version: 255.4-1ubuntu8.5
 
 ## Installed Software
@@ -16,7 +16,7 @@
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
 - Julia 1.11.3
 - Kotlin 2.1.10-release-473
-- Node.js 20.18.2
+- Node.js 20.18.3
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -24,15 +24,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.17.0
-- Homebrew 4.4.20
+- Helm 3.17.1
+- Homebrew 4.4.21
 - Miniconda 25.1.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 74ec888e38)
+- Vcpkg (build from commit 5f8c424e26)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -52,21 +52,21 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.12.1
-- Lerna 8.1.9
+- Lerna 8.2.0
 - Maven 3.9.9
 
 ### Tools
 - Ansible 2.18.2
 - AzCopy 10.28.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 8.0.1
+- Bazel 8.1.0
 - Bazelisk 1.25.0
 - Bicep 0.33.93
 - Buildah 1.33.7
 - CMake 3.31.5
 - CodeQL Action Bundle 2.20.1
-- Docker Amazon ECR Credential Helper 0.9.0
+- Docker Amazon ECR Credential Helper 0.9.1
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.20.1
+- Docker-Buildx 0.21.1
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.226.0
@@ -75,8 +75,8 @@ to accomplish this.
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
-- Kind 0.26.0
-- Kubectl 1.32.1
+- Kind 0.27.0
+- Kubectl 1.32.2
 - Kustomize 5.6.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -84,25 +84,25 @@ to accomplish this.
 - n 10.1.0
 - Newman 6.2.1
 - nvm 0.40.1
-- OpenSSL 3.0.13-0ubuntu3.4
+- OpenSSL 3.0.13-0ubuntu3.5
 - Packer 1.12.0
 - Parcel 2.13.3
 - Podman 4.9.3
-- Pulumi 3.149.0
+- Pulumi 3.150.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
 - yq 4.45.1
-- zstd 1.5.6
+- zstd 1.5.7
 
 ### CLI Tools
-- AWS CLI 2.24.0
+- AWS CLI 2.24.10
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.133.0
-- Azure CLI 2.68.0
+- AWS SAM CLI 1.134.0
+- Azure CLI 2.69.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.66.1
-- Google Cloud CLI 509.0.0
+- GitHub CLI 2.67.0
+- Google Cloud CLI 511.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -127,22 +127,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.3.1
 
 ### Rust Tools
-- Cargo 1.84.1
-- Rust 1.84.1
-- Rustdoc 1.84.1
+- Cargo 1.85.0
+- Rust 1.85.0
+- Rustdoc 1.85.0
 - Rustup 1.27.1
 
 #### Packages
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 133.0.6943.53
-- ChromeDriver 133.0.6943.53
+- Google Chrome 133.0.6943.126
+- ChromeDriver 133.0.6943.126
 - Chromium 133.0.6943.0
-- Microsoft Edge 132.0.2957.140
-- Microsoft Edge WebDriver 132.0.2957.140
-- Selenium server 4.28.1
-- Mozilla Firefox 135.0
+- Microsoft Edge 133.0.3065.82
+- Microsoft Edge WebDriver 133.0.3065.82
+- Selenium server 4.29.0
+- Mozilla Firefox 135.0.1
 - Geckodriver 0.35.0
 
 #### Environment variables
@@ -161,7 +161,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.6
+- PostgreSQL 16.8
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -185,9 +185,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.23.6
 
 #### Node.js
-- 18.20.6
-- 20.18.2
-- 22.13.1
+- 18.20.7
+- 20.18.3
+- 22.14.0
 
 #### Python
 - 3.9.21
@@ -209,7 +209,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 12.1.0
-- Microsoft.Graph: 2.25.0
+- Microsoft.Graph: 2.26.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.23.0
 
@@ -227,9 +227,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                    |
 | Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                    |
+| CMake                      | 3.31.5                                                                                                                                                                                                                                    |
 | Google Play services       | 49                                                                                                                                                                                                                                        |
 | Google Repository          | 58                                                                                                                                                                                                                                        |
-| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                                                  |
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)<br>28.0.13004108                                                                                                                                                                                 |
 
 #### Environment variables
 | Name                    | Value                                        |
@@ -237,7 +238,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ANDROID_HOME            | /usr/local/lib/android/sdk                   |
 | ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
 | ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/28.0.13004108 |
 | ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
@@ -272,7 +273,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iputils-ping           | 3:20240117-1build1          |
 | jq                     | 1.7.1-3build1               |
 | libsqlite3-dev         | 3.45.1-1ubuntu2.1           |
-| libssl-dev             | 3.0.13-0ubuntu3.4           |
+| libssl-dev             | 3.0.13-0ubuntu3.5           |
 | libtool                | 2.4.7-7build1               |
 | libyaml-dev            | 0.2.5-1build1               |
 | locales                | 2.39-0ubuntu8.4             |
@@ -283,7 +284,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 6.7.2-1ubuntu2.2            |
 | net-tools              | 2.10-0.1ubuntu4             |
 | netcat                 | 1.226-1ubuntu2              |
-| openssh-client         | 1:9.6p1-3ubuntu13.5         |
+| openssh-client         | 1:9.6p1-3ubuntu13.8         |
 | p7zip-full             | 16.02+transitional.1        |
 | p7zip-rar              | 16.02+transitional.1        |
 | parallel               | 20231122+ds-1               |
@@ -297,7 +298,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | shellcheck             | 0.9.0-1                     |
 | sphinxsearch           | 2.2.11-8build1              |
 | sqlite3                | 3.45.1-1ubuntu2.1           |
-| ssh                    | 1:9.6p1-3ubuntu13.5         |
+| ssh                    | 1:9.6p1-3ubuntu13.8         |
 | sshpass                | 1.09-1                      |
 | sudo                   | 1.9.15p5-3ubuntu5           |
 | swig                   | 4.2.0-2ubuntu1              |

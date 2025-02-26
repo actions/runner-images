@@ -25,6 +25,7 @@ systemValuesArray=(
     "'kTCCServicePostEvent','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1644565949"
     "'kTCCServiceScreenCapture','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
     "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
+    "'kTCCServiceAppleEvents','/bin/bash',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1591532620"
     "'kTCCServiceAccessibility','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,NULL,1592919552"
     # Allow Full Disk Access for "Microsoft Defender for macOS" to bypass installation on-flight
     "'kTCCServiceSystemPolicyAllFiles','com.microsoft.wdav',0,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,0,1643970979"
