@@ -1,18 +1,19 @@
 param(
     [String] [Parameter (Mandatory=$true)] $TemplatePath,
     [String] [Parameter (Mandatory=$true)] $ClientId,
-    [String] [Parameter (Mandatory=$true)] $ClientSecret,
+    [String] [Parameter (Mandatory=$false)] $ClientSecret,
     [String] [Parameter (Mandatory=$true)] $Location,
     [String] [Parameter (Mandatory=$true)] $ImageName,
     [String] [Parameter (Mandatory=$true)] $ImageResourceGroupName,
     [String] [Parameter (Mandatory=$true)] $TempResourceGroupName,
     [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $TenantId,
+    [String] [Parameter (Mandatory=$false)] $pluginVersion = "2.2.1",
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet,
     [String] [Parameter (Mandatory=$false)] $AllowedInboundIpAddresses = "[]",
-    [hashtable] [Parameter (Mandatory=$False)] $Tags = @{}
+    [hashtable] [Parameter (Mandatory=$false)] $Tags = @{}
 )
 
 if (-not (Test-Path $TemplatePath))
@@ -34,13 +35,13 @@ $SensitiveData = @(
     ':  ->'
 )
 
-$azure_tags = ($Tags.GetEnumerator() | ForEach-Object { "{0}={1}" -f $_.Key, $_.Value }) -join ","
+$azure_tags = $Tags | ConvertTo-Json -Compress
 
 Write-Host "Show Packer Version"
 packer --version
 
 Write-Host "Download packer plugins"
-packer init $TemplatePath
+packer plugins install github.com/hashicorp/azure $pluginVersion
 
 Write-Host "Validate packer template"
 packer validate -syntax-only $TemplatePath
@@ -59,7 +60,7 @@ packer build    -var "client_id=$ClientId" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
                 -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-                -var "azure_tags={$azure_tags}" `
+                -var "azure_tags=$azure_tags" `
                 -color=false `
                 $TemplatePath `
         | Where-Object {
