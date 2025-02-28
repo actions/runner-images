@@ -291,8 +291,8 @@
             "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022"
         ],
         "components": {
-            "docker": "26.1.3",
-            "compose": "2.27.1"
+            "docker": "27.5.1",
+            "compose": "22.32.2"
         }
     },
     "pipx": [
