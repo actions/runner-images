@@ -292,7 +292,7 @@
         ],
         "components": {
             "docker": "27.5.1",
-            "compose": "22.32.2"
+            "compose": "2.32.2"
         }
     },
     "pipx": [
