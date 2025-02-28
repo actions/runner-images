@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    azure = {
+      source  = "github.com/hashicorp/azure"
+      version = "1.4.5"
+    }
+  }
+}
+
 locals {
   managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
 }
@@ -134,40 +143,58 @@ variable "vm_size" {
   default = "Standard_D4s_v4"
 }
 
-source "azure-arm" "build_image" {
-  allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
-  build_resource_group_name              = "${var.build_resource_group_name}"
-  client_cert_path                       = "${var.client_cert_path}"
-  client_id                              = "${var.client_id}"
-  client_secret                          = "${var.client_secret}"
-  image_offer                            = "ubuntu-24_04-lts"
-  image_publisher                        = "canonical"
-  image_sku                              = "server-gen1"
-  location                               = "${var.location}"
-  managed_image_name                     = "${local.managed_image_name}"
-  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
-  os_disk_size_gb                        = "75"
-  os_type                                = "Linux"
-  private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
-  subscription_id                        = "${var.subscription_id}"
-  temp_resource_group_name               = "${var.temp_resource_group_name}"
-  tenant_id                              = "${var.tenant_id}"
-  virtual_network_name                   = "${var.virtual_network_name}"
-  virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
-  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
-  vm_size                                = "${var.vm_size}"
+# FIXME: 独自修正
+# source "azure-arm" "build_image" {
+#   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
+#   build_resource_group_name              = "${var.build_resource_group_name}"
+#   client_cert_path                       = "${var.client_cert_path}"
+#   client_id                              = "${var.client_id}"
+#   client_secret                          = "${var.client_secret}"
+#   image_offer                            = "ubuntu-24_04-lts"
+#   image_publisher                        = "canonical"
+#   image_sku                              = "server-gen1"
+#   location                               = "${var.location}"
+#   managed_image_name                     = "${local.managed_image_name}"
+#   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
+#   os_disk_size_gb                        = "75"
+#   os_type                                = "Linux"
+#   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
+#   subscription_id                        = "${var.subscription_id}"
+#   temp_resource_group_name               = "${var.temp_resource_group_name}"
+#   tenant_id                              = "${var.tenant_id}"
+#   virtual_network_name                   = "${var.virtual_network_name}"
+#   virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
+#   virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
+#   vm_size                                = "${var.vm_size}"
+#
+#   dynamic "azure_tag" {
+#     for_each = var.azure_tags
+#     content {
+#       name = azure_tag.key
+#       value = azure_tag.value
+#     }
+#   }
+# }
 
-  dynamic "azure_tag" {
-    for_each = var.azure_tags
-    content {
-      name = azure_tag.key
-      value = azure_tag.value
-    }
-  }
+# FIXME: 独自追加
+source "googlecompute" "build_image" {
+  project_id          = "vision-dev-403905"
+  zone                = "asia-northeast1-b"
+  source_image_family = "ubuntu-2404-lts-amd64"
+  machine_type        = "c4-standard-4"
+  disk_type           = "hyperdisk-balanced"
+  disk_size           = 100
+  image_description   = "Created with HashiCorp Packer from Local"
+  ssh_username        = "packer"
+  network             = "custom"
+  tags                = ["packer"]
+  labels              = var.azure_tags
 }
 
 build {
-  sources = ["source.azure-arm.build_image"]
+  # FIXME: 独自修正
+  # sources = ["source.azure-arm.build_image"]
+  sources = ["source.googlecompute.build_image"]
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
@@ -249,7 +276,7 @@ build {
     scripts          = ["${path.root}/../scripts/build/install-apt-vital.sh"]
   }
 
-provisioner "shell" {
+  provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/../scripts/build/install-powershell.sh"]
