@@ -1,0 +1,36 @@
+steps:
+  - id: "Download packer"
+    name: "gcr.io/cloud-builders/wget"
+    args: ["https://releases.hashicorp.com/packer/${_PACKER_VERSION}/packer_${_PACKER_VERSION}_linux_amd64.zip"]
+
+  - id: "Extract packer"
+    name: "bash"
+    args: ["/usr/bin/unzip", "packer_${PACKER_VERSION}_linux_amd64.zip"]
+
+  - id: "Show packer Version"
+    name: "bash"
+    args: ["./packer", "--version"]
+
+  - id: "Download packer plugins"
+    name: "bash"
+    args: ["./packer", "init", "${_TEMPLATE_PATH}"]
+
+  - id: "Validate packer template"
+    name: "bash"
+    args: ["./packer", "validate", "-syntax-only", "${_TEMPLATE_PATH}"]
+
+  - id: "Build ${_OS} VM"
+    name: "bash"
+    args: ["./packer", "build", "${_TEMPLATE_PATH}"]
+
+substitutions:
+  _PACKER_VERSION: "1.11.2"
+  _OS: "ubuntu-24.04"
+  _TEMPLATE_PATH: "images/ubuntu/templates/${_OS}.pkr.hcl"
+
+timeout: "1200s"
+
+options:
+  machineType: "E2_HIGHCPU_32"
+  substitutionOption: "MUST_MATCH"
+  dynamicSubstitutions: true
