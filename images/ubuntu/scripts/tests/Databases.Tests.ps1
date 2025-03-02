@@ -37,3 +37,15 @@ Describe "MySQL" {
         "sudo systemctl stop mysql" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "SQLite3" {
+    It "SQLite3 CLI" {
+        "sqlite3 --version" | Should -ReturnZeroExitCode
+    }
+
+    It "SQLite3 Library Loading" {
+        $sqlite3LibPath = "/usr/lib/x86_64-linux-gnu/libsqlite3.so"
+        $sqlite3LibPath | Should -Exist
+        "ldd $sqlite3LibPath" | Should -Not -OutputTextMatchingRegex "not found"
+    }
+}
