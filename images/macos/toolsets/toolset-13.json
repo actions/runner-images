@@ -84,11 +84,18 @@
             "gmp",
             "yq",
             "xcbeautify",
-            "xcodes"
+            "xcodes",
+            "bash"
         ],
         "cask_packages": [
             "parallels"
         ]
+    },
+    "bash":{
+        "version": [
+            "5.2.x"
+        ]
+
     },
     "gcc": {
         "versions": [
