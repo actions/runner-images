@@ -65,3 +65,11 @@ We are in the process of preparing the macOS CI to accept contributions. Until t
 - [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
 - [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
 - [GitHub Help](https://help.github.com)
+
+## Cloning the Repository
+
+To clone the repository using the `gh` command, run the following command:
+
+```sh
+gh repo clone actions/runner-images
+```
