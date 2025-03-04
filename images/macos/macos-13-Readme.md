@@ -7,7 +7,7 @@
 # macOS 13
 - OS Version: macOS 13.7.4 (22H420)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250224.726
+- Image Version: 20250303.763
 
 ## Installed Software
 
@@ -34,26 +34,26 @@
 - Bundler 2.6.5
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.5
+- Composer 2.8.6
 - Homebrew 4.4.22
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.0.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.5
-- Vcpkg 2025 (build from commit 11be7f5365)
+- Vcpkg 2025 (build from commit efb1e74369)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.12.1
+- Gradle 8.13
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.28.0
-- bazel 8.1.0
+- bazel 8.1.1
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.12.1
@@ -72,17 +72,17 @@
 - zstd 1.5.7
 
 ### Tools
-- AWS CLI 2.24.10
+- AWS CLI 2.24.15
 - AWS SAM CLI 1.134.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.69.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.33.93
-- Cmake 3.31.5
+- Cmake 3.31.6
 - CodeQL Action Bundle 2.20.1
 - Fastlane 2.226.0
 - SwiftFormat 0.55.5
-- Xcbeautify 2.26.0
+- Xcbeautify 2.27.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
 
@@ -92,14 +92,14 @@
 ### Browsers
 - Safari 18.3 (18620.2.4.111.8)
 - SafariDriver 18.3 (18620.2.4.111.8)
-- Google Chrome 133.0.6943.127
-- Google Chrome for Testing 133.0.6943.126
-- ChromeDriver 133.0.6943.126
-- Microsoft Edge 133.0.3065.82
-- Microsoft Edge WebDriver 133.0.3065.82
+- Google Chrome 133.0.6943.142
+- Google Chrome for Testing 133.0.6943.141
+- ChromeDriver 133.0.6943.141
+- Microsoft Edge 133.0.3065.92
+- Microsoft Edge WebDriver 133.0.3065.92
 - Mozilla Firefox 135.0.1
-- geckodriver 0.35.0
-- Selenium server 4.28.1
+- geckodriver 0.36.0
+- Selenium server 4.29.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -119,11 +119,11 @@
 ### Cached Tools
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.18]
+- 2.7.18 [PyPy 7.3.19]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.16 [PyPy 7.3.18]
+- 3.10.16 [PyPy 7.3.19]
 
 #### Ruby
 - 3.1.6
@@ -269,7 +269,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.2.1-55876/ParallelsDesktop-20.2.1-55876.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.2.2-55879/ParallelsDesktop-20.2.2-55879.dmg |
 
 ##### Notes
 ```
