@@ -7,7 +7,7 @@
 # macOS 13
 - OS Version: macOS 13.7.4 (22H420)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250224.812
+- Image Version: 20250303.855
 
 ## Installed Software
 
@@ -44,13 +44,13 @@
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.12.1
+- Gradle 8.13
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.28.0
-- bazel 8.1.0
+- bazel 8.1.1
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
@@ -69,17 +69,17 @@
 - zstd 1.5.7
 
 ### Tools
-- AWS CLI 2.24.10
+- AWS CLI 2.24.15
 - AWS SAM CLI 1.134.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.69.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.33.93
-- Cmake 3.31.5
+- Cmake 3.31.6
 - CodeQL Action Bundle 2.20.1
 - Fastlane 2.226.0
 - SwiftFormat 0.55.5
-- Xcbeautify 2.26.0
+- Xcbeautify 2.27.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
 
@@ -88,10 +88,10 @@
 ### Browsers
 - Safari 18.3 (18620.2.4.111.8)
 - SafariDriver 18.3 (18620.2.4.111.8)
-- Google Chrome 133.0.6943.127
-- Google Chrome for Testing 133.0.6943.126
-- ChromeDriver 133.0.6943.126
-- Selenium server 4.28.1
+- Google Chrome 133.0.6943.142
+- Google Chrome for Testing 133.0.6943.141
+- ChromeDriver 133.0.6943.141
+- Selenium server 4.29.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -195,8 +195,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
