@@ -1,7 +1,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.8.0-1021-azure
-- Image Version: 20250223.1.0
+- Image Version: 20250302.1.0
 - Systemd version: 255.4-1ubuntu8.5
 
 ## Installed Software
@@ -25,14 +25,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.1
-- Homebrew 4.4.21
+- Homebrew 4.4.22
 - Miniconda 25.1.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 5f8c424e26)
+- Vcpkg (build from commit efb1e74369)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -51,18 +51,18 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.12.1
+- Gradle 8.13
 - Lerna 8.2.0
 - Maven 3.9.9
 
 ### Tools
-- Ansible 2.18.2
+- Ansible 2.18.3
 - AzCopy 10.28.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 8.1.0
+- Bazel 8.1.1
 - Bazelisk 1.25.0
 - Bicep 0.33.93
 - Buildah 1.33.7
-- CMake 3.31.5
+- CMake 3.31.6
 - CodeQL Action Bundle 2.20.1
 - Docker Amazon ECR Credential Helper 0.9.1
 - Docker Compose v2 2.27.1
@@ -88,7 +88,7 @@ to accomplish this.
 - Packer 1.12.0
 - Parcel 2.13.3
 - Podman 4.9.3
-- Pulumi 3.150.0
+- Pulumi 3.153.1
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.35.1
@@ -96,13 +96,13 @@ to accomplish this.
 - zstd 1.5.7
 
 ### CLI Tools
-- AWS CLI 2.24.10
+- AWS CLI 2.24.15
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.134.0
 - Azure CLI 2.69.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.67.0
-- Google Cloud CLI 511.0.0
+- Google Cloud CLI 512.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -114,7 +114,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.5
+- Composer 2.8.6
 - PHPUnit 8.5.41
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -136,14 +136,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 133.0.6943.126
-- ChromeDriver 133.0.6943.126
+- Google Chrome 133.0.6943.141
+- ChromeDriver 133.0.6943.141
 - Chromium 133.0.6943.0
-- Microsoft Edge 133.0.3065.82
-- Microsoft Edge WebDriver 133.0.3065.82
+- Microsoft Edge 133.0.3065.92
+- Microsoft Edge WebDriver 133.0.3065.92
 - Selenium server 4.29.0
 - Mozilla Firefox 135.0.1
-- Geckodriver 0.35.0
+- Geckodriver 0.36.0
 
 #### Environment variables
 | Name              | Value                                 |
@@ -198,7 +198,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.16 [PyPy 7.3.18]
+- 3.10.16 [PyPy 7.3.19]
 
 #### Ruby
 - 3.2.7
@@ -209,7 +209,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 12.1.0
-- Microsoft.Graph: 2.26.0
+- Microsoft.Graph: 2.26.1
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.23.0
 
@@ -249,7 +249,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.37.0+debian-1build3       |
 | autoconf               | 2.71-3                      |
 | automake               | 1:1.16.5-1.3ubuntu1         |
-| binutils               | 2.42-4ubuntu2.3             |
+| binutils               | 2.42-4ubuntu2.4             |
 | bison                  | 2:3.8.2+dfsg-1build2        |
 | brotli                 | 1.1.0-2build2               |
 | bzip2                  | 1.0.8-5.1build0.1           |
@@ -263,7 +263,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | file                   | 1:5.45-3build1              |
 | findutils              | 4.9.0-5build1               |
 | flex                   | 2.6.4-8.2build1             |
-| fonts-noto-color-emoji | 2.042-1                     |
+| fonts-noto-color-emoji | 2.047-0ubuntu0.24.04.1      |
 | ftp                    | 20230507-2build3            |
 | g++                    | 4:13.2.0-7ubuntu1           |
 | gcc                    | 4:13.2.0-7ubuntu1           |
@@ -291,7 +291,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | patchelf               | 0.18.0-1.1build1            |
 | pigz                   | 2.8-1                       |
 | pkg-config             | 1.8.1-2build1               |
-| pollinate              | 4.33-3.1ubuntu1             |
+| pollinate              | 4.33-3.1ubuntu1.1           |
 | python-is-python3      | 3.11.4-1                    |
 | rpm                    | 4.18.2+dfsg-2.1build2       |
 | rsync                  | 3.2.7-1ubuntu1.2            |
@@ -313,7 +313,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | unzip                  | 6.0-28ubuntu4.1             |
 | upx                    | 4.2.2-3                     |
 | wget                   | 1.21.4-1ubuntu4.1           |
-| xvfb                   | 2:21.1.12-1ubuntu1.1        |
+| xvfb                   | 2:21.1.12-1ubuntu1.2        |
 | xz-utils               | 5.6.1+really5.4.5-1build0.1 |
 | zip                    | 3.0-13ubuntu0.2             |
 | zsync                  | 0.6.2-5build1               |
