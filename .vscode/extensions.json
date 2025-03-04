@@ -4,6 +4,7 @@
     "hashicorp.hcl",
     "davidanson.vscode-markdownlint",
     "ms-vscode.powershell",
-    "timonwong.shellcheck"
+    "timonwong.shellcheck",
+    "abusaidm.html-snippets"
   ]
 }
