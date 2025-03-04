@@ -194,7 +194,7 @@ function Install-AdditionalSimulatorRuntimes {
     }
 
     # Validate and install specified runtimes
-    $invalidRuntimes = $Runtimes | Where-Object { $_ -notin $validRuntimes }
+    $invalidRuntimes = $Runtimes | Where-Object { $_ -notmatch "^($( $validRuntimes -join '|' ))(\s.*|$)" }
     if ($invalidRuntimes) {
         throw "Error: Invalid runtimes detected: $($invalidRuntimes -join ', '). Valid values are: $validRuntimes."
     }
