@@ -6,11 +6,23 @@
 
 source ~/utils/utils.sh
 
-echo "Installing Rustup..."
-brew_smart_install "rustup-init"
+#echo "Installing Rustup..."
+#brew_smart_install "rustup-init"
 
-echo "Installing Rust language..."
-rustup-init -y --no-modify-path --default-toolchain=stable --profile=minimal
+#echo "Installing Rust language..."
+#rustup-init -y --no-modify-path --default-toolchain=stable --profile=minimal
+
+RUSTUP_VERSION="1.27.1"  # Set the Rustup version to pin
+
+echo "Installing Rustup version $RUSTUP_VERSION..."
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --default-toolchain=$RUSTUP_VERSION
+
+# Ensure Rustup is available in PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+
+echo "Setting Rust language to stable..."
+rustup default stable
+rustup show active-toolchain
 
 echo "Initialize environment variables..."
 CARGO_HOME=$HOME/.cargo
