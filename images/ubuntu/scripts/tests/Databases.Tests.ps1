@@ -22,6 +22,12 @@ Describe "PostgreSQL" {
         # Server version
         (pg_config --version).split()[-1] | Should -BeLike "$toolsetVersion*"
     }
+
+    It "PostgreSQL Service with specified version" {
+        "sudo systemctl start postgresql.service -v 17" | Should -ReturnZeroExitCode
+        "pg_isready" | Should -OutputTextMatchingRegex "/var/run/postgresql:5432 - accepting connections"
+        "sudo systemctl stop postgresql" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "MySQL" {
