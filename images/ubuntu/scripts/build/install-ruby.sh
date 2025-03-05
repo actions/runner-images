@@ -10,6 +10,7 @@ source $HELPER_SCRIPTS/install.sh
 
 apt-get install ruby-full
 
+<<<<<<< HEAD
 # temporary fix for fastlane installation https://github.com/sporkmonger/addressable/issues/541
 if is_ubuntu20; then
 
@@ -31,6 +32,8 @@ if is_ubuntu20; then
     gem install google-cloud-core -v 1.7.1
 fi
 
+=======
+>>>>>>> 1f877d0a (Ubuntu 20 Deprecation updates)
 # Install ruby gems from toolset
 gems_to_install=$(get_toolset_value ".rubygems[] .name")
 if [[ -n "$gems_to_install" ]]; then
