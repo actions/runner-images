@@ -23,10 +23,13 @@ if is_ubuntu22; then
     cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
 fi
 
+<<<<<<< HEAD
 if is_ubuntu20; then
     cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
 fi
 
+=======
+>>>>>>> 1f877d0a (Ubuntu 20 Deprecation updates)
 # Cleanup Cargo cache
 rm -rf ${CARGO_HOME}/registry/*
 
