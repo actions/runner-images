@@ -179,7 +179,7 @@ if ($os.IsSonoma -or $os.IsVentura) {
     $miscellaneous.AddToolVersion("Tcl/Tk", $(Get-TclTkVersion))
 }
 
-if ($os.IsSonomaX64 -or $os.IsVenturaX64) {
+if ($os.IsSonomaX64 -or $os.IsVenturaX64 -or $os.IsSequoiaX64) {
 
     Write-Host "Adding environment variables for parallels"
 
