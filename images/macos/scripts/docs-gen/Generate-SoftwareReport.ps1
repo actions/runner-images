@@ -97,6 +97,7 @@ $utilities.AddToolVersion("pkgconf", $(Get-PKGConfVersion))
 $utilities.AddToolVersion("Unxip", $(Get-UnxipVersion))
 $utilities.AddToolVersion("yq", $(Get-YqVersion))
 $utilities.AddToolVersion("zstd", $(Get-ZstdVersion))
+$utilities.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # Tools
 $tools = $installedSoftware.AddHeader("Tools")
