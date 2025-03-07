@@ -117,6 +117,7 @@ $tools.AddToolVersion("WinAppDriver", $(Get-WinAppDriver))
 $tools.AddToolVersion("WiX Toolset", $(Get-WixVersion))
 $tools.AddToolVersion("yamllint", $(Get-YAMLLintVersion))
 $tools.AddToolVersion("zstd", $(Get-ZstdVersion))
+$tools.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # CLI Tools
 $cliTools = $installedSoftware.AddHeader("CLI Tools")
