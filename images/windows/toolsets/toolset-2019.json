@@ -373,12 +373,12 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "9.1.1436.9590",
-            "checksum": "089F9BE6A63AF66C337E507B52082575C8ED330DF765259C6F2F13F900DA96D5"
+            "version": "10.1.2493.9590",
+            "checksum": "09C63A971BACDE338282C73B3C9174BED9AAD53E1D3A1B73D44515852C9C00CF"
         },
         "sdk": {
-            "version": "6.1.1436",
-            "checksum": "D2A6B58315D08B6E46C2D25E91DFA1163136F70A5FA8CEF9DB147F07EE001AD1"
+            "version": "7.1.2493",
+            "checksum": "0CB1084156C75CF5075EA91ABA330CF10B58648B8E036C9C2F286805263C497F"
         }
     },
     "dotnet": {
