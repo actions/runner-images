@@ -83,7 +83,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER SubscriptionId
             The Azure subscription id where the Azure resources will be created.
         .PARAMETER ResourceGroupName
-            The name of the resource group to create the Azure resources in.
+            The name of the resource group to store the resulting artifact. Resource group must already exist.
         .PARAMETER ImageType
             The type of image to generate. Valid values are: Windows2019, Windows2022, Windows2025, Ubuntu2004, Ubuntu2204, Ubuntu2404, UbuntuMinimal.
         .PARAMETER ManagedImageName
@@ -103,12 +103,6 @@ Function GenerateResourcesAndImage {
         .PARAMETER RestrictToAgentIpAddress
             If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from. 
             This parameter cannot be used in combination with the virtual_network_name packer parameter.
-        .PARAMETER Force
-            Delete the resource group if it exists without user confirmation.
-            This parameter is deprecated and will be removed in a future release.
-        .PARAMETER ReuseResourceGroup
-            Reuse the resource group if it exists without user confirmation.
-            This parameter is deprecated and will be removed in a future release.
         .PARAMETER OnError
             Specify how packer handles an error during image creation.
             Options:
@@ -150,23 +144,11 @@ Function GenerateResourcesAndImage {
         [Parameter(Mandatory = $False)]
         [switch] $RestrictToAgentIpAddress,
         [Parameter(Mandatory = $False)]
-        [switch] $Force,
-        [Parameter(Mandatory = $False)]
-        [switch] $ReuseResourceGroup,
-        [Parameter(Mandatory = $False)]
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
         [Parameter(Mandatory = $False)]
         [hashtable] $Tags = @{}
     )
-
-    if ($Force -or $ReuseResourceGroup) {
-        Write-Warning "The `ReuseResourceGroup` and `Force` parameters are deprecated and will be removed in a future release. The resource group will be reused when it already exists and an error will be thrown when it doesn't. If you want to delete the resource group, please delete it manually."
-    }
-
-    if ($Force -and $ReuseResourceGroup) {
-        throw "Force and ReuseResourceGroup cannot be used together."
-    }
 
     Show-LatestCommit -ErrorAction SilentlyContinue
 
@@ -266,73 +248,8 @@ Function GenerateResourcesAndImage {
         if ($ResourceGroupExists) {
             Write-Verbose "Resource group '$ResourceGroupName' already exists."
         }
-
-        # Remove resource group if it exists and we are not reusing it
-        if ($ResourceGroupExists -and -not $ReuseResourceGroup) {
-            if ($Force) {
-                # Delete and recreate the resource group
-                Write-Host "Deleting resource group '$ResourceGroupName'..."
-                az group delete --name $ResourceGroupName --yes --output none
-                if ($LastExitCode -ne 0) {
-                    throw "Failed to delete resource group '$ResourceGroupName'."
-                }
-                Write-Host "Resource group '$ResourceGroupName' was deleted."
-                $ResourceGroupExists = $false
-            }
-            else {
-                # are we running in a non-interactive session?
-                # https://stackoverflow.com/questions/9738535/powershell-test-for-noninteractive-mode
-                if ([System.Console]::IsOutputRedirected -or ![Environment]::UserInteractive -or !!([Environment]::GetCommandLineArgs() | Where-Object { $_ -ilike '-noni*' })) {
-                    throw "Non-interactive mode, resource group '$ResourceGroupName' already exists, either specify -Force to delete it, or -ReuseResourceGroup to reuse."
-                }
-                else {
-                    # Resource group already exists, ask the user what to do
-                    $title = "Resource group '$ResourceGroupName' already exists"
-                    $message = "Do you want to delete the resource group and all resources in it?"
-
-                    $options = @(
-                        [System.Management.Automation.Host.ChoiceDescription]::new("&Yes", "Delete the resource group and all resources in it."),
-                        [System.Management.Automation.Host.ChoiceDescription]::new("&No", "Keep the resource group and continue."),
-                        [System.Management.Automation.Host.ChoiceDescription]::new("&Abort", "Abort execution.")
-                    )
-                    $result = $Host.UI.PromptForChoice($title, $message, $options, 0)
-                }
-
-                switch ($result) {
-                    0 {
-                        # Delete and recreate the resource group
-                        Write-Host "Deleting resource group '$ResourceGroupName'..."
-                        az group delete --name $ResourceGroupName --yes
-                        if ($LastExitCode -ne 0) {
-                            throw "Failed to delete resource group '$ResourceGroupName'."
-                        }
-                        Write-Host "Resource group '$ResourceGroupName' was deleted."
-                        $ResourceGroupExists = $false
-                    }
-                    1 {
-                        # Keep the resource group and continue
-                    }
-                    2 {
-                        # Stop the current action
-                        Write-Error "User stopped the action."
-                        exit 1
-                    }
-                }
-            }
-        }
-
-        # Create resource group
-        if (-not $ResourceGroupExists) {
-            Write-Host "Creating resource group '$ResourceGroupName' in location '$AzureLocation'..."
-            if ($TagsList) {
-                az group create --name $ResourceGroupName --location $AzureLocation --tags $TagsList --query id
-            }
-            else {
-                az group create --name $ResourceGroupName --location $AzureLocation --query id
-            }
-            if ($LastExitCode -ne 0) {
-                throw "Failed to create resource group '$ResourceGroupName'."
-            }
+        else {
+            throw "Resource group '$ResourceGroupName' does not exist."
         }
 
         # Create service principal
