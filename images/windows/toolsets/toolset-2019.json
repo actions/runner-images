@@ -436,7 +436,7 @@
         "signature": "A5BBE2A6DA1D2A6E057EF870267E6A91E4D56BAA"
     },
     "nsis": {
-        "version": "3.10"
+        "version": "3.11"
     },
     "php": {
         "version": "8.4"
