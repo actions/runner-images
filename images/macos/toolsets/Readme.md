@@ -6,8 +6,17 @@
   - `link` property points to the place where Xcode will be located on image. `/Applications/Xcode_<link>.app`  
   - `version` points to Xcode version that will be downloaded and installed
   - `symlinks` describes the list of aliases where symlinks will be created to
-  - `install_runtimes` is an array or boolean function to control over the related simulator runtimes, set of possible values: [ `iOS`, `watchOS`, `visionOS`, `tvOS` ], use `true` if you want to install all runtimes, use `false` if you want to skip runtimes installation
   - `sha256` used to check integrity of the Xcode installer file
+  - `install_runtimes` – controls the installation of simulator runtimes:
+    - `"all"` – installs all default runtimes.
+    - `false` – skips runtime installation.
+    - **Hashtable** – allows manual selection:
+      - Mandatory keys: `[ "iOS", "watchOS", "tvOS" ]`, plus `visionOS` for arm64 images.
+      - Values [string]:  
+        - `"default"` – installs the default runtime.  
+        - `"skip"` – skips installation.  
+        - Specific version numbers, e.g., `"18.2"`, `"2.2"`, `"18.3.1"`.
+
 - `default` - version of Xcode to set as default (should be metched with any `link` in `versions` property)
     **Example:** `"11.2"`  
 
@@ -25,7 +34,7 @@
 ```json
 "versions": [
     { "link": "16_beta_4", "version": "16.0.0-Beta.4+16A5211f", "symlinks": ["16.0"], "install_runtimes": "false", "sha256": "4270cd8021b2f7f512ce91bfc4423b25bccab36cdab21834709d798c8daade72"},
-    { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"}
+    { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "all", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"}
 ]
 ```
 
