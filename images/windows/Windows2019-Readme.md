@@ -1,13 +1,13 @@
 | Announcements |
 |-|
+| [Windows Server 2025 will be Generally Available in GitHub Actions and Azure DevOps from 2025-04-01](https://github.com/actions/runner-images/issues/11742) |
 | [[Windows] Go version 1.20 and 1.21  will be removed from the images on 2025-05-05 and 1.24 will be set as default.](https://github.com/actions/runner-images/issues/11711) |
 | [[Windows 19 and 22] Node.js version 16 will be removed from Windows images on 2025-05-05](https://github.com/actions/runner-images/issues/11710) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
-| [[Windows] Breaking change : Docker Engine Version 26.* will be updated  to Docker Engine Version 27.*   from 2025-03-07](https://github.com/actions/runner-images/issues/11104) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 6893
-- Image Version: 20250303.1.0
+- Image Version: 20250309.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -36,7 +36,7 @@
 - pip 25.0.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit efb1e74369)
+- Vcpkg (build from commit 300239058e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -49,7 +49,7 @@
 - Ant 1.10.14
 - Gradle 8.13
 - Maven 3.9.9
-- sbt 1.10.7
+- sbt 1.10.10
 
 ### Tools
 - 7zip 24.09
@@ -63,11 +63,11 @@
 - CodeQL Action Bundle 2.20.1
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
-- Docker-wincred 0.9.1
+- Docker-wincred 0.9.2
 - ghc 9.12.1
 - Git 2.48.1.windows.1
 - Git LFS 3.6.1
-- Google Cloud CLI 512.0.0
+- Google Cloud CLI 513.0.0
 - ImageMagick 7.1.1-44
 - InnoSetup 6.4.0
 - jq 1.7.1
@@ -82,7 +82,7 @@
 - OpenSSL 1.1.1w
 - Packer 1.12.0
 - Parcel 2.13.3
-- Pulumi 3.153.1
+- Pulumi 3.154.0
 - R 4.4.2
 - Service Fabric SDK 9.1.1436.9590
 - Stack 3.3.1
@@ -95,20 +95,20 @@
 - zstd 1.5.7
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.255
-- AWS CLI 2.24.14
+- Alibaba Cloud CLI 3.0.256
+- AWS CLI 2.24.20
 - AWS SAM CLI 1.134.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.69.0
+- Azure CLI 2.70.0
 - Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 8.10.0
-- GitHub CLI 2.67.0
+- GitHub CLI 2.68.1
 
 ### Rust Tools
 - Cargo 1.85.0
 - Rust 1.85.0
 - Rustdoc 1.85.0
-- Rustup 1.27.1
+- Rustup 1.28.1
 
 #### Packages
 - bindgen 0.71.1
@@ -119,11 +119,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 133.0.6943.142
-- Chrome Driver 133.0.6943.141
-- Microsoft Edge 133.0.3065.92
-- Microsoft Edge Driver 133.0.3065.92
-- Mozilla Firefox 135.0.1
+- Google Chrome 134.0.6998.36
+- Chrome Driver 134.0.6998.35
+- Microsoft Edge 134.0.3124.51
+- Microsoft Edge Driver 134.0.3124.51
+- Mozilla Firefox 136.0
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.29.0
@@ -170,7 +170,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 1.20.14
 - 1.21.13
 - 1.22.12
-- 1.23.6
+- 1.23.7
 
 #### Node.js
 - 16.20.2
@@ -509,7 +509,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.1.0
-- AWSPowershell: 4.1.768
+- AWSPowershell: 4.1.773
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.26.1
@@ -524,7 +524,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                           |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                               |
-| Android Emulator           | 35.3.12                                                                                                                                                                                                                                                                                                                           |
+| Android Emulator           | 35.4.9                                                                                                                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 35.0.0 35.0.1<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0<br>30.0.2                                                                                                                                                                                                                                              |
 | Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                                            |
