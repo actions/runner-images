@@ -82,10 +82,16 @@
             "yq",
             "unxip",
             "xcbeautify",
-            "xcodes"
+            "xcodes",
+            "bash"
         ],
         "cask_packages": [
             ""
+        ]
+    },
+    "bash": {
+        "version": [
+            "5.2.x"
         ]
     },
     "gcc": {
