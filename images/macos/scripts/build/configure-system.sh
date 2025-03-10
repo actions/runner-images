@@ -12,7 +12,7 @@ close_finder_window
 # Remove Parallels Desktop
 # https://github.com/actions/runner-images/issues/6105
 # https://github.com/actions/runner-images/issues/10143
-if is_SonomaX64 || is_VenturaX64; then
+if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
     brew uninstall parallels
 fi
 
