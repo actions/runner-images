@@ -243,7 +243,8 @@ function Install-AdditionalSimulatorRuntimes {
                     continue
                 }
                 default {
-                    if ($platformVersion -match "^\d{1,2}\.\d(\.\d)?$") {
+                    # Version might be a semver or a build number
+                    if (($platformVersion -match "^\d{1,2}\.\d(\.\d)?$") -or ($platformVersion -match "^[a-zA-Z0-9]{6,8}$")) {
                         Write-Host "Installing $platform $platformVersion runtime for Xcode $Version ..."
                         Invoke-ValidateCommand "sudo $xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion" | Out-Null
                         continue
