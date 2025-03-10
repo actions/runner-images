@@ -19,7 +19,7 @@ jobs:
   sbom-check:
     outputs:
       check_status: ${{ steps.check.outputs.status }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
     - name: Check release for ${{ github.event.client_payload.ReleaseBranchName }}
       id: check
