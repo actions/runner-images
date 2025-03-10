@@ -6,7 +6,8 @@
 
 on run argv
   set userpassword to item 1 of argv
-
+  
+  -- Open System Settings
   tell application "System Settings"
     activate
     delay 5
@@ -15,57 +16,25 @@ on run argv
   tell application "System Events"
     tell process "System Settings"
       set frontmost to true
-      repeat until exists window 1
+
+      -- Navigate to "Privacy & Security"
+      repeat until exists window "Privacy & Security"
         delay 2
       end repeat
-
-      tell splitter group 1 of group 1 of window 1
-          select row 21 of outline 1 of scroll area 1 of group 1
-          delay 5
-          repeat until exists group 5 of scroll area 1 of group 1 of group 2
-          delay 2
-          end repeat
-          click UI Element 2 of group 5 of scroll area 1 of group 1 of group 2
-          delay 5
-          keystroke userpassword
-          delay 5
-          keystroke return
-          delay 5
-      end tell
-    end tell
-  end tell
-end run
-
----
-
-on run argv
-  set userpassword to item 1 of argv
-
-  tell application "System Settings"
-    activate
-    delay 5
-  end tell
-
-  tell application "System Events"
-    tell process "System Settings"
-      set frontmost to true
-      repeat until exists window 1
-        delay 2
-      end repeat
-
-      tell splitter group 1 of group 1 of window 1
-        select row 21 of outline 1 of scroll area 1 of group 1
+      
+      -- Click the "Allow" button for Parallels International GmbH
+      try
+        click button "Allow" of scroll area 1 of window "Privacy & Security"
         delay 5
-        repeat until exists group 5 of scroll area 1 of group 1 of group 2
-          delay 2
-        end repeat
-        click UI Element 2 of group 5 of scroll area 1 of group 1 of group 2
-        delay 5
+        
+        -- Enter password
         keystroke userpassword
-        delay 5
+        delay 2
         keystroke return
-        delay 5
-      end tell
+        delay 3
+      on error
+        display dialog "Failed to find the 'Allow' button. Please check UI changes."
+      end try
     end tell
   end tell
 end run
