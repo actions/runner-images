@@ -22,7 +22,7 @@ on run argv
       end repeat
 
       -- Navigate to "Privacy & Security" in the sidebar
-      tell splitter group 1 of window 1
+      tell window 1
         select row 20 of outline 1 of scroll area 1
         delay 2
       end tell
