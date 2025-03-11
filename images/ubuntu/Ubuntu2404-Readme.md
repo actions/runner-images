@@ -317,3 +317,21 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.6.1+really5.4.5-1build0.1 |
 | zip                    | 3.0-13ubuntu0.2             |
 | zsync                  | 0.6.2-5build1               |
+
+### Removed Tools and Packages
+- Heroku CLI
+- Leiningen
+- Mono / MSBuild / NuGet
+- Terraform
+- R
+- SVN
+- Alibaba Cloud CLI
+- Netlify CLI
+- OpenShift CLI
+- ORAS CLI
+- Vercel CLI
+- Bindgen / Cbindgen
+- Cargo audit/clippy/outdated
+- MS SQL Server Client Tools
+- MarkdownPS Module
+- Cached Docker images
