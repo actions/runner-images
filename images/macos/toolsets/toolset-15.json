@@ -85,7 +85,7 @@
             "xcodes"
         ],
         "cask_packages": [
-            ""
+            "parallels"
         ]
     },
     "gcc": {
