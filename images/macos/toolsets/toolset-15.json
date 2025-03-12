@@ -8,8 +8,8 @@
                     "install_runtimes":
                     [
                         "iOS -buildVersion 18.0", "iOS -buildVersion 18.1", "iOS -buildVersion 18.2", "iOS -buildVersion 18.3.1", "iOS -buildVersion 22E5216h",
-                        "watchOS",
-                        "tvOS"
+                        "watchOS -buildVersion 11.0", "watchOS -buildVersion 11.1", "watchOS -buildVersion 11.2", "watchOS -buildVersion 22T5212l",
+                        "tvOS -buildVersion 18.0", "tvOS -buildVersion 18.1", "tvOS -buildVersion 18.2", "tvOS -buildVersion 22L5218l"
                     ],
                     "sha256": "f4bb80c2e93d3561ecbabc82d1a92c830d831c96afc48944baa8116e3fd0013d"
                 },
@@ -28,8 +28,8 @@
                     "install_runtimes":
                     [
                         "iOS -buildVersion 18.0", "iOS -buildVersion 18.1", "iOS -buildVersion 18.2", "iOS -buildVersion 18.3.1", "iOS -buildVersion 22E5216h",
-                        "watchOS",
-                        "tvOS",
+                        "watchOS -buildVersion 11.0", "watchOS -buildVersion 11.1", "watchOS -buildVersion 11.2", "watchOS -buildVersion 22T5212l",
+                        "tvOS -buildVersion 18.0", "tvOS -buildVersion 18.1", "tvOS -buildVersion 18.2", "tvOS -buildVersion 22L5218l",
                         "visionOS -buildVersion 2.0", "visionOS -buildVersion 2.1",  "visionOS -buildVersion 2.2", "visionOS -buildVersion 2.3", "visionOS -buildVersion 22O5215f"
                     ],
                     "sha256": "f4bb80c2e93d3561ecbabc82d1a92c830d831c96afc48944baa8116e3fd0013d"
