@@ -16,12 +16,17 @@ echo "export VCPKG_INSTALLATION_ROOT=${VCPKG_INSTALLATION_ROOT}" | tee -a ~/.bas
 mkdir -p /Users/runner/.vcpkg
 touch /Users/runner/.vcpkg/vcpkg.path.txt
 
+if [[ $arch == "arm64" ]]; then
+  echo "Updating vcpkg for arm64 architecture"
+  /Users/runner/.vcpkg/vcpkg update
+fi
+
 # Install vcpkg
-sudo git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
-sudo $VCPKG_INSTALLATION_ROOT/bootstrap-vcpkg.sh
-sudo $VCPKG_INSTALLATION_ROOT/vcpkg integrate install
-sudo chmod -R 0777 $VCPKG_INSTALLATION_ROOT
-sudo ln -sf $VCPKG_INSTALLATION_ROOT/vcpkg /usr/local/bin
+git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
+$VCPKG_INSTALLATION_ROOT/bootstrap-vcpkg.sh
+$VCPKG_INSTALLATION_ROOT/vcpkg integrate install
+chmod -R 0777 $VCPKG_INSTALLATION_ROOT
+ln -sf $VCPKG_INSTALLATION_ROOT/vcpkg /usr/local/bin
 
 rm -rf /Users/runner/.vcpkg
 
