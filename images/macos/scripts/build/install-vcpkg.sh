@@ -7,7 +7,7 @@
 source ~/utils/utils.sh
 
 # Set env variable for vcpkg
-VCPKG_INSTALLATION_ROOT=/Users/runner/.vcpkg/vcpkg
+VCPKG_INSTALLATION_ROOT=/usr/local/bin/vcpkg
 echo "export VCPKG_INSTALLATION_ROOT=${VCPKG_INSTALLATION_ROOT}" | tee -a ~/.bashrc
 
 # workaround https://github.com/microsoft/vcpkg/issues/27786
