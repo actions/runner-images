@@ -5,7 +5,6 @@
 ################################################################################
 
 source ~/utils/utils.sh
-#!/bin/bash
 
 # Set env variable for vcpkg
 VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
@@ -18,7 +17,8 @@ touch /Users/runner/.vcpkg/vcpkg.path.txt
 
 if [[ $arch == "arm64" ]]; then
   echo "Updating vcpkg for arm64 architecture"
-  /Users/runner/.vcpkg/vcpkg update
+  VCPKG_INSTALLATION_ROOT=/Users/runner/.vcpkg/vcpkg
+  echo "export VCPKG_INSTALLATION_ROOT=${VCPKG_INSTALLATION_ROOT}" | tee -a ~/.bashrc
 fi
 
 # Install vcpkg
