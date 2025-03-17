@@ -11,10 +11,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
-
+      with:
+        fetch-depth: 0
+        
     - name: Clone release branch to create pull request
       run: |
+        git pull
         git checkout ${{ github.event.client_payload.ReleaseBranchName }}
         git branch ${{ github.event.client_payload.ReleaseBranchName }}-docs
         git push origin ${{ github.event.client_payload.ReleaseBranchName }}-docs
