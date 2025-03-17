@@ -87,3 +87,12 @@ Describe "Unxip" {
         "unxip --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Sudoers" {
+    It "Sudo Cache" {
+        "sudo -v" | Should -ReturnZeroExitCode
+    }
+    It "Sudoers files" {
+        "sudo visudo -c" | Should -ReturnZeroExitCode
+    }
+}
