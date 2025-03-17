@@ -1,7 +1,11 @@
+| Announcements |
+|-|
+| [[Ubuntu] Breaking change : PostgreSQL version 14.* for Ubuntu 22.04, PostgreSQL version 16.* for Ubuntu 24.04 will be updated to version 17.* from 2025-05-09](https://github.com/actions/runner-images/issues/11723) |
+***
 # Ubuntu 20.04
 - OS Version: 20.04.6 LTS
 - Kernel Version: 5.15.0-1079-azure
-- Image Version: 20250223.1.0
+- Image Version: 20250309.1.0
 - Systemd version: 245.4-4ubuntu3.24
 
 ## Installed Software
@@ -29,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.1
-- Homebrew 4.4.21
+- Homebrew 4.4.23
 - Miniconda 25.1.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -37,7 +41,7 @@
 - Pip3 20.0.2
 - Pipx 1.7.1
 - RubyGems 3.1.2
-- Vcpkg (build from commit 5f8c424e26)
+- Vcpkg (build from commit 300239058e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,24 +60,24 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.7
-- Gradle 8.12.1
-- Lerna 8.2.0
+- Gradle 8.13
+- Lerna 8.2.1
 - Maven 3.9.9
-- Sbt 1.10.7
+- Sbt 1.10.10
 
 ### Tools
 - Ansible 2.13.13
 - apt-fast 1.10.0
 - AzCopy 10.28.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 8.1.0
+- Bazel 8.1.1
 - Bazelisk 1.25.0
 - Bicep 0.33.93
 - Buildah 1.22.3
-- CMake 3.31.5
+- CMake 3.31.6
 - CodeQL Action Bundle 2.20.1
 - Docker Amazon ECR Credential Helper 0.9.1
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.21.1
+- Docker-Buildx 0.21.2
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.226.0
@@ -99,29 +103,30 @@ to accomplish this.
 - Parcel 2.13.3
 - PhantomJS 2.1.1 2.1.1
 - Podman 3.4.2
-- Pulumi 3.150.0
-- R 4.4.2
+- Pulumi 3.154.0
+- R 4.4.3
 - Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.10.5
+- Terraform 1.11.1
 - yamllint 1.35.1
 - yq 4.45.1
 - zstd 1.5.7
+- Ninja 1.12.1
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.174
-- AWS CLI 2.24.10
+- AWS CLI 2.24.20
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.134.0
-- Azure CLI 2.69.0
+- Azure CLI 2.70.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.67.0
-- Google Cloud CLI 511.0.0
-- Netlify CLI 18.1.0
+- GitHub CLI 2.68.1
+- Google Cloud CLI 513.0.0
+- Netlify CLI 19.0.2
 - OpenShift CLI 4.15.19
 - ORAS CLI 1.2.2
-- Vercel CLI 41.2.0
+- Vercel CLI 41.3.2
 
 ### Java
 | Version             | Environment Variable |
@@ -133,7 +138,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 7.4.33, 8.0.30, 8.1.31, 8.2.27, 8.3.17
-- Composer 2.8.5
+- Composer 2.8.6
 - PHPUnit 8.5.41
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -149,25 +154,25 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo 1.85.0
 - Rust 1.85.0
 - Rustdoc 1.85.0
-- Rustup 1.27.1
+- Rustup 1.28.1
 
 #### Packages
 - Bindgen 0.71.1
-- Cargo audit 0.21.1
+- Cargo audit 0.21.2
 - Cargo clippy 0.1.85
 - Cargo outdated 0.16.0
 - Cbindgen 0.28.0
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 133.0.6943.126
-- ChromeDriver 133.0.6943.126
-- Chromium 133.0.6943.0
-- Microsoft Edge 133.0.3065.82
-- Microsoft Edge WebDriver 133.0.3065.82
+- Google Chrome 134.0.6998.35
+- ChromeDriver 134.0.6998.35
+- Chromium 134.0.6998.0
+- Microsoft Edge 134.0.3124.51
+- Microsoft Edge WebDriver 134.0.3124.51
 - Selenium server 4.29.0
-- Mozilla Firefox 135.0.1
-- Geckodriver 0.35.0
+- Mozilla Firefox 136.0
+- Geckodriver 0.36.0
 
 #### Environment variables
 | Name              | Value                                 |
@@ -211,7 +216,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.21.13
 - 1.22.12
-- 1.23.6
+- 1.23.7
 
 #### Node.js
 - 18.20.7
@@ -227,12 +232,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.13.2
 
 #### PyPy
-- 2.7.18 [PyPy 7.3.18]
+- 2.7.18 [PyPy 7.3.19]
 - 3.6.12 [PyPy 7.3.3]
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
-- 3.10.16 [PyPy 7.3.18]
+- 3.10.16 [PyPy 7.3.19]
 
 #### Ruby
 - 3.0.7
@@ -246,7 +251,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 12.1.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.26.0
+- Microsoft.Graph: 2.26.1
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.23.0
 
@@ -288,14 +293,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:de0eb0b3f2a47ba1eb89389859a9bd88b28e82f5826b6969ad604979713c2d4f  | 2025-02-14 |
 | alpine:3.19          | sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377  | 2025-02-14 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:63904b1442dc0bb1e7a7a7065b3ba0d10d4e300f984115a40d371827fe4e3a85  | 2025-02-03 |
+| debian:11            | sha256:a6cec654bb08bdc6a563cd7507b62f57c916290e195142e79a0d41a70ebb26fa  | 2025-02-24 |
 | debian:9             | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
-| moby/buildkit:latest | sha256:2c59b0a95f5b2dc103814d69f695a61f131e75f3150ab58ea8afecd75e3d1f9a  | 2025-02-19 |
-| node:18              | sha256:0629ee779413520498c69f2e6a6dce2be210879dc58789834c66eaf6d9ea9f1d  | 2025-02-20 |
+| moby/buildkit:latest | sha256:c5137fdd77377ea102a2622714df55459fe42e5867ba180bda07291aa7952d9b  | 2025-03-05 |
+| node:18              | sha256:ba756f198b4b1e0114b53b23121c8ae27f7ae4d5d95ca4a0554b0649cc9c7dcf  | 2025-02-20 |
 | node:18-alpine       | sha256:e0340f26173b41066d68e3fe9bfbdb6571ab3cad0a4272919a52e36f4ae56925  | 2025-02-20 |
-| node:20              | sha256:09b38290270d132b895814d9b54602635dbe146ed3ee65b04619922fe4ef6415  | 2025-02-10 |
+| node:20              | sha256:bcf90f85634194bc51e92f8add1221c7fdeeff94b7f1ff360aeaa7498086d641  | 2025-02-10 |
 | node:20-alpine       | sha256:053c1d99e608fe9fa0db6821edd84276277c0a663cd181f4a3e59ee20f5f07ea  | 2025-02-10 |
-| node:22              | sha256:cfef4432ab2901fd6ab2cb05b177d3c6f8a7f48cb22ad9d7ae28bb6aa5f8b471  | 2025-02-13 |
+| node:22              | sha256:f6b9c31ace05502dd98ef777aaa20464362435dcc5e312b0e213121dcf7d8b95  | 2025-02-13 |
 | node:22-alpine       | sha256:9bef0ef1e268f60627da9ba7d7605e8831d5b56ad07487d24d1aa386336d1944  | 2025-02-13 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
 
@@ -306,7 +311,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.35.0-1build1                    |
 | autoconf               | 2.69-11.1                         |
 | automake               | 1:1.16.1-4ubuntu6                 |
-| binutils               | 2.34-6ubuntu1.9                   |
+| binutils               | 2.34-6ubuntu1.10                  |
 | bison                  | 2:3.5.1+dfsg-1                    |
 | brotli                 | 1.0.7-6ubuntu0.1                  |
 | bzip2                  | 1.0.8-2                           |
@@ -364,7 +369,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | patchelf               | 0.10-2build1                      |
 | pigz                   | 2.4-1                             |
 | pkg-config             | 0.29.1-0ubuntu4                   |
-| pollinate              | 4.33-3ubuntu1.20.04.1             |
+| pollinate              | 4.33-3ubuntu1.20.04.2             |
 | python-is-python3      | 3.8.2-4                           |
 | rpm                    | 4.14.2.1+dfsg1-1build2            |
 | rsync                  | 3.1.3-8ubuntu0.9                  |
@@ -387,7 +392,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2.1                 |
 | xorriso                | 1.5.2-1                           |
-| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.18      |
+| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.19      |
 | xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
+

@@ -156,6 +156,7 @@ build {
     inline          = [
       "mv ${local.image_folder}/docs-gen ${local.image_folder}/software-report",
       "mkdir ~/utils",
+      "mv ${local.image_folder}/helpers/confirm-identified-developers-macos15.scpt ~/utils",
       "mv ${local.image_folder}/helpers/invoke-tests.sh ~/utils",
       "mv ${local.image_folder}/helpers/utils.sh ~/utils"
     ]
@@ -233,6 +234,7 @@ build {
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts          = [
       "${path.root}/../scripts/build/install-actions-cache.sh",
+      "${path.root}/../scripts/build/install-runner-package.sh",
       "${path.root}/../scripts/build/install-llvm.sh",
       "${path.root}/../scripts/build/install-swiftlint.sh",
       "${path.root}/../scripts/build/install-openjdk.sh",

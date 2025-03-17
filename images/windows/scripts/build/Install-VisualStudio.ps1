@@ -2,17 +2,30 @@
 ##  File:  Install-VisualStudio.ps1
 ##  Desc:  Install Visual Studio
 ################################################################################
-
 $vsToolset = (Get-ToolsetContent).visualStudio
 
-# Install VS
-Install-VisualStudio `
-    -Version $vsToolset.subversion `
-    -Edition $vsToolset.edition `
-    -Channel $vsToolset.channel `
-    -RequiredComponents $vsToolset.workloads `
-    -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
-    -SignatureThumbprint $vsToolset.signature
+if (Test-IsWin19) {
+    # Install Visual Studio for Windows 19
+    Install-VisualStudio `
+        -Version $vsToolset.subversion `
+        -Edition $vsToolset.edition `
+        -Channel $vsToolset.channel `
+        -RequiredComponents $vsToolset.workloads `
+        -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
+        -SignatureThumbprint $vsToolset.signature
+}
+
+if ( (Test-IsWin22) -or (Test-IsWin25) ) {
+    # Install Visual Studio for Windows 22 and 25 with InstallChannel
+    Install-VisualStudio `
+        -Version $vsToolset.subversion `
+        -Edition $vsToolset.edition `
+        -Channel $vsToolset.channel `
+        -InstallChannel $vsToolset.installChannel `
+        -RequiredComponents $vsToolset.workloads `
+        -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
+        -SignatureThumbprint $vsToolset.signature
+}
 
 # Find the version of VS installed for this instance
 # Only supports a single instance
