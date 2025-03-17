@@ -45,7 +45,7 @@
             "cmake;3.31.5"
         ],
         "ndk": {
-            "default": "28",
+            "default": "27",
             "versions": [
                 "26", "27", "28"
             ]
