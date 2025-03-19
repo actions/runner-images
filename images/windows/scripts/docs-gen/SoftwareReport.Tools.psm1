@@ -322,3 +322,7 @@ function Get-MongoshVersion {
 function Get-WSL2Version {
     return $((Get-AppxPackage -Name "MicrosoftCorporationII.WindowsSubsystemForLinux").version)
 }
+
+function Get-NinjaVersion {
+    return $(ninja --version)
+}

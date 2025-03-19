@@ -174,12 +174,15 @@ $android.AddTable($androidTable)
 $androidEnv = $android.AddHeader("Environment variables")
 $androidEnv.AddTable($(Build-AndroidEnvironmentTable))
 
-if ($os.IsSonoma -or $os.IsVentura) {
+if ($os.IsSonoma -or $os.IsVentura -or $os.IsSequoiaX64) {
     $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
+}
+
+if ($os.IsSonoma -or $os.IsVentura) {
     $miscellaneous.AddToolVersion("Tcl/Tk", $(Get-TclTkVersion))
 }
 
-if ($os.IsSonomaX64 -or $os.IsVenturaX64) {
+if ($os.IsSonomaX64 -or $os.IsVenturaX64 -or $os.IsSequoiaX64) {
 
     Write-Host "Adding environment variables for parallels"
 

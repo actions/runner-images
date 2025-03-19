@@ -35,13 +35,13 @@ for package in $cask_packages; do
 done
 
 # Load "Parallels International GmbH"
-if is_SonomaX64 || is_VenturaX64; then
+if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
     sudo kextload /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
 fi
 
-# Execute AppleScript to change security preferences for macOS12, macOS13 and macOS14
+# Execute AppleScript to change security preferences for macOS12, macOS13, macOS14 and macOS15
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
-if is_SonomaX64 || is_VenturaX64; then
+if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
     for retry in {4..0}; do
         echo "Executing AppleScript to change security preferences. Retries left: $retry"
         {
@@ -53,6 +53,9 @@ if is_SonomaX64 || is_VenturaX64; then
             
             if is_SonomaX64; then
                 osascript $HOME/utils/confirm-identified-developers-macos14.scpt $USER_PASSWORD
+            fi
+            if is_SequoiaX64; then
+                osascript $HOME/utils/confirm-identified-developers-macos15.scpt $USER_PASSWORD
             fi
         } && break
 
@@ -67,7 +70,7 @@ if is_SonomaX64 || is_VenturaX64; then
 fi
 
 # Validate "Parallels International GmbH" kext
-if is_SonomaX64 || is_VenturaX64; then
+if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
 
     echo "Closing System Settings window if it is still opened"
     killall "System Settings" || true
