@@ -75,10 +75,10 @@ to accomplish this.
 - CMake 3.31.6
 - CodeQL Action Bundle 2.20.1
 - Docker Amazon ECR Credential Helper 0.9.1
-- Docker Compose v2 2.27.1
+- Docker Compose v2 2.30.0
 - Docker-Buildx 0.21.2
-- Docker Client 26.1.3
-- Docker Server 26.1.3
+- Docker Client 28.1.0
+- Docker Server 28.1.0
 - Fastlane 2.227.0
 - Git 2.48.1
 - Git LFS 3.6.1
