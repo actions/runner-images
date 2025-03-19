@@ -254,9 +254,12 @@ class ToolVersionsListNode: BaseToolNode {
     }
 
     hidden [void] ValidateMajorVersionRegex() {
-        $this.Versions | Group-Object { $this.ExtractMajorVersion($_) } | ForEach-Object {
+        $this.Versions | Group-Object { 
+            $majorVersion = $this.ExtractMajorVersion($_)
+            "$majorVersion|$($_ -replace '^.*\.(\d+)$','$1')" 
+        } | ForEach-Object {
             if ($_.Count -gt 1) {
-                throw "Multiple versions from list '$($this.GetValue())' return the same result from regex '$($this.MajorVersionRegex)': $($_.Name)"
+                throw "Multiple versions from list '$($this.Versions -join ', ')' return the same result from regex '$($this.MajorVersionRegex)': $($_.Name)"
             }
         }
     }
