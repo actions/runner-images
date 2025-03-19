@@ -207,7 +207,7 @@ function Get-MavenVersion {
 
 function Get-SbtVersion {
     $result = Get-CommandResult "sbt -version"
-    $result.Output -match "sbt script version: (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $result.Output -match "sbt runner version: (?<version>\d+\.\d+\.\d+)" | Out-Null
     return $Matches.version
 }
 
