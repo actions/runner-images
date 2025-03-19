@@ -98,7 +98,7 @@ Describe "Nodes.UnitTests" {
             { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = ""; Versions = @("2.1.3", "3.1.4"); MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Throw '*Exception setting "ToolName": "The argument is null or empty.*'
             { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Throw '*Exception setting "Versions": "The argument is null or empty.*'
             { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @(); MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Throw '*Exception setting "Versions": "The argument is null, empty,*'
-            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", '2.2.4', '2.2.4'); MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Throw 'Multiple versions from list * return the same result from regex *'
+            { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", '2.2.4'); MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Throw 'Multiple versions from list * return the same result from regex *'
             { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", "3.1.4"); MajorVersionRegex = ""; ListType = "List" }) } | Should -Throw 'Version * doesn''t match regex *'
             { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", "3.1.4"); MajorVersionRegex = "^\d+"; ListType = "Fake" }) } | Should -Throw '*Exception setting "ListType": "The argument * does not belong to the set*'
             { [ToolVersionsListNode]::FromJsonObject(@{ NodeType = "ToolVersionsListNode"; ToolName = "MyTool"; Versions = @("2.1.3", "3.1.4"); MajorVersionRegex = "^\d+"; ListType = "List" }) } | Should -Not -Throw
@@ -151,7 +151,7 @@ Describe "Nodes.UnitTests" {
             }
 
             It "Major version regex - non-unique versions" {
-                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "3.1.5", "3.2.0", "4.0.0"), "^\d+", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
+                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "3.1.5", "3.2.0", "4.0.0"), "^\d+", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
             }
 
             It "Minor version regex - unique versions" {
@@ -160,7 +160,7 @@ Describe "Nodes.UnitTests" {
             }
 
             It "Minor version regex - non-unique versions" {
-                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.1.4", "3.1.2", "3.1.2"), "^\d+\.\d+", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
+                { [ToolVersionsListNode]::new("MyTool", @("2.1.3", "2.1.4", "3.1.2"), "^\d+\.\d+", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
             }
 
             It "Patch version regex - unique versions" {
@@ -178,7 +178,7 @@ Describe "Nodes.UnitTests" {
             }
 
             It ".NET Core version regex - non-unique versions" {
-                { [ToolVersionsListNode]::new("MyTool", @("2.1.100", "2.1.205", "2.1.205", "2.1.230", "3.1.0"), "^\d+\.\d+\.\d", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
+                { [ToolVersionsListNode]::new("MyTool", @("2.1.100", "2.1.205", "2.1.230", "3.1.0"), "^\d+\.\d+\.\d", "List") } | Should -Throw "Multiple versions from list * return the same result from regex *"
             }
         }
     }
