@@ -30,7 +30,7 @@
                         "iOS -buildVersion 18.0", "iOS -buildVersion 18.1", "iOS -buildVersion 18.2", "iOS -buildVersion 18.3.1", "iOS -buildVersion 22E5232a",
                         "watchOS -buildVersion 11.0", "watchOS -buildVersion 11.1", "watchOS -buildVersion 11.2", "watchOS -buildVersion 22T5244a",
                         "tvOS -buildVersion 18.0", "tvOS -buildVersion 18.1", "tvOS -buildVersion 18.2", "tvOS -buildVersion 22L5250a",
-                        "visionOS -buildVersion 2.0", "visionOS -buildVersion 2.1",  "visionOS -buildVersion 2.2", "visionOS -buildVersion 2.3", "visionOS -buildVersion 22O5231a"
+                        "visionOS -buildVersion 2.0", "visionOS -buildVersion 2.1",  "visionOS -buildVersion 2.2", "visionOS -buildVersion 2.3", "visionOS -buildVersion 22O5215f"
                     ],
                     "sha256": "5f709f7b418005c7c735d6f62076feb8fd9095f874f3d7c2d58a039ce9531348"
                 },
