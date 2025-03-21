@@ -44,4 +44,6 @@ $json = @"
 ]
 "@
 
-$json | Out-File -FilePath $imageDataFile
+
+$Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
+[System.IO.File]::WriteAllLines($imageDataFile, @($json), $Utf8NoBomEncoding)
