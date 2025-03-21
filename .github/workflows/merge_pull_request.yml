@@ -20,7 +20,7 @@ jobs:
         git config --global user.name "Actions service account"
         git checkout ${{ github.event.client_payload.ReleaseBranchName }}-docs
         git merge --no-edit --strategy-option=ours main
-        git push origin ${{ github.event.client_payload.ReleaseBranchName }}-docs
+        git push origin ${{ github.event.client_payload.ReleaseBranchName }}-docs --force
         sleep 30
 
     - name: Approve pull request by GitHub-Actions bot
