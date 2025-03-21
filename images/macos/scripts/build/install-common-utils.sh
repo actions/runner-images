@@ -25,13 +25,11 @@ for package in $common_packages; do
             ;;
 
         tcl-tk@8)
+            brew_smart_install "$package"
             if is_VenturaX64 || is_SonomaX64; then
-                brew_smart_install "$package"
                 # Fix for https://github.com/actions/runner-images/issues/11074
                 ln -sf "$(brew --prefix tcl-tk@8)/lib/libtcl8.6.dylib" /usr/local/lib/libtcl8.6.dylib
                 ln -sf "$(brew --prefix tcl-tk@8)/lib/libtk8.6.dylib" /usr/local/lib/libtk8.6.dylib
-            else
-                brew_smart_install "$package"
             fi
             ;;
 
