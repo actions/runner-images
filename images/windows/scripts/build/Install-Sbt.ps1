@@ -7,7 +7,7 @@
 # See https://chocolatey.org/packages/sbt
 # The version is pinned due to issue with sbt latest version
 # See https://github.com/sbt/sbt/issues/8077
-Install-ChocoPackage sbt -ArgumentList "--version", "1.10.10
+Install-ChocoPackage sbt -ArgumentList "--version", "1.10.10"
 
 $env:SBT_HOME="${env:ProgramFiles(x86)}\sbt"
 
