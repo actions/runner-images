@@ -327,7 +327,7 @@
         "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
-        "version": "latest"
+        "version": "2.1.10"
     },
     "openssl": {
         "version": "3.4.1",
