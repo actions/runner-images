@@ -48,6 +48,15 @@ Describe "Android" {
             $targetPath = Join-Path $ANDROID_SDK_DIR $PackageName
             $targetPath | Should -Exist
         }
+
+        # Function to verify if CMake 3.31.5 is installed
+        function Confirm-CMakeVersion {
+            $cmakePath = Join-Path $ANDROID_SDK_DIR "cmake/3.31.5"
+            $cmakePath | Should -Exist
+            $cmakeExecutable = Join-Path $cmakePath "bin/cmake"
+            $cmakeExecutable | Should -Exist
+            & $cmakeExecutable --version | Should -Contain "3.31.5"
+        }
     }
 
     Context "SDKManagers" {
@@ -69,6 +78,10 @@ Describe "Android" {
         It "<PackageName>" -TestCases $testCases {
             param ([string] $PackageName)
             Confirm-AndroidPackage $PackageName
+        }
+
+        It "CMake 3.31.5 is installed" {
+            Confirm-CMakeVersion
         }
     }
 }
