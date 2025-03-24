@@ -4,40 +4,82 @@
         "x64": {
             "versions": [
                 {
-                "link": "16.3_beta_2", "version": "16.3.0-Beta.2+16E5121h", "symlinks": ["16.3"], 
-                    "install_runtimes":
-                    [
-                        "iOS -buildVersion 18.0", "iOS -buildVersion 18.1", "iOS -buildVersion 18.2", "iOS -buildVersion 18.3.1", "iOS -buildVersion 22E5216h",
-                        "watchOS -buildVersion 11.0", "watchOS -buildVersion 11.1", "watchOS -buildVersion 11.2", "watchOS -buildVersion 22T5212l",
-                        "tvOS -buildVersion 18.0", "tvOS -buildVersion 18.1", "tvOS -buildVersion 18.2", "tvOS -buildVersion 22L5218l"
-                    ],
-                    "sha256": "f4bb80c2e93d3561ecbabc82d1a92c830d831c96afc48944baa8116e3fd0013d"
+                    "link": "16.3_beta_3", 
+                    "version": "16.3.0-Beta.3+16E5129f", 
+                    "symlinks": ["16.3"],
+                    "sha256": "5f709f7b418005c7c735d6f62076feb8fd9095f874f3d7c2d58a039ce9531348",
+                    "install_runtimes": [
+                        { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "22E5232a"] },
+                        { "watchOS": ["11.0", "11.1", "11.2", "22T5244a"] },
+                        { "tvOS": ["18.0", "18.1", "18.2", "22L5250a"] }
+                    ]
                 },
-                { "link": "16.2", "version": "16.2+16C5032a", "install_runtimes": "false", "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de"},
-                { "link": "16.1", "version": "16.1+16B40", "install_runtimes": "false", "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
-                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "false", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
-                { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"}
+                {
+                    "link": "16.2",
+                    "version": "16.2+16C5032a",
+                    "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de",
+                    "install_runtimes": "none"
+                },
+                {
+                    "link": "16.1",
+                    "version": "16.1+16B40",
+                    "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720",
+                    "install_runtimes": "none"
+                },
+                {
+                    "link": "16",
+                    "version": "16.0.0+16A242d",
+                    "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
+                    "symlinks": ["16.0"],
+                    "install_runtimes": "none"
+                },
+                {
+                    "link": "15.4",
+                    "version": "15.4.0+15F31d",
+                    "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a",
+                    "install_runtimes": "default"
+                }
             ]
         },
         "arm64":{
             "versions": [
                 {
-                    "link": "16.3_beta_2",
-                    "version": "16.3.0-Beta.2+16E5121h",
-                    "symlinks": ["16.3"], 
-                    "install_runtimes":
-                    [
-                        "iOS -buildVersion 18.0", "iOS -buildVersion 18.1", "iOS -buildVersion 18.2", "iOS -buildVersion 18.3.1", "iOS -buildVersion 22E5216h",
-                        "watchOS -buildVersion 11.0", "watchOS -buildVersion 11.1", "watchOS -buildVersion 11.2", "watchOS -buildVersion 22T5212l",
-                        "tvOS -buildVersion 18.0", "tvOS -buildVersion 18.1", "tvOS -buildVersion 18.2", "tvOS -buildVersion 22L5218l",
-                        "visionOS -buildVersion 2.0", "visionOS -buildVersion 2.1",  "visionOS -buildVersion 2.2", "visionOS -buildVersion 2.3", "visionOS -buildVersion 22O5215f"
-                    ],
-                    "sha256": "f4bb80c2e93d3561ecbabc82d1a92c830d831c96afc48944baa8116e3fd0013d"
+                    "link": "16.3_beta_3", 
+                    "version": "16.3.0-Beta.3+16E5129f", 
+                    "symlinks": ["16.3"],
+                    "sha256": "5f709f7b418005c7c735d6f62076feb8fd9095f874f3d7c2d58a039ce9531348",
+                    "install_runtimes": [
+                        { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "22E5232a"] },
+                        { "watchOS": ["11.0", "11.1", "11.2", "22T5244a"] },
+                        { "tvOS": ["18.0", "18.1", "18.2", "22L5250a"] },
+                        { "visionOS": ["2.0", "2.1", "2.2", "2.3", "22O5215f"] }
+                    ]
                 },
-                { "link": "16.2", "version": "16.2+16C5032a", "install_runtimes": "false", "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de"},
-                { "link": "16.1", "version": "16.1+16B40", "install_runtimes": "false", "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720"},
-                { "link": "16", "version": "16.0.0+16A242d", "symlinks": ["16.0"], "install_runtimes": "false", "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3"},
-                { "link": "15.4", "version": "15.4.0+15F31d", "install_runtimes": "true", "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a"}
+                {
+                    "link": "16.2",
+                    "version": "16.2+16C5032a",
+                    "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de",
+                    "install_runtimes": "none"
+                },
+                {
+                    "link": "16.1",
+                    "version": "16.1+16B40",
+                    "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720",
+                    "install_runtimes": "none"
+                },
+                {
+                    "link": "16",
+                    "version": "16.0.0+16A242d",
+                    "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
+                    "symlinks": ["16.0"],
+                    "install_runtimes": "none"
+                },
+                {
+                    "link": "15.4",
+                    "version": "15.4.0+15F31d",
+                    "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a",
+                    "install_runtimes": "default"
+                }
             ]
         }
     },    
