@@ -166,15 +166,7 @@ function Get-GradleVersion {
 }
 
 function Get-SbtVersion {
-    try {
-        $version = sbt --script-version
-        if ($version) {
-            return $version
-        }
-        Write-Host "Failed to retrieve SBT version." -ForegroundColor Red
-    } catch {
-        Write-Host "Error: SBT command not found or the version flag may be deprecated." -ForegroundColor Red
-    }
+    sbt --script-version
 }
 
 function Get-DotnetSdks {
