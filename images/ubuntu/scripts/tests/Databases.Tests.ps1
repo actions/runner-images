@@ -22,6 +22,17 @@ Describe "PostgreSQL" {
         # Server version
         (pg_config --version).split()[-1] | Should -BeLike "$toolsetVersion*"
     }
+
+    It "PostgreSQL common operations" {
+        "sudo systemctl start postgresql" | Should -ReturnZeroExitCode
+        "psql -c 'CREATE DATABASE testdb;'" | Should -ReturnZeroExitCode
+        "psql -d testdb -c 'CREATE TABLE testtable (id SERIAL PRIMARY KEY, name VARCHAR(50));'" | Should -ReturnZeroExitCode
+        "psql -d testdb -c 'INSERT INTO testtable (name) VALUES (''testname'');'" | Should -ReturnZeroExitCode
+        "psql -d testdb -c 'SELECT * FROM testtable;'" | Should -ReturnZeroExitCode
+        "psql -d testdb -c 'DROP TABLE testtable;'" | Should -ReturnZeroExitCode
+        "psql -c 'DROP DATABASE testdb;'" | Should -ReturnZeroExitCode
+        "sudo systemctl stop postgresql" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "MySQL" {
