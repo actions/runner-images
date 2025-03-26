@@ -371,7 +371,7 @@
         "version": "5.0"
     },
     "postgresql": {
-        "version": "14"
+        "version": "17"
     },
     "pwsh": {
         "version": "7.4"

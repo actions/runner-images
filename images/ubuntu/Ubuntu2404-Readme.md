@@ -167,7 +167,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.8
+- PostgreSQL 17
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -323,4 +323,3 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.6.1+really5.4.5-1build0.1 |
 | zip                    | 3.0-13ubuntu0.2             |
 | zsync                  | 0.6.2-5build1               |
-
