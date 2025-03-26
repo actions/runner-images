@@ -298,7 +298,8 @@
                 "name": "strawberryperl" ,
                 "args": [ "--version", "5.40.0.1" ]
             },
-            { "name": "imagemagick" }
+            { "name": "imagemagick" },
+            { "name": "ninja" }
         ]
     },
     "node": {
@@ -326,7 +327,12 @@
         "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
-        "version": "latest"
+        "version": "2.1.10",
+        "pinnedDetails": {
+            "link": "https://youtrack.jetbrains.com/issues/KT?preview=KT-76169",
+            "reason": "this was pinned due to a new version 2.1.20 released has an issue with kotlinc-js -version` and kapt -version",
+            "review-at": "2025-03-31"
+        }
     },
     "openssl": {
         "version": "3.4.1",

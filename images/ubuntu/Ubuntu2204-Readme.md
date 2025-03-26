@@ -1,7 +1,12 @@
+| Announcements |
+|-|
+| [[Ubuntu] Breaking change : Docker Engine Version 26.* will be updated to Docker Engine Version 28* from 2025-05-09](https://github.com/actions/runner-images/issues/11766) |
+| [[Ubuntu] Breaking change : PostgreSQL version 14.* for Ubuntu 22.04, PostgreSQL version 16.* for Ubuntu 24.04 will be updated to version 17.* from 2025-05-09](https://github.com/actions/runner-images/issues/11723) |
+***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1021-azure
-- Image Version: 20250302.1.0
+- Image Version: 20250316.1.0
 - Systemd version: 249.11-0ubuntu3.12
 
 ## Installed Software
@@ -14,7 +19,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.11.3
+- Julia 1.11.4
 - Kotlin 2.1.10-release-473
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -26,8 +31,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.17.1
-- Homebrew 4.4.22
+- Helm 3.17.2
+- Homebrew 4.4.24
 - Miniconda 25.1.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -35,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit efb1e74369)
+- Vcpkg (build from commit 782ccc18d8)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,9 +60,9 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.12
 - Gradle 8.13
-- Lerna 8.2.0
+- Lerna 8.2.1
 - Maven 3.9.9
-- Sbt 1.10.7
+- Sbt 1.10.10
 
 ### Tools
 - Ansible 2.17.9
@@ -71,18 +76,18 @@ to accomplish this.
 - CodeQL Action Bundle 2.20.1
 - Docker Amazon ECR Credential Helper 0.9.1
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.21.1
+- Docker-Buildx 0.21.2
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.226.0
+- Fastlane 2.227.0
 - Git 2.48.1
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.2.0
+- Heroku 10.3.0
 - jq 1.6
 - Kind 0.27.0
-- Kubectl 1.32.2
+- Kubectl 1.32.3
 - Kustomize 5.6.0
 - Leiningen 2.11.2
 - MediaInfo 21.09
@@ -90,34 +95,35 @@ to accomplish this.
 - Minikube 1.34.0
 - n 10.1.0
 - Newman 6.2.1
-- nvm 0.40.1
+- nvm 0.40.2
 - OpenSSL 3.0.2-0ubuntu1.19
 - Packer 1.12.0
 - Parcel 2.13.3
 - Podman 3.4.4
-- Pulumi 3.153.1
-- R 4.4.2
+- Pulumi 3.156.0
+- R 4.4.3
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.11.0
-- yamllint 1.35.1
+- Terraform 1.11.2
+- yamllint 1.36.1
 - yq 4.45.1
 - zstd 1.5.7
+- Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.255
-- AWS CLI 2.24.15
+- Alibaba Cloud CLI 3.0.259
+- AWS CLI 2.24.24
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.134.0
-- Azure CLI 2.69.0
+- AWS SAM CLI 1.135.0
+- Azure CLI 2.70.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.67.0
-- Google Cloud CLI 512.0.0
-- Netlify CLI 19.0.0
-- OpenShift CLI 4.18.1
+- GitHub CLI 2.68.1
+- Google Cloud CLI 514.0.0
+- Netlify CLI 19.0.2
+- OpenShift CLI 4.18.4
 - ORAS CLI 1.2.2
-- Vercel CLI 41.3.0
+- Vercel CLI 41.4.1
 
 ### Java
 | Version             | Environment Variable |
@@ -137,7 +143,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Haskell Tools
 - Cabal 3.14.1.1
-- GHC 9.12.1
+- GHC 9.12.2
 - GHCup 0.1.40.0
 - Stack 3.3.1
 
@@ -145,24 +151,24 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo 1.85.0
 - Rust 1.85.0
 - Rustdoc 1.85.0
-- Rustup 1.27.1
+- Rustup 1.28.1
 
 #### Packages
 - Bindgen 0.71.1
 - Cargo audit 0.21.2
 - Cargo clippy 0.1.85
-- Cargo outdated 0.16.0
+- Cargo outdated 0.17.0
 - Cbindgen 0.28.0
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 133.0.6943.141
-- ChromeDriver 133.0.6943.141
-- Chromium 133.0.6943.0
-- Microsoft Edge 133.0.3065.92
-- Microsoft Edge WebDriver 133.0.3065.92
+- Google Chrome 134.0.6998.88
+- ChromeDriver 134.0.6998.88
+- Chromium 134.0.6998.0
+- Microsoft Edge 134.0.3124.68
+- Microsoft Edge WebDriver 134.0.3124.68
 - Selenium server 4.29.0
-- Mozilla Firefox 135.0.1
+- Mozilla Firefox 136.0.1
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -174,7 +180,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.428, 8.0.406, 9.0.200
+- .NET Core SDK: 6.0.428, 8.0.407, 9.0.201
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
@@ -206,11 +212,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.21.13
 - 1.22.12
-- 1.23.6
+- 1.23.7
 
 #### Node.js
 - 18.20.7
-- 20.18.3
+- 20.19.0
 - 22.14.0
 
 #### Python
@@ -249,17 +255,17 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | nginx   | 1.18.0  | /etc/nginx/nginx.conf     | inactive      | 80         |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                                                     |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 9.0                                                                                                                                                                                                                                                                                                         |
-| Android SDK Build-tools    | 35.0.0 35.0.1<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                                                  |
-| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                      |
-| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                      |
-| CMake                      | 3.18.1<br>3.22.1<br>3.31.5                                                                                                                                                                                                                                                                                  |
-| Google Play services       | 49                                                                                                                                                                                                                                                                                                          |
-| Google Repository          | 58                                                                                                                                                                                                                                                                                                          |
-| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                                                                                                                    |
+| Package Name               | Version                                                                                                                                                                                                                                                                                                                           |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 9.0                                                                                                                                                                                                                                                                                                                               |
+| Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                                                              |
+| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                                            |
+| Android SDK Platforms      | android-36 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                            |
+| CMake                      | 3.18.1<br>3.22.1<br>3.31.5                                                                                                                                                                                                                                                                                                        |
+| Google Play services       | 49                                                                                                                                                                                                                                                                                                                                |
+| Google Repository          | 58                                                                                                                                                                                                                                                                                                                                |
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)                                                                                                                                                                                                                                                                                          |
 
 #### Environment variables
 | Name                    | Value                                        |
@@ -280,11 +286,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.19          | sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377  | 2025-02-14 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
 | debian:11            | sha256:a6cec654bb08bdc6a563cd7507b62f57c916290e195142e79a0d41a70ebb26fa  | 2025-02-24 |
-| moby/buildkit:latest | sha256:2c59b0a95f5b2dc103814d69f695a61f131e75f3150ab58ea8afecd75e3d1f9a  | 2025-02-19 |
+| moby/buildkit:latest | sha256:c5137fdd77377ea102a2622714df55459fe42e5867ba180bda07291aa7952d9b  | 2025-03-05 |
 | node:18              | sha256:ba756f198b4b1e0114b53b23121c8ae27f7ae4d5d95ca4a0554b0649cc9c7dcf  | 2025-02-20 |
 | node:18-alpine       | sha256:e0340f26173b41066d68e3fe9bfbdb6571ab3cad0a4272919a52e36f4ae56925  | 2025-02-20 |
-| node:20              | sha256:bcf90f85634194bc51e92f8add1221c7fdeeff94b7f1ff360aeaa7498086d641  | 2025-02-10 |
-| node:20-alpine       | sha256:053c1d99e608fe9fa0db6821edd84276277c0a663cd181f4a3e59ee20f5f07ea  | 2025-02-10 |
+| node:20              | sha256:a2cc2512d230a0b40f0445086f82c0e720edf34ff6520221b2c649c1f2268d0e  | 2025-03-13 |
+| node:20-alpine       | sha256:8bda036ddd59ea51a23bc1a1035d3b5c614e72c01366d989f4120e8adca196d4  | 2025-03-13 |
 | node:22              | sha256:f6b9c31ace05502dd98ef777aaa20464362435dcc5e312b0e213121dcf7d8b95  | 2025-02-13 |
 | node:22-alpine       | sha256:9bef0ef1e268f60627da9ba7d7605e8831d5b56ad07487d24d1aa386336d1944  | 2025-02-13 |
 | ubuntu:20.04         | sha256:8e5c4f0285ecbb4ead070431d29b576a530d3166df73ec44affc1cd27555141b  | 2024-10-11 |
@@ -384,3 +390,4 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
+

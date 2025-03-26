@@ -339,7 +339,8 @@
                 "name": "cmake.install",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
-            { "name": "imagemagick" }
+            { "name": "imagemagick" },
+            { "name": "ninja" }
         ]
     },
     "node": {
@@ -372,7 +373,12 @@
         "installVcRedist": true
     },
     "kotlin": {
-        "version": "latest"
+        "version": "2.1.10",
+        "pinnedDetails": {
+            "link": "https://youtrack.jetbrains.com/issues/KT?preview=KT-76169",
+            "reason": "this was pinned due to a new version 2.1.20 released has an issue with kotlinc-js -version` and kapt -version",
+            "review-at": "2025-03-31"
+        }
     },
     "openssl": {
         "version": "1.1.1",

@@ -117,6 +117,7 @@ $tools.AddToolVersion("WinAppDriver", $(Get-WinAppDriver))
 $tools.AddToolVersion("WiX Toolset", $(Get-WixVersion))
 $tools.AddToolVersion("yamllint", $(Get-YAMLLintVersion))
 $tools.AddToolVersion("zstd", $(Get-ZstdVersion))
+$tools.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # CLI Tools
 $cliTools = $installedSoftware.AddHeader("CLI Tools")
@@ -220,7 +221,7 @@ if (Test-IsWin19) {
     # Visual Studio 2019 brings own version of .NET Core which is different from latest official version
     $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d{2}')
 } else {
-    $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d')
+    $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d{3}')
 }
 $netCoreTools.AddToolVersionsListInline(".NET Framework", $(Get-DotnetFrameworkVersions), '^.+')
 Get-DotnetRuntimes | ForEach-Object {

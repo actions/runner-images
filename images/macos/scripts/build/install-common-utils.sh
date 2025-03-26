@@ -9,19 +9,35 @@ source ~/utils/utils.sh
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
-    if [[ $package == "packer" ]]; then
-        # Packer has been deprecated in Homebrew. Use tap to install Packer.
-        brew install hashicorp/tap/packer
-    else
-        if (is_VenturaX64 || is_SonomaX64) && [[ $package == "tcl-tk@8" ]]; then
+    case "$package" in
+        packer)
+            # Packer has been deprecated in Homebrew. Use tap to install Packer.
+            brew install hashicorp/tap/packer
+            ;;
+
+        kotlin)
+            # Pin kotlin bottle to 2.1.10 due to an issue with the latest version
+            # https://youtrack.jetbrains.com/issue/KT-76169/kotlinc-js-version-and-kapt-version-returning-non-zero-status-code-on-v2.1.20
+            kotlin_commit="442af88a2925f8c0e079eaf4fa62261133d2d7c4"
+            kotlin_rb_link="https://raw.githubusercontent.com/Homebrew/homebrew-core/$kotlin_commit/Formula/k/kotlin.rb"
+            kotlin_rb_path=$(download_with_retry "$kotlin_rb_link")
+            brew install "$kotlin_rb_path"
+            ;;
+
+        tcl-tk@8)
             brew_smart_install "$package"
-            # Fix for https://github.com/actions/runner-images/issues/11074
-            ln -sf $(brew --prefix tcl-tk@8)/lib/libtcl8.6.dylib /usr/local/lib/libtcl8.6.dylib
-            ln -sf $(brew --prefix tcl-tk@8)/lib/libtk8.6.dylib /usr/local/lib/libtk8.6.dylib
-        else
+            if is_VenturaX64 || is_SonomaX64; then
+                # Fix for https://github.com/actions/runner-images/issues/11074
+                ln -sf "$(brew --prefix tcl-tk@8)/lib/libtcl8.6.dylib" /usr/local/lib/libtcl8.6.dylib
+                ln -sf "$(brew --prefix tcl-tk@8)/lib/libtk8.6.dylib" /usr/local/lib/libtk8.6.dylib
+            fi
+            ;;
+
+        # Default behaviour for all other packages
+        *)
             brew_smart_install "$package"
-        fi
-    fi
+            ;;
+    esac
 done
 
 cask_packages=$(get_toolset_value '.brew.cask_packages[]')
@@ -35,13 +51,13 @@ for package in $cask_packages; do
 done
 
 # Load "Parallels International GmbH"
-if is_SonomaX64 || is_VenturaX64; then
+if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
     sudo kextload /Applications/Parallels\ Desktop.app/Contents/Library/Extensions/10.9/prl_hypervisor.kext || true
 fi
 
-# Execute AppleScript to change security preferences for macOS12, macOS13 and macOS14
+# Execute AppleScript to change security preferences for macOS12, macOS13, macOS14 and macOS15
 # System Preferences -> Security & Privacy -> General -> Unlock -> Allow -> Not now
-if is_SonomaX64 || is_VenturaX64; then
+if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
     for retry in {4..0}; do
         echo "Executing AppleScript to change security preferences. Retries left: $retry"
         {
@@ -53,6 +69,9 @@ if is_SonomaX64 || is_VenturaX64; then
             
             if is_SonomaX64; then
                 osascript $HOME/utils/confirm-identified-developers-macos14.scpt $USER_PASSWORD
+            fi
+            if is_SequoiaX64; then
+                osascript $HOME/utils/confirm-identified-developers-macos15.scpt $USER_PASSWORD
             fi
         } && break
 
@@ -67,7 +86,7 @@ if is_SonomaX64 || is_VenturaX64; then
 fi
 
 # Validate "Parallels International GmbH" kext
-if is_SonomaX64 || is_VenturaX64; then
+if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
 
     echo "Closing System Settings window if it is still opened"
     killall "System Settings" || true
