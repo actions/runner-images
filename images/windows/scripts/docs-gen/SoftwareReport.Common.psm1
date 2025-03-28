@@ -166,7 +166,7 @@ function Get-GradleVersion {
 }
 
 function Get-SbtVersion {
-    (sbt -version) -match "sbt runner" | Get-StringPart -Part 3
+    sbt --script-version
 }
 
 function Get-DotnetSdks {
