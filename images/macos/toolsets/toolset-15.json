@@ -4,10 +4,10 @@
         "x64": {
             "versions": [
                 {
-                    "link": "16.3_Release_Candidate", 
-                    "version": "16.3_Release_Candidate+16E137", 
+                    "link": "16.3_Release_Candidate_2", 
+                    "version": "16.3.0-Release.Candidate.2+16E140",
                     "symlinks": ["16.3"],
-                    "sha256": "d23af7e6fc2f79b8b88483ddf0b469294d675beb035bcde97c44e156b5bfb350",
+                    "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
                     "install_runtimes": [
                         { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4"] },
                         { "watchOS": ["11.0", "11.1", "11.2", "11.4"] },
@@ -44,10 +44,10 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "16.3_Release_Candidate", 
-                    "version": "16.3_Release_Candidate+16E137", 
+                    "link": "16.3_Release_Candidate_2", 
+                    "version": "16.3.0-Release.Candidate.2+16E140", 
                     "symlinks": ["16.3"],
-                    "sha256": "d23af7e6fc2f79b8b88483ddf0b469294d675beb035bcde97c44e156b5bfb350",
+                    "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
                     "install_runtimes": [
                         { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4"] },
                         { "watchOS": ["11.0", "11.1", "11.2", "11.4"] },
