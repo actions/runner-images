@@ -397,10 +397,7 @@
             "command": "yarn"
         }
     ],
-    "mongodb": {
-        "version": "5.0"
-    },
-    "postgresql": {
+     "postgresql": {
         "version": "14"
     },
     "pwsh": {
