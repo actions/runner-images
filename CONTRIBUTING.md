@@ -60,8 +60,32 @@ Use existing scripts such as [github-cli.sh](images/ubuntu/scripts/build/github-
 The macOS source lives in this repository and is available for everyone. However, the macOS image-generation CI doesn't support external contributions yet, so we are not able to accept pull requests for now.
 We are in the process of preparing the macOS CI to accept contributions. Until then, we appreciate your patience and ask that you continue to make tool requests by filing issues.
 
-## Resources
+## Testing
 
-- [How to Contribute to Open Source](https://opensource.guide/how-to-contribute/)
-- [Using Pull Requests](https://help.github.com/articles/about-pull-requests/)
-- [GitHub Help](https://help.github.com)
+### Testing Requirements
+
+All contributions must include tests to ensure the functionality and stability of the project. This includes:
+
+- Writing tests for new features or changes.
+- Running tests to verify that your changes do not break existing functionality.
+
+### Writing and Running Tests
+
+To write and run tests, follow these guidelines:
+
+- Use [Pester](https://pester.dev/) for PowerShell tests. Pester is a testing framework for PowerShell, and it is used to write and run tests for PowerShell scripts.
+- For other languages or tools, use the appropriate testing frameworks or tools.
+
+### Pester for PowerShell Tests
+
+Pester is used for writing and running tests for PowerShell scripts. To get started with Pester, refer to the [Pester documentation](https://pester.dev/docs/quick-start).
+
+To run Pester tests, use the following command:
+
+```powershell
+Invoke-Pester
+```
+
+This command will discover and run all Pester tests in the current directory and its subdirectories.
+
+For more information on how to write and run Pester tests, refer to the [Pester documentation](https://pester.dev/docs/quick-start).
