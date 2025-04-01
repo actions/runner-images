@@ -12,6 +12,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install GripDevJsonSchemaValidator module
+      shell: pwsh
+      run: Install-Module -Name GripDevJsonSchemaValidator -Force -Scope CurrentUser
+
+    - name: Validate JSON Schema
+      shell: pwsh
+      run: ./helpers/CheckJsonSchema.ps1
+
     - name: Update release for ${{ github.event.client_payload.ReleaseBranchName }}
       uses: actions/github-script@v7
       with:

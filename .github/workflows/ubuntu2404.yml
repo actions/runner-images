@@ -18,3 +18,11 @@ jobs:
     with:
       image_type: 'ubuntu2404'
     secrets: inherit
+    steps:
+      - name: Install GripDevJsonSchemaValidator module
+        shell: pwsh
+        run: Install-Module -Name GripDevJsonSchemaValidator -Force -Scope CurrentUser
+
+      - name: Validate JSON Schema
+        shell: pwsh
+        run: ./helpers/CheckJsonSchema.ps1

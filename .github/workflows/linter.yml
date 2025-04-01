@@ -21,6 +21,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install GripDevJsonSchemaValidator module
+        shell: pwsh
+        run: Install-Module -Name GripDevJsonSchemaValidator -Force -Scope CurrentUser
+
+      - name: Validate JSON Schema
+        shell: pwsh
+        run: ./helpers/CheckJsonSchema.ps1
+
       - name: Lint Code Base
         uses: github/super-linter/slim@v4
         env:

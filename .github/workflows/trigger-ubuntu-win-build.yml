@@ -15,6 +15,14 @@ jobs:
   trigger-workflow:
     runs-on: ubuntu-latest
     steps:
+      - name: Install GripDevJsonSchemaValidator module
+        shell: pwsh
+        run: Install-Module -Name GripDevJsonSchemaValidator -Force -Scope CurrentUser
+
+      - name: Validate JSON Schema
+        shell: pwsh
+        run: ./helpers/CheckJsonSchema.ps1
+
       - name: Trigger Build workflow
         env:
           CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}

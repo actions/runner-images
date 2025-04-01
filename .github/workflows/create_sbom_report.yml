@@ -54,6 +54,14 @@ jobs:
           if ("$imageMajorVersion.$imageMinorVersion" -ne '${{ github.event.client_payload.imageVersion }}') {
             throw "Current runner $imageMajorVersion.$imageMinorVersion image version doesn't match ${{ github.event.client_payload.imageVersion }}."
           }
+      - name: Install GripDevJsonSchemaValidator module
+        shell: pwsh
+        run: Install-Module -Name GripDevJsonSchemaValidator -Force -Scope CurrentUser
+
+      - name: Validate JSON Schema
+        shell: pwsh
+        run: ./helpers/CheckJsonSchema.ps1
+
       - name: Install SYFT tool on Windows
         if: ${{ runner.os == 'Windows' }}
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b D:/syft

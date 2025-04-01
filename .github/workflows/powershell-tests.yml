@@ -17,9 +17,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Install GripDevJsonSchemaValidator module
+        shell: pwsh
+        run: Install-Module -Name GripDevJsonSchemaValidator -Force -Scope CurrentUser
+
+      - name: Validate JSON Schema
+        shell: pwsh
+        run: ./helpers/CheckJsonSchema.ps1
+
       - name: Run Software Report module tests
         shell: pwsh
         run: |
             $ErrorActionPreference = "Stop"
             Invoke-Pester -Output Detailed "helpers/software-report-base/tests"
-        
