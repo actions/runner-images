@@ -56,14 +56,17 @@ yarn cache clean
 # Clean up temporary directories
 sudo rm -rf ~/utils /tmp/*
 
-if is_Ventura; then
-    # Erase all indexes and wait until the rebuilding process ends,
-    # for now there is no way to get status of indexing process, it takes around 3 minutes to accomplish
-    sudo mdutil -E /
-    sudo log stream | grep -q -E 'mds.*Released.*BackgroundTask' || true
-    echo "Indexing completed"
-else
-    # Disable spotlight and MDS
+# Erase all indexes and wait until the rebuilding process ends,
+# for now there is no way to get status of indexing process, it takes around 5 minutes to accomplish
+sudo mdutil -E /
+sudo log stream | grep -q -E 'mds.*Released.*BackgroundTask' || true
+echo "Indexing completed"
+
+if ! is_Ventura; then
+    # Disable spotlight and MDS to increase performance
+    # Might be enabled back in runtime by using
+    # sudo mdutil -a -i on
+    # sudo launchctl load -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist  
     sudo mdutil -a -i off
     sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.metadata.mds.plist
     sudo mdutil -a -s | grep "Indexing enabled." && echo "Indexing is still enabled" && exit 1 || true
