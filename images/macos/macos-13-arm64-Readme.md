@@ -5,12 +5,12 @@
 # macOS 13
 - OS Version: macOS 13.7.4 (22H420)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250317.910
+- Image Version: 20250324.952
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.407, 9.0.102, 9.0.201
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.407, 9.0.102, 9.0.202
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -31,7 +31,7 @@
 - Bundler 2.6.6
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.24
+- Homebrew 4.4.25
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.0 (python 3.13)
@@ -54,7 +54,7 @@
 - Curl 8.7.1
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.68.1
+- GitHub CLI 2.69.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.7
@@ -68,12 +68,12 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.24.24
+- AWS CLI 2.25.1
 - AWS SAM CLI 1.135.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.70.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.33.93
+- Bicep CLI 0.34.1
 - Cmake 3.31.6
 - CodeQL Action Bundle 2.20.1
 - Fastlane 2.227.0
@@ -87,9 +87,9 @@
 ### Browsers
 - Safari 18.3.1 (18620.2.4.111.9)
 - SafariDriver 18.3.1 (18620.2.4.111.9)
-- Google Chrome 134.0.6998.89
-- Google Chrome for Testing 134.0.6998.88
-- ChromeDriver 134.0.6998.88
+- Google Chrome 134.0.6998.166
+- Google Chrome for Testing 134.0.6998.165
+- ChromeDriver 134.0.6998.165
 - Selenium server 4.29.0
 
 #### Environment variables
@@ -131,9 +131,9 @@
 - 1.24.1
 
 ### Rust Tools
-- Cargo 1.85.0
-- Rust 1.85.0
-- Rustdoc 1.85.0
+- Cargo 1.85.1
+- Rust 1.85.1
+- Rustdoc 1.85.1
 - Rustup 1.28.1
 
 #### Packages
@@ -146,7 +146,7 @@
 #### PowerShell Modules
 - Az: 12.4.0
 - Pester: 5.7.1
-- PSScriptAnalyzer: 1.23.0
+- PSScriptAnalyzer: 1.24.0
 
 ### Xcode
 | Version        | Build   | Path                           | Symlinks                                                  |
@@ -195,8 +195,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
