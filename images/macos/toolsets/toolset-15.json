@@ -6,7 +6,6 @@
                 {
                     "link": "16.3", 
                     "version": "16.3+16E140",
-                    "symlinks": ["16.3"],
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
                     "install_runtimes": [
                         { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4"] },
