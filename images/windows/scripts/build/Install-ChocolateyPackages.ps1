@@ -6,7 +6,7 @@
 $commonPackages = (Get-ToolsetContent).choco.common_packages
 
 foreach ($package in $commonPackages) {
-    Install-ChocoPackage $package.name -Version $package.version -ArgumentList $package.args
+    Install-ChocoPackage $package.name $package.version -ArgumentList $package.args
 }
 
 Invoke-PesterTests -TestFile "ChocoPackages"
