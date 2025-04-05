@@ -64,7 +64,7 @@ if ((-not $os.IsSequoia)) {
 $packageManagement.AddToolVersion("Pip3", $(Get-Pip3Version))
 $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
 $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonoma) -and (-not $os.IsSequoia)) {
+if (-not $os.IsVenturaArm64) {
     $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
 }
 $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
