@@ -4,9 +4,8 @@
         "x64": {
             "versions": [
                 {
-                    "link": "16.3_Release_Candidate_2", 
-                    "version": "16.3.0-Release.Candidate.2+16E140",
-                    "symlinks": ["16.3"],
+                    "link": "16.3", 
+                    "version": "16.3+16E140",
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
                     "install_runtimes": [
                         { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4"] },
@@ -44,9 +43,8 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "16.3_Release_Candidate_2", 
-                    "version": "16.3.0-Release.Candidate.2+16E140", 
-                    "symlinks": ["16.3"],
+                    "link": "16.3", 
+                    "version": "16.3+16E140",
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
                     "install_runtimes": [
                         { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4"] },

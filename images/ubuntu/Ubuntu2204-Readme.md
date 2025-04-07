@@ -1,13 +1,13 @@
 | Announcements |
 |-|
-| [[Ubuntu-24] Default Clang will be set to Clang 19 on 2025-05-09.](https://github.com/actions/runner-images/issues/11895) |
+| [[Ubuntu-24] Clang version 19 will be added, and the default Clang will be set to 19 from 2025-05-09.](https://github.com/actions/runner-images/issues/11895) |
 | [[Ubuntu] Breaking change : Docker Engine Version 26.* will be updated to Docker Engine Version 28* from 2025-05-09](https://github.com/actions/runner-images/issues/11766) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
-- Kernel Version: 6.8.0-1021-azure
-- Image Version: 20250330.1.0
-- Systemd version: 249.11-0ubuntu3.12
+- Kernel Version: 6.8.0-1025-azure
+- Image Version: 20250406.1.0
+- Systemd version: 249.11-0ubuntu3.15
 
 ## Installed Software
 
@@ -27,12 +27,12 @@
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.0.3
+- Swift 6.1
 
 ### Package Management
 - cpan 1.64
 - Helm 3.17.2
-- Homebrew 4.4.26
+- Homebrew 4.4.27
 - Miniconda 25.1.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -40,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit acd5bba5aa)
+- Vcpkg (build from commit 856505bb76)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -72,8 +72,8 @@ to accomplish this.
 - Bazelisk 1.25.0
 - Bicep 0.34.44
 - Buildah 1.23.1
-- CMake 4.0.0
-- CodeQL Action Bundle 2.20.1
+- CMake 3.31.6
+- CodeQL Action Bundle 2.20.7
 - Docker Amazon ECR Credential Helper 0.9.1
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.22.0
@@ -84,7 +84,7 @@ to accomplish this.
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.4.0
+- Heroku 10.4.1
 - jq 1.6
 - Kind 0.27.0
 - Kubectl 1.32.3
@@ -100,7 +100,7 @@ to accomplish this.
 - Packer 1.12.0
 - Parcel 2.14.4
 - Podman 3.4.4
-- Pulumi 3.159.0
+- Pulumi 3.160.0
 - R 4.4.3
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -112,16 +112,16 @@ to accomplish this.
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.264
-- AWS CLI 2.25.6
+- Alibaba Cloud CLI 3.0.265
+- AWS CLI 2.25.11
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.136.0
-- Azure CLI 2.70.0
+- Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.69.0
-- Google Cloud CLI 516.0.0
-- Netlify CLI 19.1.4
-- OpenShift CLI 4.18.6
+- Google Cloud CLI 517.0.0
+- Netlify CLI 19.1.5
+- OpenShift CLI 4.18.7
 - ORAS CLI 1.2.2
 - Vercel CLI 41.4.1
 
@@ -135,7 +135,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.8.6
+- Composer 2.8.8
 - PHPUnit 8.5.41
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -148,26 +148,26 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.5.1
 
 ### Rust Tools
-- Cargo 1.85.1
-- Rust 1.85.1
-- Rustdoc 1.85.1
+- Cargo 1.86.0
+- Rust 1.86.0
+- Rustdoc 1.86.0
 - Rustup 1.28.1
 
 #### Packages
 - Bindgen 0.71.1
 - Cargo audit 0.21.2
-- Cargo clippy 0.1.85
+- Cargo clippy 0.1.86
 - Cargo outdated 0.17.0
 - Cbindgen 0.28.0
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 134.0.6998.165
-- ChromeDriver 134.0.6998.165
-- Chromium 134.0.6998.0
-- Microsoft Edge 134.0.3124.95
-- Microsoft Edge WebDriver 134.0.3124.95
-- Selenium server 4.30.0
+- Google Chrome 135.0.7049.52
+- ChromeDriver 135.0.7049.42
+- Chromium 135.0.7049.0
+- Microsoft Edge 135.0.3179.54
+- Microsoft Edge WebDriver 135.0.3179.54
+- Selenium server 4.31.0
 - Mozilla Firefox 136.0.4
 - Geckodriver 0.36.0
 
@@ -212,7 +212,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.21.13
 - 1.22.12
-- 1.23.7
+- 1.23.8
 
 #### Node.js
 - 18.20.8
@@ -321,7 +321,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ftp                    | 20210827-4build1                    |
 | g++                    | 4:11.2.0-1ubuntu1                   |
 | gcc                    | 4:11.2.0-1ubuntu1                   |
-| gnupg2                 | 2.2.27-3ubuntu2.1                   |
+| gnupg2                 | 2.2.27-3ubuntu2.3                   |
 | haveged                | 1.9.14-1ubuntu1                     |
 | imagemagick            | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | iproute2               | 5.15.0-1ubuntu2                     |
@@ -375,18 +375,18 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.4                    |
 | swig                   | 4.0.2-1ubuntu1                      |
-| systemd-coredump       | 249.11-0ubuntu3.12                  |
+| systemd-coredump       | 249.11-0ubuntu3.15                  |
 | tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
 | tk                     | 8.6.11+1build2                      |
-| tzdata                 | 2025a-0ubuntu0.22.04                |
+| tzdata                 | 2025b-0ubuntu0.22.04                |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1.1                   |
 | xorriso                | 1.5.4-2                             |
-| xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.13       |
+| xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.14       |
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
