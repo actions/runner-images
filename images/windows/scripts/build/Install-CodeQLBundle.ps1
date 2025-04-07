@@ -4,7 +4,7 @@
 ################################################################################
 
 # Retrieve the CLI version of the latest CodeQL bundle.
-$defaults = (Invoke-RestMethod "https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json")
+$defaults = (Invoke-RestMethod "https://raw.githubusercontent.com/github/codeql-action/v3/src/defaults.json")
 $cliVersion = $defaults.cliVersion
 $tagName = "codeql-bundle-v" + $cliVersion
 

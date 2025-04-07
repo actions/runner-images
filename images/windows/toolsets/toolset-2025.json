@@ -260,8 +260,8 @@
             "checksum": "09C63A971BACDE338282C73B3C9174BED9AAD53E1D3A1B73D44515852C9C00CF"
         },
         "sdk": {
-            "version": "7.0.2712",
-            "checksum": "69F54790B63488875513964A88AF38C104D3C0D073FC2A63D590F0ADD2773754"
+            "version": "7.1.2493",
+            "checksum": "0CB1084156C75CF5075EA91ABA330CF10B58648B8E036C9C2F286805263C497F"
         }
     },
     "dotnet": {
@@ -292,6 +292,7 @@
             },
             {
                 "name": "cmake.install",
+                "version": "3.31.6",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
             {
@@ -314,7 +315,7 @@
     },
     "mongodb": {
         "version": "7.0",
-        "signature": "F2D7C28591847BB2CB2B1C2A0C59459FDC728A38"
+        "signature": "A5BBE2A6DA1D2A6E057EF870267E6A91E4D56BAA"
     },
     "llvm": {
         "version": "19"
@@ -327,7 +328,12 @@
         "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
-        "version": "latest"
+        "version": "2.1.10",
+        "pinnedDetails": {
+            "link": "https://youtrack.jetbrains.com/issues/KT?preview=KT-76169",
+            "reason": "this was pinned due to a new version 2.1.20 released has an issue with kotlinc-js -version` and kapt -version",
+            "review-at": "2025-03-31"
+        }
     },
     "openssl": {
         "version": "3.4.1",
