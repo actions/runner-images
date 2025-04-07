@@ -1,13 +1,12 @@
 | Announcements |
 |-|
 | [[Ubuntu] Breaking change : Docker Engine Version 26.* will be updated to Docker Engine Version 28* from 2025-05-09](https://github.com/actions/runner-images/issues/11766) |
-| [[Ubuntu] Breaking change : PostgreSQL version 14.* for Ubuntu 22.04, PostgreSQL version 16.* for Ubuntu 24.04 will be updated to version 17.* from 2025-05-09](https://github.com/actions/runner-images/issues/11723) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.8.0-1021-azure
-- Image Version: 20250316.1.0
-- Systemd version: 255.4-1ubuntu8.5
+- Image Version: 20250323.1.0
+- Systemd version: 255.4-1ubuntu8.6
 
 ## Installed Software
 
@@ -30,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.2
-- Homebrew 4.4.24
+- Homebrew 4.4.25
 - Miniconda 25.1.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 782ccc18d8)
+- Vcpkg (build from commit a76b33254a)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -65,17 +64,17 @@ to accomplish this.
 - AzCopy 10.28.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.1.1
 - Bazelisk 1.25.0
-- Bicep 0.33.93
+- Bicep 0.34.1
 - Buildah 1.33.7
 - CMake 3.31.6
 - CodeQL Action Bundle 2.20.1
 - Docker Amazon ECR Credential Helper 0.9.1
 - Docker Compose v2 2.27.1
-- Docker-Buildx 0.21.2
+- Docker-Buildx 0.22.0
 - Docker Client 26.1.3
 - Docker Server 26.1.3
 - Fastlane 2.227.0
-- Git 2.48.1
+- Git 2.49.0
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
@@ -91,24 +90,24 @@ to accomplish this.
 - nvm 0.40.2
 - OpenSSL 3.0.13-0ubuntu3.5
 - Packer 1.12.0
-- Parcel 2.13.3
+- Parcel 2.14.1
 - Podman 4.9.3
-- Pulumi 3.156.0
+- Pulumi 3.157.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
-- yamllint 1.36.1
+- yamllint 1.37.0
 - yq 4.45.1
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.24.24
+- AWS CLI 2.25.1
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.135.0
 - Azure CLI 2.70.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.68.1
-- Google Cloud CLI 514.0.0
+- GitHub CLI 2.69.0
+- Google Cloud CLI 515.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -129,26 +128,26 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.14.1.1
 - GHC 9.12.2
-- GHCup 0.1.40.0
+- GHCup 0.1.50.0
 - Stack 3.3.1
 
 ### Rust Tools
-- Cargo 1.85.0
-- Rust 1.85.0
-- Rustdoc 1.85.0
+- Cargo 1.85.1
+- Rust 1.85.1
+- Rustdoc 1.85.1
 - Rustup 1.28.1
 
 #### Packages
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 134.0.6998.88
-- ChromeDriver 134.0.6998.88
+- Google Chrome 134.0.6998.165
+- ChromeDriver 134.0.6998.165
 - Chromium 134.0.6998.0
-- Microsoft Edge 134.0.3124.68
-- Microsoft Edge WebDriver 134.0.3124.68
-- Selenium server 4.29.0
-- Mozilla Firefox 136.0.1
+- Microsoft Edge 134.0.3124.83
+- Microsoft Edge WebDriver 134.0.3124.83
+- Selenium server 4.30.0
+- Mozilla Firefox 136.0.2
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -217,7 +216,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 12.1.0
 - Microsoft.Graph: 2.26.1
 - Pester: 5.7.1
-- PSScriptAnalyzer: 1.23.0
+- PSScriptAnalyzer: 1.24.0
 
 ### Web Servers
 | Name    | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -308,7 +307,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sshpass                | 1.09-1                      |
 | sudo                   | 1.9.15p5-3ubuntu5           |
 | swig                   | 4.2.0-2ubuntu1              |
-| systemd-coredump       | 255.4-1ubuntu8.5            |
+| systemd-coredump       | 255.4-1ubuntu8.6            |
 | tar                    | 1.35+dfsg-3build1           |
 | telnet                 | 0.17+2.5-3ubuntu4           |
 | texinfo                | 7.1-3build2                 |
