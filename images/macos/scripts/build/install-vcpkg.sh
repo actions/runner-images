@@ -19,7 +19,7 @@ touch /Users/runner/.vcpkg/vcpkg.path.txt
 sudo git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
 sudo $VCPKG_INSTALLATION_ROOT/bootstrap-vcpkg.sh
 $VCPKG_INSTALLATION_ROOT/vcpkg integrate install
-chmod -R 0777 $VCPKG_INSTALLATION_ROOT
+sudo chmod -R 0777 $VCPKG_INSTALLATION_ROOT
 ln -sf $VCPKG_INSTALLATION_ROOT/usr/local/bin
 
 rm -rf /Users/runner/.vcpkg
