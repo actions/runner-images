@@ -1,14 +1,14 @@
 | Announcements |
 |-|
 | [[Windows] Breaking change : Updating  Service Fabric runtime and  SDK  to latest( 10.1.2493.9590 ) from 2025-04-04](https://github.com/actions/runner-images/issues/11773) |
-| [Windows Server 2025 will be Generally Available in GitHub Actions and Azure DevOps from 2025-04-01](https://github.com/actions/runner-images/issues/11742) |
+| [Windows Server 2025 will be Generally Available in GitHub Actions and Azure DevOps from 2025-04-08](https://github.com/actions/runner-images/issues/11742) |
 | [[Windows] Go version 1.20 and 1.21  will be removed from the images on  2025-05-09 and 1.24 will be set as default.](https://github.com/actions/runner-images/issues/11711) |
 | [[Windows 19 and 22] Node.js version 16 will be removed from Windows images on 2025-05-09](https://github.com/actions/runner-images/issues/11710) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 7009
-- Image Version: 20250330.1.0
+- Image Version: 20250406.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -29,7 +29,7 @@
 
 ### Package Management
 - Chocolatey 2.4.3
-- Composer 2.8.6
+- Composer 2.8.8
 - Helm 3.17.1
 - Miniconda 25.1.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
@@ -37,7 +37,7 @@
 - pip 25.0.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit acd5bba5aa)
+- Vcpkg (build from commit 856505bb76)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -58,18 +58,18 @@
 - azcopy 10.28.1
 - Bazel 8.1.1
 - Bazelisk 1.25.0
-- Bicep 0.33.13
+- Bicep 0.34.44
 - Cabal 3.14.1.1
-- CMake 4.0.0
-- CodeQL Action Bundle 2.20.1
+- CMake 3.31.6
+- CodeQL Action Bundle 2.20.7
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
 - ghc 9.12.2
 - Git 2.49.0.windows.1
 - Git LFS 3.6.1
-- Google Cloud CLI 516.0.0
-- ImageMagick 7.1.1-46
+- Google Cloud CLI 517.0.0
+- ImageMagick 7.1.1-47
 - InnoSetup 6.4.0
 - jq 1.7.1
 - Kind 0.27.0
@@ -97,19 +97,19 @@
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.264
-- AWS CLI 2.25.4
+- Alibaba Cloud CLI 3.0.265
+- AWS CLI 2.25.11
 - AWS SAM CLI 1.136.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.70.0
+- Azure CLI 2.71.0
 - Azure DevOps CLI extension 1.0.1
 - Cloud Foundry CLI 8.12.0
 - GitHub CLI 2.69.0
 
 ### Rust Tools
-- Cargo 1.85.1
-- Rust 1.85.1
-- Rustdoc 1.85.1
+- Cargo 1.86.0
+- Rust 1.86.0
+- Rustdoc 1.86.0
 - Rustup 1.28.1
 
 #### Packages
@@ -117,18 +117,18 @@
 - cargo-audit 0.21.2
 - cargo-outdated 0.17.0
 - cbindgen 0.28.0
-- Clippy 0.1.85
+- Clippy 0.1.86
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 134.0.6998.178
-- Chrome Driver 134.0.6998.165
-- Microsoft Edge 134.0.3124.93
-- Microsoft Edge Driver 134.0.3124.93
-- Mozilla Firefox 136.0.4
+- Google Chrome 135.0.7049.42
+- Chrome Driver 135.0.7049.42
+- Microsoft Edge 135.0.3179.54
+- Microsoft Edge Driver 135.0.3179.54
+- Mozilla Firefox 137.0
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.30.0
+- Selenium server 4.31.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -172,7 +172,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 1.20.14
 - 1.21.13
 - 1.22.12
-- 1.23.7
+- 1.23.8
 
 #### Node.js
 - 16.20.2
@@ -511,7 +511,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.1.0
-- AWSPowershell: 4.1.787
+- AWSPowershell: 4.1.793
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.26.1
