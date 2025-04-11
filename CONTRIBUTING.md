@@ -23,7 +23,7 @@ Here are a few things you can do that will increase the likelihood of your pull 
 - Follow the style guide for [Powershell](https://github.com/PoshCode/PowerShellPracticeAndStyle) when writing Windows scripts. There is currently no set style for the Shell scripts that run Linux installs :soon:.
 - Include complete details of why this is needed in the PR description.
 - Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.
-- Write [good commit messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+- Write [good commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 - For new tools:
   - Make sure that the tool satisfies the [Software Guidelines](README.md#software-guidelines).
   - Create an issue and get approval from us to add this tool to the image before creating the pull request.
