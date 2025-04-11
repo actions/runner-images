@@ -164,7 +164,7 @@ Function GenerateResourcesAndImage {
 
     # Prepare list of allowed inbound IP addresses
     if ($RestrictToAgentIpAddress) {
-        $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
+        $AgentIp = (Invoke-RestMethod https://ipinfo.io/json).ip
         if (-not $AgentIp) {
             throw "Unable to determine agent IP address."
         }
