@@ -1,11 +1,12 @@
 | Announcements |
 |-|
-| [macOS 15 (Sequoia) will be generally available in GitHub Actions and Azure DevOps from April, 08](https://github.com/actions/runner-images/issues/11486) |
+| [[macOS 14] Xcode Command Line Tool version will be downgraded to 15.3.0 on macOS14 images](https://github.com/actions/runner-images/issues/11969) |
+| [macOS 15 (Sequoia) will be generally available in GitHub Actions and Azure DevOps from April, 10](https://github.com/actions/runner-images/issues/11486) |
 ***
 # macOS 15
-- OS Version: macOS 15.3.2 (24D81)
-- Kernel Version: Darwin 24.3.0
-- Image Version: 20250331.1080
+- OS Version: macOS 15.4 (24E248)
+- Kernel Version: Darwin 24.4.0
+- Image Version: 20250408.1132
 
 ## Installed Software
 
@@ -28,15 +29,15 @@
 - Ruby 3.3.7
 
 ### Package Management
-- Bundler 2.6.6
+- Bundler 2.6.7
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.6
-- Homebrew 4.4.26
+- Composer 2.8.8
+- Homebrew 4.4.29
 - NPM 10.9.2
 - Pip3 25.0.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.6.6
+- RubyGems 3.6.7
 - Yarn 1.22.22
 
 ### Project Management
@@ -51,7 +52,7 @@
 - bazel 8.1.1
 - bazelisk 1.25.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.12.1
+- Curl 8.13.0
 - Git 2.49.0
 - Git LFS 3.6.1
 - GitHub CLI 2.69.0
@@ -68,32 +69,32 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.25.6
+- AWS CLI 2.25.12
 - AWS SAM CLI 1.136.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.70.0
+- Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.34.44
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.20.1
+- CodeQL Action Bundle 2.21.0
 - Fastlane 2.227.0
 - SwiftFormat 0.55.5
 - Xcbeautify 2.28.0
-- Xcode Command Line Tools 16.2.0.0.1.1733547573
+- Xcode Command Line Tools 16.3.0.0.1.1742442376
 - Xcodes 1.6.0
 
 ### Linters
-- SwiftLint 0.58.2
+- SwiftLint 0.59.0
 
 ### Browsers
-- Safari 18.3.1 (20620.2.4.11.6)
-- SafariDriver 18.3.1 (20620.2.4.11.6)
-- Google Chrome 134.0.6998.166
-- Google Chrome for Testing 134.0.6998.165
-- ChromeDriver 134.0.6998.165
-- Microsoft Edge 134.0.3124.95
-- Microsoft Edge WebDriver 134.0.3124.95
-- Mozilla Firefox 136.0.4
+- Safari 18.4 (20621.1.15.11.10)
+- SafariDriver 18.4 (20621.1.15.11.10)
+- Google Chrome 135.0.7049.42
+- Google Chrome for Testing 135.0.7049.42
+- ChromeDriver 135.0.7049.42
+- Microsoft Edge 135.0.3179.54
+- Microsoft Edge WebDriver 135.0.3179.54
+- Mozilla Firefox 137.0
 - geckodriver 0.36.0
 - Selenium server 4.29.0
 
@@ -134,17 +135,17 @@
 #### Go
 - 1.21.13
 - 1.22.12
-- 1.23.7
-- 1.24.1
+- 1.23.8
+- 1.24.2
 
 ### Rust Tools
-- Cargo 1.85.1
-- Rust 1.85.1
-- Rustdoc 1.85.1
+- Cargo 1.86.0
+- Rust 1.86.0
+- Rustdoc 1.86.0
 - Rustup 1.28.1
 
 #### Packages
-- Clippy 0.1.85
+- Clippy 0.1.86
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
@@ -156,13 +157,13 @@
 - PSScriptAnalyzer: 1.24.0
 
 ### Xcode
-| Version        | Build    | Path                                             | Symlinks                                                                                  |
-| -------------- | -------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| 16.3           | 16E140   | /Applications/Xcode_16.3_Release_Candidate_2.app | /Applications/Xcode_16.3.0.app<br>/Applications/Xcode_16.3.app                            |
-| 16.2           | 16C5032a | /Applications/Xcode_16.2.app                     | /Applications/Xcode_16.2.0.app                                                            |
-| 16.1           | 16B40    | /Applications/Xcode_16.1.app                     | /Applications/Xcode_16.1.0.app                                                            |
-| 16.0 (default) | 16A242d  | /Applications/Xcode_16.app                       | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app<br>/Applications/Xcode.app |
-| 15.4           | 15F31d   | /Applications/Xcode_15.4.app                     | /Applications/Xcode_15.4.0.app                                                            |
+| Version        | Build    | Path                         | Symlinks                                                                                  |
+| -------------- | -------- | ---------------------------- | ----------------------------------------------------------------------------------------- |
+| 16.3           | 16E140   | /Applications/Xcode_16.3.app | /Applications/Xcode_16.3.0.app                                                            |
+| 16.2           | 16C5032a | /Applications/Xcode_16.2.app | /Applications/Xcode_16.2.0.app                                                            |
+| 16.1           | 16B40    | /Applications/Xcode_16.1.app | /Applications/Xcode_16.1.0.app                                                            |
+| 16.0 (default) | 16A242d  | /Applications/Xcode_16.app   | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app<br>/Applications/Xcode.app |
+| 15.4           | 15F31d   | /Applications/Xcode_15.4.app | /Applications/Xcode_15.4.0.app                                                            |
 
 #### Installed SDKs
 | SDK                      | SDK Name             | Xcode Version |
