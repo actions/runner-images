@@ -16,10 +16,10 @@ mkdir -p /Users/runner/.vcpkg
 touch /Users/runner/.vcpkg/vcpkg.path.txt
 
 # Install vcpkg
-sudo git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
-sudo $VCPKG_INSTALLATION_ROOT/bootstrap-vcpkg.sh
+git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
+$VCPKG_INSTALLATION_ROOT/bootstrap-vcpkg.sh
 $VCPKG_INSTALLATION_ROOT/vcpkg integrate install
-sudo chmod -R 0777 $VCPKG_INSTALLATION_ROOT
+chmod -R 0777 $VCPKG_INSTALLATION_ROOT
 ln -sf $VCPKG_INSTALLATION_ROOT/vcpkg /usr/local/bin
 
 rm -rf /Users/runner/.vcpkg
