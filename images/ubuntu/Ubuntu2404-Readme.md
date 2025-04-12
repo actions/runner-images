@@ -1,3 +1,19 @@
+------------------------------------------------------------------------------------------------------------------------^--------------------------------@ghost@tr4200812	
+GitHub System – personal_access_token.credential_revoked
+GitHub Advanced Security has revoked access for the personal access token Whatisthis?
+2 days ago …
+@timestamp	2025-04-10 17:35:57 +0700
+_document_id	DS4rNGKW4HWHlyU1pgVPKg
+action	personal_access_token.credential_revoked
+created_at	2025-04-10 17:35:57 +0700
+explanation	The credential was found on GitHub and was revoked by Secret Scanning
+operation_type	remove
+token_id	5525567
+user	tr4200812
+user_id	179701381
+user_programmatic_access_name	Whatisthis?
+--------------------------------------------------------------------------------------------------------------^
+<dev>
 | Announcements |
 |-|
 | [[Ubuntu] Breaking change : Docker Engine Version 26.* will be updated to Docker Engine Version 28* from 2025-05-09](https://github.com/actions/runner-images/issues/11766) |
