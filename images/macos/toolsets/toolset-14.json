@@ -125,12 +125,12 @@
         ],
         "addons": [],
         "additional_tools": [
-            "cmake;3.31.0"
+            "cmake;3.31.5"
         ],
         "ndk": {
             "default": "26",
             "versions": [
-                "26", "27"
+                "26", "27", "28"
             ]
         }
     },

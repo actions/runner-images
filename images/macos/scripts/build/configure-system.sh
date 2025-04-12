@@ -6,8 +6,32 @@
 
 source ~/utils/utils.sh
 
+# Set solid color wallpaper
+osascript -e 'tell application "Finder" to set desktop picture to POSIX file "/System/Library/Desktop Pictures/Solid Colors/Black.png"'
+
 # Close all finder windows because they can interfere with UI tests
 close_finder_window
+
+# Disable Handoff and Continuity
+defaults write com.apple.coreservices.useractivityd ActivityReceivingEnabled -bool false
+defaults write com.apple.coreservices.useractivityd ActivityAdvertisingAllowed -bool false
+
+# Disable graphic effects in System
+defaults write com.apple.universalaccess reduceMotion -bool true
+defaults write com.apple.universalaccess reduceTransparency -bool true
+
+# Disable analytics daemon (requires SIP to be disabled)
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.SubmitDiagInfo.plist
+
+# Disable notification center agent
+launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist
+
+# Disable Time Machine and it's daemon
+sudo tmutil disable
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.backupd.plist
+
+# Disable Apple Push Notification Service daemon
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.apsd.plist
 
 # Remove Parallels Desktop
 # https://github.com/actions/runner-images/issues/6105
@@ -33,7 +57,7 @@ yarn cache clean
 sudo rm -rf ~/utils /tmp/*
 
 # Erase all indexes and wait until the rebuilding process ends,
-# for now there is no way to get status of indexing process, it takes around 3 minutes to accomplish
+# for now there is no way to get status of indexing process, it takes around 5 minutes to accomplish
 sudo mdutil -E /
 sudo log stream | grep -q -E 'mds.*Released.*BackgroundTask' || true
 echo "Indexing completed"
