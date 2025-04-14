@@ -11,7 +11,7 @@ source $HELPER_SCRIPTS/os.sh
 # Install libssl1.1 dependency
 if is_ubuntu22; then
     focal_list=/etc/apt/sources.list.d/focal-security.list
-    echo "deb http://archive.ubuntu.com/ubuntu/ focal-security main" | tee "${focal_list}"
+    echo "deb https://archive.ubuntu.com/ubuntu/ focal-security main" | tee "${focal_list}"
     apt-get update --quiet
 
     apt-get install --no-install-recommends libssl1.1
