@@ -1,14 +1,13 @@
 | Announcements |
 |-|
-| [[Windows] Breaking change : Updating  Service Fabric runtime and  SDK  to latest( 10.1.2493.9590 ) from 2025-04-04](https://github.com/actions/runner-images/issues/11773) |
-| [Windows Server 2025 will be Generally Available in GitHub Actions and Azure DevOps from 2025-04-08](https://github.com/actions/runner-images/issues/11742) |
+| [[Windows-2025] LLVM will be updated to version 20 on 2025-06-06](https://github.com/actions/runner-images/issues/12001) |
 | [[Windows] Go version 1.20 and 1.21  will be removed from the images on  2025-05-09 and 1.24 will be set as default.](https://github.com/actions/runner-images/issues/11711) |
 | [[Windows 19 and 22] Node.js version 16 will be removed from Windows images on 2025-05-09](https://github.com/actions/runner-images/issues/11710) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2022
-- OS Version: 10.0.20348 Build 3328
-- Image Version: 20250406.1.0
+- OS Version: 10.0.20348 Build 3561
+- Image Version: 20250413.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -23,21 +22,21 @@
 - LLVM 18.1.8
 - Node 18.20.8
 - Perl 5.32.1
-- PHP 8.4.5
+- PHP 8.4.6
 - Python 3.9.13
 - Ruby 3.0.7p220
 
 ### Package Management
 - Chocolatey 2.4.3
 - Composer 2.8.8
-- Helm 3.17.1
+- Helm 3.17.2
 - Miniconda 25.1.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.13.2.1
 - pip 25.0.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 856505bb76)
+- Vcpkg (build from commit bc994510d2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,11 +56,11 @@
 - aria2 1.37.0
 - azcopy 10.28.1
 - Bazel 8.1.1
-- Bazelisk 1.25.0
+- Bazelisk 1.26.0
 - Bicep 0.34.44
-- Cabal 3.14.1.1
+- Cabal 3.14.2.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.20.7
+- CodeQL Action Bundle 2.21.0
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
@@ -81,7 +80,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.12.0
-- Pulumi 3.159.0
+- Pulumi 3.162.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.5.1
@@ -95,9 +94,9 @@
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.265
-- AWS CLI 2.25.11
-- AWS SAM CLI 1.136.0
+- Alibaba Cloud CLI 0.0.1
+- AWS CLI 2.26.1
+- AWS SAM CLI 1.137.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure DevOps CLI extension 1.0.1
@@ -118,11 +117,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 135.0.7049.42
-- Chrome Driver 135.0.7049.42
-- Microsoft Edge 135.0.3179.54
-- Microsoft Edge Driver 135.0.3179.54
-- Mozilla Firefox 137.0
+- Google Chrome 135.0.7049.85
+- Chrome Driver 135.0.7049.84
+- Microsoft Edge 135.0.3179.73
+- Microsoft Edge Driver 135.0.3179.73
+- Mozilla Firefox 137.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.31.0
@@ -179,8 +178,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.9.13
 - 3.10.11
 - 3.11.9
-- 3.12.9
-- 3.13.2
+- 3.12.10
+- 3.13.3
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.19]
@@ -193,7 +192,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.0.7
 - 3.1.7
 - 3.2.8
-- 3.3.7
+- 3.3.8
 
 ### Databases
 
@@ -495,11 +494,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.114, 8.0.206, 8.0.310, 8.0.407, 9.0.104, 9.0.200, 9.0.202
+- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.115, 8.0.206, 8.0.311, 8.0.408, 9.0.105, 9.0.200, 9.0.203
 - .NET Framework: 4.7.2, 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.37, 8.0.6, 8.0.13, 8.0.14, 9.0.2, 9.0.3
-- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.37, 8.0.6, 8.0.13, 8.0.14, 9.0.2, 9.0.3
-- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.13, 8.0.14, 9.0.2, 9.0.3
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.37, 8.0.6, 8.0.13, 8.0.15, 9.0.2, 9.0.4
+- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.37, 8.0.6, 8.0.13, 8.0.15, 9.0.2, 9.0.4
+- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.13, 8.0.15, 9.0.2, 9.0.4
 - nbgv 3.7.115+d31f50f4d1
 
 ### PowerShell Tools
@@ -507,7 +506,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.793
+- AWSPowershell: 4.1.798
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.26.1
@@ -545,9 +544,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:c0f52d51a98cd530ef5d5d23d507abce40789ccedf570f39aa70fdc1d9389262  | 2025-03-11 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:fa0c1b9347ffa1c63cc0ae76da91cbf2c11ed2c9cac4f3641c1bec5650b0f154  | 2025-03-11 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:c430ac8177ef74e1b7bd1f10e91552045a6c58d185ddb7fbecac1b55dca04be2  | 2025-03-11 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:141da358f6c2378a0a0c1da8f1fc6a0ae4e407bda99cae81ef7ac0bbe17991aa  | 2025-04-10 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:877e7d1c2f8d89f4a8fc6532286b83f6c6aa8cc980ffade6ad5dcf3cdbe85c2a  | 2025-04-10 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:b824b671877b331774dda7adf061733e888194724eac4da67f56847ce7a175e8  | 2025-04-10 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:cac96611341ac97e50f33e952abe313e755a1f297df096e952cfd8d3f1ba8c05  | 2025-03-06 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:b1e1bd182c21723af77037208115bdc387dcecbab3802ed243d572a76ac50853  | 2025-03-06 |
 
