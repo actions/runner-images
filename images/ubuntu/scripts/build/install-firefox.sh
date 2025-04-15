@@ -11,7 +11,7 @@ source $HELPER_SCRIPTS/etc-environment.sh
 # Mozillateam PPA is added manually because sometimes
 # launchpad portal sends empty answer when trying to add it automatically
 
-REPO_URL="http://ppa.launchpad.net/mozillateam/ppa/ubuntu"
+REPO_URL="https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/"
 GPG_FINGERPRINT="0ab215679c571d1c8325275b9bdb3d89ce49ec21"
 GPG_KEY="/etc/apt/trusted.gpg.d/mozillateam_ubuntu_ppa.gpg"
 REPO_PATH="/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-focal.list"

@@ -1,43 +1,44 @@
 | Announcements |
 |-|
-| [Windows Server 2025 will be Generally Available in GitHub Actions and Azure DevOps from 2025-04-01](https://github.com/actions/runner-images/issues/11742) |
-| [[Windows] Go version 1.20 and 1.21  will be removed from the images on 2025-05-05 and 1.24 will be set as default.](https://github.com/actions/runner-images/issues/11711) |
-| [[Windows 19 and 22] Node.js version 16 will be removed from Windows images on 2025-05-05](https://github.com/actions/runner-images/issues/11710) |
+| [[Windows] Breaking change : Updating  Service Fabric runtime and  SDK  to latest( 10.1.2493.9590 ) from 2025-04-04](https://github.com/actions/runner-images/issues/11773) |
+| [Windows Server 2025 will be Generally Available in GitHub Actions and Azure DevOps from 2025-04-08](https://github.com/actions/runner-images/issues/11742) |
+| [[Windows] Go version 1.20 and 1.21  will be removed from the images on  2025-05-09 and 1.24 will be set as default.](https://github.com/actions/runner-images/issues/11711) |
+| [[Windows 19 and 22] Node.js version 16 will be removed from Windows images on 2025-05-09](https://github.com/actions/runner-images/issues/11710) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2025
-- OS Version: 10.0.26100 Build 3194
-- Image Version: 20250309.1.0
+- OS Version: 10.0.26100 Build 3476
+- Image Version: 20250406.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
-- Windows Subsystem for Linux (Default, WSLv2): 2.4.11.0
+- Windows Subsystem for Linux (Default, WSLv2): 2.4.13.0
 
 ## Installed Software
 
 ### Language and Runtime
 - Bash 5.2.37(1)-release
-- Go 1.23.7
+- Go 1.23.8
 - Julia 1.10.5
 - Kotlin 2.1.10
 - LLVM 19.1.7
 - Node 22.14.0
 - Perl 5.40.0
-- PHP 8.4.4
+- PHP 8.4.5
 - Python 3.9.13
 - Ruby 3.3.7
 
 ### Package Management
 - Chocolatey 2.4.3
-- Composer 2.8.6
-- Helm 3.17.0
+- Composer 2.8.8
+- Helm 3.17.1
 - Miniconda 25.1.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.2
 - NuGet 6.13.2.1
 - pip 25.0.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 300239058e)
+- Vcpkg (build from commit 856505bb76)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -50,72 +51,73 @@
 - Ant 1.10.14
 - Gradle 8.13
 - Maven 3.9.9
-- sbt 1.10.10
+- sbt 1.10.11
 
 ### Tools
 - 7zip 24.09
 - aria2 1.37.0
-- azcopy 10.28.0
+- azcopy 10.28.1
 - Bazel 8.1.1
 - Bazelisk 1.25.0
-- Bicep 0.33.13
+- Bicep 0.34.44
 - Cabal 3.14.1.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.20.1
+- CodeQL Action Bundle 2.20.7
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
-- Docker-wincred 0.9.2
-- ghc 9.12.1
-- Git 2.48.1.windows.1
+- Docker-wincred 0.9.3
+- ghc 9.12.2
+- Git 2.49.0.windows.1
 - Git LFS 3.6.1
-- ImageMagick 7.1.1-44
+- ImageMagick 7.1.1-47
 - jq 1.7.1
 - Kind 0.27.0
-- Kubectl 1.32.2
+- Kubectl 1.32.3
 - gcc 14.2.0
-- gdb 14.2
-- GNU Binutils 2.43
+- gdb 16.2
+- GNU Binutils 2.44
 - Newman 6.2.1
 - OpenSSL 3.4.1
 - Packer 1.12.0
-- Pulumi 3.154.0
+- Pulumi 3.159.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
-- Stack 3.3.1
+- Stack 3.5.1
 - Swig 4.1.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.14.1.8722
-- yamllint 1.35.1
+- yamllint 1.37.0
 - zstd 1.5.7
+- Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.24.20
-- AWS SAM CLI 1.134.0
+- AWS CLI 2.25.11
+- AWS SAM CLI 1.136.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.70.0
+- Azure CLI 2.71.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.68.1
+- GitHub CLI 2.69.0
 
 ### Rust Tools
-- Cargo 1.85.0
-- Rust 1.85.0
-- Rustdoc 1.85.0
+- Cargo 1.86.0
+- Rust 1.86.0
+- Rustdoc 1.86.0
 - Rustup 1.28.1
 
 #### Packages
-- Clippy 0.1.85
+- Clippy 0.1.86
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 134.0.6998.36
-- Chrome Driver 134.0.6998.35
-- Microsoft Edge 134.0.3124.51
-- Microsoft Edge Driver 134.0.3124.51
-- Mozilla Firefox 136.0
+- Google Chrome 135.0.7049.42
+- Chrome Driver 135.0.7049.42
+- Microsoft Edge 135.0.3179.54
+- Microsoft Edge Driver 135.0.3179.54
+- Mozilla Firefox 137.0
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.29.0
+- Selenium server 4.31.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -155,11 +157,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.21.13
 - 1.22.12
-- 1.23.7
+- 1.23.8
 
 #### Node.js
-- 18.20.7
-- 20.18.3
+- 18.20.8
+- 20.19.0
 - 22.14.0
 
 #### Python
@@ -174,8 +176,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.16 [PyPy 7.3.19]
 
 #### Ruby
-- 3.1.6
-- 3.2.7
+- 3.1.7
+- 3.2.8
 - 3.3.7
 
 ### Databases
@@ -195,7 +197,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 7.0.16.0 | MongoDB     | Stopped       | Disabled         |
+| 7.0.18.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.21.0
@@ -467,11 +469,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 8.0.113, 8.0.206, 8.0.309, 8.0.406, 9.0.103, 9.0.200
+- .NET Core SDK: 8.0.114, 8.0.206, 8.0.310, 8.0.407, 9.0.104, 9.0.200, 9.0.202
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 8.0.6, 8.0.13, 9.0.2
-- Microsoft.NETCore.App: 8.0.6, 8.0.13, 9.0.2
-- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.13, 9.0.2
+- Microsoft.AspNetCore.App: 8.0.6, 8.0.13, 8.0.14, 9.0.2, 9.0.3
+- Microsoft.NETCore.App: 8.0.6, 8.0.13, 8.0.14, 9.0.2, 9.0.3
+- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.13, 8.0.14, 9.0.2, 9.0.3
 - nbgv 3.7.115+d31f50f4d1
 
 ### PowerShell Tools
@@ -479,30 +481,30 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.773
+- AWSPowershell: 4.1.793
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.26.1
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
-- PSScriptAnalyzer: 1.23.0
+- PSScriptAnalyzer: 1.24.0
 - PSWindowsUpdate: 2.2.1.5
 - SqlServer: 22.3.0
 - VSSetup: 2.2.16
 
 ### Android
-| Package Name               | Version                                                                                                                                                                             |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 16.0                                                                                                                                                                                |
-| Android Emulator           | 35.4.9                                                                                                                                                                              |
-| Android SDK Build-tools    | 35.0.0 35.0.1<br>34.0.0                                                                                                                                                             |
-| Android SDK Platforms      | android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
-| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                              |
-| Android Support Repository | 47.0.0                                                                                                                                                                              |
-| CMake                      | 3.22.1<br>3.30.5<br>3.31.5                                                                                                                                                          |
-| Google Play services       | 49                                                                                                                                                                                  |
-| Google Repository          | 58                                                                                                                                                                                  |
-| NDK                        | 26.3.11579264<br>27.2.12479018<br>28.0.13004108                                                                                                                                     |
+| Package Name               | Version                                                                                                                                                                                                                               |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 16.0                                                                                                                                                                                                                                  |
+| Android Emulator           | 35.4.9                                                                                                                                                                                                                                |
+| Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                     |
+| Android SDK Platforms      | android-36 (rev 1)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
+| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                |
+| CMake                      | 3.22.1<br>3.30.5<br>3.31.5                                                                                                                                                                                                            |
+| Google Play services       | 49                                                                                                                                                                                                                                    |
+| Google Repository          | 58                                                                                                                                                                                                                                    |
+| NDK                        | 26.3.11579264<br>27.2.12479018<br>28.0.13004108                                                                                                                                                                                       |
 
 #### Environment variables
 | Name                    | Value                                    |
