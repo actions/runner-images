@@ -49,10 +49,11 @@ Describe "R" {
 }
 
 Describe "DACFx" {
-    It "DACFx" {
+    It "DACFx" { 
         (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework" | Should -BeTrue
-        $sqlPackagePath = 'C:\Program Files\Microsoft SQL Server\160\DAC\bin\SqlPackage.exe'
-        "${sqlPackagePath}" | Should -Exist
+        $sqlPackage160Path = 'C:\Program Files\Microsoft SQL Server\160\DAC\bin\SqlPackage.exe'
+        $sqlPackage170Path = 'C:\Program Files\Microsoft SQL Server\170\DAC\bin\SqlPackage.exe'
+        ((Test-Path "${sqlPackage160Path}") -Or (Test-Path "${sqlPackage170Path}")) | Should -BeTrue 
     }
 
     It "SqlLocalDB" -Skip:(-not (Test-IsWin19)) {

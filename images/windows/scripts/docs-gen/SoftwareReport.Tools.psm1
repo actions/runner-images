@@ -299,7 +299,15 @@ function Get-VisualCPPComponents {
 }
 
 function Get-DacFxVersion {
-    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\160\DAC\bin\sqlpackage.exe" /version
+    $sqlPackage160Path = Join-Path $env:ProgramFiles -ChildPath "Microsoft SQL Server\160\DAC\bin\sqlpackage.exe"
+    $sqlPackage170Path = Join-Path $env:ProgramFiles -ChildPath "Microsoft SQL Server\170\DAC\bin\sqlpackage.exe"
+    if (Test-Path $sqlPackage160Path) {
+        $dacfxversion = & "$sqlPackage160Path" /version
+    } elseif (Test-Path $sqlPackage170Path) {
+        $dacfxversion = & "$sqlPackage170Path" /version
+    } else {
+        throw "DACFx not found"
+    }
     return $dacfxversion
 }
 
