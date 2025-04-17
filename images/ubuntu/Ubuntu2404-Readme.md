@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[Ubuntu-24] Clang version 19 will be added, and the default Clang will be set to 19 from 2025-05-09.](https://github.com/actions/runner-images/issues/11895) |
 | [[Ubuntu] Breaking change : Docker Engine Version 26.* will be updated to Docker Engine Version 28* from 2025-05-09](https://github.com/actions/runner-images/issues/11766) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.8.0-1021-azure
-- Image Version: 20250406.1.0
+- Image Version: 20250413.1.0
 - Systemd version: 255.4-1ubuntu8.6
 
 ## Installed Software
@@ -29,15 +28,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.17.2
-- Homebrew 4.4.27
+- Helm 3.17.3
+- Homebrew 4.4.29
 - Miniconda 25.1.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 856505bb76)
+- Vcpkg (build from commit bc994510d2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,24 +56,24 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.13
-- Lerna 8.2.1
+- Lerna 8.2.2
 - Maven 3.9.9
 
 ### Tools
 - Ansible 2.18.4
 - AzCopy 10.28.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.1.1
-- Bazelisk 1.25.0
+- Bazelisk 1.26.0
 - Bicep 0.34.44
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.20.7
+- CodeQL Action Bundle 2.21.0
 - Docker Amazon ECR Credential Helper 0.9.1
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.22.0
 - Docker Client 26.1.3
 - Docker Server 26.1.3
-- Fastlane 2.227.0
+- Fastlane 2.227.1
 - Git 2.49.0
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
@@ -93,7 +92,7 @@ to accomplish this.
 - Packer 1.12.0
 - Parcel 2.14.4
 - Podman 4.9.3
-- Pulumi 3.160.0
+- Pulumi 3.162.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.0
@@ -102,9 +101,9 @@ to accomplish this.
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.25.11
+- AWS CLI 2.26.1
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.136.0
+- AWS SAM CLI 1.137.1
 - Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.69.0
@@ -127,7 +126,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Haskell Tools
-- Cabal 3.14.1.1
+- Cabal 3.14.2.0
 - GHC 9.12.2
 - GHCup 0.1.50.1
 - Stack 3.5.1
@@ -142,11 +141,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 135.0.7049.52
-- ChromeDriver 135.0.7049.42
+- Google Chrome 135.0.7049.84
+- ChromeDriver 135.0.7049.84
 - Chromium 135.0.7049.0
-- Microsoft Edge 135.0.3179.54
-- Microsoft Edge WebDriver 135.0.3179.54
+- Microsoft Edge 135.0.3179.73
+- Microsoft Edge WebDriver 135.0.3179.73
 - Selenium server 4.31.0
 - Mozilla Firefox 136.0.4
 - Geckodriver 0.36.0
@@ -160,7 +159,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.114
+- .NET Core SDK: 8.0.115
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
@@ -196,11 +195,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 22.14.0
 
 #### Python
-- 3.9.21
-- 3.10.16
-- 3.11.11
-- 3.12.9
-- 3.13.2
+- 3.9.22
+- 3.10.17
+- 3.11.12
+- 3.12.10
+- 3.13.3
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -208,7 +207,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Ruby
 - 3.2.8
-- 3.3.7
+- 3.3.8
 
 ### PowerShell Tools
 - PowerShell 7.4.7
@@ -255,7 +254,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.37.0+debian-1build3        |
 | autoconf               | 2.71-3                       |
 | automake               | 1:1.16.5-1.3ubuntu1          |
-| binutils               | 2.42-4ubuntu2.4              |
+| binutils               | 2.42-4ubuntu2.5              |
 | bison                  | 2:3.8.2+dfsg-1build2         |
 | brotli                 | 1.1.0-2build2                |
 | bzip2                  | 1.0.8-5.1build0.1            |
