@@ -1,16 +1,16 @@
 | Announcements |
 |-|
-| [macOS 15 (Sequoia) will be generally available in GitHub Actions and Azure DevOps from April, 08](https://github.com/actions/runner-images/issues/11486) |
+| [[macOS 14] Xcode Command Line Tool version will be downgraded to 15.3.0 on macOS14 images](https://github.com/actions/runner-images/issues/11969) |
 ***
 # macOS 13
-- OS Version: macOS 13.7.4 (22H420)
+- OS Version: macOS 13.7.5 (22H527)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250331.901
+- Image Version: 20250414.948
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.407, 9.0.102, 9.0.202
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.408, 9.0.102, 9.0.203
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -24,22 +24,22 @@
 - Mono 6.12.0.188
 - Node.js 20.19.0
 - Perl 5.40.1
-- PHP 8.4.5
-- Python3 3.13.2
-- Ruby 3.3.7
+- PHP 8.4.6
+- Python3 3.13.3
+- Ruby 3.3.8
 
 ### Package Management
-- Bundler 2.6.6
+- Bundler 2.6.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.6
-- Homebrew 4.4.26
+- Composer 2.8.8
+- Homebrew 4.4.29
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.0.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.6.6
-- Vcpkg 2025 (build from commit acd5bba5aa)
+- RubyGems 3.6.8
+- Vcpkg 2025 (build from commit bc994510d2)
 - Yarn 1.22.22
 
 ### Project Management
@@ -52,9 +52,9 @@
 - aria2 1.37.0
 - azcopy 10.28.1
 - bazel 8.1.1
-- bazelisk 1.25.0
+- bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.12.1
+- Curl 8.13.0
 - Git 2.49.0
 - Git LFS 3.6.1
 - GitHub CLI 2.69.0
@@ -71,32 +71,32 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.25.6
-- AWS SAM CLI 1.136.0
+- AWS CLI 2.26.1
+- AWS SAM CLI 1.137.1
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.70.0
+- Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.34.44
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.20.1
-- Fastlane 2.227.0
+- CodeQL Action Bundle 2.21.0
+- Fastlane 2.227.1
 - SwiftFormat 0.55.5
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
 
 ### Linters
-- SwiftLint 0.58.2
+- SwiftLint 0.59.0
 
 ### Browsers
-- Safari 18.3.1 (18620.2.4.111.9)
-- SafariDriver 18.3.1 (18620.2.4.111.9)
-- Google Chrome 134.0.6998.166
-- Google Chrome for Testing 134.0.6998.165
-- ChromeDriver 134.0.6998.165
-- Microsoft Edge 134.0.3124.95
-- Microsoft Edge WebDriver 134.0.3124.95
-- Mozilla Firefox 136.0.4
+- Safari 18.4 (18621.1.15.111.1)
+- SafariDriver 18.4 (18621.1.15.111.1)
+- Google Chrome 135.0.7049.85
+- Google Chrome for Testing 135.0.7049.84
+- ChromeDriver 135.0.7049.84
+- Microsoft Edge 135.0.3179.73
+- Microsoft Edge WebDriver 135.0.3179.73
+- Mozilla Firefox 137.0.1
 - geckodriver 0.36.0
 - Selenium server 4.29.0
 
@@ -127,16 +127,16 @@
 #### Ruby
 - 3.1.7
 - 3.2.8
-- 3.3.7
+- 3.3.8
 - 3.4.2
 
 #### Python
 - 3.8.18
-- 3.9.21
-- 3.10.16
+- 3.9.22
+- 3.10.17
 - 3.11.9
-- 3.12.9
-- 3.13.2
+- 3.12.10
+- 3.13.3
 
 #### Node.js
 - 18.20.8
@@ -146,17 +146,17 @@
 #### Go
 - 1.21.13
 - 1.22.12
-- 1.23.7
-- 1.24.1
+- 1.23.8
+- 1.24.2
 
 ### Rust Tools
-- Cargo 1.85.1
-- Rust 1.85.1
-- Rustdoc 1.85.1
+- Cargo 1.86.0
+- Rust 1.86.0
+- Rustdoc 1.86.0
 - Rustup 1.28.1
 
 #### Packages
-- Clippy 0.1.85
+- Clippy 0.1.86
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools

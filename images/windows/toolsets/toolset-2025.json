@@ -292,6 +292,7 @@
             },
             {
                 "name": "cmake.install",
+                "version": "3.31.6",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
             {
@@ -310,7 +311,7 @@
     },
     "mysql": {
         "version": "8.0",
-        "signature": "DD34D7C71F160972DE0CE25B695A0D6A9C95BD91"
+        "signature": "E8A8C17382A6DE62A3B443565E4A96843F834656"
     },
     "mongodb": {
         "version": "7.0",

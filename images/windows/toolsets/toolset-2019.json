@@ -224,7 +224,8 @@
         "edition" : "Enterprise",
         "channel": "release",
         "signature": [
-                      "8F985BE8FD256085C90A95D3C74580511A1DB975" 
+                      "8F985BE8FD256085C90A95D3C74580511A1DB975",
+                      "245D262748012A4FE6CE8BA6C951A4C4AFBC3E5D" 
                     ],
         "workloads": [
             "Component.Dotfuscator",
@@ -416,6 +417,7 @@
             },
             {
                 "name": "cmake.install",
+                "version": "3.31.6",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
             { "name": "imagemagick" },
