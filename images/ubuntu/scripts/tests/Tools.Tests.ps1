@@ -348,8 +348,8 @@ Describe "Containers" {
     # https://github.com/actions/runner-images/issues/7753
     It "podman networking" -TestCases "podman CNI plugins" {
         "podman network create -d bridge test-net" | Should -ReturnZeroExitCode
-        $output = & { podman network ls 2>&1 }
-$output | Should -NotMatch 'level=error'
+        $output = podman network ls 2>&1
+$output | Where-Object { $_ -match 'level=error' } | Should -BeNullOrEmpty
         "podman network rm test-net" | Should -ReturnZeroExitCode
     }
 
