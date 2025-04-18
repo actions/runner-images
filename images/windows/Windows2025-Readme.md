@@ -1,14 +1,13 @@
 | Announcements |
 |-|
-| [[Windows] Breaking change : Updating  Service Fabric runtime and  SDK  to latest( 10.1.2493.9590 ) from 2025-04-04](https://github.com/actions/runner-images/issues/11773) |
-| [Windows Server 2025 will be Generally Available in GitHub Actions and Azure DevOps from 2025-04-08](https://github.com/actions/runner-images/issues/11742) |
+| [[Windows-2025] LLVM will be updated to version 20 on 2025-06-06](https://github.com/actions/runner-images/issues/12001) |
 | [[Windows] Go version 1.20 and 1.21  will be removed from the images on  2025-05-09 and 1.24 will be set as default.](https://github.com/actions/runner-images/issues/11711) |
 | [[Windows 19 and 22] Node.js version 16 will be removed from Windows images on 2025-05-09](https://github.com/actions/runner-images/issues/11710) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2025
-- OS Version: 10.0.26100 Build 3476
-- Image Version: 20250406.1.0
+- OS Version: 10.0.26100 Build 3775
+- Image Version: 20250413.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -24,21 +23,21 @@
 - LLVM 19.1.7
 - Node 22.14.0
 - Perl 5.40.0
-- PHP 8.4.5
+- PHP 8.4.6
 - Python 3.9.13
-- Ruby 3.3.7
+- Ruby 3.3.8
 
 ### Package Management
 - Chocolatey 2.4.3
 - Composer 2.8.8
-- Helm 3.17.1
+- Helm 3.17.2
 - Miniconda 25.1.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.2
 - NuGet 6.13.2.1
 - pip 25.0.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 856505bb76)
+- Vcpkg (build from commit bc994510d2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -58,11 +57,11 @@
 - aria2 1.37.0
 - azcopy 10.28.1
 - Bazel 8.1.1
-- Bazelisk 1.25.0
+- Bazelisk 1.26.0
 - Bicep 0.34.44
-- Cabal 3.14.1.1
+- Cabal 3.14.2.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.20.7
+- CodeQL Action Bundle 2.21.0
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
@@ -79,7 +78,7 @@
 - Newman 6.2.1
 - OpenSSL 3.4.1
 - Packer 1.12.0
-- Pulumi 3.159.0
+- Pulumi 3.162.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.5.1
@@ -92,8 +91,8 @@
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.25.11
-- AWS SAM CLI 1.136.0
+- AWS CLI 2.26.1
+- AWS SAM CLI 1.137.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure DevOps CLI extension 1.0.1
@@ -110,11 +109,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 135.0.7049.42
-- Chrome Driver 135.0.7049.42
-- Microsoft Edge 135.0.3179.54
-- Microsoft Edge Driver 135.0.3179.54
-- Mozilla Firefox 137.0
+- Google Chrome 135.0.7049.85
+- Chrome Driver 135.0.7049.84
+- Microsoft Edge 135.0.3179.73
+- Microsoft Edge Driver 135.0.3179.73
+- Mozilla Firefox 137.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.31.0
@@ -168,8 +167,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.9.13
 - 3.10.11
 - 3.11.9
-- 3.12.9
-- 3.13.2
+- 3.12.10
+- 3.13.3
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -178,7 +177,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Ruby
 - 3.1.7
 - 3.2.8
-- 3.3.7
+- 3.3.8
 
 ### Databases
 
@@ -205,7 +204,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - MySQL 8.0.41.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.4.2
+- MongoDB Shell (mongosh) 2.5.0
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
@@ -469,11 +468,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 8.0.114, 8.0.206, 8.0.310, 8.0.407, 9.0.104, 9.0.200, 9.0.202
+- .NET Core SDK: 8.0.115, 8.0.206, 8.0.311, 8.0.408, 9.0.105, 9.0.200, 9.0.203
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 8.0.6, 8.0.13, 8.0.14, 9.0.2, 9.0.3
-- Microsoft.NETCore.App: 8.0.6, 8.0.13, 8.0.14, 9.0.2, 9.0.3
-- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.13, 8.0.14, 9.0.2, 9.0.3
+- Microsoft.AspNetCore.App: 8.0.6, 8.0.13, 8.0.15, 9.0.2, 9.0.4
+- Microsoft.NETCore.App: 8.0.6, 8.0.13, 8.0.15, 9.0.2, 9.0.4
+- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.13, 8.0.15, 9.0.2, 9.0.4
 - nbgv 3.7.115+d31f50f4d1
 
 ### PowerShell Tools
@@ -481,7 +480,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.793
+- AWSPowershell: 4.1.798
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.26.1
