@@ -24,7 +24,7 @@ if ($latestTag -match '^v([0-9]+)') {
 }
 
 # Retrieve the CLI version of the latest CodeQL bundle.
-$defaults = (Invoke-RestMethod "https://raw.githubusercontent.com/github/codeql-action/$($codeqlActionLatestMajorVersion)/src/defaults.json")
+$defaults = (Invoke-RestMethod "https://raw.githubusercontent.com/github/codeql-action/v$($codeqlActionLatestMajorVersion)/src/defaults.json")
 $cliVersion = $defaults.cliVersion
 $tagName = "codeql-bundle-v" + $cliVersion
 
