@@ -22,7 +22,7 @@ if [ -z "$codeql_action_latest_major_version" ]; then
 fi
 
 # Retrieve the CLI version of the latest CodeQL bundle.
-defaults_json_path=$(download_with_retry "https://raw.githubusercontent.com/github/codeql-action/$codeql_action_latest_major_version/src/defaults.json")
+defaults_json_path=$(download_with_retry "https://raw.githubusercontent.com/github/codeql-action/v$codeql_action_latest_major_version/src/defaults.json")
 bundle_version=$(jq -r '.cliVersion' "$defaults_json_path")
 bundle_tag_name="codeql-bundle-v$bundle_version"
 
