@@ -23,7 +23,7 @@ if [ -z "$codeql_action_latest_major_version" ]; then
 fi
 
 # Retrieve the CLI version of the latest CodeQL bundle.
-base_url="$(curl -fsSL https://raw.githubusercontent.com/github/codeql-action/"$codeql_action_latest_major_version"/src/defaults.json)"
+base_url="$(curl -fsSL https://raw.githubusercontent.com/github/codeql-action/v"$codeql_action_latest_major_version"/src/defaults.json)"
 bundle_version="$(echo "$base_url" | jq -r '.cliVersion')"
 bundle_tag_name="codeql-bundle-v$bundle_version"
 
