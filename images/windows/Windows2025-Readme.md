@@ -1,8 +1,5 @@
 | Announcements |
 |-|
-| [The Windows 2019 Actions runner image will begin deprecation on 2025-06-01 and will be fully unsupported by 2025-06-30](https://github.com/actions/runner-images/issues/12045) |
-| [[Windows, Ubuntu] Python 3.8.x will be removed from 2025-06-06](https://github.com/actions/runner-images/issues/12034) |
-| [[Windows 19 and 22] Ruby version 3.0 will be removed from Windows images on 2025-06-06](https://github.com/actions/runner-images/issues/12033) |
 | [[Windows-2025] LLVM will be updated to version 20 on 2025-06-06](https://github.com/actions/runner-images/issues/12001) |
 | [[Windows] Go version 1.20 and 1.21  will be removed from the images on  2025-05-09 and 1.24 will be set as default.](https://github.com/actions/runner-images/issues/11711) |
 | [[Windows 19 and 22] Node.js version 16 will be removed from Windows images on 2025-05-09](https://github.com/actions/runner-images/issues/11710) |
@@ -10,7 +7,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 3775
-- Image Version: 20250420.1.0
+- Image Version: 20250413.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -40,7 +37,7 @@
 - pip 25.0.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 0d5cae1530)
+- Vcpkg (build from commit bc994510d2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -50,7 +47,7 @@
 | CONDA                   | C:\Miniconda |
 
 ### Project Management
-- Ant 1.10.15
+- Ant 1.10.14
 - Gradle 8.13
 - Maven 3.9.9
 - sbt 1.10.11
@@ -59,7 +56,7 @@
 - 7zip 24.09
 - aria2 1.37.0
 - azcopy 10.28.1
-- Bazel 8.2.1
+- Bazel 8.1.1
 - Bazelisk 1.26.0
 - Bicep 0.34.44
 - Cabal 3.14.2.0
@@ -81,7 +78,7 @@
 - Newman 6.2.1
 - OpenSSL 3.4.1
 - Packer 1.12.0
-- Pulumi 3.163.0
+- Pulumi 3.162.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.5.1
@@ -94,12 +91,12 @@
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.26.5
+- AWS CLI 2.26.1
 - AWS SAM CLI 1.137.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.70.0
+- GitHub CLI 2.69.0
 
 ### Rust Tools
 - Cargo 1.86.0
@@ -112,11 +109,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 135.0.7049.96
-- Chrome Driver 135.0.7049.95
-- Microsoft Edge 135.0.3179.85
-- Microsoft Edge Driver 135.0.3179.85
-- Mozilla Firefox 137.0.2
+- Google Chrome 135.0.7049.85
+- Chrome Driver 135.0.7049.84
+- Microsoft Edge 135.0.3179.73
+- Microsoft Edge Driver 135.0.3179.73
+- Mozilla Firefox 137.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.31.0
@@ -132,10 +129,10 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.452+9           | JAVA_HOME_8_X64      |
-| 11.0.27+6           | JAVA_HOME_11_X64     |
-| 17.0.15+6 (default) | JAVA_HOME_17_X64     |
-| 21.0.7+6.0          | JAVA_HOME_21_X64     |
+| 8.0.442+6           | JAVA_HOME_8_X64      |
+| 11.0.26+4           | JAVA_HOME_11_X64     |
+| 17.0.14+7 (default) | JAVA_HOME_17_X64     |
+| 21.0.6+7.0          | JAVA_HOME_21_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -199,12 +196,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 7.0.19.0 | MongoDB     | Stopped       | Disabled         |
+| 7.0.18.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.21.0
-- DacFx 170.0.94.3
-- MySQL 8.0.42.0
+- DacFx 162.5.57.1
+- MySQL 8.0.41.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
 - MongoDB Shell (mongosh) 2.5.0
@@ -213,7 +210,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.27.5  | C:\tools\nginx-1.27.5\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.27.4  | C:\tools\nginx-1.27.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version         | Path                                                     |
@@ -483,10 +480,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.802
+- AWSPowershell: 4.1.798
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.27.0
+- Microsoft.Graph: 2.26.1
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.24.0
@@ -500,13 +497,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                  |
 | Android Emulator           | 35.4.9                                                                                                                                                                                                                                |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                     |
-| Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
+| Android SDK Platforms      | android-36 (rev 1)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                |
 | CMake                      | 3.22.1<br>3.30.5<br>3.31.5                                                                                                                                                                                                            |
 | Google Play services       | 49                                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                                    |
-| NDK                        | 26.3.11579264<br>27.2.12479018<br>28.1.13356709                                                                                                                                                                                       |
+| NDK                        | 26.3.11579264<br>27.2.12479018<br>28.0.13004108                                                                                                                                                                                       |
 
 #### Environment variables
 | Name                    | Value                                    |
@@ -514,7 +511,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ANDROID_HOME            | C:\Android\android-sdk                   |
 | ANDROID_NDK             | C:\Android\android-sdk\ndk\27.2.12479018 |
 | ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.2.12479018 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\28.1.13356709 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\28.0.13004108 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.2.12479018 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 
