@@ -94,6 +94,11 @@ variable "managed_image_resource_group_name" {
   default = "${env("ARM_RESOURCE_GROUP")}"
 }
 
+variable "os_disk_size_gb" {
+  type    = string
+  default = "75"
+}
+
 variable "private_virtual_network_with_public_ip" {
   type    = bool
   default = false
@@ -146,7 +151,7 @@ source "azure-arm" "build_image" {
   location                               = "${var.location}"
   managed_image_name                     = "${local.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
-  os_disk_size_gb                        = "75"
+  os_disk_size_gb                        = "${var.os_disk_size_gb}"
   os_type                                = "Linux"
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   subscription_id                        = "${var.subscription_id}"
