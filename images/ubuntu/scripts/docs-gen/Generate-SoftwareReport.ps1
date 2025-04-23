@@ -41,10 +41,6 @@ $languageAndRuntime.AddToolVersionsListInline("Clang", $(Get-ClangToolVersions -
 $languageAndRuntime.AddToolVersionsListInline("Clang-format", $(Get-ClangToolVersions -ToolName "clang-format"), "^\d+")
 $languageAndRuntime.AddToolVersionsListInline("Clang-tidy", $(Get-ClangTidyVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Dash", $(Get-DashVersion))
-if (Test-IsUbuntu20) {
-    $languageAndRuntime.AddToolVersion("Erlang", $(Get-ErlangVersion))
-    $languageAndRuntime.AddToolVersion("Erlang rebar3", $(Get-ErlangRebar3Version))
-}
 $languageAndRuntime.AddToolVersionsListInline("GNU C++", $(Get-CPPVersions), "^\d+")
 $languageAndRuntime.AddToolVersionsListInline("GNU Fortran", $(Get-FortranVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
@@ -90,14 +86,14 @@ $projectManagement.AddToolVersion("Ant", $(Get-AntVersion))
 $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
 $projectManagement.AddToolVersion("Lerna", $(Get-LernaVersion))
 $projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if (Test-IsUbuntu22) {
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
 # Tools
 $tools = $installedSoftware.AddHeader("Tools")
 $tools.AddToolVersion("Ansible", $(Get-AnsibleVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if (Test-IsUbuntu22) {
     $tools.AddToolVersion("apt-fast", $(Get-AptFastVersion))
 }
 $tools.AddToolVersion("AzCopy", $(Get-AzCopyVersion))
@@ -117,17 +113,14 @@ $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $tools.AddToolVersion("Git-ftp", $(Get-GitFTPVersion))
 $tools.AddToolVersion("Haveged", $(Get-HavegedVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if (Test-IsUbuntu22) {
     $tools.AddToolVersion("Heroku", $(Get-HerokuVersion))
-}
-if (Test-IsUbuntu20) {
-    $tools.AddToolVersion("HHVM (HipHop VM)", $(Get-HHVMVersion))
 }
 $tools.AddToolVersion("jq", $(Get-JqVersion))
 $tools.AddToolVersion("Kind", $(Get-KindVersion))
 $tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
 $tools.AddToolVersion("Kustomize", $(Get-KustomizeVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if (Test-IsUbuntu22) {
     $tools.AddToolVersion("Leiningen", $(Get-LeiningenVersion))
 }
 $tools.AddToolVersion("MediaInfo", $(Get-MediainfoVersion))
@@ -139,17 +132,14 @@ $tools.AddToolVersion("nvm", $(Get-NvmVersion))
 $tools.AddToolVersion("OpenSSL", $(Get-OpensslVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
-if (Test-IsUbuntu20) {
-    $tools.AddToolVersion("PhantomJS", $(Get-PhantomJSVersion))
-}
 $tools.AddToolVersion("Podman", $(Get-PodManVersion))
 $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if (Test-IsUbuntu22) {
     $tools.AddToolVersion("R", $(Get-RVersion))
 }
 $tools.AddToolVersion("Skopeo", $(Get-SkopeoVersion))
 $tools.AddToolVersion("Sphinx Open Source Search Server", $(Get-SphinxVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if (Test-IsUbuntu22) {
     $tools.AddToolVersion("SVN", $(Get-SVNVersion))
     $tools.AddToolVersion("Terraform", $(Get-TerraformVersion))
 }
@@ -160,7 +150,7 @@ $tools.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # CLI Tools
 $cliTools = $installedSoftware.AddHeader("CLI Tools")
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if (Test-IsUbuntu22) {
     $cliTools.AddToolVersion("Alibaba Cloud CLI", $(Get-AlibabaCloudCliVersion))
 }
 $cliTools.AddToolVersion("AWS CLI", $(Get-AWSCliVersion))
@@ -170,7 +160,7 @@ $cliTools.AddToolVersion("Azure CLI", $(Get-AzureCliVersion))
 $cliTools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
 $cliTools.AddToolVersion("GitHub CLI", $(Get-GitHubCliVersion))
 $cliTools.AddToolVersion("Google Cloud CLI", $(Get-GoogleCloudCLIVersion))
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if (Test-IsUbuntu22) {
     $cliTools.AddToolVersion("Netlify CLI", $(Get-NetlifyCliVersion))
     $cliTools.AddToolVersion("OpenShift CLI", $(Get-OCCliVersion))
     $cliTools.AddToolVersion("ORAS CLI", $(Get-ORASCliVersion))
@@ -204,7 +194,7 @@ $rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
 
 # Packages
 $rustToolsPackages = $rustTools.AddHeader("Packages")
-if ((Test-IsUbuntu20) -or (Test-IsUbuntu22)) {
+if (Test-IsUbuntu22) {
     $rustToolsPackages.AddToolVersion("Bindgen", $(Get-BindgenVersion))
     $rustToolsPackages.AddToolVersion("Cargo audit", $(Get-CargoAuditVersion))
     $rustToolsPackages.AddToolVersion("Cargo clippy", $(Get-CargoClippyVersion))
@@ -236,9 +226,6 @@ $netCoreTools.AddNodes($(Get-DotnetTools))
 
 # Databases
 $databasesTools = $installedSoftware.AddHeader("Databases")
-if (Test-IsUbuntu20) {
-    $databasesTools.AddToolVersion("MongoDB", $(Get-MongoDbVersion))
-}
 $databasesTools.AddToolVersion("sqlite3", $(Get-SqliteVersion))
 $databasesTools.AddNode($(Build-PostgreSqlSection))
 $databasesTools.AddNode($(Build-MySQLSection))
