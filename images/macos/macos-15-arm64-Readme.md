@@ -1,17 +1,16 @@
 | Announcements |
 |-|
 | [[macOS 14] Xcode Command Line Tool version will be downgraded to 15.3.0 on macOS14 images](https://github.com/actions/runner-images/issues/11969) |
-| [macOS 15 (Sequoia) will be generally available in GitHub Actions and Azure DevOps from April, 10](https://github.com/actions/runner-images/issues/11486) |
 ***
 # macOS 15
 - OS Version: macOS 15.4 (24E248)
 - Kernel Version: Darwin 24.4.0
-- Image Version: 20250408.1231
+- Image Version: 20250416.1273
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.407, 9.0.102, 9.0.202
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.408, 9.0.102, 9.0.203
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
@@ -23,19 +22,20 @@
 - GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
 - Kotlin 2.1.10-release-473
 - Node.js 22.14.0
-- Perl 5.40.1
-- Python3 3.13.2
-- Ruby 3.3.7
+- Perl 5.40.2
+- Python3 3.13.3
+- Ruby 3.3.8
 
 ### Package Management
-- Bundler 2.6.7
+- Bundler 2.6.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.29
+- Homebrew 4.4.31
 - NPM 10.9.2
-- Pip3 25.0 (python 3.13)
+- Pip3 25.0.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.6.7
+- RubyGems 3.6.8
+- Vcpkg 2025 (build from commit 711466ff1c)
 - Yarn 1.22.22
 
 ### Project Management
@@ -47,13 +47,13 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.28.1
-- bazel 8.1.1
-- bazelisk 1.25.0
+- bazel 8.2.0
+- bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.69.0
+- GitHub CLI 2.70.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.7
@@ -67,15 +67,15 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.25.12
-- AWS SAM CLI 1.136.0
+- AWS CLI 2.26.2
+- AWS SAM CLI 1.137.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.34.44
 - Cmake 3.31.6
 - CodeQL Action Bundle 2.21.0
-- Fastlane 2.227.0
+- Fastlane 2.227.1
 - SwiftFormat 0.55.5
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 16.3.0.0.1.1742442376
@@ -86,9 +86,9 @@
 ### Browsers
 - Safari 18.4 (20621.1.15.11.10)
 - SafariDriver 18.4 (20621.1.15.11.10)
-- Google Chrome 135.0.7049.42
-- Google Chrome for Testing 135.0.7049.42
-- ChromeDriver 135.0.7049.42
+- Google Chrome 135.0.7049.96
+- Google Chrome for Testing 135.0.7049.95
+- ChromeDriver 135.0.7049.95
 - Selenium server 4.29.0
 
 #### Environment variables
@@ -110,13 +110,13 @@
 #### Ruby
 - 3.1.7
 - 3.2.8
-- 3.3.7
-- 3.4.2
+- 3.3.8
+- 3.4.3
 
 #### Python
 - 3.11.9
-- 3.12.9
-- 3.13.2
+- 3.12.10
+- 3.13.3
 
 #### Node.js
 - 18.20.8
