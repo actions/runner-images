@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
 | [[macOS 14] Xcode Command Line Tool version will be downgraded to 15.3.0 on macOS14 images](https://github.com/actions/runner-images/issues/11969) |
 ***
 # macOS 15
-- OS Version: macOS 15.4 (24E248)
+- OS Version: macOS 15.4.1 (24E263)
 - Kernel Version: Darwin 24.4.0
-- Image Version: 20250416.1273
+- Image Version: 20250421.1300
 
 ## Installed Software
 
@@ -35,7 +36,7 @@
 - Pip3 25.0.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.8
-- Vcpkg 2025 (build from commit 711466ff1c)
+- Vcpkg 2025 (build from commit 0d5cae1530)
 - Yarn 1.22.22
 
 ### Project Management
@@ -47,7 +48,7 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.28.1
-- bazel 8.2.0
+- bazel 8.2.1
 - bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
@@ -67,7 +68,7 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.26.2
+- AWS CLI 2.26.5
 - AWS SAM CLI 1.137.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
@@ -102,8 +103,8 @@
 | Version              | Environment Variable |
 | -------------------- | -------------------- |
 | 11.0.26+4            | JAVA_HOME_11_arm64   |
-| 17.0.14+7            | JAVA_HOME_17_arm64   |
-| 21.0.6+7.0 (default) | JAVA_HOME_21_arm64   |
+| 17.0.15+6            | JAVA_HOME_17_arm64   |
+| 21.0.7+6.0 (default) | JAVA_HOME_21_arm64   |
 
 ### Cached Tools
 
@@ -242,13 +243,13 @@
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                        |
 | Android Emulator           | 35.4.9                                                                                                                                                                                                                                                                                      |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                     |
-| Android SDK Platforms      | android-36 (rev 1)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
+| Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                      |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                      |
 | CMake                      | 3.31.5                                                                                                                                                                                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                          |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                          |
-| NDK                        | 26.3.11579264<br>27.2.12479018 (default)<br>28.0.13004108                                                                                                                                                                                                                                   |
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)<br>28.1.13356709                                                                                                                                                                                                                                   |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -256,7 +257,7 @@
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.0.13004108 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.1.13356709 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
