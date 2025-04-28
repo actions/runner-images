@@ -10,7 +10,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 3561
-- Image Version: 20250420.1.0
+- Image Version: 20250427.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -36,10 +36,10 @@
 - Miniconda 25.1.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.13.2.1
-- pip 25.0.1 (python 3.9)
+- pip 25.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 0d5cae1530)
+- Vcpkg (build from commit 96d5fb3de1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -63,7 +63,7 @@
 - Bicep 0.34.44
 - Cabal 3.14.2.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.0
+- CodeQL Action Bundle 2.21.1
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
@@ -74,7 +74,7 @@
 - InnoSetup 6.4.0
 - jq 1.7.1
 - Kind 0.27.0
-- Kubectl 1.32.3
+- Kubectl 1.33.0
 - Mercurial 5.0
 - gcc 12.2.0
 - gdb 11.2
@@ -83,7 +83,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.12.0
-- Pulumi 3.163.0
+- Pulumi 3.165.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.5.1
@@ -97,13 +97,13 @@
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.270
-- AWS CLI 2.26.5
+- Alibaba Cloud CLI 3.0.271
+- AWS CLI 2.27.2
 - AWS SAM CLI 1.137.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.70.0
+- GitHub CLI 2.71.2
 
 ### Rust Tools
 - Cargo 1.86.0
@@ -120,10 +120,10 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 135.0.7049.96
-- Chrome Driver 135.0.7049.95
-- Microsoft Edge 135.0.3179.85
-- Microsoft Edge Driver 135.0.3179.85
+- Google Chrome 135.0.7049.115
+- Chrome Driver 135.0.7049.114
+- Microsoft Edge 135.0.3179.98
+- Microsoft Edge Driver 135.0.3179.98
 - Mozilla Firefox 137.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -173,8 +173,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 16.20.2
 - 18.20.8
-- 20.19.0
-- 22.14.0
+- 20.19.1
+- 22.15.0
 
 #### Python
 - 3.8.10
@@ -509,7 +509,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.802
+- AWSPowershell: 4.1.807
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.27.0
@@ -547,9 +547,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:141da358f6c2378a0a0c1da8f1fc6a0ae4e407bda99cae81ef7ac0bbe17991aa  | 2025-04-10 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:877e7d1c2f8d89f4a8fc6532286b83f6c6aa8cc980ffade6ad5dcf3cdbe85c2a  | 2025-04-10 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:b824b671877b331774dda7adf061733e888194724eac4da67f56847ce7a175e8  | 2025-04-10 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:e5e37e4db5f44210a0385c8e0d933858c9f0d2fdf1a9caf6e8591b3ecfe3b345  | 2025-04-25 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:9b8a9e04962234e0737f2fc52d99db8d029e82cda0c495b75c0f9a75a895781b  | 2025-04-25 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:b04d00f0df9b8d85dab8a59a2f525a47e0726bb41cb5d7c23e46a4d8d816fdd8  | 2025-04-25 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:93a3cb1763e5e01bb4121a86f0dd364d1740f9ca1071f496532637873e40969e  | 2025-04-16 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:b1e1bd182c21723af77037208115bdc387dcecbab3802ed243d572a76ac50853  | 2025-03-06 |
+| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:478a07c20826b51e632b0d9a17003b329d873f8f20aec7052e21281fd4e9fbd8  | 2025-04-16 |
 
