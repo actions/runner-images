@@ -8,28 +8,23 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
-# Mozillateam PPA is added manually because sometimes
-# launchpad portal sends empty answer when trying to add it automatically
+# Use Mozilla's official apt repo:
+# https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions-recommended
 
-REPO_URL="https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/"
-GPG_FINGERPRINT="0ab215679c571d1c8325275b9bdb3d89ce49ec21"
-GPG_KEY="/etc/apt/trusted.gpg.d/mozillateam_ubuntu_ppa.gpg"
-REPO_PATH="/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-focal.list"
+REPO_URL="https://packages.mozilla.org/apt"
+GPG_KEY="/usr/share/keyrings/packages.mozilla.org.asc"
+REPO_PATH="/etc/apt/sources.list.d/mozilla.list"
 
 # Install Firefox
-curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${GPG_FINGERPRINT}" | sudo gpg --dearmor -o $GPG_KEY
-echo "deb $REPO_URL $(lsb_release -cs) main" > $REPO_PATH
+curl -fsSL https://packages.mozilla.org/apt/repo-signing-key.gpg -o $GPG_KEY
+echo "deb [signed-by=$GPG_KEY] $REPO_URL mozilla main" > $REPO_PATH
 
 apt-get update
-apt-get install --target-release 'o=LP-PPA-mozillateam' firefox
+apt-get install --target-release mozilla firefox
 rm $REPO_PATH
 
 # Document apt source repo's
-echo "mozillateam $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
-
-# add to global system preferences for firefox locale en_US, because other browsers have en_US local.
-# Default firefox local is en_GB
-echo 'pref("intl.locale.requested","en_US");' >> "/usr/lib/firefox/browser/defaults/preferences/syspref.js"
+echo "mozilla $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
 
 # Download and unpack latest release of geckodriver
 download_url=$(resolve_github_release_asset_url "mozilla/geckodriver" "test(\"linux64.tar.gz$\")" "latest")
