@@ -6,7 +6,7 @@
 # macOS 15
 - OS Version: macOS 15.4.1 (24E263)
 - Kernel Version: Darwin 24.4.0
-- Image Version: 20250421.1300
+- Image Version: 20250428.1341
 
 ## Installed Software
 
@@ -22,7 +22,7 @@
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
 - Kotlin 2.1.10-release-473
-- Node.js 22.14.0
+- Node.js 22.15.0
 - Perl 5.40.2
 - Python3 3.13.3
 - Ruby 3.3.8
@@ -31,18 +31,18 @@
 - Bundler 2.6.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.31
+- Homebrew 4.4.32
 - NPM 10.9.2
 - Pip3 25.0.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.8
-- Vcpkg 2025 (build from commit 0d5cae1530)
+- Vcpkg 2025 (build from commit 96d5fb3de1)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.13
+- Gradle 8.14
 
 ### Utilities
 - 7-Zip 17.05
@@ -54,7 +54,7 @@
 - Curl 8.7.1
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.70.0
+- GitHub CLI 2.71.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.7
@@ -68,14 +68,14 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.26.5
+- AWS CLI 2.27.2
 - AWS SAM CLI 1.137.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.34.44
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.21.0
+- CodeQL Action Bundle 2.21.1
 - Fastlane 2.227.1
 - SwiftFormat 0.55.5
 - Xcbeautify 2.28.0
@@ -87,9 +87,9 @@
 ### Browsers
 - Safari 18.4 (20621.1.15.11.10)
 - SafariDriver 18.4 (20621.1.15.11.10)
-- Google Chrome 135.0.7049.96
-- Google Chrome for Testing 135.0.7049.95
-- ChromeDriver 135.0.7049.95
+- Google Chrome 135.0.7049.115
+- Google Chrome for Testing 135.0.7049.114
+- ChromeDriver 135.0.7049.114
 - Selenium server 4.29.0
 
 #### Environment variables
@@ -102,7 +102,7 @@
 ### Java
 | Version              | Environment Variable |
 | -------------------- | -------------------- |
-| 11.0.26+4            | JAVA_HOME_11_arm64   |
+| 11.0.27+6            | JAVA_HOME_11_arm64   |
 | 17.0.15+6            | JAVA_HOME_17_arm64   |
 | 21.0.7+6.0 (default) | JAVA_HOME_21_arm64   |
 
@@ -121,8 +121,8 @@
 
 #### Node.js
 - 18.20.8
-- 20.19.0
-- 22.14.0
+- 20.19.1
+- 22.15.0
 
 #### Go
 - 1.21.13
