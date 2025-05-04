@@ -4,7 +4,7 @@
 # documentation.
 #
 # https://github.com/microsoft/action-psscriptanalyzer
-# For more information on PSScriptAnalyzer in general, see
+# For more information on PSScriptAnalyzer in general, see @tr4200812
 # https://github.com/PowerShell/PSScriptAnalyzer
 
 name: PSScriptAnalyzer
