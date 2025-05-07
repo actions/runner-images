@@ -31,6 +31,8 @@ echo 'APT::Get::Always-Include-Phased-Updates "true";' > /etc/apt/apt.conf.d/99-
 cat <<EOF >> /etc/apt/apt.conf.d/99bad_proxy
 Acquire::http::Pipeline-Depth 0;
 Acquire::http::No-Cache true;
+Acquire::https::Pipeline-Depth 0;
+Acquire::https::No-Cache true;
 Acquire::BrokenProxy    true;
 EOF
 

@@ -23,7 +23,7 @@ Here are a few things you can do that will increase the likelihood of your pull 
 - Follow the style guide for [Powershell](https://github.com/PoshCode/PowerShellPracticeAndStyle) when writing Windows scripts. There is currently no set style for the Shell scripts that run Linux installs :soon:.
 - Include complete details of why this is needed in the PR description.
 - Keep your change as focused as possible. If there are multiple changes you would like to make that are not dependent upon each other, consider submitting them as separate pull requests.
-- Write [good commit messages](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+- Write [good commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
 - For new tools:
   - Make sure that the tool satisfies the [Software Guidelines](README.md#software-guidelines).
   - Create an issue and get approval from us to add this tool to the image before creating the pull request.
@@ -53,7 +53,7 @@ Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at 
 Use existing scripts such as [github-cli.sh](images/ubuntu/scripts/build/github-cli.sh) as a starting point.
   - Use [helpers](images/ubuntu/scripts/helpers/install.sh) to simplify the installation process.
   - The validation part should `exit 1` if there is any issue with the installation.
-- Add changes to the software report generator `images/ubuntu/scripts/docs-gen/Generate-SoftwareReport.ps1`. The software report generator is used to generate an image's README file, e.g. [Ubuntu2004-Readme.md](images/ubuntu/Ubuntu2004-README.md) and it uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
+- Add changes to the software report generator `images/ubuntu/scripts/docs-gen/Generate-SoftwareReport.ps1`. The software report generator is used to generate an image's README file, e.g. [Ubuntu2204-Readme.md](images/ubuntu/Ubuntu2204-Readme.md)   and it uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
 
 ### macOS
 

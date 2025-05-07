@@ -10,17 +10,12 @@ source $HELPER_SCRIPTS/install.sh
 
 apt-get install ruby-full
 
-# temporary fix for fastlane installation https://github.com/sporkmonger/addressable/issues/541
-if is_ubuntu20; then
-    gem install public_suffix -v 5.1.1
-fi
-
 # Install ruby gems from toolset
 gems_to_install=$(get_toolset_value ".rubygems[] .name")
 if [[ -n "$gems_to_install" ]]; then
     for gem in $gems_to_install; do
         echo "Installing gem $gem"
-        gem install $gem
+        gem install --no-document $gem
     done
 fi
 

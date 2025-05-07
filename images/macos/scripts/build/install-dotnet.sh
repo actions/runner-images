@@ -23,18 +23,12 @@ dotnet_versions=($(get_toolset_value ".dotnet.arch[\"$arch\"].versions | .[]"))
 for dotnet_version in ${dotnet_versions[@]}; do
     release_url="https://raw.githubusercontent.com/dotnet/core/main/release-notes/${dotnet_version}/releases.json"
     releases_json_file=$(download_with_retry "$release_url")
-
-    if [[ $dotnet_version == "6.0" ]]; then
-        args_list+=(
-            $(cat $releases_json_file | jq -r 'first(.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not))')
-        )
-    else
-        args_list+=(
-            $(cat $releases_json_file | \
-            jq -r '.releases[].sdk."version"' | grep -v -E '\-(preview|rc)\d*' | \
-            sort -r | rev | uniq -s 2 | rev)
-        )
-    fi
+    args_list+=(
+        $(cat $releases_json_file | \
+        jq -r '.releases[].sdk."version"' | \
+        grep -v -E '\-(preview|rc)\d*' | \
+        sort -r | rev | uniq -s 2 | rev)
+    )
 done
 
 for ARGS in ${args_list[@]}; do

@@ -1,12 +1,3 @@
-packer {
-  required_plugins {
-    azure = {
-      source  = "github.com/hashicorp/azure"
-      version = "1.4.5"
-    }
-  }
-}
-
 locals {
   managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
 }
@@ -333,7 +324,8 @@ build {
       "${path.root}/../scripts/build/install-android-sdk.sh",
       "${path.root}/../scripts/build/install-pypy.sh",
       "${path.root}/../scripts/build/install-python.sh",
-      "${path.root}/../scripts/build/install-zstd.sh"
+      "${path.root}/../scripts/build/install-zstd.sh",
+      "${path.root}/../scripts/build/install-ninja.sh"
     ]
   }
 

@@ -38,6 +38,3 @@ brew_smart_install curl
 
 echo "Installing wget..."
 brew_smart_install "wget"
-
-# init brew bundle feature
-brew tap Homebrew/bundle

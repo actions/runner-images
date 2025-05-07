@@ -95,6 +95,15 @@ $dotnetToolset = (Get-ToolsetContent).dotnet
 # Download installation script.
 $installScriptPath = Invoke-DownloadWithRetry -Url "https://dot.net/v1/dotnet-install.ps1"
 
+# Visual Studio 2022 pre-creates sdk-manifests/8.0.100 folder, causing dotnet-install to skip manifests creation
+# https://github.com/actions/runner-images/issues/11402
+if ((Test-IsWin22) -or (Test-IsWin25)) {
+    $sdkManifestPath = "C:\Program Files\dotnet\sdk-manifests\8.0.100"
+    if (Test-Path $sdkManifestPath) {
+        Move-Item -Path $sdkManifestPath -Destination $env:TEMP_DIR -ErrorAction Stop
+    }
+}
+
 # Install and warm up dotnet
 foreach ($dotnetVersion in $dotnetToolset.versions) {
     $sdkVersionsToInstall = Get-SDKVersionsToInstall -DotnetVersion $dotnetVersion
@@ -102,6 +111,17 @@ foreach ($dotnetVersion in $dotnetToolset.versions) {
         Install-DotnetSDK -InstallScriptPath $installScriptPath -SDKVersion $sdkVersion -DotnetVersion $dotnetVersion
         if ($dotnetToolset.warmup) {
             Invoke-DotnetWarmup -SDKVersion $sdkVersion
+        }
+    }
+}
+
+# Replace manifests inside sdk-manifests/8.0.100 folder with ones from Visual Studio
+# https://github.com/actions/runner-images/issues/11402
+if ((Test-IsWin22) -or (Test-IsWin25)) {
+    if (Test-Path "${env:TEMP_DIR}\8.0.100") {
+        Get-ChildItem -Path "${env:TEMP_DIR}\8.0.100" | ForEach-Object {
+            Remove-Item -Path "$sdkManifestPath\$($_.BaseName)" -Recurse -Force | Out-Null
+            Move-Item -Path $_.FullName -Destination $sdkManifestPath -Force -ErrorAction Stop
         }
     }
 }
