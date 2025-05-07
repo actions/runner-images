@@ -3,8 +3,28 @@
 ##  Desc:  Install the CodeQL CLI Bundle to the toolcache.
 ################################################################################
 
+# Retrieve the latest major version of the CodeQL Action to use in the base URL for downloading the bundle.
+$releases = Invoke-RestMethod -Uri "https://api.github.com/repos/github/codeql-action/releases"
+
+# Get the release tags starting with v[0-9] and sort them in descending order, then parse the first one to get the major version.
+$latestTag = $releases.tag_name |
+    Where-Object { $_ -match '^v[0-9]' } |
+    Sort-Object { [version]($_ -replace '^v','') } -Descending |
+    Select-Object -First 1
+
+if ([string]::IsNullOrEmpty($latestTag)) {
+    Write-Error "Error: Unable to find the latest major version of the CodeQL Action."
+    exit 1
+}
+if ($latestTag -match '^v([0-9]+)') {
+    $codeqlActionLatestMajorVersion = $matches[1]
+} else {
+    Write-Error "Error: Unable to parse the major version from the latest tag."
+    exit 1
+}
+
 # Retrieve the CLI version of the latest CodeQL bundle.
-$defaults = (Invoke-RestMethod "https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json")
+$defaults = (Invoke-RestMethod "https://raw.githubusercontent.com/github/codeql-action/v$($codeqlActionLatestMajorVersion)/src/defaults.json")
 $cliVersion = $defaults.cliVersion
 $tagName = "codeql-bundle-v" + $cliVersion
 

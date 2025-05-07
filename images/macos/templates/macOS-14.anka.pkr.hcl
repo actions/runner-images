@@ -111,7 +111,6 @@ build {
   provisioner "file" {
     destination = "${local.image_folder}/"
     sources     = [
-      "${path.root}/../assets/xamarin-selector",
       "${path.root}/../scripts/tests",
       "${path.root}/../scripts/docs-gen",
       "${path.root}/../scripts/helpers"
@@ -156,12 +155,10 @@ build {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline          = [
       "mv ${local.image_folder}/docs-gen ${local.image_folder}/software-report",
-      "mv ${local.image_folder}/xamarin-selector ${local.image_folder}/assets",
       "mkdir ~/utils",
       "mv ${local.image_folder}/helpers/confirm-identified-developers-macos14.scpt ~/utils",
       "mv ${local.image_folder}/helpers/invoke-tests.sh ~/utils",
       "mv ${local.image_folder}/helpers/utils.sh ~/utils",
-      "mv ${local.image_folder}/helpers/xamarin-utils.sh ~/utils"
     ]
   }
 
@@ -238,6 +235,7 @@ build {
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts          = [
       "${path.root}/../scripts/build/install-actions-cache.sh",
+      "${path.root}/../scripts/build/install-runner-package.sh",
       "${path.root}/../scripts/build/install-llvm.sh",
       "${path.root}/../scripts/build/install-swiftlint.sh",
       "${path.root}/../scripts/build/install-openjdk.sh",
@@ -247,6 +245,7 @@ build {
       "${path.root}/../scripts/build/install-gcc.sh",
       "${path.root}/../scripts/build/install-cocoapods.sh",
       "${path.root}/../scripts/build/install-android-sdk.sh",
+      "${path.root}/../scripts/build/install-vcpkg.sh",
       "${path.root}/../scripts/build/install-safari.sh",
       "${path.root}/../scripts/build/install-chrome.sh",
       "${path.root}/../scripts/build/install-edge.sh",
