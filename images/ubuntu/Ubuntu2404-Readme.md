@@ -6,7 +6,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.11.0-1012-azure
-- Image Version: 20250420.1.0
+- Image Version: 20250427.1.0
 - Systemd version: 255.4-1ubuntu8.6
 
 ## Installed Software
@@ -21,7 +21,7 @@
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
 - Julia 1.11.5
 - Kotlin 2.1.10-release-473
-- Node.js 20.19.0
+- Node.js 20.19.1
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -30,14 +30,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.3
-- Homebrew 4.4.31
+- Homebrew 4.4.32
 - Miniconda 25.1.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 0d5cae1530)
+- Vcpkg (build from commit 96d5fb3de1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,19 +56,19 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.13
+- Gradle 8.14
 - Lerna 8.2.2
 - Maven 3.9.9
 
 ### Tools
-- Ansible 2.18.4
+- Ansible 2.18.5
 - AzCopy 10.28.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.2.1
 - Bazelisk 1.26.0
 - Bicep 0.34.44
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.0
+- CodeQL Action Bundle 2.21.1
 - Docker Amazon ECR Credential Helper 0.9.1
 - Docker Compose v2 2.27.1
 - Docker-Buildx 0.23.0
@@ -81,19 +81,19 @@ to accomplish this.
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.27.0
-- Kubectl 1.32.3
+- Kubectl 1.33.0
 - Kustomize 5.6.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.34.0
 - n 10.1.0
 - Newman 6.2.1
-- nvm 0.40.2
+- nvm 0.40.3
 - OpenSSL 3.0.13-0ubuntu3.5
 - Packer 1.12.0
 - Parcel 2.14.4
 - Podman 4.9.3
-- Pulumi 3.163.0
+- Pulumi 3.165.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.0
@@ -102,13 +102,13 @@ to accomplish this.
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.26.5
+- AWS CLI 2.27.2
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.137.1
 - Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.70.0
-- Google Cloud CLI 518.0.0
+- GitHub CLI 2.71.2
+- Google Cloud CLI 519.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -142,11 +142,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 135.0.7049.95
-- ChromeDriver 135.0.7049.95
+- Google Chrome 135.0.7049.114
+- ChromeDriver 135.0.7049.114
 - Chromium 135.0.7049.0
-- Microsoft Edge 135.0.3179.85
-- Microsoft Edge WebDriver 135.0.3179.85
+- Microsoft Edge 135.0.3179.98
+- Microsoft Edge WebDriver 135.0.3179.98
 - Selenium server 4.31.0
 - Mozilla Firefox 136.0.4
 - Geckodriver 0.36.0
@@ -192,8 +192,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 18.20.8
-- 20.19.0
-- 22.14.0
+- 20.19.1
+- 22.15.0
 
 #### Python
 - 3.9.22
@@ -290,7 +290,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 6.7.2-1ubuntu2.2             |
 | net-tools              | 2.10-0.1ubuntu4              |
 | netcat                 | 1.226-1ubuntu2               |
-| openssh-client         | 1:9.6p1-3ubuntu13.9          |
+| openssh-client         | 1:9.6p1-3ubuntu13.11         |
 | p7zip-full             | 16.02+transitional.1         |
 | p7zip-rar              | 16.02+transitional.1         |
 | parallel               | 20231122+ds-1                |
@@ -304,7 +304,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | shellcheck             | 0.9.0-1                      |
 | sphinxsearch           | 2.2.11-8build1               |
 | sqlite3                | 3.45.1-1ubuntu2.1            |
-| ssh                    | 1:9.6p1-3ubuntu13.9          |
+| ssh                    | 1:9.6p1-3ubuntu13.11         |
 | sshpass                | 1.09-1                       |
 | sudo                   | 1.9.15p5-3ubuntu5            |
 | swig                   | 4.2.0-2ubuntu1               |

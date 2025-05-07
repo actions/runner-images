@@ -10,7 +10,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 3775
-- Image Version: 20250420.1.0
+- Image Version: 20250427.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -24,7 +24,7 @@
 - Julia 1.10.5
 - Kotlin 2.1.10
 - LLVM 19.1.7
-- Node 22.14.0
+- Node 22.15.0
 - Perl 5.40.0
 - PHP 8.4.6
 - Python 3.9.13
@@ -37,10 +37,10 @@
 - Miniconda 25.1.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.2
 - NuGet 6.13.2.1
-- pip 25.0.1 (python 3.9)
+- pip 25.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 0d5cae1530)
+- Vcpkg (build from commit 96d5fb3de1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -64,7 +64,7 @@
 - Bicep 0.34.44
 - Cabal 3.14.2.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.0
+- CodeQL Action Bundle 2.21.1
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
@@ -74,14 +74,14 @@
 - ImageMagick 7.1.1-47
 - jq 1.7.1
 - Kind 0.27.0
-- Kubectl 1.32.3
+- Kubectl 1.33.0
 - gcc 14.2.0
 - gdb 16.2
 - GNU Binutils 2.44
 - Newman 6.2.1
 - OpenSSL 3.4.1
 - Packer 1.12.0
-- Pulumi 3.163.0
+- Pulumi 3.165.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.5.1
@@ -94,12 +94,12 @@
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.26.5
+- AWS CLI 2.27.2
 - AWS SAM CLI 1.137.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.70.0
+- GitHub CLI 2.71.2
 
 ### Rust Tools
 - Cargo 1.86.0
@@ -112,10 +112,10 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 135.0.7049.96
-- Chrome Driver 135.0.7049.95
-- Microsoft Edge 135.0.3179.85
-- Microsoft Edge Driver 135.0.3179.85
+- Google Chrome 135.0.7049.115
+- Chrome Driver 135.0.7049.114
+- Microsoft Edge 135.0.3179.98
+- Microsoft Edge Driver 135.0.3179.98
 - Mozilla Firefox 137.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -163,8 +163,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 18.20.8
-- 20.19.0
-- 22.14.0
+- 20.19.1
+- 22.15.0
 
 #### Python
 - 3.9.13
@@ -483,7 +483,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.802
+- AWSPowershell: 4.1.807
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.27.0
