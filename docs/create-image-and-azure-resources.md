@@ -49,7 +49,7 @@ In any case, you will need these software installed:
 
   For Linux - install the latest version from your distro's package repo.
 
-  For Windows - download and install it from [here](https://gitforwindows.org/) of use [Chocolatey](https://chocolatey.org/):
+  For Windows - download and install it from [here](https://gitforwindows.org/) or use [Chocolatey](https://chocolatey.org/):
 
   ```powershell
   choco install git -params '"/GitAndUnixToolsOnPath"'
