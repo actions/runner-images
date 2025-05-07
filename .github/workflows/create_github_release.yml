@@ -1,6 +1,6 @@
 name: Create GitHub release
 
-on:
+on:gist.github.com
   repository_dispatch:
     types: [create-github-release]
 
