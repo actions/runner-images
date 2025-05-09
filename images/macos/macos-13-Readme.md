@@ -1,12 +1,11 @@
 | Announcements |
 |-|
 | [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
-| [[macOS 14] Xcode Command Line Tool version will be downgraded to 15.3.0 on macOS14 images](https://github.com/actions/runner-images/issues/11969) |
 ***
 # macOS 13
 - OS Version: macOS 13.7.5 (22H527)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250428.984
+- Image Version: 20250507.1052
 
 ## Installed Software
 
@@ -34,13 +33,13 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.8
-- Homebrew 4.4.32
+- Homebrew 4.5.1
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 25.1 (python 3.13)
+- Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.8
-- Vcpkg 2025 (build from commit 96d5fb3de1)
+- Vcpkg 2025 (build from commit bf1ca0b084)
 - Yarn 1.22.22
 
 ### Project Management
@@ -51,14 +50,14 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.28.1
+- azcopy 10.29.0
 - bazel 8.2.1
 - bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.13.0
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.71.2
+- GitHub CLI 2.72.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.7
@@ -67,21 +66,21 @@
 - Packer 1.12.0
 - pkgconf 2.4.3
 - Unxip 3.1
-- yq 4.45.1
+- yq 4.45.2
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.2
-- AWS SAM CLI 1.137.1
+- AWS CLI 2.27.9
+- AWS SAM CLI 1.138.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.71.0
+- Azure CLI 2.72.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.34.44
+- Bicep CLI 0.35.1
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.21.1
-- Fastlane 2.227.1
-- SwiftFormat 0.55.5
+- CodeQL Action Bundle 2.21.2
+- Fastlane 2.227.2
+- SwiftFormat 0.55.6
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
@@ -92,12 +91,12 @@
 ### Browsers
 - Safari 18.4 (18621.1.15.111.1)
 - SafariDriver 18.4 (18621.1.15.111.1)
-- Google Chrome 135.0.7049.115
-- Google Chrome for Testing 135.0.7049.114
-- ChromeDriver 135.0.7049.114
-- Microsoft Edge 135.0.3179.98
-- Microsoft Edge WebDriver 135.0.3179.98
-- Mozilla Firefox 137.0.2
+- Google Chrome 136.0.7103.93
+- Google Chrome for Testing 136.0.7103.92
+- ChromeDriver 136.0.7103.92
+- Microsoft Edge 136.0.3240.50
+- Microsoft Edge WebDriver 136.0.3240.50
+- Mozilla Firefox 138.0.1
 - geckodriver 0.36.0
 - Selenium server 4.29.0
 
@@ -154,7 +153,7 @@
 - Cargo 1.86.0
 - Rust 1.86.0
 - Rustdoc 1.86.0
-- Rustup 1.28.1
+- Rustup 1.28.2
 
 #### Packages
 - Clippy 0.1.86
@@ -215,8 +214,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
@@ -244,7 +243,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                           |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                              |
-| Android Emulator           | 35.4.9                                                                                                                                                                                                                                                                                                            |
+| Android Emulator           | 35.5.10                                                                                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                |
 | Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                            |
