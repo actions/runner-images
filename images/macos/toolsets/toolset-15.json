@@ -4,6 +4,17 @@
         "x64": {
             "versions": [
                 {
+                    "link": "16.4_beta", 
+                    "version": "16.4-Beta+16F1t",
+                    "sha256": "2386a1667efb7022080fe0e42b91be1cdd7715202df82e81abacc6518385a029",
+                    "symlinks": ["16.4"],
+                    "install_runtimes": [
+                        { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4", "22F5067a"] },
+                        { "watchOS": ["11.0", "11.1", "11.2", "11.4", "22T5566a"] },
+                        { "tvOS": ["18.0", "18.1", "18.2", "18.4", "22L5565a"] }
+                    ]
+                },
+                {
                     "link": "16.3", 
                     "version": "16.3+16E140",
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
@@ -31,17 +42,23 @@
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
                     "install_runtimes": "none"
-                },
-                {
-                    "link": "15.4",
-                    "version": "15.4.0+15F31d",
-                    "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a",
-                    "install_runtimes": "default"
                 }
             ]
         },
         "arm64":{
             "versions": [
+                {
+                    "link": "16.4_beta", 
+                    "version": "16.4-Beta+16F1t",
+                    "sha256": "2386a1667efb7022080fe0e42b91be1cdd7715202df82e81abacc6518385a029",
+                    "symlinks": ["16.4"],
+                    "install_runtimes": [
+                        { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4", "22F5067a"] },
+                        { "watchOS": ["11.0", "11.1", "11.2", "11.4", "22T5566a"] },
+                        { "tvOS": ["18.0", "18.1", "18.2", "18.4", "22L5565a"] },
+                        { "visionOS": ["2.0", "2.1", "2.2", "2.3", "2.4", "22O5467a"] }
+                    ]
+                },
                 {
                     "link": "16.3", 
                     "version": "16.3+16E140",
@@ -71,12 +88,6 @@
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
                     "install_runtimes": "none"
-                },
-                {
-                    "link": "15.4",
-                    "version": "15.4.0+15F31d",
-                    "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a",
-                    "install_runtimes": "default"
                 }
             ]
         }
