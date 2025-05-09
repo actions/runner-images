@@ -1,16 +1,16 @@
 | Announcements |
 |-|
-| [macOS 15 (Sequoia) will be generally available in GitHub Actions and Azure DevOps from April, 08](https://github.com/actions/runner-images/issues/11486) |
+| [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
 ***
 # macOS 13
 - OS Version: macOS 13.7.5 (22H527)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250407.1029
+- Image Version: 20250505.1136
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.407, 9.0.102, 9.0.202
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.408, 9.0.102, 9.0.203
 - Bash 3.2.57(1)-release
 - Clang/LLVM 14.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -23,38 +23,38 @@
 - Kotlin 2.1.10-release-473
 - Mono 6.12.0.188
 - Node.js 20.19.0
-- Perl 5.40.1
-- Python3 3.13.2
-- Ruby 3.3.7
+- Perl 5.40.2
+- Python3 3.13.3
+- Ruby 3.3.8
 
 ### Package Management
-- Bundler 2.6.7
+- Bundler 2.6.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.4.27
+- Homebrew 4.5.0
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 25.0 (python 3.13)
+- Pip3 25.0.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.6.7
+- RubyGems 3.6.8
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.13
+- Gradle 8.14
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.28.1
-- bazel 8.1.1
-- bazelisk 1.25.0
+- azcopy 10.29.0
+- bazel 8.2.1
+- bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.69.0
+- GitHub CLI 2.72.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.7
@@ -63,21 +63,21 @@
 - Packer 1.12.0
 - pkgconf 2.4.3
 - Unxip 3.1
-- yq 4.45.1
+- yq 4.45.2
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.25.11
-- AWS SAM CLI 1.136.0
+- AWS CLI 2.27.7
+- AWS SAM CLI 1.138.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.34.44
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.20.7
-- Fastlane 2.227.0
-- SwiftFormat 0.55.5
+- CodeQL Action Bundle 2.21.2
+- Fastlane 2.227.1
+- SwiftFormat 0.55.6
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
@@ -87,9 +87,9 @@
 ### Browsers
 - Safari 18.4 (18621.1.15.111.1)
 - SafariDriver 18.4 (18621.1.15.111.1)
-- Google Chrome 135.0.7049.42
-- Google Chrome for Testing 135.0.7049.42
-- ChromeDriver 135.0.7049.42
+- Google Chrome 136.0.7103.49
+- Google Chrome for Testing 136.0.7103.49
+- ChromeDriver 136.0.7103.49
 - Selenium server 4.29.0
 
 #### Environment variables
@@ -102,27 +102,27 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 11.0.26+4           | JAVA_HOME_11_arm64   |
-| 17.0.14+7 (default) | JAVA_HOME_17_arm64   |
-| 21.0.6+7.0          | JAVA_HOME_21_arm64   |
+| 11.0.27+6           | JAVA_HOME_11_arm64   |
+| 17.0.15+6 (default) | JAVA_HOME_17_arm64   |
+| 21.0.7+6.0          | JAVA_HOME_21_arm64   |
 
 ### Cached Tools
 
 #### Ruby
 - 3.1.7
 - 3.2.8
-- 3.3.7
-- 3.4.2
+- 3.3.8
+- 3.4.3
 
 #### Python
 - 3.11.9
-- 3.12.9
-- 3.13.2
+- 3.12.10
+- 3.13.3
 
 #### Node.js
 - 18.20.8
-- 20.19.0
-- 22.14.0
+- 20.19.1
+- 22.15.0
 
 #### Go
 - 1.21.13
@@ -227,13 +227,13 @@
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                              |
 | Android Emulator           | 35.4.9                                                                                                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                |
-| Android SDK Platforms      | android-36 (rev 1)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
+| Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                            |
 | CMake                      | 3.31.5                                                                                                                                                                                                                                                                                                            |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                |
-| NDK                        | 26.3.11579264 (default)<br>27.2.12479018<br>28.0.13004108                                                                                                                                                                                                                                                         |
+| NDK                        | 26.3.11579264 (default)<br>27.2.12479018<br>28.1.13356709                                                                                                                                                                                                                                                         |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -241,7 +241,7 @@
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.0.13004108 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.1.13356709 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
