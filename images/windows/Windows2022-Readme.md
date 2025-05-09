@@ -10,7 +10,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 3561
-- Image Version: 20250427.1.0
+- Image Version: 20250504.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -19,7 +19,7 @@
 
 ### Language and Runtime
 - Bash 5.2.37(1)-release
-- Go 1.21.13
+- Go 1.24.2
 - Julia 1.10.5
 - Kotlin 2.1.10
 - LLVM 18.1.8
@@ -33,13 +33,13 @@
 - Chocolatey 2.4.3
 - Composer 2.8.8
 - Helm 3.17.2
-- Miniconda 25.1.1 (pre-installed on the image but not added to PATH)
+- Miniconda 25.3.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.13.2.1
-- pip 25.1 (python 3.9)
+- pip 25.1.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.2.33
-- Vcpkg (build from commit 96d5fb3de1)
+- Vcpkg (build from commit 41c447cc21)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -50,20 +50,20 @@
 
 ### Project Management
 - Ant 1.10.15
-- Gradle 8.13
+- Gradle 8.14
 - Maven 3.9.9
 - sbt 1.10.11
 
 ### Tools
 - 7zip 24.09
 - aria2 1.37.0
-- azcopy 10.28.1
+- azcopy 10.29.0
 - Bazel 8.2.1
 - Bazelisk 1.26.0
-- Bicep 0.34.44
+- Bicep 0.35.1
 - Cabal 3.14.2.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.1
+- CodeQL Action Bundle 2.21.2
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
@@ -83,7 +83,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.12.0
-- Pulumi 3.165.0
+- Pulumi 3.167.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.5.1
@@ -92,18 +92,18 @@
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.14.1.8722
-- yamllint 1.37.0
+- yamllint 1.37.1
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.271
-- AWS CLI 2.27.2
-- AWS SAM CLI 1.137.1
+- Alibaba Cloud CLI 3.0.272
+- AWS CLI 2.27.7
+- AWS SAM CLI 1.138.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.71.2
+- GitHub CLI 2.72.0
 
 ### Rust Tools
 - Cargo 1.86.0
@@ -120,14 +120,14 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 135.0.7049.115
-- Chrome Driver 135.0.7049.114
-- Microsoft Edge 135.0.3179.98
-- Microsoft Edge Driver 135.0.3179.98
-- Mozilla Firefox 137.0.2
+- Google Chrome 136.0.7103.49
+- Chrome Driver 136.0.7103.49
+- Microsoft Edge 136.0.3240.50
+- Microsoft Edge Driver 136.0.3240.50
+- Mozilla Firefox 138.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.31.0
+- Selenium server 4.32.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -165,13 +165,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Tools
 
 #### Go
-- 1.20.14
-- 1.21.13
 - 1.22.12
 - 1.23.8
+- 1.24.2
 
 #### Node.js
-- 16.20.2
 - 18.20.8
 - 20.19.1
 - 22.15.0
@@ -509,7 +507,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.807
+- AWSPowershell: 4.1.812
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.27.0
