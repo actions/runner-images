@@ -5,7 +5,7 @@
 # macOS 15
 - OS Version: macOS 15.4.1 (24E263)
 - Kernel Version: Darwin 24.4.0
-- Image Version: 20250428.1214
+- Image Version: 20250506.1260
 
 ## Installed Software
 
@@ -32,12 +32,12 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.8
-- Homebrew 4.4.32
+- Homebrew 4.5.0
 - NPM 10.9.2
-- Pip3 25.1 (python 3.13)
+- Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.8
-- Vcpkg 2025 (build from commit 96d5fb3de1)
+- Vcpkg 2025 (build from commit d8ad13c401)
 - Yarn 1.22.22
 
 ### Project Management
@@ -48,14 +48,14 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.28.1
+- azcopy 10.29.0
 - bazel 8.2.1
 - bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.13.0
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.71.2
+- GitHub CLI 2.72.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.7
@@ -64,21 +64,21 @@
 - Packer 1.12.0
 - pkgconf 2.4.3
 - Unxip 3.1
-- yq 4.45.1
+- yq 4.45.2
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.2
-- AWS SAM CLI 1.137.1
+- AWS CLI 2.27.8
+- AWS SAM CLI 1.138.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.34.44
+- Bicep CLI 0.35.1
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.21.1
-- Fastlane 2.227.1
-- SwiftFormat 0.55.5
+- CodeQL Action Bundle 2.21.2
+- Fastlane 2.227.2
+- SwiftFormat 0.55.6
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 16.3.0.0.1.1742442376
 - Xcodes 1.6.0
@@ -89,12 +89,12 @@
 ### Browsers
 - Safari 18.4 (20621.1.15.11.10)
 - SafariDriver 18.4 (20621.1.15.11.10)
-- Google Chrome 135.0.7049.115
-- Google Chrome for Testing 135.0.7049.114
-- ChromeDriver 135.0.7049.114
-- Microsoft Edge 135.0.3179.98
-- Microsoft Edge WebDriver 135.0.3179.98
-- Mozilla Firefox 137.0.2
+- Google Chrome 136.0.7103.49
+- Google Chrome for Testing 136.0.7103.49
+- ChromeDriver 136.0.7103.49
+- Microsoft Edge 136.0.3240.50
+- Microsoft Edge WebDriver 136.0.3240.50
+- Mozilla Firefox 138.0.1
 - geckodriver 0.36.0
 - Selenium server 4.29.0
 
@@ -142,7 +142,7 @@
 - Cargo 1.86.0
 - Rust 1.86.0
 - Rustdoc 1.86.0
-- Rustup 1.28.1
+- Rustup 1.28.2
 
 #### Packages
 - Clippy 0.1.86
