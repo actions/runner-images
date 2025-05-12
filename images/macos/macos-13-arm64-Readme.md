@@ -5,7 +5,7 @@
 # macOS 13
 - OS Version: macOS 13.7.5 (22H527)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250505.1136
+- Image Version: 20250512.1166
 
 ## Installed Software
 
@@ -31,7 +31,7 @@
 - Bundler 2.6.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.0
+- Homebrew 4.5.2
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.0.1 (python 3.13)
@@ -63,20 +63,20 @@
 - Packer 1.12.0
 - pkgconf 2.4.3
 - Unxip 3.1
-- yq 4.45.2
+- yq 4.45.4
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.7
+- AWS CLI 2.27.12
 - AWS SAM CLI 1.138.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.71.0
+- Azure CLI 2.72.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.34.44
+- Bicep CLI 0.35.1
 - Cmake 3.31.6
 - CodeQL Action Bundle 2.21.2
-- Fastlane 2.227.1
+- Fastlane 2.227.2
 - SwiftFormat 0.55.6
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
@@ -87,9 +87,9 @@
 ### Browsers
 - Safari 18.4 (18621.1.15.111.1)
 - SafariDriver 18.4 (18621.1.15.111.1)
-- Google Chrome 136.0.7103.49
-- Google Chrome for Testing 136.0.7103.49
-- ChromeDriver 136.0.7103.49
+- Google Chrome 136.0.7103.93
+- Google Chrome for Testing 136.0.7103.92
+- ChromeDriver 136.0.7103.92
 - Selenium server 4.29.0
 
 #### Environment variables
@@ -125,16 +125,15 @@
 - 22.15.0
 
 #### Go
-- 1.21.13
 - 1.22.12
-- 1.23.8
-- 1.24.2
+- 1.23.9
+- 1.24.3
 
 ### Rust Tools
 - Cargo 1.86.0
 - Rust 1.86.0
 - Rustdoc 1.86.0
-- Rustup 1.28.1
+- Rustup 1.28.2
 
 #### Packages
 - Clippy 0.1.86
@@ -195,8 +194,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
@@ -225,7 +224,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                           |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                              |
-| Android Emulator           | 35.4.9                                                                                                                                                                                                                                                                                                            |
+| Android Emulator           | 35.5.10                                                                                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                |
 | Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                            |
