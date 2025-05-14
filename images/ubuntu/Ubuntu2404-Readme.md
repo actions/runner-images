@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu] Go version 1.21 will be removed from the images on 2025-06-13 and updated to the latest version 1.24 ,setting it as the default.](https://github.com/actions/runner-images/issues/12176) |
+| [[Ubuntu 22.04 and Windows 2022] Default Nodejs version will be set to 20 on 2025-06-02](https://github.com/actions/runner-images/issues/12143) |
 | [[Windows, Ubuntu] Python 3.8.x will be removed from 2025-06-06](https://github.com/actions/runner-images/issues/12034) |
-| [[Ubuntu] Breaking change : Docker Engine Version 26.* will be updated to Docker Engine Version 28* from 2025-05-09](https://github.com/actions/runner-images/issues/11766) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
-- Kernel Version: 6.11.0-1012-azure
-- Image Version: 20250427.1.0
+- Kernel Version: 6.11.0-1014-azure
+- Image Version: 20250511.1.0
 - Systemd version: 255.4-1ubuntu8.6
 
 ## Installed Software
@@ -30,14 +31,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.3
-- Homebrew 4.4.32
-- Miniconda 25.1.1
+- Homebrew 4.5.2
+- Miniconda 25.3.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 96d5fb3de1)
+- Vcpkg (build from commit ca846b2127)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,19 +63,19 @@ to accomplish this.
 
 ### Tools
 - Ansible 2.18.5
-- AzCopy 10.28.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.29.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.2.1
 - Bazelisk 1.26.0
-- Bicep 0.34.44
+- Bicep 0.35.1
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.1
+- CodeQL Action Bundle 2.21.2
 - Docker Amazon ECR Credential Helper 0.9.1
-- Docker Compose v2 2.27.1
+- Docker Compose v2 2.35.1
 - Docker-Buildx 0.23.0
-- Docker Client 26.1.3
-- Docker Server 26.1.3
-- Fastlane 2.227.1
+- Docker Client 28.0.4
+- Docker Server 28.0.4
+- Fastlane 2.227.2
 - Git 2.49.0
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
@@ -93,22 +94,22 @@ to accomplish this.
 - Packer 1.12.0
 - Parcel 2.14.4
 - Podman 4.9.3
-- Pulumi 3.165.0
+- Pulumi 3.169.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
-- yamllint 1.37.0
-- yq 4.45.1
+- yamllint 1.37.1
+- yq 4.45.4
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.27.2
+- AWS CLI 2.27.12
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.137.1
-- Azure CLI 2.71.0
+- AWS SAM CLI 1.138.0
+- Azure CLI 2.72.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.71.2
-- Google Cloud CLI 519.0.0
+- GitHub CLI 2.72.0
+- Google Cloud CLI 521.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -121,7 +122,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.3.6
 - Composer 2.8.8
-- PHPUnit 8.5.41
+- PHPUnit 8.5.42
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -136,19 +137,19 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo 1.86.0
 - Rust 1.86.0
 - Rustdoc 1.86.0
-- Rustup 1.28.1
+- Rustup 1.28.2
 
 #### Packages
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 135.0.7049.114
-- ChromeDriver 135.0.7049.114
-- Chromium 135.0.7049.0
-- Microsoft Edge 135.0.3179.98
-- Microsoft Edge WebDriver 135.0.3179.98
-- Selenium server 4.31.0
-- Mozilla Firefox 136.0.4
+- Google Chrome 136.0.7103.92
+- ChromeDriver 136.0.7103.92
+- Chromium 136.0.7103.0
+- Microsoft Edge 136.0.3240.64
+- Microsoft Edge WebDriver 136.0.3240.64
+- Selenium server 4.32.0
+- Mozilla Firefox 138.0.1
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -167,7 +168,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.8
+- PostgreSQL 16.9
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -175,7 +176,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.41-0ubuntu0.24.04.1
+- MySQL 8.0.42-0ubuntu0.24.04.1
 ```
 User: root
 Password: root
@@ -188,7 +189,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.21.13
 - 1.22.12
-- 1.23.8
+- 1.23.9
 
 #### Node.js
 - 18.20.8
@@ -215,7 +216,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 12.1.0
-- Microsoft.Graph: 2.27.0
+- Microsoft.Graph: 2.28.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
