@@ -1,11 +1,21 @@
 | Announcements |
-|-|
+|
+|<<<<<<< patch-4
 | [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
 ***
 # macOS 15
 - OS Version: macOS 15.4.1 (24E263)
 - Kernel Version: Darwin 24.4.0
 - Image Version: 20250428.1214
+|=======
+| [[macOS 14] Xcode Command Line Tool version will be downgraded to 15.3.0 on macOS14 images](https://github.com/actions/runner-images/issues/11969) |
+| [macOS 15 (Sequoia) will be generally available in GitHub Actions and Azure DevOps from April, 10](https://github.com/actions/runner-images/issues/11486) |
+***
+# macOS 15
+- OS Version: macOS 15.4 (24E248)
+- Kernel Version: Darwin 24.4.0
+- Image Version: 20250408.1132
+|>>>>>>> revert-2-main
 
 ## Installed Software
 
@@ -28,16 +38,28 @@
 - Ruby 3.3.8
 
 ### Package Management
+|<<<<<<< patch-4
 - Bundler 2.6.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.8
 - Homebrew 4.4.32
+|=======
+- Bundler 2.6.7
+- Carthage 0.40.0
+- CocoaPods 1.16.2
+- Composer 2.8.8
+- Homebrew 4.4.29
+|>>>>>>> revert-2-main
 - NPM 10.9.2
 - Pip3 25.1 (python 3.13)
 - Pipx 1.7.1
+|<<<<<<< patch-4
 - RubyGems 3.6.8
 - Vcpkg 2025 (build from commit 96d5fb3de1)
+|=======
+- RubyGems 3.6.7
+|>>>>>>> revert-2-main
 - Yarn 1.22.22
 
 ### Project Management
@@ -69,32 +91,55 @@
 - Ninja 1.12.1
 
 ### Tools
+|<<<<<<< patch-4
 - AWS CLI 2.27.2
 - AWS SAM CLI 1.137.1
+|=======
+- AWS CLI 2.25.12
+- AWS SAM CLI 1.136.0
+|>>>>>>> revert-2-main
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.71.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.34.44
 - Cmake 3.31.6
+|<<<<<<< patch-4
 - CodeQL Action Bundle 2.21.1
 - Fastlane 2.227.1
+|=======
+- CodeQL Action Bundle 2.21.0
+- Fastlane 2.227.0
+|>>>>>>> revert-2-main
 - SwiftFormat 0.55.5
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 16.3.0.0.1.1742442376
 - Xcodes 1.6.0
 
 ### Linters
+|<<<<<<< patch-4
 - SwiftLint 0.59.1
+|=======
+- SwiftLint 0.59.0
+|>>>>>>> revert-2-main
 
 ### Browsers
 - Safari 18.4 (20621.1.15.11.10)
 - SafariDriver 18.4 (20621.1.15.11.10)
+|<<<<<<< patch-4
 - Google Chrome 135.0.7049.115
 - Google Chrome for Testing 135.0.7049.114
 - ChromeDriver 135.0.7049.114
 - Microsoft Edge 135.0.3179.98
 - Microsoft Edge WebDriver 135.0.3179.98
 - Mozilla Firefox 137.0.2
+|=======
+- Google Chrome 135.0.7049.42
+- Google Chrome for Testing 135.0.7049.42
+- ChromeDriver 135.0.7049.42
+- Microsoft Edge 135.0.3179.54
+- Microsoft Edge WebDriver 135.0.3179.54
+- Mozilla Firefox 137.0
+|>>>>>>> revert-2-main
 - geckodriver 0.36.0
 - Selenium server 4.29.0
 
