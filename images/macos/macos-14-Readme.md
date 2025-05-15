@@ -1,16 +1,17 @@
 | Announcements |
 |-|
+| [[macOS] Xcode 15.4 will be removed from macOS15 images on  May 29th, 2025](https://github.com/actions/runner-images/issues/12195) |
 | [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
 ***
 # macOS 14
 - OS Version: macOS 14.7.5 (23H527)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250507.1186
+- Image Version: 20250513.1230
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.408, 9.0.102, 9.0.203
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.409, 9.0.102, 9.0.203, 9.0.300
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -24,22 +25,22 @@
 - Mono 6.12.0.188
 - Node.js 20.19.0
 - Perl 5.40.2
-- PHP 8.4.6
+- PHP 8.4.7
 - Python3 3.13.3
 - Ruby 3.3.8
 
 ### Package Management
-- Bundler 2.6.8
+- Bundler 2.6.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.8
-- Homebrew 4.5.1
+- Composer 2.8.9
+- Homebrew 4.5.2
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.6.8
-- Vcpkg 2025 (build from commit bf1ca0b084)
+- RubyGems 3.6.9
+- Vcpkg 2025 (build from commit dbe35ceb30)
 - Yarn 1.22.22
 
 ### Project Management
@@ -66,12 +67,12 @@
 - Packer 1.12.0
 - pkgconf 2.4.3
 - Unxip 3.1
-- yq 4.45.2
+- yq 4.45.4
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.9
+- AWS CLI 2.27.14
 - AWS SAM CLI 1.138.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.72.0
@@ -80,7 +81,7 @@
 - Cmake 3.31.6
 - CodeQL Action Bundle 2.21.2
 - Fastlane 2.227.2
-- SwiftFormat 0.55.6
+- SwiftFormat 0.56.0
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.0
@@ -89,14 +90,14 @@
 - SwiftLint 0.59.1
 
 ### Browsers
-- Safari 18.4 (19621.1.15.111.1)
-- SafariDriver 18.4 (19621.1.15.111.1)
+- Safari 18.5 (19621.2.5.18.1)
+- SafariDriver 18.5 (19621.2.5.18.1)
 - Google Chrome 136.0.7103.93
 - Google Chrome for Testing 136.0.7103.92
 - ChromeDriver 136.0.7103.92
-- Microsoft Edge 136.0.3240.50
-- Microsoft Edge WebDriver 136.0.3240.50
-- Mozilla Firefox 138.0.1
+- Microsoft Edge 136.0.3240.64
+- Microsoft Edge WebDriver 136.0.3240.64
+- Mozilla Firefox 138.0.3
 - geckodriver 0.36.0
 - Selenium server 4.29.0
 
@@ -136,10 +137,9 @@
 - 22.15.0
 
 #### Go
-- 1.21.13
 - 1.22.12
-- 1.23.8
-- 1.24.2
+- 1.23.9
+- 1.24.3
 
 ### Rust Tools
 - Cargo 1.86.0
@@ -152,7 +152,7 @@
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.7
+- PowerShell 7.4.10
 
 #### PowerShell Modules
 - Az: 12.4.0
