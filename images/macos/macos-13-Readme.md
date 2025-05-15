@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[macOS] Xcode 15.4 will be removed from macOS15 images on  May 29th, 2025](https://github.com/actions/runner-images/issues/12195) |
 | [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
 ***
 # macOS 13
 - OS Version: macOS 13.7.5 (22H527)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250507.1052
+- Image Version: 20250512.1078
 
 ## Installed Software
 
@@ -24,7 +25,7 @@
 - Mono 6.12.0.188
 - Node.js 20.19.0
 - Perl 5.40.2
-- PHP 8.4.6
+- PHP 8.4.7
 - Python3 3.13.3
 - Ruby 3.3.8
 
@@ -33,13 +34,13 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.8
-- Homebrew 4.5.1
+- Homebrew 4.5.2
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.8
-- Vcpkg 2025 (build from commit bf1ca0b084)
+- Vcpkg 2025 (build from commit ca846b2127)
 - Yarn 1.22.22
 
 ### Project Management
@@ -66,12 +67,12 @@
 - Packer 1.12.0
 - pkgconf 2.4.3
 - Unxip 3.1
-- yq 4.45.2
+- yq 4.45.4
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.9
+- AWS CLI 2.27.12
 - AWS SAM CLI 1.138.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.72.0
@@ -94,8 +95,8 @@
 - Google Chrome 136.0.7103.93
 - Google Chrome for Testing 136.0.7103.92
 - ChromeDriver 136.0.7103.92
-- Microsoft Edge 136.0.3240.50
-- Microsoft Edge WebDriver 136.0.3240.50
+- Microsoft Edge 136.0.3240.64
+- Microsoft Edge WebDriver 136.0.3240.64
 - Mozilla Firefox 138.0.1
 - geckodriver 0.36.0
 - Selenium server 4.29.0
@@ -144,10 +145,9 @@
 - 22.15.0
 
 #### Go
-- 1.21.13
 - 1.22.12
-- 1.23.8
-- 1.24.2
+- 1.23.9
+- 1.24.3
 
 ### Rust Tools
 - Cargo 1.86.0
