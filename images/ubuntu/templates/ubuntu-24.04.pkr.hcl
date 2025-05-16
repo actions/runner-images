@@ -134,15 +134,61 @@ variable "vm_size" {
   default = "Standard_D4s_v4"
 }
 
+variable "image_offer" {
+  type    = string
+  default = "ubuntu-24_04-lts"
+}
+
+variable "image_publisher" {
+  type    = string
+  default = "canonical"
+}
+
+variable "image_sku" {
+  type    = string
+  default = "server-gen1"
+}
+
+variable "gallery_name" {
+  type    = string
+  default = "${env("GALLERY_NAME")}"
+}
+
+variable "gallery_resource_group_name" {
+  type    = string
+  default = "${env("GALLERY_RESOURCE_GROUP_NAME")}"
+}
+
+variable "gallery_image_name" {
+  type    = string
+  default = "${env("GALLERY_IMAGE_NAME")}"
+}
+
+variable "gallery_image_version" {
+  type    = string
+  default = "${env("GALLERY_IMAGE_VERSION")}"
+}
+
+variable "gallery_storage_account_type" {
+  type    = string
+  default = "${env("GALLERY_STORAGE_ACCOUNT_TYPE")}"
+}
+
+variable "use_azure_cli_auth" {
+  type    = bool
+  default = false
+}
+
 source "azure-arm" "build_image" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
   client_cert_path                       = "${var.client_cert_path}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
-  image_offer                            = "ubuntu-24_04-lts"
-  image_publisher                        = "canonical"
-  image_sku                              = "server-gen1"
+  use_azure_cli_auth                     = var.use_azure_cli_auth
+  image_offer                            = "${var.image_offer}"
+  image_publisher                        = "${var.image_publisher}"
+  image_sku                              = "${var.image_sku}"
   location                               = "${var.location}"
   managed_image_name                     = "${local.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
@@ -156,6 +202,15 @@ source "azure-arm" "build_image" {
   virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
   virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
   vm_size                                = "${var.vm_size}"
+
+  shared_image_gallery_destination {
+    subscription                         = var.subscription_id
+    gallery_name                         = var.gallery_name
+    resource_group                       = var.gallery_resource_group_name
+    image_name                           = var.gallery_image_name
+    image_version                        = var.gallery_image_version
+    storage_account_type                 = var.gallery_storage_account_type
+  }
 
   dynamic "azure_tag" {
     for_each = var.azure_tags
