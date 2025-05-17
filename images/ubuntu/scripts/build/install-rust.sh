@@ -11,13 +11,10 @@ source $HELPER_SCRIPTS/os.sh
 export RUSTUP_HOME=/etc/skel/.rustup
 export CARGO_HOME=/etc/skel/.cargo
 
-curl -fsSL https://sh.rustup.rs | sh -s -- -y --default-toolchain=stable --profile=minimal
+curl -fsSL https://sh.rustup.rs | sh -s -- -y --default-toolchain=stable
 
 # Initialize environment variables
 source $CARGO_HOME/env
-
-# Install common tools
-rustup component add rustfmt clippy
 
 if is_ubuntu22; then
     cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
