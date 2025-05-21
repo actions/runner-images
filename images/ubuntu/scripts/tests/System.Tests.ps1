@@ -6,3 +6,10 @@ Describe "Disk free space" -Skip:(-not [String]::IsNullOrEmpty($env:AGENT_NAME) 
         $freeSpace | Should -BeGreaterOrEqual 17GB
     }
 }
+
+Describe "fwupd removed" -Skip:(-not [String]::IsNullOrEmpty($env:AGENT_NAME) -or -not [String]::IsNullOrEmpty($env:RUNNER_NAME)) {
+    It "Is not present on box" {
+        $fwupdmgrCommand = Get-Command fwupdmgr -ErrorAction SilentlyContinue
+        $fwupdmgrCommand | Should -BeNullOrEmpty
+    }
+}
