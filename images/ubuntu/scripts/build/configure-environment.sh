@@ -61,15 +61,16 @@ sed -i 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news
 
 # Remove fwupd if installed. We're running on VMs in Azure and the fwupd package is not needed.
 # Leaving it enable means periodic refreshes show in network traffic and firewall logs
-if dpkg -l | grep -q fwupd; then
-    echo "Removing fwupd package..."
-    apt-get purge -y fwupd
+# Check if fwupd-refresh.timer exists in systemd
+if systemctl list-unit-files fwupd-refresh.timer &>/dev/null; then
+    echo "Masking fwupd-refresh.timer..."
+    systemctl mask fwupd-refresh.timer
 fi
 
+# This is a legacy check, leaving for earlier versions of Ubuntu
 # If fwupd config still exists, disable the motd updates
 if [[ -f "/etc/fwupd/daemon.conf" ]]; then
     sed -i 's/UpdateMotd=true/UpdateMotd=false/g' /etc/fwupd/daemon.conf
-    systemctl mask fwupd-refresh.timer
 fi
 
 # Disable to load providers
