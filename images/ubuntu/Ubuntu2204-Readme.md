@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu] Go version 1.21 will be removed from the images on 2025-06-13 and updated to the latest version 1.24 ,setting it as the default.](https://github.com/actions/runner-images/issues/12176) |
+| [[Ubuntu 22.04 and Windows 2022] Default Nodejs version will be set to 20 on 2025-06-02](https://github.com/actions/runner-images/issues/12143) |
 | [[Windows, Ubuntu] Python 3.8.x will be removed from 2025-06-06](https://github.com/actions/runner-images/issues/12034) |
-| [[Ubuntu] Breaking change : Docker Engine Version 26.* will be updated to Docker Engine Version 28* from 2025-05-09](https://github.com/actions/runner-images/issues/11766) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1027-azure
-- Image Version: 20250504.1.0
+- Image Version: 20250511.1.0
 - Systemd version: 249.11-0ubuntu3.15
 
 ## Installed Software
@@ -32,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.17.3
-- Homebrew 4.5.0
+- Homebrew 4.5.2
 - Miniconda 25.3.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -40,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 41c447cc21)
+- Vcpkg (build from commit ca846b2127)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -79,12 +80,12 @@ to accomplish this.
 - Docker-Buildx 0.23.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.227.1
+- Fastlane 2.227.2
 - Git 2.49.0
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.6.1
+- Heroku 10.7.0
 - jq 1.6
 - Kind 0.27.0
 - Kubectl 1.33.0
@@ -100,30 +101,30 @@ to accomplish this.
 - Packer 1.12.0
 - Parcel 2.14.4
 - Podman 3.4.4
-- Pulumi 3.166.0
+- Pulumi 3.169.0
 - R 4.5.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.11.4
 - yamllint 1.37.1
-- yq 4.45.2
+- yq 4.45.4
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.272
-- AWS CLI 2.27.7
+- Alibaba Cloud CLI 3.0.275
+- AWS CLI 2.27.12
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.138.0
-- Azure CLI 2.71.0
+- Azure CLI 2.72.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.72.0
-- Google Cloud CLI 520.0.0
-- Netlify CLI 20.1.1
-- OpenShift CLI 4.18.11
+- Google Cloud CLI 521.0.0
+- Netlify CLI 21.2.1
+- OpenShift CLI 4.18.12
 - ORAS CLI 1.2.3
-- Vercel CLI 41.7.0
+- Vercel CLI 41.7.4
 
 ### Java
 | Version             | Environment Variable |
@@ -151,7 +152,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo 1.86.0
 - Rust 1.86.0
 - Rustdoc 1.86.0
-- Rustup 1.28.1
+- Rustup 1.28.2
 
 #### Packages
 - Bindgen 0.71.1
@@ -162,11 +163,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 136.0.7103.59
-- ChromeDriver 136.0.7103.49
+- Google Chrome 136.0.7103.92
+- ChromeDriver 136.0.7103.92
 - Chromium 136.0.7103.0
-- Microsoft Edge 136.0.3240.50
-- Microsoft Edge WebDriver 136.0.3240.50
+- Microsoft Edge 136.0.3240.64
+- Microsoft Edge WebDriver 136.0.3240.64
 - Selenium server 4.32.0
 - Mozilla Firefox 136.0.4
 - Geckodriver 0.36.0
@@ -187,7 +188,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.37.2
 
 #### PostgreSQL
-- PostgreSQL 14.17
+- PostgreSQL 14.18
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -195,7 +196,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.41-0ubuntu0.22.04.1
+- MySQL 8.0.42-0ubuntu0.22.04.1
 ```
 User: root
 Password: root
@@ -212,7 +213,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.21.13
 - 1.22.12
-- 1.23.8
+- 1.23.9
 
 #### Node.js
 - 18.20.8
@@ -244,7 +245,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 12.1.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.27.0
+- Microsoft.Graph: 2.28.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
@@ -294,7 +295,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:22              | sha256:a1f1274dadd49738bcd4cf552af43354bb781a7e9e3bc984cfeedc55aba2ddd8  | 2025-04-23 |
 | node:22-alpine       | sha256:ad1aedbcc1b0575074a91ac146d6956476c1f9985994810e4ee02efd932a68fd  | 2025-04-23 |
 | ubuntu:20.04         | sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214  | 2025-04-08 |
-| ubuntu:22.04         | sha256:d80997daaa3811b175119350d84305e1ec9129e1799bba0bd1e3120da3ff52c3  | 2025-04-07 |
+| ubuntu:22.04         | sha256:67cadaff1dca187079fce41360d5a7eb6f7dcd3745e53c79ad5efd8563118240  | 2025-04-28 |
 
 ### Installed apt packages
 | Name                   | Version                             |
