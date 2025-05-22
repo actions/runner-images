@@ -1,7 +1,3 @@
-locals {
-  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
-}
-
 variable "allowed_inbound_ip_addresses" {
   type    = list(string)
   default = []
@@ -14,7 +10,7 @@ variable "azure_tags" {
 
 variable "build_resource_group_name" {
   type    = string
-  default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
+  default = "${env("BUILD_RG_NAME")}"
 }
 
 variable "client_cert_path" {
@@ -81,7 +77,7 @@ variable "install_password" {
 
 variable "location" {
   type    = string
-  default = "${env("ARM_RESOURCE_LOCATION")}"
+  default = ""
 }
 
 variable "managed_image_name" {
@@ -156,7 +152,7 @@ variable "gallery_name" {
 
 variable "gallery_resource_group_name" {
   type    = string
-  default = "${env("GALLERY_RESOURCE_GROUP_NAME")}"
+  default = "${env("GALLERY_RG_NAME")}"
 }
 
 variable "gallery_image_name" {
@@ -179,6 +175,16 @@ variable "use_azure_cli_auth" {
   default = false
 }
 
+variable "os_disk_size_gb" {
+  type    = number
+  default = 75
+}
+
+variable "image_os_type" {
+  type    = string
+  default = "Linux"
+}
+
 source "azure-arm" "build_image" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
@@ -190,10 +196,10 @@ source "azure-arm" "build_image" {
   image_publisher                        = "${var.image_publisher}"
   image_sku                              = "${var.image_sku}"
   location                               = "${var.location}"
-  managed_image_name                     = "${local.managed_image_name}"
+  managed_image_name                     = "${var.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
-  os_disk_size_gb                        = "75"
-  os_type                                = "Linux"
+  os_disk_size_gb                        = var.os_disk_size_gb
+  os_type                                = var.image_os_type
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
