@@ -6,3 +6,10 @@ Describe "Disk free space" -Skip:(-not [String]::IsNullOrEmpty($env:AGENT_NAME) 
         $freeSpace | Should -BeGreaterOrEqual 17GB
     }
 }
+
+Describe "fwupd removed" {
+    It "Is not present on box" {
+        $systemctlOutput = & systemctl list-unit-files fwupd-refresh.timer
+        $systemctlOutput | Should -Match "masked"
+    }
+}
