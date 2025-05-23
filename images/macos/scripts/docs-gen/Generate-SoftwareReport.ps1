@@ -112,6 +112,7 @@ $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
 $tools.AddToolVersion("SwiftFormat", $(Get-SwiftFormatVersion))
 $tools.AddToolVersion("Xcbeautify", $(Get-XcbeautifyVersion))
+$tools.AddToolVersion("Ripgrep", $(Get-RipgrepVersion))
 $tools.AddToolVersion("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVersion))
 $tools.AddToolVersion("Xcodes", $(Get-XcodesVersion))
 
