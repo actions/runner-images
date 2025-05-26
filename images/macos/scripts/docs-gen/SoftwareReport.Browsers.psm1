@@ -8,14 +8,13 @@ function Build-BrowserSection {
         [ToolVersionNode]::new("SafariDriver", $(Get-SafariDriverVersion))
         [ToolVersionNode]::new("Google Chrome", $(Get-ChromeVersion))
         [ToolVersionNode]::new("Google Chrome for Testing", $(Get-ChromeForTestingVersion))
-        [ToolVersionNode]::new("ChromeDriver", $(Get-ChromeDriverVersion)) 
+        [ToolVersionNode]::new("ChromeDriver", $(Get-ChromeDriverVersion))
     )
 
     if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64) -and (-not $os.IsSequoiaArm64)) {
         $nodes += @(
             [ToolVersionNode]::new("Microsoft Edge", $(Get-EdgeVersion))
             [ToolVersionNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
-            
         )
     }
 
