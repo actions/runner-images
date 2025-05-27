@@ -446,8 +446,8 @@
         "version": "18"
     },
     "postgresql": {
-        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9",
-        "version": "14"
+        "version": "14",
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
         "version": "2.1.10",
