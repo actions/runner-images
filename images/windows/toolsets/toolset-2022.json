@@ -367,9 +367,7 @@
     },
     "postgresql": {
         "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9",
-        "version": "14",
-        "vcRedistSignature": "8F985BE8FD256085C90A95D3C74580511A1DB975",
-        "installVcRedist": true
+        "version": "14"
     },
     "kotlin": {
         "version": "2.1.10",
