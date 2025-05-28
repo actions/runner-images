@@ -8,7 +8,14 @@ packer {
 }
 
 locals {
-  image_folder = "/Users/${var.vm_username}/image-generation"
+  image_folder       = "/Users/${var.vm_username}/image-generation"
+  stub_script        = "${path.root}/../scripts/build/stub-script.sh"
+  additional_scripts = length(var.additional_scripts) != 0 ? [for s in var.additional_scripts : "${path.root}/../scripts/build/${s}"] : concat(var.additional_scripts, [local.stub_script])
+}
+
+variable "additional_scripts" {
+  type        = list(string)
+  default     = []
 }
 
 variable "builder_type" {
@@ -265,6 +272,12 @@ build {
     environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
     script          = "${path.root}/../scripts/build/Configure-Xcode-Simulators.ps1"
+  }
+
+  provisioner "shell" {
+    environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
+    execute_command  = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    scripts          = local.additional_scripts
   }
 
   provisioner "shell" {
