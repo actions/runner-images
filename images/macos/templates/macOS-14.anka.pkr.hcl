@@ -9,8 +9,7 @@ packer {
 
 locals {
   image_folder       = "/Users/${var.vm_username}/image-generation"
-  stub_script        = "${path.root}/../scripts/build/stub-script.sh"
-  additional_scripts = length(var.additional_scripts) != 0 ? [for s in var.additional_scripts : "${path.root}/../scripts/build/${s}"] : concat(var.additional_scripts, [local.stub_script])
+  additional_scripts = length(var.additional_scripts) != 0 ? [for s in var.additional_scripts : "${path.root}/../scripts/build/${s}"] : ["${path.root}/../scripts/build/stub-script.sh"]
 }
 
 variable "additional_scripts" {
