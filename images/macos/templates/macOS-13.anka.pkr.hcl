@@ -279,7 +279,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
+    environment_vars = ["API_PAT=${var.github_api_pat}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts          = local.additional_scripts
   }
