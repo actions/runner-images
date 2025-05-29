@@ -1,115 +1,4 @@
-
-locals {
-  image_os = "ubuntu22"
-
-  toolset_file_name = "toolset-2204.json"
-
-  image_folder            = "/imagegeneration"
-  helper_script_folder    = "/imagegeneration/helpers"
-  installer_script_folder = "/imagegeneration/installers"
-  imagedata_file          = "/imagegeneration/imagedata.json"
-
-  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
-}
-
-variable "allowed_inbound_ip_addresses" {
-  type    = list(string)
-  default = []
-}
-
-variable "azure_tags" {
-  type    = map(string)
-  default = {}
-}
-
-variable "build_resource_group_name" {
-  type    = string
-  default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
-}
-
-variable "client_cert_path" {
-  type    = string
-  default = "${env("ARM_CLIENT_CERT_PATH")}"
-}
-
-variable "client_id" {
-  type    = string
-  default = "${env("ARM_CLIENT_ID")}"
-}
-
-variable "client_secret" {
-  type      = string
-  default   = "${env("ARM_CLIENT_SECRET")}"
-  sensitive = true
-}
-
-variable "image_version" {
-  type    = string
-  default = "dev"
-}
-
-variable "install_password" {
-  type      = string
-  default   = ""
-  sensitive = true
-}
-
-variable "location" {
-  type    = string
-  default = "${env("ARM_RESOURCE_LOCATION")}"
-}
-
-variable "managed_image_name" {
-  type    = string
-  default = ""
-}
-
-variable "managed_image_resource_group_name" {
-  type    = string
-  default = "${env("ARM_RESOURCE_GROUP")}"
-}
-
-variable "private_virtual_network_with_public_ip" {
-  type    = bool
-  default = false
-}
-
-variable "subscription_id" {
-  type    = string
-  default = "${env("ARM_SUBSCRIPTION_ID")}"
-}
-
-variable "temp_resource_group_name" {
-  type    = string
-  default = "${env("TEMP_RESOURCE_GROUP_NAME")}"
-}
-
-variable "tenant_id" {
-  type    = string
-  default = "${env("ARM_TENANT_ID")}"
-}
-
-variable "virtual_network_name" {
-  type    = string
-  default = "${env("VNET_NAME")}"
-}
-
-variable "virtual_network_resource_group_name" {
-  type    = string
-  default = "${env("VNET_RESOURCE_GROUP")}"
-}
-
-variable "virtual_network_subnet_name" {
-  type    = string
-  default = "${env("VNET_SUBNET")}"
-}
-
-variable "vm_size" {
-  type    = string
-  default = "Standard_D4s_v4"
-}
-
-source "azure-arm" "build_image" {
+source "azure-arm" "ubuntu-minimal_image" {
   location = "${var.location}"
 
   // Auth
@@ -154,7 +43,7 @@ source "azure-arm" "build_image" {
 }
 
 build {
-  sources = ["source.azure-arm.build_image"]
+  sources = ["source.azure-arm.ubuntu-minimal_image"]
 
   // Create folder to store temporary data
   provisioner "shell" {
@@ -221,7 +110,7 @@ build {
 
   // Create /etc/environment, configure waagent etc.
   provisioner "shell" {
-    environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${local.image_os}", "HELPER_SCRIPTS=${local.helper_script_folder}"]
+    environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${local.ubuntu_minimal_image_os}", "HELPER_SCRIPTS=${local.helper_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/../scripts/build/configure-environment.sh"]
   }
