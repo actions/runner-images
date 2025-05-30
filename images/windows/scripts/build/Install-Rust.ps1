@@ -18,7 +18,7 @@ Test-FileChecksum $rustupPath -ExpectedSHA256Sum $distributorFileHash
 #endregion
 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)
-& $rustupPath -y --default-toolchain=stable --profile=minimal
+& $rustupPath -y --default-toolchain=stable
 if ($LASTEXITCODE -ne 0) {
     throw "Rust installation failed with exit code $LASTEXITCODE"
 }
@@ -35,10 +35,6 @@ rustup target add i686-pc-windows-msvc
 rustup target add x86_64-pc-windows-gnu
 
 # Install common tools
-rustup component add rustfmt clippy
-if ($LASTEXITCODE -ne 0) {
-    throw "Rust component installation failed with exit code $LASTEXITCODE"
-}
 if (-not (Test-IsWin25)) {
     cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
     if ($LASTEXITCODE -ne 0) {
