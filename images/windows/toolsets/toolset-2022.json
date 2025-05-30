@@ -343,7 +343,7 @@
         ]
     },
     "node": {
-        "default": "18.*"
+        "default": "20.*"
     },
     "maven": {
         "version": "3.9"
