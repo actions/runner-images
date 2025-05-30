@@ -399,7 +399,11 @@ function Get-XcbeautifyVersion {
     $XcbeautifyVersion = Run-Command "xcbeautify --version"
     return $XcbeautifyVersion
 }
-
+function Get-RipgrepVersion {
+    $versionLine = & rg --version | Select-Object -First 1
+    $version = $versionLine -split ' ' | Select-Object -Index 1
+    return $version
+}
 function Get-XcodesVersion {
     $XcodesVersion = Run-Command "xcodes version"
     return $XcodesVersion
