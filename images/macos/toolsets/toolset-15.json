@@ -31,12 +31,6 @@
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
                     "install_runtimes": "none"
-                },
-                {
-                    "link": "15.4",
-                    "version": "15.4.0+15F31d",
-                    "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a",
-                    "install_runtimes": "default"
                 }
             ]
         },
@@ -71,12 +65,6 @@
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
                     "install_runtimes": "none"
-                },
-                {
-                    "link": "15.4",
-                    "version": "15.4.0+15F31d",
-                    "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a",
-                    "install_runtimes": "default"
                 }
             ]
         }
