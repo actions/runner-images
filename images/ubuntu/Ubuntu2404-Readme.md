@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 | [[Ubuntu] Go version 1.21 will be removed from the images on 2025-06-13 and updated to the latest version 1.24 ,setting it as the default.](https://github.com/actions/runner-images/issues/12176) |
 | [[Ubuntu 22.04 and Windows 2022] Default Nodejs version will be set to 20 on 2025-06-02](https://github.com/actions/runner-images/issues/12143) |
 | [[Windows, Ubuntu] Python 3.8.x will be removed from 2025-06-06](https://github.com/actions/runner-images/issues/12034) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
-- Kernel Version: 6.11.0-1014-azure
-- Image Version: 20250511.1.0
+- Kernel Version: 6.11.0-1015-azure
+- Image Version: 20250527.1.0
 - Systemd version: 255.4-1ubuntu8.6
 
 ## Installed Software
@@ -22,23 +23,23 @@
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
 - Julia 1.11.5
 - Kotlin 2.1.10-release-473
-- Node.js 20.19.1
+- Node.js 20.19.2
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 6.1
+- Swift 6.1.1
 
 ### Package Management
 - cpan 1.64
-- Helm 3.17.3
-- Homebrew 4.5.2
+- Helm 3.18.0
+- Homebrew 4.5.3
 - Miniconda 25.3.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit ca846b2127)
+- Vcpkg (build from commit 8f63c9ed58)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,22 +58,22 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 8.14
+- Gradle 8.14.1
 - Lerna 8.2.2
 - Maven 3.9.9
 
 ### Tools
-- Ansible 2.18.5
-- AzCopy 10.29.0 - available by `azcopy` and `azcopy10` aliases
+- Ansible 2.18.6
+- AzCopy 10.29.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.2.1
 - Bazelisk 1.26.0
 - Bicep 0.35.1
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.2
+- CodeQL Action Bundle 2.21.3
 - Docker Amazon ECR Credential Helper 0.9.1
-- Docker Compose v2 2.35.1
-- Docker-Buildx 0.23.0
+- Docker Compose v2 2.36.0
+- Docker-Buildx 0.24.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.227.2
@@ -81,20 +82,20 @@ to accomplish this.
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
-- Kind 0.27.0
-- Kubectl 1.33.0
+- Kind 0.29.0
+- Kubectl 1.33.1
 - Kustomize 5.6.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.34.0
-- n 10.1.0
+- n 10.2.0
 - Newman 6.2.1
 - nvm 0.40.3
 - OpenSSL 3.0.13-0ubuntu3.5
 - Packer 1.12.0
-- Parcel 2.14.4
+- Parcel 2.15.2
 - Podman 4.9.3
-- Pulumi 3.169.0
+- Pulumi 3.171.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -103,13 +104,13 @@ to accomplish this.
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.27.12
+- AWS CLI 2.27.22
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.138.0
-- Azure CLI 2.72.0
+- AWS SAM CLI 1.139.0
+- Azure CLI 2.73.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.72.0
-- Google Cloud CLI 521.0.0
+- GitHub CLI 2.73.0
+- Google Cloud CLI 523.0.1
 
 ### Java
 | Version             | Environment Variable |
@@ -121,7 +122,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.8
+- Composer 2.8.9
 - PHPUnit 8.5.42
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -130,26 +131,26 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.14.2.0
 - GHC 9.12.2
-- GHCup 0.1.50.1
+- GHCup 0.1.50.2
 - Stack 3.5.1
 
 ### Rust Tools
-- Cargo 1.86.0
-- Rust 1.86.0
-- Rustdoc 1.86.0
+- Cargo 1.87.0
+- Rust 1.87.0
+- Rustdoc 1.87.0
 - Rustup 1.28.2
 
 #### Packages
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 136.0.7103.92
-- ChromeDriver 136.0.7103.92
+- Google Chrome 136.0.7103.113
+- ChromeDriver 136.0.7103.113
 - Chromium 136.0.7103.0
-- Microsoft Edge 136.0.3240.64
-- Microsoft Edge WebDriver 136.0.3240.64
-- Selenium server 4.32.0
-- Mozilla Firefox 138.0.1
+- Microsoft Edge 136.0.3240.92
+- Microsoft Edge WebDriver 136.0.3240.92
+- Selenium server 4.33.0
+- Mozilla Firefox 139.0
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -161,7 +162,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.115
+- .NET Core SDK: 8.0.116
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
@@ -193,8 +194,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 18.20.8
-- 20.19.1
-- 22.15.0
+- 20.19.2
+- 22.16.0
 
 #### Python
 - 3.9.22
@@ -212,7 +213,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.3.8
 
 ### PowerShell Tools
-- PowerShell 7.4.7
+- PowerShell 7.4.10
 
 #### PowerShell Modules
 - Az: 12.1.0
@@ -279,7 +280,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.1.0-1ubuntu6               |
 | iputils-ping           | 3:20240117-1build1           |
 | jq                     | 1.7.1-3build1                |
-| libsqlite3-dev         | 3.45.1-1ubuntu2.1            |
+| libsqlite3-dev         | 3.45.1-1ubuntu2.3            |
 | libssl-dev             | 3.0.13-0ubuntu3.5            |
 | libtool                | 2.4.7-7build1                |
 | libyaml-dev            | 0.2.5-1build1                |
@@ -304,7 +305,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-1ubuntu1.2             |
 | shellcheck             | 0.9.0-1                      |
 | sphinxsearch           | 2.2.11-8build1               |
-| sqlite3                | 3.45.1-1ubuntu2.1            |
+| sqlite3                | 3.45.1-1ubuntu2.3            |
 | ssh                    | 1:9.6p1-3ubuntu13.11         |
 | sshpass                | 1.09-1                       |
 | sudo                   | 1.9.15p5-3ubuntu5            |

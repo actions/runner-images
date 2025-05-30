@@ -5,12 +5,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "3.0",
                 "3.1",
                 "3.2",
                 "3.3"
             ],
-            "default": "3.0"
+            "default": "3.3"
         },
         {
             "name": "Python",
@@ -18,7 +17,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "3.8.*",
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
@@ -366,10 +364,8 @@
         "version": "8.4"
     },
     "postgresql": {
-        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9",
         "version": "14",
-        "vcRedistSignature": "8F985BE8FD256085C90A95D3C74580511A1DB975",
-        "installVcRedist": true
+        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
     },
     "kotlin": {
         "version": "2.1.10",
