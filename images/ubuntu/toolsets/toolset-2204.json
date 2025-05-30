@@ -314,7 +314,7 @@
         "version": "4"
     },
     "node": {
-        "default": "18"
+        "default": "20"
     },
     "node_modules": [
         {
