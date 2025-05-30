@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 | [[Ubuntu] Go version 1.21 will be removed from the images on 2025-06-13 and updated to the latest version 1.24 ,setting it as the default.](https://github.com/actions/runner-images/issues/12176) |
 | [[Ubuntu 22.04 and Windows 2022] Default Nodejs version will be set to 20 on 2025-06-02](https://github.com/actions/runner-images/issues/12143) |
 | [[Windows, Ubuntu] Python 3.8.x will be removed from 2025-06-06](https://github.com/actions/runner-images/issues/12034) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
-- Kernel Version: 6.8.0-1027-azure
-- Image Version: 20250511.1.0
+- Kernel Version: 6.8.0-1029-azure
+- Image Version: 20250527.1.0
 - Systemd version: 249.11-0ubuntu3.15
 
 ## Installed Software
@@ -28,12 +29,12 @@
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.1
+- Swift 6.1.1
 
 ### Package Management
 - cpan 1.64
-- Helm 3.17.3
-- Homebrew 4.5.2
+- Helm 3.18.0
+- Homebrew 4.5.3
 - Miniconda 25.3.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -41,7 +42,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit ca846b2127)
+- Vcpkg (build from commit 8f63c9ed58)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,24 +61,24 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 8.14
+- Gradle 8.14.1
 - Lerna 8.2.2
 - Maven 3.9.9
-- Sbt 1.10.11
+- Sbt 1.11.0
 
 ### Tools
-- Ansible 2.17.11
+- Ansible 2.17.12
 - apt-fast 1.10.0
-- AzCopy 10.29.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.29.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.2.1
 - Bazelisk 1.26.0
 - Bicep 0.35.1
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.2
+- CodeQL Action Bundle 2.21.3
 - Docker Amazon ECR Credential Helper 0.9.1
 - Docker Compose v2 2.35.1
-- Docker-Buildx 0.23.0
+- Docker-Buildx 0.24.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.227.2
@@ -85,46 +86,46 @@ to accomplish this.
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.7.0
+- Heroku 10.8.0
 - jq 1.6
-- Kind 0.27.0
-- Kubectl 1.33.0
+- Kind 0.29.0
+- Kubectl 1.33.1
 - Kustomize 5.6.0
 - Leiningen 2.11.2
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.34.0
-- n 10.1.0
+- n 10.2.0
 - Newman 6.2.1
 - nvm 0.40.3
 - OpenSSL 3.0.2-0ubuntu1.19
 - Packer 1.12.0
-- Parcel 2.14.4
+- Parcel 2.15.2
 - Podman 3.4.4
-- Pulumi 3.169.0
+- Pulumi 3.171.0
 - R 4.5.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.11.4
+- Terraform 1.12.1
 - yamllint 1.37.1
 - yq 4.45.4
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.275
-- AWS CLI 2.27.12
+- Alibaba Cloud CLI 3.0.278
+- AWS CLI 2.27.22
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.138.0
-- Azure CLI 2.72.0
+- AWS SAM CLI 1.139.0
+- Azure CLI 2.73.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.72.0
-- Google Cloud CLI 521.0.0
-- Netlify CLI 21.2.1
-- OpenShift CLI 4.18.12
+- GitHub CLI 2.73.0
+- Google Cloud CLI 523.0.1
+- Netlify CLI 21.5.0
+- OpenShift CLI 4.18.15
 - ORAS CLI 1.2.3
-- Vercel CLI 41.7.4
+- Vercel CLI 42.1.1
 
 ### Java
 | Version             | Environment Variable |
@@ -136,7 +137,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.8.8
+- Composer 2.8.9
 - PHPUnit 8.5.42
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -145,30 +146,30 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.14.2.0
 - GHC 9.12.2
-- GHCup 0.1.50.1
+- GHCup 0.1.50.2
 - Stack 3.5.1
 
 ### Rust Tools
-- Cargo 1.86.0
-- Rust 1.86.0
-- Rustdoc 1.86.0
+- Cargo 1.87.0
+- Rust 1.87.0
+- Rustdoc 1.87.0
 - Rustup 1.28.2
 
 #### Packages
 - Bindgen 0.71.1
 - Cargo audit 0.21.2
-- Cargo clippy 0.1.86
+- Cargo clippy 0.1.87
 - Cargo outdated 0.17.0
-- Cbindgen 0.28.0
+- Cbindgen 0.29.0
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 136.0.7103.92
-- ChromeDriver 136.0.7103.92
+- Google Chrome 136.0.7103.113
+- ChromeDriver 136.0.7103.113
 - Chromium 136.0.7103.0
-- Microsoft Edge 136.0.3240.64
-- Microsoft Edge WebDriver 136.0.3240.64
-- Selenium server 4.32.0
+- Microsoft Edge 136.0.3240.92
+- Microsoft Edge WebDriver 136.0.3240.92
+- Selenium server 4.33.0
 - Mozilla Firefox 136.0.4
 - Geckodriver 0.36.0
 
@@ -181,7 +182,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.428, 8.0.408, 9.0.203
+- .NET Core SDK: 6.0.428, 8.0.410, 9.0.203
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
@@ -217,8 +218,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 18.20.8
-- 20.19.1
-- 22.15.0
+- 20.19.2
+- 22.16.0
 
 #### Python
 - 3.8.18
@@ -240,7 +241,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.3.8
 
 ### PowerShell Tools
-- PowerShell 7.4.7
+- PowerShell 7.4.10
 
 #### PowerShell Modules
 - Az: 12.1.0
@@ -286,14 +287,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:de0eb0b3f2a47ba1eb89389859a9bd88b28e82f5826b6969ad604979713c2d4f  | 2025-02-14 |
 | alpine:3.19          | sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377  | 2025-02-14 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:2a7f95bcf104c8410bf4d3b13c52f6e0e4334bb2edf8d80c7f9881e49447effe  | 2025-04-28 |
-| moby/buildkit:latest | sha256:87afb62ed6a762bb65b85d53819f3b341fb74a36d1fc0a1153a64f367637bfda  | 2025-04-29 |
-| node:18              | sha256:867be01f97d45cb7d89a8ef0b328d23e8207412ebec4564441ed8cabc8cc4ecd  | 2025-03-27 |
+| debian:11            | sha256:cf48c31af360e1c0a0aedd33aae4d928b68c2cdf093f1612650eb1ff434d1c34  | 2025-05-20 |
+| moby/buildkit:latest | sha256:832fa7aa1eb3deb56fa62ae933bfa42dad9a83ff4824dbbaf173b49c722b59d0  | 2025-05-21 |
+| node:18              | sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783  | 2025-03-27 |
 | node:18-alpine       | sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e  | 2025-03-27 |
-| node:20              | sha256:6f076db82169a365abca591093bdf020f9e8827a8add8ea3826556c290b340c0  | 2025-04-22 |
-| node:20-alpine       | sha256:c628bdc7ebc7f95b1b23249a445eb415ce68ae9def8b68364b35ee15e3065b0f  | 2025-04-22 |
-| node:22              | sha256:a1f1274dadd49738bcd4cf552af43354bb781a7e9e3bc984cfeedc55aba2ddd8  | 2025-04-23 |
-| node:22-alpine       | sha256:ad1aedbcc1b0575074a91ac146d6956476c1f9985994810e4ee02efd932a68fd  | 2025-04-23 |
+| node:20              | sha256:7c4cd7c6935554b79c6fffb88e7bde3db0ce25b45d4c634d1fb0f1a6e7f5b782  | 2025-05-15 |
+| node:20-alpine       | sha256:be56e91681a8ec1bba91e3006039bd228dc797fd984794a3efedab325b36e679  | 2025-05-15 |
+| node:22              | sha256:0b5b940c21ab03353de9042f9166c75bcfc53c4cd0508c7fd88576646adbf875  | 2025-05-21 |
+| node:22-alpine       | sha256:9f3ae04faa4d2188825803bf890792f33cc39033c9241fc6bb201149470436ca  | 2025-05-21 |
 | ubuntu:20.04         | sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214  | 2025-04-08 |
 | ubuntu:22.04         | sha256:67cadaff1dca187079fce41360d5a7eb6f7dcd3745e53c79ad5efd8563118240  | 2025-04-28 |
 
@@ -341,7 +342,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libmagickcore-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libsecret-1-dev        | 0.20.5-2                            |
-| libsqlite3-dev         | 3.37.2-2ubuntu0.3                   |
+| libsqlite3-dev         | 3.37.2-2ubuntu0.4                   |
 | libssl-dev             | 3.0.2-0ubuntu1.19                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
@@ -370,7 +371,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-0ubuntu0.22.04.4              |
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
-| sqlite3                | 3.37.2-2ubuntu0.3                   |
+| sqlite3                | 3.37.2-2ubuntu0.4                   |
 | ssh                    | 1:8.9p1-3ubuntu0.13                 |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
