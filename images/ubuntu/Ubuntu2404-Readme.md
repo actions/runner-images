@@ -8,7 +8,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.11.0-1015-azure
-- Image Version: 20250527.1.0
+- Image Version: 20250601.1.0
 - Systemd version: 255.4-1ubuntu8.6
 
 ## Installed Software
@@ -27,11 +27,11 @@
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 6.1.1
+- Swift 6.1.2
 
 ### Package Management
 - cpan 1.64
-- Helm 3.18.0
+- Helm 3.18.1
 - Homebrew 4.5.3
 - Miniconda 25.3.1
 - Npm 10.8.2
@@ -39,7 +39,7 @@
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 8f63c9ed58)
+- Vcpkg (build from commit 89dc8be6db)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -67,7 +67,7 @@ to accomplish this.
 - AzCopy 10.29.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.2.1
 - Bazelisk 1.26.0
-- Bicep 0.35.1
+- Bicep 0.36.1
 - Buildah 1.33.7
 - CMake 3.31.6
 - CodeQL Action Bundle 2.21.3
@@ -95,7 +95,7 @@ to accomplish this.
 - Packer 1.12.0
 - Parcel 2.15.2
 - Podman 4.9.3
-- Pulumi 3.171.0
+- Pulumi 3.173.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -104,13 +104,13 @@ to accomplish this.
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.27.22
+- AWS CLI 2.27.26
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.139.0
 - Azure CLI 2.73.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.73.0
-- Google Cloud CLI 523.0.1
+- GitHub CLI 2.74.0
+- Google Cloud CLI 524.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -144,11 +144,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 136.0.7103.113
-- ChromeDriver 136.0.7103.113
-- Chromium 136.0.7103.0
-- Microsoft Edge 136.0.3240.92
-- Microsoft Edge WebDriver 136.0.3240.92
+- Google Chrome 137.0.7151.55
+- ChromeDriver 137.0.7151.55
+- Chromium 137.0.7151.0
+- Microsoft Edge 137.0.3296.52
+- Microsoft Edge WebDriver 137.0.3296.52
 - Selenium server 4.33.0
 - Mozilla Firefox 139.0
 - Geckodriver 0.36.0
@@ -290,7 +290,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | make                   | 4.3-4.1build2                |
 | mediainfo              | 24.01.1-1build2              |
 | mercurial              | 6.7.2-1ubuntu2.2             |
-| net-tools              | 2.10-0.1ubuntu4              |
+| net-tools              | 2.10-0.1ubuntu4.4            |
 | netcat                 | 1.226-1ubuntu2               |
 | openssh-client         | 1:9.6p1-3ubuntu13.11         |
 | p7zip-full             | 16.02+transitional.1         |
@@ -317,7 +317,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | time                   | 1.9-0.2build1                |
 | tk                     | 8.6.14build1                 |
 | tree                   | 2.1.1-2ubuntu3               |
-| tzdata                 | 2025b-0ubuntu0.24.04         |
+| tzdata                 | 2025b-0ubuntu0.24.04.1       |
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
 | wget                   | 1.21.4-1ubuntu4.1            |
