@@ -8,7 +8,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1029-azure
-- Image Version: 20250527.1.0
+- Image Version: 20250602.1.0
 - Systemd version: 249.11-0ubuntu3.15
 
 ## Installed Software
@@ -25,16 +25,16 @@
 - Kotlin 2.1.10-release-473
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 18.20.8
+- Node.js 20.19.2
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.1.1
+- Swift 6.1.2
 
 ### Package Management
 - cpan 1.64
-- Helm 3.18.0
-- Homebrew 4.5.3
+- Helm 3.18.1
+- Homebrew 4.5.4
 - Miniconda 25.3.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -42,7 +42,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 8f63c9ed58)
+- Vcpkg (build from commit 9eb6e4b60e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -64,7 +64,7 @@ to accomplish this.
 - Gradle 8.14.1
 - Lerna 8.2.2
 - Maven 3.9.9
-- Sbt 1.11.0
+- Sbt 1.11.1
 
 ### Tools
 - Ansible 2.17.12
@@ -72,11 +72,11 @@ to accomplish this.
 - AzCopy 10.29.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.2.1
 - Bazelisk 1.26.0
-- Bicep 0.35.1
+- Bicep 0.36.1
 - Buildah 1.23.1
 - CMake 3.31.6
 - CodeQL Action Bundle 2.21.3
-- Docker Amazon ECR Credential Helper 0.9.1
+- Docker Amazon ECR Credential Helper 0.10.0
 - Docker Compose v2 2.35.1
 - Docker-Buildx 0.24.0
 - Docker Client 28.0.4
@@ -99,10 +99,10 @@ to accomplish this.
 - Newman 6.2.1
 - nvm 0.40.3
 - OpenSSL 3.0.2-0ubuntu1.19
-- Packer 1.12.0
+- Packer 1.13.0
 - Parcel 2.15.2
 - Podman 3.4.4
-- Pulumi 3.171.0
+- Pulumi 3.173.0
 - R 4.5.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -114,18 +114,18 @@ to accomplish this.
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.278
-- AWS CLI 2.27.22
+- Alibaba Cloud CLI 3.0.280
+- AWS CLI 2.27.27
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.139.0
 - Azure CLI 2.73.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.73.0
-- Google Cloud CLI 523.0.1
-- Netlify CLI 21.5.0
+- GitHub CLI 2.74.0
+- Google Cloud CLI 524.0.0
+- Netlify CLI 21.5.1
 - OpenShift CLI 4.18.15
 - ORAS CLI 1.2.3
-- Vercel CLI 42.1.1
+- Vercel CLI 42.3.0
 
 ### Java
 | Version             | Environment Variable |
@@ -164,11 +164,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 136.0.7103.113
-- ChromeDriver 136.0.7103.113
-- Chromium 136.0.7103.0
-- Microsoft Edge 136.0.3240.92
-- Microsoft Edge WebDriver 136.0.3240.92
+- Google Chrome 137.0.7151.55
+- ChromeDriver 137.0.7151.55
+- Chromium 137.0.7151.0
+- Microsoft Edge 137.0.3296.58
+- Microsoft Edge WebDriver 137.0.3296.52
 - Selenium server 4.33.0
 - Mozilla Firefox 136.0.4
 - Geckodriver 0.36.0
@@ -222,7 +222,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 22.16.0
 
 #### Python
-- 3.8.18
 - 3.9.22
 - 3.10.17
 - 3.11.12
@@ -292,9 +291,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:18              | sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783  | 2025-03-27 |
 | node:18-alpine       | sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e  | 2025-03-27 |
 | node:20              | sha256:7c4cd7c6935554b79c6fffb88e7bde3db0ce25b45d4c634d1fb0f1a6e7f5b782  | 2025-05-15 |
-| node:20-alpine       | sha256:be56e91681a8ec1bba91e3006039bd228dc797fd984794a3efedab325b36e679  | 2025-05-15 |
+| node:20-alpine       | sha256:d3507a213936fe4ef54760a186e113db5188472d9efdf491686bd94580a1c1e8  | 2025-05-30 |
 | node:22              | sha256:0b5b940c21ab03353de9042f9166c75bcfc53c4cd0508c7fd88576646adbf875  | 2025-05-21 |
-| node:22-alpine       | sha256:9f3ae04faa4d2188825803bf890792f33cc39033c9241fc6bb201149470436ca  | 2025-05-21 |
+| node:22-alpine       | sha256:41e4389f3d988d2ed55392df4db1420ad048ae53324a8e2b7c6d19508288107e  | 2025-05-30 |
 | ubuntu:20.04         | sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214  | 2025-04-08 |
 | ubuntu:22.04         | sha256:67cadaff1dca187079fce41360d5a7eb6f7dcd3745e53c79ad5efd8563118240  | 2025-04-28 |
 
@@ -332,7 +331,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.9                     |
+| libc6-dev              | 2.35-0ubuntu3.10                    |
 | libcurl4               | 7.81.0-1ubuntu1.20                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.3          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -349,13 +348,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.9                     |
+| locales                | 2.35-0ubuntu3.10                    |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
 | mediainfo              | 22.03-1                             |
 | mercurial              | 6.1.1-1ubuntu1                      |
-| net-tools              | 1.60+git20181103.0eebece-1ubuntu5   |
+| net-tools              | 1.60+git20181103.0eebece-1ubuntu5.4 |
 | netcat                 | 1.218-4ubuntu1                      |
 | openssh-client         | 1:8.9p1-3ubuntu0.13                 |
 | p7zip-full             | 16.02+dfsg-8                        |
@@ -383,7 +382,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
 | tk                     | 8.6.11+1build2                      |
-| tzdata                 | 2025b-0ubuntu0.22.04                |
+| tzdata                 | 2025b-0ubuntu0.22.04.1              |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1.1                   |
