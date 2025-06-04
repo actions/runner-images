@@ -4,14 +4,20 @@
         "x64": {
             "versions": [
                 {
-                    "link": "16.3", 
+                    "link": "16.4",
+                    "version": "16.4.0+16F6",
+                    "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
+                    "install_runtimes": [
+                        { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4", "18.5"] },
+                        { "watchOS": ["11.0", "11.1", "11.2", "11.4", "11.5"] },
+                        { "tvOS": ["18.0", "18.1", "18.2", "18.4", "18.5"] }
+                    ] 
+                },
+                {
+                    "link": "16.3",
                     "version": "16.3+16E140",
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
-                    "install_runtimes": [
-                        { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4"] },
-                        { "watchOS": ["11.0", "11.1", "11.2", "11.4"] },
-                        { "tvOS": ["18.0", "18.1", "18.2", "18.4"] }
-                    ]
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "16.2",
@@ -31,27 +37,27 @@
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
                     "install_runtimes": "none"
-                },
-                {
-                    "link": "15.4",
-                    "version": "15.4.0+15F31d",
-                    "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a",
-                    "install_runtimes": "default"
                 }
             ]
         },
         "arm64":{
             "versions": [
                 {
-                    "link": "16.3", 
+                    "link": "16.4",
+                    "version": "16.4.0+16F6",
+                    "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
+                    "install_runtimes": [
+                        { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4", "18.5"] },
+                        { "watchOS": ["11.0", "11.1", "11.2", "11.4", "11.5"] },
+                        { "tvOS": ["18.0", "18.1", "18.2", "18.4", "18.5"] },
+                        { "visionOS": ["2.0", "2.1", "2.2", "2.3", "2.4", "2.5"] }
+                    ]
+                },
+                {
+                    "link": "16.3",
                     "version": "16.3+16E140",
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
-                    "install_runtimes": [
-                        { "iOS": ["18.0", "18.1", "18.2", "18.3.1", "18.4"] },
-                        { "watchOS": ["11.0", "11.1", "11.2", "11.4"] },
-                        { "tvOS": ["18.0", "18.1", "18.2", "18.4"] },
-                        { "visionOS": ["2.0", "2.1", "2.2", "2.3", "2.4"] }
-                    ]
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "16.2",
@@ -71,12 +77,6 @@
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
                     "install_runtimes": "none"
-                },
-                {
-                    "link": "15.4",
-                    "version": "15.4.0+15F31d",
-                    "sha256": "82d3d61804ff3f4c7c82085e91dc701037ddaa770e542848b2477e22f4e8aa7a",
-                    "install_runtimes": "default"
                 }
             ]
         }
@@ -235,7 +235,6 @@
                 "x64": {
                     "variable_template" : "GOROOT_{0}_{1}_X64",
                     "versions": [
-                        "1.21.*",
                         "1.22.*",
                         "1.23.*",
                         "1.24.*"
@@ -244,7 +243,6 @@
                 "arm64": {
                     "variable_template" : "GOROOT_{0}_{1}_ARM64",
                     "versions": [
-                        "1.21.*",
                         "1.22.*",
                         "1.23.*",
                         "1.24.*"

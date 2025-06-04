@@ -23,7 +23,7 @@ variable "azure_tags" {
 
 variable "build_resource_group_name" {
   type    = string
-  default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
+  default = "${env("BUILD_RG_NAME")}"
 }
 
 variable "client_cert_path" {
@@ -90,7 +90,7 @@ variable "install_password" {
 
 variable "location" {
   type    = string
-  default = "${env("ARM_RESOURCE_LOCATION")}"
+  default = ""
 }
 
 variable "managed_image_name" {

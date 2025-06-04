@@ -1,7 +1,3 @@
-locals {
-  managed_image_name = var.managed_image_name != "" ? var.managed_image_name : "packer-${var.image_os}-${var.image_version}"
-}
-
 variable "agent_tools_directory" {
   type    = string
   default = "C:\\hostedtoolcache\\windows"
@@ -19,7 +15,7 @@ variable "azure_tags" {
 
 variable "build_resource_group_name" {
   type    = string
-  default = "${env("BUILD_RESOURCE_GROUP_NAME")}"
+  default = "${env("BUILD_RG_NAME")}"
 }
 
 variable "client_cert_path" {
@@ -81,7 +77,7 @@ variable "install_user" {
 
 variable "location" {
   type    = string
-  default = "${env("ARM_RESOURCE_LOCATION")}"
+  default = ""
 }
 
 variable "managed_image_name" {
@@ -144,23 +140,89 @@ variable "vm_size" {
   default = "Standard_F8s_v2"
 }
 
+variable "image_offer" {
+  type    = string
+  default = "WindowsServer"
+}
+
+variable "image_publisher" {
+  type    = string
+  default = "MicrosoftWindowsServer"
+}
+
+variable "image_sku" {
+  type    = string
+  default = "2019-Datacenter"
+}
+
+variable "gallery_name" {
+  type    = string
+  default = "${env("GALLERY_NAME")}"
+}
+
+variable "gallery_resource_group_name" {
+  type    = string
+  default = "${env("GALLERY_RG_NAME")}"
+}
+
+variable "gallery_image_name" {
+  type    = string
+  default = "${env("GALLERY_IMAGE_NAME")}"
+}
+
+variable "gallery_image_version" {
+  type    = string
+  default = "${env("GALLERY_IMAGE_VERSION")}"
+}
+
+variable "gallery_storage_account_type" {
+  type    = string
+  default = "${env("GALLERY_STORAGE_ACCOUNT_TYPE")}"
+}
+
+variable "build_key_vault_name" {
+  type    = string
+  default = "${env("BUILD_KEY_VAULT_NAME")}"
+}
+
+variable "build_key_vault_secret_name" {
+  type    = string
+  default = "${env("BUILD_KEY_VAULT_SECRET_NAME")}"
+}
+
+variable "use_azure_cli_auth" {
+  type    = bool
+  default = false
+}
+
+variable "os_disk_size_gb" {
+  type    = number
+  default = 256
+}
+
+variable "image_os_type" {
+  type    = string
+  default = "Windows"
+}
+
 source "azure-arm" "image" {
   allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
   build_resource_group_name              = "${var.build_resource_group_name}"
   client_cert_path                       = "${var.client_cert_path}"
   client_id                              = "${var.client_id}"
   client_secret                          = "${var.client_secret}"
+  use_azure_cli_auth                     = var.use_azure_cli_auth
   communicator                           = "winrm"
-  image_offer                            = "WindowsServer"
-  image_publisher                        = "MicrosoftWindowsServer"
-  image_sku                              = "2019-Datacenter"
+  image_offer                            = "${var.image_offer}"
+  image_publisher                        = "${var.image_publisher}"
+  image_sku                              = "${var.image_sku}"
   location                               = "${var.location}"
-  managed_image_name                     = "${local.managed_image_name}"
+  managed_image_name                     = "${var.managed_image_name}"
   managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
   managed_image_storage_account_type     = "${var.managed_image_storage_account_type}"
   object_id                              = "${var.object_id}"
-  os_disk_size_gb                        = "256"
-  os_type                                = "Windows"
+  os_disk_size_gb                        = var.os_disk_size_gb
+  os_type                                = var.image_os_type
   private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
   subscription_id                        = "${var.subscription_id}"
   temp_resource_group_name               = "${var.temp_resource_group_name}"
@@ -172,6 +234,18 @@ source "azure-arm" "image" {
   winrm_insecure                         = "true"
   winrm_use_ssl                          = "true"
   winrm_username                         = "packer"
+  winrm_expiration_time                  = "1440h"
+  build_key_vault_name                   = var.build_key_vault_name
+  build_key_vault_secret_name            = var.build_key_vault_secret_name
+
+  shared_image_gallery_destination {
+    subscription                         = var.subscription_id
+    gallery_name                         = var.gallery_name
+    resource_group                       = var.gallery_resource_group_name
+    image_name                           = var.gallery_image_name
+    image_version                        = var.gallery_image_version
+    storage_account_type                 = var.gallery_storage_account_type
+  }
 
   dynamic "azure_tag" {
     for_each = var.azure_tags

@@ -7,7 +7,6 @@
             "platform_version": "22.04",
             "arch": "x64",
             "versions": [
-                "3.8.*",
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
@@ -266,11 +265,11 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "26.1.3"
+                "version": "28.0.4"
             },
             {
                 "package": "docker-ce",
-                "version": "26.1.3"
+                "version": "28.0.4"
             }
         ],
         "plugins": [
@@ -281,7 +280,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.27.1",
+                "version": "2.35.1",
                 "asset": "linux-x86_64"
             }
         ]
@@ -345,7 +344,7 @@
         "version": "4"
     },
     "node": {
-        "default": "18"
+        "default": "20"
     },
     "node_modules": [
         {

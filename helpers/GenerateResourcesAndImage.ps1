@@ -4,10 +4,9 @@ enum ImageType {
     Windows2019   = 1
     Windows2022   = 2
     Windows2025   = 3
-    Ubuntu2004    = 4
-    Ubuntu2204    = 5
-    Ubuntu2404    = 6
-    UbuntuMinimal = 7
+    Ubuntu2204    = 4
+    Ubuntu2404    = 5
+    UbuntuMinimal = 6
 }
 
 Function Get-PackerTemplatePath {
@@ -28,9 +27,6 @@ Function Get-PackerTemplatePath {
         }
         ([ImageType]::Windows2025) {
             $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "windows-2025.pkr.hcl"
-        }
-        ([ImageType]::Ubuntu2004) {
-            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-20.04.pkr.hcl"
         }
         ([ImageType]::Ubuntu2204) {
             $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "ubuntu-22.04.pkr.hcl"
@@ -85,7 +81,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER ResourceGroupName
             The name of the resource group to store the resulting artifact. Resource group must already exist.
         .PARAMETER ImageType
-            The type of image to generate. Valid values are: Windows2019, Windows2022, Windows2025, Ubuntu2004, Ubuntu2204, Ubuntu2404, UbuntuMinimal.
+            The type of image to generate. Valid values are: Windows2019, Windows2022, Windows2025, Ubuntu2204, Ubuntu2404, UbuntuMinimal.
         .PARAMETER ManagedImageName
             The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation
@@ -116,7 +112,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER PluginVersion
             Specify the version of the packer Azure plugin to use. The default is "2.2.1".
         .EXAMPLE
-            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2004 -AzureLocation "East US"
+            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2204 -AzureLocation "East US"
     #>
     param (
         [Parameter(Mandatory = $True)]
@@ -164,7 +160,7 @@ Function GenerateResourcesAndImage {
 
     # Prepare list of allowed inbound IP addresses
     if ($RestrictToAgentIpAddress) {
-        $AgentIp = (Invoke-RestMethod http://ipinfo.io/json).ip
+        $AgentIp = (Invoke-RestMethod https://ipinfo.io/json).ip
         if (-not $AgentIp) {
             throw "Unable to determine agent IP address."
         }
