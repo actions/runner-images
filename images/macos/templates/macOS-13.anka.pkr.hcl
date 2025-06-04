@@ -234,6 +234,7 @@ build {
   provisioner "shell" {
     environment_vars = ["API_PAT=${var.github_api_pat}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    pause_before     = "30s"
     scripts          = [
       "${path.root}/../scripts/build/install-actions-cache.sh",
       "${path.root}/../scripts/build/install-runner-package.sh",
