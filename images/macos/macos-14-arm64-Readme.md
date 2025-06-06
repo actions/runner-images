@@ -6,7 +6,7 @@
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250527.1547
+- Image Version: 20250602.1561
 
 ## Installed Software
 
@@ -38,7 +38,7 @@
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.9
-- Vcpkg 2025 (build from commit a80c8946ff)
+- Vcpkg 2025 (build from commit 654410ee8e)
 - Yarn 1.22.22
 
 ### Project Management
@@ -56,11 +56,11 @@
 - Curl 8.7.1
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.73.0
+- GitHub CLI 2.74.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
-- jq 1.7.1
+- jq 1.8.0
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.12.0
 - pkgconf 2.4.3
@@ -70,16 +70,16 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.22
+- AWS CLI 2.27.26
 - AWS SAM CLI 1.139.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.73.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.35.1
+- Bicep CLI 0.36.1
 - Cmake 3.31.6
 - CodeQL Action Bundle 2.21.3
 - Fastlane 2.227.2
-- SwiftFormat 0.56.1
+- SwiftFormat 0.56.2
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.0
@@ -89,10 +89,10 @@
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 137.0.7151.41
-- Google Chrome for Testing 137.0.7151.40
-- ChromeDriver 137.0.7151.40
-- Mozilla Firefox 138.0.4
+- Google Chrome 137.0.7151.56
+- Google Chrome for Testing 137.0.7151.55
+- ChromeDriver 137.0.7151.55
+- Mozilla Firefox 139.0.1
 - geckodriver 0.36.0
 - Selenium server 4.33.0
 
