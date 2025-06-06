@@ -78,21 +78,9 @@ variable "gallery_storage_account_type" {
   type    = string
   default = "${env("GALLERY_STORAGE_ACCOUNT_TYPE")}"
 }
-variable "image_offer" {
-  type    = string
-  default = ""
-}
 variable "image_os_type" {
   type    = string
   default = "Windows"
-}
-variable "image_publisher" {
-  type    = string
-  default = ""
-}
-variable "image_sku" {
-  type    = string
-  default = ""
 }
 variable "location" {
   type    = string
@@ -117,6 +105,10 @@ variable "private_virtual_network_with_public_ip" {
 variable "os_disk_size_gb" {
   type    = number
   default = 0
+}
+variable "source_image_version" {
+  type    = string
+  default = "latest"
 }
 variable "temp_resource_group_name" {
   type    = string

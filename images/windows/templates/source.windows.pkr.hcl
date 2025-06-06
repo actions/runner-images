@@ -14,9 +14,10 @@ source "azure-arm" "image" {
   build_key_vault_secret_name            = var.build_key_vault_secret_name
   build_resource_group_name              = var.build_resource_group_name
   communicator                           = "winrm"
-  image_offer                            = var.image_offer
-  image_publisher                        = var.image_publisher
-  image_sku                              = var.image_sku
+  image_offer                            = local.image_properties.offer
+  image_publisher                        = local.image_properties.publisher
+  image_sku                              = local.image_properties.sku
+  image_version                          = var.source_image_version
   location                               = var.location
   managed_image_name                     = var.managed_image_name
   managed_image_resource_group_name      = var.managed_image_resource_group_name
