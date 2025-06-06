@@ -9,6 +9,7 @@ param(
     [String] [Parameter (Mandatory=$true)] $TempResourceGroupName,
     [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $TenantId,
+    [String] [Parameter (Mandatory=$true)] $ImageOS, # e.g. "ubuntu22", "ubuntu22" or "win19", "win22", "win25"
     [String] [Parameter (Mandatory=$false)] $UseAzureCliAuth = "false",
     [String] [Parameter (Mandatory=$false)] $PluginVersion = "2.3.3",
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
@@ -26,14 +27,6 @@ if (-not (Test-Path $TemplatePath))
 
 $buildName = $($BuildTemplateName).Split(".")[1]
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
-
-switch ($BuildTemplateName) {
-    "build.windows-2019.pkr.hcl" { $imageURN = "MicrosoftWindowsServer:WindowsServer:2019-Datacenter" }
-    "build.windows-2022.pkr.hcl" { $imageURN = "MicrosoftWindowsServer:WindowsServer:2022-Datacenter" }
-    "build.windows-2025.pkr.hcl" { $imageURN = "MicrosoftWindowsServer:WindowsServer:2025-Datacenter" }
-    "build.ubuntu-22_04.pkr.hcl"  { $imageURN = "canonical:0001-com-ubuntu-server-jammy:22_04-lts" }
-    "build.ubuntu-24_04.pkr.hcl"  { $imageURN = "canonical:ubuntu-24_04-lts:server-gen1" }
-}
 
 $SensitiveData = @(
     'OSType',
@@ -62,9 +55,7 @@ packer build    -only "$buildName*" `
                 -var "client_secret=$ClientSecret" `
                 -var "install_password=$InstallPassword" `
                 -var "location=$Location" `
-                -var "image_publisher=$($imageURN.Split(":")[0])" `
-                -var "image_offer=$($imageURN.Split(":")[1])" `
-                -var "image_sku=$($imageURN.Split(":")[2])" `
+                -var "image_os=$ImageOS" `
                 -var "managed_image_name=$ImageName" `
                 -var "managed_image_resource_group_name=$ImageResourceGroupName" `
                 -var "subscription_id=$SubscriptionId" `
