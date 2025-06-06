@@ -1,21 +1,18 @@
 locals {
-  image_properties    = var.image_sku == "22_04-lts" ? {
-                            image_os = "ubuntu22"
-                            os_disk_size_gb = var.os_disk_size_gb != 0 ? var.os_disk_size_gb : 75
-                      } : {
-                            image_os = "ubuntu24"
-                            os_disk_size_gb = var.os_disk_size_gb != 0 ? var.os_disk_size_gb : 75
-                      }
-}
+  image_properties_map = {
+      "ubuntu22" = {
+            publisher       = "canonical"
+            offer           = "0001-com-ubuntu-server-jammy"
+            sku             = "22_04-lts"
+            os_disk_size_gb = coalesce(var.os_disk_size_gb, 75)
+      },
+      "ubuntu24" = {
+            publisher       = "canonical"
+            offer           = "ubuntu-24_04-lts"
+            sku             = "server-gen1"
+            os_disk_size_gb = coalesce(var.os_disk_size_gb, 75)
+      }
+  }
 
-// Define local variables for the ubuntu-minimal build
-locals {
-  ubuntu_minimal_image_os = "ubuntu22"
-
-  toolset_file_name = "toolset-2204.json"
-
-  image_folder            = "/imagegeneration"
-  helper_script_folder    = "/imagegeneration/helpers"
-  installer_script_folder = "/imagegeneration/installers"
-  imagedata_file          = "/imagegeneration/imagedata.json"
+  image_properties = local.image_properties_map[var.image_os]
 }
