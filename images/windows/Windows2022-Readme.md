@@ -4,13 +4,12 @@
 | [[Ubuntu 22.04 and Windows 2022] Default Nodejs version will be set to 20 on 2025-06-02](https://github.com/actions/runner-images/issues/12143) |
 | [The Windows 2019 Actions runner image will begin deprecation on 2025-06-01 and will be fully unsupported by 2025-06-30](https://github.com/actions/runner-images/issues/12045) |
 | [[Windows, Ubuntu] Python 3.8.x will be removed from 2025-06-06](https://github.com/actions/runner-images/issues/12034) |
-| [[Windows 19 and 22] Ruby version 3.0 will be removed from Windows images on 2025-06-06](https://github.com/actions/runner-images/issues/12033) |
-| [[Windows-2025] LLVM will be updated to version 20 on 2025-06-06](https://github.com/actions/runner-images/issues/12001) |
+| [[Windows 19 and 22] Ruby version 3.0 will be removed from Windows images on 2025-06-06 and 3.3 will be set as default.](https://github.com/actions/runner-images/issues/12033) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2022
-- OS Version: 10.0.20348 Build 3692
-- Image Version: 20250527.1.0
+- OS Version: 10.0.20348 Build 3695
+- Image Version: 20250602.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -23,23 +22,23 @@
 - Julia 1.11.5
 - Kotlin 2.1.10
 - LLVM 18.1.8
-- Node 18.20.8
+- Node 20.19.2
 - Perl 5.32.1
 - PHP 8.4.7
 - Python 3.9.13
-- Ruby 3.0.7p220
+- Ruby 3.3.8
 
 ### Package Management
 - Chocolatey 2.4.3
 - Composer 2.8.9
-- Helm 3.17.3
+- Helm 3.18.1
 - Miniconda 25.3.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.14.0.116
 - pip 25.1.1 (python 3.9)
 - Pipx 1.7.1
-- RubyGems 3.2.33
-- Vcpkg (build from commit 46a8b3026c)
+- RubyGems 3.5.22
+- Vcpkg (build from commit 7e7032a82d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,7 +59,7 @@
 - azcopy 10.29.1
 - Bazel 8.2.1
 - Bazelisk 1.26.0
-- Bicep 0.35.1
+- Bicep 0.36.1
 - Cabal 3.14.2.0
 - CMake 3.31.6
 - CodeQL Action Bundle 2.21.3
@@ -83,7 +82,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.12.0
-- Pulumi 3.167.0
+- Pulumi 3.173.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.5.1
@@ -97,13 +96,13 @@
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.278
-- AWS CLI 2.27.22
+- Alibaba Cloud CLI 3.0.281
+- AWS CLI 2.27.26
 - AWS SAM CLI 1.139.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.73.0
+- Azure CLI 2.74.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.73.0
+- GitHub CLI 2.74.0
 
 ### Rust Tools
 - Cargo 1.87.0
@@ -120,11 +119,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 137.0.7151.56
-- Chrome Driver 137.0.7151.55
-- Microsoft Edge 136.0.3240.92
-- Microsoft Edge Driver 136.0.3240.92
-- Mozilla Firefox 139.0
+- Google Chrome 137.0.7151.69
+- Chrome Driver 137.0.7151.68
+- Microsoft Edge 137.0.3296.52
+- Microsoft Edge Driver 137.0.3296.52
+- Mozilla Firefox 139.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.33.0
@@ -190,7 +189,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.16 [PyPy 7.3.19]
 
 #### Ruby
-- 3.0.7
 - 3.1.7
 - 3.2.8
 - 3.3.8
@@ -479,12 +477,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | -------------------------------------------- | ------------ | ----------- |
 | Microsoft Visual C++ 2013 Additional Runtime | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.44.35112 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.44.35208 |
 | Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.42.34438 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.44.35112 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.44.35112 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.44.35208 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.44.35208 |
 | Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.42.34438 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.44.35112 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.44.35208 |
 
 #### Installed Windows SDKs
 - 10.0.17763.0
@@ -507,7 +505,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.828
+- AWSPowershell: 4.1.832
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.28.0
