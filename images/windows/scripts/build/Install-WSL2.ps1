@@ -8,7 +8,7 @@ $downloadUrl =  Resolve-GithubReleaseAssetUrl `
 
 Install-Binary -Type MSI `
     -Url $downloadUrl `
-    -ExpectedSHA256Sum "A327590770BD334878FB47113355AA07CFCF056ACDC08F5E5646A2418C66D721"
+    -ExpectedSHA256Sum "AF1C1CBDB2F8E323A74224F200B3A4E25C0CF6DD5DAE7D0D14CB64109E429ED8"
 
 Write-Host "Performing wsl --install --no-distribution"
 wsl.exe --install --no-distribution
