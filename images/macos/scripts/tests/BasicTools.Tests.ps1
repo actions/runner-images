@@ -170,3 +170,40 @@ project(NinjaTest NONE)
         "ninja --version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "ripgrep" {
+
+    It "should return a version" {
+        Write-Host "`n Testing: ripgrep version check"
+        
+        # Run rg --version
+        $result = & rg --version
+
+        # Print version output
+        Write-Host "`nripgrep version output:`n$result"
+
+        # Check exit code is zero (success)
+        $LASTEXITCODE | Should -Be 0
+
+        Write-Host "ripgrep version check passed"
+    }
+
+    It "should find the keyword in a test file" {
+        Write-Host "`n Testing: searching for 'testing' in sample file"
+
+        # Create test file
+        $testFile = "/tmp/rg_test.txt"
+        "this is a testing line" | Out-File -FilePath $testFile -Encoding UTF8
+
+        # Run ripgrep to search for "testing"
+        $output = & rg "testing" $testFile
+
+        # Show search result
+        Write-Host "`n ripgrep search output:`n$output"
+
+        # Assert that the result contains the keyword
+        $output | Should -Match "testing"
+
+        Write-Host "ripgrep search in file completed and matched"
+    }
+}
