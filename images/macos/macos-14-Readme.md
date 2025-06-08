@@ -4,26 +4,26 @@
 | [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
 ***
 # macOS 14
-- OS Version: macOS 14.7.5 (23H527)
+- OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250513.1230
+- Image Version: 20250602.1313
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.409, 9.0.102, 9.0.203, 9.0.300
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.410, 9.0.102, 9.0.203, 9.0.300
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
-- GCC 14 (Homebrew GCC 14.2.0_1) - available by `gcc-14` alias
+- GCC 14 (Homebrew GCC 14.2.0) - available by `gcc-14` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
-- GNU Fortran 14 (Homebrew GCC 14.2.0_1) - available by `gfortran-14` alias
+- GNU Fortran 14 (Homebrew GCC 14.2.0) - available by `gfortran-14` alias
 - Kotlin 2.1.10-release-473
 - Mono 6.12.0.188
-- Node.js 20.19.0
+- Node.js 20.19.2
 - Perl 5.40.2
 - PHP 8.4.7
 - Python3 3.13.3
@@ -34,35 +34,35 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.9
-- Homebrew 4.5.2
+- Homebrew 4.5.3
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.9
-- Vcpkg 2025 (build from commit dbe35ceb30)
+- Vcpkg 2025 (build from commit 654410ee8e)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.9
-- Gradle 8.14
+- Gradle 8.14.1
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.29.0
+- azcopy 10.29.1
 - bazel 8.2.1
 - bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.13.0
+- Curl 8.14.0
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.72.0
+- GitHub CLI 2.74.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.4.7
-- jq 1.7.1
+- gpg (GnuPG) 2.4.8
+- jq 1.8.0
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.12.0
 - pkgconf 2.4.3
@@ -72,16 +72,16 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.14
-- AWS SAM CLI 1.138.0
+- AWS CLI 2.27.26
+- AWS SAM CLI 1.139.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.72.0
+- Azure CLI 2.73.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.35.1
+- Bicep CLI 0.36.1
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.21.2
+- CodeQL Action Bundle 2.21.3
 - Fastlane 2.227.2
-- SwiftFormat 0.56.0
+- SwiftFormat 0.56.2
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.0
@@ -92,14 +92,14 @@
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 136.0.7103.93
-- Google Chrome for Testing 136.0.7103.92
-- ChromeDriver 136.0.7103.92
-- Microsoft Edge 136.0.3240.64
-- Microsoft Edge WebDriver 136.0.3240.64
-- Mozilla Firefox 138.0.3
+- Google Chrome 137.0.7151.56
+- Google Chrome for Testing 137.0.7151.55
+- ChromeDriver 137.0.7151.55
+- Microsoft Edge 137.0.3296.52
+- Microsoft Edge WebDriver 137.0.3296.52
+- Mozilla Firefox 139.0.1
 - geckodriver 0.36.0
-- Selenium server 4.29.0
+- Selenium server 4.33.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -122,7 +122,7 @@
 - 3.1.7
 - 3.2.8
 - 3.3.8
-- 3.4.3
+- 3.4.4
 
 #### Python
 - 3.9.22
@@ -133,8 +133,8 @@
 
 #### Node.js
 - 18.20.8
-- 20.19.1
-- 22.15.0
+- 20.19.2
+- 22.16.0
 
 #### Go
 - 1.22.12
@@ -142,13 +142,13 @@
 - 1.24.3
 
 ### Rust Tools
-- Cargo 1.86.0
-- Rust 1.86.0
-- Rustdoc 1.86.0
+- Cargo 1.87.0
+- Rust 1.87.0
+- Rustdoc 1.87.0
 - Rustup 1.28.2
 
 #### Packages
-- Clippy 0.1.86
+- Clippy 0.1.87
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
@@ -284,7 +284,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.3.0-55895/ParallelsDesktop-20.3.0-55895.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.3.1-55959/ParallelsDesktop-20.3.1-55959.dmg |
 
 ##### Notes
 ```

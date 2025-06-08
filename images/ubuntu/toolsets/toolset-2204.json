@@ -7,7 +7,6 @@
             "platform_version": "22.04",
             "arch": "x64",
             "versions": [
-                "3.8.*",
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
@@ -43,11 +42,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.21.*",
                 "1.22.*",
-                "1.23.*"
+                "1.23.*",
+                "1.24.*"
             ],
-            "default": "1.23.*"
+            "default": "1.24.*"
         },
         {
             "name": "Ruby",
@@ -315,7 +314,7 @@
         "version": "4"
     },
     "node": {
-        "default": "18"
+        "default": "20"
     },
     "node_modules": [
         {
