@@ -60,7 +60,7 @@ to accomplish this.
 - Ant 1.10.14
 - Gradle 8.14.1
 - Lerna 8.2.2
-- Maven 3.9.9
+- Maven 3.9.10
 
 ### Tools
 - Ansible 2.18.6
