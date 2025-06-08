@@ -64,7 +64,7 @@ if ((-not $os.IsSequoia)) {
 $packageManagement.AddToolVersion("Pip3", $(Get-Pip3Version))
 $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
 $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonoma) -and (-not $os.IsSequoia)) {
+if (-not $os.IsVenturaArm64) {
     $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
 }
 $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
@@ -97,6 +97,7 @@ $utilities.AddToolVersion("pkgconf", $(Get-PKGConfVersion))
 $utilities.AddToolVersion("Unxip", $(Get-UnxipVersion))
 $utilities.AddToolVersion("yq", $(Get-YqVersion))
 $utilities.AddToolVersion("zstd", $(Get-ZstdVersion))
+$utilities.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # Tools
 $tools = $installedSoftware.AddHeader("Tools")
@@ -173,12 +174,15 @@ $android.AddTable($androidTable)
 $androidEnv = $android.AddHeader("Environment variables")
 $androidEnv.AddTable($(Build-AndroidEnvironmentTable))
 
-if ($os.IsSonoma -or $os.IsVentura) {
+if ($os.IsSonoma -or $os.IsVentura -or $os.IsSequoiaX64) {
     $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
+}
+
+if ($os.IsSonoma -or $os.IsVentura) {
     $miscellaneous.AddToolVersion("Tcl/Tk", $(Get-TclTkVersion))
 }
 
-if ($os.IsSonomaX64 -or $os.IsVenturaX64) {
+if ($os.IsSonomaX64 -or $os.IsVenturaX64 -or $os.IsSequoiaX64) {
 
     Write-Host "Adding environment variables for parallels"
 

@@ -15,12 +15,12 @@ function Build-BrowserSection {
         $nodes += @(
             [ToolVersionNode]::new("Microsoft Edge", $(Get-EdgeVersion))
             [ToolVersionNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
-            [ToolVersionNode]::new("Mozilla Firefox", $(Get-FirefoxVersion))
-            [ToolVersionNode]::new("geckodriver", $(Get-GeckodriverVersion))
         )
     }
 
     $nodes += @(
+        [ToolVersionNode]::new("Mozilla Firefox", $(Get-FirefoxVersion))
+        [ToolVersionNode]::new("geckodriver", $(Get-GeckodriverVersion))
         [ToolVersionNode]::new("Selenium server", $(Get-SeleniumVersion))
     )
 

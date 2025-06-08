@@ -299,7 +299,7 @@ function Get-VisualCPPComponents {
 }
 
 function Get-DacFxVersion {
-    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\160\DAC\bin\sqlpackage.exe" /version
+    $dacfxversion = & "$env:ProgramFiles\Microsoft SQL Server\170\DAC\bin\sqlpackage.exe" /version
     return $dacfxversion
 }
 
@@ -321,4 +321,8 @@ function Get-MongoshVersion {
 
 function Get-WSL2Version {
     return $((Get-AppxPackage -Name "MicrosoftCorporationII.WindowsSubsystemForLinux").version)
+}
+
+function Get-NinjaVersion {
+    return $(ninja --version)
 }

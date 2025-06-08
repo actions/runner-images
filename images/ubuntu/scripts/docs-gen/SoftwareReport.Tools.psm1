@@ -275,6 +275,10 @@ function Get-ZstdVersion {
     return "$zstdVersion"
 }
 
+function Get-NinjaVersion {
+    return $(ninja --version)
+}
+
 function Get-YqVersion {
     $yqVersion = $(yq -V) | Get-StringPart -Part 3
     return $yqVersion.TrimStart("v").Trim()

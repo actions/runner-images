@@ -90,6 +90,12 @@ if [[ ! "$(automationmodetool)" =~ "DOES NOT REQUIRE" ]]; then
     exit 1
 fi
 
+# Fix sudoers file permissions
+sudo chmod 440 /etc/sudoers.d/*
+
+# Add NOPASSWD for the current user to sudoers
+sudo sed -i '' 's/%admin		ALL = (ALL) ALL/%admin		ALL = (ALL) NOPASSWD: ALL/g' /etc/sudoers
+
 # Create symlink for tests running
 if [[ ! -d "/usr/local/bin" ]];then
     sudo mkdir -p -m 775 /usr/local/bin

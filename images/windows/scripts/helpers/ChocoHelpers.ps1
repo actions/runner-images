@@ -16,8 +16,11 @@ function Install-ChocoPackage {
     .PARAMETER RetryCount
         The number of times to retry the installation if it fails. Default is 5.
 
+    .PARAMETER Version
+        The version of the package to install.
+
     .EXAMPLE
-        Install-ChocoPackage -PackageName "git" -RetryCount 3
+        Install-ChocoPackage -PackageName "git" -Version "2.39.2" -RetryCount 3
     #>
 
     [CmdletBinding()]
@@ -25,6 +28,7 @@ function Install-ChocoPackage {
         [Parameter(Mandatory)]
         [string] $PackageName,
         [string[]] $ArgumentList,
+        [string] $Version,
         [int] $RetryCount = 5
     )
 
@@ -32,8 +36,11 @@ function Install-ChocoPackage {
         $count = 1
         while ($true) {
             Write-Host "Running [#$count]: choco install $packageName -y $argumentList"
-            choco install $packageName -y @argumentList --no-progress --require-checksums
-
+            if ($Version) {
+                choco install $packageName --version $Version -y @ArgumentList --no-progress --require-checksums
+            } else {
+                choco install $packageName -y @ArgumentList --no-progress --require-checksums
+            }
             $pkg = choco list --localonly $packageName --exact --all --limitoutput
             if ($pkg) {
                 Write-Host "Package installed: $pkg"

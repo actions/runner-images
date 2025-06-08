@@ -28,27 +28,9 @@ function Get-NginxVersion {
     }
 }
 
-function Get-Xsp4Version {
-    $name = "mono-xsp4"
-    $port = (grep '^port=' /etc/default/mono-xsp4).Split('=')[1]
-    $version = (dpkg-query --showformat='${Version}' --show mono-xsp4).Split('-')[0]
-    $serviceStatus = systemctl show -p ActiveState --value mono-xsp4
-    $configFile = "/etc/default/mono-xsp4"
-    return [PsCustomObject]@{
-        "Name"          = $name
-        "Version"       = $version
-        "ConfigFile"    = $configFile
-        "ServiceStatus" = $serviceStatus
-        "ListenPort"    = $port
-    }
-}
-
 function Build-WebServersTable {
     $servers = @()
     $servers += (Get-ApacheVersion)
-    if (Test-IsUbuntu20) {
-        $servers += (Get-Xsp4Version)
-    }
     $servers += (Get-NginxVersion)
 
     return $servers

@@ -33,7 +33,7 @@ Write-Host "Configuring Xcode versions..."
 $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
-    Install-AdditionalSimulatorRuntimes -Version $_.link -Runtimes $_.install_runtimes
+    Install-AdditionalSimulatorRuntimes -Version $_.link -Arch $arch -Runtimes $_.install_runtimes
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode

@@ -409,3 +409,7 @@ function Get-UnxipVersion {
     $unxipVersion = Run-Command "unxip --version" | Take-Part -Part 1
     return $unxipVersion
 }
+
+function Get-NinjaVersion {
+    return $(ninja --version)
+}

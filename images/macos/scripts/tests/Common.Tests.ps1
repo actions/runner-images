@@ -33,7 +33,7 @@ Describe "GCC" {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsVenturaArm64 -or $os.IsSonoma -or $os.IsSequoia) {
+Describe "vcpkg" -Skip:($os.IsVenturaArm64) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -85,5 +85,14 @@ Describe "CodeQL Bundle" {
 Describe "Unxip" {
     It "Unxip" {
         "unxip --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Sudoers" {
+    It "Sudo Cache" {
+        "sudo -v" | Should -ReturnZeroExitCode
+    }
+    It "Sudoers files" {
+        "sudo visudo -c" | Should -ReturnZeroExitCode
     }
 }

@@ -175,33 +175,84 @@ function Install-AdditionalSimulatorRuntimes {
         [Parameter(Mandatory)]
         [string] $Version,
         [Parameter(Mandatory)]
-        [array] $Runtimes
+        [string] $Arch,
+        [Parameter(Mandatory)]
+        [object] $Runtimes
     )
 
     Write-Host "Installing Simulator Runtimes for Xcode $Version ..."
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName 'xcodebuild'
-    $validRuntimes = @("iOS", "watchOS", "tvOS", "visionOS")
-    # Install all runtimes / skip all runtimes installation
-    if ($Runtimes.Count -eq 1) {
-        if ($Runtimes[0] -eq "true") {
-            Write-Host "Installing all runtimes for Xcode $Version ..."
-            Invoke-ValidateCommand "sudo $xcodebuildPath -downloadAllPlatforms" | Out-Null
-            return
-        } elseif ($Runtimes[0] -eq "false") {
-            Write-Host "Skipping runtimes installation for Xcode $Version ..."
-            return
-        }
+    $validRuntimes = @("iOS", "watchOS", "tvOS")
+
+    # visionOS is only available on arm64
+    if ($Arch -eq "arm64") {
+        $validRuntimes += "visionOS"
     }
 
-    # Validate and install specified runtimes
-    $invalidRuntimes = $Runtimes | Where-Object { $_ -notin $validRuntimes }
-    if ($invalidRuntimes) {
-        throw "Error: Invalid runtimes detected: $($invalidRuntimes -join ', '). Valid values are: $validRuntimes."
+    # Install all runtimes / skip runtimes
+    if ($Runtimes -eq "default") {
+        Write-Host "Installing all runtimes for Xcode $Version ..."
+        Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms" | Out-Null
+        return
+    } elseif ($Runtimes -eq "none") {
+        Write-Host "Skipping runtimes installation for Xcode $Version ..."
+        return
     }
-    
-    foreach ($runtime in $Runtimes) {
-        Write-Host "Installing runtime $runtime ..."
-        Invoke-ValidateCommand "sudo $xcodebuildPath -downloadPlatform $runtime" | Out-Null
+
+    # Convert $Runtimes to hashtable
+    if ($Runtimes -is [System.Object[]]) {
+        $convertedRuntimes = @{}
+
+        foreach ($entry in $Runtimes) {
+            if ($entry -is [PSCustomObject]) {
+                $entry = $entry | ConvertTo-Json -Compress | ConvertFrom-Json -AsHashtable
+            }
+            
+            # Copy all keys and values from the entry to the converted runtimes
+            foreach ($key in $entry.Keys) {
+                if ($convertedRuntimes.ContainsKey($key)) {
+                    $convertedRuntimes[$key] += $entry[$key]
+                } else {
+                    $convertedRuntimes[$key] = $entry[$key]
+                }
+            }
+        }
+        $Runtimes = $convertedRuntimes
+    }
+
+    # Validate runtimes format
+    if ($Runtimes -isnot [System.Collections.Hashtable]) {
+        throw "Invalid runtime format for Xcode $(Version): Expected hashtable, got [$($Runtimes.GetType())]"
+    }
+
+    # Install runtimes for specified platforms
+    foreach ($platform in $validRuntimes) {        
+        if (-not $Runtimes.ContainsKey($platform)) {
+            Write-Host "No runtimes specified for $platform in the toolset for Xcode $Version, please check the toolset."
+            return
+        }
+        foreach ($platformVersion in $Runtimes[$platform]) {
+            switch ($platformVersion) {
+                "skip" {
+                    Write-Host "Skipping $platform runtimes installation for Xcode $Version ..."
+                    continue
+                }
+                "default" {
+                    Write-Host "Installing default $platform runtime for Xcode $Version ..."
+                    Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform" | Out-Null
+                    continue
+                }
+                default {
+                    # Version might be a semver or a build number
+                    if (($platformVersion -match "^\d{1,2}\.\d(\.\d)?$") -or ($platformVersion -match "^[a-zA-Z0-9]{6,8}$")) {
+                        Write-Host "Installing $platform $platformVersion runtime for Xcode $Version ..."
+                        Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion" | Out-Null
+                        continue
+                    }
+                    throw "$platformVersion is not a valid value for $platform version. Valid values are 'latest' or 'skip' or a semver from 0.0 to 99.9.(9)."
+                }
+            }
+        }
     }
 }
 
