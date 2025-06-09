@@ -1,14 +1,13 @@
 | Announcements |
 |-|
+| [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 | [[Ubuntu] Go version 1.21 will be removed from the images on 2025-06-13 and updated to the latest version 1.24 ,setting it as the default.](https://github.com/actions/runner-images/issues/12176) |
-| [[Ubuntu 22.04 and Windows 2022] Default Nodejs version will be set to 20 on 2025-06-02](https://github.com/actions/runner-images/issues/12143) |
-| [[Windows, Ubuntu] Python 3.8.x will be removed from 2025-06-06](https://github.com/actions/runner-images/issues/12034) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1029-azure
-- Image Version: 20250602.1.0
+- Image Version: 20250609.1.0
 - Systemd version: 249.11-0ubuntu3.15
 
 ## Installed Software
@@ -33,8 +32,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.18.1
-- Homebrew 4.5.4
+- Helm 3.18.2
+- Homebrew 4.5.5
 - Miniconda 25.3.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -42,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 9eb6e4b60e)
+- Vcpkg (build from commit 984f9232b2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,10 +60,10 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 8.14.1
+- Gradle 8.14.2
 - Lerna 8.2.2
-- Maven 3.9.9
-- Sbt 1.11.1
+- Maven 3.9.10
+- Sbt 1.11.2
 
 ### Tools
 - Ansible 2.17.12
@@ -75,7 +74,7 @@ to accomplish this.
 - Bicep 0.36.1
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.3
+- CodeQL Action Bundle 2.21.4
 - Docker Amazon ECR Credential Helper 0.10.0
 - Docker Compose v2 2.35.1
 - Docker-Buildx 0.24.0
@@ -86,7 +85,7 @@ to accomplish this.
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.8.0
+- Heroku 10.10.0
 - jq 1.6
 - Kind 0.29.0
 - Kubectl 1.33.1
@@ -99,10 +98,10 @@ to accomplish this.
 - Newman 6.2.1
 - nvm 0.40.3
 - OpenSSL 3.0.2-0ubuntu1.19
-- Packer 1.13.0
+- Packer 1.13.1
 - Parcel 2.15.2
 - Podman 3.4.4
-- Pulumi 3.173.0
+- Pulumi 3.175.0
 - R 4.5.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -114,16 +113,16 @@ to accomplish this.
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.280
-- AWS CLI 2.27.27
+- Alibaba Cloud CLI 3.0.282
+- AWS CLI 2.27.31
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.139.0
-- Azure CLI 2.73.0
+- AWS SAM CLI 1.140.0
+- Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
 - GitHub CLI 2.74.0
-- Google Cloud CLI 524.0.0
-- Netlify CLI 21.5.1
-- OpenShift CLI 4.18.15
+- Google Cloud CLI 525.0.0
+- Netlify CLI 22.1.3
+- OpenShift CLI 4.18.16
 - ORAS CLI 1.2.3
 - Vercel CLI 42.3.0
 
@@ -156,7 +155,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustup 1.28.2
 
 #### Packages
-- Bindgen 0.71.1
+- Bindgen 0.72.0
 - Cargo audit 0.21.2
 - Cargo clippy 0.1.87
 - Cargo outdated 0.17.0
@@ -164,11 +163,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 137.0.7151.55
-- ChromeDriver 137.0.7151.55
+- Google Chrome 137.0.7151.68
+- ChromeDriver 137.0.7151.68
 - Chromium 137.0.7151.0
-- Microsoft Edge 137.0.3296.58
-- Microsoft Edge WebDriver 137.0.3296.52
+- Microsoft Edge 137.0.3296.68
+- Microsoft Edge WebDriver 137.0.3296.68
 - Selenium server 4.33.0
 - Mozilla Firefox 136.0.4
 - Geckodriver 0.36.0
@@ -212,9 +211,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.21.13
 - 1.22.12
-- 1.23.9
+- 1.23.10
+- 1.24.4
 
 #### Node.js
 - 18.20.8
@@ -222,11 +221,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 22.16.0
 
 #### Python
-- 3.9.22
-- 3.10.17
-- 3.11.12
-- 3.12.10
-- 3.13.3
+- 3.9.23
+- 3.10.18
+- 3.11.13
+- 3.12.11
+- 3.13.4
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -295,7 +294,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:22              | sha256:0b5b940c21ab03353de9042f9166c75bcfc53c4cd0508c7fd88576646adbf875  | 2025-05-21 |
 | node:22-alpine       | sha256:41e4389f3d988d2ed55392df4db1420ad048ae53324a8e2b7c6d19508288107e  | 2025-05-30 |
 | ubuntu:20.04         | sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214  | 2025-04-08 |
-| ubuntu:22.04         | sha256:67cadaff1dca187079fce41360d5a7eb6f7dcd3745e53c79ad5efd8563118240  | 2025-04-28 |
+| ubuntu:22.04         | sha256:01a3ee0b5e413cefaaffc6abe68c9c37879ae3cced56a8e088b1649e5b269eee  | 2025-05-30 |
 
 ### Installed apt packages
 | Name                   | Version                             |
