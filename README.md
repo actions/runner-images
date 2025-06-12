@@ -10,7 +10,7 @@
 - [Software and Image Support](#software-and-image-support)
 - [How to Interact with the Repo](#how-to-interact-with-the-repo)
 - [FAQs](#faqs)
-
+- Added test line to test linter. (This Changes should never be merged to main. Only for testing purpose)
 ## About
 
 This repository contains the source code used to create the VM images for [GitHub-hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners) used for Actions, as well as for [Microsoft-hosted agents](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent) used for Azure Pipelines.
