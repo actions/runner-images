@@ -1,15 +1,13 @@
 | Announcements |
 |-|
+| [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
-| [[Ubuntu 22.04 and Windows 2022] Default Nodejs version will be set to 20 on 2025-06-02](https://github.com/actions/runner-images/issues/12143) |
 | [The Windows 2019 Actions runner image will begin deprecation on 2025-06-01 and will be fully unsupported by 2025-06-30](https://github.com/actions/runner-images/issues/12045) |
-| [[Windows, Ubuntu] Python 3.8.x will be removed from 2025-06-06](https://github.com/actions/runner-images/issues/12034) |
-| [[Windows 19 and 22] Ruby version 3.0 will be removed from Windows images on 2025-06-06 and 3.3 will be set as default.](https://github.com/actions/runner-images/issues/12033) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 4066
-- Image Version: 20250602.1.0
+- Image Version: 20250609.2.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -19,13 +17,13 @@
 
 ### Language and Runtime
 - Bash 5.2.37(1)-release
-- Go 1.24.3
+- Go 1.24.4
 - Julia 1.11.5
 - Kotlin 2.1.10
 - LLVM 20.1.4
 - Node 22.16.0
 - Perl 5.40.0
-- PHP 8.4.7
+- PHP 8.4.8
 - Python 3.9.13
 - Ruby 3.3.8
 
@@ -39,7 +37,7 @@
 - pip 25.1.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 181f538ff1)
+- Vcpkg (build from commit 1b6e030cf0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -51,8 +49,8 @@
 ### Project Management
 - Ant 1.10.15
 - Gradle 8.14
-- Maven 3.9.9
-- sbt 1.11.0
+- Maven 3.9.10
+- sbt 1.11.2
 
 ### Tools
 - 7zip 24.09
@@ -63,7 +61,7 @@
 - Bicep 0.36.1
 - Cabal 3.14.2.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.3
+- CodeQL Action Bundle 2.21.4
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
@@ -80,7 +78,7 @@
 - Newman 6.2.1
 - OpenSSL 3.4.1
 - Packer 1.12.0
-- Pulumi 3.173.0
+- Pulumi 3.175.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.5.1
@@ -93,10 +91,10 @@
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.27.26
-- AWS SAM CLI 1.139.0
+- AWS CLI 2.27.31
+- AWS SAM CLI 1.140.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.73.0
+- Azure CLI 2.74.0
 - Azure DevOps CLI extension 1.0.1
 - GitHub CLI 2.74.0
 
@@ -113,8 +111,8 @@
 ### Browsers and Drivers
 - Google Chrome 137.0.7151.69
 - Chrome Driver 137.0.7151.68
-- Microsoft Edge 137.0.3296.52
-- Microsoft Edge Driver 137.0.3296.52
+- Microsoft Edge 137.0.3296.68
+- Microsoft Edge Driver 137.0.3296.68
 - Mozilla Firefox 139.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -157,8 +155,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.22.12
-- 1.23.9
-- 1.24.3
+- 1.23.10
+- 1.24.4
 
 #### Node.js
 - 18.20.8
@@ -170,7 +168,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.3
+- 3.13.4
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -198,7 +196,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 7.0.20.0 | MongoDB     | Stopped       | Disabled         |
+| 7.0.21.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.23.0
@@ -206,7 +204,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - MySQL 8.0.42.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.5.1
+- MongoDB Shell (mongosh) 2.5.2
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
@@ -482,7 +480,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.832
+- AWSPowershell: 4.1.837
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.28.0
