@@ -250,7 +250,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.35.1",
+                "version": "2.36.2",
                 "asset": "linux-x86_64"
             }
         ]
