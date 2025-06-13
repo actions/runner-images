@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[macOS] Xcode 15.4 will be removed from macOS15 images on  May 29th, 2025](https://github.com/actions/runner-images/issues/12195) |
-| [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
+| [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 ***
 # macOS 13
 - OS Version: macOS 13.7.6 (22H625)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250602.1306
+- Image Version: 20250609.1323
 
 ## Installed Software
 
@@ -25,14 +24,14 @@
 - Mono 6.12.0.188
 - Node.js 20.19.2
 - Perl 5.40.2
-- Python3 3.13.3
+- Python3 3.13.4
 - Ruby 3.3.8
 
 ### Package Management
 - Bundler 2.6.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.3
+- Homebrew 4.5.4
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
@@ -42,8 +41,8 @@
 
 ### Project Management
 - Apache Ant 1.10.15
-- Apache Maven 3.9.9
-- Gradle 8.14.1
+- Apache Maven 3.9.10
+- Gradle 8.14.2
 
 ### Utilities
 - 7-Zip 17.05
@@ -61,7 +60,7 @@
 - gpg (GnuPG) 2.4.8
 - jq 1.8.0
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.12.0
+- Packer 1.13.1
 - pkgconf 2.4.3
 - Unxip 3.1
 - yq 4.45.4
@@ -69,16 +68,16 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.26
-- AWS SAM CLI 1.139.0
+- AWS CLI 2.27.31
+- AWS SAM CLI 1.140.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.73.0
+- Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.36.1
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.21.3
+- CodeQL Action Bundle 2.21.4
 - Fastlane 2.227.2
-- SwiftFormat 0.56.2
+- SwiftFormat 0.56.3
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
@@ -88,9 +87,9 @@
 ### Browsers
 - Safari 18.5 (18621.2.5.18.1)
 - SafariDriver 18.5 (18621.2.5.18.1)
-- Google Chrome 137.0.7151.56
-- Google Chrome for Testing 137.0.7151.55
-- ChromeDriver 137.0.7151.55
+- Google Chrome 137.0.7151.69
+- Google Chrome for Testing 137.0.7151.68
+- ChromeDriver 137.0.7151.68
 - Mozilla Firefox 139.0.1
 - geckodriver 0.36.0
 - Selenium server 4.33.0
@@ -120,7 +119,7 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.3
+- 3.13.4
 
 #### Node.js
 - 18.20.8
@@ -129,8 +128,8 @@
 
 #### Go
 - 1.22.12
-- 1.23.9
-- 1.24.3
+- 1.23.10
+- 1.24.4
 
 ### Rust Tools
 - Cargo 1.87.0
@@ -197,8 +196,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
