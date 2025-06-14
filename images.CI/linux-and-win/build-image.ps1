@@ -1,5 +1,6 @@
 param(
     [String] [Parameter (Mandatory=$true)] $TemplatePath,
+    [String] [Parameter (Mandatory=$true)] $BuildTemplateName,
     [String] [Parameter (Mandatory=$true)] $ClientId,
     [String] [Parameter (Mandatory=$false)] $ClientSecret,
     [String] [Parameter (Mandatory=$true)] $Location,
@@ -8,7 +9,9 @@ param(
     [String] [Parameter (Mandatory=$true)] $TempResourceGroupName,
     [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $TenantId,
-    [String] [Parameter (Mandatory=$false)] $pluginVersion = "2.2.1",
+    [String] [Parameter (Mandatory=$true)] $ImageOS, # e.g. "ubuntu22", "ubuntu22" or "win19", "win22", "win25"
+    [String] [Parameter (Mandatory=$false)] $UseAzureCliAuth = "false",
+    [String] [Parameter (Mandatory=$false)] $PluginVersion = "2.3.3",
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet,
@@ -22,7 +25,7 @@ if (-not (Test-Path $TemplatePath))
     exit 1
 }
 
-$ImageTemplateName = [io.path]::GetFileName($TemplatePath).Split(".")[0]
+$buildName = $($BuildTemplateName).Split(".")[1]
 $InstallPassword = [System.GUID]::NewGuid().ToString().ToUpper()
 
 $SensitiveData = @(
@@ -44,13 +47,15 @@ Write-Host "Download packer plugins"
 packer plugins install github.com/hashicorp/azure $pluginVersion
 
 Write-Host "Validate packer template"
-packer validate -syntax-only $TemplatePath
+packer validate -syntax-only -only "$buildName*" $TemplatePath
 
-Write-Host "Build $ImageTemplateName VM"
-packer build    -var "client_id=$ClientId" `
+Write-Host "Build $buildName VM"
+packer build    -only "$buildName*" `
+                -var "client_id=$ClientId" `
                 -var "client_secret=$ClientSecret" `
                 -var "install_password=$InstallPassword" `
                 -var "location=$Location" `
+                -var "image_os=$ImageOS" `
                 -var "managed_image_name=$ImageName" `
                 -var "managed_image_resource_group_name=$ImageResourceGroupName" `
                 -var "subscription_id=$SubscriptionId" `
@@ -60,6 +65,7 @@ packer build    -var "client_id=$ClientId" `
                 -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
                 -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+                -var "use_azure_cli_auth=$UseAzureCliAuth" `
                 -var "azure_tags=$azure_tags" `
                 -color=false `
                 $TemplatePath `
