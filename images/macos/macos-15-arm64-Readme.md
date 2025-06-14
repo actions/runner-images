@@ -1,48 +1,47 @@
 | Announcements |
 |-|
-| [[macOS] Xcode 15.4 will be removed from macOS15 images on  May 29th, 2025](https://github.com/actions/runner-images/issues/12195) |
-| [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
+| [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 ***
 # macOS 15
 - OS Version: macOS 15.5 (24F74)
 - Kernel Version: Darwin 24.5.0
-- Image Version: 20250602.1658
+- Image Version: 20250611.1705
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.410, 9.0.102, 9.0.203, 9.0.300
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.411, 9.0.102, 9.0.203, 9.0.301
 - Bash 3.2.57(1)-release
 - Clang/LLVM 16.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
-- GCC 14 (Homebrew GCC 14.2.0) - available by `gcc-14` alias
+- GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
-- GNU Fortran 14 (Homebrew GCC 14.2.0) - available by `gfortran-14` alias
+- GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - Kotlin 2.1.10-release-473
 - Node.js 22.16.0
 - Perl 5.40.2
-- Python3 3.13.3
+- Python3 3.13.4
 - Ruby 3.3.8
 
 ### Package Management
 - Bundler 2.6.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.3
+- Homebrew 4.5.6
 - NPM 10.9.2
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.9
-- Vcpkg 2025 (build from commit 654410ee8e)
+- Vcpkg 2025 (build from commit 4ff394902b)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
-- Apache Maven 3.9.9
-- Gradle 8.14.1
+- Apache Maven 3.9.10
+- Gradle 8.14.2
 
 ### Utilities
 - 7-Zip 17.05
@@ -54,13 +53,13 @@
 - Curl 8.7.1
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.74.0
+- GitHub CLI 2.74.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
 - jq 1.8.0
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.12.0
+- Packer 1.13.1
 - pkgconf 2.4.3
 - Unxip 3.1
 - yq 4.45.4
@@ -68,16 +67,16 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.26
-- AWS SAM CLI 1.139.0
+- AWS CLI 2.27.33
+- AWS SAM CLI 1.140.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.73.0
+- Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.36.1
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.21.3
-- Fastlane 2.227.2
-- SwiftFormat 0.56.2
+- CodeQL Action Bundle 2.21.4
+- Fastlane 2.228.0
+- SwiftFormat 0.56.3
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 1.6.0
@@ -87,10 +86,10 @@
 ### Browsers
 - Safari 18.5 (20621.2.5.11.8)
 - SafariDriver 18.5 (20621.2.5.11.8)
-- Google Chrome 137.0.7151.56
-- Google Chrome for Testing 137.0.7151.55
-- ChromeDriver 137.0.7151.55
-- Mozilla Firefox 139.0.1
+- Google Chrome 137.0.7151.104
+- Google Chrome for Testing 137.0.7151.70
+- ChromeDriver 137.0.7151.70
+- Mozilla Firefox 139.0.4
 - geckodriver 0.36.0
 - Selenium server 4.33.0
 
@@ -119,7 +118,7 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.3
+- 3.13.4
 
 #### Node.js
 - 18.20.8
@@ -128,8 +127,8 @@
 
 #### Go
 - 1.22.12
-- 1.23.9
-- 1.24.3
+- 1.23.10
+- 1.24.4
 
 ### Rust Tools
 - Cargo 1.87.0
