@@ -4,6 +4,13 @@
         "x64": {
             "versions": [
                 {
+                    "link": "26_beta",
+                    "version": "26.0.0-Beta+17A5241e",
+                    "symlinks": ["26.0"],
+                    "sha256": "664ad6ec7a3139e9c43b95620c73f8950a802c3d469bb47e6d89f3eab9541b1c",
+                    "install_runtimes": "default"
+                },
+                {
                     "link": "16.4",
                     "version": "16.4.0+16F6",
                     "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
@@ -42,6 +49,13 @@
         },
         "arm64":{
             "versions": [
+                {
+                    "link": "26_beta",
+                    "version": "26.0.0-Beta+17A5241e",
+                    "symlinks": ["26.0"],
+                    "sha256": "664ad6ec7a3139e9c43b95620c73f8950a802c3d469bb47e6d89f3eab9541b1c",
+                    "install_runtimes": "none"
+                },
                 {
                     "link": "16.4",
                     "version": "16.4.0+16F6",
