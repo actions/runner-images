@@ -201,14 +201,3 @@ We are in the process of preparing macOS CI to accept contributions. Until then,
 
 For some tools, we always install the latest at the time of the deployment; for others, we pin the tool to specific version(s). For more details please see the [Preinstallation Policy](#preinstallation-policy)
 </details>
-
-<details>
-   <summary><b><i>How do I request that a new tool be pre-installed on the image?</b></i></summary>
-Please create an issue and get an approval from us to add this tool to the image before creating the pull request.
-</details>
-
-<details>
-   <summary><b><i>What branch should I use to build custom image?</b></i></summary>
-We strongly encourage customers to build their own images using the main branch.
-This repository contains multiple branches and releases that serve as document milestones to reflect what software is installed in the images at certain point of time. Current builds are not idempotent and if one tries to build a runner image using the specific tag it is not guaranteed that the build will succeed.
-</details>
