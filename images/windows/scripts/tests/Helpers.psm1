@@ -191,8 +191,7 @@ function Get-ModuleVersionAsJob {
             $modulePath,
             $moduleName
         )
-        # Disable warning messages to prevent additional warnings about Az and Azurerm modules in the same session
-        $WarningPreference = "SilentlyContinue"
+        # No need to suppress AzureRM warnings now, only Az module is considered
         $env:PsModulePath = "$modulePath;$env:PsModulePath"
         Import-Module -Name $moduleName
         (Get-Module -Name $moduleName).Version.ToString()

@@ -49,8 +49,9 @@ if (Test-IsWin25) {
         -UrlMatchPattern "mongosh-*-x64.msi"
 
     Install-Binary -Type MSI `
-    -Url $mongoshDownloadUrl `
-    -ExpectedSignature 'F2D7C28591847BB2CB2B1C2A0C59459FDC728A38'
+        -Url $mongoshDownloadUrl `
+        -ExtraInstallArgs @('ALLUSERS=1') `
+        -ExpectedSignature 'A5BBE2A6DA1D2A6E057EF870267E6A91E4D56BAA'
 }
 
 Invoke-PesterTests -TestFile "Databases" -TestName "MongoDB"

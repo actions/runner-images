@@ -2,7 +2,7 @@
 
 # Port of Gavin Brock's Perl kcpassword generator to Python, by Tom Taylor
 # <tom@tomtaylor.co.uk>.
-# Perl version: http://www.brock-family.org/gavin/perl/kcpassword.html
+# Perl version: https://www.brock-family.org/gavin/perl/kcpassword.html
 # This script was taken from https://github.com/timsutton/osx-vm-templates/blob/master/scripts/support/set_kcpassword.py
 # Distributed by MIT license, license can be found at the bottom of this script
 

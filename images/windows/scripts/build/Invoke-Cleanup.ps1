@@ -15,7 +15,6 @@ Write-Host "Clean up various directories"
     "$env:SystemRoot\logs",
     "$env:SystemRoot\winsxs\manifestcache",
     "$env:SystemRoot\Temp",
-    "$env:SystemRoot\Installer\*",
     "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp",
     "$env:TEMP",
     "$env:AZURE_CONFIG_DIR\logs",
@@ -52,6 +51,8 @@ if ($LASTEXITCODE -ne 0) {
 
 if (Test-IsWin25) {
     $directoriesToCompact = @(
+        "C:\Program Files (x86)\Android",
+        "C:\Program Files\dotnet",
         "$env:SystemRoot\assembly",
         "$env:SystemRoot\WinSxS"
     )

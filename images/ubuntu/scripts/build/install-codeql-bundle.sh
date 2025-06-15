@@ -7,8 +7,23 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
+# Retrieve the latest major version of the CodeQL Action to use in the base URL for downloading the bundle.
+releases=$(curl -s "https://api.github.com/repos/github/codeql-action/releases")
+
+# Get the release tags starting with v[0-9] and sort them in descending order, then parse the first one to get the major version.
+codeql_action_latest_major_version=$(echo "$releases" |
+    jq -r '.[].tag_name' |
+    grep -E '^v[0-9]' |
+    sort -nr |
+    head -n 1 |
+    sed -E 's/^v([0-9]+).*/\1/')
+if [ -z "$codeql_action_latest_major_version" ]; then
+  echo "Error: Unable to find the latest major version of the CodeQL Action."
+  exit 1
+fi
+
 # Retrieve the CLI version of the latest CodeQL bundle.
-base_url="$(curl -fsSL https://raw.githubusercontent.com/github/codeql-action/v2/src/defaults.json)"
+base_url="$(curl -fsSL https://raw.githubusercontent.com/github/codeql-action/v"$codeql_action_latest_major_version"/src/defaults.json)"
 bundle_version="$(echo "$base_url" | jq -r '.cliVersion')"
 bundle_tag_name="codeql-bundle-v$bundle_version"
 

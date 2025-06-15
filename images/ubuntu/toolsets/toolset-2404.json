@@ -10,7 +10,8 @@
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
-                "3.12.*"
+                "3.12.*",
+                "3.13.*"
             ]
         },
         {
@@ -39,18 +40,19 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.21.*",
                 "1.22.*",
-                "1.23.*"
+                "1.23.*",
+                "1.24.*"
             ],
-            "default": "1.23.*"
+            "default": "1.24.*"
         },
         {
             "name": "Ruby",
             "platform_version": "24.04",
             "arch": "x64",
             "versions": [
-                "3.2.*"
+                "3.2.*",
+                "3.3.*"
             ]
         },
         {
@@ -65,7 +67,7 @@
     "java": {
         "default": "17",
         "versions": [ "8", "11", "17", "21"],
-        "maven": "3.8.8"
+        "maven": "3.9.10"
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-11076708_latest.zip",
@@ -79,11 +81,12 @@
         "addon_list": [
         ],
         "additional_tools": [
+            "cmake;3.31.5"
         ],
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27"
+                "26", "27", "28"
             ]
         }
     },
@@ -127,6 +130,7 @@
             "libyaml-dev",
             "libtool",
             "libssl-dev",
+            "libsqlite3-dev",
             "locales",
             "mercurial",
             "openssh-client",
@@ -172,6 +176,7 @@
             "ssh",
             "sshpass",
             "sudo",
+            "systemd-coredump",
             "swig",
             "telnet",
             "time",
@@ -190,11 +195,11 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "26.1.3"
+                "version": "28.0.4"
             },
             {
                 "package": "docker-ce",
-                "version": "26.1.3"
+                "version": "28.0.4"
             }
         ],
         "plugins": [
@@ -205,7 +210,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.27.1",
+                "version": "2.36.2",
                 "asset": "linux-x86_64"
             }
         ]
@@ -309,9 +314,6 @@
             "command": "yarn"
         }
     ],
-    "mongodb": {
-        "version": "7.0"
-    },
     "postgresql": {
         "version": "16"
     },

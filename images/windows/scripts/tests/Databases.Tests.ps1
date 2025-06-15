@@ -30,8 +30,10 @@ Describe "MongoDB" {
         }
     }
 
-    Context "Shell" -Skip:(-not (Test-IsWin19) -or -not (Test-IsWin22)) {
-        "mongosh --version" | Should -Not -BeNullOrEmpty
+    Context "Shell" -Skip:(-not (Test-IsWin25)) {
+        It "mongosh" {
+            "mongosh --version" | Should -ReturnZeroExitCode
+        }
     }
 }
 

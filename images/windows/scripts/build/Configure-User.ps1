@@ -41,6 +41,14 @@ if (-not (Test-IsWin25)) {
         throw "Failed to copy HKCU\Software\TortoiseSVN to HKLM\DEFAULT\Software\TortoiseSVN"
     }
 }
+# Accept by default "Send Diagnostic data to Microsoft" consent.
+if (Test-IsWin25) {
+    $registryKeyPath = 'HKLM:\DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy'
+    New-ItemProperty -Path $registryKeyPath -Name PrivacyConsentPresentationVersion -PropertyType DWORD -Value 3 | Out-Null
+    New-ItemProperty -Path $registryKeyPath -Name PrivacyConsentSettingsValidMask -PropertyType DWORD -Value 4 | Out-Null
+    New-ItemProperty -Path $registryKeyPath -Name PrivacyConsentSettingsVersion -PropertyType DWORD -Value 5 | Out-Null
+}
+
 Dismount-RegistryHive "HKLM\DEFAULT"
 
 # Remove the "installer" (var.install_user) user profile for Windows 2025 image

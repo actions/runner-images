@@ -1,13 +1,6 @@
 param(
-    [Parameter (Mandatory=$true)] [string] $TempResourceGroupName,
-    [Parameter (Mandatory=$true)] [string] $SubscriptionId,
-    [Parameter (Mandatory=$true)] [string] $ClientId,
-    [Parameter (Mandatory=$true)] [string] $ClientSecret,
-    [Parameter (Mandatory=$true)] [string] $TenantId
+    [Parameter (Mandatory=$true)] [string] $TempResourceGroupName
 )
-
-az login --service-principal --username $ClientId --password=$ClientSecret --tenant $TenantId | Out-Null
-az account set --subscription $SubscriptionId | Out-Null
 
 $groupExist = az group exists --name $TempResourceGroupName
 if ($groupExist -eq "true") {

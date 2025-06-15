@@ -81,10 +81,6 @@ is_VenturaX64() {
     is_Ventura && ! is_Arm64
 }
 
-is_Monterey() {
-    [ "$OSTYPE" = "darwin21" ]
-}
-
 get_toolset_value() {
     local toolset_path=$(echo "$IMAGE_FOLDER/toolset.json")
     local query=$1
