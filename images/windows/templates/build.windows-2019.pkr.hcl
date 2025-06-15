@@ -1,263 +1,6 @@
-variable "agent_tools_directory" {
-  type    = string
-  default = "C:\\hostedtoolcache\\windows"
-}
-
-variable "allowed_inbound_ip_addresses" {
-  type    = list(string)
-  default = []
-}
-
-variable "azure_tags" {
-  type    = map(string)
-  default = {}
-}
-
-variable "build_resource_group_name" {
-  type    = string
-  default = "${env("BUILD_RG_NAME")}"
-}
-
-variable "client_cert_path" {
-  type    = string
-  default = "${env("ARM_CLIENT_CERT_PATH")}"
-}
-
-variable "client_id" {
-  type    = string
-  default = "${env("ARM_CLIENT_ID")}"
-}
-
-variable "client_secret" {
-  type      = string
-  default   = "${env("ARM_CLIENT_SECRET")}"
-  sensitive = true
-}
-
-variable "helper_script_folder" {
-  type    = string
-  default = "C:\\Program Files\\WindowsPowerShell\\Modules\\"
-}
-
-variable "image_folder" {
-  type    = string
-  default = "C:\\image"
-}
-
-variable "image_os" {
-  type    = string
-  default = "win22"
-}
-
-variable "image_version" {
-  type    = string
-  default = "dev"
-}
-
-variable "imagedata_file" {
-  type    = string
-  default = "C:\\imagedata.json"
-}
-
-variable "temp_dir" {
-  type    = string
-  default = "D:\\temp"
-}
-
-variable "install_password" {
-  type      = string
-  default   = ""
-  sensitive = true
-}
-
-variable "install_user" {
-  type    = string
-  default = "installer"
-}
-
-variable "location" {
-  type    = string
-  default = ""
-}
-
-variable "managed_image_name" {
-  type    = string
-  default = ""
-}
-
-variable "managed_image_resource_group_name" {
-  type    = string
-  default = "${env("ARM_RESOURCE_GROUP")}"
-}
-
-variable "managed_image_storage_account_type" {
-  type    = string
-  default = "Premium_LRS"
-}
-
-variable "object_id" {
-  type    = string
-  default = "${env("ARM_OBJECT_ID")}"
-}
-
-variable "private_virtual_network_with_public_ip" {
-  type    = bool
-  default = false
-}
-
-variable "subscription_id" {
-  type    = string
-  default = "${env("ARM_SUBSCRIPTION_ID")}"
-}
-
-variable "temp_resource_group_name" {
-  type    = string
-  default = "${env("TEMP_RESOURCE_GROUP_NAME")}"
-}
-
-variable "tenant_id" {
-  type    = string
-  default = "${env("ARM_TENANT_ID")}"
-}
-
-variable "virtual_network_name" {
-  type    = string
-  default = "${env("VNET_NAME")}"
-}
-
-variable "virtual_network_resource_group_name" {
-  type    = string
-  default = "${env("VNET_RESOURCE_GROUP")}"
-}
-
-variable "virtual_network_subnet_name" {
-  type    = string
-  default = "${env("VNET_SUBNET")}"
-}
-
-variable "vm_size" {
-  type    = string
-  default = "Standard_F8s_v2"
-}
-
-variable "image_offer" {
-  type    = string
-  default = "WindowsServer"
-}
-
-variable "image_publisher" {
-  type    = string
-  default = "MicrosoftWindowsServer"
-}
-
-variable "image_sku" {
-  type    = string
-  default = "2022-Datacenter"
-}
-
-variable "gallery_name" {
-  type    = string
-  default = "${env("GALLERY_NAME")}"
-}
-
-variable "gallery_resource_group_name" {
-  type    = string
-  default = "${env("GALLERY_RG_NAME")}"
-}
-
-variable "gallery_image_name" {
-  type    = string
-  default = "${env("GALLERY_IMAGE_NAME")}"
-}
-
-variable "gallery_image_version" {
-  type    = string
-  default = "${env("GALLERY_IMAGE_VERSION")}"
-}
-
-variable "gallery_storage_account_type" {
-  type    = string
-  default = "${env("GALLERY_STORAGE_ACCOUNT_TYPE")}"
-}
-
-variable "build_key_vault_name" {
-  type    = string
-  default = "${env("BUILD_KEY_VAULT_NAME")}"
-}
-
-variable "build_key_vault_secret_name" {
-  type    = string
-  default = "${env("BUILD_KEY_VAULT_SECRET_NAME")}"
-}
-
-variable "use_azure_cli_auth" {
-  type    = bool
-  default = false
-}
-
-variable "os_disk_size_gb" {
-  type    = number
-  default = 256
-}
-
-variable "image_os_type" {
-  type    = string
-  default = "Windows"
-}
-
-source "azure-arm" "image" {
-  allowed_inbound_ip_addresses           = "${var.allowed_inbound_ip_addresses}"
-  build_resource_group_name              = "${var.build_resource_group_name}"
-  client_cert_path                       = "${var.client_cert_path}"
-  client_id                              = "${var.client_id}"
-  client_secret                          = "${var.client_secret}"
-  use_azure_cli_auth                     = var.use_azure_cli_auth
-  communicator                           = "winrm"
-  image_offer                            = "${var.image_offer}"
-  image_publisher                        = "${var.image_publisher}"
-  image_sku                              = "${var.image_sku}"
-  location                               = "${var.location}"
-  managed_image_name                     = "${var.managed_image_name}"
-  managed_image_resource_group_name      = "${var.managed_image_resource_group_name}"
-  managed_image_storage_account_type     = "${var.managed_image_storage_account_type}"
-  object_id                              = "${var.object_id}"
-  os_disk_size_gb                        = var.os_disk_size_gb
-  os_type                                = var.image_os_type
-  private_virtual_network_with_public_ip = "${var.private_virtual_network_with_public_ip}"
-  subscription_id                        = "${var.subscription_id}"
-  temp_resource_group_name               = "${var.temp_resource_group_name}"
-  tenant_id                              = "${var.tenant_id}"
-  virtual_network_name                   = "${var.virtual_network_name}"
-  virtual_network_resource_group_name    = "${var.virtual_network_resource_group_name}"
-  virtual_network_subnet_name            = "${var.virtual_network_subnet_name}"
-  vm_size                                = "${var.vm_size}"
-  winrm_insecure                         = "true"
-  winrm_use_ssl                          = "true"
-  winrm_username                         = "packer"
-  winrm_expiration_time                  = "1440h"
-  build_key_vault_name                   = var.build_key_vault_name
-  build_key_vault_secret_name            = var.build_key_vault_secret_name
-
-  shared_image_gallery_destination {
-    subscription                         = var.subscription_id
-    gallery_name                         = var.gallery_name
-    resource_group                       = var.gallery_resource_group_name
-    image_name                           = var.gallery_image_name
-    image_version                        = var.gallery_image_version
-    storage_account_type                 = var.gallery_storage_account_type
-  }
-
-  dynamic "azure_tag" {
-    for_each = var.azure_tags
-    content {
-      name  = azure_tag.key
-      value = azure_tag.value
-    }
-  }
-}
-
 build {
   sources = ["source.azure-arm.image"]
+  name = "windows-2019"
 
   provisioner "powershell" {
     inline = [
@@ -290,7 +33,7 @@ build {
       "Move-Item '${var.image_folder}\\scripts\\tests\\Helpers.psm1' '${var.helper_script_folder}\\TestsHelpers\\TestsHelpers.psm1'",
       "Move-Item '${var.image_folder}\\scripts\\tests' '${var.image_folder}\\tests'",
       "Remove-Item -Recurse '${var.image_folder}\\scripts'",
-      "Move-Item '${var.image_folder}\\toolsets\\toolset-2022.json' '${var.image_folder}\\toolset.json'",
+      "Move-Item '${var.image_folder}\\toolsets\\toolset-2019.json' '${var.image_folder}\\toolset.json'",
       "Remove-Item -Recurse '${var.image_folder}\\toolsets'"
     ]
   }
@@ -315,6 +58,17 @@ build {
   }
 
   provisioner "powershell" {
+    elevated_password = "${var.install_password}"
+    elevated_user     = "${var.install_user}"
+    scripts           = ["${path.root}/../scripts/build/Install-NET48.ps1"]
+    valid_exit_codes  = [0, 3010]
+  }
+
+  provisioner "windows-restart" {
+    restart_timeout = "10m"
+  }
+
+  provisioner "powershell" {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "AGENT_TOOLSDIRECTORY=${var.agent_tools_directory}", "IMAGEDATA_FILE=${var.imagedata_file}", "IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     execution_policy = "unrestricted"
     scripts          = [
@@ -331,9 +85,7 @@ build {
   }
 
   provisioner "windows-restart" {
-    check_registry        = true
-    restart_check_command = "powershell -command \"& {while ( (Get-WindowsOptionalFeature -Online -FeatureName Containers -ErrorAction SilentlyContinue).State -ne 'Enabled' ) { Start-Sleep 30; Write-Output 'InProgress' }}\""
-    restart_timeout       = "10m"
+    restart_timeout = "30m"
   }
 
   provisioner "powershell" {
@@ -343,6 +95,7 @@ build {
   provisioner "powershell" {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
+      "${path.root}/../scripts/build/Install-VCRedist.ps1",
       "${path.root}/../scripts/build/Install-Docker.ps1",
       "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
       "${path.root}/../scripts/build/Install-DockerCompose.ps1",
@@ -354,7 +107,7 @@ build {
   }
 
   provisioner "windows-restart" {
-    restart_timeout = "30m"
+    restart_timeout = "10m"
   }
 
   provisioner "powershell" {
@@ -363,18 +116,13 @@ build {
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts           = [
       "${path.root}/../scripts/build/Install-VisualStudio.ps1",
-      "${path.root}/../scripts/build/Install-KubernetesTools.ps1"
+      "${path.root}/../scripts/build/Install-KubernetesTools.ps1",
+      "${path.root}/../scripts/build/Install-NET48-devpack.ps1"
     ]
     valid_exit_codes  = [0, 3010]
   }
 
-  provisioner "windows-restart" {
-    check_registry  = true
-    restart_timeout = "10m"
-  }
-
   provisioner "powershell" {
-    pause_before     = "2m0s"
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
       "${path.root}/../scripts/build/Install-Wix.ps1",
@@ -444,29 +192,29 @@ build {
       "${path.root}/../scripts/build/Install-Mercurial.ps1",
       "${path.root}/../scripts/build/Install-Zstd.ps1",
       "${path.root}/../scripts/build/Install-NSIS.ps1",
+      "${path.root}/../scripts/build/Install-CloudFoundryCli.ps1",
       "${path.root}/../scripts/build/Install-Vcpkg.ps1",
       "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
       "${path.root}/../scripts/build/Install-Bazel.ps1",
       "${path.root}/../scripts/build/Install-AliyunCli.ps1",
       "${path.root}/../scripts/build/Install-RootCA.ps1",
       "${path.root}/../scripts/build/Install-MongoDB.ps1",
+      "${path.root}/../scripts/build/Install-GoogleCloudCLI.ps1",
       "${path.root}/../scripts/build/Install-CodeQLBundle.ps1",
-      "${path.root}/../scripts/build/Configure-Diagnostics.ps1"
-    ]
-  }
-
-  provisioner "powershell" {
-    elevated_password = "${var.install_password}"
-    elevated_user     = "${var.install_user}"
-    environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
-    scripts           = [
-      "${path.root}/../scripts/build/Install-WindowsUpdates.ps1",
+      "${path.root}/../scripts/build/Install-BizTalkBuildComponent.ps1",
+      "${path.root}/../scripts/build/Configure-Diagnostics.ps1",
       "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
       "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
       "${path.root}/../scripts/build/Configure-Shell.ps1",
       "${path.root}/../scripts/build/Configure-DeveloperMode.ps1",
       "${path.root}/../scripts/build/Install-LLVM.ps1"
     ]
+  }
+
+  provisioner "powershell" {
+    elevated_password = "${var.install_password}"
+    elevated_user     = "${var.install_user}"
+    scripts           = ["${path.root}/../scripts/build/Install-WindowsUpdates.ps1"]
   }
 
   provisioner "windows-restart" {
@@ -499,7 +247,7 @@ build {
   }
 
   provisioner "file" {
-    destination = "${path.root}/../Windows2022-Readme.md"
+    destination = "${path.root}/../Windows2019-Readme.md"
     direction   = "download"
     source      = "C:\\software-report.md"
   }
@@ -527,7 +275,7 @@ build {
   provisioner "powershell" {
     inline = [
       "if( Test-Path $env:SystemRoot\\System32\\Sysprep\\unattend.xml ){ rm $env:SystemRoot\\System32\\Sysprep\\unattend.xml -Force}",
-      "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /mode:vm /quiet /quit",
+      "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /generalize /quiet /quit",
       "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState.ImageState; Start-Sleep -s 10 } else { break } }"
     ]
   }
