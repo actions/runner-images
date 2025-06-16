@@ -1,4 +1,4 @@
-name: Validate JSON Schema
+tabname: Validate JSON Schema
 
 on:
   push:
