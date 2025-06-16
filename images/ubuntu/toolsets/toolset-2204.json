@@ -42,11 +42,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.21.*",
                 "1.22.*",
-                "1.23.*"
+                "1.23.*",
+                "1.24.*"
             ],
-            "default": "1.23.*"
+            "default": "1.24.*"
         },
         {
             "name": "Ruby",
@@ -70,7 +70,7 @@
     "java": {
         "default": "11",
         "versions": [ "8", "11", "17", "21"],
-        "maven": "3.9.9"
+        "maven": "3.9.10"
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
@@ -280,7 +280,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.35.1",
+                "version": "2.36.2",
                 "asset": "linux-x86_64"
             }
         ]

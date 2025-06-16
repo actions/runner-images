@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[macOS] Xcode 15.4 will be removed from macOS15 images on  May 29th, 2025](https://github.com/actions/runner-images/issues/12195) |
-| [[macOS] Go version 1.21.* will be removed from all macOS images on May 12, 2025.](https://github.com/actions/runner-images/issues/12032) |
+| [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 ***
 # macOS 13
 - OS Version: macOS 13.7.6 (22H625)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250526.1184
+- Image Version: 20250609.1222
 
 ## Installed Software
 
@@ -25,8 +24,8 @@
 - Mono 6.12.0.188
 - Node.js 20.19.2
 - Perl 5.40.2
-- PHP 8.4.7
-- Python3 3.13.3
+- PHP 8.4.8
+- Python3 3.13.4
 - Ruby 3.3.8
 
 ### Package Management
@@ -34,19 +33,19 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.9
-- Homebrew 4.5.2
+- Homebrew 4.5.4
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.9
-- Vcpkg 2025 (build from commit 8f54ef5453)
+- Vcpkg 2025 (build from commit 984f9232b2)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
-- Apache Maven 3.9.9
-- Gradle 8.14.1
+- Apache Maven 3.9.10
+- Gradle 8.14.2
 
 ### Utilities
 - 7-Zip 17.05
@@ -55,16 +54,16 @@
 - bazel 8.2.1
 - bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.13.0
+- Curl 8.14.1
 - Git 2.49.0
 - Git LFS 3.6.1
-- GitHub CLI 2.73.0
+- GitHub CLI 2.74.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
-- jq 1.7.1
+- jq 1.8.0
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.12.0
+- Packer 1.13.1
 - pkgconf 2.4.3
 - Unxip 3.1
 - yq 4.45.4
@@ -72,16 +71,16 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.22
-- AWS SAM CLI 1.139.0
+- AWS CLI 2.27.31
+- AWS SAM CLI 1.140.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.73.0
+- Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
-- Bicep CLI 0.35.1
+- Bicep CLI 0.36.1
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.21.3
+- CodeQL Action Bundle 2.21.4
 - Fastlane 2.227.2
-- SwiftFormat 0.56.1
+- SwiftFormat 0.56.3
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 14.3.1.0.1.1683849156
 - Xcodes 1.6.0
@@ -92,14 +91,14 @@
 ### Browsers
 - Safari 18.5 (18621.2.5.18.1)
 - SafariDriver 18.5 (18621.2.5.18.1)
-- Google Chrome 137.0.7151.41
-- Google Chrome for Testing 137.0.7151.40
-- ChromeDriver 137.0.7151.40
-- Microsoft Edge 136.0.3240.92
-- Microsoft Edge WebDriver 136.0.3240.92
-- Mozilla Firefox 138.0.4
+- Google Chrome 137.0.7151.69
+- Google Chrome for Testing 137.0.7151.68
+- ChromeDriver 137.0.7151.68
+- Microsoft Edge 137.0.3296.68
+- Microsoft Edge WebDriver 137.0.3296.68
+- Mozilla Firefox 139.0.1
 - geckodriver 0.36.0
-- Selenium server 4.29.0
+- Selenium server 4.33.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -133,11 +132,11 @@
 
 #### Python
 - 3.8.18
-- 3.9.22
-- 3.10.17
+- 3.9.23
+- 3.10.18
 - 3.11.9
 - 3.12.10
-- 3.13.3
+- 3.13.4
 
 #### Node.js
 - 18.20.8
@@ -146,8 +145,8 @@
 
 #### Go
 - 1.22.12
-- 1.23.9
-- 1.24.3
+- 1.23.10
+- 1.24.4
 
 ### Rust Tools
 - Cargo 1.87.0
@@ -269,7 +268,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.3.1-55959/ParallelsDesktop-20.3.1-55959.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.3.2-55975/ParallelsDesktop-20.3.2-55975.dmg |
 
 ##### Notes
 ```
