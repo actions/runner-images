@@ -75,6 +75,13 @@ function Install-Binary {
         } else {
             $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
         }
+        if (Test-Path $env:TEMP_DIR) {
+            Write-Host "Directory exists: $env:TEMP_DIR"
+            Get-ChildItem -Path $env:TEMP_DIR
+          } else {
+            Write-Host "Directory does not exist: $env:TEMP_DIR"
+            New-Item -Path $env:TEMP_DIR -ItemType Directory | Out-Null
+          }
         $filePath = Invoke-DownloadWithRetry -Url $Url -Path "${env:TEMP_DIR}\$fileName"
     }
 
@@ -198,7 +205,7 @@ function Invoke-DownloadWithRetry {
     for ($retries = 20; $retries -gt 0; $retries--) {
         try {
             $attemptStartTime = Get-Date
-            (New-Object System.Net.WebClient).DownloadFile($Url, $Path)
+            Invoke-WebRequest -Uri $Url -OutFile $Path -UseBasicParsing
             $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
             Write-Host "Package downloaded in $attemptSeconds seconds"
             break
