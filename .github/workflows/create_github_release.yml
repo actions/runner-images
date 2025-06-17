@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Create release for ${{ github.event.client_payload.ReleaseBranchName }}
-      uses: ncipollo/release-action@v1.14.0
+      uses: ncipollo/release-action@v1.16.0
       with:
         tag: ${{ github.event.client_payload.ReleaseBranchName }}
         name: ${{ github.event.client_payload.ReleaseTitle }}
