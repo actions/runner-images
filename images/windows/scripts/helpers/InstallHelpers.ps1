@@ -75,13 +75,6 @@ function Install-Binary {
         } else {
             $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
         }
-        if (Test-Path $env:TEMP_DIR) {
-            Write-Host "Directory exists: $env:TEMP_DIR"
-            Get-ChildItem -Path $env:TEMP_DIR
-          } else {
-            Write-Host "Directory does not exist: $env:TEMP_DIR"
-            New-Item -Path $env:TEMP_DIR -ItemType Directory | Out-Null
-          }
         $filePath = Invoke-DownloadWithRetry -Url $Url -Path "${env:TEMP_DIR}\$fileName"
     }
 
