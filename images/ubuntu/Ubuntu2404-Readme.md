@@ -2,13 +2,12 @@
 |-|
 | [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
-| [[Ubuntu] Go version 1.21 will be removed from the images on 2025-06-13 and updated to the latest version 1.24 ,setting it as the default.](https://github.com/actions/runner-images/issues/12176) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.11.0-1015-azure
-- Image Version: 20250609.1.0
-- Systemd version: 255.4-1ubuntu8.6
+- Image Version: 20250615.1.0
+- Systemd version: 255.4-1ubuntu8.8
 
 ## Installed Software
 
@@ -31,14 +30,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.18.2
-- Homebrew 4.5.5
+- Homebrew 4.5.6
 - Miniconda 25.3.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 984f9232b2)
+- Vcpkg (build from commit ef7dbf94b9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -69,13 +68,13 @@ to accomplish this.
 - Bicep 0.36.1
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.4
+- CodeQL Action Bundle 2.22.0
 - Docker Amazon ECR Credential Helper 0.10.0
-- Docker Compose v2 2.36.0
+- Docker Compose v2 2.36.2
 - Docker-Buildx 0.24.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.227.2
+- Fastlane 2.228.0
 - Git 2.49.0
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
@@ -94,7 +93,7 @@ to accomplish this.
 - Packer 1.13.1
 - Parcel 2.15.2
 - Podman 4.9.3
-- Pulumi 3.175.0
+- Pulumi 3.177.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -103,13 +102,13 @@ to accomplish this.
 - Ninja 1.12.1
 
 ### CLI Tools
-- AWS CLI 2.27.31
+- AWS CLI 2.27.35
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.140.0
 - Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.74.0
-- Google Cloud CLI 525.0.0
+- GitHub CLI 2.74.1
+- Google Cloud CLI 526.0.1
 
 ### Java
 | Version             | Environment Variable |
@@ -143,13 +142,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 137.0.7151.68
-- ChromeDriver 137.0.7151.68
+- Google Chrome 137.0.7151.103
+- ChromeDriver 137.0.7151.70
 - Chromium 137.0.7151.0
-- Microsoft Edge 137.0.3296.68
-- Microsoft Edge WebDriver 137.0.3296.68
+- Microsoft Edge 137.0.3296.83
+- Microsoft Edge WebDriver 137.0.3296.83
 - Selenium server 4.33.0
-- Mozilla Firefox 139.0.1
+- Mozilla Firefox 139.0.4
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -161,7 +160,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.116
+- .NET Core SDK: 8.0.117
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
@@ -201,7 +200,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.18
 - 3.11.13
 - 3.12.11
-- 3.13.4
+- 3.13.5
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -309,7 +308,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sshpass                | 1.09-1                       |
 | sudo                   | 1.9.15p5-3ubuntu5            |
 | swig                   | 4.2.0-2ubuntu1               |
-| systemd-coredump       | 255.4-1ubuntu8.6             |
+| systemd-coredump       | 255.4-1ubuntu8.8             |
 | tar                    | 1.35+dfsg-3build1            |
 | telnet                 | 0.17+2.5-3ubuntu4            |
 | texinfo                | 7.1-3build2                  |
