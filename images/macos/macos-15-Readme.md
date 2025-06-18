@@ -274,4 +274,3 @@
 If you want to use Parallels Desktop you should download a package from URL stored in
 PARALLELS_DMG_URL environment variable. A system extension is allowed for this version.
 ```
-
