@@ -249,15 +249,4 @@
 | CMake                      | 3.31.5                                                                                                                                                                                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                          |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                          |
-| NDK                        | 26.3.11579264<br>27.2.12479018 (default)<br>28.1.13356709                                                                                                                                                                                                                                   |
-
-#### Environment variables
-| Name                    | Value                                               |
-| ----------------------- | --------------------------------------------------- |
-| ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.1.13356709 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
-| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
-
+| NDK                        | 26.3.11579264<br>27.2.12479018 (default)<br>28.1.13356709                                                                                                                                                  
