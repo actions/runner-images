@@ -545,4 +545,3 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:e3f950b82719ebcd38eaf9fc4623c1022c5632f4ee6550cd9c949ac2658e3e27  | 2025-05-13 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:73c8ef1336c6d577fa7beb0dcdbb8b690ee84e2eb5251f98b5234c8c1cc1df60  | 2025-05-09 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:a9e475f9925792421937e65bd191d79f97578e3013865b0b71f4fadee0d16d09  | 2025-05-09 |
-
