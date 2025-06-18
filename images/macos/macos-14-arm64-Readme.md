@@ -256,24 +256,4 @@
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                              |
 | Android Emulator           | 35.5.10                                                                                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                |
-| Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
-| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                            |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                            |
-| CMake                      | 3.31.5                                                                                                                                                                                                                                                                                                            |
-| Google Play services       | 49                                                                                                                                                                                                                                                                                                                |
-| Google Repository          | 58                                                                                                                                                                                                                                                                                                                |
-| NDK                        | 26.3.11579264 (default)<br>27.2.12479018<br>28.1.13356709                                                                                                                                                                                                                                                         |
-
-#### Environment variables
-| Name                    | Value                                               |
-| ----------------------- | --------------------------------------------------- |
-| ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.1.13356709 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
-
-### Miscellaneous
-- Tcl/Tk 8.6.16
-
+| Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-3
