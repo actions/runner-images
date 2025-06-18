@@ -20,6 +20,8 @@ jobs:
           CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
           PR_TITLE: ${{ github.event.pull_request.title }}
           CI_PR: ${{ secrets.CI_REPO }}
+          CUSTOM_REPO: ${{ github.event.pull_request.head.repo.full_name }} # Moved context value into env var
+          CUSTOM_REPO_COMMIT_HASH: ${{ github.event.pull_request.head.sha }} # Moved context value into env var        
         run: |
           $headers = @{
             Authorization="Bearer $env:CI_PR_TOKEN"
@@ -33,8 +35,8 @@ jobs:
             event_type = $eventType;
             client_payload = @{
               pr_title = "$env:PR_TITLE"
-              custom_repo = "${{ github.event.pull_request.head.repo.full_name }}"
-              custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
+              custom_repo = "$env:CUSTOM_REPO" # Use env var safely
+              custom_repo_commit_hash = "$env:CUSTOM_REPO_COMMIT_HASH" # Use env var safely
             }
           }
 
