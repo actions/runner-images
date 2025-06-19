@@ -198,7 +198,8 @@ function Invoke-DownloadWithRetry {
     for ($retries = 20; $retries -gt 0; $retries--) {
         try {
             $attemptStartTime = Get-Date
-            (New-Object System.Net.WebClient).DownloadFile($Url, $Path)
+            $ProgressPreference = 'SilentlyContinue'
+            Invoke-WebRequest -Uri $Url -OutFile $Path -UseBasicParsing
             $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
             Write-Host "Package downloaded in $attemptSeconds seconds"
             break
@@ -794,7 +795,7 @@ function Get-ChecksumFromGithubRelease {
         [Parameter(Mandatory = $true)]
         [Alias("File", "Asset")]
         [string] $FileName,
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $false)]
         [ValidateSet("SHA256", "SHA512")]
         [string] $HashType
     )
@@ -867,7 +868,7 @@ function Get-ChecksumFromUrl {
         [Parameter(Mandatory = $true)]
         [Alias("File", "Asset")]
         [string] $FileName,
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $false)]
         [ValidateSet("SHA256", "SHA512")]
         [Alias("Type")]
         [string] $HashType

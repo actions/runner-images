@@ -2,13 +2,12 @@
 |-|
 | [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
-| [[Ubuntu] Go version 1.21 will be removed from the images on 2025-06-13 and updated to the latest version 1.24 ,setting it as the default.](https://github.com/actions/runner-images/issues/12176) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1029-azure
-- Image Version: 20250609.1.0
-- Systemd version: 249.11-0ubuntu3.15
+- Image Version: 20250615.1.0
+- Systemd version: 249.11-0ubuntu3.16
 
 ## Installed Software
 
@@ -33,7 +32,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.18.2
-- Homebrew 4.5.5
+- Homebrew 4.5.6
 - Miniconda 25.3.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -41,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 984f9232b2)
+- Vcpkg (build from commit ef7dbf94b9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -74,13 +73,13 @@ to accomplish this.
 - Bicep 0.36.1
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.21.4
+- CodeQL Action Bundle 2.22.0
 - Docker Amazon ECR Credential Helper 0.10.0
-- Docker Compose v2 2.35.1
+- Docker Compose v2 2.36.2
 - Docker-Buildx 0.24.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.227.2
+- Fastlane 2.228.0
 - Git 2.49.0
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
@@ -101,30 +100,30 @@ to accomplish this.
 - Packer 1.13.1
 - Parcel 2.15.2
 - Podman 3.4.4
-- Pulumi 3.175.0
+- Pulumi 3.177.0
 - R 4.5.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.12.1
+- Terraform 1.12.2
 - yamllint 1.37.1
 - yq 4.45.4
 - zstd 1.5.7
 - Ninja 1.12.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.282
-- AWS CLI 2.27.31
+- Alibaba Cloud CLI 3.0.283
+- AWS CLI 2.27.35
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.140.0
 - Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.74.0
-- Google Cloud CLI 525.0.0
+- GitHub CLI 2.74.1
+- Google Cloud CLI 526.0.1
 - Netlify CLI 22.1.3
-- OpenShift CLI 4.18.16
+- OpenShift CLI 4.18.17
 - ORAS CLI 1.2.3
-- Vercel CLI 42.3.0
+- Vercel CLI 43.1.0
 
 ### Java
 | Version             | Environment Variable |
@@ -163,11 +162,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 137.0.7151.68
-- ChromeDriver 137.0.7151.68
+- Google Chrome 137.0.7151.103
+- ChromeDriver 137.0.7151.70
 - Chromium 137.0.7151.0
-- Microsoft Edge 137.0.3296.68
-- Microsoft Edge WebDriver 137.0.3296.68
+- Microsoft Edge 137.0.3296.83
+- Microsoft Edge WebDriver 137.0.3296.83
 - Selenium server 4.33.0
 - Mozilla Firefox 136.0.4
 - Geckodriver 0.36.0
@@ -181,7 +180,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 6.0.428, 8.0.410, 9.0.203
+- .NET Core SDK: 6.0.428, 8.0.411, 9.0.203
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
@@ -225,7 +224,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.18
 - 3.11.13
 - 3.12.11
-- 3.13.4
+- 3.13.5
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -285,13 +284,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.18          | sha256:de0eb0b3f2a47ba1eb89389859a9bd88b28e82f5826b6969ad604979713c2d4f  | 2025-02-14 |
 | alpine:3.19          | sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377  | 2025-02-14 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
-| debian:11            | sha256:cf48c31af360e1c0a0aedd33aae4d928b68c2cdf093f1612650eb1ff434d1c34  | 2025-05-20 |
+| debian:11            | sha256:0d3279ff38fb2024358b2f24fbb99122f9a9a40618bb526b614527e998bcda28  | 2025-06-10 |
 | moby/buildkit:latest | sha256:832fa7aa1eb3deb56fa62ae933bfa42dad9a83ff4824dbbaf173b49c722b59d0  | 2025-05-21 |
 | node:18              | sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783  | 2025-03-27 |
 | node:18-alpine       | sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e  | 2025-03-27 |
-| node:20              | sha256:7c4cd7c6935554b79c6fffb88e7bde3db0ce25b45d4c634d1fb0f1a6e7f5b782  | 2025-05-15 |
+| node:20              | sha256:ba077fe891ce516b24bdbbd66d27d1e8e8c5a6e6b31ec7e7e559b45c3fca0643  | 2025-05-15 |
 | node:20-alpine       | sha256:d3507a213936fe4ef54760a186e113db5188472d9efdf491686bd94580a1c1e8  | 2025-05-30 |
-| node:22              | sha256:0b5b940c21ab03353de9042f9166c75bcfc53c4cd0508c7fd88576646adbf875  | 2025-05-21 |
+| node:22              | sha256:71bcbb3b215b3fa84b5b167585675072f4c270855e37a599803f1a58141a0716  | 2025-05-21 |
 | node:22-alpine       | sha256:41e4389f3d988d2ed55392df4db1420ad048ae53324a8e2b7c6d19508288107e  | 2025-05-30 |
 | ubuntu:20.04         | sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214  | 2025-04-08 |
 | ubuntu:22.04         | sha256:01a3ee0b5e413cefaaffc6abe68c9c37879ae3cced56a8e088b1649e5b269eee  | 2025-05-30 |
@@ -375,7 +374,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.4                    |
 | swig                   | 4.0.2-1ubuntu1                      |
-| systemd-coredump       | 249.11-0ubuntu3.15                  |
+| systemd-coredump       | 249.11-0ubuntu3.16                  |
 | tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
