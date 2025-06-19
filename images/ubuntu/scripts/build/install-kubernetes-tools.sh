@@ -50,7 +50,6 @@ rm -f /etc/apt/sources.list.d/kubernetes.list /tmp/k8s_release.key
 # Install Helm
 curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-# Temporarily pinning the version
 # Download minikube
 curl -fsSL -O https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 
