@@ -21,11 +21,31 @@ install "${kind_binary_path}" /usr/local/bin/kind
 
 ## Install kubectl
 kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
-curl -fsSL https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+## Install kubectl
+kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
+
+# Create keyrings directory if it doesn’t exist
+sudo mkdir -p /etc/apt/keyrings
+
+# Retry logic for Release.key download
+for i in {1..5}; do
+    curl -fsSL "https://pkgs.k8s.io/core:/stable:/${kubectl_minor_version}/deb/Release.key" -o /tmp/k8s_release.key && break
+    echo "Retrying download of Release.key ($i/5)..." >&2
+    sleep 2
+done
+
+# Validate key file before use
+if grep -q "BEGIN PGP PUBLIC KEY BLOCK" /tmp/k8s_release.key; then
+    sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/k8s_release.key
+else
+    echo "Error: Invalid GPG key downloaded. Aborting." >&2
+    exit 1
+fi
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/${kubectl_minor_version}/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt-get install kubectl
-rm -f /etc/apt/sources.list.d/kubernetes.list
+rm -f /etc/apt/sources.list.d/kubernetes.list /tmp/k8s_release.key
 
 # Install Helm
 curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
