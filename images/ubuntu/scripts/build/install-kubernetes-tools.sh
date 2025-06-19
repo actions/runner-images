@@ -21,40 +21,21 @@ install "${kind_binary_path}" /usr/local/bin/kind
 
 ## Install kubectl
 kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
-## Install kubectl
-kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
-
-# Create keyrings directory if it doesn’t exist
-sudo mkdir -p /etc/apt/keyrings
-
-# Retry logic for Release.key download
-for i in {1..5}; do
-    curl -fsSL "https://pkgs.k8s.io/core:/stable:/${kubectl_minor_version}/deb/Release.key" -o /tmp/k8s_release.key && break
-    echo "Retrying download of Release.key ($i/5)..." >&2
-    sleep 2
-done
-
-# Validate key file before use
-if grep -q "BEGIN PGP PUBLIC KEY BLOCK" /tmp/k8s_release.key; then
-    sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg /tmp/k8s_release.key
-else
-    echo "Error: Invalid GPG key downloaded. Aborting." >&2
-    exit 1
-fi
-
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/${kubectl_minor_version}/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt-get install kubectl
-rm -f /etc/apt/sources.list.d/kubernetes.list /tmp/k8s_release.key
+rm -f /etc/apt/sources.list.d/kubernetes.list
 
 # Install Helm
 curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
+# Temporarily pinning the version
 # Download minikube
-curl -fsSL -O https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+curl -fsSL -O https://storage.googleapis.com/minikube/releases/v1.34.0/minikube-linux-amd64
 
 # Supply chain security - minikube
-minikube_hash=$(get_checksum_from_github_release "kubernetes/minikube" "linux-amd64" "latest" "SHA256")
+minikube_hash=$(get_checksum_from_github_release "kubernetes/minikube" "linux-amd64" "1.34.0" "SHA256")
 use_checksum_comparison "minikube-linux-amd64" "${minikube_hash}"
 
 # Install minikube
