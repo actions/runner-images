@@ -39,6 +39,6 @@ chmod -R 777 $GHCUP_INSTALL_BASE_PREFIX/.ghcup
 ln -s $GHCUP_INSTALL_BASE_PREFIX/.ghcup /etc/skel/.ghcup
 
 # Install the latest stable release of haskell stack
-curl -fsSL https://get.haskellstack.org/ | bash
+ghcup install stack latest
 
 invoke_tests "Haskell"
