@@ -31,7 +31,7 @@ $tagName = "codeql-bundle-v" + $cliVersion
 Write-Host "Downloading CodeQL bundle $($cliVersion)..."
 # Note that this is the all-platforms CodeQL bundle, to support scenarios where customers run
 # different operating systems within containers.
-$codeQLBundlePath = Invoke-DownloadWithRetry "https://github.com/github/codeql-action/releases/download/$($tagName)/codeql-bundle.tar.gz"
+$codeQLBundlePath = Invoke-DownloadWithRetry "https://github.com/github/codeql-action/releases/download/$($tagName)/codeql-bundle-win64.tar.gz"
 $downloadDirectoryPath = (Get-Item $codeQLBundlePath).Directory.FullName
 
 $codeQLToolcachePath = Join-Path $env:AGENT_TOOLSDIRECTORY -ChildPath "CodeQL" | Join-Path -ChildPath $cliVersion | Join-Path -ChildPath "x64"
@@ -39,7 +39,7 @@ New-Item -Path $codeQLToolcachePath -ItemType Directory -Force | Out-Null
 
 Write-Host "Unpacking the downloaded CodeQL bundle archive..."
 Expand-7ZipArchive -Path $codeQLBundlePath -DestinationPath $downloadDirectoryPath
-$unGzipedCodeQLBundlePath = Join-Path $downloadDirectoryPath "codeql-bundle.tar"
+$unGzipedCodeQLBundlePath = Join-Path $downloadDirectoryPath "codeql-bundle-win64.tar"
 Expand-7ZipArchive -Path $unGzipedCodeQLBundlePath -DestinationPath $codeQLToolcachePath
 
 Write-Host "CodeQL bundle at $($codeQLToolcachePath) contains the following directories:"
