@@ -30,7 +30,8 @@ Expand-7ZipArchive -Path $archivePath -DestinationPath $edgeDriverPath
 $signatureThumbprint = @(
                          "7920AC8FB05E0FFFE21E8FF4B4F03093BA6AC16E",
                          "0BD8C56733FDCC06F8CB919FF5A200E39B1ACF71",
-                          "F6EECCC7FF116889C2D5466AE7243D7AA7698689"
+                         "F6EECCC7FF116889C2D5466AE7243D7AA7698689",
+                         "6ACE61BAE3F09F4DD2697806D73E022CBFE70EB4"
                         )
 Test-FileSignature -Path "$edgeDriverPath\msedgedriver.exe" -ExpectedThumbprint $signatureThumbprint
 
