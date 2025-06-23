@@ -4,7 +4,7 @@
 | [[Windows Server 2025] image will no longer have  D:/ drive accessible to users from 2025-07-14](https://github.com/actions/runner-images/issues/12416) |
 | [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
-| [The Windows 2019 Actions runner image will begin deprecation on 2025-06-01 and will be fully unsupported by 2025-06-30](https://github.com/actions/runner-images/issues/12045) |
+| [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 3807
@@ -545,4 +545,3 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:61113bfac602c8517c16283aa99be4b0886590aba97159c3a5f63620481afb4c  | 2025-06-10 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:23fa4e796f4d02d462beadb844f8985ca4583b1b0f75295137f5968dab255b09  | 2025-06-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:c489e1737a833a111f0f35b28257b1071d30b6db6b9ee50e88b7c08b901efc67  | 2025-06-05 |
-

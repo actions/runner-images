@@ -79,9 +79,6 @@ $tools.AddToolVersion("Docker-wincred", $(Get-DockerWincredVersion))
 $tools.AddToolVersion("ghc", $(Get-GHCVersion))
 $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
-if (Test-IsWin19) {
-    $tools.AddToolVersion("Google Cloud CLI", $(Get-GoogleCloudCLIVersion))
-}
 $tools.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
 if (-not (Test-IsWin25)) {
     $tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))
@@ -101,9 +98,6 @@ if (-not (Test-IsWin25)) {
 }
 $tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
-if (Test-IsWin19) {
-    $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
-}
 $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
 $tools.AddToolVersion("R", $(Get-RVersion))
 $tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
@@ -129,9 +123,6 @@ $cliTools.AddToolVersion("AWS SAM CLI", $(Get-AWSSAMVersion))
 $cliTools.AddToolVersion("AWS Session Manager CLI", $(Get-AWSSessionManagerVersion))
 $cliTools.AddToolVersion("Azure CLI", $(Get-AzureCLIVersion))
 $cliTools.AddToolVersion("Azure DevOps CLI extension", $(Get-AzureDevopsExtVersion))
-if (Test-IsWin19) {
-    $cliTools.AddToolVersion("Cloud Foundry CLI", $(Get-CloudFoundryVersion))
-}
 $cliTools.AddToolVersion("GitHub CLI", $(Get-GHVersion))
 
 # Rust Tools
@@ -174,12 +165,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 '@
 $msys2.AddHeader("Notes").AddNote($notes)
 
-# BizTalk Server
-if (Test-IsWin19)
-{
-    $installedSoftware.AddHeader("BizTalk Server").AddNode($(Get-BizTalkVersion))
-}
-
 # Cached Tools
 $installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection))
 
@@ -217,12 +202,7 @@ $visualStudio.AddToolVersionsList("Installed Windows SDKs", $(Get-WindowsSDKs).V
 
 # .NET Core Tools
 $netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
-if (Test-IsWin19) {
-    # Visual Studio 2019 brings own version of .NET Core which is different from latest official version
-    $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d{2}')
-} else {
-    $netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d{3}')
-}
+$netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotnetSdks).Versions, '^\d+\.\d+\.\d{3}')
 $netCoreTools.AddToolVersionsListInline(".NET Framework", $(Get-DotnetFrameworkVersions), '^.+')
 Get-DotnetRuntimes | ForEach-Object {
     $netCoreTools.AddToolVersionsListInline($_.Runtime, $_.Versions, '^.+')

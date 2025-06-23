@@ -55,16 +55,6 @@ Describe "DACFx" {
         "${sqlPackagePath}" | Should -Exist
     }
 
-    It "SqlLocalDB" -Skip:(-not (Test-IsWin19)) {
-        $sqlLocalDBPath = 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe'
-        "${sqlLocalDBPath}" | Should -Exist
-    }
-}
-
-Describe "DotnetTLS" -Skip:(-not (Test-IsWin19)) {
-    It "Tls 1.2 is enabled" {
-        [Net.ServicePointManager]::SecurityProtocol -band "Tls12" | Should -Be Tls12
-    }
 }
 
 Describe "Mercurial" -Skip:(Test-IsWin25) {
@@ -101,15 +91,6 @@ Describe "Mingw64" {
     }
 }
 
-Describe "GoogleCloudCLI" -Skip:(-not (Test-IsWin19)) {
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "bq" }
-        @{ ToolName = "gcloud" }
-        @{ ToolName = "gsutil" }
-    ) {
-        "$ToolName version" | Should -ReturnZeroExitCode
-    }
-}
 
 Describe "NET48" {
     It "NET48" {
@@ -175,12 +156,6 @@ Describe "Vcpkg" {
     }
 }
 
-Describe "VCRedist" -Skip:(-not (Test-IsWin19)) {
-    It "vcredist_2010_x64" {
-        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
-        "C:\Windows\System32\msvcr100.dll" | Should -Exist
-    }
-}
 
 Describe "WebPlatformInstaller" {
     It "WebPlatformInstaller" {

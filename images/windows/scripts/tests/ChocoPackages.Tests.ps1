@@ -22,11 +22,6 @@ Describe "Bicep" {
     }
 }
 
-Describe "GitVersion" -Skip:(-not (Test-IsWin19)) {
-    It "gitversion is installed" {
-        "gitversion /version" | Should -ReturnZeroExitCode
-    }
-}
 
 Describe "InnoSetup" -Skip:(Test-IsWin25) {
     It "InnoSetup" {
