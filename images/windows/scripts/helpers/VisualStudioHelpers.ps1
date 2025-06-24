@@ -32,8 +32,7 @@ Function Install-VisualStudio {
         [Parameter(Mandatory)] [String] $Channel,
         [String] $InstallChannel = "",
         [Parameter(Mandatory)] [String[]] $RequiredComponents,
-        [String] $ExtraArgs = "",
-        [Parameter(Mandatory)] [String[]] $SignatureThumbprint
+        [String] $ExtraArgs = ""
     )
     
     
