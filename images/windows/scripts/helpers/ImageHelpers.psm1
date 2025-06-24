@@ -1,8 +1,6 @@
 [CmdletBinding()]
 param()
 
-$script:MicrosoftPublisherSubject = "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
-
 . $PSScriptRoot\AndroidHelpers.ps1
 Export-ModuleMember -Function @(
     'Get-AndroidPackages'

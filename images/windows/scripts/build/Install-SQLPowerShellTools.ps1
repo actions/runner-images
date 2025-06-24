@@ -8,12 +8,12 @@ $baseUrl = "https://download.microsoft.com/download/B/1/7/B1783FE9-717B-4F78-A39
 # install required MSIs
 Install-Binary `
     -Url "${baseUrl}/SQLSysClrTypes.msi" `
-    -ExpectedSubject $script:MicrosoftPublisherSubject
+    -ExpectedSubject $(Get-MicrosoftPublisher)
 
 Install-Binary `
     -Url "${baseUrl}/SharedManagementObjects.msi" `
-    -ExpectedSubject $script:MicrosoftPublisherSubject
+    -ExpectedSubject $(Get-MicrosoftPublisher)
 
 Install-Binary `
     -Url "${baseUrl}/PowerShellTools.msi" `
-    -ExpectedSubject $script:MicrosoftPublisherSubject
+    -ExpectedSubject $(Get-MicrosoftPublisher)

@@ -6,4 +6,4 @@
 Install-Binary -Type MSI `
     -Url "https://go.microsoft.com/fwlink/?linkid=2242656" `
     -ExtraInstallArgs @("ADDLOCAL=ALL", "IACCEPTMSOLEDBSQLLICENSETERMS=YES") `
-    -ExpectedSubject $script:MicrosoftPublisherSubject
+    -ExpectedSubject $(Get-MicrosoftPublisher)

@@ -50,7 +50,7 @@ if (Test-IsWin19) {
     Install-Binary -Type EXE `
         -Url 'https://go.microsoft.com/fwlink/p/?linkid=2196241' `
         -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
-        -ExpectedSubject $script:MicrosoftPublisherSubject
+        -ExpectedSubject $(Get-MicrosoftPublisher)
 }
 
 if (Test-IsWin22) {
@@ -58,7 +58,7 @@ if (Test-IsWin22) {
     Install-Binary -Type EXE `
     -Url 'https://go.microsoft.com/fwlink/p/?LinkID=2033908' `
     -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
-    -ExpectedSubject $script:MicrosoftPublisherSubject
+    -ExpectedSubject $(Get-MicrosoftPublisher)
 }
 
 if (-not (Test-IsWin19)) {
@@ -66,7 +66,7 @@ if (-not (Test-IsWin19)) {
      Install-Binary -Type EXE `
         -Url 'https://go.microsoft.com/fwlink/?linkid=2286561' `
         -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
-        -ExpectedSubject $script:MicrosoftPublisherSubject
+        -ExpectedSubject $(Get-MicrosoftPublisher)
 }
 
 Invoke-PesterTests -TestFile "VisualStudio"
