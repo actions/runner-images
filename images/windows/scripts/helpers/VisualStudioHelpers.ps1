@@ -51,7 +51,7 @@ Function Install-VisualStudio {
     $bootstrapperFilePath = Invoke-DownloadWithRetry $BootstrapperUrl
 
     # Verify that the bootstrapper is signed by Microsoft
-    Test-FileSignature -Path $bootstrapperFilePath -ExpectedThumbprint $SignatureThumbprint
+    Test-FileSignature -Path $bootstrapperFilePath -ExpectedSubject $script:MicrosoftPublisherSubject
 
     try {
         $responseData = @{
