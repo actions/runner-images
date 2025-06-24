@@ -51,7 +51,7 @@ Function Install-VisualStudio {
 
     try {
         $responseData = @{
-            "installChannelUri" = $installChannelUri
+         #   "installChannelUri" = $installChannelUri
             "channelUri" = $channelUri
             "channelId"  = $channelId
             "productId"  = $productId
