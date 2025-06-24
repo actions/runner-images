@@ -14,9 +14,6 @@ Function Install-VisualStudio {
 
     .PARAMETER Channel
         The channel of Visual Studio that will be installed. Required parameter.
-     
-    .PARAMETER InstallChannel
-        The InstallChannelUri of Visual Studio that will be installed. Required parameter.
 
     .PARAMETER RequiredComponents
         The list of required components. Required parameter.
@@ -30,7 +27,6 @@ Function Install-VisualStudio {
         [Parameter(Mandatory)] [String] $Version,
         [Parameter(Mandatory)] [String] $Edition,
         [Parameter(Mandatory)] [String] $Channel,
-        [String] $InstallChannel = "",
         [Parameter(Mandatory)] [String[]] $RequiredComponents,
         [String] $ExtraArgs = "",
         [Parameter(Mandatory)] [String[]] $SignatureThumbprint
@@ -45,7 +41,7 @@ Function Install-VisualStudio {
     $channelUri = "https://aka.ms/vs/${Version}/${Channel}/channel"
     $channelId = "VisualStudio.${Version}.Release"
     $productId = "Microsoft.VisualStudio.Product.${Edition}"
-    $installChannelUri = "https://aka.ms/vs/${Version}/${Channel}/channel" #"https://aka.ms/vs/${Version}/${Channel}/${installchannel}/channel"
+    $installChannelUri = "https://aka.ms/vs/${Version}/${Channel}/channel" 
 
     Write-Host "Downloading Bootstrapper ..."
     $bootstrapperFilePath = Invoke-DownloadWithRetry $BootstrapperUrl
