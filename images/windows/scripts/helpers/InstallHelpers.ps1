@@ -1051,3 +1051,12 @@ function Update-Environment {
         }
     }
 }
+
+function Get-MicrosoftPublisher {
+    <#
+    .SYNOPSIS
+        Returns well-known subject for the Microsoft signing certificate
+    #>
+
+    return "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+}

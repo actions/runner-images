@@ -21,6 +21,7 @@ Export-ModuleMember -Function @(
 Export-ModuleMember -Function @(
     'Install-Binary'
     'Invoke-DownloadWithRetry'
+    'Get-MicrosoftPublisher'
     'Get-ToolsetContent'
     'Get-TCToolPath'
     'Get-TCToolVersionPath'
