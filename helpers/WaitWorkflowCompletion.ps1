@@ -9,7 +9,7 @@ Param (
     [string] $AccessToken,
     [int] $AttemptTimeoutInMinutes = 340,
     [int] $RetryIntervalSeconds = 300,
-    [int] $MaxRetryCount = 1
+    [int] $MaxRetryCount = 0
 )
 
 Import-Module (Join-Path $PSScriptRoot "GitHubApi.psm1")
@@ -55,7 +55,7 @@ do {
     if ($finishedWorkflowRun.conclusion -in ("success", "cancelled")) {
         break
     } elseif ($finishedWorkflowRun.conclusion -eq "failure") {
-        if ($attempt -lt $MaxRetryCount) {
+        if ($attempt -le $MaxRetryCount) {
             Write-Host "Workflow run will be restarted. Attempt $attempt of $MaxRetryCount"
             $gitHubApi.ReRunFailedJobs($workflowRunId)
             $attempt += 1
