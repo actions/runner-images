@@ -27,7 +27,7 @@ Write-Host "Expand Microsoft Edge WebDriver archive..."
 Expand-7ZipArchive -Path $archivePath -DestinationPath $edgeDriverPath
 
 #Validate the EdgeDriver signature
-Test-FileSignature -Path "$edgeDriverPath\msedgedriver.exe" -ExpectedSubject "CN=Microsoft Windows, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+Test-FileSignature -Path "$edgeDriverPath\msedgedriver.exe" -ExpectedSubject $(Get-MicrosoftPublisher)
 
 Write-Host "Setting the environment variables..."
 [Environment]::SetEnvironmentVariable("EdgeWebDriver", $EdgeDriverPath, "Machine")
