@@ -79,7 +79,7 @@ to accomplish this.
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- jq 1.7
+- jq 1.7.1
 - Kind 0.29.0
 - Kubectl 1.33.1
 - Kustomize 5.6.0
