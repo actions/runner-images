@@ -5,7 +5,7 @@
 # macOS 15
 - OS Version: macOS 15.5 (24F74)
 - Kernel Version: Darwin 24.5.0
-- Image Version: 20250611.1705
+- Image Version: 20250616.1800
 
 ## Installed Software
 
@@ -15,27 +15,27 @@
 - Clang/LLVM 16.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
-- GCC 13 (Homebrew GCC 13.3.0) - available by `gcc-13` alias
+- GCC 13 (Homebrew GCC 13.4.0) - available by `gcc-13` alias
 - GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
-- GNU Fortran 13 (Homebrew GCC 13.3.0) - available by `gfortran-13` alias
+- GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - Kotlin 2.1.10-release-473
 - Node.js 22.16.0
 - Perl 5.40.2
-- Python3 3.13.4
+- Python3 3.13.5
 - Ruby 3.3.8
 
 ### Package Management
 - Bundler 2.6.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.6
+- Homebrew 4.5.7
 - NPM 10.9.2
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.9
-- Vcpkg 2025 (build from commit 4ff394902b)
+- Vcpkg 2025 (build from commit ef7dbf94b9)
 - Yarn 1.22.22
 
 ### Project Management
@@ -67,19 +67,19 @@
 - Ninja 1.12.1
 
 ### Tools
-- AWS CLI 2.27.33
+- AWS CLI 2.27.35
 - AWS SAM CLI 1.140.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
 - Bicep CLI 0.36.1
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.21.4
+- CodeQL Action Bundle 2.22.0
 - Fastlane 2.228.0
-- SwiftFormat 0.56.3
+- SwiftFormat 0.56.4
 - Xcbeautify 2.28.0
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
-- Xcodes 1.6.0
+- Xcodes 1.6.2
 
 ### Linters
 
@@ -118,7 +118,7 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.4
+- 3.13.5
 
 #### Node.js
 - 18.20.8
@@ -149,67 +149,78 @@
 - PSScriptAnalyzer: 1.24.0
 
 ### Xcode
-| Version        | Build    | Path                         | Symlinks                                                                                  |
-| -------------- | -------- | ---------------------------- | ----------------------------------------------------------------------------------------- |
-| 16.4           | 16F6     | /Applications/Xcode_16.4.app | /Applications/Xcode_16.4.0.app                                                            |
-| 16.3           | 16E140   | /Applications/Xcode_16.3.app | /Applications/Xcode_16.3.0.app                                                            |
-| 16.2           | 16C5032a | /Applications/Xcode_16.2.app | /Applications/Xcode_16.2.0.app                                                            |
-| 16.1           | 16B40    | /Applications/Xcode_16.1.app | /Applications/Xcode_16.1.0.app                                                            |
-| 16.0 (default) | 16A242d  | /Applications/Xcode_16.app   | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app<br>/Applications/Xcode.app |
+| Version        | Build    | Path                            | Symlinks                                                                                  |
+| -------------- | -------- | ------------------------------- | ----------------------------------------------------------------------------------------- |
+| 26.0 (beta)    | 17A5241e | /Applications/Xcode_26_beta.app | /Applications/Xcode_26.0.0.app<br>/Applications/Xcode_26.0.app                            |
+| 16.4           | 16F6     | /Applications/Xcode_16.4.app    | /Applications/Xcode_16.4.0.app                                                            |
+| 16.3           | 16E140   | /Applications/Xcode_16.3.app    | /Applications/Xcode_16.3.0.app                                                            |
+| 16.2           | 16C5032a | /Applications/Xcode_16.2.app    | /Applications/Xcode_16.2.0.app                                                            |
+| 16.1           | 16B40    | /Applications/Xcode_16.1.app    | /Applications/Xcode_16.1.0.app                                                            |
+| 16.0 (default) | 16A242d  | /Applications/Xcode_16.app      | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app<br>/Applications/Xcode.app |
 
 #### Installed SDKs
-| SDK                      | SDK Name             | Xcode Version |
-| ------------------------ | -------------------- | ------------- |
-| macOS 15.0               | macosx15.0           | 16.0          |
-| macOS 15.1               | macosx15.1           | 16.1          |
-| macOS 15.2               | macosx15.2           | 16.2          |
-| macOS 15.4               | macosx15.4           | 16.3          |
-| macOS 15.5               | macosx15.5           | 16.4          |
-| iOS 18.0                 | iphoneos18.0         | 16.0          |
-| iOS 18.1                 | iphoneos18.1         | 16.1          |
-| iOS 18.2                 | iphoneos18.2         | 16.2          |
-| iOS 18.4                 | iphoneos18.4         | 16.3          |
-| iOS 18.5                 | iphoneos18.5         | 16.4          |
-| Simulator - iOS 18.0     | iphonesimulator18.0  | 16.0          |
-| Simulator - iOS 18.1     | iphonesimulator18.1  | 16.1          |
-| Simulator - iOS 18.2     | iphonesimulator18.2  | 16.2          |
-| Simulator - iOS 18.4     | iphonesimulator18.4  | 16.3          |
-| Simulator - iOS 18.5     | iphonesimulator18.5  | 16.4          |
-| tvOS 18.0                | appletvos18.0        | 16.0          |
-| tvOS 18.1                | appletvos18.1        | 16.1          |
-| tvOS 18.2                | appletvos18.2        | 16.2          |
-| tvOS 18.4                | appletvos18.4        | 16.3          |
-| tvOS 18.5                | appletvos18.5        | 16.4          |
-| Simulator - tvOS 18.0    | appletvsimulator18.0 | 16.0          |
-| Simulator - tvOS 18.1    | appletvsimulator18.1 | 16.1          |
-| Simulator - tvOS 18.2    | appletvsimulator18.2 | 16.2          |
-| Simulator - tvOS 18.4    | appletvsimulator18.4 | 16.3          |
-| Simulator - tvOS 18.5    | appletvsimulator18.5 | 16.4          |
-| watchOS 11.0             | watchos11.0          | 16.0          |
-| watchOS 11.1             | watchos11.1          | 16.1          |
-| watchOS 11.2             | watchos11.2          | 16.2          |
-| watchOS 11.4             | watchos11.4          | 16.3          |
-| watchOS 11.5             | watchos11.5          | 16.4          |
-| Simulator - watchOS 11.0 | watchsimulator11.0   | 16.0          |
-| Simulator - watchOS 11.1 | watchsimulator11.1   | 16.1          |
-| Simulator - watchOS 11.2 | watchsimulator11.2   | 16.2          |
-| Simulator - watchOS 11.4 | watchsimulator11.4   | 16.3          |
-| Simulator - watchOS 11.5 | watchsimulator11.5   | 16.4          |
-| visionOS 2.0             | xros2.0              | 16.0          |
-| visionOS 2.1             | xros2.1              | 16.1          |
-| visionOS 2.2             | xros2.2              | 16.2          |
-| visionOS 2.4             | xros2.4              | 16.3          |
-| visionOS 2.5             | xros2.5              | 16.4          |
-| Simulator - visionOS 2.0 | xrsimulator2.0       | 16.0          |
-| Simulator - visionOS 2.1 | xrsimulator2.1       | 16.1          |
-| Simulator - visionOS 2.2 | xrsimulator2.2       | 16.2          |
-| Simulator - visionOS 2.4 | xrsimulator2.4       | 16.3          |
-| Simulator - visionOS 2.5 | xrsimulator2.5       | 16.4          |
-| DriverKit 24.0           | driverkit24.0        | 16.0          |
-| DriverKit 24.1           | driverkit24.1        | 16.1          |
-| DriverKit 24.2           | driverkit24.2        | 16.2          |
-| DriverKit 24.4           | driverkit24.4        | 16.3          |
-| DriverKit 24.5           | driverkit24.5        | 16.4          |
+| SDK                       | SDK Name             | Xcode Version |
+| ------------------------- | -------------------- | ------------- |
+| macOS 15.0                | macosx15.0           | 16.0          |
+| macOS 15.1                | macosx15.1           | 16.1          |
+| macOS 15.2                | macosx15.2           | 16.2          |
+| macOS 15.4                | macosx15.4           | 16.3          |
+| macOS 15.5                | macosx15.5           | 16.4          |
+| macOS 26.0                | macosx26.0           | 26.0          |
+| iOS 18.0                  | iphoneos18.0         | 16.0          |
+| iOS 18.1                  | iphoneos18.1         | 16.1          |
+| iOS 18.2                  | iphoneos18.2         | 16.2          |
+| iOS 18.4                  | iphoneos18.4         | 16.3          |
+| iOS 18.5                  | iphoneos18.5         | 16.4          |
+| iOS 26.0                  | iphoneos26.0         | 26.0          |
+| Simulator - iOS 18.0      | iphonesimulator18.0  | 16.0          |
+| Simulator - iOS 18.1      | iphonesimulator18.1  | 16.1          |
+| Simulator - iOS 18.2      | iphonesimulator18.2  | 16.2          |
+| Simulator - iOS 18.4      | iphonesimulator18.4  | 16.3          |
+| Simulator - iOS 18.5      | iphonesimulator18.5  | 16.4          |
+| Simulator - iOS 26.0      | iphonesimulator26.0  | 26.0          |
+| tvOS 18.0                 | appletvos18.0        | 16.0          |
+| tvOS 18.1                 | appletvos18.1        | 16.1          |
+| tvOS 18.2                 | appletvos18.2        | 16.2          |
+| tvOS 18.4                 | appletvos18.4        | 16.3          |
+| tvOS 18.5                 | appletvos18.5        | 16.4          |
+| tvOS 26.0                 | appletvos26.0        | 26.0          |
+| Simulator - tvOS 18.0     | appletvsimulator18.0 | 16.0          |
+| Simulator - tvOS 18.1     | appletvsimulator18.1 | 16.1          |
+| Simulator - tvOS 18.2     | appletvsimulator18.2 | 16.2          |
+| Simulator - tvOS 18.4     | appletvsimulator18.4 | 16.3          |
+| Simulator - tvOS 18.5     | appletvsimulator18.5 | 16.4          |
+| Simulator - tvOS 26.0     | appletvsimulator26.0 | 26.0          |
+| watchOS 11.0              | watchos11.0          | 16.0          |
+| watchOS 11.1              | watchos11.1          | 16.1          |
+| watchOS 11.2              | watchos11.2          | 16.2          |
+| watchOS 11.4              | watchos11.4          | 16.3          |
+| watchOS 11.5              | watchos11.5          | 16.4          |
+| watchOS 26.0              | watchos26.0          | 26.0          |
+| Simulator - watchOS 11.0  | watchsimulator11.0   | 16.0          |
+| Simulator - watchOS 11.1  | watchsimulator11.1   | 16.1          |
+| Simulator - watchOS 11.2  | watchsimulator11.2   | 16.2          |
+| Simulator - watchOS 11.4  | watchsimulator11.4   | 16.3          |
+| Simulator - watchOS 11.5  | watchsimulator11.5   | 16.4          |
+| Simulator - watchOS 26.0  | watchsimulator26.0   | 26.0          |
+| visionOS 2.0              | xros2.0              | 16.0          |
+| visionOS 2.1              | xros2.1              | 16.1          |
+| visionOS 2.2              | xros2.2              | 16.2          |
+| visionOS 2.4              | xros2.4              | 16.3          |
+| visionOS 2.5              | xros2.5              | 16.4          |
+| visionOS 26.0             | xros26.0             | 26.0          |
+| Simulator - visionOS 2.0  | xrsimulator2.0       | 16.0          |
+| Simulator - visionOS 2.1  | xrsimulator2.1       | 16.1          |
+| Simulator - visionOS 2.2  | xrsimulator2.2       | 16.2          |
+| Simulator - visionOS 2.4  | xrsimulator2.4       | 16.3          |
+| Simulator - visionOS 2.5  | xrsimulator2.5       | 16.4          |
+| Simulator - visionOS 26.0 | xrsimulator26.0      | 26.0          |
+| DriverKit 24.0            | driverkit24.0        | 16.0          |
+| DriverKit 24.1            | driverkit24.1        | 16.1          |
+| DriverKit 24.2            | driverkit24.2        | 16.2          |
+| DriverKit 24.4            | driverkit24.4        | 16.3          |
+| DriverKit 24.5            | driverkit24.5        | 16.4          |
+| DriverKit 25.0            | driverkit25.0        | 26.0          |
 
 #### Installed Simulators
 | OS           | Simulators                                                                                                                                                                                                                                                                                                                         |
