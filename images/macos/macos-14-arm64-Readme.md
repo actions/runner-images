@@ -1,11 +1,11 @@
 | Announcements |
 |-|
-| [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
+| [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 ***
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250616.1605
+- Image Version: 20250623.1617
 
 ## Installed Software
 
@@ -31,13 +31,13 @@
 - Bundler 2.6.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.6
+- Homebrew 4.5.7
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.9
-- Vcpkg 2025 (build from commit ef7dbf94b9)
+- Vcpkg 2025 (build from commit 0cf34c184c)
 - Yarn 1.22.22
 
 ### Project Management
@@ -53,24 +53,24 @@
 - bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.49.0
+- Git 2.50.0
 - Git LFS 3.6.1
-- GitHub CLI 2.74.1
+- GitHub CLI 2.74.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
 - jq 1.8.0
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.13.1
-- pkgconf 2.4.3
+- pkgconf 2.5.0
 - Unxip 3.1
 - yq 4.45.4
 - zstd 1.5.7
-- Ninja 1.12.1
+- Ninja 1.13.0
 
 ### Tools
-- AWS CLI 2.27.35
-- AWS SAM CLI 1.140.0
+- AWS CLI 2.27.40
+- AWS SAM CLI 1.141.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
@@ -88,9 +88,9 @@
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 137.0.7151.104
-- Google Chrome for Testing 137.0.7151.70
-- ChromeDriver 137.0.7151.70
+- Google Chrome 137.0.7151.120
+- Google Chrome for Testing 137.0.7151.119
+- ChromeDriver 137.0.7151.119
 - Mozilla Firefox 139.0.4
 - geckodriver 0.36.0
 - Selenium server 4.33.0
