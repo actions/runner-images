@@ -41,7 +41,6 @@ Function Install-VisualStudio {
     $channelUri = "https://aka.ms/vs/${Version}/${Channel}/channel"
     $channelId = "VisualStudio.${Version}.Release"
     $productId = "Microsoft.VisualStudio.Product.${Edition}"
-    $installChannelUri = "https://aka.ms/vs/${Version}/${Channel}/channel" 
 
     Write-Host "Downloading Bootstrapper ..."
     $bootstrapperFilePath = Invoke-DownloadWithRetry $BootstrapperUrl
@@ -51,7 +50,6 @@ Function Install-VisualStudio {
 
     try {
         $responseData = @{
-         #   "installChannelUri" = $installChannelUri
             "channelUri" = $channelUri
             "channelId"  = $channelId
             "productId"  = $productId
