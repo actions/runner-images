@@ -38,13 +38,3 @@ Describe "GitHub CLI" {
         "gh --version" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "CloudFoundry CLI" -Skip:(-not (Test-IsWin19)) {
-    It "cf is located in C:\cf-cli" {
-        "C:\cf-cli\cf.exe" | Should -Exist
-    }
-
-    It "cf" {
-        "cf --version" | Should -ReturnZeroExitCode
-    }
-}

@@ -2,7 +2,7 @@
 ##  File:  Configure-ImageDataFile.ps1
 ##  Desc:  Creates a JSON file with information about the image
 ################################################################################
-
+Import-Module ImageHelpers
 $os = Get-CimInstance -ClassName Win32_OperatingSystem
 $caption = $os.Caption
 $osName = $caption.Substring(0, $caption.LastIndexOf(" "))
@@ -23,12 +23,8 @@ if (Test-IsWin25) {
     $imageLabel = "windows-2022"
     $softwareUrl = "${githubUrl}/win22/$imageMajorVersion.$imageMinorVersion/images/windows/Windows2022-Readme.md"
     $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win22%2F$imageMajorVersion.$imageMinorVersion"
-} elseif (Test-IsWin19) {
-    $imageLabel = "windows-2019"
-    $softwareUrl = "${githubUrl}/win19/$imageMajorVersion.$imageMinorVersion/images/windows/Windows2019-Readme.md"
-    $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win19%2F$imageMajorVersion.$imageMinorVersion"
 } else {
-    throw "Invalid platform version is found. Either Windows Server 2019, 2022 or 2025 are required"
+    throw "Invalid platform version is found. Either Windows Server  2022 or 2025 are required"
 }
 
 $json = @"
