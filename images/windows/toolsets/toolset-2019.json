@@ -91,7 +91,7 @@
         {
             "name": "az",
             "versions": [
-                "12.1.0"
+                "12.5.0"
             ],
             "zip_versions": [
             ]
