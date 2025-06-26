@@ -1,12 +1,12 @@
 | Announcements |
 |-|
-| [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
+| [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1029-azure
-- Image Version: 20250615.1.0
+- Image Version: 20250622.1.0
 - Systemd version: 249.11-0ubuntu3.16
 
 ## Installed Software
@@ -31,8 +31,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.18.2
-- Homebrew 4.5.6
+- Helm 3.18.3
+- Homebrew 4.5.7
 - Miniconda 25.3.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -40,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit ef7dbf94b9)
+- Vcpkg (build from commit 0cf34c184c)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -76,7 +76,7 @@ to accomplish this.
 - CodeQL Action Bundle 2.22.0
 - Docker Amazon ECR Credential Helper 0.10.0
 - Docker Compose v2 2.36.2
-- Docker-Buildx 0.24.0
+- Docker-Buildx 0.25.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.228.0
@@ -84,10 +84,10 @@ to accomplish this.
 - Git LFS 3.6.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.10.0
+- Heroku 10.10.1
 - jq 1.6
 - Kind 0.29.0
-- Kubectl 1.33.1
+- Kubectl 1.33.2
 - Kustomize 5.6.0
 - Leiningen 2.11.2
 - MediaInfo 21.09
@@ -98,10 +98,10 @@ to accomplish this.
 - nvm 0.40.3
 - OpenSSL 3.0.2-0ubuntu1.19
 - Packer 1.13.1
-- Parcel 2.15.2
+- Parcel 2.15.4
 - Podman 3.4.4
-- Pulumi 3.177.0
-- R 4.5.0
+- Pulumi 3.178.0
+- R 4.5.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
@@ -109,21 +109,21 @@ to accomplish this.
 - yamllint 1.37.1
 - yq 4.45.4
 - zstd 1.5.7
-- Ninja 1.12.1
+- Ninja 1.13.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.283
-- AWS CLI 2.27.35
+- Alibaba Cloud CLI 3.0.284
+- AWS CLI 2.27.40
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.140.0
+- AWS SAM CLI 1.141.0
 - Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
-- GitHub CLI 2.74.1
-- Google Cloud CLI 526.0.1
+- GitHub CLI 2.74.2
+- Google Cloud CLI 527.0.0
 - Netlify CLI 22.1.3
-- OpenShift CLI 4.18.17
+- OpenShift CLI 4.19.0
 - ORAS CLI 1.2.3
-- Vercel CLI 43.1.0
+- Vercel CLI 43.3.0
 
 ### Java
 | Version             | Environment Variable |
@@ -162,11 +162,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 137.0.7151.103
-- ChromeDriver 137.0.7151.70
+- Google Chrome 137.0.7151.119
+- ChromeDriver 137.0.7151.119
 - Chromium 137.0.7151.0
-- Microsoft Edge 137.0.3296.83
-- Microsoft Edge WebDriver 137.0.3296.83
+- Microsoft Edge 137.0.3296.93
+- Microsoft Edge WebDriver 137.0.3296.93
 - Selenium server 4.33.0
 - Mozilla Firefox 136.0.4
 - Geckodriver 0.36.0
@@ -285,7 +285,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.19          | sha256:e5d0aea7f7d2954678a9a6269ca2d06e06591881161961ea59e974dff3f12377  | 2025-02-14 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
 | debian:11            | sha256:0d3279ff38fb2024358b2f24fbb99122f9a9a40618bb526b614527e998bcda28  | 2025-06-10 |
-| moby/buildkit:latest | sha256:832fa7aa1eb3deb56fa62ae933bfa42dad9a83ff4824dbbaf173b49c722b59d0  | 2025-05-21 |
+| moby/buildkit:latest | sha256:dbc2dfd9342fd5c891ea94e9774c15cab985681e5ff995a9e366066aa0b9b2b4  | 2025-06-20 |
 | node:18              | sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783  | 2025-03-27 |
 | node:18-alpine       | sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e  | 2025-03-27 |
 | node:20              | sha256:ba077fe891ce516b24bdbbd66d27d1e8e8c5a6e6b31ec7e7e559b45c3fca0643  | 2025-05-15 |
@@ -385,7 +385,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1.1                   |
 | xorriso                | 1.5.4-2                             |
-| xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.14       |
+| xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.15       |
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
