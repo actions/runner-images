@@ -20,7 +20,6 @@ Expand-7ZipArchive -Path $cloudFoundryArchPath -DestinationPath $cloudFoundryCli
 Add-MachinePathItem $cloudFoundryCliPath
 
 # Validate cf signature
-$cloudFoundrySignatureThumbprint = "2C6B2F1562698503A6E4A25F2DF058E12E23A190"
-Test-FileSignature -Path "$cloudFoundryCliPath\cf.exe" -ExpectedThumbprint $cloudFoundrySignatureThumbprint
+Test-FileSignature -Path "$cloudFoundryCliPath\cf.exe" -ExpectedSubject 'CN="LF Projects, LLC", O="LF Projects, LLC", L=Wilmington, S=Delaware, C=US'
 
 Invoke-PesterTests -TestFile "CLI.Tools" -TestName "CloudFoundry CLI"

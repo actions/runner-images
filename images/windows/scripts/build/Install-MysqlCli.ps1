@@ -30,7 +30,7 @@ $mysqlVersionUrl = "https://cdn.mysql.com/Downloads/MySQL-${mysqlVersionMajorMin
 
 Install-Binary `
     -Url $mysqlVersionUrl `
-    -ExpectedSignature (Get-ToolsetContent).mysql.signature
+    -ExpectedSubject 'CN="Oracle America, Inc.", O="Oracle America, Inc.", L=Redwood City, S=California, C=US, SERIALNUMBER=2101822, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US'
 
 # Adding mysql in system environment path
 $mysqlPath = $(Get-ChildItem -Path "C:\PROGRA~1\MySQL" -Directory)[0].FullName

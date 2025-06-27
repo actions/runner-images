@@ -15,7 +15,7 @@ New-Item -ItemType 'Directory' -Path $azureCliExtensionPath | Out-Null
 
 Install-Binary -Type MSI `
     -Url 'https://aka.ms/installazurecliwindowsx64' `
-    -ExpectedSignature '245D262748012A4FE6CE8BA6C951A4C4AFBC3E5D'
+    -ExpectedSubject $(Get-MicrosoftPublisher)
 
 Update-Environment
 
