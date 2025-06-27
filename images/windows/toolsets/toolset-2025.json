@@ -74,7 +74,7 @@
         {
             "name": "az",
             "versions": [
-                "12.4.0"
+                "12.5.0"
             ],
             "zip_versions": []
         }

@@ -1,18 +1,19 @@
 | Announcements |
 |-|
-| []Windows Server 2025] image will no longer have  D:/ drive accessible to users from 2025-07-14](https://github.com/actions/runner-images/issues/12416) |
-| [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
+| [[Windows, Ubuntu, MacOS] CodeQL bundle will contain only platform-specific binaries on 2025-06-30](https://github.com/actions/runner-images/issues/12453) |
+| [[Windows Server 2025] image will no longer have  D:/ drive accessible to users from 2025-07-14](https://github.com/actions/runner-images/issues/12416) |
+| [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 | [The Windows 2019 Actions runner image will begin deprecation on 2025-06-01 and will be fully unsupported by 2025-06-30](https://github.com/actions/runner-images/issues/12045) |
 | [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 4349
-- Image Version: 20250617.1.0
+- Image Version: 20250623.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
-- Windows Subsystem for Linux (Default, WSLv2): 2.5.7.0
+- Windows Subsystem for Linux (Default, WSLv2): 2.5.9.0
 
 ## Installed Software
 
@@ -31,14 +32,14 @@
 ### Package Management
 - Chocolatey 2.4.3
 - Composer 2.8.9
-- Helm 3.18.1
+- Helm 3.18.2
 - Miniconda 25.3.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.2
 - NuGet 6.14.0.116
 - pip 25.1.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 4fc5d02522)
+- Vcpkg (build from commit 0cf34c184c)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -72,14 +73,14 @@
 - ImageMagick 7.1.1-47
 - jq 1.7.1
 - Kind 0.29.0
-- Kubectl 1.33.1
+- Kubectl 1.33.2
 - gcc 14.2.0
 - gdb 16.2
 - GNU Binutils 2.44
 - Newman 6.2.1
 - OpenSSL 3.4.1
 - Packer 1.12.0
-- Pulumi 3.177.0
+- Pulumi 3.178.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.5.1
@@ -89,15 +90,15 @@
 - WiX Toolset 3.14.1.8722
 - yamllint 1.37.1
 - zstd 1.5.7
-- Ninja 1.12.1
+- Ninja 1.13.0
 
 ### CLI Tools
-- AWS CLI 2.27.35
-- AWS SAM CLI 1.140.0
+- AWS CLI 2.27.40
+- AWS SAM CLI 1.141.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.74.0
 - Azure DevOps CLI extension 1.0.1
-- GitHub CLI 2.74.1
+- GitHub CLI 2.74.2
 
 ### Rust Tools
 - Cargo 1.87.0
@@ -112,8 +113,8 @@
 ### Browsers and Drivers
 - Google Chrome 137.0.7151.120
 - Chrome Driver 137.0.7151.119
-- Microsoft Edge 137.0.3296.83
-- Microsoft Edge Driver 137.0.3296.83
+- Microsoft Edge 137.0.3296.93
+- Microsoft Edge Driver 137.0.3296.93
 - Mozilla Firefox 139.0.4
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -205,7 +206,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - MySQL 8.0.42.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.5.2
+- MongoDB Shell (mongosh) 2.5.3
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
@@ -232,7 +233,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.MDD.Linux.GCC.arm                                               | 17.14.36015.10  |
 | Component.Microsoft.VisualStudio.LiveShare.2022                           | 1.0.5949        |
 | Component.Microsoft.VisualStudio.RazorExtension                           | 17.14.36015.10  |
-| Component.Microsoft.VisualStudio.Tools.Applications.amd64                 | 17.0.33617.0    |
+| Component.Microsoft.VisualStudio.Tools.Applications.amd64                 | 17.0.35906.1    |
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 17.14.36015.10  |
 | Component.Microsoft.Web.LibraryManager                                    | 17.14.36015.10  |
 | Component.Microsoft.WebTools.BrowserLink.WebLivePreview                   | 17.14.2.50506   |
@@ -444,7 +445,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | wasm.tools                                                                | 9.0.625.26613   |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects2022                  | 3.0.4           |
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 3.0.1           |
-| SSIS.MicrosoftDataToolsIntegrationServices                                | 1.5             |
+| SSIS.MicrosoftDataToolsIntegrationServices                                | 1.6.2           |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.1           |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.26100.12   |
 | Windows Software Development Kit                                          | 10.1.26100.3916 |
@@ -478,7 +479,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.4.0
-- AWSPowershell: 4.1.841
+- AWSPowershell: 4.1.845
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.28.0
