@@ -1,11 +1,11 @@
 | Announcements |
 |-|
-| [[Windows ,Ubuntu, MacOs ] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
+| [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 ***
 # macOS 13
 - OS Version: macOS 13.7.6 (22H625)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250616.1345
+- Image Version: 20250623.1360
 
 ## Installed Software
 
@@ -31,7 +31,7 @@
 - Bundler 2.6.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.6
+- Homebrew 4.5.7
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
@@ -52,24 +52,24 @@
 - bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.49.0
+- Git 2.50.0
 - Git LFS 3.6.1
-- GitHub CLI 2.74.1
+- GitHub CLI 2.74.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
 - jq 1.8.0
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.13.1
-- pkgconf 2.4.3
+- pkgconf 2.5.0
 - Unxip 3.1
 - yq 4.45.4
 - zstd 1.5.7
-- Ninja 1.12.1
+- Ninja 1.13.0
 
 ### Tools
-- AWS CLI 2.27.35
-- AWS SAM CLI 1.140.0
+- AWS CLI 2.27.40
+- AWS SAM CLI 1.141.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.74.0
 - Azure CLI (azure-devops) 1.0.1
@@ -87,9 +87,9 @@
 ### Browsers
 - Safari 18.5 (18621.2.5.18.1)
 - SafariDriver 18.5 (18621.2.5.18.1)
-- Google Chrome 137.0.7151.104
-- Google Chrome for Testing 137.0.7151.70
-- ChromeDriver 137.0.7151.70
+- Google Chrome 137.0.7151.120
+- Google Chrome for Testing 137.0.7151.119
+- ChromeDriver 137.0.7151.119
 - Mozilla Firefox 139.0.4
 - geckodriver 0.36.0
 - Selenium server 4.33.0
@@ -196,8 +196,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
