@@ -24,9 +24,9 @@ kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut 
 sudo mkdir -p -m 755 /etc/apt/keyrings
 
 # Download Kubernetes release key with retry
-kubernetes_keyring_path=$(download_with_retry "https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/Release.key")
+kubernetes_keyring_path=$(download_with_retry "https://pkgs.k8s.io/core/stable/$kubectl_minor_version/deb/Release.key")
 sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg "${kubernetes_keyring_path}"
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core/stable/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 apt-get update
 apt-get install kubectl
