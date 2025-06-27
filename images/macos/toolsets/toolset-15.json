@@ -159,6 +159,7 @@
             "yq",
             "unxip",
             "xcbeautify",
+            "ripgrep",
             "xcodes"
         ],
         "cask_packages": [

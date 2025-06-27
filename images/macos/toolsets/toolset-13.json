@@ -85,6 +85,7 @@
             "gmp",
             "yq",
             "xcbeautify",
+            "ripgrep",
             "xcodes"
         ],
         "cask_packages": [
