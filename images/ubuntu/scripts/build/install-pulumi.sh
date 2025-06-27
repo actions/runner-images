@@ -9,7 +9,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Dowload Pulumi
-version=$(curl -fsSL "https://www.pulumi.com/latest-version")
+version="3.178.0"
 download_url="https://get.pulumi.com/releases/sdk/pulumi-v${version}-linux-x64.tar.gz"
 archive_path=$(download_with_retry "$download_url")
 
