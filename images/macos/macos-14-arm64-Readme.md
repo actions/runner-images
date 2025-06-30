@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Windows, Ubuntu, MacOS] CodeQL bundle will contain only platform-specific binaries on 2025-06-30](https://github.com/actions/runner-images/issues/12453) |
 | [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 ***
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250623.1617
+- Image Version: 20250630.1634
 
 ## Installed Software
 
@@ -22,7 +23,7 @@
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - Kotlin 2.1.10-release-473
 - Mono 6.12.0.188
-- Node.js 20.19.2
+- Node.js 20.19.3
 - Perl 5.40.2
 - Python3 3.13.5
 - Ruby 3.3.8
@@ -31,13 +32,13 @@
 - Bundler 2.6.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.7
+- Homebrew 4.5.8
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.9
-- Vcpkg 2025 (build from commit 0cf34c184c)
+- Vcpkg 2025 (build from commit 0cb95c860e)
 - Yarn 1.22.22
 
 ### Project Management
@@ -49,12 +50,12 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.29.1
-- bazel 8.2.1
+- bazel 8.3.0
 - bazelisk 1.26.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.50.0
-- Git LFS 3.6.1
+- Git LFS 3.7.0
 - GitHub CLI 2.74.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
@@ -62,21 +63,21 @@
 - jq 1.8.0
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.13.1
-- pkgconf 2.5.0
+- pkgconf 2.5.1
 - Unxip 3.1
 - yq 4.45.4
 - zstd 1.5.7
 - Ninja 1.13.0
 
 ### Tools
-- AWS CLI 2.27.40
+- AWS CLI 2.27.45
 - AWS SAM CLI 1.141.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.74.0
-- Azure CLI (azure-devops) 1.0.1
+- Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.36.1
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.22.0
+- CodeQL Action Bundle 2.22.1
 - Fastlane 2.228.0
 - SwiftFormat 0.56.4
 - Xcbeautify 2.28.0
@@ -88,10 +89,10 @@
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 137.0.7151.120
-- Google Chrome for Testing 137.0.7151.119
-- ChromeDriver 137.0.7151.119
-- Mozilla Firefox 139.0.4
+- Google Chrome 138.0.7204.50
+- Google Chrome for Testing 138.0.7204.49
+- ChromeDriver 138.0.7204.49
+- Mozilla Firefox 140.0.2
 - geckodriver 0.36.0
 - Selenium server 4.33.0
 
@@ -124,8 +125,8 @@
 
 #### Node.js
 - 18.20.8
-- 20.19.2
-- 22.16.0
+- 20.19.3
+- 22.17.0
 
 #### Go
 - 1.22.12
@@ -133,20 +134,20 @@
 - 1.24.4
 
 ### Rust Tools
-- Cargo 1.87.0
-- Rust 1.87.0
-- Rustdoc 1.87.0
+- Cargo 1.88.0
+- Rust 1.88.0
+- Rustdoc 1.88.0
 - Rustup 1.28.2
 
 #### Packages
-- Clippy 0.1.87
+- Clippy 0.1.88
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.10
+- PowerShell 7.4.11
 
 #### PowerShell Modules
-- Az: 12.4.0
+- Az: 12.5.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
@@ -254,10 +255,10 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                           |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                              |
-| Android Emulator           | 35.5.10                                                                                                                                                                                                                                                                                                           |
+| Android Emulator           | 35.6.11                                                                                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                |
 | Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
-| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                                            |
+| Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                            |
 | CMake                      | 3.31.5                                                                                                                                                                                                                                                                                                            |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                |
