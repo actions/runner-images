@@ -1,8 +1,6 @@
 Param (
     [Parameter(Mandatory)]
-    [string] $WorkflowFileName,
-    [Parameter(Mandatory)]
-    [string] $WorkflowSearchPattern,
+    [string] $WorkflowRunId,
     [Parameter(Mandatory)]
     [string] $Repository,
     [Parameter(Mandatory)]
@@ -12,17 +10,6 @@ Param (
 )
 
 Import-Module (Join-Path $PSScriptRoot "GitHubApi.psm1")
-
-function Find-TriggeredWorkflow($WorkflowFileName, $WorkflowSearchPattern) {
-    $workflowRuns = $gitHubApi.GetWorkflowRuns($WorkflowFileName).workflow_runs
-    $workflowRunId = ($workflowRuns | Where-Object {$_.display_title -match $WorkflowSearchPattern}).id | Select-Object -First 1
-
-    if ([string]::IsNullOrEmpty($workflowRunId)) {
-        throw "Failed to find a workflow run for '$WorkflowSearchPattern'."
-    } else {
-        return $workflowRunId
-    }
-}
 
 function Wait-ForWorkflowCompletion($WorkflowRunId, $RetryIntervalSeconds) {
     do {
@@ -35,21 +22,16 @@ function Wait-ForWorkflowCompletion($WorkflowRunId, $RetryIntervalSeconds) {
 
 $gitHubApi = Get-GithubApi -Repository $Repository -AccessToken $AccessToken
 
-$workflowRunId = Find-TriggeredWorkflow -WorkflowFileName $WorkflowFileName -WorkflowSearchPattern $WorkflowSearchPattern
-$workflowRun = $gitHubApi.GetWorkflowRun($workflowRunId)
-Write-Host "Found the workflow run with ID $workflowRunId. Workflow run link: $($workflowRun.html_url)"
-"ci_workflow_run_id=$workflowRunId" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
-
 $attempt = 1
 do {
-    $finishedWorkflowRun = Wait-ForWorkflowCompletion -WorkflowRunId $workflowRunId -RetryIntervalSeconds $RetryIntervalSeconds
+    $finishedWorkflowRun = Wait-ForWorkflowCompletion -WorkflowRunId $WorkflowRunId -RetryIntervalSeconds $RetryIntervalSeconds
     Write-Host "Workflow run finished with result: $($finishedWorkflowRun.conclusion)"
-    if ($finishedWorkflowRun.conclusion -in ("success", "cancelled")) {
+    if ($finishedWorkflowRun.conclusion -in ("success", "cancelled", "timed_out")) {
         break
     } elseif ($finishedWorkflowRun.conclusion -eq "failure") {
         if ($attempt -le $MaxRetryCount) {
             Write-Host "Workflow run will be restarted. Attempt $attempt of $MaxRetryCount"
-            $gitHubApi.ReRunFailedJobs($workflowRunId)
+            $gitHubApi.ReRunFailedJobs($WorkflowRunId)
             $attempt += 1
         } else {
             break
@@ -59,7 +41,6 @@ do {
 
 Write-Host "Last result: $($finishedWorkflowRun.conclusion)."
 "CI_WORKFLOW_RUN_RESULT=$($finishedWorkflowRun.conclusion)" | Out-File -Append -FilePath $env:GITHUB_ENV
-"CI_WORKFLOW_RUN_URL=$($workflowRun.html_url)" | Out-File -Append -FilePath $env:GITHUB_ENV
 
 if ($finishedWorkflowRun.conclusion -in ("failure", "cancelled", "timed_out")) {
     exit 1
