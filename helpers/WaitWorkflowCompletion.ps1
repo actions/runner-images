@@ -61,8 +61,6 @@ Write-Host "Last result: $($finishedWorkflowRun.conclusion)."
 "CI_WORKFLOW_RUN_RESULT=$($finishedWorkflowRun.conclusion)" | Out-File -Append -FilePath $env:GITHUB_ENV
 "CI_WORKFLOW_RUN_URL=$($workflowRun.html_url)" | Out-File -Append -FilePath $env:GITHUB_ENV
 
-if ($finishedWorkflowRun.conclusion -eq "success") {
-    exit 0
-} elseif ($finishedWorkflowRun.conclusion -in ("failure", "cancelled")) {
+if ($finishedWorkflowRun.conclusion -in ("failure", "cancelled", "timed_out")) {
     exit 1
 }
