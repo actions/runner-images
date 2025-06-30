@@ -7,7 +7,6 @@ Param (
     [string] $Repository,
     [Parameter(Mandatory)]
     [string] $AccessToken,
-    [int] $AttemptTimeoutInMinutes = 340,
     [int] $RetryIntervalSeconds = 300,
     [int] $MaxRetryCount = 0
 )
@@ -26,16 +25,9 @@ function Find-TriggeredWorkflow($WorkflowFileName, $WorkflowSearchPattern) {
 }
 
 function Wait-ForWorkflowCompletion($WorkflowRunId, $RetryIntervalSeconds) {
-    $attemptEndTime = (Get-Date).AddMinutes($AttemptTimeoutInMinutes)
     do {
         Start-Sleep -Seconds $RetryIntervalSeconds
         $workflowRun = $gitHubApi.GetWorkflowRun($WorkflowRunId)
-        if ((Get-Date) -gt $attemptEndTime) {
-            "CI_WORKFLOW_RUN_RESULT=$($workflowRun.status)/timeout" | Out-File -Append -FilePath $env:GITHUB_ENV
-            "CI_WORKFLOW_RUN_URL=$($workflowRun.html_url)" | Out-File -Append -FilePath $env:GITHUB_ENV
-            $gitHubApi.CancelWorkflowRun($workflowRunId)
-            throw "The workflow run is still in the '$($workflowRun.status)' state for $AttemptTimeoutInMinutes minutes. Cancelling the run."
-        }
     } until ($workflowRun.status -eq "completed")
 
     return $workflowRun
