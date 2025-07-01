@@ -20,17 +20,18 @@ use_checksum_comparison "${kind_binary_path}" "${kind_external_hash}"
 install "${kind_binary_path}" /usr/local/bin/kind
 
 ## Install kubectl
+# Ensure keyrings directory exists
+sudo mkdir -p -m 755 /etc/apt/keyrings
+
+# Install required dependencies
+apt-get update
+apt-get install -y ca-certificates curl gnupg
+
 kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
-kubectl_apt_version="v${kubectl_minor_version}"
-
-# Download Kubernetes release key with retry using correct URL format
-kubernetes_keyring_path=$(download_with_retry "https://pkgs.k8s.io/core:/stable:/${kubectl_apt_version}/deb/Release.key")
-
-# Import the key
-sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg "${kubernetes_keyring_path}"
-
-# Add Kubernetes APT repository with correct URL format
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/${kubectl_apt_version}/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt-get install kubectl
 rm -f /etc/apt/sources.list.d/kubernetes.list
