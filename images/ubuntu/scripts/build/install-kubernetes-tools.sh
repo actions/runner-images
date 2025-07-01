@@ -31,11 +31,11 @@ kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut 
 
 # Download the Kubernetes public signing key from the recommended source
 curl -fsSLo /etc/apt/keyrings/kubernetes-apt-keyring.gpg https://dl.k8s.io/apt/doc/apt-key.gpg
-#sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 # Add the Kubernetes apt repository using the minor version
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
-#sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
+sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
 
 apt-get update
 apt-get install kubectl
