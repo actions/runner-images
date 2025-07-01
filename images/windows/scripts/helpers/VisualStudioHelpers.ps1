@@ -14,7 +14,7 @@ Function Install-VisualStudio {
 
     .PARAMETER Channel
         The channel of Visual Studio that will be installed. Required parameter.
-    
+     
     .PARAMETER InstallChannel
         The InstallChannelUri of Visual Studio that will be installed. Required parameter.
 
