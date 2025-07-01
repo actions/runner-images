@@ -23,14 +23,17 @@ install "${kind_binary_path}" /usr/local/bin/kind
 # Ensure keyrings directory exists
 sudo mkdir -p -m 755 /etc/apt/keyrings
 
-# Install required dependencies
-apt-get update
-apt-get install -y ca-certificates curl gnupg
+# Install required packages
+sudo apt-get update
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
 
-kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
-curl -fsSL https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+# Download the Google Cloud public signing key
+sudo curl -fsSLo /etc/apt/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+sudo chmod 644 /etc/apt/keyrings/kubernetes-archive-keyring.gpg
 
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+# Add the Kubernetes apt repository
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list
 
 apt-get update
 apt-get install kubectl
