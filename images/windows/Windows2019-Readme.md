@@ -5,11 +5,10 @@
 | [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 | [The Windows 2019 Actions runner image will begin deprecation on 2025-06-01 and will be fully unsupported by 2025-06-30](https://github.com/actions/runner-images/issues/12045) |
-| [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2019
 - OS Version: 10.0.17763 Build 7434
-- Image Version: 20250623.2.0
+- Image Version: 20250630.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -32,13 +31,13 @@
 - Chocolatey 2.4.3
 - Composer 2.8.9
 - Helm 3.18.2
-- Miniconda 25.3.1 (pre-installed on the image but not added to PATH)
+- Miniconda 25.5.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.14.0.116
 - pip 25.1.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 2e58bb35ff)
+- Vcpkg (build from commit a7ef72790b)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,19 +56,19 @@
 - 7zip 24.09
 - aria2 1.37.0
 - azcopy 10.29.1
-- Bazel 8.3.0
+- Bazel 8.3.1
 - Bazelisk 1.26.0
 - Bicep 0.36.1
 - Cabal 3.14.2.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.22.0
+- CodeQL Action Bundle 2.22.1
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
 - ghc 9.12.2
 - Git 2.50.0.windows.1
 - Git LFS 3.6.1
-- Google Cloud CLI 527.0.0
+- Google Cloud CLI 528.0.0
 - ImageMagick 7.1.1-47
 - InnoSetup 6.4.0
 - jq 1.7.1
@@ -84,10 +83,10 @@
 - OpenSSL 1.1.1w
 - Packer 1.12.0
 - Parcel 2.15.4
-- Pulumi 3.178.0
+- Pulumi 3.181.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
-- Stack 3.5.1
+- Stack 3.7.1
 - Subversion (SVN) 1.14.5
 - Swig 4.1.1
 - VSWhere 3.1.7
@@ -98,19 +97,19 @@
 - Ninja 1.13.0
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.284
-- AWS CLI 2.27.40
+- Alibaba Cloud CLI 3.0.286
+- AWS CLI 2.27.45
 - AWS SAM CLI 1.141.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.74.0
-- Azure DevOps CLI extension 1.0.1
+- Azure DevOps CLI extension 1.0.2
 - Cloud Foundry CLI 8.14.1
 - GitHub CLI 2.74.2
 
 ### Rust Tools
-- Cargo 1.87.0
-- Rust 1.87.0
-- Rustdoc 1.87.0
+- Cargo 1.88.0
+- Rust 1.88.0
+- Rustdoc 1.88.0
 - Rustup 1.28.2
 
 #### Packages
@@ -118,18 +117,18 @@
 - cargo-audit 0.21.2
 - cargo-outdated 0.17.0
 - cbindgen 0.29.0
-- Clippy 0.1.87
+- Clippy 0.1.88
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 137.0.7151.120
-- Chrome Driver 137.0.7151.119
-- Microsoft Edge 137.0.3296.93
-- Microsoft Edge Driver 137.0.3296.93
-- Mozilla Firefox 139.0.4
+- Google Chrome 138.0.7204.97
+- Chrome Driver 138.0.7204.92
+- Microsoft Edge 138.0.3351.55
+- Microsoft Edge Driver 138.0.3351.55
+- Mozilla Firefox 140.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.33.0
+- Selenium server 4.34.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -177,7 +176,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 18.20.8
 - 20.19.3
-- 22.16.0
+- 22.17.0
 
 #### Python
 - 3.9.13
@@ -229,7 +228,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.27.5  | C:\tools\nginx-1.27.5\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.29.0  | C:\tools\nginx-1.29.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2019
 | Name                          | Version        | Path                                                           |
@@ -503,11 +502,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.7.115+d31f50f4d1
 
 ### PowerShell Tools
-- PowerShell 7.4.10
+- PowerShell 7.4.11
 
 #### Powershell Modules
-- Az: 12.1.0
-- AWSPowershell: 5.0.0
+- Az: 12.5.0
+- AWSPowershell: 5.0.5
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.28.0
@@ -522,7 +521,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                             |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                                                                                 |
-| Android Emulator           | 35.5.10                                                                                                                                                                                                                                                                                                                                                                             |
+| Android Emulator           | 35.6.11                                                                                                                                                                                                                                                                                                                                                                             |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0<br>30.0.2                                                                                                                                                                                                                                                                                      |
 | Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                                                                              |
