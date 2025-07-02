@@ -4,7 +4,6 @@
 ################################################################################
 
 $downloadUrl = "https://aka.ms/BuildComponentSetup.EN"
-$signatureThumbprint = "8740DF4ACB749640AD318E4BE842F72EC651AD80"
 
 Write-Host "Downloading BizTalk Project Build Component archive..."
 $zipFile = Invoke-DownloadWithRetry $downloadUrl
@@ -19,10 +18,10 @@ Write-Host "Installing BizTalk Project Build Component..."
 Install-Binary `
     -LocalPath "$setupPath\Bootstrap.msi" `
     -ExtraInstallArgs ("/l*v", "$setupPath\bootstrap.log") `
-    -ExpectedSignature $signatureThumbprint
+    -ExpectedSubject $(Get-MicrosoftPublisher)
 Install-Binary `
     -LocalPath "$setupPath\BuildComponentSetup.msi" `
     -ExtraInstallArgs ("/l*v", "$setupPath\buildComponentSetup.log") `
-    -ExpectedSignature $signatureThumbprint
+    -ExpectedSubject $(Get-MicrosoftPublisher)
 
 Invoke-PesterTests -TestFile "BizTalk" -TestName "BizTalk Build Component Setup"

@@ -11,6 +11,6 @@ $downloadUrl = Resolve-GithubReleaseAssetUrl `
 
 Install-Binary `
     -Url $downloadUrl `
-    -ExpectedSignature '2485A7AFA98E178CB8F30C9838346B514AEA4769'
+    -ExpectedSubject $(Get-MicrosoftPublisher)
 
 Invoke-PesterTests -TestFile "WinAppDriver" -TestName "WinAppDriver"
