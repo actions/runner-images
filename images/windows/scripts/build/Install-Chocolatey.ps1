@@ -13,9 +13,8 @@ Add-MachinePathItem 'C:\ProgramData\Chocolatey\bin'
 Update-Environment
 
 # Verify and run choco installer
-$signatureThumbprint = "B009C875F4E10FFBC62B785BAF4FC4D6BC2D5711"
 $installScriptPath = Invoke-DownloadWithRetry 'https://chocolatey.org/install.ps1'
-Test-FileSignature -Path $installScriptPath -ExpectedThumbprint $signatureThumbprint
+Test-FileSignature -Path $installScriptPath -ExpectedSubject 'CN="Chocolatey Software, Inc", O="Chocolatey Software, Inc", L=Topeka, S=Kansas, C=US'
 Invoke-Expression $installScriptPath
 
 # Turn off confirmation

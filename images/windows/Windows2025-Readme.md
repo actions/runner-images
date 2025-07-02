@@ -5,11 +5,10 @@
 | [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 | [The Windows 2019 Actions runner image will begin deprecation on 2025-06-01 and will be fully unsupported by 2025-06-30](https://github.com/actions/runner-images/issues/12045) |
-| [Windows Server 2025 is now available](https://github.com/actions/runner-images/issues/11228) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 4349
-- Image Version: 20250623.1.0
+- Image Version: 20250629.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -22,8 +21,8 @@
 - Go 1.24.4
 - Julia 1.11.5
 - Kotlin 2.1.10
-- LLVM 20.1.4
-- Node 22.16.0
+- LLVM 20.1.7
+- Node 22.17.0
 - Perl 5.40.0
 - PHP 8.4.8
 - Python 3.9.13
@@ -33,13 +32,13 @@
 - Chocolatey 2.4.3
 - Composer 2.8.9
 - Helm 3.18.2
-- Miniconda 25.3.1 (pre-installed on the image but not added to PATH)
+- Miniconda 25.5.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.2
 - NuGet 6.14.0.116
 - pip 25.1.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 0cf34c184c)
+- Vcpkg (build from commit 0cb95c860e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -58,12 +57,12 @@
 - 7zip 24.09
 - aria2 1.37.0
 - azcopy 10.29.1
-- Bazel 8.2.1
+- Bazel 8.3.0
 - Bazelisk 1.26.0
 - Bicep 0.36.1
 - Cabal 3.14.2.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.22.0
+- CodeQL Action Bundle 2.22.1
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
@@ -80,10 +79,10 @@
 - Newman 6.2.1
 - OpenSSL 3.4.1
 - Packer 1.12.0
-- Pulumi 3.178.0
+- Pulumi 3.181.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
-- Stack 3.5.1
+- Stack 3.7.1
 - Swig 4.1.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
@@ -93,32 +92,32 @@
 - Ninja 1.13.0
 
 ### CLI Tools
-- AWS CLI 2.27.40
+- AWS CLI 2.27.45
 - AWS SAM CLI 1.141.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.74.0
-- Azure DevOps CLI extension 1.0.1
+- Azure DevOps CLI extension 1.0.2
 - GitHub CLI 2.74.2
 
 ### Rust Tools
-- Cargo 1.87.0
-- Rust 1.87.0
-- Rustdoc 1.87.0
+- Cargo 1.88.0
+- Rust 1.88.0
+- Rustdoc 1.88.0
 - Rustup 1.28.2
 
 #### Packages
-- Clippy 0.1.87
+- Clippy 0.1.88
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 137.0.7151.120
-- Chrome Driver 137.0.7151.119
-- Microsoft Edge 137.0.3296.93
-- Microsoft Edge Driver 137.0.3296.93
-- Mozilla Firefox 139.0.4
+- Google Chrome 138.0.7204.50
+- Chrome Driver 138.0.7204.49
+- Microsoft Edge 138.0.3351.55
+- Microsoft Edge Driver 138.0.3351.55
+- Mozilla Firefox 140.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.33.0
+- Selenium server 4.34.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -162,8 +161,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 18.20.8
-- 20.19.2
-- 22.16.0
+- 20.19.3
+- 22.17.0
 
 #### Python
 - 3.9.13
@@ -212,7 +211,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.27.5  | C:\tools\nginx-1.27.5\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.29.0  | C:\tools\nginx-1.29.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
@@ -475,11 +474,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.7.115+d31f50f4d1
 
 ### PowerShell Tools
-- PowerShell 7.4.10
+- PowerShell 7.4.11
 
 #### Powershell Modules
-- Az: 12.4.0
-- AWSPowershell: 4.1.845
+- Az: 12.5.0
+- AWSPowershell: 5.0.4
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.28.0
@@ -494,10 +493,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                                                                               |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                  |
-| Android Emulator           | 35.5.10                                                                                                                                                                                                                               |
+| Android Emulator           | 35.6.11                                                                                                                                                                                                                               |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                     |
 | Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
-| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                |
+| Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                |
 | CMake                      | 3.22.1<br>3.30.5<br>3.31.5                                                                                                                                                                                                            |
 | Google Play services       | 49                                                                                                                                                                                                                                    |
