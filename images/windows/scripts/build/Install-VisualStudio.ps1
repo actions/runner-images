@@ -11,8 +11,7 @@ if (Test-IsWin19) {
         -Edition $vsToolset.edition `
         -Channel $vsToolset.channel `
         -RequiredComponents $vsToolset.workloads `
-        -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
-        -SignatureThumbprint $vsToolset.signature
+        -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64"
 }
 
 if ( (Test-IsWin22) -or (Test-IsWin25) ) {
@@ -23,8 +22,7 @@ if ( (Test-IsWin22) -or (Test-IsWin25) ) {
         -Channel $vsToolset.channel `
         -InstallChannel $vsToolset.installChannel `
         -RequiredComponents $vsToolset.workloads `
-        -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
-        -SignatureThumbprint $vsToolset.signature
+        -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64"
 }
 
 # Find the version of VS installed for this instance
@@ -46,13 +44,13 @@ if (Test-IsWin19) {
     Install-Binary -Type EXE `
         -Url 'https://go.microsoft.com/fwlink/p/?LinkId=838916' `
         -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.WindowsSoftwareDevelopmentKit") `
-        -ExpectedSignature 'C91545B333C52C4465DE8B90A3FAF4E1D9C58DFA'
+        -ExpectedSubject 'CN=Microsoft Corporation, OU=MOPR, O=Microsoft Corporation, L=Redmond, S=Washington, C=US'
 
     # Install Windows 11 SDK version 10.0.22621.0
     Install-Binary -Type EXE `
         -Url 'https://go.microsoft.com/fwlink/p/?linkid=2196241' `
         -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
-        -ExpectedSignature 'E4C5C5FCDB68B930EE4E19BC25D431EF6D864C51'
+        -ExpectedSubject $(Get-MicrosoftPublisher)
 }
 
 if (Test-IsWin22) {
@@ -60,7 +58,7 @@ if (Test-IsWin22) {
     Install-Binary -Type EXE `
     -Url 'https://go.microsoft.com/fwlink/p/?LinkID=2033908' `
     -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
-    -ExpectedSignature '7535269B94C1FEA4A5EF6D808E371DA242F27936'
+    -ExpectedSubject $(Get-MicrosoftPublisher)
 }
 
 if (-not (Test-IsWin19)) {
@@ -68,7 +66,7 @@ if (-not (Test-IsWin19)) {
      Install-Binary -Type EXE `
         -Url 'https://go.microsoft.com/fwlink/?linkid=2286561' `
         -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
-        -ExpectedSignature '573EF451A68C33FB904346D44551BEF3BB5BBF68'
+        -ExpectedSubject $(Get-MicrosoftPublisher)
 }
 
 Invoke-PesterTests -TestFile "VisualStudio"
