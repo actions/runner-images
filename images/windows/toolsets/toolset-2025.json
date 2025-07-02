@@ -293,7 +293,7 @@
             },
             {
                 "name": "strawberryperl" ,
-                "args": [ "--version", "5.40.0.1" ]
+                "args": [ "--version", "5.40.2.2" ]
             },
             { "name": "imagemagick" },
             { "name": "ninja" }
