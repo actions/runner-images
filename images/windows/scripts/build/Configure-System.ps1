@@ -36,6 +36,14 @@ if ($LASTEXITCODE -ne 0) {
     throw "Failed to grant Users full control of $env:SystemRoot\Temp"
 }
 
+# Enable inheritance for the entire C:\ drive
+if (Test-IsWin25) {
+    cmd /c "icacls C:\ /inheritance:e /c /q 2>&1" | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        throw "Failed to enable inheritance for C:\ drive"
+    }
+}
+
 # Registry settings
 $registrySettings = @(
     @{Path = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"; Name = "AUOptions"; Value = 1; PropertyType = "DWORD" }
