@@ -32,8 +32,7 @@ Function Install-VisualStudio {
         [Parameter(Mandatory)] [String] $Channel,
         [String] $InstallChannel = "",
         [Parameter(Mandatory)] [String[]] $RequiredComponents,
-        [String] $ExtraArgs = "",
-        [Parameter(Mandatory)] [String[]] $SignatureThumbprint
+        [String] $ExtraArgs = ""
     )
     
     
@@ -51,7 +50,7 @@ Function Install-VisualStudio {
     $bootstrapperFilePath = Invoke-DownloadWithRetry $BootstrapperUrl
 
     # Verify that the bootstrapper is signed by Microsoft
-    Test-FileSignature -Path $bootstrapperFilePath -ExpectedThumbprint $SignatureThumbprint
+    Test-FileSignature -Path $bootstrapperFilePath -ExpectedSubject $(Get-MicrosoftPublisher)
 
     try {
         $responseData = @{

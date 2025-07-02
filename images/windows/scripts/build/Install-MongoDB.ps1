@@ -24,7 +24,7 @@ $latestVersion = $minorVersions[0]
 Install-Binary `
     -Url "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$latestVersion-signed.msi" `
     -ExtraInstallArgs @('TARGETDIR=C:\PROGRA~1\MongoDB ADDLOCAL=ALL') `
-    -ExpectedSignature $toolsetContent.mongodb.signature
+    -ExpectedSubject 'CN="MONGODB, INC.", O="MONGODB, INC.", L=New York, S=New York, C=US'
 
 # Add mongodb to the PATH
 $mongoPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'mongodb'").PathName
@@ -51,7 +51,7 @@ if (Test-IsWin25) {
     Install-Binary -Type MSI `
         -Url $mongoshDownloadUrl `
         -ExtraInstallArgs @('ALLUSERS=1') `
-        -ExpectedSignature 'A5BBE2A6DA1D2A6E057EF870267E6A91E4D56BAA'
+        -ExpectedSubject 'CN="MongoDB, Inc.", O="MongoDB, Inc.", L=New York, S=New York, C=US'
 }
 
 Invoke-PesterTests -TestFile "Databases" -TestName "MongoDB"
