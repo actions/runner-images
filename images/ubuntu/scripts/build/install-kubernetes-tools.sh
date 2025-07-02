@@ -48,7 +48,5 @@ download_url="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master
 curl -fsSL "$download_url" | bash
 mv kustomize /usr/local/bin
 
-# Cleanup temporary files
-rm -f /tmp/kubernetes-key.gpg
 
 invoke_tests "Tools" "Kubernetes tools"
