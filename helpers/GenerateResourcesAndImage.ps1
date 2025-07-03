@@ -215,7 +215,7 @@ Function GenerateResourcesAndImage {
         "-var=subscription_id=$($SubscriptionId)" `
         "-var=tenant_id=fake" `
         "-var=location=$($AzureLocation)" `
-        "-var=image_os=$($ImageType.ToLower())" `
+        "-var=image_os=$($ImageType.ToString().ToLower())" `
         "-var=managed_image_name=$($ManagedImageName)" `
         "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
         "-var=install_password=$($InstallPassword)" `
@@ -285,7 +285,7 @@ Function GenerateResourcesAndImage {
             -var "subscription_id=$($SubscriptionId)" `
             -var "tenant_id=$($TenantId)" `
             -var "location=$($AzureLocation)" `
-            -var "image_os=$($ImageType.ToLower())" `
+            -var "image_os=$($ImageType.ToString().ToLower())" `
             -var "managed_image_name=$($ManagedImageName)" `
             -var "managed_image_resource_group_name=$($ResourceGroupName)" `
             -var "install_password=$($InstallPassword)" `
