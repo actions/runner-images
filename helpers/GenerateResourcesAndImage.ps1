@@ -20,23 +20,18 @@ Function Get-PackerTemplate {
         # Note: Double Join-Path is required to support PowerShell 5.1
         ([ImageType]::Windows2019) {
             $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2019.pkr.hcl"
-            $imageOS = "win19"
         }
         ([ImageType]::Windows2022) {
             $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2022.pkr.hcl"
-            $imageOS = "win22"
         }
         ([ImageType]::Windows2025) {
             $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2025.pkr.hcl"
-            $imageOS = "win25"
         }
         ([ImageType]::Ubuntu2204) {
             $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-22_04.pkr.hcl"
-            $imageOS = "ubuntu22"
         }
         ([ImageType]::Ubuntu2404) {
             $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-24_04.pkr.hcl"
-            $imageOS = "ubuntu24"
         }
         default { throw "Unknown type of image" }
     }
@@ -51,7 +46,6 @@ Function Get-PackerTemplate {
 
     return [PSCustomObject] @{
         "BuildName" = $buildName
-        "ImageOS"   = $imageOS
         "Path"      = [IO.Path]::GetDirectoryName($imageTemplatePath)
     }
 }
@@ -221,7 +215,7 @@ Function GenerateResourcesAndImage {
         "-var=subscription_id=$($SubscriptionId)" `
         "-var=tenant_id=fake" `
         "-var=location=$($AzureLocation)" `
-        "-var=image_os=$($PackerTemplate.ImageOS)" `
+        "-var=image_os=$($ImageType.ToLower())" `
         "-var=managed_image_name=$($ManagedImageName)" `
         "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
         "-var=install_password=$($InstallPassword)" `
@@ -291,7 +285,7 @@ Function GenerateResourcesAndImage {
             -var "subscription_id=$($SubscriptionId)" `
             -var "tenant_id=$($TenantId)" `
             -var "location=$($AzureLocation)" `
-            -var "image_os=$($PackerTemplate.ImageOS)" `
+            -var "image_os=$($ImageType.ToLower())" `
             -var "managed_image_name=$($ManagedImageName)" `
             -var "managed_image_resource_group_name=$($ResourceGroupName)" `
             -var "install_password=$($InstallPassword)" `
