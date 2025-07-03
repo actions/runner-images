@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Windows, Ubuntu, MacOS] CodeQL bundle will contain only platform-specific binaries on 2025-06-30](https://github.com/actions/runner-images/issues/12453) |
 | [[Windows, Ubuntu, MacOS] Breaking change: Updating  Azure PowerShell Module version as 12.5.x   from  2025-07-04](https://github.com/actions/runner-images/issues/12333) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.11.0-1015-azure
-- Image Version: 20250622.1.0
+- Image Version: 20250629.1.0
 - Systemd version: 255.4-1ubuntu8.8
 
 ## Installed Software
@@ -21,7 +22,7 @@
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
 - Julia 1.11.5
 - Kotlin 2.1.10-release-473
-- Node.js 20.19.2
+- Node.js 20.19.3
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -30,14 +31,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.18.3
-- Homebrew 4.5.7
-- Miniconda 25.3.1
+- Homebrew 4.5.8
+- Miniconda 25.5.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 0cf34c184c)
+- Vcpkg (build from commit 0cb95c860e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,18 +58,18 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 8.14.2
-- Lerna 8.2.2
+- Lerna 8.2.3
 - Maven 3.9.10
 
 ### Tools
 - Ansible 2.18.6
 - AzCopy 10.29.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 8.2.1
+- Bazel 8.3.0
 - Bazelisk 1.26.0
 - Bicep 0.36.1
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.22.0
+- CodeQL Action Bundle 2.22.1
 - Docker Amazon ECR Credential Helper 0.10.0
 - Docker Compose v2 2.36.2
 - Docker-Buildx 0.25.0
@@ -76,13 +77,13 @@ to accomplish this.
 - Docker Server 28.0.4
 - Fastlane 2.228.0
 - Git 2.49.0
-- Git LFS 3.6.1
+- Git LFS 3.7.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.29.0
 - Kubectl 1.33.2
-- Kustomize 5.6.0
+- Kustomize 5.7.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.34.0
@@ -93,7 +94,7 @@ to accomplish this.
 - Packer 1.13.1
 - Parcel 2.15.4
 - Podman 4.9.3
-- Pulumi 3.178.0
+- Pulumi 3.181.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -102,13 +103,13 @@ to accomplish this.
 - Ninja 1.13.0
 
 ### CLI Tools
-- AWS CLI 2.27.40
+- AWS CLI 2.27.45
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.141.0
 - Azure CLI 2.74.0
-- Azure CLI (azure-devops) 1.0.1
+- Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.74.2
-- Google Cloud CLI 527.0.0
+- Google Cloud CLI 528.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -130,25 +131,25 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cabal 3.14.2.0
 - GHC 9.12.2
 - GHCup 0.1.50.2
-- Stack 3.5.1
+- Stack 3.7.1
 
 ### Rust Tools
-- Cargo 1.87.0
-- Rust 1.87.0
-- Rustdoc 1.87.0
+- Cargo 1.88.0
+- Rust 1.88.0
+- Rustdoc 1.88.0
 - Rustup 1.28.2
 
 #### Packages
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 137.0.7151.119
-- ChromeDriver 137.0.7151.119
-- Chromium 137.0.7151.0
-- Microsoft Edge 137.0.3296.93
-- Microsoft Edge WebDriver 137.0.3296.93
-- Selenium server 4.33.0
-- Mozilla Firefox 139.0.4
+- Google Chrome 138.0.7204.49
+- ChromeDriver 138.0.7204.49
+- Chromium 138.0.7204.0
+- Microsoft Edge 138.0.3351.55
+- Microsoft Edge WebDriver 138.0.3351.55
+- Selenium server 4.34.0
+- Mozilla Firefox 140.0
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -192,8 +193,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 18.20.8
-- 20.19.2
-- 22.16.0
+- 20.19.3
+- 22.17.0
 
 #### Python
 - 3.9.23
@@ -214,7 +215,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - PowerShell 7.4.10
 
 #### PowerShell Modules
-- Az: 12.1.0
+- Az: 12.5.0
 - Microsoft.Graph: 2.28.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
@@ -230,7 +231,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 12.0                                                                                                                                                                                                                                                                                        |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                           |
-| Android SDK Platform-Tools | 35.0.2                                                                                                                                                                                                                                                                                      |
+| Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                      |
 | Android SDK Platforms      | android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                      |
 | CMake                      | 3.31.5                                                                                                                                                                                                                                                                                      |
