@@ -9,7 +9,7 @@ param(
     [String] [Parameter (Mandatory=$true)] $TempResourceGroupName,
     [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $TenantId,
-    [String] [Parameter (Mandatory=$true)] $ImageOS, # e.g. "ubuntu2404", "ubuntu2204" or "win2019", "win2022", "win2025"
+    [String] [Parameter (Mandatory=$true)] $ImageOS, # e.g. "ubuntu2404", "ubuntu2204" or "windows2019", "windows2022", "windows2025"
     [String] [Parameter (Mandatory=$false)] $UseAzureCliAuth = "false",
     [String] [Parameter (Mandatory=$false)] $PluginVersion = "2.3.3",
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkName,
