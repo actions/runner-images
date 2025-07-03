@@ -31,13 +31,15 @@ jobs:
           $gitHubApi = Get-GithubApi -Repository "${env:CI_REPO}" -AccessToken "${env:CI_PR_TOKEN}"
 
           $eventType = "trigger-${{ inputs.image_type }}-build"
+          [string] $prGuid = New-Guid
           $clientPayload = @{
-              pr_title                = "${env:PR_TITLE}"
+              pr_title                = "${env:PR_TITLE} - " + $prGuid
               custom_repo             = "${{ github.event.pull_request.head.repo.full_name }}"
               custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
           }
 
           $gitHubApi.DispatchWorkflow($eventType, $clientPayload)
+          "PR_GUID=$prGuid" | Out-File -Append -FilePath $env:GITHUB_ENV
 
       - name: Resolve Workflow Run ID
         id: resolve
@@ -46,20 +48,30 @@ jobs:
           $gitHubApi = Get-GithubApi -Repository "${env:CI_REPO}" -AccessToken "${env:CI_PR_TOKEN}"
 
           $workflowFileName = $("{0}.yml" -f "${{ inputs.image_type }}").ToLower()
-          $WorkflowSearchPattern = "${env:PR_TITLE}"
+          $WorkflowSearchPattern = "${env:PR_GUID}"
 
-          Start-Sleep -Seconds 30
-          $workflowRuns = $gitHubApi.GetWorkflowRuns($WorkflowFileName).workflow_runs
-          $workflowRunId = ($workflowRuns | Where-Object {$_.display_title -match $WorkflowSearchPattern}).id | Select-Object -First 1
+          # It might take a few minutes for the action to start
+          $attempt = 1
+          do {
+            $workflowRuns = $gitHubApi.GetWorkflowRuns($WorkflowFileName).workflow_runs
+            $workflowRunId = ($workflowRuns | Where-Object {$_.display_title -match $WorkflowSearchPattern}).id | Select-Object -First 1
+
+            if (-not ([string]::IsNullOrEmpty($workflowRunId))) {
+              $workflowRun = $gitHubApi.GetWorkflowRun($workflowRunId)
+              Write-Host "Found the workflow run with ID $workflowRunId on attempt $attempt. Workflow run link: $($workflowRun.html_url)"
+              "ci_workflow_run_id=$workflowRunId" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
+              "ci_workflow_run_url=$($workflowRun.html_url)" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
+              break
+            }
+
+            Write-Host "Workflow run for $WorkflowSearchPattern pattern not found on attempt $attempt."
+            $attempt += 1
+            Start-Sleep 30
+          } until ($attempt -eq 10)
 
           if ([string]::IsNullOrEmpty($workflowRunId)) {
               throw "Failed to find a workflow run for '$WorkflowSearchPattern'."
           }
-
-          $workflowRun = $gitHubApi.GetWorkflowRun($workflowRunId)
-          Write-Host "Found the workflow run with ID $workflowRunId. Workflow run link: $($workflowRun.html_url)"
-          "ci_workflow_run_id=$workflowRunId" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
-          "ci_workflow_run_url=$($workflowRun.html_url)" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
 
   wait-completion:
     runs-on: ubuntu-latest
