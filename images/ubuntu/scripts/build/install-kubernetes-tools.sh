@@ -20,11 +20,9 @@ use_checksum_comparison "${kind_binary_path}" "${kind_external_hash}"
 install "${kind_binary_path}" /usr/local/bin/kind
 
 ## Install kubectl
-# Ensure keyrings directory exists
-sudo mkdir -p -m 755 /etc/apt/keyrings
 kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
-curl -fsSL https://pkgs.k8s.io/core:/stable:/${kubectl_minor_version}/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt-get install kubectl
 rm -f /etc/apt/sources.list.d/kubernetes.list
@@ -47,6 +45,5 @@ install "${minikube_binary_path}" /usr/local/bin/minikube
 download_url="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"
 curl -fsSL "$download_url" | bash
 mv kustomize /usr/local/bin
-
 
 invoke_tests "Tools" "Kubernetes tools"
