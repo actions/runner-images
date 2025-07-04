@@ -30,16 +30,16 @@ rm -f /etc/apt/sources.list.d/kubernetes.list
 # Install Helm
 curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 
-# Temporarily pinning the version
-# Download minikube
-curl -fsSL -O https://storage.googleapis.com/minikube/releases/v1.34.0/minikube-linux-amd64
 
-# Supply chain security - minikube
-minikube_hash=$(get_checksum_from_github_release "kubernetes/minikube" "linux-amd64" "1.34.0" "SHA256")
-use_checksum_comparison "minikube-linux-amd64" "${minikube_hash}"
+# Download and install minikube
+minikube_version="latest"
+minikube_binary_path=$(download_with_retry "https://storage.googleapis.com/minikube/releases/${minikube_version}/minikube-linux-amd64")
 
-# Install minikube
-install minikube-linux-amd64 /usr/local/bin/minikube
+# Supply chain security - Minikube
+minikube_hash=$(get_checksum_from_github_release "kubernetes/minikube" "linux-amd64" "${minikube_version}" "SHA256")
+use_checksum_comparison "${minikube_binary_path}" "${minikube_hash}"
+
+install "${minikube_binary_path}" /usr/local/bin/minikube
 
 # Install kustomize
 download_url="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"
