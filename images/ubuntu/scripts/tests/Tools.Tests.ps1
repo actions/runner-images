@@ -392,15 +392,16 @@ Describe "Kotlin" {
 }
 
 Describe "Ninja" {
-    New-item -Path "/tmp/ninjaproject" -ItemType Directory -Force
-    Set-Location '/tmp/ninjaproject'
+    BeforeAll {
+        New-item -Path "/tmp/ninjaproject" -ItemType Directory -Force
 @'
 cmake_minimum_required(VERSION 3.10)
 project(NinjaTest NONE)
-'@ | Out-File -FilePath "./CMakeLists.txt"
+'@ | Out-File -FilePath "/tmp/ninjaproject/CMakeLists.txt"
+    }
 
     It "Make a simple ninja project" {
-    "cmake -GNinja /tmp/ninjaproject" | Should -ReturnZeroExitCode
+        "cmake -GNinja -S /tmp/ninjaproject -B /tmp/ninjaproject" | Should -ReturnZeroExitCode
     }
 
     It "build.ninja file should exist" {
@@ -410,5 +411,9 @@ project(NinjaTest NONE)
 
     It "Ninja" {
         "ninja --version" | Should -ReturnZeroExitCode
+    }
+
+    AfterAll {
+        Remove-Item -Path "/tmp/ninjaproject" -Recurse -Force
     }
 }
