@@ -30,7 +30,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | macOS 13 Arm64 | `macos-13-xlarge` | [macOS-13-arm64] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-13-arm64.json) |
 | Windows Server 2025 | `windows-2025` | [windows-2025] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fwin25.json) |
 | Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fwin22.json) |
-| Windows Server 2019 | `windows-2019` | windows-2019 | ![Deprecated](https://img.shields.io/badge/-Deprecated-red) |
+| Windows Server 2019 | `windows-2019` | <span class="no-link">windows-2019</span> | ![Deprecated](https://img.shields.io/badge/-Deprecated-red) |
 
 ### Label scheme
 
