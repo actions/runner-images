@@ -21,4 +21,6 @@ locals {
   }
 
   image_properties = local.image_properties_map[var.image_os]
+  
+  temp_dir = var.image_os == "win25" ? "C:\\temp" : "D:\\temp"
 }

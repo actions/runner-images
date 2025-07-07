@@ -173,7 +173,3 @@ variable "install_user" {
   type    = string
   default = "installer"
 }
-variable "temp_dir" {
-  type    = string
-  default = "D:\\temp"
-}
