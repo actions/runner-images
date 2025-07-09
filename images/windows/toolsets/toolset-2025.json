@@ -74,7 +74,7 @@
         {
             "name": "az",
             "versions": [
-                "12.4.0"
+                "12.5.0"
             ],
             "zip_versions": []
         }
@@ -137,11 +137,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "installChannel": "658092423_1519083591",
-        "signature": [
-            "245D262748012A4FE6CE8BA6C951A4C4AFBC3E5D",
-            "8F985BE8FD256085C90A95D3C74580511A1DB975"
-        ],
+        "installChannel": "",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -297,7 +293,7 @@
             },
             {
                 "name": "strawberryperl" ,
-                "args": [ "--version", "5.40.0.1" ]
+                "args": [ "--version", "5.40.2.2" ]
             },
             { "name": "imagemagick" },
             { "name": "ninja" }
@@ -310,12 +306,10 @@
         "version": "3.9"
     },
     "mysql": {
-        "version": "8.0",
-        "signature": "E8A8C17382A6DE62A3B443565E4A96843F834656"
+        "version": "8.0"
     },
     "mongodb": {
-        "version": "7.0",
-        "signature": "A5BBE2A6DA1D2A6E057EF870267E6A91E4D56BAA"
+        "version": "7.0"
     },
     "llvm": {
         "version": "20"
@@ -324,8 +318,7 @@
         "version": "8.4"
     },
     "postgresql": {
-        "version": "17",
-        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
+        "version": "17"
     },
     "kotlin": {
         "version": "2.1.10",
@@ -336,7 +329,7 @@
         }
     },
     "openssl": {
-        "version": "3.4.1",
+        "version": "3.5.1",
         "pinnedDetails": {
             "link": "https://github.com/actions/runner-images-internal/pull/6702",
             "reason": "Meaningful reason must be added at next update.",

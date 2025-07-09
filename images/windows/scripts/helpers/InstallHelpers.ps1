@@ -21,8 +21,8 @@ function Install-Binary {
     .PARAMETER ExtraInstallArgs
         Additional arguments that will be passed to the installer. Cannot be used together with InstallArgs.
 
-    .PARAMETER ExpectedSignature
-        The expected signature of the binary. If specified, the binary's signature is checked before installation.
+    .PARAMETER ExpectedSubject
+        The expected signature subject of the binary. If specified, the binary's signature is checked before installation.
 
     .PARAMETER ExpectedSHA256Sum
         The expected SHA256 sum of the binary. If specified, the binary's SHA256 sum is checked before installation.
@@ -35,7 +35,7 @@ function Install-Binary {
         This is only displayed when the installation fails.
 
     .EXAMPLE
-        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Type EXE -InstallArgs ("/features", "+", "/quiet") -ExpectedSignature "A5C7D5B7C838D5F89DDBEDB85B2C566B4CDA881F"
+        Install-Binary -Url "https://go.microsoft.com/fwlink/p/?linkid=2083338" -Type EXE -InstallArgs ("/features", "+", "/quiet") -ExpectedSubject "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
     #>
 
     Param
@@ -48,7 +48,7 @@ function Install-Binary {
         [String] $Type,
         [String[]] $InstallArgs,
         [String[]] $ExtraInstallArgs,
-        [String[]] $ExpectedSignature,
+        [String] $ExpectedSubject,
         [String] $ExpectedSHA256Sum,
         [String] $ExpectedSHA512Sum,
         [String] $InstallerLogPath
@@ -78,11 +78,11 @@ function Install-Binary {
         $filePath = Invoke-DownloadWithRetry -Url $Url -Path "${env:TEMP_DIR}\$fileName"
     }
 
-    if ($PSBoundParameters.ContainsKey('ExpectedSignature')) {
-        if ($ExpectedSignature) {
-            Test-FileSignature -Path $filePath -ExpectedThumbprint $ExpectedSignature
+    if ($PSBoundParameters.ContainsKey('ExpectedSubject')) {
+        if ($ExpectedSubject) {
+            Test-FileSignature -Path $filePath -ExpectedSubject $ExpectedSubject
         } else {
-            throw "ExpectedSignature parameter is specified, but no signature is provided."
+            throw "ExpectedSubject parameter is specified, but no value is provided."
         }
     }
 
@@ -198,7 +198,8 @@ function Invoke-DownloadWithRetry {
     for ($retries = 20; $retries -gt 0; $retries--) {
         try {
             $attemptStartTime = Get-Date
-            (New-Object System.Net.WebClient).DownloadFile($Url, $Path)
+            $ProgressPreference = 'SilentlyContinue'
+            Invoke-WebRequest -Uri $Url -OutFile $Path -UseBasicParsing
             $attemptSeconds = [math]::Round(($(Get-Date) - $attemptStartTime).TotalSeconds, 2)
             Write-Host "Package downloaded in $attemptSeconds seconds"
             break
@@ -794,7 +795,7 @@ function Get-ChecksumFromGithubRelease {
         [Parameter(Mandatory = $true)]
         [Alias("File", "Asset")]
         [string] $FileName,
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $false)]
         [ValidateSet("SHA256", "SHA512")]
         [string] $HashType
     )
@@ -867,7 +868,7 @@ function Get-ChecksumFromUrl {
         [Parameter(Mandatory = $true)]
         [Alias("File", "Asset")]
         [string] $FileName,
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $false)]
         [ValidateSet("SHA256", "SHA512")]
         [Alias("Type")]
         [string] $HashType
@@ -974,28 +975,28 @@ function Test-FileSignature {
         Tests the file signature of a given file.
 
     .DESCRIPTION
-        The Test-FileSignature function checks the signature of a file against the expected thumbprints. 
+        The Test-FileSignature function checks the signature of a file against the expected subject. 
         It uses the Get-AuthenticodeSignature cmdlet to retrieve the signature information of the file.
-        If the signature status is not valid or the thumbprint does not match the expected thumbprints, an exception is thrown.
+        If the signature status is not valid or the subject of the signing certificate does not match the expected subject, an exception is thrown.
 
     .PARAMETER Path
         Specifies the path of the file to test.
 
-    .PARAMETER ExpectedThumbprint
-        Specifies the expected thumbprints to match against the file's signature.
+    .PARAMETER ExpectedSubject
+        Specifies the expected subject to match against the file's signature.
 
     .EXAMPLE
-        Test-FileSignature -Path "C:\Path\To\File.exe" -ExpectedThumbprint "A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0"
+        Test-FileSignature -Path "C:\Path\To\File.exe" -ExpectedSubject "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 
-        This example tests the signature of the file "C:\Path\To\File.exe" against the expected thumbprint "A1B2C3D4E5F6G7H8I9J0K1L2M3N4O5P6Q7R8S9T0".
+        This example tests the signature of the file "C:\Path\To\File.exe" against the expected subject "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US".
 
     #>
 
     param(
         [Parameter(Mandatory = $true, Position = 0)]
         [string] $Path,
-        [Parameter(Mandatory = $true)]
-        [string[]] $ExpectedThumbprint
+        [Parameter(Mandatory = $true, Position = 1)]
+        [string] $ExpectedSubject
     )
 
     $signature = Get-AuthenticodeSignature $Path
@@ -1004,19 +1005,15 @@ function Test-FileSignature {
         throw "Signature status is not valid. Status: $($signature.Status)"
     }
 
-    foreach ($thumbprint in $ExpectedThumbprint) {
-        if ($signature.SignerCertificate.Thumbprint.Contains($thumbprint)) {
-            Write-Output "Signature for $Path is valid"
-            $signatureMatched = $true
-            return
-        }
+    if ($signature.SignerCertificate.EnhancedKeyUsageList.FriendlyName -notcontains "Code Signing") {
+        throw "Certificate is not for code signing. Key usage: $($signature.SignerCertificate.EnhancedKeyUsageList)"
     }
 
-    if ($signatureMatched) {
-        Write-Output "Signature for $Path is valid"
-    } else {
-        throw "Signature thumbprint do not match expected."
+    if ($signature.SignerCertificate.Subject -ne $ExpectedSubject) {
+        throw "Certificate subject does not match. Subject: $($signature.SignerCertificate.Subject)"
     }
+
+    Write-Output "Signature for $Path is valid"
 }
 
 function Update-Environment {
@@ -1053,4 +1050,13 @@ function Update-Environment {
             }
         }
     }
+}
+
+function Get-MicrosoftPublisher {
+    <#
+    .SYNOPSIS
+        Returns well-known subject for the Microsoft signing certificate
+    #>
+
+    return "CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
 }
