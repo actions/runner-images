@@ -7,7 +7,7 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
-GIT_REPO="ppa:git-core/candidate"
+GIT_REPO="ppa:git-core/ppa"
 
 ## Install git
 add-apt-repository $GIT_REPO -y
