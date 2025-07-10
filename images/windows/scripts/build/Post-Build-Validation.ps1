@@ -3,7 +3,7 @@
 ##  Desc:  Validate different aspects of the image after build
 ################################################################################
 
-Write-Host "Test microsoft defender not setup using 'sc query sense'"
+Write-Host "Test Microsoft Defender not set up using 'sc query sense'"
 $response =  sc query sense
 foreach ($item in $response) {
     if ($item -match "STATE") {
