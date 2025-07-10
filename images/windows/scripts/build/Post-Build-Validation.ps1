@@ -17,7 +17,7 @@ foreach ($item in $response) {
     }
 }
 
-Write-Host "Test microsoft defender not setup by checking for the MDE extension"
+Write-Host "Test Microsoft Defender not set up by checking for the MDE extension"
 if (Test-Path -Path "C:\Packages\Plugins\Microsoft.Azure.AzureDefenderForServers.MDE.Windows") {
     Write-Error "MDE extension detected, MDE is more likely installed on the system"
     exit 1
