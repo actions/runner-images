@@ -6,7 +6,7 @@
 # macOS 15
 - OS Version: macOS 15.5 (24F74)
 - Kernel Version: Darwin 24.5.0
-- Image Version: 20250709.1961
+- Image Version: 20250714.1971
 
 ## Installed Software
 
@@ -36,7 +36,7 @@
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.9
-- Vcpkg 2025 (build from commit c6f09fc73e)
+- Vcpkg 2025 (build from commit e86ec03236)
 - Yarn 1.22.22
 
 ### Project Management
@@ -54,7 +54,7 @@
 - Curl 8.7.1
 - Git 2.50.1
 - Git LFS 3.7.0
-- GitHub CLI 2.74.2
+- GitHub CLI 2.75.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
@@ -63,12 +63,12 @@
 - Packer 1.13.1
 - pkgconf 2.5.1
 - Unxip 3.2
-- yq 4.45.4
+- yq 4.46.1
 - zstd 1.5.7
-- Ninja 1.13.0
+- Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.27.49
+- AWS CLI 2.27.50
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.75.0
@@ -77,7 +77,7 @@
 - Cmake 3.31.6
 - CodeQL Action Bundle 2.22.1
 - Fastlane 2.228.0
-- SwiftFormat 0.56.4
+- SwiftFormat 0.57.0
 - Xcbeautify 2.29.0
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 1.6.2
@@ -128,8 +128,8 @@
 
 #### Go
 - 1.22.12
-- 1.23.10
-- 1.24.4
+- 1.23.11
+- 1.24.5
 
 ### Rust Tools
 - Cargo 1.88.0
