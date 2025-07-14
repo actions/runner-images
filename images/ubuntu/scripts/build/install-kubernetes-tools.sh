@@ -20,8 +20,6 @@ use_checksum_comparison "${kind_binary_path}" "${kind_external_hash}"
 install "${kind_binary_path}" /usr/local/bin/kind
 
 ## Install kubectl
-apt-get update
-apt-get install ca-certificates apt-transport-https
 
 # Ensure keyrings directory exists only if it doesn't already
 [ -d /etc/apt/keyrings ] || sudo mkdir -p -m 755 /etc/apt/keyrings
