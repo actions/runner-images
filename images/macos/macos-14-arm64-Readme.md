@@ -6,7 +6,7 @@
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250709.1652
+- Image Version: 20250715.1663
 
 ## Installed Software
 
@@ -32,13 +32,13 @@
 - Bundler 2.6.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.9
+- Homebrew 4.5.10
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.6.9
-- Vcpkg 2025 (build from commit c6f09fc73e)
+- Vcpkg 2025 (build from commit 30f771d4ac)
 - Yarn 1.22.22
 
 ### Project Management
@@ -56,7 +56,7 @@
 - Curl 8.7.1
 - Git 2.50.1
 - Git LFS 3.7.0
-- GitHub CLI 2.74.2
+- GitHub CLI 2.75.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
@@ -65,12 +65,12 @@
 - Packer 1.13.1
 - pkgconf 2.5.1
 - Unxip 3.2
-- yq 4.45.4
+- yq 4.46.1
 - zstd 1.5.7
-- Ninja 1.13.0
+- Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.27.49
+- AWS CLI 2.27.50
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.75.0
@@ -79,7 +79,7 @@
 - Cmake 3.31.6
 - CodeQL Action Bundle 2.22.1
 - Fastlane 2.228.0
-- SwiftFormat 0.56.4
+- SwiftFormat 0.57.2
 - Xcbeautify 2.29.0
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
@@ -130,8 +130,8 @@
 
 #### Go
 - 1.22.12
-- 1.23.10
-- 1.24.4
+- 1.23.11
+- 1.24.5
 
 ### Rust Tools
 - Cargo 1.88.0
