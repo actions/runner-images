@@ -20,8 +20,21 @@ use_checksum_comparison "${kind_binary_path}" "${kind_external_hash}"
 install "${kind_binary_path}" /usr/local/bin/kind
 
 ## Install kubectl
-kubectl_minor_version=$(curl -fsSL "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
-curl -fsSL https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+# Ensure keyrings directory exists only if it doesn't already
+[ -d /etc/apt/keyrings ] || sudo mkdir -p -m 755 /etc/apt/keyrings
+
+kubectl_minor_version=$(curl -fsSL --retry 5 --retry-delay 10 "https://dl.k8s.io/release/stable.txt" | cut -d'.' -f1,2 )
+
+# Download and validate GPG key
+key_url="https://pkgs.k8s.io/core:/stable:/$kubectl_minor_version/deb/Release.key"
+if curl -fsSL --retry 5 --retry-delay 10 -A "Mozilla/5.0" "$key_url" | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg; then
+    echo "Key downloaded and stored successfully."
+else
+    echo "Failed to download valid GPG key from: $key_url"
+    exit 1
+fi
+
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/'$kubectl_minor_version'/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 apt-get update
 apt-get install kubectl
