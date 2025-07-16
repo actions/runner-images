@@ -14,34 +14,106 @@ defaults:
 jobs:
   trigger-workflow:
     runs-on: ubuntu-latest
+    outputs:
+      ci_workflow_run_id: ${{ steps.resolve.outputs.ci_workflow_run_id }}
+      ci_workflow_run_url: ${{ steps.resolve.outputs.ci_workflow_run_url }}
+    env:
+      CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+      PR_TITLE: ${{ github.event.pull_request.title }}
+      CI_REPO: ${{ vars.CI_REPO }}
     steps:
-      - name: Trigger Build workflow
-        env:
-          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
-          PR_TITLE: ${{ github.event.pull_request.title }}
-          CI_PR: ${{ secrets.CI_REPO }}
-        run: |
-          $headers = @{
-            Authorization="Bearer $env:CI_PR_TOKEN"
-          }
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-          # Private repository for builds
-          $apiRepoUrl = "https://api.github.com/repos/$env:CI_PR"
+      - name: Trigger Build workflow
+        run: |
+          Import-Module ./helpers/GitHubApi.psm1
+          $gitHubApi = Get-GithubApi -Repository "${env:CI_REPO}" -AccessToken "${env:CI_PR_TOKEN}"
 
           $eventType = "trigger-${{ inputs.image_type }}-build"
-          $body = @{
-            event_type = $eventType;
-            client_payload = @{
-              pr_title = "$env:PR_TITLE"
-              custom_repo = "${{ github.event.pull_request.head.repo.full_name }}"
+          [string] $prGuid = New-Guid
+          $clientPayload = @{
+              pr_title                = "${env:PR_TITLE} - " + $prGuid
+              custom_repo             = "${{ github.event.pull_request.head.repo.full_name }}"
               custom_repo_commit_hash = "${{ github.event.pull_request.head.sha }}"
+          }
+
+          $gitHubApi.DispatchWorkflow($eventType, $clientPayload)
+          "PR_GUID=$prGuid" | Out-File -Append -FilePath $env:GITHUB_ENV
+
+      - name: Resolve Workflow Run ID
+        id: resolve
+        run: |
+          Import-Module ./helpers/GitHubApi.psm1
+          $gitHubApi = Get-GithubApi -Repository "${env:CI_REPO}" -AccessToken "${env:CI_PR_TOKEN}"
+
+          $workflowFileName = $("{0}.yml" -f "${{ inputs.image_type }}").ToLower()
+          $WorkflowSearchPattern = "${env:PR_GUID}"
+
+          # It might take a few minutes for the action to start
+          $attempt = 1
+          do {
+            $workflowRuns = $gitHubApi.GetWorkflowRuns($WorkflowFileName).workflow_runs
+            $workflowRunId = ($workflowRuns | Where-Object {$_.display_title -match $WorkflowSearchPattern}).id | Select-Object -First 1
+
+            if (-not ([string]::IsNullOrEmpty($workflowRunId))) {
+              $workflowRun = $gitHubApi.GetWorkflowRun($workflowRunId)
+              Write-Host "Found the workflow run with ID $workflowRunId on attempt $attempt. Workflow run link: $($workflowRun.html_url)"
+              "ci_workflow_run_id=$workflowRunId" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
+              "ci_workflow_run_url=$($workflowRun.html_url)" | Out-File -Append -FilePath $env:GITHUB_OUTPUT
+              break
             }
+
+            Write-Host "Workflow run for $WorkflowSearchPattern pattern not found on attempt $attempt."
+            $attempt += 1
+            Start-Sleep 30
+          } until ($attempt -eq 10)
+
+          if ([string]::IsNullOrEmpty($workflowRunId)) {
+              throw "Failed to find a workflow run for '$WorkflowSearchPattern'."
           }
 
-          $bodyString = $body | ConvertTo-Json
+  wait-completion:
+    runs-on: ubuntu-latest
+    needs: trigger-workflow
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-          try {
-            Invoke-WebRequest -Uri "$apiRepoUrl/dispatches" -Method Post -Headers $headers -Body $bodyString | Out-Null
-          } catch {
-            throw "$($_.exception[0].message)"
-          }
+      - name: Wait for workflow completion
+        env:
+          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          CI_REPO: ${{ vars.CI_REPO }}
+        run: |
+          ./helpers/WaitWorkflowCompletion.ps1 `
+            -WorkflowRunId "${{ needs.trigger-workflow.outputs.ci_workflow_run_id }}" `
+            -Repository "${env:CI_REPO}" `
+            -AccessToken "${env:CI_PR_TOKEN}"
+
+      - name: Add Summary
+        if: always()
+        run: |
+          "# Test Partner Image" >> $env:GITHUB_STEP_SUMMARY
+          "| Key | Value |" >> $env:GITHUB_STEP_SUMMARY
+          "| :-----------: | :--------: |" >> $env:GITHUB_STEP_SUMMARY
+          "| Workflow Run | [Link](${{ needs.trigger-workflow.outputs.ci_workflow_run_url }}) |" >> $env:GITHUB_STEP_SUMMARY
+          "| Workflow Result | $env:CI_WORKFLOW_RUN_RESULT |" >> $env:GITHUB_STEP_SUMMARY
+          "  " >> $env:GITHUB_STEP_SUMMARY
+
+  cancel-workflow:
+    runs-on: ubuntu-latest
+    needs: [trigger-workflow, wait-completion]
+    if: cancelled()
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Cancel workflow
+        env:
+          CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          CI_REPO: ${{ vars.CI_REPO }}
+        run: |
+          Import-Module ./helpers/GitHubApi.psm1
+
+          $gitHubApi = Get-GithubApi -Repository "${env:CI_REPO}" -AccessToken "${env:CI_PR_TOKEN}"
+          $gitHubApi.CancelWorkflowRun("${{ needs.trigger-workflow.outputs.ci_workflow_run_id }}")
