@@ -5,7 +5,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 3932
-- Image Version: 20250710.1.0
+- Image Version: 20250713.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -14,8 +14,8 @@
 
 ### Language and Runtime
 - Bash 5.2.37(1)-release
-- Go 1.24.4
-- Julia 1.11.5
+- Go 1.24.5
+- Julia 1.11.6
 - Kotlin 2.1.10
 - LLVM 20.1.7
 - Node 20.19.3
@@ -34,7 +34,7 @@
 - pip 25.1.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 96fd599859)
+- Vcpkg (build from commit 09b8d93e61)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -89,11 +89,11 @@
 - WiX Toolset 3.14.1.8722
 - yamllint 1.37.1
 - zstd 1.5.7
-- Ninja 1.13.0
+- Ninja 1.13.1
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.0.289
-- AWS CLI 2.27.49
+- AWS CLI 2.27.50
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.75.0
@@ -117,8 +117,8 @@
 ### Browsers and Drivers
 - Google Chrome 138.0.7204.101
 - Chrome Driver 138.0.7204.94
-- Microsoft Edge 138.0.3351.77
-- Microsoft Edge Driver 138.0.3351.77
+- Microsoft Edge 138.0.3351.83
+- Microsoft Edge Driver 138.0.3351.83
 - Mozilla Firefox 140.0.4
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -161,8 +161,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.22.12
-- 1.23.10
-- 1.24.4
+- 1.23.11
+- 1.24.5
 
 #### Node.js
 - 18.20.8
@@ -489,8 +489,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### .NET Core Tools
 - .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.118, 8.0.206, 8.0.315, 8.0.412, 9.0.108, 9.0.205, 9.0.302
 - .NET Framework: 4.7.2, 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.38, 8.0.6, 8.0.18, 9.0.6, 9.0.7
-- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.38, 8.0.6, 8.0.18, 9.0.6, 9.0.7
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.39, 8.0.6, 8.0.18, 9.0.6, 9.0.7
+- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.39, 8.0.6, 8.0.18, 9.0.6, 9.0.7
 - Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.18, 9.0.6, 9.0.7
 - nbgv 3.7.115+d31f50f4d1
 
