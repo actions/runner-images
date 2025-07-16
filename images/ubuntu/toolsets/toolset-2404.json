@@ -67,7 +67,7 @@
     "java": {
         "default": "17",
         "versions": [ "8", "11", "17", "21"],
-        "maven": "3.9.10"
+        "maven": "3.9.11"
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-11076708_latest.zip",
