@@ -387,7 +387,7 @@ Describe "Kotlin" {
     }
 
     It "kotlinc-js" {
-        "kotlinc-js -version" | Should -ReturnZeroExitCode
+        "kotlinc-js -help" | Should -ReturnZeroExitCode
     }
 }
 

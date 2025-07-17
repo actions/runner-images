@@ -15,12 +15,12 @@ if (-not (Test-Path -Path $edgeDriverPath)) {
     New-Item -Path $edgeDriverPath -ItemType Directory -Force
 }
 
-$versionInfoUrl = "https://msedgedriver.azureedge.net/LATEST_RELEASE_$($edgeVersion.Major)_WINDOWS"
+$versionInfoUrl = "https://msedgedriver.microsoft.com/LATEST_RELEASE_$($edgeVersion.Major)_WINDOWS"
 $versionInfoFile = Invoke-DownloadWithRetry -Url $versionInfoUrl -Path "$edgeDriverPath\versioninfo.txt"
 $latestVersion = Get-Content -Path $versionInfoFile
 
 Write-Host "Download Microsoft Edge WebDriver..."
-$downloadUrl = "https://msedgedriver.azureedge.net/$latestVersion/edgedriver_win64.zip"
+$downloadUrl = "https://msedgedriver.microsoft.com/$latestVersion/edgedriver_win64.zip"
 $archivePath = Invoke-DownloadWithRetry $downloadUrl
 
 Write-Host "Expand Microsoft Edge WebDriver archive..."
