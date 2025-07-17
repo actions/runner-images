@@ -1,10 +1,11 @@
+tab
 name: Update release
 
 on:
   repository_dispatch:
     types: [update-github-release]
 
-
+esc
 jobs:
   Update_GitHub_release:
     runs-on: ubuntu-latest
@@ -17,7 +18,7 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
-            const response = await github.rest.repos.getReleaseByTag({
+         tab   const response = await github.rest.repos.getReleaseByTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
               tag: "${{ github.event.client_payload.ReleaseBranchName }}"
