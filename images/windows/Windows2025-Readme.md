@@ -5,7 +5,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 4652
-- Image Version: 20250708.1.0
+- Image Version: 20250713.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -15,8 +15,8 @@
 
 ### Language and Runtime
 - Bash 5.2.37(1)-release
-- Go 1.24.4
-- Julia 1.11.5
+- Go 1.24.5
+- Julia 1.11.6
 - Kotlin 2.1.10
 - LLVM 20.1.7
 - Node 22.17.0
@@ -26,16 +26,16 @@
 - Ruby 3.3.8
 
 ### Package Management
-- Chocolatey 2.4.3
-- Composer 2.8.9
-- Helm 3.18.2
+- Chocolatey 2.5.0
+- Composer 2.8.10
+- Helm 3.18.3
 - Miniconda 25.5.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.2
 - NuGet 6.14.0.116
 - pip 25.1.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit c6f09fc73e)
+- Vcpkg (build from commit 09b8d93e61)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -86,15 +86,15 @@
 - WiX Toolset 3.14.1.8722
 - yamllint 1.37.1
 - zstd 1.5.7
-- Ninja 1.13.0
+- Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.27.49
+- AWS CLI 2.27.50
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.75.0
 - Azure DevOps CLI extension 1.0.2
-- GitHub CLI 2.74.2
+- GitHub CLI 2.75.0
 
 ### Rust Tools
 - Cargo 1.88.0
@@ -109,8 +109,8 @@
 ### Browsers and Drivers
 - Google Chrome 138.0.7204.101
 - Chrome Driver 138.0.7204.94
-- Microsoft Edge 138.0.3351.77
-- Microsoft Edge Driver 138.0.3351.77
+- Microsoft Edge 138.0.3351.83
+- Microsoft Edge Driver 138.0.3351.83
 - Mozilla Firefox 140.0.4
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -153,8 +153,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.22.12
-- 1.23.10
-- 1.24.4
+- 1.23.11
+- 1.24.5
 
 #### Node.js
 - 18.20.8
@@ -475,10 +475,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.8
+- AWSPowershell: 5.0.9
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.28.0
+- Microsoft.Graph: 2.29.0
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.24.0
