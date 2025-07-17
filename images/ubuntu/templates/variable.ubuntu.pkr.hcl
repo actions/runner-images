@@ -70,6 +70,10 @@ variable "gallery_storage_account_type" {
   type    = string
   default = "${env("GALLERY_STORAGE_ACCOUNT_TYPE")}"
 }
+variable "shared_gallery_image_version_end_of_life_date" {
+  type    = string
+  default = "${env("SHARED_GALLERY_IMAGE_VERSION_END_OF_LIFE_DATE")}"
+}
 variable "image_os_type" {
   type    = string
   default = "Linux"
