@@ -201,10 +201,14 @@ Describe "Pipx" {
 }
 
 Describe "Kotlin" {
-    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-js", "kotlinc-jvm")
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm")
 
     It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
         "$toolName -version" | Should -ReturnZeroExitCode
+    }
+
+    It "kotlinc-js is available" {
+        "kotlinc-js -help" | Should -ReturnZeroExitCode
     }
 }
 

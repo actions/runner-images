@@ -5,7 +5,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20250710.1.0
+- Image Version: 20250713.1.0
 - Systemd version: 255.4-1ubuntu8.8
 
 ## Installed Software
@@ -18,7 +18,7 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.3.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
-- Julia 1.11.5
+- Julia 1.11.6
 - Kotlin 2.1.10-release-473
 - Node.js 20.19.3
 - Perl 5.38.2
@@ -36,7 +36,7 @@
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit cd6256cd37)
+- Vcpkg (build from commit 09b8d93e61)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -98,7 +98,7 @@ to accomplish this.
 - yamllint 1.37.1
 - yq 4.46.1
 - zstd 1.5.7
-- Ninja 1.13.0
+- Ninja 1.13.1
 
 ### CLI Tools
 - AWS CLI 2.27.50
@@ -119,7 +119,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.9
+- Composer 2.8.10
 - PHPUnit 8.5.42
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -144,8 +144,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 138.0.7204.100
 - ChromeDriver 138.0.7204.94
 - Chromium 138.0.7204.0
-- Microsoft Edge 138.0.3351.77
-- Microsoft Edge WebDriver 138.0.3351.77
+- Microsoft Edge 138.0.3351.83
+- Microsoft Edge WebDriver 138.0.3351.83
 - Selenium server 4.34.0
 - Mozilla Firefox 140.0.4
 - Geckodriver 0.36.0
@@ -174,7 +174,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.42-0ubuntu0.24.04.1
+- MySQL 8.0.42-0ubuntu0.24.04.2
 ```
 User: root
 Password: root
@@ -186,8 +186,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.22.12
-- 1.23.10
-- 1.24.4
+- 1.23.11
+- 1.24.5
 
 #### Node.js
 - 18.20.8

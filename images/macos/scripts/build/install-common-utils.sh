@@ -15,15 +15,6 @@ for package in $common_packages; do
             brew install hashicorp/tap/packer
             ;;
 
-        kotlin)
-            # Pin kotlin bottle to 2.1.10 due to an issue with the latest version
-            # https://youtrack.jetbrains.com/issue/KT-76169/kotlinc-js-version-and-kapt-version-returning-non-zero-status-code-on-v2.1.20
-            kotlin_commit="442af88a2925f8c0e079eaf4fa62261133d2d7c4"
-            kotlin_rb_link="https://raw.githubusercontent.com/Homebrew/homebrew-core/$kotlin_commit/Formula/k/kotlin.rb"
-            kotlin_rb_path=$(download_with_retry "$kotlin_rb_link")
-            brew install "$kotlin_rb_path"
-            ;;
-
         cmake)
             # Pin cmake bottle to 3.31.6 due to a backward compatibility issue with the latest version
             # https://github.com/actions/runner-images/issues/11926
