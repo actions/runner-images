@@ -75,7 +75,7 @@
 - gdb 11.2
 - GNU Binutils 2.39
 - Newman 6.2.1
-- NSIS 3.10
+- NSIS 3.11
 - OpenSSL 1.1.1w
 - Packer 1.12.0
 - Pulumi 3.181.0
@@ -542,4 +542,3 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:425ca73da19ca274edd1b466e1009342b476306de6918eb246758b9482f47927  | 2025-07-08 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:9a57174ce85e979529e4f0cd58dff2e837b65fc7832b7585b4882f6cce0e255d  | 2025-07-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:3281482945016cdaefbe417edd8338de8119e077b6941f74e78b050da1b7bd97  | 2025-07-05 |
-
