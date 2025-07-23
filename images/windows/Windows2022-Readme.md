@@ -1,11 +1,10 @@
 | Announcements |
 |-|
-| [[Windows Server 2025] image will no longer have  D:/ drive accessible to users from 2025-07-14](https://github.com/actions/runner-images/issues/12416) |
 | [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 3932
-- Image Version: 20250713.1.0
+- Image Version: 20250720.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -16,9 +15,9 @@
 - Bash 5.2.37(1)-release
 - Go 1.24.5
 - Julia 1.11.6
-- Kotlin 2.1.10
+- Kotlin 2.2.0
 - LLVM 20.1.7
-- Node 20.19.3
+- Node 20.19.4
 - Perl 5.32.1
 - PHP 8.4.8
 - Python 3.9.13
@@ -27,14 +26,14 @@
 ### Package Management
 - Chocolatey 2.5.0
 - Composer 2.8.10
-- Helm 3.18.3
+- Helm 3.18.4
 - Miniconda 25.5.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.14.0.116
 - pip 25.1.1 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 09b8d93e61)
+- Vcpkg (build from commit 4887ad6d14)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -46,7 +45,7 @@
 ### Project Management
 - Ant 1.10.15
 - Gradle 8.14
-- Maven 3.9.10
+- Maven 3.9.11
 - sbt 1.11.3
 
 ### Tools
@@ -65,11 +64,11 @@
 - ghc 9.12.2
 - Git 2.50.1.windows.1
 - Git LFS 3.7.0
-- ImageMagick 7.1.1-47
+- ImageMagick 7.1.2-0
 - InnoSetup 6.4.0
 - jq 1.7.1
 - Kind 0.29.0
-- Kubectl 1.33.2
+- Kubectl 1.33.3
 - Mercurial 5.0
 - gcc 12.2.0
 - gdb 11.2
@@ -78,7 +77,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.12.0
-- Pulumi 3.181.0
+- Pulumi 3.184.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
@@ -92,13 +91,13 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.289
-- AWS CLI 2.27.50
+- Alibaba Cloud CLI 3.0.290
+- AWS CLI 2.27.55
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.75.0
 - Azure DevOps CLI extension 1.0.2
-- GitHub CLI 2.75.0
+- GitHub CLI 2.76.0
 
 ### Rust Tools
 - Cargo 1.88.0
@@ -115,10 +114,10 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 138.0.7204.101
-- Chrome Driver 138.0.7204.94
-- Microsoft Edge 138.0.3351.83
-- Microsoft Edge Driver 138.0.3351.83
+- Google Chrome 138.0.7204.158
+- Chrome Driver 138.0.7204.157
+- Microsoft Edge 138.0.3351.95
+- Microsoft Edge Driver 138.0.3351.95
 - Mozilla Firefox 140.0.4
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -166,8 +165,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 18.20.8
-- 20.19.3
-- 22.17.0
+- 20.19.4
+- 22.17.1
 
 #### Python
 - 3.9.13
@@ -221,9 +220,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.29.0  | C:\tools\nginx-1.29.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version       | Path                                                     |
-| ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.36301.6 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version        | Path                                                     |
+| ----------------------------- | -------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.14.36310.24 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -250,7 +249,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Unreal.Android                                                  | 17.14.36015.10  |
 | Component.Unreal.Debugger                                                 | 17.14.36015.10  |
 | Component.Unreal.Ide                                                      | 17.14.36015.10  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36301.6   |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36310.24  |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
@@ -331,7 +330,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.HLSL                                     | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.IISExpress                               | 17.14.36015.10  |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.36220.6   |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.36310.24  |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 17.14.36015.10  |
@@ -487,7 +486,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.118, 8.0.206, 8.0.315, 8.0.412, 9.0.108, 9.0.205, 9.0.302
+- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.118, 8.0.206, 8.0.315, 8.0.412, 9.0.108, 9.0.205, 9.0.302, 9.0.303
 - .NET Framework: 4.7.2, 4.8, 4.8.1
 - Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.39, 8.0.6, 8.0.18, 9.0.6, 9.0.7
 - Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 6.0.39, 8.0.6, 8.0.18, 9.0.6, 9.0.7
@@ -499,10 +498,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.9
+- AWSPowershell: 5.0.14
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.29.0
+- Microsoft.Graph: 2.29.1
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.24.0
@@ -522,16 +521,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | CMake                      | 3.18.1<br>3.22.1<br>3.31.5                                                                                                                                                                                                                                                                                                                                    |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                            |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                            |
-| NDK                        | 26.3.11579264<br>27.2.12479018<br>28.2.13676358                                                                                                                                                                                                                                                                                                               |
+| NDK                        | 26.3.11579264<br>27.3.13750724<br>28.2.13676358                                                                                                                                                                                                                                                                                                               |
 
 #### Environment variables
 | Name                    | Value                                    |
 | ----------------------- | ---------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                   |
-| ANDROID_NDK             | C:\Android\android-sdk\ndk\27.2.12479018 |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.2.12479018 |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\27.3.13750724 |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.3.13750724 |
 | ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\28.2.13676358 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.2.12479018 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.3.13750724 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 
 ### Cached Docker images
