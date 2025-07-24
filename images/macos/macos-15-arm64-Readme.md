@@ -6,12 +6,12 @@
 # macOS 15
 - OS Version: macOS 15.5 (24F74)
 - Kernel Version: Darwin 24.5.0
-- Image Version: 20250714.1971
+- Image Version: 20250721.2009
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.412, 9.0.102, 9.0.203, 9.0.302
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.412, 9.0.102, 9.0.203, 9.0.303
 - Bash 3.2.57(1)-release
 - Clang/LLVM 16.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
@@ -21,27 +21,27 @@
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
-- Kotlin 2.1.10-release-473
-- Node.js 22.17.0
+- Kotlin 2.2.0-release-294
+- Node.js 22.17.1
 - Perl 5.40.2
 - Python3 3.13.5
 - Ruby 3.3.8
 
 ### Package Management
-- Bundler 2.6.9
+- Bundler 2.7.0
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.9
+- Homebrew 4.5.10
 - NPM 10.9.2
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
-- RubyGems 3.6.9
-- Vcpkg 2025 (build from commit e86ec03236)
+- RubyGems 3.7.0
+- Vcpkg 2025 (build from commit ef97fc17c7)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
-- Apache Maven 3.9.10
+- Apache Maven 3.9.11
 - Gradle 8.14.3
 
 ### Utilities
@@ -54,7 +54,7 @@
 - Curl 8.7.1
 - Git 2.50.1
 - Git LFS 3.7.0
-- GitHub CLI 2.75.0
+- GitHub CLI 2.76.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
@@ -68,7 +68,7 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.27.50
+- AWS CLI 2.27.55
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.75.0
@@ -77,7 +77,7 @@
 - Cmake 3.31.6
 - CodeQL Action Bundle 2.22.1
 - Fastlane 2.228.0
-- SwiftFormat 0.57.0
+- SwiftFormat 0.57.2
 - Xcbeautify 2.29.0
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 1.6.2
@@ -87,9 +87,9 @@
 ### Browsers
 - Safari 18.5 (20621.2.5.11.8)
 - SafariDriver 18.5 (20621.2.5.11.8)
-- Google Chrome 138.0.7204.101
-- Google Chrome for Testing 138.0.7204.94
-- ChromeDriver 138.0.7204.94
+- Google Chrome 138.0.7204.158
+- Google Chrome for Testing 138.0.7204.157
+- ChromeDriver 138.0.7204.157
 - Mozilla Firefox 140.0.4
 - geckodriver 0.36.0
 - Selenium server 4.34.0
@@ -106,7 +106,7 @@
 | -------------------- | -------------------- |
 | 11.0.27+6            | JAVA_HOME_11_arm64   |
 | 17.0.15+6            | JAVA_HOME_17_arm64   |
-| 21.0.7+6.0 (default) | JAVA_HOME_21_arm64   |
+| 21.0.8+9.0 (default) | JAVA_HOME_21_arm64   |
 
 ### Cached Tools
 
@@ -114,7 +114,7 @@
 - 3.1.7
 - 3.2.8
 - 3.3.8
-- 3.4.4
+- 3.4.5
 
 #### Python
 - 3.11.9
@@ -123,8 +123,8 @@
 
 #### Node.js
 - 18.20.8
-- 20.19.3
-- 22.17.0
+- 20.19.4
+- 22.17.1
 
 #### Go
 - 1.22.12
@@ -261,15 +261,15 @@
 | CMake                      | 3.31.5                                                                                                                                                                                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                          |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                          |
-| NDK                        | 26.3.11579264<br>27.2.12479018 (default)<br>28.2.13676358                                                                                                                                                                                                                                   |
+| NDK                        | 26.3.11579264<br>27.3.13750724 (default)<br>28.2.13676358                                                                                                                                                                                                                                   |
 
 #### Environment variables
 | Name                    | Value                                               |
 | ----------------------- | --------------------------------------------------- |
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.2.13676358 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
