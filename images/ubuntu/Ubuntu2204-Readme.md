@@ -74,7 +74,7 @@ to accomplish this.
 - CMake 3.31.6
 - CodeQL Action Bundle 2.22.1
 - Docker Amazon ECR Credential Helper 0.10.1
-- Docker Compose v2 2.36.2
+- Docker Compose v2 2.37.0
 - Docker-Buildx 0.25.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
