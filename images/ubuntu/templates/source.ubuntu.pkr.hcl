@@ -55,3 +55,4 @@ source "amazon-ebs" "build_image" {
     volume_size           = 120
     delete_on_termination = true
   }
+}
