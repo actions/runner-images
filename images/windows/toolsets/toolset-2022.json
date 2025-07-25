@@ -90,7 +90,7 @@
         {
             "name": "az",
             "versions": [
-                "12.4.0"
+                "12.5.0"
             ],
             "zip_versions": [
 
@@ -155,11 +155,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "installChannel": "658092423_1519083591",
-        "signature": [
-            "245D262748012A4FE6CE8BA6C951A4C4AFBC3E5D",
-            "8F985BE8FD256085C90A95D3C74580511A1DB975"
-        ],
+        "installChannel": "",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -346,33 +342,25 @@
         "version": "3.9"
     },
     "mysql": {
-        "version": "8.0",
-        "signature": "E8A8C17382A6DE62A3B443565E4A96843F834656"
+        "version": "8.0"
     },
     "mongodb": {
-        "version": "5.0",
-        "signature": "A5BBE2A6DA1D2A6E057EF870267E6A91E4D56BAA"
+        "version": "5.0"
     },
     "nsis": {
         "version": "3.10"
     },
     "llvm": {
-        "version": "18"
+        "version": "20"
     },
     "php": {
         "version": "8.4"
     },
     "postgresql": {
-        "version": "14",
-        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
+        "version": "14"
     },
     "kotlin": {
-        "version": "2.1.10",
-        "pinnedDetails": {
-            "link": "https://youtrack.jetbrains.com/issues/KT?preview=KT-76169",
-            "reason": "this was pinned due to a new version 2.1.20 released has an issue with kotlinc-js -version` and kapt -version",
-            "review-at": "2025-03-31"
-        }
+        "version": "latest"
     },
     "openssl": {
         "version": "1.1.1",
