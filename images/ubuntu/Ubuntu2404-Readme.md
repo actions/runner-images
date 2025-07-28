@@ -5,8 +5,8 @@
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20250713.1.0
-- Systemd version: 255.4-1ubuntu8.8
+- Image Version: 20250720.1.0
+- Systemd version: 255.4-1ubuntu8.10
 
 ## Installed Software
 
@@ -19,8 +19,8 @@
 - GNU C++: 12.3.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
 - Julia 1.11.6
-- Kotlin 2.1.10-release-473
-- Node.js 20.19.3
+- Kotlin 2.2.0-release-294
+- Node.js 20.19.4
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -29,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.18.4
-- Homebrew 4.5.9
+- Homebrew 4.5.10
 - Miniconda 25.5.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 09b8d93e61)
+- Vcpkg (build from commit 7ffcbfcc40)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,10 +57,10 @@ to accomplish this.
 - Ant 1.10.14
 - Gradle 8.14.3
 - Lerna 8.2.3
-- Maven 3.9.10
+- Maven 3.9.11
 
 ### Tools
-- Ansible 2.18.6
+- Ansible 2.18.7
 - AzCopy 10.29.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.3.1
 - Bazelisk 1.26.0
@@ -80,7 +80,7 @@ to accomplish this.
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.29.0
-- Kubectl 1.33.2
+- Kubectl 1.33.3
 - Kustomize 5.7.0
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -92,7 +92,7 @@ to accomplish this.
 - Packer 1.13.1
 - Parcel 2.15.4
 - Podman 4.9.3
-- Pulumi 3.181.0
+- Pulumi 3.184.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -101,21 +101,21 @@ to accomplish this.
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.27.50
+- AWS CLI 2.27.55
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.142.1
 - Azure CLI 2.75.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.75.0
-- Google Cloud CLI 529.0.0
+- GitHub CLI 2.76.0
+- Google Cloud CLI 530.0.0
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
 | 8.0.452+9           | JAVA_HOME_8_X64      |
-| 11.0.27+6           | JAVA_HOME_11_X64     |
-| 17.0.15+6 (default) | JAVA_HOME_17_X64     |
-| 21.0.7+6            | JAVA_HOME_21_X64     |
+| 11.0.28+6           | JAVA_HOME_11_X64     |
+| 17.0.16+8 (default) | JAVA_HOME_17_X64     |
+| 21.0.8+9            | JAVA_HOME_21_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
@@ -141,11 +141,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 138.0.7204.100
-- ChromeDriver 138.0.7204.94
+- Google Chrome 138.0.7204.157
+- ChromeDriver 138.0.7204.157
 - Chromium 138.0.7204.0
-- Microsoft Edge 138.0.3351.83
-- Microsoft Edge WebDriver 138.0.3351.83
+- Microsoft Edge 138.0.3351.95
+- Microsoft Edge WebDriver 138.0.3351.95
 - Selenium server 4.34.0
 - Mozilla Firefox 140.0.4
 - Geckodriver 0.36.0
@@ -159,7 +159,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.117
+- .NET Core SDK: 8.0.118
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
@@ -191,8 +191,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 18.20.8
-- 20.19.3
-- 22.17.0
+- 20.19.4
+- 22.17.1
 
 #### Python
 - 3.9.23
@@ -214,7 +214,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 12.5.0
-- Microsoft.Graph: 2.29.0
+- Microsoft.Graph: 2.29.1
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
@@ -235,16 +235,16 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | CMake                      | 3.31.5                                                                                                                                                                                                                                                                                      |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                          |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                          |
-| NDK                        | 26.3.11579264<br>27.2.12479018 (default)<br>28.2.13676358                                                                                                                                                                                                                                   |
+| NDK                        | 26.3.11579264<br>27.3.13750724 (default)<br>28.2.13676358                                                                                                                                                                                                                                   |
 
 #### Environment variables
 | Name                    | Value                                        |
 | ----------------------- | -------------------------------------------- |
 | ANDROID_HOME            | /usr/local/lib/android/sdk                   |
-| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
 | ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/28.2.13676358 |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.2.12479018 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
 | ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Installed apt packages
@@ -281,7 +281,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libssl-dev             | 3.0.13-0ubuntu3.5            |
 | libtool                | 2.4.7-7build1                |
 | libyaml-dev            | 0.2.5-1build1                |
-| locales                | 2.39-0ubuntu8.4              |
+| locales                | 2.39-0ubuntu8.5              |
 | lz4                    | 1.9.4-1build1.1              |
 | m4                     | 1.4.19-4build1               |
 | make                   | 4.3-4.1build2                |
@@ -307,7 +307,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sshpass                | 1.09-1                       |
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.1    |
 | swig                   | 4.2.0-2ubuntu1               |
-| systemd-coredump       | 255.4-1ubuntu8.8             |
+| systemd-coredump       | 255.4-1ubuntu8.10            |
 | tar                    | 1.35+dfsg-3build1            |
 | telnet                 | 0.17+2.5-3ubuntu4            |
 | texinfo                | 7.1-3build2                  |

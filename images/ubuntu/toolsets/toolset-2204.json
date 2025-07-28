@@ -250,7 +250,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.36.2",
+                "version": "2.37.3",
                 "asset": "linux-x86_64"
             }
         ]
@@ -267,12 +267,10 @@
     ],
     "dotnet": {
         "aptPackages": [
-            "dotnet-sdk-6.0",
             "dotnet-sdk-8.0",
             "dotnet-sdk-9.0"
         ],
         "versions": [
-            "6.0",
             "8.0",
             "9.0"
         ],
