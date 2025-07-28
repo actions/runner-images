@@ -210,7 +210,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.36.2",
+                "version": "2.37.3",
                 "asset": "linux-x86_64"
             }
         ]
