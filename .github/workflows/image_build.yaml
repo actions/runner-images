@@ -38,6 +38,7 @@ jobs:
           aws-region: us-east-2
           role-to-assume: arn:aws:iam::560610306577:role/github-actions-role
           role-session-name: github-actions-role-session
+          role-duration-seconds: 10800
 
       - name: Run `packer build`
         id: build
