@@ -42,4 +42,7 @@ jobs:
 
       - name: Run `packer build`
         id: build
+        env:
+          AWS_MAX_ATTEMPTS: 240
+          AWS_POLL_DELAY_SECONDS: 30
         run: packer build -only="ubuntu-22_04.amazon-ebs.build_image" -var=image_os=ubuntu22 .
