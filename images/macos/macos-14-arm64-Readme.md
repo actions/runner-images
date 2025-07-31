@@ -6,7 +6,7 @@
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250723.1691
+- Image Version: 20250728.1701
 
 ## Installed Software
 
@@ -26,19 +26,19 @@
 - Node.js 20.19.4
 - Perl 5.40.2
 - Python3 3.13.5
-- Ruby 3.3.8
+- Ruby 3.3.9
 
 ### Package Management
 - Bundler 2.7.1
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.11
+- Homebrew 4.5.12
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.1.1 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.1
-- Vcpkg 2025 (build from commit 7bc2cb97d8)
+- Vcpkg 2025 (build from commit 3bdaa9b420)
 - Yarn 1.22.22
 
 ### Project Management
@@ -56,7 +56,7 @@
 - Curl 8.7.1
 - Git 2.50.1
 - Git LFS 3.7.0
-- GitHub CLI 2.76.0
+- GitHub CLI 2.76.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
@@ -65,12 +65,12 @@
 - Packer 1.13.1
 - pkgconf 2.5.1
 - Unxip 3.2
-- yq 4.46.1
+- yq 4.47.1
 - zstd 1.5.7
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.27.57
+- AWS CLI 2.27.60
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.75.0
@@ -114,8 +114,8 @@
 
 #### Ruby
 - 3.1.7
-- 3.2.8
-- 3.3.8
+- 3.2.9
+- 3.3.9
 - 3.4.5
 
 #### Python
