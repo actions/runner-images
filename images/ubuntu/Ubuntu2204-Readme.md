@@ -22,7 +22,7 @@
 - Kotlin 2.2.0-release-294
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 20.19.4
+- Node.js 24.0.0
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
@@ -217,6 +217,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 18.20.8
 - 20.19.4
 - 22.17.1
+- 24.0.0
 
 #### Python
 - 3.9.23

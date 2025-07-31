@@ -17,7 +17,7 @@
 - Julia 1.11.6
 - Kotlin 2.2.0
 - LLVM 20.1.7
-- Node 20.19.4
+- Node 24.0.0
 - Perl 5.32.1
 - PHP 8.4.8
 - Python 3.9.13

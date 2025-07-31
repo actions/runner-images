@@ -20,7 +20,7 @@
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
 - Julia 1.11.6
 - Kotlin 2.2.0-release-294
-- Node.js 20.19.4
+- Node.js 24.0.0
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -193,6 +193,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 18.20.8
 - 20.19.4
 - 22.17.1
+- 24.0.0
 
 #### Python
 - 3.9.23

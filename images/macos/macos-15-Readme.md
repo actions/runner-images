@@ -22,7 +22,7 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - Kotlin 2.2.0-release-294
-- Node.js 22.17.1
+- Node.js 24.0.0
 - Perl 5.40.2
 - PHP 8.4.10
 - Python3 3.13.5
@@ -132,6 +132,7 @@
 - 18.20.8
 - 20.19.4
 - 22.17.1
+- 24.0.0
 
 #### Go
 - 1.22.12
