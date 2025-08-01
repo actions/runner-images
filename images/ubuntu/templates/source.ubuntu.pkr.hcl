@@ -16,6 +16,7 @@ source "amazon-ebs" "build_image" {
 
   ami_users = [
     "702719119055",
+    "630261574551",
   ]
 
   subnet_filter {
