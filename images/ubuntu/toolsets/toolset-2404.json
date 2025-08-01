@@ -212,7 +212,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.37.3",
+                "version": "2.38.2",
                 "asset": "linux-x86_64"
             }
         ]
