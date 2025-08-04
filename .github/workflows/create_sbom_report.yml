@@ -56,7 +56,7 @@ jobs:
           }
       - name: Install SYFT tool on Windows
         if: ${{ runner.os == 'Windows' }}
-        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b D:/syft
+        run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b C:/syft
       - name: Install SYFT tool on Ubuntu 
         if: ${{ runner.os == 'Linux' }}
         run: curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
@@ -67,7 +67,7 @@ jobs:
       #Running section.
       - name: Run SYFT on Windows
         if: ${{ runner.os == 'Windows' }}
-        run: D:/syft/syft dir:C:/ -vv -o spdx-json=sbom.json
+        run: C:/syft/syft dir:C:/ -vv -o spdx-json=sbom.json
       - name: Run SYFT on Ubuntu
         if: ${{ runner.os == 'Linux' }}
         run: syft dir:/ -vv -o spdx-json=sbom.json
