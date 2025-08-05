@@ -23,9 +23,9 @@ $mobyReleaseUrl = $dockerceUrl + $mobyRelease
 
 Write-Host "Install Moby $mobyRelease..."
 $mobyArchivePath = Invoke-DownloadWithRetry $mobyReleaseUrl
-Expand-Archive -Path $mobyArchivePath -DestinationPath $env:TEMP
-$dockerPath = "$env:TEMP\docker\docker.exe"
-$dockerdPath = "$env:TEMP\docker\dockerd.exe"
+Expand-Archive -Path $mobyArchivePath -DestinationPath $env:TEMP_DIR
+$dockerPath = "$env:TEMP_DIR\docker\docker.exe"
+$dockerdPath = "$env:TEMP_DIR\docker\dockerd.exe"
 
 Write-Host "Install Docker CE"
 $instScriptUrl = "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1"
@@ -41,16 +41,18 @@ if ($LastExitCode -ne 0) {
 # https://github.com/Azure/azure-cli/issues/18766
 New-Item -ItemType SymbolicLink -Path "C:\Windows\SysWOW64\docker.exe" -Target "C:\Windows\System32\docker.exe"
 
-Write-Host "Download docker images"
-$dockerImages = (Get-ToolsetContent).docker.images
-foreach ($dockerImage in $dockerImages) {
-    Write-Host "Pulling docker image $dockerImage ..."
-    docker pull $dockerImage
+if (-not (Test-IsWin25)) {
+    Write-Host "Download docker images"
+    $dockerImages = (Get-ToolsetContent).docker.images
+    foreach ($dockerImage in $dockerImages) {
+        Write-Host "Pulling docker image $dockerImage ..."
+        docker pull $dockerImage
 
-    if (!$?) {
-        throw "Docker pull failed with a non-zero exit code ($LastExitCode)"
+        if (!$?) {
+            throw "Docker pull failed with a non-zero exit code ($LastExitCode)"
+        }
     }
+    Invoke-PesterTests -TestFile "Docker" -TestName "DockerImages"
 }
 
 Invoke-PesterTests -TestFile "Docker" -TestName "Docker"
-Invoke-PesterTests -TestFile "Docker" -TestName "DockerImages"

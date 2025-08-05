@@ -53,8 +53,7 @@ Write-Host "Expand Gecko WebDriver archive..."
 Expand-7ZipArchive -Path $geckoDriverArchPath -DestinationPath $geckoDriverPath
 
 # Validate Gecko WebDriver signature
-$geckoDriverSignatureThumbprint = "1326B39C3D5D2CA012F66FB439026F7B59CB1974"
-Test-FileSignature -Path "$geckoDriverPath/geckodriver.exe" -ExpectedThumbprint $geckoDriverSignatureThumbprint
+Test-FileSignature -Path "$geckoDriverPath/geckodriver.exe" -ExpectedSubject 'CN=Mozilla Corporation, OU=Firefox Engineering Operations, O=Mozilla Corporation, L=San Francisco, S=California, C=US'
 
 Write-Host "Setting the environment variables..."
 Add-MachinePathItem -PathItem $geckoDriverPath

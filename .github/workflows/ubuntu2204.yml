@@ -13,7 +13,7 @@ defaults:
 
 jobs:
   Ubuntu_2204:
-    if: contains(github.event.pull_request.labels.*.name, 'CI ubuntu-all') || contains(github.event.pull_request.labels.*.name, 'CI ubuntu-2204')
+    if: github.event.label.name == 'CI ubuntu-all' || github.event.label.name == 'CI ubuntu-2204'
     uses: ./.github/workflows/trigger-ubuntu-win-build.yml
     with:
       image_type: 'ubuntu2204'

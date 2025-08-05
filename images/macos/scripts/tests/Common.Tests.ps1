@@ -33,7 +33,7 @@ Describe "GCC" {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsVenturaArm64 -or $os.IsSonomaArm64 -or $os.IsSonoma) {
+Describe "vcpkg" -Skip:($os.IsVenturaArm64) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -43,7 +43,7 @@ Describe "AWS" {
     It "AWS CLI" {
         "aws --version" | Should -ReturnZeroExitCode
     }
-    It "AWS SAM CLI" -Skip:($os.IsBigSur) {
+    It "AWS SAM CLI" {
         "sam --version" | Should -ReturnZeroExitCode
     }
 
@@ -58,74 +58,15 @@ Describe "AzCopy" {
     }
 }
 
-Describe "Miniconda" -Skip:($os.IsVentura -or $os.IsSonoma) {
-    It "Conda" {
-        [System.Environment]::GetEnvironmentVariable("CONDA") | Should -Not -BeNullOrEmpty
-        $condaBinPath = Join-Path $env:CONDA "bin" "conda"
-        "$condaBinPath --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Stack" -Skip:($os.IsVentura -or $os.IsSonoma) {
-    It "Stack" {
-        "stack --version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "CocoaPods" {
     It "CocoaPods" {
         "pod --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "VSMac" -Skip:($os.IsVentura -or $os.IsSonoma) {
-    $vsMacVersions = (Get-ToolsetContent).xamarin.vsmac.versions
-    $defaultVSMacVersion = (Get-ToolsetContent).xamarin.vsmac.default
-
-    $testCases = $vsMacVersions | ForEach-Object {
-        $vsPath = "/Applications/Visual Studio $_.app"
-        if ($_ -eq $defaultVSMacVersion) {
-            $vsPath = "/Applications/Visual Studio.app"
-        }
-
-        @{ vsversion = $_ ; vspath = $vsPath }
-    }
-
-    It "Visual Studio <vsversion> for Mac is installed" -TestCases $testCases {
-        $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
-        $vsPath | Should -Exist
-        $vstoolPath | Should -Exist
-    }
-
-    It "Visual Studio $defaultVSMacVersion for Mac is default" {
-        $vsPath = "/Applications/Visual Studio.app"
-        $vstoolPath = Join-Path $vsPath "Contents/MacOS/vstool"
-        $vsPath | Should -Exist
-        $vstoolPath | Should -Exist
-    }
-}
-
-Describe "Swig" -Skip:($os.IsVentura -or $os.IsSonoma) {
-    It "Swig" {
-        "swig -version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Bicep" {
     It "Bicep" {
         "bicep --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Go" -Skip:($os.IsVentura -or $os.IsSonoma) {
-    It "Go" {
-        "go version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "VirtualBox" -Skip:($os.IsBigSur -or $os.IsVentura -or $os.IsSonoma) {
-    It "Check kext kernel modules" {
-        kextstat | Out-String | Should -Match "org.virtualbox.kext"
     }
 }
 
@@ -141,8 +82,17 @@ Describe "CodeQL Bundle" {
     }
 }
 
-Describe "Colima" -Skip:($os.IsVentura -or $os.IsSonoma) {
-    It "Colima" {
-        "colima version" | Should -ReturnZeroExitCode
+Describe "Unxip" {
+    It "Unxip" {
+        "unxip --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Sudoers" {
+    It "Sudo Cache" {
+        "sudo -v" | Should -ReturnZeroExitCode
+    }
+    It "Sudoers files" {
+        "sudo visudo -c" | Should -ReturnZeroExitCode
     }
 }

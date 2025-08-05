@@ -28,6 +28,13 @@ Describe "Xcode" {
         $defaultXcodeTestCase = @{ DefaultXcode = $defaultXcode }
         It "Default Xcode is <DefaultXcode>" -TestCases $defaultXcodeTestCase {
             "xcodebuild -version" | Should -ReturnZeroExitCode
+            If ($DefaultXcode -ilike "*_*") {
+                Write-Host "Composite version detected (beta/RC/preview)"
+                $DefaultXcode = $DefaultXcode.split("_")[0]
+                If ($DefaultXcode -notlike "*.*") {
+                    $DefaultXcode = "${DefaultXcode}.0"
+                }
+            }
             (Get-CommandResult "xcodebuild -version").Output | Should -BeLike "Xcode ${DefaultXcode}*"
         }
 
@@ -113,22 +120,5 @@ Describe "Xcode simulators" {
     AfterEach {
         $defaultXcode = (Get-ToolsetContent).xcode.default
         Switch-Xcode -Version $defaultXcode
-    }
-}
-
-Describe "Xcode Simulators Naming" -Skip:(-not $os.IsMonterey) {
-    $testCases = Get-BrokenXcodeSimulatorsList
-    It "Simulator '<SimulatorName> [<RuntimeId>]'" -TestCases $testCases {
-        $simctlPath = Get-XcodeToolPath -Version $XcodeVersion -ToolName "simctl"
-        [string]$rawDevicesInfo = Invoke-Expression "$simctlPath list devices --json"
-        $jsonDevicesInfo = ($rawDevicesInfo | ConvertFrom-Json).devices
-
-        $foundSimulators = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.deviceTypeIdentifier -eq $DeviceId }
-        $foundSimulators | Should -HaveCount 1
-        $foundSimulators[0].name | Should -Be $SimulatorName
-
-        $foundSimulators = $jsonDevicesInfo.$RuntimeId | Where-Object { $_.name -eq $SimulatorName }
-        $foundSimulators | Should -HaveCount 1
-        $foundSimulators[0].deviceTypeIdentifier | Should -Be $DeviceId
     }
 }

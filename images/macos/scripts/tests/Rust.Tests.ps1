@@ -2,7 +2,7 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 $os = Get-OSVersion
 
-Describe "Rust" -Skip:($os.IsBigSur) {
+Describe "Rust" {
     Context "Rust" {
         It "Rustup is installed" {
             "rustup --version" | Should -ReturnZeroExitCode
@@ -18,7 +18,7 @@ Describe "Rust" -Skip:($os.IsBigSur) {
             "cargo --version" | Should -ReturnZeroExitCode
         }
     }
-    Context "Cargo dependencies" -Skip:($os.IsVentura -or $os.IsSonoma) {
+    Context "Cargo dependencies" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
         It "bindgen" {
             "bindgen --version" | Should -ReturnZeroExitCode
         }

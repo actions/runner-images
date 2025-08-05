@@ -131,7 +131,7 @@ function Get-LernaVersion {
 }
 
 function Get-HomebrewVersion {
-    $result = Get-CommandResult "/home/linuxbrew/.linuxbrew/bin/brew -v"
+    $result = Get-CommandResult "/home/linuxbrew/.linuxbrew/bin/brew --version"
     $result.Output -match "Homebrew (?<version>\d+\.\d+\.\d+)" | Out-Null
     return $Matches.version
 }
@@ -207,7 +207,7 @@ function Get-MavenVersion {
 
 function Get-SbtVersion {
     $result = Get-CommandResult "sbt -version"
-    $result.Output -match "sbt script version: (?<version>\d+\.\d+\.\d+)" | Out-Null
+    $result.Output -match "sbt runner version: (?<version>\d+\.\d+\.\d+)" | Out-Null
     return $Matches.version
 }
 

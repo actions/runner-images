@@ -24,12 +24,18 @@ Describe "Haskell" {
         @{envVar = "GHCUP_MSYS2"}
     )
 
+    If (Test-IsWin25) {
+        $numberOfVersions = 1
+    } else {
+        $numberOfVersions = 3
+    }
+
     It "<envVar> environment variable exists" -TestCases $ghcupEnvExists {
         Test-Path env:\$envVar
     }
 
-    It "Accurate 3 versions of GHC are installed" -TestCases @{ghcCount = $ghcCount} {
-        $ghcCount | Should -BeExactly 3
+    It "Accurate $numberOfVersions versions of GHC are installed" -TestCases @{ghcCount = $ghcCount; numberOfVersions = $numberOfVersions} {
+        $ghcCount | Should -BeExactly $numberOfVersions
     }
 
     It "GHC <ghcVersion> is installed" -TestCases $ghcTestCases {

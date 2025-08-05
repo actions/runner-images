@@ -11,9 +11,18 @@ New-Item -Path $prefixPath -Force -ItemType Directory
 New-Item -Path $cachePath -Force -ItemType Directory
 
 $defaultVersion = (Get-ToolsetContent).node.default
-$versionToInstall = Resolve-ChocoPackageVersion -PackageName "nodejs" -TargetVersion $defaultVersion
+$nodeVersion = (Get-GithubReleasesByVersion -Repo "nodejs/node" -Version "${defaultVersion}").version | Select-Object -First 1
+$downloadUrl = "https://nodejs.org/dist/v${nodeVersion}/node-v${nodeVersion}-x64.msi"
 
-Install-ChocoPackage "nodejs" -ArgumentList "--version=$versionToInstall"
+$packageName = Split-Path $downloadUrl -Leaf
+$externalHash = Get-ChecksumFromUrl -Type "SHA256" `
+    -Url ($downloadUrl -replace $packageName, "SHASUMS256.txt") `
+    -FileName $packageName
+
+Install-Binary -Type MSI `
+    -Url $downloadUrl `
+    -ExtraInstallArgs @('ADDLOCAL=ALL') `
+    -ExpectedSHA256Sum $externalHash
 
 Add-MachinePathItem $prefixPath
 Update-Environment

@@ -22,13 +22,13 @@ Describe "Bicep" {
     }
 }
 
-Describe "GitVersion" -Skip:(Test-IsWin22) {
+Describe "GitVersion" -Skip:(-not (Test-IsWin19)) {
     It "gitversion is installed" {
         "gitversion /version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "InnoSetup" {
+Describe "InnoSetup" -Skip:(Test-IsWin25) {
     It "InnoSetup" {
         (Get-Command -Name iscc).CommandType | Should -BeExactly "Application"
     }
@@ -64,7 +64,7 @@ Describe "Pulumi" {
     }
 }
 
-Describe "Svn" {
+Describe "Svn" -Skip:(Test-IsWin25) {
     It "svn" {
         "svn --version --quiet" | Should -ReturnZeroExitCode
     }
@@ -101,5 +101,33 @@ Describe "CMake" {
 Describe "ImageMagick" {
     It "ImageMagick" {
         "magick -version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Ninja" {
+    BeforeAll {
+        $ninjaProjectPath = $(Join-Path $env:TEMP_DIR "ninjaproject")
+        New-item -Path $ninjaProjectPath -ItemType Directory -Force
+@'
+cmake_minimum_required(VERSION 3.10)
+project(NinjaTest NONE)
+'@ | Out-File -FilePath "$ninjaProjectPath/CMakeLists.txt" -Encoding utf8
+
+        $ninjaProjectBuildPath = $(Join-Path $ninjaProjectPath "build")
+        New-item -Path $ninjaProjectBuildPath -ItemType Directory -Force
+        Set-Location $ninjaProjectBuildPath
+    }
+
+    It "Make a simple ninja project" {
+    "cmake -GNinja $ninjaProjectPath" | Should -ReturnZeroExitCode
+    }
+
+    It "build.ninja file should exist" {
+        $buildFilePath = $(Join-Path $ninjaProjectBuildPath "build.ninja")
+        $buildFilePath | Should -Exist
+    }
+
+    It "Ninja" {
+        "ninja --version" | Should -ReturnZeroExitCode
     }
 }

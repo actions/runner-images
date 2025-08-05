@@ -5,10 +5,12 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "3.0",
-                "3.1"
+                "3.1",
+                "3.2",
+                "3.3",
+                "3.4"
             ],
-            "default": "3.0"
+            "default": "3.3"
         },
         {
             "name": "Python",
@@ -16,12 +18,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "3.7.*",
-                "3.8.*",
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
-                "3.12.*"
+                "3.12.*",
+                "3.13.*"
             ],
             "default": "3.9.*"
         },
@@ -31,12 +32,11 @@
             "arch": "x86",
             "platform" : "win32",
             "versions": [
-                "3.7.*",
-                "3.8.*",
                 "3.9.*",
                 "3.10.*",
                 "3.11.*",
-                "3.12.*"
+                "3.12.*",
+                "3.13.*"
             ]
         },
         {
@@ -57,9 +57,9 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "16.*",
                 "18.*",
-                "20.*"
+                "20.*",
+                "22.*"
             ]
         },
         {
@@ -68,11 +68,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.20.*",
-                "1.21.*",
-                "1.22.*"
+                "1.22.*",
+                "1.23.*",
+                "1.24.*"
             ],
-            "default": "1.21.*"
+            "default": "1.24.*"
         }
     ],
     "powershellModules": [
@@ -89,39 +89,12 @@
     ],
     "azureModules": [
         {
-            "name": "azurerm",
-            "versions": [
-                "2.1.0",
-                "6.13.1"
-            ],
-            "zip_versions": [
-                "3.8.0",
-                "4.2.1",
-                "5.1.1",
-                "6.7.0"
-            ],
-            "default": "2.1.0"
-        },
-        {
-            "name": "azure",
-            "versions": [
-                "2.1.0",
-                "5.3.0"
-            ],
-            "zip_versions": [
-                "3.8.0",
-                "4.2.1",
-                "5.1.1"
-            ],
-            "default": "2.1.0"
-        },
-        {
             "name": "az",
             "versions": [
-                "11.3.1"
+                "12.5.0"
             ],
             "zip_versions": [
-    
+
             ]
         }
     ],
@@ -142,18 +115,25 @@
         "addons": [],
         "additional_tools": [
             "cmake;3.18.1",
-            "cmake;3.22.1"
+            "cmake;3.22.1",
+            "cmake;3.31.5"
         ],
         "ndk": {
-            "default": "25",
+            "default": "27",
             "versions": [
-                "24", "25", "26"
+                "26", "27", "28"
             ]
         }
     },
     "mingw": {
         "version": "12.2.0",
-        "runtime": "ucrt"
+        "runtime": "ucrt",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2025-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
     },
     "MsysPackages": {
         "msys2": [],
@@ -176,7 +156,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "signature": "C2048FB509F1C37A8C3E9EC6648118458AA01780",
+        "installChannel": "",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -184,6 +164,7 @@
             "Component.Unreal.Android",
             "Component.Xamarin",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
+            "Microsoft.Net.Component.4.7.2.SDK",
             "Microsoft.Net.Component.4.7.TargetingPack",
             "Microsoft.Net.Component.4.7.2.TargetingPack",
             "Microsoft.Net.Component.4.8.1.SDK",
@@ -236,6 +217,7 @@
             "Microsoft.VisualStudio.Component.Windows10SDK.20348",
             "Microsoft.VisualStudio.Component.Windows11SDK.22000",
             "Microsoft.VisualStudio.Component.Windows11SDK.22621",
+            "Microsoft.VisualStudio.Component.Windows11SDK.26100",
             "Microsoft.VisualStudio.Component.Workflow",
             "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
             "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
@@ -259,7 +241,10 @@
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
             "Component.MDD.Linux.GCC.arm",
-            "wasm.tools"
+            "Component.Microsoft.Windows.DriverKit",
+            "wasm.tools",
+            "Microsoft.Component.MSBuild"
+            
         ],
         "vsix": [
             "SSIS.MicrosoftDataToolsIntegrationServices",
@@ -278,8 +263,8 @@
             "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022"
         ],
         "components": {
-            "docker": "24.0.7",
-            "compose": "2.23.3"
+            "docker": "27.5.1",
+            "compose": "2.32.2"
         }
     },
     "pipx": [
@@ -302,18 +287,18 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "9.1.1436.9590",
-            "checksum": "089F9BE6A63AF66C337E507B52082575C8ED330DF765259C6F2F13F900DA96D5"
+            "version": "10.1.2493.9590",
+            "checksum": "09C63A971BACDE338282C73B3C9174BED9AAD53E1D3A1B73D44515852C9C00CF"
         },
         "sdk": {
-            "version": "6.1.1436",
-            "checksum": "D2A6B58315D08B6E46C2D25E91DFA1163136F70A5FA8CEF9DB147F07EE001AD1"
+            "version": "7.1.2493",
+            "checksum": "0CB1084156C75CF5075EA91ABA330CF10B58648B8E036C9C2F286805263C497F"
         }
     },
     "dotnet": {
         "versions": [
-            "6.0",
-            "7.0"
+            "8.0",
+            "9.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
@@ -335,7 +320,6 @@
                 "args": [ "--version", "5.32.1.1" ]
             },
             { "name": "pulumi" },
-            { "name": "tortoisesvn" },
             { "name": "swig" },
             { "name": "vswhere" },
             {
@@ -344,43 +328,48 @@
             },
             {
                 "name": "cmake.install",
+                "version": "3.31.6",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
-            { "name": "imagemagick" }
+            { "name": "imagemagick" },
+            { "name": "ninja" }
         ]
     },
     "node": {
-        "default": "18"
+        "default": "20.*"
     },
     "maven": {
-        "version": "3.8"
+        "version": "3.9"
     },
     "mysql": {
-        "version": "8.0",
-        "signature": "DD34D7C71F160972DE0CE25B695A0D6A9C95BD91"
+        "version": "8.0"
     },
     "mongodb": {
-        "version": "5.0",
-        "signature": "F2D7C28591847BB2CB2B1C2A0C59459FDC728A38"
+        "version": "5.0"
     },
     "nsis": {
         "version": "3.10"
     },
     "llvm": {
-        "version": "16"
+        "version": "20"
     },
     "php": {
-        "version": "8.3"
+        "version": "8.4"
     },
     "postgresql": {
-        "version": "14",
-        "signature": "698BA51AA27CC31282AACA5055E4B9190BC6C0E9"
+        "version": "14"
     },
     "kotlin": {
         "version": "latest"
     },
     "openssl": {
-        "version": "1.1.1"
+        "version": "1.1.1",
+        "pinnedDetails": {
+            "link": "https://github.com/actions/runner-images-internal/pull/6702",
+            "reason": "Meaningful reason must be added at next update.",
+            "review-at": "2024-06-01",
+            "type": "preexisting-pinned-version-without-reason"
+        }
     },
     "pwsh": {
         "version": "7.4"

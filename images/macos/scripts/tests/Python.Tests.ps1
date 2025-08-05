@@ -8,7 +8,7 @@ Describe "Python3" {
         "python3 --version" | Should -ReturnZeroExitCode
     }
     
-    if ($os.IsVenturaArm64 -or $os.IsSonomaArm64) {
+    if ($os.IsVenturaArm64 -or $os.IsSonomaArm64 -or $os.IsSequoiaArm64) {
         It "Python 3 is installed under /opt/homebrew/bin/" {
             Get-ToolPath "python3" | Should -BeLike "/opt/homebrew/bin/*"
         }
@@ -34,7 +34,7 @@ Describe "Python3" {
 
 }
 
-Describe "Python2" -Skip:($os.IsVentura -or $os.IsSonoma) {
+Describe "Python2" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
     It "Python 2 is available" {
         "/Library/Frameworks/Python.framework/Versions/2.7/bin/python --version" | Should -ReturnZeroExitCode
     }

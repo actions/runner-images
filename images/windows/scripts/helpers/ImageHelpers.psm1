@@ -19,9 +19,11 @@ Export-ModuleMember -Function @(
 Export-ModuleMember -Function @(
     'Install-Binary'
     'Invoke-DownloadWithRetry'
+    'Get-MicrosoftPublisher'
     'Get-ToolsetContent'
     'Get-TCToolPath'
     'Get-TCToolVersionPath'
+    'Test-IsWin25'
     'Test-IsWin22'
     'Test-IsWin19'
     'Expand-7ZipArchive'

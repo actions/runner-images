@@ -12,17 +12,22 @@ source $HELPER_SCRIPTS/os.sh
 # Install Python, Python 3, pip, pip3
 apt-get install --no-install-recommends python3 python3-dev python3-pip python3-venv
 
+if is_ubuntu24; then
+# Create temporary workaround to allow user to continue using pip
+    sudo cat <<EOF > /etc/pip.conf
+[global]
+break-system-packages = true
+EOF
+fi
+
 # Install pipx
 # Set pipx custom directory
 export PIPX_BIN_DIR=/opt/pipx_bin
 export PIPX_HOME=/opt/pipx
-if is_ubuntu24; then
-    apt-get install --no-install-recommends pipx
-    pipx ensurepath
-else
-    python3 -m pip install pipx
-    python3 -m pipx ensurepath
-fi
+
+python3 -m pip install pipx
+python3 -m pipx ensurepath
+
 # Update /etc/environment
 set_etc_environment_variable "PIPX_BIN_DIR" $PIPX_BIN_DIR
 set_etc_environment_variable "PIPX_HOME" $PIPX_HOME

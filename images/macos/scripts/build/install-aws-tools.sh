@@ -10,11 +10,9 @@ echo "Installing aws..."
 awscliv2_pkg_path=$(download_with_retry "https://awscli.amazonaws.com/AWSCLIV2.pkg")
 sudo installer -pkg "$awscliv2_pkg_path" -target /
 
-if ! is_BigSur; then
-    echo "Installing aws sam cli..."
-    brew tap aws/tap
-    brew_smart_install aws-sam-cli
-fi
+echo "Installing aws sam cli..."
+brew tap aws/tap
+brew_smart_install aws-sam-cli
 
 echo "Install aws cli session manager"
 brew install --cask session-manager-plugin

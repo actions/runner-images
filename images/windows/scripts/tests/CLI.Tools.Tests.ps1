@@ -11,7 +11,7 @@ Describe "Azure DevOps CLI" {
     }
 }
 
-Describe "Aliyun CLI" {
+Describe "Aliyun CLI" -Skip:(Test-IsWin25) {
     It "Aliyun CLI" {
         "aliyun version" | Should -ReturnZeroExitCode
     }
@@ -39,7 +39,7 @@ Describe "GitHub CLI" {
     }
 }
 
-Describe "CloudFoundry CLI" -Skip:(Test-IsWin22) {
+Describe "CloudFoundry CLI" -Skip:(-not (Test-IsWin19)) {
     It "cf is located in C:\cf-cli" {
         "C:\cf-cli\cf.exe" | Should -Exist
     }

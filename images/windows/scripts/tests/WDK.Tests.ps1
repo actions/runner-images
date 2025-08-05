@@ -1,4 +1,4 @@
-Describe "WDK" {
+Describe "WDK" -Skip:(Test-IsWin25) {
   It "WDK exists" {
     $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
     $installedApplications = Get-ItemProperty -Path $regKey

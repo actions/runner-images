@@ -51,23 +51,23 @@ Describe "R" {
 Describe "DACFx" {
     It "DACFx" {
         (Get-ItemProperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*).DisplayName -Contains "Microsoft SQL Server Data-Tier Application Framework" | Should -BeTrue
-        $sqlPackagePath = 'C:\Program Files\Microsoft SQL Server\160\DAC\bin\SqlPackage.exe'
+        $sqlPackagePath = 'C:\Program Files\Microsoft SQL Server\170\DAC\bin\SqlPackage.exe'
         "${sqlPackagePath}" | Should -Exist
     }
 
-    It "SqlLocalDB" -Skip:(Test-IsWin22) {
+    It "SqlLocalDB" -Skip:(-not (Test-IsWin19)) {
         $sqlLocalDBPath = 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe'
         "${sqlLocalDBPath}" | Should -Exist
     }
 }
 
-Describe "DotnetTLS" -Skip:(Test-IsWin22) {
+Describe "DotnetTLS" -Skip:(-not (Test-IsWin19)) {
     It "Tls 1.2 is enabled" {
         [Net.ServicePointManager]::SecurityProtocol -band "Tls12" | Should -Be Tls12
     }
 }
 
-Describe "Mercurial" {
+Describe "Mercurial" -Skip:(Test-IsWin25) {
     It "Mercurial" {
         "hg --version" | Should -ReturnZeroExitCode
     }
@@ -101,7 +101,7 @@ Describe "Mingw64" {
     }
 }
 
-Describe "GoogleCloudCLI" -Skip:(Test-IsWin22) {
+Describe "GoogleCloudCLI" -Skip:(-not (Test-IsWin19)) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bq" }
         @{ ToolName = "gcloud" }
@@ -117,7 +117,7 @@ Describe "NET48" {
     }
 }
 
-Describe "NSIS" {
+Describe "NSIS" -Skip:(Test-IsWin25) {
     It "NSIS" {
         "makensis /VERSION" | Should -ReturnZeroExitCode
     }
@@ -175,7 +175,7 @@ Describe "Vcpkg" {
     }
 }
 
-Describe "VCRedist" -Skip:(Test-IsWin22) {
+Describe "VCRedist" -Skip:(-not (Test-IsWin19)) {
     It "vcredist_2010_x64" {
         "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
         "C:\Windows\System32\msvcr100.dll" | Should -Exist
@@ -201,10 +201,14 @@ Describe "Pipx" {
 }
 
 Describe "Kotlin" {
-    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlin-dce-js", "kotlinc-jvm")
+    $kotlinPackages = @("kapt", "kotlin", "kotlinc", "kotlinc-jvm")
 
     It "<toolName> is available" -TestCases ($kotlinPackages | ForEach-Object { @{ toolName = $_ } }) {
         "$toolName -version" | Should -ReturnZeroExitCode
+    }
+
+    It "kotlinc-js is available" {
+        "kotlinc-js -help" | Should -ReturnZeroExitCode
     }
 }
 

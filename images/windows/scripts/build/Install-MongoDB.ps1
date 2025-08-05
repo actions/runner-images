@@ -24,7 +24,7 @@ $latestVersion = $minorVersions[0]
 Install-Binary `
     -Url "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$latestVersion-signed.msi" `
     -ExtraInstallArgs @('TARGETDIR=C:\PROGRA~1\MongoDB ADDLOCAL=ALL') `
-    -ExpectedSignature $toolsetContent.mongodb.signature
+    -ExpectedSubject 'CN="MONGODB, INC.", O="MONGODB, INC.", L=New York, S=New York, C=US'
 
 # Add mongodb to the PATH
 $mongoPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'mongodb'").PathName
@@ -38,5 +38,20 @@ $mongodbService.WaitForStatus('Running', '00:01:00')
 # Stop and disable mongodb service
 Stop-Service $mongodbService
 $mongodbService | Set-Service -StartupType Disabled
+
+# Install mongodb shell for mongodb > 5 version
+if (Test-IsWin25) {
+    $mongoshVersion = (Get-GithubReleasesByVersion -Repo "mongodb-js/mongosh" -Version "latest").version
+
+    $mongoshDownloadUrl = Resolve-GithubReleaseAssetUrl `
+        -Repo "mongodb-js/mongosh" `
+        -Version $mongoshVersion `
+        -UrlMatchPattern "mongosh-*-x64.msi"
+
+    Install-Binary -Type MSI `
+        -Url $mongoshDownloadUrl `
+        -ExtraInstallArgs @('ALLUSERS=1') `
+        -ExpectedSubject 'CN="MongoDB, Inc.", O="MongoDB, Inc.", L=New York, S=New York, C=US'
+}
 
 Invoke-PesterTests -TestFile "Databases" -TestName "MongoDB"

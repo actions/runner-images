@@ -12,7 +12,7 @@ if [[ ! -d $ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE ]]; then
     mkdir -p $ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE
 fi
 
-download_url=$(resolve_github_release_asset_url "actions/action-versions" "contains(\"action-versions.tar.gz\")" "latest")
+download_url=$(resolve_github_release_asset_url "actions/action-versions" "contains(\"action-versions.tar.gz\")" "latest" "$API_PAT")
 echo "Downloading action-versions $download_url"
 archive_path=$(download_with_retry $download_url)
 tar -xzf $archive_path -C $ACTIONS_RUNNER_ACTION_ARCHIVE_CACHE

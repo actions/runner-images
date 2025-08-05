@@ -29,14 +29,15 @@ function Get-OSVersion {
         Version        = $osVersion.Version
         Platform       = $osVersion.Platform
         IsArm64        = $processorArchitecture -eq "arm64"
-        IsBigSur       = $osVersion.Version.Major -eq "11"
-        IsMonterey     = $osVersion.Version.Major -eq "12"
         IsVentura      = $($osVersion.Version.Major -eq "13")
         IsVenturaArm64 = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -eq "arm64")
         IsVenturaX64   = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -ne "arm64")
         IsSonoma       = $($osVersion.Version.Major -eq "14")
         IsSonomaArm64  = $($osVersion.Version.Major -eq "14" -and $processorArchitecture -eq "arm64")
         IsSonomaX64    = $($osVersion.Version.Major -eq "14" -and $processorArchitecture -ne "arm64")
+        IsSequoia       = $($osVersion.Version.Major -eq "15")
+        IsSequoiaArm64  = $($osVersion.Version.Major -eq "15" -and $processorArchitecture -eq "arm64")
+        IsSequoiaX64    = $($osVersion.Version.Major -eq "15" -and $processorArchitecture -ne "arm64")
     }
 }
 
@@ -102,10 +103,6 @@ function Invoke-DownloadWithRetry {
     }
 
     return $Path
-}
-
-function isVeertu {
-    return (Test-Path -Path "/Library/Application Support/Veertu")
 }
 
 function Get-Architecture {

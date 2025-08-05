@@ -42,7 +42,7 @@ Describe "Rust" {
         "cargo --version" | Should -ReturnZeroExitCode
     }
 
-    Context "Cargo dependencies" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+    Context "Cargo dependencies" -Skip:((-not (Test-IsUbuntu22))) {
         It "bindgen" {
             "bindgen --version" | Should -ReturnZeroExitCode
         }
@@ -121,12 +121,6 @@ Describe "Docker images" {
     }
 }
 
-Describe "Docker-compose v1" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
-    It "docker-compose" {
-        "docker-compose --version"| Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Ansible" {
     It "Ansible" {
         "ansible --version" | Should -ReturnZeroExitCode
@@ -160,14 +154,6 @@ Describe "Cmake" {
     }
 }
 
-Describe "erlang" -Skip:(-not (Test-IsUbuntu20)) {
-    $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
-
-    It "erlang <ErlangCommand>" -TestCases $testCases {
-        "$ErlangCommand" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "gcc" {
     $testCases = (Get-ToolsetContent).gcc.Versions | ForEach-Object { @{GccVersion = $_} }
 
@@ -198,25 +184,25 @@ Describe "Mono" -Skip:(Test-IsUbuntu24) {
     }
 }
 
-Describe "MSSQLCommandLineTools" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "MSSQLCommandLineTools" -Skip:((-not (Test-IsUbuntu22))) {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "SqlPackage" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "SqlPackage" -Skip:((-not (Test-IsUbuntu22))) {
     It "sqlpackage" {
         "sqlpackage /version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "R" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "R" -Skip:((-not (Test-IsUbuntu22))) {
     It "r" {
         "R --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Sbt" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Sbt" -Skip:((-not (Test-IsUbuntu22))) {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
     }
@@ -229,7 +215,7 @@ Describe "Selenium" {
     }
 }
 
-Describe "Terraform" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Terraform" -Skip:((-not (Test-IsUbuntu22))) {
     It "terraform" {
         "terraform --version" | Should -ReturnZeroExitCode
     }
@@ -267,15 +253,9 @@ Describe "Git-lfs" {
     }
 }
 
-Describe "Heroku" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Heroku" -Skip:((-not (Test-IsUbuntu22))) {
     It "heroku" {
         "heroku --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "HHVM" -Skip:(-not (Test-IsUbuntu20)) {
-    It "hhvm" {
-        "hhvm --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -313,7 +293,7 @@ Describe "Kubernetes tools" {
     }
 }
 
-Describe "Leiningen" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Leiningen" -Skip:((-not (Test-IsUbuntu22))) {
     It "leiningen" {
         "lein --version" | Should -ReturnZeroExitCode
     }
@@ -325,7 +305,7 @@ Describe "Conda" {
     }
 }
 
-Describe "Packer" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Packer" {
     It "packer" {
         "packer --version" | Should -ReturnZeroExitCode
     }
@@ -334,13 +314,6 @@ Describe "Packer" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22)))
 Describe "Pulumi" {
     It "pulumi" {
         "pulumi version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "Phantomjs" -Skip:(-not (Test-IsUbuntu20)) {
-    It "phantomjs" {
-        $env:OPENSSL_CONF="/etc/ssl"
-        "phantomjs --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -360,7 +333,7 @@ Describe "Containers" {
 
 }
 
-Describe "nvm" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "nvm" {
     It "nvm" {
         "source /etc/skel/.nvm/nvm.sh && nvm --version" | Should -ReturnZeroExitCode
     }
@@ -396,7 +369,7 @@ Describe "yq" {
     }
 }
 
-Describe "Kotlin" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22))) {
+Describe "Kotlin" {
     It "kapt" {
         "kapt -version" | Should -ReturnZeroExitCode
     }
@@ -413,7 +386,34 @@ Describe "Kotlin" -Skip:((-not (Test-IsUbuntu20)) -and (-not (Test-IsUbuntu22)))
         "kotlinc-jvm -version" | Should -ReturnZeroExitCode
     }
 
-    It "kotlin-dce-js" {
-        "kotlin-dce-js -version" | Should -ReturnZeroExitCode
+    It "kotlinc-js" {
+        "kotlinc-js -help" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Ninja" {
+    BeforeAll {
+        New-item -Path "/tmp/ninjaproject" -ItemType Directory -Force
+@'
+cmake_minimum_required(VERSION 3.10)
+project(NinjaTest NONE)
+'@ | Out-File -FilePath "/tmp/ninjaproject/CMakeLists.txt"
+    }
+
+    It "Make a simple ninja project" {
+        "cmake -GNinja -S /tmp/ninjaproject -B /tmp/ninjaproject" | Should -ReturnZeroExitCode
+    }
+
+    It "build.ninja file should exist" {
+        $buildFilePath = Join-Path "/tmp/ninjaproject" "build.ninja"
+        $buildFilePath | Should -Exist
+    }
+
+    It "Ninja" {
+        "ninja --version" | Should -ReturnZeroExitCode
+    }
+
+    AfterAll {
+        Remove-Item -Path "/tmp/ninjaproject" -Recurse -Force
     }
 }

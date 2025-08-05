@@ -1,6 +1,6 @@
 # GitHub Actions Runner Images
 
-The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for Windows 2019/2022 and Ubuntu 20.04/22.04.
+The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for Windows 2019/2022 and Ubuntu 22.04/24.04.
 
 Each image is configured by a HCL2 Packer template that specifies where to build the image (Azure, in this case),
 and what steps to run to install software and prepare the disk.
@@ -49,7 +49,7 @@ In any case, you will need these software installed:
 
   For Linux - install the latest version from your distro's package repo.
 
-  For Windows - download and install it from [here](https://gitforwindows.org/) of use [Chocolatey](https://chocolatey.org/):
+  For Windows - download and install it from [here](https://gitforwindows.org/) or use [Chocolatey](https://chocolatey.org/):
 
   ```powershell
   choco install git -params '"/GitAndUnixToolsOnPath"'
@@ -75,8 +75,7 @@ In any case, you will need these software installed:
 ## Manual image generation
 
 This repository includes a script that assists in generating images in Azure.
-All you need is an Azure subscription and a build agent configured as described above.
-We suggest starting with building the UbuntuMinimal image because it includes only basic software and builds in less than 30 minutes.
+All you need is an Azure subscription, a resource group in that subscription and a build agent configured as described above.
 
 All the commands below should be executed in PowerShell.
 
@@ -96,9 +95,10 @@ Import-Module .\helpers\GenerateResourcesAndImage.ps1
 Finally, run the `GenerateResourcesAndImage` function, setting the mandatory arguments: image type and where to build and store the resulting managed image:
 
 - `SubscriptionId` - your Azure Subscription ID;
-- `ResourceGroupName` - the name of the resource group that will be created within your subscription (e.g., "imagegen-test");
+- `ResourceGroupName` - the name of the resource group that will store the resulting artifact (e.g., "imagegen-test").
+    The resource group must already exist in your Azure subscription;
 - `AzureLocation` - the location where resources will be created (e.g., "East US");
-- `ImageType` - the type of image to build (we suggest choosing "UbuntuMinimal" here; other valid options are "Windows2019", "Windows2022", "Ubuntu2004", "Ubuntu2204").
+- `ImageType` - the type of image to build (valid options are "Windows2019", "Windows2022", "Windows2025", "Ubuntu2204", "Ubuntu2404").
 
 This function automatically creates all required Azure resources and initiates the Packer image generation for the selected image type.
 
@@ -195,14 +195,18 @@ you can use Packer directly. To do this, you will need:
 - a resource group created in your Azure subscription where the managed image will be stored;
 - a string to be used as a password for the user used to install software (Windows only).
 
-Then, you can invoke Packer in your CI/CD pipeline using the following command:
+Then, you can invoke Packer in your CI/CD pipeline using the following commands:
 
 ```powershell
-packer build -var "subscription_id=$SubscriptionId" `
+packer plugins install github.com/hashicorp/azure 2.2.1
+
+packer build -only "$BuildName*" `
+             -var "subscription_id=$SubscriptionId" `
              -var "client_id=$ClientId" `
              -var "client_secret=$ClientSecret" `
              -var "install_password=$InstallPassword" `
              -var "location=$Location" `
+             -var "image_os=$ImageOS" `
              -var "managed_image_name=$ImageName" `
              -var "managed_image_resource_group_name=$ImageResourceGroupName" `
              -var "tenant_id=$TenantId" `
@@ -211,13 +215,15 @@ packer build -var "subscription_id=$SubscriptionId" `
 
 Where:
 
+- `BuildName` - name of the build defined in Packer template's `build{}` block (e.g. "ubuntu-24_04", "windows-2025");
 - `SubscriptionId` - your Azure Subscription ID;
 - `ClientId` and `ClientSecret` - Service Principal credentials;
 - `TenantId` - Azure Tenant ID;
 - `InstallPassword` - password for the user used to install software (Windows only);
 - `Location` - location where resources will be created (e.g., "East US");
+- `ImageOS` - the type of OS that will be deployed as a temporary VM (e.g. "ubuntu24", "win25");
 - `ImageName` and `ImageResourceGroupName` - name of the resource group where the managed image will be stored;
-- `TemplatePath` - path to the Packer template file (e.g., "images/windows/templates/windows-2022.pkr.hcl").
+- `TemplatePath` - path to the folder with Packer template files (e.g., "images/windows/templates").
 
 ### Required variables
 

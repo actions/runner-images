@@ -6,7 +6,7 @@
 # Download and install latest Chrome browser
 Install-Binary `
     -Url 'https://dl.google.com/tag/s/dl/chrome/install/googlechromestandaloneenterprise64.msi' `
-    -ExpectedSignature '2673EA6CC23BEFFDA49AC715B121544098A1284C'
+    -ExpectedSubject 'CN=Google LLC, O=Google LLC, L=Mountain View, S=California, C=US, SERIALNUMBER=3582691, OID.2.5.4.15=Private Organization, OID.1.3.6.1.4.1.311.60.2.1.2=Delaware, OID.1.3.6.1.4.1.311.60.2.1.3=US'
 
 # Prepare firewall rules
 Write-Host "Adding the firewall rule for Google update blocking..."

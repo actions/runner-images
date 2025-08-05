@@ -29,10 +29,15 @@ Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
 Update-Environment
 
-# Get 3 latest versions of GHC
+# Get 1 or 3 latest versions of GHC depending on the OS version
+If (Test-IsWin25) {
+    $numberOfVersions = 1
+} else {
+    $numberOfVersions = 3
+}
 $versions = ghcup list -t ghc -r | Where-Object { $_ -notlike "prerelease" }
 $versionsOutput = [version[]]($versions | ForEach-Object { $_.Split(' ')[1]; })
-$latestMajorMinor = $versionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version] $_.Name } | Select-Object -last 3
+$latestMajorMinor = $versionsOutput | Group-Object { $_.ToString(2) } | Sort-Object { [Version] $_.Name } | Select-Object -last $numberOfVersions
 $versionsList = $latestMajorMinor | ForEach-Object { $_.Group | Select-Object -Last 1 } | Sort-Object
 
 # The latest version will be installed as a default

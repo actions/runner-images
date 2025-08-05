@@ -45,6 +45,18 @@ is_Arm64() {
     [ "$(arch)" = "arm64" ]
 }
 
+is_Sequoia() {
+    [ "$OSTYPE" = "darwin24" ]
+}
+
+is_SequoiaArm64() {
+    is_Sequoia && is_Arm64
+}
+
+is_SequoiaX64() {
+    is_Sequoia && ! is_Arm64
+}
+
 is_Sonoma() {
     [ "$OSTYPE" = "darwin23" ]
 }
@@ -67,18 +79,6 @@ is_VenturaArm64() {
 
 is_VenturaX64() {
     is_Ventura && ! is_Arm64
-}
-
-is_Monterey() {
-    [ "$OSTYPE" = "darwin21" ]
-}
-
-is_BigSur() {
-    [ "$OSTYPE" = "darwin20" ]
-}
-
-is_Veertu() {
-    [[ -d "/Library/Application Support/Veertu" ]]
 }
 
 get_toolset_value() {
