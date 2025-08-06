@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [Windows-latest workflows will use Windows Server 2025 image in GH](https://github.com/actions/runner-images/issues/12677) |
+| [[Windows-2022] Openssl version will be updated to version 3.5.1 on 2025-10-10](https://github.com/actions/runner-images/issues/12676) |
 | [[Windows 2022] MongoDB 5.x version will be removed from Windows 2022 image on 2025-09-01 and will be updated to 7.x version.](https://github.com/actions/runner-images/issues/12640) |
-| [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 4656
-- Image Version: 20250727.1.0
+- Image Version: 20250803.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -19,7 +20,7 @@
 - Julia 1.11.6
 - Kotlin 2.2.0
 - LLVM 20.1.8
-- Node 22.17.1
+- Node 22.18.0
 - Perl 5.40.2
 - PHP 8.4.8
 - Python 3.9.13
@@ -30,12 +31,12 @@
 - Composer 2.8.10
 - Helm 3.18.4
 - Miniconda 25.5.1 (pre-installed on the image but not added to PATH)
-- NPM 10.9.2
+- NPM 10.9.3
 - NuGet 6.14.0.116
-- pip 25.1.1 (python 3.9)
+- pip 25.2 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 3bdaa9b420)
+- Vcpkg (build from commit 903956eff7)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -51,15 +52,15 @@
 - sbt 1.11.3
 
 ### Tools
-- 7zip 25.00
+- 7zip 25.01
 - aria2 1.37.0
 - azcopy 10.29.1
 - Bazel 8.3.1
 - Bazelisk 1.26.0
-- Bicep 0.36.177
+- Bicep 0.37.4
 - Cabal 3.16.0.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.22.1
+- CodeQL Action Bundle 2.22.2
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
@@ -76,7 +77,7 @@
 - Newman 6.2.1
 - OpenSSL 3.5.1
 - Packer 1.12.0
-- Pulumi 3.186.0
+- Pulumi 3.187.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
@@ -89,12 +90,12 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.27.60
+- AWS CLI 2.28.1
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.75.0
 - Azure DevOps CLI extension 1.0.2
-- GitHub CLI 2.76.1
+- GitHub CLI 2.76.2
 
 ### Rust Tools
 - Cargo 1.88.0
@@ -107,10 +108,10 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 138.0.7204.169
-- Chrome Driver 138.0.7204.168
-- Microsoft Edge 138.0.3351.109
-- Microsoft Edge Driver 138.0.3351.109
+- Google Chrome 138.0.7204.184
+- Chrome Driver 138.0.7204.183
+- Microsoft Edge 138.0.3351.121
+- Microsoft Edge Driver 138.0.3351.121
 - Mozilla Firefox 141.0
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -176,6 +177,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.1.7
 - 3.2.9
 - 3.3.9
+- 3.4.5
 
 ### Databases
 
@@ -198,7 +200,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.24.0
-- DacFx 170.0.94.3
+- DacFx 170.1.61.1
 - MySQL 8.0.43.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
@@ -211,9 +213,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.29.0  | C:\tools\nginx-1.29.0\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.36310.24 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.14.36327.8 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -238,12 +240,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 17.14.36015.10  |
 | Component.Unreal.Debugger                                                 | 17.14.36015.10  |
 | Component.Unreal.Ide                                                      | 17.14.36015.10  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36310.24  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36322.40  |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
-| ios                                                                       | 18.5.9207.0     |
-| maccatalyst                                                               | 18.5.9207.0     |
+| ios                                                                       | 18.5.9214.0     |
+| maccatalyst                                                               | 18.5.9214.0     |
 | maui.blazor                                                               | 9.0.51.12966    |
 | maui.core                                                                 | 9.0.51.12966    |
 | maui.windows                                                              | 9.0.51.12966    |
@@ -302,7 +304,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.CoreEditor                               | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.CppBuildInsights                         | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.Debugger.JustInTime                      | 17.14.36015.10  |
-| Microsoft.VisualStudio.Component.Debugger.Snapshot                        | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.DiagnosticTools                          | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.DockerTools                              | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.DotNetModelBuilder                       | 17.14.36015.10  |
@@ -317,7 +318,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.HLSL                                     | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.IISExpress                               | 17.14.36015.10  |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.36310.24  |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.36324.12  |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 17.14.36015.10  |
 | Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 17.14.36015.10  |
@@ -411,13 +412,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64                | 17.14.36015.10  |
 | Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 17.14.36015.10  |
 | Microsoft.VisualStudio.ComponentGroup.Web                                 | 17.14.36015.10  |
-| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 17.14.36015.10  |
+| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 17.14.36322.40  |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions                  | 17.14.36015.10  |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.CMake            | 17.14.36015.10  |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.TemplateEngine   | 17.14.36015.10  |
 | Microsoft.VisualStudio.ComponentGroup.WindowsAppDevelopment.Prerequisites | 17.14.36015.10  |
 | Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs                    | 17.14.36015.10  |
-| Microsoft.VisualStudio.Workload.Azure                                     | 17.14.36015.10  |
+| Microsoft.VisualStudio.Workload.Azure                                     | 17.14.36322.40  |
 | Microsoft.VisualStudio.Workload.CoreEditor                                | 17.14.36015.10  |
 | Microsoft.VisualStudio.Workload.Data                                      | 17.14.36015.10  |
 | Microsoft.VisualStudio.Workload.DataScience                               | 17.14.36015.10  |
@@ -475,7 +476,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.19
+- AWSPowershell: 5.0.24
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.29.1
@@ -490,7 +491,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                                                                                                           |
 | -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                              |
-| Android Emulator           | 35.6.11                                                                                                                                                                                                                                                           |
+| Android Emulator           | 36.1.9                                                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                 |
 | Android SDK Platforms      | android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                            |
