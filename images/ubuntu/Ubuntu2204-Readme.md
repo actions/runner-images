@@ -1,7 +1,11 @@
+| Announcements |
+|-|
+| [[Windows & Ubuntu] .NET 6 will be removed from the images on  2025-08-01.](https://github.com/actions/runner-images/issues/12241) |
+***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1031-azure
-- Image Version: 20250804.2.0
+- Image Version: 20250728.1.0
 - Systemd version: 249.11-0ubuntu3.16
 
 ## Installed Software
@@ -35,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit de117c9255)
+- Vcpkg (build from commit 3bdaa9b420)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,10 +58,10 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.0.0
+- Gradle 8.14.3
 - Lerna 8.2.3
 - Maven 3.9.11
-- Sbt 1.11.4
+- Sbt 1.11.3
 
 ### Tools
 - Ansible 2.17.13
@@ -65,12 +69,12 @@ to accomplish this.
 - AzCopy 10.29.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.3.1
 - Bazelisk 1.26.0
-- Bicep 0.37.4
+- Bicep 0.36.177
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.22.2
+- CodeQL Action Bundle 2.22.1
 - Docker Amazon ECR Credential Helper 0.10.1
-- Docker Compose v2 2.38.2
+- Docker Compose v2 2.37.3
 - Docker-Buildx 0.26.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
@@ -92,10 +96,10 @@ to accomplish this.
 - Newman 6.2.1
 - nvm 0.40.3
 - OpenSSL 3.0.2-0ubuntu1.19
-- Packer 1.14.0
+- Packer 1.13.1
 - Parcel 2.15.4
 - Podman 3.4.4
-- Pulumi 3.187.0
+- Pulumi 3.186.0
 - R 4.5.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -107,18 +111,18 @@ to accomplish this.
 - Ninja 1.13.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.292
-- AWS CLI 2.28.2
+- Alibaba Cloud CLI 3.0.291
+- AWS CLI 2.27.60
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.142.1
 - Azure CLI 2.75.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.76.2
-- Google Cloud CLI 532.0.0
-- Netlify CLI 23.0.0
-- OpenShift CLI 4.19.6
+- GitHub CLI 2.76.1
+- Google Cloud CLI 531.0.0
+- Netlify CLI 22.4.0
+- OpenShift CLI 4.19.5
 - ORAS CLI 1.2.3
-- Vercel CLI 44.7.2
+- Vercel CLI 44.6.3
 
 ### Java
 | Version             | Environment Variable |
@@ -157,11 +161,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 138.0.7204.183
-- ChromeDriver 138.0.7204.183
+- Google Chrome 138.0.7204.168
+- ChromeDriver 138.0.7204.168
 - Chromium 138.0.7204.0
-- Microsoft Edge 138.0.3351.121
-- Microsoft Edge WebDriver 138.0.3351.121
+- Microsoft Edge 138.0.3351.109
+- Microsoft Edge WebDriver 138.0.3351.109
 - Selenium server 4.34.0
 - Mozilla Firefox 141.0
 - Geckodriver 0.36.0
@@ -200,7 +204,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 170.1.61.1
+- SqlPackage 170.0.94.3
 
 ### Cached Tools
 
@@ -212,7 +216,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 18.20.8
 - 20.19.4
-- 22.18.0
+- 22.17.1
 
 #### Python
 - 3.9.23
@@ -226,13 +230,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
 - 3.10.16 [PyPy 7.3.19]
-- 3.11.13 [PyPy 7.3.20]
 
 #### Ruby
 - 3.1.7
 - 3.2.9
 - 3.3.9
-- 3.4.5
 
 ### PowerShell Tools
 - PowerShell 7.4.10
@@ -287,8 +289,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:18-alpine       | sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e  | 2025-03-27 |
 | node:20              | sha256:2c071012e93673d595e1399564c4a48a70a5c0a0acd7db8211d5e6f6316b431a  | 2025-07-15 |
 | node:20-alpine       | sha256:df02558528d3d3d0d621f112e232611aecfee7cbc654f6b375765f72bb262799  | 2025-07-15 |
-| node:22              | sha256:3218f0d1b9e4b63def322e9ae362d581fbeac1ef21b51fc502ef91386667ce92  | 2025-08-01 |
-| node:22-alpine       | sha256:1b2479dd35a99687d6638f5976fd235e26c5b37e8122f786fcd5fe231d63de5b  | 2025-08-01 |
+| node:22              | sha256:37ff334612f77d8f999c10af8797727b731629c26f2e83caa6af390998bdc49c  | 2025-07-16 |
+| node:22-alpine       | sha256:5539840ce9d013fa13e3b9814c9353024be7ac75aca5db6d039504a56c04ea59  | 2025-07-16 |
 | ubuntu:20.04         | sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214  | 2025-04-08 |
 | ubuntu:22.04         | sha256:1ec65b2719518e27d4d25f104d93f9fac60dc437f81452302406825c46fcc9cb  | 2025-07-14 |
 
@@ -336,7 +338,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libmagickcore-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libsecret-1-dev        | 0.20.5-2                            |
-| libsqlite3-dev         | 3.37.2-2ubuntu0.5                   |
+| libsqlite3-dev         | 3.37.2-2ubuntu0.4                   |
 | libssl-dev             | 3.0.2-0ubuntu1.19                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
@@ -365,7 +367,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-0ubuntu0.22.04.4              |
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
-| sqlite3                | 3.37.2-2ubuntu0.5                   |
+| sqlite3                | 3.37.2-2ubuntu0.4                   |
 | ssh                    | 1:8.9p1-3ubuntu0.13                 |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
@@ -386,3 +388,4 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
+
