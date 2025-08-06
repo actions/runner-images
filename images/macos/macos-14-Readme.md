@@ -6,7 +6,7 @@
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250728.1473
+- Image Version: 20250804.1491
 
 ## Installed Software
 
@@ -25,7 +25,7 @@
 - Mono 6.12.0.188
 - Node.js 20.19.4
 - Perl 5.40.2
-- PHP 8.4.10
+- PHP 8.4.11
 - Python3 3.13.5
 - Ruby 3.3.9
 
@@ -34,19 +34,19 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.10
-- Homebrew 4.5.12
+- Homebrew 4.5.13
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 25.1.1 (python 3.13)
+- Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.1
-- Vcpkg 2025 (build from commit 3bdaa9b420)
+- Vcpkg 2025 (build from commit 903956eff7)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.11
-- Gradle 8.14.3
+- Gradle 9.0.0
 
 ### Utilities
 - 7-Zip 17.05
@@ -58,13 +58,13 @@
 - Curl 8.15.0
 - Git 2.50.1
 - Git LFS 3.7.0
-- GitHub CLI 2.76.1
+- GitHub CLI 2.76.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
 - jq 1.8.1
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.13.1
+- Packer 1.14.0
 - pkgconf 2.5.1
 - Unxip 3.2
 - yq 4.47.1
@@ -72,14 +72,14 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.27.60
+- AWS CLI 2.28.1
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.75.0
 - Azure CLI (azure-devops) 1.0.2
-- Bicep CLI 0.36.177
+- Bicep CLI 0.37.4
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.22.1
+- CodeQL Action Bundle 2.22.2
 - Fastlane 2.228.0
 - SwiftFormat 0.57.2
 - Xcbeautify 2.29.0
@@ -92,11 +92,11 @@
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 138.0.7204.169
-- Google Chrome for Testing 138.0.7204.168
-- ChromeDriver 138.0.7204.168
-- Microsoft Edge 138.0.3351.109
-- Microsoft Edge WebDriver 138.0.3351.109
+- Google Chrome 138.0.7204.184
+- Google Chrome for Testing 138.0.7204.183
+- ChromeDriver 138.0.7204.183
+- Microsoft Edge 138.0.3351.121
+- Microsoft Edge WebDriver 138.0.3351.121
 - Mozilla Firefox 141.0
 - geckodriver 0.36.0
 - Selenium server 4.34.0
@@ -111,7 +111,7 @@
 ### Java
 | Version              | Environment Variable |
 | -------------------- | -------------------- |
-| 8.0.452+9            | JAVA_HOME_8_X64      |
+| 8.0.462+8            | JAVA_HOME_8_X64      |
 | 11.0.28+6            | JAVA_HOME_11_X64     |
 | 17.0.16+8            | JAVA_HOME_17_X64     |
 | 21.0.8+9.0 (default) | JAVA_HOME_21_X64     |
@@ -134,7 +134,7 @@
 #### Node.js
 - 18.20.8
 - 20.19.4
-- 22.17.1
+- 22.18.0
 
 #### Go
 - 1.22.12
@@ -237,7 +237,7 @@
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iOS 17.0     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                   |
 | iOS 17.2     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                   |
-| iOS 17.4     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                            |
+| iOS 17.4     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro (12.9-inch) (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                   |
 | iOS 17.5     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                            |
 | iOS 18.1     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |
 | iOS 18.2     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |
@@ -258,7 +258,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                       |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                                                          |
-| Android Emulator           | 35.6.11                                                                                                                                                                                                                                                                                                                                       |
+| Android Emulator           | 36.1.9                                                                                                                                                                                                                                                                                                                                        |
 | Android SDK Build-tools    | 36.0.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                                            |
 | Android SDK Platforms      | android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                                        |
