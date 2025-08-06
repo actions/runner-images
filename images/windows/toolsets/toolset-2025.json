@@ -325,11 +325,11 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "3.5.1",
+        "version": "3.5.2",
         "pinnedDetails": {
-            "link": "https://github.com/actions/runner-images-internal/pull/6702",
-            "reason": "Meaningful reason must be added at next update.",
-            "review-at": "2025-06-01",
+            "link": "https://github.com/openssl/openssl/releases/tag/openssl-3.5.2",
+            "reason": "Installer not found for version 3.5.1",
+            "review-at": "2025-10-10",
             "type": "preexisting-pinned-version-without-reason"
         }
     },
