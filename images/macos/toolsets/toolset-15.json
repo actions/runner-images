@@ -4,14 +4,16 @@
         "x64": {
             "versions": [
                 {
-                    "link": "26_beta",
-                    "version": "26.0.0-Beta+17A5241e",
+                    "link": "26_beta_5",
+                    "filename": "26_beta_5_Universal",
+                    "version": "26.0.0-Beta.5+17A5295f",
                     "symlinks": ["26.0"],
-                    "sha256": "664ad6ec7a3139e9c43b95620c73f8950a802c3d469bb47e6d89f3eab9541b1c",
+                    "sha256": "ce36bf40a43c41a0d3a828eed5d8d058d35449260d3af646ab3024d5f208fde0",
                     "install_runtimes": "default"
                 },
                 {
                     "link": "16.4",
+                    "filename": "16.4",
                     "version": "16.4.0+16F6",
                     "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
                     "install_runtimes": [
@@ -22,24 +24,28 @@
                 },
                 {
                     "link": "16.3",
+                    "filename": "16.3",
                     "version": "16.3+16E140",
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16.2",
+                    "filename": "16.2",
                     "version": "16.2+16C5032a",
                     "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16.1",
+                    "filename": "16.1",
                     "version": "16.1+16B40",
                     "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16",
+                    "filename": "16",
                     "version": "16.0.0+16A242d",
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
@@ -50,14 +56,16 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "26_beta",
-                    "version": "26.0.0-Beta+17A5241e",
+                    "link": "26_beta_5",
+                    "filename": "26_beta_5_Universal",
+                    "version": "26.0.0-Beta.5+17A5295f",
                     "symlinks": ["26.0"],
-                    "sha256": "664ad6ec7a3139e9c43b95620c73f8950a802c3d469bb47e6d89f3eab9541b1c",
+                    "sha256": "ce36bf40a43c41a0d3a828eed5d8d058d35449260d3af646ab3024d5f208fde0",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16.4",
+                    "filename": "16.4",
                     "version": "16.4.0+16F6",
                     "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
                     "install_runtimes": [
@@ -69,24 +77,28 @@
                 },
                 {
                     "link": "16.3",
+                    "filename": "16.3",
                     "version": "16.3+16E140",
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16.2",
+                    "filename": "16.2",
                     "version": "16.2+16C5032a",
                     "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16.1",
+                    "filename": "16.1",
                     "version": "16.1+16B40",
                     "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16",
+                    "filename": "16",
                     "version": "16.0.0+16A242d",
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
