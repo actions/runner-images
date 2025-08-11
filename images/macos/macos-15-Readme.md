@@ -62,7 +62,7 @@
 - gpg (GnuPG) 2.4.8
 - jq 1.8.1
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.14.0 1.14.1
+- Packer 1.14.0
 - pkgconf 2.5.1
 - Unxip 3.2
 - yq 4.47.1
