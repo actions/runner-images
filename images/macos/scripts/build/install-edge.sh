@@ -21,9 +21,9 @@ edge_driver_version_file_path=$(download_with_retry "https://msedgedriver.micros
 edge_driver_latest_version=$(iconv -f utf-16 -t utf-8 "$edge_driver_version_file_path" | tr -d '\r')
 
 if is_Arm64; then
- edge_driver_url="https://msedgedriver.azureedge.net/${edge_driver_latest_version}/edgedriver_mac64_m1.zip"
+    edge_driver_url="https://msedgedriver.microsoft.com/${edge_driver_latest_version}/edgedriver_mac64_m1.zip"
 else
-    edge_driver_url="https://msedgedriver.azureedge.net/${edge_driver_latest_version}/edgedriver_mac64.zip"
+    edge_driver_url="https://msedgedriver.microsoft.com/${edge_driver_latest_version}/edgedriver_mac64.zip"
 fi
 
 echo "Compatible version of WebDriver: ${edge_driver_latest_version}"
