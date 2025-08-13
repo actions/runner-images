@@ -55,11 +55,16 @@ done
 
 # $HOME/Library/Application\ Support/com.apple.TCC/TCC.db
 userValuesArray=(
+    "'kTCCServiceAccessibility','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceAccessibility','/usr/bin/osascript',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1566321319"
+    "'kTCCServiceAccessibility','com.apple.Terminal',0,2,0,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,NULL,'UNUSED',NULL,0,1591180502"
     "'kTCCServiceAppleEvents','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,3,1,NULL,NULL,0,'com.apple.Terminal',X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,1655808179"
     "'kTCCServiceAppleEvents','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1629294900"
     "'kTCCServiceAppleEvents','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,3,1,NULL,NULL,0,'com.apple.systemevents',X'fade0c000000003400000001000000060000000200000016636f6d2e6170706c652e73797374656d6576656e7473000000000003',NULL,164456761"
     "'kTCCServiceAppleEvents','/bin/bash',1,2,0,1,NULL,NULL,0,'com.apple.finder',NULL,NULL,1592919552"
     "'kTCCServiceAppleEvents','/bin/bash',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1591532620"
+    "'kTCCServiceAppleEvents','/usr/bin/osascript',1,2,0,1,NULL,NULL,0,'com.apple.finder',NULL,NULL,1592919552"
+    "'kTCCServiceAppleEvents','/usr/bin/osascript',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1591532620"
     "'kTCCServiceAppleEvents','/opt/hca/hosted-compute-agent',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
     "'kTCCServiceAppleEvents','/opt/hca/hosted-compute-agent',1,2,3,1,NULL,NULL,0,'com.apple.systemevents',X'fade0c000000003400000001000000060000000200000016636f6d2e6170706c652e73797374656d6576656e7473000000000003',NULL,1592919552"
     "'kTCCServiceAppleEvents','/opt/hca/start_hca.sh',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1574241374"
@@ -78,6 +83,9 @@ userValuesArray=(
     "'kTCCServicePostEvent','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
     "'kTCCServiceScreenCapture','/opt/hca/hosted-compute-agent',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
     "'kTCCServiceScreenCapture','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
+    "'kTCCServiceScreenCapture','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceScreenCapture','/usr/bin/osascript',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1566321319"
+    "'kTCCServiceScreenCapture','com.apple.Terminal',0,2,4,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,0,'UNUSED',NULL,0,1678990068"
     "'kTCCServiceSystemPolicyAllFiles','/opt/hca/start_hca.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
     "'kTCCServiceSystemPolicyAllFiles','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
     "'kTCCServiceUbiquity','/System/Library/PrivateFrameworks/PhotoLibraryServices.framework/Versions/A/Support/photolibraryd',1,2,5,1,NULL,NULL,NULL,'UNUSED',NULL,0,1619461750"
