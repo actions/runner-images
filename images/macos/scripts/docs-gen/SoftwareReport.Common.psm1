@@ -231,10 +231,8 @@ function Get-WgetVersion {
 }
 
 function Get-PackerVersion {
-    # Packer 1.7.1 has a bug and outputs version to stderr instead of stdout https://github.com/hashicorp/packer/issues/10855
-    $result = Run-Command "packer --version"
-    $packerVersion = [regex]::matches($result, "(\d+.){2}\d+").Value
-    return $packerVersion
+    $packerVersion = Run-Command "packer --version" | Select-String "Packer" | Select-Object -First 1 | Take-Part -Part 1
+    return ($packerVersion.Trim("v"))
 }
 
 function Get-OpenSSLVersion {
