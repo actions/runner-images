@@ -12,7 +12,6 @@ function Build-BrowserSection {
         [ToolVersionNode]::new("Microsoft Edge", $(Get-EdgeVersion))
         [ToolVersionNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
     )
-    }
 
     $nodes += @(
         [ToolVersionNode]::new("Mozilla Firefox", $(Get-FirefoxVersion))
