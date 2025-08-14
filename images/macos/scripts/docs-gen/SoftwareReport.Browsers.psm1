@@ -12,12 +12,6 @@ function Build-BrowserSection {
         [ToolVersionNode]::new("Microsoft Edge", $(Get-EdgeVersion))
         [ToolVersionNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
     )
-
-    if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64) -and (-not $os.IsSequoiaArm64)) {
-        $nodes += @(
-            [ToolVersionNode]::new("Microsoft Edge", $(Get-EdgeVersion))
-            [ToolVersionNode]::new("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
-        )
     }
 
     $nodes += @(
