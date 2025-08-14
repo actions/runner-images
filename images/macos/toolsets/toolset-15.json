@@ -9,7 +9,7 @@
                     "version": "26.0.0-Beta.5+17A5295f",
                     "symlinks": ["26.0"],
                     "sha256": "ce36bf40a43c41a0d3a828eed5d8d058d35449260d3af646ab3024d5f208fde0",
-                    "install_runtimes": "none"
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "16.4",
@@ -17,9 +17,9 @@
                     "version": "16.4.0+16F6",
                     "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
                     "install_runtimes": [
-                        { "iOS": ["18.4", "18.5", "18.6", "23A5308g"] },
-                        { "watchOS": ["11.2", "11.4", "11.5", "23R5328g"] },
-                        { "tvOS": ["18.2", "18.4", "18.5", "23J5327g"] }
+                        { "iOS": ["18.4", "18.5", "18.6"] },
+                        { "watchOS": ["11.2", "11.4", "11.5"] },
+                        { "tvOS": ["18.2", "18.4", "18.5"] }
                     ] 
                 },
                 {
