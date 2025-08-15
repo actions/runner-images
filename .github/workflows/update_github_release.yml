@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-
     - name: Update release for ${{ github.event.client_payload.ReleaseBranchName }}
       uses: actions/github-script@v7
       with:
