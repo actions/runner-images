@@ -1,44 +1,47 @@
 | Announcements |
 |-|
+| [[macOS] Default Xcode on macOS 15 Sequoia will be set to Xcode 16.4 on August, 25](https://github.com/actions/runner-images/issues/12751) |
 | [[macOS] Xcode support policy will be changed on August 11, 2025](https://github.com/actions/runner-images/issues/12541) |
 | [[macOS] macos-latest YAML-label will use macos-15 in August 2025](https://github.com/actions/runner-images/issues/12520) |
 ***
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250805.1714
+- Image Version: 20250813.1729
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.412, 9.0.102, 9.0.203, 9.0.303
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.413, 9.0.102, 9.0.203, 9.0.304
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.4.0) - available by `gcc-13` alias
 - GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
+- GCC 15 (Homebrew GCC 15.1.0) - available by `gcc-15` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
+- GNU Fortran 15 (Homebrew GCC 15.1.0) - available by `gfortran-15` alias
 - Kotlin 2.2.0-release-294
 - Mono 6.12.0.188
 - Node.js 20.19.4
 - Perl 5.40.2
-- Python3 3.13.5
+- Python3 3.13.6
 - Ruby 3.3.9
 
 ### Package Management
 - Bundler 2.7.1
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.5.13
+- Homebrew 4.6.3
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 25.1.1 (python 3.13)
+- Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.1
-- Vcpkg 2025 (build from commit 8cce1e1118)
+- Vcpkg 2025 (build from commit b664925609)
 - Yarn 1.22.22
 
 ### Project Management
@@ -49,9 +52,9 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.29.1
+- azcopy 10.30.0
 - bazel 8.3.1
-- bazelisk 1.26.0
+- bazelisk 1.27.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.50.1
@@ -70,17 +73,17 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.28.2
+- AWS CLI 2.28.8
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.75.0
+- Azure CLI 2.76.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.37.4
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.22.2
+- CodeQL Action Bundle 2.22.3
 - Fastlane 2.228.0
 - SwiftFormat 0.57.2
-- Xcbeautify 2.29.0
+- Xcbeautify 2.30.1
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
 
@@ -89,12 +92,12 @@
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 138.0.7204.184
-- Google Chrome for Testing 138.0.7204.183
-- ChromeDriver 138.0.7204.183
-- Mozilla Firefox 141.0
+- Google Chrome 139.0.7258.128
+- Google Chrome for Testing 139.0.7258.68
+- ChromeDriver 139.0.7258.68
+- Mozilla Firefox 141.0.3
 - geckodriver 0.36.0
-- Selenium server 4.34.0
+- Selenium server 4.35.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -121,7 +124,7 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.5
+- 3.13.6
 
 #### Node.js
 - 18.20.8
@@ -130,17 +133,17 @@
 
 #### Go
 - 1.22.12
-- 1.23.11
-- 1.24.5
+- 1.23.12
+- 1.24.6
 
 ### Rust Tools
-- Cargo 1.88.0
-- Rust 1.88.0
-- Rustdoc 1.88.0
+- Cargo 1.89.0
+- Rust 1.89.0
+- Rustdoc 1.89.0
 - Rustup 1.28.2
 
 #### Packages
-- Clippy 0.1.88
+- Clippy 0.1.89
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
