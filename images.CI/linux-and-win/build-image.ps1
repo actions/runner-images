@@ -38,7 +38,14 @@ $SensitiveData = @(
     ':  ->'
 )
 
-$azure_tags = $Tags | ConvertTo-Json -Compress
+# Prepare tags
+$TagsJson = $Tags | ConvertTo-Json -Compress
+if ($PSVersionTable.PSVersion.Major -eq 5) {
+    $TagsJson = $TagsJson -replace '"', '\"'
+}
+elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
+    $TagsJson = $TagsJson -replace '"', '\"'
+}
 
 Write-Host "Show Packer Version"
 packer --version
@@ -66,7 +73,7 @@ packer build    -only "$buildName*" `
                 -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
                 -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
                 -var "use_azure_cli_auth=$UseAzureCliAuth" `
-                -var "azure_tags=$azure_tags" `
+                -var "azure_tags=$TagsJson" `
                 -color=false `
                 $TemplatePath `
         | Where-Object {
