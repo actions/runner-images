@@ -76,7 +76,7 @@
 - gdb 8.1
 - GNU Binutils 2.30
 - Newman 6.2.1
-- NSIS 3.10
+- NSIS 3.11
 - OpenSSL 1.1.1w
 - Packer 1.12.0
 - Parcel 2.15.4
@@ -547,4 +547,3 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019     | sha256:f2d95688a349c6d6fc1509ac8d41259e7cfcda6a7f10c14f9294cece8b1cc0dc  | 2025-07-08 |
 | mcr.microsoft.com/windows/nanoserver:1809                                 | sha256:c357ed591af7b24f2d4a12b1947da5e6ebe559d89f41471f6928902c7cda7206  | 2025-07-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2019                             | sha256:2a7cfebaed9241227ad68b1fc7cb764867ea1c56624ece03f926eb8bdf0c998f  | 2025-07-05 |
-
