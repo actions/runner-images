@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Windows Server 2025] image will again have D:/ drive accessible to users from 2025-08-18](https://github.com/actions/runner-images/issues/12744) |
 | [Windows-latest workflows will use Windows Server 2025 image in GH](https://github.com/actions/runner-images/issues/12677) |
 | [[Windows-2022] Openssl version will be updated to version 3.5.2 on 2025-10-10](https://github.com/actions/runner-images/issues/12676) |
 | [[Windows 2022] MongoDB 5.x version will be removed from Windows 2022 image on 2025-09-01 and will be updated to 7.x version.](https://github.com/actions/runner-images/issues/12640) |
 ***
 # Windows Server 2022
-- OS Version: 10.0.20348 Build 3932
-- Image Version: 20250811.1.0
+- OS Version: 10.0.20348 Build 4052
+- Image Version: 20250817.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -17,7 +18,7 @@
 - Bash 5.2.37(1)-release
 - Go 1.24.6
 - Julia 1.11.6
-- Kotlin 2.2.0
+- Kotlin 2.2.10
 - LLVM 20.1.8
 - Node 20.19.4
 - Perl 5.32.1
@@ -35,7 +36,7 @@
 - pip 25.2 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 0a081b36b3)
+- Vcpkg (build from commit 4bb07a326d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -66,11 +67,11 @@
 - ghc 9.12.2
 - Git 2.50.1.windows.1
 - Git LFS 3.7.0
-- ImageMagick 7.1.2-0
+- ImageMagick 7.1.2-1
 - InnoSetup 6.4.0
 - jq 1.8.1
 - Kind 0.29.0
-- Kubectl 1.33.3
+- Kubectl 1.33.4
 - Mercurial 6.3.1
 - gcc 12.2.0
 - gdb 11.2
@@ -79,7 +80,7 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.12.0
-- Pulumi 3.188.0
+- Pulumi 3.190.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
@@ -93,8 +94,8 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.294
-- AWS CLI 2.28.6
+- Alibaba Cloud CLI 3.0.295
+- AWS CLI 2.28.11
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
@@ -116,14 +117,14 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 139.0.7258.67
-- Chrome Driver 139.0.7258.66
-- Microsoft Edge 139.0.3405.86
-- Microsoft Edge Driver 139.0.3405.86
+- Google Chrome 139.0.7258.128
+- Chrome Driver 139.0.7258.68
+- Microsoft Edge 139.0.3405.102
+- Microsoft Edge Driver 139.0.3405.102
 - Mozilla Firefox 141.0.3
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.34.0
+- Selenium server 4.35.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -175,7 +176,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.6
+- 3.13.7
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.20]
@@ -196,7 +197,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-14                                                                                                                    |
-| Version              | 14.18                                                                                                                                |
+| Version              | 14.19                                                                                                                                |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\Program Files\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -225,7 +226,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
 | ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.36401.2 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.14.36408.4 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -252,7 +253,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Unreal.Android                                                  | 17.14.36015.10  |
 | Component.Unreal.Debugger                                                 | 17.14.36015.10  |
 | Component.Unreal.Ide                                                      | 17.14.36015.10  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36331.10  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36405.17  |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
@@ -496,7 +497,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.29
+- AWSPowershell: 5.0.34
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.29.1
@@ -534,9 +535,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Docker images
 | Repository:Tag                                                            | Digest                                                                   | Created    |
 | ------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ---------- |
-| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:a079da56a0014847d85010ddf264215332dcde03f8a27870d1fabf55aa86fb13  | 2025-07-08 |
-| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:ce9beb1bd919247d9bc69e9f0345795381ec15000c1faa989a7839cd5f65a0e9  | 2025-07-08 |
-| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:425ca73da19ca274edd1b466e1009342b476306de6918eb246758b9482f47927  | 2025-07-08 |
-| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:9a57174ce85e979529e4f0cd58dff2e837b65fc7832b7585b4882f6cce0e255d  | 2025-07-05 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:3281482945016cdaefbe417edd8338de8119e077b6941f74e78b050da1b7bd97  | 2025-07-05 |
+| mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:b06372fdf2436467edcaea8526ff623e86af057be7ae2096166ee8c6d6f0a7f4  | 2025-08-12 |
+| mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:93b737c136a81a61b8a27f87ae9072bd649cd39d950dadffc899b663e54cce18  | 2025-08-12 |
+| mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:35fb40d7f9be74ac14c712e1e5d0064aee2fdb4bf3173450c7c634b725801d80  | 2025-08-12 |
+| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:6b12945bd34dd80b9c3bca145948d32155f0c3657c567909c85bb829f6197755  | 2025-08-08 |
+| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:d9e1a220c13cf25c7b213fbd96df2b63671e2dba0de3909003d4bb23a8bc8a1c  | 2025-08-08 |
 
