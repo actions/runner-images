@@ -4,11 +4,11 @@
         "x64": {
             "versions": [
                 {
-                    "link": "26_beta_5",
-                    "filename": "26_beta_5_Universal",
-                    "version": "26.0.0-Beta.5+17A5295f",
+                    "link": "26_beta_6",
+                    "filename": "26_beta_6_Universal",
+                    "version": "26.0.0-Beta.6+17A5305f",
                     "symlinks": ["26.0"],
-                    "sha256": "ce36bf40a43c41a0d3a828eed5d8d058d35449260d3af646ab3024d5f208fde0",
+                    "sha256": "969b8dfe04c366a1900db6052aae7e711f3ecd34b1cfd08f51b5f98c031c2abd",
                     "install_runtimes": "default"
                 },
                 {
@@ -56,11 +56,11 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "26_beta_5",
-                    "filename": "26_beta_5_Universal",
-                    "version": "26.0.0-Beta.5+17A5295f",
+                    "link": "26_beta_6",
+                    "filename": "26_beta_6_Universal",
+                    "version": "26.0.0-Beta.6+17A5305f",
                     "symlinks": ["26.0"],
-                    "sha256": "ce36bf40a43c41a0d3a828eed5d8d058d35449260d3af646ab3024d5f208fde0",
+                    "sha256": "969b8dfe04c366a1900db6052aae7e711f3ecd34b1cfd08f51b5f98c031c2abd",
                     "install_runtimes": "default"
                 },
                 {
