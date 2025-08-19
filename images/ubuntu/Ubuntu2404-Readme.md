@@ -1,7 +1,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.2 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20250810.1.0
+- Image Version: 20250818.1.0
 - Systemd version: 255.4-1ubuntu8.10
 
 ## Installed Software
@@ -15,7 +15,7 @@
 - GNU C++: 12.3.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.3.0, 13.3.0, 14.2.0
 - Julia 1.11.6
-- Kotlin 2.2.0-release-294
+- Kotlin 2.2.10-release-430
 - Node.js 20.19.4
 - Perl 5.38.2
 - Python 3.12.3
@@ -24,15 +24,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.18.4
-- Homebrew 4.6.0
+- Helm 3.18.5
+- Homebrew 4.6.4
 - Miniconda 25.5.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit d30fdf55cf)
+- Vcpkg (build from commit ee0973d809)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,7 +56,7 @@ to accomplish this.
 - Maven 3.9.11
 
 ### Tools
-- Ansible 2.18.7
+- Ansible 2.18.8
 - AzCopy 10.30.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.3.1
 - Bazelisk 1.26.0
@@ -70,13 +70,13 @@ to accomplish this.
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.228.0
-- Git 2.50.1
+- Git 2.51.0
 - Git LFS 3.7.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.29.0
-- Kubectl 1.33.3
+- Kubectl 1.33.4
 - Kustomize 5.7.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -88,7 +88,7 @@ to accomplish this.
 - Packer 1.14.1
 - Parcel 2.15.4
 - Podman 4.9.3
-- Pulumi 3.188.0
+- Pulumi 3.190.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -97,13 +97,13 @@ to accomplish this.
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.28.6
+- AWS CLI 2.28.12
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.142.1
 - Azure CLI 2.76.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.76.2
-- Google Cloud CLI 533.0.0
+- Google Cloud CLI 534.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -137,13 +137,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 139.0.7258.66
-- ChromeDriver 139.0.7258.66
+- Google Chrome 139.0.7258.127
+- ChromeDriver 139.0.7258.68
 - Chromium 139.0.7258.0
-- Microsoft Edge 139.0.3405.86
-- Microsoft Edge WebDriver 139.0.3405.86
-- Selenium server 4.34.0
-- Mozilla Firefox 141.0.2
+- Microsoft Edge 139.0.3405.102
+- Microsoft Edge WebDriver 139.0.3405.102
+- Selenium server 4.35.0
+- Mozilla Firefox 141.0.3
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -155,14 +155,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.118
+- .NET Core SDK: 8.0.119
 - nbgv 3.7.115+d31f50f4d1
 
 ### Databases
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.9
+- PostgreSQL 16.10
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -170,7 +170,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.42-0ubuntu0.24.04.2
+- MySQL 8.0.43-0ubuntu0.24.04.1
 ```
 User: root
 Password: root
@@ -195,7 +195,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.18
 - 3.11.13
 - 3.12.11
-- 3.13.6
+- 3.13.7
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
