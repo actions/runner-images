@@ -15,13 +15,39 @@ for package in $common_packages; do
             brew install hashicorp/tap/packer
             ;;
 
-        cmake)
+        #cmake)
             # Pin cmake bottle to 3.31.6 due to a backward compatibility issue with the latest version
             # https://github.com/actions/runner-images/issues/11926
+            #cmake_commit="b4e46db74e74a8c1650b38b1da222284ce1ec5ce"
+            #cmake_rb_link="https://raw.githubusercontent.com/Homebrew/homebrew-core/$cmake_commit/Formula/c/cmake.rb"
+            #cmake_rb_path=$(download_with_retry "$cmake_rb_link")
+            #brew install "$cmake_rb_path"
+            #;;
+
+        cmake)
+            # Pin cmake to 3.31.6 due to a backward compatibility issue
+            # https://github.com/actions/runner-images/issues/11926
             cmake_commit="b4e46db74e74a8c1650b38b1da222284ce1ec5ce"
+        
+            echo "Creating temporary tap for cmake@3.31.6..."
+            tap_name="local/cmake"
+            brew tap-new $tap_name
+        
+            cmake_formula_dir="$(brew --repo $tap_name)/Formula"
+            mkdir -p "$cmake_formula_dir"
+        
             cmake_rb_link="https://raw.githubusercontent.com/Homebrew/homebrew-core/$cmake_commit/Formula/c/cmake.rb"
-            cmake_rb_path=$(download_with_retry "$cmake_rb_link")
-            brew install "$cmake_rb_path"
+            cmake_rb_path="$cmake_formula_dir/cmake.rb"
+        
+            echo "Downloading cmake.rb from $cmake_rb_link"
+            curl -fsSL "$cmake_rb_link" -o "$cmake_rb_path"
+        
+            # Commit the formula into the tap so Homebrew recognizes it
+            git -C "$(brew --repo $tap_name)" add Formula/cmake.rb
+            git -C "$(brew --repo $tap_name)" commit -m "Add cmake@3.31.6 formula"
+        
+            echo "Installing cmake@3.31.6 from custom tap..."
+            brew install $tap_name/cmake
             ;;
 
         tcl-tk@8)
