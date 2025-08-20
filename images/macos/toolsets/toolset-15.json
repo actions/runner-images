@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "16",
+        "default": "16.4",
         "x64": {
             "versions": [
                 {
