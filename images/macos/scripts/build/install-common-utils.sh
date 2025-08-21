@@ -16,12 +16,25 @@ for package in $common_packages; do
             ;;
 
         cmake)
-            # Pin cmake bottle to 3.31.6 due to a backward compatibility issue with the latest version
+            # Pin cmake to 3.31.6 due to a backward compatibility issue
             # https://github.com/actions/runner-images/issues/11926
             cmake_commit="b4e46db74e74a8c1650b38b1da222284ce1ec5ce"
+            tap_name="local/pinned"
+            
+            echo "Creating local tap (no git)..."
+            brew tap-new --no-git "$tap_name" >/dev/null
+            
+            cmake_formula_dir="$(brew --repo "$tap_name")/Formula"
+            mkdir -p "$cmake_formula_dir"
+            
             cmake_rb_link="https://raw.githubusercontent.com/Homebrew/homebrew-core/$cmake_commit/Formula/c/cmake.rb"
-            cmake_rb_path=$(download_with_retry "$cmake_rb_link")
-            brew install "$cmake_rb_path"
+            cmake_rb_path="$cmake_formula_dir/cmake.rb"
+            
+            echo "Downloading cmake.rb from $cmake_rb_link"
+            curl -fsSL "$cmake_rb_link" -o "$cmake_rb_path"
+            
+            echo "Installing cmake 3.31.6 from custom tap..."
+            brew install "$tap_name/cmake"
             ;;
 
         tcl-tk@8)
