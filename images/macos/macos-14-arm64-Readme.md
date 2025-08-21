@@ -1,13 +1,12 @@
 | Announcements |
 |-|
 | [[macOS] Default Xcode on macOS 15 Sequoia will be set to Xcode 16.4 on August, 25](https://github.com/actions/runner-images/issues/12751) |
-| [[macOS] Xcode support policy will be changed on August 11, 2025](https://github.com/actions/runner-images/issues/12541) |
 | [[macOS] macos-latest YAML-label will use macos-15 in August 2025](https://github.com/actions/runner-images/issues/12520) |
 ***
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250813.1729
+- Image Version: 20250818.1747
 
 ## Installed Software
 
@@ -24,11 +23,11 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.1.0) - available by `gfortran-15` alias
-- Kotlin 2.2.0-release-294
+- Kotlin 2.2.10-release-430
 - Mono 6.12.0.188
 - Node.js 20.19.4
 - Perl 5.40.2
-- Python3 3.13.6
+- Python3 3.13.7
 - Ruby 3.3.9
 
 ### Package Management
@@ -41,7 +40,7 @@
 - Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.1
-- Vcpkg 2025 (build from commit b664925609)
+- Vcpkg 2025 (build from commit 4bb07a326d)
 - Yarn 1.22.22
 
 ### Project Management
@@ -73,7 +72,7 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.28.8
+- AWS CLI 2.28.11
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
@@ -95,6 +94,8 @@
 - Google Chrome 139.0.7258.128
 - Google Chrome for Testing 139.0.7258.68
 - ChromeDriver 139.0.7258.68
+- Microsoft Edge 139.0.3405.102
+- Microsoft Edge WebDriver 139.0.3405.102
 - Mozilla Firefox 141.0.3
 - geckodriver 0.36.0
 - Selenium server 4.35.0
@@ -103,7 +104,7 @@
 | Name            | Value                                   |
 | --------------- | --------------------------------------- |
 | CHROMEWEBDRIVER | /usr/local/share/chromedriver-mac-arm64 |
-| EDGEWEBDRIVER   |                                         |
+| EDGEWEBDRIVER   | /usr/local/share/edge_driver            |
 | GECKOWEBDRIVER  | /opt/homebrew/opt/geckodriver/bin       |
 
 ### Java
@@ -124,7 +125,7 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.6
+- 3.13.7
 
 #### Node.js
 - 18.20.8
@@ -279,5 +280,5 @@
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
 ### Miscellaneous
-- Tcl/Tk 8.6.16
+- Tcl/Tk 8.6.17
 
