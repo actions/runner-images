@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Windows Server 2025] image will again have D:/ drive accessible to users from 2025-08-18](https://github.com/actions/runner-images/issues/12744) |
 | [Windows-latest workflows will use Windows Server 2025 image in GH](https://github.com/actions/runner-images/issues/12677) |
 | [[Windows-2022] Openssl version will be updated to version 3.5.2 on 2025-10-10](https://github.com/actions/runner-images/issues/12676) |
 | [[Windows 2022] MongoDB 5.x version will be removed from Windows 2022 image on 2025-09-01 and will be updated to 7.x version.](https://github.com/actions/runner-images/issues/12640) |
 ***
 # Windows Server 2025
-- OS Version: 10.0.26100 Build 4656
-- Image Version: 20250810.1.0
+- OS Version: 10.0.26100 Build 4946
+- Image Version: 20250817.1.0
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -18,7 +19,7 @@
 - Bash 5.2.37(1)-release
 - Go 1.24.6
 - Julia 1.11.6
-- Kotlin 2.2.0
+- Kotlin 2.2.10
 - LLVM 20.1.8
 - Node 22.18.0
 - Perl 5.40.2
@@ -36,7 +37,7 @@
 - pip 25.2 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit d30fdf55cf)
+- Vcpkg (build from commit 4bb07a326d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -67,17 +68,17 @@
 - ghc 9.12.2
 - Git 2.50.1.windows.1
 - Git LFS 3.7.0
-- ImageMagick 7.1.2-0
+- ImageMagick 7.1.2-1
 - jq 1.8.1
 - Kind 0.29.0
-- Kubectl 1.33.3
+- Kubectl 1.33.4
 - gcc 14.2.0
 - gdb 16.2
 - GNU Binutils 2.44
 - Newman 6.2.1
 - OpenSSL 3.5.2
 - Packer 1.12.0
-- Pulumi 3.188.0
+- Pulumi 3.190.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
@@ -90,7 +91,7 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.28.6
+- AWS CLI 2.28.11
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
@@ -108,14 +109,14 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 139.0.7258.67
-- Chrome Driver 139.0.7258.66
-- Microsoft Edge 139.0.3405.86
-- Microsoft Edge Driver 139.0.3405.86
+- Google Chrome 139.0.7258.128
+- Chrome Driver 139.0.7258.68
+- Microsoft Edge 139.0.3405.102
+- Microsoft Edge Driver 139.0.3405.102
 - Mozilla Firefox 141.0.3
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.34.0
+- Selenium server 4.35.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -167,7 +168,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.6
+- 3.13.7
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -185,7 +186,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | ServiceName          | postgresql-x64-17                                                                                                                    |
-| Version              | 17.5                                                                                                                                 |
+| Version              | 17.6                                                                                                                                 |
 | ServiceStatus        | Stopped                                                                                                                              |
 | ServiceStartType     | Disabled                                                                                                                             |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\17\bin <br> PGDATA=C:\Program Files\PostgreSQL\17\data <br> PGROOT=C:\Program Files\PostgreSQL\17  |
@@ -196,7 +197,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 7.0.22.0 | MongoDB     | Stopped       | Disabled         |
+| 7.0.23.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.24.0
@@ -215,7 +216,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
 | ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.36401.2 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.14.36408.4 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -240,7 +241,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 17.14.36015.10  |
 | Component.Unreal.Debugger                                                 | 17.14.36015.10  |
 | Component.Unreal.Ide                                                      | 17.14.36015.10  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36331.10  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36405.17  |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
@@ -476,7 +477,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.29
+- AWSPowershell: 5.0.34
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.29.1
