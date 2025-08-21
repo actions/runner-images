@@ -1,12 +1,12 @@
 | Announcements |
 |-|
-| [[macOS] Xcode support policy will be changed on August 11, 2025](https://github.com/actions/runner-images/issues/12541) |
+| [[macOS] Default Xcode on macOS 15 Sequoia will be set to Xcode 16.4 on August, 25](https://github.com/actions/runner-images/issues/12751) |
 | [[macOS] macos-latest YAML-label will use macos-15 in August 2025](https://github.com/actions/runner-images/issues/12520) |
 ***
 # macOS 15
 - OS Version: macOS 15.5 (24F5068b)
 - Kernel Version: Darwin 24.5.0
-- Image Version: 20250811.1688
+- Image Version: 20250818.1709
 
 ## Installed Software
 
@@ -18,14 +18,16 @@
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.4.0) - available by `gcc-13` alias
 - GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
+- GCC 15 (Homebrew GCC 15.1.0) - available by `gcc-15` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
-- Kotlin 2.2.0-release-294
+- GNU Fortran 15 (Homebrew GCC 15.1.0) - available by `gfortran-15` alias
+- Kotlin 2.2.10-release-430
 - Node.js 22.18.0
 - Perl 5.40.2
 - PHP 8.4.11
-- Python3 3.13.6
+- Python3 3.13.7
 - Ruby 3.3.9
 
 ### Package Management
@@ -33,12 +35,12 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.10
-- Homebrew 4.6.0
+- Homebrew 4.6.3
 - NPM 10.9.3
 - Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.1
-- Vcpkg 2025 (build from commit d30fdf55cf)
+- Vcpkg 2025 (build from commit 4bb07a326d)
 - Yarn 1.22.22
 
 ### Project Management
@@ -51,7 +53,7 @@
 - aria2 1.37.0
 - azcopy 10.30.0
 - bazel 8.3.1
-- bazelisk 1.26.0
+- bazelisk 1.27.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.15.0
 - Git 2.50.1
@@ -70,7 +72,7 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.28.6
+- AWS CLI 2.28.11
 - AWS SAM CLI 1.142.1
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
@@ -90,14 +92,14 @@
 ### Browsers
 - Safari 18.5 (20621.2.5.11.5)
 - SafariDriver 18.5 (20621.2.5.11.5)
-- Google Chrome 139.0.7258.67
-- Google Chrome for Testing 139.0.7258.66
-- ChromeDriver 139.0.7258.66
-- Microsoft Edge 139.0.3405.86
-- Microsoft Edge WebDriver 139.0.3405.86
+- Google Chrome 139.0.7258.128
+- Google Chrome for Testing 139.0.7258.68
+- ChromeDriver 139.0.7258.68
+- Microsoft Edge 139.0.3405.102
+- Microsoft Edge WebDriver 139.0.3405.102
 - Mozilla Firefox 141.0.3
 - geckodriver 0.36.0
-- Selenium server 4.34.0
+- Selenium server 4.35.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -126,7 +128,7 @@
 - 3.10.18
 - 3.11.9
 - 3.12.10
-- 3.13.6
+- 3.13.7
 
 #### Node.js
 - 18.20.8
@@ -236,7 +238,7 @@
 | iOS 18.4     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
 | iOS 18.5     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
 | iOS 18.6     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
-| iOS 26.0     | N/A                                                                                                                                                                                                                                                                                                                                |
+| iOS 26.0     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
 | tvOS 18.2    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                |
 | tvOS 18.4    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                |
 | tvOS 18.5    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                |
