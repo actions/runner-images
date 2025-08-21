@@ -169,3 +169,7 @@ variable "install_user" {
   type    = string
   default = "installer"
 }
+variable "ensure_mde_not_installed" {
+  type    = bool
+  default = true
+}
