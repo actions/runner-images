@@ -9,7 +9,7 @@
                     "version": "26.0.0-Beta.6+17A5305f",
                     "symlinks": ["26.0"],
                     "sha256": "969b8dfe04c366a1900db6052aae7e711f3ecd34b1cfd08f51b5f98c031c2abd",
-                    "install_runtimes": "default"
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "16.4",
@@ -61,7 +61,7 @@
                     "version": "26.0.0-Beta.6+17A5305f",
                     "symlinks": ["26.0"],
                     "sha256": "969b8dfe04c366a1900db6052aae7e711f3ecd34b1cfd08f51b5f98c031c2abd",
-                    "install_runtimes": "default"
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "16.4",
