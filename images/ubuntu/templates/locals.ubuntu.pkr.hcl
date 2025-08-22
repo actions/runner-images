@@ -1,12 +1,12 @@
 locals {
   image_properties_map = {
-      "ubuntu22" = {
+      "ubuntu2202" = {
             publisher       = "canonical"
             offer           = "0001-com-ubuntu-server-jammy"
             sku             = "22_04-lts"
             os_disk_size_gb = coalesce(var.os_disk_size_gb, 75)
       },
-      "ubuntu24" = {
+      "ubuntu2404" = {
             publisher       = "canonical"
             offer           = "ubuntu-24_04-lts"
             sku             = "server-gen1"
