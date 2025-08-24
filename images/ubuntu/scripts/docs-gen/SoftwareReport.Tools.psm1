@@ -266,6 +266,14 @@ function Get-SphinxVersion {
     return $sphinxVersion
 }
 
+function Get-XmllintVersion {
+    $result = [Regex]::Match((Get-CommandResult "xmllint --version" -Multiline).Output, 'using libxml version (\d{5})').Groups[1].Value
+    $major = $result.Substring(0, 1) -as [int]
+    $minor = $result.Substring(1, 2) -as [int]
+    $patch = $result.Substring(3, 2) -as [int]
+    return "${major}.${minor}.${patch}"
+}
+
 function Get-YamllintVersion {
     return $(yamllint --version) | Get-StringPart -Part 1
 }

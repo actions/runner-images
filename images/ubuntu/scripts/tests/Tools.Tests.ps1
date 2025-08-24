@@ -363,6 +363,12 @@ Describe "Ruby" {
     }
 }
 
+Describe "xmllint" {
+    It "xmllint" {
+        "xmllint --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "yq" {
     It "yq" {
         "yq -V" | Should -ReturnZeroExitCode

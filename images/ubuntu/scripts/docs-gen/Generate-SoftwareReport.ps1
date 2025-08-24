@@ -143,6 +143,7 @@ if (Test-IsUbuntu22) {
     $tools.AddToolVersion("SVN", $(Get-SVNVersion))
     $tools.AddToolVersion("Terraform", $(Get-TerraformVersion))
 }
+$tools.AddToolVersion("xmllint", $(Get-XmllintVersion))
 $tools.AddToolVersion("yamllint", $(Get-YamllintVersion))
 $tools.AddToolVersion("yq", $(Get-YqVersion))
 $tools.AddToolVersion("zstd", $(Get-ZstdVersion))
