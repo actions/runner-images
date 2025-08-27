@@ -18,19 +18,19 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 ## Available Images
 
-| Image | YAML Label | Included Software | Rollout Status of Latest Image Release |
-| --------------------|---------------------|--------------------|--------------------|
-| Ubuntu 24.04 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fubuntu24.json) |
-| Ubuntu 22.04 | `ubuntu-22.04` | [ubuntu-22.04] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fubuntu22.json) |
-| macOS 15 | `macos-15-large`| [macOS-15] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-15.json) |
-| macOS 15 Arm64 | `macos-15` or `macos-15-xlarge` | [macOS-15-arm64] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-15-arm64.json) |
-| macOS 14 | `macos-latest-large` or `macos-14-large`| [macOS-14] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-14.json) |
-| macOS 14 Arm64 |`macos-latest`, `macos-14`, `macos-latest-xlarge` or `macos-14-xlarge`| [macOS-14-arm64] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-14-arm64.json) |
-| macOS 13 | `macos-13` or `macos-13-large` | [macOS-13] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-13.json) |
-| macOS 13 Arm64 | `macos-13-xlarge` | [macOS-13-arm64] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fmacos-13-arm64.json) |
-| Windows Server 2025 | `windows-2025` | [windows-2025] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fwin25.json) |
-| Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] | ![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fsubir0071%2F385e39188f4280878bada99250e99db7%2Fraw%2Fwin22.json) |
-| Windows Server 2019 | `windows-2019` | [windows-2019] | ![Deprecated](https://img.shields.io/badge/-Deprecated-red) |
+| Image | YAML Label | Included Software |
+| --------------------|---------------------|--------------------|
+| Ubuntu 24.04 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
+| Ubuntu 22.04 | `ubuntu-22.04` | [ubuntu-22.04] |
+| macOS 15 | `macos-15-large`| [macOS-15] |
+| macOS 15 Arm64 | `macos-15` or `macos-15-xlarge` | [macOS-15-arm64] |
+| macOS 14 | `macos-latest-large` or `macos-14-large`| [macOS-14] |
+| macOS 14 Arm64 |`macos-latest`, `macos-14`, `macos-latest-xlarge` or `macos-14-xlarge`| [macOS-14-arm64] |
+| macOS 13 | `macos-13` or `macos-13-large` | [macOS-13] |
+| macOS 13 Arm64 | `macos-13-xlarge` | [macOS-13-arm64] |
+| Windows Server 2025 | `windows-2025` | [windows-2025] |
+| Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] |
+| Windows Server 2019 ![Deprecated](https://img.shields.io/badge/-Deprecated-red) | `windows-2019` | [windows-2019] |
 
 ### Label scheme
 
