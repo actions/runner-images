@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
 | [[macOS] Default Xcode on macOS 15 Sequoia will be set to Xcode 16.4 on August, 25](https://github.com/actions/runner-images/issues/12751) |
 | [[macOS] macos-latest YAML-label will use macos-15 in August 2025](https://github.com/actions/runner-images/issues/12520) |
 ***
 # macOS 13
 - OS Version: macOS 13.7.6 (22H625)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250818.1503
+- Image Version: 20250825.1524
 
 ## Installed Software
 
@@ -34,7 +35,7 @@
 - Bundler 2.7.1
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.6.3
+- Homebrew 4.6.6
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.2 (python 3.13)
@@ -55,9 +56,9 @@
 - bazelisk 1.27.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.50.1
+- Git 2.51.0
 - Git LFS 3.7.0
-- GitHub CLI 2.76.2
+- GitHub CLI 2.78.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
@@ -71,14 +72,14 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.28.11
-- AWS SAM CLI 1.142.1
+- AWS CLI 2.28.16
+- AWS SAM CLI 1.143.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.37.4
 - Cmake 3.31.6
-- CodeQL Action Bundle 2.22.3
+- CodeQL Action Bundle 2.22.4
 - Fastlane 2.228.0
 - SwiftFormat 0.57.2
 - Xcbeautify 2.30.1
@@ -90,12 +91,12 @@
 ### Browsers
 - Safari 18.5 (18621.2.5.18.1)
 - SafariDriver 18.5 (18621.2.5.18.1)
-- Google Chrome 139.0.7258.128
-- Google Chrome for Testing 139.0.7258.68
-- ChromeDriver 139.0.7258.68
-- Microsoft Edge 139.0.3405.102
-- Microsoft Edge WebDriver 139.0.3405.102
-- Mozilla Firefox 141.0.3
+- Google Chrome 139.0.7258.139
+- Google Chrome for Testing 139.0.7258.138
+- ChromeDriver 139.0.7258.138
+- Microsoft Edge 139.0.3405.111
+- Microsoft Edge WebDriver 139.0.3405.111
+- Mozilla Firefox 142.0
 - geckodriver 0.36.0
 - Selenium server 4.35.0
 
@@ -201,8 +202,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
