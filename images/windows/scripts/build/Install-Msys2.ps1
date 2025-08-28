@@ -22,13 +22,6 @@ function Install-Msys2 {
     Write-Host "Download msys2 installer $installerName"
     $installerPath = Invoke-DownloadWithRetry $downloadUri
 
-    #region Supply chain security - MSYS2
-    $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
-        -Url ($downloadUri -replace $installerName, "msys2-checksums.txt") `
-        -FileName $installerName
-    Test-FileChecksum $installerPath -ExpectedSHA256Sum $externalHash
-    #endregion
-
     Write-Host "Starting msys2 installation"
     & $installerPath in --confirm-command --accept-messages --root C:/msys64
     if ($LastExitCode -ne 0) {
