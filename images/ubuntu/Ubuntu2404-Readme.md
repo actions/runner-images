@@ -1,7 +1,7 @@
 # Ubuntu 24.04
-- OS Version: 24.04.2 LTS
+- OS Version: 24.04.3 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20250818.1.0
+- Image Version: 20250824.1.0
 - Systemd version: 255.4-1ubuntu8.10
 
 ## Installed Software
@@ -24,15 +24,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.18.5
-- Homebrew 4.6.4
+- Helm 3.18.6
+- Homebrew 4.6.6
 - Miniconda 25.5.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit ee0973d809)
+- Vcpkg (build from commit 6ecbbbdf31)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -63,10 +63,10 @@ to accomplish this.
 - Bicep 0.37.4
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.22.3
+- CodeQL Action Bundle 2.22.4
 - Docker Amazon ECR Credential Helper 0.10.1
 - Docker Compose v2 2.38.2
-- Docker-Buildx 0.26.1
+- Docker-Buildx 0.27.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.228.0
@@ -88,7 +88,7 @@ to accomplish this.
 - Packer 1.14.1
 - Parcel 2.15.4
 - Podman 4.9.3
-- Pulumi 3.190.0
+- Pulumi 3.191.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -97,13 +97,13 @@ to accomplish this.
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.28.12
+- AWS CLI 2.28.16
 - AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.142.1
+- AWS SAM CLI 1.143.0
 - Azure CLI 2.76.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.76.2
-- Google Cloud CLI 534.0.0
+- GitHub CLI 2.78.0
+- Google Cloud CLI 535.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -115,8 +115,8 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.10
-- PHPUnit 8.5.43
+- Composer 2.8.11
+- PHPUnit 8.5.44
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -137,13 +137,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 139.0.7258.127
-- ChromeDriver 139.0.7258.68
+- Google Chrome 139.0.7258.138
+- ChromeDriver 139.0.7258.138
 - Chromium 139.0.7258.0
-- Microsoft Edge 139.0.3405.102
-- Microsoft Edge WebDriver 139.0.3405.102
+- Microsoft Edge 139.0.3405.111
+- Microsoft Edge WebDriver 139.0.3405.111
 - Selenium server 4.35.0
-- Mozilla Firefox 141.0.3
+- Mozilla Firefox 142.0
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -208,11 +208,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.4.5
 
 ### PowerShell Tools
-- PowerShell 7.4.10
+- PowerShell 7.4.11
 
 #### PowerShell Modules
 - Az: 12.5.0
-- Microsoft.Graph: 2.29.1
+- Microsoft.Graph: 2.30.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
