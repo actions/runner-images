@@ -7,7 +7,7 @@
 # macOS 15
 - OS Version: macOS 15.5 (24F5068b)
 - Kernel Version: Darwin 24.5.0
-- Image Version: 20250825.1768
+- Image Version: 20250830.1803
 
 ## Installed Software
 
@@ -25,9 +25,9 @@
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.1.0) - available by `gfortran-15` alias
 - Kotlin 2.2.10-release-430
-- Node.js 22.18.0
+- Node.js 22.19.0
 - Perl 5.40.2
-- PHP 8.4.11
+- PHP 8.4.12
 - Python3 3.13.7
 - Ruby 3.3.9
 
@@ -36,12 +36,12 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.11
-- Homebrew 4.6.6
+- Homebrew 4.6.7
 - NPM 10.9.3
 - Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.1
-- Vcpkg 2025 (build from commit 6ecbbbdf31)
+- Vcpkg 2025 (build from commit 8394d2150d)
 - Yarn 1.22.22
 
 ### Project Management
@@ -73,7 +73,7 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.28.16
+- AWS CLI 2.28.21
 - AWS SAM CLI 1.143.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
@@ -93,12 +93,12 @@
 ### Browsers
 - Safari 18.5 (20621.2.5.11.5)
 - SafariDriver 18.5 (20621.2.5.11.5)
-- Google Chrome 139.0.7258.139
-- Google Chrome for Testing 139.0.7258.138
-- ChromeDriver 139.0.7258.138
-- Microsoft Edge 139.0.3405.111
-- Microsoft Edge WebDriver 139.0.3405.111
-- Mozilla Firefox 142.0
+- Google Chrome 139.0.7258.155
+- Google Chrome for Testing 139.0.7258.154
+- ChromeDriver 139.0.7258.154
+- Microsoft Edge 139.0.3405.125
+- Microsoft Edge WebDriver 139.0.3405.125
+- Mozilla Firefox 142.0.1
 - geckodriver 0.36.0
 - Selenium server 4.35.0
 
@@ -134,7 +134,7 @@
 #### Node.js
 - 18.20.8
 - 20.19.4
-- 22.18.0
+- 22.19.0
 
 #### Go
 - 1.22.12
@@ -162,7 +162,7 @@
 ### Xcode
 | Version        | Build    | Path                              | Symlinks                                                       |
 | -------------- | -------- | --------------------------------- | -------------------------------------------------------------- |
-| 26.0 (beta)    | 17A5305f | /Applications/Xcode_26_beta_6.app | /Applications/Xcode_26.0.0.app<br>/Applications/Xcode_26.0.app |
+| 26.0 (beta)    | 17A5305k | /Applications/Xcode_26_beta_7.app | /Applications/Xcode_26.0.0.app<br>/Applications/Xcode_26.0.app |
 | 16.4 (default) | 16F6     | /Applications/Xcode_16.4.app      | /Applications/Xcode_16.4.0.app<br>/Applications/Xcode.app      |
 | 16.3           | 16E140   | /Applications/Xcode_16.3.app      | /Applications/Xcode_16.3.0.app                                 |
 | 16.2           | 16C5032a | /Applications/Xcode_16.2.app      | /Applications/Xcode_16.2.0.app                                 |
