@@ -1,7 +1,7 @@
 Describe "MongoDB" {
     Context "Version" {
         It "<ToolName>" -TestCases @(
-            if (Test-IsWin25) {
+            if (Test-IsWin22 -or Test-IsWin25) {
                 @{ ToolName = "mongos" }
             } else {
                 @{ ToolName = "mongosh" }
@@ -30,7 +30,7 @@ Describe "MongoDB" {
         }
     }
 
-    Context "Shell" -Skip:(-not (Test-IsWin25)) {
+    Context "Shell" -Skip:(-not (Test-IsWin22) -or -not (Test-IsWin25)) {
         It "mongosh" {
             "mongosh --version" | Should -ReturnZeroExitCode
         }

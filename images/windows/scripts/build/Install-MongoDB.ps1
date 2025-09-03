@@ -40,7 +40,7 @@ Stop-Service $mongodbService
 $mongodbService | Set-Service -StartupType Disabled
 
 # Install mongodb shell for mongodb > 5 version
-if (Test-IsWin25) {
+if (Test-IsWin22 -or Test-IsWin25) {
     $mongoshVersion = (Get-GithubReleasesByVersion -Repo "mongodb-js/mongosh" -Version "latest").version
 
     $mongoshDownloadUrl = Resolve-GithubReleaseAssetUrl `

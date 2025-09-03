@@ -21,7 +21,7 @@ function Get-PostgreSQLTable
 function Get-MongoDBTable
 {
     $name = "MongoDB"
-    if (Test-IsWin25) {
+    if (Test-IsWin22 -or Test-IsWin25) {
         $command = "mongod"
     } else {
         $command = "mongo"
