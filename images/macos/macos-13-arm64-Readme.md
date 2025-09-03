@@ -7,7 +7,7 @@
 # macOS 13
 - OS Version: macOS 13.7.6 (22H625)
 - Kernel Version: Darwin 22.6.0
-- Image Version: 20250825.1524
+- Image Version: 20250901.1533
 
 ## Installed Software
 
@@ -35,7 +35,7 @@
 - Bundler 2.7.1
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.6.6
+- Homebrew 4.6.7
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.2 (python 3.13)
@@ -72,7 +72,7 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.28.16
+- AWS CLI 2.28.21
 - AWS SAM CLI 1.143.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
@@ -91,12 +91,12 @@
 ### Browsers
 - Safari 18.5 (18621.2.5.18.1)
 - SafariDriver 18.5 (18621.2.5.18.1)
-- Google Chrome 139.0.7258.139
-- Google Chrome for Testing 139.0.7258.138
-- ChromeDriver 139.0.7258.138
-- Microsoft Edge 139.0.3405.111
-- Microsoft Edge WebDriver 139.0.3405.111
-- Mozilla Firefox 142.0
+- Google Chrome 139.0.7258.155
+- Google Chrome for Testing 139.0.7258.154
+- ChromeDriver 139.0.7258.154
+- Microsoft Edge 139.0.3405.125
+- Microsoft Edge WebDriver 139.0.3405.125
+- Mozilla Firefox 142.0.1
 - geckodriver 0.36.0
 - Selenium server 4.35.0
 
@@ -130,7 +130,7 @@
 #### Node.js
 - 18.20.8
 - 20.19.4
-- 22.18.0
+- 22.19.0
 
 #### Go
 - 1.22.12
@@ -202,8 +202,8 @@
 | visionOS 1.0                                            | xros1.0                                       | 15.2          |
 | Simulator - visionOS 1.0                                | xrsimulator1.0                                | 15.2          |
 | Asset Runtime SDK for macOS hosts targeting watchOS 9.4 | assetruntime.host.macosx.target.watchos9.4    | 14.3.1        |
-| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | Asset Runtime SDK for macOS hosts targeting tvOS 16.4   | assetruntime.host.macosx.target.appletvos16.4 | 14.3.1        |
+| Asset Runtime SDK for macOS hosts targeting iOS 16.4    | assetruntime.host.macosx.target.iphoneos16.4  | 14.3.1        |
 | DriverKit 22.1                                          | driverkit22.1                                 | 14.1          |
 | DriverKit 22.2                                          | driverkit22.2                                 | 14.2          |
 | DriverKit 22.4                                          | driverkit22.4                                 | 14.3.1        |
