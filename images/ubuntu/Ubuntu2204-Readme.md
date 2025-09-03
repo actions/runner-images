@@ -1,7 +1,11 @@
+| Announcements |
+|-|
+| [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
+***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1031-azure
-- Image Version: 20250825.1.0
+- Image Version: 20250901.41.1
 - Systemd version: 249.11-0ubuntu3.16
 
 ## Installed Software
@@ -35,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 6ecbbbdf31)
+- Vcpkg (build from commit b1b19307e2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -79,10 +83,10 @@ to accomplish this.
 - Git LFS 3.7.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.12.0
+- Heroku 10.13.0
 - jq 1.6
-- Kind 0.29.0
-- Kubectl 1.33.4
+- Kind 0.30.0
+- Kubectl 1.34.0
 - Kustomize 5.7.1
 - Leiningen 2.11.2
 - MediaInfo 21.09
@@ -95,30 +99,30 @@ to accomplish this.
 - Packer 1.14.1
 - Parcel 2.15.4
 - Podman 3.4.4
-- Pulumi 3.191.0
+- Pulumi 3.192.0
 - R 4.5.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.13.0
+- Terraform 1.13.1
 - yamllint 1.37.1
 - yq 4.47.1
 - zstd 1.5.7
 - Ninja 1.13.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.298
-- AWS CLI 2.28.17
+- Alibaba Cloud CLI 3.0.299
+- AWS CLI 2.28.21
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.143.0
 - Azure CLI 2.76.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.78.0
-- Google Cloud CLI 535.0.0
-- Netlify CLI 23.3.1
+- Google Cloud CLI 536.0.1
+- Netlify CLI 23.4.3
 - OpenShift CLI 4.19.9
 - ORAS CLI 1.2.3
-- Vercel CLI 46.0.2
+- Vercel CLI 46.1.1
 
 ### Java
 | Version             | Environment Variable |
@@ -149,7 +153,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustup 1.28.2
 
 #### Packages
-- Bindgen 0.72.0
+- Bindgen 0.72.1
 - Cargo audit 0.21.2
 - Cargo clippy 0.1.89
 - Cargo outdated 0.17.0
@@ -157,13 +161,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 139.0.7258.138
-- ChromeDriver 139.0.7258.138
+- Google Chrome 139.0.7258.154
+- ChromeDriver 139.0.7258.154
 - Chromium 139.0.7258.0
-- Microsoft Edge 139.0.3405.119
-- Microsoft Edge WebDriver 139.0.3405.111
+- Microsoft Edge 139.0.3405.125
+- Microsoft Edge WebDriver 139.0.3405.125
 - Selenium server 4.35.0
-- Mozilla Firefox 142.0
+- Mozilla Firefox 142.0.1
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -212,7 +216,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 18.20.8
 - 20.19.4
-- 22.18.0
+- 22.19.0
 
 #### Python
 - 3.9.23
@@ -287,8 +291,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | node:18-alpine       | sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e  | 2025-03-27 |
 | node:20              | sha256:572a90df10a58ebb7d3f223d661d964a6c2383a9c2b5763162b4f631c53dc56a  | 2025-07-15 |
 | node:20-alpine       | sha256:df02558528d3d3d0d621f112e232611aecfee7cbc654f6b375765f72bb262799  | 2025-07-15 |
-| node:22              | sha256:3266bc9e8bee1acc8a77386eefaf574987d2729b8c5ec35b0dbd6ddbc40b0ce2  | 2025-08-01 |
-| node:22-alpine       | sha256:1b2479dd35a99687d6638f5976fd235e26c5b37e8122f786fcd5fe231d63de5b  | 2025-08-01 |
+| node:22              | sha256:6fe286835c595e53cdafc4889e9eff903dd3008a3050c1675809148d8e0df805  | 2025-08-28 |
+| node:22-alpine       | sha256:d2166de198f26e17e5a442f537754dd616ab069c47cc57b889310a717e0abbf9  | 2025-08-28 |
 | ubuntu:20.04         | sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214  | 2025-04-08 |
 | ubuntu:22.04         | sha256:1aa979d85661c488ce030ac292876cf6ed04535d3a237e49f61542d8e5de5ae0  | 2025-07-30 |
 
@@ -386,3 +390,4 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.2.5-2ubuntu1                      |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
+
