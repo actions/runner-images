@@ -4,7 +4,7 @@ Describe "MongoDB" {
             if (Test-IsWin22 -or Test-IsWin25) {
                 @{ ToolName = "mongos" }
             } else {
-                @{ ToolName = "mongosh" }
+                @{ ToolName = "mongo" }
             }
             @{ ToolName = "mongod" }
         ) {
