@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
 | [Windows-latest workflows will use Windows Server 2025 image in GH](https://github.com/actions/runner-images/issues/12677) |
 | [[Windows-2022] Openssl version will be updated to version 3.5.2 on 2025-10-10](https://github.com/actions/runner-images/issues/12676) |
-| [[Windows 2022] MongoDB 5.x version will be removed from Windows 2022 image on 2025-09-01 and will be updated to 7.x version.](https://github.com/actions/runner-images/issues/12640) |
+| [[Windows 2022] MongoDB 5.x version will be removed from Windows 2022 image on 2025-09-08 and will be updated to 7.x version.](https://github.com/actions/runner-images/issues/12640) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 4946
-- Image Version: 20250825.1.0
+- Image Version: 20250901.13.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,7 +21,7 @@
 - Julia 1.11.6
 - Kotlin 2.2.10
 - LLVM 20.1.8
-- Node 22.18.0
+- Node 22.19.0
 - Perl 5.40.2
 - PHP 8.4.11
 - Python 3.9.13
@@ -36,7 +37,7 @@
 - pip 25.2 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 6ecbbbdf31)
+- Vcpkg (build from commit b1b19307e2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -67,17 +68,17 @@
 - ghc 9.12.2
 - Git 2.51.0.windows.1
 - Git LFS 3.7.0
-- ImageMagick 7.1.2-1
+- ImageMagick 7.1.2-3
 - jq 1.8.1
-- Kind 0.29.0
-- Kubectl 1.33.4
+- Kind 0.30.0
+- Kubectl 1.34.0
 - gcc 14.2.0
 - gdb 16.2
 - GNU Binutils 2.44
 - Newman 6.2.1
 - OpenSSL 3.5.2
 - Packer 1.12.0
-- Pulumi 3.191.0
+- Pulumi 3.192.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
@@ -90,7 +91,7 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.28.16
+- AWS CLI 2.28.21
 - AWS SAM CLI 1.143.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
@@ -108,11 +109,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 139.0.7258.139
-- Chrome Driver 139.0.7258.138
-- Microsoft Edge 139.0.3405.111
-- Microsoft Edge Driver 139.0.3405.111
-- Mozilla Firefox 142.0
+- Google Chrome 139.0.7258.155
+- Chrome Driver 139.0.7258.154
+- Microsoft Edge 139.0.3405.125
+- Microsoft Edge Driver 139.0.3405.125
+- Mozilla Firefox 142.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.35.0
@@ -160,7 +161,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 18.20.8
 - 20.19.4
-- 22.18.0
+- 22.19.0
 
 #### Python
 - 3.9.13
@@ -204,7 +205,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - MySQL 8.0.43.0
 - SQL OLEDB Driver 18.7.4.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.5.6
+- MongoDB Shell (mongosh) 2.5.7
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
@@ -476,7 +477,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.39
+- AWSPowershell: 5.0.45
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.30.0
