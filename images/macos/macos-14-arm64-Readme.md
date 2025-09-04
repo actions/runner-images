@@ -1,13 +1,12 @@
 | Announcements |
 |-|
 | [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
-| [[macOS] Default Xcode on macOS 15 Sequoia will be set to Xcode 16.4 on August, 25](https://github.com/actions/runner-images/issues/12751) |
 | [[macOS] macos-latest YAML-label will use macos-15 in August 2025](https://github.com/actions/runner-images/issues/12520) |
 ***
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250825.1763
+- Image Version: 20250901.1774
 
 ## Installed Software
 
@@ -35,13 +34,13 @@
 - Bundler 2.7.1
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.6.6
+- Homebrew 4.6.7
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.1
-- Vcpkg 2025 (build from commit 6ecbbbdf31)
+- Vcpkg 2025 (build from commit b1b19307e2)
 - Yarn 1.22.22
 
 ### Project Management
@@ -73,7 +72,7 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.28.16
+- AWS CLI 2.28.21
 - AWS SAM CLI 1.143.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
@@ -92,12 +91,12 @@
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 139.0.7258.139
-- Google Chrome for Testing 139.0.7258.138
-- ChromeDriver 139.0.7258.138
-- Microsoft Edge 139.0.3405.111
-- Microsoft Edge WebDriver 139.0.3405.111
-- Mozilla Firefox 142.0
+- Google Chrome 139.0.7258.155
+- Google Chrome for Testing 139.0.7258.154
+- ChromeDriver 139.0.7258.154
+- Microsoft Edge 139.0.3405.125
+- Microsoft Edge WebDriver 139.0.3405.125
+- Mozilla Firefox 142.0.1
 - geckodriver 0.36.0
 - Selenium server 4.35.0
 
@@ -131,7 +130,7 @@
 #### Node.js
 - 18.20.8
 - 20.19.4
-- 22.18.0
+- 22.19.0
 
 #### Go
 - 1.22.12

@@ -1,13 +1,12 @@
 | Announcements |
 |-|
 | [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
-| [[macOS] Default Xcode on macOS 15 Sequoia will be set to Xcode 16.4 on August, 25](https://github.com/actions/runner-images/issues/12751) |
 | [[macOS] macos-latest YAML-label will use macos-15 in August 2025](https://github.com/actions/runner-images/issues/12520) |
 ***
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250825.1555
+- Image Version: 20250901.1573
 
 ## Installed Software
 
@@ -28,7 +27,7 @@
 - Mono 6.12.0.188
 - Node.js 20.19.4
 - Perl 5.40.2
-- PHP 8.4.11
+- PHP 8.4.12
 - Python3 3.13.7
 - Ruby 3.3.9
 
@@ -43,7 +42,7 @@
 - Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.1
-- Vcpkg 2025 (build from commit 6ecbbbdf31)
+- Vcpkg 2025 (build from commit b1b19307e2)
 - Yarn 1.22.22
 
 ### Project Management
@@ -75,7 +74,7 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.28.16
+- AWS CLI 2.28.21
 - AWS SAM CLI 1.143.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.76.0
@@ -90,17 +89,17 @@
 - Xcodes 1.6.2
 
 ### Linters
-- SwiftLint 0.59.1
+- SwiftLint 0.60.0
 
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 139.0.7258.139
-- Google Chrome for Testing 139.0.7258.138
-- ChromeDriver 139.0.7258.138
-- Microsoft Edge 139.0.3405.111
-- Microsoft Edge WebDriver 139.0.3405.111
-- Mozilla Firefox 142.0
+- Google Chrome 139.0.7258.155
+- Google Chrome for Testing 139.0.7258.154
+- ChromeDriver 139.0.7258.154
+- Microsoft Edge 139.0.3405.125
+- Microsoft Edge WebDriver 139.0.3405.125
+- Mozilla Firefox 142.0.1
 - geckodriver 0.36.0
 - Selenium server 4.35.0
 
@@ -137,7 +136,7 @@
 #### Node.js
 - 18.20.8
 - 20.19.4
-- 22.18.0
+- 22.19.0
 
 #### Go
 - 1.22.12
@@ -240,7 +239,7 @@
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iOS 17.0     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                   |
 | iOS 17.2     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                   |
-| iOS 17.4     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                     |
+| iOS 17.4     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro (12.9-inch) (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                   |
 | iOS 17.5     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                            |
 | iOS 18.1     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |
 | iOS 18.2     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |

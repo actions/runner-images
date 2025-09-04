@@ -1,7 +1,11 @@
+| Announcements |
+|-|
+| [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
+***
 # Ubuntu 24.04
 - OS Version: 24.04.3 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20250824.1.0
+- Image Version: 20250831.1.0
 - Systemd version: 255.4-1ubuntu8.10
 
 ## Installed Software
@@ -12,8 +16,8 @@
 - Clang-format: 16.0.6, 17.0.6, 18.1.3
 - Clang-tidy: 16.0.6, 17.0.6, 18.1.3
 - Dash 0.5.12-6ubuntu5
-- GNU C++: 12.3.0, 13.3.0, 14.2.0
-- GNU Fortran: 12.3.0, 13.3.0, 14.2.0
+- GNU C++: 12.4.0, 13.3.0, 14.2.0
+- GNU Fortran: 12.4.0, 13.3.0, 14.2.0
 - Julia 1.11.6
 - Kotlin 2.2.10-release-430
 - Node.js 20.19.4
@@ -25,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.18.6
-- Homebrew 4.6.6
-- Miniconda 25.5.1
+- Homebrew 4.6.7
+- Miniconda 25.7.0
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 6ecbbbdf31)
+- Vcpkg (build from commit b1b19307e2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -75,8 +79,8 @@ to accomplish this.
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
-- Kind 0.29.0
-- Kubectl 1.33.4
+- Kind 0.30.0
+- Kubectl 1.34.0
 - Kustomize 5.7.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -88,7 +92,7 @@ to accomplish this.
 - Packer 1.14.1
 - Parcel 2.15.4
 - Podman 4.9.3
-- Pulumi 3.191.0
+- Pulumi 3.192.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -97,13 +101,13 @@ to accomplish this.
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.28.16
+- AWS CLI 2.28.21
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.143.0
 - Azure CLI 2.76.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.78.0
-- Google Cloud CLI 535.0.0
+- Google Cloud CLI 536.0.1
 
 ### Java
 | Version             | Environment Variable |
@@ -137,13 +141,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 139.0.7258.138
-- ChromeDriver 139.0.7258.138
+- Google Chrome 139.0.7258.154
+- ChromeDriver 139.0.7258.154
 - Chromium 139.0.7258.0
-- Microsoft Edge 139.0.3405.111
-- Microsoft Edge WebDriver 139.0.3405.111
+- Microsoft Edge 139.0.3405.125
+- Microsoft Edge WebDriver 139.0.3405.125
 - Selenium server 4.35.0
-- Mozilla Firefox 142.0
+- Mozilla Firefox 142.0.1
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -188,7 +192,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 18.20.8
 - 20.19.4
-- 22.18.0
+- 22.19.0
 
 #### Python
 - 3.9.23
@@ -320,3 +324,4 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.6.1+really5.4.5-1ubuntu0.2 |
 | zip                    | 3.0-13ubuntu0.2              |
 | zsync                  | 0.6.2-5build1                |
+
