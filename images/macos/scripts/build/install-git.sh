@@ -9,7 +9,7 @@ source ~/utils/utils.sh
 echo "Installing Git..."
 #brew_smart_install "git"
 
-# pin Git to 2.50.1 due to problem is in Git latest version 2.51.0
+# pin Git to 2.50.1 due to problems in the latest Git version 2.51.0
 COMMIT=6b39030bc0d0a0a8df99afe37e5ae4d61ba07c88
 FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/g/git.rb"
 FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/g/git.rb"
