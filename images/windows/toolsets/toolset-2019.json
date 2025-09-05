@@ -402,7 +402,6 @@
             },
             {
                 "name": "cmake.install",
-                "version": "3.31.6",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
             { "name": "imagemagick" },
