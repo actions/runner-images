@@ -343,7 +343,7 @@
         "version": "8.0"
     },
     "mongodb": {
-        "version": "5.0"
+        "version": "7.0"
     },
     "nsis": {
         "version": "3.10"
