@@ -1,11 +1,12 @@
 | Announcements |
 |-|
+| [[Windows, Ubuntu] CMake will be upgraded to latest version on September 15](https://github.com/actions/runner-images/issues/12958) |
 | [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1031-azure
-- Image Version: 20250901.41.1
+- Image Version: 20250907.50.1
 - Systemd version: 249.11-0ubuntu3.16
 
 ## Installed Software
@@ -22,7 +23,7 @@
 - Kotlin 2.2.10-release-430
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 20.19.4
+- Node.js 20.19.5
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
@@ -31,7 +32,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.18.6
-- Homebrew 4.6.7
+- Homebrew 4.6.9
 - Miniconda 25.7.0
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -39,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.7.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit b1b19307e2)
+- Vcpkg (build from commit b1e15efef6)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,21 +62,21 @@ to accomplish this.
 - Gradle 9.0.0
 - Lerna 8.2.3
 - Maven 3.9.11
-- Sbt 1.11.5
+- Sbt 1.11.6
 
 ### Tools
 - Ansible 2.17.13
 - apt-fast 1.10.0
 - AzCopy 10.30.0 - available by `azcopy` and `azcopy10` aliases
-- Bazel 8.3.1
+- Bazel 8.4.0
 - Bazelisk 1.26.0
 - Bicep 0.37.4
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.22.4
+- CodeQL Action Bundle 2.23.0
 - Docker Amazon ECR Credential Helper 0.10.1
 - Docker Compose v2 2.38.2
-- Docker-Buildx 0.27.0
+- Docker-Buildx 0.28.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.228.0
@@ -83,7 +84,7 @@ to accomplish this.
 - Git LFS 3.7.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.13.0
+- Heroku 10.13.1
 - jq 1.6
 - Kind 0.30.0
 - Kubectl 1.34.0
@@ -99,7 +100,7 @@ to accomplish this.
 - Packer 1.14.1
 - Parcel 2.15.4
 - Podman 3.4.4
-- Pulumi 3.192.0
+- Pulumi 3.193.0
 - R 4.5.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -111,18 +112,18 @@ to accomplish this.
 - Ninja 1.13.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.299
-- AWS CLI 2.28.21
+- Alibaba Cloud CLI 3.0.300
+- AWS CLI 2.28.25
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.143.0
-- Azure CLI 2.76.0
+- Azure CLI 2.77.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.78.0
-- Google Cloud CLI 536.0.1
-- Netlify CLI 23.4.3
-- OpenShift CLI 4.19.9
+- Google Cloud CLI 537.0.0
+- Netlify CLI 23.5.0
+- OpenShift CLI 4.19.10
 - ORAS CLI 1.2.3
-- Vercel CLI 46.1.1
+- Vercel CLI 47.0.5
 
 ### Java
 | Version             | Environment Variable |
@@ -161,11 +162,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 139.0.7258.154
-- ChromeDriver 139.0.7258.154
-- Chromium 139.0.7258.0
-- Microsoft Edge 139.0.3405.125
-- Microsoft Edge WebDriver 139.0.3405.125
+- Google Chrome 140.0.7339.80
+- ChromeDriver 140.0.7339.80
+- Chromium 140.0.7339.0
+- Microsoft Edge 140.0.3485.54
+- Microsoft Edge WebDriver 140.0.3485.54
 - Selenium server 4.35.0
 - Mozilla Firefox 142.0.1
 - Geckodriver 0.36.0
@@ -211,11 +212,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.6
+- 1.24.7
 
 #### Node.js
 - 18.20.8
-- 20.19.4
+- 20.19.5
 - 22.19.0
 
 #### Python
@@ -286,15 +287,15 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | alpine:3.19          | sha256:3be987e6cde1d07e873c012bf6cfe941e6e85d16ca5fc5b8bedc675451d2de67  | 2025-07-15 |
 | debian:10            | sha256:58ce6f1271ae1c8a2006ff7d3e54e9874d839f573d8009c20154ad0f2fb0a225  | 2024-06-13 |
 | debian:11            | sha256:8ec25a9073e8cc89a184a6256e219828196d75203375a8ad4f0977f3011f2115  | 2025-08-11 |
-| moby/buildkit:latest | sha256:ddd1ca44b21eda906e81ab14a3d467fa6c39cd73b9a39df1196210edcb8db59e  | 2025-07-01 |
+| moby/buildkit:latest | sha256:6eceb8971ce4fceb3daca562832642706238b7eea72941fcf9896c93c3c4a53e  | 2025-09-03 |
 | node:18              | sha256:c6ae79e38498325db67193d391e6ec1d224d96c693a8a4d943498556716d3783  | 2025-03-27 |
 | node:18-alpine       | sha256:8d6421d663b4c28fd3ebc498332f249011d118945588d0a35cb9bc4b8ca09d9e  | 2025-03-27 |
-| node:20              | sha256:572a90df10a58ebb7d3f223d661d964a6c2383a9c2b5763162b4f631c53dc56a  | 2025-07-15 |
-| node:20-alpine       | sha256:df02558528d3d3d0d621f112e232611aecfee7cbc654f6b375765f72bb262799  | 2025-07-15 |
+| node:20              | sha256:d22c0ce19226056c67dcc9550894161cf61200b60eb8be78ddbd8ee574871011  | 2025-09-03 |
+| node:20-alpine       | sha256:eabac870db94f7342d6c33560d6613f188bbcf4bbe1f4eb47d5e2a08e1a37722  | 2025-09-03 |
 | node:22              | sha256:6fe286835c595e53cdafc4889e9eff903dd3008a3050c1675809148d8e0df805  | 2025-08-28 |
 | node:22-alpine       | sha256:d2166de198f26e17e5a442f537754dd616ab069c47cc57b889310a717e0abbf9  | 2025-08-28 |
 | ubuntu:20.04         | sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214  | 2025-04-08 |
-| ubuntu:22.04         | sha256:1aa979d85661c488ce030ac292876cf6ed04535d3a237e49f61542d8e5de5ae0  | 2025-07-30 |
+| ubuntu:22.04         | sha256:4e0171b9275e12d375863f2b3ae9ce00a4c53ddda176bd55868df97ac6f21a6e  | 2025-08-19 |
 
 ### Installed apt packages
 | Name                   | Version                             |
