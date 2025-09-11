@@ -37,7 +37,7 @@ function Build-ToolcacheSection {
 
     $nodes = @()
 
-    if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonoma) -and (-not $os.IsSequoia)) {
+    if ($os.IsVenturaX64) {
         $nodes += @(
             [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', "List")
         )
