@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[Windows, Ubuntu] CMake will be upgraded to latest version on September 15](https://github.com/actions/runner-images/issues/12958) |
 | [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
 | [Windows-latest workflows will use Windows Server 2025 image in GH](https://github.com/actions/runner-images/issues/12677) |
 | [[Windows-2022] Openssl version will be updated to version 3.5.2 on 2025-10-10](https://github.com/actions/runner-images/issues/12676) |
@@ -7,7 +8,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 4946
-- Image Version: 20250901.13.1
+- Image Version: 20250907.19.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -17,7 +18,7 @@
 
 ### Language and Runtime
 - Bash 5.2.37(1)-release
-- Go 1.24.6
+- Go 1.24.7
 - Julia 1.11.6
 - Kotlin 2.2.10
 - LLVM 20.1.8
@@ -28,16 +29,16 @@
 - Ruby 3.3.9
 
 ### Package Management
-- Chocolatey 2.5.0
+- Chocolatey 2.5.1
 - Composer 2.8.11
-- Helm 3.18.5
+- Helm 3.18.6
 - Miniconda 25.7.0 (pre-installed on the image but not added to PATH)
 - NPM 10.9.3
 - NuGet 6.14.0.116
 - pip 25.2 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit b1b19307e2)
+- Vcpkg (build from commit b1e15efef6)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -50,18 +51,18 @@
 - Ant 1.10.15
 - Gradle 9.0
 - Maven 3.9.11
-- sbt 1.11.5
+- sbt 1.11.6
 
 ### Tools
 - 7zip 25.01
 - aria2 1.37.0
 - azcopy 10.30.0
-- Bazel 8.3.1
+- Bazel 8.4.0
 - Bazelisk 1.26.0
 - Bicep 0.37.4
 - Cabal 3.16.0.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.22.4
+- CodeQL Action Bundle 2.23.0
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
@@ -78,7 +79,7 @@
 - Newman 6.2.1
 - OpenSSL 3.5.2
 - Packer 1.12.0
-- Pulumi 3.192.0
+- Pulumi 3.193.0
 - R 4.4.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
@@ -91,10 +92,10 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.28.21
+- AWS CLI 2.28.25
 - AWS SAM CLI 1.143.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.76.0
+- Azure CLI 2.77.0
 - Azure DevOps CLI extension 1.0.2
 - GitHub CLI 2.78.0
 
@@ -109,10 +110,10 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 139.0.7258.155
-- Chrome Driver 139.0.7258.154
-- Microsoft Edge 139.0.3405.125
-- Microsoft Edge Driver 139.0.3405.125
+- Google Chrome 140.0.7339.81
+- Chrome Driver 140.0.7339.80
+- Microsoft Edge 140.0.3485.54
+- Microsoft Edge Driver 140.0.3485.54
 - Mozilla Firefox 142.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -156,11 +157,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.6
+- 1.24.7
 
 #### Node.js
 - 18.20.8
-- 20.19.4
+- 20.19.5
 - 22.19.0
 
 #### Python
@@ -200,7 +201,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 7.0.23.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.24.0
+- Azure CosmosDb Emulator 2.14.25.0
 - DacFx 170.1.61.1
 - MySQL 8.0.43.0
 - SQL OLEDB Driver 18.7.4.0
@@ -211,7 +212,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.29.0  | C:\tools\nginx-1.29.0\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.29.1  | C:\tools\nginx-1.29.1\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
@@ -477,7 +478,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.45
+- AWSPowershell: 5.0.49
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.30.0
