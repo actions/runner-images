@@ -61,6 +61,7 @@ if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
             if is_SonomaX64; then
                 osascript $HOME/utils/confirm-identified-developers-macos14.scpt $USER_PASSWORD
             fi
+
             if is_SequoiaX64; then
                 osascript $HOME/utils/confirm-identified-developers-macos15.scpt $USER_PASSWORD
             fi
