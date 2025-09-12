@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[macOS] Cmake will be updated to version 4.* on September 8th](https://github.com/actions/runner-images/issues/12934) |
 | [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
 | [[macOS] macos-latest YAML-label will use macos-15 in August 2025](https://github.com/actions/runner-images/issues/12520) |
 ***
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250901.1573
+- Image Version: 20250908.1607
 
 ## Installed Software
 
@@ -25,7 +26,7 @@
 - GNU Fortran 15 (Homebrew GCC 15.1.0) - available by `gfortran-15` alias
 - Kotlin 2.2.10-release-430
 - Mono 6.12.0.188
-- Node.js 20.19.4
+- Node.js 20.19.5
 - Perl 5.40.2
 - PHP 8.4.12
 - Python3 3.13.7
@@ -36,13 +37,13 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.8.11
-- Homebrew 4.6.7
+- Homebrew 4.6.9
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.1
-- Vcpkg 2025 (build from commit b1b19307e2)
+- Vcpkg 2025 (build from commit cfa61a685a)
 - Yarn 1.22.22
 
 ### Project Management
@@ -54,11 +55,11 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.30.0
-- bazel 8.3.1
+- bazel 8.4.0
 - bazelisk 1.27.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.15.0
-- Git 2.51.0
+- Git 2.50.1
 - Git LFS 3.7.0
 - GitHub CLI 2.78.0
 - GNU Tar 1.35 - available by 'gtar' alias
@@ -74,14 +75,14 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.28.21
+- AWS CLI 2.28.25
 - AWS SAM CLI 1.143.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.76.0
+- Azure CLI 2.77.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.37.4
-- Cmake 3.31.6
-- CodeQL Action Bundle 2.22.4
+- Cmake 4.1.1
+- CodeQL Action Bundle 2.23.0
 - Fastlane 2.228.0
 - SwiftFormat 0.57.2
 - Xcbeautify 2.30.1
@@ -89,16 +90,16 @@
 - Xcodes 1.6.2
 
 ### Linters
-- SwiftLint 0.60.0
+- SwiftLint 0.61.0
 
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 139.0.7258.155
-- Google Chrome for Testing 139.0.7258.154
-- ChromeDriver 139.0.7258.154
-- Microsoft Edge 139.0.3405.125
-- Microsoft Edge WebDriver 139.0.3405.125
+- Google Chrome 140.0.7339.81
+- Google Chrome for Testing 140.0.7339.80
+- ChromeDriver 140.0.7339.80
+- Microsoft Edge 140.0.3485.54
+- Microsoft Edge WebDriver 140.0.3485.54
 - Mozilla Firefox 142.0.1
 - geckodriver 0.36.0
 - Selenium server 4.35.0
@@ -135,13 +136,14 @@
 
 #### Node.js
 - 18.20.8
-- 20.19.4
+- 20.19.5
 - 22.19.0
 
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.6
+- 1.24.7
+- 1.25.1
 
 ### Rust Tools
 - Cargo 1.89.0
@@ -239,7 +241,7 @@
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iOS 17.0     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                   |
 | iOS 17.2     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                   |
-| iOS 17.4     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro (12.9-inch) (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                   |
+| iOS 17.4     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                            |
 | iOS 17.5     | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                            |
 | iOS 18.1     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |
 | iOS 18.2     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |
@@ -286,7 +288,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v20/20.4.1-55996/ParallelsDesktop-20.4.1-55996.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v26/26.0.1-57243/ParallelsDesktop-26.0.1-57243.dmg |
 
 ##### Notes
 ```

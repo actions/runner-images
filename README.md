@@ -22,6 +22,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | --------------------|---------------------|--------------------|
 | Ubuntu 24.04 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
 | Ubuntu 22.04 | `ubuntu-22.04` | [ubuntu-22.04] |
+| macOS 26 Arm64 `beta` | `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
 | macOS 15 | `macos-latest-large` or `macos-15-large`| [macOS-15] |
 | macOS 15 Arm64 | `macos-latest`, `macos-15`, or `macos-15-xlarge` | [macOS-15-arm64] |
 | macOS 14 | `macos-14-large`| [macOS-14] |
@@ -48,6 +49,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [macOS-14-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-arm64-Readme.md
 [macOS-15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
 [macOS-15-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md
+[macOS-26-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
 ## Announcements
