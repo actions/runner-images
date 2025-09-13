@@ -8,7 +8,7 @@ Describe "Python3" {
         "python3 --version" | Should -ReturnZeroExitCode
     }
     
-    if ($os.IsVenturaArm64 -or $os.IsSonomaArm64 -or $os.IsSequoiaArm64) {
+    if ($os.IsArm64) {
         It "Python 3 is installed under /opt/homebrew/bin/" {
             Get-ToolPath "python3" | Should -BeLike "/opt/homebrew/bin/*"
         }
@@ -32,19 +32,4 @@ Describe "Python3" {
         $pip3Path | Should -BeExactly $python3Path
     }
 
-}
-
-Describe "Python2" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "Python 2 is available" {
-        "/Library/Frameworks/Python.framework/Versions/2.7/bin/python --version" | Should -ReturnZeroExitCode
-    }
-
-    It "Pip 2 is available" {
-        "/Library/Frameworks/Python.framework/Versions/2.7/bin/pip --version" | Should -ReturnZeroExitCode
-    }
-
-    It "2to3 symlink does not point to Python 2" {
-        $2to3path = (Get-ChildItem (Get-Command 2to3).Path).Target
-        $2to3path | Should -Not -BeLike '/Frameworks/Python.framework/Versions/2.*'
-    }
 }

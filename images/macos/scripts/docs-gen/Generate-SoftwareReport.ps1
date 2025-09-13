@@ -37,12 +37,12 @@ $languageAndRuntime.AddNodes($(Get-ClangLLVMVersions))
 $languageAndRuntime.AddNodes($(Get-GccVersions))
 $languageAndRuntime.AddNodes($(Get-FortranVersions))
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
-if ((-not $os.IsSequoia)) {
+if (($os.IsVentura -or $os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
 }
 $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64) -and (-not $os.IsSequoiaArm64)) {
+if ((-not $os.IsArm64)) {
     $languageAndRuntime.AddToolVersion("PHP", $(Get-PHPVersion))
 }
 $languageAndRuntime.AddToolVersion("Python3", $(Get-Python3Version))
@@ -53,12 +53,12 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Bundler", $(Get-BundlerVersion))
 $packageManagement.AddToolVersion("Carthage", $(Get-CarthageVersion))
 $packageManagement.AddToolVersion("CocoaPods", $(Get-CocoaPodsVersion))
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64) -and (-not $os.IsSequoiaArm64)) {
+if ((-not $os.IsArm64)) {
     $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
 }
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
 $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
-if ((-not $os.IsSequoia)) {
+if (($os.IsVentura -or $os.IsSonoma)) {
     $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
 }
 $packageManagement.AddToolVersion("Pip3", $(Get-Pip3Version))
@@ -116,8 +116,8 @@ $tools.AddToolVersion("Xcode Command Line Tools", $(Get-XcodeCommandLineToolsVer
 $tools.AddToolVersion("Xcodes", $(Get-XcodesVersion))
 
 # Linters
-$linters = $installedSoftware.AddHeader("Linters")
-if ((-not $os.IsVenturaArm64) -and (-not $os.IsSonomaArm64) -and (-not $os.IsSequoiaArm64)) {
+if ((-not $os.IsArm64)) {
+    $linters = $installedSoftware.AddHeader("Linters")
     $linters.AddToolVersion("SwiftLint", $(Get-SwiftLintVersion))
 }
 
@@ -174,7 +174,7 @@ $android.AddTable($androidTable)
 $androidEnv = $android.AddHeader("Environment variables")
 $androidEnv.AddTable($(Build-AndroidEnvironmentTable))
 
-if ($os.IsSonoma -or $os.IsVentura -or $os.IsSequoiaX64) {
+if ($os.IsSonoma -or $os.IsVentura -or (-not $os.IsArm64)) {
     $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
 }
 
@@ -182,7 +182,7 @@ if ($os.IsSonoma -or $os.IsVentura) {
     $miscellaneous.AddToolVersion("Tcl/Tk", $(Get-TclTkVersion))
 }
 
-if ($os.IsSonomaX64 -or $os.IsVenturaX64 -or $os.IsSequoiaX64) {
+if ((-not $os.IsArm64)) {
 
     Write-Host "Adding environment variables for parallels"
 

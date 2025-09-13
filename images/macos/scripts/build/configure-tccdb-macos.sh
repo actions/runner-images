@@ -48,8 +48,8 @@ systemValuesArray=(
     "'kTCCServiceSystemPolicyNetworkVolumes','com.apple.Terminal',0,2,4,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,0,'UNUSED',NULL,0,1678990068"
 )
 for values in "${systemValuesArray[@]}"; do
-    if is_Sonoma || is_Sequoia; then
-        # TCC access table in Sonoma has extra 4 columns: pid, pid_version, boot_uuid, last_reminded
+    if ! is_Ventura; then
+        # TCC access table in Sonoma and later has extra 4 columns: pid, pid_version, boot_uuid, last_reminded
         configure_system_tccdb "$values,NULL,NULL,'UNUSED',${values##*,}"
     else
         configure_system_tccdb "$values"
@@ -98,8 +98,8 @@ userValuesArray=(
     "'kTCCServiceUbiquity','com.apple.mail',0,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1551941469"
 )
 for values in "${userValuesArray[@]}"; do
-    if is_Sonoma || is_Sequoia; then
-        # TCC access table in Sonoma has extra 4 columns: pid, pid_version, boot_uuid, last_reminded
+    if ! is_Ventura; then
+        # TCC access table in Sonoma and later has extra 4 columns: pid, pid_version, boot_uuid, last_reminded
         configure_user_tccdb "$values,NULL,NULL,'UNUSED',${values##*,}"
     else
         configure_user_tccdb "$values"
