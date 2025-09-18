@@ -70,7 +70,8 @@
             "versions": [
                 "1.22.*",
                 "1.23.*",
-                "1.24.*"
+                "1.24.*",
+                "1.25.*"
             ],
             "default": "1.24.*"
         }
@@ -402,6 +403,7 @@
             },
             {
                 "name": "cmake.install",
+                "version": "3.31.6",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
             { "name": "imagemagick" },

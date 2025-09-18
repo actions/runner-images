@@ -1,14 +1,14 @@
 {
     "xcode": {
-        "default": "26_Release_Candidate",
+        "default": "26",
         "arm64":{
             "versions": [
                 {
-                    "link": "26_Release_Candidate",
-                    "filename": "26_Release_Candidate_Universal",
-                    "version": "26_Release_Candidate+17A321",
+                    "link": "26",
+                    "filename": "26_Universal",
+                    "version": "26+17A324",
                     "symlinks": ["26.0"],
-                    "sha256": "d56b62964b21c25901e5e48db22ff40862ff490fd3f955704ecd53ca9076db4e",
+                    "sha256": "848f8de2c9f91ef2dad4eec8ff88655222a08f3eb32c4083432c51ae2480a70f",
                     "install_runtimes": "default"
                 },
                 {
