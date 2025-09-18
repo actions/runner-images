@@ -18,21 +18,4 @@ Describe "Rust" {
             "cargo --version" | Should -ReturnZeroExitCode
         }
     }
-    Context "Cargo dependencies" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-        It "bindgen" {
-            "bindgen --version" | Should -ReturnZeroExitCode
-        }
-
-        It "cbindgen" {
-            "cbindgen --version" | Should -ReturnZeroExitCode
-        }
-
-        It "Cargo audit" {
-            "cargo audit --version" | Should -ReturnZeroExitCode
-        }
-
-        It "Cargo outdated" {
-            "cargo outdated --version" | Should -ReturnZeroExitCode
-        }
-    }
 }

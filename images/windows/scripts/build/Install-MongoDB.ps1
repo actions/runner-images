@@ -7,7 +7,7 @@
 $toolsetContent = Get-ToolsetContent
 $toolsetVersion = $toolsetContent.mongodb.version
 
-$getMongoReleases = Invoke-WebRequest -Uri "mongodb.com/docs/manual/release-notes/$toolsetVersion/" -UseBasicParsing
+$getMongoReleases = Invoke-WebRequest -Uri "mongodb.com/docs/v$toolsetVersion/release-notes/$toolsetVersion/" -UseBasicParsing
 $targetReleases = $getMongoReleases.Links.href | Where-Object { $_ -like "#$toolsetVersion*---*" }
 
 $minorVersions = @()

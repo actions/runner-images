@@ -4,12 +4,12 @@
         "x64": {
             "versions": [
                 {
-                    "link": "26_beta_6",
-                    "filename": "26_beta_6_Universal",
-                    "version": "26.0.0-Beta.6+17A5305f",
+                    "link": "26",
+                    "filename": "26_Universal",
+                    "version": "26+17A324",
                     "symlinks": ["26.0"],
-                    "sha256": "969b8dfe04c366a1900db6052aae7e711f3ecd34b1cfd08f51b5f98c031c2abd",
-                    "install_runtimes": "none"
+                    "sha256": "848f8de2c9f91ef2dad4eec8ff88655222a08f3eb32c4083432c51ae2480a70f",
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "16.4",
@@ -56,12 +56,12 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "26_beta_6",
-                    "filename": "26_beta_6_Universal",
-                    "version": "26.0.0-Beta.6+17A5305f",
+                    "link": "26",
+                    "filename": "26_Universal",
+                    "version": "26+17A324",
                     "symlinks": ["26.0"],
-                    "sha256": "969b8dfe04c366a1900db6052aae7e711f3ecd34b1cfd08f51b5f98c031c2abd",
-                    "install_runtimes": "none"
+                    "sha256": "848f8de2c9f91ef2dad4eec8ff88655222a08f3eb32c4083432c51ae2480a70f",
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "16.4",
@@ -264,7 +264,8 @@
                     "versions": [
                         "1.22.*",
                         "1.23.*",
-                        "1.24.*"
+                        "1.24.*",
+                        "1.25.*"
                     ]
                 },
                 "arm64": {
@@ -272,7 +273,8 @@
                     "versions": [
                         "1.22.*",
                         "1.23.*",
-                        "1.24.*"
+                        "1.24.*",
+                        "1.25.*"
                     ]
                 }
             }
