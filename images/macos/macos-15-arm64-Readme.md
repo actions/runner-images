@@ -1,13 +1,13 @@
 | Announcements |
 |-|
+| [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
 | [[macOS] Cmake will be updated to version 4.* on September 8th](https://github.com/actions/runner-images/issues/12934) |
 | [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
-| [[macOS] macos-latest YAML-label will use macos-15 in August 2025](https://github.com/actions/runner-images/issues/12520) |
 ***
 # macOS 15
-- OS Version: macOS 15.6 (24G84)
+- OS Version: macOS 15.6.1 (24G90)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20250911.2324
+- Image Version: 20250916.2338
 
 ## Installed Software
 
@@ -34,12 +34,12 @@
 - Bundler 2.7.2
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.6.10
+- Homebrew 4.6.11
 - NPM 10.9.3
 - Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.2
-- Vcpkg 2025 (build from commit 7e19f3c64c)
+- Vcpkg 2025 (build from commit 8a48867e54)
 - Yarn 1.22.22
 
 ### Project Management
@@ -51,7 +51,7 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.30.1
-- bazel 8.4.0
+- bazel 8.4.1
 - bazelisk 1.27.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
@@ -71,7 +71,7 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.29.1
+- AWS CLI 2.30.2
 - AWS SAM CLI 1.144.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.77.0
@@ -85,16 +85,14 @@
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 1.6.2
 
-### Linters
-
 ### Browsers
 - Safari 18.6 (20621.3.11.11.3)
 - SafariDriver 18.6 (20621.3.11.11.3)
 - Google Chrome 140.0.7339.133
 - Google Chrome for Testing 140.0.7339.82
 - ChromeDriver 140.0.7339.82
-- Microsoft Edge 140.0.3485.54
-- Microsoft Edge WebDriver 140.0.3485.54
+- Microsoft Edge 140.0.3485.66
+- Microsoft Edge WebDriver 140.0.3485.66
 - Mozilla Firefox 142.0.1
 - geckodriver 0.36.0
 - Selenium server 4.35.0
@@ -119,7 +117,7 @@
 - 3.1.7
 - 3.2.9
 - 3.3.9
-- 3.4.5
+- 3.4.6
 
 #### Python
 - 3.11.9
@@ -156,14 +154,14 @@
 - PSScriptAnalyzer: 1.24.0
 
 ### Xcode
-| Version        | Build    | Path                                         | Symlinks                                                       |
-| -------------- | -------- | -------------------------------------------- | -------------------------------------------------------------- |
-| 26.0           | 17A321   | /Applications/Xcode_26_Release_Candidate.app | /Applications/Xcode_26.0.0.app<br>/Applications/Xcode_26.0.app |
-| 16.4 (default) | 16F6     | /Applications/Xcode_16.4.app                 | /Applications/Xcode_16.4.0.app<br>/Applications/Xcode.app      |
-| 16.3           | 16E140   | /Applications/Xcode_16.3.app                 | /Applications/Xcode_16.3.0.app                                 |
-| 16.2           | 16C5032a | /Applications/Xcode_16.2.app                 | /Applications/Xcode_16.2.0.app                                 |
-| 16.1           | 16B40    | /Applications/Xcode_16.1.app                 | /Applications/Xcode_16.1.0.app                                 |
-| 16.0           | 16A242d  | /Applications/Xcode_16.app                   | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app |
+| Version        | Build    | Path                         | Symlinks                                                       |
+| -------------- | -------- | ---------------------------- | -------------------------------------------------------------- |
+| 26.0           | 17A324   | /Applications/Xcode_26.app   | /Applications/Xcode_26.0.0.app<br>/Applications/Xcode_26.0.app |
+| 16.4 (default) | 16F6     | /Applications/Xcode_16.4.app | /Applications/Xcode_16.4.0.app<br>/Applications/Xcode.app      |
+| 16.3           | 16E140   | /Applications/Xcode_16.3.app | /Applications/Xcode_16.3.0.app                                 |
+| 16.2           | 16C5032a | /Applications/Xcode_16.2.app | /Applications/Xcode_16.2.0.app                                 |
+| 16.1           | 16B40    | /Applications/Xcode_16.1.app | /Applications/Xcode_16.1.0.app                                 |
+| 16.0           | 16A242d  | /Applications/Xcode_16.app   | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -230,20 +228,24 @@
 | DriverKit 25.0            | driverkit25.0        | 26.0          |
 
 #### Installed Simulators
-| OS           | Simulators                                                                                                                                                                                                                                                                                                                         |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 18.4     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
-| iOS 18.5     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
-| iOS 18.6     | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
-| tvOS 18.2    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                |
-| tvOS 18.4    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                |
-| tvOS 18.5    | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                |
-| watchOS 11.2 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                     |
-| watchOS 11.4 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                     |
-| watchOS 11.5 | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                     |
-| visionOS 2.3 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                   |
-| visionOS 2.4 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                   |
-| visionOS 2.5 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                   |
+| OS            | Simulators                                                                                                                                                                                                                                                                                                                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iOS 18.4      | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                  |
+| iOS 18.5      | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                  |
+| iOS 18.6      | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                  |
+| iOS 26.0      | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
+| tvOS 18.2     | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                 |
+| tvOS 18.4     | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                 |
+| tvOS 18.5     | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                 |
+| tvOS 26.0     | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                 |
+| watchOS 11.2  | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                                                      |
+| watchOS 11.4  | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                                                      |
+| watchOS 11.5  | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                                                      |
+| watchOS 26.0  | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 2 (49mm)<br>Apple Watch Ultra 3 (49mm)                                                                  |
+| visionOS 2.3  | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                    |
+| visionOS 2.4  | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                    |
+| visionOS 2.5  | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                    |
+| visionOS 26.0 | Apple Vision Pro                                                                                                                                                                                                                                                                                                                                                                                    |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                             |
