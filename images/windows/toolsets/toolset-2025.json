@@ -326,10 +326,10 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "3.5.2",
+        "version": "3.5.3",
         "pinnedDetails": {
-            "link": "https://github.com/openssl/openssl/releases/tag/openssl-3.5.2",
-            "reason": "Installer not found for version 3.5.1",
+            "link": "https://github.com/openssl/openssl/releases/tag/openssl-3.5.3",
+            "reason": "Installer not found for version 3.5.2",
             "review-at": "2025-10-10",
             "type": "preexisting-pinned-version-without-reason"
         }
