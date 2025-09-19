@@ -1,7 +1,13 @@
+| Announcements |
+|-|
+| [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
+| [[macOS] Cmake will be updated to version 4.* on September 8th](https://github.com/actions/runner-images/issues/12934) |
+| [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
+***
 # macOS 26
-- OS Version: macOS 26.0 (25A5351b)
+- OS Version: macOS 26.0 (25A354)
 - Kernel Version: Darwin 25.0.0
-- Image Version: 20250910.90
+- Image Version: 20250916.110
 
 ## Installed Software
 
@@ -17,7 +23,7 @@
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.1.0) - available by `gfortran-15` alias
 - Kotlin 2.2.20-release-333
-- Node.js 24.7.0
+- Node.js 24.8.0
 - Perl 5.40.2
 - Python3 3.13.7
 - Ruby 3.4.5
@@ -26,12 +32,12 @@
 - Bundler 2.7.2
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.6.10
-- NPM 11.5.1
+- Homebrew 4.6.11
+- NPM 11.6.0
 - Pip3 25.2 (python 3.13)
 - Pipx 1.7.1
 - RubyGems 3.7.2
-- Vcpkg 2025 (build from commit 5ed7006439)
+- Vcpkg 2025 (build from commit 8a48867e54)
 - Yarn 1.22.22
 
 ### Project Management
@@ -43,7 +49,7 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.30.1
-- bazel 8.4.0
+- bazel 8.4.1
 - bazelisk 1.27.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
@@ -63,8 +69,8 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.29.0
-- AWS SAM CLI 1.143.0
+- AWS CLI 2.30.2
+- AWS SAM CLI 1.144.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.77.0
 - Azure CLI (azure-devops) 1.0.2
@@ -74,7 +80,7 @@
 - Fastlane 2.228.0
 - SwiftFormat 0.57.2
 - Xcbeautify 2.30.1
-- Xcode Command Line Tools 26.0.0.0.1.1755155385
+- Xcode Command Line Tools 26.0.0.0.1.1757719676
 - Xcodes 1.6.2
 
 ### Browsers
@@ -83,8 +89,8 @@
 - Google Chrome 140.0.7339.133
 - Google Chrome for Testing 140.0.7339.82
 - ChromeDriver 140.0.7339.82
-- Microsoft Edge 140.0.3485.54
-- Microsoft Edge WebDriver 140.0.3485.54
+- Microsoft Edge 140.0.3485.66
+- Microsoft Edge WebDriver 140.0.3485.66
 - Mozilla Firefox 142.0.1
 - geckodriver 0.36.0
 - Selenium server 4.35.0
@@ -108,7 +114,7 @@
 #### Ruby
 - 3.2.9
 - 3.3.9
-- 3.4.5
+- 3.4.6
 
 #### Python
 - 3.11.9
@@ -118,7 +124,7 @@
 #### Node.js
 - 20.19.5
 - 22.19.0
-- 24.7.0
+- 24.8.0
 
 #### Go
 - 1.23.12
@@ -144,10 +150,10 @@
 - PSScriptAnalyzer: 1.24.0
 
 ### Xcode
-| Version        | Build  | Path                                         | Symlinks                                                                                  |
-| -------------- | ------ | -------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 26.0 (default) | 17A321 | /Applications/Xcode_26_Release_Candidate.app | /Applications/Xcode_26.0.0.app<br>/Applications/Xcode_26.0.app<br>/Applications/Xcode.app |
-| 16.4           | 16F6   | /Applications/Xcode_16.4.app                 | /Applications/Xcode_16.4.0.app                                                            |
+| Version        | Build  | Path                         | Symlinks                                                                                  |
+| -------------- | ------ | ---------------------------- | ----------------------------------------------------------------------------------------- |
+| 26.0 (default) | 17A324 | /Applications/Xcode_26.app   | /Applications/Xcode_26.0.0.app<br>/Applications/Xcode_26.0.app<br>/Applications/Xcode.app |
+| 16.4           | 16F6   | /Applications/Xcode_16.4.app | /Applications/Xcode_16.4.0.app                                                            |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -209,3 +215,4 @@
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.2.13676358 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
+
