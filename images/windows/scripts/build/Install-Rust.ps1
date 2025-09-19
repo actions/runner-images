@@ -18,7 +18,8 @@ Test-FileChecksum $rustupPath -ExpectedSHA256Sum $distributorFileHash
 #endregion
 
 # Install Rust by running rustup-init.exe (disabling the confirmation prompt with -y)
-& $rustupPath -y --default-toolchain=stable --profile=minimal
+# Pin to 1.89.0 until https://github.com/actions/runner-images/issues/13041 && https://github.com/rust-lang/rust/issues/145936 is resolved
+& $rustupPath -y --default-toolchain=1.89.0 --profile=minimal
 if ($LASTEXITCODE -ne 0) {
     throw "Rust installation failed with exit code $LASTEXITCODE"
 }
