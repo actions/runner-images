@@ -11,7 +11,8 @@ source $HELPER_SCRIPTS/os.sh
 export RUSTUP_HOME=/etc/skel/.rustup
 export CARGO_HOME=/etc/skel/.cargo
 
-curl -fsSL https://sh.rustup.rs | sh -s -- -y --default-toolchain=stable --profile=minimal
+# Pin to 1.89.0 until https://github.com/actions/runner-images/issues/13041 && https://github.com/rust-lang/rust/issues/145936 is resolved
+curl -fsSL https://sh.rustup.rs | sh -s -- -y --default-toolchain=1.89.0 --profile=minimal
 
 # Initialize environment variables
 source $CARGO_HOME/env
