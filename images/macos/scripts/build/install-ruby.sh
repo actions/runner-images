@@ -33,7 +33,7 @@ fi
 
 echo "Check if Ruby hostedtoolcache folder exists"
 if [[ ! -d $RUBY_PATH ]]; then
-    mkdir -p $RUBY_PATH
+    mkdir -p "$RUBY_PATH"
 fi
 
 for toolset_version in ${TOOLSET_VERSIONS[@]}; do
@@ -44,13 +44,13 @@ for toolset_version in ${TOOLSET_VERSIONS[@]}; do
     ruby_version_path="$RUBY_PATH/$ruby_version"
 
     echo "Create Ruby $ruby_version directory"
-    mkdir -p $ruby_version_path
+    mkdir -p "$ruby_version_path"
 
     echo "Downloading tar archive $package_tar_name"
     archive_path=$(download_with_retry "$download_url")
 
     echo "Expand $package_tar_name to the $ruby_version_path folder"
-    tar xf $archive_path -C $ruby_version_path
+    tar xf "$archive_path" -C "$ruby_version_path"
     complete_file_path=$ruby_version_path/$arch.complete
     if [[ ! -f $complete_file_path ]]; then
         echo "Create complete file"
