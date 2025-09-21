@@ -38,7 +38,7 @@ fi
 
 for toolset_version in ${TOOLSET_VERSIONS[@]}; do
     echo "Installing Ruby version: $toolset_version..."
-    download_url=$(resolve_github_release_asset_url "ruby/ruby-builder" "contains(\"darwin-$arch.tar.gz\")" "$toolset_version" "$API_PAT")
+    download_url=$(resolve_github_release_asset_url "ruby/ruby-builder" "contains(\"darwin-$arch.tar.gz\")" "ruby-$toolset_version" "$API_PAT")
     package_tar_name="${download_url##*/}"
     ruby_version=$(echo "$package_tar_name" | cut -d'-' -f 2)
     ruby_version_path="$RUBY_PATH/$ruby_version"
