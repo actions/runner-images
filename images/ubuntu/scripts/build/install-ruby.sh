@@ -23,7 +23,6 @@ fi
 apt-get install libz-dev openssl libssl-dev
 
 echo "Install Ruby from toolset..."
-package_tar_names=$(curl -fsSL "https://api.github.com/repos/ruby/ruby-builder/releases/latest" | jq -r '.assets[].name')
 toolset_versions=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .versions[]')
 platform_version=$(get_toolset_value '.toolcache[] | select(.name | contains("Ruby")) | .platform_version')
 ruby_path="$AGENT_TOOLSDIRECTORY/Ruby"
@@ -34,7 +33,7 @@ if [[ ! -d $ruby_path ]]; then
 fi
 
 for toolset_version in ${toolset_versions[@]}; do
-    package_tar_name=$(echo "$package_tar_names" | grep "^ruby-${toolset_version}-ubuntu-${platform_version}.tar.gz$" | sort -V | tail -1)
+    package_tar_name="ruby-${toolset_version}-ubuntu-${platform_version}-x64.tar.gz"
     ruby_version=$(echo "$package_tar_name" | cut -d'-' -f 2)
     ruby_version_path="$ruby_path/$ruby_version"
 
@@ -42,7 +41,7 @@ for toolset_version in ${toolset_versions[@]}; do
     mkdir -p $ruby_version_path
 
     echo "Downloading tar archive $package_tar_name"
-    download_url="https://github.com/ruby/ruby-builder/releases/download/toolcache/${package_tar_name}"
+    download_url="https://github.com/ruby/ruby-builder/releases/download/ruby-${toolset_version}/${package_tar_name}"
     package_archive_path=$(download_with_retry "$download_url")
 
     echo "Expand '$package_tar_name' to the '$ruby_version_path' folder"
