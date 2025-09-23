@@ -5,7 +5,7 @@
             "versions": [
                 {
                     "link": "26.0.1",
-                    "filename": "26.0.1",
+                    "filename": "26.0.1_Apple_silicon",
                     "version": "26.0.1+17A400",
                     "symlinks": ["26.0.1"],
                     "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
@@ -65,7 +65,7 @@
             "versions": [
                    {
                     "link": "26.0.1",
-                    "filename": "26.0.1",
+                    "filename": "26.0.1_Apple_silicon",
                     "version": "26.0.1+17A400",
                     "symlinks": ["26.0.1"],
                     "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
