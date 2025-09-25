@@ -105,7 +105,7 @@ function Approve-XcodeLicense {
     }
 }
 
-function Install-AdditionalComponents {
+function Install-XcodeAdditionalComponents {
     param (
         [Parameter(Mandatory)]
         [string] $Version
@@ -128,7 +128,7 @@ function Invoke-XcodeRunFirstLaunch {
     Invoke-ValidateCommand "sudo $xcodeRootPath -runFirstLaunch"
 }
 
-function Install-AdditionalSimulatorRuntimes {
+function Install-XcodeAdditionalSimulatorRuntimes {
     param (
         [Parameter(Mandatory)]
         [string] $Version,
