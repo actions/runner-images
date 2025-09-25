@@ -36,7 +36,7 @@ $xcodeVersions | ForEach-Object {
     Install-XcodeAdditionalSimulatorRuntimes -Version $_.link -Arch $arch -Runtimes $_.install_runtimes
     if ($_.link -match '\d{2}(?=[._])' -and [int]$matches[0] -ge 26) {
         Install-XcodeAdditionalComponents -Version $_.link
-    }   
+    }
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
