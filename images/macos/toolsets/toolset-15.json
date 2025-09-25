@@ -3,7 +3,7 @@
         "default": "16.4",
         "x64": {
             "versions": [
-                  {
+                {
                     "link": "26.0.1",
                     "filename": "26.0.1_Universal",
                     "version": "26.0.1+17A400",
@@ -55,7 +55,7 @@
         },
         "arm64":{
             "versions": [
-              {
+                {
                     "link": "26.0.1",
                     "filename": "26.0.1_Universal",
                     "version": "26.0.1+17A400",
