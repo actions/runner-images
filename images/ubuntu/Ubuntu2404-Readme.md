@@ -115,8 +115,8 @@ to accomplish this.
 | ------------------- | -------------------- |
 | 8.0.462+8           | JAVA_HOME_8_X64      |
 | 11.0.28+6           | JAVA_HOME_11_X64     |
-| 17.0.16+8 (default) | JAVA_HOME_17_X64     |
-| 21.0.8+9            | JAVA_HOME_21_X64     |
+| 17.0.16+8           | JAVA_HOME_17_X64     |
+| 21.0.8+9 (default)  | JAVA_HOME_21_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
@@ -325,4 +325,3 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.6.1+really5.4.5-1ubuntu0.2 |
 | zip                    | 3.0-13ubuntu0.2              |
 | zsync                  | 0.6.2-5build1                |
-
