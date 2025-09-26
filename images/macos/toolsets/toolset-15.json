@@ -181,6 +181,7 @@
             "perl",
             "pkgconf",
             "swiftformat",
+            "tcl-tk@8",
             "zstd",
             "ninja",
             "gmp",
