@@ -83,9 +83,7 @@ if (Test-IsWin19) {
     $tools.AddToolVersion("Google Cloud CLI", $(Get-GoogleCloudCLIVersion))
 }
 $tools.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
-if (-not (Test-IsWin25)) {
-    $tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))
-}
+$tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))
 $tools.AddToolVersion("jq", $(Get-JQVersion))
 $tools.AddToolVersion("Kind", $(Get-KindVersion))
 $tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))

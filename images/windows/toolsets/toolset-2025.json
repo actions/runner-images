@@ -278,6 +278,7 @@
             { "name": "aria2" },
             { "name": "azcopy10" },
             { "name": "Bicep" },
+            { "name": "innosetup" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
             { "name": "packer" },
