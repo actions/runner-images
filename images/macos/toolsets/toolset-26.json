@@ -1,14 +1,22 @@
 {
     "xcode": {
-        "default": "26",
+        "default": "26.0.1",
         "arm64":{
             "versions": [
                 {
-                    "link": "26",
-                    "filename": "26_Universal",
-                    "version": "26+17A324",
+                    "link": "26.1_beta",
+                    "filename": "26.1_beta_Universal",
+                    "version": "26.1-Beta+17B5025f",
+                    "symlinks": ["26.1"],
+                    "sha256": "432f6cb936ec9547e1075e5a969309e6e0497199810bcb79e10423fa5408891c",
+                    "install_runtimes": "default"
+                },
+                {
+                    "link": "26.0.1",
+                    "filename": "26.0.1_Universal",
+                    "version": "26.0.1+17A400",
                     "symlinks": ["26.0"],
-                    "sha256": "848f8de2c9f91ef2dad4eec8ff88655222a08f3eb32c4083432c51ae2480a70f",
+                    "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
                     "install_runtimes": "default"
                 },
                 {
@@ -29,11 +37,11 @@
     "java": {
         "x64": {
             "default": "21",
-            "versions": [ "11", "17", "21"]
+            "versions": [ "11", "17", "21", "25" ]
         },
         "arm64": {
             "default": "21",
-            "versions": [ "11", "17", "21"]
+            "versions": [ "11", "17", "21", "25" ]
         }
     },
     "android": {
