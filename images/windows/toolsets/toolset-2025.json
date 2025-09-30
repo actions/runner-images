@@ -296,7 +296,7 @@
             },
             {
                 "name": "strawberryperl" ,
-                "args": [ "--version", "5.40.2.2" ]
+                "args": [ "--version", "5.42.0.1" ]
             },
             { "name": "imagemagick" },
             { "name": "ninja" }
