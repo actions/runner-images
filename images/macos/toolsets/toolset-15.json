@@ -4,12 +4,20 @@
         "x64": {
             "versions": [
                 {
-                    "link": "26_beta_7",
-                    "filename": "26_beta_7_Universal",
-                    "version": "26.0.0-Beta.7+17A5305k",
-                    "symlinks": ["26.0"],
-                    "sha256": "d711e1d6774647d38daac112ebb6d085af863ecc541f8de2360eaf44e638e8a6",
+                    "link": "26.1_beta",
+                    "filename": "26.1_beta_Universal",
+                    "version": "26.1-Beta+17B5025f",
+                    "symlinks": ["26.1"],
+                    "sha256": "432f6cb936ec9547e1075e5a969309e6e0497199810bcb79e10423fa5408891c",
                     "install_runtimes": "none"
+                },
+                {
+                    "link": "26.0.1",
+                    "filename": "26.0.1_Universal",
+                    "version": "26.0.1+17A400",
+                    "symlinks": ["26.0"],
+                    "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "16.4",
@@ -56,12 +64,20 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "26_beta_7",
-                    "filename": "26_beta_7_Universal",
-                    "version": "26.0.0-Beta.7+17A5305k",
-                    "symlinks": ["26.0"],
-                    "sha256": "d711e1d6774647d38daac112ebb6d085af863ecc541f8de2360eaf44e638e8a6",
+                    "link": "26.1_beta",
+                    "filename": "26.1_beta_Universal",
+                    "version": "26.1-Beta+17B5025f",
+                    "symlinks": ["26.1"],
+                    "sha256": "432f6cb936ec9547e1075e5a969309e6e0497199810bcb79e10423fa5408891c",
                     "install_runtimes": "none"
+                },
+                {
+                    "link": "26.0.1",
+                    "filename": "26.0.1_Universal",
+                    "version": "26.0.1+17A400",
+                    "symlinks": ["26.0"],
+                    "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "16.4",
@@ -110,11 +126,11 @@
     "java": {
         "x64": {
             "default": "21",
-            "versions": [ "11", "17", "21"]
+            "versions": [ "11", "17", "21", "25" ]
         },
         "arm64": {
             "default": "21",
-            "versions": [ "11", "17", "21"]
+            "versions": [ "11", "17", "21", "25" ]
         }
     },
     "android": {
@@ -165,6 +181,7 @@
             "perl",
             "pkgconf",
             "swiftformat",
+            "tcl-tk@8",
             "zstd",
             "ninja",
             "gmp",
@@ -264,7 +281,8 @@
                     "versions": [
                         "1.22.*",
                         "1.23.*",
-                        "1.24.*"
+                        "1.24.*",
+                        "1.25.*"
                     ]
                 },
                 "arm64": {
@@ -272,7 +290,8 @@
                     "versions": [
                         "1.22.*",
                         "1.23.*",
-                        "1.24.*"
+                        "1.24.*",
+                        "1.25.*"
                     ]
                 }
             }

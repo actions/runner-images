@@ -70,7 +70,8 @@
             "versions": [
                 "1.22.*",
                 "1.23.*",
-                "1.24.*"
+                "1.24.*",
+                "1.25.*"
             ],
             "default": "1.24.*"
         }
@@ -100,7 +101,7 @@
     ],
     "java": {
         "default": "8",
-        "versions": [ "8", "11", "17", "21"]
+        "versions": [ "8", "11", "17", "21", "25"]
     },
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",

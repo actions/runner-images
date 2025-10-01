@@ -54,7 +54,8 @@
             "versions": [
                 "1.22.*",
                 "1.23.*",
-                "1.24.*"
+                "1.24.*",
+                "1.25.*"
             ],
             "default": "1.24.*"
         }
@@ -82,7 +83,7 @@
     ],
     "java": {
         "default": "17",
-        "versions": [ "8", "11", "17", "21"]
+        "versions": [ "8", "11", "17", "21", "25"]
     },
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-12266719_latest.zip",
@@ -277,6 +278,7 @@
             { "name": "aria2" },
             { "name": "azcopy10" },
             { "name": "Bicep" },
+            { "name": "innosetup" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
             { "name": "packer" },
@@ -294,7 +296,7 @@
             },
             {
                 "name": "strawberryperl" ,
-                "args": [ "--version", "5.40.2.2" ]
+                "args": [ "--version", "5.42.0.1" ]
             },
             { "name": "imagemagick" },
             { "name": "ninja" }
@@ -325,10 +327,10 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "3.5.2",
+        "version": "3.5.3",
         "pinnedDetails": {
-            "link": "https://github.com/openssl/openssl/releases/tag/openssl-3.5.2",
-            "reason": "Installer not found for version 3.5.1",
+            "link": "https://github.com/openssl/openssl/releases/tag/openssl-3.5.3",
+            "reason": "Installer not found for version 3.5.2",
             "review-at": "2025-10-10",
             "type": "preexisting-pinned-version-without-reason"
         }
