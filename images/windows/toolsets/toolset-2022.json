@@ -362,13 +362,7 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "1.1.1",
-        "pinnedDetails": {
-            "link": "https://github.com/actions/runner-images-internal/pull/6702",
-            "reason": "Meaningful reason must be added at next update.",
-            "review-at": "2024-06-01",
-            "type": "preexisting-pinned-version-without-reason"
-        }
+        "version": "3.*"
     },
     "pwsh": {
         "version": "7.4"
