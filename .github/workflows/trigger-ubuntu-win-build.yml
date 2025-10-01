@@ -23,7 +23,7 @@ jobs:
       CI_REPO: ${{ vars.CI_REPO }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Trigger Build workflow
         run: |
@@ -78,7 +78,7 @@ jobs:
     needs: trigger-workflow
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Wait for workflow completion
         env:
@@ -106,7 +106,7 @@ jobs:
     if: cancelled()
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Cancel workflow
         env:
