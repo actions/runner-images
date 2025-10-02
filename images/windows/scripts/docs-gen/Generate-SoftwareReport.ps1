@@ -193,9 +193,8 @@ $databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
 $databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
 $databaseTools.AddToolVersion("SQL OLEDB Driver", $(Get-SQLOLEDBDriverVersion))
 $databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
-if (Test-IsWin25) {
-    $databaseTools.AddToolVersion("MongoDB Shell (mongosh)", $(Get-MongoshVersion))
-}
+$databaseTools.AddToolVersion("MongoDB Shell (mongosh)", $(Get-MongoshVersion))
+
 
 # Web Servers
 $installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersSection))
