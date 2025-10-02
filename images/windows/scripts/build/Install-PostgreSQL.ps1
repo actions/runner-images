@@ -93,7 +93,7 @@ $pgPath = (Get-CimInstance Win32_Service -Filter "Name LIKE 'postgresql-%'").Pat
 
 # Parse output of command above to obtain pure path
 $pgBin = Split-Path -Path $pgPath.split('"')[1]
-$pgRoot = Split-Path -Path $pgPath.split('"')[5]
+$pgRoot = Split-Path $pgBin -Parent
 
 # Validate PostgreSQL installation
 $pgReadyPath = Join-Path $pgBin "pg_isready.exe"
