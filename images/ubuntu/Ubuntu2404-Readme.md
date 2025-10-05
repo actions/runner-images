@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [Ruby binaries built on GitHub Actions runners are moving from a single release to one release per engine-version](https://github.com/actions/runner-images/issues/13050) |
 | [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.3 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20250922.53.1
+- Image Version: 20250929.60.1
 - Systemd version: 255.4-1ubuntu8.10
 
 ## Installed Software
@@ -30,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.19.0
-- Homebrew 4.6.12
+- Homebrew 4.6.15
 - Miniconda 25.7.0
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.7.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit 378d71bd94)
+- Vcpkg (build from commit bed11935ca)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,7 +56,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 9.1.0
-- Lerna 8.2.4
+- Lerna 9.0.0
 - Maven 3.9.11
 
 ### Tools
@@ -68,7 +67,7 @@ to accomplish this.
 - Bicep 0.37.4
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.23.0
+- CodeQL Action Bundle 2.23.1
 - Docker Amazon ECR Credential Helper 0.10.1
 - Docker Compose v2 2.38.2
 - Docker-Buildx 0.28.0
@@ -93,7 +92,7 @@ to accomplish this.
 - Packer 1.14.2
 - Parcel 2.16.0
 - Podman 4.9.3
-- Pulumi 3.197.0
+- Pulumi 3.198.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -102,13 +101,13 @@ to accomplish this.
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.30.7
+- AWS CLI 2.31.4
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.144.0
 - Azure CLI 2.77.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.79.0
-- Google Cloud CLI 539.0.0
+- GitHub CLI 2.80.0
+- Google Cloud CLI 540.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -117,11 +116,12 @@ to accomplish this.
 | 11.0.28+6           | JAVA_HOME_11_X64     |
 | 17.0.16+8 (default) | JAVA_HOME_17_X64     |
 | 21.0.8+9            | JAVA_HOME_21_X64     |
+| 25.0.0+36           | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
 - Composer 2.8.12
-- PHPUnit 8.5.46
+- PHPUnit 8.5.48
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -133,20 +133,20 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.7.1
 
 ### Rust Tools
-- Cargo 1.89.0
-- Rust 1.89.0
-- Rustdoc 1.89.0
+- Cargo 1.90.0
+- Rust 1.90.0
+- Rustdoc 1.90.0
 - Rustup 1.28.2
 
 #### Packages
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 140.0.7339.185
-- ChromeDriver 140.0.7339.185
+- Google Chrome 140.0.7339.207
+- ChromeDriver 140.0.7339.207
 - Chromium 140.0.7339.0
-- Microsoft Edge 140.0.3485.81
-- Microsoft Edge WebDriver 140.0.3485.81
+- Microsoft Edge 140.0.3485.94
+- Microsoft Edge WebDriver 140.0.3485.94
 - Selenium server 4.35.0
 - Mozilla Firefox 143.0.1
 - Geckodriver 0.36.0
@@ -161,7 +161,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.120, 8.0.206, 8.0.317, 8.0.414, 9.0.110, 9.0.205, 9.0.305
-- nbgv 3.7.115+d31f50f4d1
+- nbgv 3.8.118+69b3e0b5a0
 
 ### Databases
 - sqlite3 3.45.1
@@ -193,7 +193,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 18.20.8
 - 20.19.5
-- 22.19.0
+- 22.20.0
 
 #### Python
 - 3.9.23
@@ -265,8 +265,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | curl                   | 8.5.0-2ubuntu10.6            |
 | dbus                   | 1.14.10-4ubuntu4.1           |
 | dnsutils               | 1:9.18.39-0ubuntu0.24.04.1   |
-| dpkg                   | 1.22.6ubuntu6.2              |
-| dpkg-dev               | 1.22.6ubuntu6.2              |
+| dpkg                   | 1.22.6ubuntu6.5              |
+| dpkg-dev               | 1.22.6ubuntu6.5              |
 | fakeroot               | 1.33-1                       |
 | file                   | 1:5.45-3build1               |
 | findutils              | 4.9.0-5build1                |
