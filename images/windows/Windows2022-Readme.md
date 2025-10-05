@@ -7,7 +7,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 4171
-- Image Version: 20250921.44.1
+- Image Version: 20250929.55.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -22,7 +22,7 @@
 - LLVM 20.1.8
 - Node 20.19.5
 - Perl 5.32.1
-- PHP 8.4.11
+- PHP 8.4.13
 - Python 3.9.13
 - Ruby 3.3.9
 
@@ -36,7 +36,7 @@
 - pip 25.2 (python 3.9)
 - Pipx 1.7.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 29ff5b8131)
+- Vcpkg (build from commit d56a38a1f9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,15 +60,15 @@
 - Bicep 0.37.4
 - Cabal 3.16.0.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.23.0
+- CodeQL Action Bundle 2.23.1
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.3
 - ghc 9.12.2
-- Git 2.51.0.windows.1
+- Git 2.51.0.windows.2
 - Git LFS 3.7.0
 - ImageMagick 7.1.2-3
-- InnoSetup 6.4.0
+- InnoSetup 6.5.4
 - jq 1.8.1
 - Kind 0.30.0
 - Kubectl 1.34.1
@@ -80,8 +80,8 @@
 - NSIS 3.10
 - OpenSSL 1.1.1w
 - Packer 1.12.0
-- Pulumi 3.197.0
-- R 4.4.2
+- Pulumi 3.198.0
+- R 4.5.1
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
 - Subversion (SVN) 1.14.5
@@ -94,18 +94,18 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.302
-- AWS CLI 2.30.5
+- Alibaba Cloud CLI 3.0.305
+- AWS CLI 2.31.3
 - AWS SAM CLI 1.144.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.77.0
 - Azure DevOps CLI extension 1.0.2
-- GitHub CLI 2.79.0
+- GitHub CLI 2.80.0
 
 ### Rust Tools
-- Cargo 1.89.0
-- Rust 1.89.0
-- Rustdoc 1.89.0
+- Cargo 1.90.0
+- Rust 1.90.0
+- Rustdoc 1.90.0
 - Rustup 1.28.2
 
 #### Packages
@@ -113,14 +113,14 @@
 - cargo-audit 0.21.2
 - cargo-outdated 0.17.0
 - cbindgen 0.29.0
-- Clippy 0.1.89
+- Clippy 0.1.90
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 140.0.7339.186
-- Chrome Driver 140.0.7339.185
-- Microsoft Edge 140.0.3485.81
-- Microsoft Edge Driver 140.0.3485.81
+- Google Chrome 140.0.7339.208
+- Chrome Driver 140.0.7339.207
+- Microsoft Edge 140.0.3485.94
+- Microsoft Edge Driver 140.0.3485.94
 - Mozilla Firefox 143.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -141,6 +141,7 @@
 | 11.0.28+6           | JAVA_HOME_11_X64     |
 | 17.0.16+8           | JAVA_HOME_17_X64     |
 | 21.0.8+9.0          | JAVA_HOME_21_X64     |
+| 25.0.0+36.0         | JAVA_HOME_25_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -170,7 +171,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 18.20.8
 - 20.19.5
-- 22.19.0
+- 22.20.0
 
 #### Python
 - 3.9.13
@@ -225,9 +226,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.29.1  | C:\tools\nginx-1.29.1\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.36511.14 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.14.36518.9 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -241,7 +242,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.MDD.Android                                                     | 17.14.36510.44  |
 | Component.MDD.Linux                                                       | 17.14.36510.44  |
 | Component.MDD.Linux.GCC.arm                                               | 17.14.36510.44  |
-| Component.Microsoft.VisualStudio.LiveShare.2022                           | 1.0.5949        |
 | Component.Microsoft.VisualStudio.RazorExtension                           | 17.14.36510.44  |
 | Component.Microsoft.VisualStudio.Tools.Applications.amd64                 | 17.0.35906.1    |
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 17.14.36510.44  |
@@ -254,11 +254,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Unreal.Android                                                  | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36510.44  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36510.44  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36517.7   |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
 | Component.Xamarin                                                         | 17.14.36510.44  |
+| ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.36518.2   |
 | ios                                                                       | 18.5.9214.0     |
 | maccatalyst                                                               | 18.5.9214.0     |
 | maui.blazor                                                               | 9.0.82.6628     |
@@ -309,7 +310,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.AspNet45                                 | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.Azure.AuthoringTools                     | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.Azure.ClientLibs                         | 17.14.36510.44  |
-| Microsoft.VisualStudio.Component.Azure.Compute.Emulator                   | 17.14.36510.44  |
+| Microsoft.VisualStudio.Component.Azure.Compute.Emulator                   | 17.14.36517.7   |
 | Microsoft.VisualStudio.Component.Azure.ResourceManager.Tools              | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools                | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.Azure.Waverton                           | 17.14.36510.44  |
@@ -324,7 +325,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.DockerTools                              | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.DotNetModelBuilder                       | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.DslTools                                 | 17.14.36510.44  |
-| Microsoft.VisualStudio.Component.Embedded                                 | 17.14.36510.44  |
+| Microsoft.VisualStudio.Component.Embedded                                 | 17.14.36517.7   |
 | Microsoft.VisualStudio.Component.EntityFramework                          | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.FSharp                                   | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.FSharp.Desktop                           | 17.14.36510.44  |
@@ -436,19 +437,19 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.TemplateEngine   | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.WindowsAppDevelopment.Prerequisites | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.WindowsAppSDK.Cs                    | 17.14.36510.44  |
-| Microsoft.VisualStudio.Workload.Azure                                     | 17.14.36322.40  |
+| Microsoft.VisualStudio.Workload.Azure                                     | 17.14.36518.2   |
 | Microsoft.VisualStudio.Workload.CoreEditor                                | 17.14.36015.10  |
 | Microsoft.VisualStudio.Workload.Data                                      | 17.14.36015.10  |
 | Microsoft.VisualStudio.Workload.DataScience                               | 17.14.36015.10  |
-| Microsoft.VisualStudio.Workload.ManagedDesktop                            | 17.14.36015.10  |
+| Microsoft.VisualStudio.Workload.ManagedDesktop                            | 17.14.36518.2   |
 | Microsoft.VisualStudio.Workload.ManagedGame                               | 17.14.36301.6   |
 | Microsoft.VisualStudio.Workload.NativeCrossPlat                           | 17.14.36510.44  |
-| Microsoft.VisualStudio.Workload.NativeDesktop                             | 17.14.36331.10  |
+| Microsoft.VisualStudio.Workload.NativeDesktop                             | 17.14.36517.7   |
 | Microsoft.VisualStudio.Workload.NativeGame                                | 17.14.36331.10  |
 | Microsoft.VisualStudio.Workload.NativeMobile                              | 17.14.36015.10  |
-| Microsoft.VisualStudio.Workload.NetCrossPlat                              | 17.14.36015.10  |
-| Microsoft.VisualStudio.Workload.NetWeb                                    | 17.14.36015.10  |
-| Microsoft.VisualStudio.Workload.Node                                      | 17.14.36015.10  |
+| Microsoft.VisualStudio.Workload.NetCrossPlat                              | 17.14.36518.2   |
+| Microsoft.VisualStudio.Workload.NetWeb                                    | 17.14.36518.2   |
+| Microsoft.VisualStudio.Workload.Node                                      | 17.14.36517.7   |
 | Microsoft.VisualStudio.Workload.Office                                    | 17.14.36015.10  |
 | Microsoft.VisualStudio.Workload.Python                                    | 17.14.36015.10  |
 | Microsoft.VisualStudio.Workload.Universal                                 | 17.14.36331.10  |
@@ -491,14 +492,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 6.0.39, 8.0.6, 8.0.20, 9.0.6, 9.0.9
 - Microsoft.NETCore.App: 6.0.39, 8.0.6, 8.0.20, 9.0.6, 9.0.9
 - Microsoft.WindowsDesktop.App: 8.0.6, 8.0.20, 9.0.6, 9.0.9
-- nbgv 3.7.115+d31f50f4d1
+- nbgv 3.8.118+69b3e0b5a0
 
 ### PowerShell Tools
 - PowerShell 7.4.12
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.59
+- AWSPowershell: 5.0.65
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.30.0
