@@ -437,17 +437,17 @@
     "kotlin": {
         "version": "2.1.10",
         "pinnedDetails": {
-            "link": "https://youtrack.jetbrains.com/issues/KT?preview=KT-76169",
-            "reason": "this was pinned due to a new version 2.1.20 released has an issue with kotlinc-js -version` and kapt -version",
-            "review-at": "2025-03-31"
+            "link": "https://github.com/actions/runner-images/issues/12045",
+            "reason": "Image is deprecated and will be removed soon",
+            "review-at": "2027-01-01"
         }
     },
     "openssl": {
         "version": "1.1.1",
         "pinnedDetails": {
-            "link": "https://github.com/somelink",
-            "reason": "this was pinned due to a downstream issue with the installer",
-            "review-at": "2025-01-30"
+            "link": "https://github.com/actions/runner-images/issues/12045",
+            "reason": "Image is deprecated and will be removed soon",
+            "review-at": "2027-01-01"
         }
     },
     "pwsh": {

@@ -213,8 +213,12 @@ Describe "Kotlin" {
 }
 
 Describe "SQL OLEDB Driver" {
-    It "SQL OLEDB Driver" {
+    It "SQL OLEDB Driver 18" {
         "HKLM:\SOFTWARE\Microsoft\MSOLEDBSQL" | Should -Exist
+    }
+
+    It "SQL OLEDB Driver 19" {
+        "HKLM:\SOFTWARE\Microsoft\MSOLEDBSQL19" | Should -Exist
     }
 }
 
