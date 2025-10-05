@@ -39,19 +39,18 @@ $mongodbService.WaitForStatus('Running', '00:01:00')
 Stop-Service $mongodbService
 $mongodbService | Set-Service -StartupType Disabled
 
-# Install mongodb shell for mongodb > 5 version
-if (Test-IsWin25) {
-    $mongoshVersion = (Get-GithubReleasesByVersion -Repo "mongodb-js/mongosh" -Version "latest").version
+# Install mongodb shell for mongodb
+$mongoshVersion = (Get-GithubReleasesByVersion -Repo "mongodb-js/mongosh" -Version "latest").version
 
-    $mongoshDownloadUrl = Resolve-GithubReleaseAssetUrl `
-        -Repo "mongodb-js/mongosh" `
-        -Version $mongoshVersion `
-        -UrlMatchPattern "mongosh-*-x64.msi"
+$mongoshDownloadUrl = Resolve-GithubReleaseAssetUrl `
+    -Repo "mongodb-js/mongosh" `
+    -Version $mongoshVersion `
+    -UrlMatchPattern "mongosh-*-x64.msi"
 
-    Install-Binary -Type MSI `
-        -Url $mongoshDownloadUrl `
-        -ExtraInstallArgs @('ALLUSERS=1') `
-        -ExpectedSubject 'CN="MongoDB, Inc.", O="MongoDB, Inc.", L=New York, S=New York, C=US'
-}
+Install-Binary -Type MSI `
+    -Url $mongoshDownloadUrl `
+    -ExtraInstallArgs @('ALLUSERS=1') `
+    -ExpectedSubject 'CN="MongoDB, Inc.", O="MongoDB, Inc.", L=New York, S=New York, C=US'
+
 
 Invoke-PesterTests -TestFile "Databases" -TestName "MongoDB"
