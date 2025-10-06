@@ -102,6 +102,10 @@ variable "source_image_version" {
   type    = string
   default = "latest"
 }
+variable "ssh_clear_authorized_keys" {
+  type    = bool
+  default = true
+}
 variable "temp_resource_group_name" {
   type    = string
   default = "${env("TEMP_RESOURCE_GROUP_NAME")}"

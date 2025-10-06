@@ -22,6 +22,7 @@ source "azure-arm" "image" {
   os_disk_size_gb                        = local.image_properties.os_disk_size_gb
   os_type                                = var.image_os_type
   private_virtual_network_with_public_ip = var.private_virtual_network_with_public_ip
+  ssh_clear_authorized_keys              = var.ssh_clear_authorized_keys
   temp_resource_group_name               = var.temp_resource_group_name
   virtual_network_name                   = var.virtual_network_name
   virtual_network_resource_group_name    = var.virtual_network_resource_group_name
