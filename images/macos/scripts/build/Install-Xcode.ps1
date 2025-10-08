@@ -40,7 +40,9 @@ $xcodeVersions | ForEach-Object {
 }
 
 # Update dyld shared cache for the latest stable Xcode version
-Update-DyldCache -XcodeVersions $xcodeVersions
+if ((-not $os.IsSonoma)) {
+    Update-DyldCache -XcodeVersions $xcodeVersions
+}
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
