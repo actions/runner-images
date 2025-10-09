@@ -316,3 +316,23 @@ function Invoke-ValidateCommand {
         Receive-Job -Job $job
     }
 }
+
+function Update-DyldCache {
+    param (
+        [Parameter(Mandatory)]
+        [array] $XcodeVersions
+    )
+
+    # Find the latest stable Xcode version (excluding beta and RC versions)
+    $latestStableXcode = $XcodeVersions | Where-Object { 
+        -not ($_.link.Contains("beta") -or $_.link.Contains("Release_Candidate") -or $_.link.Contains("_RC"))
+    } | Sort-Object { [version]($_.version -split '\+')[0] } -Descending | Select-Object -First 1
+
+    if ($latestStableXcode) {
+        Write-Host "Updating dyld shared cache for Xcode $($latestStableXcode.link)..."
+        Switch-Xcode -Version $latestStableXcode.link
+        Invoke-ValidateCommand "xcrun simctl runtime dyld_shared_cache update --all"
+    } else {
+        Write-Host "No stable Xcode version found for dyld cache update."
+    }
+}
