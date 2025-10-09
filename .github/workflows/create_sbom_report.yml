@@ -5,7 +5,7 @@ name: Create SBOM for the release
 # github.event.client_payload.imageVersion - AzDO image version "major.minor"
 #
 # Current SYFT tool issues:
-# macOS (major): prompt privilegies that blocking process indefinetely (https://github.com/anchore/syft/issues/1367)
+# macOS (major): prompt privileges that blocking process indefinitely (https://github.com/anchore/syft/issues/1367)
 run-name: Collecting SBOM for ${{ github.event.client_payload.agentSpec || 'unknown image' }} - ${{ github.event.client_payload.imageVersion || 'unknown version' }}
 on:
   repository_dispatch:
