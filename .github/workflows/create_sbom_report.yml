@@ -3,11 +3,10 @@ name: Create SBOM for the release
 # github.event.client_payload.agentSpec - Current YAML Label
 # github.event.client_payload.ReleaseID - Current release ID
 # github.event.client_payload.imageVersion - AzDO image version "major.minor"
-# github.event.client_payload.ReleaseBranchName - Necessary to identify workflow run
 #
 # Current SYFT tool issues:
-# macOS (major): prompt privilegies that blocking process indefinetely (https://github.com/anchore/syft/issues/1367)
-run-name: Collecting SBOM for ${{ github.event.client_payload.ReleaseBranchName || 'unknown release' }}
+# macOS (major): prompt privileges that blocking process indefinitely (https://github.com/anchore/syft/issues/1367)
+run-name: Collecting SBOM for ${{ github.event.client_payload.agentSpec || 'unknown image' }} - ${{ github.event.client_payload.imageVersion || 'unknown version' }}
 on:
   repository_dispatch:
     types: [generate-sbom]
@@ -21,7 +20,7 @@ jobs:
       check_status: ${{ steps.check.outputs.status }}
     runs-on: ubuntu-latest
     steps:
-    - name: Check release for ${{ github.event.client_payload.ReleaseBranchName }}
+    - name: Check release for ${{ github.event.client_payload.agentSpec }}
       id: check
       shell: pwsh
       run: |
@@ -46,7 +45,7 @@ jobs:
     if: ${{ needs.sbom-check.outputs.check_status == 'okay' }}
     runs-on: ${{ github.event.client_payload.agentSpec }}
     steps:
-      - name: Available image version check for ${{ github.event.client_payload.ReleaseBranchName }}
+      - name: Available image version check for ${{ github.event.client_payload.agentSpec }} - ${{ github.event.client_payload.imageVersion }}
         run: |
           $imageVersionComponents = $env:ImageVersion.Split('.')
           $imageMajorVersion = $imageVersionComponents[0]
