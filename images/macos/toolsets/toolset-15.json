@@ -226,6 +226,9 @@
             "fastlane"
         ]
     },
+    "python": {
+        "default": "3.13"
+    },
     "toolcache": [
         {
             "name": "Python",
