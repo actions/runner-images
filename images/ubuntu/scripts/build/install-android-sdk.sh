@@ -15,8 +15,8 @@ add_filtered_installation_components() {
     local tools_array=("$@")
 
     for item in ${tools_array[@]}; do
-        # Take the last argument after splitting string by ';'' and '-''
-        item_version=$(echo "${item##*[-;]}")
+        # Take the last version number that appears after the last '-' or ';'
+        item_version=$(echo "$item" | grep -oP '(?<=[-;])[0-9.]+')
 
         # Semver 'comparison'. Add item to components array, if item's version is greater than or equal to minimum version
         if [[ "$(printf "${minimum_version}\n${item_version}\n" | sort -V | head -n1)" == "$minimum_version" ]]; then
