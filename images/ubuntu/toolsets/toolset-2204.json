@@ -180,6 +180,7 @@
             "binutils",
             "bison",
             "brotli",
+            "libnss3-tools",
             "coreutils",
             "file",
             "findutils",
