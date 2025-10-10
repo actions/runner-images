@@ -14,7 +14,7 @@ Describe "Python3" {
         }
     } else {
         It "Python 3 is installed under /usr/local/bin" {
-            Get-ToolPath "python3" | Should -BeLike "/usr/local/bin*"
+            Get-ToolPath "python3" | Should -BeLike "/usr/local/bin/*"
         }
     }
 
