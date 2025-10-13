@@ -15,18 +15,9 @@ for package in $common_packages; do
             brew install hashicorp/tap/packer
             ;;
 
-        cmake)
-            # Pin cmake bottle to 3.31.6 due to a backward compatibility issue with the latest version
-            # https://github.com/actions/runner-images/issues/11926
-            cmake_commit="b4e46db74e74a8c1650b38b1da222284ce1ec5ce"
-            cmake_rb_link="https://raw.githubusercontent.com/Homebrew/homebrew-core/$cmake_commit/Formula/c/cmake.rb"
-            cmake_rb_path=$(download_with_retry "$cmake_rb_link")
-            brew install "$cmake_rb_path"
-            ;;
-
         tcl-tk@8)
             brew_smart_install "$package"
-            if is_VenturaX64 || is_SonomaX64; then
+            if is_VenturaX64 || is_SonomaX64 || is_SequoiaX64; then
                 # Fix for https://github.com/actions/runner-images/issues/11074
                 ln -sf "$(brew --prefix tcl-tk@8)/lib/libtcl8.6.dylib" /usr/local/lib/libtcl8.6.dylib
                 ln -sf "$(brew --prefix tcl-tk@8)/lib/libtk8.6.dylib" /usr/local/lib/libtk8.6.dylib
@@ -70,6 +61,7 @@ if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
             if is_SonomaX64; then
                 osascript $HOME/utils/confirm-identified-developers-macos14.scpt $USER_PASSWORD
             fi
+
             if is_SequoiaX64; then
                 osascript $HOME/utils/confirm-identified-developers-macos15.scpt $USER_PASSWORD
             fi

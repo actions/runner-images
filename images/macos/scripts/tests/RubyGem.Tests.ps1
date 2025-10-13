@@ -25,15 +25,3 @@ Describe "Fastlane" {
         "fastlane --version" | Should -ReturnZeroExitCode
     }
 }
-
-Describe "xcpretty" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "xcpretty" {
-        "xcpretty --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "jazzy" -Skip:($os.IsVentura -or $os.IsSonoma -or $os.IsSequoia) {
-    It "jazzy" {
-        "jazzy --version" | Should -ReturnZeroExitCode
-    }
-}

@@ -7,7 +7,8 @@
             "versions": [
                 "3.1",
                 "3.2",
-                "3.3"
+                "3.3",
+                "3.4"
             ],
             "default": "3.3"
         },
@@ -69,7 +70,8 @@
             "versions": [
                 "1.22.*",
                 "1.23.*",
-                "1.24.*"
+                "1.24.*",
+                "1.25.*"
             ],
             "default": "1.24.*"
         }
@@ -99,7 +101,7 @@
     ],
     "java": {
         "default": "8",
-        "versions": [ "8", "11", "17", "21"]
+        "versions": [ "8", "11", "17", "21", "25"]
     },
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",
@@ -213,8 +215,6 @@
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.ASAN",
             "Microsoft.VisualStudio.Component.Windows10SDK.19041",
-            "Microsoft.VisualStudio.Component.Windows10SDK.20348",
-            "Microsoft.VisualStudio.Component.Windows11SDK.22000",
             "Microsoft.VisualStudio.Component.Windows11SDK.22621",
             "Microsoft.VisualStudio.Component.Windows11SDK.26100",
             "Microsoft.VisualStudio.Component.Workflow",

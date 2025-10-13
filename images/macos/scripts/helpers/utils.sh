@@ -45,6 +45,10 @@ is_Arm64() {
     [ "$(arch)" = "arm64" ]
 }
 
+is_Tahoe() {
+    [ "$OSTYPE" = "darwin25" ]
+}
+
 is_Sequoia() {
     [ "$OSTYPE" = "darwin24" ]
 }
