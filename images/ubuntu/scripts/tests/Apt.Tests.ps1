@@ -8,6 +8,7 @@ Describe "Apt" {
         switch ($toolName) {
             "acl"               { $toolName = "getfacl"; break }
             "aria2"             { $toolName = "aria2c"; break }
+            "libnss3-tools"     { $toolName = "certutil"; break }
             "p7zip-full"        { $toolName = "p7zip"; break }
             "subversion"        { $toolName = "svn"; break }
             "sphinxsearch"      { $toolName = "searchd"; break }
