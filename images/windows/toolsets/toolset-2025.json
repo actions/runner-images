@@ -7,7 +7,8 @@
             "versions": [
                 "3.1",
                 "3.2",
-                "3.3"
+                "3.3",
+                "3.4"
             ],
             "default": "3.3"
         },
@@ -53,7 +54,8 @@
             "versions": [
                 "1.22.*",
                 "1.23.*",
-                "1.24.*"
+                "1.24.*",
+                "1.25.*"
             ],
             "default": "1.24.*"
         }
@@ -81,7 +83,7 @@
     ],
     "java": {
         "default": "17",
-        "versions": [ "8", "11", "17", "21"]
+        "versions": [ "8", "11", "17", "21", "25"]
     },
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-12266719_latest.zip",
@@ -324,11 +326,11 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "3.5.1",
+        "version": "3.5.3",
         "pinnedDetails": {
-            "link": "https://github.com/actions/runner-images-internal/pull/6702",
-            "reason": "Meaningful reason must be added at next update.",
-            "review-at": "2025-06-01",
+            "link": "https://github.com/openssl/openssl/releases/tag/openssl-3.5.3",
+            "reason": "Installer not found for version 3.5.2",
+            "review-at": "2025-10-10",
             "type": "preexisting-pinned-version-without-reason"
         }
     },

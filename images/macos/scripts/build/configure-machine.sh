@@ -103,3 +103,7 @@ if [[ ! -d "/usr/local/bin" ]];then
 fi
 chmod +x $HOME/utils/invoke-tests.sh
 sudo ln -s $HOME/utils/invoke-tests.sh /usr/local/bin/invoke_tests
+
+# Fix share dir permissions
+sudo chown "$USER":admin /usr/local/share
+sudo chmod 775 /usr/local/share

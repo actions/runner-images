@@ -81,7 +81,7 @@ variable "ram_size" {
 
 variable "image_os" {
   type    = string
-  default = "macos13"
+  default = "macos26"
 }
 
 source "veertu-anka-vm-clone" "template" {
@@ -149,7 +149,7 @@ build {
 
   provisioner "file" {
     destination = "${local.image_folder}/toolset.json"
-    source      = "${path.root}/../toolsets/toolset-13.json"
+    source      = "${path.root}/../toolsets/toolset-26.json"
   }
 
   provisioner "shell" {
@@ -158,7 +158,7 @@ build {
       "mv ${local.image_folder}/docs-gen ${local.image_folder}/software-report",
       "mkdir ~/utils",
       "mv ${local.image_folder}/helpers/invoke-tests.sh ~/utils",
-      "mv ${local.image_folder}/helpers/utils.sh ~/utils",
+      "mv ${local.image_folder}/helpers/utils.sh ~/utils"
     ]
   }
 
@@ -166,7 +166,8 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts         = [
       "${path.root}/../scripts/build/install-xcode-clt.sh",
-      "${path.root}/../scripts/build/install-homebrew.sh"
+      "${path.root}/../scripts/build/install-homebrew.sh",
+      "${path.root}/../scripts/build/install-rosetta.sh"
     ]
   }
 
@@ -203,20 +204,16 @@ build {
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     pause_before     = "30s"
     scripts          = [
-      "${path.root}/../scripts/build/install-rosetta.sh",
       "${path.root}/../scripts/build/configure-windows.sh",
       "${path.root}/../scripts/build/install-powershell.sh",
-      "${path.root}/../scripts/build/install-mono.sh",
       "${path.root}/../scripts/build/install-dotnet.sh",
       "${path.root}/../scripts/build/install-python.sh",
       "${path.root}/../scripts/build/install-azcopy.sh",
-      "${path.root}/../scripts/build/install-openssl.sh",
       "${path.root}/../scripts/build/install-ruby.sh",
       "${path.root}/../scripts/build/install-rubygems.sh",
       "${path.root}/../scripts/build/install-git.sh",
       "${path.root}/../scripts/build/install-node.sh",
-      "${path.root}/../scripts/build/install-common-utils.sh",
-      "${path.root}/../scripts/build/install-unxip.sh"
+      "${path.root}/../scripts/build/install-common-utils.sh"
     ]
   }
 
@@ -245,6 +242,7 @@ build {
       "${path.root}/../scripts/build/install-gcc.sh",
       "${path.root}/../scripts/build/install-cocoapods.sh",
       "${path.root}/../scripts/build/install-android-sdk.sh",
+      "${path.root}/../scripts/build/install-vcpkg.sh",
       "${path.root}/../scripts/build/install-safari.sh",
       "${path.root}/../scripts/build/install-chrome.sh",
       "${path.root}/../scripts/build/install-firefox.sh",
