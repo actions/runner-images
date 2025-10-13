@@ -8,6 +8,7 @@ $ErrorActionPreference = "Stop"
 Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
 Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1" -DisableNameChecking
 
+$os = Get-OSVersion
 $arch = Get-Architecture
 [Array]$xcodeVersions = (Get-ToolsetContent).xcode.$arch.versions
 Write-Host $xcodeVersions
