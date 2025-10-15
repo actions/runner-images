@@ -54,4 +54,11 @@ foreach ($tool in $tools) {
     }
 }
 
+
+# Ensure python3 and pip3 point to the latest installed Python version
+# Fix for ./setup.sh script behavior for python3 and pip3 symlinks
+# Only Intel images are affected since /usr/local/bin is used for Intel
+# ARM images use /opt/homebrew/bin which is managed by Homebrew
+brew link --overwrite python3
+
 Invoke-PesterTests "Toolcache"
