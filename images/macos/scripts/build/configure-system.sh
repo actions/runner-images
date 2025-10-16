@@ -40,7 +40,7 @@ if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
     brew uninstall parallels
 fi
 
-#Simple warmup of the default Xcode
+# Simple warmup of the default Xcode
 echo "Warm up the default Xcode"
 xcodebuild -version > /dev/null
 xcrun simctl list > /dev/null
