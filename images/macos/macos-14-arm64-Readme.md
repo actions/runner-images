@@ -8,7 +8,7 @@
 # macOS 14
 - OS Version: macOS 14.7.6 (23H626)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20250928.1833
+- Image Version: 20251013.0032
 
 ## Installed Software
 
@@ -20,29 +20,29 @@
 - GCC 12 (Homebrew GCC 12.4.0) - available by `gcc-12` alias
 - GCC 13 (Homebrew GCC 13.4.0) - available by `gcc-13` alias
 - GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
-- GCC 15 (Homebrew GCC 15.1.0) - available by `gcc-15` alias
+- GCC 15 (Homebrew GCC 15.2.0) - available by `gcc-15` alias
 - GNU Fortran 12 (Homebrew GCC 12.4.0) - available by `gfortran-12` alias
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
-- GNU Fortran 15 (Homebrew GCC 15.1.0) - available by `gfortran-15` alias
+- GNU Fortran 15 (Homebrew GCC 15.2.0) - available by `gfortran-15` alias
 - Kotlin 2.2.20-release-333
 - Mono 6.12.0.188
 - Node.js 20.19.5
 - Perl 5.40.2
-- Python3 3.13.7
+- Python3 3.14.0
 - Ruby 3.3.9
 
 ### Package Management
 - Bundler 2.7.2
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.6.14
+- Homebrew 4.6.17
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 25.2 (python 3.13)
-- Pipx 1.7.1
+- Pip3 25.2 (python 3.14)
+- Pipx 1.8.0
 - RubyGems 3.7.2
-- Vcpkg 2025 (build from commit 2e6fcc4457)
+- Vcpkg 2025 (build from commit 71f123418c)
 - Yarn 1.22.22
 
 ### Project Management
@@ -54,13 +54,13 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.30.1
-- bazel 8.4.1
+- bazel 8.4.2
 - bazelisk 1.27.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.50.1
 - Git LFS 3.7.0
-- GitHub CLI 2.80.0
+- GitHub CLI 2.81.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
@@ -69,21 +69,21 @@
 - Packer 1.14.2
 - pkgconf 2.5.1
 - Unxip 3.2
-- yq 4.47.2
+- yq 4.48.1
 - zstd 1.5.7
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.31.3
+- AWS CLI 2.31.14
 - AWS SAM CLI 1.144.0
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.77.0
 - Azure CLI (azure-devops) 1.0.2
-- Bicep CLI 0.37.4
-- Cmake 4.1.1
-- CodeQL Action Bundle 2.23.1
+- Bicep CLI 0.38.33
+- Cmake 4.1.2
+- CodeQL Action Bundle 2.23.2
 - Fastlane 2.228.0
-- SwiftFormat 0.58.1
+- SwiftFormat 0.58.3
 - Xcbeautify 2.30.1
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
@@ -91,14 +91,14 @@
 ### Browsers
 - Safari 18.5 (19621.2.5.18.1)
 - SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 140.0.7339.214
-- Google Chrome for Testing 140.0.7339.207
-- ChromeDriver 140.0.7339.207
-- Microsoft Edge 140.0.3485.94
-- Microsoft Edge WebDriver 140.0.3485.94
-- Mozilla Firefox 143.0.1
+- Google Chrome 141.0.7390.77
+- Google Chrome for Testing 141.0.7390.76
+- ChromeDriver 141.0.7390.76
+- Microsoft Edge 141.0.3537.71
+- Microsoft Edge WebDriver 141.0.3537.71
+- Mozilla Firefox 143.0.4
 - geckodriver 0.36.0
-- Selenium server 4.35.0
+- Selenium server 4.36.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -121,23 +121,24 @@
 - 3.1.7
 - 3.2.9
 - 3.3.9
-- 3.4.6
+- 3.4.7
 
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.7
+- 3.13.8
 
 #### Node.js
 - 18.20.8
 - 20.19.5
 - 22.20.0
+- 24.10.0
 
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.7
-- 1.25.1
+- 1.24.8
+- 1.25.2
 
 ### Rust Tools
 - Cargo 1.90.0
@@ -261,7 +262,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                           |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                                                                                                              |
-| Android Emulator           | 36.1.9                                                                                                                                                                                                                                                                                                                                                                                            |
+| Android Emulator           | 36.2.11                                                                                                                                                                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                                                                                         |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                                                                                            |
