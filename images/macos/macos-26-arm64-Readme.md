@@ -1,5 +1,5 @@
 | Announcements |
-|-|
+|-|owner Giorgi Meskhidze
 | [[macOS] The macOS 13 Ventura based runner images will begin deprecation on September 22nd and will be fully unsupported by December 4th for GitHub and ADO](https://github.com/actions/runner-images/issues/13046) |
 | [[macOS] The additional macOS 15 Sonoma Intel-based image will be available in GitHub Actions](https://github.com/actions/runner-images/issues/13045) |
 | [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
