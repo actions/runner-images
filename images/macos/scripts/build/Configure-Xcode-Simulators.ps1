@@ -8,10 +8,11 @@ Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
 Import-Module "~/image-generation/helpers/Xcode.Helpers.psm1"
 $arch = Get-Architecture
 $xcodeVersions = (Get-ToolsetContent).xcode.${arch}.versions
+$defaultXcode = (Get-ToolsetContent).xcode.default
 
 # Switch to each Xcode version
 foreach ($xcodeVersion in $xcodeVersions.link) {
-    write-host "Switching to Xcode $xcodeVersion"
+    Write-Host "Switching to Xcode $xcodeVersion"
     Switch-Xcode -Version $XcodeVersion
 
     # Make object of all simulators
@@ -50,8 +51,8 @@ foreach ($xcodeVersion in $xcodeVersions.link) {
             Write-Host "$($sameRuntimeDevices[$i+1].DeviceName) - DeviceId $($sameRuntimeDevices[$i+1].DeviceId)"
             Write-Host "-------------------------------------------------------------------"
             if ($sameRuntimeDevices[$i].DeviceName -eq $sameRuntimeDevices[$i+1].DeviceName) {
-                write-host "*******************************************************************"
-                write-host "** Duplicate found"
+                Write-Host "*******************************************************************"
+                Write-Host "** Duplicate found"
                 if ($sameRuntimeDevices[$i].DeviceCreationTime -lt $sameRuntimeDevices[$i+1].DeviceCreationTime) {
                     Write-Host "** will be removed $($sameRuntimeDevices[$i+1].DeviceName) with id $($sameRuntimeDevices[$i+1].DeviceId)"
                     xcrun simctl delete $sameRuntimeDevices[$i+1].DeviceId
@@ -61,8 +62,12 @@ foreach ($xcodeVersion in $xcodeVersions.link) {
                     xcrun simctl delete $sameRuntimeDevices[$i].DeviceId
                     $sameRuntimeDevices.RemoveAt($i)
                 }
-                write-host "*******************************************************************"
+                Write-Host "*******************************************************************"
             }
         }
     }
 }
+
+# Restore default Xcode
+Write-Host "Restoring default Xcode to $defaultXcode"
+Switch-Xcode -Version $defaultXcode
