@@ -57,7 +57,7 @@ Describe "Toolcache" {
         }
     }
 
-    Context "Ruby" -Skip:($os.IsArm64) {
+    Context "Ruby" {
         $rubyDirectory = Join-Path $toolcacheDirectory "Ruby"
         $rubyPackage = $packages | Where-Object { $_.ToolName -eq "Ruby" } | Select-Object -First 1
         $testCase = @{ RubyDirectory = $rubyDirectory }
