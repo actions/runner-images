@@ -26,10 +26,15 @@ Describe "Python3" {
         "pipx --version" | Should -ReturnZeroExitCode
     }
 
-    It "Pip 3 and Python 3 came from the same brew formula" {
+    It "Pip 3 and Python 3 came from the same path prefix" {
         $pip3Path = Split-Path (readlink (which pip3))
         $python3Path = Split-Path (readlink (which python3))
         $pip3Path | Should -BeExactly $python3Path
+    }
+
+    It "Pip 3 and Python 3 came from brew formula" {
+        Split-Path (readlink (which pip3))    | Should -BeLike "*/Cellar/*"
+        Split-Path (readlink (which python3)) | Should -BeLike "*/Cellar/*"
     }
 
 }
