@@ -6,14 +6,14 @@
 | [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
 ***
 # macOS 14
-- OS Version: macOS 14.7.6 (23H626)
+- OS Version: macOS 14.8.1 (23J30)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20251013.0032
+- Image Version: 20251020.0056
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.414, 9.0.102, 9.0.203, 9.0.305
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.415, 9.0.102, 9.0.203, 9.0.306
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -42,7 +42,7 @@
 - Pip3 25.2 (python 3.14)
 - Pipx 1.8.0
 - RubyGems 3.7.2
-- Vcpkg 2025 (build from commit 71f123418c)
+- Vcpkg 2025 (build from commit 74e6536215)
 - Yarn 1.22.22
 
 ### Project Management
@@ -59,8 +59,8 @@
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.50.1
-- Git LFS 3.7.0
-- GitHub CLI 2.81.0
+- Git LFS 3.7.1
+- GitHub CLI 2.82.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
@@ -74,29 +74,29 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.31.14
-- AWS SAM CLI 1.144.0
+- AWS CLI 2.31.18
+- AWS SAM CLI 1.145.1
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.77.0
+- Azure CLI 2.78.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.38.33
 - Cmake 4.1.2
-- CodeQL Action Bundle 2.23.2
+- CodeQL Action Bundle 2.23.3
 - Fastlane 2.228.0
-- SwiftFormat 0.58.3
+- SwiftFormat 0.58.5
 - Xcbeautify 2.30.1
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
 
 ### Browsers
-- Safari 18.5 (19621.2.5.18.1)
-- SafariDriver 18.5 (19621.2.5.18.1)
-- Google Chrome 141.0.7390.77
-- Google Chrome for Testing 141.0.7390.76
-- ChromeDriver 141.0.7390.76
-- Microsoft Edge 141.0.3537.71
-- Microsoft Edge WebDriver 141.0.3537.71
-- Mozilla Firefox 143.0.4
+- Safari 26.0.1 (19622.1.22.118.4)
+- SafariDriver 26.0.1 (19622.1.22.118.4)
+- Google Chrome 141.0.7390.108
+- Google Chrome for Testing 141.0.7390.78
+- ChromeDriver 141.0.7390.78
+- Microsoft Edge 141.0.3537.85
+- Microsoft Edge WebDriver 141.0.3537.85
+- Mozilla Firefox 144.0
 - geckodriver 0.36.0
 - Selenium server 4.36.0
 
@@ -126,7 +126,8 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.8
+- 3.13.9
+- 3.14.0
 
 #### Node.js
 - 18.20.8
@@ -137,8 +138,8 @@
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.8
-- 1.25.2
+- 1.24.9
+- 1.25.3
 
 ### Rust Tools
 - Cargo 1.90.0
@@ -262,7 +263,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                           |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                                                                                                              |
-| Android Emulator           | 36.2.11                                                                                                                                                                                                                                                                                                                                                                                           |
+| Android Emulator           | 36.2.12                                                                                                                                                                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                                                                                         |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                                                                                            |
