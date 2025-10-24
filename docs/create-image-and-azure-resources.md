@@ -221,7 +221,7 @@ Where:
 - `TenantId` - Azure Tenant ID;
 - `InstallPassword` - password for the user used to install software (Windows only);
 - `Location` - location where resources will be created (e.g., "East US");
-- `ImageOS` - the type of OS that will be deployed as a temporary VM (e.g. "ubuntu24", "win25");
+- `ImageOS` - the type of OS that will be deployed as a temporary VM (e.g. "ubuntu2404", "windows2025");
 - `ImageName` and `ImageResourceGroupName` - name of the resource group where the managed image will be stored;
 - `TemplatePath` - path to the folder with Packer template files (e.g., "images/windows/templates").
 
