@@ -12,9 +12,9 @@ add_filtered_installation_components() {
     local tools_array=("$@")
 
     for item in ${tools_array[@]}; do
-        # take the last argument after splitting string by ';'' and '-''
-        version=$(echo "${item##*[-;]}")
-        if [[ "$(printf "${minimum_version}\n${version}\n" | sort -V | head -n1)" == "$minimum_version" ]]; then
+        # Take the last version number that appears after the last '-' or ';'
+        item_version=$(echo "$item" | grep -oE '[-;][0-9.]+' | grep -oE '[0-9.]+')
+        if [[ "$(printf "${minimum_version}\n${item_version}\n" | sort -V | head -n1)" == "$minimum_version" ]]; then
             components+=($item)
         fi
     done

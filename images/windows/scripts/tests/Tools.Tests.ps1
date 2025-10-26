@@ -235,4 +235,9 @@ Describe "OpenSSL" {
     It "OpenSSL Full package" {
         Join-Path ${env:ProgramFiles} 'OpenSSL\include' | Should -Exist
     }
+
+    It "OpenSSL DLLs not in System32" {
+        Get-ChildItem -Path "$env:SystemRoot\System32" -Filter "libcrypto-*.dll" -File -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
+	    Get-ChildItem -Path "$env:SystemRoot\System32" -Filter "libssl-*.dll" -File -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
+    }
 }
