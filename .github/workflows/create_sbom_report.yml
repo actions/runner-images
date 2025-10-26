@@ -57,14 +57,9 @@ jobs:
           $runnerParts = $runnerVersion.Split('.')
 
           # Determine what parts to compare
-          if ($expectedParts.Length -eq $runnerParts.Length) {
-            $expectedComparable = $expectedVersion
-            $runnerComparable = $runnerVersion
-          } else {
-            $minLength = [Math]::Min($expectedParts.Length, $runnerParts.Length)
-            $expectedComparable = $expectedParts[0..($minLength-1)] -join '.'
-            $runnerComparable = $runnerParts[0..($minLength-1)] -join '.'
-          }
+          $minLength = [Math]::Min($expectedParts.Length, $runnerParts.Length)
+          $expectedComparable = $expectedParts[0..($minLength-1)] -join '.'
+          $runnerComparable = $runnerParts[0..($minLength-1)] -join '.'
           
           # Perform the comparison
           if ($expectedComparable -ne $runnerComparable) {
@@ -93,7 +88,7 @@ jobs:
 
       - name: Run SYFT on macOS
         if: ${{ runner.os == 'macOS' }}
-        # Skip protected folders to avoid prompt privileges that blocks process indefinitely (https://github.com/anchore/syft/issues/1367)
+        # Skip protected folders to avoid prompt privileges that block process indefinitely (https://github.com/anchore/syft/issues/1367)
         run: sudo syft dir:/ -vv -o spdx-json=sbom.json --exclude ./Users --exclude ./System/Volumes --exclude ./private
         shell: bash
 
