@@ -1,12 +1,10 @@
 | Announcements |
 |-|
 | [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
-| [[Windows-2022] Openssl version will be updated to version 3.* on 2025-10-06](https://github.com/actions/runner-images/issues/12676) |
-| [[Windows 2022] MongoDB 5.x version will be removed from Windows 2022 image on 2025-10-06 and will be updated to 7.x version.](https://github.com/actions/runner-images/issues/12640) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 6899
-- Image Version: 20251014.59.1
+- Image Version: 20251021.67.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,7 +18,7 @@
 - Julia 1.12.0
 - Kotlin 2.2.20
 - LLVM 20.1.8
-- Node 22.20.0
+- Node 22.21.0
 - Perl 5.42.0
 - PHP 8.4.13
 - Python 3.9.13
@@ -31,12 +29,12 @@
 - Composer 2.8.12
 - Helm 3.19.0
 - Miniconda 25.7.0 (pre-installed on the image but not added to PATH)
-- NPM 10.9.3
+- NPM 10.9.4
 - NuGet 6.14.0.116
 - pip 25.2 (python 3.9)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit de4773aeb4)
+- Vcpkg (build from commit 7220a4eebf)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,14 +58,14 @@
 - Bicep 0.38.33
 - Cabal 3.16.0.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.23.2
+- CodeQL Action Bundle 2.23.3
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.4
 - ghc 9.12.2
-- Git 2.51.0.windows.2
-- Git LFS 3.7.0
-- ImageMagick 7.1.2-5
+- Git 2.51.1.windows.1
+- Git LFS 3.7.1
+- ImageMagick 7.1.2-7
 - InnoSetup 6.5.4
 - jq 1.8.1
 - Kind 0.30.0
@@ -78,7 +76,7 @@
 - Newman 6.2.1
 - OpenSSL 3.6.0
 - Packer 1.12.0
-- Pulumi 3.202.0
+- Pulumi 3.203.0
 - R 4.5.1
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
@@ -91,12 +89,12 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.31.14
-- AWS SAM CLI 1.145.0
+- AWS CLI 2.31.18
+- AWS SAM CLI 1.145.2
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.78.0
 - Azure DevOps CLI extension 1.0.2
-- GitHub CLI 2.81.0
+- GitHub CLI 2.82.0
 
 ### Rust Tools
 - Cargo 1.90.0
@@ -109,14 +107,14 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 141.0.7390.108
-- Chrome Driver 141.0.7390.78
-- Microsoft Edge 141.0.3537.71
-- Microsoft Edge Driver 141.0.3537.71
+- Google Chrome 141.0.7390.123
+- Chrome Driver 141.0.7390.122
+- Microsoft Edge 141.0.3537.92
+- Microsoft Edge Driver 141.0.3537.92
 - Mozilla Firefox 144.0
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.36.0
+- Selenium server 4.37.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -163,7 +161,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 18.20.8
 - 20.19.5
-- 22.20.0
+- 22.21.0
 - 24.10.0
 
 #### Python
@@ -171,7 +169,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.8
+- 3.13.9
+- 3.14.0
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -205,7 +204,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Database tools
 - Azure CosmosDb Emulator 2.14.25.0
 - DacFx 170.2.70.1
-- MySQL 8.0.43.0
+- MySQL 8.0.44.0
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 - SQLPS 1.0
@@ -218,9 +217,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.29.2  | C:\tools\nginx-1.29.2\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version       | Path                                                     |
-| ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.36603.0 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version        | Path                                                     |
+| ----------------------------- | -------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.14.36616.10 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -244,11 +243,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36510.44  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36526.15  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36614.30  |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
-| ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.36603.0   |
+| ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.36614.33  |
 | ios                                                                       | 26.0.9752.0     |
 | maccatalyst                                                               | 26.0.9752.0     |
 | maui.blazor                                                               | 9.0.111.6930    |
@@ -390,7 +389,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Web                                      | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.WebDeploy                                | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.Windows10SDK                             | 17.14.36510.44  |
-| Microsoft.VisualStudio.Component.Windows11SDK.26100                       | 17.14.36510.44  |
+| Microsoft.VisualStudio.Component.Windows11SDK.26100                       | 17.14.36614.30  |
 | Microsoft.VisualStudio.Component.Windows11Sdk.WindowsPerformanceToolkit   | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.WindowsAppSdkSupport.CSharp              | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.Workflow                                 | 17.14.36510.44  |
@@ -415,7 +414,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64                | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.Web                                 | 17.14.36510.44  |
-| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 17.14.36510.44  |
+| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 17.14.36614.30  |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions                  | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.CMake            | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.TemplateEngine   | 17.14.36510.44  |
@@ -446,7 +445,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | SSIS.MicrosoftDataToolsIntegrationServices                                | 2.0             |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.1           |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.26100.12   |
-| Windows Software Development Kit                                          | 10.1.26100.4654 |
+| Windows Software Development Kit                                          | 10.1.26100.6584 |
 | WixToolset.WixToolsetVisualStudio2022Extension                            | 1.0.0.22        |
 
 #### Microsoft Visual C++
@@ -473,14 +472,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.8.118+69b3e0b5a0
 
 ### PowerShell Tools
-- PowerShell 7.4.12
+- PowerShell 7.4.13
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.76
+- AWSPowershell: 5.0.79
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.31.0
+- Microsoft.Graph: 2.32.0
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.24.0
