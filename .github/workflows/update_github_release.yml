@@ -1,4 +1,4 @@
-name: Update release
+71089469b032c9d9baf2cbcfcde1eb79f3ca4e4ename: Update release
 
 on:
   repository_dispatch:
