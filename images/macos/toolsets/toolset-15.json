@@ -4,11 +4,11 @@
         "x64": {
             "versions": [
                 {
-                    "link": "26.1_beta_3",
-                    "filename": "26.1_beta_3_Universal",
-                    "version": "26.1-Beta_3+17B5045g",
+                    "link": "26.1_Release_Candidate",
+                    "filename": "26.1_Release_Candidate_Universal",
+                    "version": "26.1_Release_Candidate_Universal+17B54",
                     "symlinks": ["26.1"],
-                    "sha256": "3fe49a9be1ae600fb575dcee5f0075cc74e10cb85560129490e3b0d2562b0ce7",
+                    "sha256": "6504F2527444D295585515C7E41A862FFD701E3255D6634A40A714C4895E6CCD",
                     "install_runtimes": "none"
                 },
                 {
@@ -64,11 +64,11 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "26.1_beta_3",
-                    "filename": "26.1_beta_3_Universal",
-                    "version": "26.1-Beta_3+17B5045g",
+                    "link": "26.1_Release_Candidate",
+                    "filename": "26.1_Release_Candidate_Universal",
+                    "version": "26.1_Release_Candidate_Universal+17B54",
                     "symlinks": ["26.1"],
-                    "sha256": "3fe49a9be1ae600fb575dcee5f0075cc74e10cb85560129490e3b0d2562b0ce7",
+                    "sha256": "6504F2527444D295585515C7E41A862FFD701E3255D6634A40A714C4895E6CCD",
                     "install_runtimes": "none"
                 },
                 {
