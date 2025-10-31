@@ -22,7 +22,8 @@
                 "3.10.*",
                 "3.11.*",
                 "3.12.*",
-                "3.13.*"
+                "3.13.*",
+                "3.14.*"
             ],
             "default": "3.9.*"
         },
@@ -43,7 +44,8 @@
             "versions": [
                 "18.*",
                 "20.*",
-                "22.*"
+                "22.*",
+                "24.*"
             ]
         },
         {
@@ -109,14 +111,8 @@
         }
     },
     "mingw": {
-        "version": "14.2.0",
-        "runtime": "ucrt",
-        "pinnedDetails": {
-            "link": "https://github.com/actions/runner-images-internal/pull/6702",
-            "reason": "Meaningful reason must be added at next update.",
-            "review-at": "2025-06-01",
-            "type": "preexisting-pinned-version-without-reason"
-        }
+        "version": "15.*",
+        "runtime": "ucrt"
     },
     "MsysPackages": {
         "msys2": [],
@@ -278,6 +274,7 @@
             { "name": "aria2" },
             { "name": "azcopy10" },
             { "name": "Bicep" },
+            { "name": "innosetup" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
             { "name": "packer" },
@@ -295,7 +292,7 @@
             },
             {
                 "name": "strawberryperl" ,
-                "args": [ "--version", "5.40.2.2" ]
+                "args": [ "--version", "5.42.0.1" ]
             },
             { "name": "imagemagick" },
             { "name": "ninja" }
@@ -326,13 +323,7 @@
         "version": "latest"
     },
     "openssl": {
-        "version": "3.5.3",
-        "pinnedDetails": {
-            "link": "https://github.com/openssl/openssl/releases/tag/openssl-3.5.3",
-            "reason": "Installer not found for version 3.5.2",
-            "review-at": "2025-10-10",
-            "type": "preexisting-pinned-version-without-reason"
-        }
+        "version": "3.*"
     },
     "pwsh": {
         "version": "7.4"

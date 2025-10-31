@@ -8,6 +8,7 @@ $ErrorActionPreference = "Stop"
 Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
 Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1" -DisableNameChecking
 
+$os = Get-OSVersion
 $arch = Get-Architecture
 [Array]$xcodeVersions = (Get-ToolsetContent).xcode.$arch.versions
 Write-Host $xcodeVersions
@@ -37,6 +38,11 @@ $xcodeVersions | ForEach-Object {
     if ($_.link -match '\d{2}(?=[._])' -and [int]$matches[0] -ge 26) {
         Install-XcodeAdditionalComponents -Version $_.link
     }
+}
+
+# Update dyld shared cache for the latest stable Xcode version
+if ((-not $os.IsSonoma)) {
+    Update-DyldCache -XcodeVersions $xcodeVersions
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode

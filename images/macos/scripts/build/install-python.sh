@@ -11,9 +11,11 @@ echo "Installing Python Tooling"
 # Close Finder window
 close_finder_window
 
-echo "Brew Installing Python 3"
-brew_smart_install "python@3.12"
+# Installing latest Homebrew Python 3 to handle python3 and pip3 symlinks
+echo "Brew Installing default Python 3"
+brew_smart_install "python3"
 
+# Pipx has its own Python dependency
 echo "Installing pipx"
 
 if is_Arm64; then

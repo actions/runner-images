@@ -29,8 +29,8 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | macOS 14 Arm64 | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
 | macOS 13 ![Deprecated](https://img.shields.io/badge/-Deprecated-red) | `macos-13` or `macos-13-large` | [macOS-13] |
 | macOS 13 Arm64 ![Deprecated](https://img.shields.io/badge/-Deprecated-red) | `macos-13-xlarge` | [macOS-13-arm64] |
-| Windows Server 2025 | `windows-2025` | [windows-2025] |
-| Windows Server 2022 | `windows-latest` or `windows-2022` | [windows-2022] |
+| Windows Server 2025 | `windows-latest` or `windows-2025` | [windows-2025] |
+| Windows Server 2022 | `windows-2022` | [windows-2022] |
 | Windows Server 2019 ![Deprecated](https://img.shields.io/badge/-Deprecated-red) | `windows-2019` | [windows-2019] |
 
 ### Label scheme
