@@ -3,8 +3,8 @@
 | [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
 ***
 # Windows Server 2025
-- OS Version: 10.0.26100 Build 6899
-- Image Version: 20251021.67.1
+- OS Version: 10.0.26100 Build 6905
+- Image Version: 20251102.77.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -16,25 +16,25 @@
 - Bash 5.2.37(1)-release
 - Go 1.24.9
 - Julia 1.12.0
-- Kotlin 2.2.20
+- Kotlin 2.2.21
 - LLVM 20.1.8
-- Node 22.21.0
+- Node 22.21.1
 - Perl 5.42.0
-- PHP 8.4.13
+- PHP 8.4.14
 - Python 3.9.13
-- Ruby 3.3.9
+- Ruby 3.3.10
 
 ### Package Management
 - Chocolatey 2.5.1
 - Composer 2.8.12
 - Helm 3.19.0
-- Miniconda 25.7.0 (pre-installed on the image but not added to PATH)
+- Miniconda 25.9.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.4
 - NuGet 6.14.0.116
-- pip 25.2 (python 3.9)
+- pip 25.3 (python 3.9)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 7220a4eebf)
+- Vcpkg (build from commit e3ed41868d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -52,7 +52,7 @@
 ### Tools
 - 7zip 25.01
 - aria2 1.37.0
-- azcopy 10.30.1
+- azcopy 10.31.0
 - Bazel 8.4.2
 - Bazelisk 1.26.0
 - Bicep 0.38.33
@@ -63,9 +63,9 @@
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.4
 - ghc 9.12.2
-- Git 2.51.1.windows.1
+- Git 2.51.2.windows.1
 - Git LFS 3.7.1
-- ImageMagick 7.1.2-7
+- ImageMagick 7.1.2-8
 - InnoSetup 6.5.4
 - jq 1.8.1
 - Kind 0.30.0
@@ -75,9 +75,9 @@
 - GNU Binutils 2.45
 - Newman 6.2.1
 - OpenSSL 3.6.0
-- Packer 1.12.0
-- Pulumi 3.203.0
-- R 4.5.1
+- Packer 1.14.2
+- Pulumi 3.205.0
+- R 4.5.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
 - Swig 4.3.1
@@ -89,32 +89,32 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.31.18
+- AWS CLI 2.31.27
 - AWS SAM CLI 1.145.2
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.78.0
 - Azure DevOps CLI extension 1.0.2
-- GitHub CLI 2.82.0
+- GitHub CLI 2.82.1
 
 ### Rust Tools
-- Cargo 1.90.0
-- Rust 1.90.0
-- Rustdoc 1.90.0
+- Cargo 1.91.0
+- Rust 1.91.0
+- Rustdoc 1.91.0
 - Rustup 1.28.2
 
 #### Packages
-- Clippy 0.1.90
+- Clippy 0.1.91
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 141.0.7390.123
-- Chrome Driver 141.0.7390.122
-- Microsoft Edge 141.0.3537.92
-- Microsoft Edge Driver 141.0.3537.92
-- Mozilla Firefox 144.0
+- Google Chrome 142.0.7444.60
+- Chrome Driver 142.0.7444.59
+- Microsoft Edge 142.0.3595.53
+- Microsoft Edge Driver 142.0.3595.53
+- Mozilla Firefox 144.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.37.0
+- Selenium server 4.38.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -125,13 +125,13 @@
 | SELENIUM_JAR_PATH | C:\selenium\selenium-server.jar    |
 
 ### Java
-| Version             | Environment Variable |
-| ------------------- | -------------------- |
-| 8.0.462+8           | JAVA_HOME_8_X64      |
-| 11.0.28+6           | JAVA_HOME_11_X64     |
-| 17.0.16+8 (default) | JAVA_HOME_17_X64     |
-| 21.0.8+9.0          | JAVA_HOME_21_X64     |
-| 25.0.0+36.0         | JAVA_HOME_25_X64     |
+| Version              | Environment Variable |
+| -------------------- | -------------------- |
+| 8.0.472+8            | JAVA_HOME_8_X64      |
+| 11.0.29+7            | JAVA_HOME_11_X64     |
+| 17.0.17+10 (default) | JAVA_HOME_17_X64     |
+| 21.0.9+10.0          | JAVA_HOME_21_X64     |
+| 25.0.1+8.0           | JAVA_HOME_25_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -159,10 +159,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 1.25.3
 
 #### Node.js
-- 18.20.8
 - 20.19.5
-- 22.21.0
-- 24.10.0
+- 22.21.1
+- 24.11.0
 
 #### Python
 - 3.9.13
@@ -177,9 +176,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.16 [PyPy 7.3.19]
 
 #### Ruby
-- 3.1.7
 - 3.2.9
-- 3.3.9
+- 3.3.10
 - 3.4.7
 
 ### Databases
@@ -208,18 +206,18 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.5.8
+- MongoDB Shell (mongosh) 2.5.9
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.29.2  | C:\tools\nginx-1.29.2\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.29.3  | C:\tools\nginx-1.29.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.36616.10 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.14.36623.8 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -243,7 +241,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36510.44  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36614.30  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36621.7   |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
@@ -320,7 +318,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.HLSL                                     | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.IISExpress                               | 17.14.36510.44  |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.36511.5   |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.36621.7   |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 17.14.36510.44  |
@@ -476,7 +474,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.79
+- AWSPowershell: 5.0.88
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.32.0
