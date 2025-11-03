@@ -15,7 +15,7 @@ locals {
       "ubuntu24-gen2" = {
             publisher       = "canonical"
             offer           = "ubuntu-24_04-lts"
-            sku             = "server-gen2"
+            sku             = "server"
             os_disk_size_gb = coalesce(var.os_disk_size_gb, 75)
       }
   }
