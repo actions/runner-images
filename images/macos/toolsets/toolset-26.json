@@ -4,16 +4,16 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "26.1_Release_Candidate",
-                    "filename": "26.1_Release_Candidate_Universal",
-                    "version": "26.1_Release_Candidate_Universal+17B54",
+                    "link": "26.1.1",
+                    "filename": "Xcode_26.1.1_Universal",
+                    "version": "26.1.1+17B100",
                     "symlinks": ["26.1"],
-                    "sha256": "6504F2527444D295585515C7E41A862FFD701E3255D6634A40A714C4895E6CCD",
-                    "install_runtimes": "default"
+                    "sha256": "ed55d55fa28455c11a65e0809ba8fdf7d83fdeb268aabf9af7fcc1ee911543eb",
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "26.0.1",
-                    "filename": "26.0.1_Universal",
+                    "filename": "Xcode_26.0.1_Universal",
                     "version": "26.0.1+17A400",
                     "symlinks": ["26.0"],
                     "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
@@ -21,7 +21,7 @@
                 },
                 {
                     "link": "16.4",
-                    "filename": "16.4",
+                    "filename": "Xcode_16.4",
                     "version": "16.4.0+16F6",
                     "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
                     "install_runtimes": [
