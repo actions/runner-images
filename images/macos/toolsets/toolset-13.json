@@ -3,22 +3,22 @@
         "default": "15.2",
         "x64": {
             "versions": [
-                { "link": "15.2", "filename": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "default", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
-                { "link": "15.1", "filename": "15.1", "version": "15.1.0+15C65", "install_runtimes": "default", "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
-                { "link": "15.0.1", "filename": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "default", "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
-                { "link": "14.3.1", "filename": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "default", "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"},
-                { "link": "14.2", "filename": "14.2", "version": "14.2.0+14C18", "install_runtimes": "default", "sha256": "686B9D53CA49E50D563BC0104B1E8B4F7CCFE80064A6D689965FB819BF8EFE72"},
-                { "link": "14.1", "filename": "14.1", "version": "14.1.0+14B47b", "install_runtimes": "default", "sha256": "12F8A3AEF78BF354470AD8B351ADDD925C8EDAD888137D138CA50A8130EB9F2F"}
+                { "link": "15.2", "filename": "Xcode_15.2", "version": "15.2.0+15C500b", "install_runtimes": "default", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
+                { "link": "15.1", "filename": "Xcode_15.1", "version": "15.1.0+15C65", "install_runtimes": "default", "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
+                { "link": "15.0.1", "filename": "Xcode_15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "default", "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
+                { "link": "14.3.1", "filename": "Xcode_14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "default", "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"},
+                { "link": "14.2", "filename": "Xcode_14.2", "version": "14.2.0+14C18", "install_runtimes": "default", "sha256": "686B9D53CA49E50D563BC0104B1E8B4F7CCFE80064A6D689965FB819BF8EFE72"},
+                { "link": "14.1", "filename": "Xcode_14.1", "version": "14.1.0+14B47b", "install_runtimes": "default", "sha256": "12F8A3AEF78BF354470AD8B351ADDD925C8EDAD888137D138CA50A8130EB9F2F"}
                 ]
         },
         "arm64":{
             "versions": [
-                { "link": "15.2", "filename": "15.2", "version": "15.2.0+15C500b", "install_runtimes": "default", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
-                { "link": "15.1", "filename": "15.1", "version": "15.1.0+15C65", "install_runtimes": "default", "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
-                { "link": "15.0.1", "filename": "15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "default", "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
-                { "link": "14.3.1", "filename": "14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "default", "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"},
-                { "link": "14.2", "filename": "14.2", "version": "14.2.0+14C18", "install_runtimes": "default", "sha256": "686B9D53CA49E50D563BC0104B1E8B4F7CCFE80064A6D689965FB819BF8EFE72"},
-                { "link": "14.1", "filename": "14.1", "version": "14.1.0+14B47b", "install_runtimes": "default", "sha256": "12F8A3AEF78BF354470AD8B351ADDD925C8EDAD888137D138CA50A8130EB9F2F"}
+                { "link": "15.2", "filename": "Xcode_15.2", "version": "15.2.0+15C500b", "install_runtimes": "default", "sha256": "04E93680C6DDBEC84666531BE412DE778AFC8EAC6AB2037F4C2BE7290818B59B"},
+                { "link": "15.1", "filename": "Xcode_15.1", "version": "15.1.0+15C65", "install_runtimes": "default", "sha256": "857D8DB537BAC82BF99DE0E1D3895D214D4D02101C1340CEF3DAF6E821BA1D05"},
+                { "link": "15.0.1", "filename": "Xcode_15.0.1", "version": "15.0.1+15A507", "symlinks": ["15.0"], "install_runtimes": "default", "sha256": "5AC17AE6060CAFC3C7112C6DA0B153450BE21F1DE6632777FBA9FBC9D999C9E8"},
+                { "link": "14.3.1", "filename": "Xcode_14.3.1", "version": "14.3.1+14E300c","symlinks": ["14.3"], "install_runtimes": "default", "sha256": "B5CC7BF37447C32A971B37D71C7DA1AF7ABB45CEE4B96FE126A1D3B0D2C260AF"},
+                { "link": "14.2", "filename": "Xcode_14.2", "version": "14.2.0+14C18", "install_runtimes": "default", "sha256": "686B9D53CA49E50D563BC0104B1E8B4F7CCFE80064A6D689965FB819BF8EFE72"},
+                { "link": "14.1", "filename": "Xcode_14.1", "version": "14.1.0+14B47b", "install_runtimes": "default", "sha256": "12F8A3AEF78BF354470AD8B351ADDD925C8EDAD888137D138CA50A8130EB9F2F"}
             ]
         }
     },
