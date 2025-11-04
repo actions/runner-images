@@ -98,7 +98,20 @@ Finally, run the `GenerateResourcesAndImage` function, setting the mandatory arg
 - `ResourceGroupName` - the name of the resource group that will store the resulting artifact (e.g., "imagegen-test").
     The resource group must already exist in your Azure subscription;
 - `AzureLocation` - the location where resources will be created (e.g., "East US");
-- `ImageType` - the type of image to build (valid options are "Windows2019", "Windows2022", "Windows2025", "Ubuntu2204", "Ubuntu2404").
+- `ImageType` - the type of image to build (valid options are "Windows2019", "Windows2022", "Windows2025", "Ubuntu2204", "Ubuntu2404", "Ubuntu2404Gen2").
+
+> **🔐 Security First: Generation 2 VM Support**
+>
+> Security is our priority. We introduced **Generation 2 (Gen 2) VM** support in Azure to provide enhanced security features:
+>
+> - 🔐 **UEFI Secure Boot** – prevents unauthorized or malicious bootloaders from running
+> - 🛡️ **vTPM (virtual Trusted Platform Module)** – enables OS-level encryption
+> - 🧩 **Trusted Launch compatibility** – adds measured boot, Secure Boot, and attestation
+> - 🧱 **Improved firmware isolation** – reduces exposure to BIOS-level attacks
+> - 🧮 **Support for confidential and encrypted computing** – required for features like Azure Confidential VMs
+> - 🚫 **Protection from rootkits and bootkits** – due to secure boot chain enforcement
+>
+> To use Gen 2 VMs, select `Ubuntu2404Gen2` as your `ImageType`.
 
 This function automatically creates all required Azure resources and initiates the Packer image generation for the selected image type.
 
