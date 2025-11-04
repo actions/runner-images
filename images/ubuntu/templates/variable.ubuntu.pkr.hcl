@@ -70,10 +70,6 @@ variable "gallery_storage_account_type" {
   type    = string
   default = "${env("GALLERY_STORAGE_ACCOUNT_TYPE")}"
 }
-variable "hyper_v_generation" {
-  type    = string
-  default = "V1"
-}
 variable "image_os_type" {
   type    = string
   default = "Linux"
