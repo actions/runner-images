@@ -37,6 +37,7 @@ source "azure-arm" "image" {
     image_name                           = var.gallery_image_name
     image_version                        = var.gallery_image_version
     storage_account_type                 = var.gallery_storage_account_type
+    hyper_v_generation                   = local.image_properties.hyper_v_generation
   }
 
   dynamic "azure_tag" {
