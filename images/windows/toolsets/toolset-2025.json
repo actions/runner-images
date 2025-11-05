@@ -97,14 +97,14 @@
         ],
         "addons": [],
         "additional_tools": [
-            "cmake;3.22.1",
             "cmake;3.30.5",
-            "cmake;3.31.5"
+            "cmake;3.31.5",
+            "cmake;4.1.2"
         ],
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27", "28"
+                "26", "27", "28", "29"
             ]
         }
     },
