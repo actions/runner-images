@@ -7,8 +7,10 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
+download_url=$(resolve_github_release_asset_url "Azure/azure-storage-azcopy" "contains(\"azcopy_linux_amd64\")" "latest")
+
 # Install AzCopy10
-archive_path=$(download_with_retry "https://aka.ms/downloadazcopy-v10-linux")
+archive_path=$(download_with_retry "$download_url")
 tar xzf "$archive_path" --strip-components=1 -C /tmp
 install /tmp/azcopy /usr/local/bin/azcopy
 
