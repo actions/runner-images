@@ -6,7 +6,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.3 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20251030.96.2
+- Image Version: 20251102.99.1
 - Systemd version: 255.4-1ubuntu8.11
 
 ## Installed Software
@@ -37,7 +37,7 @@
 - Pip3 24.0
 - Pipx 1.8.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit d80785c4ee)
+- Vcpkg (build from commit e3ed41868d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -102,7 +102,7 @@ to accomplish this.
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.31.25
+- AWS CLI 2.31.27
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.145.2
 - Azure CLI 2.78.0
@@ -134,9 +134,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.7.1
 
 ### Rust Tools
-- Cargo 1.90.0
-- Rust 1.90.0
-- Rustdoc 1.90.0
+- Cargo 1.91.0
+- Rust 1.91.0
+- Rustdoc 1.91.0
 - Rustup 1.28.2
 
 #### Packages
@@ -146,8 +146,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 142.0.7444.59
 - ChromeDriver 142.0.7444.59
 - Chromium 142.0.7444.0
-- Microsoft Edge 141.0.3537.99
-- Microsoft Edge WebDriver 141.0.3537.99
+- Microsoft Edge 142.0.3595.53
+- Microsoft Edge WebDriver 142.0.3595.53
 - Selenium server 4.38.0
 - Mozilla Firefox 144.0.2
 - Geckodriver 0.36.0
@@ -193,7 +193,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.25.3
 
 #### Node.js
-- 18.20.8
 - 20.19.5
 - 22.21.1
 - 24.11.0
@@ -261,7 +260,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.37.0+debian-1build3        |
 | autoconf               | 2.71-3                       |
 | automake               | 1:1.16.5-1.3ubuntu1          |
-| binutils               | 2.42-4ubuntu2.5              |
+| binutils               | 2.42-4ubuntu2.6              |
 | bison                  | 2:3.8.2+dfsg-1build2         |
 | brotli                 | 1.1.0-2build2                |
 | bzip2                  | 1.0.8-5.1build0.1            |
@@ -326,7 +325,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
 | wget                   | 1.21.4-1ubuntu4.1            |
-| xvfb                   | 2:21.1.12-1ubuntu1.4         |
+| xvfb                   | 2:21.1.12-1ubuntu1.5         |
 | xz-utils               | 5.6.1+really5.4.5-1ubuntu0.2 |
 | zip                    | 3.0-13ubuntu0.2              |
 | zsync                  | 0.6.2-5build1                |
