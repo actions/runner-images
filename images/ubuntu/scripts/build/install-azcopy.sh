@@ -7,8 +7,14 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
+# Download AzCopy from GitHub releases
+# 
+# This doesn't do arch handling since this script is not
+# called via an arm64 instance.
+download_url=$(resolve_github_release_asset_url "Azure/azure-storage-azcopy" "contains(\"linux_amd64\") and endswith(\".tar.gz\")" "latest")
+
 # Install AzCopy10
-archive_path=$(download_with_retry "https://aka.ms/downloadazcopy-v10-linux")
+archive_path=$(download_with_retry "$download_url")
 tar xzf "$archive_path" --strip-components=1 -C /tmp
 install /tmp/azcopy /usr/local/bin/azcopy
 
