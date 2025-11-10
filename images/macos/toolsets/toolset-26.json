@@ -16,7 +16,7 @@
                     "filename": "XcodeXIP_26.1_Universal",
                     "version": "26.1+17B55",
                     "sha256": "434287E1E4C6ECBD6D5EA07E9F408FFFCAD2B82916B0A3FDFEFA7FE60DB4DE93",
-                    "install_runtimes": "default"
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "26.0.1",
