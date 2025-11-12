@@ -37,12 +37,8 @@ $xcodeVersions | ForEach-Object {
     Install-XcodeAdditionalSimulatorRuntimes -Version $_.link -Arch $arch -Runtimes $_.install_runtimes
     if (($_.link -eq "26.0.1")) {
         Install-XcodeAdditionalComponents -Version $_.link
+        Update-DyldCache -Version $_.link
     }
-}
-
-# Update dyld shared cache for the latest stable Xcode version
-if ((-not $os.IsSonoma)) {
-    Update-DyldCache -XcodeVersions $xcodeVersions
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
