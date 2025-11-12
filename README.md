@@ -56,6 +56,15 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 See notable upcoming changes by viewing issues with the [Announcement](https://github.com/actions/runner-images/labels/Announcement) label.
 
+> **🔐 Security First: Generation 2 Azure VM Images Now Available!**
+>
+> Security is our priority. We are now introducing support for **Generation 2 (Gen 2) Azure VM images** for the latest Ubuntu releases. Gen 2 VMs provide enhanced security features including UEFI Secure Boot, vTPM, Trusted Launch compatibility, and protection against rootkits and bootkits.
+>
+> For more information and setup instructions, see [Creating Gen 2 Images](docs/create-image-and-azure-resources.md#security-first-generation-2-vm-support).
+>
+> 🚀 **Stay tuned for Windows Server 2025 Gen 2 support coming soon!**
+
+
 ## Image Definitions
 
 ### Beta

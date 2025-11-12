@@ -6,6 +6,7 @@ enum ImageType {
     Windows2025   = 3
     Ubuntu2204    = 4
     Ubuntu2404    = 5
+    Ubuntu2404Gen2 = 6
 }
 
 Function Get-PackerTemplate {
@@ -37,6 +38,10 @@ Function Get-PackerTemplate {
         ([ImageType]::Ubuntu2404) {
             $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-24_04.pkr.hcl"
             $imageOS = "ubuntu24"
+        }
+        ([ImageType]::Ubuntu2404Gen2) {
+            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-24_04.pkr.hcl"
+            $imageOS = "ubuntu24-gen2"
         }
         default { throw "Unknown type of image" }
     }
