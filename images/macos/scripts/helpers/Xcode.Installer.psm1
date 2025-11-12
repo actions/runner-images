@@ -320,28 +320,10 @@ function Invoke-ValidateCommand {
 function Update-DyldCache {
     param (
         [Parameter(Mandatory)]
-        [array] $XcodeVersions
+        [string] $XcodeVersion
     )
 
-#    Xcode 26.1 and higher contain a backward compatibility bug that prevents updating dyld shared cache
-#    so we skip those versions for now; instead, we hardcode Xcode 26.0.1 for Sequoia and Tahoe
-#    Uncomment the code below to re-enable automatic selection of latest stable Xcode version, and remove the hardcoded assignment
-#
-#    $latestStableXcode = $XcodeVersions | Where-Object { 
-#        -not ($_.link.Contains("beta") -or $_.link.Contains("Release_Candidate") -or $_.link.Contains("_RC"))
-#    } | Sort-Object { [version]($_.version -split '\+')[0] } -Descending | Select-Object -First 1
-
-    os$ = Get-OSVersion
-
-    if ($os.IsSequoia -or $os.IsTahoe) {
-        $targetXcodeVersion = "26.0.1"
-    } 
-
-    if ($targetXcodeVersion ) {
-        Write-Host "Updating dyld shared cache for Xcode $targetXcodeVersion ..."
-        Switch-Xcode -Version $targetXcodeVersion
-        Invoke-ValidateCommand "xcrun simctl runtime dyld_shared_cache update --all"
-    } else {
-        Write-Host "No stable Xcode version found for dyld cache update."
-    }
+    Write-Host "Updating dyld shared cache for Xcode $Version ..."
+    Switch-Xcode -Version $Version
+    Invoke-ValidateCommand "xcrun simctl runtime dyld_shared_cache update --all"
 }
