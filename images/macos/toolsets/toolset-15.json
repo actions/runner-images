@@ -12,9 +12,10 @@
                     "install_runtimes": "none"
                 },
                 {
-                    "link": "26.1",
-                    "filename": "XcodeXIP_26.1_Universal",
-                    "version": "26.1+17B55",
+                    "link": "26.1.1",
+                    "filename": "Xcode_26.1.1_Universal",
+                    "version": "26.1.1+17B100",
+                    "symlinks": ["26.1"],
                     "sha256": "434287E1E4C6ECBD6D5EA07E9F408FFFCAD2B82916B0A3FDFEFA7FE60DB4DE93",
                     "install_runtimes": "none"
                 },
@@ -79,9 +80,10 @@
                     "install_runtimes": "none"
                 },
                 {
-                    "link": "26.1",
-                    "filename": "XcodeXIP_26.1_Universal",
-                    "version": "26.1+17B55",
+                    "link": "26.1.1",
+                    "filename": "Xcode_26.1.1_Universal",
+                    "version": "26.1.1+17B100",
+                    "symlinks": ["26.1"],
                     "sha256": "434287E1E4C6ECBD6D5EA07E9F408FFFCAD2B82916B0A3FDFEFA7FE60DB4DE93",
                     "install_runtimes": "none"
                 },
