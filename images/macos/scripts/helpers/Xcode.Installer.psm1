@@ -320,7 +320,7 @@ function Invoke-ValidateCommand {
 function Update-DyldCache {
     param (
         [Parameter(Mandatory)]
-        [string] $XcodeVersion
+        [string] $Version
     )
 
     Write-Host "Updating dyld shared cache for Xcode $Version ..."
