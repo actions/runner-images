@@ -206,11 +206,11 @@ function Get-VsixInfoFromMarketplace {
         # ProBITools.MicrosoftReportProjectsforVisualStudio2022 has different URL
         # https://github.com/actions/runner-images/issues/5340
         "ProBITools.MicrosoftReportProjectsforVisualStudio2022" {
-            $assetUri = "https://download.microsoft.com/download/b/b/5/bb57be7e-ae72-4fc0-b528-d0ec224997bd"
+            $assetUri = "https://download.microsoft.com/download/1fd275d8-5163-476b-910b-e2f678b3fdbc"
             $fileName = "Microsoft.DataTools.ReportingServices.vsix"
         }
         "ProBITools.MicrosoftAnalysisServicesModelingProjects2022" {
-            $assetUri = "https://download.microsoft.com/download/c/8/9/c896a7f2-d0fd-45ac-90e6-ff61f67523cb"
+            $assetUri = "https://download.microsoft.com/download/7c91cb5c-1e9c-4df7-a053-d2852e22c658"
             $fileName = "Microsoft.DataTools.AnalysisServices.vsix"
         }
 
