@@ -1,12 +1,10 @@
 | Announcements |
 |-|
 | [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
-| [[Windows-2022] Openssl version will be updated to version 3.* on 2025-10-06](https://github.com/actions/runner-images/issues/12676) |
-| [[Windows 2022] MongoDB 5.x version will be removed from Windows 2022 image on 2025-10-06 and will be updated to 7.x version.](https://github.com/actions/runner-images/issues/12640) |
 ***
 # Windows Server 2022
-- OS Version: 10.0.20348 Build 4294
-- Image Version: 20251014.68.1
+- OS Version: 10.0.20348 Build 4297
+- Image Version: 20251102.87.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -17,25 +15,25 @@
 - Bash 5.2.37(1)-release
 - Go 1.24.9
 - Julia 1.12.0
-- Kotlin 2.2.20
+- Kotlin 2.2.21
 - LLVM 20.1.8
 - Node 20.19.5
 - Perl 5.32.1
-- PHP 8.4.13
+- PHP 8.4.14
 - Python 3.9.13
-- Ruby 3.3.9
+- Ruby 3.3.10
 
 ### Package Management
 - Chocolatey 2.5.1
 - Composer 2.8.12
 - Helm 3.19.0
-- Miniconda 25.7.0 (pre-installed on the image but not added to PATH)
+- Miniconda 25.9.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 6.14.0.116
-- pip 25.2 (python 3.9)
+- pip 25.3 (python 3.9)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit de4773aeb4)
+- Vcpkg (build from commit e3ed41868d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -53,20 +51,20 @@
 ### Tools
 - 7zip 25.01
 - aria2 1.37.0
-- azcopy 10.30.1
+- azcopy 10.31.0
 - Bazel 8.4.2
 - Bazelisk 1.26.0
 - Bicep 0.38.33
 - Cabal 3.16.0.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.23.2
+- CodeQL Action Bundle 2.23.3
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.4
 - ghc 9.12.2
-- Git 2.51.0.windows.2
-- Git LFS 3.7.0
-- ImageMagick 7.1.2-5
+- Git 2.51.2.windows.1
+- Git LFS 3.7.1
+- ImageMagick 7.1.2-8
 - InnoSetup 6.5.4
 - jq 1.8.1
 - Kind 0.30.0
@@ -78,9 +76,9 @@
 - Newman 6.2.1
 - NSIS 3.10
 - OpenSSL 3.6.0
-- Packer 1.12.0
-- Pulumi 3.202.0
-- R 4.5.1
+- Packer 1.14.2
+- Pulumi 3.205.0
+- R 4.5.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
 - Subversion (SVN) 1.14.5
@@ -93,37 +91,37 @@
 - Ninja 1.13.1
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.306
-- AWS CLI 2.31.14
-- AWS SAM CLI 1.145.0
+- Alibaba Cloud CLI 3.1.0
+- AWS CLI 2.31.27
+- AWS SAM CLI 1.145.2
 - AWS Session Manager CLI 1.2.707.0
 - Azure CLI 2.78.0
 - Azure DevOps CLI extension 1.0.2
-- GitHub CLI 2.81.0
+- GitHub CLI 2.82.1
 
 ### Rust Tools
-- Cargo 1.90.0
-- Rust 1.90.0
-- Rustdoc 1.90.0
+- Cargo 1.91.0
+- Rust 1.91.0
+- Rustdoc 1.91.0
 - Rustup 1.28.2
 
 #### Packages
 - bindgen 0.72.1
 - cargo-audit 0.21.2
 - cargo-outdated 0.17.0
-- cbindgen 0.29.0
-- Clippy 0.1.90
+- cbindgen 0.29.2
+- Clippy 0.1.91
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 141.0.7390.108
-- Chrome Driver 141.0.7390.78
-- Microsoft Edge 141.0.3537.71
-- Microsoft Edge Driver 141.0.3537.71
-- Mozilla Firefox 144.0
+- Google Chrome 142.0.7444.60
+- Chrome Driver 142.0.7444.59
+- Microsoft Edge 142.0.3595.53
+- Microsoft Edge Driver 142.0.3595.53
+- Mozilla Firefox 144.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.36.0
+- Selenium server 4.38.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -136,11 +134,11 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.462+8 (default) | JAVA_HOME_8_X64      |
-| 11.0.28+6           | JAVA_HOME_11_X64     |
-| 17.0.16+8           | JAVA_HOME_17_X64     |
-| 21.0.8+9.0          | JAVA_HOME_21_X64     |
-| 25.0.0+36.0         | JAVA_HOME_25_X64     |
+| 8.0.472+8 (default) | JAVA_HOME_8_X64      |
+| 11.0.29+7           | JAVA_HOME_11_X64     |
+| 17.0.17+10          | JAVA_HOME_17_X64     |
+| 21.0.9+10.0         | JAVA_HOME_21_X64     |
+| 25.0.1+8.0          | JAVA_HOME_25_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -168,17 +166,17 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 1.25.3
 
 #### Node.js
-- 18.20.8
 - 20.19.5
-- 22.20.0
-- 24.10.0
+- 22.21.1
+- 24.11.0
 
 #### Python
 - 3.9.13
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.8
+- 3.13.9
+- 3.14.0
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.20]
@@ -188,9 +186,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.16 [PyPy 7.3.19]
 
 #### Ruby
-- 3.1.7
 - 3.2.9
-- 3.3.9
+- 3.3.10
 - 3.4.7
 
 ### Databases
@@ -215,22 +212,22 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Database tools
 - Azure CosmosDb Emulator 2.14.25.0
 - DacFx 170.2.70.1
-- MySQL 8.0.43.0
+- MySQL 8.0.44.0
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.5.8
+- MongoDB Shell (mongosh) 2.5.9
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.29.2  | C:\tools\nginx-1.29.2\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.29.3  | C:\tools\nginx-1.29.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
 | ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.36603.0 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.14.36623.8 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -256,12 +253,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Unreal.Android                                                  | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36510.44  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36526.15  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36621.7   |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
 | Component.Xamarin                                                         | 17.14.36510.44  |
-| ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.36603.0   |
+| ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.36614.33  |
 | ios                                                                       | 26.0.9752.0     |
 | maccatalyst                                                               | 26.0.9752.0     |
 | maui.blazor                                                               | 9.0.111.6930    |
@@ -335,7 +332,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.HLSL                                     | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.IISExpress                               | 17.14.36510.44  |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.36511.5   |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.36621.7   |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 17.14.36510.44  |
@@ -406,7 +403,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Windows10SDK                             | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.Windows10SDK.19041                       | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.Windows11SDK.22621                       | 17.14.36510.44  |
-| Microsoft.VisualStudio.Component.Windows11SDK.26100                       | 17.14.36510.44  |
+| Microsoft.VisualStudio.Component.Windows11SDK.26100                       | 17.14.36614.30  |
 | Microsoft.VisualStudio.Component.Windows11Sdk.WindowsPerformanceToolkit   | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.WindowsAppSdkSupport.CSharp              | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.Workflow                                 | 17.14.36510.44  |
@@ -431,7 +428,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64                | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.Web                                 | 17.14.36510.44  |
-| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 17.14.36510.44  |
+| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 17.14.36614.30  |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions                  | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.CMake            | 17.14.36510.44  |
 | Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.TemplateEngine   | 17.14.36510.44  |
@@ -463,7 +460,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.1           |
 | Windows Driver Kit                                                        | 10.1.26100.4202 |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.26100.12   |
-| Windows Software Development Kit                                          | 10.1.26100.4654 |
+| Windows Software Development Kit                                          | 10.1.26100.6584 |
 | WixToolset.WixToolsetVisualStudio2022Extension                            | 1.0.0.22        |
 
 #### Microsoft Visual C++
@@ -493,14 +490,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.8.118+69b3e0b5a0
 
 ### PowerShell Tools
-- PowerShell 7.4.12
+- PowerShell 7.4.13
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.76
+- AWSPowershell: 5.0.88
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.31.0
+- Microsoft.Graph: 2.32.0
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.24.0
@@ -538,6 +535,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:ec04e733695f49a0dc9132184f6b06704866b34f422004093c1972512c86259e  | 2025-09-09 |
 | mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:3983348680840ca6e53ad641e314c3c9184ca2fd19f88bc467600f7d9f6e9d73  | 2025-09-09 |
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:460dedaed73224f73ff10dc3ad754d0ed250aa57bcdf6c5052a811b4b7e29345  | 2025-09-09 |
-| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:041ef64ff895b23d46eacc8cbfb4d9142f6d23d48967b72a03439ee884355f84  | 2025-10-09 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:418d8d0c6e026e5131e48f4d71ca66e9564c31b50f02b740235d32145a55c6ea  | 2025-10-09 |
+| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:307874138e4dc064d0538b58c6f028419ab82fb15fcabaf6d5378ba32c235266  | 2025-10-22 |
+| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:f51004008a2017ce3905fe7e1985d5aff62e596c4ab4111caad6d3cf33aa5cf1  | 2025-10-22 |
 

@@ -73,3 +73,7 @@ fi
 if is_ubuntu22; then
     sed -i 's/openssl_conf = openssl_init/#openssl_conf = openssl_init/g' /etc/ssl/openssl.cnf
 fi
+
+# Disable man-db auto update
+echo "set man-db/auto-update false" | debconf-communicate
+dpkg-reconfigure man-db
