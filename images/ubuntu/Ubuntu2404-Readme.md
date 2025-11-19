@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[Ubuntu] `man-db` automatic updates will be disabled on November 10th](https://github.com/actions/runner-images/issues/13213) |
 | [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.3 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20251112.124.1
+- Image Version: 20251117.129.1
 - Systemd version: 255.4-1ubuntu8.11
 
 ## Installed Software
@@ -29,15 +28,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.19.1
-- Homebrew 5.0.0
+- Helm 3.19.2
+- Homebrew 5.0.2
 - Miniconda 25.9.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.8.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit e93bf57963)
+- Vcpkg (build from commit 3af1d1e60a)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,8 +55,8 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.2.0
-- Lerna 9.0.0
+- Gradle 9.2.1
+- Lerna 9.0.1
 - Maven 3.9.11
 
 ### Tools
@@ -65,13 +64,13 @@ to accomplish this.
 - AzCopy 10.31.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.4.2
 - Bazelisk 1.26.0
-- Bicep 0.38.33
+- Bicep 0.39.26
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.23.3
+- CodeQL Action Bundle 2.23.5
 - Docker Amazon ECR Credential Helper 0.11.0
 - Docker Compose v2 2.38.2
-- Docker-Buildx 0.29.1
+- Docker-Buildx 0.30.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.228.0
@@ -93,21 +92,21 @@ to accomplish this.
 - Packer 1.14.2
 - Parcel 2.16.1
 - Podman 4.9.3
-- Pulumi 3.206.0
+- Pulumi 3.207.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
-- yq 4.48.1
+- yq 4.48.2
 - zstd 1.5.7
 - Ninja 1.13.1
 
 ### CLI Tools
-- AWS CLI 2.31.34
+- AWS CLI 2.31.37
 - AWS CLI Session Manager Plugin 1.2.707.0
 - AWS SAM CLI 1.146.0
 - Azure CLI 2.79.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.83.0
+- GitHub CLI 2.83.1
 - Google Cloud CLI 547.0.0
 
 ### Java
@@ -121,7 +120,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.12
+- Composer 2.9.1
 - PHPUnit 8.5.48
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -143,11 +142,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 142.0.7444.162
-- ChromeDriver 142.0.7444.162
+- Google Chrome 142.0.7444.175
+- ChromeDriver 142.0.7444.175
 - Chromium 142.0.7444.0
-- Microsoft Edge 142.0.3595.65
-- Microsoft Edge WebDriver 142.0.3595.65
+- Microsoft Edge 142.0.3595.80
+- Microsoft Edge WebDriver 142.0.3595.80
 - Selenium server 4.38.0
 - Mozilla Firefox 145.0
 - Geckodriver 0.36.0
@@ -168,7 +167,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.10
+- PostgreSQL 16.11
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -320,7 +319,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 7.1-3build2                  |
 | time                   | 1.9-0.2build1                |
 | tk                     | 8.6.14build1                 |
-| tree                   | 2.1.1-2ubuntu3               |
+| tree                   | 2.1.1-2ubuntu3.24.04.2       |
 | tzdata                 | 2025b-0ubuntu0.24.04.1       |
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
