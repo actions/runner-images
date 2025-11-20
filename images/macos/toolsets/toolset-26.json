@@ -17,7 +17,7 @@
                     "version": "26.1.1+17B100",
                     "symlinks": ["26.1"],
                     "sha256": "ed55d55fa28455c11a65e0809ba8fdf7d83fdeb268aabf9af7fcc1ee911543eb",
-                    "install_runtimes": "none"
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "26.0.1",
