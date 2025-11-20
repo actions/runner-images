@@ -2,7 +2,7 @@
 
 ## Scope and goals
 
-- This repository serves as the source for building Github Actions runner and Azure Dev Ops agent images for Windows, Ubuntu, and macOS. You can find exact versions in the [README.md](../README.md#available-images) available images section. Windows and Ubuntu images build on Azure infrastructure using Packer; macOS images use Anka virtualization.
+- This repository serves as the source for building GitHub Actions runner and Azure DevOps agent images for Windows, Ubuntu, and macOS. You can find exact versions in the [README.md](../README.md#available-images) available images section. Windows and Ubuntu images build on Azure infrastructure using Packer; macOS images use Anka virtualization.
 - Emphasize best practices for contributing to open-source projects, including code style, commit messages, and pull request etiquette.
 - Prefer clarity and correctness over creativity. If information is missing, ask clarifying questions or insert TODOs instead of guessing.
 
