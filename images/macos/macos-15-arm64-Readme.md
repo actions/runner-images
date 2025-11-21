@@ -6,14 +6,14 @@
 | [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
 ***
 # macOS 15
-- OS Version: macOS 15.7.1 (24G231)
+- OS Version: macOS 15.7.2 (24G325)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20251104.0104
+- Image Version: 20251119.0020
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.415, 9.0.102, 9.0.203, 9.0.306
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.416, 9.0.102, 9.0.203, 9.0.308
 - Bash 3.2.57(1)-release
 - Clang/LLVM 17.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
@@ -33,18 +33,18 @@
 - Bundler 2.7.2
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.6.20
+- Homebrew 5.0.2
 - NPM 10.9.4
 - Pip3 25.3 (python 3.14)
 - Pipx 1.8.0
 - RubyGems 3.7.2
-- Vcpkg 2025 (build from commit b27f6bfad3)
+- Vcpkg 2025 (build from commit 2e776305f2)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.11
-- Gradle 9.2.0
+- Gradle 9.2.1
 
 ### Utilities
 - 7-Zip 17.05
@@ -56,43 +56,43 @@
 - Curl 8.7.1
 - Git 2.50.1
 - Git LFS 3.7.1
-- GitHub CLI 2.82.1
+- GitHub CLI 2.83.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
 - jq 1.8.1
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.14.2
+- Packer 1.14.3
 - pkgconf 2.5.1
 - Unxip 3.2
-- yq 4.48.1
+- yq 4.48.2
 - zstd 1.5.7
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.31.28
-- AWS SAM CLI 1.145.2
+- AWS CLI 2.31.39
+- AWS SAM CLI 1.146.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.78.0
+- Azure CLI 2.80.0
 - Azure CLI (azure-devops) 1.0.2
-- Bicep CLI 0.38.33
+- Bicep CLI 0.39.26
 - Cmake 4.1.2
-- CodeQL Action Bundle 2.23.3
+- CodeQL Action Bundle 2.23.5
 - Fastlane 2.228.0
-- SwiftFormat 0.58.5
+- SwiftFormat 0.58.6
 - Xcbeautify 3.1.0
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 1.6.2
 
 ### Browsers
-- Safari 26.0.1 (20622.1.22.118.4)
-- SafariDriver 26.0.1 (20622.1.22.118.4)
-- Google Chrome 142.0.7444.60
-- Google Chrome for Testing 142.0.7444.59
-- ChromeDriver 142.0.7444.59
-- Microsoft Edge 142.0.3595.53
-- Microsoft Edge WebDriver 142.0.3595.53
-- Mozilla Firefox 144.0.2
+- Safari 26.1 (20622.2.11.119.1)
+- SafariDriver 26.1 (20622.2.11.119.1)
+- Google Chrome 142.0.7444.176
+- Google Chrome for Testing 142.0.7444.175
+- ChromeDriver 142.0.7444.175
+- Microsoft Edge 142.0.3595.90
+- Microsoft Edge WebDriver 142.0.3595.90
+- Mozilla Firefox 145.0.1
 - geckodriver 0.36.0
 - Selenium server 4.38.0
 
@@ -127,18 +127,18 @@
 #### Node.js
 - 20.19.5
 - 22.21.1
-- 24.11.0
+- 24.11.1
 
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.9
-- 1.25.3
+- 1.24.10
+- 1.25.4
 
 ### Rust Tools
-- Cargo 1.91.0
-- Rust 1.91.0
-- Rustdoc 1.91.0
+- Cargo 1.91.1
+- Rust 1.91.1
+- Rustdoc 1.91.1
 - Rustup 1.28.2
 
 #### Packages
@@ -154,15 +154,15 @@
 - PSScriptAnalyzer: 1.24.0
 
 ### Xcode
-| Version        | Build    | Path                                           | Symlinks                                                       |
-| -------------- | -------- | ---------------------------------------------- | -------------------------------------------------------------- |
-| 26.1           | 17B54    | /Applications/Xcode_26.1_Release_Candidate.app | /Applications/Xcode_26.1.0.app<br>/Applications/Xcode_26.1.app |
-| 26.0.1         | 17A400   | /Applications/Xcode_26.0.1.app                 | /Applications/Xcode_26.0.app                                   |
-| 16.4 (default) | 16F6     | /Applications/Xcode_16.4.app                   | /Applications/Xcode_16.4.0.app<br>/Applications/Xcode.app      |
-| 16.3           | 16E140   | /Applications/Xcode_16.3.app                   | /Applications/Xcode_16.3.0.app                                 |
-| 16.2           | 16C5032a | /Applications/Xcode_16.2.app                   | /Applications/Xcode_16.2.0.app                                 |
-| 16.1           | 16B40    | /Applications/Xcode_16.1.app                   | /Applications/Xcode_16.1.0.app                                 |
-| 16.0           | 16A242d  | /Applications/Xcode_16.app                     | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app |
+| Version        | Build    | Path                           | Symlinks                                                       |
+| -------------- | -------- | ------------------------------ | -------------------------------------------------------------- |
+| 26.1.1         | 17B100   | /Applications/Xcode_26.1.1.app | /Applications/Xcode_26.1.app                                   |
+| 26.0.1         | 17A400   | /Applications/Xcode_26.0.1.app | /Applications/Xcode_26.0.app                                   |
+| 16.4 (default) | 16F6     | /Applications/Xcode_16.4.app   | /Applications/Xcode_16.4.0.app<br>/Applications/Xcode.app      |
+| 16.3           | 16E140   | /Applications/Xcode_16.3.app   | /Applications/Xcode_16.3.0.app                                 |
+| 16.2           | 16C5032a | /Applications/Xcode_16.2.app   | /Applications/Xcode_16.2.0.app                                 |
+| 16.1           | 16B40    | /Applications/Xcode_16.1.app   | /Applications/Xcode_16.1.0.app                                 |
+| 16.0           | 16A242d  | /Applications/Xcode_16.app     | /Applications/Xcode_16.0.0.app<br>/Applications/Xcode_16.0.app |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -173,70 +173,70 @@
 | macOS 15.4                | macosx15.4           | 16.3          |
 | macOS 15.5                | macosx15.5           | 16.4          |
 | macOS 26.0                | macosx26.0           | 26.0.1        |
-| macOS 26.1                | macosx26.1           | 26.1          |
+| macOS 26.1                | macosx26.1           | 26.1.1        |
 | iOS 18.0                  | iphoneos18.0         | 16.0          |
 | iOS 18.1                  | iphoneos18.1         | 16.1          |
 | iOS 18.2                  | iphoneos18.2         | 16.2          |
 | iOS 18.4                  | iphoneos18.4         | 16.3          |
 | iOS 18.5                  | iphoneos18.5         | 16.4          |
 | iOS 26.0                  | iphoneos26.0         | 26.0.1        |
-| iOS 26.1                  | iphoneos26.1         | 26.1          |
+| iOS 26.1                  | iphoneos26.1         | 26.1.1        |
 | Simulator - iOS 18.0      | iphonesimulator18.0  | 16.0          |
 | Simulator - iOS 18.1      | iphonesimulator18.1  | 16.1          |
 | Simulator - iOS 18.2      | iphonesimulator18.2  | 16.2          |
 | Simulator - iOS 18.4      | iphonesimulator18.4  | 16.3          |
 | Simulator - iOS 18.5      | iphonesimulator18.5  | 16.4          |
 | Simulator - iOS 26.0      | iphonesimulator26.0  | 26.0.1        |
-| Simulator - iOS 26.1      | iphonesimulator26.1  | 26.1          |
+| Simulator - iOS 26.1      | iphonesimulator26.1  | 26.1.1        |
 | tvOS 18.0                 | appletvos18.0        | 16.0          |
 | tvOS 18.1                 | appletvos18.1        | 16.1          |
 | tvOS 18.2                 | appletvos18.2        | 16.2          |
 | tvOS 18.4                 | appletvos18.4        | 16.3          |
 | tvOS 18.5                 | appletvos18.5        | 16.4          |
 | tvOS 26.0                 | appletvos26.0        | 26.0.1        |
-| tvOS 26.1                 | appletvos26.1        | 26.1          |
+| tvOS 26.1                 | appletvos26.1        | 26.1.1        |
 | Simulator - tvOS 18.0     | appletvsimulator18.0 | 16.0          |
 | Simulator - tvOS 18.1     | appletvsimulator18.1 | 16.1          |
 | Simulator - tvOS 18.2     | appletvsimulator18.2 | 16.2          |
 | Simulator - tvOS 18.4     | appletvsimulator18.4 | 16.3          |
 | Simulator - tvOS 18.5     | appletvsimulator18.5 | 16.4          |
 | Simulator - tvOS 26.0     | appletvsimulator26.0 | 26.0.1        |
-| Simulator - tvOS 26.1     | appletvsimulator26.1 | 26.1          |
+| Simulator - tvOS 26.1     | appletvsimulator26.1 | 26.1.1        |
 | watchOS 11.0              | watchos11.0          | 16.0          |
 | watchOS 11.1              | watchos11.1          | 16.1          |
 | watchOS 11.2              | watchos11.2          | 16.2          |
 | watchOS 11.4              | watchos11.4          | 16.3          |
 | watchOS 11.5              | watchos11.5          | 16.4          |
 | watchOS 26.0              | watchos26.0          | 26.0.1        |
-| watchOS 26.1              | watchos26.1          | 26.1          |
+| watchOS 26.1              | watchos26.1          | 26.1.1        |
 | Simulator - watchOS 11.0  | watchsimulator11.0   | 16.0          |
 | Simulator - watchOS 11.1  | watchsimulator11.1   | 16.1          |
 | Simulator - watchOS 11.2  | watchsimulator11.2   | 16.2          |
 | Simulator - watchOS 11.4  | watchsimulator11.4   | 16.3          |
 | Simulator - watchOS 11.5  | watchsimulator11.5   | 16.4          |
 | Simulator - watchOS 26.0  | watchsimulator26.0   | 26.0.1        |
-| Simulator - watchOS 26.1  | watchsimulator26.1   | 26.1          |
+| Simulator - watchOS 26.1  | watchsimulator26.1   | 26.1.1        |
 | visionOS 2.0              | xros2.0              | 16.0          |
 | visionOS 2.1              | xros2.1              | 16.1          |
 | visionOS 2.2              | xros2.2              | 16.2          |
 | visionOS 2.4              | xros2.4              | 16.3          |
 | visionOS 2.5              | xros2.5              | 16.4          |
 | visionOS 26.0             | xros26.0             | 26.0.1        |
-| visionOS 26.1             | xros26.1             | 26.1          |
+| visionOS 26.1             | xros26.1             | 26.1.1        |
 | Simulator - visionOS 2.0  | xrsimulator2.0       | 16.0          |
 | Simulator - visionOS 2.1  | xrsimulator2.1       | 16.1          |
 | Simulator - visionOS 2.2  | xrsimulator2.2       | 16.2          |
 | Simulator - visionOS 2.4  | xrsimulator2.4       | 16.3          |
 | Simulator - visionOS 2.5  | xrsimulator2.5       | 16.4          |
 | Simulator - visionOS 26.0 | xrsimulator26.0      | 26.0.1        |
-| Simulator - visionOS 26.1 | xrsimulator26.1      | 26.1          |
+| Simulator - visionOS 26.1 | xrsimulator26.1      | 26.1.1        |
 | DriverKit 24.0            | driverkit24.0        | 16.0          |
 | DriverKit 24.1            | driverkit24.1        | 16.1          |
 | DriverKit 24.2            | driverkit24.2        | 16.2          |
 | DriverKit 24.4            | driverkit24.4        | 16.3          |
 | DriverKit 24.5            | driverkit24.5        | 16.4          |
 | DriverKit 25.0            | driverkit25.0        | 26.0.1        |
-| DriverKit 25.1            | driverkit25.1        | 26.1          |
+| DriverKit 25.1            | driverkit25.1        | 26.1.1        |
 
 #### Installed Simulators
 | Name          | OS     | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                            |
@@ -267,10 +267,10 @@
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                |
-| CMake                      | 3.31.5                                                                                                                                                                                                                                                                                                                |
+| CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                    |
-| NDK                        | 26.3.11579264<br>27.3.13750724 (default)<br>28.2.13676358                                                                                                                                                                                                                                                             |
+| NDK                        | 26.3.11579264<br>27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                            |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -278,7 +278,7 @@
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.2.13676358 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/29.0.14206865 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
