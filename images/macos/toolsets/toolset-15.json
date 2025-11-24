@@ -343,7 +343,7 @@
         "version": "18"
     },
     "php": {
-        "version": "8.4"
+        "version": "8.5"
     },
     "pwsh": {
         "version": "7.4"
