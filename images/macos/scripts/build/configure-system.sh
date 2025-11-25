@@ -47,7 +47,7 @@ xcrun simctl list > /dev/null
 xcrun simctl list devices > /dev/null
 
 echo "Put documentation to $HOME root"
-cp $HOME/image-generation/output/software-report/systeminfo.* $HOME/
+cp $HOME/image-generation/output/software-report.* $HOME/
 
 echo "Remove fastlane cached cookie"
 rm -rf ~/.fastlane
