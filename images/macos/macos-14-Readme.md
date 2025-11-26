@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[macOS] Deprecation of Xcode 16.4 on macOS 26 on December 8th.](https://github.com/actions/runner-images/issues/13345) |
 | [[macOS] The macOS 13 Ventura based runner images will begin deprecation on September 22nd and will be fully unsupported by December 4th for GitHub and ADO](https://github.com/actions/runner-images/issues/13046) |
 | [[macOS] The additional macOS 15 Sonoma Intel-based image will be available in GitHub Actions](https://github.com/actions/runner-images/issues/13045) |
 | [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
@@ -8,12 +9,12 @@
 # macOS 14
 - OS Version: macOS 14.8.2 (23J126)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20251111.0163
+- Image Version: 20251125.0031
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.415, 9.0.102, 9.0.203, 9.0.306
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.416, 9.0.102, 9.0.203, 9.0.308, 10.0.100
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -27,7 +28,7 @@
 - Mono 6.12.0.188
 - Node.js 20.19.5
 - Perl 5.40.2
-- PHP 8.4.14
+- PHP 8.5.0
 - Python3 3.14.0
 - Ruby 3.3.10
 
@@ -35,20 +36,20 @@
 - Bundler 2.7.2
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.12
-- Homebrew 4.6.20
+- Composer 2.9.2
+- Homebrew 5.0.3
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.3 (python 3.14)
 - Pipx 1.8.0
 - RubyGems 3.7.2
-- Vcpkg 2025 (build from commit 8fbf295ab5)
+- Vcpkg 2025 (build from commit 9aee6e968f)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.11
-- Gradle 9.2.0
+- Gradle 9.2.1
 
 ### Utilities
 - 7-Zip 17.05
@@ -60,31 +61,31 @@
 - Curl 8.17.0
 - Git 2.50.1
 - Git LFS 3.7.1
-- GitHub CLI 2.83.0
+- GitHub CLI 2.83.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
 - jq 1.8.1
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.14.2
+- Packer 1.14.3
 - pkgconf 2.5.1
 - Unxip 3.2
-- yq 4.48.1
+- yq 4.49.2
 - zstd 1.5.7
-- Ninja 1.13.1
+- Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.31.33
-- AWS SAM CLI 1.146.0
-- AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.79.0
+- AWS CLI 2.32.5
+- AWS SAM CLI 1.148.0
+- AWS Session Manager CLI 1.2.764.0
+- Azure CLI 2.80.0
 - Azure CLI (azure-devops) 1.0.2
-- Bicep CLI 0.38.33
-- Cmake 4.1.2
-- CodeQL Action Bundle 2.23.3
-- Fastlane 2.228.0
-- SwiftFormat 0.58.5
-- Xcbeautify 3.1.0
+- Bicep CLI 0.39.26
+- Cmake 4.2.0
+- CodeQL Action Bundle 2.23.6
+- Fastlane 2.229.1
+- SwiftFormat 0.58.6
+- Xcbeautify 3.1.1
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
 
@@ -94,12 +95,12 @@
 ### Browsers
 - Safari 26.1 (19622.2.11.119.1)
 - SafariDriver 26.1 (19622.2.11.119.1)
-- Google Chrome 142.0.7444.60
-- Google Chrome for Testing 142.0.7444.61
-- ChromeDriver 142.0.7444.61
-- Microsoft Edge 142.0.3595.65
-- Microsoft Edge WebDriver 142.0.3595.65
-- Mozilla Firefox 144.0.2
+- Google Chrome 142.0.7444.176
+- Google Chrome for Testing 142.0.7444.175
+- ChromeDriver 142.0.7444.175
+- Microsoft Edge 142.0.3595.94
+- Microsoft Edge WebDriver 142.0.3595.94
+- Mozilla Firefox 145.0.2
 - geckodriver 0.36.0
 - Selenium server 4.38.0
 
@@ -137,7 +138,7 @@
 #### Node.js
 - 20.19.5
 - 22.21.1
-- 24.11.0
+- 24.11.1
 
 #### Go
 - 1.22.12
@@ -288,7 +289,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v26/26.1.1-57288/ParallelsDesktop-26.1.1-57288.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v26/26.1.2-57293/ParallelsDesktop-26.1.2-57293.dmg |
 
 ##### Notes
 ```
