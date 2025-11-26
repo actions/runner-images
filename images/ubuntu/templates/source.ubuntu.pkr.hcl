@@ -11,9 +11,9 @@ source "azure-arm" "image" {
 
   allowed_inbound_ip_addresses           = var.allowed_inbound_ip_addresses
   build_resource_group_name              = var.build_resource_group_name
-  image_offer                            = local.image_properties.offer
-  image_publisher                        = local.image_properties.publisher
-  image_sku                              = local.image_properties.sku
+  image_publisher                        = split(":", local.source_image_marketplace_sku)[0]
+  image_offer                            = split(":", local.source_image_marketplace_sku)[1]
+  image_sku                              = split(":", local.source_image_marketplace_sku)[2]
   image_version                          = var.source_image_version
   location                               = var.location
   managed_image_name                     = var.managed_image_name
