@@ -28,7 +28,7 @@ major_minor_versions=$(echo "$available_versions" | cut -d"." -f 1,2 | uniq | ta
 for major_minor_version in $major_minor_versions; do
     full_version=$(echo "$available_versions" | grep "$major_minor_version." | tail -n1)
     echo "install ghc version $full_version..."
-    ghcup install ghc $full_version
+    ghcup --downloader wget install ghc $full_version
     ghcup set ghc $full_version
 done
 
