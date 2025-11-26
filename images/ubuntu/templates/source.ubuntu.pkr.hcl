@@ -19,7 +19,7 @@ source "azure-arm" "image" {
   managed_image_name                     = var.managed_image_name
   managed_image_resource_group_name      = var.managed_image_resource_group_name
   managed_image_storage_account_type     = var.managed_image_storage_account_type
-  os_disk_size_gb                        = local.image_properties.os_disk_size_gb
+  os_disk_size_gb                        = local.os_disk_size_gb
   os_type                                = var.image_os_type
   private_virtual_network_with_public_ip = var.private_virtual_network_with_public_ip
   ssh_clear_authorized_keys              = var.ssh_clear_authorized_keys
