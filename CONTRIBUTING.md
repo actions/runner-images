@@ -105,7 +105,7 @@ Each script should start with the following shebang:
 
 This will make the script exit if any command fails.
 
-After the shebang, add a header with of the following format:
+After the shebang, add a header with the following format:
 
 ```bash
 ################################################################################
@@ -124,7 +124,7 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 ```
 
-For mac OS:
+For macOS:
 
 ```bash
 source ~/utils/utils.sh
@@ -153,15 +153,15 @@ After that, add the script code.
   - `curl -sSLf`
   - `wget -qO-`
 
-### Powershell scripts
+### PowerShell scripts
 
-#### Naming convention for Powershell scripts
+#### Naming convention for PowerShell scripts
 
 - Use camelCase for variable names.
 - Use uppercase letters for constants.
 - Use `Verb-Noun` and PascalCase for function names.
 
-### Powershell script structure
+### PowerShell script structure
 
 Each script should start with the following header:
 
@@ -201,7 +201,7 @@ Import-Module "$env:HOME/image-generation/helpers/Xcode.Helpers.psm1" -DisableNa
 
 After that, add the script code.
 
-### Indentations and line breaks in Powershell scripts
+### Indentations and line breaks in PowerShell scripts
 
 - Use 4 spaces for indentation.
 - Use 1 space between `if`/`elseif`/`foreach` and `(` but not between `(` and the condition.

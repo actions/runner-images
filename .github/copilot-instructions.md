@@ -2,7 +2,7 @@
 
 ## Scope and goals
 
-- This repository serves as the source for building GitHub Actions runner and Azure DevOps agent images for Windows, Ubuntu, and macOS. You can find exact versions in the [README.md](../README.md#available-images) available images section. Windows and Ubuntu images build on Azure infrastructure using Packer; macOS images use Anka virtualization.
+- This repository serves as the source for building GitHub Actions runner and Azure DevOps agent images for Windows, Ubuntu, and macOS. You can find exact versions in the [Available Images](../README.md#available-images) section of README.md. Windows and Ubuntu images build on Azure infrastructure using Packer; macOS images use Anka virtualization.
 - Emphasize best practices for contributing to open-source projects, including code style, commit messages, and pull request etiquette.
 - Prefer clarity and correctness over creativity. If information is missing, ask clarifying questions or insert TODOs instead of guessing.
 
@@ -10,7 +10,7 @@
 
 - Follow the code style guide in [CONTRIBUTING.md](../CONTRIBUTING.md#code-style-guide) for Bash and PowerShell scripts, including naming conventions, file structure, and indentation rules.
 - Focus on re-using helpers when writing scripts. Windows, Linux and Ubuntu scripts have helper functions available to simplify installation and validation.
-- Always confirm versions and installations paths against existing toolset files and installation scripts.
+- Always confirm versions and installation paths against existing toolset files and installation scripts.
 
 ## Output format
 
