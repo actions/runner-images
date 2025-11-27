@@ -99,7 +99,6 @@ build {
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
       "${path.root}/../scripts/build/install-actions-cache.sh",
-      "${path.root}/../scripts/build/install-runner-package.sh",
       "${path.root}/../scripts/build/install-apt-common.sh",
       "${path.root}/../scripts/build/install-azcopy.sh",
       "${path.root}/../scripts/build/install-azure-cli.sh",
