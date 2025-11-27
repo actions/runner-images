@@ -194,7 +194,7 @@ build {
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["dpkg-query -W -f='$${Package} $${Version}\\n' | sort"]
+    script          = "${path.root}/../scripts/build/list-dpkg.sh"
   }
 
   provisioner "shell" {
