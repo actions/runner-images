@@ -10,11 +10,18 @@ Contributions to this project are [released](https://help.github.com/articles/gi
 
 Please note that this project is released with a [Contributor Code of Conduct][code-of-conduct]. By participating in this project, you agree to abide by its terms.
 
+## Contents
+
+- [Submitting a pull request](#submitting-a-pull-request)
+- [Adding a new tool to an image](#adding-a-new-tool-to-an-image)
+- [Code style guide](#code-style-guide)
+
+
 ## Submitting a pull request
 
 1. [Fork][fork] and clone the repository.
 1. Create a new branch: `git checkout -b my-branch-name`.
-1. Make your changes, ensuring that they include steps to install, validate post-install, and update the software report (please see [How to add a new tool](CONTRIBUTING.md#how-to-add-a-new-tool) for details).
+1. Make your changes, ensuring that they include steps to install, validate post-install, and update the software report (please see [Adding a new tool to an image](#adding-a-new-tool-to-an-image) for details).
 1. Test your changes by [creating an image and deploying a VM](docs/create-image-and-azure-resources.md).
 1. Push to your fork and [submit a pull request][pr].
 
@@ -28,7 +35,7 @@ Here are a few things you can do that will increase the likelihood of your pull 
   - Make sure that the tool satisfies the [Software Guidelines](README.md#software-guidelines).
   - Create an issue and get approval from us to add this tool to the image before creating the pull request.
 
-## How to add a new tool
+## Adding a new tool to an image
 
 ### General rules
 
@@ -59,6 +66,185 @@ Use existing scripts such as [github-cli.sh](images/ubuntu/scripts/build/github-
 
 The macOS source lives in this repository and is available for everyone. However, the macOS image-generation CI doesn't support external contributions yet, so we are not able to accept pull requests for now.
 We are in the process of preparing the macOS CI to accept contributions. Until then, we appreciate your patience and ask that you continue to make tool requests by filing issues.
+
+## Code style guide
+
+The principles of clean code apply to all languages. The main points are:
+
+- Use meaningful names for variables, functions, files, etc.
+- Keep functions short and simple.
+- Use comments to explain what the code does.
+- Use a consistent code style, naming convention, and file structure.
+
+### File structure
+
+- Each file should have a header with a title and a short description of the file.
+- Each file should have a newline at the end.
+- Use blank lines to separate logical blocks of code, but don't abuse blank lines:
+  - Don't add a blank line in the beginning and end of a block or function.
+  - Don't add blank lines between logically connected statements.
+- Avoid trailing whitespace.
+
+### Bash scripts
+
+#### Naming convention for bash scripts
+
+- Use lowercase letters for variable names.
+- Use uppercase letters for constants.
+- Use underscores to separate words in variable names.
+
+#### Bash script structure
+
+Each script should start with the following shebang:
+
+```bash
+#!/bin/bash -e
+```
+
+> TODO: do we need to set pipefail?
+
+This will make the script exit if any command fails.
+
+After the shebang, add a header with of the following format:
+
+```bash
+################################################################################
+##  File:  <filename>
+##  Desc:  <short description of what the script does>
+################################################################################
+```
+
+Then import helpers that are used in the script.
+
+For Linux:
+
+```bash
+source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
+```
+
+For mac OS:
+
+```bash
+source ~/utils/utils.sh
+```
+
+> [!NOTE]
+> You don't need to import all helpers, only the ones that are used in the script.
+
+After that, add the script code.
+
+### Indentations and line breaks in bash scripts
+
+- Use 4 spaces for indentation.
+- Use 1 space between `if`/`for`/`while` and `[[` and between `[[` and the condition.
+- Place `then`/`do` on the new line.
+- For short `if`/`for`/`while` statements, use the one-line format.
+- Break long pipelines using `\`.
+
+### Other recommendations for bash scripts
+
+- For command substitution, use `$()` instead of backticks.
+- Use `[[` instead of `[` for conditional expressions.
+- Prefer using long options instead of short keys, but there are exceptions, e.g.:
+  - `tar -xzf`
+  - `apt-get -yqq`
+  - `curl -sSLf`
+  - `wget -qO-`
+
+### Powershell scripts
+
+#### Naming convention for Powershell scripts
+
+- Use camelCase for variable names.
+- Use uppercase letters for constants.
+- Use `Verb-Noun` and PascalCase for function names.
+
+### Powershell script structure
+
+Each script should start with the following header:
+
+```powershell
+################################################################################
+##  File:  <filename>
+##  Desc:  <short description of what the script does>
+################################################################################
+```
+
+Then declare functions that are used in the script.
+
+> TODO: do we need to set the error action preference and progress preference?
+>
+> ```powershell
+> $ErrorActionPreference = "Stop"
+> $ProgressPreference = "SilentlyContinue"
+> ```
+
+For Linux and mac OS, import helpers that are used in the script:
+
+For Linux:
+
+```powershell
+Import-Module "$env:HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
+```
+
+For mac OS:
+
+```powershell
+Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
+Import-Module "$env:HOME/image-generation/helpers/Xcode.Helpers.psm1" -DisableNameChecking
+```
+
+> [!NOTE]
+> You don't need to import all helpers, only the ones that are used in the script.
+
+After that, add the script code.
+
+### Indentations and line breaks in Powershell scripts
+
+- Use 4 spaces for indentation.
+- Use 1 space between `if`/`elseif`/`foreach` and `(` but not between `(` and the condition.
+- Add a space before and after pipe `|` and redirection `>` operators.
+- Align properties in hash tables.
+- Use [1TBS](https://en.wikipedia.org/wiki/Indentation_style#Variant:_1TBS_(OTBS)) style for curly braces:
+  - If block of statement is long, then place it on the new line, indent it, and add a closing curly brace on the new line.
+  - If block of statement is short, then place it on the same line as the statement.
+
+  ```powershell
+  function Show-Example1 {
+      $exampleVariable = Get-ChildItem $env:TEMP
+      $exampleVariable | ForEach-Object {
+          $itemName = $_.Name
+          $itemPath = $_.FullName
+      }
+  }
+
+  $Example2 | Some-Function -Arguments @{Parameter1 = "Disabled"}
+  ```
+
+- Avoid using aliases.
+- Break long pipelines using backticks or use [splatting](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_splatting?view=powershell-7.3):
+
+  ```powershell
+  # Instead of this
+  Copy-Item -Path "test.txt" -Destination "test2.txt" -WhatIf
+
+  # you can use this
+  $HashArguments = @{
+    Path = "test.txt"
+    Destination = "test2.txt"
+    WhatIf = $true
+  }
+  Copy-Item @HashArguments
+  ```
+
+  When using backticks be extra careful with trailing whitespace as they can cause errors.
+
+### Other recommendations for PowerShell scripts
+
+- Verify exit codes of commands.
+- When writing a function, provide a docstring that describes what the function does.
 
 ## Resources
 
