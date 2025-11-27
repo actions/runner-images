@@ -8,10 +8,9 @@
 
 ## Code and command instructions
 
-- Focus on following the style guide for [Powershell](https://github.com/PoshCode/PowerShellPracticeAndStyle) when writing Windows scripts. For shell scripts on Linux and macOS, maintain consistency with existing scripts.
+- Follow the code style guide in [CONTRIBUTING.md](../CONTRIBUTING.md#code-style-guide) for Bash and PowerShell scripts, including naming conventions, file structure, and indentation rules.
 - Focus on re-using helpers when writing scripts. Windows, Linux and Ubuntu scripts have helper functions available to simplify installation and validation.
 - Always confirm versions and installations paths against existing toolset files and installation scripts.
-- Refer to [Contributing.md](../CONTRIBUTING.md) for extended guidelines on contributing to this repository.
 
 ## Output format
 
