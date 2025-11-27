@@ -15,5 +15,5 @@ locals {
   }
 
   source_image_marketplace_sku = local.image_properties_map[var.image_os].source_image_marketplace_sku
-  os_disk_size_gb = local.image_properties_map[var.image_os].os_disk_size_gb
+  os_disk_size_gb = coalesce(var.os_disk_size_gb, local.image_properties_map[var.image_os].os_disk_size_gb)
 }
