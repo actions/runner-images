@@ -181,7 +181,7 @@ Then declare functions that are used in the script.
 > $ProgressPreference = "SilentlyContinue"
 > ```
 
-For Linux and mac OS, import helpers that are used in the script:
+For Linux and macOS, import helpers that are used in the script:
 
 For Linux:
 
@@ -189,7 +189,7 @@ For Linux:
 Import-Module "$env:HELPER_SCRIPTS/Tests.Helpers.psm1" -DisableNameChecking
 ```
 
-For mac OS:
+For macOS:
 
 ```powershell
 Import-Module "$env:HOME/image-generation/helpers/Common.Helpers.psm1"
