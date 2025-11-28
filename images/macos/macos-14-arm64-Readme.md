@@ -6,9 +6,9 @@
 | [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
 ***
 # macOS 14
-- OS Version: macOS 14.8.1 (23J30)
+- OS Version: macOS 14.8.2 (23J126)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20251103.0081
+- Image Version: 20251111.0092
 
 ## Installed Software
 
@@ -34,13 +34,13 @@
 - Bundler 2.7.2
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 4.6.19
+- Homebrew 4.6.20
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.3 (python 3.14)
 - Pipx 1.8.0
 - RubyGems 3.7.2
-- Vcpkg 2025 (build from commit e3ed41868d)
+- Vcpkg 2025 (build from commit 8fbf295ab5)
 - Yarn 1.22.22
 
 ### Project Management
@@ -58,7 +58,7 @@
 - Curl 8.7.1
 - Git 2.50.1
 - Git LFS 3.7.1
-- GitHub CLI 2.82.1
+- GitHub CLI 2.83.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
@@ -72,10 +72,10 @@
 - Ninja 1.13.1
 
 ### Tools
-- AWS CLI 2.31.27
-- AWS SAM CLI 1.145.2
+- AWS CLI 2.31.33
+- AWS SAM CLI 1.146.0
 - AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.78.0
+- Azure CLI 2.79.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.38.33
 - Cmake 4.1.2
@@ -87,13 +87,13 @@
 - Xcodes 1.6.2
 
 ### Browsers
-- Safari 26.0.1 (19622.1.22.118.4)
-- SafariDriver 26.0.1 (19622.1.22.118.4)
+- Safari 26.1 (19622.2.11.119.1)
+- SafariDriver 26.1 (19622.2.11.119.1)
 - Google Chrome 142.0.7444.60
-- Google Chrome for Testing 142.0.7444.59
-- ChromeDriver 142.0.7444.59
-- Microsoft Edge 142.0.3595.53
-- Microsoft Edge WebDriver 142.0.3595.53
+- Google Chrome for Testing 142.0.7444.61
+- ChromeDriver 142.0.7444.61
+- Microsoft Edge 142.0.3595.65
+- Microsoft Edge WebDriver 142.0.3595.65
 - Mozilla Firefox 144.0.2
 - geckodriver 0.36.0
 - Selenium server 4.38.0
@@ -134,13 +134,13 @@
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.9
-- 1.25.3
+- 1.24.10
+- 1.25.4
 
 ### Rust Tools
-- Cargo 1.91.0
-- Rust 1.91.0
-- Rustdoc 1.91.0
+- Cargo 1.91.1
+- Rust 1.91.1
+- Rustdoc 1.91.1
 - Rustup 1.28.2
 
 #### Packages
@@ -264,10 +264,10 @@
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                            |
-| CMake                      | 3.31.5                                                                                                                                                                                                                                                                                                                                                                                            |
+| CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                   |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                |
-| NDK                        | 26.3.11579264 (default)<br>27.3.13750724<br>28.2.13676358                                                                                                                                                                                                                                                                                                                                         |
+| NDK                        | 26.3.11579264 (default)<br>27.3.13750724<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -275,7 +275,7 @@
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.2.13676358 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/29.0.14206865 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
