@@ -9,7 +9,7 @@
 # macOS 15
 - OS Version: macOS 15.7.2 (24G325)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20251126.0042
+- Image Version: 20251203.0058.1
 
 ## Installed Software
 
@@ -32,16 +32,16 @@
 - Ruby 3.3.10
 
 ### Package Management
-- Bundler 2.7.2
+- Bundler 4.0.0
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.9.2
-- Homebrew 5.0.3
+- Homebrew 5.0.4
 - NPM 10.9.4
 - Pip3 25.3 (python 3.14)
 - Pipx 1.8.0
-- RubyGems 3.7.2
-- Vcpkg 2025 (build from commit 4c5ae6b55f)
+- RubyGems 4.0.0
+- Vcpkg 2025 (build from commit 80d025e829)
 - Yarn 1.22.22
 
 ### Project Management
@@ -73,16 +73,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.32.5
-- AWS SAM CLI 1.148.0
+- AWS CLI 2.32.8
+- AWS SAM CLI 1.149.0
 - AWS Session Manager CLI 1.2.764.0
-- Azure CLI 2.80.0
+- Azure CLI 2.81.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.39.26
 - Cmake 4.2.0
 - CodeQL Action Bundle 2.23.6
 - Fastlane 2.229.1
-- SwiftFormat 0.58.6
+- SwiftFormat 0.58.7
 - Xcbeautify 3.1.1
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 1.6.2
@@ -93,9 +93,9 @@
 ### Browsers
 - Safari 26.1 (20622.2.11.119.1)
 - SafariDriver 26.1 (20622.2.11.119.1)
-- Google Chrome 142.0.7444.176
-- Google Chrome for Testing 142.0.7444.175
-- ChromeDriver 142.0.7444.175
+- Google Chrome 143.0.7499.41
+- Google Chrome for Testing 143.0.7499.40
+- ChromeDriver 143.0.7499.40
 - Microsoft Edge 142.0.3595.94
 - Microsoft Edge WebDriver 142.0.3595.94
 - Mozilla Firefox 145.0.2
@@ -129,8 +129,8 @@
 - 3.10.19
 - 3.11.9
 - 3.12.10
-- 3.13.9
-- 3.14.0
+- 3.13.10
+- 3.14.1
 
 #### Node.js
 - 20.19.6
@@ -140,8 +140,8 @@
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.10
-- 1.25.4
+- 1.24.11
+- 1.25.5
 
 ### Rust Tools
 - Cargo 1.91.1
