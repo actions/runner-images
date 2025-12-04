@@ -33,6 +33,12 @@ sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.backupd.plist
 echo "Disable Apple Push Notification Service daemon"
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.apsd.plist
 
+echo "Set SMC monitoring cadence to 0 to reduce CPU usage"
+sudo defaults -currentHost write /Library/Preferences/com.apple.powerlogd SMCMonitorCadence 0
+
+echo "Disable Performance and Power Management daemon if possible"
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.PerfPowerServices.plist
+
 # Remove Parallels Desktop
 # https://github.com/actions/runner-images/issues/6105
 # https://github.com/actions/runner-images/issues/10143
