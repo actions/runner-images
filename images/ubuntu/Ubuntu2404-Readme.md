@@ -1,12 +1,11 @@
 | Announcements |
 |-|
-| [[Ubuntu] `man-db` automatic updates will be disabled on November 10th](https://github.com/actions/runner-images/issues/13213) |
 | [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.3 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20251112.124.1
+- Image Version: 20251126.144.1
 - Systemd version: 255.4-1ubuntu8.11
 
 ## Installed Software
@@ -19,9 +18,9 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
-- Julia 1.12.1
+- Julia 1.12.2
 - Kotlin 2.2.21-release-469
-- Node.js 20.19.5
+- Node.js 20.19.6
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -29,15 +28,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.19.1
-- Homebrew 5.0.0
+- Helm 3.19.2
+- Homebrew 5.0.3
 - Miniconda 25.9.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.8.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit e93bf57963)
+- Vcpkg (build from commit da93ad9cab)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,26 +55,26 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.2.0
-- Lerna 9.0.0
+- Gradle 9.2.1
+- Lerna 9.0.1
 - Maven 3.9.11
 
 ### Tools
-- Ansible 2.19.4
+- Ansible 2.20.0
 - AzCopy 10.31.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.4.2
 - Bazelisk 1.26.0
-- Bicep 0.38.33
+- Bicep 0.39.26
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.23.3
+- CodeQL Action Bundle 2.23.6
 - Docker Amazon ECR Credential Helper 0.11.0
 - Docker Compose v2 2.38.2
-- Docker-Buildx 0.29.1
+- Docker-Buildx 0.30.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.228.0
-- Git 2.51.2
+- Fastlane 2.229.1
+- Git 2.52.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
@@ -90,25 +89,25 @@ to accomplish this.
 - Newman 6.2.1
 - nvm 0.40.3
 - OpenSSL 3.0.13-0ubuntu3.6
-- Packer 1.14.2
+- Packer 1.14.3
 - Parcel 2.16.1
 - Podman 4.9.3
-- Pulumi 3.206.0
+- Pulumi 3.209.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
-- yq 4.48.1
+- yq 4.49.2
 - zstd 1.5.7
-- Ninja 1.13.1
+- Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.31.34
-- AWS CLI Session Manager Plugin 1.2.707.0
-- AWS SAM CLI 1.146.0
-- Azure CLI 2.79.0
+- AWS CLI 2.32.5
+- AWS CLI Session Manager Plugin 1.2.764.0
+- AWS SAM CLI 1.148.0
+- Azure CLI 2.80.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.83.0
-- Google Cloud CLI 547.0.0
+- GitHub CLI 2.83.1
+- Google Cloud CLI 548.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -121,7 +120,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.8.12
+- Composer 2.9.2
 - PHPUnit 8.5.48
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -143,13 +142,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 142.0.7444.162
-- ChromeDriver 142.0.7444.162
+- Google Chrome 142.0.7444.175
+- ChromeDriver 142.0.7444.175
 - Chromium 142.0.7444.0
-- Microsoft Edge 142.0.3595.65
-- Microsoft Edge WebDriver 142.0.3595.65
+- Microsoft Edge 142.0.3595.94
+- Microsoft Edge WebDriver 142.0.3595.94
 - Selenium server 4.38.0
-- Mozilla Firefox 145.0
+- Mozilla Firefox 145.0.2
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -161,14 +160,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.122, 8.0.206, 8.0.319, 8.0.416, 9.0.112, 9.0.205, 9.0.307, 10.0.100
+- .NET Core SDK: 8.0.122, 8.0.206, 8.0.319, 8.0.416, 9.0.112, 9.0.205, 9.0.308, 10.0.100
 - nbgv 3.9.50+6feeb89450
 
 ### Databases
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.10
+- PostgreSQL 16.11
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -176,7 +175,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.43-0ubuntu0.24.04.2
+- MySQL 8.0.44-0ubuntu0.24.04.1
 ```
 User: root
 Password: root
@@ -193,7 +192,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.25.4
 
 #### Node.js
-- 20.19.5
+- 20.19.6
 - 22.21.1
 - 24.11.1
 
@@ -320,7 +319,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 7.1-3build2                  |
 | time                   | 1.9-0.2build1                |
 | tk                     | 8.6.14build1                 |
-| tree                   | 2.1.1-2ubuntu3               |
+| tree                   | 2.1.1-2ubuntu3.24.04.2       |
 | tzdata                 | 2025b-0ubuntu0.24.04.1       |
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
