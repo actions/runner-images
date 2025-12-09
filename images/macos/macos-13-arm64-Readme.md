@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[macOS] The macOS 13 Ventura based runner images will begin deprecation on September 22nd and will be fully unsupported by December 4th for GitHub and ADO](https://github.com/actions/runner-images/issues/13046) |
 | [[macOS] Cmake will be updated to version 4.* on September 8th](https://github.com/actions/runner-images/issues/12934) |
 | [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
 | [[macOS] macos-latest YAML-label will use macos-15 in August 2025](https://github.com/actions/runner-images/issues/12520) |
