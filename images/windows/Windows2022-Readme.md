@@ -1,10 +1,6 @@
-| Announcements |
-|-|
-| [[Ubuntu & Windows] Four tools scheduled for deprecation on November 3, 2025](https://github.com/actions/runner-images/issues/12898) |
-***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 4405
-- Image Version: 20251125.125.1
+- Image Version: 20251207.136.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,7 +9,7 @@
 
 ### Language and Runtime
 - Bash 5.2.37(1)-release
-- Go 1.24.10
+- Go 1.24.11
 - Julia 1.12.0
 - Kotlin 2.2.21
 - LLVM 20.1.8
@@ -24,16 +20,16 @@
 - Ruby 3.3.10
 
 ### Package Management
-- Chocolatey 2.5.1
+- Chocolatey 2.6.0
 - Composer 2.9.2
 - Helm 4.0.0
 - Miniconda 25.9.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
-- NuGet 7.0.0.289
+- NuGet 7.0.1.1
 - pip 25.3 (python 3.9)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 9aee6e968f)
+- Vcpkg (build from commit ab2977be50)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,14 +53,14 @@
 - Bicep 0.39.26
 - Cabal 3.16.0.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.23.6
+- CodeQL Action Bundle 2.23.7
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.4
 - ghc 9.12.2
 - Git 2.52.0.windows.1
 - Git LFS 3.7.1
-- ImageMagick 7.1.2-8
+- ImageMagick 7.1.2-9
 - InnoSetup 6.6.1
 - jq 1.8.1
 - Kind 0.30.0
@@ -77,7 +73,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.0
 - Packer 1.14.2
-- Pulumi 3.207.0
+- Pulumi 3.210.0
 - R 4.5.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.7.1
@@ -91,11 +87,11 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.1.5
-- AWS CLI 2.32.4
-- AWS SAM CLI 1.148.0
+- Alibaba Cloud CLI 3.2.0
+- AWS CLI 2.32.11
+- AWS SAM CLI 1.150.1
 - AWS Session Manager CLI 1.2.764.0
-- Azure CLI 2.80.0
+- Azure CLI 2.81.0
 - Azure DevOps CLI extension 1.0.2
 - GitHub CLI 2.83.1
 
@@ -114,14 +110,14 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 142.0.7444.176
-- Chrome Driver 142.0.7444.175
-- Microsoft Edge 142.0.3595.94
-- Microsoft Edge Driver 142.0.3595.94
+- Google Chrome 143.0.7499.41
+- Chrome Driver 143.0.7499.40
+- Microsoft Edge 143.0.3650.66
+- Microsoft Edge Driver 143.0.3650.66
 - Mozilla Firefox 145.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.38.0
+- Selenium server 4.39.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -162,11 +158,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.10
-- 1.25.4
+- 1.24.11
+- 1.25.5
 
 #### Node.js
-- 20.19.5
+- 20.19.6
 - 22.21.1
 - 24.11.1
 
@@ -175,8 +171,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.9
-- 3.14.0
+- 3.13.10
+- 3.14.1
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.20]
@@ -216,7 +212,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.5.9
+- MongoDB Shell (mongosh) 2.5.10
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
@@ -455,7 +451,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | wasm.tools                                                                | 9.0.1125.51309  |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects2022                  | 4.0.0           |
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 4.0.0           |
-| SSIS.MicrosoftDataToolsIntegrationServices                                | 2.0             |
+| SSIS.MicrosoftDataToolsIntegrationServices                                | 2.1.2           |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.1           |
 | Windows Driver Kit                                                        | 10.1.26100.4202 |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.26100.15   |
@@ -493,7 +489,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.104
+- AWSPowershell: 5.0.111
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.32.0
@@ -508,7 +504,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Android Emulator           | 36.2.12                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Android Emulator           | 36.3.10                                                                                                                                                                                                                                                                                                                                                                                                                                       |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.0 33.0.1 33.0.2 33.0.3<br>32.0.0<br>31.0.0                                                                                                                                                                                                                                                                                                                                                   |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3)<br>android-32 (rev 1)<br>android-31 (rev 1) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                        |
@@ -536,4 +532,3 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:460dedaed73224f73ff10dc3ad754d0ed250aa57bcdf6c5052a811b4b7e29345  | 2025-09-09 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:0738c9dea37ea0d146c978f6cd384be80c99916c46702c24817a47f5e869d1a9  | 2025-11-05 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:3a2a2fdfbae2f720f6fe26f2d7680146712ce330f605b02a61d624889735c72e  | 2025-11-05 |
-
