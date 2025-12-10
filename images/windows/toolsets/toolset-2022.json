@@ -147,7 +147,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "installChannel": "",
+        "installChannelUri": "",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",

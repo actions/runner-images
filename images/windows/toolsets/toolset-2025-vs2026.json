@@ -7,8 +7,7 @@
             "versions": [
                 "3.2",
                 "3.3",
-                "3.4",
-                "4.0"
+                "3.4"
             ],
             "default": "3.3"
         },
@@ -18,13 +17,14 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
+                "3.9.*",
                 "3.10.*",
                 "3.11.*",
                 "3.12.*",
                 "3.13.*",
                 "3.14.*"
             ],
-            "default": "3.12.*"
+            "default": "3.9.*"
         },
         {
             "name": "PyPy",
@@ -67,7 +67,7 @@
         { "name": "PowerShellGet" },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
-        { "name": "SqlServer", "versions": [ "22.3.0" ] },
+        { "name": "SqlServer" },
         { "name": "VSSetup" },
         { "name": "Microsoft.Graph" },
         {"name": "AWSPowershell"}
@@ -76,8 +76,9 @@
         {
             "name": "az",
             "versions": [
-                "14.6.0"
-            ]
+                "12.5.0"
+            ],
+            "zip_versions": []
         }
     ],
     "java": {
@@ -85,8 +86,8 @@
         "versions": [ "8", "11", "17", "21", "25"]
     },
     "android": {
-        "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-12266719_latest.zip",
-        "hash": "F9088C04A44F1F37A8A3A228A7663E11AE9445FA07529C96CEF38ACB985A88F3",
+        "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip",
+        "hash": "98B565CB657B012DAE6794CEFC0F66AE1EFB4690C699B78A614B4A6A3505B003",
         "platform_min_version": "34",
         "build_tools_min_version": "34.0.0",
         "extras": [
@@ -103,7 +104,7 @@
         "ndk": {
             "default": "27",
             "versions": [
-                "27", "28", "29"
+                "26", "27", "28", "29"
             ]
         }
     },
@@ -128,20 +129,18 @@
         { "name": "Wireless-Networking" }
     ],
     "visualStudio": {
-        "version" : "2022",
-        "subversion" : "17",
+        "version" : "2026",
+        "subversion" : "18",
         "edition" : "Enterprise",
-        "channel": "release",
+        "channel": "stable",
         "installChannelUri": "",
         "workloads": [
-            "Component.Dotfuscator",
             "Component.Linux.CMake",
             "Component.UnityEngine.x64",
             "Microsoft.Component.VC.Runtime.UCRTSDK",
             "Microsoft.Net.Component.4.8.1.SDK",
             "Microsoft.Net.Component.4.8.1.TargetingPack",
             "Microsoft.VisualStudio.Component.AspNet45",
-            "Microsoft.VisualStudio.Component.Azure.ServiceFabric.Tools",
             "Microsoft.VisualStudio.Component.Debugger.JustInTime",
             "Microsoft.VisualStudio.Component.EntityFramework",
             "Microsoft.VisualStudio.Component.DslTools",
@@ -150,8 +149,6 @@
             "Microsoft.VisualStudio.Component.Sharepoint.Tools",
             "Microsoft.VisualStudio.Component.PortableLibrary",
             "Microsoft.VisualStudio.Component.TeamOffice",
-            "Microsoft.VisualStudio.Component.TestTools.CodedUITest",
-            "Microsoft.VisualStudio.Component.TestTools.WebLoadTest",
             "Microsoft.VisualStudio.Component.UWP.VC.ARM64",
             "Microsoft.VisualStudio.Component.UWP.VC.ARM64EC",
             "Microsoft.VisualStudio.Component.VC.CLI.Support",
@@ -161,33 +158,25 @@
             "Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest",
             "Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest",
-            "Microsoft.VisualStudio.Component.VC.Tools.ARM",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64",
             "Microsoft.VisualStudio.Component.VC.Tools.ARM64EC",
             "Microsoft.VisualStudio.Component.VC.Tools.x86.x64",
-            "Microsoft.VisualStudio.Component.VC.Modules.x86.x64",
             "Microsoft.VisualStudio.Component.VC.Redist.MSM",
-            "Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64EC.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre",
-            "Microsoft.VisualStudio.Component.VC.MFC.ARM",
-            "Microsoft.VisualStudio.Component.VC.MFC.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATLMFC",
             "Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATL",
             "Microsoft.VisualStudio.Component.VC.ATL.Spectre",
-            "Microsoft.VisualStudio.Component.VC.ATL.ARM",
-            "Microsoft.VisualStudio.Component.VC.ATL.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64",
             "Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.ASAN",
+            "Microsoft.VisualStudio.Component.VC.14.44.17.14.x86.x64",
             "Microsoft.VisualStudio.Component.Windows11SDK.26100",
             "Microsoft.VisualStudio.Component.Workflow",
-            "Microsoft.VisualStudio.ComponentGroup.Azure.CloudServices",
-            "Microsoft.VisualStudio.ComponentGroup.Azure.ResourceManager.Tools",
             "Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang",
             "Microsoft.VisualStudio.ComponentGroup.UWP.VC.v142",
             "Microsoft.VisualStudio.ComponentGroup.Web.CloudTools",
@@ -207,6 +196,7 @@
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
+            "Component.MDD.Linux.GCC.arm",
             "Component.Microsoft.Windows.DriverKit",
             "wasm.tools",
             "Microsoft.Component.MSBuild"
@@ -284,7 +274,6 @@
             },
             {
                 "name": "cmake.install",
-                "version": "3.31.6",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
             },
             {
@@ -311,7 +300,7 @@
         "version": "20"
     },
     "php": {
-        "version": "8.5"
+        "version": "8.4"
     },
     "postgresql": {
         "version": "17"
