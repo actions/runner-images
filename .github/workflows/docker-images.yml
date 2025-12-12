@@ -6,11 +6,11 @@ on:
       - main
     paths:
       - 'images/ubuntu-slim/**'
-      - '.github/workflows/docker-test.yml'
+      - '.github/workflows/docker-images.yml'
   pull_request:
     paths:
       - 'images/ubuntu-slim/**'
-      - '.github/workflows/docker-test.yml'
+      - '.github/workflows/docker-images.yml'
   workflow_dispatch:
 
 permissions:
