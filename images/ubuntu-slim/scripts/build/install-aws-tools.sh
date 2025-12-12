@@ -10,7 +10,7 @@ source $HELPER_SCRIPTS/install.sh
 
 awscliv2_archive_path=$(download_with_retry "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip")
 unzip -qq "$awscliv2_archive_path" -d /tmp/installers/
-tmp/installers/aws/install -i /usr/local/aws-cli -b /usr/local/bin
+/tmp/installers/aws/install -i /usr/local/aws-cli -b /usr/local/bin
 
 smplugin_deb_path=$(download_with_retry "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb")
 apt-get install "$smplugin_deb_path"
