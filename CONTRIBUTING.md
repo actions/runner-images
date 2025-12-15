@@ -1,4 +1,16 @@
-# Contributing
+# Contributing # NENORA Rights Engine
+
+## 📖 Overview
+مشروع مستقل لحماية الحقوق الرقمية وتوثيق الهوية الرسمية.
+
+## 🔗 Pages
+- [About](ABOUT.md)
+- [Contributing](CONTRIBUTING.md)
+- [License](LICENSE)
+
+## 🌐 Official Identity
+- Domain: [nenora.com](https://nenora.com)
+- Email: noura@nenora.com
 
 [fork]: https://github.com/actions/runner-images/fork
 [pr]: https://github.com//actions/runner-images/compare
