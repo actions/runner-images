@@ -78,7 +78,7 @@ append_etc_environment_path() {
 #    /etc/environment
 #
 # TODO: there might be the others variables to be processed in the same way as "PATH" variable
-#       ie MANPATH, INFOPATH, LD_*, etc. In the current implementation the values from /etc/evironments
+#       ie MANPATH, INFOPATH, LD_*, etc. In the current implementation the values from /etc/environment
 #       replace the values of the current environment
 reload_etc_environment() {
     # add `export ` to every variable of /etc/environment except PATH and eval the result shell script
