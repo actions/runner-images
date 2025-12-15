@@ -1,20 +1,20 @@
 | Announcements |
 |-|
+| [[macOS] Deprecation of Xcode 16.3 and older runtimes on macOS 15 on January 12th, 2026.](https://github.com/actions/runner-images/issues/13392) |
 | [[macOS] Deprecation of Xcode 16.4 on macOS 26 on December 8th.](https://github.com/actions/runner-images/issues/13345) |
 | [[macOS] The macOS 13 Ventura based runner images will begin deprecation on September 22nd and will be fully unsupported by December 4th for GitHub and ADO](https://github.com/actions/runner-images/issues/13046) |
 | [[macOS] The additional macOS 15 Sonoma Intel-based image will be available in GitHub Actions](https://github.com/actions/runner-images/issues/13045) |
 | [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
-| [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
 ***
 # macOS 15
 - OS Version: macOS 15.7.2 (24G325)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20251203.0057.1
+- Image Version: 20251210.0068.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.416, 9.0.102, 9.0.203, 9.0.308, 10.0.100
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.416, 9.0.102, 9.0.203, 9.0.308, 10.0.101
 - Bash 3.2.57(1)-release
 - Clang/LLVM 17.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
@@ -27,19 +27,19 @@
 - Kotlin 2.2.21-release-469
 - Node.js 22.21.1
 - Perl 5.40.2
-- Python3 3.14.0
+- Python3 3.14.2
 - Ruby 3.3.10
 
 ### Package Management
-- Bundler 4.0.0
+- Bundler 4.0.1
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.0.4
+- Homebrew 5.0.5
 - NPM 10.9.4
 - Pip3 25.3 (python 3.14)
 - Pipx 1.8.0
-- RubyGems 4.0.0
-- Vcpkg 2025 (build from commit 80d025e829)
+- RubyGems 4.0.1
+- Vcpkg 2025 (build from commit e7b524242c)
 - Yarn 1.22.22
 
 ### Project Management
@@ -71,14 +71,14 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.32.8
+- AWS CLI 2.32.13
 - AWS SAM CLI 1.149.0
 - AWS Session Manager CLI 1.2.764.0
 - Azure CLI 2.81.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.39.26
 - Cmake 4.2.0
-- CodeQL Action Bundle 2.23.6
+- CodeQL Action Bundle 2.23.7
 - Fastlane 2.229.1
 - SwiftFormat 0.58.7
 - Xcbeautify 3.1.1
@@ -91,9 +91,9 @@
 - Google Chrome 143.0.7499.41
 - Google Chrome for Testing 143.0.7499.40
 - ChromeDriver 143.0.7499.40
-- Microsoft Edge 142.0.3595.94
-- Microsoft Edge WebDriver 142.0.3595.94
-- Mozilla Firefox 145.0.2
+- Microsoft Edge 143.0.3650.75
+- Microsoft Edge WebDriver 143.0.3650.75
+- Mozilla Firefox 146.0
 - geckodriver 0.36.0
 - Selenium server 4.38.0
 
@@ -122,8 +122,8 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.10
-- 3.14.1
+- 3.13.11
+- 3.14.2
 
 #### Node.js
 - 20.19.6
@@ -267,7 +267,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                               |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                  |
-| Android Emulator           | 36.2.12                                                                                                                                                                                                                                                                                                               |
+| Android Emulator           | 36.3.10                                                                                                                                                                                                                                                                                                               |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                        |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                |
