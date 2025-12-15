@@ -193,6 +193,7 @@
     ],
     "docker": {
         "images": [
+            "ghcr.io/dependabot/dependabot-updater-core:latest"
         ],
         "components": [
             {
