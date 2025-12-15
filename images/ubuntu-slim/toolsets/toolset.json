@@ -1,0 +1,109 @@
+{
+    "toolcache": [
+         {
+            "name": "node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "22.*",
+                "24.*"
+            ]
+        },
+        {
+            "name": "CodeQL",
+            "platform" : "linux",
+            "arch": "x64",
+            "versions": [
+                "*"
+            ]
+        }
+    ],
+    "apt": {
+        "vital_packages": [
+            "apt-utils",
+            "bzip2",
+            "ca-certificates",
+            "curl",
+            "g++",
+            "gcc",
+            "make",
+            "jq",
+            "tar",
+            "unzip",
+            "wget"
+        ],
+        "common_packages": [
+            "autoconf",
+            "automake",
+            "bc",
+            "dbus",
+            "dnsutils",
+            "dpkg",
+            "dpkg-dev",
+            "fakeroot",
+            "fonts-noto-color-emoji",
+            "gnupg2",
+            "iproute2",
+            "iputils-ping",
+            "libyaml-dev",
+            "libtool",
+            "libssl-dev",
+            "libsqlite3-dev",
+            "locales",
+            "lzma",
+            "mercurial",
+            "openssh-client",
+            "p7zip-rar",
+            "pkg-config",
+            "python-is-python3",
+            "rpm",
+            "texinfo",
+            "tk",
+            "tree",
+            "tzdata",
+            "upx",
+            "xvfb",
+            "xz-utils",
+            "zsync"
+        ],
+        "cmd_packages": [
+            "acl",
+            "binutils",
+            "libnss3-tools",
+            "coreutils",
+            "file",
+            "findutils",
+            "flex",
+            "ftp",
+            "haveged",
+            "lz4",
+            "netcat-openbsd",
+            "net-tools",
+            "p7zip-full",
+            "parallel",
+            "patchelf",
+            "pigz",
+            "pollinate",
+            "rsync",
+            "shellcheck",
+            "sqlite3",
+            "ssh",
+            "sshpass",
+            "sudo",
+            "systemd-coredump",
+            "telnet",
+            "time",
+            "zip"
+        ]
+    },
+    "brew": [
+    ],
+    "node": {
+        "default": "24"
+    },
+    "node_modules": [ ],
+    "pwsh": {
+        "version": "7.5"
+    }
+}
