@@ -1,0 +1,31 @@
+name: Test Docker Images
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'images/ubuntu-slim/**'
+      - '.github/workflows/docker-images.yml'
+  pull_request:
+    paths:
+      - 'images/ubuntu-slim/**'
+      - '.github/workflows/docker-images.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-images:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        directory:
+          - images/ubuntu-slim
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Run test.sh
+        working-directory: ${{ matrix.directory }}
+        run: ./test.sh
