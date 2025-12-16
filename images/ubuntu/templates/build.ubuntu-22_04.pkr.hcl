@@ -103,7 +103,6 @@ build {
       "${path.root}/../scripts/build/install-terraform.sh",
       "${path.root}/../scripts/build/install-packer.sh",
       "${path.root}/../scripts/build/install-actions-cache.sh",
-      "${path.root}/../scripts/build/install-runner-package.sh",
       "${path.root}/../scripts/build/install-apt-common.sh",
       "${path.root}/../scripts/build/install-azcopy.sh",
       "${path.root}/../scripts/build/install-azure-cli.sh",
@@ -193,6 +192,11 @@ build {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/../scripts/build/configure-snap.sh"]
+  }
+
+  provisioner "shell" {
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
+    script          = "${path.root}/../scripts/build/list-dpkg.sh"
   }
 
   provisioner "shell" {
