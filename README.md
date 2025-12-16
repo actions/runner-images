@@ -27,8 +27,6 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | macOS 15 Arm64 | `macos-latest`, `macos-15`, or `macos-15-xlarge` | [macOS-15-arm64] |
 | macOS 14 | `macos-14-large`| [macOS-14] |
 | macOS 14 Arm64 | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
-| macOS 13 [![Deprecated badge](https://img.shields.io/badge/-Deprecated-red)](https://github.com/actions/runner-images/issues/13046) | `macos-13` or `macos-13-large` | [macOS-13] |
-| macOS 13 Arm64 [![Deprecated badge](https://img.shields.io/badge/-Deprecated-red)](https://github.com/actions/runner-images/issues/13046) | `macos-13-xlarge` | [macOS-13-arm64] |
 | Windows Server 2025 | `windows-latest` or `windows-2025` | [windows-2025] |
 | Windows Server 2022 | `windows-2022` | [windows-2022] |
 | Windows Server 2019 [![Deprecated badge](https://img.shields.io/badge/-Deprecated-red)](https://github.com/actions/runner-images/issues/12045) | `windows-2019` | [windows-2019] |
@@ -43,8 +41,6 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [windows-2019]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2019-Readme.md
 [windows-2025]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
 [windows-2022]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
-[macOS-13]: https://github.com/actions/runner-images/blob/main/images/macos/macos-13-Readme.md
-[macOS-13-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-13-arm64-Readme.md
 [macOS-14]: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
 [macOS-14-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-arm64-Readme.md
 [macOS-15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
