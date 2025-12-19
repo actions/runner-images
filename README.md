@@ -22,6 +22,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | --------------------|---------------------|--------------------|
 | Ubuntu 24.04 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
 | Ubuntu 22.04 | `ubuntu-22.04` | [ubuntu-22.04] |
+| Ubuntu Slim | `ubuntu-slim` | [ubuntu-slim] |
 | macOS 26 Arm64 `beta` | `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
 | macOS 15 | `macos-latest-large`, `macos-15-large`, or `macos-15-intel` | [macOS-15] |
 | macOS 15 Arm64 | `macos-latest`, `macos-15`, or `macos-15-xlarge` | [macOS-15-arm64] |
@@ -38,6 +39,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 [ubuntu-24.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
 [ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
+[ubuntu-slim]: https://github.com/actions/runner-images/blob/main/images/ubuntu-slim/ubuntu-slim-Readme.md
 [windows-2019]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2019-Readme.md
 [windows-2025]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
 [windows-2022]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
