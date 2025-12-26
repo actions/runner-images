@@ -77,8 +77,7 @@
             "name": "az",
             "versions": [
                 "12.5.0"
-            ],
-            "zip_versions": []
+            ]
         }
     ],
     "java": {

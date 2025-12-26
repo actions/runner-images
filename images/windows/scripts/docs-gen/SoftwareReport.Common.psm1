@@ -213,7 +213,7 @@ function Get-DotnetFrameworkVersions {
 
 function Get-PowerShellAzureModules {
     [Array] $result = @()
-    $defaultAzureModuleVersion = "2.1.0"
+    $defaultAzureModuleVersion = "12.5.0"
 
     [Array] $azInstalledModules = Get-ChildItem -Path "C:\Modules\az_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azInstalledModules.Count -gt 0) {
@@ -228,21 +228,6 @@ function Get-PowerShellAzureModules {
     [Array] $azurermInstalledModules = Get-ChildItem -Path "C:\Modules\azurerm_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] } | ForEach-Object { if ($_ -eq $defaultAzureModuleVersion) { "$($_) (Default)" } else { $_ } }
     if ($azurermInstalledModules.Count -gt 0) {
         $result += [ToolVersionsListNode]::new("AzureRM", $($azurermInstalledModules), '^\d+\.\d+', "Inline")
-    }
-
-    [Array] $azCachedModules = Get-ChildItem -Path "C:\Modules\az_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
-    if ($azCachedModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("Az (Cached)", $($azCachedModules), '^\d+\.\d+', "Inline")
-    }
-
-    [Array] $azureCachedModules = Get-ChildItem -Path "C:\Modules\azure_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
-    if ($azureCachedModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("Azure (Cached)", $($azureCachedModules), '^\d+\.\d+', "Inline")
-    }
-
-    [Array] $azurermCachedModules = Get-ChildItem -Path "C:\Modules\azurerm_*.zip" -File | ForEach-Object { $_.Name.Split("_")[1] }
-    if ($azurermCachedModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("AzureRM (Cached)", $($azurermCachedModules), '^\d+\.\d+', "Inline")
     }
 
     return $result
