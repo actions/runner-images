@@ -1,19 +1,19 @@
 | Announcements |
 |-|
+| [[macOS] Deprecation of Xcode 16.3 and older runtimes on macOS 15 on January 12th, 2026.](https://github.com/actions/runner-images/issues/13392) |
 | [[macOS] The macOS 13 Ventura based runner images will begin deprecation on September 22nd and will be fully unsupported by December 4th for GitHub and ADO](https://github.com/actions/runner-images/issues/13046) |
 | [[macOS] The additional macOS 15 Sonoma Intel-based image will be available in GitHub Actions](https://github.com/actions/runner-images/issues/13045) |
 | [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
-| [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
 ***
 # macOS 14
-- OS Version: macOS 14.8.1 (23J30)
+- OS Version: macOS 14.8.3 (23J220)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20251104.0148
+- Image Version: 20251215.0069.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.415, 9.0.102, 9.0.203, 9.0.306
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.416, 9.0.102, 9.0.203, 9.0.308, 10.0.101
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -25,66 +25,66 @@
 - GNU Fortran 15 (Homebrew GCC 15.2.0) - available by `gfortran-15` alias
 - Kotlin 2.2.21-release-469
 - Mono 6.12.0.188
-- Node.js 20.19.5
+- Node.js 20.19.6
 - Perl 5.40.2
-- PHP 8.4.14
-- Python3 3.14.0
+- PHP 8.5.0
+- Python3 3.14.2
 - Ruby 3.3.10
 
 ### Package Management
-- Bundler 2.7.2
+- Bundler 4.0.1
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.12
-- Homebrew 4.6.20
+- Composer 2.9.2
+- Homebrew 5.0.5
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 25.3 (python 3.14)
 - Pipx 1.8.0
-- RubyGems 3.7.2
-- Vcpkg 2025 (build from commit b27f6bfad3)
+- RubyGems 4.0.1
+- Vcpkg 2025 (build from commit 594ad8871e)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.11
-- Gradle 9.2.0
+- Gradle 9.2.1
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.31.0
-- bazel 8.4.2
+- bazel 8.5.0
 - bazelisk 1.27.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.16.0
+- Curl 8.17.0
 - Git 2.50.1
 - Git LFS 3.7.1
-- GitHub CLI 2.82.1
+- GitHub CLI 2.83.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.8
 - jq 1.8.1
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.14.2
+- Packer 1.14.3
 - pkgconf 2.5.1
 - Unxip 3.2
-- yq 4.48.1
+- yq 4.50.1
 - zstd 1.5.7
-- Ninja 1.13.1
+- Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.31.28
-- AWS SAM CLI 1.145.2
-- AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.78.0
+- AWS CLI 2.32.16
+- AWS SAM CLI 1.149.0
+- AWS Session Manager CLI 1.2.764.0
+- Azure CLI 2.81.0
 - Azure CLI (azure-devops) 1.0.2
-- Bicep CLI 0.38.33
-- Cmake 4.1.2
-- CodeQL Action Bundle 2.23.3
-- Fastlane 2.228.0
-- SwiftFormat 0.58.5
-- Xcbeautify 3.1.0
+- Bicep CLI 0.39.26
+- Cmake 4.2.1
+- CodeQL Action Bundle 2.23.8
+- Fastlane 2.229.1
+- SwiftFormat 0.58.7
+- Xcbeautify 3.1.2
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
 
@@ -92,14 +92,14 @@
 - SwiftLint 0.62.2
 
 ### Browsers
-- Safari 26.0.1 (19622.1.22.118.4)
-- SafariDriver 26.0.1 (19622.1.22.118.4)
-- Google Chrome 142.0.7444.60
-- Google Chrome for Testing 142.0.7444.59
-- ChromeDriver 142.0.7444.59
-- Microsoft Edge 142.0.3595.53
-- Microsoft Edge WebDriver 142.0.3595.53
-- Mozilla Firefox 144.0.2
+- Safari 26.2 (19623.1.14.18.4)
+- SafariDriver 26.2 (19623.1.14.18.4)
+- Google Chrome 143.0.7499.110
+- Google Chrome for Testing 143.0.7499.42
+- ChromeDriver 143.0.7499.42
+- Microsoft Edge 143.0.3650.80
+- Microsoft Edge WebDriver 143.0.3650.80
+- Mozilla Firefox 146.0
 - geckodriver 0.36.0
 - Selenium server 4.38.0
 
@@ -113,9 +113,9 @@
 ### Java
 | Version               | Environment Variable |
 | --------------------- | -------------------- |
-| 8.0.462+8             | JAVA_HOME_8_X64      |
-| 11.0.28+6             | JAVA_HOME_11_X64     |
-| 17.0.16+8             | JAVA_HOME_17_X64     |
+| 8.0.472+8             | JAVA_HOME_8_X64      |
+| 11.0.29+7             | JAVA_HOME_11_X64     |
+| 17.0.17+10            | JAVA_HOME_17_X64     |
 | 21.0.9+10.0 (default) | JAVA_HOME_21_X64     |
 | 25.0.1+8.0            | JAVA_HOME_25_X64     |
 
@@ -131,28 +131,28 @@
 - 3.10.19
 - 3.11.9
 - 3.12.10
-- 3.13.9
-- 3.14.0
+- 3.13.11
+- 3.14.2
 
 #### Node.js
-- 20.19.5
+- 20.19.6
 - 22.21.1
-- 24.11.0
+- 24.12.0
 
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.9
-- 1.25.3
+- 1.24.11
+- 1.25.5
 
 ### Rust Tools
-- Cargo 1.91.0
-- Rust 1.91.0
-- Rustdoc 1.91.0
+- Cargo 1.92.0
+- Rust 1.92.0
+- Rustdoc 1.92.0
 - Rustup 1.28.2
 
 #### Packages
-- Clippy 0.1.91
+- Clippy 0.1.92
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
@@ -262,15 +262,15 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                           |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                                                                                                              |
-| Android Emulator           | 36.2.12                                                                                                                                                                                                                                                                                                                                                                                           |
+| Android Emulator           | 36.3.10                                                                                                                                                                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                                                                                         |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
 | Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                                                                                            |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                            |
-| CMake                      | 3.31.5                                                                                                                                                                                                                                                                                                                                                                                            |
+| CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                   |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                |
-| NDK                        | 26.3.11579264 (default)<br>27.3.13750724<br>28.2.13676358                                                                                                                                                                                                                                                                                                                                         |
+| NDK                        | 26.3.11579264 (default)<br>27.3.13750724<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                                                        |
 
 #### Environment variables
 | Name                    | Value                                               |
@@ -278,7 +278,7 @@
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
 | ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.2.13676358 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/29.0.14206865 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
@@ -288,7 +288,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v26/26.1.1-57288/ParallelsDesktop-26.1.1-57288.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v26/26.1.2-57293/ParallelsDesktop-26.1.2-57293.dmg |
 
 ##### Notes
 ```
