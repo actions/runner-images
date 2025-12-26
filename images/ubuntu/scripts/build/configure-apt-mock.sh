@@ -26,6 +26,15 @@ while [ \$i -le 30 ];do
   if grep -q 'Could not get lock' \$err;then
     # apt db locked needs retry
     retry=true
+  elif grep -q 'Could not get lock /var/lib/apt/lists/lock' \$err;then
+    # apt update did not complete (race condition), needs retry
+    retry=true
+  elif grep -q 'Problem renaming the file /var/cache/apt/pkgcache.bin.* to /var/cache/apt/pkgcache.bin' \$err;then
+    # apt-get did not complete (race condition), needs retry
+    retry=true
+  elif grep -q 'Problem renaming the file /var/cache/apt/srcpkgcache.bin.* to /var/cache/apt/srcpkgcache.bin' \$err;then
+    # apt update did not complete (race condition), needs retry
+    retry=true
   elif grep -q 'Could not open file /var/lib/apt/lists' \$err;then
     # apt update is not completed, needs retry
     retry=true
