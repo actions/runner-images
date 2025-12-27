@@ -93,11 +93,7 @@ function Install-DotnetSDK {
 $dotnetToolset = (Get-ToolsetContent).dotnet
 
 # Download installation script.
-
-# https://github.com/dotnet/install-scripts/pull/676 didn't make it to https://dot.net/v1/dotnet-install.ps1 yet.
-# Temporary change to use specific commit
-$installScriptUrl = "https://raw.githubusercontent.com/dotnet/install-scripts/bf2a23874784df29ff9fefcc50cc96dc41b08b4a/src/dotnet-install.ps1"
-$installScriptPath = Invoke-DownloadWithRetry -Url $installScriptUrl
+$installScriptPath = Invoke-DownloadWithRetry -Url "https://dot.net/v1/dotnet-install.ps1"
 
 # Visual Studio 2022 pre-creates sdk-manifests/8.0.100 folder, causing dotnet-install to skip manifests creation
 # https://github.com/actions/runner-images/issues/11402

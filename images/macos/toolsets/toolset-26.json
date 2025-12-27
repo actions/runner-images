@@ -4,12 +4,11 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "26.2_Release_Candidate",
-                    "filename": "Xcode_26.2_Release_Candidate_Universal",
-                    "version": "26.2_Release_Candidate+17C48",
-                    "symlinks": ["26.2"],
-                    "sha256": "63743df751791508ac8e4f01a33e3f28f3a59a86ff3f33c8c155c3046daedf42",
-                    "install_runtimes": "none"
+                    "link": "26.2",
+                    "filename": "Xcode_26.2_Universal",
+                    "version": "26.2+17C52",
+                    "sha256": "8f29ab6a9ac6670d3cf53545ffdb1c317d11607fa8db38fc56d3391df7783fbd",
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "26.1.1",
