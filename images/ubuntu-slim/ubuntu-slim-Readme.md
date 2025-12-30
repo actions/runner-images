@@ -1,50 +1,50 @@
 # Ubuntu-Slim
-- OS Version: 24.04.3 LTS
-- Kernel Version: 6.14.0-36-generic
-- Image Version: 1.0.0
-- Systemd version: 255.4-1ubuntu8.11
+#- OS Version: 24.04.3 LTS
+#- Kernel Version: 6.14.0-36-generic
+#- Image Version: 1.0.0
+#- Systemd version: 255.4-1ubuntu8.11
 
 ## Installed Software
 
 ### Language and Runtime
-- Bash 5.2.21(1)-release
-- Dash 0.5.12-6ubuntu5
-- Node.js 24.12.0
-- Perl 5.38.2
-- Python 3.12.3
+##- Bash 5.2.21(1)-release
+##- Dash 0.5.12-6ubuntu5
+##- Node.js 24.12.0
+##- Perl 5.38.2
+##- Python 3.12.3
 
 ### Package Management
-- Npm 11.6.2
-- Pip 24.0
-- Pip3 24.0
-- Pipx 1.8.0
+###- Npm 11.6.2
+###- Pip 24.0
+###- Pip3 24.0
+###- Pipx 1.8.0
 
 ### Tools
-- AzCopy 10.31.0 - available by `azcopy` and `azcopy10` aliases
-- Bicep 0.39.26
-- Git 2.52.0
-- Git LFS 3.7.1
-- Git-ftp 1.6.0
-- jq 1.7
-- nvm 0.40.3
-- OpenSSL 3.0.13-0ubuntu3.6
-- yq 4.49.2
-- zstd 1.5.7
+###- AzCopy 10.31.0 - available by `azcopy` and `azcopy10` aliases
+###- Bicep 0.39.26
+###- Git 2.52.0
+###- Git LFS 3.7.1
+###- Git-ftp 1.6.0
+###- jq 1.7
+###- nvm 0.40.3
+###- OpenSSL 3.0.13-0ubuntu3.6
+###- yq 4.49.2
+###- zstd 1.5.7
 
 ### CLI Tools
-- AWS CLI 2.32.14
-- AWS CLI Session Manager Plugin 1.2.764.0
-- AWS SAM CLI 1.150.1
-- Azure CLI 2.81.0
-- Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.83.2
-- Google Cloud CLI 549.0.1
+###- AWS CLI 2.32.14
+###- AWS CLI Session Manager Plugin 1.2.764.0
+###- AWS SAM CLI 1.150.1
+###- Azure CLI 2.81.0
+###- Azure CLI (azure-devops) 1.0.2
+###- GitHub CLI 2.83.2
+###- Google Cloud CLI 549.0.1
 
 ### PowerShell Tools
-- PowerShell 7.5.4
+###- PowerShell 7.5.4
 
 ### Installed apt packages
-| Name                   | Version                      |
+###| Name                   | Version                      |
 | ---------------------- | ---------------------------- |
 | acl                    | 2.3.2-1build1.1              |
 | apt-utils              | 2.8.3                        |
