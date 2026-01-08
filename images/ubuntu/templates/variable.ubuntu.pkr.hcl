@@ -132,14 +132,6 @@ variable "winrm_username" {         // The username used to connect to the VM vi
 }
 
 // Image related variables
-variable "dockerhub_login" {
-  type    = string
-  default = "${env("DOCKERHUB_LOGIN")}"
-}
-variable "dockerhub_password" {
-  type    = string
-  default = "${env("DOCKERHUB_PASSWORD")}"
-}
 variable "helper_script_folder" {
   type    = string
   default = "/imagegeneration/helpers"
