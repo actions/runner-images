@@ -7,7 +7,6 @@
             "platform_version": "22.04",
             "arch": "x64",
             "versions": [
-                "3.9.*",
                 "3.10.*",
                 "3.11.*",
                 "3.12.*",
@@ -77,8 +76,8 @@
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
-        "platform_min_version": "31",
-        "build_tools_min_version": "31.0.0",
+        "platform_min_version": "34",
+        "build_tools_min_version": "34.0.0",
         "extra_list": [
             "android;m2repository",
             "google;m2repository",
@@ -94,7 +93,7 @@
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27"
+                "27", "28", "29"
             ]
         }
     },
@@ -215,23 +214,6 @@
     "brew": [
     ],
     "docker": {
-        "images": [
-            "alpine:3.16",
-            "alpine:3.17",
-            "alpine:3.18",
-            "alpine:3.19",
-            "debian:10",
-            "debian:11",
-            "moby/buildkit:latest",
-            "node:18",
-            "node:20",
-            "node:22",
-            "node:18-alpine",
-            "node:20-alpine",
-            "node:22-alpine",
-            "ubuntu:20.04",
-            "ubuntu:22.04"
-        ],
         "components": [
             {
                 "package": "containerd.io",
