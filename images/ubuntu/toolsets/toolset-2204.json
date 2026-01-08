@@ -76,8 +76,8 @@
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
-        "platform_min_version": "31",
-        "build_tools_min_version": "31.0.0",
+        "platform_min_version": "34",
+        "build_tools_min_version": "34.0.0",
         "extra_list": [
             "android;m2repository",
             "google;m2repository",
