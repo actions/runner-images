@@ -57,7 +57,7 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y sudo lsb-release 
     /tmp/scripts/build/install-docker-cli.sh && \
     /tmp/scripts/build/configure-system.sh && \
     /tmp/scripts/helpers/cleanup.sh
-    
+
 RUN sed -i '/set -eo pipefail/d' /etc/bash.bashrc
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
