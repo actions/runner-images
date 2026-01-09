@@ -12,5 +12,4 @@ echo \
 
 apt-get update
 
-# Here is the part that is different
 apt-get install docker-ce-cli
