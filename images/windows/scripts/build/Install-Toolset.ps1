@@ -30,6 +30,7 @@ function Install-Asset {
 
     # Correct verbose logging in Python v12
     if ($releaseAssetName -like "*python-3.12.10-win32-x64*") {
+        Write-Host "Correcting target script for $releaseAssetName"
         $scriptPath = "setup.ps1"
         $lines = Get-Content $scriptPath
         $block = @(
@@ -63,6 +64,8 @@ function Install-Asset {
             $i++
         }
         Set-Content -Path $scriptPath -Value ($output -join $lineEnding)
+    } else {
+        Write-Host "No correction needed for $releaseAssetName"
     }
     # End correction
 
