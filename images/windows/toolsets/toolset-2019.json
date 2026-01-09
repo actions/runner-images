@@ -211,6 +211,7 @@
         { "name": "Containers" },
         { "name": "Microsoft-Windows-Subsystem-Linux", "optionalFeature": true },
         { "name": "VirtualMachinePlatform", "optionalFeature": true },
+        { "name": "NFS-Client", "includeAllSubFeatures": true },
         { "name": "Wireless-Networking" }
     ],
     "visualStudio": {
