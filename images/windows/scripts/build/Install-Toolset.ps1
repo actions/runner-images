@@ -29,7 +29,7 @@ function Install-Asset {
     Push-Location -Path $assetFolderPath
 
     # Correct verbose logging in Python v12
-    if ($releaseAssetName -like "*python-3.12.10-win32-x64*") {
+    if ($releaseAssetName -like "*python*win32*") {
         Write-Host "Correcting target script for $releaseAssetName"
         $scriptPath = "setup.ps1"
         $lines = Get-Content $scriptPath
