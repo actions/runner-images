@@ -132,8 +132,8 @@
     "android": {
         "cmdline-tools": "commandlinetools-mac-10406996_latest.zip",
         "sdk-tools": "sdk-tools-darwin-4333796.zip",
-        "platform_min_version": "33",
-        "build_tools_min_version": "33.0.2",
+        "platform_min_version": "34",
+        "build_tools_min_version": "34.0.0",
         "extras": [
             "android;m2repository", "google;m2repository", "google;google_play_services"
         ],
@@ -143,9 +143,9 @@
             "cmake;4.1.2"
         ],
         "ndk": {
-            "default": "26",
+            "default": "27",
             "versions": [
-                "26", "27", "28", "29"
+                "27", "28", "29"
             ]
         }
     },
@@ -232,7 +232,6 @@
             "arch": {
                 "x64": {
                     "versions": [
-                        "3.9.*",
                         "3.10.*",
                         "3.11.*",
                         "3.12.*",
