@@ -64,6 +64,11 @@ systemctl is-enabled --quiet docker.service || systemctl enable docker.service
 sleep 10
 docker info
 
+# Pull Dependabot docker image
+if ! is_ubuntu22; then
+    docker pull ghcr.io/dependabot/dependabot-updater-core:latest
+fi
+
 # Download amazon-ecr-credential-helper
 aws_latest_release_url="https://api.github.com/repos/awslabs/amazon-ecr-credential-helper/releases/latest"
 aws_helper_url=$(curl -fsSL "${aws_latest_release_url}" | jq -r '.body' | awk -F'[()]' '/linux-amd64/ {print $2}')
