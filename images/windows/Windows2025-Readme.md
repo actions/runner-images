@@ -1,10 +1,18 @@
+| Announcements |
+|-|
+| [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
+| [[all OSs] Updating Azure PowerShell Module version to 14.6.0 on January 26th, 2026.](https://github.com/actions/runner-images/issues/13473) |
+| [[Ubuntu-22.04, macOS-14, Windows-2022] Android SDK platforms and build tools older than version 34 will be removed on January 12th, 2026.](https://github.com/actions/runner-images/issues/13469) |
+| [[all OSs] Python 3.9 will be removed; Python 3.12 will become the default on Windows images on January 12th, 2026.](https://github.com/actions/runner-images/issues/13468) |
+| [[all OSs] Android NDK 26 will be removed, Android NDK 27 will be used by default on January 12th, 2026.](https://github.com/actions/runner-images/issues/13467) |
+***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 7462
-- Image Version: 20251216.149.1
+- Image Version: 20260105.172.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
-- Windows Subsystem for Linux (Default, WSLv2): 2.6.2.0
+- Windows Subsystem for Linux (Default, WSLv2): 2.6.3.0
 
 ## Installed Software
 
@@ -12,25 +20,25 @@
 - Bash 5.2.37(1)-release
 - Go 1.24.11
 - Julia 1.12.0
-- Kotlin 2.2.21
+- Kotlin 2.3.0
 - LLVM 20.1.8
 - Node 22.21.1
 - Perl 5.42.0
-- PHP 8.4.15
+- PHP 8.4.16
 - Python 3.9.13
 - Ruby 3.3.10
 
 ### Package Management
 - Chocolatey 2.6.0
-- Composer 2.9.2
+- Composer 2.9.3
 - Helm 4.0.3
-- Miniconda 25.9.1 (pre-installed on the image but not added to PATH)
+- Miniconda 25.11.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.4
 - NuGet 7.0.1.1
 - pip 25.3 (python 3.9)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 2b6a882f61)
+- Vcpkg (build from commit e3db8f65d2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -42,7 +50,7 @@
 ### Project Management
 - Ant 1.10.15
 - Gradle 9.1
-- Maven 3.9.11
+- Maven 3.9.12
 - sbt 1.11.7
 
 ### Tools
@@ -52,30 +60,30 @@
 - Bazel 8.5.0
 - Bazelisk 1.26.0
 - Bicep 0.39.26
-- Cabal 3.16.0.0
+- Cabal 3.16.1.0
 - CMake 3.31.6
 - CodeQL Action Bundle 2.23.8
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
 - Docker-wincred 0.9.4
-- ghc 9.12.2
+- ghc 9.14.1
 - Git 2.52.0.windows.1
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-10
 - InnoSetup 6.6.1
 - jq 1.8.1
-- Kind 0.30.0
-- Kubectl 1.34.3
+- Kind 0.31.0
+- Kubectl 1.35.0
 - gcc 15.2.0
 - gdb 16.3
 - GNU Binutils 2.45
 - Newman 6.2.1
 - OpenSSL 3.6.0
 - Packer 1.14.2
-- Pulumi 3.211.0
+- Pulumi 3.214.1
 - R 4.5.2
 - Service Fabric SDK 10.1.2493.9590
-- Stack 3.7.1
+- Stack 3.9.1
 - Swig 4.3.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
@@ -85,8 +93,8 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.32.17
-- AWS SAM CLI 1.150.1
+- AWS CLI 2.32.28
+- AWS SAM CLI 1.151.0
 - AWS Session Manager CLI 1.2.764.0
 - Azure CLI 2.81.0
 - Azure DevOps CLI extension 1.0.2
@@ -103,11 +111,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 143.0.7499.110
-- Chrome Driver 143.0.7499.42
-- Microsoft Edge 143.0.3650.80
-- Microsoft Edge Driver 143.0.3650.80
-- Mozilla Firefox 146.0
+- Google Chrome 143.0.7499.170
+- Chrome Driver 143.0.7499.169
+- Microsoft Edge 143.0.3650.96
+- Microsoft Edge Driver 143.0.3650.96
+- Mozilla Firefox 146.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.39.0
@@ -174,7 +182,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Ruby
 - 3.2.9
 - 3.3.10
-- 3.4.7
+- 3.4.8
 
 ### Databases
 
@@ -193,7 +201,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 7.0.26.0 | MongoDB     | Stopped       | Disabled         |
+| 7.0.28.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.25.0
@@ -213,7 +221,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
 | ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.36804.6 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.14.36811.4 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -232,12 +240,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 17.14.36510.44  |
 | Component.Microsoft.Web.LibraryManager                                    | 17.14.36510.44  |
 | Component.Microsoft.WebTools.BrowserLink.WebLivePreview                   | 17.14.2.50506   |
-| Component.Microsoft.Windows.DriverKit                                     | 10.0.26100.15   |
+| Component.Microsoft.Windows.DriverKit                                     | 10.0.26100.16   |
 | Component.OpenJDK                                                         | 17.14.36510.44  |
 | Component.UnityEngine.x64                                                 | 17.14.36510.44  |
-| Component.Unreal.Debugger                                                 | 17.14.36510.44  |
+| Component.Unreal.Debugger                                                 | 17.14.36809.9   |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36804.6   |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.36809.9   |
 | Component.VSInstallerProjects2022                                         | 2.0.1           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
@@ -437,7 +445,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 4.0.0           |
 | SSIS.MicrosoftDataToolsIntegrationServices                                | 2.1.2           |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 2.0.1           |
-| Windows Driver Kit Visual Studio Extension                                | 10.0.26100.15   |
+| Windows Driver Kit Visual Studio Extension                                | 10.0.26100.16   |
 | Windows Software Development Kit                                          | 10.1.26100.7175 |
 | WixToolset.WixToolsetVisualStudio2022Extension                            | 1.0.0.22        |
 
@@ -469,10 +477,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.117
+- AWSPowershell: 5.0.127
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.33.0
+- Microsoft.Graph: 2.34.0
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.24.0
@@ -487,7 +495,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Android Emulator           | 36.3.10                                                                                                                                                                                                                                                                                                               |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                              |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
-| Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                |
+| Android SDK Platform-Tools | 36.0.2                                                                                                                                                                                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                |
 | CMake                      | 3.30.5<br>3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                             |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                    |
@@ -503,3 +511,4 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\29.0.14206865 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.3.13750724 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
+
