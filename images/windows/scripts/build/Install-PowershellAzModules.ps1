@@ -26,20 +26,6 @@ foreach ($module in $modules) {
         $psModuleMachinePath += "$modulePath;"
         Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -ErrorAction Stop
     }
-
-    foreach ($version in $module.zip_versions) {
-        $modulePath = Join-Path -Path $installPSModulePath -ChildPath "${moduleName}_${version}"
-        Save-Module -Path $modulePath -Name $moduleName -RequiredVersion $version -Force -ErrorAction Stop
-        Compress-Archive -Path $modulePath -DestinationPath "${modulePath}.zip"
-        Remove-Item $modulePath -Recurse -Force
-    }
-    # Append default tool version to machine path
-    if ($null -ne $module.default) {
-        $defaultVersion = $module.default
-
-        Write-Host "Use ${moduleName} ${defaultVersion} as default version..."
-        $psModuleMachinePath += "${installPSModulePath}\${moduleName}_${defaultVersion};"
-    }
 }
 
 # Add modules to the PSModulePath
