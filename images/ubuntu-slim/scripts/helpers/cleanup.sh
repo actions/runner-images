@@ -9,4 +9,4 @@ find /var/log/ -type f -exec cp /dev/null {} \;
 
 rm -rf /tmp/downloads /tmp/installers
 
-apt-get clean && rm -rf /var/lib/apt/lists/*
+apt-get clean
