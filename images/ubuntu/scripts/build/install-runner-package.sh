@@ -1,7 +1,7 @@
 #!/bin/bash -e
 ################################################################################
 ##  File:  install-runner-package.sh
-##  Desc:  Download and Install runner package
+##  Desc:  Download and pre-extract runner package for faster instance startup
 ################################################################################
 
 # Source the helpers for use with the script
@@ -11,5 +11,13 @@ download_url=$(resolve_github_release_asset_url "actions/runner" 'test("actions-
 archive_name="${download_url##*/}"
 archive_path=$(download_with_retry "$download_url")
 
+# Pre-extract runner for faster instance startup
+mkdir -p /opt/actions-runner
+tar xzf "$archive_path" -C /opt/actions-runner
+
+# Set ownership to ubuntu user for runtime
+chown -R ubuntu:ubuntu /opt/actions-runner
+
+# Keep a copy of the archive for reference/backup
 mkdir -p /opt/runner-cache
 mv "$archive_path" "/opt/runner-cache/$archive_name"
