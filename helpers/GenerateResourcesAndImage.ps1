@@ -1,10 +1,10 @@
 $ErrorActionPreference = 'Stop'
 
 enum ImageType {
-    Windows2022   = 2
-    Windows2025   = 3
-    Ubuntu2204    = 4
-    Ubuntu2404    = 5
+    Windows2022   = 1
+    Windows2025   = 2
+    Ubuntu2204    = 3
+    Ubuntu2404    = 4
 }
 
 Function Get-PackerTemplate {
