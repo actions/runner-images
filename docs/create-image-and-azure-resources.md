@@ -98,7 +98,7 @@ Finally, run the `GenerateResourcesAndImage` function, setting the mandatory arg
 - `ResourceGroupName` - the name of the resource group that will store the resulting artifact (e.g., "imagegen-test").
     The resource group must already exist in your Azure subscription;
 - `AzureLocation` - the location where resources will be created (e.g., "East US");
-- `ImageType` - the type of image to build (valid options are "Windows2019", "Windows2022", "Windows2025", "Ubuntu2204", "Ubuntu2404").
+- `ImageType` - the type of image to build (valid options are "Windows2022", "Windows2025", "Ubuntu2204", "Ubuntu2404").
 
 This function automatically creates all required Azure resources and initiates the Packer image generation for the selected image type.
 

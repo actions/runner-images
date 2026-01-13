@@ -49,16 +49,7 @@ Describe "Android SDK" {
         It "Platform build tools <buildToolsVersion> is installed" -TestCases $buildToolsTestCases {
             "$installedPackages" | Should -Match "$buildToolsVersion"
         }
-
-        if (Test-IsWin19) {
-            It "Extra package <extraPackage> is installed" -TestCases $extraPackagesTestCases {
-                "$installedPackages" | Should -Match "extras;$extraPackage"
-            }
-
-            It "Addon package <addonPackage> is installed" -TestCases $addonsTestCases {
-                "$installedPackages" | Should -Match "add-ons;$addonPackage"
-            }
-        }
+    }
 
         It "Additional tool <additionalToolVersion> is installed" -TestCases $additionalToolsTestCases {
             "$installedPackages" | Should -Match $additionalToolVersion
