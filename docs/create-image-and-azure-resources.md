@@ -1,6 +1,6 @@
 # GitHub Actions Runner Images
 
-The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for Windows 2019/2022 and Ubuntu 22.04/24.04.
+The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for Windows 2022/2025 and Ubuntu 22.04/24.04.
 
 Each image is configured by a HCL2 Packer template that specifies where to build the image (Azure, in this case),
 and what steps to run to install software and prepare the disk.
