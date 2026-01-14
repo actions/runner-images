@@ -1,5 +1,7 @@
 | Announcements |
 |-|
+| [[macOS] Default Xcode on macOS 26 Tahoe will be set to Xcode 26.2 on January 26th](https://github.com/actions/runner-images/issues/13519) |
+| [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 | [[all OSs] Updating Azure PowerShell Module version to 14.6.0 on January 26th, 2026.](https://github.com/actions/runner-images/issues/13473) |
 | [[macOS] DOTNET_ROOT environment variable variable will be removed on January 12th, 2026](https://github.com/actions/runner-images/issues/13470) |
 | [[Ubuntu-22.04, macOS-14, Windows-2022] Android SDK platforms and build tools older than version 34 will be removed on January 12th, 2026.](https://github.com/actions/runner-images/issues/13469) |
@@ -11,7 +13,7 @@
 # macOS 15
 - OS Version: macOS 15.7.3 (24G419)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20260105.0104.1
+- Image Version: 20260112.0116.1
 
 ## Installed Software
 
@@ -38,12 +40,12 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.9.3
-- Homebrew 5.0.8
+- Homebrew 5.0.9
 - NPM 10.9.4
 - Pip3 25.3 (python 3.14)
 - Pipx 1.8.0
 - RubyGems 4.0.3
-- Vcpkg 2025 (build from commit af752f21c9)
+- Vcpkg 2025 (build from commit fafcc0e93b)
 - Yarn 1.22.22
 
 ### Project Management
@@ -54,11 +56,11 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.31.0
+- azcopy 10.31.1
 - bazel 8.5.0
 - bazelisk 1.27.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.17.0
+- Curl 8.18.0
 - Git 2.52.0
 - Git LFS 3.7.1
 - GitHub CLI 2.83.2
@@ -75,7 +77,7 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.32.28
+- AWS CLI 2.32.32
 - AWS SAM CLI 1.151.0
 - AWS Session Manager CLI 1.2.764.0
 - Azure CLI 2.81.0
@@ -95,11 +97,11 @@
 ### Browsers
 - Safari 26.2 (20623.1.14.18.4)
 - SafariDriver 26.2 (20623.1.14.18.4)
-- Google Chrome 143.0.7499.170
-- Google Chrome for Testing 143.0.7499.169
-- ChromeDriver 143.0.7499.169
-- Microsoft Edge 143.0.3650.96
-- Microsoft Edge WebDriver 143.0.3650.96
+- Google Chrome 143.0.7499.193
+- Google Chrome for Testing 143.0.7499.192
+- ChromeDriver 143.0.7499.192
+- Microsoft Edge 143.0.3650.139
+- Microsoft Edge WebDriver 143.0.3650.139
 - Mozilla Firefox 146.0.1
 - geckodriver 0.36.0
 - Selenium server 4.39.0
@@ -127,7 +129,6 @@
 - 3.4.8
 
 #### Python
-- 3.9.25
 - 3.10.19
 - 3.11.9
 - 3.12.10
@@ -166,6 +167,7 @@
 ### Xcode
 | Version        | Build    | Path                           | Symlinks                                                       |
 | -------------- | -------- | ------------------------------ | -------------------------------------------------------------- |
+| 26.2           | 17C52    | /Applications/Xcode_26.2.app   | /Applications/Xcode_26.2.0.app                                 |
 | 26.1.1         | 17B100   | /Applications/Xcode_26.1.1.app | /Applications/Xcode_26.1.app                                   |
 | 26.0.1         | 17A400   | /Applications/Xcode_26.0.1.app | /Applications/Xcode_26.0.app                                   |
 | 16.4 (default) | 16F6     | /Applications/Xcode_16.4.app   | /Applications/Xcode_16.4.0.app<br>/Applications/Xcode.app      |
@@ -184,6 +186,7 @@
 | macOS 15.5                | macosx15.5           | 16.4          |
 | macOS 26.0                | macosx26.0           | 26.0.1        |
 | macOS 26.1                | macosx26.1           | 26.1.1        |
+| macOS 26.2                | macosx26.2           | 26.2          |
 | iOS 18.0                  | iphoneos18.0         | 16.0          |
 | iOS 18.1                  | iphoneos18.1         | 16.1          |
 | iOS 18.2                  | iphoneos18.2         | 16.2          |
@@ -191,6 +194,7 @@
 | iOS 18.5                  | iphoneos18.5         | 16.4          |
 | iOS 26.0                  | iphoneos26.0         | 26.0.1        |
 | iOS 26.1                  | iphoneos26.1         | 26.1.1        |
+| iOS 26.2                  | iphoneos26.2         | 26.2          |
 | Simulator - iOS 18.0      | iphonesimulator18.0  | 16.0          |
 | Simulator - iOS 18.1      | iphonesimulator18.1  | 16.1          |
 | Simulator - iOS 18.2      | iphonesimulator18.2  | 16.2          |
@@ -198,6 +202,7 @@
 | Simulator - iOS 18.5      | iphonesimulator18.5  | 16.4          |
 | Simulator - iOS 26.0      | iphonesimulator26.0  | 26.0.1        |
 | Simulator - iOS 26.1      | iphonesimulator26.1  | 26.1.1        |
+| Simulator - iOS 26.2      | iphonesimulator26.2  | 26.2          |
 | tvOS 18.0                 | appletvos18.0        | 16.0          |
 | tvOS 18.1                 | appletvos18.1        | 16.1          |
 | tvOS 18.2                 | appletvos18.2        | 16.2          |
@@ -205,6 +210,7 @@
 | tvOS 18.5                 | appletvos18.5        | 16.4          |
 | tvOS 26.0                 | appletvos26.0        | 26.0.1        |
 | tvOS 26.1                 | appletvos26.1        | 26.1.1        |
+| tvOS 26.2                 | appletvos26.2        | 26.2          |
 | Simulator - tvOS 18.0     | appletvsimulator18.0 | 16.0          |
 | Simulator - tvOS 18.1     | appletvsimulator18.1 | 16.1          |
 | Simulator - tvOS 18.2     | appletvsimulator18.2 | 16.2          |
@@ -212,6 +218,7 @@
 | Simulator - tvOS 18.5     | appletvsimulator18.5 | 16.4          |
 | Simulator - tvOS 26.0     | appletvsimulator26.0 | 26.0.1        |
 | Simulator - tvOS 26.1     | appletvsimulator26.1 | 26.1.1        |
+| Simulator - tvOS 26.2     | appletvsimulator26.2 | 26.2          |
 | watchOS 11.0              | watchos11.0          | 16.0          |
 | watchOS 11.1              | watchos11.1          | 16.1          |
 | watchOS 11.2              | watchos11.2          | 16.2          |
@@ -219,6 +226,7 @@
 | watchOS 11.5              | watchos11.5          | 16.4          |
 | watchOS 26.0              | watchos26.0          | 26.0.1        |
 | watchOS 26.1              | watchos26.1          | 26.1.1        |
+| watchOS 26.2              | watchos26.2          | 26.2          |
 | Simulator - watchOS 11.0  | watchsimulator11.0   | 16.0          |
 | Simulator - watchOS 11.1  | watchsimulator11.1   | 16.1          |
 | Simulator - watchOS 11.2  | watchsimulator11.2   | 16.2          |
@@ -226,6 +234,7 @@
 | Simulator - watchOS 11.5  | watchsimulator11.5   | 16.4          |
 | Simulator - watchOS 26.0  | watchsimulator26.0   | 26.0.1        |
 | Simulator - watchOS 26.1  | watchsimulator26.1   | 26.1.1        |
+| Simulator - watchOS 26.2  | watchsimulator26.2   | 26.2          |
 | visionOS 2.0              | xros2.0              | 16.0          |
 | visionOS 2.1              | xros2.1              | 16.1          |
 | visionOS 2.2              | xros2.2              | 16.2          |
@@ -233,6 +242,7 @@
 | visionOS 2.5              | xros2.5              | 16.4          |
 | visionOS 26.0             | xros26.0             | 26.0.1        |
 | visionOS 26.1             | xros26.1             | 26.1.1        |
+| visionOS 26.2             | xros26.2             | 26.2          |
 | Simulator - visionOS 2.0  | xrsimulator2.0       | 16.0          |
 | Simulator - visionOS 2.1  | xrsimulator2.1       | 16.1          |
 | Simulator - visionOS 2.2  | xrsimulator2.2       | 16.2          |
@@ -240,6 +250,7 @@
 | Simulator - visionOS 2.5  | xrsimulator2.5       | 16.4          |
 | Simulator - visionOS 26.0 | xrsimulator26.0      | 26.0.1        |
 | Simulator - visionOS 26.1 | xrsimulator26.1      | 26.1.1        |
+| Simulator - visionOS 26.2 | xrsimulator26.2      | 26.2          |
 | DriverKit 24.0            | driverkit24.0        | 16.0          |
 | DriverKit 24.1            | driverkit24.1        | 16.1          |
 | DriverKit 24.2            | driverkit24.2        | 16.2          |
@@ -247,25 +258,24 @@
 | DriverKit 24.5            | driverkit24.5        | 16.4          |
 | DriverKit 25.0            | driverkit25.0        | 26.0.1        |
 | DriverKit 25.1            | driverkit25.1        | 26.1.1        |
+| DriverKit 25.2            | driverkit25.2        | 26.2          |
 
 #### Installed Simulators
 | Name         | OS     | Simulators                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | ------------ | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 18.4     | 18.4   | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                    |
 | iOS 18.5     | 18.5   | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                    |
 | iOS 18.6     | 18.6   | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                    |
 | iOS 26.0     | 26.0.1 | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M4)<br>iPad Pro 13-inch (M5) |
 | iOS 26.1     | 26.1   | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M4)<br>iPad Pro 13-inch (M5) |
-| tvOS 18.2    | 18.2   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                   |
-| tvOS 18.4    | 18.4   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                   |
+| iOS 26.2     | 26.2   | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad (A16)<br>iPad Air 11-inch (M2)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M2)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M4)<br>iPad Pro 13-inch (M5) |
 | tvOS 18.5    | 18.5   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                   |
 | tvOS 26.0    | 26.0   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                   |
 | tvOS 26.1    | 26.1   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                   |
-| watchOS 11.2 | 11.2   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                                                                                                        |
-| watchOS 11.4 | 11.4   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                                                                                                        |
+| tvOS 26.2    | 26.2   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                                                                                                   |
 | watchOS 11.5 | 11.5   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                                                                                                        |
 | watchOS 26.0 | 26.0   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 2 (49mm)<br>Apple Watch Ultra 3 (49mm)                                                                                                                    |
 | watchOS 26.1 | 26.1   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 2 (49mm)<br>Apple Watch Ultra 3 (49mm)                                                                                                                    |
+| watchOS 26.2 | 26.2   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 2 (49mm)<br>Apple Watch Ultra 3 (49mm)                                                                                                                    |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                                                               |
@@ -279,7 +289,7 @@
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                    |
-| NDK                        | 26.3.11579264<br>27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                            |
+| NDK                        | 27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                             |
 
 #### Environment variables
 | Name                    | Value                                               |
