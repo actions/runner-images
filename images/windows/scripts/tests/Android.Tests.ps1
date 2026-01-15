@@ -49,7 +49,6 @@ Describe "Android SDK" {
         It "Platform build tools <buildToolsVersion> is installed" -TestCases $buildToolsTestCases {
             "$installedPackages" | Should -Match "$buildToolsVersion"
         }
-    }
 
         It "Additional tool <additionalToolVersion> is installed" -TestCases $additionalToolsTestCases {
             "$installedPackages" | Should -Match $additionalToolVersion
