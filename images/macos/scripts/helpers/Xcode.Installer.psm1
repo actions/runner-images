@@ -142,6 +142,12 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName 'xcodebuild'
     $validRuntimes = @("iOS", "watchOS", "tvOS")
 
+    # Determine architecture variant suffix for Xcode 26+
+    $archSuffix = ""
+    if ($Version -match '^(\d+)\.' -and [int]$matches[1] -ge 26) {
+        $archSuffix = "-architectureVariant universal"
+    }
+
     # visionOS is only available on arm64
     if ($Arch -eq "arm64") {
         $validRuntimes += "visionOS"
@@ -150,7 +156,7 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     # Install all runtimes / skip runtimes
     if ($Runtimes -eq "default") {
         Write-Host "Installing all runtimes for Xcode $Version ..."
-        Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms" | Out-Null
+        Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms $archSuffix" | Out-Null
         return
     } elseif ($Runtimes -eq "none") {
         Write-Host "Skipping runtimes installation for Xcode $Version ..."
@@ -197,17 +203,17 @@ function Install-XcodeAdditionalSimulatorRuntimes {
                 }
                 "default" {
                     Write-Host "Installing default $platform runtime for Xcode $Version ..."
-                    Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform" | Out-Null
+                    Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform $archSuffix" | Out-Null
                     continue
                 }
                 default {
                     # Version might be a semver or a build number
                     if (($platformVersion -match "^\d{1,2}\.\d(\.\d)?$") -or ($platformVersion -match "^[a-zA-Z0-9]{6,8}$")) {
                         Write-Host "Installing $platform $platformVersion runtime for Xcode $Version ..."
-                        Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion" | Out-Null
+                        Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion $archSuffix" | Out-Null
                         continue
                     }
-                    throw "$platformVersion is not a valid value for $platform version. Valid values are 'latest' or 'skip' or a semver from 0.0 to 99.9.(9)."
+                    throw "$platformVersion is not a valid value for $platform version. Valid values are 'latest', or 'skip', or a semver from 0.0 to 99.9.(9), or a build number."
                 }
             }
         }
