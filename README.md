@@ -163,8 +163,8 @@ In general, these are the guidelines we follow when deciding what to pre-install
 ## How to Interact with the Repo
 
 - **Issues**: To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/runner-images/issues/new/choose)
-- **Discussions**: If you want to share your thoughts about image configuration, installed software, or bring a new idea, please create a new topic in a [discussion](https://github.com/actions/runner-images/discussions) for a corresponding category. Before making a new discussion please make sure no similar topics were created earlier.
-- For general questions about using the runner images or writing your Actions workflow, please open requests in the [GitHub Actions Community Forum](https://github.community/c/github-actions/41).
+- **Discussions**: If you want to share your thoughts about image configuration, installed software, or bring a new idea, please create a [new discussion](https://github.com/orgs/community/discussions/new?category=actions). Before making a new discussion, please make sure no similar topics were created earlier in the [actions category](https://github.com/orgs/community/discussions/categories/actions).
+- For general questions about using the runner images or writing your Actions workflow, please open requests in the [GitHub Community discussion Actions category](https://github.com/orgs/community/discussions/categories/actions).
 
 ## FAQs
 

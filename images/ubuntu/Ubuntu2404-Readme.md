@@ -11,7 +11,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.3 LTS
 - Kernel Version: 6.11.0-1018-azure
-- Image Version: 20260105.202.1
+- Image Version: 20260111.209.1
 - Systemd version: 255.4-1ubuntu8.12
 
 ## Installed Software
@@ -24,7 +24,7 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
-- Julia 1.12.3
+- Julia 1.12.4
 - Kotlin 2.3.0-release-356
 - Node.js 20.19.6
 - Perl 5.38.2
@@ -42,7 +42,7 @@
 - Pip3 24.0
 - Pipx 1.8.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit e3db8f65d2)
+- Vcpkg (build from commit 25b458671a)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -67,7 +67,7 @@ to accomplish this.
 
 ### Tools
 - Ansible 2.20.1
-- AzCopy 10.31.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.31.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 8.5.0
 - Bazelisk 1.26.0
 - Bicep 0.39.26
@@ -98,7 +98,7 @@ to accomplish this.
 - Packer 1.14.3
 - Parcel 2.16.3
 - Podman 4.9.3
-- Pulumi 3.214.0
+- Pulumi 3.214.1
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.37.1
@@ -107,13 +107,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.32.29
+- AWS CLI 2.32.32
 - AWS CLI Session Manager Plugin 1.2.764.0
 - AWS SAM CLI 1.151.0
 - Azure CLI 2.81.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.83.2
-- Google Cloud CLI 550.0.0
+- Google Cloud CLI 551.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -148,11 +148,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 143.0.7499.169
-- ChromeDriver 143.0.7499.169
+- Google Chrome 143.0.7499.192
+- ChromeDriver 143.0.7499.192
 - Chromium 143.0.7499.0
-- Microsoft Edge 143.0.3650.96
-- Microsoft Edge WebDriver 143.0.3650.96
+- Microsoft Edge 143.0.3650.139
+- Microsoft Edge WebDriver 143.0.3650.139
 - Selenium server 4.39.0
 - Mozilla Firefox 146.0.1
 - Geckodriver 0.36.0
@@ -203,7 +203,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 24.12.0
 
 #### Python
-- 3.9.25
 - 3.10.19
 - 3.11.14
 - 3.12.12
@@ -246,7 +245,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                    |
-| NDK                        | 26.3.11579264<br>27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                            |
+| NDK                        | 27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                             |
 
 #### Environment variables
 | Name                    | Value                                        |
@@ -283,7 +282,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ftp                    | 20230507-2build3             |
 | g++                    | 4:13.2.0-7ubuntu1            |
 | gcc                    | 4:13.2.0-7ubuntu1            |
-| gnupg2                 | 2.4.4-2ubuntu17.3            |
+| gnupg2                 | 2.4.4-2ubuntu17.4            |
 | haveged                | 1.9.14-1ubuntu2              |
 | iproute2               | 6.1.0-1ubuntu6.2             |
 | iputils-ping           | 3:20240117-1ubuntu0.1        |
