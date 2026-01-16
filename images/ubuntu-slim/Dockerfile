@@ -25,6 +25,8 @@ RUN find /tmp/scripts -name "*.sh" -type f -exec chmod +x {} \;
 COPY scripts/entrypoint.sh /opt/entrypoint.sh
 RUN chmod +x /opt/entrypoint.sh
 
+RUN echo 'set -eo pipefail' >> /etc/bash.bashrc
+
 RUN apt-get update && apt-get upgrade -y && apt-get install -y sudo lsb-release jq dpkg && \
     touch /run/.containerenv && \
     /tmp/scripts/build/configure-apt-sources.sh && \
@@ -52,8 +54,11 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y sudo lsb-release 
     /tmp/scripts/build/install-python.sh && \
     /tmp/scripts/build/install-zstd.sh && \
     /tmp/scripts/build/install-pipx-packages.sh && \
+    /tmp/scripts/build/install-docker-cli.sh && \
     /tmp/scripts/build/configure-system.sh && \
     /tmp/scripts/helpers/cleanup.sh
+
+RUN sed -i '/set -eo pipefail/d' /etc/bash.bashrc
 
 ENTRYPOINT ["/opt/entrypoint.sh"]
 

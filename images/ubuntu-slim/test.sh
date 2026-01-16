@@ -7,6 +7,8 @@
 # Usage: test.sh [IMAGE_NAME]
 # If IMAGE_NAME is not provided, defaults to ubuntu-slim:test
 
+set -eo pipefail
+
 show_help() {
     echo "Usage: $0 [IMAGE_NAME]"
     echo ""
@@ -91,6 +93,7 @@ run_test "zstd is installed" zstd --version
 run_test "google cloud SDK is installed" gcloud --version
 run_test "git lfs is installed" git lfs version
 run_test "powershell is installed" pwsh --version
+run_test "docker-cli is installed" docker --version
 
 # Quick check: ensure the imagedata JSON file was created during image build
 run_test "imagedata JSON file exists" test -f /imagegeneration/imagedata.json

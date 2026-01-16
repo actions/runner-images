@@ -36,9 +36,6 @@ Acquire::https::No-Cache true;
 Acquire::BrokenProxy    true;
 EOF
 
-# Uninstall unattended-upgrades
-apt-get purge unattended-upgrades
-
 echo 'APT sources'
 if ! is_ubuntu24; then
     cat /etc/apt/sources.list
@@ -47,7 +44,5 @@ else
 fi
 
 apt-get update
-# Install jq
-apt-get install jq
 
 echo "ubuntu ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
