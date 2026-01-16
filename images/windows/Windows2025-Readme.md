@@ -8,7 +8,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 7462
-- Image Version: 20260105.172.1
+- Image Version: 20260111.179.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -25,7 +25,7 @@
 - Node 22.21.1
 - Perl 5.42.0
 - PHP 8.4.16
-- Python 3.9.13
+- Python 3.12.10
 - Ruby 3.3.10
 
 ### Package Management
@@ -35,10 +35,10 @@
 - Miniconda 25.11.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.4
 - NuGet 7.0.1.1
-- pip 25.3 (python 3.9)
+- pip 25.3 (python 3.12)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit e3db8f65d2)
+- Vcpkg (build from commit 25b458671a)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -49,14 +49,14 @@
 
 ### Project Management
 - Ant 1.10.15
-- Gradle 9.1
+- Gradle 9.2
 - Maven 3.9.12
-- sbt 1.11.7
+- sbt 1.12.0
 
 ### Tools
 - 7zip 25.01
 - aria2 1.37.0
-- azcopy 10.31.0
+- azcopy 10.31.1
 - Bazel 8.5.0
 - Bazelisk 1.26.0
 - Bicep 0.39.26
@@ -65,12 +65,12 @@
 - CodeQL Action Bundle 2.23.8
 - Docker 27.5.1
 - Docker Compose v2 2.32.2
-- Docker-wincred 0.9.4
+- Docker-wincred 0.9.5
 - ghc 9.14.1
 - Git 2.52.0.windows.1
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-10
-- InnoSetup 6.6.1
+- InnoSetup 6.7.0
 - jq 1.8.1
 - Kind 0.31.0
 - Kubectl 1.35.0
@@ -80,7 +80,7 @@
 - Newman 6.2.1
 - OpenSSL 3.6.0
 - Packer 1.14.2
-- Pulumi 3.214.1
+- Pulumi 3.215.0
 - R 4.5.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.9.1
@@ -93,7 +93,7 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.32.28
+- AWS CLI 2.32.32
 - AWS SAM CLI 1.151.0
 - AWS Session Manager CLI 1.2.764.0
 - Azure CLI 2.81.0
@@ -111,10 +111,10 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 143.0.7499.170
-- Chrome Driver 143.0.7499.169
-- Microsoft Edge 143.0.3650.96
-- Microsoft Edge Driver 143.0.3650.96
+- Google Chrome 143.0.7499.193
+- Chrome Driver 143.0.7499.192
+- Microsoft Edge 143.0.3650.139
+- Microsoft Edge Driver 143.0.3650.139
 - Mozilla Firefox 146.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -168,7 +168,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 24.12.0
 
 #### Python
-- 3.9.13
 - 3.10.11
 - 3.11.9
 - 3.12.10
@@ -477,7 +476,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.127
+- AWSPowershell: 5.0.131
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.34.0
@@ -500,7 +499,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | CMake                      | 3.30.5<br>3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                             |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                    |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                    |
-| NDK                        | 26.3.11579264<br>27.3.13750724<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                      |
+| NDK                        | 27.3.13750724<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                       |
 
 #### Environment variables
 | Name                    | Value                                    |
