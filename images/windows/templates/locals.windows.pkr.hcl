@@ -5,7 +5,7 @@ locals {
             os_disk_size_gb = 256
       },
       "win22" = {
-            source_image_marketplace_sku = "MicrosoftWindowsServer:WindowsServer:2022-Datacenter-g2"
+            source_image_marketplace_sku = "MicrosoftWindowsServer:WindowsServer:2022-Datacenter"
             os_disk_size_gb = 256
       },
       "win25" = {
