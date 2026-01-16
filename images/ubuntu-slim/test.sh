@@ -7,7 +7,7 @@
 # Usage: test.sh [IMAGE_NAME]
 # If IMAGE_NAME is not provided, defaults to ubuntu-slim:test
 
-set -o pipefail
+set -eo pipefail
 
 show_help() {
     echo "Usage: $0 [IMAGE_NAME]"
