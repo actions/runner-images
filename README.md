@@ -30,7 +30,6 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | macOS 14 Arm64 | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
 | Windows Server 2025 | `windows-latest` or `windows-2025` | [windows-2025] |
 | Windows Server 2022 | `windows-2022` | [windows-2022] |
-| Windows Server 2019 [![Deprecated badge](https://img.shields.io/badge/-Deprecated-red)](https://github.com/actions/runner-images/issues/12045) | `windows-2019` | [windows-2019] |
 
 ### Label scheme
 
@@ -40,7 +39,6 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [ubuntu-24.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
 [ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
 [ubuntu-slim]: https://github.com/actions/runner-images/blob/main/images/ubuntu-slim/ubuntu-slim-Readme.md
-[windows-2019]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2019-Readme.md
 [windows-2025]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
 [windows-2022]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
 [macOS-14]: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
@@ -78,7 +76,6 @@ latest 2 versions of an OS.
 #### Latest Migration Process
 
 GitHub Actions and Azure DevOps use the `-latest` YAML label (ex: `ubuntu-latest`, `windows-latest`, and `macos-latest`). These labels point towards the newest stable OS version available.
-
 
 The `-latest` migration process is gradual and happens over 1-2 months in order to allow customers to adapt their workflows to the newest OS version. During this process, any workflow using the `-latest` label, may see changes in the OS version in their workflows or pipelines. To avoid unwanted migration, users can specify a specific OS version in the yaml file (ex: macos-14, windows-2022, ubuntu-22.04).
 
@@ -172,8 +169,10 @@ In general, these are the guidelines we follow when deciding what to pre-install
    <summary><b><i>What images are available for GitHub Actions and Azure DevOps?</b></i></summary>
 
 The availability of images for GitHub Actions and Azure DevOps is the same. However, deprecation policies may differ. See documentation for more details:
+
 - [GitHub Actions](https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources)
 - [Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&tabs=yaml#software)
+
 </details>
 
 <details>
