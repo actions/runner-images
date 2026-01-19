@@ -18,23 +18,24 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 ## Available Images
 
-| Image | YAML Label | Included Software |
-| --------------------|---------------------|--------------------|
-| Ubuntu 24.04 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
-| Ubuntu 22.04 | `ubuntu-22.04` | [ubuntu-22.04] |
-| Ubuntu Slim | `ubuntu-slim` | [ubuntu-slim] |
-| macOS 26 Arm64 `beta` | `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
-| macOS 15 | `macos-latest-large`, `macos-15-large`, or `macos-15-intel` | [macOS-15] |
-| macOS 15 Arm64 | `macos-latest`, `macos-15`, or `macos-15-xlarge` | [macOS-15-arm64] |
-| macOS 14 | `macos-14-large`| [macOS-14] |
-| macOS 14 Arm64 | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
-| Windows Server 2025 | `windows-latest` or `windows-2025` | [windows-2025] |
-| Windows Server 2022 | `windows-2022` | [windows-2022] |
+| Image | Architecture | YAML Label | Included Software |
+| --------------------|--------------|---------------------|------------------|
+| Ubuntu 24.04 | x64 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
+| Ubuntu 22.04 | x64 | `ubuntu-22.04` | [ubuntu-22.04] |
+| Ubuntu Slim | x64 | `ubuntu-slim` | [ubuntu-slim] |
+| macOS 26 Arm64 ![beta](https://img.shields.io/badge/beta-yellow) | arm64 | `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
+| macOS 15 | x64 | `macos-latest-large`, `macos-15-large`, or `macos-15-intel` | [macOS-15] |
+| macOS 15 Arm64 | arm64 | `macos-latest`, `macos-15`, or `macos-15-xlarge` | [macOS-15-arm64] |
+| macOS 14 | x64 | `macos-14-large`| [macOS-14] |
+| macOS 14 Arm64 | arm64 | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
+| Windows Server 2025 | x64 | `windows-latest` or `windows-2025` | [windows-2025] |
+| Windows Server 2022 | x64 | `windows-2022` | [windows-2022] |
 
 ### Label scheme
 
-- In general the `-latest` label is used for the latest OS image version that is GA
-- Before moving the`-latest` label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows
+- In general the `-latest` label is used for the latest OS image version that is GA.
+- Before moving the `-latest` label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows.
+- The `-xlarge` and `-large` suffixes are unique to macOS images and are only available for GitHub Actions. Learn more about [GitHub Actions larger runners](https://docs.github.com/en/actions/reference/runners/larger-runners#available-macos-larger-runners-and-labels).
 
 [ubuntu-24.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
 [ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
@@ -83,12 +84,12 @@ The `-latest` migration process is gradual and happens over 1-2 months in order 
 
 *How to best follow along with changes*
 
-1. Find the latest releases for this repository [here.](https://github.com/actions/runner-images/releases)
-2. Subscribe to the releases coming out of this repository, instructions [here.](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#configuring-your-watch-settings-for-an-individual-repository)
+1. Find the latest releases for this repository [here](https://github.com/actions/runner-images/releases).
+2. Subscribe to the releases coming out of this repository, instructions [here](https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#configuring-your-watch-settings-for-an-individual-repository).
 3. Upcoming changes: A pre-release is created when the deployment of an image has started. As soon as the deployment is finished, the pre-release is converted to a release. If you have subscribed to releases, you will get notified of pre-releases as well.
 
    - You can also track upcoming changes using the [awaiting-deployment](https://github.com/actions/runner-images/labels/awaiting-deployment) label.
-4. For high impact changes, we will post these in advance to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [twitter](https://twitter.com/GHchangelog).
+4. For high impact changes, we will post these in advance to the GitHub Changelog on our [blog](https://github.blog/changelog/) and on [X](https://x.com/GHchangelog).
    - Ex: breaking changes, GA or deprecation of images
 
 *Cadence*
@@ -136,10 +137,10 @@ We use third-party package managers to install software during the image generat
 ### Image Deprecation Policy
 
 - Images begin the deprecation process of the oldest image label once a new GA OS version has been released.
-- Deprecation process begins with an announcement that sets a date for deprecation
-- As it gets closer to the date, GitHub begins doing scheduled brownouts of the image
+- Deprecation process begins with an announcement that sets a date for deprecation.
+- As it gets closer to the date, GitHub begins doing scheduled brownouts of the image.
 - During this time there will be an Announcement pinned in the repo to remind users of the deprecation.
-- Finally GitHub will deprecate the image and it will no longer be available
+- Finally, GitHub will deprecate the image and it will no longer be available.
 
 ### Preinstallation Policy
 
