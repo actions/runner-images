@@ -94,6 +94,8 @@ run_test "google cloud SDK is installed" gcloud --version
 run_test "git lfs is installed" git lfs version
 run_test "powershell is installed" pwsh --version
 run_test "docker-cli is installed" docker --version
+run_test "docker compose is installed" docker compose version
+run_test "docker buildx is installed" docker buildx version
 
 # Quick check: ensure the imagedata JSON file was created during image build
 run_test "imagedata JSON file exists" test -f /imagegeneration/imagedata.json
