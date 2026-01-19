@@ -213,7 +213,7 @@ function Install-XcodeAdditionalSimulatorRuntimes {
                         Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion $archSuffix" | Out-Null
                         continue
                     }
-                    throw "$platformVersion is not a valid value for $platform version. Valid values are 'latest', or 'skip', or a semver from 0.0 to 99.9.(9), or a build number."
+                    throw "$platformVersion is not a valid value for $platform version. Valid values are 'default', or 'skip', or a semver from 0.0 to 99.9.(9), or a build number."
                 }
             }
         }
