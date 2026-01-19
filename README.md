@@ -23,7 +23,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | Ubuntu 24.04 | x64 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
 | Ubuntu 22.04 | x64 | `ubuntu-22.04` | [ubuntu-22.04] |
 | Ubuntu Slim | x64 | `ubuntu-slim` | [ubuntu-slim] |
-| macOS 26 Arm64 `beta` | ARM64 | `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
+| macOS 26 Arm64 ![beta](https://img.shields.io/badge/beta-yellow) | ARM64 | `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
 | macOS 15 | x64 | `macos-latest-large`, `macos-15-large`, or `macos-15-intel` | [macOS-15] |
 | macOS 15 Arm64 | ARM64 | `macos-latest`, `macos-15`, or `macos-15-xlarge` | [macOS-15-arm64] |
 | macOS 14 | x64 | `macos-14-large`| [macOS-14] |
