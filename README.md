@@ -18,23 +18,24 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 ## Available Images
 
-| Image | YAML Label | Included Software |
-| --------------------|---------------------|--------------------|
-| Ubuntu 24.04 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
-| Ubuntu 22.04 | `ubuntu-22.04` | [ubuntu-22.04] |
-| Ubuntu Slim | `ubuntu-slim` | [ubuntu-slim] |
-| macOS 26 Arm64 `beta` | `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
-| macOS 15 | `macos-latest-large`, `macos-15-large`, or `macos-15-intel` | [macOS-15] |
-| macOS 15 Arm64 | `macos-latest`, `macos-15`, or `macos-15-xlarge` | [macOS-15-arm64] |
-| macOS 14 | `macos-14-large`| [macOS-14] |
-| macOS 14 Arm64 | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
-| Windows Server 2025 | `windows-latest` or `windows-2025` | [windows-2025] |
-| Windows Server 2022 | `windows-2022` | [windows-2022] |
+| Image | Architecture | YAML Label | Included Software |
+| --------------------|--------------|---------------------|------------------|
+| Ubuntu 24.04 | x64 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
+| Ubuntu 22.04 | x64 | `ubuntu-22.04` | [ubuntu-22.04] |
+| Ubuntu Slim | x64 | `ubuntu-slim` | [ubuntu-slim] |
+| macOS 26 Arm64 `beta` | ARM64 | `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
+| macOS 15 | x64 | `macos-latest-large`, `macos-15-large`, or `macos-15-intel` | [macOS-15] |
+| macOS 15 Arm64 | ARM64 | `macos-latest`, `macos-15`, or `macos-15-xlarge` | [macOS-15-arm64] |
+| macOS 14 | x64 | `macos-14-large`| [macOS-14] |
+| macOS 14 Arm64 | ARM64 | `macos-14` or `macos-14-xlarge`| [macOS-14-arm64] |
+| Windows Server 2025 | x64 | `windows-latest` or `windows-2025` | [windows-2025] |
+| Windows Server 2022 | x64 | `windows-2022` | [windows-2022] |
 
 ### Label scheme
 
 - In general the `-latest` label is used for the latest OS image version that is GA
 - Before moving the`-latest` label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows
+- The `-xlarge` and `-large` suffixes are unique to macOS images and are only available for GitHub Actions (not Azure DevOps). Learn more about [GitHub Actions larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/using-larger-runners).
 
 [ubuntu-24.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
 [ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
