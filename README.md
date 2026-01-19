@@ -35,7 +35,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 - In general the `-latest` label is used for the latest OS image version that is GA
 - Before moving the`-latest` label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows
-- The `-xlarge` and `-large` suffixes are unique to macOS images and are only available for GitHub Actions (not Azure DevOps). Learn more about [GitHub Actions larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/using-larger-runners).
+- The `-xlarge` and `-large` suffixes are unique to macOS images and are only available for GitHub Actions. Learn more about [GitHub Actions larger runners](https://docs.github.com/en/actions/using-github-hosted-runners/using-larger-runners).
 
 [ubuntu-24.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2404-Readme.md
 [ubuntu-22.04]: https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
