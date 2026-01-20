@@ -2,16 +2,11 @@
 |-|
 | [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
 | [[all OSs] Updating Azure PowerShell Module version to 14.6.0 on January 26th, 2026.](https://github.com/actions/runner-images/issues/13473) |
-| [[Ubuntu-22.04] Pre-cached Docker images will be removed from the image on January 12th, 2026](https://github.com/actions/runner-images/issues/13472) |
-| [[Ubuntu] The additional Haskell (GHC) instance will be removed from images on January 12th, 2026](https://github.com/actions/runner-images/issues/13471) |
-| [[Ubuntu-22.04, macOS-14, Windows-2022] Android SDK platforms and build tools older than version 34 will be removed on January 12th, 2026.](https://github.com/actions/runner-images/issues/13469) |
-| [[all OSs] Python 3.9 will be removed; Python 3.12 will become the default on Windows images on January 12th, 2026.](https://github.com/actions/runner-images/issues/13468) |
-| [[all OSs] Android NDK 26 will be removed, Android NDK 27 will be used by default on January 12th, 2026.](https://github.com/actions/runner-images/issues/13467) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1044-azure
-- Image Version: 20260112.2.1
+- Image Version: 20260119.13.1
 - Systemd version: 249.11-0ubuntu3.17
 
 ## Installed Software
@@ -28,7 +23,7 @@
 - Kotlin 2.3.0-release-356
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 20.19.6
+- Node.js 20.20.0
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
@@ -36,8 +31,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.19.4
-- Homebrew 5.0.10
+- Helm 3.19.5
+- Homebrew 5.0.11
 - Miniconda 25.11.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -45,7 +40,7 @@
 - Pip3 22.0.2
 - Pipx 1.8.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit fafcc0e93b)
+- Vcpkg (build from commit de51e6bfa9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -64,7 +59,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.2.1
+- Gradle 9.3.0
 - Lerna 9.0.3
 - Maven 3.9.12
 - Sbt 1.12.0
@@ -73,8 +68,8 @@ to accomplish this.
 - Ansible 2.17.14
 - apt-fast 1.10.0
 - AzCopy 10.31.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 8.5.0
-- Bazelisk 1.26.0
+- Bazel 8.5.1
+- Bazelisk 1.28.1
 - Bicep 0.39.26
 - Buildah 1.23.1
 - CMake 3.31.6
@@ -84,7 +79,7 @@ to accomplish this.
 - Docker-Buildx 0.30.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.230.0
+- Fastlane 2.231.0
 - Git 2.52.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
@@ -99,36 +94,36 @@ to accomplish this.
 - Mercurial 6.1.1
 - Minikube 1.37.0
 - n 10.2.0
-- Newman 6.2.1
+- Newman 6.2.2
 - nvm 0.40.3
 - OpenSSL 3.0.2-0ubuntu1.20
 - Packer 1.14.3
 - Parcel 2.16.3
 - Podman 3.4.4
-- Pulumi 3.214.1
+- Pulumi 3.216.0
 - R 4.5.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.14.3
-- yamllint 1.37.1
+- yamllint 1.38.0
 - yq 4.50.1
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.2.6
-- AWS CLI 2.32.32
+- AWS CLI 2.33.2
 - AWS CLI Session Manager Plugin 1.2.764.0
 - AWS SAM CLI 1.151.0
-- Azure CLI 2.81.0
+- Azure CLI 2.82.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.83.2
-- Google Cloud CLI 551.0.0
-- Netlify CLI 23.13.3
-- OpenShift CLI 4.20.8
+- GitHub CLI 2.85.0
+- Google Cloud CLI 552.0.0
+- Netlify CLI 23.13.4
+- OpenShift CLI 4.20.10
 - ORAS CLI 1.3.0
-- Vercel CLI 50.1.6
+- Vercel CLI 50.4.6
 
 ### Java
 | Version             | Environment Variable |
@@ -168,13 +163,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 143.0.7499.192
-- ChromeDriver 143.0.7499.192
-- Chromium 143.0.7499.0
+- Google Chrome 144.0.7559.59
+- ChromeDriver 144.0.7559.31
+- Chromium 144.0.7559.0
 - Microsoft Edge 143.0.3650.139
 - Microsoft Edge WebDriver 143.0.3650.139
-- Selenium server 4.39.0
-- Mozilla Firefox 146.0.1
+- Selenium server 4.40.0
+- Mozilla Firefox 147.0.1
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -186,7 +181,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.122, 8.0.206, 8.0.319, 8.0.416, 9.0.112, 9.0.205, 9.0.308, 10.0.101
+- .NET Core SDK: 8.0.123, 8.0.206, 8.0.319, 8.0.417, 9.0.113, 9.0.205, 9.0.309, 10.0.102
 - nbgv 3.9.50+6feeb89450
 
 ### Databases
@@ -218,13 +213,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.11
-- 1.25.5
+- 1.24.12
+- 1.25.6
 
 #### Node.js
-- 20.19.6
-- 22.21.1
-- 24.12.0
+- 20.20.0
+- 22.22.0
+- 24.13.0
 
 #### Python
 - 3.10.19
@@ -241,7 +236,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.11.13 [PyPy 7.3.20]
 
 #### Ruby
-- 3.2.9
+- 3.2.10
 - 3.3.10
 - 3.4.8
 
