@@ -1,15 +1,15 @@
 # Ubuntu-Slim
 - OS Version: 24.04.3 LTS
-- Kernel Version: 6.14.0-36-generic
-- Image Version: 1.0.0
-- Systemd version: 255.4-1ubuntu8.11
+- Kernel Version: 6.11.0-1018-azure
+- Image Version: 20260120.46.1
+- Systemd version: 255.4-1ubuntu8.12
 
 ## Installed Software
 
 ### Language and Runtime
 - Bash 5.2.21(1)-release
 - Dash 0.5.12-6ubuntu5
-- Node.js 24.12.0
+- Node.js 24.13.0
 - Perl 5.38.2
 - Python 3.12.3
 
@@ -20,25 +20,28 @@
 - Pipx 1.8.0
 
 ### Tools
-- AzCopy 10.31.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.31.1 - available by `azcopy` and `azcopy10` aliases
 - Bicep 0.39.26
+- Docker Compose v2 5.0.1
+- Docker-Buildx 0.30.1
+- Docker Client 29.1.5
 - Git 2.52.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - jq 1.7
 - nvm 0.40.3
 - OpenSSL 3.0.13-0ubuntu3.6
-- yq 4.49.2
+- yq 4.50.1
 - zstd 1.5.7
 
 ### CLI Tools
-- AWS CLI 2.32.14
+- AWS CLI 2.33.2
 - AWS CLI Session Manager Plugin 1.2.764.0
-- AWS SAM CLI 1.150.1
-- Azure CLI 2.81.0
+- AWS SAM CLI 1.151.0
+- Azure CLI 2.82.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.83.2
-- Google Cloud CLI 549.0.1
+- GitHub CLI 2.85.0
+- Google Cloud CLI 552.0.0
 
 ### PowerShell Tools
 - PowerShell 7.5.4
@@ -68,7 +71,7 @@
 | ftp                    | 20230507-2build3             |
 | g++                    | 4:13.2.0-7ubuntu1            |
 | gcc                    | 4:13.2.0-7ubuntu1            |
-| gnupg2                 | 2.4.4-2ubuntu17.3            |
+| gnupg2                 | 2.4.4-2ubuntu17.4            |
 | haveged                | 1.9.14-1ubuntu2              |
 | iproute2               | 6.1.0-1ubuntu6.2             |
 | iputils-ping           | 3:20240117-1ubuntu0.1        |
@@ -101,7 +104,7 @@
 | ssh                    | 1:9.6p1-3ubuntu13.14         |
 | sshpass                | 1.09-1                       |
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.1    |
-| systemd-coredump       | 255.4-1ubuntu8.11            |
+| systemd-coredump       | 255.4-1ubuntu8.12            |
 | tar                    | 1.35+dfsg-3build1            |
 | telnet                 | 0.17+2.5-3ubuntu4            |
 | texinfo                | 7.1-3build2                  |
