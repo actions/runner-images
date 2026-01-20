@@ -1,6 +1,5 @@
 # Ubuntu-Slim
 - OS Version: 24.04.3 LTS
-- Kernel Version: 6.11.0-1018-azure
 - Image Version: 20260120.46.1
 - Systemd version: 255.4-1ubuntu8.12
 
