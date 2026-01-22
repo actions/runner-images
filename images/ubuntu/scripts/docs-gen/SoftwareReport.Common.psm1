@@ -105,6 +105,22 @@ function Get-PowershellVersion {
     return $pwshVersion
 }
 
+function Get-PowerShellVersions {
+    $versions = @()
+    $channels = @("stable", "lts", "preview")
+    foreach ($channel in $channels) {
+        $binary = "pwsh-$channel"
+        if (Get-Command $binary -ErrorAction SilentlyContinue) {
+            $version = (& $binary --version) | Get-StringPart -Part 1
+            $versions += [PSCustomObject]@{
+                Channel = $channel
+                Version = $version
+            }
+        }
+    }
+    return $versions
+}
+
 function Get-RubyVersion {
     $rubyVersion = ruby --version | Out-String | Get-StringPart -Part 1
     return $rubyVersion

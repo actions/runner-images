@@ -209,7 +209,11 @@ $netCoreTools.AddNodes($(Get-DotnetTools))
 
 # PowerShell Tools
 $psTools = $installedSoftware.AddHeader("PowerShell Tools")
-$psTools.AddToolVersion("PowerShell", $(Get-PowershellCoreVersion))
+$psTools.AddToolVersion("PowerShell (default)", $(Get-PowershellCoreVersion))
+$pwshVersions = Get-PowerShellVersions
+foreach ($pwshVer in $pwshVersions) {
+    $psTools.AddToolVersion("PowerShell $($pwshVer.Channel)", $pwshVer.Version)
+}
 
 $psModules = $psTools.AddHeader("Powershell Modules")
 $psModules.AddNodes($(Get-PowerShellModules))

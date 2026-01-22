@@ -323,6 +323,11 @@
         "version": "3.*"
     },
     "pwsh": {
-        "version": "7.4"
+        "versions": {
+            "stable": "7.5",
+            "lts": "7.4",
+            "preview": "7.6"
+        },
+        "default": "stable"
     }
 }

@@ -103,12 +103,34 @@ Describe "NSIS" -Skip:(Test-IsWin25) {
 }
 
 Describe "PowerShell Core" {
-    It "pwsh" {
+    It "pwsh (default)" {
         "pwsh --version" | Should -ReturnZeroExitCode
     }
 
     It "Execute 2+2 command" {
         pwsh -Command "2+2" | Should -BeExactly 4
+    }
+
+    It "pwsh-stable is installed" {
+        $stablePath = "C:\Program Files\PowerShell\pwsh-stable\pwsh.exe"
+        $stablePath | Should -Exist
+        "& '$stablePath' --version" | Should -ReturnZeroExitCode
+    }
+
+    It "pwsh-lts is installed" {
+        $ltsPath = "C:\Program Files\PowerShell\pwsh-lts\pwsh.exe"
+        $ltsPath | Should -Exist
+        "& '$ltsPath' --version" | Should -ReturnZeroExitCode
+    }
+
+    It "pwsh-preview is installed" {
+        $previewPath = "C:\Program Files\PowerShell\pwsh-preview\pwsh.exe"
+        $previewPath | Should -Exist
+        "& '$previewPath' --version" | Should -ReturnZeroExitCode
+    }
+
+    It "pwsh-select script exists" {
+        "C:\Windows\System32\pwsh-select.ps1" | Should -Exist
     }
 }
 

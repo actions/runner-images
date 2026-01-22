@@ -244,7 +244,11 @@ $cachedTools.AddToolVersionsList("Ruby", $(Get-ToolcacheRubyVersions), "^\d+\.\d
 
 # PowerShell Tools
 $powerShellTools = $installedSoftware.AddHeader("PowerShell Tools")
-$powerShellTools.AddToolVersion("PowerShell", $(Get-PowershellVersion))
+$powerShellTools.AddToolVersion("PowerShell (default)", $(Get-PowershellVersion))
+$pwshVersions = Get-PowerShellVersions
+foreach ($pwshVer in $pwshVersions) {
+    $powerShellTools.AddToolVersion("PowerShell $($pwshVer.Channel)", $pwshVer.Version)
+}
 $powerShellTools.AddHeader("PowerShell Modules").AddNodes($(Get-PowerShellModules))
 
 $installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersTable))

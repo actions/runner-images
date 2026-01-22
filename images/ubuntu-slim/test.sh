@@ -92,7 +92,11 @@ run_test "bc is installed" bc --version
 run_test "zstd is installed" zstd --version
 run_test "google cloud SDK is installed" gcloud --version
 run_test "git lfs is installed" git lfs version
-run_test "powershell is installed" pwsh --version
+run_test "powershell (default) is installed" pwsh --version
+run_test "powershell stable is installed" pwsh-stable --version
+run_test "powershell lts is installed" pwsh-lts --version
+run_test "powershell preview is installed" pwsh-preview --version
+run_test "pwsh-select helper is installed" pwsh-select list
 run_test "docker-cli is installed" docker --version
 run_test "docker compose is installed" docker compose version
 run_test "docker buildx is installed" docker buildx version

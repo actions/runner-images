@@ -73,6 +73,24 @@ function Get-PowershellCoreVersion {
     pwsh --version | Get-StringPart -Part 1
 }
 
+function Get-PowerShellVersions {
+    $versions = @()
+    $channels = @("stable", "lts", "preview")
+    $pwshDir = "C:\Program Files\PowerShell"
+    foreach ($channel in $channels) {
+        $channelPath = Join-Path $pwshDir "pwsh-$channel"
+        $pwshExe = Join-Path $channelPath "pwsh.exe"
+        if (Test-Path $pwshExe) {
+            $version = (& $pwshExe --version) -replace "PowerShell\s+"
+            $versions += [PSCustomObject]@{
+                Channel = $channel
+                Version = $version
+            }
+        }
+    }
+    return $versions
+}
+
 function Get-RubyVersion {
     ruby --version | Get-StringPart -Part 1
 }
