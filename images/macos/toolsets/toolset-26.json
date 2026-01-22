@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "26.0.1",
+        "default": "26.2",
         "arm64":{
             "versions": [
                 {
