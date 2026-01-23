@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "26.0.1",
+        "default": "26.2",
         "arm64":{
             "versions": [
                 {
@@ -63,7 +63,7 @@
         {
             "name": "Az",
             "versions": [
-                "14.3.0"
+                "14.6.0"
             ]
         },
         { "name": "Pester" },
