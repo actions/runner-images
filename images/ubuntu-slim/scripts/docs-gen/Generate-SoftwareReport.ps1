@@ -21,7 +21,6 @@ sudo chown -R ${env:USER}: $env:HOME
 # Software report
 $softwareReport = [SoftwareReport]::new("Ubuntu-Slim")
 $softwareReport.Root.AddToolVersion("OS Version:", $(Get-OSVersionFull))
-$softwareReport.Root.AddToolVersion("Kernel Version:", $(Get-KernelVersion))
 $softwareReport.Root.AddToolVersion("Image Version:", $env:IMAGE_VERSION)
 $softwareReport.Root.AddToolVersion("Systemd version:", $(Get-SystemdVersion))
 

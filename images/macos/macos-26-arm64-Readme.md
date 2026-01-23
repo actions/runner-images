@@ -3,22 +3,18 @@
 | [[macOS] Default Xcode on macOS 26 Tahoe will be set to Xcode 26.2 on January 26th](https://github.com/actions/runner-images/issues/13519) |
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 | [[all OSs] Updating Azure PowerShell Module version to 14.6.0 on January 26th, 2026.](https://github.com/actions/runner-images/issues/13473) |
-| [[macOS] DOTNET_ROOT environment variable variable will be removed on January 12th, 2026](https://github.com/actions/runner-images/issues/13470) |
-| [[Ubuntu-22.04, macOS-14, Windows-2022] Android SDK platforms and build tools older than version 34 will be removed on January 12th, 2026.](https://github.com/actions/runner-images/issues/13469) |
-| [[all OSs] Python 3.9 will be removed; Python 3.12 will become the default on Windows images on January 12th, 2026.](https://github.com/actions/runner-images/issues/13468) |
-| [[all OSs] Android NDK 26 will be removed, Android NDK 27 will be used by default on January 12th, 2026.](https://github.com/actions/runner-images/issues/13467) |
 | [[macOS] Deprecation of simulator runtimes for Xcode 16.3 and older on macOS 15 on January 12th, 2026.](https://github.com/actions/runner-images/issues/13392) |
 | [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
 ***
 # macOS 26
 - OS Version: macOS 26.0.1 (25A362)
 - Kernel Version: Darwin 25.0.0
-- Image Version: 20260112.0151.1
+- Image Version: 20260120.0167.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.416, 9.0.102, 9.0.203, 9.0.308, 10.0.101
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.417, 9.0.102, 9.0.203, 9.0.309, 10.0.102
 - Bash 3.2.57(1)-release
 - Clang/LLVM 17.0.0
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
@@ -29,39 +25,39 @@
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.2.0) - available by `gfortran-15` alias
 - Kotlin 2.3.0-release-356
-- Node.js 24.12.0
+- Node.js 24.13.0
 - Perl 5.42.0
 - Python3 3.14.2
 - Ruby 3.4.8
 
 ### Package Management
-- Bundler 4.0.3
+- Bundler 4.0.4
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.0.9
+- Homebrew 5.0.11
 - NPM 11.6.2
 - Pip3 25.3 (python 3.14)
 - Pipx 1.8.0
-- RubyGems 4.0.3
-- Vcpkg 2025 (build from commit fafcc0e93b)
+- RubyGems 4.0.4
+- Vcpkg 2025 (build from commit de51e6bfa9)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.12
-- Gradle 9.2.1
+- Gradle 9.3.0
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.31.1
-- bazel 8.5.0
-- bazelisk 1.27.0
+- bazel 8.5.1
+- bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.52.0
 - Git LFS 3.7.1
-- GitHub CLI 2.83.2
+- GitHub CLI 2.85.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.9
@@ -75,15 +71,15 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.32.32
-- AWS SAM CLI 1.151.0
+- AWS CLI 2.33.2
+- AWS SAM CLI 1.152.0
 - AWS Session Manager CLI 1.2.764.0
-- Azure CLI 2.81.0
+- Azure CLI 2.82.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.39.26
 - Cmake 4.2.1
-- CodeQL Action Bundle 2.23.8
-- Fastlane 2.230.0
+- CodeQL Action Bundle 2.23.9
+- Fastlane 2.231.0
 - SwiftFormat 0.58.7
 - Xcbeautify 3.1.2
 - Xcode Command Line Tools 26.2.0.0.1.1764812424
@@ -92,12 +88,12 @@
 ### Browsers
 - Safari 26.0.1 (21622.1.22.11.15)
 - SafariDriver 26.0.1 (21622.1.22.11.15)
-- Google Chrome 143.0.7499.193
-- Google Chrome for Testing 143.0.7499.192
-- ChromeDriver 143.0.7499.192
-- Microsoft Edge 143.0.3650.139
-- Microsoft Edge WebDriver 143.0.3650.139
-- Mozilla Firefox 146.0.1
+- Google Chrome 144.0.7559.60
+- Google Chrome for Testing 144.0.7559.31
+- ChromeDriver 144.0.7559.31
+- Microsoft Edge 144.0.3719.82
+- Microsoft Edge WebDriver 144.0.3719.82
+- Mozilla Firefox 147.0.1
 - geckodriver 0.36.0
 - Selenium server 4.39.0
 
@@ -119,7 +115,7 @@
 ### Cached Tools
 
 #### Ruby
-- 3.2.9
+- 3.2.10
 - 3.3.10
 - 3.4.8
 
@@ -130,14 +126,14 @@
 - 3.14.2
 
 #### Node.js
-- 20.19.6
-- 22.21.1
-- 24.12.0
+- 20.20.0
+- 22.22.0
+- 24.13.0
 
 #### Go
 - 1.23.12
-- 1.24.11
-- 1.25.5
+- 1.24.12
+- 1.25.6
 
 ### Rust Tools
 - Cargo 1.92.0

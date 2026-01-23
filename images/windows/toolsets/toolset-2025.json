@@ -76,7 +76,7 @@
         {
             "name": "az",
             "versions": [
-                "12.5.0"
+                "14.6.0"
             ]
         }
     ],
@@ -207,7 +207,6 @@
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
-            "Component.MDD.Linux.GCC.arm",
             "Component.Microsoft.Windows.DriverKit",
             "wasm.tools",
             "Microsoft.Component.MSBuild"
