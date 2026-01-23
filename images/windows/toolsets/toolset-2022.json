@@ -229,7 +229,6 @@
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
-            "Component.MDD.Linux.GCC.arm",
             "Component.Microsoft.Windows.DriverKit",
             "wasm.tools",
             "Microsoft.Component.MSBuild"
