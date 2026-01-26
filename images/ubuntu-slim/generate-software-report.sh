@@ -1,12 +1,5 @@
 #!/bin/bash -e
 
-# This script builds and runs various tests on the ubuntu-slim Docker image
-# to ensure it contains the expected software and configurations.
-# The build and test workflows for docker images expect this script to be present.
-#
-# Usage: test.sh [IMAGE_NAME]
-# If IMAGE_NAME is not provided, defaults to ubuntu-slim:test
-
 show_help() {
     echo "Usage: $0 [IMAGE_NAME]"
     echo ""
@@ -72,6 +65,15 @@ if [ -f "$OUTPUT_DIR/software-report.md" ]; then
     echo "✓ Copied software-report.md to current directory"
 else
     echo "✗ Error: software-report.md was not generated"
+    rm -rf "$OUTPUT_DIR"
+    exit 1
+fi
+
+if [ -f "$OUTPUT_DIR/software-report.json" ]; then
+    cp "$OUTPUT_DIR/software-report.json" ubuntu-slim-Report.json
+    echo "✓ Copied software-report.json to current directory"
+else
+    echo "✗ Error: software-report.json was not generated"
     rm -rf "$OUTPUT_DIR"
     exit 1
 fi

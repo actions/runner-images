@@ -21,7 +21,6 @@ sudo chown -R ${env:USER}: $env:HOME
 # Software report
 $softwareReport = [SoftwareReport]::new("Ubuntu-Slim")
 $softwareReport.Root.AddToolVersion("OS Version:", $(Get-OSVersionFull))
-$softwareReport.Root.AddToolVersion("Kernel Version:", $(Get-KernelVersion))
 $softwareReport.Root.AddToolVersion("Image Version:", $env:IMAGE_VERSION)
 $softwareReport.Root.AddToolVersion("Systemd version:", $(Get-SystemdVersion))
 
@@ -46,6 +45,9 @@ $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
 $tools = $installedSoftware.AddHeader("Tools")
 $tools.AddToolVersion("AzCopy", $(Get-AzCopyVersion))
 $tools.AddToolVersion("Bicep", $(Get-BicepVersion))
+$tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeV2Version))
+$tools.AddToolVersion("Docker-Buildx", $(Get-DockerBuildxVersion))
+$tools.AddToolVersion("Docker Client", $(Get-DockerClientVersion))
 $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $tools.AddToolVersion("Git-ftp", $(Get-GitFTPVersion))
