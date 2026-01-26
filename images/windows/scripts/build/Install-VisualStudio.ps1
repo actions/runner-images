@@ -46,13 +46,12 @@ if (Test-IsWin25) {
     $installerEntry = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* `
         | Where-Object { $_.DisplayName -match "Windows Software Development Kit" } `
         | Sort-Object DisplayVersion -Descending | Select-Object -First 1
-
-    $bundleCachePath = $installerEntry.BundleCachePath
-    $process = Start-Process -FilePath $bundleCachePath -ArgumentList ('/features', 'OptionId.WindowsDesktopDebuggers', '/q') -Wait -PassThru
-    $exitCode = $process.ExitCode
-
-    if ($exitCode -eq 0) {
-        Write-Host "Installation successful"
+    
+    if ($installerEntry -and $installerEntry.BundleCachePath) {
+        Install-Binary -Type EXE `
+            -LocalPath $installerEntry.BundleCachePath `
+            -InstallArgs @("/features", "OptionId.WindowsDesktopDebuggers", "/q", "/norestart") `
+            -ExpectedSubject $(Get-MicrosoftPublisher)
     }
 }
 
