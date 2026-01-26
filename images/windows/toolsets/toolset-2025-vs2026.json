@@ -7,7 +7,8 @@
             "versions": [
                 "3.2",
                 "3.3",
-                "3.4"
+                "3.4",
+                "4.0"
             ],
             "default": "3.3"
         },
@@ -17,14 +18,13 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "3.9.*",
                 "3.10.*",
                 "3.11.*",
                 "3.12.*",
                 "3.13.*",
                 "3.14.*"
             ],
-            "default": "3.9.*"
+            "default": "3.12.*"
         },
         {
             "name": "PyPy",
@@ -67,7 +67,7 @@
         { "name": "PowerShellGet" },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
-        { "name": "SqlServer" },
+        { "name": "SqlServer", "versions": [ "22.3.0" ] },
         { "name": "VSSetup" },
         { "name": "Microsoft.Graph" },
         {"name": "AWSPowershell"}
@@ -76,9 +76,8 @@
         {
             "name": "az",
             "versions": [
-                "12.5.0"
-            ],
-            "zip_versions": []
+                "14.6.0"
+            ]
         }
     ],
     "java": {
@@ -104,7 +103,7 @@
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27", "28", "29"
+                "27", "28", "29"
             ]
         }
     },
@@ -196,7 +195,6 @@
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
-            "Component.MDD.Linux.GCC.arm",
             "Component.Microsoft.Windows.DriverKit",
             "wasm.tools",
             "Microsoft.Component.MSBuild"
