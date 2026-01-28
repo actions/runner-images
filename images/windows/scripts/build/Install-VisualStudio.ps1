@@ -41,4 +41,18 @@ Install-Binary -Type EXE `
     -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
     -ExpectedSubject $(Get-MicrosoftPublisher)
 
+# Enable Windows Desktop Debuggers (cdb.exe) on Windows Server 2025
+if (Test-IsWin25) {
+    $installerEntry = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* `
+        | Where-Object { $_.DisplayName -match "Windows Software Development Kit" } `
+        | Sort-Object DisplayVersion -Descending | Select-Object -First 1
+    
+    if ($installerEntry -and $installerEntry.BundleCachePath) {
+        Install-Binary -Type EXE `
+            -LocalPath $installerEntry.BundleCachePath `
+            -InstallArgs @("/features", "OptionId.WindowsDesktopDebuggers", "/q", "/norestart") `
+            -ExpectedSubject $(Get-MicrosoftPublisher)
+    }
+}
+
 Invoke-PesterTests -TestFile "VisualStudio"
