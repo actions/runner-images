@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/etc-environment.sh
 
 # Install bazelisk
 npm install -g @bazel/bazelisk
@@ -18,6 +19,6 @@ BAZEL_VERSION=$(sudo -u $SUDO_USER bazel --version | grep "Build label:" | awk '
 
 # Set USE_BAZEL_FALLBACK_VERSION so that users without .bazelversion
 # get the preinstalled version instead of downloading latest
-echo "USE_BAZEL_FALLBACK_VERSION=silent:${BAZEL_VERSION}" >> /etc/environment
+set_etc_environment_variable "USE_BAZEL_FALLBACK_VERSION" "silent:${BAZEL_VERSION}"
 
 invoke_tests "Tools" "Bazel"
