@@ -343,7 +343,7 @@
         "version": "20"
     },
     "php": {
-        "version": "8.4"
+        "version": "8.5"
     },
     "postgresql": {
         "version": "14"
