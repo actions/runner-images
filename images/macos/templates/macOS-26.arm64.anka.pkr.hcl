@@ -234,7 +234,6 @@ build {
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts          = [
       "${path.root}/../scripts/build/install-actions-cache.sh",
-      "${path.root}/../scripts/build/install-runner-package.sh",
       "${path.root}/../scripts/build/install-llvm.sh",
       "${path.root}/../scripts/build/install-openjdk.sh",
       "${path.root}/../scripts/build/install-aws-tools.sh",
@@ -271,15 +270,21 @@ build {
     environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     inline           = [
-      "pwsh -File \"${local.image_folder}/software-report/Generate-SoftwareReport.ps1\" -OutputDirectory \"${local.image_folder}/output/software-report\" -ImageName ${var.build_id}",
+      "pwsh -File \"${local.image_folder}/software-report/Generate-SoftwareReport.ps1\" -OutputDirectory \"${local.image_folder}/output\" -ImageName ${var.build_id}",
       "pwsh -File \"${local.image_folder}/tests/RunAll-Tests.ps1\""
     ]
   }
 
   provisioner "file" {
-    destination = "${path.root}/../../image-output/"
+    destination = "${path.root}/../../image-output/macos-26-arm64-Readme.md"
     direction   = "download"
-    source      = "${local.image_folder}/output/"
+    source      = "${local.image_folder}/output/software-report.md"
+  }
+
+  provisioner "file" {
+    destination = "${path.root}/../../image-output/software-report.json"
+    direction   = "download"
+    source      = "${local.image_folder}/output/software-report.json"
   }
 
   provisioner "shell" {

@@ -1,35 +1,30 @@
 {
     "xcode": {
-        "default": "26.0.1",
+        "default": "26.2",
         "arm64":{
             "versions": [
                 {
-                    "link": "26.1_beta",
-                    "filename": "26.1_beta_Universal",
-                    "version": "26.1-Beta+17B5025f",
+                    "link": "26.2",
+                    "filename": "Xcode_26.2_Universal",
+                    "version": "26.2+17C52",
+                    "sha256": "8f29ab6a9ac6670d3cf53545ffdb1c317d11607fa8db38fc56d3391df7783fbd",
+                    "install_runtimes": "default"
+                },
+                {
+                    "link": "26.1.1",
+                    "filename": "Xcode_26.1.1_Universal",
+                    "version": "26.1.1+17B100",
                     "symlinks": ["26.1"],
-                    "sha256": "432f6cb936ec9547e1075e5a969309e6e0497199810bcb79e10423fa5408891c",
+                    "sha256": "ed55d55fa28455c11a65e0809ba8fdf7d83fdeb268aabf9af7fcc1ee911543eb",
                     "install_runtimes": "default"
                 },
                 {
                     "link": "26.0.1",
-                    "filename": "26.0.1_Universal",
+                    "filename": "Xcode_26.0.1_Universal",
                     "version": "26.0.1+17A400",
                     "symlinks": ["26.0"],
                     "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
                     "install_runtimes": "default"
-                },
-                {
-                    "link": "16.4",
-                    "filename": "16.4",
-                    "version": "16.4.0+16F6",
-                    "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
-                    "install_runtimes": [
-                        { "iOS": ["18.5", "18.6"] },
-                        { "watchOS": ["11.5"] },
-                        { "tvOS": ["18.5"] },
-                        { "visionOS": ["2.5"] }
-                    ]
                 }
             ]
         }
@@ -54,12 +49,13 @@
         ],
         "addons": [],
         "additional_tools": [
-            "cmake;3.31.5"
+            "cmake;3.31.5",
+            "cmake;4.1.2"
         ],
         "ndk": {
             "default": "27",
             "versions": [
-                "27","28"
+                "27","28", "29"
             ]
         }
     },
@@ -67,7 +63,7 @@
         {
             "name": "Az",
             "versions": [
-                "14.3.0"
+                "14.6.0"
             ]
         },
         { "name": "Pester" },
@@ -117,7 +113,8 @@
             "arm64": {
                 "versions": [
                     "8.0",
-                    "9.0"
+                    "9.0",
+                    "10.0"
                 ]
             }
         }
@@ -140,7 +137,8 @@
                     "versions": [
                         "3.11.*",
                         "3.12.*",
-                        "3.13.*"
+                        "3.13.*",
+                        "3.14.*"
                     ]
                 }
             }
@@ -181,7 +179,8 @@
                     "versions": [
                         "3.2.*",
                         "3.3.*",
-                        "3.4.*"
+                        "3.4.*",
+                        "4.0.*"
                     ]
                 }
             }

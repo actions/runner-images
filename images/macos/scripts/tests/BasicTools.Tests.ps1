@@ -69,7 +69,7 @@ Describe "bazelisk" {
     }
 }
 
-Describe "Github CLI" {
+Describe "GitHub CLI" {
     It "GitHub CLI" {
         "gh --version" | Should -ReturnZeroExitCode
     }

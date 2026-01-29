@@ -27,14 +27,6 @@ Describe "AzureModules" {
                     $moduleVersion | Should -Match $expectedVersion
                 }
             }
-
-            if ($module.default) {
-                $moduleInfo = @{ moduleName = $moduleName; moduleDefault = $module.default }
-                It "<moduleDefault> set as default" -TestCases $moduleInfo {
-                        $moduleVersions = Get-Module -ListAvailable -Name $moduleName | ForEach-Object { $_.Version.ToString() }
-                        $moduleVersions | Should -Contain $moduleDefault
-                }
-            }
         }
     }
 }

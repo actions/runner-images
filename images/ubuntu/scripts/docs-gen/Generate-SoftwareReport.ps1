@@ -254,9 +254,6 @@ $androidTools.AddTable($(Build-AndroidTable))
 
 $androidTools.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
 
-if (-not $(Test-IsUbuntu24)) {
-    $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
-}
 $installedSoftware.AddHeader("Installed apt packages").AddTable($(Get-AptPackages))
 
 $softwareReport.ToJson() | Out-File -FilePath "${OutputDirectory}/software-report.json" -Encoding UTF8NoBOM

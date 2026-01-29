@@ -4,56 +4,63 @@
         "x64": {
             "versions": [
                 {
-                    "link": "26.1_beta",
-                    "filename": "26.1_beta_Universal",
-                    "version": "26.1-Beta+17B5025f",
-                    "symlinks": ["26.1"],
-                    "sha256": "432f6cb936ec9547e1075e5a969309e6e0497199810bcb79e10423fa5408891c",
-                    "install_runtimes": "none"
-                },
-                {
-                    "link": "26.0.1",
-                    "filename": "26.0.1_Universal",
-                    "version": "26.0.1+17A400",
-                    "symlinks": ["26.0"],
-                    "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
+                    "link": "26.2",
+                    "filename": "Xcode_26.2_Universal",
+                    "version": "26.2+17C52",
+                    "sha256": "8f29ab6a9ac6670d3cf53545ffdb1c317d11607fa8db38fc56d3391df7783fbd",
                     "install_runtimes": "default"
                 },
                 {
+                    "link": "26.1.1",
+                    "filename": "Xcode_26.1.1_Universal",
+                    "version": "26.1.1+17B100",
+                    "symlinks": ["26.1"],
+                    "sha256": "ed55d55fa28455c11a65e0809ba8fdf7d83fdeb268aabf9af7fcc1ee911543eb",
+                    "install_runtimes": "default"
+                },
+                {
+                    "link": "26.0.1",
+                    "filename": "Xcode_26.0.1_Universal",
+                    "version": "26.0.1+17A400",
+                    "symlinks": ["26.0"],
+                    "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
+                    "install_runtimes": "none"
+                },
+                {
                     "link": "16.4",
-                    "filename": "16.4",
+                    "filename": "Xcode_16.4",
                     "version": "16.4.0+16F6",
                     "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
                     "install_runtimes": [
-                        { "iOS": ["18.4", "18.5", "18.6"] },
-                        { "watchOS": ["11.2", "11.4", "11.5"] },
-                        { "tvOS": ["18.2", "18.4", "18.5"] }
+                        { "iOS": ["18.5", "18.6"] },
+                        { "watchOS": ["11.5"] },
+                        { "tvOS": ["18.5"] }
                     ] 
                 },
                 {
                     "link": "16.3",
-                    "filename": "16.3",
+                    "filename": "Xcode_16.3",
                     "version": "16.3+16E140",
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16.2",
-                    "filename": "16.2",
+                    "filename": "Xcode_16.2",
                     "version": "16.2+16C5032a",
                     "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16.1",
-                    "filename": "16.1",
+                    "filename": "Xcode_16.1",
                     "version": "16.1+16B40",
                     "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16",
-                    "filename": "16",
+                    "filename": "Xcode_16",
                     "version": "16.0.0+16A242d",
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
@@ -64,57 +71,64 @@
         "arm64":{
             "versions": [
                 {
-                    "link": "26.1_beta",
-                    "filename": "26.1_beta_Universal",
-                    "version": "26.1-Beta+17B5025f",
-                    "symlinks": ["26.1"],
-                    "sha256": "432f6cb936ec9547e1075e5a969309e6e0497199810bcb79e10423fa5408891c",
-                    "install_runtimes": "none"
-                },
-                {
-                    "link": "26.0.1",
-                    "filename": "26.0.1_Universal",
-                    "version": "26.0.1+17A400",
-                    "symlinks": ["26.0"],
-                    "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
+                    "link": "26.2",
+                    "filename": "Xcode_26.2_Universal",
+                    "version": "26.2+17C52",
+                    "sha256": "8f29ab6a9ac6670d3cf53545ffdb1c317d11607fa8db38fc56d3391df7783fbd",
                     "install_runtimes": "default"
                 },
                 {
+                    "link": "26.1.1",
+                    "filename": "Xcode_26.1.1_Universal",
+                    "version": "26.1.1+17B100",
+                    "symlinks": ["26.1"],
+                    "sha256": "ed55d55fa28455c11a65e0809ba8fdf7d83fdeb268aabf9af7fcc1ee911543eb",
+                    "install_runtimes": "default"
+                },
+                {
+                    "link": "26.0.1",
+                    "filename": "Xcode_26.0.1_Universal",
+                    "version": "26.0.1+17A400",
+                    "symlinks": ["26.0"],
+                    "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
+                    "install_runtimes": "none"
+                },
+                {
                     "link": "16.4",
-                    "filename": "16.4",
+                    "filename": "Xcode_16.4",
                     "version": "16.4.0+16F6",
                     "sha256": "2dbf65ba28fb85b34e72c14c529a42d5c3189ab0f11fb29fdebd5f4ee6c87900",
                     "install_runtimes": [
-                        { "iOS": ["18.4", "18.5", "18.6"] },
-                        { "watchOS": ["11.2", "11.4", "11.5"] },
-                        { "tvOS": ["18.2", "18.4", "18.5"] },
+                        { "iOS": ["18.5", "18.6"] },
+                        { "watchOS": ["11.5"] },
+                        { "tvOS": ["18.5"] },
                         { "visionOS": ["2.3", "2.4", "2.5"] }
                     ]
                 },
                 {
                     "link": "16.3",
-                    "filename": "16.3",
+                    "filename": "Xcode_16.3",
                     "version": "16.3+16E140",
                     "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16.2",
-                    "filename": "16.2",
+                    "filename": "Xcode_16.2",
                     "version": "16.2+16C5032a",
                     "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16.1",
-                    "filename": "16.1",
+                    "filename": "Xcode_16.1",
                     "version": "16.1+16B40",
                     "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720",
                     "install_runtimes": "none"
                 },
                 {
                     "link": "16",
-                    "filename": "16",
+                    "filename": "Xcode_16",
                     "version": "16.0.0+16A242d",
                     "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
                     "symlinks": ["16.0"],
@@ -143,12 +157,13 @@
         ],
         "addons": [],
         "additional_tools": [
-            "cmake;3.31.5"
+            "cmake;3.31.5",
+            "cmake;4.1.2"
         ],
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27","28"
+                "27", "28", "29"
             ]
         }
     },
@@ -156,7 +171,7 @@
         {
             "name": "Az",
             "versions": [
-                "12.5.0"
+                "14.6.0"
             ]
         },
         { "name": "Pester" },
@@ -196,7 +211,6 @@
     },
     "gcc": {
         "versions": [
-            "12",
             "13",
             "14",
             "15"
@@ -207,13 +221,15 @@
             "x64": {
                 "versions": [
                     "8.0",
-                    "9.0"
+                    "9.0",
+                    "10.0"
                 ]
             },
             "arm64": {
                 "versions": [
                     "8.0",
-                    "9.0"
+                    "9.0",
+                    "10.0"
                 ]
             }
         }
@@ -234,18 +250,19 @@
             "arch": {
                 "x64": {
                     "versions": [
-                        "3.9.*",
                         "3.10.*",
                         "3.11.*",
                         "3.12.*",
-                        "3.13.*"
+                        "3.13.*",
+                        "3.14.*"
                     ]
                 },
                 "arm64": {
                     "versions": [
                         "3.11.*",
                         "3.12.*",
-                        "3.13.*"
+                        "3.13.*",
+                        "3.14.*"
                     ]
                 }
             }
@@ -257,7 +274,6 @@
             "arch": {
                 "x64": {
                     "versions": [
-                        "18.*",
                         "20.*",
                         "22.*",
                         "24.*"
@@ -265,7 +281,6 @@
                 },
                 "arm64": {
                     "versions": [
-                        "18.*",
                         "20.*",
                         "22.*",
                         "24.*"
@@ -303,18 +318,18 @@
             "arch": {
                 "x64": {
                     "versions": [
-                        "3.1.*",
                         "3.2.*",
                         "3.3.*",
-                        "3.4.*"
+                        "3.4.*",
+                        "4.0.*"
                     ]
                 },
                 "arm64": {
                     "versions": [
-                        "3.1.*",
                         "3.2.*",
                         "3.3.*",
-                        "3.4.*"
+                        "3.4.*",
+                        "4.0.*"
                     ]
                 }
             }
@@ -327,7 +342,7 @@
         "version": "18"
     },
     "php": {
-        "version": "8.4"
+        "version": "8.5"
     },
     "pwsh": {
         "version": "7.4"

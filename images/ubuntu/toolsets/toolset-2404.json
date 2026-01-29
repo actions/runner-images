@@ -7,11 +7,11 @@
             "platform_version": "24.04",
             "arch": "x64",
             "versions": [
-                "3.9.*",
                 "3.10.*",
                 "3.11.*",
                 "3.12.*",
-                "3.13.*"
+                "3.13.*",
+                "3.14.*"
             ]
         },
         {
@@ -30,7 +30,6 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "18.*",
                 "20.*",
                 "22.*",
                 "24.*"
@@ -56,7 +55,8 @@
             "versions": [
                 "3.2.*",
                 "3.3.*",
-                "3.4.*"
+                "3.4.*",
+                "4.0.*"
             ]
         },
         {
@@ -71,7 +71,7 @@
     "java": {
         "default": "17",
         "versions": [ "8", "11", "17", "21", "25"],
-        "maven": "3.9.11"
+        "maven": "3.9.12"
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-11076708_latest.zip",
@@ -85,12 +85,13 @@
         "addon_list": [
         ],
         "additional_tools": [
-            "cmake;3.31.5"
+            "cmake;3.31.5",
+            "cmake;4.1.2"
         ],
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27", "28"
+                "27", "28", "29"
             ]
         }
     },
@@ -103,7 +104,7 @@
         {
             "name": "az",
             "versions": [
-                "12.5.0"
+                "14.6.0"
             ]
         }
     ],
@@ -157,6 +158,7 @@
             "binutils",
             "bison",
             "brotli",
+            "libnss3-tools",
             "coreutils",
             "file",
             "findutils",
@@ -190,8 +192,6 @@
     "brew": [
     ],
     "docker": {
-        "images": [
-        ],
         "components": [
             {
                 "package": "containerd.io",
@@ -232,7 +232,8 @@
     "dotnet": {
         "versions": [
             "8.0",
-            "9.0"
+            "9.0",
+            "10.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion" : "nbgv --version" }
