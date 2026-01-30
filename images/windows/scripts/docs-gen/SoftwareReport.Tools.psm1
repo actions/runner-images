@@ -153,11 +153,6 @@ function Get-PackerVersion {
     return $packerVersion
 }
 
-function Get-ParcelVersion {
-    $parcelVersion = parcel --version
-    return "$parcelVersion"
-}
-
 function Get-PulumiVersion {
     return (pulumi version).TrimStart("v")
 }
@@ -233,12 +228,6 @@ function Get-AlibabaCLIVersion {
     return $alicliVersion
 }
 
-function Get-CloudFoundryVersion {
-    $(cf version) -match "(?<version>\d+\.\d+\.\d+)" | Out-Null
-    $cfVersion = $Matches.Version
-    return $cfVersion
-}
-
 function Get-7zipVersion {
     (7z | Out-String) -match "7-Zip (?<version>\d+\.\d+\.?\d*)" | Out-Null
     $version = $Matches.Version
@@ -261,10 +250,6 @@ function Get-StackVersion {
     ((stack --version --quiet) | Out-String) -match "Version (?<version>\d+\.\d+\.\d+)," | Out-Null
     $stackVersion = $Matches.Version
     return $stackVersion
-}
-
-function Get-GoogleCloudCLIVersion {
-    return (((cmd /c "gcloud --version") -match "Google Cloud SDK") -replace "Google Cloud SDK").Trim()
 }
 
 function Get-ServiceFabricSDKVersion {
