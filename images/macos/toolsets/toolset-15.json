@@ -24,7 +24,11 @@
                     "version": "26.0.1+17A400",
                     "symlinks": ["26.0"],
                     "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
-                    "install_runtimes": "none"
+                    "install_runtimes": [
+                        { "iOS": ["default"] },
+                        { "watchOS": ["skip"] },
+                        { "tvOS": ["skip"] }
+                    ] 
                 },
                 {
                     "link": "16.4",
@@ -91,7 +95,12 @@
                     "version": "26.0.1+17A400",
                     "symlinks": ["26.0"],
                     "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
-                    "install_runtimes": "none"
+                    "install_runtimes": [
+                        { "iOS": ["default"] },
+                        { "watchOS": ["skip"] },
+                        { "tvOS": ["skip"] },
+                        { "visionOS": ["skip"] }
+                    ] 
                 },
                 {
                     "link": "16.4",
