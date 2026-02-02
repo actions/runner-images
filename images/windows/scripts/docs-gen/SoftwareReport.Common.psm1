@@ -247,10 +247,6 @@ function Get-PowerShellModules {
     return $result
 }
 
-function Get-CachedDockerImages {
-    return (docker images --digests --format "* {{.Repository}}:{{.Tag}}").Split("*") | Where-Object { $_ }
-}
-
 function Get-CachedDockerImagesTableData {
     $allImages = docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}"
     if (-not $allImages) {
