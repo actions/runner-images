@@ -92,6 +92,7 @@ if (Test-IsUbuntu22) {
 
 # Tools
 $tools = $installedSoftware.AddHeader("Tools")
+$tools.AddToolVersion("ALSA", $(Get-AlsaVersion))
 $tools.AddToolVersion("Ansible", $(Get-AnsibleVersion))
 if (Test-IsUbuntu22) {
     $tools.AddToolVersion("apt-fast", $(Get-AptFastVersion))
