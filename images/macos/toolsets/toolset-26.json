@@ -227,7 +227,7 @@
             "platform" : "darwin",
             "arch": {
                 "x64": {
-                    "variable_template" : "GOROOT_{0}_{1}_ARM64",
+                    "variable_template" : "GOROOT_{0}_{1}_X64",
                     "versions": [
                         "1.23.*",
                         "1.24.*",
