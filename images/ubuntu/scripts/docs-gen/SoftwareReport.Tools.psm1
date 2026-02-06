@@ -58,8 +58,6 @@ function Get-CMakeVersion {
     return $cmakeVersion
 }
 
-
-
 function Get-DockerComposeV2Version {
     $composeVersion = docker compose version | Get-StringPart -Part 3 | Get-StringPart -Part 0 -Delimiter "v"
     return $composeVersion
@@ -113,11 +111,6 @@ function Get-HavegedVersion {
 function Get-HerokuVersion {
     $herokuVersion = heroku version | Get-StringPart -Part 0 | Get-StringPart -Part 1 -Delimiter "/"
     return $herokuVersion
-}
-
-function Get-HHVMVersion {
-    $hhvmVersion = hhvm --version | Select-Object -First 1 | Get-StringPart -Part 2
-    return $hhvmVersion
 }
 
 function Get-SVNVersion {
@@ -176,11 +169,6 @@ function Get-NvmVersion {
 function Get-PackerVersion {
     $packerVersion = (packer --version | Select-String "^Packer").Line.Replace('v','') | Get-StringPart -Part 1
     return $packerVersion
-}
-
-function Get-PhantomJSVersion {
-    $env:OPENSSL_CONF="/etc/ssl"; phantomjs --version
-    return $(phantomjs --version)
 }
 
 function Get-TerraformVersion {
