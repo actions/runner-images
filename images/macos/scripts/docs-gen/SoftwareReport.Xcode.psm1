@@ -1,8 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/../helpers/Xcode.Helpers.psm1"
 
-$os = Get-OSVersion
-
 function Get-XcodePaths {
     $xcodePaths = Get-ChildItem -Path "/Applications" -Filter "Xcode_*.app" | Where-Object { !$_.LinkType }
     return $xcodePaths | Select-Object -ExpandProperty Fullname
