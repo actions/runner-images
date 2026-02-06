@@ -1,15 +1,13 @@
 | Announcements |
 |-|
 | [[macOS] Deprecation of simulator runtimes for Xcode 26.0.1 on macOS 15 on January 26th](https://github.com/actions/runner-images/issues/13570) |
-| [[macOS] Default Xcode on macOS 26 Tahoe will be set to Xcode 26.2 on January 26th](https://github.com/actions/runner-images/issues/13519) |
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
-| [[all OSs] Updating Azure PowerShell Module version to 14.6.0 on January 26th, 2026.](https://github.com/actions/runner-images/issues/13473) |
 | [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
 ***
 # macOS 26
 - OS Version: macOS 26.2 (25C56)
 - Kernel Version: Darwin 25.2.0
-- Image Version: 20260127.0184.1
+- Image Version: 20260203.0194.1
 
 ## Installed Software
 
@@ -31,21 +29,21 @@
 - Ruby 3.4.8
 
 ### Package Management
-- Bundler 4.0.4
+- Bundler 4.0.5
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.0.12
+- Homebrew 5.0.13
 - NPM 11.6.2
 - Pip3 25.3 (python 3.14)
 - Pipx 1.8.0
-- RubyGems 4.0.4
-- Vcpkg 2025 (build from commit b03010e6fe)
+- RubyGems 4.0.5
+- Vcpkg 2025 (build from commit cc73782a88)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
 - Apache Maven 3.9.12
-- Gradle 9.3.0
+- Gradle 9.3.1
 
 ### Utilities
 - 7-Zip 17.05
@@ -62,25 +60,25 @@
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.9
 - jq 1.8.1
-- OpenSSL 3.6.0 1 Oct 2025 (Library: OpenSSL 3.6.0 1 Oct 2025)
+- OpenSSL 3.6.1 27 Jan 2026 (Library: OpenSSL 3.6.1 27 Jan 2026)
 - Packer 1.14.3
 - pkgconf 2.5.1
 - Unxip 3.3
-- yq 4.50.1
+- yq 4.52.2
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.33.7
-- AWS SAM CLI 1.152.0
+- AWS CLI 2.33.13
+- AWS SAM CLI 1.153.1
 - AWS Session Manager CLI 1.2.764.0
 - Azure CLI 2.82.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.40.2
-- Cmake 4.2.2
+- Cmake 4.2.3
 - CodeQL Action Bundle 2.24.0
 - Fastlane 2.231.1
-- SwiftFormat 0.59.0
+- SwiftFormat 0.59.1
 - Xcbeautify 3.1.4
 - Xcode Command Line Tools 26.2.0.0.1.1764812424
 - Xcodes 1.6.2
@@ -88,12 +86,12 @@
 ### Browsers
 - Safari 26.2 (21623.1.14.11.9)
 - SafariDriver 26.2 (21623.1.14.11.9)
-- Google Chrome 144.0.7559.97
-- Google Chrome for Testing 144.0.7559.96
-- ChromeDriver 144.0.7559.96
-- Microsoft Edge 144.0.3719.92
-- Microsoft Edge WebDriver 144.0.3719.92
-- Mozilla Firefox 147.0.1
+- Google Chrome 144.0.7559.110
+- Google Chrome for Testing 144.0.7559.109
+- ChromeDriver 144.0.7559.109
+- Microsoft Edge 144.0.3719.104
+- Microsoft Edge WebDriver 144.0.3719.104
+- Mozilla Firefox 147.0.2
 - geckodriver 0.36.0
 - Selenium server 4.40.0
 
@@ -110,7 +108,7 @@
 | 11.0.29+7             | JAVA_HOME_11_arm64   |
 | 17.0.17+10            | JAVA_HOME_17_arm64   |
 | 21.0.9+10.0 (default) | JAVA_HOME_21_arm64   |
-| 25.0.1+8.0            | JAVA_HOME_25_arm64   |
+| 25.0.2+10.0           | JAVA_HOME_25_arm64   |
 
 ### Cached Tools
 
