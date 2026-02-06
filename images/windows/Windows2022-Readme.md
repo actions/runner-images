@@ -1,11 +1,10 @@
 | Announcements |
 |-|
 | [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
-| [[all OSs] Updating Azure PowerShell Module version to 14.6.0 on January 26th, 2026.](https://github.com/actions/runner-images/issues/13473) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 4648
-- Image Version: 20260126.18.1
+- Image Version: 20260201.23.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,21 +19,21 @@
 - LLVM 20.1.8
 - Node 20.20.0
 - Perl 5.32.1
-- PHP 8.4.16
+- PHP 8.5.1
 - Python 3.12.10
 - Ruby 3.3.10
 
 ### Package Management
 - Chocolatey 2.6.0
-- Composer 2.9.4
+- Composer 2.9.5
 - Helm 4.1.0
 - Miniconda 25.11.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 7.0.1.1
-- pip 25.3 (python 3.12)
+- pip 26.0 (python 3.12)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 1d021d236e)
+- Vcpkg (build from commit 6d7bf7ef21)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -47,7 +46,7 @@
 - Ant 1.10.15
 - Gradle 9.3
 - Maven 3.9.12
-- sbt 1.12.0
+- sbt 1.12.1
 
 ### Tools
 - 7zip 25.01
@@ -76,9 +75,9 @@
 - GNU Binutils 2.44
 - Newman 6.2.2
 - NSIS 3.10
-- OpenSSL 3.6.0
+- OpenSSL 3.6.1
 - Packer 1.14.2
-- Pulumi 3.217.0
+- Pulumi 3.218.0
 - R 4.5.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.9.1
@@ -92,9 +91,9 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.2.7
-- AWS CLI 2.33.6
-- AWS SAM CLI 1.152.0
+- Alibaba Cloud CLI 3.2.9
+- AWS CLI 2.33.12
+- AWS SAM CLI 1.153.1
 - AWS Session Manager CLI 1.2.764.0
 - Azure CLI 2.82.0
 - Azure DevOps CLI extension 1.0.2
@@ -115,11 +114,11 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 144.0.7559.97
-- Chrome Driver 144.0.7559.96
-- Microsoft Edge 144.0.3719.92
-- Microsoft Edge Driver 144.0.3719.92
-- Mozilla Firefox 147.0.1
+- Google Chrome 144.0.7559.110
+- Chrome Driver 144.0.7559.109
+- Microsoft Edge 144.0.3719.104
+- Microsoft Edge Driver 144.0.3719.104
+- Mozilla Firefox 147.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.40.0
@@ -139,7 +138,7 @@
 | 11.0.29+7           | JAVA_HOME_11_X64     |
 | 17.0.17+10          | JAVA_HOME_17_X64     |
 | 21.0.9+10.0         | JAVA_HOME_21_X64     |
-| 25.0.1+8.0          | JAVA_HOME_25_X64     |
+| 25.0.2+10.0         | JAVA_HOME_25_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -208,7 +207,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 7.0.28.0 | MongoDB     | Stopped       | Disabled         |
+| 7.0.29.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.25.0
@@ -493,10 +492,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 14.6.0
-- AWSPowershell: 5.0.140
+- AWSPowershell: 5.0.145
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.34.0
+- Microsoft.Graph: 2.35.0
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.24.0
