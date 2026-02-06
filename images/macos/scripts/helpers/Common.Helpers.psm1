@@ -29,9 +29,6 @@ function Get-OSVersion {
         Version        = $osVersion.Version
         Platform       = $osVersion.Platform
         IsArm64        = $processorArchitecture -eq "arm64"
-        IsVentura      = $($osVersion.Version.Major -eq "13")
-        IsVenturaArm64 = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -eq "arm64")
-        IsVenturaX64   = $($osVersion.Version.Major -eq "13" -and $processorArchitecture -ne "arm64")
         IsSonoma       = $($osVersion.Version.Major -eq "14")
         IsSonomaArm64  = $($osVersion.Version.Major -eq "14" -and $processorArchitecture -eq "arm64")
         IsSonomaX64    = $($osVersion.Version.Major -eq "14" -and $processorArchitecture -ne "arm64")
@@ -39,6 +36,8 @@ function Get-OSVersion {
         IsSequoiaArm64 = $($osVersion.Version.Major -eq "15" -and $processorArchitecture -eq "arm64")
         IsSequoiaX64   = $($osVersion.Version.Major -eq "15" -and $processorArchitecture -ne "arm64")
         IsTahoe        = $($osVersion.Version.Major -eq "26")
+        IsTahoeArm64   = $($osVersion.Version.Major -eq "26" -and $processorArchitecture -eq "arm64")
+        IsTahoeX64     = $($osVersion.Version.Major -eq "26" -and $processorArchitecture -ne "arm64")
     }
 }
 
