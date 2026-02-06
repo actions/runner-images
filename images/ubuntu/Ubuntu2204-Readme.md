@@ -1,12 +1,11 @@
 | Announcements |
 |-|
 | [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
-| [[all OSs] Updating Azure PowerShell Module version to 14.6.0 on January 26th, 2026.](https://github.com/actions/runner-images/issues/13473) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1044-azure
-- Image Version: 20260126.19.1
+- Image Version: 20260201.24.1
 - Systemd version: 249.11-0ubuntu3.17
 
 ## Installed Software
@@ -40,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.8.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 425d0412a2)
+- Vcpkg (build from commit 6d7bf7ef21)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,7 +58,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.3.0
+- Gradle 9.3.1
 - Lerna 9.0.3
 - Maven 3.9.12
 - Sbt 1.12.1
@@ -76,7 +75,7 @@ to accomplish this.
 - CodeQL Action Bundle 2.24.0
 - Docker Amazon ECR Credential Helper 0.11.0
 - Docker Compose v2 2.38.2
-- Docker-Buildx 0.31.0
+- Docker-Buildx 0.31.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.231.1
@@ -92,52 +91,52 @@ to accomplish this.
 - Leiningen 2.12.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.37.0
+- Minikube 1.38.0
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.3
-- OpenSSL 3.0.2-0ubuntu1.20
+- nvm 0.40.4
+- OpenSSL 3.0.2-0ubuntu1.21
 - Packer 1.14.3
 - Parcel 2.16.3
 - Podman 3.4.4
-- Pulumi 3.217.0
+- Pulumi 3.218.0
 - R 4.5.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.14.3
+- Terraform 1.14.4
 - yamllint 1.38.0
-- yq 4.50.1
+- yq 4.52.2
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.2.7
-- AWS CLI 2.33.7
+- Alibaba Cloud CLI 3.2.9
+- AWS CLI 2.33.12
 - AWS CLI Session Manager Plugin 1.2.764.0
-- AWS SAM CLI 1.152.0
+- AWS SAM CLI 1.153.1
 - Azure CLI 2.82.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.86.0
-- Google Cloud CLI 553.0.0
-- Netlify CLI 23.13.5
-- OpenShift CLI 4.20.11
+- Google Cloud CLI 554.0.0
+- Netlify CLI 23.14.0
+- OpenShift CLI 4.20.12
 - ORAS CLI 1.3.0
-- Vercel CLI 50.5.2
+- Vercel CLI 50.9.6
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
 | 8.0.472+8           | JAVA_HOME_8_X64      |
-| 11.0.29+7 (default) | JAVA_HOME_11_X64     |
+| 11.0.30+7 (default) | JAVA_HOME_11_X64     |
 | 17.0.18+8           | JAVA_HOME_17_X64     |
 | 21.0.10+7           | JAVA_HOME_21_X64     |
 | 25.0.2+10           | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.9.4
-- PHPUnit 8.5.51
+- Composer 2.9.5
+- PHPUnit 8.5.52
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -163,13 +162,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 144.0.7559.96
-- ChromeDriver 144.0.7559.96
+- Google Chrome 144.0.7559.109
+- ChromeDriver 144.0.7559.109
 - Chromium 144.0.7559.0
-- Microsoft Edge 144.0.3719.92
-- Microsoft Edge WebDriver 144.0.3719.92
+- Microsoft Edge 144.0.3719.104
+- Microsoft Edge WebDriver 144.0.3719.104
 - Selenium server 4.40.0
-- Mozilla Firefox 147.0.1
+- Mozilla Firefox 147.0.2
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -247,7 +246,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 14.6.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.34.0
+- Microsoft.Graph: 2.35.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
@@ -326,7 +325,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libnss3-tools          | 2:3.98-0ubuntu0.22.04.2             |
 | libsecret-1-dev        | 0.20.5-2                            |
 | libsqlite3-dev         | 3.37.2-2ubuntu0.5                   |
-| libssl-dev             | 3.0.2-0ubuntu1.20                   |
+| libssl-dev             | 3.0.2-0ubuntu1.21                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
