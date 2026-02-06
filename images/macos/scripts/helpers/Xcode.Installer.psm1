@@ -98,7 +98,7 @@ function Approve-XcodeLicense {
     Write-Host "Approving Xcode license for '$XcodeRootPath'..."
     $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
 
-    if ($os.IsVentura -or $os.IsSonoma) {
+    if ($os.IsSonoma) {
         Invoke-ValidateCommand -Command "sudo $xcodeBuildPath -license accept" -Timeout 15
     } else {
         Invoke-ValidateCommand -Command "sudo $xcodeBuildPath -license accept"

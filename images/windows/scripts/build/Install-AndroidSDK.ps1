@@ -65,7 +65,13 @@ $cmdlineToolsArchPath = Invoke-DownloadWithRetry $cmdlineToolsUrl
 
 Test-FileChecksum $cmdlineToolsArchPath -ExpectedSHA256Sum $androidToolset.hash
 
-Expand-7ZipArchive -Path $cmdlineToolsArchPath -DestinationPath "${SDKInstallRoot}\cmdline-tools"
+$cmdlineToolsPath = Join-Path -Path $SDKInstallRoot -ChildPath "cmdline-tools"
+if (Test-Path "$cmdlineToolsPath\latest") {
+    Write-Host "Removing previous cmdline-tools installation from Visual Studio workload"
+    Remove-Item "$cmdlineToolsPath\latest" -Recurse -Force
+}
+
+Expand-7ZipArchive -Path $cmdlineToolsArchPath -DestinationPath $cmdlineToolsPath
 
 # cmdline tools should be installed in ${SDKInstallRoot}\cmdline-tools\latest\bin, but archive contains ${SDKInstallRoot}\cmdline-tools\bin 
 # we need to create the proper folder structure
