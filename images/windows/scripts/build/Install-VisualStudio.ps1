@@ -37,7 +37,7 @@ if (Test-IsWin22) {
 
 # Install Windows 11 SDK version 10.0.26100
 Install-Binary -Type EXE `
-    -Url 'https://go.microsoft.com/fwlink/?linkid=2286561' `
+    -Url 'https://go.microsoft.com/fwlink/?linkid=2349110' `
     -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
     -ExpectedSubject $(Get-MicrosoftPublisher)
 
