@@ -33,7 +33,7 @@ Describe "GCC" {
     }
 }
 
-Describe "vcpkg" -Skip:($os.IsVenturaArm64) {
+Describe "vcpkg" {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
