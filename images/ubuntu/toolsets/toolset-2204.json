@@ -222,11 +222,11 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "28.0.4"
+                "version": "29.1.5"
             },
             {
                 "package": "docker-ce",
-                "version": "28.0.4"
+                "version": "29.1.5"
             }
         ],
         "plugins": [
@@ -237,7 +237,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.38.2",
+                "version": "2.40.3",
                 "asset": "linux-x86_64"
             }
         ]

@@ -42,7 +42,7 @@ sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.PerfPowerServic
 # Remove Parallels Desktop
 # https://github.com/actions/runner-images/issues/6105
 # https://github.com/actions/runner-images/issues/10143
-if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
+if is_SonomaX64 || is_SequoiaX64; then
     brew uninstall parallels
 fi
 
