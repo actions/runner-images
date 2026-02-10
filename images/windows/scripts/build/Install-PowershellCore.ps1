@@ -15,7 +15,7 @@ try {
     $metadata = Invoke-RestMethod https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json
     $pwshVersion = (Get-ToolsetContent).pwsh.version
 
-    if ($pwshVersion -match '^\d+\.\d+\.\d+') {
+    if ($pwshVersion -match '^\d+\.\d+\.\d+$') {
         # Full version specified, use it directly
         $release = $pwshVersion
     } else {
