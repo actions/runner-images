@@ -21,10 +21,16 @@ try {
     } else {
         # Major.minor only, search release tags for latest matching version, from most to least stable.
         $releases = @($metadata.LTSReleaseTag) + @($metadata.StableReleaseTag) + @($metadata.ReleaseTag) + @($metadata.ServicingReleaseTag) + @($metadata.PreviewReleaseTag) + @($metadata.NextReleaseTag) | ForEach-Object { $_ -replace '^v' }
-        foreach ($release in $releases) {
-            if ($release -like "${pwshVersion}*") {
+        $release = $null
+        foreach ($r in $releases) {
+            if (-not [string]::IsNullOrEmpty($r) -and $r.StartsWith($pwshVersion, [System.StringComparison]::OrdinalIgnoreCase)) {
+                $release = $r
                 break
             }
+        }
+        
+        if ([string]::IsNullOrEmpty($release)) {
+            throw "Could not find a matching PowerShell release for version ${pwshVersion}"
         }
     }
 
