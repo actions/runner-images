@@ -13,15 +13,22 @@ try {
     [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
     $metadata = Invoke-RestMethod https://raw.githubusercontent.com/PowerShell/PowerShell/master/tools/metadata.json
-    $pwshMajorMinor = (Get-ToolsetContent).pwsh.version
+    $pwshVersion = (Get-ToolsetContent).pwsh.version
 
-    $releases = $metadata.LTSReleaseTag -replace '^v'
-    foreach ($release in $releases) {
-        if ($release -like "${pwshMajorMinor}*") {
-            $downloadUrl = "https://github.com/PowerShell/PowerShell/releases/download/v${release}/PowerShell-${release}-win-x64.msi"
-            break
+    if ($pwshVersion -match '^\d+\.\d+\.\d+') {
+        # Full version specified, use it directly
+        $release = $pwshVersion
+    } else {
+        # Major.minor only, search release tags for latest matching version, from most to least stable.
+        $releases = @($metadata.LTSReleaseTag) + @($metadata.StableReleaseTag) + @($metadata.ReleaseTag) + @($metadata.ServicingReleaseTag) + @($metadata.PreviewReleaseTag) + @($metadata.NextReleaseTag) | ForEach-Object { $_ -replace '^v' }
+        foreach ($release in $releases) {
+            if ($release -like "${pwshVersion}*") {
+                break
+            }
         }
     }
+
+    $downloadUrl = "https://github.com/PowerShell/PowerShell/releases/download/v${release}/PowerShell-${release}-win-x64.msi"
 
     $installerName = Split-Path $downloadUrl -Leaf
     $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
