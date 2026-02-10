@@ -3,7 +3,8 @@
 ##  File:  install-docker-cli.sh
 ##  Desc:  Install Docker CLI and plugins (Compose, Buildx) but not the engine.
 ##         The Docker daemon is not included since ubuntu-slim runs as a container.
-##         Users can mount the host's Docker socket or use Docker-in-Docker if needed.
+##         ubuntu-slim does not run in Privileged mode, so functionality from these tools is limited.
+##         It cannot build or run containers locally.
 ################################################################################
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg

@@ -37,7 +37,7 @@ $languageAndRuntime.AddNodes($(Get-ClangLLVMVersions))
 $languageAndRuntime.AddNodes($(Get-GccVersions))
 $languageAndRuntime.AddNodes($(Get-FortranVersions))
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
-if (($os.IsVentura -or $os.IsSonoma)) {
+if (($os.IsSonoma)) {
     $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
 }
 $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
@@ -58,15 +58,13 @@ if ((-not $os.IsArm64)) {
 }
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
 $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
-if (($os.IsVentura -or $os.IsSonoma)) {
+if (($os.IsSonoma)) {
     $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
 }
 $packageManagement.AddToolVersion("Pip3", $(Get-Pip3Version))
 $packageManagement.AddToolVersion("Pipx", $(Get-PipxVersion))
 $packageManagement.AddToolVersion("RubyGems", $(Get-RubyGemsVersion))
-if (-not $os.IsVenturaArm64) {
-    $packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
-}
+$packageManagement.AddToolVersion("Vcpkg", $(Get-VcpkgVersion))
 $packageManagement.AddToolVersion("Yarn", $(Get-YarnVersion))
 
 # Project Management
@@ -174,12 +172,12 @@ $android.AddTable($androidTable)
 $androidEnv = $android.AddHeader("Environment variables")
 $androidEnv.AddTable($(Build-AndroidEnvironmentTable))
 
-if ($os.IsSonoma -or $os.IsVentura -or $os.IsSequoia) {
+if (($os.IsSonoma -or $os.IsSequoia -or $os.IsTahoe)) {
     $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
     $miscellaneous.AddToolVersion("Tcl/Tk", $(Get-TclTkVersion))
 }
 
-if ((-not $os.IsArm64)) {
+if (($os.IsSonomaX64 -or $os.IsSequoiaX64)) {
 
     Write-Host "Adding environment variables for parallels"
 

@@ -67,7 +67,7 @@
         { "name": "PowerShellGet" },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
-        { "name": "SqlServer" },
+        { "name": "SqlServer", "versions": [ "22.3.0" ] },
         { "name": "VSSetup" },
         { "name": "Microsoft.Graph" },
         {"name": "AWSPowershell"}
@@ -76,7 +76,7 @@
         {
             "name": "az",
             "versions": [
-                "12.5.0"
+                "14.6.0"
             ]
         }
     ],
@@ -132,7 +132,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "installChannel": "",
+        "installChannelUri": "",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -222,8 +222,8 @@
     "docker": {
         "images": [],
         "components": {
-            "docker": "27.5.1",
-            "compose": "2.32.2"
+            "docker": "29.1.5",
+            "compose": "2.40.3"
         }
     },
     "pipx": [
@@ -311,7 +311,7 @@
         "version": "20"
     },
     "php": {
-        "version": "8.4"
+        "version": "8.5"
     },
     "postgresql": {
         "version": "17"
