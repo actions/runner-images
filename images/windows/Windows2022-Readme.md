@@ -1,10 +1,11 @@
 | Announcements |
 |-|
+| [Windows Server 2025 with Visual Studio 2026 is now available as a public beta](https://github.com/actions/runner-images/issues/13638) |
 | [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 4648
-- Image Version: 20260201.23.1
+- Image Version: 20260209.31.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -13,13 +14,13 @@
 
 ### Language and Runtime
 - Bash 5.2.37(1)-release
-- Go 1.24.12
+- Go 1.24.13
 - Julia 1.12.0
-- Kotlin 2.3.0
+- Kotlin 2.3.10
 - LLVM 20.1.8
 - Node 20.20.0
 - Perl 5.32.1
-- PHP 8.5.1
+- PHP 8.5.2
 - Python 3.12.10
 - Ruby 3.3.10
 
@@ -30,10 +31,10 @@
 - Miniconda 25.11.1 (pre-installed on the image but not added to PATH)
 - NPM 10.8.2
 - NuGet 7.0.1.1
-- pip 26.0 (python 3.12)
+- pip 26.0.1 (python 3.12)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 6d7bf7ef21)
+- Vcpkg (build from commit aa2d37682e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -46,23 +47,23 @@
 - Ant 1.10.15
 - Gradle 9.3
 - Maven 3.9.12
-- sbt 1.12.1
+- sbt 1.12.2
 
 ### Tools
 - 7zip 25.01
 - aria2 1.37.0
-- azcopy 10.31.1
+- azcopy 10.32.0
 - Bazel 9.0.0
 - Bazelisk 1.28.1
 - Bicep 0.40.2
 - Cabal 3.16.1.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.24.0
-- Docker 27.5.1
-- Docker Compose v2 2.32.2
+- CodeQL Action Bundle 2.24.1
+- Docker 29.1.5
+- Docker Compose v2 2.40.3
 - Docker-wincred 0.9.5
 - ghc 9.14.1
-- Git 2.52.0.windows.1
+- Git 2.53.0.windows.1
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-13
 - InnoSetup 6.7.0
@@ -77,7 +78,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.1
 - Packer 1.14.2
-- Pulumi 3.218.0
+- Pulumi 3.219.0
 - R 4.5.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.9.1
@@ -92,10 +93,10 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.2.9
-- AWS CLI 2.33.12
+- AWS CLI 2.33.17
 - AWS SAM CLI 1.153.1
 - AWS Session Manager CLI 1.2.764.0
-- Azure CLI 2.82.0
+- Azure CLI 2.83.0
 - Azure DevOps CLI extension 1.0.2
 - GitHub CLI 2.86.0
 
@@ -107,18 +108,18 @@
 
 #### Packages
 - bindgen 0.72.1
-- cargo-audit 0.22.0
+- cargo-audit 0.22.1
 - cargo-outdated 0.17.0
 - cbindgen 0.29.2
 - Clippy 0.1.93
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 144.0.7559.110
-- Chrome Driver 144.0.7559.109
-- Microsoft Edge 144.0.3719.104
-- Microsoft Edge Driver 144.0.3719.104
-- Mozilla Firefox 147.0.2
+- Google Chrome 144.0.7559.133
+- Chrome Driver 144.0.7559.133
+- Microsoft Edge 144.0.3719.115
+- Microsoft Edge Driver 144.0.3719.115
+- Mozilla Firefox 147.0.3
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.40.0
@@ -134,10 +135,10 @@
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.472+8 (default) | JAVA_HOME_8_X64      |
-| 11.0.29+7           | JAVA_HOME_11_X64     |
-| 17.0.17+10          | JAVA_HOME_17_X64     |
-| 21.0.9+10.0         | JAVA_HOME_21_X64     |
+| 8.0.482+8 (default) | JAVA_HOME_8_X64      |
+| 11.0.30+7           | JAVA_HOME_11_X64     |
+| 17.0.18+8           | JAVA_HOME_17_X64     |
+| 21.0.10+7.0         | JAVA_HOME_21_X64     |
 | 25.0.2+10.0         | JAVA_HOME_25_X64     |
 
 ### Shells
@@ -162,8 +163,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.12
-- 1.25.6
+- 1.24.13
+- 1.25.7
 
 #### Node.js
 - 20.20.0
@@ -174,8 +175,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.11
-- 3.14.2
+- 3.13.12
+- 3.14.3
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.20]
@@ -210,7 +211,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 7.0.29.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.25.0
+- Azure CosmosDb Emulator 2.14.26.0
 - DacFx 170.2.70.1
 - MySQL 8.0.45.0
 - SQL OLEDB Driver 18 18.7.5.0
@@ -222,7 +223,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.29.4  | C:\tools\nginx-1.29.4\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.29.5  | C:\tools\nginx-1.29.5\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
@@ -458,7 +459,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 3.0.0           |
 | Windows Driver Kit                                                        | 10.1.26100.4202 |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.26100.16   |
-| Windows Software Development Kit                                          | 10.1.26100.7175 |
+| Windows Software Development Kit                                          | 10.1.26100.7705 |
 | WixToolset.WixToolsetVisualStudio2022Extension                            | 1.0.0.22        |
 
 #### Microsoft Visual C++
@@ -466,12 +467,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | -------------------------------------------- | ------------ | ----------- |
 | Microsoft Visual C++ 2013 Additional Runtime | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.44.35211 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.50.35719 |
 | Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.44.35211 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.44.35211 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.44.35211 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.50.35719 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.50.35719 |
 | Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.44.35211 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.44.35211 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.50.35719 |
 
 #### Installed Windows SDKs
 - 10.0.17763.0
@@ -492,10 +493,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 14.6.0
-- AWSPowershell: 5.0.145
+- AWSPowershell: 5.0.150
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.35.0
+- Microsoft.Graph: 2.35.1
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.24.0
