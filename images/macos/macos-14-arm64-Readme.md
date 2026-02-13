@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [macOS 26 (on Intel) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13637) |
 | [[macOS] Deprecation of simulator runtimes for Xcode 26.0.1 on macOS 15 on January 26th](https://github.com/actions/runner-images/issues/13570) |
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 | [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
@@ -7,7 +8,7 @@
 # macOS 14
 - OS Version: macOS 14.8.3 (23J220)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20260202.0106.1
+- Image Version: 20260209.0115.1
 
 ## Installed Software
 
@@ -22,24 +23,24 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.2.0) - available by `gfortran-15` alias
-- Kotlin 2.3.0-release-356
+- Kotlin 2.3.10-release-465
 - Mono 6.12.0.188
 - Node.js 20.20.0
 - Perl 5.42.0
-- Python3 3.14.2
+- Python3 3.14.3
 - Ruby 3.3.10
 
 ### Package Management
-- Bundler 4.0.5
+- Bundler 4.0.6
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.0.12
+- Homebrew 5.0.13
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 25.3 (python 3.14)
+- Pip3 26.0 (python 3.14)
 - Pipx 1.8.0
-- RubyGems 4.0.5
-- Vcpkg 2025 (build from commit 6d7bf7ef21)
+- RubyGems 4.0.6
+- Vcpkg 2025 (build from commit aa2d37682e)
 - Yarn 1.22.22
 
 ### Project Management
@@ -50,7 +51,7 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.31.1
+- azcopy 10.32.0
 - bazel 9.0.0
 - bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
@@ -63,7 +64,7 @@
 - gpg (GnuPG) 2.4.9
 - jq 1.8.1
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.14.3
+- Packer 1.15.0
 - pkgconf 2.5.1
 - Unxip 3.3
 - yq 4.52.2
@@ -71,15 +72,15 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.33.12
-- AWS SAM CLI 1.152.0
+- AWS CLI 2.33.17
+- AWS SAM CLI 1.153.1
 - AWS Session Manager CLI 1.2.764.0
-- Azure CLI 2.82.0
+- Azure CLI 2.83.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.40.2
 - Cmake 4.2.3
-- CodeQL Action Bundle 2.24.0
-- Fastlane 2.231.1
+- CodeQL Action Bundle 2.24.1
+- Fastlane 2.232.0
 - SwiftFormat 0.59.1
 - Xcbeautify 3.1.4
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
@@ -88,12 +89,12 @@
 ### Browsers
 - Safari 26.2 (19623.1.14.18.4)
 - SafariDriver 26.2 (19623.1.14.18.4)
-- Google Chrome 144.0.7559.110
-- Google Chrome for Testing 144.0.7559.109
-- ChromeDriver 144.0.7559.109
-- Microsoft Edge 144.0.3719.104
-- Microsoft Edge WebDriver 144.0.3719.104
-- Mozilla Firefox 147.0.2
+- Google Chrome 144.0.7559.133
+- Google Chrome for Testing 144.0.7559.133
+- ChromeDriver 144.0.7559.133
+- Microsoft Edge 144.0.3719.115
+- Microsoft Edge WebDriver 144.0.3719.115
+- Mozilla Firefox 147.0.3
 - geckodriver 0.36.0
 - Selenium server 4.40.0
 
@@ -107,9 +108,9 @@
 ### Java
 | Version               | Environment Variable |
 | --------------------- | -------------------- |
-| 11.0.29+7             | JAVA_HOME_11_arm64   |
-| 17.0.17+10            | JAVA_HOME_17_arm64   |
-| 21.0.9+10.0 (default) | JAVA_HOME_21_arm64   |
+| 11.0.30+7             | JAVA_HOME_11_arm64   |
+| 17.0.18+8             | JAVA_HOME_17_arm64   |
+| 21.0.10+7.0 (default) | JAVA_HOME_21_arm64   |
 | 25.0.2+10.0           | JAVA_HOME_25_arm64   |
 
 ### Cached Tools
@@ -123,8 +124,8 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.11
-- 3.14.2
+- 3.13.12
+- 3.14.3
 
 #### Node.js
 - 20.20.0
@@ -134,8 +135,8 @@
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.12
-- 1.25.6
+- 1.24.13
+- 1.25.7
 
 ### Rust Tools
 - Cargo 1.93.0
