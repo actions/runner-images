@@ -4,6 +4,14 @@
         "x64": {
             "versions": [
                 {
+                    "link": "26.4_beta",
+                    "filename": "Xcode_26.4_beta_Universal",
+                    "version": "26.4+17E5159k",
+                    "symlinks": ["26.4"],
+                    "sha256": "c3b9ae14b208909bfb369b3c4bdd23993579afcba10c40bb6825ad7c29f0291e",
+                    "install_runtimes": "none"
+                },
+                {
                     "link": "26.3_Release_Candidate",
                     "filename": "Xcode_26.3_Release_Candidate_Universal",
                     "version": "26.3+17C519",
@@ -38,6 +46,14 @@
         },
         "arm64": {
             "versions": [
+                {
+                    "link": "26.4_beta",
+                    "filename": "Xcode_26.4_beta_Universal",
+                    "version": "26.4+17E5159k",
+                    "symlinks": ["26.4"],
+                    "sha256": "c3b9ae14b208909bfb369b3c4bdd23993579afcba10c40bb6825ad7c29f0291e",
+                    "install_runtimes": "none"
+                },
                 {
                     "link": "26.3_Release_Candidate",
                     "filename": "Xcode_26.3_Release_Candidate_Universal",
