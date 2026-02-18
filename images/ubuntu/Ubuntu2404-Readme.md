@@ -4,8 +4,8 @@
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.3 LTS
-- Kernel Version: 6.11.0-1018-azure
-- Image Version: 20260201.15.1
+- Kernel Version: 6.14.0-1017-azure
+- Image Version: 20260209.23.1
 - Systemd version: 255.4-1ubuntu8.12
 
 ## Installed Software
@@ -19,7 +19,7 @@
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
 - Julia 1.12.4
-- Kotlin 2.3.0-release-356
+- Kotlin 2.3.10-release-465
 - Node.js 20.20.0
 - Perl 5.38.2
 - Python 3.12.3
@@ -29,14 +29,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.20.0
-- Homebrew 5.0.12
+- Homebrew 5.0.14
 - Miniconda 25.11.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.8.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit 6d7bf7ef21)
+- Vcpkg (build from commit aa2d37682e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,19 +61,19 @@ to accomplish this.
 
 ### Tools
 - Ansible 2.20.2
-- AzCopy 10.31.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.32.0 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.0.0
 - Bazelisk 1.28.1
 - Bicep 0.40.2
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.24.0
+- CodeQL Action Bundle 2.24.1
 - Docker Amazon ECR Credential Helper 0.11.0
-- Docker Compose v2 2.38.2
+- Docker Compose v2 2.40.3
 - Docker-Buildx 0.31.1
-- Docker Client 28.0.4
-- Docker Server 28.0.4
-- Fastlane 2.231.1
+- Docker Client 29.1.5
+- Docker Server 29.1.5
+- Fastlane 2.232.0
 - Git 2.52.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
@@ -81,7 +81,7 @@ to accomplish this.
 - jq 1.7
 - Kind 0.31.0
 - Kubectl 1.35.0
-- Kustomize 5.8.0
+- Kustomize 5.8.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.38.0
@@ -89,10 +89,10 @@ to accomplish this.
 - Newman 6.2.2
 - nvm 0.40.4
 - OpenSSL 3.0.13-0ubuntu3.7
-- Packer 1.14.3
-- Parcel 2.16.3
+- Packer 1.15.0
+- Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.218.0
+- Pulumi 3.219.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -101,18 +101,18 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.33.12
+- AWS CLI 2.33.18
 - AWS CLI Session Manager Plugin 1.2.764.0
 - AWS SAM CLI 1.153.1
-- Azure CLI 2.82.0
+- Azure CLI 2.83.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.86.0
-- Google Cloud CLI 554.0.0
+- Google Cloud CLI 555.0.0
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.472+8           | JAVA_HOME_8_X64      |
+| 8.0.482+8           | JAVA_HOME_8_X64      |
 | 11.0.30+7           | JAVA_HOME_11_X64     |
 | 17.0.18+8 (default) | JAVA_HOME_17_X64     |
 | 21.0.10+7           | JAVA_HOME_21_X64     |
@@ -142,13 +142,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 144.0.7559.109
-- ChromeDriver 144.0.7559.109
+- Google Chrome 144.0.7559.132
+- ChromeDriver 144.0.7559.133
 - Chromium 144.0.7559.0
-- Microsoft Edge 144.0.3719.104
-- Microsoft Edge WebDriver 144.0.3719.104
+- Microsoft Edge 144.0.3719.115
+- Microsoft Edge WebDriver 144.0.3719.115
 - Selenium server 4.40.0
-- Mozilla Firefox 147.0.2
+- Mozilla Firefox 147.0.3
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -175,7 +175,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.44-0ubuntu0.24.04.2
+- MySQL 8.0.45-0ubuntu0.24.04.1
 ```
 User: root
 Password: root
@@ -188,8 +188,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.12
-- 1.25.6
+- 1.24.13
+- 1.25.7
 
 #### Node.js
 - 20.20.0
@@ -200,8 +200,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.19
 - 3.11.14
 - 3.12.12
-- 3.13.11
-- 3.14.2
+- 3.13.12
+- 3.14.3
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -219,7 +219,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 14.6.0
-- Microsoft.Graph: 2.35.0
+- Microsoft.Graph: 2.35.1
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
@@ -287,7 +287,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libssl-dev             | 3.0.13-0ubuntu3.7            |
 | libtool                | 2.4.7-7build1                |
 | libyaml-dev            | 0.2.5-1build1                |
-| locales                | 2.39-0ubuntu8.6              |
+| locales                | 2.39-0ubuntu8.7              |
 | lz4                    | 1.9.4-1build1.1              |
 | m4                     | 1.4.19-4build1               |
 | make                   | 4.3-4.1build2                |
@@ -315,7 +315,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | swig                   | 4.2.0-2ubuntu1               |
 | systemd-coredump       | 255.4-1ubuntu8.12            |
 | tar                    | 1.35+dfsg-3build1            |
-| telnet                 | 0.17+2.5-3ubuntu4            |
+| telnet                 | 0.17+2.5-3ubuntu4.1          |
 | texinfo                | 7.1-3build2                  |
 | time                   | 1.9-0.2build1                |
 | tk                     | 8.6.14build1                 |
