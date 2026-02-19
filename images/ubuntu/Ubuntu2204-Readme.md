@@ -5,7 +5,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1044-azure
-- Image Version: 20260209.31.1
+- Image Version: 20260217.38.1
 - Systemd version: 249.11-0ubuntu3.17
 
 ## Installed Software
@@ -18,7 +18,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.12.4
+- Julia 1.12.5
 - Kotlin 2.3.10-release-465
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -39,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.8.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit aa2d37682e)
+- Vcpkg (build from commit 1940ee77e8)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,9 +59,9 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.12
 - Gradle 9.3.1
-- Lerna 9.0.3
+- Lerna 9.0.4
 - Maven 3.9.12
-- Sbt 1.12.2
+- Sbt 1.12.3
 
 ### Tools
 - Ansible 2.17.14
@@ -78,15 +78,15 @@ to accomplish this.
 - Docker-Buildx 0.31.1
 - Docker Client 29.1.5
 - Docker Server 29.1.5
-- Fastlane 2.232.0
-- Git 2.52.0
+- Fastlane 2.232.1
+- Git 2.53.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.16.0
+- Heroku 10.17.0
 - jq 1.6
 - Kind 0.31.0
-- Kubectl 1.35.0
+- Kubectl 1.35.1
 - Kustomize 5.8.1
 - Leiningen 2.12.0
 - MediaInfo 21.09
@@ -99,30 +99,30 @@ to accomplish this.
 - Packer 1.15.0
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.219.0
+- Pulumi 3.220.0
 - R 4.5.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.14.4
+- Terraform 1.14.5
 - yamllint 1.38.0
-- yq 4.52.2
+- yq 4.52.4
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.2.9
-- AWS CLI 2.33.18
-- AWS CLI Session Manager Plugin 1.2.764.0
-- AWS SAM CLI 1.153.1
+- AWS CLI 2.33.24
+- AWS CLI Session Manager Plugin 1.2.779.0
+- AWS SAM CLI 1.154.0
 - Azure CLI 2.83.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.86.0
-- Google Cloud CLI 555.0.0
+- Google Cloud CLI 556.0.0
 - Netlify CLI 23.15.1
-- OpenShift CLI 4.21.0
+- OpenShift CLI 4.21.2
 - ORAS CLI 1.3.0
-- Vercel CLI 50.13.2
+- Vercel CLI 50.18.1
 
 ### Java
 | Version             | Environment Variable |
@@ -148,9 +148,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.9.1
 
 ### Rust Tools
-- Cargo 1.93.0
-- Rust 1.93.0
-- Rustdoc 1.93.0
+- Cargo 1.93.1
+- Rust 1.93.1
+- Rustdoc 1.93.1
 - Rustup 1.28.2
 
 #### Packages
@@ -162,13 +162,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 144.0.7559.132
-- ChromeDriver 144.0.7559.133
-- Chromium 144.0.7559.0
+- Google Chrome 145.0.7632.75
+- ChromeDriver 145.0.7632.76
+- Chromium 145.0.7632.0
 - Microsoft Edge 144.0.3719.115
 - Microsoft Edge WebDriver 144.0.3719.115
 - Selenium server 4.40.0
-- Mozilla Firefox 147.0.3
+- Mozilla Firefox 147.0.4
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -180,14 +180,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.123, 8.0.206, 8.0.319, 8.0.417, 9.0.113, 9.0.205, 9.0.310, 10.0.102
+- .NET Core SDK: 8.0.124, 8.0.206, 8.0.319, 8.0.418, 9.0.114, 9.0.205, 9.0.311, 10.0.103
 - nbgv 3.9.50+6feeb89450
 
 ### Databases
 - sqlite3 3.37.2
 
 #### PostgreSQL
-- PostgreSQL 14.20
+- PostgreSQL 14.21
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -205,7 +205,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 170.2.70.1
+- SqlPackage 170.3.93.6
 
 ### Cached Tools
 
@@ -218,7 +218,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 20.20.0
 - 22.22.0
-- 24.13.0
+- 24.13.1
 
 #### Python
 - 3.10.19
