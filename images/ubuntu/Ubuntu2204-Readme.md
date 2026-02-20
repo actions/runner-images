@@ -5,7 +5,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1044-azure
-- Image Version: 20260209.31.1
+- Image Version: 20260201.24.1
 - Systemd version: 249.11-0ubuntu3.17
 
 ## Installed Software
@@ -19,7 +19,7 @@
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
 - Julia 1.12.4
-- Kotlin 2.3.10-release-465
+- Kotlin 2.3.0-release-356
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 20.20.0
@@ -31,7 +31,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.20.0
-- Homebrew 5.0.14
+- Homebrew 5.0.12
 - Miniconda 25.11.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -39,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.8.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit aa2d37682e)
+- Vcpkg (build from commit 6d7bf7ef21)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,24 +61,24 @@ to accomplish this.
 - Gradle 9.3.1
 - Lerna 9.0.3
 - Maven 3.9.12
-- Sbt 1.12.2
+- Sbt 1.12.1
 
 ### Tools
 - Ansible 2.17.14
 - apt-fast 1.10.0
-- AzCopy 10.32.0 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.31.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.0.0
 - Bazelisk 1.28.1
 - Bicep 0.40.2
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.24.1
+- CodeQL Action Bundle 2.24.0
 - Docker Amazon ECR Credential Helper 0.11.0
-- Docker Compose v2 2.40.3
+- Docker Compose v2 2.38.2
 - Docker-Buildx 0.31.1
-- Docker Client 29.1.5
-- Docker Server 29.1.5
-- Fastlane 2.232.0
+- Docker Client 28.0.4
+- Docker Server 28.0.4
+- Fastlane 2.231.1
 - Git 2.52.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
@@ -87,7 +87,7 @@ to accomplish this.
 - jq 1.6
 - Kind 0.31.0
 - Kubectl 1.35.0
-- Kustomize 5.8.1
+- Kustomize 5.8.0
 - Leiningen 2.12.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
@@ -96,10 +96,10 @@ to accomplish this.
 - Newman 6.2.2
 - nvm 0.40.4
 - OpenSSL 3.0.2-0ubuntu1.21
-- Packer 1.15.0
-- Parcel 2.16.4
+- Packer 1.14.3
+- Parcel 2.16.3
 - Podman 3.4.4
-- Pulumi 3.219.0
+- Pulumi 3.218.0
 - R 4.5.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -112,22 +112,22 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.2.9
-- AWS CLI 2.33.18
+- AWS CLI 2.33.12
 - AWS CLI Session Manager Plugin 1.2.764.0
 - AWS SAM CLI 1.153.1
-- Azure CLI 2.83.0
+- Azure CLI 2.82.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.86.0
-- Google Cloud CLI 555.0.0
-- Netlify CLI 23.15.1
-- OpenShift CLI 4.21.0
+- Google Cloud CLI 554.0.0
+- Netlify CLI 23.14.0
+- OpenShift CLI 4.20.12
 - ORAS CLI 1.3.0
-- Vercel CLI 50.13.2
+- Vercel CLI 50.9.6
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.482+8           | JAVA_HOME_8_X64      |
+| 8.0.472+8           | JAVA_HOME_8_X64      |
 | 11.0.30+7 (default) | JAVA_HOME_11_X64     |
 | 17.0.18+8           | JAVA_HOME_17_X64     |
 | 21.0.10+7           | JAVA_HOME_21_X64     |
@@ -155,20 +155,20 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 #### Packages
 - Bindgen 0.72.1
-- Cargo audit 0.22.1
+- Cargo audit 0.22.0
 - Cargo clippy 0.1.93
 - Cargo outdated 0.17.0
 - Cbindgen 0.29.2
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 144.0.7559.132
-- ChromeDriver 144.0.7559.133
+- Google Chrome 144.0.7559.109
+- ChromeDriver 144.0.7559.109
 - Chromium 144.0.7559.0
-- Microsoft Edge 144.0.3719.115
-- Microsoft Edge WebDriver 144.0.3719.115
+- Microsoft Edge 144.0.3719.104
+- Microsoft Edge WebDriver 144.0.3719.104
 - Selenium server 4.40.0
-- Mozilla Firefox 147.0.3
+- Mozilla Firefox 147.0.2
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -195,7 +195,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.45-0ubuntu0.22.04.1
+- MySQL 8.0.44-0ubuntu0.22.04.2
 ```
 User: root
 Password: root
@@ -212,8 +212,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.13
-- 1.25.7
+- 1.24.12
+- 1.25.6
 
 #### Node.js
 - 20.20.0
@@ -224,8 +224,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.19
 - 3.11.14
 - 3.12.12
-- 3.13.12
-- 3.14.3
+- 3.13.11
+- 3.14.2
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -246,7 +246,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 14.6.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.35.1
+- Microsoft.Graph: 2.35.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
@@ -313,7 +313,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.13                    |
+| libc6-dev              | 2.35-0ubuntu3.12                    |
 | libcurl4               | 7.81.0-1ubuntu1.21                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.3          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -331,7 +331,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.13                    |
+| locales                | 2.35-0ubuntu3.12                    |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
