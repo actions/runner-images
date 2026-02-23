@@ -92,12 +92,12 @@ Function GenerateResourcesAndImage {
         .PARAMETER ManagedImageName
             The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER ComputeGalleryName
-            The name of the compute gallery to create. If specified will override the default behavior of creating a managed image.
-            Will use the ResourceGroupName parameter as the resource group for the compute gallery.
+            The name of the existing compute gallery to use. If specified, the image definition and version will be created in this gallery instead of creating a managed image.
+            The compute gallery must already exist in the resource group specified by the ResourceGroupName parameter.
         .PARAMETER ComputeGalleryImageName
-            The name of the compute gallery image to create. This is required if ComputeGalleryName is specified.
+            The name of the compute gallery image definition to create within the specified compute gallery. This is required if ComputeGalleryName is specified.
         .PARAMETER ComputeGalleryImageVersion
-            The name of the compute gallery image version to create. This is required if ComputeGalleryName is specified.          
+            The name of the compute gallery image version to create within the specified compute gallery image definition. This is required if ComputeGalleryName is specified.          
         .PARAMETER AzureLocation
             The Azure location where the Azure resources will be created. For example: "East US"
         .PARAMETER ImageGenerationRepositoryRoot
@@ -299,14 +299,22 @@ Function GenerateResourcesAndImage {
             throw "Resource group '$ResourceGroupName' does not exist."
         }
 
-        # Check compute gallery existence
+        # Check compute gallery and image definition existence
         if ($ComputeGalleryName) {
-            $ComputeGalleryExists = [System.Convert]::ToBoolean((az sig show --resource-group $ResourceGroupName --gallery-name $ComputeGalleryName --name $ComputeGalleryImageName --query "id" --output tsv 2>$null));
+            $ComputeGalleryExists = az sig show --resource-group $ResourceGroupName --gallery-name $ComputeGalleryName --query "id" --output tsv 2>$null;
             if ($ComputeGalleryExists) {
                 Write-Verbose "Compute gallery '$ComputeGalleryName' already exists in resource group '$ResourceGroupName'."
             }
             else {
                 throw "Compute gallery '$ComputeGalleryName' does not exist in resource group '$ResourceGroupName'."
+            }
+
+            $ImageDefinitionExists = az sig image-definition show --resource-group $ResourceGroupName --gallery-name $ComputeGalleryName --name $ComputeGalleryImageName --query "id" --output tsv 2>$null;
+            if ($ImageDefinitionExists) {
+                Write-Verbose "Compute gallery image definition '$ComputeGalleryImageName' already exists in compute gallery '$ComputeGalleryName'."
+            }
+            else {
+                throw "Compute gallery image definition '$ComputeGalleryImageName' does not exist in compute gallery '$ComputeGalleryName'."
             }
         }
 
