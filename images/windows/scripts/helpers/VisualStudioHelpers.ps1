@@ -35,10 +35,10 @@ Function Install-VisualStudio {
         [String] $ExtraArgs = ""
     )
 
-    if (-not $env:INSTALL_VS_2026) {
-        $bootstrapperUrl = "https://aka.ms/vs/${Version}/postGRO-${Channel}/vs_${Edition}.exe"
+    if ($env:INSTALL_VS_2026) {
+        $bootstrapperUrl = "https://aka.ms/vs/postGRO-${Channel}/vs_${Edition}.exe"
     } else {
-        $bootstrapperUrl = "https://aka.ms/vs/${Version}/${Channel}/vs_${Edition}.exe"
+        $bootstrapperUrl = "https://aka.ms/vs/${Version}/postGRO-${Channel}/vs_${Edition}.exe"
     }
     $channelUri = "https://aka.ms/vs/${Version}/${Channel}/channel"
     $channelId = "VisualStudio.${Version}.Release"
