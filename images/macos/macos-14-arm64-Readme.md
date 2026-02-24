@@ -7,7 +7,7 @@
 # macOS 14
 - OS Version: macOS 14.8.4 (23J319)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20260218.0127.1
+- Image Version: 20260224.0137.1
 
 ## Installed Software
 
@@ -33,13 +33,13 @@
 - Bundler 4.0.6
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.0.14
+- Homebrew 5.0.15
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 26.0 (python 3.14)
 - Pipx 1.8.0
 - RubyGems 4.0.6
-- Vcpkg 2025 (build from commit 8cf84605ce)
+- Vcpkg 2025 (build from commit b42b19a62b)
 - Yarn 1.22.22
 
 ### Project Management
@@ -50,14 +50,14 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.32.0
+- azcopy 10.32.1
 - bazel 9.0.0
 - bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.53.0
 - Git LFS 3.7.1
-- GitHub CLI 2.86.0
+- GitHub CLI 2.87.3
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.9
@@ -71,14 +71,14 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.33.24
+- AWS CLI 2.33.28
 - AWS SAM CLI 1.154.0
 - AWS Session Manager CLI 1.2.779.0
 - Azure CLI 2.83.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.40.2
 - Cmake 4.2.3
-- CodeQL Action Bundle 2.24.1
+- CodeQL Action Bundle 2.24.2
 - Fastlane 2.232.1
 - SwiftFormat 0.59.1
 - Xcbeautify 3.1.4
@@ -88,11 +88,11 @@
 ### Browsers
 - Safari 26.3 (19623.2.7.18.1)
 - SafariDriver 26.3 (19623.2.7.18.1)
-- Google Chrome 145.0.7632.76
-- Google Chrome for Testing 145.0.7632.76
-- ChromeDriver 145.0.7632.76
-- Microsoft Edge 145.0.3800.58
-- Microsoft Edge WebDriver 145.0.3800.58
+- Google Chrome 145.0.7632.117
+- Google Chrome for Testing 145.0.7632.117
+- ChromeDriver 145.0.7632.117
+- Microsoft Edge 145.0.3800.70
+- Microsoft Edge WebDriver 145.0.3800.70
 - Mozilla Firefox 147.0.4
 - geckodriver 0.36.0
 - Selenium server 4.40.0
