@@ -49,6 +49,10 @@ done
 
 sorted_sdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -r | uniq -w 5)
 
+# Issue https://github.com/actions/runner-images/issues/13705
+# Workaround for broken .NET SDK 10.0.103 - replace it with .NET SDK 10.0.102
+sorted_sdks=$(echo "${sorted_sdks}" | sed 's/^10\.0\.103$/10.0.102/')
+
 ## Download installer from dot.net
 DOTNET_INSTALL_SCRIPT="https://dot.net/v1/dotnet-install.sh"
 install_script_path=$(download_with_retry $DOTNET_INSTALL_SCRIPT)
