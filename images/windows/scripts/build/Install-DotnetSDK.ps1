@@ -107,6 +107,11 @@ if ((Test-IsWin22) -or (Test-IsWin25)) {
 # Install and warm up dotnet
 foreach ($dotnetVersion in $dotnetToolset.versions) {
     $sdkVersionsToInstall = Get-SDKVersionsToInstall -DotnetVersion $dotnetVersion
+
+    # Issue https://github.com/actions/runner-images/issues/13705
+    # Workaround for broken .NET SDK 10.0.103 - replace it with .NET SDK 10.0.102
+    $sdkVersionsToInstall = $sdkVersionsToInstall | ForEach-Object { if ($_ -eq "10.0.103") { Write-Host ".NET 10.0.103 detected, replacing with 10.0.102"; "10.0.102" } else { $_ } }
+
     foreach ($sdkVersion in $sdkVersionsToInstall) {
         Install-DotnetSDK -InstallScriptPath $installScriptPath -SDKVersion $sdkVersion -DotnetVersion $dotnetVersion
         if ($dotnetToolset.warmup) {

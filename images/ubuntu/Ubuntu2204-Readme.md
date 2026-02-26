@@ -5,7 +5,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1044-azure
-- Image Version: 20260201.24.1
+- Image Version: 20260224.45.1
 - Systemd version: 249.11-0ubuntu3.17
 
 ## Installed Software
@@ -18,8 +18,8 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.12.4
-- Kotlin 2.3.0-release-356
+- Julia 1.12.5
+- Kotlin 2.3.10-release-465
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 20.20.0
@@ -31,7 +31,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.20.0
-- Homebrew 5.0.12
+- Homebrew 5.0.15
 - Miniconda 25.11.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -39,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.8.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 6d7bf7ef21)
+- Vcpkg (build from commit 26283ac5e8)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,75 +59,75 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.12
 - Gradle 9.3.1
-- Lerna 9.0.3
+- Lerna 9.0.4
 - Maven 3.9.12
-- Sbt 1.12.1
+- Sbt 1.12.4
 
 ### Tools
 - Ansible 2.17.14
 - apt-fast 1.10.0
-- AzCopy 10.31.1 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.32.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.0.0
 - Bazelisk 1.28.1
 - Bicep 0.40.2
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.24.0
+- CodeQL Action Bundle 2.24.2
 - Docker Amazon ECR Credential Helper 0.11.0
 - Docker Compose v2 2.38.2
 - Docker-Buildx 0.31.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.231.1
-- Git 2.52.0
+- Fastlane 2.232.1
+- Git 2.53.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 10.16.0
+- Heroku 10.17.0
 - jq 1.6
 - Kind 0.31.0
-- Kubectl 1.35.0
-- Kustomize 5.8.0
+- Kubectl 1.35.1
+- Kustomize 5.8.1
 - Leiningen 2.12.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.38.0
+- Minikube 1.38.1
 - n 10.2.0
 - Newman 6.2.2
 - nvm 0.40.4
 - OpenSSL 3.0.2-0ubuntu1.21
-- Packer 1.14.3
-- Parcel 2.16.3
+- Packer 1.15.0
+- Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.218.0
+- Pulumi 3.223.0
 - R 4.5.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.14.4
+- Terraform 1.14.5
 - yamllint 1.38.0
-- yq 4.52.2
+- yq 4.52.4
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.2.9
-- AWS CLI 2.33.12
-- AWS CLI Session Manager Plugin 1.2.764.0
-- AWS SAM CLI 1.153.1
-- Azure CLI 2.82.0
+- AWS CLI 2.33.29
+- AWS CLI Session Manager Plugin 1.2.779.0
+- AWS SAM CLI 1.154.0
+- Azure CLI 2.83.0
 - Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.86.0
-- Google Cloud CLI 554.0.0
-- Netlify CLI 23.14.0
-- OpenShift CLI 4.20.12
+- GitHub CLI 2.87.3
+- Google Cloud CLI 558.0.0
+- Netlify CLI 24.0.0
+- OpenShift CLI 4.21.3
 - ORAS CLI 1.3.0
-- Vercel CLI 50.9.6
+- Vercel CLI 50.23.2
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.472+8           | JAVA_HOME_8_X64      |
+| 8.0.482+8           | JAVA_HOME_8_X64      |
 | 11.0.30+7 (default) | JAVA_HOME_11_X64     |
 | 17.0.18+8           | JAVA_HOME_17_X64     |
 | 21.0.10+7           | JAVA_HOME_21_X64     |
@@ -145,30 +145,30 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cabal 3.16.1.0
 - GHC 9.14.1
 - GHCup 0.1.50.2
-- Stack 3.9.1
+- Stack 3.9.3
 
 ### Rust Tools
-- Cargo 1.93.0
-- Rust 1.93.0
-- Rustdoc 1.93.0
+- Cargo 1.93.1
+- Rust 1.93.1
+- Rustdoc 1.93.1
 - Rustup 1.28.2
 
 #### Packages
 - Bindgen 0.72.1
-- Cargo audit 0.22.0
+- Cargo audit 0.22.1
 - Cargo clippy 0.1.93
 - Cargo outdated 0.17.0
 - Cbindgen 0.29.2
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 144.0.7559.109
-- ChromeDriver 144.0.7559.109
-- Chromium 144.0.7559.0
-- Microsoft Edge 144.0.3719.104
-- Microsoft Edge WebDriver 144.0.3719.104
-- Selenium server 4.40.0
-- Mozilla Firefox 147.0.2
+- Google Chrome 145.0.7632.116
+- ChromeDriver 145.0.7632.117
+- Chromium 145.0.7632.0
+- Microsoft Edge 145.0.3800.70
+- Microsoft Edge WebDriver 145.0.3800.70
+- Selenium server 4.41.0
+- Mozilla Firefox 147.0.4
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -180,14 +180,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.123, 8.0.206, 8.0.319, 8.0.417, 9.0.113, 9.0.205, 9.0.310, 10.0.102
+- .NET Core SDK: 8.0.124, 8.0.206, 8.0.319, 8.0.418, 9.0.114, 9.0.205, 9.0.311, 10.0.102
 - nbgv 3.9.50+6feeb89450
 
 ### Databases
 - sqlite3 3.37.2
 
 #### PostgreSQL
-- PostgreSQL 14.20
+- PostgreSQL 14.21
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -195,7 +195,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.44-0ubuntu0.22.04.2
+- MySQL 8.0.45-0ubuntu0.22.04.1
 ```
 User: root
 Password: root
@@ -205,27 +205,27 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.10.0001.1
-- SqlPackage 170.2.70.1
+- SqlPackage 170.3.93.6
 
 ### Cached Tools
 
 #### Go
 - 1.22.12
 - 1.23.12
-- 1.24.12
-- 1.25.6
+- 1.24.13
+- 1.25.7
 
 #### Node.js
 - 20.20.0
 - 22.22.0
-- 24.13.0
+- 24.13.1
 
 #### Python
 - 3.10.19
 - 3.11.14
 - 3.12.12
-- 3.13.11
-- 3.14.2
+- 3.13.12
+- 3.14.3
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -246,7 +246,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 14.6.0
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.35.0
+- Microsoft.Graph: 2.35.1
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.24.0
 
@@ -313,7 +313,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.12                    |
+| libc6-dev              | 2.35-0ubuntu3.13                    |
 | libcurl4               | 7.81.0-1ubuntu1.21                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.3          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -331,7 +331,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.12                    |
+| locales                | 2.35-0ubuntu3.13                    |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
