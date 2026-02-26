@@ -150,7 +150,7 @@ $($LogLines -join "`n")
     foreach ($job in $failedJobs) {
         $zipPath = Join-Path $env:RUNNER_TEMP "job-$($job.id)-logs.zip"
         $extractPath = Join-Path $env:RUNNER_TEMP "job-$($job.id)-logs"
-        $logContent = @()
+        $allLogContent = @()
 
         try {
             $GitHubApi.DownloadJobLogs($job.id, $zipPath)
@@ -164,19 +164,29 @@ $($LogLines -join "`n")
                 Expand-Archive -Path $zipPath -DestinationPath $extractPath -Force -ErrorAction Stop | Out-Null
                 $logFiles = Get-ChildItem -Path $extractPath -Recurse -File | Sort-Object Length -Descending
                 if ($logFiles.Count -gt 0) {
-                    $logContent = Get-Content -Path $logFiles[0].FullName
-                    $slice = Get-ProvisionerWindow -Lines $logContent
+                    foreach ($logFile in $logFiles) {
+                        $currentLogContent = Get-Content -Path $logFile.FullName
+                        if ($currentLogContent) {
+                            $allLogContent += $currentLogContent
+                            if ($slice.Count -eq 0) {
+                                $slice = Get-ProvisionerWindow -Lines $currentLogContent
+                            }
+                            if ($slice.Count -gt 0) {
+                                break
+                            }
+                        }
+                    }
                 }
             } catch {
                 $rawContent = Get-Content -Path $zipPath -ErrorAction SilentlyContinue
                 if ($rawContent) {
-                    $logContent = $rawContent
+                    $allLogContent = $rawContent
                     $slice = Get-ProvisionerWindow -Lines $rawContent
                 }
             }
 
-            if ($slice.Count -eq 0 -and $logContent.Count -gt 0) {
-                $slice = $logContent | Select-Object -Last 200
+            if ($slice.Count -eq 0 -and $allLogContent.Count -gt 0) {
+                $slice = $allLogContent | Select-Object -Last 200
                 Write-Host "Provisioner window not found; using last 200 log lines."
             }
 
