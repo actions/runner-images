@@ -80,10 +80,38 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v5
 
+      - name: Install Copilot CLI
+        shell: bash
+        run: |
+          curl -fsSL https://gh.io/copilot-install | bash
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          copilot --version
+
+      - name: Validate Copilot environment
+        shell: bash
+        env:
+          COPILOT_GITHUB_TOKEN: ${{ secrets.MODELS_TOKEN }}
+        run: |
+          if [[ -z "$COPILOT_GITHUB_TOKEN" ]]; then
+            echo "MODELS_TOKEN is empty or unavailable in this run"
+            exit 1
+          fi
+          if ! command -v copilot >/dev/null 2>&1; then
+            echo "copilot binary not found in PATH"
+            ls -la "$HOME/.local/bin" || true
+            exit 1
+          fi
+
       - name: Wait for workflow completion
         env:
           CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
           CI_REPO: ${{ vars.CI_REPO }}
+          COPILOT_GITHUB_TOKEN: ${{ secrets.MODELS_TOKEN }}
+          GH_TOKEN: ${{ secrets.MODELS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MODELS_TOKEN }}
+          COPILOT_AUTO_UPDATE: "false"
+          COPILOT_MODEL: gpt-5
+          COPILOT_ALLOW_ALL: "false"
         run: |
           ./helpers/WaitWorkflowCompletion.ps1 `
             -WorkflowRunId "${{ needs.trigger-workflow.outputs.ci_workflow_run_id }}" `
@@ -92,6 +120,7 @@ jobs:
 
       - name: Add Summary
         if: always()
+        continue-on-error: true
         run: |
           "# Test Partner Image" >> $env:GITHUB_STEP_SUMMARY
           "| Key | Value |" >> $env:GITHUB_STEP_SUMMARY
@@ -99,6 +128,13 @@ jobs:
           "| Workflow Run | [Link](${{ needs.trigger-workflow.outputs.ci_workflow_run_url }}) |" >> $env:GITHUB_STEP_SUMMARY
           "| Workflow Result | $env:CI_WORKFLOW_RUN_RESULT |" >> $env:GITHUB_STEP_SUMMARY
           "  " >> $env:GITHUB_STEP_SUMMARY
+          if (-not [string]::IsNullOrWhiteSpace($env:CI_COPILOT_ANALYSIS)) {
+            "## Copilot Log Analysis" >> $env:GITHUB_STEP_SUMMARY
+            '```text' >> $env:GITHUB_STEP_SUMMARY
+            "$env:CI_COPILOT_ANALYSIS" >> $env:GITHUB_STEP_SUMMARY
+            '```' >> $env:GITHUB_STEP_SUMMARY
+            "  " >> $env:GITHUB_STEP_SUMMARY
+          }
 
   cancel-workflow:
     runs-on: ubuntu-latest
