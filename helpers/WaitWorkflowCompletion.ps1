@@ -128,6 +128,12 @@ $($LogLines -join "`n")
                 }
             }
         } catch {
+            Write-Host "Copilot analysis failed due to an unexpected error. See verbose output for details."
+            Write-Verbose ("Copilot analysis exception: {0}" -f $_.Exception.Message)
+            Write-Verbose ("Full exception: {0}" -f $_ | Out-String)
+            if ([string]::IsNullOrWhiteSpace($script:CopilotAnalysis)) {
+                $script:CopilotAnalysis = "Copilot analysis failed due to an unexpected error. Check workflow logs for details."
+            }
         } finally {
             Remove-Item -Path $promptFile -Force -ErrorAction SilentlyContinue
         }
