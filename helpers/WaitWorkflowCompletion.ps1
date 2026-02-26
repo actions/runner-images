@@ -107,6 +107,14 @@ $($LogLines -join "`n")
             if ([string]::IsNullOrWhiteSpace($env:GITHUB_TOKEN)) { $env:GITHUB_TOKEN = $env:COPILOT_GITHUB_TOKEN }
 
             $analysis = (Get-Content -Path $promptFile -Raw | & $copilotCmd --no-ask-user --no-custom-instructions 2>&1 | Out-String).Trim()
+            if ($LASTEXITCODE -ne 0) {
+                $copilotErrorMessage = "Copilot CLI exited with code $LASTEXITCODE.`nOutput:`n$analysis"
+                Write-Host $copilotErrorMessage
+                if ([string]::IsNullOrWhiteSpace($script:CopilotAnalysis)) {
+                    $script:CopilotAnalysis = $copilotErrorMessage
+                }
+                throw "Copilot CLI failed with exit code $LASTEXITCODE."
+            }
             $analysis = [regex]::Replace($analysis, "(?ms)\r?\n?\s*Total usage est:.*$", "").Trim()
             if ($analysis -match "No authentication information found") {
                 Write-Host "Copilot auth error: No authentication information found."
