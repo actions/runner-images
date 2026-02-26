@@ -83,10 +83,8 @@ jobs:
       - name: Install Copilot CLI
         shell: bash
         run: |
-          curl -fsSL https://gh.io/copilot-install | bash
-          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          npm install -g @githubnext/github-copilot-cli
           copilot --version
-
       - name: Validate Copilot environment
         shell: bash
         env:
