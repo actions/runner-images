@@ -220,9 +220,9 @@ try {
 }
 "CI_WORKFLOW_RUN_RESULT=$($finishedWorkflowRun.conclusion)" | Out-File -Append -FilePath $env:GITHUB_ENV
 if (-not [string]::IsNullOrWhiteSpace($script:CopilotAnalysis) -and -not [string]::IsNullOrWhiteSpace($env:GITHUB_ENV)) {
-    "CI_COPILOT_ANALYSIS<<EOF" | Out-File -Append -FilePath $env:GITHUB_ENV
+    "CI_COPILOT_ANALYSIS<<EOF_COPILOT_ANALYSIS_END" | Out-File -Append -FilePath $env:GITHUB_ENV
     $script:CopilotAnalysis | Out-File -Append -FilePath $env:GITHUB_ENV
-    "EOF" | Out-File -Append -FilePath $env:GITHUB_ENV
+    "EOF_COPILOT_ANALYSIS_END" | Out-File -Append -FilePath $env:GITHUB_ENV
 }
 
 if ($finishedWorkflowRun.conclusion -in ("failure", "cancelled", "timed_out")) {
