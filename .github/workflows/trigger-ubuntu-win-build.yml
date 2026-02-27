@@ -84,7 +84,7 @@ jobs:
         shell: bash
         run: |
           npm install -g @githubnext/github-copilot-cli
-          copilot --version
+          "$(npm bin -g)/copilot" --version
       - name: Validate Copilot environment
         shell: bash
         env:
