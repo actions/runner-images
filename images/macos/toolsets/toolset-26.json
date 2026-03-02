@@ -16,7 +16,7 @@
                     "filename": "Xcode_26.3_Universal",
                     "version": "26.3+17C529",
                     "sha256": "cf87232e0419785170edcfa070b750f28808ec00b489ab540c08b7d197c79ae4",
-                    "install_runtimes": "default"
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "26.2",
@@ -58,7 +58,7 @@
                     "filename": "Xcode_26.3_Universal",
                     "version": "26.3+17C529",
                     "sha256": "cf87232e0419785170edcfa070b750f28808ec00b489ab540c08b7d197c79ae4",
-                    "install_runtimes": "default"
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "26.2",
