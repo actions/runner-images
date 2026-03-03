@@ -5,7 +5,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 32370
-- Image Version: 20260217.16.1
+- Image Version: 20260225.23.2
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -35,7 +35,7 @@
 - pip 26.0.1 (python 3.12)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 1940ee77e8)
+- Vcpkg (build from commit 26283ac5e8)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -53,34 +53,34 @@
 ### Tools
 - 7zip 26.00
 - aria2 1.37.0
-- azcopy 10.32.0
+- azcopy 10.32.1
 - Bazel 9.0.0
 - Bazelisk 1.28.1
 - Bicep 0.40.2
 - Cabal 3.16.1.0
 - CMake 4.2.3
-- CodeQL Action Bundle 2.24.1
+- CodeQL Action Bundle 2.24.2
 - Docker 29.1.5
 - Docker Compose v2 2.40.3
 - Docker-wincred 0.9.5
 - ghc 9.14.1
 - Git 2.53.0.windows.1
 - Git LFS 3.7.1
-- ImageMagick 7.1.2-13
+- ImageMagick 7.1.2-15
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.31.0
 - Kubectl 1.35.1
 - gcc 15.2.0
-- gdb 16.3
-- GNU Binutils 2.45
+- gdb 17.1
+- GNU Binutils 2.46
 - Newman 6.2.2
 - OpenSSL 3.6.1
-- Packer 1.14.2
-- Pulumi 3.220.0
+- Packer 1.15.0
+- Pulumi 3.222.0
 - R 4.5.2
 - Service Fabric SDK 10.1.2493.9590
-- Stack 3.9.1
+- Stack 3.9.3
 - Swig 4.3.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
@@ -90,12 +90,12 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.33.23
+- AWS CLI 2.33.27
 - AWS SAM CLI 1.154.0
 - AWS Session Manager CLI 1.2.779.0
 - Azure CLI 2.83.0
 - Azure DevOps CLI extension 1.0.2
-- GitHub CLI 2.86.0
+- GitHub CLI 2.87.3
 
 ### Rust Tools
 - Cargo 1.93.1
@@ -108,14 +108,14 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 145.0.7632.76
-- Chrome Driver 145.0.7632.76
-- Microsoft Edge 145.0.3800.58
-- Microsoft Edge Driver 145.0.3800.58
-- Mozilla Firefox 147.0.4
+- Google Chrome 145.0.7632.117
+- Chrome Driver 145.0.7632.117
+- Microsoft Edge 145.0.3800.70
+- Microsoft Edge Driver 145.0.3800.70
+- Mozilla Firefox 148.0
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.40.0
+- Selenium server 4.41.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -162,7 +162,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Node.js
 - 20.20.0
 - 22.22.0
-- 24.13.1
+- 24.14.0
 
 #### Python
 - 3.10.11
@@ -216,9 +216,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Nginx  | 1.29.5  | C:\tools\nginx-1.29.5\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2026
-| Name                          | Version        | Path                                                   |
-| ----------------------------- | -------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.3.11505.172 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Name                          | Version       | Path                                                   |
+| ----------------------------- | ------------- | ------------------------------------------------------ |
+| Visual Studio Enterprise 2026 | 18.3.11520.95 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -229,7 +229,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Linux.CMake                                                     | 18.3.11407.204  |
 | Component.Linux.RemoteFileExplorer                                        | 18.3.11407.204  |
 | Component.MDD.Linux                                                       | 18.3.11407.204  |
-| Component.Microsoft.NET.AppModernization                                  | 18.3.11429.125  |
+| Component.Microsoft.NET.AppModernization                                  | 18.3.11520.95   |
 | Component.Microsoft.VisualStudio.RazorExtension                           | 18.3.11407.204  |
 | Component.Microsoft.VisualStudio.Tools.Applications.amd64                 | 17.0.36522.0    |
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 18.3.11407.204  |
@@ -443,11 +443,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 8.0.124, 8.0.206, 8.0.319, 8.0.418, 9.0.114, 9.0.205, 9.0.311, 10.0.103
+- .NET Core SDK: 8.0.124, 8.0.206, 8.0.319, 8.0.418, 9.0.114, 9.0.205, 9.0.311, 10.0.102, 10.0.103
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 8.0.6, 8.0.22, 8.0.24, 9.0.6, 9.0.13, 10.0.3
-- Microsoft.NETCore.App: 8.0.6, 8.0.22, 8.0.24, 9.0.6, 9.0.13, 10.0.3
-- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.22, 8.0.24, 9.0.6, 9.0.13, 10.0.3
+- Microsoft.AspNetCore.App: 8.0.6, 8.0.22, 8.0.24, 9.0.6, 9.0.13, 10.0.2, 10.0.3
+- Microsoft.NETCore.App: 8.0.6, 8.0.22, 8.0.24, 9.0.6, 9.0.13, 10.0.2, 10.0.3
+- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.22, 8.0.24, 9.0.6, 9.0.13, 10.0.2, 10.0.3
 - nbgv 3.9.50+6feeb89450
 
 ### PowerShell Tools
@@ -455,7 +455,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 14.6.0
-- AWSPowershell: 5.0.156
+- AWSPowershell: 5.0.162
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.35.1
