@@ -88,7 +88,7 @@ jobs:
       - name: Validate Copilot environment
         shell: bash
         env:
-          COPILOT_GITHUB_TOKEN: ${{ secrets.MODELS_TOKEN }}
+          COPILOT_GITHUB_TOKEN: ${{ secrets.CI_PR_TOKEN }}
         run: |
           if [[ -z "$COPILOT_GITHUB_TOKEN" ]]; then
             echo "MODELS_TOKEN is empty or unavailable in this run"
@@ -104,9 +104,9 @@ jobs:
         env:
           CI_PR_TOKEN: ${{ secrets.CI_PR_TOKEN }}
           CI_REPO: ${{ vars.CI_REPO }}
-          COPILOT_GITHUB_TOKEN: ${{ secrets.MODELS_TOKEN }}
-          GH_TOKEN: ${{ secrets.MODELS_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.MODELS_TOKEN }}
+          COPILOT_GITHUB_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          GH_TOKEN: ${{ secrets.CI_PR_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.CI_PR_TOKEN }}
           COPILOT_AUTO_UPDATE: "false"
           COPILOT_MODEL: gpt-5
           COPILOT_ALLOW_ALL: "false"
