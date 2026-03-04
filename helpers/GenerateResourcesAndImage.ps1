@@ -178,11 +178,13 @@ Function GenerateResourcesAndImage {
         [string] $AzureClientSecret,
         [Parameter(Mandatory = $False)]
         [string] $AzureTenantId,
-        [Parameter(ParameterSetName = 'UseOidc', Mandatory)]
+        [Parameter(Mandatory = $False)]
         [switch] $UseOidc,
-        [Parameter(ParameterSetName = 'UseOidc', Mandatory)]
+        [Parameter(Mandatory = $False)]
+        [ValidateNotNullOrEmpty()]
         [string] $OidcRequestToken,
-        [Parameter(ParameterSetName = 'UseOidc', Mandatory)]
+        [Parameter(Mandatory = $False)]
+        [ValidateNotNullOrEmpty()]
         [string] $OidcRequestUrl,
         [Parameter(Mandatory = $False)]
         [string] $PluginVersion = "2.2.1",
