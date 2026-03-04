@@ -286,33 +286,25 @@ Function GenerateResourcesAndImage {
 
     try {
         # Login to Azure subscription
-        $alreadyLoggedIn = $false
-        az account show --only-show-errors --output none 2>$null
-        if ($LastExitCode -eq 0) {
-            $alreadyLoggedIn = $true
+        if ([string]::IsNullOrEmpty($AzureClientId)) {
+            Write-Verbose "No AzureClientId was provided, will use interactive login."
+            az login --output none
         }
+        elseif ($UseOidc) {
+            if ([string]::IsNullOrEmpty($AzureTenantId)) {
+                throw "AzureTenantId is required for OIDC authentication."
+            }
 
-        if (-not $alreadyLoggedIn) {
-            if ([string]::IsNullOrEmpty($AzureClientId)) {
-                Write-Verbose "No AzureClientId was provided, will use interactive login."
-                az login --output none
+            Write-Verbose "Using OIDC service principal login (federated credentials)."
+            $idToken = Get-GitHubActionsOidcIdToken -RequestUrl $OidcRequestUrl -RequestToken $OidcRequestToken
+            az login --service-principal --username $AzureClientId --tenant $AzureTenantId --federated-token $idToken --output none
+        }
+        else {
+            if ([string]::IsNullOrEmpty($AzureClientSecret) -or [string]::IsNullOrEmpty($AzureTenantId)) {
+                throw "AzureClientSecret and AzureTenantId are required for service principal login unless -UseOidc is specified."
             }
-            elseif ($UseOidc) {
-                if ([string]::IsNullOrEmpty($AzureTenantId)) {
-                    throw "AzureTenantId is required for OIDC authentication."
-                }
-
-                Write-Verbose "Using OIDC service principal login (federated credentials)."
-                $idToken = Get-GitHubActionsOidcIdToken -RequestUrl $OidcRequestUrl -RequestToken $OidcRequestToken
-                az login --service-principal --username $AzureClientId --tenant $AzureTenantId --federated-token $idToken --output none
-            }
-            else {
-                if ([string]::IsNullOrEmpty($AzureClientSecret) -or [string]::IsNullOrEmpty($AzureTenantId)) {
-                    throw "AzureClientSecret and AzureTenantId are required for service principal login unless -UseOidc is specified."
-                }
-                Write-Verbose "AzureClientId was provided, will use service principal login (client secret)."
-                az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
-            }
+            Write-Verbose "AzureClientId was provided, will use service principal login (client secret)."
+            az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
         }
 
         az account set --subscription $SubscriptionId
