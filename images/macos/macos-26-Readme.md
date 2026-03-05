@@ -1,13 +1,12 @@
 | Announcements |
 |-|
-| [macOS 26 (on Intel) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13637) |
+| [macOS 26 (Tahoe) is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/13739) |
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
-| [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
 ***
 # macOS 26
 - OS Version: macOS 26.3 (25D125)
 - Kernel Version: Darwin 25.3.0
-- Image Version: 20260224.0101.1
+- Image Version: 20260303.0134.1
 
 ## Installed Software
 
@@ -23,23 +22,23 @@
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
 - Kotlin 2.3.10-release-465
-- Node.js 24.13.1
+- Node.js 24.14.0
 - Perl 5.42.0
 - PHP 8.5.3
 - Python3 3.14.3
 - Ruby 3.4.8
 
 ### Package Management
-- Bundler 4.0.6
+- Bundler 4.0.7
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.9.5
-- Homebrew 5.0.15
-- NPM 11.8.0
+- Homebrew 5.0.16
+- NPM 11.9.0
 - Pip3 26.0 (python 3.14)
 - Pipx 1.8.0
-- RubyGems 4.0.6
-- Vcpkg 2025 (build from commit b42b19a62b)
+- RubyGems 4.0.7
+- Vcpkg 2026 (build from commit 39a6cc0e44)
 - Yarn 1.22.22
 
 ### Project Management
@@ -71,18 +70,18 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.33.28
+- AWS CLI 2.34.0
 - AWS SAM CLI 1.154.0
 - AWS Session Manager CLI 1.2.779.0
-- Azure CLI 2.83.0
+- Azure CLI 2.84.0
 - Azure CLI (azure-devops) 1.0.2
-- Bicep CLI 0.40.2
+- Bicep CLI 0.41.2
 - Cmake 4.2.3
 - CodeQL Action Bundle 2.24.2
-- Fastlane 2.232.1
+- Fastlane 2.232.2
 - SwiftFormat 0.59.1
 - Xcbeautify 3.1.4
-- Xcode Command Line Tools 26.2.0.0.1.1764812424
+- Xcode Command Line Tools 26.3.0.0.1.1771626560
 - Xcodes 1.6.2
 
 ### Linters
@@ -94,11 +93,11 @@
 - Google Chrome 145.0.7632.117
 - Google Chrome for Testing 145.0.7632.117
 - ChromeDriver 145.0.7632.117
-- Microsoft Edge 145.0.3800.70
-- Microsoft Edge WebDriver 145.0.3800.70
-- Mozilla Firefox 147.0.4
+- Microsoft Edge 145.0.3800.82
+- Microsoft Edge WebDriver 145.0.3800.82
+- Mozilla Firefox 148.0
 - geckodriver 0.36.0
-- Selenium server 4.40.0
+- Selenium server 4.41.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -132,7 +131,7 @@
 #### Node.js
 - 20.20.0
 - 22.22.0
-- 24.13.1
+- 24.14.0
 
 #### Go
 - 1.23.12
@@ -158,13 +157,13 @@
 - PSScriptAnalyzer: 1.24.0
 
 ### Xcode
-| Version        | Build    | Path                                             | Symlinks                                                       |
-| -------------- | -------- | ------------------------------------------------ | -------------------------------------------------------------- |
-| 26.4 (beta)    | 17E5159k | /Applications/Xcode_26.4_beta.app                | /Applications/Xcode_26.4.0.app<br>/Applications/Xcode_26.4.app |
-| 26.3           | 17C528   | /Applications/Xcode_26.3_Release_Candidate_2.app | /Applications/Xcode_26.3.0.app<br>/Applications/Xcode_26.3.app |
-| 26.2 (default) | 17C52    | /Applications/Xcode_26.2.app                     | /Applications/Xcode_26.2.0.app<br>/Applications/Xcode.app      |
-| 26.1.1         | 17B100   | /Applications/Xcode_26.1.1.app                   | /Applications/Xcode_26.1.app                                   |
-| 26.0.1         | 17A400   | /Applications/Xcode_26.0.1.app                   | /Applications/Xcode_26.0.app                                   |
+| Version        | Build    | Path                                | Symlinks                                                       |
+| -------------- | -------- | ----------------------------------- | -------------------------------------------------------------- |
+| 26.4 (beta)    | 17E5170d | /Applications/Xcode_26.4_beta_2.app | /Applications/Xcode_26.4.0.app<br>/Applications/Xcode_26.4.app |
+| 26.3           | 17C529   | /Applications/Xcode_26.3.app        | /Applications/Xcode_26.3.0.app                                 |
+| 26.2 (default) | 17C52    | /Applications/Xcode_26.2.app        | /Applications/Xcode_26.2.0.app<br>/Applications/Xcode.app      |
+| 26.1.1         | 17B100   | /Applications/Xcode_26.1.1.app      | /Applications/Xcode_26.1.app                                   |
+| 26.0.1         | 17A400   | /Applications/Xcode_26.0.1.app      | /Applications/Xcode_26.0.app                                   |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -230,7 +229,7 @@
 | Android Emulator           | 36.4.9                                                                                                                                                                           |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                   |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
-| Android SDK Platform-Tools | 36.0.2                                                                                                                                                                           |
+| Android SDK Platform-Tools | 37.0.0                                                                                                                                                                           |
 | Android Support Repository | 47.0.0                                                                                                                                                                           |
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                  |
 | Google Play services       | 49                                                                                                                                                                               |
