@@ -91,6 +91,13 @@ Function GenerateResourcesAndImage {
             The type of image to generate. Valid values are: Windows2022, Windows2025, Windows2025_vs2026, Ubuntu2204, Ubuntu2404.
         .PARAMETER ManagedImageName
             The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
+        .PARAMETER ComputeGalleryName
+            The name of the existing compute gallery to use. If specified, the image definition and version will be created in this gallery instead of creating a managed image.
+            The compute gallery must already exist in the resource group specified by the ResourceGroupName parameter.
+        .PARAMETER ComputeGalleryImageName
+            The name of the compute gallery image definition to create within the specified compute gallery. This is required if ComputeGalleryName is specified.
+        .PARAMETER ComputeGalleryImageVersion
+            The name of the compute gallery image version to create within the specified compute gallery image definition. This is required if ComputeGalleryName is specified.          
         .PARAMETER AzureLocation
             The Azure location where the Azure resources will be created. For example: "East US"
         .PARAMETER ImageGenerationRepositoryRoot
@@ -130,6 +137,12 @@ Function GenerateResourcesAndImage {
         [ImageType] $ImageType,
         [Parameter(Mandatory = $False)]
         [string] $ManagedImageName = "Runner-Image-$($ImageType)",
+        [Parameter(Mandatory = $False)]
+        [string] $ComputeGalleryName,
+        [Parameter(Mandatory = $False)]
+        [string] $ComputeGalleryImageName,
+        [Parameter(Mandatory = $False)]
+        [string] $ComputeGalleryImageVersion,
         [Parameter(Mandatory = $True)]
         [string] $AzureLocation,
         [Parameter(Mandatory = $False)]
@@ -159,6 +172,17 @@ Function GenerateResourcesAndImage {
     $PackerBinary = Get-Command "packer"
     if (-not ($PackerBinary)) {
         throw "'packer' binary is not found on PATH."
+    }
+
+    # Validate Compute Gallery parameters
+    if ($ComputeGalleryName -and -not $ComputeGalleryImageName) {
+        throw "ComputeGalleryImageName parameter is required when ComputeGalleryName is specified."
+    }
+    if ($ComputeGalleryName -and -not $ComputeGalleryImageVersion) {
+        throw "ComputeGalleryImageVersion parameter is required when ComputeGalleryName is specified."
+    }
+    if ($ComputeGalleryImageVersion -and -not ($ComputeGalleryImageVersion -match '^\d+\.\d+\.\d+$')) {
+        throw "ComputeGalleryImageVersion parameter must be in the format Major.Minor.Patch, for example: 1.0.0."
     }
 
     # Get template path
@@ -204,6 +228,25 @@ Function GenerateResourcesAndImage {
     }
     Write-Debug "Tags JSON: $TagsJson."
 
+    # Prepare artifact arguments
+    if ($ComputeGalleryName) {
+        Write-Host "Compute gallery '$ComputeGalleryName' will be used to store the resulting image."
+        $artifactArgs = @(
+            "-var=gallery_name=$($ComputeGalleryName)",
+            "-var=gallery_image_name=$($ComputeGalleryImageName)",
+            "-var=gallery_image_version=$($ComputeGalleryImageVersion)",
+            "-var=gallery_resource_group_name=$($ResourceGroupName)"
+        )
+    }
+    else {
+        Write-Host "A managed image with name '$ManagedImageName' will be created to store the resulting image."
+        $artifactArgs = @(
+            "-var=managed_image_name=$($ManagedImageName)",
+            "-var=managed_image_resource_group_name=$($ResourceGroupName)"
+        )
+    }
+
+
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
 
     Write-Host "Downloading packer plugins..."
@@ -222,8 +265,7 @@ Function GenerateResourcesAndImage {
         "-var=tenant_id=fake" `
         "-var=location=$($AzureLocation)" `
         "-var=image_os=$($PackerTemplate.ImageOS)" `
-        "-var=managed_image_name=$($ManagedImageName)" `
-        "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
+        @artifactArgs `
         "-var=install_password=$($InstallPassword)" `
         "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
         "-var=azure_tags=$($TagsJson)" `
@@ -255,6 +297,25 @@ Function GenerateResourcesAndImage {
         }
         else {
             throw "Resource group '$ResourceGroupName' does not exist."
+        }
+
+        # Check compute gallery and image definition existence
+        if ($ComputeGalleryName) {
+            $ComputeGalleryExists = az sig show --resource-group $ResourceGroupName --gallery-name $ComputeGalleryName --query "id" --output tsv 2>$null;
+            if ($ComputeGalleryExists) {
+                Write-Verbose "Compute gallery '$ComputeGalleryName' already exists in resource group '$ResourceGroupName'."
+            }
+            else {
+                throw "Compute gallery '$ComputeGalleryName' does not exist in resource group '$ResourceGroupName'."
+            }
+
+            $ImageDefinitionExists = az sig image-definition show --resource-group $ResourceGroupName --gallery-name $ComputeGalleryName --name $ComputeGalleryImageName --query "id" --output tsv 2>$null;
+            if ($ImageDefinitionExists) {
+                Write-Verbose "Compute gallery image definition '$ComputeGalleryImageName' already exists in compute gallery '$ComputeGalleryName'."
+            }
+            else {
+                throw "Compute gallery image definition '$ComputeGalleryImageName' does not exist in compute gallery '$ComputeGalleryName'."
+            }
         }
 
         # Create service principal
@@ -292,8 +353,7 @@ Function GenerateResourcesAndImage {
             -var "tenant_id=$($TenantId)" `
             -var "location=$($AzureLocation)" `
             -var "image_os=$($PackerTemplate.ImageOS)" `
-            -var "managed_image_name=$($ManagedImageName)" `
-            -var "managed_image_resource_group_name=$($ResourceGroupName)" `
+            @artifactArgs `
             -var "install_password=$($InstallPassword)" `
             -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
             -var "azure_tags=$($TagsJson)" `
