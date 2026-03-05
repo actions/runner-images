@@ -106,11 +106,6 @@
 #### Packages
 - Clippy 0.1.93
 - Rustfmt 1.8.0
-
-### Browsers and Drivers
-- Google Chrome 145.0.7632.117
-- Chrome Driver 145.0.7632.117
-- Microsoft Edge 145.0.3800.70
 - Microsoft Edge Driver 145.0.3800.70
 - Mozilla Firefox 148.0
 - Gecko Driver 0.36.0
@@ -119,6 +114,11 @@
 
 #### Environment variables
 | Name              | Value                              |
+
+### Browsers and Drivers
+- Google Chrome 145.0.7632.117
+- Chrome Driver 145.0.7632.117
+- Microsoft Edge 145.0.3800.70
 | ----------------- | ---------------------------------- |
 | CHROMEWEBDRIVER   | C:\SeleniumWebDrivers\ChromeDriver |
 | EDGEWEBDRIVER     | C:\SeleniumWebDrivers\EdgeDriver   |
