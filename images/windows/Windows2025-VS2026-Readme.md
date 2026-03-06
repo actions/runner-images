@@ -5,7 +5,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 32370
-- Image Version: 20260225.23.2
+- Image Version: 20260301.27.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -35,7 +35,7 @@
 - pip 26.0.1 (python 3.12)
 - Pipx 1.8.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 26283ac5e8)
+- Vcpkg (build from commit 62159a45e1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -48,7 +48,7 @@
 - Ant 1.10.15
 - Gradle 9.3
 - Maven 3.9.12
-- sbt 1.12.3
+- sbt 1.12.4
 
 ### Tools
 - 7zip 26.00
@@ -56,7 +56,7 @@
 - azcopy 10.32.1
 - Bazel 9.0.0
 - Bazelisk 1.28.1
-- Bicep 0.40.2
+- Bicep 0.41.2
 - Cabal 3.16.1.0
 - CMake 4.2.3
 - CodeQL Action Bundle 2.24.2
@@ -70,14 +70,14 @@
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.31.0
-- Kubectl 1.35.1
+- Kubectl 1.35.2
 - gcc 15.2.0
 - gdb 17.1
 - GNU Binutils 2.46
 - Newman 6.2.2
 - OpenSSL 3.6.1
 - Packer 1.15.0
-- Pulumi 3.222.0
+- Pulumi 3.224.0
 - R 4.5.2
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.9.3
@@ -90,7 +90,7 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.33.27
+- AWS CLI 2.34.0
 - AWS SAM CLI 1.154.0
 - AWS Session Manager CLI 1.2.779.0
 - Azure CLI 2.83.0
@@ -110,8 +110,8 @@
 ### Browsers and Drivers
 - Google Chrome 145.0.7632.117
 - Chrome Driver 145.0.7632.117
-- Microsoft Edge 145.0.3800.70
-- Microsoft Edge Driver 145.0.3800.70
+- Microsoft Edge 145.0.3800.82
+- Microsoft Edge Driver 145.0.3800.82
 - Mozilla Firefox 148.0
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -187,7 +187,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                  |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | ServiceName          | postgresql-x64-17                                                                                                      |
-| Version              | 17.8                                                                                                                   |
+| Version              | 17.9                                                                                                                   |
 | ServiceStatus        | Stopped                                                                                                                |
 | ServiceStartType     | Disabled                                                                                                               |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\17\bin <br> PGDATA=C:\PostgreSQL\17\data <br> PGROOT=C:\Program Files\PostgreSQL\17  |
@@ -455,7 +455,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 14.6.0
-- AWSPowershell: 5.0.162
+- AWSPowershell: 5.0.165
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.35.1
