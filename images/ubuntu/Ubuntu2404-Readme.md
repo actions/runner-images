@@ -57,7 +57,7 @@ to accomplish this.
 - Ant 1.10.14
 - Gradle 9.3.1
 - Lerna 9.0.4
-- Maven 3.9.12
+- Maven 3.9.9
 
 ### Tools
 - Ansible 2.20.3
