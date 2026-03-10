@@ -121,7 +121,8 @@ Function GenerateResourcesAndImage {
         .PARAMETER ManagedImageName
             The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation
-            The Azure location where the Azure resources will be created. For example: "East US"
+            The Azure location where the Azure resources will be created. For example: "East US".
+            This parameter is required unless BUILD_RG_NAME environment variable is set.
         .PARAMETER ImageGenerationRepositoryRoot
             The root directory of the image generation repository. This is used to locate the packer template.
         .PARAMETER SecondsToWaitForServicePrincipalSetup
@@ -166,7 +167,7 @@ Function GenerateResourcesAndImage {
         [ImageType] $ImageType,
         [Parameter(Mandatory = $False)]
         [string] $ManagedImageName = "Runner-Image-$($ImageType)",
-        [Parameter(Mandatory = $True)]
+        [Parameter(Mandatory = $False)]
         [string] $AzureLocation,
         [Parameter(Mandatory = $False)]
         [string] $ImageGenerationRepositoryRoot = $pwd,
@@ -208,6 +209,22 @@ Function GenerateResourcesAndImage {
     # Get template path
     $PackerTemplate = Get-PackerTemplate -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
     Write-Debug "Template path: $($PackerTemplate.Path)."
+
+    $BuildResourceGroupName = $env:BUILD_RG_NAME
+    $UseExistingBuildResourceGroup = -not [string]::IsNullOrWhiteSpace($BuildResourceGroupName)
+    $UseAzureLocation = -not [string]::IsNullOrWhiteSpace($AzureLocation)
+
+    if ($UseExistingBuildResourceGroup -and $UseAzureLocation) {
+        throw "Specify either AzureLocation or BUILD_RG_NAME, but not both. BUILD_RG_NAME is currently '$BuildResourceGroupName'."
+    }
+
+    if (-not $UseExistingBuildResourceGroup -and -not $UseAzureLocation) {
+        throw "AzureLocation is required when BUILD_RG_NAME is not set."
+    }
+
+    if ($UseExistingBuildResourceGroup) {
+        Write-Host "Using existing build resource group '$BuildResourceGroupName' from BUILD_RG_NAME."
+    }
 
     # Prepare list of allowed inbound IP addresses
     if ($RestrictToAgentIpAddress) {
@@ -263,22 +280,29 @@ Function GenerateResourcesAndImage {
         $validateClientSecret = ""
     }
 
-    & $PackerBinary validate `
-        "-only=$($PackerTemplate.BuildName).*" `
-        "-var=client_id=fake" `
-        "-var=client_secret=$($validateClientSecret)" `
-        "-var=oidc_request_token=fake" `
-        "-var=oidc_request_url=fake" `
-        "-var=subscription_id=$($SubscriptionId)" `
-        "-var=tenant_id=fake" `
-        "-var=location=$($AzureLocation)" `
-        "-var=image_os=$($PackerTemplate.ImageOS)" `
-        "-var=managed_image_name=$($ManagedImageName)" `
-        "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
-        "-var=install_password=$($InstallPassword)" `
-        "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-        "-var=azure_tags=$($TagsJson)" `
-        $PackerTemplate.Path
+    $PackerValidateArgs = @(
+        "-only=$($PackerTemplate.BuildName).*"
+        "-var=client_id=fake"
+        "-var=client_secret=$($validateClientSecret)"
+        "-var=oidc_request_token=fake"
+        "-var=oidc_request_url=fake"
+        "-var=subscription_id=$($SubscriptionId)"
+        "-var=tenant_id=fake"
+        "-var=image_os=$($PackerTemplate.ImageOS)"
+        "-var=managed_image_name=$($ManagedImageName)"
+        "-var=managed_image_resource_group_name=$($ResourceGroupName)"
+        "-var=install_password=$($InstallPassword)"
+        "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)"
+        "-var=azure_tags=$($TagsJson)"
+    )
+
+    if ($UseAzureLocation) {
+        $PackerValidateArgs += "-var=location=$($AzureLocation)"
+    }
+
+    $PackerValidateArgs += $PackerTemplate.Path
+
+    & $PackerBinary validate @PackerValidateArgs
 
     if ($LastExitCode -ne 0) {
         throw "Packer template validation failed."
@@ -365,22 +389,42 @@ Function GenerateResourcesAndImage {
         Write-Debug "Service principal app id: $ServicePrincipalAppId."
         Write-Debug "Tenant id: $TenantId."
 
-        & $PackerBinary build -on-error="$($OnError)" `
-            -only "$($PackerTemplate.BuildName).*" `
-            -var "client_id=$($ServicePrincipalAppId)" `
-            -var "client_secret=$($ServicePrincipalPassword)" `
-            -var "oidc_request_token=$($env:PKR_VAR_oidc_request_token)" `
-            -var "oidc_request_url=$($env:PKR_VAR_oidc_request_url)" `
-            -var "subscription_id=$($SubscriptionId)" `
-            -var "tenant_id=$($TenantId)" `
-            -var "location=$($AzureLocation)" `
-            -var "image_os=$($PackerTemplate.ImageOS)" `
-            -var "managed_image_name=$($ManagedImageName)" `
-            -var "managed_image_resource_group_name=$($ResourceGroupName)" `
-            -var "install_password=$($InstallPassword)" `
-            -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-            -var "azure_tags=$($TagsJson)" `
-            $PackerTemplate.Path
+        $PackerBuildArgs = @(
+            "-on-error=$($OnError)"
+            "-only=$($PackerTemplate.BuildName).*"
+            "-var"
+            "client_id=$($ServicePrincipalAppId)"
+            "-var"
+            "client_secret=$($ServicePrincipalPassword)"
+            "-var"
+            "oidc_request_token=$($env:PKR_VAR_oidc_request_token)"
+            "-var"
+            "oidc_request_url=$($env:PKR_VAR_oidc_request_url)"
+            "-var"
+            "subscription_id=$($SubscriptionId)"
+            "-var"
+            "tenant_id=$($TenantId)"
+            "-var"
+            "image_os=$($PackerTemplate.ImageOS)"
+            "-var"
+            "managed_image_name=$($ManagedImageName)"
+            "-var"
+            "managed_image_resource_group_name=$($ResourceGroupName)"
+            "-var"
+            "install_password=$($InstallPassword)"
+            "-var"
+            "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)"
+            "-var"
+            "azure_tags=$($TagsJson)"
+        )
+
+        if ($UseAzureLocation) {
+            $PackerBuildArgs += @("-var", "location=$($AzureLocation)")
+        }
+
+        $PackerBuildArgs += $PackerTemplate.Path
+
+        & $PackerBinary build @PackerBuildArgs
 
         if ($LastExitCode -ne 0) {
             throw "Failed to build image."
