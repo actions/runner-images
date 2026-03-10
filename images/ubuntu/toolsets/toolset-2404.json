@@ -132,7 +132,6 @@
             "gnupg2",
             "iproute2",
             "iputils-ping",
-            "libicu-dev",
             "libyaml-dev",
             "libtool",
             "libssl-dev",
