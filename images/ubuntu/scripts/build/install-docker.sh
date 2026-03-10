@@ -65,9 +65,16 @@ systemctl is-enabled --quiet docker.service || systemctl enable docker.service
 sleep 10
 docker info
 
-# Pull Dependabot docker image
 if ! is_ubuntu22; then
+    # Pull Dependabot docker image
     docker pull ghcr.io/dependabot/dependabot-updater-core:latest
+
+    # Pull AW docker images
+    docker pull ghcr.io/github/gh-aw-mcpg:latest
+    docker pull ghcr.io/github/gh-aw-firewall/agent:latest
+    docker pull ghcr.io/github/gh-aw-firewall/api-proxy:latest
+    docker pull ghcr.io/github/gh-aw-firewall/squid:latest
+    docker pull ghcr.io/github/github-mcp-server:latest
 fi
 
 # Download amazon-ecr-credential-helper

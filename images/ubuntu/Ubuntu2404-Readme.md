@@ -5,7 +5,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.3 LTS
 - Kernel Version: 6.14.0-1017-azure
-- Image Version: 20260224.36.1
+- Image Version: 20260302.42.1
 - Systemd version: 255.4-1ubuntu8.12
 
 ## Installed Software
@@ -24,19 +24,19 @@
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 6.2.3
+- Swift 6.2.4
 
 ### Package Management
 - cpan 1.64
 - Helm 3.20.0
-- Homebrew 5.0.15
+- Homebrew 5.0.16
 - Miniconda 25.11.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.8.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit b42b19a62b)
+- Vcpkg (build from commit 96fb8cef55)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,7 +56,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.14
 - Gradle 9.3.1
-- Lerna 9.0.4
+- Lerna 9.0.5
 - Maven 3.9.13
 
 ### Tools
@@ -64,23 +64,23 @@ to accomplish this.
 - AzCopy 10.32.1 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.0.0
 - Bazelisk 1.28.1
-- Bicep 0.40.2
+- Bicep 0.41.2
 - Buildah 1.33.7
 - CMake 3.31.6
 - CodeQL Action Bundle 2.24.2
-- Docker Amazon ECR Credential Helper 0.11.0
+- Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose v2 2.38.2
 - Docker-Buildx 0.31.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.232.1
+- Fastlane 2.232.2
 - Git 2.53.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.31.0
-- Kubectl 1.35.1
+- Kubectl 1.35.2
 - Kustomize 5.8.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -92,7 +92,7 @@ to accomplish this.
 - Packer 1.15.0
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.223.0
+- Pulumi 3.224.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -101,13 +101,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.33.28
+- AWS CLI 2.34.0
 - AWS CLI Session Manager Plugin 1.2.779.0
 - AWS SAM CLI 1.154.0
 - Azure CLI 2.83.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.87.3
-- Google Cloud CLI 557.0.0
+- Google Cloud CLI 558.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -145,10 +145,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 145.0.7632.116
 - ChromeDriver 145.0.7632.117
 - Chromium 145.0.7632.0
-- Microsoft Edge 145.0.3800.70
-- Microsoft Edge WebDriver 145.0.3800.70
+- Microsoft Edge 145.0.3800.82
+- Microsoft Edge WebDriver 145.0.3800.82
 - Selenium server 4.41.0
-- Mozilla Firefox 147.0.4
+- Mozilla Firefox 148.0
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -167,7 +167,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.12
+- PostgreSQL 16.13
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -194,7 +194,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 20.20.0
 - 22.22.0
-- 24.13.1
+- 24.14.0
 
 #### Python
 - 3.10.19
@@ -264,7 +264,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.1.0-2build2                |
 | bzip2                  | 1.0.8-5.1build0.1            |
 | coreutils              | 9.4-3ubuntu6.1               |
-| curl                   | 8.5.0-2ubuntu10.6            |
+| curl                   | 8.5.0-2ubuntu10.7            |
 | dbus                   | 1.14.10-4ubuntu4.1           |
 | dnsutils               | 1:9.18.39-0ubuntu0.24.04.2   |
 | dpkg                   | 1.22.6ubuntu6.5              |
