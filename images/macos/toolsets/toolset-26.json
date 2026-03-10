@@ -23,7 +23,11 @@
                     "filename": "Xcode_26.2_Universal",
                     "version": "26.2+17C52",
                     "sha256": "8f29ab6a9ac6670d3cf53545ffdb1c317d11607fa8db38fc56d3391df7783fbd",
-                    "install_runtimes": "default"
+                    "install_runtimes": [
+                        { "iOS": ["26.2"] },
+                        { "watchOS": ["default"] },
+                        { "tvOS": ["default"] }
+                    ]
                 },
                 {
                     "link": "26.1.1",
