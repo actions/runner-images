@@ -6,12 +6,12 @@
 # macOS 14
 - OS Version: macOS 14.8.4 (23J319)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20260302.0147.1
+- Image Version: 20260311.0163.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.418, 9.0.102, 9.0.203, 9.0.311, 10.0.103
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.419, 9.0.102, 9.0.203, 9.0.312, 10.0.103, 10.0.200
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -23,40 +23,40 @@
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
 - Kotlin 2.3.10-release-465
 - Mono 6.12.0.188
-- Node.js 20.20.0
+- Node.js 20.20.1
 - Perl 5.42.0
 - Python3 3.14.3
 - Ruby 3.3.10
 
 ### Package Management
-- Bundler 4.0.7
+- Bundler 4.0.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.0.15
+- Homebrew 5.0.16
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 26.0 (python 3.14)
 - Pipx 1.8.0
-- RubyGems 4.0.7
-- Vcpkg 2026 (build from commit 62159a45e1)
+- RubyGems 4.0.8
+- Vcpkg 2026 (build from commit 58950f8854)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
-- Apache Maven 3.9.12
-- Gradle 9.3.1
+- Apache Maven 3.9.13
+- Gradle 9.4.0
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.32.1
-- bazel 9.0.0
+- bazel 9.0.1
 - bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.53.0
 - Git LFS 3.7.1
-- GitHub CLI 2.87.3
+- GitHub CLI 2.88.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.9
@@ -70,16 +70,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.0
-- AWS SAM CLI 1.154.0
+- AWS CLI 2.34.6
+- AWS SAM CLI 1.155.2
 - AWS Session Manager CLI 1.2.779.0
-- Azure CLI 2.83.0
+- Azure CLI 2.84.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.41.2
 - Cmake 4.2.3
-- CodeQL Action Bundle 2.24.2
+- CodeQL Action Bundle 2.24.3
 - Fastlane 2.232.2
-- SwiftFormat 0.59.1
+- SwiftFormat 0.60.1
 - Xcbeautify 3.1.4
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
@@ -87,12 +87,12 @@
 ### Browsers
 - Safari 26.3 (19623.2.7.18.1)
 - SafariDriver 26.3 (19623.2.7.18.1)
-- Google Chrome 145.0.7632.117
-- Google Chrome for Testing 145.0.7632.117
-- ChromeDriver 145.0.7632.117
-- Microsoft Edge 145.0.3800.82
-- Microsoft Edge WebDriver 145.0.3800.82
-- Mozilla Firefox 148.0
+- Google Chrome 146.0.7680.72
+- Google Chrome for Testing 146.0.7680.72
+- ChromeDriver 146.0.7680.72
+- Microsoft Edge 145.0.3800.97
+- Microsoft Edge WebDriver 145.0.3800.97
+- Mozilla Firefox 148.0.2
 - geckodriver 0.36.0
 - Selenium server 4.41.0
 
@@ -126,24 +126,24 @@
 - 3.14.3
 
 #### Node.js
-- 20.20.0
-- 22.22.0
+- 20.20.1
+- 22.22.1
 - 24.14.0
 
 #### Go
 - 1.22.12
 - 1.23.12
 - 1.24.13
-- 1.25.7
+- 1.25.8
 
 ### Rust Tools
-- Cargo 1.93.1
-- Rust 1.93.1
-- Rustdoc 1.93.1
+- Cargo 1.94.0
+- Rust 1.94.0
+- Rustdoc 1.94.0
 - Rustup 1.28.2
 
 #### Packages
-- Clippy 0.1.93
+- Clippy 0.1.94
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
@@ -261,7 +261,7 @@
 | Android Emulator           | 36.4.9                                                                                                                                                                                                                                                                                                                |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                              |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
-| Android SDK Platform-Tools | 36.0.2                                                                                                                                                                                                                                                                                                                |
+| Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                |
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                    |
