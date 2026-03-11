@@ -53,7 +53,7 @@ function Install-JavaJDK {
     )
 
     # Get Java version from api
-    $assetUrl = Invoke-RestMethod -Uri "https://api.adoptium.net/v3/assets/latest/${JDKVersion}/hotspot"
+    $assetUrl = Invoke-RestMethod -Uri "https://api.adoptium.net/v3/assets/latest/${JDKVersion}/hotspot" -Headers @{"Accept" = "application/json"}
 
     $asset = $assetUrl | Where-Object {
         $_.binary.os -eq "windows" `
