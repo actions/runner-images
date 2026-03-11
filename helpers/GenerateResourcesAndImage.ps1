@@ -214,12 +214,8 @@ Function GenerateResourcesAndImage {
     $UseExistingBuildResourceGroup = -not [string]::IsNullOrWhiteSpace($BuildResourceGroupName)
     $UseAzureLocation = -not [string]::IsNullOrWhiteSpace($AzureLocation)
 
-    if ($UseExistingBuildResourceGroup -and $UseAzureLocation) {
-        throw "Specify either AzureLocation or BUILD_RG_NAME, but not both. BUILD_RG_NAME is currently '$BuildResourceGroupName'."
-    }
-
-    if (-not $UseExistingBuildResourceGroup -and -not $UseAzureLocation) {
-        throw "AzureLocation is required when BUILD_RG_NAME is not set."
+    if ($UseExistingBuildResourceGroup -eq $UseAzureLocation) {
+        throw "Specify exactly one value: AzureLocation or BUILD_RG_NAME."
     }
 
     if ($UseExistingBuildResourceGroup) {
