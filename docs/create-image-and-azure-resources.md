@@ -97,19 +97,10 @@ Finally, run the `GenerateResourcesAndImage` function, setting the mandatory arg
 - `SubscriptionId` - your Azure Subscription ID;
 - `ResourceGroupName` - the name of the resource group that will store the resulting artifact (e.g., "imagegen-test").
     The resource group must already exist in your Azure subscription;
-- `AzureLocation` - the location where resources will be created (e.g., "East US").
-  This argument is required unless you use an existing build resource group via `BUILD_RG_NAME` environment variable;
+- `AzureLocation` - the location where resources will be created (e.g., "East US");
 - `ImageType` - the type of image to build (valid options are "Windows2022", "Windows2025", "Ubuntu2204", "Ubuntu2404").
 
 This function automatically creates all required Azure resources and initiates the Packer image generation for the selected image type.
-
-If you want to use an existing build resource group for temporary Packer resources, set `BUILD_RG_NAME` before invoking the function.
-When `BUILD_RG_NAME` is set, do not pass `AzureLocation`.
-
-```powershell
-$env:BUILD_RG_NAME = "my-existing-build-rg"
-GenerateResourcesAndImage -SubscriptionId <subscription-id> -ResourceGroupName "imagegen-artifacts-rg" -ImageType Ubuntu2404
-```
 
 When the image is ready, you may proceed to [deployment](#generated-machine-deployment).
 

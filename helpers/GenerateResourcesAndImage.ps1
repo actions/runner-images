@@ -121,8 +121,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER ManagedImageName
             The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation
-            The Azure location where the Azure resources will be created. For example: "East US".
-            This parameter is required unless BUILD_RG_NAME environment variable is set.
+            The Azure location where the Azure resources will be created. For example: "East US"
         .PARAMETER ImageGenerationRepositoryRoot
             The root directory of the image generation repository. This is used to locate the packer template.
         .PARAMETER SecondsToWaitForServicePrincipalSetup
@@ -210,18 +209,6 @@ Function GenerateResourcesAndImage {
     $PackerTemplate = Get-PackerTemplate -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
     Write-Debug "Template path: $($PackerTemplate.Path)."
 
-    $BuildResourceGroupName = $env:BUILD_RG_NAME
-    $UseExistingBuildResourceGroup = -not [string]::IsNullOrWhiteSpace($BuildResourceGroupName)
-    $UseAzureLocation = -not [string]::IsNullOrWhiteSpace($AzureLocation)
-
-    if ($UseExistingBuildResourceGroup -eq $UseAzureLocation) {
-        throw "Specify exactly one value: AzureLocation or BUILD_RG_NAME."
-    }
-
-    if ($UseExistingBuildResourceGroup) {
-        Write-Host "Using existing build resource group '$BuildResourceGroupName' from BUILD_RG_NAME."
-    }
-
     # Prepare list of allowed inbound IP addresses
     if ($RestrictToAgentIpAddress) {
         $AgentIp = (Invoke-RestMethod https://ipinfo.io/json).ip
@@ -276,41 +263,22 @@ Function GenerateResourcesAndImage {
         $validateClientSecret = ""
     }
 
-    if ($UseAzureLocation) {
-        & $PackerBinary validate `
-            "-only=$($PackerTemplate.BuildName).*" `
-            "-var=client_id=fake" `
-            "-var=client_secret=$($validateClientSecret)" `
-            "-var=oidc_request_token=fake" `
-            "-var=oidc_request_url=fake" `
-            "-var=subscription_id=$($SubscriptionId)" `
-            "-var=tenant_id=fake" `
-            "-var=location=$($AzureLocation)" `
-            "-var=image_os=$($PackerTemplate.ImageOS)" `
-            "-var=managed_image_name=$($ManagedImageName)" `
-            "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
-            "-var=install_password=$($InstallPassword)" `
-            "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-            "-var=azure_tags=$($TagsJson)" `
-            $PackerTemplate.Path
-    }
-    else {
-        & $PackerBinary validate `
-            "-only=$($PackerTemplate.BuildName).*" `
-            "-var=client_id=fake" `
-            "-var=client_secret=$($validateClientSecret)" `
-            "-var=oidc_request_token=fake" `
-            "-var=oidc_request_url=fake" `
-            "-var=subscription_id=$($SubscriptionId)" `
-            "-var=tenant_id=fake" `
-            "-var=image_os=$($PackerTemplate.ImageOS)" `
-            "-var=managed_image_name=$($ManagedImageName)" `
-            "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
-            "-var=install_password=$($InstallPassword)" `
-            "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-            "-var=azure_tags=$($TagsJson)" `
-            $PackerTemplate.Path
-    }
+    & $PackerBinary validate `
+        "-only=$($PackerTemplate.BuildName).*" `
+        "-var=client_id=fake" `
+        "-var=client_secret=$($validateClientSecret)" `
+        "-var=oidc_request_token=fake" `
+        "-var=oidc_request_url=fake" `
+        "-var=subscription_id=$($SubscriptionId)" `
+        "-var=tenant_id=fake" `
+        "-var=location=$($AzureLocation)" `
+        "-var=image_os=$($PackerTemplate.ImageOS)" `
+        "-var=managed_image_name=$($ManagedImageName)" `
+        "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
+        "-var=install_password=$($InstallPassword)" `
+        "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+        "-var=azure_tags=$($TagsJson)" `
+        $PackerTemplate.Path
 
     if ($LastExitCode -ne 0) {
         throw "Packer template validation failed."
@@ -397,41 +365,22 @@ Function GenerateResourcesAndImage {
         Write-Debug "Service principal app id: $ServicePrincipalAppId."
         Write-Debug "Tenant id: $TenantId."
 
-        if ($UseAzureLocation) {
-            & $PackerBinary build -on-error="$($OnError)" `
-                -only "$($PackerTemplate.BuildName).*" `
-                -var "client_id=$($ServicePrincipalAppId)" `
-                -var "client_secret=$($ServicePrincipalPassword)" `
-                -var "oidc_request_token=$($env:PKR_VAR_oidc_request_token)" `
-                -var "oidc_request_url=$($env:PKR_VAR_oidc_request_url)" `
-                -var "subscription_id=$($SubscriptionId)" `
-                -var "tenant_id=$($TenantId)" `
-                -var "location=$($AzureLocation)" `
-                -var "image_os=$($PackerTemplate.ImageOS)" `
-                -var "managed_image_name=$($ManagedImageName)" `
-                -var "managed_image_resource_group_name=$($ResourceGroupName)" `
-                -var "install_password=$($InstallPassword)" `
-                -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-                -var "azure_tags=$($TagsJson)" `
-                $PackerTemplate.Path
-        }
-        else {
-            & $PackerBinary build -on-error="$($OnError)" `
-                -only "$($PackerTemplate.BuildName).*" `
-                -var "client_id=$($ServicePrincipalAppId)" `
-                -var "client_secret=$($ServicePrincipalPassword)" `
-                -var "oidc_request_token=$($env:PKR_VAR_oidc_request_token)" `
-                -var "oidc_request_url=$($env:PKR_VAR_oidc_request_url)" `
-                -var "subscription_id=$($SubscriptionId)" `
-                -var "tenant_id=$($TenantId)" `
-                -var "image_os=$($PackerTemplate.ImageOS)" `
-                -var "managed_image_name=$($ManagedImageName)" `
-                -var "managed_image_resource_group_name=$($ResourceGroupName)" `
-                -var "install_password=$($InstallPassword)" `
-                -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-                -var "azure_tags=$($TagsJson)" `
-                $PackerTemplate.Path
-        }
+        & $PackerBinary build -on-error="$($OnError)" `
+            -only "$($PackerTemplate.BuildName).*" `
+            -var "client_id=$($ServicePrincipalAppId)" `
+            -var "client_secret=$($ServicePrincipalPassword)" `
+            -var "oidc_request_token=$($env:PKR_VAR_oidc_request_token)" `
+            -var "oidc_request_url=$($env:PKR_VAR_oidc_request_url)" `
+            -var "subscription_id=$($SubscriptionId)" `
+            -var "tenant_id=$($TenantId)" `
+            -var "location=$($AzureLocation)" `
+            -var "image_os=$($PackerTemplate.ImageOS)" `
+            -var "managed_image_name=$($ManagedImageName)" `
+            -var "managed_image_resource_group_name=$($ResourceGroupName)" `
+            -var "install_password=$($InstallPassword)" `
+            -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
+            -var "azure_tags=$($TagsJson)" `
+            $PackerTemplate.Path
 
         if ($LastExitCode -ne 0) {
             throw "Failed to build image."
