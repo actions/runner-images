@@ -4,16 +4,16 @@
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 26
-- OS Version: macOS 26.3 (25D125)
+- OS Version: macOS 26.3.1 (25D2128)
 - Kernel Version: Darwin 25.3.0
-- Image Version: 20260303.0134.1
+- Image Version: 20260312.0169.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.418, 9.0.102, 9.0.203, 9.0.311, 10.0.103
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.419, 9.0.102, 9.0.203, 9.0.312, 10.0.103, 10.0.200
 - Bash 3.2.57(1)-release
-- Clang/LLVM 17.0.0
+- Clang/LLVM 20.1.8
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
 - GCC 13 (Homebrew GCC 13.4.0) - available by `gcc-13` alias
 - GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
@@ -26,37 +26,37 @@
 - Perl 5.42.0
 - PHP 8.5.3
 - Python3 3.14.3
-- Ruby 3.4.8
+- Ruby 3.4.9
 
 ### Package Management
-- Bundler 4.0.7
+- Bundler 4.0.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.9.5
-- Homebrew 5.0.16
+- Homebrew 5.1.0
 - NPM 11.9.0
 - Pip3 26.0 (python 3.14)
 - Pipx 1.8.0
-- RubyGems 4.0.7
-- Vcpkg 2026 (build from commit 39a6cc0e44)
+- RubyGems 4.0.8
+- Vcpkg 2026 (build from commit dd306f32e0)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
-- Apache Maven 3.9.12
-- Gradle 9.3.1
+- Apache Maven 3.9.13
+- Gradle 9.4.0
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.32.1
-- bazel 9.0.0
+- bazel 9.0.1
 - bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.18.0
+- Curl 8.19.0
 - Git 2.53.0
 - Git LFS 3.7.1
-- GitHub CLI 2.87.3
+- GitHub CLI 2.88.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.4.9
@@ -70,16 +70,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.0
-- AWS SAM CLI 1.154.0
+- AWS CLI 2.34.7
+- AWS SAM CLI 1.155.2
 - AWS Session Manager CLI 1.2.779.0
 - Azure CLI 2.84.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.41.2
 - Cmake 4.2.3
-- CodeQL Action Bundle 2.24.2
+- CodeQL Action Bundle 2.24.3
 - Fastlane 2.232.2
-- SwiftFormat 0.59.1
+- SwiftFormat 0.60.1
 - Xcbeautify 3.1.4
 - Xcode Command Line Tools 26.3.0.0.1.1771626560
 - Xcodes 1.6.2
@@ -88,14 +88,14 @@
 - SwiftLint 0.63.2
 
 ### Browsers
-- Safari 26.3 (21623.2.7.11.6)
-- SafariDriver 26.3 (21623.2.7.11.6)
-- Google Chrome 145.0.7632.117
-- Google Chrome for Testing 145.0.7632.117
-- ChromeDriver 145.0.7632.117
-- Microsoft Edge 145.0.3800.82
-- Microsoft Edge WebDriver 145.0.3800.82
-- Mozilla Firefox 148.0
+- Safari 26.3.1 (21623.2.7.11.7)
+- SafariDriver 26.3.1 (21623.2.7.11.7)
+- Google Chrome 146.0.7680.72
+- Google Chrome for Testing 146.0.7680.72
+- ChromeDriver 146.0.7680.72
+- Microsoft Edge 145.0.3800.97
+- Microsoft Edge WebDriver 145.0.3800.97
+- Mozilla Firefox 148.0.2
 - geckodriver 0.36.0
 - Selenium server 4.41.0
 
@@ -119,7 +119,7 @@
 #### Ruby
 - 3.2.10
 - 3.3.10
-- 3.4.8
+- 3.4.9
 - 4.0.1
 
 #### Python
@@ -129,23 +129,23 @@
 - 3.14.3
 
 #### Node.js
-- 20.20.0
-- 22.22.0
+- 20.20.1
+- 22.22.1
 - 24.14.0
 
 #### Go
 - 1.23.12
 - 1.24.13
-- 1.25.7
+- 1.25.8
 
 ### Rust Tools
-- Cargo 1.93.1
-- Rust 1.93.1
-- Rustdoc 1.93.1
+- Cargo 1.94.0
+- Rust 1.94.0
+- Rustdoc 1.94.0
 - Rustup 1.28.2
 
 #### Packages
-- Clippy 0.1.93
+- Clippy 0.1.94
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
