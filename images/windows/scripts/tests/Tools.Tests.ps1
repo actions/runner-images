@@ -112,6 +112,16 @@ Describe "PowerShell Core" {
     }
 }
 
+Describe "PowerShell Gallery" {
+    It "PSGallery repository is registered" {
+        Get-PSRepository -Name PSGallery -ErrorAction SilentlyContinue | Should -Not -BeNullOrEmpty
+    }
+
+    It "Install-Module from PSGallery" {
+        "Install-Module -Name Microsoft.WinGet.Client -Repository PSGallery -Scope CurrentUser -Force -ErrorAction Stop" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Sbt" {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
