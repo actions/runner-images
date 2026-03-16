@@ -25,6 +25,7 @@ Export-ModuleMember -Function @(
     'Get-TCToolVersionPath'
     'Test-IsWin25'
     'Test-IsWin22'
+    'Test-IsWin11'
     'Expand-7ZipArchive'
     'Get-WindowsUpdateStates'
     'Invoke-ScriptBlockWithRetry'
