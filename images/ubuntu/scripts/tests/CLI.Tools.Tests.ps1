@@ -55,7 +55,7 @@ Describe "Oras CLI" -Skip:((-not (Test-IsUbuntu22))) {
 }
 
 Describe "Github Copilot CLI" {
-    It "gh cli" {
+    It "Github Copilot CLI" {
         "copilot --version" | Should -ReturnZeroExitCode
     }
 }
