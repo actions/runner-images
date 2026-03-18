@@ -4,7 +4,13 @@
 ##  Supply chain security: checksum validation
 ################################################################################
 
-$arch = 'INTEL'
+if (Test-IsArm64) {
+    $expectedArch = "ARM"
+} else {
+    $expectedArch = "INTEL"
+}
+
+$arch = $expectedArch
 $bits = '64'
 $light = $false
 $installerType = "exe"

@@ -19,6 +19,10 @@ $toolsExecutables = @{
     )
 }
 
+if (Test-IsWin11) {
+    $toolsExecutables.Remove("PyPy")
+}
+
 function Get-ToolExecutables {
     Param ([String] $Name)
     if ($toolsExecutables.ContainsKey($Name)) { $toolsExecutables[$Name] } else { @() }

@@ -4,6 +4,12 @@
 ##  Desc:  Configure Toolset
 ################################################################################
 
+if ( Test-IsArm64 ) {
+    $envVarTemplate = "GOROOT_{0}_{1}_AARCH64"
+} else {
+    $envVarTemplate = "GOROOT_{0}_{1}_X64"
+}
+
 $toolEnvConfigs = @{
     Python = @{
         pathTemplates = @(
@@ -15,7 +21,7 @@ $toolEnvConfigs = @{
         pathTemplates  = @(
             "{0}\bin"
         )
-        envVarTemplate = "GOROOT_{0}_{1}_X64"
+        envVarTemplate = $envVarTemplate
     }
 }
 

@@ -7,12 +7,18 @@
 $prefixPath = 'C:\npm\prefix'
 $cachePath = 'C:\npm\cache'
 
+if (Test-IsArm64) {
+    $expectedArch = "arm64"
+} else {
+    $expectedArch = "x64"
+}
+
 New-Item -Path $prefixPath -Force -ItemType Directory
 New-Item -Path $cachePath -Force -ItemType Directory
 
 $defaultVersion = (Get-ToolsetContent).node.default
 $nodeVersion = (Get-GithubReleasesByVersion -Repo "nodejs/node" -Version "${defaultVersion}").version | Select-Object -First 1
-$downloadUrl = "https://nodejs.org/dist/v${nodeVersion}/node-v${nodeVersion}-x64.msi"
+$downloadUrl = "https://nodejs.org/dist/v${nodeVersion}/node-v${nodeVersion}-${expectedArch}.msi"
 
 $packageName = Split-Path $downloadUrl -Leaf
 $externalHash = Get-ChecksumFromUrl -Type "SHA256" `
