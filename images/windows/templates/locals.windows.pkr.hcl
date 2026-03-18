@@ -13,7 +13,7 @@ locals {
             os_disk_size_gb = 150
       }
       "win11-arm64" = {
-            source_image_marketplace_sku = "windows11preview-arm64:microsoftwindowsdesktop:win11-25h2-ent:latest"
+            source_image_marketplace_sku = "microsoftwindowsdesktop:windows11preview-arm64:win11-25h2-ent"
             os_disk_size_gb = 256
       }
   }
