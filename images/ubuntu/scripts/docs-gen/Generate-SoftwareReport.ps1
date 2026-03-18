@@ -166,6 +166,7 @@ if (Test-IsUbuntu22) {
     $cliTools.AddToolVersion("ORAS CLI", $(Get-ORASCliVersion))
     $cliTools.AddToolVersion("Vercel CLI", $(Get-VerselCliversion))
 }
+$cliTools.AddToolVersion("Github Copilot CLI", $(Get-GithubCopilotCliVersion))
 
 # Java
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))

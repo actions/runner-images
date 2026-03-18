@@ -271,3 +271,8 @@ function Get-YqVersion {
     $yqVersion = $(yq -V) | Get-StringPart -Part 3
     return $yqVersion.TrimStart("v").Trim()
 }
+
+function Get-GithubCopilotCliVersion {
+    $copilotVersion = copilot --version | Get-StringPart -Part 3
+    return "$copilotVersion".TrimEnd(".")
+}
