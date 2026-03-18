@@ -27,8 +27,12 @@ if ((Test-IsWin25) -and $env:INSTALL_VS_2026) {
     $imageLabel = "windows-2022"
     $softwareUrl = "${githubUrl}/win22/$imageMajorVersion.$imageMinorVersion/images/windows/Windows2022-Readme.md"
     $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win22%2F$imageMajorVersion.$imageMinorVersion"
+} elseif ((Test-IsWin11) -and (Test-IsArm64)) {
+    $imageLabel = "windows-11-arm64"
+    $softwareUrl = "${githubUrl}/win11-arm64/$imageMajorVersion.$imageMinorVersion/images/windows/Windows11-Arm64-Readme.md"
+    $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win11-arm64%2F$imageMajorVersion.$imageMinorVersion"
 } else {
-    throw "Invalid platform version is found. Either Windows Server 2022 or 2025 are required"
+    throw "Invalid platform version is found. Either Windows Server 2022, 2025 or Windows 11 are required"
 }
 
 $json = @"

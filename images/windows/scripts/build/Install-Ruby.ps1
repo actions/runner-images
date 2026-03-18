@@ -63,6 +63,12 @@ function Set-DefaultRubyVersion {
     Add-MachinePathItem -PathItem $rubyDir | Out-Null
 }
 
+if (Test-IsArm64) {
+    $expectedArch = "arm"
+} else {
+    $expectedArch = "x64"
+}
+
 # Install Ruby
 $rubyTools = (Get-ToolsetContent).toolcache | Where-Object { $_.name -eq "Ruby" }
 $rubyToolVersions = $rubyTools.versions
@@ -73,8 +79,14 @@ foreach ($rubyVersion in $rubyToolVersions) {
     $downloadUrl = Resolve-GithubReleaseAssetUrl `
         -Repo "oneclick/rubyinstaller2" `
         -Version "$rubyVersion*" `
-        -UrlMatchPattern "*-x64.7z"
+        -UrlMatchPattern "*-${expectedArch}.7z"
     $packagePath = Invoke-DownloadWithRetry $downloadUrl
+
+    if (Test-IsArm64) {
+        Install-Ruby -PackagePath $packagePath -Architecture "aarch64"
+    } else {
+        Install-Ruby -PackagePath $packagePath -Architecture "x64"
+    }
     Install-Ruby -PackagePath $packagePath
 }
 

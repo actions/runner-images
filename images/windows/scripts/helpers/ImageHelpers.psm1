@@ -26,6 +26,7 @@ Export-ModuleMember -Function @(
     'Test-IsWin25'
     'Test-IsWin22'
     'Test-IsWin11'
+    'Test-IsArm64'
     'Expand-7ZipArchive'
     'Get-WindowsUpdateStates'
     'Invoke-ScriptBlockWithRetry'

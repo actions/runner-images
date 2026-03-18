@@ -322,6 +322,22 @@ function Get-TCToolVersionPath {
     return Join-Path $foundVersion $Arch
 }
 
+function Test-IsArm64 {
+    <#
+    .SYNOPSIS
+        Checks if the current Windows operating system is running on an ARM64 architecture.
+    .DESCRIPTION
+        This function uses the Get-CimInstance cmdlet to retrieve information
+        about the current Windows operating system. It then checks if the OSArchitecture
+        property of the Win32_OperatingSystem class contains the string "ARM 64-bit",
+        indicating that the operating system is running on an ARM64 processor.
+    .OUTPUTS
+        Returns $true if the current Windows operating system is running on ARM64.
+        Otherwise, returns $false.
+    #>
+    (Get-CimInstance -ClassName Win32_OperatingSystem).OSArchitecture -match "ARM 64-bit"
+}
+
 function Test-IsWin25 {
     <#
     .SYNOPSIS

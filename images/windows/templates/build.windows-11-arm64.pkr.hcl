@@ -84,6 +84,8 @@ build {
     inline = ["Set-Service -Name wlansvc -StartupType Manual", "if ($(Get-Service -Name wlansvc).Status -eq 'Running') { Stop-Service -Name wlansvc}"]
   }
 
+  # TODO:
+  # 1. Double check if Install-Runner.ps1 is needed, should be taken care of during specialization. Left out for now
   provisioner "powershell" {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
@@ -116,8 +118,8 @@ build {
   }
 
   # TODO:
-  # 1. Add ${path.root}/../scripts/build/Install-CMake.ps1
-  # 2. Add ${path.root}/../scripts/build/Install-Ninja.ps1
+  # 1. Add ${path.root}/../scripts/build/Install-CMake.ps1 - Done, instead of Choco package, updated to latest
+  # 2. Add ${path.root}/../scripts/build/Install-Ninja.ps1 - Done, instead of Choco package, updated to latest
   # 3. Check if need to move ${path.root}/../scripts/build/Install-LLVM.ps1 into this block
   provisioner "powershell" {
     pause_before     = "2m0s"
@@ -129,6 +131,8 @@ build {
       "${path.root}/../scripts/build/Install-AzureCli.ps1",
       "${path.root}/../scripts/build/Install-AzureDevOpsCli.ps1",
       "${path.root}/../scripts/build/Install-ChocolateyPackages.ps1",
+      "${path.root}/../scripts/build/Install-CMake.ps1",
+      "${path.root}/../scripts/build/Install-Ninja.ps1",
       "${path.root}/../scripts/build/Install-JavaTools.ps1",
       "${path.root}/../scripts/build/Install-Kotlin.ps1",
       "${path.root}/../scripts/build/Install-OpenSSL.ps1"
@@ -146,9 +150,9 @@ build {
   }
 
   # TODO:
-  # 1. Add ${path.root}/../scripts/build/Install-Mercurial.ps1
-  # 2. Add ${path.root}/../scripts/build/Install-NSIS.ps1
-  # 3. Add ${path.root}/../scripts/build/Install-AliyunCli.ps1
+  # 1. Add ${path.root}/../scripts/build/Install-Mercurial.ps1 - Done
+  # 2. Add ${path.root}/../scripts/build/Install-NSIS.ps1 - Done
+  # 3. Add ${path.root}/../scripts/build/Install-AliyunCli.ps1 - Done
   provisioner "powershell" {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
@@ -187,9 +191,12 @@ build {
       "${path.root}/../scripts/build/Install-Stack.ps1",
       # "${path.root}/../scripts/build/Install-Miniconda.ps1",
       "${path.root}/../scripts/build/Install-AzureCosmosDbEmulator.ps1",
+      "${path.root}/../scripts/build/Install-Mercurial.ps1",
+      "${path.root}/../scripts/build/Install-NSIS.ps1",
       # "${path.root}/../scripts/build/Install-Zstd.ps1",
       "${path.root}/../scripts/build/Install-Vcpkg.ps1",
       "${path.root}/../scripts/build/Install-Bazel.ps1",
+      "${path.root}/../scripts/build/Install-AliyunCli.ps1",
       "${path.root}/../scripts/build/Install-RootCA.ps1",
       # "${path.root}/../scripts/build/Install-MongoDB.ps1",
       "${path.root}/../scripts/build/Install-CodeQLBundle.ps1",
@@ -242,7 +249,7 @@ build {
   }
 
   provisioner "file" {
-    destination = "${path.root}/../Windows11-arm-Readme.md"
+    destination = "${path.root}/../Windows11-Arm64-Readme.md"
     direction   = "download"
     source      = "C:\\software-report.md"
   }

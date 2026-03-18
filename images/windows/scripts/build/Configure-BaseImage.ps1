@@ -44,7 +44,10 @@ function Disable-WindowsUpdate {
 Add-Content -Path $profile.AllUsersAllHosts -Value '$ErrorActionPreference="Stop"'
 
 Write-Host "Disable Server Manager on Logon"
-Get-ScheduledTask -TaskName ServerManager | Disable-ScheduledTask
+$srvManagerTask = Get-ScheduledTask -TaskName ServerManager
+if ($srvManagerTask) {
+    Disable-ScheduledTask -TaskName ServerManager
+}
 
 Write-Host "Disable 'Allow your PC to be discoverable by other PCs' popup"
 New-Item -Path HKLM:\System\CurrentControlSet\Control\Network -Name NewNetworkWindowOff -Force

@@ -27,8 +27,8 @@ if ($LASTEXITCODE -ne 0) {
     throw "Failed to copy HKCU\Software\Microsoft\VisualStudio to HKLM\DEFAULT\Software\Microsoft\VisualStudio"
 }
 
-# TortoiseSVN not installed on Windows 2025 image due to Sysprep issues
-if (-not (Test-IsWin25)) {
+# TortoiseSVN not installed on Windows 2025 and Windows 11 due to Sysprep issues
+if (-not (Test-IsWin25) -and -not (Test-IsWin11)) {
     # disable TSVNCache.exe
     $registryKeyPath = 'HKCU:\Software\TortoiseSVN'
     if (-not(Test-Path -Path $registryKeyPath)) {

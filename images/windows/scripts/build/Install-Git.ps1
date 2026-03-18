@@ -4,12 +4,17 @@
 ##  Supply chain security: Git - checksum validation, Hub CLI - managed by package manager
 ################################################################################
 
-# Install the latest version of Git for Windows
+if (Test-IsArm64) {
+    $expectedArch = "arm64"
+} else {
+    $expectedArch = "64-bit"
+}
 
+# Install the latest version of Git for Windows
 $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "git-for-windows/git" `
     -Version "latest" `
-    -UrlMatchPattern "Git-*-64-bit.exe"
+    -UrlMatchPattern "Git-*-$expectedArch.exe"
 
 $externalHash = Get-ChecksumFromGithubRelease `
     -Repo "git-for-windows/git" `
