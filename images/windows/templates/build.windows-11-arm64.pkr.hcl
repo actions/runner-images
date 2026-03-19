@@ -52,6 +52,24 @@ build {
   }
 
   provisioner "powershell" {
+    inline = [<<-EOF
+      $sidStr = (New-Object Security.Principal.NTAccount("${var.install_user}")).Translate([Security.Principal.SecurityIdentifier]).Value
+      $tmpFile = [IO.Path]::GetTempFileName()
+      secedit /export /cfg $tmpFile /areas USER_RIGHTS /quiet
+      $policy = Get-Content $tmpFile -Raw
+      if ($policy -match 'SeBatchLogonRight\s*=\s*(.*)') {
+          $policy = $policy -replace 'SeBatchLogonRight\s*=\s*(.*)', "SeBatchLogonRight = `$1,*$sidStr"
+      } else {
+          $policy += "`r`nSeBatchLogonRight = *$sidStr"
+      }
+      Set-Content $tmpFile $policy
+      secedit /configure /db "$env:TEMP\secedit.sdb" /cfg $tmpFile /areas USER_RIGHTS /quiet
+      Remove-Item $tmpFile
+    EOF
+    ]
+  }
+
+  provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
     inline            = ["bcdedit.exe /set TESTSIGNING ON"]
