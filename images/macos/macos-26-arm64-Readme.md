@@ -6,14 +6,14 @@
 # macOS 26
 - OS Version: macOS 26.3 (25D125)
 - Kernel Version: Darwin 25.3.0
-- Image Version: 20260303.0251.1
+- Image Version: 20260318.0286.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.418, 9.0.102, 9.0.203, 9.0.311, 10.0.103
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.419, 9.0.102, 9.0.203, 9.0.312, 10.0.103, 10.0.201
 - Bash 3.2.57(1)-release
-- Clang/LLVM 17.0.0
+- Clang/LLVM 20.1.8
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
 - GCC 13 (Homebrew GCC 13.4.0) - available by `gcc-13` alias
 - GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
@@ -21,43 +21,43 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
-- Kotlin 2.3.10-release-465
+- Kotlin 2.3.20-release-208
 - Node.js 24.14.0
-- Perl 5.42.0
+- Perl 5.42.1
 - Python3 3.14.3
-- Ruby 3.4.8
+- Ruby 3.4.9
 
 ### Package Management
-- Bundler 4.0.7
+- Bundler 4.0.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.0.16
+- Homebrew 5.1.0
 - NPM 11.9.0
 - Pip3 26.0 (python 3.14)
-- Pipx 1.8.0
-- RubyGems 4.0.7
-- Vcpkg 2026 (build from commit 39a6cc0e44)
+- Pipx 1.9.0
+- RubyGems 4.0.8
+- Vcpkg 2026 (build from commit d90a9b159c)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
-- Apache Maven 3.9.12
-- Gradle 9.3.1
+- Apache Maven 3.9.14
+- Gradle 9.4.0
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.32.1
-- bazel 9.0.0
+- bazel 9.0.1
 - bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.53.0
 - Git LFS 3.7.1
-- GitHub CLI 2.87.3
+- GitHub CLI 2.88.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.4.9
+- gpg (GnuPG) 2.5.18
 - jq 1.8.1
 - OpenSSL 3.6.1 27 Jan 2026 (Library: OpenSSL 3.6.1 27 Jan 2026)
 - Packer 1.15.0
@@ -68,16 +68,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.0
-- AWS SAM CLI 1.154.0
+- AWS CLI 2.34.11
+- AWS SAM CLI 1.155.2
 - AWS Session Manager CLI 1.2.779.0
 - Azure CLI 2.84.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.41.2
 - Cmake 4.2.3
-- CodeQL Action Bundle 2.24.2
+- CodeQL Action Bundle 2.24.3
 - Fastlane 2.232.2
-- SwiftFormat 0.59.1
+- SwiftFormat 0.60.1
 - Xcbeautify 3.1.4
 - Xcode Command Line Tools 26.3.0.0.1.1771626560
 - Xcodes 1.6.2
@@ -85,12 +85,12 @@
 ### Browsers
 - Safari 26.3 (21623.2.7.11.6)
 - SafariDriver 26.3 (21623.2.7.11.6)
-- Google Chrome 145.0.7632.117
-- Google Chrome for Testing 145.0.7632.117
-- ChromeDriver 145.0.7632.117
-- Microsoft Edge 145.0.3800.82
-- Microsoft Edge WebDriver 145.0.3800.82
-- Mozilla Firefox 148.0
+- Google Chrome 146.0.7680.80
+- Google Chrome for Testing 146.0.7680.80
+- ChromeDriver 146.0.7680.80
+- Microsoft Edge 146.0.3856.62
+- Microsoft Edge WebDriver 146.0.3856.62
+- Mozilla Firefox 148.0.2
 - geckodriver 0.36.0
 - Selenium server 4.41.0
 
@@ -114,8 +114,8 @@
 #### Ruby
 - 3.2.10
 - 3.3.10
-- 3.4.8
-- 4.0.1
+- 3.4.9
+- 4.0.2
 
 #### Python
 - 3.11.9
@@ -124,23 +124,23 @@
 - 3.14.3
 
 #### Node.js
-- 20.20.0
-- 22.22.0
+- 20.20.1
+- 22.22.1
 - 24.14.0
 
 #### Go
 - 1.23.12
 - 1.24.13
-- 1.25.7
+- 1.25.8
 
 ### Rust Tools
-- Cargo 1.93.1
-- Rust 1.93.1
-- Rustdoc 1.93.1
-- Rustup 1.28.2
+- Cargo 1.94.0
+- Rust 1.94.0
+- Rustdoc 1.94.0
+- Rustup 1.29.0
 
 #### Packages
-- Clippy 0.1.93
+- Clippy 0.1.94
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
@@ -154,7 +154,7 @@
 ### Xcode
 | Version        | Build    | Path                                | Symlinks                                                       |
 | -------------- | -------- | ----------------------------------- | -------------------------------------------------------------- |
-| 26.4 (beta)    | 17E5170d | /Applications/Xcode_26.4_beta_2.app | /Applications/Xcode_26.4.0.app<br>/Applications/Xcode_26.4.app |
+| 26.4 (beta)    | 17E5179g | /Applications/Xcode_26.4_beta_3.app | /Applications/Xcode_26.4.0.app<br>/Applications/Xcode_26.4.app |
 | 26.3           | 17C529   | /Applications/Xcode_26.3.app        | /Applications/Xcode_26.3.0.app                                 |
 | 26.2 (default) | 17C52    | /Applications/Xcode_26.2.app        | /Applications/Xcode_26.2.0.app<br>/Applications/Xcode.app      |
 | 26.1.1         | 17B100   | /Applications/Xcode_26.1.1.app      | /Applications/Xcode_26.1.app                                   |
@@ -224,7 +224,7 @@
 | Package Name               | Version                                                                                                                                                                          |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                             |
-| Android Emulator           | 36.4.9                                                                                                                                                                           |
+| Android Emulator           | 36.4.10                                                                                                                                                                          |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                   |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
 | Android SDK Platform-Tools | 37.0.0                                                                                                                                                                           |
