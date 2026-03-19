@@ -5,7 +5,7 @@ on:
     types: [create-pr]
 
 
-jobs:
+jobs:FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true
   Create_pull_request:
     runs-on: ubuntu-slim
 
