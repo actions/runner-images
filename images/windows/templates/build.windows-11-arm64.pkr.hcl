@@ -51,7 +51,7 @@ build {
     inline = ["if (-not ((net localgroup Administrators) -contains '${var.install_user}')) { exit 1 }"]
   }
 
-  # v1
+  # v1 - elevated user issue
   # provisioner "powershell" {
   #   inline = [<<-EOF
   #     $sidStr = (New-Object Security.Principal.NTAccount("${var.install_user}")).Translate([Security.Principal.SecurityIdentifier]).Value
@@ -70,7 +70,7 @@ build {
   #   ]
   # }
 
-  # v2
+  # v2 - elevated user issue
   # provisioner "powershell" {
   #   inline = [<<-EOF
   #     $code = @'
@@ -114,6 +114,12 @@ build {
       "Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name DefaultUsername -Value \"${var.install_user}\" -type String",
       "Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name DefaultPassword -Value \"${var.install_password}\" -type String",
     ]
+  }
+
+  # v3 - elevated user issue
+  provisioner "windows-restart" {
+    check_registry  = true
+    restart_timeout = "10m"
   }
 
   provisioner "powershell" {
@@ -284,7 +290,7 @@ build {
     ]
   }
 
-  # v3
+  # v3 - elevated user issue
   provisioner "powershell" {
     inline = [
       "Remove-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name AutoAdminLogon",
