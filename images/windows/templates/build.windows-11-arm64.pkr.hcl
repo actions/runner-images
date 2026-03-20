@@ -210,12 +210,6 @@ build {
     ]
   }
 
-  provisioner "powershell" {
-    execution_policy = "remotesigned"
-    environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
-    scripts          = ["${path.root}/../scripts/build/Install-ServiceFabricSDK.ps1"]
-  }
-
   provisioner "windows-restart" {
     restart_timeout = "10m"
   }
