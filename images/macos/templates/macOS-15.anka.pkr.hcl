@@ -205,8 +205,22 @@ build {
     scripts          = [
       "${path.root}/../scripts/build/configure-windows.sh",
       "${path.root}/../scripts/build/install-powershell.sh",
+      "${path.root}/../scripts/build/install-dotnet.sh",
+      "${path.root}/../scripts/build/install-python.sh",
+      "${path.root}/../scripts/build/install-azcopy.sh",
+      "${path.root}/../scripts/build/install-openssl.sh",
+      "${path.root}/../scripts/build/install-ruby.sh",
+      "${path.root}/../scripts/build/install-rubygems.sh",
+      "${path.root}/../scripts/build/install-git.sh",
+      "${path.root}/../scripts/build/install-node.sh",
       "${path.root}/../scripts/build/install-common-utils.sh"
     ]
+  }
+
+  provisioner "shell" {
+    environment_vars = ["XCODE_INSTALL_STORAGE_URL=${var.xcode_install_storage_url}", "XCODE_INSTALL_SAS=${var.xcode_install_sas}", "IMAGE_FOLDER=${local.image_folder}"]
+    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} pwsh -f {{ .Path }}"
+    script           = "${path.root}/../scripts/build/Install-Xcode.ps1"
   }
 
   provisioner "shell" {
@@ -219,7 +233,23 @@ build {
     environment_vars = ["API_PAT=${var.github_api_pat}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts          = [
-      "${path.root}/../scripts/build/install-llvm.sh"
+      "${path.root}/../scripts/build/install-actions-cache.sh",
+      "${path.root}/../scripts/build/install-llvm.sh",
+      "${path.root}/../scripts/build/install-swiftlint.sh",
+      "${path.root}/../scripts/build/install-openjdk.sh",
+      "${path.root}/../scripts/build/install-php.sh",
+      "${path.root}/../scripts/build/install-aws-tools.sh",
+      "${path.root}/../scripts/build/install-rust.sh",
+      "${path.root}/../scripts/build/install-gcc.sh",
+      "${path.root}/../scripts/build/install-cocoapods.sh",
+      "${path.root}/../scripts/build/install-android-sdk.sh",
+      "${path.root}/../scripts/build/install-vcpkg.sh",
+      "${path.root}/../scripts/build/install-safari.sh",
+      "${path.root}/../scripts/build/install-chrome.sh",
+      "${path.root}/../scripts/build/install-edge.sh",
+      "${path.root}/../scripts/build/install-firefox.sh",
+      "${path.root}/../scripts/build/install-bicep.sh",
+      "${path.root}/../scripts/build/install-codeql-bundle.sh"
     ]
   }
 
