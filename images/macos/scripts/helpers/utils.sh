@@ -92,14 +92,12 @@ get_toolset_value() {
 # Use the '--build-from-source' option to build from source in this case
 brew_smart_install() {
     local tool_name=$1
-    local dir_name=""
-    if [[ $2 != "" ]]; then
-        dir_name="$2"
-    else
-        dir_name=$tool_name
+    local skip_link=""
+    if [[ $2 == "true" ]]; then
+        skip_link="--skip-link"
     fi
 
-    echo "[DEBUG] dir_name is $dir_name"
+    echo "[DEBUG] skip_link is $skip_link"
 
     echo "Downloading $tool_name..."
 
@@ -107,7 +105,7 @@ brew_smart_install() {
 
     failed=true
     for i in {1..10}; do
-        brew deps $tool_name > /tmp/$dir_name && failed=false || sleep 60
+        brew deps $tool_name > /tmp/$tool_name && failed=false || sleep 60
         [ "$failed" = false ] && break
     done
 
@@ -116,7 +114,7 @@ brew_smart_install() {
        exit 1;
     fi
 
-    for dep in $(cat /tmp/$dir_name) $tool_name; do
+    for dep in $(cat /tmp/$tool_name) $tool_name; do
 
     failed=true
     for i in {1..10}; do
@@ -132,7 +130,7 @@ brew_smart_install() {
 
     failed=true
     for i in {1..10}; do
-        brew install $tool_name && failed=false || sleep 60
+        brew install $tool_name $skip_link && failed=false || sleep 60
         [ "$failed" = false ] && break
     done
 
