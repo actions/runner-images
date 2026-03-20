@@ -71,39 +71,48 @@ build {
   # }
 
   # v2
+  # provisioner "powershell" {
+  #   inline = [<<-EOF
+  #     $code = @'
+  #     using System;
+  #     using System.Runtime.InteropServices;
+  #     public class LsaUtil {
+  #         [DllImport("advapi32.dll", SetLastError=true)]
+  #         static extern uint LsaOpenPolicy(IntPtr SystemName, ref LSA_OBJECT_ATTRIBUTES ObjectAttributes, uint AccessMask, out IntPtr PolicyHandle);
+  #         [DllImport("advapi32.dll", SetLastError=true)]
+  #         static extern uint LsaAddAccountRights(IntPtr PolicyHandle, IntPtr AccountSid, LSA_UNICODE_STRING[] UserRights, long CountOfRights);
+  #         [DllImport("advapi32.dll")]
+  #         static extern uint LsaClose(IntPtr ObjectHandle);
+  #         [StructLayout(LayoutKind.Sequential)] public struct LSA_OBJECT_ATTRIBUTES { public int Length; public IntPtr RootDirectory; public IntPtr ObjectName; public uint Attributes; public IntPtr SecurityDescriptor; public IntPtr SecurityQualityOfService; }
+  #         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)] public struct LSA_UNICODE_STRING { public ushort Length; public ushort MaximumLength; [MarshalAs(UnmanagedType.LPWStr)] public string Buffer; }
+  #         public static void AddRight(string accountName, string rightName) {
+  #             var attrs = new LSA_OBJECT_ATTRIBUTES();
+  #             IntPtr policy;
+  #             LsaOpenPolicy(IntPtr.Zero, ref attrs, 0x00020000 | 0x00000800, out policy);
+  #             var sid = new System.Security.Principal.NTAccount(accountName).Translate(typeof(System.Security.Principal.SecurityIdentifier));
+  #             var sidBytes = new byte[((System.Security.Principal.SecurityIdentifier)sid).BinaryLength];
+  #             ((System.Security.Principal.SecurityIdentifier)sid).GetBinaryForm(sidBytes, 0);
+  #             var sidPtr = Marshal.AllocHGlobal(sidBytes.Length);
+  #             Marshal.Copy(sidBytes, 0, sidPtr, sidBytes.Length);
+  #             var rights = new[] { new LSA_UNICODE_STRING { Buffer = rightName, Length = (ushort)(rightName.Length * 2), MaximumLength = (ushort)(rightName.Length * 2 + 2) } };
+  #             LsaAddAccountRights(policy, sidPtr, rights, 1);
+  #             Marshal.FreeHGlobal(sidPtr);
+  #             LsaClose(policy);
+  #         }
+  #     }
+  #     '@
+  #     Add-Type $code
+  #     [LsaUtil]::AddRight("${var.install_user}", "SeBatchLogonRight")
+  #   EOF
+  #   ]
+  # }
+
+  # v3 - set and remove after all elevated tasks are done, might need additional reboot
   provisioner "powershell" {
-    inline = [<<-EOF
-      $code = @'
-      using System;
-      using System.Runtime.InteropServices;
-      public class LsaUtil {
-          [DllImport("advapi32.dll", SetLastError=true)]
-          static extern uint LsaOpenPolicy(IntPtr SystemName, ref LSA_OBJECT_ATTRIBUTES ObjectAttributes, uint AccessMask, out IntPtr PolicyHandle);
-          [DllImport("advapi32.dll", SetLastError=true)]
-          static extern uint LsaAddAccountRights(IntPtr PolicyHandle, IntPtr AccountSid, LSA_UNICODE_STRING[] UserRights, long CountOfRights);
-          [DllImport("advapi32.dll")]
-          static extern uint LsaClose(IntPtr ObjectHandle);
-          [StructLayout(LayoutKind.Sequential)] public struct LSA_OBJECT_ATTRIBUTES { public int Length; public IntPtr RootDirectory; public IntPtr ObjectName; public uint Attributes; public IntPtr SecurityDescriptor; public IntPtr SecurityQualityOfService; }
-          [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)] public struct LSA_UNICODE_STRING { public ushort Length; public ushort MaximumLength; [MarshalAs(UnmanagedType.LPWStr)] public string Buffer; }
-          public static void AddRight(string accountName, string rightName) {
-              var attrs = new LSA_OBJECT_ATTRIBUTES();
-              IntPtr policy;
-              LsaOpenPolicy(IntPtr.Zero, ref attrs, 0x00020000 | 0x00000800, out policy);
-              var sid = new System.Security.Principal.NTAccount(accountName).Translate(typeof(System.Security.Principal.SecurityIdentifier));
-              var sidBytes = new byte[((System.Security.Principal.SecurityIdentifier)sid).BinaryLength];
-              ((System.Security.Principal.SecurityIdentifier)sid).GetBinaryForm(sidBytes, 0);
-              var sidPtr = Marshal.AllocHGlobal(sidBytes.Length);
-              Marshal.Copy(sidBytes, 0, sidPtr, sidBytes.Length);
-              var rights = new[] { new LSA_UNICODE_STRING { Buffer = rightName, Length = (ushort)(rightName.Length * 2), MaximumLength = (ushort)(rightName.Length * 2 + 2) } };
-              LsaAddAccountRights(policy, sidPtr, rights, 1);
-              Marshal.FreeHGlobal(sidPtr);
-              LsaClose(policy);
-          }
-      }
-      '@
-      Add-Type $code
-      [LsaUtil]::AddRight("${var.install_user}", "SeBatchLogonRight")
-    EOF
+    inline = [
+      "Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name AutoAdminLogon -Value 1 -type String",
+      "Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name DefaultUsername -Value \"${var.install_user}\" -type String",
+      "Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name DefaultPassword -Value \"${var.install_password}\" -type String",
     ]
   }
 
@@ -272,6 +281,15 @@ build {
       "${path.root}/../scripts/build/Configure-Shell.ps1",
       "${path.root}/../scripts/build/Configure-DeveloperMode.ps1",
       "${path.root}/../scripts/build/Install-LLVM.ps1"
+    ]
+  }
+
+  # v3
+  provisioner "powershell" {
+    inline = [
+      "Remove-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name AutoAdminLogon",
+      "Remove-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name DefaultUsername",
+      "Remove-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name DefaultPassword",
     ]
   }
 
