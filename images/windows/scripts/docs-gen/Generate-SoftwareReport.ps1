@@ -146,7 +146,10 @@ $rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
 $rustToolsPackages = $rustTools.AddHeader("Packages")
 if (-not (Test-IsWin25)) {
     $rustToolsPackages.AddToolVersion("bindgen", $(Get-BindgenVersion))
-    $rustToolsPackages.AddToolVersion("cargo-audit", $(Get-CargoAuditVersion))
+    # TODO: test cargo-audit and bring back
+    if (-not (Test-IsWin11)) {
+        $rustToolsPackages.AddToolVersion("cargo-audit", $(Get-CargoAuditVersion))
+    }
     $rustToolsPackages.AddToolVersion("cargo-outdated", $(Get-CargoOutdatedVersion))
     $rustToolsPackages.AddToolVersion("cbindgen", $(Get-CbindgenVersion))
 }
