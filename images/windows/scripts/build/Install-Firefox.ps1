@@ -6,8 +6,10 @@
 
 if (Test-IsArm64) {
     $expectedArch = "win64-aarch64"
+    $driverSufix = "win-aarch64"
 } else {
     $expectedArch = "win64"
+    $driverSufix = "win64"
 }
 
 # Install and configure Firefox browser
@@ -52,7 +54,7 @@ Write-Host "Download Gecko WebDriver WebDriver..."
 $geckoDriverDownloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "mozilla/geckodriver" `
     -Version $geckoDriverVersion `
-    -UrlMatchPattern "geckodriver-*-$expectedArch.zip"
+    -UrlMatchPattern "geckodriver-*-$driverSufix.zip"
 $geckoDriverArchPath = Invoke-DownloadWithRetry $geckoDriverDownloadUrl
 
 Write-Host "Expand Gecko WebDriver archive..."
