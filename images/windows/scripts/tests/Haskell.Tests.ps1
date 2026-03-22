@@ -1,5 +1,6 @@
 Describe "Haskell" -Skip:(Test-IsWin11) {
     BeforeDiscovery {
+        if (Test-IsWin11) { return }
         $ghcPackagesPath = "c:\ghcup\ghc"
         [array] $ghcVersionList = Get-ChildItem -Path $ghcPackagesPath -Filter "*" | ForEach-Object { $_.Name.Trim() }
         $ghcCount = $ghcVersionList.Count
