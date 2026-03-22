@@ -87,7 +87,6 @@ foreach ($rubyVersion in $rubyToolVersions) {
     } else {
         Install-Ruby -PackagePath $packagePath -Architecture "x64"
     }
-    Install-Ruby -PackagePath $packagePath
 }
 
 Set-DefaultRubyVersion -Version $rubyTools.default -Arch $rubyTools.arch
