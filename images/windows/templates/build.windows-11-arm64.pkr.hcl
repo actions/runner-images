@@ -299,6 +299,22 @@ build {
     restart_timeout       = "30m"
   }
 
+  # TODO: removes once debugging is done
+  provisioner "powershell" {
+    inline = [<<-EOF
+      $filter = @{
+          LogName      = "System"
+          Id           = 19, 20, 43
+          ProviderName = "Microsoft-Windows-WindowsUpdateClient"
+      }
+      $events = Get-WinEvent -FilterHashtable $filter -ErrorAction SilentlyContinue | Sort-Object Id
+      $events | sort TimeCreated | fl *
+      Write-Host "display appxpackages"
+      Get-AppxPackage
+    EOF
+    ]
+  }
+
   provisioner "powershell" {
     pause_before     = "2m0s"
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
