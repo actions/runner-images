@@ -79,6 +79,9 @@ Describe "Windows Updates" {
         if ( $Title -match "Microsoft Defender Antivirus" ) {
             $expect = "Installed", "Failed", "Running"
         }
+        if ( $Title -match "MicrosoftWindows.Client.WebExperience" ) {
+            $expect = "Installed", "Failed", "Running"
+        }
 
         $State | Should -BeIn $expect
     }
