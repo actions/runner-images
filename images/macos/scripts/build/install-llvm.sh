@@ -6,18 +6,10 @@
 
 source ~/utils/utils.sh
 
-echo "[DEBUG] which clang:   $(which clang)"
-echo "[DEBUG] which clang++: $(which clang++)"
-clang --version
-clang++ --version
-
 llvmVersion=$(get_toolset_value '.llvm.version')
 
-brew_smart_install "llvm@${llvmVersion}" "--skip-link"
-
-echo "[DEBUG] which clang:   $(which clang)"
-echo "[DEBUG] which clang++: $(which clang++)"
-clang --version
-clang++ --version
+brew_smart_install "llvm@${llvmVersion}"
+# After brew update to 5.1.0 we have to manually unlink llvm to avoid conflicts with pre-installed llvm on macOS
+brew unlink "llvm@${llvmVersion}"
 
 invoke_tests "LLVM"
