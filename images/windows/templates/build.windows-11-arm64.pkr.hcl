@@ -137,7 +137,8 @@ build {
       "${path.root}/../scripts/build/Install-Ninja.ps1",
       "${path.root}/../scripts/build/Install-JavaTools.ps1",
       "${path.root}/../scripts/build/Install-Kotlin.ps1",
-      "${path.root}/../scripts/build/Install-OpenSSL.ps1"
+      "${path.root}/../scripts/build/Install-OpenSSL.ps1",
+      "${path.root}/../scripts/build/Install-LLVM.ps1"
     ]
   }
 
@@ -198,8 +199,7 @@ build {
       "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
       "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
       "${path.root}/../scripts/build/Configure-Shell.ps1",
-      "${path.root}/../scripts/build/Configure-DeveloperMode.ps1",
-      "${path.root}/../scripts/build/Install-LLVM.ps1"
+      "${path.root}/../scripts/build/Configure-DeveloperMode.ps1"
     ]
   }
 
