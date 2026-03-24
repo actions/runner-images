@@ -60,8 +60,7 @@ if (Test-IsWin22) {
 }
 
 if (Test-IsWin11) {
-    # TODO: test cargo-audit and bring back
-    cargo install bindgen-cli cbindgen cargo-outdated
+    cargo install bindgen-cli cbindgen cargo-audit cargo-outdated
     if ($LASTEXITCODE -ne 0) {
         throw "Rust tools installation failed with exit code $LASTEXITCODE"
     }
