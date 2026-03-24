@@ -27,6 +27,10 @@ if ((Test-IsWin25) -and $env:INSTALL_VS_2026) {
     $imageLabel = "windows-2022"
     $softwareUrl = "${githubUrl}/win22/$imageMajorVersion.$imageMinorVersion/images/windows/Windows2022-Readme.md"
     $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win22%2F$imageMajorVersion.$imageMinorVersion"
+} if ((Test-IsWin11) -and (Test-IsArm64) -and $env:INSTALL_VS_2026) {
+    $imageLabel = "windows-11-vs2026-arm64"
+    $softwareUrl = "${githubUrl}/win11-vs2026-arm64/$imageMajorVersion.$imageMinorVersion/images/windows/Windows11-VS2026-Arm64-Readme.md"
+    $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win11-vs2026-arm64%2F$imageMajorVersion.$imageMinorVersion"
 } elseif ((Test-IsWin11) -and (Test-IsArm64)) {
     $imageLabel = "windows-11-arm64"
     $softwareUrl = "${githubUrl}/win11-arm64/$imageMajorVersion.$imageMinorVersion/images/windows/Windows11-Arm64-Readme.md"
