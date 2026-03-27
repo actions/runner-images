@@ -6,12 +6,12 @@
 # macOS 14
 - OS Version: macOS 14.8.4 (23J319)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20260302.0252.1
+- Image Version: 20260324.0339.2
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.418, 9.0.102, 9.0.203, 9.0.311, 10.0.103
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.419, 9.0.102, 9.0.203, 9.0.312, 10.0.103, 10.0.201
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
@@ -21,47 +21,47 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
-- Kotlin 2.3.10-release-465
+- Kotlin 2.3.20-release-208
 - Mono 6.12.0.188
-- Node.js 20.20.0
-- Perl 5.42.0
-- PHP 8.5.3
+- Node.js 20.20.1
+- Perl 5.42.1
+- PHP 8.5.4
 - Python3 3.14.3
 - Ruby 3.3.10
 
 ### Package Management
-- Bundler 4.0.7
+- Bundler 4.0.8
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.9.5
-- Homebrew 5.0.15
+- Homebrew 5.1.1
 - NPM 10.8.2
 - NuGet 6.3.1.1
 - Pip3 26.0 (python 3.14)
-- Pipx 1.8.0
-- RubyGems 4.0.7
-- Vcpkg 2026 (build from commit 62159a45e1)
+- Pipx 1.11.0
+- RubyGems 4.0.8
+- Vcpkg 2026 (build from commit ed8445dd2a)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
-- Apache Maven 3.9.12
-- Gradle 9.3.1
+- Apache Maven 3.9.14
+- Gradle 9.4.1
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.32.1
-- bazel 9.0.0
+- azcopy 10.32.2
+- bazel 9.0.1
 - bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.18.0
+- Curl 8.19.0
 - Git 2.53.0
 - Git LFS 3.7.1
-- GitHub CLI 2.87.3
+- GitHub CLI 2.88.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.4.9
+- gpg (GnuPG) 2.5.18
 - jq 1.8.1
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.15.0
@@ -72,16 +72,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.0
-- AWS SAM CLI 1.154.0
-- AWS Session Manager CLI 1.2.779.0
-- Azure CLI 2.83.0
+- AWS CLI 2.34.15
+- AWS SAM CLI 1.156.0
+- AWS Session Manager CLI 1.2.792.0
+- Azure CLI 2.84.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.41.2
-- Cmake 4.2.3
-- CodeQL Action Bundle 2.24.2
+- Cmake 4.3.0
+- CodeQL Action Bundle 2.24.3
 - Fastlane 2.232.2
-- SwiftFormat 0.59.1
+- SwiftFormat 0.60.1
 - Xcbeautify 3.1.4
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
@@ -90,14 +90,14 @@
 - SwiftLint 0.63.2
 
 ### Browsers
-- Safari 26.3 (19623.2.7.18.1)
-- SafariDriver 26.3 (19623.2.7.18.1)
-- Google Chrome 145.0.7632.117
-- Google Chrome for Testing 145.0.7632.117
-- ChromeDriver 145.0.7632.117
-- Microsoft Edge 145.0.3800.82
-- Microsoft Edge WebDriver 145.0.3800.82
-- Mozilla Firefox 148.0
+- Safari 26.3.1 (19623.2.7.18.3)
+- SafariDriver 26.3.1 (19623.2.7.18.3)
+- Google Chrome 146.0.7680.165
+- Google Chrome for Testing 146.0.7680.165
+- ChromeDriver 146.0.7680.165
+- Microsoft Edge 146.0.3856.72
+- Microsoft Edge WebDriver 146.0.3856.72
+- Mozilla Firefox 149.0
 - geckodriver 0.36.0
 - Selenium server 4.41.0
 
@@ -122,44 +122,44 @@
 #### Ruby
 - 3.2.10
 - 3.3.10
-- 3.4.8
-- 4.0.1
+- 3.4.9
+- 4.0.2
 
 #### Python
-- 3.10.19
+- 3.10.20
 - 3.11.9
 - 3.12.10
 - 3.13.12
 - 3.14.3
 
 #### Node.js
-- 20.20.0
-- 22.22.0
+- 20.20.1
+- 22.22.1
 - 24.14.0
 
 #### Go
 - 1.22.12
 - 1.23.12
 - 1.24.13
-- 1.25.7
+- 1.25.8
 
 ### Rust Tools
-- Cargo 1.93.1
-- Rust 1.93.1
-- Rustdoc 1.93.1
-- Rustup 1.28.2
+- Cargo 1.94.0
+- Rust 1.94.0
+- Rustdoc 1.94.0
+- Rustup 1.29.0
 
 #### Packages
-- Clippy 0.1.93
+- Clippy 0.1.94
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.13
+- PowerShell 7.4.14
 
 #### PowerShell Modules
 - Az: 14.6.0
 - Pester: 5.7.1
-- PSScriptAnalyzer: 1.24.0
+- PSScriptAnalyzer: 1.25.0
 
 ### Xcode
 | Version        | Build    | Path                           | Symlinks                                                  |
@@ -252,7 +252,7 @@
 | watchOS 10.0 | 10.0   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)   |
 | watchOS 10.2 | 10.2   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)   |
 | watchOS 10.4 | 10.4   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)   |
-| watchOS 10.5 | 10.5   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)   |
+| watchOS 10.5 | 10.5   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                             |
 | watchOS 11.1 | 11.1   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                           |
 | watchOS 11.2 | 11.2   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                           |
 
@@ -260,10 +260,10 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                               |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                                  |
-| Android Emulator           | 36.4.9                                                                                                                                                                                                                                                                                                                |
+| Android Emulator           | 36.4.10                                                                                                                                                                                                                                                                                                               |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                              |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
-| Android SDK Platform-Tools | 36.0.2                                                                                                                                                                                                                                                                                                                |
+| Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                                                                                                                                |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                |
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                       |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                    |
