@@ -6,12 +6,12 @@
 # macOS 15
 - OS Version: macOS 15.7.4 (24G517)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20260303.0188.2
+- Image Version: 20260325.0234.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.418, 9.0.102, 9.0.203, 9.0.311, 10.0.103
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.419, 9.0.102, 9.0.203, 9.0.312, 10.0.103, 10.0.201
 - Bash 3.2.57(1)-release
 - Clang/LLVM 17.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
@@ -21,43 +21,43 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
-- Kotlin 2.3.10-release-465
-- Node.js 22.22.0
-- Perl 5.42.0
+- Kotlin 2.3.20-release-208
+- Node.js 22.22.2
+- Perl 5.42.1
 - Python3 3.14.3
 - Ruby 3.3.10
 
 ### Package Management
-- Bundler 4.0.7
+- Bundler 4.0.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.0.16
-- NPM 10.9.4
+- Homebrew 5.1.1
+- NPM 10.9.7
 - Pip3 26.0 (python 3.14)
-- Pipx 1.8.0
-- RubyGems 4.0.7
-- Vcpkg 2026 (build from commit 39a6cc0e44)
+- Pipx 1.11.0
+- RubyGems 4.0.9
+- Vcpkg 2026 (build from commit ff8f729804)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.15
-- Apache Maven 3.9.12
-- Gradle 9.3.1
+- Apache Maven 3.9.14
+- Gradle 9.4.1
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.32.1
-- bazel 9.0.0
+- azcopy 10.32.2
+- bazel 9.0.1
 - bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.53.0
 - Git LFS 3.7.1
-- GitHub CLI 2.87.3
+- GitHub CLI 2.88.1
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.4.9
+- gpg (GnuPG) 2.5.18
 - jq 1.8.1
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.15.0
@@ -68,16 +68,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.0
-- AWS SAM CLI 1.154.0
-- AWS Session Manager CLI 1.2.779.0
+- AWS CLI 2.34.16
+- AWS SAM CLI 1.156.0
+- AWS Session Manager CLI 1.2.792.0
 - Azure CLI 2.84.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.41.2
-- Cmake 4.2.3
-- CodeQL Action Bundle 2.24.2
+- Cmake 4.3.0
+- CodeQL Action Bundle 2.24.3
 - Fastlane 2.232.2
-- SwiftFormat 0.59.1
+- SwiftFormat 0.60.1
 - Xcbeautify 3.1.4
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 1.6.2
@@ -85,12 +85,12 @@
 ### Browsers
 - Safari 26.3 (20623.2.7.18.1)
 - SafariDriver 26.3 (20623.2.7.18.1)
-- Google Chrome 145.0.7632.117
-- Google Chrome for Testing 145.0.7632.117
-- ChromeDriver 145.0.7632.117
-- Microsoft Edge 145.0.3800.82
-- Microsoft Edge WebDriver 145.0.3800.82
-- Mozilla Firefox 148.0
+- Google Chrome 146.0.7680.165
+- Google Chrome for Testing 146.0.7680.165
+- ChromeDriver 146.0.7680.165
+- Microsoft Edge 146.0.3856.72
+- Microsoft Edge WebDriver 146.0.3856.72
+- Mozilla Firefox 149.0
 - geckodriver 0.36.0
 - Selenium server 4.41.0
 
@@ -114,8 +114,8 @@
 #### Ruby
 - 3.2.10
 - 3.3.10
-- 3.4.8
-- 4.0.1
+- 3.4.9
+- 4.0.2
 
 #### Python
 - 3.11.9
@@ -124,33 +124,33 @@
 - 3.14.3
 
 #### Node.js
-- 20.20.0
-- 22.22.0
-- 24.14.0
+- 20.20.2
+- 22.22.2
+- 24.14.1
 
 #### Go
 - 1.22.12
 - 1.23.12
 - 1.24.13
-- 1.25.7
+- 1.25.8
 
 ### Rust Tools
-- Cargo 1.93.1
-- Rust 1.93.1
-- Rustdoc 1.93.1
-- Rustup 1.28.2
+- Cargo 1.94.0
+- Rust 1.94.0
+- Rustdoc 1.94.0
+- Rustup 1.29.0
 
 #### Packages
-- Clippy 0.1.93
+- Clippy 0.1.94
 - Rustfmt 1.8.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.13
+- PowerShell 7.4.14
 
 #### PowerShell Modules
 - Az: 14.6.0
 - Pester: 5.7.1
-- PSScriptAnalyzer: 1.24.0
+- PSScriptAnalyzer: 1.25.0
 
 ### Xcode
 | Version        | Build    | Path                           | Symlinks                                                       |
@@ -273,7 +273,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                               |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                  |
-| Android Emulator           | 36.4.9                                                                                                                                                                                                                                                                                                                |
+| Android Emulator           | 36.4.10                                                                                                                                                                                                                                                                                                               |
 | Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                        |
 | Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                                                                                                                                |
