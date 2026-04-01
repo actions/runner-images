@@ -47,6 +47,7 @@ else
 fi
 
 apt-get update
+apt-get upgrade -y
 # Install jq
 apt-get install jq
 
