@@ -51,6 +51,8 @@ build {
     inline = ["if (-not ((net localgroup Administrators) -contains '${var.install_user}')) { exit 1 }"]
   }
 
+  # Scheduled tasks spawned when using elevated_user provisioners requires the user to log in interactively on Windows Desktop
+  # Set AutoAdminLogon for elevated_user and reboot as a workaround
   provisioner "powershell" {
     inline = [
       "Set-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name AutoAdminLogon -Value 1 -type String",
@@ -203,6 +205,8 @@ build {
     ]
   }
 
+  # Scheduled tasks spawned when using elevated_user provisioners requires the user to log in interactively on Windows Desktop
+  # Remove AutoAdminLogon after all elevated_user tasks are completed and reboot
   provisioner "powershell" {
     inline = [
       "Remove-ItemProperty 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Winlogon' -Name AutoAdminLogon",
