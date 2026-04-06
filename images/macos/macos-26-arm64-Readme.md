@@ -6,7 +6,7 @@
 # macOS 26
 - OS Version: macOS 26.3 (25D125)
 - Kernel Version: Darwin 25.3.0
-- Image Version: 20260325.0302.1
+- Image Version: 20260402.0322.1
 
 ## Installed Software
 
@@ -23,7 +23,7 @@
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
 - Kotlin 2.3.20-release-208
 - Node.js 24.14.1
-- Perl 5.42.1
+- Perl 5.42.2
 - Python3 3.14.3
 - Ruby 3.4.9
 
@@ -31,16 +31,16 @@
 - Bundler 4.0.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.1.1
+- Homebrew 5.1.3
 - NPM 11.11.0
 - Pip3 26.0 (python 3.14)
-- Pipx 1.11.0
+- Pipx 1.11.1
 - RubyGems 4.0.9
-- Vcpkg 2026 (build from commit ff8f729804)
+- Vcpkg 2026 (build from commit dbbd673624)
 - Yarn 1.22.22
 
 ### Project Management
-- Apache Ant 1.10.15
+- Apache Ant 1.10.16
 - Apache Maven 3.9.14
 - Gradle 9.4.1
 
@@ -54,42 +54,42 @@
 - Curl 8.7.1
 - Git 2.53.0
 - Git LFS 3.7.1
-- GitHub CLI 2.88.1
+- GitHub CLI 2.89.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.18
 - jq 1.8.1
 - OpenSSL 3.6.1 27 Jan 2026 (Library: OpenSSL 3.6.1 27 Jan 2026)
-- Packer 1.15.0
+- Packer 1.15.1
 - pkgconf 2.5.1
 - Unxip 3.3
-- yq 4.52.4
+- yq 4.52.5
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.16
-- AWS SAM CLI 1.156.0
+- AWS CLI 2.34.22
+- AWS SAM CLI 1.157.1
 - AWS Session Manager CLI 1.2.792.0
 - Azure CLI 2.84.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.41.2
-- Cmake 4.3.0
-- CodeQL Action Bundle 2.24.3
+- Cmake 4.3.1
+- CodeQL Action Bundle 2.25.1
 - Fastlane 2.232.2
 - SwiftFormat 0.60.1
-- Xcbeautify 3.1.4
+- Xcbeautify 3.1.5
 - Xcode Command Line Tools 26.4.0.0.1774242506
 - Xcodes 1.6.2
 
 ### Browsers
 - Safari 26.3 (21623.2.7.11.6)
 - SafariDriver 26.3 (21623.2.7.11.6)
-- Google Chrome 146.0.7680.165
+- Google Chrome 146.0.7680.178
 - Google Chrome for Testing 146.0.7680.165
 - ChromeDriver 146.0.7680.165
-- Microsoft Edge 146.0.3856.72
-- Microsoft Edge WebDriver 146.0.3856.72
+- Microsoft Edge 146.0.3856.97
+- Microsoft Edge WebDriver 146.0.3856.97
 - Mozilla Firefox 149.0
 - geckodriver 0.36.0
 - Selenium server 4.41.0
@@ -112,8 +112,8 @@
 ### Cached Tools
 
 #### Ruby
-- 3.2.10
-- 3.3.10
+- 3.2.11
+- 3.3.11
 - 3.4.9
 - 4.0.2
 
@@ -134,9 +134,9 @@
 - 1.25.8
 
 ### Rust Tools
-- Cargo 1.94.0
-- Rust 1.94.0
-- Rustdoc 1.94.0
+- Cargo 1.94.1
+- Rust 1.94.1
+- Rustdoc 1.94.1
 - Rustup 1.29.0
 
 #### Packages
@@ -152,13 +152,13 @@
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version        | Build  | Path                                           | Symlinks                                                       |
-| -------------- | ------ | ---------------------------------------------- | -------------------------------------------------------------- |
-| 26.4           | 17E192 | /Applications/Xcode_26.4_Release_Candidate.app | /Applications/Xcode_26.4.0.app<br>/Applications/Xcode_26.4.app |
-| 26.3           | 17C529 | /Applications/Xcode_26.3.app                   | /Applications/Xcode_26.3.0.app                                 |
-| 26.2 (default) | 17C52  | /Applications/Xcode_26.2.app                   | /Applications/Xcode_26.2.0.app<br>/Applications/Xcode.app      |
-| 26.1.1         | 17B100 | /Applications/Xcode_26.1.1.app                 | /Applications/Xcode_26.1.app                                   |
-| 26.0.1         | 17A400 | /Applications/Xcode_26.0.1.app                 | /Applications/Xcode_26.0.app                                   |
+| Version        | Build  | Path                           | Symlinks                                                  |
+| -------------- | ------ | ------------------------------ | --------------------------------------------------------- |
+| 26.4           | 17E192 | /Applications/Xcode_26.4.app   | /Applications/Xcode_26.4.0.app                            |
+| 26.3           | 17C529 | /Applications/Xcode_26.3.app   | /Applications/Xcode_26.3.0.app                            |
+| 26.2 (default) | 17C52  | /Applications/Xcode_26.2.app   | /Applications/Xcode_26.2.0.app<br>/Applications/Xcode.app |
+| 26.1.1         | 17B100 | /Applications/Xcode_26.1.1.app | /Applications/Xcode_26.1.app                              |
+| 26.0.1         | 17A400 | /Applications/Xcode_26.0.1.app | /Applications/Xcode_26.0.app                              |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -205,34 +205,34 @@
 | DriverKit 25.4            | driverkit25.4        | 26.4          |
 
 #### Installed Simulators
-| Name          | OS     | Simulators                                                                                                                                                                                                                                                             |
-| ------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 26.0      | 26.0.1 | iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M4)<br>iPad Pro 13-inch (M5) |
-| iOS 26.1      | 26.1   | iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5)                                                   |
-| iOS 26.2      | 26.2   | iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5)                                                   |
-| tvOS 26.0     | 26.0   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                    |
-| tvOS 26.1     | 26.1   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                    |
-| tvOS 26.2     | 26.2   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                    |
-| watchOS 26.0  | 26.0   | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                                                                       |
-| watchOS 26.1  | 26.1   | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                                                                       |
-| watchOS 26.2  | 26.2   | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                                                                       |
-| visionOS 26.0 | 26.0   | Apple Vision Pro                                                                                                                                                                                                                                                       |
-| visionOS 26.1 | 26.1   | Apple Vision Pro                                                                                                                                                                                                                                                       |
-| visionOS 26.2 | 26.2   | Apple Vision Pro                                                                                                                                                                                                                                                       |
+| Name          | OS   | Simulators                                                                                                                                                                                                           |
+| ------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iOS 26.1      | 26.1 | iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
+| iOS 26.2      | 26.2 | iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
+| iOS 26.4      | 26.4 | iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone 17e<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
+| tvOS 26.1     | 26.1 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                  |
+| tvOS 26.2     | 26.2 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                  |
+| tvOS 26.4     | 26.4 | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                  |
+| watchOS 26.1  | 26.1 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                     |
+| watchOS 26.2  | 26.2 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                     |
+| watchOS 26.4  | 26.4 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                     |
+| visionOS 26.1 | 26.1 | Apple Vision Pro                                                                                                                                                                                                     |
+| visionOS 26.2 | 26.2 | Apple Vision Pro                                                                                                                                                                                                     |
+| visionOS 26.4 | 26.4 | Apple Vision Pro                                                                                                                                                                                                     |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                          |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 16.0                                                                                                                                                                             |
-| Android Emulator           | 36.4.10                                                                                                                                                                          |
-| Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                   |
-| Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
-| Android SDK Platform-Tools | 37.0.0                                                                                                                                                                           |
-| Android Support Repository | 47.0.0                                                                                                                                                                           |
-| CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                  |
-| Google Play services       | 49                                                                                                                                                                               |
-| Google Repository          | 58                                                                                                                                                                               |
-| NDK                        | 27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                        |
+| Package Name               | Version                                                                                                                                                                                                  |
+| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 16.0                                                                                                                                                                                                     |
+| Android Emulator           | 36.4.10                                                                                                                                                                                                  |
+| Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                 |
+| Android SDK Platforms      | android-37.0 (rev 1)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
+| Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                   |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                   |
+| CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                          |
+| Google Play services       | 49                                                                                                                                                                                                       |
+| Google Repository          | 58                                                                                                                                                                                                       |
+| NDK                        | 27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                                                |
 
 #### Environment variables
 | Name                    | Value                                               |
