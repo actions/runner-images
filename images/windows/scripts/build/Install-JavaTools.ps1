@@ -92,9 +92,9 @@ function Install-JavaJDK {
 }
 
 if (Test-IsArm64) {
-    $expectedArch = "aarch64"
+    $javaArch = "aarch64"
 } else {
-    $expectedArch = "x64"
+    $javaArch = "x64"
 }
 
 $toolsetJava = (Get-ToolsetContent).java
@@ -104,12 +104,12 @@ $jdkVersionsToInstall = $toolsetJava.versions
 foreach ($jdkVersionToInstall in $jdkVersionsToInstall) {
     $isDefaultVersion = $jdkVersionToInstall -eq $defaultVersion
 
-    Install-JavaJDK -JDKVersion $jdkVersionToInstall -Architecture $expectedArch
+    Install-JavaJDK -JDKVersion $jdkVersionToInstall -Architecture $javaArch
 
     if ($isDefaultVersion) {
-        Set-JavaPath -Version $jdkVersionToInstall -Architecture $expectedArch -Default
+        Set-JavaPath -Version $jdkVersionToInstall -Architecture $javaArch -Default
     } else {
-        Set-JavaPath -Version $jdkVersionToInstall -Architecture $expectedArch
+        Set-JavaPath -Version $jdkVersionToInstall -Architecture $javaArch
     }
 }
 

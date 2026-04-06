@@ -5,9 +5,9 @@
 $vsToolset = (Get-ToolsetContent).visualStudio
 
 if (Test-IsArm64) {
-    $expectedArch = "arm64"
+    $vsArch = "arm64"
 } else {
-    $expectedArch = "x64"
+    $vsArch = "x64"
 }
 
 # Install Visual Studio for Windows 22 and 25 with InstallChannel
@@ -18,7 +18,7 @@ Install-VisualStudio `
     -InstallChannelUri $vsToolset.installChannelUri `
     -RequiredComponents $vsToolset.workloads `
     -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
-    -Architecture $expectedArch
+    -Architecture $vsArch
 
 # Find the version of VS installed for this instance
 # Only supports a single instance

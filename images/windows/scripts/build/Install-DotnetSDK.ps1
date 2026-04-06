@@ -83,13 +83,13 @@ function Install-DotnetSDK {
 
     #region Supply chain security
     if (Test-IsArm64) {
-        $expectedArch = "arm64"
+        $dotnetArch = "arm64"
     } else {
-        $expectedArch = "x64"
+        $dotnetArch = "x64"
     }
     $releasesJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
     $releasesData = (Invoke-DownloadWithRetry $releasesJsonUri) | Get-Item | Get-Content | ConvertFrom-Json
-    $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq "dotnet-sdk-win-$expectedArch.zip" }).hash
+    $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq "dotnet-sdk-win-$dotnetArch.zip" }).hash
     Test-FileChecksum $zipPath -ExpectedSHA512Sum $distributorFileHash
     #endregion
 }

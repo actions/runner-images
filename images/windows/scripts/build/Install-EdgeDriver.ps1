@@ -4,9 +4,9 @@
 ################################################################################
 
 if (Test-IsArm64) {
-    $expectedArch = "arm64"
+    $driverArch = "arm64"
 } else {
-    $expectedArch = "win64"
+    $driverArch = "win64"
 }
 
 # Disable Edge auto-updates
@@ -26,7 +26,7 @@ $versionInfoFile = Invoke-DownloadWithRetry -Url $versionInfoUrl -Path "$edgeDri
 $latestVersion = Get-Content -Path $versionInfoFile
 
 Write-Host "Download Microsoft Edge WebDriver..."
-$downloadUrl = "https://msedgedriver.microsoft.com/$latestVersion/edgedriver_$expectedArch.zip"
+$downloadUrl = "https://msedgedriver.microsoft.com/$latestVersion/edgedriver_$driverArch.zip"
 $archivePath = Invoke-DownloadWithRetry $downloadUrl
 
 Write-Host "Expand Microsoft Edge WebDriver archive..."

@@ -7,9 +7,9 @@
 $ErrorActionPreference = "Stop"
 
 if (Test-IsArm64) {
-    $expectedArch = "arm64"
+    $pwshArch = "arm64"
 } else {
-    $expectedArch = "x64"
+    $pwshArch = "x64"
 }
 
 $tempDir = Join-Path ([System.IO.Path]::GetTempPath()) ([System.IO.Path]::GetRandomFileName())
@@ -24,7 +24,7 @@ try {
     $releases = $metadata.LTSReleaseTag -replace '^v'
     foreach ($release in $releases) {
         if ($release -like "${pwshMajorMinor}*") {
-            $downloadUrl = "https://github.com/PowerShell/PowerShell/releases/download/v${release}/PowerShell-${release}-win-${expectedArch}.msi"
+            $downloadUrl = "https://github.com/PowerShell/PowerShell/releases/download/v${release}/PowerShell-${release}-win-${pwshArch}.msi"
             break
         }
     }

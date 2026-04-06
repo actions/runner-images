@@ -5,16 +5,16 @@
 ################################################################################
 
 if (Test-IsArm64) {
-    $expectedArch = "arm64"
+    $gitArch = "arm64"
 } else {
-    $expectedArch = "64-bit"
+    $gitArch = "64-bit"
 }
 
 # Install the latest version of Git for Windows
 $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "git-for-windows/git" `
     -Version "latest" `
-    -UrlMatchPattern "Git-*-$expectedArch.exe"
+    -UrlMatchPattern "Git-*-$gitArch.exe"
 
 $externalHash = Get-ChecksumFromGithubRelease `
     -Repo "git-for-windows/git" `

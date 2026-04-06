@@ -5,16 +5,16 @@
 ################################################################################
 
 if (Test-IsArm64) {
-    $expectedArch = "arm64"
+    $ghArch = "arm64"
 } else {
-    $expectedArch = "amd64"
+    $ghArch = "amd64"
 }
 
 Write-Host "Get the latest gh version..."
 $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "cli/cli" `
     -Version "latest" `
-    -UrlMatchPattern "gh_*_windows_$expectedArch.msi"
+    -UrlMatchPattern "gh_*_windows_$ghArch.msi"
 
 $checksumsUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "cli/cli" `

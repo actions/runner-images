@@ -5,12 +5,11 @@
 ################################################################################
 
 if (Test-IsArm64) {
-    $expectedArch = "ARM"
+    $openSSLArch = "ARM"
 } else {
-    $expectedArch = "INTEL"
+    $openSSLArch = "INTEL"
 }
 
-$arch = $expectedArch
 $bits = '64'
 $light = $false
 $installerType = "exe"
@@ -28,7 +27,7 @@ $installerHash = $null
 
 foreach ($key in $installerNames) {
     $installer = $installersAvailable.$key
-    if (($installer.light -eq $light) -and ($installer.arch -eq $arch) -and ($installer.bits -eq $bits) -and ($installer.installer -eq $installerType) -and ($installer.basever -like $version)) {
+    if (($installer.light -eq $light) -and ($installer.arch -eq $openSSLArch) -and ($installer.bits -eq $bits) -and ($installer.installer -eq $installerType) -and ($installer.basever -like $version)) {
         $installerUrl = $installer.url
         $installerHash = $installer.sha512
     }

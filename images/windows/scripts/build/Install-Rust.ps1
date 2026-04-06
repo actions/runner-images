@@ -5,9 +5,9 @@
 ################################################################################
 
 if (Test-IsArm64) {
-    $expectedArch = "aarch64"
+    $rustArch = "aarch64"
 } else {
-    $expectedArch = "x86_64"
+    $rustArch = "x86_64"
 }
 
 # Rust Env
@@ -16,10 +16,10 @@ $env:CARGO_HOME = "C:\Users\Default\.cargo"
 
 # Download the latest rustup-init.exe for Windows
 # See https://rustup.rs/#
-$rustupPath = Invoke-DownloadWithRetry "https://static.rust-lang.org/rustup/dist/${expectedArch}-pc-windows-msvc/rustup-init.exe"
+$rustupPath = Invoke-DownloadWithRetry "https://static.rust-lang.org/rustup/dist/${rustArch}-pc-windows-msvc/rustup-init.exe"
 
 #region Supply chain security
-$distributorFileHash = (Invoke-RestMethod -Uri "https://static.rust-lang.org/rustup/dist/${expectedArch}-pc-windows-msvc/rustup-init.exe.sha256").Trim()
+$distributorFileHash = (Invoke-RestMethod -Uri "https://static.rust-lang.org/rustup/dist/${rustArch}-pc-windows-msvc/rustup-init.exe.sha256").Trim()
 Test-FileChecksum $rustupPath -ExpectedSHA256Sum $distributorFileHash
 #endregion
 
