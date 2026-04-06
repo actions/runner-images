@@ -87,7 +87,7 @@ Describe "Windows Updates" {
     }
 }
 
-Describe "WSL2" -Skip:((Test-IsWin22) -or (Test-IsWin11)) {
+Describe "WSL2" -Skip:((Test-IsWin22-X64) -or (Test-IsWin11-Arm64)) {
     It "WSL status should return zero exit code" {
         "wsl --status" | Should -ReturnZeroExitCode
     }

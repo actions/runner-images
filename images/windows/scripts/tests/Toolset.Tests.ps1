@@ -19,7 +19,7 @@ $toolsExecutables = @{
     )
 }
 
-if (Test-IsWin11) {
+if (Test-IsWin11-Arm64) {
     $toolsExecutables.Remove("PyPy")
 }
 

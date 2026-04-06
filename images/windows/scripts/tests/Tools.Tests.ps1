@@ -56,7 +56,7 @@ Describe "DACFx" {
     }
 }
 
-Describe "Mercurial" -Skip:(Test-IsWin25) {
+Describe "Mercurial" -Skip:(Test-IsWin25-X64) {
     It "Mercurial" {
         "hg --version" | Should -ReturnZeroExitCode
     }
@@ -96,7 +96,7 @@ Describe "NET48" {
     }
 }
 
-Describe "NSIS" -Skip:(Test-IsWin25) {
+Describe "NSIS" -Skip:(Test-IsWin25-X64) {
     It "NSIS" {
         "makensis /VERSION" | Should -ReturnZeroExitCode
     }
@@ -118,7 +118,7 @@ Describe "Sbt" {
     }
 }
 
-Describe "ServiceFabricSDK" -Skip:(Test-IsWin11) {
+Describe "ServiceFabricSDK" -Skip:(Test-IsWin11-Arm64) {
     It "PowerShell Module" {
         # Ignore PowerShell version check if running in PowerShell Core
         # https://github.com/microsoft/service-fabric/issues/1343
@@ -160,7 +160,7 @@ Describe "WebPlatformInstaller" {
     }
 }
 
-Describe "Zstd" -Skip:(Test-IsWin11) {
+Describe "Zstd" -Skip:(Test-IsWin11-Arm64) {
     It "zstd" {
         "zstd -V" | Should -ReturnZeroExitCode
     }

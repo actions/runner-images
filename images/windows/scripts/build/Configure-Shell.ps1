@@ -2,7 +2,7 @@
 $shellPath = "C:\shells"
 New-Item -Path $shellPath -ItemType Directory | Out-Null
 
-if (-not (Test-IsWin11)) {
+if (Test-IsX64) {
     # add a wrapper for C:\msys64\usr\bin\bash.exe
 @'
 @echo off

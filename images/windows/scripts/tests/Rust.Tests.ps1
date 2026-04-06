@@ -5,7 +5,7 @@ Describe "Rust" {
         $env:Path += ";$env:CARGO_HOME\bin"
     }
 
-    if (Test-IsWin25) {
+    if (Test-IsWin25-X64) {
         $rustTools = @(
             @{ToolName = "rustup"; binPath = "C:\Users\Default\.cargo\bin\rustup.exe"}
             @{ToolName = "rustc"; binPath = "C:\Users\Default\.cargo\bin\rustc.exe"}

@@ -1,6 +1,6 @@
-Describe "Haskell" -Skip:(Test-IsWin11) {
+Describe "Haskell" -Skip:(Test-IsWin11-Arm64) {
     BeforeDiscovery {
-        if (Test-IsWin11) { return }
+        if (Test-IsWin11-Arm64) { return }
         $ghcPackagesPath = "c:\ghcup\ghc"
         [array] $ghcVersionList = Get-ChildItem -Path $ghcPackagesPath -Filter "*" | ForEach-Object { $_.Name.Trim() }
         $ghcCount = $ghcVersionList.Count
@@ -23,7 +23,7 @@ Describe "Haskell" -Skip:(Test-IsWin11) {
             @{envVar = "GHCUP_INSTALL_BASE_PREFIX"}
             @{envVar = "GHCUP_MSYS2"}
         )
-        $numberOfVersions = if (Test-IsWin25) { 1 } else { 3 }
+        $numberOfVersions = if (Test-IsWin25-X64) { 1 } else { 3 }
     }
 
     It "<envVar> environment variable exists" -TestCases $ghcupEnvExists {

@@ -50,7 +50,7 @@ if ($LASTEXITCODE -ne 0) {
     throw "Rust component installation failed with exit code $LASTEXITCODE"
 }
 
-if (Test-IsWin22) {
+if (Test-IsWin22-X64) {
     cargo install --locked bindgen-cli cbindgen cargo-audit cargo-outdated
     if ($LASTEXITCODE -ne 0) {
         throw "Rust tools installation failed with exit code $LASTEXITCODE"
@@ -59,7 +59,7 @@ if (Test-IsWin22) {
     Remove-Item "${env:CARGO_HOME}\registry\*" -Recurse -Force
 }
 
-if (Test-IsWin11) {
+if (Test-IsWin11-Arm64) {
     cargo install bindgen-cli cbindgen cargo-audit cargo-outdated
     if ($LASTEXITCODE -ne 0) {
         throw "Rust tools installation failed with exit code $LASTEXITCODE"

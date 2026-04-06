@@ -4,10 +4,10 @@
 ################################################################################
 
 # Requires Windows SDK with the same version number as the WDK
-if (Test-IsWin22) {
+if (Test-IsWin22-X64) {
     # SDK is available through Visual Studio
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2324617"
-} elseif (Test-IsWin11) {
+} elseif (Test-IsWin11-Arm64) {
     # SDK is available through Visual Studio
     $wdkUrl = "https://go.microsoft.com/fwlink/?linkid=2335869"
 } else {

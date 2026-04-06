@@ -34,7 +34,7 @@ $vsInstallRoot = (Get-VisualStudioInstance).InstallationPath
 $newContent = '{"Extensions":[{"Key":"1e906ff5-9da8-4091-a299-5c253c55fdc9","Value":{"ShouldAutoUpdate":false}},{"Key":"Microsoft.VisualStudio.Web.AzureFunctions","Value":{"ShouldAutoUpdate":false}}],"ShouldAutoUpdate":false,"ShouldCheckForUpdates":false}'
 Set-Content -Path "$vsInstallRoot\Common7\IDE\Extensions\MachineState.json" -Value $newContent
 
-if (Test-IsWin22) {
+if (Test-IsWin22-X64) {
     # Install Windows 10 SDK version 10.0.17763
     Install-Binary -Type EXE `
     -Url 'https://go.microsoft.com/fwlink/p/?LinkID=2033908' `
@@ -49,7 +49,7 @@ Install-Binary -Type EXE `
     -ExpectedSubject $(Get-MicrosoftPublisher)
 
 # Enable Windows Desktop Debuggers (cdb.exe) on Windows Server 2025
-if (Test-IsWin25) {
+if (Test-IsWin25-X64) {
     $installerEntry = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* `
         | Where-Object { $_.DisplayName -match "Windows Software Development Kit" } `
         | Sort-Object DisplayVersion -Descending | Select-Object -First 1

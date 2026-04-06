@@ -21,7 +21,7 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -Disa
 $softwareReport = [SoftwareReport]::new($(Build-OSInfoSection))
 $optionalFeatures = $softwareReport.Root.AddHeader("Windows features")
 $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
-if (Test-IsWin25) {
+if (Test-IsWin25-X64) {
     $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (Default, WSLv2):", $(Get-WSL2Version))
 }
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
@@ -44,7 +44,7 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Chocolatey", $(Get-ChocoVersion))
 $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
 $packageManagement.AddToolVersion("Helm", $(Get-HelmVersion))
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
 }
 $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
@@ -72,12 +72,12 @@ $tools.AddToolVersion("azcopy", $(Get-AzCopyVersion))
 $tools.AddToolVersion("Bazel", $(Get-BazelVersion))
 $tools.AddToolVersion("Bazelisk", $(Get-BazeliskVersion))
 $tools.AddToolVersion("Bicep", $(Get-BicepVersion))
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
 }
 $tools.AddToolVersion("CMake", $(Get-CMakeVersion))
 $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $tools.AddToolVersion("Docker", $(Get-DockerVersion))
     $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeVersionV2))
     $tools.AddToolVersion("Docker-wincred", $(Get-DockerWincredVersion))
@@ -90,42 +90,42 @@ $tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))
 $tools.AddToolVersion("jq", $(Get-JQVersion))
 $tools.AddToolVersion("Kind", $(Get-KindVersion))
 $tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
-if (-not (Test-IsWin25)) {
+if (-not (Test-IsWin25-X64)) {
     $tools.AddToolVersion("Mercurial", $(Get-MercurialVersion))
 }
 $tools.AddToolVersion("gcc", $(Get-GCCVersion))
 $tools.AddToolVersion("gdb", $(Get-GDBVersion))
 $tools.AddToolVersion("GNU Binutils", $(Get-GNUBinutilsVersion))
 $tools.AddToolVersion("Newman", $(Get-NewmanVersion))
-if (-not (Test-IsWin25)) {
+if (-not (Test-IsWin25-X64)) {
     $tools.AddToolVersion("NSIS", $(Get-NSISVersion))
 }
 $tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
 $tools.AddToolVersion("R", $(Get-RVersion))
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
 }
 $tools.AddToolVersion("Stack", $(Get-StackVersion))
-if (-not (Test-IsWin25) -and -not (Test-IsWin11)) {
+if (-not (Test-IsWin25-X64) -and -not (Test-IsWin11-Arm64)) {
     $tools.AddToolVersion("Subversion (SVN)", $(Get-SVNVersion))
 }
 $tools.AddToolVersion("Swig", $(Get-SwigVersion))
 $tools.AddToolVersion("VSWhere", $(Get-VSWhereVersion))
 $tools.AddToolVersion("WinAppDriver", $(Get-WinAppDriver))
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $tools.AddToolVersion("WiX Toolset", $(Get-WixVersion))
 }
 $tools.AddToolVersion("yamllint", $(Get-YAMLLintVersion))
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $tools.AddToolVersion("zstd", $(Get-ZstdVersion))
 }
 $tools.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # CLI Tools
 $cliTools = $installedSoftware.AddHeader("CLI Tools")
-if (-not (Test-IsWin25)) {
+if (-not (Test-IsWin25-X64)) {
     $cliTools.AddToolVersion("Alibaba Cloud CLI", $(Get-AlibabaCLIVersion))
 }
 $cliTools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
@@ -144,7 +144,7 @@ $rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
 $rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
 
 $rustToolsPackages = $rustTools.AddHeader("Packages")
-if (-not (Test-IsWin25)) {
+if (-not (Test-IsWin25-X64)) {
     $rustToolsPackages.AddToolVersion("bindgen", $(Get-BindgenVersion))
     $rustToolsPackages.AddToolVersion("cargo-audit", $(Get-CargoAuditVersion))
     $rustToolsPackages.AddToolVersion("cargo-outdated", $(Get-CargoOutdatedVersion))
@@ -162,12 +162,12 @@ $browsersAndWebdrivers.AddHeader("Environment variables").AddTable($(Build-Brows
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
 
 # Shells
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
 }
 
 # MSYS2
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $msys2 = $installedSoftware.AddHeader("MSYS2")
     $msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
 
@@ -183,7 +183,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 $installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection))
 
 # Databases
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $databases = $installedSoftware.AddHeader("Databases")
     $databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
     $databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
@@ -196,7 +196,7 @@ $databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
 $databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
 $databaseTools.AddToolVersion("SQL OLEDB Driver 18", $(Get-SQLOLEDBDriver18Version))
 $databaseTools.AddToolVersion("SQL OLEDB Driver 19", $(Get-SQLOLEDBDriver19Version))
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
     $databaseTools.AddToolVersion("MongoDB Shell (mongosh)", $(Get-MongoshVersion))
 }
@@ -235,7 +235,7 @@ $psModules.AddNodes($(Get-PowerShellModules))
 
 
 # Android
-if (-not (Test-IsWin11)) {
+if (-not (Test-IsWin11-Arm64)) {
     $android = $installedSoftware.AddHeader("Android")
     $android.AddTable($(Build-AndroidTable))
 
@@ -243,7 +243,7 @@ if (-not (Test-IsWin11)) {
 }
 
 # Cached Docker images
-if (-not (Test-IsWin25) -and -not (Test-IsWin11)) {
+if (-not (Test-IsWin25-X64) -and -not (Test-IsWin11-Arm64)) {
     $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
 }
 

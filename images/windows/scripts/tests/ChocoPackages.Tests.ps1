@@ -58,7 +58,7 @@ Describe "Pulumi" {
     }
 }
 
-Describe "Svn" -Skip:((Test-IsWin25) -or (Test-IsWin11)) {
+Describe "Svn" -Skip:((Test-IsWin25-X64) -or (Test-IsWin11-Arm64)) {
     It "svn" {
         "svn --version --quiet" | Should -ReturnZeroExitCode
     }
