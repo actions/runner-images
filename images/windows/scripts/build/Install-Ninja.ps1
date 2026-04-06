@@ -3,10 +3,6 @@
 ##  Desc:  Install Ninja build system (ARM64 only; x64 is installed via Choco)
 ################################################################################
 
-if (-not (Test-IsArm64)) {
-    exit 0
-}
-
 $installDir = "C:\Tools\Ninja"
 
 Write-Host "Resolve Ninja latest ARM64 download URL"

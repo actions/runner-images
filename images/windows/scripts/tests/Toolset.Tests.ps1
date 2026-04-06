@@ -3,10 +3,6 @@ $toolsExecutables = @{
         @{ Binary = "python.exe"; Arguments = "--version" },
         @{ Binary = "Scripts\pip.exe"; Arguments = "--version" }
     )
-    PyPy = @(
-        @{ Binary = "python.exe"; Arguments = "--version" },
-        @{ Binary = "Scripts\pip.exe"; Arguments = "--version" }
-    )
     Node = @(
         @{ Binary = "node.exe"; Arguments = "--version" },
         @{ Binary = "npm"; Arguments = "--version" }
@@ -19,8 +15,11 @@ $toolsExecutables = @{
     )
 }
 
-if (Test-IsWin11-Arm64) {
-    $toolsExecutables.Remove("PyPy")
+if (Test-IsX64) {
+    $toolsExecutables.Add("PyPy", @(
+        @{ Binary = "python.exe"; Arguments = "--version" },
+        @{ Binary = "Scripts\pip.exe"; Arguments = "--version" }
+    ))
 }
 
 function Get-ToolExecutables {

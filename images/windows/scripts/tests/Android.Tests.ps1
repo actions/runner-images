@@ -1,4 +1,4 @@
-Describe "Android SDK" -Skip:(Test-IsWin11-Arm64) {
+Describe "Android SDK" -Skip:(Test-IsArm64) {
     $androidToolset = (Get-ToolsetContent).android
     $androidInstalledPackages = Get-AndroidInstalledPackages
 

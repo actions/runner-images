@@ -4,10 +4,6 @@
 ##  Supply chain security: CMake - checksum validation
 ################################################################################
 
-if (-not (Test-IsArm64)) {
-    exit 0
-}
-
 # Install CMake
 $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "Kitware/CMake" `

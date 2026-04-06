@@ -28,7 +28,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # TortoiseSVN not installed on Windows 2025 and Windows 11 due to Sysprep issues
-if (-not (Test-IsWin25-X64) -and -not (Test-IsWin11-Arm64)) {
+if (Test-IsWin22-X64) {
     # disable TSVNCache.exe
     $registryKeyPath = 'HKCU:\Software\TortoiseSVN'
     if (-not(Test-Path -Path $registryKeyPath)) {

@@ -235,7 +235,7 @@ project(NinjaTest NONE)
     }
 
     It "Make a simple ninja project" {
-    "cmake -GNinja $ninjaProjectPath" | Should -ReturnZeroExitCode
+        "cmake -GNinja $ninjaProjectPath" | Should -ReturnZeroExitCode
     }
 
     It "build.ninja file should exist" {
