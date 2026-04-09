@@ -7,6 +7,7 @@ on:
     branches: [ main ]
     paths:
       - 'helpers/software-report-base/**'
+      - 'images.CI/linux-and-win/**'
 
 jobs:
   powershell-tests:
@@ -23,3 +24,8 @@ jobs:
             $ErrorActionPreference = "Stop"
             Invoke-Pester -Output Detailed "helpers/software-report-base/tests"
         
+      - name: Run linux-and-win scripts tests
+        shell: pwsh
+        run: |
+            $ErrorActionPreference = "Stop"
+            Invoke-Pester -Output Detailed "images.CI/linux-and-win/tests"
