@@ -27,8 +27,8 @@ if ($LASTEXITCODE -ne 0) {
     throw "Failed to copy HKCU\Software\Microsoft\VisualStudio to HKLM\DEFAULT\Software\Microsoft\VisualStudio"
 }
 
-# TortoiseSVN not installed on Windows 2025 image due to Sysprep issues
-if (-not (Test-IsWin25)) {
+# TortoiseSVN not installed on Windows 2025 and Windows 11 due to Sysprep issues
+if (Test-IsWin22-X64) {
     # disable TSVNCache.exe
     $registryKeyPath = 'HKCU:\Software\TortoiseSVN'
     if (-not(Test-Path -Path $registryKeyPath)) {
@@ -42,7 +42,7 @@ if (-not (Test-IsWin25)) {
     }
 }
 # Accept by default "Send Diagnostic data to Microsoft" consent.
-if (Test-IsWin25) {
+if (Test-IsWin25-X64) {
     $registryKeyPath = 'HKLM:\DEFAULT\SOFTWARE\Microsoft\Windows\CurrentVersion\Privacy'
     New-ItemProperty -Path $registryKeyPath -Name PrivacyConsentPresentationVersion -PropertyType DWORD -Value 3 | Out-Null
     New-ItemProperty -Path $registryKeyPath -Name PrivacyConsentSettingsValidMask -PropertyType DWORD -Value 4 | Out-Null
@@ -52,7 +52,7 @@ if (Test-IsWin25) {
 Dismount-RegistryHive "HKLM\DEFAULT"
 
 # Remove the "installer" (var.install_user) user profile for Windows 2025 image
-if (Test-IsWin25) {
+if (Test-IsWin25-X64) {
     Get-CimInstance -ClassName Win32_UserProfile | where-object {$_.LocalPath -match $env:INSTALL_USER} | Remove-CimInstance -Confirm:$false
     & net user $env:INSTALL_USER /DELETE
 }
