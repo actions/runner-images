@@ -1,4 +1,4 @@
-Describe "Docker" {
+Describe "Docker" -Skip:(Test-IsWin11-Arm64) {
     It "docker is installed" {
         "docker --version" | Should -ReturnZeroExitCode
     }
@@ -12,20 +12,20 @@ Describe "Docker" {
     }
 }
 
-Describe "DockerCompose" {
+Describe "DockerCompose" -Skip:(Test-IsWin11-Arm64) {
     It "docker compose v2" {
         "docker compose version" | Should -ReturnZeroExitCode
     }
 
 }
 
-Describe "DockerWinCred" {
+Describe "DockerWinCred" -Skip:(Test-IsWin11-Arm64) {
     It "docker-wincred" {
         "docker-credential-wincred version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "DockerImages" -Skip:(Test-IsWin25) {
+Describe "DockerImages" -Skip:((Test-IsWin25-X64) -or (Test-IsWin11-Arm64)) {
     Context "docker images" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 

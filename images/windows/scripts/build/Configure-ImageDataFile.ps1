@@ -15,20 +15,28 @@ $imageMinorVersion = $imageVersionComponents[1]
 $imageDataFile = $env:IMAGEDATA_FILE
 $githubUrl = "https://github.com/actions/runner-images/blob"
 
-if ((Test-IsWin25) -and $env:INSTALL_VS_2026) {
+if ((Test-IsWin25-X64) -and $env:INSTALL_VS_2026) {
     $imageLabel = "windows-2025-vs2026"
     $softwareUrl = "${githubUrl}/win25-vs2026/$imageMajorVersion.$imageMinorVersion/images/windows/Windows2025-VS2026-Readme.md"
     $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F$imageMajorVersion.$imageMinorVersion"
-} elseif (Test-IsWin25) {
+} elseif (Test-IsWin25-X64) {
     $imageLabel = "windows-2025"
     $softwareUrl = "${githubUrl}/win25/$imageMajorVersion.$imageMinorVersion/images/windows/Windows2025-Readme.md"
     $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win25%2F$imageMajorVersion.$imageMinorVersion"
-} elseif (Test-IsWin22) {
+} elseif (Test-IsWin22-X64) {
     $imageLabel = "windows-2022"
     $softwareUrl = "${githubUrl}/win22/$imageMajorVersion.$imageMinorVersion/images/windows/Windows2022-Readme.md"
     $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win22%2F$imageMajorVersion.$imageMinorVersion"
+} elseif ((Test-IsWin11-Arm64) -and $env:INSTALL_VS_2026) {
+    $imageLabel = "windows-11-vs2026-arm64"
+    $softwareUrl = "${githubUrl}/win11-vs2026-arm64/$imageMajorVersion.$imageMinorVersion/images/windows/Windows11-VS2026-Arm64-Readme.md"
+    $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win11-vs2026-arm64%2F$imageMajorVersion.$imageMinorVersion"
+} elseif (Test-IsWin11-Arm64) {
+    $imageLabel = "windows-11-arm64"
+    $softwareUrl = "${githubUrl}/win11-arm64/$imageMajorVersion.$imageMinorVersion/images/windows/Windows11-Arm64-Readme.md"
+    $releaseUrl = "https://github.com/actions/runner-images/releases/tag/win11-arm64%2F$imageMajorVersion.$imageMinorVersion"
 } else {
-    throw "Invalid platform version is found. Either Windows Server 2022 or 2025 are required"
+    throw "Invalid platform version is found. Either Windows Server 2022, 2025 or Windows 11 are required"
 }
 
 $json = @"
