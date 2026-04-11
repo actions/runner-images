@@ -32,7 +32,7 @@ $avPreference += @(
 # DisableBlockAtFirstSeen=1 is flagged as a threat by defender and gets remediated (removed) on Windows 11 during build
 # Running defender scan later causes false positive alert on older remediation event
 # Set this preference only for Windows Servers
-if (not(Test-IsWin11-Arm64)) {
+if (-not (Test-IsWin11-Arm64)) {
     $avPreference += @{DisableBlockAtFirstSeen = $true}
 }
 
