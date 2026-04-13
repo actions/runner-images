@@ -235,7 +235,6 @@ The following variables are required to be passed to the Packer process:
 | `client_id` | `ARM_CLIENT_ID` | The Active Directory service principal associated with your builder.
 | `client_secret` | `ARM_CLIENT_SECRET` | The password or secret for your service principal; may be omitted if `client_cert_path` is set.
 | `client_cert_path` | `ARM_CLIENT_CERT_PATH` | The location of a PEM file containing a certificate and private key for the service principal; may be omitted if `client_secret` is set.
-| `location` | `ARM_RESOURCE_LOCATION` | The Azure datacenter in which your VM will be built.
 | `managed_image_resource_group_name` | `ARM_RESOURCE_GROUP` | The resource group under which the final artifact will be stored.
 
 ### Optional variables
@@ -246,7 +245,8 @@ The following variables are optional:
 - `build_resource_group_name` - specify an existing resource group to run the build in; by default, a temporary resource group will be created and destroyed as part of the build; if you do not have permission to do so, use `build_resource_group_name` to specify an existing resource group to run the build in;
 - `object_id` - the object ID for the AAD SP; will be derived from the oAuth token if empty;
 - `tenant_id` - the Active Directory tenant identifier with which your `client_id` and `subscription_id` are associated; if not specified, `tenant_id` will be looked up using `subscription_id`;
-- `temp_resource_group_name` - the name assigned to the temporary resource group created during the build; if this value is not set, a random value will be assigned; this resource group is deleted at the end of the build;
+- `location` | `ARM_RESOURCE_LOCATION` | The Azure datacenter in which your VM will be built; required if the build is in a temporary resource group; not allowed to be used in combination with `build_resource_group_name`
+- `temp_resource_group_name` - the name assigned to the temporary resource group created during the build; if this value is not set, a random value will be assigned; this resource group is deleted at the end of the build; not allowed to be used in combination with `build_resource_group_name`
 - `private_virtual_network_with_public_ip` - this value allows you to set a `virtual_network_name` and obtain a public IP; if this value is not set and `virtual_network_name` is defined, Packer is only allowed to be executed from a host on the same subnet / virtual network;
 - `virtual_network_name` - use a pre-existing virtual network for the VM; this option enables private communication with the VM, no public IP address is used or provisioned (unless you set `private_virtual_network_with_public_ip`);
 - `virtual_network_resource_group_name` - if `virtual_network_name` is set, this value may also be set; if `virtual_network_name` is set, and this value is not set, the builder attempts to determine the resource group containing the virtual network; if the resource group cannot be found, or it cannot be disambiguated, this value should be set;
