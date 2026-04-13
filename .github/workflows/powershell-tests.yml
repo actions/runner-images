@@ -23,7 +23,7 @@ jobs:
         run: |
             $ErrorActionPreference = "Stop"
             Invoke-Pester -Output Detailed "helpers/software-report-base/tests"
-        
+
       - name: Run linux-and-win scripts tests
         shell: pwsh
         run: |
