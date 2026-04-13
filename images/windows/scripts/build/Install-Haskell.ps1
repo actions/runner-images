@@ -30,7 +30,7 @@ Add-MachinePathItem "$cabalDir\bin"
 Update-Environment
 
 # Get 1 or 3 latest versions of GHC depending on the OS version
-If (Test-IsWin25) {
+If (Test-IsWin25-X64) {
     $numberOfVersions = 1
 } else {
     $numberOfVersions = 3
