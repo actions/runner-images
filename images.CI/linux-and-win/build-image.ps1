@@ -77,7 +77,7 @@ switch ($PSCmdlet.ParameterSetName) {
     }
     'ExistingResourceGroup' {
         Write-Host "Use existing resource group $ExistingResourceGroupName"
-        $packerVariables += "$packerVariableFlag", "existing_resource_group_name=$ExistingResourceGroupName"
+        $packerVariables += "$packerVariableFlag", "build_resource_group_name=$ExistingResourceGroupName"
 
         break
     }
