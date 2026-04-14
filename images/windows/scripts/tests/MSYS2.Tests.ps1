@@ -3,7 +3,7 @@ BeforeAll {
     $originalPath = $env:PATH
 }
 
-Describe "MSYS2 packages" {
+Describe "MSYS2 packages" -Skip:(Test-IsWin11-Arm64) {
     BeforeEach {
         $env:PATH = "$msys2Dir;$env:PATH"
     }
@@ -31,7 +31,7 @@ Describe "MSYS2 packages" {
 
 $mingwTypes = (Get-ToolsetContent).MsysPackages.mingw
 foreach ($mingwType in $mingwTypes) {
-    Describe "$($mingwType.arch) packages" {
+    Describe "$($mingwType.arch) packages" -Skip:(Test-IsWin11-Arm64) {
         $tools = $mingwType.runtime_packages
         $execDir = Join-Path "C:\msys64" $mingwType.exec_dir | Join-Path -ChildPath "bin"
         

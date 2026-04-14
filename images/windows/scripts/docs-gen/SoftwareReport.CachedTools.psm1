@@ -34,7 +34,7 @@ function Build-CachedToolsSection
         [ToolVersionsListNode]::new("Go", $(Get-ToolcacheGoVersions), '^\d+\.\d+', 'List'),
         [ToolVersionsListNode]::new("Node.js", $(Get-ToolcacheNodeVersions), '^\d+', 'List'),
         [ToolVersionsListNode]::new("Python", $(Get-ToolcachePythonVersions), '^\d+\.\d+', 'List'), 
-        [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', 'List'),
+        $(if (-not (Test-IsWin11-Arm64)) { [ToolVersionsListNode]::new("PyPy", $(Get-ToolcachePyPyVersions), '^\d+\.\d+', 'List') }),
         [ToolVersionsListNode]::new("Ruby", $(Get-ToolcacheRubyVersions), '^\d+\.\d+', 'List')
-    )
+    ) | Where-Object { $_ }
 }
