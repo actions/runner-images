@@ -9,14 +9,16 @@ if ($LASTEXITCODE -ne 0) {
     throw "Installation of Microsoft.PowerShell.Utility.Activities failed with exit code $LASTEXITCODE"
 }
 
-Write-Host "NGen: update x64 native images..."
-& $env:SystemRoot\Microsoft.NET\Framework64\v4.0.30319\ngen.exe update | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    throw "Update of x64 native images failed with exit code $LASTEXITCODE"
-}
+if (Test-IsX64) {
+    Write-Host "NGen: update x64 native images..."
+    & $env:SystemRoot\Microsoft.NET\Framework64\v4.0.30319\ngen.exe update | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        throw "Update of x64 native images failed with exit code $LASTEXITCODE"
+    }
 
-Write-Host "NGen: update x86 native images..."
-& $env:SystemRoot\Microsoft.NET\Framework\v4.0.30319\ngen.exe update | Out-Null
-if ($LASTEXITCODE -ne 0) {
-    throw "Update of x86 native images failed with exit code $LASTEXITCODE"
+    Write-Host "NGen: update x86 native images..."
+    & $env:SystemRoot\Microsoft.NET\Framework\v4.0.30319\ngen.exe update | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        throw "Update of x86 native images failed with exit code $LASTEXITCODE"
+    }
 }

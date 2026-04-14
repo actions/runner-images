@@ -6,7 +6,7 @@
 # Set default version to 1 for WSL (aka LXSS - Linux Subsystem)
 # The value should be set in the default user registry hive
 # https://github.com/actions/runner-images/issues/5760
-if (Test-IsWin22) {
+if (Test-IsWin22-X64) {
     Write-Host "Setting WSL default version to 1"
 
     Mount-RegistryHive `
@@ -37,7 +37,7 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 # Enable inheritance for the entire C:\ drive
-if (Test-IsWin25) {
+if (Test-IsWin25-X64) {
     cmd /c "icacls C:\ /inheritance:e /c /q 2>&1" | Out-Null
     if ($LASTEXITCODE -ne 0) {
         throw "Failed to enable inheritance for C:\ drive"
@@ -101,11 +101,11 @@ $servicesToDisable = @(
     'wuauserv'
     'DiagTrack'
     'dmwappushservice'
-    $(if(-not (Test-IsWin25)){'PcaSvc'})
+    $(if(-not (Test-IsWin25-X64)){'PcaSvc'})
     'SysMain'
     'gupdate'
     'gupdatem'
-    $(if(-not (Test-IsWin25)){'StorSvc'})
+    $(if(-not (Test-IsWin25-X64)){'StorSvc'})
 ) | Get-Service -ErrorAction SilentlyContinue
 Stop-Service $servicesToDisable
 $servicesToDisable.WaitForStatus('Stopped', "00:01:00")
