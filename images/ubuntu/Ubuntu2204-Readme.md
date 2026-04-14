@@ -5,7 +5,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1044-azure
-- Image Version: 20260329.74.1
+- Image Version: 20260406.82.1
 - Systemd version: 249.11-0ubuntu3.19
 
 ## Installed Software
@@ -31,15 +31,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.20.1
-- Homebrew 5.1.1
+- Homebrew 5.1.4
 - Miniconda 26.1.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.11.0
+- Pipx 1.11.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit b5d1a94fb7)
+- Vcpkg (build from commit 14de8214a1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -69,13 +69,13 @@ to accomplish this.
 - AzCopy 10.32.2 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.0.1
 - Bazelisk 1.28.1
-- Bicep 0.41.2
+- Bicep 0.42.1
 - Buildah 1.23.1
 - CMake 3.31.6
 - CodeQL Action Bundle 2.25.1
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose v2 2.38.2
-- Docker-Buildx 0.32.1
+- Docker-Buildx 0.33.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.232.2
@@ -83,7 +83,7 @@ to accomplish this.
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 11.0.2
+- Heroku 11.1.1
 - jq 1.6
 - Kind 0.31.0
 - Kubectl 1.35.3
@@ -99,7 +99,7 @@ to accomplish this.
 - Packer 1.15.1
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.228.0
+- Pulumi 3.229.0
 - R 4.5.3
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -111,18 +111,18 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.3
-- AWS CLI 2.34.19
-- AWS CLI Session Manager Plugin 1.2.792.0
+- Alibaba Cloud CLI 3.3.4
+- AWS CLI 2.34.25
+- AWS CLI Session Manager Plugin 1.2.804.0
 - AWS SAM CLI 1.157.1
 - Azure CLI 2.84.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.89.0
-- Google Cloud CLI 562.0.0
-- Netlify CLI 24.8.1
-- OpenShift CLI 4.21.7
+- Google Cloud CLI 563.0.0
+- Netlify CLI 24.10.0
+- OpenShift CLI 4.21.8
 - ORAS CLI 1.3.1
-- Vercel CLI 50.37.3
+- Vercel CLI 50.40.0
 
 ### Java
 | Version             | Environment Variable |
@@ -162,11 +162,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 146.0.7680.164
+- Google Chrome 146.0.7680.177
 - ChromeDriver 146.0.7680.165
 - Chromium 146.0.7680.0
-- Microsoft Edge 146.0.3856.84
-- Microsoft Edge WebDriver 146.0.3856.84
+- Microsoft Edge 146.0.3856.97
+- Microsoft Edge WebDriver 146.0.3856.97
 - Selenium server 4.41.0
 - Mozilla Firefox 149.0
 - Geckodriver 0.36.0
@@ -347,7 +347,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | patchelf               | 0.14.3-1                            |
 | pigz                   | 2.6-1                               |
 | pkg-config             | 0.29.2-1ubuntu3                     |
-| pollinate              | 4.33-3ubuntu2.1                     |
+| pollinate              | 4.33-3ubuntu2.3                     |
 | python-is-python3      | 3.9.2-2                             |
 | rpm                    | 4.17.0+dfsg1-4build1                |
 | rsync                  | 3.2.7-0ubuntu0.22.04.4              |
@@ -365,7 +365,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
 | tk                     | 8.6.11+1build2                      |
-| tzdata                 | 2025b-0ubuntu0.22.04.1              |
+| tzdata                 | 2026a-0ubuntu0.22.04.1              |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1.1                   |

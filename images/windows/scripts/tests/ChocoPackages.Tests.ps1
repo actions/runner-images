@@ -58,7 +58,7 @@ Describe "Pulumi" {
     }
 }
 
-Describe "Svn" -Skip:(Test-IsWin25) {
+Describe "Svn" -Skip:(-not(Test-IsWin22-X64)) {
     It "svn" {
         "svn --version --quiet" | Should -ReturnZeroExitCode
     }
@@ -86,7 +86,7 @@ Describe "Julia" {
     }
 }
 
-Describe "CMake" {
+Describe "CMake" -Skip:(Test-IsArm64) {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
     }
@@ -98,7 +98,7 @@ Describe "ImageMagick" {
     }
 }
 
-Describe "Ninja" {
+Describe "Ninja" -Skip:(Test-IsArm64) {
     BeforeAll {
         $ninjaProjectPath = $(Join-Path $env:TEMP_DIR "ninjaproject")
         New-item -Path $ninjaProjectPath -ItemType Directory -Force

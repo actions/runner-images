@@ -32,7 +32,8 @@ Function Install-VisualStudio {
         [Parameter(Mandatory)] [String] $Channel,
         [String] $InstallChannelUri = "",
         [Parameter(Mandatory)] [String[]] $RequiredComponents,
-        [String] $ExtraArgs = ""
+        [String] $ExtraArgs = "",
+        [String] $Architecture = "x64"
     )
 
     if ($env:INSTALL_VS_2026) {
@@ -61,7 +62,7 @@ Function Install-VisualStudio {
             "channelUri"        = $channelUri
             "channelId"         = $channelId
             "productId"         = $productId
-            "arch"              = "x64"
+            "arch"              = $Architecture
             "add"               = $RequiredComponents | ForEach-Object { "$_;includeRecommended" }
         }
 
