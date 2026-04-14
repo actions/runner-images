@@ -36,9 +36,9 @@ Describe "build-image.ps1 parameter sets" {
 Describe "build-image.ps1 switch" {
     BeforeAll {
         $scriptPath = (Resolve-Path (Join-Path $PSScriptRoot "..\build-image.ps1")).Path
-        $global:packerInvocations = @()
 
-        function global:packer {
+        Mock -CommandName Write-Host
+        Mock -CommandName packer -MockWith {
             param(
                 [Parameter(ValueFromRemainingArguments = $true)]
                 [string[]] $Arguments
@@ -47,8 +47,6 @@ Describe "build-image.ps1 switch" {
             $global:packerInvocations += ,$Arguments
             "mocked packer output"
         }
-
-        Mock -CommandName Write-Host
     }
 
     AfterAll {
@@ -72,6 +70,12 @@ Describe "build-image.ps1 switch" {
             Should -Invoke -CommandName Write-Host -Times 1 -Exactly -ParameterFilter {
                 $Object -eq "Use temporary resource group TestTempRG"
             }
+
+            Should -Invoke -CommandName packer -Times 1 -Exactly -ParameterFilter {
+                $Arguments -contains "temp_resource_group_name=TestTempRG" -and
+                $Arguments -contains "location=TestLocation" -and
+                $Arguments -contains "-var"
+            }
         }
     }
 
@@ -90,6 +94,11 @@ Describe "build-image.ps1 switch" {
 
             Should -Invoke -CommandName Write-Host -Times 1 -Exactly -ParameterFilter {
                 $Object -eq "Use existing resource group TestExistingRG"
+            }
+
+            Should -Invoke -CommandName packer -Times 1 -Exactly -ParameterFilter {
+                $Arguments -contains "build_resource_group_name=TestExistingRG" -and
+                $Arguments -contains "-var"
             }
         }
     }
