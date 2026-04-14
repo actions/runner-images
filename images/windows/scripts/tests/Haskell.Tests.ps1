@@ -1,33 +1,29 @@
-Describe "Haskell" {
-    $ghcPackagesPath = "c:\ghcup\ghc"
-    [array] $ghcVersionList = Get-ChildItem -Path $ghcPackagesPath -Filter "*" | ForEach-Object { $_.Name.Trim() }
-    $ghcCount = $ghcVersionList.Count
-    $defaultGhcVersion = $ghcVersionList | Sort-Object {[Version] $_} | Select-Object -Last 1
-    $ghcDefaultCases = @{
-        defaultGhcVersion = $defaultGhcVersion
-        defaultGhcShortVersion = ([version] $defaultGhcVersion).ToString(3)
-    }
-
-    $ghcTestCases = $ghcVersionList | ForEach-Object {
-        $ghcVersion = $_
-        $ghcShortVersion = ([version] $ghcVersion).ToString(3)
-        $binGhcPath = Join-Path $ghcPackagesPath "$ghcShortVersion\bin\ghc.exe"
-        @{
-            ghcVersion = $ghcVersion
-            ghcShortVersion = $ghcShortVersion
-            binGhcPath = $binGhcPath
+Describe "Haskell" -Skip:(Test-IsWin11-Arm64) {
+    BeforeDiscovery {
+        if (Test-IsWin11-Arm64) { return }
+        $ghcPackagesPath = "c:\ghcup\ghc"
+        [array] $ghcVersionList = Get-ChildItem -Path $ghcPackagesPath -Filter "*" | ForEach-Object { $_.Name.Trim() }
+        $ghcCount = $ghcVersionList.Count
+        $defaultGhcVersion = $ghcVersionList | Sort-Object { [Version] $_ } | Select-Object -Last 1
+        $ghcDefaultCases = @{
+            defaultGhcVersion      = $defaultGhcVersion
+            defaultGhcShortVersion = ([version] $defaultGhcVersion).ToString(3)
         }
-    }
-
-    $ghcupEnvExists = @(
-        @{envVar = "GHCUP_INSTALL_BASE_PREFIX"}
-        @{envVar = "GHCUP_MSYS2"}
-    )
-
-    If (Test-IsWin25) {
-        $numberOfVersions = 1
-    } else {
-        $numberOfVersions = 3
+        $ghcTestCases = $ghcVersionList | ForEach-Object {
+            $ghcVersion = $_
+            $ghcShortVersion = ([version] $ghcVersion).ToString(3)
+            $binGhcPath = Join-Path $ghcPackagesPath "$ghcShortVersion\bin\ghc.exe"
+            @{
+                ghcVersion    = $ghcVersion
+                ghcShortVersion = $ghcShortVersion
+                binGhcPath    = $binGhcPath
+            }
+        }
+        $ghcupEnvExists = @(
+            @{envVar = "GHCUP_INSTALL_BASE_PREFIX"}
+            @{envVar = "GHCUP_MSYS2"}
+        )
+        $numberOfVersions = if (Test-IsWin25-X64) { 1 } else { 3 }
     }
 
     It "<envVar> environment variable exists" -TestCases $ghcupEnvExists {

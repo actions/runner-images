@@ -6,7 +6,7 @@
 # macOS 15
 - OS Version: macOS 15.7.4 (24G517)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20260330.0243.1
+- Image Version: 20260406.0256.1
 
 ## Installed Software
 
@@ -23,7 +23,7 @@
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
 - Kotlin 2.3.20-release-208
 - Node.js 22.22.2
-- Perl 5.42.1
+- Perl 5.42.2
 - Python3 3.14.3
 - Ruby 3.3.11
 
@@ -31,16 +31,16 @@
 - Bundler 4.0.9
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.1.1
+- Homebrew 5.1.3
 - NPM 10.9.7
 - Pip3 26.0 (python 3.14)
-- Pipx 1.11.0
+- Pipx 1.11.1
 - RubyGems 4.0.9
-- Vcpkg 2026 (build from commit b5d1a94fb7)
+- Vcpkg 2026 (build from commit 77df67cfff)
 - Yarn 1.22.22
 
 ### Project Management
-- Apache Ant 1.10.15
+- Apache Ant 1.10.16
 - Apache Maven 3.9.14
 - Gradle 9.4.1
 
@@ -68,28 +68,28 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.19
+- AWS CLI 2.34.24
 - AWS SAM CLI 1.157.1
 - AWS Session Manager CLI 1.2.792.0
 - Azure CLI 2.84.0
 - Azure CLI (azure-devops) 1.0.2
-- Bicep CLI 0.41.2
+- Bicep CLI 0.42.1
 - Cmake 4.3.1
 - CodeQL Action Bundle 2.25.1
 - Fastlane 2.232.2
 - SwiftFormat 0.60.1
-- Xcbeautify 3.1.4
+- Xcbeautify 3.2.1
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 1.6.2
 
 ### Browsers
 - Safari 26.3 (20623.2.7.18.1)
 - SafariDriver 26.3 (20623.2.7.18.1)
-- Google Chrome 146.0.7680.165
+- Google Chrome 146.0.7680.178
 - Google Chrome for Testing 146.0.7680.165
 - ChromeDriver 146.0.7680.165
-- Microsoft Edge 146.0.3856.84
-- Microsoft Edge WebDriver 146.0.3856.84
+- Microsoft Edge 146.0.3856.97
+- Microsoft Edge WebDriver 146.0.3856.97
 - Mozilla Firefox 149.0
 - geckodriver 0.36.0
 - Selenium server 4.41.0
@@ -273,7 +273,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                       |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                                          |
-| Android Emulator           | 36.4.10                                                                                                                                                                                                                                                                                                                                       |
+| Android Emulator           | 36.5.10                                                                                                                                                                                                                                                                                                                                       |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                                      |
 | Android SDK Platforms      | android-37.0 (rev 1)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                                                                                                                                                        |

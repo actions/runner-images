@@ -11,7 +11,7 @@ Describe "Azure DevOps CLI" {
     }
 }
 
-Describe "Aliyun CLI" -Skip:(Test-IsWin25) {
+Describe "Aliyun CLI" -Skip:(Test-IsWin25-X64) {
     It "Aliyun CLI" {
         "aliyun version" | Should -ReturnZeroExitCode
     }

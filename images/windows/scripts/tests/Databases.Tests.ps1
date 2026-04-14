@@ -1,4 +1,4 @@
-Describe "MongoDB" {
+Describe "MongoDB" -Skip:(Test-IsWin11-Arm64) {
     Context "Version" {
         It "<ToolName>" -TestCases @(
             @{ ToolName = "mongos" }
@@ -33,7 +33,7 @@ Describe "MongoDB" {
     }
 }
 
-Describe "PostgreSQL" {
+Describe "PostgreSQL" -Skip:(Test-IsWin11-Arm64) {
     $psqlTests = @(
         @{envVar = "PGROOT"; pgPath = Get-EnvironmentVariable "PGROOT" }
         @{envVar = "PGBIN"; pgPath = Get-EnvironmentVariable "PGBIN" }

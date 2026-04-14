@@ -25,7 +25,7 @@ Describe "Visual Studio" {
     }
 }
 
-Describe "Windows 10 SDK" -Skip:(Test-IsWin25) {
+Describe "Windows 10 SDK" -Skip:((Test-IsWin25-X64) -or (Test-IsWin11-Arm64)) {
     It "Verifies 17763 SDK is installed" {
         "${env:ProgramFiles(x86)}\Windows Kits\10\DesignTime\CommonConfiguration\Neutral\UAP\10.0.17763.0\UAP.props" | Should -Exist
     }
