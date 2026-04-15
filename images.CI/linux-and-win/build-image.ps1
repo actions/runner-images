@@ -107,9 +107,9 @@ packer build    -only "$buildName*" `
                 @packerVariablesList `
                 -color=false `
                 $TemplatePath `
-            | Where-Object {
-                #Filter sensitive data from Packer logs
-                $currentString = $_
-                $sensitiveString = $SensitiveData | Where-Object { $currentString -match $_ }
-                $sensitiveString -eq $null
-            }
+        | Where-Object {
+            #Filter sensitive data from Packer logs
+            $currentString = $_
+            $sensitiveString = $SensitiveData | Where-Object { $currentString -match $_ }
+            $sensitiveString -eq $null
+        }
