@@ -38,19 +38,17 @@ Describe "build-image.ps1 switch" {
         $scriptPath = (Resolve-Path (Join-Path $PSScriptRoot "..\build-image.ps1")).Path
 
         Mock -CommandName Write-Host
+
+        $global:packerInvocations = @()
         Mock -CommandName packer -MockWith {
             param(
                 [Parameter(ValueFromRemainingArguments = $true)]
-                [string[]] $Arguments
+                [string[]] $arguments
             )
 
-            $global:packerInvocations += ,$Arguments
+            $global:packerInvocations += ,$arguments
             "mocked packer output"
         }
-    }
-
-    AfterAll {
-        Remove-Item function:\global:packer -ErrorAction SilentlyContinue
     }
 
     Context "TempResourceGroup" {
@@ -72,9 +70,9 @@ Describe "build-image.ps1 switch" {
             }
 
             Should -Invoke -CommandName packer -Times 1 -Exactly -ParameterFilter {
-                $Arguments -contains "temp_resource_group_name=TestTempRG" -and
-                $Arguments -contains "location=TestLocation" -and
-                $Arguments -contains "-var"
+                $arguments -contains "temp_resource_group_name=TestTempRG" -and
+                $arguments -contains "location=TestLocation" -and
+                $arguments -contains "-var"
             }
         }
     }
@@ -97,8 +95,8 @@ Describe "build-image.ps1 switch" {
             }
 
             Should -Invoke -CommandName packer -Times 1 -Exactly -ParameterFilter {
-                $Arguments -contains "build_resource_group_name=TestExistingRG" -and
-                $Arguments -contains "-var"
+                $arguments -contains "build_resource_group_name=TestExistingRG" -and
+                $arguments -contains "-var"
             }
         }
     }
