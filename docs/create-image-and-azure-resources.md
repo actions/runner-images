@@ -242,7 +242,7 @@ The following variables are required to be passed to the Packer process:
 The following variables are optional:
 
 - `managed_image_name` - the name of the managed image to create. If not specified, "Runner-Image-{{ImageType}}" will be used;
-- `build_resource_group_name` - specify an existing resource group to run the build in; by default, a temporary resource group will be created and destroyed as part of the build; if you do not have permission to do so, use `build_resource_group_name` to specify an existing resource group to run the build in; not allowed to be used in combination with `location` and `temp_resource_group_name`;
+- `build_resource_group_name` - specify an existing resource group to run the build in; by default, a temporary resource group will be created and destroyed as part of the build; if you do not have permission to do so, use `build_resource_group_name` to specify an existing resource group to run the build in; not allowed to be used in combination with `location` or `temp_resource_group_name`;
 - `object_id` - the object ID for the AAD SP; will be derived from the oAuth token if empty;
 - `tenant_id` - the Active Directory tenant identifier with which your `client_id` and `subscription_id` are associated; if not specified, `tenant_id` will be looked up using `subscription_id`;
 - `location` | `ARM_RESOURCE_LOCATION` | The Azure datacenter in which your VM will be built; required if the build is in a temporary resource group; not allowed to be used in combination with `build_resource_group_name`;
