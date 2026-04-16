@@ -5,7 +5,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 32522
-- Image Version: 20260329.71.1
+- Image Version: 20260405.77.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -26,16 +26,16 @@
 - Ruby 3.3.11
 
 ### Package Management
-- Chocolatey 2.7.0
+- Chocolatey 2.7.1
 - Composer 2.9.5
 - Helm 4.1.3
 - Miniconda 26.1.1 (pre-installed on the image but not added to PATH)
 - NPM 10.9.7
 - NuGet 7.3.0.70
 - pip 26.0.1 (python 3.12)
-- Pipx 1.11.0
+- Pipx 1.11.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit b5d1a94fb7)
+- Vcpkg (build from commit 77df67cfff)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -45,7 +45,7 @@
 | CONDA                   | C:\Miniconda |
 
 ### Project Management
-- Ant 1.10.15
+- Ant 1.10.16
 - Gradle 9.4
 - Maven 3.9.14
 - sbt 1.12.8
@@ -56,7 +56,7 @@
 - azcopy 10.32.2
 - Bazel 9.0.1
 - Bazelisk 1.28.1
-- Bicep 0.41.2
+- Bicep 0.42.1
 - Cabal 3.16.1.0
 - CMake 3.31.6
 - CodeQL Action Bundle 2.25.1
@@ -77,7 +77,7 @@
 - Newman 6.2.2
 - OpenSSL 3.6.1
 - Packer 1.15.0
-- Pulumi 3.228.0
+- Pulumi 3.229.0
 - R 4.5.3
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.9.3
@@ -90,9 +90,9 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.34.19
+- AWS CLI 2.34.24
 - AWS SAM CLI 1.157.1
-- AWS Session Manager CLI 1.2.792.0
+- AWS Session Manager CLI 1.2.804.0
 - Azure CLI 2.84.0
 - Azure DevOps CLI extension 1.0.2
 - GitHub CLI 2.89.0
@@ -108,10 +108,10 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 146.0.7680.165
+- Google Chrome 146.0.7680.178
 - Chrome Driver 146.0.7680.165
-- Microsoft Edge 146.0.3856.84
-- Microsoft Edge Driver 146.0.3856.84
+- Microsoft Edge 146.0.3856.97
+- Microsoft Edge Driver 146.0.3856.97
 - Mozilla Firefox 149.0
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
@@ -232,7 +232,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.MDD.Android                                                     | 17.14.36804.6   |
 | Component.MDD.Linux                                                       | 17.14.36510.44  |
 | Component.Microsoft.VisualStudio.RazorExtension                           | 17.14.36510.44  |
-| Component.Microsoft.VisualStudio.Tools.Applications.amd64                 | 17.0.36522.0    |
+| Component.Microsoft.VisualStudio.Tools.Applications.amd64                 | 17.1.37110.1    |
 | Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 17.14.36510.44  |
 | Component.Microsoft.Web.LibraryManager                                    | 17.14.36510.44  |
 | Component.Microsoft.WebTools.BrowserLink.WebLivePreview                   | 17.14.2.50506   |
@@ -439,7 +439,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | wasm.tools                                                                | 9.0.1426.11910  |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects2022                  | 4.0.0           |
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 4.0.0           |
-| SSIS.MicrosoftDataToolsIntegrationServices                                | 2.1.2           |
+| SSIS.MicrosoftDataToolsIntegrationServices                                | 2.2             |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects             | 3.0.0           |
 | Windows Driver Kit Visual Studio Extension                                | 10.0.26100.16   |
 | Windows Software Development Kit                                          | 10.1.26100.7705 |
@@ -473,7 +473,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 14.6.0
-- AWSPowershell: 5.0.184
+- AWSPowershell: 5.0.189
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.36.1
@@ -488,7 +488,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                       |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                                          |
-| Android Emulator           | 36.4.10                                                                                                                                                                                                                                                                                                                                       |
+| Android Emulator           | 36.5.10                                                                                                                                                                                                                                                                                                                                       |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                            |
 | Android SDK Platforms      | android-37.0 (rev 1)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                                                                                                                                                        |
