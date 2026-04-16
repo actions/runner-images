@@ -53,3 +53,19 @@ Describe "Oras CLI" -Skip:((-not (Test-IsUbuntu22))) {
         "oras version" | Should -ReturnZeroExitCode
     }
 }
+
+Describe "Copilot CLI" -Skip:(Test-IsUbuntu22) {
+    It "Copilot CLI toolcache directory exists" {
+        $copilotCliPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
+        $copilotCliPath | Should -Exist
+    }
+
+    It "At least 2 versions are installed" {
+        $copilotCliPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
+        (Get-ChildItem -Path $copilotCliPath -Directory).Count | Should -BeGreaterOrEqual 2
+    }
+
+    It "Copilot CLI version" {
+        "copilot --version" | Should -ReturnZeroExitCode
+    }
+}
