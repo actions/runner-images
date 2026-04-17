@@ -7,12 +7,6 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
-source $HELPER_SCRIPTS/os.sh
-
-# Following the pattern in install-docker.sh where the core AW container images are only installed on ubuntu-latest
-if is_ubuntu22; then
-    exit 0
-fi
 
 # Number of versions to install (current + 2 previous)
 NUM_VERSIONS=3
