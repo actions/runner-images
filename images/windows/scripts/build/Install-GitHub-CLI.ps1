@@ -4,12 +4,17 @@
 ##  Supply chain security: GitHub CLI - checksum validation
 ################################################################################
 
-Write-Host "Get the latest gh version..."
+if (Test-IsArm64) {
+    $ghArch = "arm64"
+} else {
+    $ghArch = "amd64"
+}
 
+Write-Host "Get the latest gh version..."
 $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "cli/cli" `
     -Version "latest" `
-    -UrlMatchPattern "gh_*_windows_amd64.msi"
+    -UrlMatchPattern "gh_*_windows_$ghArch.msi"
 
 $checksumsUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "cli/cli" `

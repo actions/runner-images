@@ -297,9 +297,9 @@ function Build-PackageManagementEnvironmentTable {
             "Name" = "VCPKG_INSTALLATION_ROOT"
             "Value" = $env:VCPKG_INSTALLATION_ROOT
         },
-        [PSCustomObject] @{
+        $(if (-not (Test-IsWin11-Arm64)) { [PSCustomObject] @{
             "Name" = "CONDA"
             "Value" = $env:CONDA
-        }
-    )
+        } })
+    ) | Where-Object { $_ }
 }
