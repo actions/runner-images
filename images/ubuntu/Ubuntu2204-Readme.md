@@ -5,8 +5,8 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1044-azure
-- Image Version: 20260406.82.1
-- Systemd version: 249.11-0ubuntu3.19
+- Image Version: 20260413.88.1
+- Systemd version: 249.11-0ubuntu3.20
 
 ## Installed Software
 
@@ -18,7 +18,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.12.5
+- Julia 1.12.6
 - Kotlin 2.3.20-release-208
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -30,8 +30,8 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.20.1
-- Homebrew 5.1.4
+- Helm 3.20.2
+- Homebrew 5.1.6
 - Miniconda 26.1.1
 - Npm 10.8.2
 - NuGet 6.6.1.2
@@ -39,7 +39,7 @@
 - Pip3 22.0.2
 - Pipx 1.11.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit 14de8214a1)
+- Vcpkg (build from commit b80e006657)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,13 +61,13 @@ to accomplish this.
 - Gradle 9.4.1
 - Lerna 9.0.7
 - Maven 3.9.14
-- Sbt 1.12.8
+- Sbt 1.12.9
 
 ### Tools
 - Ansible 2.17.14
 - apt-fast 1.10.0
 - AzCopy 10.32.2 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.0.1
+- Bazel 9.0.2
 - Bazelisk 1.28.1
 - Bicep 0.42.1
 - Buildah 1.23.1
@@ -83,7 +83,7 @@ to accomplish this.
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 11.1.1
+- Heroku 11.2.0
 - jq 1.6
 - Kind 0.31.0
 - Kubectl 1.35.3
@@ -95,11 +95,11 @@ to accomplish this.
 - n 10.2.0
 - Newman 6.2.2
 - nvm 0.40.4
-- OpenSSL 3.0.2-0ubuntu1.21
+- OpenSSL 3.0.2-0ubuntu1.23
 - Packer 1.15.1
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.229.0
+- Pulumi 3.230.0
 - R 4.5.3
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -112,17 +112,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.3.4
-- AWS CLI 2.34.25
+- AWS CLI 2.34.30
 - AWS CLI Session Manager Plugin 1.2.804.0
-- AWS SAM CLI 1.157.1
-- Azure CLI 2.84.0
+- AWS SAM CLI 1.158.0
+- Azure CLI 2.85.0
 - Azure CLI (azure-devops) 1.0.2
 - GitHub CLI 2.89.0
-- Google Cloud CLI 563.0.0
-- Netlify CLI 24.10.0
-- OpenShift CLI 4.21.8
+- Google Cloud CLI 564.0.0
+- Netlify CLI 24.11.1
+- OpenShift CLI 4.21.9
 - ORAS CLI 1.3.1
-- Vercel CLI 50.40.0
+- Vercel CLI 51.2.0
 
 ### Java
 | Version             | Environment Variable |
@@ -157,18 +157,18 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Bindgen 0.72.1
 - Cargo audit 0.22.1
 - Cargo clippy 0.1.94
-- Cargo outdated 0.17.0
+- Cargo outdated 0.18.0
 - Cbindgen 0.29.2
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 146.0.7680.177
-- ChromeDriver 146.0.7680.165
-- Chromium 146.0.7680.0
-- Microsoft Edge 146.0.3856.97
-- Microsoft Edge WebDriver 146.0.3856.97
-- Selenium server 4.41.0
-- Mozilla Firefox 149.0
+- Google Chrome 147.0.7727.55
+- ChromeDriver 147.0.7727.56
+- Chromium 147.0.7727.0
+- Microsoft Edge 147.0.3912.60
+- Microsoft Edge WebDriver 147.0.3912.60
+- Selenium server 4.43.0
+- Mozilla Firefox 149.0.2
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -213,7 +213,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.22.12
 - 1.23.12
 - 1.24.13
-- 1.25.8
+- 1.25.9
 
 #### Node.js
 - 20.20.2
@@ -224,8 +224,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.20
 - 3.11.15
 - 3.12.13
-- 3.13.12
-- 3.14.3
+- 3.13.13
+- 3.14.4
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -325,7 +325,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libnss3-tools          | 2:3.98-0ubuntu0.22.04.3             |
 | libsecret-1-dev        | 0.20.5-2                            |
 | libsqlite3-dev         | 3.37.2-2ubuntu0.5                   |
-| libssl-dev             | 3.0.2-0ubuntu1.21                   |
+| libssl-dev             | 3.0.2-0ubuntu1.23                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
@@ -359,7 +359,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.6                    |
 | swig                   | 4.0.2-1ubuntu1                      |
-| systemd-coredump       | 249.11-0ubuntu3.19                  |
+| systemd-coredump       | 249.11-0ubuntu3.20                  |
 | tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |

@@ -6,7 +6,7 @@
 # macOS 26
 - OS Version: macOS 26.3 (25D125)
 - Kernel Version: Darwin 25.3.0
-- Image Version: 20260408.0337.1
+- Image Version: 20260413.0345.1
 
 ## Installed Software
 
@@ -24,7 +24,7 @@
 - Kotlin 2.3.20-release-208
 - Node.js 24.14.1
 - Perl 5.42.2
-- Python3 3.14.3
+- Python3 3.14.4
 - Ruby 3.4.9
 
 ### Package Management
@@ -33,14 +33,14 @@
 - CocoaPods 1.16.2
 - Homebrew 5.1.5
 - NPM 11.11.0
-- Pip3 26.0 (python 3.14)
+- Pip3 26.0.1 (python 3.14)
 - Pipx 1.11.1
 - RubyGems 4.0.10
-- Vcpkg 2026 (build from commit ffffe61956)
+- Vcpkg 2026 (build from commit 0b88aacde4)
 - Yarn 1.22.22
 
 ### Project Management
-- Apache Ant 1.10.16
+- Apache Ant 1.10.17
 - Apache Maven 3.9.14
 - Gradle 9.4.1
 
@@ -48,7 +48,7 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.32.2
-- bazel 9.0.1
+- bazel 9.0.2
 - bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
@@ -59,7 +59,7 @@
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.18
 - jq 1.8.1
-- OpenSSL 3.6.1 27 Jan 2026 (Library: OpenSSL 3.6.1 27 Jan 2026)
+- OpenSSL 3.6.2 7 Apr 2026 (Library: OpenSSL 3.6.2 7 Apr 2026)
 - Packer 1.15.1
 - pkgconf 2.5.1
 - Unxip 3.3
@@ -68,16 +68,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.26
-- AWS SAM CLI 1.157.1
-- AWS Session Manager CLI 1.2.792.0
+- AWS CLI 2.34.29
+- AWS SAM CLI 1.158.0
+- AWS Session Manager CLI 1.2.804.0
 - Azure CLI 2.85.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.42.1
 - Cmake 4.3.1
 - CodeQL Action Bundle 2.25.1
 - Fastlane 2.232.2
-- SwiftFormat 0.60.1
+- SwiftFormat 0.61.0
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 26.4.0.0.1774242506
 - Xcodes 1.6.2
@@ -88,8 +88,8 @@
 - Google Chrome 147.0.7727.56
 - Google Chrome for Testing 147.0.7727.56
 - ChromeDriver 147.0.7727.56
-- Microsoft Edge 146.0.3856.97
-- Microsoft Edge WebDriver 146.0.3856.97
+- Microsoft Edge 147.0.3912.60
+- Microsoft Edge WebDriver 147.0.3912.60
 - Mozilla Firefox 149.0.2
 - geckodriver 0.36.0
 - Selenium server 4.41.0
