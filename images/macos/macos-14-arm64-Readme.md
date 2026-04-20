@@ -6,7 +6,7 @@
 # macOS 14
 - OS Version: macOS 14.8.5 (23J423)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20260407.0213.1
+- Image Version: 20260413.0223.1
 
 ## Installed Software
 
@@ -25,24 +25,24 @@
 - Mono 6.12.0.188
 - Node.js 20.20.2
 - Perl 5.42.2
-- Python3 3.14.3
+- Python3 3.14.4
 - Ruby 3.3.11
 
 ### Package Management
-- Bundler 4.0.9
+- Bundler 4.0.10
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.1.4
+- Homebrew 5.1.5
 - NPM 10.8.2
 - NuGet 6.3.1.1
-- Pip3 26.0 (python 3.14)
+- Pip3 26.0.1 (python 3.14)
 - Pipx 1.11.1
-- RubyGems 4.0.9
-- Vcpkg 2026 (build from commit 81e3c888ef)
+- RubyGems 4.0.10
+- Vcpkg 2026 (build from commit 0b88aacde4)
 - Yarn 1.22.22
 
 ### Project Management
-- Apache Ant 1.10.16
+- Apache Ant 1.10.17
 - Apache Maven 3.9.14
 - Gradle 9.4.1
 
@@ -50,7 +50,7 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.32.2
-- bazel 9.0.1
+- bazel 9.0.2
 - bazelisk 1.28.1
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
@@ -70,16 +70,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.25
-- AWS SAM CLI 1.157.1
-- AWS Session Manager CLI 1.2.792.0
-- Azure CLI 2.84.0
+- AWS CLI 2.34.29
+- AWS SAM CLI 1.158.0
+- AWS Session Manager CLI 1.2.804.0
+- Azure CLI 2.85.0
 - Azure CLI (azure-devops) 1.0.2
 - Bicep CLI 0.42.1
 - Cmake 4.3.1
 - CodeQL Action Bundle 2.25.1
 - Fastlane 2.232.2
-- SwiftFormat 0.60.1
+- SwiftFormat 0.61.0
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
@@ -87,12 +87,12 @@
 ### Browsers
 - Safari 26.4 (19624.1.16.18.2)
 - SafariDriver 26.4 (19624.1.16.18.2)
-- Google Chrome 146.0.7680.178
-- Google Chrome for Testing 146.0.7680.165
-- ChromeDriver 146.0.7680.165
-- Microsoft Edge 146.0.3856.97
-- Microsoft Edge WebDriver 146.0.3856.97
-- Mozilla Firefox 149.0
+- Google Chrome 147.0.7727.56
+- Google Chrome for Testing 147.0.7727.56
+- ChromeDriver 147.0.7727.56
+- Microsoft Edge 147.0.3912.60
+- Microsoft Edge WebDriver 147.0.3912.60
+- Mozilla Firefox 149.0.2
 - geckodriver 0.36.0
 - Selenium server 4.41.0
 
@@ -122,8 +122,8 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.12
-- 3.14.3
+- 3.13.13
+- 3.14.4
 
 #### Node.js
 - 20.20.2
@@ -134,7 +134,7 @@
 - 1.22.12
 - 1.23.12
 - 1.24.13
-- 1.25.8
+- 1.25.9
 
 ### Rust Tools
 - Cargo 1.94.1
