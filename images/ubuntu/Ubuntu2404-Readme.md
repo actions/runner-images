@@ -4,8 +4,8 @@
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
-- Kernel Version: 6.17.0-1010-azure
-- Image Version: 20260413.86.1
+- Kernel Version: 6.17.0-1011-azure
+- Image Version: 20260426.100.1
 - Systemd version: 255.4-1ubuntu8.15
 
 ## Installed Software
@@ -19,24 +19,24 @@
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
 - Julia 1.12.6
-- Kotlin 2.3.20-release-208
+- Kotlin 2.3.21-release-298
 - Node.js 20.20.2
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 6.3
+- Swift 6.3.1
 
 ### Package Management
 - cpan 1.64
 - Helm 3.20.2
-- Homebrew 5.1.6
+- Homebrew 5.1.7
 - Miniconda 26.1.1
 - Npm 10.8.2
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.11.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit b80e006657)
+- Vcpkg (build from commit d46283cf33)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,30 +57,30 @@ to accomplish this.
 - Ant 1.10.14
 - Gradle 9.4.1
 - Lerna 9.0.7
-- Maven 3.9.14
+- Maven 3.9.15
 
 ### Tools
-- Ansible 2.20.4
+- Ansible 2.20.5
 - AzCopy 10.32.2 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.0.2
+- Bazel 9.1.0
 - Bazelisk 1.28.1
 - Bicep 0.42.1
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.25.1
+- CodeQL Action Bundle 2.25.2
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose v2 2.38.2
 - Docker-Buildx 0.33.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.232.2
-- Git 2.53.0
+- Fastlane 2.233.0
+- Git 2.54.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.31.0
-- Kubectl 1.35.3
+- Kubectl 1.36.0
 - Kustomize 5.8.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -89,38 +89,38 @@ to accomplish this.
 - Newman 6.2.2
 - nvm 0.40.4
 - OpenSSL 3.0.13-0ubuntu3.9
-- Packer 1.15.1
+- Packer 1.15.2
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.230.0
+- Pulumi 3.232.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
-- yq 4.52.5
+- yq 4.53.2
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.34.30
-- AWS CLI Session Manager Plugin 1.2.804.0
+- AWS CLI 2.34.37
+- AWS CLI Session Manager Plugin 1.2.814.0
 - AWS SAM CLI 1.158.0
 - Azure CLI 2.85.0
-- Azure CLI (azure-devops) 1.0.2
-- GitHub CLI 2.89.0
-- Google Cloud CLI 564.0.0
+- Azure CLI (azure-devops) 1.0.3
+- GitHub CLI 2.91.0
+- Google Cloud CLI 565.0.0
 
 ### Java
-| Version             | Environment Variable |
-| ------------------- | -------------------- |
-| 8.0.482+8           | JAVA_HOME_8_X64      |
-| 11.0.30+7           | JAVA_HOME_11_X64     |
-| 17.0.18+8 (default) | JAVA_HOME_17_X64     |
-| 21.0.10+7           | JAVA_HOME_21_X64     |
-| 25.0.2+10           | JAVA_HOME_25_X64     |
+| Version              | Environment Variable |
+| -------------------- | -------------------- |
+| 8.0.482+8            | JAVA_HOME_8_X64      |
+| 11.0.30+7            | JAVA_HOME_11_X64     |
+| 17.0.19+10 (default) | JAVA_HOME_17_X64     |
+| 21.0.11+10           | JAVA_HOME_21_X64     |
+| 25.0.3+9             | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.9.5
+- Composer 2.9.7
 - PHPUnit 8.5.52
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -133,22 +133,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.9.3
 
 ### Rust Tools
-- Cargo 1.94.1
-- Rust 1.94.1
-- Rustdoc 1.94.1
+- Cargo 1.95.0
+- Rust 1.95.0
+- Rustdoc 1.95.0
 - Rustup 1.29.0
 
 #### Packages
-- Rustfmt 1.8.0
+- Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 147.0.7727.55
-- ChromeDriver 147.0.7727.56
+- Google Chrome 147.0.7727.116
+- ChromeDriver 147.0.7727.117
 - Chromium 147.0.7727.0
-- Microsoft Edge 147.0.3912.60
-- Microsoft Edge WebDriver 147.0.3912.60
+- Microsoft Edge 147.0.3912.86
+- Microsoft Edge WebDriver 147.0.3912.86
 - Selenium server 4.43.0
-- Mozilla Firefox 149.0.2
+- Mozilla Firefox 150.0
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -160,7 +160,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.125, 8.0.206, 8.0.319, 8.0.419, 9.0.115, 9.0.205, 9.0.312, 10.0.105, 10.0.201
+- .NET Core SDK: 8.0.126, 8.0.206, 8.0.319, 8.0.420, 9.0.116, 9.0.205, 9.0.313, 10.0.107, 10.0.203
 - nbgv 3.9.50+6feeb89450
 
 ### Databases
@@ -194,7 +194,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 20.20.2
 - 22.22.2
-- 24.14.1
+- 24.15.0
 
 #### Python
 - 3.10.20
@@ -212,10 +212,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.2.11
 - 3.3.11
 - 3.4.9
-- 4.0.2
+- 4.0.3
 
 ### PowerShell Tools
-- PowerShell 7.4.14
+- PowerShell 7.4.15
 
 #### PowerShell Modules
 - Az: 14.6.0
@@ -281,7 +281,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | haveged                | 1.9.14-1ubuntu2              |
 | iproute2               | 6.1.0-1ubuntu6.2             |
 | iputils-ping           | 3:20240117-1ubuntu0.1        |
-| jq                     | 1.7.1-3ubuntu0.24.04.1       |
+| jq                     | 1.7.1-3ubuntu0.24.04.2       |
 | libnss3-tools          | 2:3.98-1ubuntu0.1            |
 | libsqlite3-dev         | 3.45.1-1ubuntu2.5            |
 | libssl-dev             | 3.0.13-0ubuntu3.9            |
