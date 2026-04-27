@@ -64,12 +64,16 @@ install_open_jdk() {
 # Add Adoptium PPA
 # apt-key is deprecated, dearmor and add manually
 wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptium.gpg
-echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $(lsb_release -cs) main" > /etc/apt/sources.list.d/adoptium.list
+# Adoptium doesn't have packages for Ubuntu 26.04 (resolute) yet, use noble as a fallback
+adoptium_codename=$(lsb_release -cs)
+if [[ "${adoptium_codename}" == "resolute" ]]; then
+    adoptium_codename="noble"
+fi
+echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ ${adoptium_codename} main" > /etc/apt/sources.list.d/adoptium.list
 
 # Get all the updates from enabled repositories.
 apt-get update
 
-# While Ubuntu 24.04 binaries are not released in the Adoptium repo, we will not install Java
 defaultVersion=$(get_toolset_value '.java.default')
 jdkVersionsToInstall=($(get_toolset_value ".java.versions[]"))
 
