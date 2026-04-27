@@ -8,21 +8,48 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
-# Mozillateam PPA is added manually because sometimes
-# launchpad portal sends empty answer when trying to add it automatically
+REPO_URL="https://packages.mozilla.org/apt"
+GPG_KEY="/etc/apt/keyrings/packages.mozilla.org.asc"
+REPO_PATH="/etc/apt/sources.list.d/mozilla.list"
+PREFERENCES_PATH="/etc/apt/preferences.d/mozilla"
 
-REPO_URL="https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/"
-GPG_FINGERPRINT="0ab215679c571d1c8325275b9bdb3d89ce49ec21"
-GPG_KEY="/etc/apt/trusted.gpg.d/mozillateam_ubuntu_ppa.gpg"
-REPO_PATH="/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-focal.list"
+# Install Firefox from Mozilla's official APT repository
+curl -fsSL "${REPO_URL}/repo-signing-key.gpg" | sudo tee $GPG_KEY > /dev/null
 
-# Install Firefox
-curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${GPG_FINGERPRINT}" | sudo gpg --dearmor -o $GPG_KEY
-echo "deb $REPO_URL $(lsb_release -cs) main" > $REPO_PATH
+# Verify the signing key fingerprint matches Mozilla's expected fingerprint
+# https://support.mozilla.org/en-US/kb/install-firefox-linux#w_install-firefox-deb-package-for-debian-based-distributions
+EXPECTED_FINGERPRINT="35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3"
+GNUPG_TEMP=$(mktemp -d)
+ACTUAL_FINGERPRINT=$(
+    gpg --homedir "$GNUPG_TEMP" -n -q --import --import-options import-show $GPG_KEY \
+        | awk '/pub/{getline; gsub(/^ +| +$/,""); print}'
+)
+rm -rf "$GNUPG_TEMP"
+
+if [[ "$ACTUAL_FINGERPRINT" != "$EXPECTED_FINGERPRINT" ]]; then
+    echo "ERROR: Mozilla APT key fingerprint mismatch."
+    echo "Expected: $EXPECTED_FINGERPRINT"
+    echo "Actual:   $ACTUAL_FINGERPRINT"
+    exit 1
+fi
+echo "Mozilla APT key fingerprint verified: $ACTUAL_FINGERPRINT"
+
+echo "deb [signed-by=${GPG_KEY}] ${REPO_URL} mozilla main" > $REPO_PATH
+
+# Pin Firefox packages to prefer Mozilla's repo
+cat <<EOF | sudo tee $PREFERENCES_PATH > /dev/null
+Package: firefox*
+Pin: origin packages.mozilla.org
+Pin-Priority: 1001
+EOF
 
 apt-get update
-apt-get install --target-release 'o=LP-PPA-mozillateam' firefox
+apt-get install firefox
+
+# Clean up
 rm $REPO_PATH
+rm $PREFERENCES_PATH
+rm $GPG_KEY
 
 # Document apt source repo's
 echo "mozillateam $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
