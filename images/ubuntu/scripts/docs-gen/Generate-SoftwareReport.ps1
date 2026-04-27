@@ -45,7 +45,7 @@ $languageAndRuntime.AddToolVersionsListInline("GNU C++", $(Get-CPPVersions), "^\
 $languageAndRuntime.AddToolVersionsListInline("GNU Fortran", $(Get-FortranVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
-if (-not $(Test-IsUbuntu24)) {
+if (Test-IsUbuntu22) {
     $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MsbuildVersion))
 }
@@ -63,7 +63,7 @@ $packageManagement.AddToolVersion("Helm", $(Get-HelmVersion))
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
 $packageManagement.AddToolVersion("Miniconda", $(Get-MinicondaVersion))
 $packageManagement.AddToolVersion("Npm", $(Get-NpmVersion))
-if (-not $(Test-IsUbuntu24)) {
+if (Test-IsUbuntu22) {
     $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
 }
 $packageManagement.AddToolVersion("Pip", $(Get-PipVersion))
@@ -229,7 +229,7 @@ $databasesTools = $installedSoftware.AddHeader("Databases")
 $databasesTools.AddToolVersion("sqlite3", $(Get-SqliteVersion))
 $databasesTools.AddNode($(Build-PostgreSqlSection))
 $databasesTools.AddNode($(Build-MySQLSection))
-if (-not $(Test-IsUbuntu24)) {
+if (Test-IsUbuntu22) {
     $databasesTools.AddNode($(Build-MSSQLToolsSection))
 }
 

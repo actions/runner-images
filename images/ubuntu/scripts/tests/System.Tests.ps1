@@ -25,7 +25,7 @@ Describe "fwupd removed" {
 
 # https://github.com/actions/runner-images/issues/13770
 # Linux kernel 6.17 changed read_ahead_kb from 128 to 4096 on Azure VMs, causing I/O thrashing
-Describe "ReadAhead udev rule" -Skip:(-not (Test-IsUbuntu24)) {
+Describe "ReadAhead udev rule" -Skip:(Test-IsUbuntu22) {
     It "udev rule file exists" {
         "/etc/udev/rules.d/99-readahead.rules" | Should -Exist
     }
