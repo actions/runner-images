@@ -99,7 +99,7 @@ Function Install-VisualStudio {
             }
 
             # Expand the zip file
-            Expand-Archive -Path "$env:TEMP_DIR\vslogs.zip" -DestinationPath "$env:TEMP_DIR\vslogs"
+            Expand-Archive -Path "$env:TEMP\vslogs.zip" -DestinationPath "$env:TEMP_DIR\vslogs"
 
             # Print logs
             $vsLogsPath = "$env:TEMP_DIR\vslogs"
