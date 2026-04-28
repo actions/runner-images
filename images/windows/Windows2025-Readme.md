@@ -5,7 +5,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 32522
-- Image Version: 20260405.77.1
+- Image Version: 20260413.84.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -21,7 +21,7 @@
 - LLVM 20.1.8
 - Node 22.22.2
 - Perl 5.42.0
-- PHP 8.5.4
+- PHP 8.5.5
 - Python 3.12.10
 - Ruby 3.3.11
 
@@ -35,7 +35,7 @@
 - pip 26.0.1 (python 3.12)
 - Pipx 1.11.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 77df67cfff)
+- Vcpkg (build from commit b80e006657)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -48,13 +48,13 @@
 - Ant 1.10.16
 - Gradle 9.4
 - Maven 3.9.14
-- sbt 1.12.8
+- sbt 1.12.9
 
 ### Tools
 - 7zip 26.00
 - aria2 1.37.0
 - azcopy 10.32.2
-- Bazel 9.0.1
+- Bazel 9.0.2
 - Bazelisk 1.28.1
 - Bicep 0.42.1
 - Cabal 3.16.1.0
@@ -75,9 +75,9 @@
 - gdb 17.1
 - GNU Binutils 2.46
 - Newman 6.2.2
-- OpenSSL 3.6.1
+- OpenSSL 3.6.2
 - Packer 1.15.0
-- Pulumi 3.229.0
+- Pulumi 3.230.0
 - R 4.5.3
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.9.3
@@ -90,10 +90,10 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.34.24
-- AWS SAM CLI 1.157.1
+- AWS CLI 2.34.27
+- AWS SAM CLI 1.158.0
 - AWS Session Manager CLI 1.2.804.0
-- Azure CLI 2.84.0
+- Azure CLI 2.85.0
 - Azure DevOps CLI extension 1.0.2
 - GitHub CLI 2.89.0
 
@@ -108,14 +108,14 @@
 - Rustfmt 1.8.0
 
 ### Browsers and Drivers
-- Google Chrome 146.0.7680.178
-- Chrome Driver 146.0.7680.165
-- Microsoft Edge 146.0.3856.97
-- Microsoft Edge Driver 146.0.3856.97
-- Mozilla Firefox 149.0
+- Google Chrome 147.0.7727.56
+- Chrome Driver 147.0.7727.56
+- Microsoft Edge 146.0.3856.109
+- Microsoft Edge Driver 146.0.3856.117
+- Mozilla Firefox 149.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
-- Selenium server 4.41.0
+- Selenium server 4.43.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -157,7 +157,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 1.22.12
 - 1.23.12
 - 1.24.13
-- 1.25.8
+- 1.25.9
 
 #### Node.js
 - 20.20.2
@@ -168,8 +168,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.12
-- 3.14.3
+- 3.13.13
+- 3.14.4
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -213,7 +213,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.29.7  | C:\tools\nginx-1.29.7\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.29.8  | C:\tools\nginx-1.29.8\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
@@ -473,7 +473,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 14.6.0
-- AWSPowershell: 5.0.189
+- AWSPowershell: 5.0.195
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.36.1

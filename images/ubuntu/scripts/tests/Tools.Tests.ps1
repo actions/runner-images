@@ -409,3 +409,22 @@ project(NinjaTest NONE)
         Remove-Item -Path "/tmp/ninjaproject" -Recurse -Force
     }
 }
+
+Describe "AWF" -Skip:(Test-IsUbuntu22) {
+    It "AWF toolcache directory exists" {
+        $awfPath = Join-Path $env:AGENT_TOOLSDIRECTORY "agentic-workflow-firewall-js"
+        $awfPath | Should -Exist
+    }
+
+    It "At least 3 versions are installed" {
+        $awfPath = Join-Path $env:AGENT_TOOLSDIRECTORY "agentic-workflow-firewall-js"
+        (Get-ChildItem -Path $awfPath -Directory).Count | Should -BeGreaterOrEqual 3
+    }
+
+    It "AWF JS bundle exists" {
+        $awfPath = Join-Path $env:AGENT_TOOLSDIRECTORY "agentic-workflow-firewall-js"
+        $latestVersion = Get-ChildItem -Path $awfPath -Directory | Sort-Object -Property { [version]$_.Name } -Descending | Select-Object -First 1
+        $bundlePath = Join-Path $latestVersion.FullName "x64" "awf-bundle.js"
+        $bundlePath | Should -Exist
+    }
+}

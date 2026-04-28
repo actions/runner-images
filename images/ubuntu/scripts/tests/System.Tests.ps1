@@ -22,3 +22,25 @@ Describe "fwupd removed" {
         $systemctlOutput | Should -Not -Match "active"
     }
 }
+
+# https://github.com/actions/runner-images/issues/13770
+# Linux kernel 6.17 changed read_ahead_kb from 128 to 4096 on Azure VMs, causing I/O thrashing
+Describe "ReadAhead udev rule" -Skip:(-not (Test-IsUbuntu24)) {
+    It "udev rule file exists" {
+        "/etc/udev/rules.d/99-readahead.rules" | Should -Exist
+    }
+
+    It "udev rule contains correct read_ahead_kb value" {
+        $content = Get-Content "/etc/udev/rules.d/99-readahead.rules" -Raw
+        $content | Should -Match 'ATTR\{queue/read_ahead_kb\}="128"'
+    }
+
+    It "All sd* devices have read_ahead_kb set to 128" {
+        $devices = Get-ChildItem "/sys/block/sd*/queue/read_ahead_kb" -ErrorAction SilentlyContinue
+        $devices | Should -Not -BeNullOrEmpty -Because "there should be at least one sd* block device"
+        foreach ($dev in $devices) {
+            $value = (Get-Content $dev.FullName).Trim()
+            $value | Should -Be "128" -Because "read_ahead_kb for $($dev.FullName) should be 128 to prevent I/O thrashing"
+        }
+    }
+}
