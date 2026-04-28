@@ -237,13 +237,15 @@ if (Test-IsUbuntu22) {
 }
 
 # Cached Tools
-$cachedTools = $installedSoftware.AddHeader("Cached Tools")
-$cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+")
-$cachedTools.AddToolVersionsList("Node.js", $(Get-ToolcacheNodeVersions), "^\d+")
-$cachedTools.AddToolVersionsList("Python", $(Get-ToolcachePythonVersions), "^\d+\.\d+")
-$cachedTools.AddToolVersionsList("PyPy", $(Get-ToolcachePyPyVersions), "^\d+\.\d+")
-$cachedTools.AddToolVersionsList("Ruby", $(Get-ToolcacheRubyVersions), "^\d+\.\d+")
-
+if (-not(Test-IsUbuntu26)) {
+    # Most cached tools are not yet available for Ubuntu 26.04
+    $cachedTools = $installedSoftware.AddHeader("Cached Tools")
+    $cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+")
+    $cachedTools.AddToolVersionsList("Node.js", $(Get-ToolcacheNodeVersions), "^\d+")
+    $cachedTools.AddToolVersionsList("Python", $(Get-ToolcachePythonVersions), "^\d+\.\d+")
+    $cachedTools.AddToolVersionsList("PyPy", $(Get-ToolcachePyPyVersions), "^\d+\.\d+")
+    $cachedTools.AddToolVersionsList("Ruby", $(Get-ToolcacheRubyVersions), "^\d+\.\d+")
+}
 
 # PowerShell Tools
 $powerShellTools = $installedSoftware.AddHeader("PowerShell Tools")
