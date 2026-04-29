@@ -36,12 +36,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.22.*",
-                "1.23.*",
                 "1.24.*",
-                "1.25.*"
+                "1.25.*",
+                "1.26.*"
             ],
-            "default": "1.24.*"
+            "default": "1.26.*"
         },
         {
             "name": "Ruby",
@@ -60,12 +59,12 @@
         }
     ],
     "java": {
-        "default": "17",
-        "versions": [ "8", "11", "17", "21", "25"],
+        "default": "21",
+        "versions": [ "11", "17", "21", "25" ],
         "maven": "3.9.15"
     },
     "android": {
-        "cmdline-tools": "commandlinetools-linux-11076708_latest.zip",
+        "cmdline-tools": "commandlinetools-linux-14742923_latest.zip",
         "platform_min_version": "34",
         "build_tools_min_version": "34.0.0",
         "extra_list": [
@@ -95,7 +94,7 @@
         {
             "name": "az",
             "versions": [
-                "14.6.0"
+                "15.5.0"
             ]
         }
     ],
@@ -240,16 +239,16 @@
     },
     "gcc": {
         "versions": [
-            "g++-12",
             "g++-13",
-            "g++-14"
+            "g++-14",
+            "g++-15"
         ]
     },
     "gfortran": {
         "versions": [
-            "gfortran-12",
             "gfortran-13",
-            "gfortran-14"
+            "gfortran-14",
+            "gfortran-15"
         ]
     },
     "php": {
@@ -264,7 +263,7 @@
         "version": "4"
     },
     "node": {
-        "default": "20"
+        "default": "24"
     },
     "node_modules": [
         {
@@ -309,9 +308,9 @@
         }
     ],
     "postgresql": {
-        "version": "16"
+        "version": "18"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }
