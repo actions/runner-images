@@ -6,12 +6,12 @@
 # macOS 15
 - OS Version: macOS 15.7.5 (24G617)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20260421.0014.1
+- Image Version: 20260428.0039.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.420, 9.0.102, 9.0.203, 9.0.313, 10.0.103, 10.0.202
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.420, 9.0.102, 9.0.203, 9.0.313, 10.0.103, 10.0.203
 - Bash 3.2.57(1)-release
 - Clang/LLVM 17.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
@@ -21,7 +21,7 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
-- Kotlin 2.3.20-release-208
+- Kotlin 2.3.21-release-298
 - Node.js 22.22.2
 - Perl 5.42.2
 - PHP 8.5.5
@@ -33,12 +33,12 @@
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.9.7
-- Homebrew 5.1.7
+- Homebrew 5.1.8
 - NPM 10.9.7
 - Pip3 26.0.1 (python 3.14)
 - Pipx 1.11.1
 - RubyGems 4.0.10
-- Vcpkg 2026 (build from commit 9c5e11404a)
+- Vcpkg 2026 (build from commit 031f4afe03)
 - Yarn 1.22.22
 
 ### Project Management
@@ -49,20 +49,20 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.32.2
+- azcopy 10.32.3
 - bazel 9.1.0
-- bazelisk 1.28.1
+- bazelisk 1.29.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.19.0
 - Git 2.54.0
 - Git LFS 3.7.1
-- GitHub CLI 2.90.0
+- GitHub CLI 2.91.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.5.18
+- gpg (GnuPG) 2.5.19
 - jq 1.8.1
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.15.1
+- Packer 1.15.3
 - pkgconf 2.5.1
 - Unxip 3.3
 - yq 4.53.2
@@ -70,16 +70,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.33
+- AWS CLI 2.34.38
 - AWS SAM CLI 1.158.0
 - AWS Session Manager CLI 1.2.804.0
 - Azure CLI 2.85.0
 - Azure CLI (azure-devops) 1.0.3
 - Bicep CLI 0.42.1
-- Cmake 4.3.1
+- Cmake 4.3.2
 - CodeQL Action Bundle 2.25.2
 - Fastlane 2.233.0
-- SwiftFormat 0.61.0
+- SwiftFormat 0.61.1
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 1.6.2
@@ -88,14 +88,14 @@
 - SwiftLint 0.63.2
 
 ### Browsers
-- Safari 26.5 (20624.2.1.19.2)
-- SafariDriver 26.5 (20624.2.1.19.2)
-- Google Chrome 147.0.7727.102
-- Google Chrome for Testing 147.0.7727.57
-- ChromeDriver 147.0.7727.57
-- Microsoft Edge 147.0.3912.72
-- Microsoft Edge WebDriver 147.0.3912.72
-- Mozilla Firefox 149.0.2
+- Safari 26.5 (20624.2.4.18.2)
+- SafariDriver 26.5 (20624.2.4.18.2)
+- Google Chrome 147.0.7727.117
+- Google Chrome for Testing 147.0.7727.117
+- ChromeDriver 147.0.7727.117
+- Microsoft Edge 147.0.3912.86
+- Microsoft Edge WebDriver 147.0.3912.86
+- Mozilla Firefox 150.0
 - geckodriver 0.36.0
 - Selenium server 4.43.0
 
@@ -107,12 +107,12 @@
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin        |
 
 ### Java
-| Version               | Environment Variable |
-| --------------------- | -------------------- |
-| 11.0.30+7             | JAVA_HOME_11_X64     |
-| 17.0.18+8             | JAVA_HOME_17_X64     |
-| 21.0.10+7.0 (default) | JAVA_HOME_21_X64     |
-| 25.0.2+10.0           | JAVA_HOME_25_X64     |
+| Version                | Environment Variable |
+| ---------------------- | -------------------- |
+| 11.0.30+7              | JAVA_HOME_11_X64     |
+| 17.0.18+8              | JAVA_HOME_17_X64     |
+| 21.0.11+10.0 (default) | JAVA_HOME_21_X64     |
+| 25.0.3+9.0             | JAVA_HOME_25_X64     |
 
 ### Cached Tools
 
@@ -274,7 +274,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                       |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                                          |
-| Android Emulator           | 36.5.10                                                                                                                                                                                                                                                                                                                                       |
+| Android Emulator           | 36.5.11                                                                                                                                                                                                                                                                                                                                       |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                                      |
 | Android SDK Platforms      | android-37.0 (rev 1)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                                                                                                                                                        |
@@ -300,7 +300,7 @@
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v26/26.3.1-57396/ParallelsDesktop-26.3.1-57396.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v26/26.3.2-57398/ParallelsDesktop-26.3.2-57398.dmg |
 
 ##### Notes
 ```
