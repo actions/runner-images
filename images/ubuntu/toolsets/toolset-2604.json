@@ -115,7 +115,7 @@
             "autoconf",
             "automake",
             "dbus",
-            "dnsutils",
+            "bind9-dnsutils",
             "dpkg",
             "dpkg-dev",
             "fakeroot",
