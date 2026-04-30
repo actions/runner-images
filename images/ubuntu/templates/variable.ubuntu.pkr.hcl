@@ -165,3 +165,7 @@ variable "install_user" {
   type    = string
   default = "installer"
 }
+variable "region" {
+  type    = string
+  default = "us-east-2"
+}

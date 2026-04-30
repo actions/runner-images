@@ -397,3 +397,10 @@ launch.json
 
 # Ignore dynamic template
 images/*/*-temp.json
+
+# Claude Code - ignore local/user-specific files only
+.claude/*.local.*
+.claude/todos/
+.claude/worktrees/
+.superpowers/
+.claude/scheduled_tasks.lock
