@@ -77,3 +77,18 @@ function Get-YqVersion {
     $yqVersion = $(yq -V) | Get-StringPart -Part 3
     return $yqVersion.TrimStart("v").Trim()
 }
+
+function Get-DockerComposeV2Version {
+    $composeVersion = docker compose version | Get-StringPart -Part 3 | Get-StringPart -Part 0 -Delimiter "v"
+    return $composeVersion
+}
+
+function Get-DockerClientVersion {
+    $dockerClientVersion = sudo docker version --format '{{.Client.Version}}'
+    return $dockerClientVersion
+}
+
+function Get-DockerBuildxVersion {
+    $buildxVersion = docker buildx version  | Get-StringPart -Part 1 | Get-StringPart -Part 0 -Delimiter "v"
+    return $buildxVersion
+}

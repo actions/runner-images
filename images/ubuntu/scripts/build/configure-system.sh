@@ -9,10 +9,12 @@ source $HELPER_SCRIPT_FOLDER/os.sh
 
 mv -f /imagegeneration/post-generation /opt
 
-echo "chmod -R 777 /opt"
-chmod -R 777 /opt
 echo "chmod -R 777 /usr/share"
 chmod -R 777 /usr/share
+echo "chmod -R 777 /opt"
+chmod -R 777 /opt
+echo "Setting sticky bit on hostedtoolcache Ruby directories due to the changes in Ruby 4.0; see issue: https://github.com/actions/runner-images/issues/13647"
+find /opt/hostedtoolcache/Ruby -type d -exec chmod +t {} +
 
 chmod 755 $IMAGE_FOLDER
 

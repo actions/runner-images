@@ -113,14 +113,6 @@ Describe "Docker" {
     }
 }
 
-Describe "Docker images" {
-    $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
-
-    It "<ImageName>" -TestCases $testCases {
-       sudo docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
-    }
-}
-
 Describe "Ansible" {
     It "Ansible" {
         "ansible --version" | Should -ReturnZeroExitCode

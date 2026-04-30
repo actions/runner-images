@@ -16,7 +16,6 @@ Please note that this project is released with a [Contributor Code of Conduct][c
 - [Adding a new tool to an image](#adding-a-new-tool-to-an-image)
 - [Code style guide](#code-style-guide)
 
-
 ## Submitting a pull request
 
 1. [Fork][fork] and clone the repository.
@@ -41,18 +40,18 @@ Here are a few things you can do that will increase the likelihood of your pull 
 
 - For every new tool, add validation scripts and update the software report script to ensure that it is included in the documentation.
 - If the tool is available on multiple platforms (macOS, Windows, Linux), make sure you include it on as many as possible.
-- If installing multiple versions of the tool, consider putting the list of versions in the corresponding `toolset.json` file. This will help other customers configure their builds flexibly. See [toolset-windows-2019.json](images/windows/toolsets/toolset-2019.json) as an example.
+- If installing multiple versions of the tool, consider putting the list of versions in the corresponding `toolset.json` file. This will help other customers configure their builds flexibly. See [toolset-windows-2022.json](images/windows/toolsets/toolset-2022.json) as an example.
 - Use consistent naming across all files.
 - Validation scripts should be simple and shouldn't change the image content.
 
 ### Windows
 
 - Add a script that will install the tool and put the script in the `scripts/build` folder.
-There are a bunch of helper functions that could simplify your code: `Install-ChocoPackage`, `Install-Binary`, `Install-VSIXFromFile`, `Install-VSIXFromUrl`, `Invoke-DownloadWithRetry`, `Test-IsWin19`, `Test-IsWin22` (find the full list of helpers in [ImageHelpers.psm1](images/windows/scripts/helpers/ImageHelpers.psm1)).
+There are a bunch of helper functions that could simplify your code: `Install-ChocoPackage`, `Install-Binary`, `Install-VSIXFromFile`, `Install-VSIXFromUrl`, `Invoke-DownloadWithRetry`, `Test-IsWin22`, `Test-IsWin25` (find the full list of helpers in [ImageHelpers.psm1](images/windows/scripts/helpers/ImageHelpers.psm1)).
 - Add a script that will validate the tool installation and put the script in the `scripts/tests` folder.
 We use [Pester v5](https://github.com/pester/pester) for validation scripts. If the tests for the tool are complex enough, create a separate `*.Tests.ps1`. Otherwise, use `Tools.Tests.ps1` for simple tests.
 Add `Invoke-PesterTests -TestFile <testFileName> [-TestName <describeName>]` at the end of the installation script to ensure that your tests will be run.
-- Add changes to the software report generator `images/windows/scripts/docs-gen/Generate-SoftwareReport.ps1`. The software report generator is used to generate an image's README file, e.g. [Windows2019-Readme.md](images/windows/Windows2019-Readme.md) and uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
+- Add changes to the software report generator `images/windows/scripts/docs-gen/Generate-SoftwareReport.ps1`. The software report generator is used to generate an image's README file, e.g. [Windows2022-Readme.md](images/windows/Windows2022-Readme.md) and uses [MarkdownPS](https://github.com/Sarafian/MarkdownPS).
 
 ### Ubuntu
 

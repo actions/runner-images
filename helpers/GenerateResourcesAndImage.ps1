@@ -1,11 +1,11 @@
 $ErrorActionPreference = 'Stop'
 
 enum ImageType {
-    Windows2019   = 1
-    Windows2022   = 2
-    Windows2025   = 3
-    Ubuntu2204    = 4
-    Ubuntu2404    = 5
+    Windows2022         = 1
+    Windows2025         = 2
+    Windows2025_vs2026  = 3
+    Ubuntu2204          = 4
+    Ubuntu2404          = 5
 }
 
 Function Get-PackerTemplate {
@@ -18,10 +18,6 @@ Function Get-PackerTemplate {
 
     switch ($ImageType) {
         # Note: Double Join-Path is required to support PowerShell 5.1
-        ([ImageType]::Windows2019) {
-            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2019.pkr.hcl"
-            $imageOS = "win19"
-        }
         ([ImageType]::Windows2022) {
             $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2022.pkr.hcl"
             $imageOS = "win22"
@@ -29,6 +25,10 @@ Function Get-PackerTemplate {
         ([ImageType]::Windows2025) {
             $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2025.pkr.hcl"
             $imageOS = "win25"
+        }
+        ([ImageType]::Windows2025_vs2026) {
+            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2025-vs2026.pkr.hcl"
+            $imageOS = "win25-vs2026"
         }
         ([ImageType]::Ubuntu2204) {
             $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-22_04.pkr.hcl"
@@ -66,6 +66,35 @@ Function Show-LatestCommit {
     }
 }
 
+function Get-GitHubActionsOidcIdToken {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $True)]
+        [string] $RequestUrl,
+        [Parameter(Mandatory = $True)]
+        [string] $RequestToken,
+        [Parameter(Mandatory = $False)]
+        [string] $Audience = 'api://AzureADTokenExchange'
+    )
+
+    $separator = if ($RequestUrl -match '\?') { '&' } else { '?' }
+    $urlWithAudience = "${RequestUrl}${separator}audience=$([System.Uri]::EscapeDataString($Audience))"
+    $headers = @{ Authorization = "Bearer $RequestToken" }
+
+    try {
+        $response = Invoke-RestMethod -Method Get -Uri $urlWithAudience -Headers $headers
+    }
+    catch {
+        throw "Failed to request GitHub Actions OIDC ID token. Ensure workflow permissions include 'id-token: write'. Details: $($_.Exception.Message)"
+    }
+
+    if ([string]::IsNullOrEmpty($response.value)) {
+        throw "GitHub Actions OIDC token response did not contain a 'value' field."
+    }
+
+    return $response.value
+}
+
 function Start-Sleep($seconds) {
     $doneDT = (Get-Date).AddSeconds($seconds)
     while ($doneDT -gt (Get-Date)) {
@@ -88,7 +117,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER ResourceGroupName
             The name of the resource group to store the resulting artifact. Resource group must already exist.
         .PARAMETER ImageType
-            The type of image to generate. Valid values are: Windows2019, Windows2022, Windows2025, Ubuntu2204, Ubuntu2404.
+            The type of image to generate. Valid values are: Windows2022, Windows2025, Windows2025_vs2026, Ubuntu2204, Ubuntu2404.
         .PARAMETER ManagedImageName
             The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation
@@ -103,6 +132,13 @@ Function GenerateResourcesAndImage {
             The Azure client secret to use to authenticate with Azure. If not specified, the current user's credentials will be used.
         .PARAMETER AzureTenantId
             The Azure tenant id to use to authenticate with Azure. If not specified, the current user's credentials will be used.
+        .PARAMETER UseOidc
+            If set, authenticate using GitHub Actions OIDC (federated credentials) instead of a client secret.
+            Requires AzureClientId and AzureTenantId, and OidcRequestToken/OidcRequestUrl parameters.
+        .PARAMETER OidcRequestToken
+            GitHub Actions OIDC request token.
+        .PARAMETER OidcRequestUrl
+            GitHub Actions OIDC request URL.
         .PARAMETER RestrictToAgentIpAddress
             If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from. 
             This parameter cannot be used in combination with the virtual_network_name packer parameter.
@@ -130,7 +166,7 @@ Function GenerateResourcesAndImage {
         [ImageType] $ImageType,
         [Parameter(Mandatory = $False)]
         [string] $ManagedImageName = "Runner-Image-$($ImageType)",
-        [Parameter(Mandatory = $True)]
+        [Parameter(Mandatory = $False)]
         [string] $AzureLocation,
         [Parameter(Mandatory = $False)]
         [string] $ImageGenerationRepositoryRoot = $pwd,
@@ -142,6 +178,14 @@ Function GenerateResourcesAndImage {
         [string] $AzureClientSecret,
         [Parameter(Mandatory = $False)]
         [string] $AzureTenantId,
+        [Parameter(Mandatory = $False)]
+        [switch] $UseOidc,
+        [Parameter(Mandatory = $False)]
+        [ValidateNotNullOrEmpty()]
+        [string] $OidcRequestToken,
+        [Parameter(Mandatory = $False)]
+        [ValidateNotNullOrEmpty()]
+        [string] $OidcRequestUrl,
         [Parameter(Mandatory = $False)]
         [string] $PluginVersion = "2.2.1",
         [Parameter(Mandatory = $False)]
@@ -214,10 +258,17 @@ Function GenerateResourcesAndImage {
     }
 
     Write-Host "Validating packer template..."
+    $validateClientSecret = "fake"
+    if ($UseOidc) {
+        $validateClientSecret = ""
+    }
+
     & $PackerBinary validate `
-        "-only=$($PackerTemplate.BuildName)*" `
+        "-only=$($PackerTemplate.BuildName).*" `
         "-var=client_id=fake" `
-        "-var=client_secret=fake" `
+        "-var=client_secret=$($validateClientSecret)" `
+        "-var=oidc_request_token=fake" `
+        "-var=oidc_request_url=fake" `
         "-var=subscription_id=$($SubscriptionId)" `
         "-var=tenant_id=fake" `
         "-var=location=$($AzureLocation)" `
@@ -239,10 +290,23 @@ Function GenerateResourcesAndImage {
             Write-Verbose "No AzureClientId was provided, will use interactive login."
             az login --output none
         }
+        elseif ($UseOidc) {
+            if ([string]::IsNullOrEmpty($AzureTenantId)) {
+                throw "AzureTenantId is required for OIDC authentication."
+            }
+
+            Write-Verbose "Using OIDC service principal login (federated credentials)."
+            $idToken = Get-GitHubActionsOidcIdToken -RequestUrl $OidcRequestUrl -RequestToken $OidcRequestToken
+            az login --service-principal --username $AzureClientId --tenant $AzureTenantId --federated-token $idToken --output none
+        }
         else {
-            Write-Verbose "AzureClientId was provided, will use service principal login."
+            if ([string]::IsNullOrEmpty($AzureClientSecret) -or [string]::IsNullOrEmpty($AzureTenantId)) {
+                throw "AzureClientSecret and AzureTenantId are required for service principal login unless -UseOidc is specified."
+            }
+            Write-Verbose "AzureClientId was provided, will use service principal login (client secret)."
             az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
         }
+
         az account set --subscription $SubscriptionId
         if ($LastExitCode -ne 0) {
             throw "Failed to login to Azure subscription '$SubscriptionId'."
@@ -257,7 +321,7 @@ Function GenerateResourcesAndImage {
             throw "Resource group '$ResourceGroupName' does not exist."
         }
 
-        # Create service principal
+        # Create / choose authentication for packer
         if ([string]::IsNullOrEmpty($AzureClientId)) {
             Write-Host "Creating service principal for packer..."
             $ADCleanupRequired = $true
@@ -277,17 +341,36 @@ Function GenerateResourcesAndImage {
             Write-Host "Service principal created with id '$ServicePrincipalAppId'. It will be deleted after the build."
         }
         else {
-            $ServicePrincipalAppId = $AzureClientId
-            $ServicePrincipalPassword = $AzureClientSecret
-            $TenantId = $AzureTenantId
+            if ($UseOidc) {
+                if ([string]::IsNullOrEmpty($AzureTenantId)) {
+                    throw "AzureTenantId is required for OIDC authentication."
+                }
+
+                $ServicePrincipalAppId = $AzureClientId
+                $ServicePrincipalPassword = ""
+                $TenantId = $AzureTenantId
+                # Avoid leaking OIDC request values via command line arguments.
+                $env:PKR_VAR_oidc_request_token = $OidcRequestToken
+                $env:PKR_VAR_oidc_request_url = $OidcRequestUrl
+            }
+            else {
+                if ([string]::IsNullOrEmpty($AzureClientSecret) -or [string]::IsNullOrEmpty($AzureTenantId)) {
+                    throw "AzureClientSecret and AzureTenantId are required for service principal authentication unless -UseOidc is specified."
+                }
+                $ServicePrincipalAppId = $AzureClientId
+                $ServicePrincipalPassword = $AzureClientSecret
+                $TenantId = $AzureTenantId
+            }
         }
         Write-Debug "Service principal app id: $ServicePrincipalAppId."
         Write-Debug "Tenant id: $TenantId."
 
         & $PackerBinary build -on-error="$($OnError)" `
-            -only "$($PackerTemplate.BuildName)*" `
+            -only "$($PackerTemplate.BuildName).*" `
             -var "client_id=$($ServicePrincipalAppId)" `
             -var "client_secret=$($ServicePrincipalPassword)" `
+            -var "oidc_request_token=$($env:PKR_VAR_oidc_request_token)" `
+            -var "oidc_request_url=$($env:PKR_VAR_oidc_request_url)" `
             -var "subscription_id=$($SubscriptionId)" `
             -var "tenant_id=$($TenantId)" `
             -var "location=$($AzureLocation)" `

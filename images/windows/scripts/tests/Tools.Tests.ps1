@@ -54,20 +54,9 @@ Describe "DACFx" {
         $sqlPackagePath = 'C:\Program Files\Microsoft SQL Server\170\DAC\bin\SqlPackage.exe'
         "${sqlPackagePath}" | Should -Exist
     }
-
-    It "SqlLocalDB" -Skip:(-not (Test-IsWin19)) {
-        $sqlLocalDBPath = 'C:\Program Files\Microsoft SQL Server\130\Tools\Binn\SqlLocalDB.exe'
-        "${sqlLocalDBPath}" | Should -Exist
-    }
 }
 
-Describe "DotnetTLS" -Skip:(-not (Test-IsWin19)) {
-    It "Tls 1.2 is enabled" {
-        [Net.ServicePointManager]::SecurityProtocol -band "Tls12" | Should -Be Tls12
-    }
-}
-
-Describe "Mercurial" -Skip:(Test-IsWin25) {
+Describe "Mercurial" -Skip:(Test-IsWin25-X64) {
     It "Mercurial" {
         "hg --version" | Should -ReturnZeroExitCode
     }
@@ -101,23 +90,13 @@ Describe "Mingw64" {
     }
 }
 
-Describe "GoogleCloudCLI" -Skip:(-not (Test-IsWin19)) {
-    It "<ToolName>" -TestCases @(
-        @{ ToolName = "bq" }
-        @{ ToolName = "gcloud" }
-        @{ ToolName = "gsutil" }
-    ) {
-        "$ToolName version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "NET48" {
     It "NET48" {
         Get-ChildItem -Path "${env:ProgramFiles(x86)}\Microsoft SDKs\Windows\*\*\NETFX 4.8 Tools" -Directory | Should -HaveCount 1
     }
 }
 
-Describe "NSIS" -Skip:(Test-IsWin25) {
+Describe "NSIS" -Skip:(Test-IsWin25-X64) {
     It "NSIS" {
         "makensis /VERSION" | Should -ReturnZeroExitCode
     }
@@ -139,7 +118,7 @@ Describe "Sbt" {
     }
 }
 
-Describe "ServiceFabricSDK" {
+Describe "ServiceFabricSDK" -Skip:(Test-IsWin11-Arm64) {
     It "PowerShell Module" {
         # Ignore PowerShell version check if running in PowerShell Core
         # https://github.com/microsoft/service-fabric/issues/1343
@@ -175,20 +154,13 @@ Describe "Vcpkg" {
     }
 }
 
-Describe "VCRedist" -Skip:(-not (Test-IsWin19)) {
-    It "vcredist_2010_x64" {
-        "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{1D8E6291-B0D5-35EC-8441-6616F567A0F7}" | Should -Exist
-        "C:\Windows\System32\msvcr100.dll" | Should -Exist
-    }
-}
-
 Describe "WebPlatformInstaller" {
     It "WebPlatformInstaller" {
         "WebPICMD" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Zstd" {
+Describe "Zstd" -Skip:(Test-IsWin11-Arm64) {
     It "zstd" {
         "zstd -V" | Should -ReturnZeroExitCode
     }
@@ -239,5 +211,39 @@ Describe "OpenSSL" {
     It "OpenSSL DLLs not in System32" {
         Get-ChildItem -Path "$env:SystemRoot\System32" -Filter "libcrypto-*.dll" -File -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
 	    Get-ChildItem -Path "$env:SystemRoot\System32" -Filter "libssl-*.dll" -File -ErrorAction SilentlyContinue | Should -BeNullOrEmpty
+    }
+}
+
+Describe "CMake" {
+    It "cmake" {
+        "cmake --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "Ninja" {
+    BeforeAll {
+        $ninjaProjectPath = $(Join-Path $env:TEMP_DIR "ninjaproject")
+        New-item -Path $ninjaProjectPath -ItemType Directory -Force
+@'
+cmake_minimum_required(VERSION 3.10)
+project(NinjaTest NONE)
+'@ | Out-File -FilePath "$ninjaProjectPath/CMakeLists.txt" -Encoding utf8
+
+        $ninjaProjectBuildPath = $(Join-Path $ninjaProjectPath "build")
+        New-item -Path $ninjaProjectBuildPath -ItemType Directory -Force
+        Set-Location $ninjaProjectBuildPath
+    }
+
+    It "Make a simple ninja project" {
+        "cmake -GNinja $ninjaProjectPath" | Should -ReturnZeroExitCode
+    }
+
+    It "build.ninja file should exist" {
+        $buildFilePath = $(Join-Path $ninjaProjectBuildPath "build.ninja")
+        $buildFilePath | Should -Exist
+    }
+
+    It "Ninja" {
+        "ninja --version" | Should -ReturnZeroExitCode
     }
 }

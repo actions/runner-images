@@ -14,7 +14,7 @@ BeforeAll {
     }
 }
 
-if ($os.IsVentura -or $os.IsSonoma) {
+if ($os.IsSonoma) {
     Describe "Mono" {
         $MONO_VERSIONS_PATH = "/Library/Frameworks/Mono.framework/Versions"
         $monoToolsetVersion = @((Get-ToolsetContent).mono.framework.version)

@@ -7,7 +7,8 @@
             "versions": [
                 "3.2",
                 "3.3",
-                "3.4"
+                "3.4",
+                "4.0"
             ],
             "default": "3.3"
         },
@@ -17,14 +18,13 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "3.9.*",
                 "3.10.*",
                 "3.11.*",
                 "3.12.*",
                 "3.13.*",
                 "3.14.*"
             ],
-            "default": "3.9.*"
+            "default": "3.12.*"
         },
         {
             "name": "Python",
@@ -32,7 +32,6 @@
             "arch": "x86",
             "platform" : "win32",
             "versions": [
-                "3.9.*",
                 "3.10.*",
                 "3.11.*",
                 "3.12.*",
@@ -83,7 +82,7 @@
         { "name": "PowerShellGet" },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
-        { "name": "SqlServer" },
+        { "name": "SqlServer", "versions": [ "22.3.0" ] },
         { "name": "VSSetup" },
         { "name": "Microsoft.Graph" },
         {"name": "AWSPowershell"}
@@ -92,10 +91,7 @@
         {
             "name": "az",
             "versions": [
-                "12.5.0"
-            ],
-            "zip_versions": [
-
+                "14.6.0"
             ]
         }
     ],
@@ -106,8 +102,8 @@
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",
         "hash": "8A90E6A3DEB2FA13229B2E335EFD07687DCC8A55A3C544DA9F40B41404993E7D",
-        "platform_min_version": "31",
-        "build_tools_min_version": "31.0.0",
+        "platform_min_version": "34",
+        "build_tools_min_version": "34.0.0",
         "extras": [
             "android;m2repository",
             "google;m2repository",
@@ -122,7 +118,7 @@
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27", "28", "29"
+                "27", "28", "29"
             ]
         }
     },
@@ -151,7 +147,7 @@
         "subversion" : "17",
         "edition" : "Enterprise",
         "channel": "release",
-        "installChannel": "",
+        "installChannelUri": "",
         "workloads": [
             "Component.Dotfuscator",
             "Component.Linux.CMake",
@@ -233,7 +229,6 @@
             "Microsoft.VisualStudio.Workload.Universal",
             "Microsoft.VisualStudio.Workload.VisualStudioExtension",
             "Component.MDD.Linux",
-            "Component.MDD.Linux.GCC.arm",
             "Component.Microsoft.Windows.DriverKit",
             "wasm.tools",
             "Microsoft.Component.MSBuild"
@@ -256,8 +251,8 @@
             "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022"
         ],
         "components": {
-            "docker": "27.5.1",
-            "compose": "2.32.2"
+            "docker": "29.1.5",
+            "compose": "2.40.3"
         }
     },
     "pipx": [
@@ -348,7 +343,7 @@
         "version": "20"
     },
     "php": {
-        "version": "8.4"
+        "version": "8.5"
     },
     "postgresql": {
         "version": "14"

@@ -50,19 +50,6 @@ function Get-ClangTidyVersions {
     return $clangVersions
 }
 
-
-function Get-ErlangVersion {
-    $erlangVersion = (erl -eval '{ok, Version} = file:read_file(filename:join([code:root_dir(), "releases", erlang:system_info(otp_release), ''OTP_VERSION''])), io:fwrite(Version), halt().' -noshell)
-    $shellVersion = (erl -eval 'erlang:display(erlang:system_info(version)), halt().' -noshell).Trim('"')
-    return "$erlangVersion (Eshell $shellVersion)"
-}
-
-function Get-ErlangRebar3Version {
-    $result = Get-CommandResult "rebar3 --version"
-    $result.Output -match "rebar (?<version>(\d+.){2}\d+)" | Out-Null
-    return $Matches.version
-}
-
 function Get-MonoVersion {
     $monoVersion = mono --version | Out-String | Get-StringPart -Part 4
     return $monoVersion
@@ -249,26 +236,12 @@ function Get-StackVersion {
     return $Matches.version
 }
 
-function Get-AzModuleVersions {
-    $azModuleVersions = Get-ChildItem /usr/share | Where-Object { $_ -match "az_\d+" } | Foreach-Object {
-        $_.Name.Split("_")[1]
-    }
-
-    $azModuleVersions = $azModuleVersions -join " "
-    return $azModuleVersions
-}
-
 function Get-PowerShellModules {
     [Array] $result = @()
 
     [Array] $azureInstalledModules = Get-ChildItem -Path "/usr/share/az_*" -Directory | ForEach-Object { $_.Name.Split("_")[1] }
     if ($azureInstalledModules.Count -gt 0) {
         $result += [ToolVersionsListNode]::new("Az", $azureInstalledModules, "^\d+\.\d+", "Inline")
-    }
-
-    [Array] $azureCachedModules = Get-ChildItem /usr/share/az_*.zip -File | ForEach-Object { $_.Name.Split("_")[1] }
-    if ($azureCachedModules.Count -gt 0) {
-        $result += [ToolVersionsListNode]::new("Az (Cached)", $azureCachedModules, "^\d+\.\d+", "Inline")
     }
 
     (Get-ToolsetContent).powershellModules.name | ForEach-Object {

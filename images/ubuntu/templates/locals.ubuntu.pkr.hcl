@@ -1,11 +1,11 @@
 locals {
   image_properties_map = {
       "ubuntu22" = {
-            source_image_marketplace_sku = "canonical:0001-com-ubuntu-server-jammy:22_04-lts"
+            source_image_marketplace_sku = "canonical:0001-com-ubuntu-server-jammy:22_04-lts-gen2"
             os_disk_size_gb = 75
       },
       "ubuntu24" = {
-            source_image_marketplace_sku = "canonical:ubuntu-24_04-lts:server-gen1"
+            source_image_marketplace_sku = "canonical:ubuntu-24_04-lts:server"
             os_disk_size_gb = 75
       }
   }

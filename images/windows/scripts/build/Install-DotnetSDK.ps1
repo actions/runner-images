@@ -82,9 +82,14 @@ function Install-DotnetSDK {
     # If installation failed, tests will fail anyway
 
     #region Supply chain security
+    if (Test-IsArm64) {
+        $dotnetArch = "arm64"
+    } else {
+        $dotnetArch = "x64"
+    }
     $releasesJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
     $releasesData = (Invoke-DownloadWithRetry $releasesJsonUri) | Get-Item | Get-Content | ConvertFrom-Json
-    $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq 'dotnet-sdk-win-x64.zip' }).hash
+    $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq "dotnet-sdk-win-$dotnetArch.zip" }).hash
     Test-FileChecksum $zipPath -ExpectedSHA512Sum $distributorFileHash
     #endregion
 }
@@ -97,16 +102,19 @@ $installScriptPath = Invoke-DownloadWithRetry -Url "https://dot.net/v1/dotnet-in
 
 # Visual Studio 2022 pre-creates sdk-manifests/8.0.100 folder, causing dotnet-install to skip manifests creation
 # https://github.com/actions/runner-images/issues/11402
-if ((Test-IsWin22) -or (Test-IsWin25)) {
-    $sdkManifestPath = "C:\Program Files\dotnet\sdk-manifests\8.0.100"
-    if (Test-Path $sdkManifestPath) {
-        Move-Item -Path $sdkManifestPath -Destination $env:TEMP_DIR -ErrorAction Stop
-    }
+$sdkManifestPath = "C:\Program Files\dotnet\sdk-manifests\8.0.100"
+if (Test-Path $sdkManifestPath) {
+    Move-Item -Path $sdkManifestPath -Destination $env:TEMP_DIR -ErrorAction Stop
 }
 
 # Install and warm up dotnet
 foreach ($dotnetVersion in $dotnetToolset.versions) {
     $sdkVersionsToInstall = Get-SDKVersionsToInstall -DotnetVersion $dotnetVersion
+
+    # Issue https://github.com/actions/runner-images/issues/13705
+    # Workaround for broken .NET SDK 10.0.103 - replace it with .NET SDK 10.0.102
+    $sdkVersionsToInstall = $sdkVersionsToInstall | ForEach-Object { if ($_ -eq "10.0.103") { Write-Host ".NET 10.0.103 detected, replacing with 10.0.102"; "10.0.102" } else { $_ } }
+
     foreach ($sdkVersion in $sdkVersionsToInstall) {
         Install-DotnetSDK -InstallScriptPath $installScriptPath -SDKVersion $sdkVersion -DotnetVersion $dotnetVersion
         if ($dotnetToolset.warmup) {
@@ -117,12 +125,10 @@ foreach ($dotnetVersion in $dotnetToolset.versions) {
 
 # Replace manifests inside sdk-manifests/8.0.100 folder with ones from Visual Studio
 # https://github.com/actions/runner-images/issues/11402
-if ((Test-IsWin22) -or (Test-IsWin25)) {
-    if (Test-Path "${env:TEMP_DIR}\8.0.100") {
-        Get-ChildItem -Path "${env:TEMP_DIR}\8.0.100" | ForEach-Object {
-            Remove-Item -Path "$sdkManifestPath\$($_.BaseName)" -Recurse -Force | Out-Null
-            Move-Item -Path $_.FullName -Destination $sdkManifestPath -Force -ErrorAction Stop
-        }
+if (Test-Path "${env:TEMP_DIR}\8.0.100") {
+    Get-ChildItem -Path "${env:TEMP_DIR}\8.0.100" | ForEach-Object {
+        Remove-Item -Path "$sdkManifestPath\$($_.BaseName)" -Recurse -Force | Out-Null
+        Move-Item -Path $_.FullName -Destination $sdkManifestPath -Force -ErrorAction Stop
     }
 }
 

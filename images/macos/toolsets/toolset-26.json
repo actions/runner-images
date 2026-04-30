@@ -1,14 +1,40 @@
 {
     "xcode": {
-        "default": "26.0.1",
-        "arm64":{
+        "default": "26.2",
+        "x64": {
             "versions": [
+                {
+                    "link": "26.5_beta",
+                    "filename": "Xcode_26.5_beta_Universal",
+                    "version": "26.5+17F5012f",
+                    "symlinks": ["26.5"],
+                    "sha256": "1342821cc2b93a64dfe06c4697617208df537cbfde4b66c4548e2310e4cb374e",
+                    "install_runtimes": "none"
+                },
+                {
+                    "link": "26.4",
+                    "filename": "Xcode_26.4_Universal",
+                    "version": "26.4+17E192",
+                    "sha256": "1049032d89389cc7d803d7097359a7420c2e9747b4ce2b9cf4b81c9f3f634dfa",
+                    "install_runtimes": "default"
+                },
+                {
+                    "link": "26.3",
+                    "filename": "Xcode_26.3_Universal",
+                    "version": "26.3+17C529",
+                    "sha256": "cf87232e0419785170edcfa070b750f28808ec00b489ab540c08b7d197c79ae4",
+                    "install_runtimes": "none"
+                },
                 {
                     "link": "26.2",
                     "filename": "Xcode_26.2_Universal",
                     "version": "26.2+17C52",
                     "sha256": "8f29ab6a9ac6670d3cf53545ffdb1c317d11607fa8db38fc56d3391df7783fbd",
-                    "install_runtimes": "default"
+                    "install_runtimes": [
+                        { "iOS": ["26.2"] },
+                        { "watchOS": ["default"] },
+                        { "tvOS": ["default"] }
+                    ]
                 },
                 {
                     "link": "26.1.1",
@@ -24,7 +50,61 @@
                     "version": "26.0.1+17A400",
                     "symlinks": ["26.0"],
                     "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
+                    "install_runtimes": "none"
+                }
+            ]
+        },
+        "arm64": {
+            "versions": [
+                {
+                    "link": "26.5_beta",
+                    "filename": "Xcode_26.5_beta_Universal",
+                    "version": "26.5+17F5012f",
+                    "symlinks": ["26.5"],
+                    "sha256": "1342821cc2b93a64dfe06c4697617208df537cbfde4b66c4548e2310e4cb374e",
+                    "install_runtimes": "none"
+                },
+                {
+                    "link": "26.4",
+                    "filename": "Xcode_26.4_Universal",
+                    "version": "26.4+17E192",
+                    "sha256": "1049032d89389cc7d803d7097359a7420c2e9747b4ce2b9cf4b81c9f3f634dfa",
                     "install_runtimes": "default"
+                },
+                {
+                    "link": "26.3",
+                    "filename": "Xcode_26.3_Universal",
+                    "version": "26.3+17C529",
+                    "sha256": "cf87232e0419785170edcfa070b750f28808ec00b489ab540c08b7d197c79ae4",
+                    "install_runtimes": "none"
+                },
+                {
+                    "link": "26.2",
+                    "filename": "Xcode_26.2_Universal",
+                    "version": "26.2+17C52",
+                    "sha256": "8f29ab6a9ac6670d3cf53545ffdb1c317d11607fa8db38fc56d3391df7783fbd",
+                    "install_runtimes": [
+                        { "iOS": ["26.2"] },
+                        { "watchOS": ["default"] },
+                        { "tvOS": ["default"] },
+                        { "visionOS": ["default"] }
+                    ]
+                },
+                {
+                    "link": "26.1.1",
+                    "filename": "Xcode_26.1.1_Universal",
+                    "version": "26.1.1+17B100",
+                    "symlinks": ["26.1"],
+                    "sha256": "ed55d55fa28455c11a65e0809ba8fdf7d83fdeb268aabf9af7fcc1ee911543eb",
+                    "install_runtimes": "default"
+                },
+                {
+                    "link": "26.0.1",
+                    "filename": "Xcode_26.0.1_Universal",
+                    "version": "26.0.1+17A400",
+                    "symlinks": ["26.0"],
+                    "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
+                    "install_runtimes": "none"
                 }
             ]
         }
@@ -63,7 +143,7 @@
         {
             "name": "Az",
             "versions": [
-                "14.3.0"
+                "14.6.0"
             ]
         },
         { "name": "Pester" },
@@ -89,6 +169,7 @@
             "perl",
             "pkgconf",
             "swiftformat",
+            "tcl-tk@8",
             "zstd",
             "ninja",
             "gmp",
@@ -97,9 +178,7 @@
             "xcbeautify",
             "xcodes"
         ],
-        "cask_packages": [
-            "parallels"
-        ]
+        "cask_packages": []
     },
     "gcc": {
         "versions": [
@@ -110,6 +189,13 @@
     },
     "dotnet": {
         "arch":{
+            "x64": {
+                "versions": [
+                    "8.0",
+                    "9.0",
+                    "10.0"
+                ]
+            },
             "arm64": {
                 "versions": [
                     "8.0",
@@ -133,6 +219,14 @@
             "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
             "platform" : "darwin",
             "arch": {
+                "x64": {
+                    "versions": [
+                        "3.11.*",
+                        "3.12.*",
+                        "3.13.*",
+                        "3.14.*"
+                    ]
+                },
                 "arm64": {
                     "versions": [
                         "3.11.*",
@@ -148,6 +242,13 @@
             "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
             "platform" : "darwin",
             "arch": {
+                "x64": {
+                    "versions": [
+                        "20.*",
+                        "22.*",
+                        "24.*"
+                    ]
+                },
                 "arm64": {
                     "versions": [
                         "20.*",
@@ -162,6 +263,14 @@
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "platform" : "darwin",
             "arch": {
+                "x64": {
+                    "variable_template" : "GOROOT_{0}_{1}_X64",
+                    "versions": [
+                        "1.23.*",
+                        "1.24.*",
+                        "1.25.*"
+                    ]
+                },
                 "arm64": {
                     "variable_template" : "GOROOT_{0}_{1}_ARM64",
                     "versions": [
@@ -175,11 +284,20 @@
         {
             "name": "Ruby",
             "arch": {
+                "x64": {
+                    "versions": [
+                        "3.2.*",
+                        "3.3.*",
+                        "3.4.*",
+                        "4.0.*"
+                    ]
+                },
                 "arm64": {
                     "versions": [
                         "3.2.*",
                         "3.3.*",
-                        "3.4.*"
+                        "3.4.*",
+                        "4.0.*"
                     ]
                 }
             }
@@ -190,6 +308,9 @@
     },
     "llvm": {
         "version": "20"
+    },
+    "php": {
+        "version": "8.5"
     },
     "pwsh": {
         "version": "7.4"

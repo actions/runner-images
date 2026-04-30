@@ -41,7 +41,7 @@ if ($LastExitCode -ne 0) {
 # https://github.com/Azure/azure-cli/issues/18766
 New-Item -ItemType SymbolicLink -Path "C:\Windows\SysWOW64\docker.exe" -Target "C:\Windows\System32\docker.exe"
 
-if (-not (Test-IsWin25)) {
+if (-not (Test-IsWin25-X64)) {
     Write-Host "Download docker images"
     $dockerImages = (Get-ToolsetContent).docker.images
     foreach ($dockerImage in $dockerImages) {
