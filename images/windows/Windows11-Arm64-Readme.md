@@ -1,6 +1,11 @@
+| Announcements |
+|-|
+| [Windows Server 2025 with Visual Studio 2026 is now available as a public beta](https://github.com/actions/runner-images/issues/13638) |
+| [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
+***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8246
-- Image Version: 20260419.19.1
+- Image Version: 20260503.31.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -8,10 +13,10 @@
 ## Installed Software
 
 ### Language and Runtime
-- Bash 5.2.37(1)-release
+- Bash 5.3.9(1)-release
 - Go 1.24.13
 - Julia 1.12.0
-- Kotlin 2.3.20
+- Kotlin 2.3.21
 - LLVM 20.1.6
 - Node 24.15.0
 - Perl 5.32.1
@@ -22,13 +27,13 @@
 ### Package Management
 - Chocolatey 2.7.1
 - Composer 2.9.7
-- Helm 4.1.3
+- Helm 4.1.4
 - NPM 11.12.1
 - NuGet 7.3.1.1
-- pip 26.0.1 (python 3.13)
+- pip 26.1 (python 3.13)
 - Pipx 1.11.1
 - RubyGems 3.6.9
-- Vcpkg (build from commit 256acc6401)
+- Vcpkg (build from commit 522253caf4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -37,27 +42,27 @@
 | VCPKG_INSTALLATION_ROOT | C:\vcpkg |
 
 ### Project Management
-- Ant 1.10.16
-- Gradle 9.4
+- Ant 1.10.17
+- Gradle 9.5
 - Maven 3.9.15
-- sbt 1.12.9
+- sbt 1.12.10
 
 ### Tools
 - 7zip 26.00
 - aria2 1.37.0
-- azcopy 10.32.2
-- Bazel 9.0.2
+- azcopy 10.32.3
+- Bazel 9.1.0
 - Bazelisk 1.28.1
 - Bicep 0.42.1
-- CMake 4.3.1
-- CodeQL Action Bundle 2.25.2
-- Git 2.53.0.windows.3
+- CMake 4.3.2
+- CodeQL Action Bundle 2.25.3
+- Git 2.54.0.windows.1
 - Git LFS 3.7.1
-- ImageMagick 7.1.2-19
+- ImageMagick 7.1.2-21
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.31.0
-- Kubectl 1.35.4
+- Kubectl 1.36.0
 - Mercurial 6.3.1
 - gcc 14.2.0
 - gdb 16.2
@@ -66,8 +71,8 @@
 - NSIS 3.10
 - OpenSSL 3.6.2
 - Packer 1.15.0
-- Pulumi 3.231.0
-- R 4.5.3
+- Pulumi 3.234.0
+- R 4.6.0
 - Stack 3.9.3
 - Swig 4.3.1
 - VSWhere 3.1.7
@@ -76,13 +81,13 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.8
-- AWS CLI 2.34.30
-- AWS SAM CLI 1.158.0
-- AWS Session Manager CLI 1.2.804.0
+- Alibaba Cloud CLI 3.3.12
+- AWS CLI 2.34.41
+- AWS SAM CLI 1.159.1
+- AWS Session Manager CLI 1.2.814.0
 - Azure CLI 2.85.0
-- Azure DevOps CLI extension 1.0.2
-- GitHub CLI 2.90.0
+- Azure DevOps CLI extension 1.0.3
+- GitHub CLI 2.92.0
 
 ### Rust Tools
 - Cargo 1.95.0
@@ -99,11 +104,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 147.0.7727.102
-- Chrome Driver 147.0.7727.57
-- Microsoft Edge 147.0.3912.72
-- Microsoft Edge Driver 147.0.3912.72
-- Mozilla Firefox 149.0.2
+- Google Chrome 147.0.7727.138
+- Chrome Driver 147.0.7727.117
+- Microsoft Edge 147.0.3912.98
+- Microsoft Edge Driver 147.0.3912.98
+- Mozilla Firefox 150.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.43.0
@@ -146,7 +151,7 @@
 ### Database tools
 - Azure CosmosDb Emulator 2.14.27.0
 - DacFx 170.3.93.6
-- MySQL 8.0.45.0
+- MySQL 8.0.46.0
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 
@@ -159,7 +164,7 @@
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
 | ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.37203.1 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.14.37216.2 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -183,7 +188,7 @@
 | Component.Unreal.Android                                                  | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36907.17  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37202.16  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37215.5   |
 | Component.VSInstallerProjects2022_arm64                                   | 3.0.0           |
 | Component.Xamarin                                                         | 17.14.36510.44  |
 | ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.37203.1   |
@@ -367,19 +372,19 @@
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.126, 8.0.206, 8.0.319, 8.0.420, 9.0.116, 9.0.205, 9.0.313, 10.0.106, 10.0.202
+- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.126, 8.0.206, 8.0.319, 8.0.420, 9.0.116, 9.0.205, 9.0.313, 10.0.107, 10.0.203
 - .NET Framework: 4.7.2, 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.26, 9.0.6, 9.0.15, 10.0.6
-- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.26, 9.0.6, 9.0.15, 10.0.6
-- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.26, 9.0.6, 9.0.15, 10.0.6
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.26, 9.0.6, 9.0.15, 10.0.7
+- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.26, 9.0.6, 9.0.15, 10.0.7
+- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.26, 9.0.6, 9.0.15, 10.0.7
 - nbgv 3.9.50+6feeb89450
 
 ### PowerShell Tools
-- PowerShell 7.4.14
+- PowerShell 7.4.15
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.197
+- AWSPowershell: 5.0.206
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.36.1
@@ -389,3 +394,4 @@
 - PSWindowsUpdate: 2.2.1.5
 - SqlServer: 22.4.5.1
 - VSSetup: 2.2.16
+
