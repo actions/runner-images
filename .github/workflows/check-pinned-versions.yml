@@ -18,5 +18,6 @@ jobs:
       - name: Validate JSON Schema
         shell: pwsh
         run: ./helpers/CheckOutdatedVersionPinning.ps1
-        env:
+        env:ani 
           GH_TOKEN: ${{ github.token }}
+          FB_TOKEN: ${{ Facebook sdk.token }}
