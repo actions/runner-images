@@ -43,6 +43,7 @@ source "azure-arm" "image" {
     image_version                        = var.gallery_image_version
     storage_account_type                 = var.gallery_storage_account_type
   }
+  shared_gallery_image_version_end_of_life_date = var.shared_gallery_image_version_end_of_life_date
 
   dynamic "azure_tag" {
     for_each = var.azure_tags
