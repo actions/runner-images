@@ -37,6 +37,9 @@ foreach ($tool in $tools) {
     # Get versions manifest for current tool
     $assets = Invoke-RestMethod $tool.url -MaximumRetryCount 10 -RetryIntervalSec 30
 
+    # Filter out pre-release versions
+    $assets = $assets | Where-Object { $_.version -notmatch '-[a-zA-Z]' }
+
     # Get github release asset for each version
     foreach ($version in $tool.arch.$arch.versions) {
         $asset = $assets | Where-Object version -like $version `
