@@ -7,7 +7,9 @@
 source ~/utils/utils.sh
 
 if is_Arm64; then
-    url="https://aka.ms/downloadazcopy-v10-mac-arm64"
+    # Temporarily hardcoded until common link is fixed
+    # url="https://aka.ms/downloadazcopy-v10-mac-arm64"
+    url="https://github.com/Azure/azure-storage-azcopy/releases/download/v10.32.3/azcopy_darwin_arm64_10.32.3.zip"
 else
     url="https://aka.ms/downloadazcopy-v10-mac"
 fi
