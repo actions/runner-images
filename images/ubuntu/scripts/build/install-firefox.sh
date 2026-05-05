@@ -8,20 +8,38 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
-# Mozillateam PPA is added manually because sometimes
-# launchpad portal sends empty answer when trying to add it automatically
-
-REPO_URL="https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/"
-GPG_FINGERPRINT="0ab215679c571d1c8325275b9bdb3d89ce49ec21"
-GPG_KEY="/etc/apt/trusted.gpg.d/mozillateam_ubuntu_ppa.gpg"
-REPO_PATH="/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-focal.list"
-
 # Install Firefox
-curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${GPG_FINGERPRINT}" | sudo gpg --dearmor -o $GPG_KEY
-echo "deb $REPO_URL $(lsb_release -cs) main" > $REPO_PATH
+REPO_URL="https://packages.mozilla.org/apt"
+REPO_PATH="/etc/apt/sources.list.d/mozilla.list"
+EXPECTED_FINGERPRINT="35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3"
+KEY_PATH="/etc/apt/keyrings/packages.mozilla.org.asc"
+
+install -d -m 0755 /etc/apt/keyrings
+
+wget -q $REPO_URL/repo-signing-key.gpg -O- | tee "$KEY_PATH" > /dev/null
+
+FINGERPRINT=$(
+  gpg -n -q --import --import-options import-show "$KEY_PATH" |
+    awk '/pub/ { getline; gsub(/^ +| +$/, ""); print }'
+)
+
+if [ "$FINGERPRINT" = "$EXPECTED_FINGERPRINT" ]; then
+  echo "The key fingerprint matches ($FINGERPRINT)."
+else
+  echo "Verification failed: the fingerprint ($FINGERPRINT) does not match the expected one."
+  exit 1
+fi
+
+cat <<EOF | tee /etc/apt/preferences.d/mozilla > /dev/null
+Package: *
+Pin: origin packages.mozilla.org
+Pin-Priority: 1000
+EOF
+
+echo "deb [signed-by=$KEY_PATH] $REPO_URL mozilla main" | tee "$REPO_PATH" > /dev/null
 
 apt-get update
-apt-get install --target-release 'o=LP-PPA-mozillateam' firefox
+apt-get install -y firefox
 rm $REPO_PATH
 
 # Document apt source repo's
