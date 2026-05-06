@@ -162,7 +162,7 @@ Describe "gfortran" {
     }
 }
 
-Describe "Mono" -Skip:(Test-IsUbuntu24) {
+Describe "Mono" -Skip:((-not (Test-IsUbuntu22))) {
     It "mono" {
         "mono --version" | Should -ReturnZeroExitCode
     }
