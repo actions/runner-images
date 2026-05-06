@@ -37,15 +37,12 @@ foreach ($tool in $tools) {
     # Get versions manifest for current tool
     $assets = Invoke-RestMethod $tool.url -MaximumRetryCount 10 -RetryIntervalSec 30
 
-    # Filter out pre-release versions
-    $assets = $assets | Where-Object { $_.version -notmatch '-[a-zA-Z]' }
-
     # Get github release asset for each version
     foreach ($version in $tool.arch.$arch.versions) {
-        $asset = $assets | Where-Object version -like $version `
-                         | Select-Object -ExpandProperty files `
-                         | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $arch)} `
-                         | Select-Object -First 1
+        $asset = $assets | Where-Object { ($_.version -like $version) -and ($_.version -as [version] -ne $null) } `
+            | Select-Object -ExpandProperty files `
+            | Where-Object { ($_.platform -eq $tool.platform) -and ($_.arch -eq $arch) } `
+            | Select-Object -First 1
 
         Write-Host "Installing $($tool.name) $version..."
         if ($null -ne $asset) {
