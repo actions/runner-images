@@ -40,7 +40,7 @@ EOF
 apt-get purge unattended-upgrades
 
 echo 'APT sources'
-if ! is_ubuntu24; then
+if is_ubuntu22; then
     cat /etc/apt/sources.list
 else
     cat /etc/apt/sources.list.d/ubuntu.sources
@@ -51,7 +51,7 @@ apt-get upgrade -y
 # Install jq
 apt-get install jq
 
-if ! is_ubuntu24; then
+if is_ubuntu22; then
     # Install apt-fast using quick-install.sh
     # https://github.com/ilikenwf/apt-fast
     bash -c "$(curl -fsSL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"

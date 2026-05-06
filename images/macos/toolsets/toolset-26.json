@@ -4,18 +4,19 @@
         "x64": {
             "versions": [
                 {
-                    "link": "26.5_beta",
-                    "filename": "Xcode_26.5_beta_Universal",
-                    "version": "26.5+17F5012f",
+                    "link": "26.5_beta_2",
+                    "filename": "Xcode_26.5_beta_2_Universal",
+                    "version": "26.5+17F5022i",
                     "symlinks": ["26.5"],
-                    "sha256": "1342821cc2b93a64dfe06c4697617208df537cbfde4b66c4548e2310e4cb374e",
+                    "sha256": "4e08f652cf56fe32d209f55d64f1ec71c20c8acfeb92898a21215ca71e17ff7d",
                     "install_runtimes": "none"
                 },
                 {
-                    "link": "26.4",
-                    "filename": "Xcode_26.4_Universal",
-                    "version": "26.4+17E192",
-                    "sha256": "1049032d89389cc7d803d7097359a7420c2e9747b4ce2b9cf4b81c9f3f634dfa",
+                    "link": "26.4.1",
+                    "filename": "Xcode_26.4.1_Universal",
+                    "version": "26.4.1+17E202",
+                    "symlinks": ["26.4"],
+                    "sha256": "e2698ef350e5b38740132b1110d02bd22a1feb928c3e019c168d373ce00e3ffa",
                     "install_runtimes": "default"
                 },
                 {
@@ -57,18 +58,19 @@
         "arm64": {
             "versions": [
                 {
-                    "link": "26.5_beta",
-                    "filename": "Xcode_26.5_beta_Universal",
-                    "version": "26.5+17F5012f",
+                    "link": "26.5_beta_2",
+                    "filename": "Xcode_26.5_beta_2_Universal",
+                    "version": "26.5+17F5022i",
                     "symlinks": ["26.5"],
-                    "sha256": "1342821cc2b93a64dfe06c4697617208df537cbfde4b66c4548e2310e4cb374e",
+                    "sha256": "4e08f652cf56fe32d209f55d64f1ec71c20c8acfeb92898a21215ca71e17ff7d",
                     "install_runtimes": "none"
                 },
                 {
-                    "link": "26.4",
-                    "filename": "Xcode_26.4_Universal",
-                    "version": "26.4+17E192",
-                    "sha256": "1049032d89389cc7d803d7097359a7420c2e9747b4ce2b9cf4b81c9f3f634dfa",
+                    "link": "26.4.1",
+                    "filename": "Xcode_26.4.1_Universal",
+                    "version": "26.4.1+17E202",
+                    "symlinks": ["26.4"],
+                    "sha256": "e2698ef350e5b38740132b1110d02bd22a1feb928c3e019c168d373ce00e3ffa",
                     "install_runtimes": "default"
                 },
                 {
