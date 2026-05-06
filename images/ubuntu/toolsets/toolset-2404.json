@@ -320,6 +320,9 @@
     "postgresql": {
         "version": "16"
     },
+    "cmake": {
+        "version": "3.31.6"
+    },
     "pwsh": {
         "version": "7.4"
     }

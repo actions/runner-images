@@ -8,6 +8,10 @@ locals {
             source_image_marketplace_sku = "canonical:ubuntu-24_04-lts:server"
             os_disk_size_gb = 75
       }
+      "ubuntu26" = {
+            source_image_marketplace_sku = "canonical:ubuntu-26_04-lts:server"
+            os_disk_size_gb = 75
+      }
   }
 
   source_image_marketplace_sku = local.image_properties_map[var.image_os].source_image_marketplace_sku

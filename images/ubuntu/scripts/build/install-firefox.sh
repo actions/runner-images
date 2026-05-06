@@ -8,24 +8,18 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 
-# Mozillateam PPA is added manually because sometimes
-# launchpad portal sends empty answer when trying to add it automatically
-
-REPO_URL="https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu/"
-GPG_FINGERPRINT="0ab215679c571d1c8325275b9bdb3d89ce49ec21"
-GPG_KEY="/etc/apt/trusted.gpg.d/mozillateam_ubuntu_ppa.gpg"
-REPO_PATH="/etc/apt/sources.list.d/mozillateam-ubuntu-ppa-focal.list"
+FIREFOX_REPO="ppa:mozillateam/ppa"
 
 # Install Firefox
-curl -fsSL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x${GPG_FINGERPRINT}" | sudo gpg --dearmor -o $GPG_KEY
-echo "deb $REPO_URL $(lsb_release -cs) main" > $REPO_PATH
-
+add-apt-repository $FIREFOX_REPO -y
 apt-get update
-apt-get install --target-release 'o=LP-PPA-mozillateam' firefox
-rm $REPO_PATH
+apt-get install --target-release 'o=LP-PPA-mozillateam' -y firefox
+
+# Remove source repo's
+add-apt-repository --remove $FIREFOX_REPO
 
 # Document apt source repo's
-echo "mozillateam $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
+echo "mozillateam $FIREFOX_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 
 # add to global system preferences for firefox locale en_US, because other browsers have en_US local.
 # Default firefox local is en_GB
