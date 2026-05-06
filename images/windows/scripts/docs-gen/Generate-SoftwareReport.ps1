@@ -21,7 +21,7 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -Disa
 $softwareReport = [SoftwareReport]::new($(Build-OSInfoSection))
 $optionalFeatures = $softwareReport.Root.AddHeader("Windows features")
 $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
-if (Test-IsWin25) {
+if (Test-IsWin25-X64) {
     $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (Default, WSLv2):", $(Get-WSL2Version))
 }
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
@@ -44,7 +44,9 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("Chocolatey", $(Get-ChocoVersion))
 $packageManagement.AddToolVersion("Composer", $(Get-ComposerVersion))
 $packageManagement.AddToolVersion("Helm", $(Get-HelmVersion))
-$packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
+if (Test-IsX64) {
+    $packageManagement.AddToolVersion("Miniconda", $(Get-CondaVersion))
+}
 $packageManagement.AddToolVersion("NPM", $(Get-NPMVersion))
 $packageManagement.AddToolVersion("NuGet", $(Get-NugetVersion))
 $packageManagement.AddToolVersion("pip", $(Get-PipVersion))
@@ -70,13 +72,17 @@ $tools.AddToolVersion("azcopy", $(Get-AzCopyVersion))
 $tools.AddToolVersion("Bazel", $(Get-BazelVersion))
 $tools.AddToolVersion("Bazelisk", $(Get-BazeliskVersion))
 $tools.AddToolVersion("Bicep", $(Get-BicepVersion))
-$tools.AddToolVersion("Cabal", $(Get-CabalVersion))
+if (Test-IsX64) {
+    $tools.AddToolVersion("Cabal", $(Get-CabalVersion))
+}
 $tools.AddToolVersion("CMake", $(Get-CMakeVersion))
 $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
-$tools.AddToolVersion("Docker", $(Get-DockerVersion))
-$tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeVersionV2))
-$tools.AddToolVersion("Docker-wincred", $(Get-DockerWincredVersion))
-$tools.AddToolVersion("ghc", $(Get-GHCVersion))
+if (Test-IsX64) {
+    $tools.AddToolVersion("Docker", $(Get-DockerVersion))
+    $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeVersionV2))
+    $tools.AddToolVersion("Docker-wincred", $(Get-DockerWincredVersion))
+    $tools.AddToolVersion("ghc", $(Get-GHCVersion))
+}
 $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $tools.AddToolVersion("ImageMagick", $(Get-ImageMagickVersion))
@@ -84,36 +90,42 @@ $tools.AddToolVersion("InnoSetup", $(Get-InnoSetupVersion))
 $tools.AddToolVersion("jq", $(Get-JQVersion))
 $tools.AddToolVersion("Kind", $(Get-KindVersion))
 $tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
-if (-not (Test-IsWin25)) {
+if (-not (Test-IsWin25-X64)) {
     $tools.AddToolVersion("Mercurial", $(Get-MercurialVersion))
 }
 $tools.AddToolVersion("gcc", $(Get-GCCVersion))
 $tools.AddToolVersion("gdb", $(Get-GDBVersion))
 $tools.AddToolVersion("GNU Binutils", $(Get-GNUBinutilsVersion))
 $tools.AddToolVersion("Newman", $(Get-NewmanVersion))
-if (-not (Test-IsWin25)) {
+if (-not (Test-IsWin25-X64)) {
     $tools.AddToolVersion("NSIS", $(Get-NSISVersion))
 }
 $tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
 $tools.AddToolVersion("R", $(Get-RVersion))
-$tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
+if (Test-IsX64) {
+    $tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
+}
 $tools.AddToolVersion("Stack", $(Get-StackVersion))
-if (-not (Test-IsWin25)) {
+if (Test-IsWin22-X64) {
     $tools.AddToolVersion("Subversion (SVN)", $(Get-SVNVersion))
 }
 $tools.AddToolVersion("Swig", $(Get-SwigVersion))
 $tools.AddToolVersion("VSWhere", $(Get-VSWhereVersion))
 $tools.AddToolVersion("WinAppDriver", $(Get-WinAppDriver))
-$tools.AddToolVersion("WiX Toolset", $(Get-WixVersion))
+if (Test-IsX64) {
+    $tools.AddToolVersion("WiX Toolset", $(Get-WixVersion))
+}
 $tools.AddToolVersion("yamllint", $(Get-YAMLLintVersion))
-$tools.AddToolVersion("zstd", $(Get-ZstdVersion))
+if (Test-IsX64) {
+    $tools.AddToolVersion("zstd", $(Get-ZstdVersion))
+}
 $tools.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # CLI Tools
 $cliTools = $installedSoftware.AddHeader("CLI Tools")
-if (-not (Test-IsWin25)) {
+if (-not (Test-IsWin25-X64)) {
     $cliTools.AddToolVersion("Alibaba Cloud CLI", $(Get-AlibabaCLIVersion))
 }
 $cliTools.AddToolVersion("AWS CLI", $(Get-AWSCLIVersion))
@@ -132,7 +144,7 @@ $rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
 $rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
 
 $rustToolsPackages = $rustTools.AddHeader("Packages")
-if (-not (Test-IsWin25)) {
+if (-not (Test-IsWin25-X64)) {
     $rustToolsPackages.AddToolVersion("bindgen", $(Get-BindgenVersion))
     $rustToolsPackages.AddToolVersion("cargo-audit", $(Get-CargoAuditVersion))
     $rustToolsPackages.AddToolVersion("cargo-outdated", $(Get-CargoOutdatedVersion))
@@ -150,26 +162,32 @@ $browsersAndWebdrivers.AddHeader("Environment variables").AddTable($(Build-Brows
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
 
 # Shells
-$installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
+if (Test-IsX64) {
+    $installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
+}
 
 # MSYS2
-$msys2 = $installedSoftware.AddHeader("MSYS2")
-$msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
+if (Test-IsX64) {
+    $msys2 = $installedSoftware.AddHeader("MSYS2")
+    $msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
 
-$notes = @'
+    $notes = @'
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 '@
-$msys2.AddHeader("Notes").AddNote($notes)
+    $msys2.AddHeader("Notes").AddNote($notes)
+}
 
 # Cached Tools
 $installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection))
 
 # Databases
-$databases = $installedSoftware.AddHeader("Databases")
-$databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
-$databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
+if (Test-IsX64) {
+    $databases = $installedSoftware.AddHeader("Databases")
+    $databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
+    $databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
+}
 
 # Database tools
 $databaseTools = $installedSoftware.AddHeader("Database tools")
@@ -178,9 +196,10 @@ $databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
 $databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
 $databaseTools.AddToolVersion("SQL OLEDB Driver 18", $(Get-SQLOLEDBDriver18Version))
 $databaseTools.AddToolVersion("SQL OLEDB Driver 19", $(Get-SQLOLEDBDriver19Version))
-$databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
-$databaseTools.AddToolVersion("MongoDB Shell (mongosh)", $(Get-MongoshVersion))
-
+if (Test-IsX64) {
+    $databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
+    $databaseTools.AddToolVersion("MongoDB Shell (mongosh)", $(Get-MongoshVersion))
+}
 
 # Web Servers
 $installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersSection))
@@ -216,13 +235,15 @@ $psModules.AddNodes($(Get-PowerShellModules))
 
 
 # Android
-$android = $installedSoftware.AddHeader("Android")
-$android.AddTable($(Build-AndroidTable))
+if (Test-IsX64) {
+    $android = $installedSoftware.AddHeader("Android")
+    $android.AddTable($(Build-AndroidTable))
 
-$android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
+    $android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
+}
 
 # Cached Docker images
-if (-not (Test-IsWin25)) {
+if (Test-IsWin22-X64) {
     $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
 }
 

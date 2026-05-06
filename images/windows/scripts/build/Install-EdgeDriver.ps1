@@ -3,6 +3,12 @@
 ##  Desc:  Install Edge WebDriver and configure Microsoft Edge
 ################################################################################
 
+if (Test-IsArm64) {
+    $driverArch = "arm64"
+} else {
+    $driverArch = "win64"
+}
+
 # Disable Edge auto-updates
 Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
 
@@ -20,7 +26,7 @@ $versionInfoFile = Invoke-DownloadWithRetry -Url $versionInfoUrl -Path "$edgeDri
 $latestVersion = Get-Content -Path $versionInfoFile
 
 Write-Host "Download Microsoft Edge WebDriver..."
-$downloadUrl = "https://msedgedriver.microsoft.com/$latestVersion/edgedriver_win64.zip"
+$downloadUrl = "https://msedgedriver.microsoft.com/$latestVersion/edgedriver_$driverArch.zip"
 $archivePath = Invoke-DownloadWithRetry $downloadUrl
 
 Write-Host "Expand Microsoft Edge WebDriver archive..."
