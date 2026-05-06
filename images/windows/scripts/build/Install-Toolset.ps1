@@ -42,6 +42,9 @@ foreach ($tool in $tools) {
         Invoke-RestMethod $tool.url
     }
 
+    # Filter out pre-release versions
+    $assets = $assets | Where-Object { $_.version -notmatch '-[a-zA-Z]' }
+
     # Get github release asset for each version
     foreach ($toolVersion in $tool.versions) {
         $asset = $assets `
