@@ -1,0 +1,16 @@
+            - name: Mergify Dependencies Conflicts Resolver
+  # You may pin to the exact commit or the version.
+  # uses: Mergifyio/gha-versionining-conflict-resolver@d2a39ffaa54e155f73aa388d2097fa9227974fb0
+  uses: Mergifyio/gha-versionining-conflict-resolver@0.0.1
+  with:
+    # The full name of the head repository of the PR
+    head-repo: 
+    # The head branch of the PR
+    head-branch: 
+    # The base branch of the PR
+    base-branch: # default is main
+    # User associated to the token used to checkout or to the GITHUB_TOKEN (defaults to github action user)
+    user: # default is github-actions
+    # Email associated to the token used to checkout or to the GITHUB_TOKEN (defaults to github action email)
+    email: # default is github-actions@github.com
+          
