@@ -1,5 +1,5 @@
 build {
-  sources = ["source.azure-arm.image"]
+  sources = ["source.amazon-ebs.build_image"]
   name = "ubuntu-26_04"
 
   provisioner "shell" {
