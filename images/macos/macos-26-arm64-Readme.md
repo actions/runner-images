@@ -6,7 +6,7 @@
 # macOS 26
 - OS Version: macOS 26.3 (25D125)
 - Kernel Version: Darwin 25.3.0
-- Image Version: 20260422.0012.1
+- Image Version: 20260427.0026.1
 
 ## Installed Software
 
@@ -21,7 +21,7 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
-- Kotlin 2.3.20-release-208
+- Kotlin 2.3.21-release-298
 - Node.js 24.15.0
 - Perl 5.42.2
 - Python3 3.14.4
@@ -36,7 +36,7 @@
 - Pip3 26.0.1 (python 3.14)
 - Pipx 1.11.1
 - RubyGems 4.0.10
-- Vcpkg 2026 (build from commit 3fb54e6717)
+- Vcpkg 2026 (build from commit 40717e4517)
 - Yarn 1.22.22
 
 ### Project Management
@@ -54,13 +54,13 @@
 - Curl 8.7.1
 - Git 2.54.0
 - Git LFS 3.7.1
-- GitHub CLI 2.90.0
+- GitHub CLI 2.91.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.5.18
+- gpg (GnuPG) 2.5.19
 - jq 1.8.1
 - OpenSSL 3.6.2 7 Apr 2026 (Library: OpenSSL 3.6.2 7 Apr 2026)
-- Packer 1.15.1
+- Packer 1.15.2
 - pkgconf 2.5.1
 - Unxip 3.3
 - yq 4.53.2
@@ -68,7 +68,7 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.34
+- AWS CLI 2.34.37
 - AWS SAM CLI 1.158.0
 - AWS Session Manager CLI 1.2.804.0
 - Azure CLI 2.85.0
@@ -85,11 +85,11 @@
 ### Browsers
 - Safari 26.3 (21623.2.7.11.6)
 - SafariDriver 26.3 (21623.2.7.11.6)
-- Google Chrome 147.0.7727.102
-- Google Chrome for Testing 147.0.7727.57
-- ChromeDriver 147.0.7727.57
-- Microsoft Edge 147.0.3912.72
-- Microsoft Edge WebDriver 147.0.3912.72
+- Google Chrome 147.0.7727.117
+- Google Chrome for Testing 147.0.7727.117
+- ChromeDriver 147.0.7727.117
+- Microsoft Edge 147.0.3912.86
+- Microsoft Edge WebDriver 147.0.3912.86
 - Mozilla Firefox 150.0
 - geckodriver 0.36.0
 - Selenium server 4.43.0
@@ -107,7 +107,7 @@
 | 11.0.30+7             | JAVA_HOME_11_arm64   |
 | 17.0.18+8             | JAVA_HOME_17_arm64   |
 | 21.0.10+7.0 (default) | JAVA_HOME_21_arm64   |
-| 25.0.2+10.0           | JAVA_HOME_25_arm64   |
+| 25.0.3+9.0            | JAVA_HOME_25_arm64   |
 
 ### Cached Tools
 
@@ -235,7 +235,7 @@
 | Package Name               | Version                                                                                                                                                                                                  |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                     |
-| Android Emulator           | 36.5.10                                                                                                                                                                                                  |
+| Android Emulator           | 36.5.11                                                                                                                                                                                                  |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                 |
 | Android SDK Platforms      | android-37.0 (rev 1)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
 | Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                   |

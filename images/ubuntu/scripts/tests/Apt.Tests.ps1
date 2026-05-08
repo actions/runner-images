@@ -10,6 +10,7 @@ Describe "Apt" {
             "aria2"             { $toolName = "aria2c"; break }
             "libnss3-tools"     { $toolName = "certutil"; break }
             "p7zip-full"        { $toolName = "p7zip"; break }
+            "7zip"              { $toolName = "7z"; break }
             "subversion"        { $toolName = "svn"; break }
             "sphinxsearch"      { $toolName = "searchd"; break }
             "binutils"          { $toolName = "strings"; break }

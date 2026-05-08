@@ -4,14 +4,9 @@
             "name": "Python",
             "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
             "platform" : "linux",
-            "platform_version": "22.04",
+            "platform_version": "26.04",
             "arch": "x64",
             "versions": [
-                "3.10.*",
-                "3.11.*",
-                "3.12.*",
-                "3.13.*",
-                "3.14.*"
             ]
         },
         {
@@ -19,8 +14,6 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "3.7",
-                "3.8",
                 "3.9",
                 "3.10",
                 "3.11"
@@ -43,22 +36,17 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.22.*",
-                "1.23.*",
                 "1.24.*",
-                "1.25.*"
+                "1.25.*",
+                "1.26.*"
             ],
-            "default": "1.24.*"
+            "default": "1.26.*"
         },
         {
             "name": "Ruby",
-            "platform_version": "22.04",
+            "platform_version": "26.04",
             "arch": "x64",
             "versions": [
-                "3.2.*",
-                "3.3.*",
-                "3.4.*",
-                "4.0.*"
             ]
         },
         {
@@ -71,12 +59,12 @@
         }
     ],
     "java": {
-        "default": "11",
-        "versions": [ "8", "11", "17", "21", "25"],
-        "maven": "3"
+        "default": "21",
+        "versions": [ "11", "17", "21", "25" ],
+        "maven": "3.9.15"
     },
     "android": {
-        "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
+        "cmdline-tools": "commandlinetools-linux-14742923_latest.zip",
         "platform_min_version": "34",
         "build_tools_min_version": "34.0.0",
         "extra_list": [
@@ -87,9 +75,8 @@
         "addon_list": [
         ],
         "additional_tools": [
-            "cmake;3.18.1",
-            "cmake;3.22.1",
-            "cmake;3.31.5"
+            "cmake;3.31.5",
+            "cmake;4.1.2"
         ],
         "ndk": {
             "default": "27",
@@ -99,7 +86,6 @@
         }
     },
     "powershellModules": [
-        {"name": "MarkdownPS"},
         {"name": "Microsoft.Graph"},
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
@@ -108,7 +94,7 @@
         {
             "name": "az",
             "versions": [
-                "14.6.0"
+                "15.5.0"
             ]
         }
     ],
@@ -128,47 +114,30 @@
             "autoconf",
             "automake",
             "dbus",
-            "dnsutils",
+            "bind9-dnsutils",
             "dpkg",
             "dpkg-dev",
             "fakeroot",
             "fonts-noto-color-emoji",
             "gnupg2",
-            "imagemagick",
             "iproute2",
             "iputils-ping",
-            "lib32z1",
-            "libc++abi-dev",
-            "libc++-dev",
-            "libc6-dev",
-            "libcurl4",
-            "libgbm-dev",
-            "libgconf-2-4",
-            "libgsl-dev",
-            "libgtk-3-0",
-            "libmagic-dev",
-            "libmagickcore-dev",
-            "libmagickwand-dev",
-            "libsecret-1-dev",
-            "libsqlite3-dev",
             "libyaml-dev",
             "libtool",
-            "libunwind8",
-            "libxkbfile-dev",
-            "libxss1",
             "libssl-dev",
+            "libsqlite3-dev",
             "locales",
             "mercurial",
             "openssh-client",
-            "p7zip-rar",
+            "7zip-rar",
             "pkg-config",
             "python-is-python3",
             "rpm",
             "texinfo",
             "tk",
+            "tree",
             "tzdata",
             "upx",
-            "xorriso",
             "xvfb",
             "xz-utils",
             "zsync"
@@ -191,9 +160,8 @@
             "mediainfo",
             "netcat",
             "net-tools",
-            "p7zip-full",
+            "7zip",
             "parallel",
-            "pass",
             "patchelf",
             "pigz",
             "pollinate",
@@ -203,7 +171,6 @@
             "sqlite3",
             "ssh",
             "sshpass",
-            "subversion",
             "sudo",
             "systemd-coredump",
             "swig",
@@ -222,11 +189,11 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "28.0.4"
+                "version": "29.4.2"
             },
             {
                 "package": "docker-ce",
-                "version": "28.0.4"
+                "version": "29.4.2"
             }
         ],
         "plugins": [
@@ -237,7 +204,7 @@
             },
             {
                 "plugin": "compose",
-                "version": "2.38.2",
+                "version": "2.40.3",
                 "asset": "linux-x86_64"
             }
         ]
@@ -264,28 +231,29 @@
     },
     "clang": {
         "versions": [
-            "13",
-            "14",
-            "15"
+            "20",
+            "21",
+            "22"
         ],
-        "default_version": "14"
+        "default_version": "21"
     },
     "gcc": {
         "versions": [
-            "g++-10",
-            "g++-12"
+            "g++-13",
+            "g++-14",
+            "g++-15"
         ]
     },
     "gfortran": {
         "versions": [
-            "gfortran-9",
-            "gfortran-10",
-            "gfortran-12"
+            "gfortran-13",
+            "gfortran-14",
+            "gfortran-15"
         ]
     },
     "php": {
         "versions": [
-            "8.1"
+            "8.5"
         ]
     },
     "rubygems": [
@@ -295,7 +263,7 @@
         "version": "4"
     },
     "node": {
-        "default": "20"
+        "default": "24"
     },
     "node_modules": [
         {
@@ -323,20 +291,12 @@
             "command": "newman"
         },
         {
-            "name": "vercel",
-            "command": "vercel"
-        },
-        {
             "name": "webpack",
             "command": "webpack"
         },
         {
             "name": "webpack-cli",
             "command": "webpack-cli"
-        },
-        {
-            "name": "netlify-cli",
-            "command": "netlify"
         },
         {
             "name": "lerna",
@@ -347,13 +307,13 @@
             "command": "yarn"
         }
     ],
-     "postgresql": {
-        "version": "14"
+    "postgresql": {
+        "version": "18"
     },
     "cmake": {
-        "version": "3.31.6"
+        "version": "latest"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }

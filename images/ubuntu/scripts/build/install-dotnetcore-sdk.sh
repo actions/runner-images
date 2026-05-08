@@ -36,6 +36,10 @@ if is_ubuntu24; then
     apt-get install --no-install-recommends libicu74
 fi
 
+if is_ubuntu26; then
+    apt-get install --no-install-recommends libicu78
+fi
+
 # Install .NET SDKs and Runtimes
 mkdir -p /usr/share/dotnet
 

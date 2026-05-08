@@ -64,12 +64,16 @@ install_open_jdk() {
 # Add Adoptium PPA
 # apt-key is deprecated, dearmor and add manually
 wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptium.gpg
-echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $(lsb_release -cs) main" > /etc/apt/sources.list.d/adoptium.list
+# Adoptium doesn't have packages for Ubuntu 26.04 (resolute) yet, use noble as a fallback
+adoptium_codename=$(lsb_release -cs)
+if [[ "${adoptium_codename}" == "resolute" ]]; then
+    adoptium_codename="noble"
+fi
+echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ ${adoptium_codename} main" > /etc/apt/sources.list.d/adoptium.list
 
 # Get all the updates from enabled repositories.
 apt-get update
 
-# While Ubuntu 24.04 binaries are not released in the Adoptium repo, we will not install Java
 defaultVersion=$(get_toolset_value '.java.default')
 jdkVersionsToInstall=($(get_toolset_value ".java.versions[]"))
 
@@ -90,10 +94,28 @@ set_etc_environment_variable "ANT_HOME" "/usr/share/ant"
 
 # Install Maven
 mavenVersion=$(get_toolset_value '.java.maven')
-mavenDownloadUrl="https://dlcdn.apache.org/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.zip"
+
+if [[ "$mavenVersion" =~ ^[0-9]+$ ]]; then
+  mavenLatest=$(
+    curl -fsSL https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/maven-metadata.xml \
+      | grep -oE "<version>${mavenVersion}\.[0-9]+\.[0-9]+</version>" \
+      | sed -E 's#</?version>##g' \
+      | sort -V \
+      | tail -n 1
+  )
+else
+  mavenLatest="$mavenVersion"
+fi
+
+if [ -z "$mavenLatest" ]; then
+  echo "Failed to resolve Maven version from '$mavenVersion'"
+  exit 1
+fi
+
+mavenDownloadUrl="https://archive.apache.org/dist/maven/maven-${mavenLatest%%.*}/${mavenLatest}/binaries/apache-maven-${mavenLatest}-bin.zip"
 maven_archive_path=$(download_with_retry "$mavenDownloadUrl")
 unzip -qq -d /usr/share "$maven_archive_path"
-ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
+ln -s /usr/share/apache-maven-${mavenLatest}/bin/mvn /usr/bin/mvn
 
 # Install Gradle
 # This script founds the latest gradle release from https://services.gradle.org/versions/all

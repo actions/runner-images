@@ -45,7 +45,7 @@ $languageAndRuntime.AddToolVersionsListInline("GNU C++", $(Get-CPPVersions), "^\
 $languageAndRuntime.AddToolVersionsListInline("GNU Fortran", $(Get-FortranVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
-if (-not $(Test-IsUbuntu24)) {
+if (Test-IsUbuntu22) {
     $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MsbuildVersion))
 }
@@ -53,7 +53,10 @@ $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
 $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
-$languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
+if (-not (Test-IsUbuntu26)) {
+    # No Ubuntu 26 support yet
+    $languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
+}
 
 
 # Package Management
@@ -63,7 +66,7 @@ $packageManagement.AddToolVersion("Helm", $(Get-HelmVersion))
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
 $packageManagement.AddToolVersion("Miniconda", $(Get-MinicondaVersion))
 $packageManagement.AddToolVersion("Npm", $(Get-NpmVersion))
-if (-not $(Test-IsUbuntu24)) {
+if (Test-IsUbuntu22) {
     $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
 }
 $packageManagement.AddToolVersion("Pip", $(Get-PipVersion))
@@ -229,18 +232,20 @@ $databasesTools = $installedSoftware.AddHeader("Databases")
 $databasesTools.AddToolVersion("sqlite3", $(Get-SqliteVersion))
 $databasesTools.AddNode($(Build-PostgreSqlSection))
 $databasesTools.AddNode($(Build-MySQLSection))
-if (-not $(Test-IsUbuntu24)) {
+if (Test-IsUbuntu22) {
     $databasesTools.AddNode($(Build-MSSQLToolsSection))
 }
 
 # Cached Tools
-$cachedTools = $installedSoftware.AddHeader("Cached Tools")
-$cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+")
-$cachedTools.AddToolVersionsList("Node.js", $(Get-ToolcacheNodeVersions), "^\d+")
-$cachedTools.AddToolVersionsList("Python", $(Get-ToolcachePythonVersions), "^\d+\.\d+")
-$cachedTools.AddToolVersionsList("PyPy", $(Get-ToolcachePyPyVersions), "^\d+\.\d+")
-$cachedTools.AddToolVersionsList("Ruby", $(Get-ToolcacheRubyVersions), "^\d+\.\d+")
-
+if (-not(Test-IsUbuntu26)) {
+    # Most cached tools are not yet available for Ubuntu 26.04
+    $cachedTools = $installedSoftware.AddHeader("Cached Tools")
+    $cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+")
+    $cachedTools.AddToolVersionsList("Node.js", $(Get-ToolcacheNodeVersions), "^\d+")
+    $cachedTools.AddToolVersionsList("Python", $(Get-ToolcachePythonVersions), "^\d+\.\d+")
+    $cachedTools.AddToolVersionsList("PyPy", $(Get-ToolcachePyPyVersions), "^\d+\.\d+")
+    $cachedTools.AddToolVersionsList("Ruby", $(Get-ToolcacheRubyVersions), "^\d+\.\d+")
+}
 
 # PowerShell Tools
 $powerShellTools = $installedSoftware.AddHeader("PowerShell Tools")
