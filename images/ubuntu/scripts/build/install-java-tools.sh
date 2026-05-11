@@ -127,23 +127,24 @@ maven_archive_path=$(download_with_retry "$mavenDownloadUrl")
 unzip -qq -d /usr/share "$maven_archive_path"
 ln -s /usr/share/apache-maven-${mavenLatest}/bin/mvn /usr/bin/mvn
 
-if is_x64; then
-  # Install Gradle
-  # This script founds the latest gradle release from https://services.gradle.org/versions/all
-  # The release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
-  gradleJson=$(curl -fsSL https://services.gradle.org/versions/all)
-  gradleLatestVersion=$(echo ${gradleJson} | jq -r '.[] | select(.version | contains("-") | not).version' | sort -V | tail -n1)
-  gradleDownloadUrl=$(echo ${gradleJson} | jq -r ".[] | select(.version==\"$gradleLatestVersion\") | .downloadUrl")
-  echo "gradleUrl=${gradleDownloadUrl}"
-  echo "gradleVersion=${gradleLatestVersion}"
-  gradle_archive_path=$(download_with_retry "$gradleDownloadUrl")
-  unzip -qq -d /usr/share "$gradle_archive_path"
-  ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
-else
-  apt-get install -y gradle
-fi
-
+# if is_x64; then
+# Install Gradle
+# This script founds the latest gradle release from https://services.gradle.org/versions/all
+# The release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
+gradleJson=$(curl -fsSL https://services.gradle.org/versions/all)
+gradleLatestVersion=$(echo ${gradleJson} | jq -r '.[] | select(.version | contains("-") | not).version' | sort -V | tail -n1)
+gradleDownloadUrl=$(echo ${gradleJson} | jq -r ".[] | select(.version==\"$gradleLatestVersion\") | .downloadUrl")
+echo "gradleUrl=${gradleDownloadUrl}"
+echo "gradleVersion=${gradleLatestVersion}"
+gradle_archive_path=$(download_with_retry "$gradleDownloadUrl")
+unzip -qq -d /usr/share "$gradle_archive_path"
+ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
 gradle_home_dir=$(find /usr/share -depth -maxdepth 1 -name "gradle*")
+# else
+#   apt-get install -y gradle
+#   gradle_home_dir=$(find /usr/share -depth -maxdepth 1 -name "gradle")
+# fi
+
 set_etc_environment_variable "GRADLE_HOME" "${gradle_home_dir}"
 
 # Delete java repositories and keys
