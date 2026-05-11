@@ -8,12 +8,21 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
+if is_x64; then
+  pwsh_arch="amd64"
+elif is_arm64; then
+  pwsh_arch="arm64"
+else
+  echo "Unsupported architecture"
+  exit 1
+fi
+
 pwsh_version=$(get_toolset_value .pwsh.version)
 
-if is_ubuntu26; then
-    # pwsh for ubuntu 26.04 is not yet available in apt repo, install from GitHub release tarball
-    # Ubuntu 26.04: install from GitHub release tarball
-    download_url=$(resolve_github_release_asset_url "PowerShell/PowerShell" "endswith(\"linux-x64.tar.gz\")" "$pwsh_version" "" "true")
+if is_ubuntu26 || is_arm64; then
+    # pwsh for ubuntu 26.04 is not yet available in MS apt repo, install from GitHub release tarball
+    # pwsh for arm64 architecture is not available in MS apt repo, install from GitHub release tarball
+    download_url=$(resolve_github_release_asset_url "PowerShell/PowerShell" "endswith(\"linux-${pwsh_arch}.tar.gz\")" "$pwsh_version" "" "true")
     archive_path=$(download_with_retry "$download_url")
 
     # Create the target folder where powershell will be placed

@@ -7,6 +7,16 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/os.sh
+
+if is_x64; then
+  driver_arch="linux64"
+elif is_arm64; then
+  driver_arch="linux-aarch64"
+else
+  echo "Unsupported architecture"
+  exit 1
+fi
 
 FIREFOX_REPO="ppa:mozillateam/ppa"
 
@@ -26,7 +36,7 @@ echo "mozillateam $FIREFOX_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 echo 'pref("intl.locale.requested","en_US");' >> "/usr/lib/firefox/browser/defaults/preferences/syspref.js"
 
 # Download and unpack latest release of geckodriver
-download_url=$(resolve_github_release_asset_url "mozilla/geckodriver" "test(\"linux64.tar.gz$\")" "latest")
+download_url=$(resolve_github_release_asset_url "mozilla/geckodriver" "test(\"${driver_arch}.tar.gz$\")" "latest")
 driver_archive_path=$(download_with_retry "$download_url")
 
 GECKODRIVER_DIR="/usr/local/share/gecko_driver"

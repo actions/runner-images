@@ -7,12 +7,22 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/os.sh
+
+if is_x64; then
+  java_arch="amd64"
+elif is_arm64; then
+  java_arch="arm64"
+else
+  echo "Unsupported architecture"
+  exit 1
+fi
 
 create_java_environment_variable() {
     local java_version=$1
     local default=$2
 
-    local install_path_pattern="/usr/lib/jvm/temurin-${java_version}-jdk-amd64"
+    local install_path_pattern="/usr/lib/jvm/temurin-${java_version}-jdk-${java_arch}"
 
     if [[ ${default} == "True" ]]; then
         echo "Setting up JAVA_HOME variable to ${install_path_pattern}"
@@ -30,7 +40,7 @@ install_open_jdk() {
 
     # Install Java from PPA repositories.
     apt-get -y install temurin-${java_version}-jdk=\*
-    java_version_path="/usr/lib/jvm/temurin-${java_version}-jdk-amd64"
+    java_version_path="/usr/lib/jvm/temurin-${java_version}-jdk-${java_arch}"
 
     java_toolcache_path="${AGENT_TOOLSDIRECTORY}/Java_Temurin-Hotspot_jdk"
 
@@ -117,17 +127,22 @@ maven_archive_path=$(download_with_retry "$mavenDownloadUrl")
 unzip -qq -d /usr/share "$maven_archive_path"
 ln -s /usr/share/apache-maven-${mavenLatest}/bin/mvn /usr/bin/mvn
 
-# Install Gradle
-# This script founds the latest gradle release from https://services.gradle.org/versions/all
-# The release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
-gradleJson=$(curl -fsSL https://services.gradle.org/versions/all)
-gradleLatestVersion=$(echo ${gradleJson} | jq -r '.[] | select(.version | contains("-") | not).version' | sort -V | tail -n1)
-gradleDownloadUrl=$(echo ${gradleJson} | jq -r ".[] | select(.version==\"$gradleLatestVersion\") | .downloadUrl")
-echo "gradleUrl=${gradleDownloadUrl}"
-echo "gradleVersion=${gradleLatestVersion}"
-gradle_archive_path=$(download_with_retry "$gradleDownloadUrl")
-unzip -qq -d /usr/share "$gradle_archive_path"
-ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
+if is_x64; then
+  # Install Gradle
+  # This script founds the latest gradle release from https://services.gradle.org/versions/all
+  # The release is downloaded, extracted, a symlink is created that points to it, and GRADLE_HOME is set.
+  gradleJson=$(curl -fsSL https://services.gradle.org/versions/all)
+  gradleLatestVersion=$(echo ${gradleJson} | jq -r '.[] | select(.version | contains("-") | not).version' | sort -V | tail -n1)
+  gradleDownloadUrl=$(echo ${gradleJson} | jq -r ".[] | select(.version==\"$gradleLatestVersion\") | .downloadUrl")
+  echo "gradleUrl=${gradleDownloadUrl}"
+  echo "gradleVersion=${gradleLatestVersion}"
+  gradle_archive_path=$(download_with_retry "$gradleDownloadUrl")
+  unzip -qq -d /usr/share "$gradle_archive_path"
+  ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
+else
+  apt-get install -y gradle
+fi
+
 gradle_home_dir=$(find /usr/share -depth -maxdepth 1 -name "gradle*")
 set_etc_environment_variable "GRADLE_HOME" "${gradle_home_dir}"
 

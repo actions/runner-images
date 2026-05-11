@@ -7,13 +7,23 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/os.sh
+
+if is_x64; then
+  tools_arch="amd64"
+elif is_arm64; then
+  tools_arch="arm64"
+else
+  echo "Unsupported architecture"
+  exit 1
+fi
 
 # Download KIND
-kind_url=$(resolve_github_release_asset_url "kubernetes-sigs/kind" "endswith(\"kind-linux-amd64\")" "latest")
+kind_url=$(resolve_github_release_asset_url "kubernetes-sigs/kind" "endswith(\"kind-linux-${tools_arch}\")" "latest")
 kind_binary_path=$(download_with_retry "${kind_url}")
 
 # Supply chain security - KIND
-kind_external_hash=$(get_checksum_from_url "${kind_url}.sha256sum" "kind-linux-amd64" "SHA256")
+kind_external_hash=$(get_checksum_from_url "${kind_url}.sha256sum" "kind-linux-${tools_arch}" "SHA256")
 use_checksum_comparison "${kind_binary_path}" "${kind_external_hash}"
 
 # Install KIND
@@ -46,10 +56,10 @@ curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 
 # Download and install minikube
 minikube_version="latest"
-minikube_binary_path=$(download_with_retry "https://storage.googleapis.com/minikube/releases/${minikube_version}/minikube-linux-amd64")
+minikube_binary_path=$(download_with_retry "https://storage.googleapis.com/minikube/releases/${minikube_version}/minikube-linux-${tools_arch}")
 
 # Supply chain security - Minikube
-minikube_hash=$(get_checksum_from_github_release "kubernetes/minikube" "linux-amd64" "${minikube_version}" "SHA256")
+minikube_hash=$(get_checksum_from_github_release "kubernetes/minikube" "linux-${tools_arch}" "${minikube_version}" "SHA256")
 use_checksum_comparison "${minikube_binary_path}" "${minikube_hash}"
 
 install "${minikube_binary_path}" /usr/local/bin/minikube

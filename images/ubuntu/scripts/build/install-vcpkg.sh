@@ -6,6 +6,14 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/os.sh
+
+if is_arm64; then
+  apt install ninja-build -y
+
+  export VCPKG_FORCE_SYSTEM_BINARIES=1
+  set_etc_environment_variable "VCPKG_FORCE_SYSTEM_BINARIES" "${VCPKG_FORCE_SYSTEM_BINARIES}"
+fi
 
 # Set env variable for vcpkg
 VCPKG_INSTALLATION_ROOT=/usr/local/share/vcpkg
