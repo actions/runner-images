@@ -41,8 +41,12 @@
         {
             "name": "Ruby",
             "platform_version": "22.04",
-            "arch": "x64",
+            "arch": "arm64",
             "versions": [
+                "3.2.*",
+                "3.3.*",
+                "3.4.*",
+                "4.0.*"
             ]
         },
         {
