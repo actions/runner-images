@@ -9,7 +9,7 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 if is_x64; then
-  pwsh_arch="amd64"
+  pwsh_arch="x64"
 elif is_arm64; then
   pwsh_arch="arm64"
 else
