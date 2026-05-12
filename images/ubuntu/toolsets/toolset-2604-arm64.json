@@ -14,9 +14,6 @@
             "arch": "arm64",
             "platform" : "linux",
             "versions": [
-                "3.9",
-                "3.10",
-                "3.11"
             ]
         },
         {
@@ -25,9 +22,6 @@
             "platform" : "linux",
             "arch": "arm64",
             "versions": [
-                "20.*",
-                "22.*",
-                "24.*"
             ]
         },
         {
@@ -36,9 +30,6 @@
             "arch": "arm64",
             "platform" : "linux",
             "versions": [
-                "1.24.*",
-                "1.25.*",
-                "1.26.*"
             ],
             "default": "1.26.*"
         },
@@ -54,7 +45,6 @@
             "platform" : "linux",
             "arch": "arm64",
             "versions": [
-                "*"
             ]
         }
     ],
