@@ -22,6 +22,9 @@
             "platform" : "linux",
             "arch": "arm64",
             "versions": [
+                "20.*",
+                "22.*",
+                "24.*"
             ]
         },
         {
@@ -30,6 +33,9 @@
             "arch": "arm64",
             "platform" : "linux",
             "versions": [
+                "1.24.*",
+                "1.25.*",
+                "1.26.*"
             ],
             "default": "1.26.*"
         },
@@ -110,7 +116,6 @@
             "fakeroot",
             "fonts-noto-color-emoji",
             "gnupg2",
-            "golang-go",
             "iproute2",
             "iputils-ping",
             "libyaml-dev",
