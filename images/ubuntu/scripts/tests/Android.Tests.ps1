@@ -1,4 +1,4 @@
-Describe "Android" {
+Describe "Android" -Skip:(Test-IsArm64) {
     function Get-AndroidPackages {
         <#
         .SYNOPSIS

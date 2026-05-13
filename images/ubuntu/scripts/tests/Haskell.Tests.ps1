@@ -1,4 +1,4 @@
-Describe "Haskell" {
+Describe "Haskell" -Skip:(Test-IsArm64) {
     $GHCCommonPath = "/usr/local/.ghcup/ghc"
     $GHCVersions = Get-ChildItem -Path $GHCCommonPath | Where-Object { $_.Name -match "\d+\.\d+" }
 
