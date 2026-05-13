@@ -1,6 +1,6 @@
 | Announcements |
 |-|
-| [Windows Server 2025 with Visual Studio 2026 is now available as a public beta](https://github.com/actions/runner-images/issues/13638) |
+| [Windows Server 2025 with Visual Studio 2026 is now generally available](https://github.com/actions/runner-images/issues/14016) |
 | [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
 ***
 # Windows Server 2025
