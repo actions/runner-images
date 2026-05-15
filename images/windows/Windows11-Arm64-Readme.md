@@ -1,11 +1,12 @@
 | Announcements |
 |-|
-| [Windows Server 2025 with Visual Studio 2026 is now available as a public beta](https://github.com/actions/runner-images/issues/13638) |
+| [[Windows] `windows-latest` image-label will use Windows Server 2025 with Visual Studio 2026 image in June 2026](https://github.com/actions/runner-images/issues/14017) |
+| [[Windows] The Windows Server 2025 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14016) |
 | [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8246
-- Image Version: 20260503.31.1
+- Image Version: 20260510.38.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,7 +21,7 @@
 - LLVM 20.1.6
 - Node 24.15.0
 - Perl 5.32.1
-- PHP 8.4.20
+- PHP 8.4.21
 - Python 3.13.13
 - Ruby 3.4.9
 
@@ -30,10 +31,10 @@
 - Helm 4.1.4
 - NPM 11.12.1
 - NuGet 7.3.1.1
-- pip 26.1 (python 3.13)
-- Pipx 1.11.1
+- pip 26.1.1 (python 3.13)
+- Pipx 1.12.0
 - RubyGems 3.6.9
-- Vcpkg (build from commit 522253caf4)
+- Vcpkg (build from commit 99a97de2cb)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -45,7 +46,7 @@
 - Ant 1.10.17
 - Gradle 9.5
 - Maven 3.9.15
-- sbt 1.12.10
+- sbt 1.12.11
 
 ### Tools
 - 7zip 26.00
@@ -53,9 +54,9 @@
 - azcopy 10.32.3
 - Bazel 9.1.0
 - Bazelisk 1.28.1
-- Bicep 0.42.1
+- Bicep 0.43.8
 - CMake 4.3.2
-- CodeQL Action Bundle 2.25.3
+- CodeQL Action Bundle 2.25.4
 - Git 2.54.0.windows.1
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-21
@@ -70,8 +71,8 @@
 - Newman 6.2.2
 - NSIS 3.10
 - OpenSSL 3.6.2
-- Packer 1.15.0
-- Pulumi 3.234.0
+- Packer 1.15.3
+- Pulumi 3.237.0
 - R 4.6.0
 - Stack 3.9.3
 - Swig 4.3.1
@@ -81,11 +82,11 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.12
-- AWS CLI 2.34.41
+- Alibaba Cloud CLI 3.3.14
+- AWS CLI 2.34.45
 - AWS SAM CLI 1.159.1
 - AWS Session Manager CLI 1.2.814.0
-- Azure CLI 2.85.0
+- Azure CLI 2.86.0
 - Azure DevOps CLI extension 1.0.3
 - GitHub CLI 2.92.0
 
@@ -104,11 +105,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 147.0.7727.138
-- Chrome Driver 147.0.7727.117
-- Microsoft Edge 147.0.3912.98
-- Microsoft Edge Driver 147.0.3912.98
-- Mozilla Firefox 150.0.1
+- Google Chrome 148.0.7778.97
+- Chrome Driver 148.0.7778.97
+- Microsoft Edge 148.0.3967.54
+- Microsoft Edge Driver 148.0.3967.54
+- Mozilla Firefox 150.0.2
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.43.0
@@ -133,7 +134,7 @@
 - 1.22.12
 - 1.23.12
 - 1.24.13
-- 1.25.9
+- 1.25.10
 
 #### Node.js
 - 20.20.2
@@ -384,7 +385,7 @@
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.206
+- AWSPowershell: 5.0.210
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.36.1
