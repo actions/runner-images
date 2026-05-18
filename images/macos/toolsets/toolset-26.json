@@ -4,12 +4,11 @@
         "x64": {
             "versions": [
                 {
-                    "link": "26.5_Release_Candidate",
-                    "filename": "Xcode_26.5_Release_Candidate_Universal",
+                    "link": "26.5",
+                    "filename": "Xcode_26.5_Universal",
                     "version": "26.5+17F42",
-                    "symlinks": ["26.5"],
                     "sha256": "49541f9381551936bd5ab95432337eb1040505edcf5c65a59f39e5cf95fc22c5",
-                    "install_runtimes": "none"
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "26.4.1",
@@ -43,7 +42,7 @@
                     "version": "26.1.1+17B100",
                     "symlinks": ["26.1"],
                     "sha256": "ed55d55fa28455c11a65e0809ba8fdf7d83fdeb268aabf9af7fcc1ee911543eb",
-                    "install_runtimes": "default"
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "26.0.1",
@@ -58,12 +57,11 @@
         "arm64": {
             "versions": [
                 {
-                    "link": "26.5_Release_Candidate",
-                    "filename": "Xcode_26.5_Release_Candidate_Universal",
+                    "link": "26.5",
+                    "filename": "Xcode_26.5_Universal",
                     "version": "26.5+17F42",
-                    "symlinks": ["26.5"],
                     "sha256": "49541f9381551936bd5ab95432337eb1040505edcf5c65a59f39e5cf95fc22c5",
-                    "install_runtimes": "none"
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "26.4.1",
@@ -98,7 +96,7 @@
                     "version": "26.1.1+17B100",
                     "symlinks": ["26.1"],
                     "sha256": "ed55d55fa28455c11a65e0809ba8fdf7d83fdeb268aabf9af7fcc1ee911543eb",
-                    "install_runtimes": "default"
+                    "install_runtimes": "none"
                 },
                 {
                     "link": "26.0.1",
