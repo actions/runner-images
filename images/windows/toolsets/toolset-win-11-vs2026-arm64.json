@@ -36,7 +36,6 @@
             "arch": "arm64",
             "platform" : "win32",
             "versions": [
-                "20.*",
                 "22.*",
                 "24.*"
             ]

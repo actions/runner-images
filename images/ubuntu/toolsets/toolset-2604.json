@@ -25,7 +25,6 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "20.*",
                 "22.*",
                 "24.*"
             ]
