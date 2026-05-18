@@ -46,39 +46,43 @@ Describe "Android" -Skip:(Test-IsArm64) {
         return Get-Content $packagesListFile
     }
 
-    $androidSdkManagerPackages = Get-AndroidPackages
-    [int]$platformMinVersion = (Get-ToolsetContent).android.platform_min_version
-    [version]$buildToolsMinVersion = (Get-ToolsetContent).android.build_tools_min_version
-    [array]$ndkVersions = (Get-ToolsetContent).android.ndk.versions
-    $ndkFullVersions = $ndkVersions |
-        ForEach-Object { (Get-ChildItem "/usr/local/lib/android/sdk/ndk/${_}.*" |
-        Select-Object -Last 1).Name } | ForEach-Object { "ndk/${_}" }
-    # Platforms starting with a letter are the preview versions, which is not installed on the image
-    $platformVersionsList = ($androidSdkManagerPackages |
-        Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', '' |
-        Where-Object { $_ -match "^\d" } | Sort-Object -Unique
-    $platformsInstalled = $platformVersionsList |
-        Where-Object { [int]($_.Split("-")[0]) -ge $platformMinVersion } |
-        ForEach-Object { "platforms/android-${_}" }
+    # Skip discovery-time setup on arm64 where Android SDK isn't installed; the Describe is skipped anyway.
+    BeforeDiscovery {
+        if (Test-IsArm64) { return }
+        $androidSdkManagerPackages = Get-AndroidPackages
+        [int]$platformMinVersion = (Get-ToolsetContent).android.platform_min_version
+        [version]$buildToolsMinVersion = (Get-ToolsetContent).android.build_tools_min_version
+        [array]$ndkVersions = (Get-ToolsetContent).android.ndk.versions
+        $ndkFullVersions = $ndkVersions |
+            ForEach-Object { (Get-ChildItem "/usr/local/lib/android/sdk/ndk/${_}.*" |
+            Select-Object -Last 1).Name } | ForEach-Object { "ndk/${_}" }
+        # Platforms starting with a letter are the preview versions, which is not installed on the image
+        $platformVersionsList = ($androidSdkManagerPackages |
+            Where-Object { "$_".StartsWith("platforms;") }) -replace 'platforms;android-', '' |
+            Where-Object { $_ -match "^\d" } | Sort-Object -Unique
+        $platformsInstalled = $platformVersionsList |
+            Where-Object { [int]($_.Split("-")[0]) -ge $platformMinVersion } |
+            ForEach-Object { "platforms/android-${_}" }
 
-    $buildToolsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', ''
-    $buildTools = $buildToolsList |
-        Where-Object { $_ -match "\d+(\.\d+){2,}$"} |
-        Where-Object { [version]$_ -ge $buildToolsMinVersion } |
-        Sort-Object -Unique |
-        ForEach-Object { "build-tools/${_}" }
+        $buildToolsList = ($androidSdkManagerPackages | Where-Object { "$_".StartsWith("build-tools;") }) -replace 'build-tools;', ''
+        $buildTools = $buildToolsList |
+            Where-Object { $_ -match "\d+(\.\d+){2,}$"} |
+            Where-Object { [version]$_ -ge $buildToolsMinVersion } |
+            Sort-Object -Unique |
+            ForEach-Object { "build-tools/${_}" }
 
-    $androidPackages = @(
-        $platformsInstalled,
-        $buildTools,
-        $ndkFullVersions,
-        "platform-tools",
-        ((Get-ToolsetContent).android.extra_list | ForEach-Object { "extras/${_}" }),
-        ((Get-ToolsetContent).android.addon_list | ForEach-Object { "add-ons/${_}" }),
-        ((Get-ToolsetContent).android.additional_tools | ForEach-Object { "${_}" })
-    )
+        $androidPackages = @(
+            $platformsInstalled,
+            $buildTools,
+            $ndkFullVersions,
+            "platform-tools",
+            ((Get-ToolsetContent).android.extra_list | ForEach-Object { "extras/${_}" }),
+            ((Get-ToolsetContent).android.addon_list | ForEach-Object { "add-ons/${_}" }),
+            ((Get-ToolsetContent).android.additional_tools | ForEach-Object { "${_}" })
+        )
 
-    $androidPackages = $androidPackages | ForEach-Object { $_ }
+        $androidPackages = $androidPackages | ForEach-Object { $_ }
+    }
 
     Context "SDKManagers" {
         $testCases = @(
