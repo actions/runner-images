@@ -8,7 +8,7 @@ Describe "Firefox" {
     }
 }
 
-Describe "Chrome" {
+Describe "Chrome" -Skip:(Test-IsArm64) {
     It "Chrome" {
         "google-chrome --version" | Should -ReturnZeroExitCode
     }
@@ -24,7 +24,7 @@ Describe "Chrome" {
     }
 }
 
-Describe "Edge" {
+Describe "Edge" -Skip:(Test-IsArm64) {
     It "Edge" {
         "microsoft-edge --version" | Should -ReturnZeroExitCode
     }
@@ -34,7 +34,7 @@ Describe "Edge" {
     }
 }
 
-Describe "Chromium" {
+Describe "Chromium" -Skip:(Test-IsArm64) {
     It "Chromium" {
         "chromium-browser --version" | Should -ReturnZeroExitCode
     }

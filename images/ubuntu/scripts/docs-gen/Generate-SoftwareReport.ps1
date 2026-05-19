@@ -43,7 +43,9 @@ $languageAndRuntime.AddToolVersionsListInline("Clang-tidy", $(Get-ClangTidyVersi
 $languageAndRuntime.AddToolVersion("Dash", $(Get-DashVersion))
 $languageAndRuntime.AddToolVersionsListInline("GNU C++", $(Get-CPPVersions), "^\d+")
 $languageAndRuntime.AddToolVersionsListInline("GNU Fortran", $(Get-FortranVersions), "^\d+")
-$languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
+if (Test-IsX64) {
+    $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
+}
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
 if (Test-IsUbuntu22) {
     $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
@@ -64,7 +66,9 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("cpan", $(Get-CpanVersion))
 $packageManagement.AddToolVersion("Helm", $(Get-HelmVersion))
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
-$packageManagement.AddToolVersion("Miniconda", $(Get-MinicondaVersion))
+if (Test-IsX64) {
+    $packageManagement.AddToolVersion("Miniconda", $(Get-MinicondaVersion))
+}
 $packageManagement.AddToolVersion("Npm", $(Get-NpmVersion))
 if (Test-IsUbuntu22) {
     $packageManagement.AddToolVersion("NuGet", $(Get-NuGetVersion))
@@ -89,7 +93,7 @@ $projectManagement.AddToolVersion("Ant", $(Get-AntVersion))
 $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
 $projectManagement.AddToolVersion("Lerna", $(Get-LernaVersion))
 $projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
-if (Test-IsUbuntu22) {
+if (Test-IsUbuntu22-X64) {
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
 }
 
@@ -102,10 +106,14 @@ if (Test-IsUbuntu22) {
 $tools.AddToolVersion("AzCopy", $(Get-AzCopyVersion))
 $tools.AddToolVersion("Bazel", $(Get-BazelVersion))
 $tools.AddToolVersion("Bazelisk", $(Get-BazeliskVersion))
-$tools.AddToolVersion("Bicep", $(Get-BicepVersion))
+if (Test-IsX64) {
+    $tools.AddToolVersion("Bicep", $(Get-BicepVersion))
+}
 $tools.AddToolVersion("Buildah", $(Get-BuildahVersion))
 $tools.AddToolVersion("CMake", $(Get-CMakeVersion))
-$tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
+if (Test-IsX64) {
+    $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
+}
 $tools.AddToolVersion("Docker Amazon ECR Credential Helper", $(Get-DockerAmazonECRCredHelperVersion))
 $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeV2Version))
 $tools.AddToolVersion("Docker-Buildx", $(Get-DockerBuildxVersion))
@@ -116,14 +124,14 @@ $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $tools.AddToolVersion("Git-ftp", $(Get-GitFTPVersion))
 $tools.AddToolVersion("Haveged", $(Get-HavegedVersion))
-if (Test-IsUbuntu22) {
+if (Test-IsUbuntu22-X64) {
     $tools.AddToolVersion("Heroku", $(Get-HerokuVersion))
 }
 $tools.AddToolVersion("jq", $(Get-JqVersion))
 $tools.AddToolVersion("Kind", $(Get-KindVersion))
 $tools.AddToolVersion("Kubectl", $(Get-KubectlVersion))
 $tools.AddToolVersion("Kustomize", $(Get-KustomizeVersion))
-if (Test-IsUbuntu22) {
+if (Test-IsUbuntu22-X64) {
     $tools.AddToolVersion("Leiningen", $(Get-LeiningenVersion))
 }
 $tools.AddToolVersion("MediaInfo", $(Get-MediainfoVersion))
@@ -137,7 +145,7 @@ $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
 $tools.AddToolVersion("Podman", $(Get-PodManVersion))
 $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
-if (Test-IsUbuntu22) {
+if (Test-IsUbuntu22-X64) {
     $tools.AddToolVersion("R", $(Get-RVersion))
 }
 $tools.AddToolVersion("Skopeo", $(Get-SkopeoVersion))
@@ -153,7 +161,7 @@ $tools.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # CLI Tools
 $cliTools = $installedSoftware.AddHeader("CLI Tools")
-if (Test-IsUbuntu22) {
+if (Test-IsUbuntu22-X64) {
     $cliTools.AddToolVersion("Alibaba Cloud CLI", $(Get-AlibabaCloudCliVersion))
 }
 $cliTools.AddToolVersion("AWS CLI", $(Get-AWSCliVersion))
@@ -163,10 +171,12 @@ $cliTools.AddToolVersion("Azure CLI", $(Get-AzureCliVersion))
 $cliTools.AddToolVersion("Azure CLI (azure-devops)", $(Get-AzureDevopsVersion))
 $cliTools.AddToolVersion("GitHub CLI", $(Get-GitHubCliVersion))
 $cliTools.AddToolVersion("Google Cloud CLI", $(Get-GoogleCloudCLIVersion))
+if (Test-IsUbuntu22-X64) {
+    $cliTools.AddToolVersion("ORAS CLI", $(Get-ORASCliVersion))
+}
 if (Test-IsUbuntu22) {
     $cliTools.AddToolVersion("Netlify CLI", $(Get-NetlifyCliVersion))
     $cliTools.AddToolVersion("OpenShift CLI", $(Get-OCCliVersion))
-    $cliTools.AddToolVersion("ORAS CLI", $(Get-ORASCliVersion))
     $cliTools.AddToolVersion("Vercel CLI", $(Get-VerselCliversion))
 }
 
@@ -181,11 +191,13 @@ $phpTools.AddToolVersion("PHPUnit", $(Get-PHPUnitVersion))
 $phpTools.AddNote("Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.")
 
 # Haskell Tools
-$haskellTools = $installedSoftware.AddHeader("Haskell Tools")
-$haskellTools.AddToolVersion("Cabal", $(Get-CabalVersion))
-$haskellTools.AddToolVersion("GHC", $(Get-GHCVersion))
-$haskellTools.AddToolVersion("GHCup", $(Get-GHCupVersion))
-$haskellTools.AddToolVersion("Stack", $(Get-StackVersion))
+if (Test-IsX64) {
+    $haskellTools = $installedSoftware.AddHeader("Haskell Tools")
+    $haskellTools.AddToolVersion("Cabal", $(Get-CabalVersion))
+    $haskellTools.AddToolVersion("GHC", $(Get-GHCVersion))
+    $haskellTools.AddToolVersion("GHCup", $(Get-GHCupVersion))
+    $haskellTools.AddToolVersion("Stack", $(Get-StackVersion))
+}
 
 # Rust Tools
 Initialize-RustEnvironment
@@ -208,12 +220,13 @@ $rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 
 # Browsers and Drivers
 $browsersTools = $installedSoftware.AddHeader("Browsers and Drivers")
-$browsersTools.AddToolVersion("Google Chrome", $(Get-ChromeVersion))
-$browsersTools.AddToolVersion("ChromeDriver", $(Get-ChromeDriverVersion))
-$browsersTools.AddToolVersion("Chromium", $(Get-ChromiumVersion))
-$browsersTools.AddToolVersion("Microsoft Edge", $(Get-EdgeVersion))
-$browsersTools.AddToolVersion("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
-
+if (Test-IsX64) {
+    $browsersTools.AddToolVersion("Google Chrome", $(Get-ChromeVersion))
+    $browsersTools.AddToolVersion("ChromeDriver", $(Get-ChromeDriverVersion))
+    $browsersTools.AddToolVersion("Chromium", $(Get-ChromiumVersion))
+    $browsersTools.AddToolVersion("Microsoft Edge", $(Get-EdgeVersion))
+    $browsersTools.AddToolVersion("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
+}
 $browsersTools.AddToolVersion("Selenium server", $(Get-SeleniumVersion))
 $browsersTools.AddToolVersion("Mozilla Firefox", $(Get-FirefoxVersion))
 $browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
@@ -230,15 +243,18 @@ $netCoreTools.AddNodes($(Get-DotnetTools))
 # Databases
 $databasesTools = $installedSoftware.AddHeader("Databases")
 $databasesTools.AddToolVersion("sqlite3", $(Get-SqliteVersion))
-$databasesTools.AddNode($(Build-PostgreSqlSection))
+if (Test-IsX64) {
+    $databasesTools.AddNode($(Build-PostgreSqlSection))
+}
 $databasesTools.AddNode($(Build-MySQLSection))
-if (Test-IsUbuntu22) {
+if (Test-IsUbuntu22-X64) {
     $databasesTools.AddNode($(Build-MSSQLToolsSection))
 }
 
 # Cached Tools
-if (-not(Test-IsUbuntu26)) {
+if (-not(Test-IsUbuntu26-X64) -and -not(Test-IsArm64)) {
     # Most cached tools are not yet available for Ubuntu 26.04
+    # Most cached tools are not included for arm
     $cachedTools = $installedSoftware.AddHeader("Cached Tools")
     $cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+")
     $cachedTools.AddToolVersionsList("Node.js", $(Get-ToolcacheNodeVersions), "^\d+")
@@ -254,10 +270,12 @@ $powerShellTools.AddHeader("PowerShell Modules").AddNodes($(Get-PowerShellModule
 
 $installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersTable))
 
-$androidTools = $installedSoftware.AddHeader("Android")
-$androidTools.AddTable($(Build-AndroidTable))
+if (Test-IsX64) {
+    $androidTools = $installedSoftware.AddHeader("Android")
+    $androidTools.AddTable($(Build-AndroidTable))
 
-$androidTools.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
+    $androidTools.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
+}
 
 $installedSoftware.AddHeader("Installed apt packages").AddTable($(Get-AptPackages))
 
