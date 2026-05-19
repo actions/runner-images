@@ -12,8 +12,6 @@ if is_Arm64; then
     osascript -e 'tell application "System Preferences" to quit'
 
     # Close Setup Assistant window which can auto-launch on first boot of arm64 macOS 15.
-    # Log explicitly whether the window was present so we can correlate future failures
-    # against the actual behavior of this dismissal path.
     if pgrep -x "Setup Assistant" >/dev/null 2>&1; then
         echo "Setup Assistant detected; attempting graceful quit"
         osascript -e 'tell application "Setup Assistant" to quit' 2>/dev/null || true
