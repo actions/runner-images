@@ -21,7 +21,7 @@ if is_ubuntu26_arm64; then
     /opt/google-cloud-sdk/install.sh --quiet --usage-reporting false \
         --path-update false --bash-completion false --command-completion false
 
-    /opt/google-cloud-sdk/bin/gcloud components install anthoscli
+    /opt/google-cloud-sdk/bin/gcloud components install --quiet anthoscli
 
     # Create symlinks in /usr/bin
     gcloud_bins=(

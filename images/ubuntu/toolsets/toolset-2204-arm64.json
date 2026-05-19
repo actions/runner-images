@@ -57,7 +57,7 @@
         {
             "name": "CodeQL",
             "platform" : "linux",
-            "arch": "x64",
+            "arch": "arm64",
             "versions": [
             ]
         }
