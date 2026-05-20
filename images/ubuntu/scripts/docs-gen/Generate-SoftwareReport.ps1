@@ -91,7 +91,9 @@ to accomplish this.
 $projectManagement = $installedSoftware.AddHeader("Project Management")
 $projectManagement.AddToolVersion("Ant", $(Get-AntVersion))
 $projectManagement.AddToolVersion("Gradle", $(Get-GradleVersion))
-$projectManagement.AddToolVersion("Lerna", $(Get-LernaVersion))
+if ((Test-IsUbuntu22) -or (Test-IsUbuntu24)) {
+    $projectManagement.AddToolVersion("Lerna", $(Get-LernaVersion))
+}
 $projectManagement.AddToolVersion("Maven", $(Get-MavenVersion))
 if (Test-IsUbuntu22-X64) {
     $projectManagement.AddToolVersion("Sbt", $(Get-SbtVersion))
@@ -119,13 +121,13 @@ $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeV2Version))
 $tools.AddToolVersion("Docker-Buildx", $(Get-DockerBuildxVersion))
 $tools.AddToolVersion("Docker Client", $(Get-DockerClientVersion))
 $tools.AddToolVersion("Docker Server", $(Get-DockerServerVersion))
-if (-not(Test-IsUbuntu26)) {
+if ((Test-IsUbuntu22) -or (Test-IsUbuntu24)) {
     $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
 }
 $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $tools.AddToolVersion("Git-ftp", $(Get-GitFTPVersion))
-if (-not(Test-IsUbuntu26)) {
+if ((Test-IsUbuntu22) -or (Test-IsUbuntu24)) {
     $tools.AddToolVersion("Haveged", $(Get-HavegedVersion))
 }
 if (Test-IsUbuntu22-X64) {
@@ -138,26 +140,30 @@ $tools.AddToolVersion("Kustomize", $(Get-KustomizeVersion))
 if (Test-IsUbuntu22-X64) {
     $tools.AddToolVersion("Leiningen", $(Get-LeiningenVersion))
 }
-if (-not(Test-IsUbuntu26)) {
+if ((Test-IsUbuntu22) -or (Test-IsUbuntu24)) {
     $tools.AddToolVersion("MediaInfo", $(Get-MediainfoVersion))
     $tools.AddToolVersion("Mercurial", $(Get-HGVersion))
 }
 $tools.AddToolVersion("Minikube", $(Get-MinikubeVersion))
 $tools.AddToolVersion("n", $(Get-NVersion))
-$tools.AddToolVersion("Newman", $(Get-NewmanVersion))
+if ((Test-IsUbuntu22) -or (Test-IsUbuntu24)) {
+    $tools.AddToolVersion("Newman", $(Get-NewmanVersion))
+}
 $tools.AddToolVersion("nvm", $(Get-NvmVersion))
 $tools.AddToolVersion("OpenSSL", $(Get-OpensslVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
-$tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
+if ((Test-IsUbuntu22) -or (Test-IsUbuntu24)) {
+    $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
+}
 $tools.AddToolVersion("Podman", $(Get-PodManVersion))
-if (-not(Test-IsUbuntu26)) {
+if ((Test-IsUbuntu22) -or (Test-IsUbuntu24)) {
     $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
 }
 if (Test-IsUbuntu22-X64) {
     $tools.AddToolVersion("R", $(Get-RVersion))
 }
 $tools.AddToolVersion("Skopeo", $(Get-SkopeoVersion))
-if (-not(Test-IsUbuntu26)) {
+if ((Test-IsUbuntu22) -or (Test-IsUbuntu24)) {
     $tools.AddToolVersion("Sphinx Open Source Search Server", $(Get-SphinxVersion))
 }
 if (Test-IsUbuntu22) {
