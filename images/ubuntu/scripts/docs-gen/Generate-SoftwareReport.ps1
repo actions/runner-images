@@ -43,7 +43,7 @@ $languageAndRuntime.AddToolVersionsListInline("Clang-tidy", $(Get-ClangTidyVersi
 $languageAndRuntime.AddToolVersion("Dash", $(Get-DashVersion))
 $languageAndRuntime.AddToolVersionsListInline("GNU C++", $(Get-CPPVersions), "^\d+")
 $languageAndRuntime.AddToolVersionsListInline("GNU Fortran", $(Get-FortranVersions), "^\d+")
-if (Test-IsX64) {
+if ((Test-IsUbuntu22-X64) -or (Test-IsUbuntu24-X64)) {
     $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
 }
 $languageAndRuntime.AddToolVersion("Kotlin", $(Get-KotlinVersion))
@@ -66,7 +66,7 @@ $packageManagement = $installedSoftware.AddHeader("Package Management")
 $packageManagement.AddToolVersion("cpan", $(Get-CpanVersion))
 $packageManagement.AddToolVersion("Helm", $(Get-HelmVersion))
 $packageManagement.AddToolVersion("Homebrew", $(Get-HomebrewVersion))
-if (Test-IsX64) {
+if ((Test-IsUbuntu22-X64) -or (Test-IsUbuntu24-X64)) {
     $packageManagement.AddToolVersion("Miniconda", $(Get-MinicondaVersion))
 }
 $packageManagement.AddToolVersion("Npm", $(Get-NpmVersion))
@@ -119,11 +119,15 @@ $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeV2Version))
 $tools.AddToolVersion("Docker-Buildx", $(Get-DockerBuildxVersion))
 $tools.AddToolVersion("Docker Client", $(Get-DockerClientVersion))
 $tools.AddToolVersion("Docker Server", $(Get-DockerServerVersion))
-$tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
+if (-not(Test-IsUbuntu26)) {
+    $tools.AddToolVersion("Fastlane", $(Get-FastlaneVersion))
+}
 $tools.AddToolVersion("Git", $(Get-GitVersion))
 $tools.AddToolVersion("Git LFS", $(Get-GitLFSVersion))
 $tools.AddToolVersion("Git-ftp", $(Get-GitFTPVersion))
-$tools.AddToolVersion("Haveged", $(Get-HavegedVersion))
+if (-not(Test-IsUbuntu26)) {
+    $tools.AddToolVersion("Haveged", $(Get-HavegedVersion))
+}
 if (Test-IsUbuntu22-X64) {
     $tools.AddToolVersion("Heroku", $(Get-HerokuVersion))
 }
@@ -134,8 +138,10 @@ $tools.AddToolVersion("Kustomize", $(Get-KustomizeVersion))
 if (Test-IsUbuntu22-X64) {
     $tools.AddToolVersion("Leiningen", $(Get-LeiningenVersion))
 }
-$tools.AddToolVersion("MediaInfo", $(Get-MediainfoVersion))
-$tools.AddToolVersion("Mercurial", $(Get-HGVersion))
+if (-not(Test-IsUbuntu26)) {
+    $tools.AddToolVersion("MediaInfo", $(Get-MediainfoVersion))
+    $tools.AddToolVersion("Mercurial", $(Get-HGVersion))
+}
 $tools.AddToolVersion("Minikube", $(Get-MinikubeVersion))
 $tools.AddToolVersion("n", $(Get-NVersion))
 $tools.AddToolVersion("Newman", $(Get-NewmanVersion))
@@ -144,12 +150,16 @@ $tools.AddToolVersion("OpenSSL", $(Get-OpensslVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Parcel", $(Get-ParcelVersion))
 $tools.AddToolVersion("Podman", $(Get-PodManVersion))
-$tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
+if (-not(Test-IsUbuntu26)) {
+    $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
+}
 if (Test-IsUbuntu22-X64) {
     $tools.AddToolVersion("R", $(Get-RVersion))
 }
 $tools.AddToolVersion("Skopeo", $(Get-SkopeoVersion))
-$tools.AddToolVersion("Sphinx Open Source Search Server", $(Get-SphinxVersion))
+if (-not(Test-IsUbuntu26)) {
+    $tools.AddToolVersion("Sphinx Open Source Search Server", $(Get-SphinxVersion))
+}
 if (Test-IsUbuntu22) {
     $tools.AddToolVersion("SVN", $(Get-SVNVersion))
     $tools.AddToolVersion("Terraform", $(Get-TerraformVersion))

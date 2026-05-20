@@ -123,7 +123,6 @@
             "libgbm-dev",
             "libsqlite3-dev",
             "locales",
-            "mercurial",
             "openssh-client",
             "7zip-rar",
             "pkg-config",
@@ -150,10 +149,8 @@
             "findutils",
             "flex",
             "ftp",
-            "haveged",
             "lz4",
             "m4",
-            "mediainfo",
             "netcat",
             "net-tools",
             "7zip",
@@ -163,7 +160,6 @@
             "pollinate",
             "rsync",
             "shellcheck",
-            "sphinxsearch",
             "sqlite3",
             "ssh",
             "sshpass",
@@ -253,7 +249,6 @@
         ]
     },
     "rubygems": [
-        {"name": "fastlane"}
     ],
     "selenium": {
         "version": "4"
