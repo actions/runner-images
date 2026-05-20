@@ -261,6 +261,10 @@
     },
     "node_modules": [
         {
+            "name": "n",
+            "command": "n"
+        },
+        {
             "name": "yarn",
             "command": "yarn"
         }
