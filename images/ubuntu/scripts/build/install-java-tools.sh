@@ -122,8 +122,18 @@ if [ -z "$mavenLatest" ]; then
   exit 1
 fi
 
-mavenDownloadUrl="https://archive.apache.org/dist/maven/maven-${mavenLatest%%.*}/${mavenLatest}/binaries/apache-maven-${mavenLatest}-bin.zip"
-maven_archive_path=$(download_with_retry "$mavenDownloadUrl")
+primary_url="https://archive.apache.org/dist/maven/maven-${mavenLatest%%.*}/${mavenLatest}/binaries/apache-maven-${mavenLatest}-bin.zip"
+fallback_url="https://dlcdn.apache.org/maven/maven-${mavenLatest%%.*}/${mavenLatest}/binaries/apache-maven-${mavenLatest}-bin.zip"
+
+if ! maven_archive_path=$(
+    download_with_retry "$primary_url"
+); then
+    echo "Primary Maven download failed, trying fallback URL..." >&2
+    maven_archive_path=$(
+        download_with_retry "$fallback_url"
+    )
+fi
+
 unzip -qq -d /usr/share "$maven_archive_path"
 ln -s /usr/share/apache-maven-${mavenLatest}/bin/mvn /usr/bin/mvn
 
