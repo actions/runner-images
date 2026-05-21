@@ -320,7 +320,12 @@
         "version": "16"
     },
     "cmake": {
-        "version": "3.31.6"
+        "version": "3.31.6",
+        "pinnedDetails": {
+            "reason": "Pinned to avoid CMake 4.0 compatibility issues",
+            "link": "https://github.com/actions/runner-images/issues/11926",
+            "review-at": "2026-09-01"
+        }
     },
     "pwsh": {
         "version": "7.4"
