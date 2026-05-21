@@ -314,6 +314,6 @@
         "version": "3.*"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }
