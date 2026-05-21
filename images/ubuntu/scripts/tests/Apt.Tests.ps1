@@ -28,7 +28,7 @@ Describe "Apt" {
         if ($originalName -eq "httpie") {
             $path = (Get-Command -Name $toolName).Source
             $owner = dpkg -S $path
-            $owner | Should -Match "^httpie:"
+            $owner | Should -Match "^httpie(:[^:]+)?:"
         }
     }
 }
