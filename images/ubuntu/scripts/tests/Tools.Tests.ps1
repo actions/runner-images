@@ -257,7 +257,7 @@ Describe "Homebrew" {
     }
 }
 
-Describe "Julia" -Skip:(Test-IsArm64) {
+Describe "Julia" -Skip:(-not ((Test-IsUbuntu22-X64) -or (Test-IsUbuntu24-X64))) {
     It "julia" {
         "julia --version" | Should -ReturnZeroExitCode
     }
@@ -291,7 +291,7 @@ Describe "Leiningen" -Skip:((-not (Test-IsUbuntu22-X64))) {
     }
 }
 
-Describe "Conda" -Skip:(Test-IsArm64) {
+Describe "Conda" -Skip:(-not ((Test-IsUbuntu22-X64) -or (Test-IsUbuntu24-X64))) {
     It "conda" {
         "conda --version" | Should -ReturnZeroExitCode
     }
@@ -303,7 +303,7 @@ Describe "Packer" {
     }
 }
 
-Describe "Pulumi" {
+Describe "Pulumi" -Skip:(Test-IsUbuntu26) {
     It "pulumi" {
         "pulumi version" | Should -ReturnZeroExitCode
     }
