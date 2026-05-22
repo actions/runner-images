@@ -1,12 +1,12 @@
 | Announcements |
 |-|
+| [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 | [[All OS] Default Node.js version will be changed from 20 to 22 and Node.js 20 will be removed from runner images](https://github.com/actions/runner-images/issues/14029) |
-| [[Windows/Ubuntu] Docker Server and Client will be updated to version 29.1.*, Docker Compose will be updated to version 2.40.3 on February 9th, 2026](https://github.com/actions/runner-images/issues/13474) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
 - Kernel Version: 6.17.0-1013-azure
-- Image Version: 20260513.135.3
+- Image Version: 20260518.149.1
 - Systemd version: 255.4-1ubuntu8.15
 
 ## Installed Software
@@ -21,7 +21,7 @@
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
 - Julia 1.12.6
 - Kotlin 2.3.21-release-298
-- Node.js 20.20.2
+- Node.js 22.22.3
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -29,15 +29,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.20.2
+- Helm 3.21.0
 - Homebrew 5.1.11
 - Miniconda 26.3.2
-- Npm 10.8.2
+- Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.12.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit 8defa4b8bc)
+- Vcpkg (build from commit 2b65c20fc6)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -58,11 +58,11 @@ to accomplish this.
 - Ant 1.10.14
 - Gradle 9.5.1
 - Lerna 9.0.7
-- Maven 3.9.15
+- Maven 3.9.16
 
 ### Tools
 - Ansible 2.20.5
-- AzCopy 10.32.3 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.1.0
 - Bazelisk 1.28.1
 - Bicep 0.43.8
@@ -71,7 +71,7 @@ to accomplish this.
 - CodeQL Action Bundle 2.25.4
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose v2 2.38.2
-- Docker-Buildx 0.33.0
+- Docker-Buildx 0.34.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.234.0
@@ -93,7 +93,7 @@ to accomplish this.
 - Packer 1.15.3
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.237.0
+- Pulumi 3.239.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -102,11 +102,11 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.34.45
+- AWS CLI 2.34.48
 - AWS CLI Session Manager Plugin 1.2.814.0
-- AWS SAM CLI 1.159.1
+- AWS SAM CLI 1.160.1
 - Azure CLI 2.86.0
-- Azure CLI (azure-devops) 1.0.3
+- Azure CLI (azure-devops) 1.0.4
 - GitHub CLI 2.92.0
 - Google Cloud CLI 568.0.0
 
@@ -146,10 +146,10 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Google Chrome 148.0.7778.167
 - ChromeDriver 148.0.7778.167
 - Chromium 148.0.7778.0
-- Microsoft Edge 148.0.3967.54
-- Microsoft Edge WebDriver 148.0.3967.54
+- Microsoft Edge 148.0.3967.70
+- Microsoft Edge WebDriver 148.0.3967.70
 - Selenium server 4.44.0
-- Mozilla Firefox 150.0.2
+- Mozilla Firefox 150.0.3
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -168,7 +168,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.13
+- PostgreSQL 16.14
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -193,8 +193,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.25.10
 
 #### Node.js
-- 20.20.2
-- 22.22.2
+- 22.22.3
 - 24.15.0
 
 #### Python
