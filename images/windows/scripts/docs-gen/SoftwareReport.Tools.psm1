@@ -55,7 +55,7 @@ function Get-DockerVersion {
     return $dockerVersion
 }
 
-function Get-DockerComposeVersionV2 {
+function Get-DockerComposeVersion {
     $dockerComposeVersion = docker compose version --short
     return $dockerComposeVersion
 }
