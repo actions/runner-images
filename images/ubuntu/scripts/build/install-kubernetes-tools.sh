@@ -51,8 +51,12 @@ apt-get install kubectl
 rm -f /etc/apt/sources.list.d/kubernetes.list
 
 # Install Helm
-curl -fsSL https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
-
+if is_ubuntu26; then
+    helm_installer_script="get-helm-4"
+else
+    helm_installer_script="get-helm-3"
+fi
+curl -fsSL "https://raw.githubusercontent.com/helm/helm/master/scripts/${helm_installer_script}" | bash
 
 # Download and install minikube
 minikube_version="latest"
