@@ -117,7 +117,7 @@ if (Test-IsX64) {
     $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 }
 $tools.AddToolVersion("Docker Amazon ECR Credential Helper", $(Get-DockerAmazonECRCredHelperVersion))
-$tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeV2Version))
+$tools.AddToolVersion("Docker Compose", $(Get-DockerComposeVersion))
 $tools.AddToolVersion("Docker-Buildx", $(Get-DockerBuildxVersion))
 $tools.AddToolVersion("Docker Client", $(Get-DockerClientVersion))
 $tools.AddToolVersion("Docker Server", $(Get-DockerServerVersion))

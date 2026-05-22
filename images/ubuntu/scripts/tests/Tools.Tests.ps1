@@ -99,7 +99,7 @@ Describe "Docker" {
         }
     }
 
-    It "docker compose v2" {
+    It "docker compose" {
         $version=(Get-ToolsetContent).docker.plugins | Where-Object { $_.plugin -eq 'compose' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
             $(docker compose version --short) | Should -BeLike "*$version*"
