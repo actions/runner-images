@@ -428,3 +428,24 @@ Describe "AWF" -Skip:(Test-IsUbuntu22) {
         $bundlePath | Should -Exist
     }
 }
+
+Describe "Copilot CLI" -Skip:(Test-IsUbuntu22) {
+    It "Copilot CLI toolcache directory exists" {
+        $copilotPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
+        $copilotPath | Should -Exist
+    }
+
+    It "Copilot CLI binary exists in toolcache" {
+        $copilotPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
+        $latestVersion = Get-ChildItem -Path $copilotPath -Directory | Sort-Object -Property { [version]$_.Name } -Descending | Select-Object -First 1
+        $binPath = Join-Path $latestVersion.FullName "x64" "bin" "copilot"
+        $binPath | Should -Exist
+    }
+
+    It "Copilot CLI toolcache .complete marker exists" {
+        $copilotPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
+        $latestVersion = Get-ChildItem -Path $copilotPath -Directory | Sort-Object -Property { [version]$_.Name } -Descending | Select-Object -First 1
+        $completeMarker = Join-Path $latestVersion.FullName "x64.complete"
+        $completeMarker | Should -Exist
+    }
+}
