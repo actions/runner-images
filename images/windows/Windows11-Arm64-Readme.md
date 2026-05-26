@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 | [[All OS] Default Node.js version will be changed from 20 to 22 and Node.js 20 will be removed from runner images](https://github.com/actions/runner-images/issues/14029) |
 | [[Windows] `windows-latest` and `windows-2025` image-label will use Windows Server 2025 with Visual Studio 2026 image in June 2026](https://github.com/actions/runner-images/issues/14017) |
@@ -7,7 +8,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8457
-- Image Version: 20260518.48.1
+- Image Version: 20260525.56.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,7 +21,7 @@
 - Julia 1.12.0
 - Kotlin 2.3.21
 - LLVM 20.1.6
-- Node 24.15.0
+- Node 24.16.0
 - Perl 5.32.1
 - PHP 8.4.21
 - Python 3.13.13
@@ -30,12 +31,12 @@
 - Chocolatey 2.7.2
 - Composer 2.9.8
 - Helm 4.1.4
-- NPM 11.12.1
+- NPM 11.13.0
 - NuGet 7.6.0.59
 - pip 26.1.1 (python 3.13)
 - Pipx 1.12.0
 - RubyGems 3.6.9
-- Vcpkg (build from commit 2b65c20fc6)
+- Vcpkg (build from commit d015e31e90)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,11 +57,11 @@
 - Bazel 9.1.0
 - Bazelisk 1.28.1
 - Bicep 0.43.8
-- CMake 4.3.2
-- CodeQL Action Bundle 2.25.4
+- CMake 4.3.3
+- CodeQL Action Bundle 2.25.5
 - Git 2.54.0.windows.1
 - Git LFS 3.7.1
-- ImageMagick 7.1.2-22
+- ImageMagick 7.1.2-23
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.31.0
@@ -73,7 +74,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.2
 - Packer 1.15.3
-- Pulumi 3.239.0
+- Pulumi 3.243.0
 - R 4.6.0
 - Stack 3.9.3
 - Swig 4.3.1
@@ -83,9 +84,9 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.15
-- AWS CLI 2.34.48
-- AWS SAM CLI 1.160.1
+- Alibaba Cloud CLI 3.3.16
+- AWS CLI 2.34.53
+- AWS SAM CLI 1.161.0
 - AWS Session Manager CLI 1.2.814.0
 - Azure CLI 2.86.0
 - Azure DevOps CLI extension 1.0.4
@@ -106,11 +107,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 148.0.7778.168
-- Chrome Driver 148.0.7778.167
-- Microsoft Edge 148.0.3967.70
-- Microsoft Edge Driver 148.0.3967.70
-- Mozilla Firefox 150.0.3
+- Google Chrome 148.0.7778.179
+- Chrome Driver 148.0.7778.178
+- Microsoft Edge 148.0.3967.83
+- Microsoft Edge Driver 148.0.3967.83
+- Mozilla Firefox 151.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.44.0
@@ -139,7 +140,7 @@
 
 #### Node.js
 - 22.22.3
-- 24.15.0
+- 24.16.0
 
 #### Python
 - 3.12.10
@@ -160,12 +161,12 @@
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.0  | C:\tools\nginx-1.31.0\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.31.1  | C:\tools\nginx-1.31.1\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.37301.10 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.14.37314.3 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -189,7 +190,7 @@
 | Component.Unreal.Android                                                  | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36907.17  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37230.8   |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37312.16  |
 | Component.VSInstallerProjects2022_arm64                                   | 3.0.0           |
 | Component.Xamarin                                                         | 17.14.36510.44  |
 | ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.37203.1   |
@@ -381,11 +382,11 @@
 - nbgv 3.9.50+6feeb89450
 
 ### PowerShell Tools
-- PowerShell 7.4.15
+- PowerShell 7.4.16
 
 #### Powershell Modules
 - Az: 12.5.0
-- AWSPowershell: 5.0.213
+- AWSPowershell: 5.0.218
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.37.0
