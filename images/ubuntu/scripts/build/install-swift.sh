@@ -11,19 +11,38 @@ source $HELPER_SCRIPTS/os.sh
 
 # Install
 image_label="ubuntu$(lsb_release -rs)"
-swift_version=$(curl -fsSL "https://api.github.com/repos/apple/swift/releases/latest" | jq -r '.tag_name | match("[0-9.]+").string')
+swift_releases=$(curl -fsSL "https://www.swift.org/api/v1/install/releases.json")
+
+swift_version=$(echo "$swift_releases" | jq -r '.[-1].name')
+if [[ -z "$swift_version" || "$swift_version" == "null" ]]; then
+  echo "Unable to determine Swift version"
+  exit 1
+fi
+
+swift_tag=$(echo "$swift_releases" | jq -r '.[-1].tag')
+if [[ -z "$swift_tag" || "$swift_tag" == "null" ]]; then
+  echo "Unable to determine Swift tag"
+  exit 1
+fi
+
+swift_release_path_tag="${swift_tag/-RELEASE/-release}"
+if [[ "$swift_release_path_tag" == "$swift_tag" ]]; then
+  echo "Swift tag '$swift_tag' does not match expected '*-RELEASE' format"
+  exit 1
+fi
 
 if is_x64; then
-  swift_release_name="swift-${swift_version}-RELEASE-${image_label}"
-  archive_url="https://download.swift.org/swift-${swift_version}-release/${image_label//./}/swift-${swift_version}-RELEASE/${swift_release_name}.tar.gz"
+  swift_release_name="${swift_tag}-${image_label}"
+  url_image_label="${image_label//./}"
 elif is_arm64; then
-  swift_release_name="swift-${swift_version}-RELEASE-${image_label}-aarch64"
-  archive_url="https://download.swift.org/swift-${swift_version}-release/${image_label//./}-aarch64/swift-${swift_version}-RELEASE/${swift_release_name}.tar.gz"
+  swift_release_name="${swift_tag}-${image_label}-aarch64"
+  url_image_label="${image_label//./}-aarch64"
 else
   echo "Unsupported architecture"
   exit 1
 fi
 
+archive_url="https://download.swift.org/${swift_release_path_tag}/${url_image_label}/${swift_tag}/${swift_release_name}.tar.gz"
 archive_path=$(download_with_retry "$archive_url")
 
 # Verifying PGP signature using official Swift PGP key. Referring to https://www.swift.org/install/linux/#Installation-via-Tarball
