@@ -36,6 +36,16 @@ Describe "Swift" -Skip:(Test-IsUbuntu26) {
     It "libsourcekitd" {
         "/usr/local/lib/libsourcekitdInProc.so" | Should -Exist
     }
+
+    It "SDK list" {
+        "swift sdk list" | Should -ReturnZeroExitCode
+    }
+
+    It "SDK registered" {
+        $expectedSdk = "swift-${env:SWIFT_VERSION}-RELEASE_static-linux-${env:SWIFT_STATIC_SDK_VERSION}"
+        $sdkListOutput = swift sdk list
+        $sdkListOutput | Should -Be $expectedSdk
+    }
 }
 
 Describe "PipxPackages" {

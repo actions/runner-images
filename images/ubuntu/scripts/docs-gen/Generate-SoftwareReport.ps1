@@ -58,6 +58,7 @@ $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
 if (-not (Test-IsUbuntu26)) {
     # No Ubuntu 26 support yet
     $languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
+    $languageAndRuntime.AddToolVersion("Swift Static Linux SDK", $(Get-SwiftStaticSDKVersion))
 }
 
 

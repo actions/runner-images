@@ -102,6 +102,16 @@ function Get-SwiftVersion {
     return $swiftVersion
 }
 
+function Get-SwiftStaticSDKVersion {
+    $swiftVersion = Get-SwiftVersion
+    $swiftStaticSDK = Get-CommandResult "swift sdk list"
+    $pattern = "swift-${swiftVersion}-RELEASE_static-linux-(?<version>\d+\.\d+\.\d+)"
+    if ($swiftStaticSDK.Output -match $pattern) {
+        return $Matches.version
+    }
+    throw "Unable to detect Swift Static SDK version for Swift ${swiftVersion}"
+}
+
 function Get-KotlinVersion {
     $kotlinVersion = kotlin -version | Out-String | Get-StringPart -Part 2
     return $kotlinVersion

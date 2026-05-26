@@ -25,6 +25,18 @@ if [[ -z "$swift_tag" || "$swift_tag" == "null" ]]; then
   exit 1
 fi
 
+swift_static_sdk_version=$(echo "$swift_releases" | jq -r '.[-1].platforms[] | select(.platform == "static-sdk") | .version')
+if [[ -z "$swift_static_sdk_version" || "$swift_static_sdk_version" == "null" ]]; then
+  echo "Unable to determine Swift Static SDK version"
+  exit 1
+fi
+
+swift_static_sdk_checksum=$(echo "$swift_releases" | jq -r '.[-1].platforms[] | select(.platform == "static-sdk") | .checksum')
+if [[ -z "$swift_static_sdk_checksum" || "$swift_static_sdk_checksum" == "null" ]]; then
+  echo "Unable to determine Swift Static SDK checksum"
+  exit 1
+fi
+
 swift_release_path_tag="${swift_tag/-RELEASE/-release}"
 if [[ "$swift_release_path_tag" == "$swift_tag" ]]; then
   echo "Swift tag '$swift_tag' does not match expected '*-RELEASE' format"
@@ -42,8 +54,8 @@ else
   exit 1
 fi
 
-archive_url="https://download.swift.org/${swift_release_path_tag}/${url_image_label}/${swift_tag}/${swift_release_name}.tar.gz"
-archive_path=$(download_with_retry "$archive_url")
+swift_archive_url="https://download.swift.org/${swift_release_path_tag}/${url_image_label}/${swift_tag}/${swift_release_name}.tar.gz"
+swift_static_sdk_archive_url="https://download.swift.org/${swift_release_path_tag}/static-sdk/${swift_tag}/${swift_tag}_static-linux-${swift_static_sdk_version}.artifactbundle.tar.gz"
 
 # Verifying PGP signature using official Swift PGP key. Referring to https://www.swift.org/install/linux/#Installation-via-Tarball
 # Download and import Swift PGP keys
@@ -62,7 +74,8 @@ gpg --keyserver hkps://keyserver.ubuntu.com:443 \
 gpg --keyserver hkps://keyserver.ubuntu.com:443 --refresh-keys Swift
 
 # Download and verify signature
-signature_path=$(download_with_retry "${archive_url}.sig")
+archive_path=$(download_with_retry "$swift_archive_url")
+signature_path=$(download_with_retry "${swift_archive_url}.sig")
 gpg --verify "$signature_path" "$archive_path"
 
 # Remove Swift PGP public key with temporary keyring
@@ -82,6 +95,10 @@ ln -s "$swift_bin_root/swift" /usr/local/bin/swift
 ln -s "$swift_bin_root/swiftc" /usr/local/bin/swiftc
 ln -s "$swift_lib_root/libsourcekitdInProc.so" /usr/local/lib/libsourcekitdInProc.so
 
+swift sdk install "$swift_static_sdk_archive_url" --checksum "$swift_static_sdk_checksum"
+
 set_etc_environment_variable "SWIFT_PATH" "${swift_bin_root}"
+set_etc_environment_variable "SWIFT_VERSION" "${swift_version}"
+set_etc_environment_variable "SWIFT_STATIC_SDK_VERSION" "${swift_static_sdk_version}"
 
 invoke_tests "Common" "Swift"
