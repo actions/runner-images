@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 | [[All OS] Default Node.js version will be changed from 20 to 22 and Node.js 20 will be removed from runner images](https://github.com/actions/runner-images/issues/14029) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1052-azure
-- Image Version: 20260518.146.1
+- Image Version: 20260525.156.1
 - Systemd version: 249.11-0ubuntu3.20
 
 ## Installed Software
@@ -32,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.21.0
-- Homebrew 5.1.12
+- Homebrew 5.1.14
 - Miniconda 26.3.2
 - Npm 10.9.8
 - NuGet 6.6.1.2
@@ -40,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.12.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 432412eeca)
+- Vcpkg (build from commit d015e31e90)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -73,10 +74,10 @@ to accomplish this.
 - Bicep 0.43.8
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.25.4
+- CodeQL Action Bundle 2.25.5
 - Docker Amazon ECR Credential Helper 0.12.0
-- Docker Compose v2 2.38.2
-- Docker-Buildx 0.34.0
+- Docker Compose 2.38.2
+- Docker-Buildx 0.34.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.234.0
@@ -100,30 +101,30 @@ to accomplish this.
 - Packer 1.15.3
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.241.0
+- Pulumi 3.243.0
 - R 4.6.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.15.3
+- Terraform 1.15.4
 - yamllint 1.38.0
 - yq 4.53.2
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.15
-- AWS CLI 2.34.49
+- Alibaba Cloud CLI 3.3.16
+- AWS CLI 2.34.53
 - AWS CLI Session Manager Plugin 1.2.814.0
-- AWS SAM CLI 1.160.1
+- AWS SAM CLI 1.161.0
 - Azure CLI 2.86.0
 - Azure CLI (azure-devops) 1.0.4
 - GitHub CLI 2.92.0
-- Google Cloud CLI 568.0.0
-- Netlify CLI 26.0.2
-- OpenShift CLI 4.21.15
+- Google Cloud CLI 569.0.0
 - ORAS CLI 1.3.2
-- Vercel CLI 54.1.0
+- Netlify CLI 26.0.2
+- OpenShift CLI 4.21.16
+- Vercel CLI 54.4.1
 
 ### Java
 | Version              | Environment Variable |
@@ -145,7 +146,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.16.1.0
 - GHC 9.14.1
-- GHCup 0.1.50.2
+- GHCup 0.2.5.0
 - Stack 3.9.3
 
 ### Rust Tools
@@ -163,13 +164,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 148.0.7778.167
-- ChromeDriver 148.0.7778.167
+- Google Chrome 148.0.7778.178
+- ChromeDriver 148.0.7778.178
 - Chromium 148.0.7778.0
-- Microsoft Edge 148.0.3967.70
-- Microsoft Edge WebDriver 148.0.3967.70
+- Microsoft Edge 148.0.3967.83
+- Microsoft Edge WebDriver 148.0.3967.83
 - Selenium server 4.44.0
-- Mozilla Firefox 150.0.3
+- Mozilla Firefox 151.0.1
 - Geckodriver 0.36.0
 
 #### Environment variables
@@ -218,7 +219,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 22.22.3
-- 24.15.0
+- 24.16.0
 
 #### Python
 - 3.10.20
@@ -238,10 +239,10 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.2.11
 - 3.3.11
 - 3.4.9
-- 4.0.4
+- 4.0.5
 
 ### PowerShell Tools
-- PowerShell 7.4.15
+- PowerShell 7.4.16
 
 #### PowerShell Modules
 - Az: 14.6.0
@@ -293,7 +294,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 8.32-4.1ubuntu1.3                   |
 | curl                   | 7.81.0-1ubuntu1.24                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
-| dnsutils               | 1:9.18.39-0ubuntu0.22.04.3          |
+| dnsutils               | 1:9.18.39-0ubuntu0.22.04.4          |
 | dpkg                   | 1.21.1ubuntu2.6                     |
 | dpkg-dev               | 1.21.1ubuntu2.6                     |
 | fakeroot               | 1.28-1ubuntu1                       |
@@ -350,7 +351,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | pollinate              | 4.33-3ubuntu2.3                     |
 | python-is-python3      | 3.9.2-2                             |
 | rpm                    | 4.17.0+dfsg1-4build1                |
-| rsync                  | 3.2.7-0ubuntu0.22.04.4              |
+| rsync                  | 3.2.7-0ubuntu0.22.04.6              |
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
 | sqlite3                | 3.37.2-2ubuntu0.5                   |
