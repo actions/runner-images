@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[All OS] Default Node.js version will be changed from 20 to 22 and Node.js 20 will be removed from runner images](https://github.com/actions/runner-images/issues/14029) |
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 14
 - OS Version: macOS 14.8.7 (23J520)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20260520.0082.1
+- Image Version: 20260525.0091.1
 
 ## Installed Software
 
@@ -32,13 +33,13 @@
 - Bundler 4.0.12
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 5.1.12
+- Homebrew 5.1.13
 - NPM 10.9.8
 - NuGet 6.3.1.1
 - Pip3 26.1.1 (python 3.14)
 - Pipx 1.12.0
 - RubyGems 4.0.12
-- Vcpkg 2026 (build from commit e5a4f54c0d)
+- Vcpkg 2026 (build from commit aa40adda53)
 - Yarn 1.22.22
 
 ### Project Management
@@ -70,14 +71,14 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.50
-- AWS SAM CLI 1.160.1
+- AWS CLI 2.34.53
+- AWS SAM CLI 1.161.0
 - AWS Session Manager CLI 1.2.814.0
 - Azure CLI 2.86.0
 - Azure CLI (azure-devops) 1.0.4
 - Bicep CLI 0.43.8
 - Cmake 4.3.2
-- CodeQL Action Bundle 2.25.4
+- CodeQL Action Bundle 2.25.5
 - Fastlane 2.234.0
 - SwiftFormat 0.61.1
 - Xcbeautify 3.2.1
@@ -90,9 +91,9 @@
 - Google Chrome 148.0.7778.179
 - Google Chrome for Testing 148.0.7778.178
 - ChromeDriver 148.0.7778.178
-- Microsoft Edge 148.0.3967.70
-- Microsoft Edge WebDriver 148.0.3967.70
-- Mozilla Firefox 151.0
+- Microsoft Edge 148.0.3967.83
+- Microsoft Edge WebDriver 148.0.3967.83
+- Mozilla Firefox 151.0.1
 - geckodriver 0.36.0
 - Selenium server 4.44.0
 
@@ -127,7 +128,7 @@
 
 #### Node.js
 - 22.22.3
-- 24.15.0
+- 24.16.0
 
 #### Go
 - 1.22.12
@@ -146,7 +147,7 @@
 - Rustfmt 1.9.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.15
+- PowerShell 7.4.16
 
 #### PowerShell Modules
 - Az: 14.6.0
