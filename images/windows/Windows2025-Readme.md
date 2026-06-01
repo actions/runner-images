@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 | [[All OS] Default Node.js version will be changed from 20 to 22 and Node.js 20 will be removed from runner images](https://github.com/actions/runner-images/issues/14029) |
 | [[Windows] `windows-latest` and `windows-2025` image-label will use Windows Server 2025 with Visual Studio 2026 image in June 2026](https://github.com/actions/runner-images/issues/14017) |
@@ -7,7 +8,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 32860
-- Image Version: 20260518.141.1
+- Image Version: 20260525.149.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -37,7 +38,7 @@
 - pip 26.1.1 (python 3.12)
 - Pipx 1.12.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 432412eeca)
+- Vcpkg (build from commit d015e31e90)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,14 +62,14 @@
 - Bicep 0.43.8
 - Cabal 3.16.1.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.25.4
+- CodeQL Action Bundle 2.25.5
 - Docker 29.1.5
-- Docker Compose v2 2.40.3
+- Docker Compose 2.40.3
 - Docker-wincred 0.9.7
 - ghc 9.14.1
 - Git 2.54.0.windows.1
 - Git LFS 3.7.1
-- ImageMagick 7.1.2-22
+- ImageMagick 7.1.2-23
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.31.0
@@ -79,7 +80,7 @@
 - Newman 6.2.2
 - OpenSSL 3.6.2
 - Packer 1.15.3
-- Pulumi 3.241.0
+- Pulumi 3.243.0
 - R 4.6.0
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.9.3
@@ -92,8 +93,8 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.34.48
-- AWS SAM CLI 1.160.1
+- AWS CLI 2.34.53
+- AWS SAM CLI 1.161.0
 - AWS Session Manager CLI 1.2.814.0
 - Azure CLI 2.86.0
 - Azure DevOps CLI extension 1.0.4
@@ -110,11 +111,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 148.0.7778.168
-- Chrome Driver 148.0.7778.167
-- Microsoft Edge 148.0.3967.70
-- Microsoft Edge Driver 148.0.3967.70
-- Mozilla Firefox 150.0.3
+- Google Chrome 148.0.7778.179
+- Chrome Driver 148.0.7778.178
+- Microsoft Edge 148.0.3967.83
+- Microsoft Edge Driver 148.0.3967.83
+- Mozilla Firefox 151.0.1
 - Gecko Driver 0.36.0
 - IE Driver 4.14.0.0
 - Selenium server 4.44.0
@@ -163,7 +164,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 22.22.3
-- 24.15.0
+- 24.16.0
 
 #### Python
 - 3.10.11
@@ -180,7 +181,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.2.11
 - 3.3.11
 - 3.4.9
-- 4.0.4
+- 4.0.5
 
 ### Databases
 
@@ -214,12 +215,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.0  | C:\tools\nginx-1.31.0\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.31.1  | C:\tools\nginx-1.31.1\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.37301.10 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.14.37314.3 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -242,7 +243,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36907.17  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37230.8   |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37312.16  |
 | Component.VisualStudio.GitHubCopilotForAzure.x64                          | 17.14.37202.16  |
 | Component.VSInstallerProjects2022                                         | 3.0.0           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
@@ -471,11 +472,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.9.50+6feeb89450
 
 ### PowerShell Tools
-- PowerShell 7.4.15
+- PowerShell 7.4.16
 
 #### Powershell Modules
 - Az: 14.6.0
-- AWSPowershell: 5.0.214
+- AWSPowershell: 5.0.218
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.37.0
