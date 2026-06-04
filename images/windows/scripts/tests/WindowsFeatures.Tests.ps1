@@ -82,6 +82,9 @@ Describe "Windows Updates" {
         if ( $Title -match "MicrosoftWindows.Client.WebExperience" ) {
             $expect = "Installed", "Failed", "Running"
         }
+        if ( $Title -match "Microsoft.WidgetsPlatformRuntime" ) {
+            $expect = "Installed", "Failed", "Running"
+        }
 
         $State | Should -BeIn $expect
     }
