@@ -100,7 +100,7 @@
         {
             "name": "az",
             "versions": [
-                "14.6.0"
+                "15.6.1"
             ]
         }
     ],
@@ -277,6 +277,7 @@
         ]
     },
     "rubygems": [
+        {"name": "multi_json"},
         {"name": "fastlane"}
     ],
     "selenium": {
