@@ -277,6 +277,7 @@
         ]
     },
     "rubygems": [
+        {"name": "multi_json"},
         {"name": "fastlane"}
     ],
     "selenium": {
