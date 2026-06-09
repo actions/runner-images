@@ -135,6 +135,13 @@ jobs:
             Get-Content -Path $softwareReportPath
         }
 
+  - task: PowerShell@2
+    displayName: 'Create artifact SHA256 manifest'
+    inputs:
+      targetType: 'filePath'
+      filePath: ./images.CI/create-artifact-shasums.ps1
+      arguments: -ArtifactsDirectory "$(Build.ArtifactStagingDirectory)"
+
   - task: PublishBuildArtifacts@1
     inputs:
       ArtifactName: 'Built_VM_Artifacts'
