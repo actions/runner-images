@@ -33,6 +33,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | Windows Server 2025<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin25.json) | x64 | `windows-latest` or `windows-2025` | [windows-2025] |
 | Windows Server 2022<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin22.json) | x64 | `windows-2022` | [windows-2022] |
 | Windows 11 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin11-arm64.json) | arm64 | `windows-11-arm64` | [windows-11-arm64] |
+| Ubuntu 26.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26.json) | arm64 | `ubuntu-26.04` | [ubuntu-26.04] |
 
 ### Label scheme
 
