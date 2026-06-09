@@ -35,4 +35,8 @@ Describe "Windows 11 SDK" {
     It "Verifies 26100 SDK is installed" {
         "${env:ProgramFiles(x86)}\Windows Kits\10\DesignTime\CommonConfiguration\Neutral\UAP\10.0.26100.0\UAP.props" | Should -Exist
     }
+
+    It "Verifies 28000 SDK is installed" {
+        "${env:ProgramFiles(x86)}\Windows Kits\10\DesignTime\CommonConfiguration\Neutral\UAP\10.0.28000.0\UAP.props" | Should -Exist
+    }
 }
