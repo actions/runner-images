@@ -58,7 +58,11 @@ body:
       label: Runner images where you need the tool
       options:
         - label: Ubuntu 22.04
+        - label: Ubuntu 22.04 Arm64
         - label: Ubuntu 24.04
+        - label: Ubuntu 24.04 Arm64
+        - label: Ubuntu 26.04
+        - label: Ubuntu 26.04 Arm64
         - label: Ubuntu Slim
         - label: macOS 14
         - label: macOS 14 Arm64
