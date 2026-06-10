@@ -17,6 +17,8 @@ Describe "Visual Studio" {
         $testCases = $expectedComponents | ForEach-Object { @{ComponentName = $_} }
         BeforeAll {
             $installedComponents = Get-VisualStudioComponents | Select-Object -ExpandProperty Package
+            ##DEBUG, DO TO MERGE
+            $installedComponents
         }
 
         It "<ComponentName>" -TestCases $testCases {
