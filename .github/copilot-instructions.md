@@ -37,3 +37,4 @@
 - Do not fabricate tool versions, installation paths, or software availability without verifying against toolset files or actual installation scripts.
 - Always call out assumptions and limitations explicitly, especially for changes affecting runner image behavior or software availability.
 - If ambiguous requests are made about image modifications, ask clarifying questions about target OS, tool versions, and compatibility requirements before proceeding.
+- For ARM image and Windows 11 announcement issues, use preview/public preview wording (not beta/public beta) and include `![beta](https://img.shields.io/badge/beta-yellow)` where the preview status is called out.

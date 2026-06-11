@@ -2,6 +2,11 @@ name: Announcement
 description: Submit an announcement
 labels: [Announcement]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        > [!IMPORTANT]
+        > For ARM image and Windows 11 announcements, use **preview/public preview** wording instead of **beta/public beta** and include `![beta](https://img.shields.io/badge/beta-yellow)` in the announcement text.
   - type: textarea
     attributes:
       label: Breaking changes
