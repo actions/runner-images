@@ -11,20 +11,51 @@ source $HELPER_SCRIPTS/os.sh
 
 # Install
 image_label="ubuntu$(lsb_release -rs)"
-swift_version=$(curl -fsSL "https://api.github.com/repos/apple/swift/releases/latest" | jq -r '.tag_name | match("[0-9.]+").string')
+swift_releases=$(curl -fsSL "https://www.swift.org/api/v1/install/releases.json")
+
+swift_version=$(echo "$swift_releases" | jq -r '.[-1].name')
+if [[ -z "$swift_version" || "$swift_version" == "null" ]]; then
+  echo "Unable to determine Swift version"
+  exit 1
+fi
+
+swift_tag=$(echo "$swift_releases" | jq -r '.[-1].tag')
+if [[ -z "$swift_tag" || "$swift_tag" == "null" ]]; then
+  echo "Unable to determine Swift tag"
+  exit 1
+fi
+
+swift_static_sdk_version=$(echo "$swift_releases" | jq -r '.[-1].platforms[] | select(.platform == "static-sdk") | .version')
+if [[ -z "$swift_static_sdk_version" || "$swift_static_sdk_version" == "null" ]]; then
+  echo "Unable to determine Swift Static SDK version"
+  exit 1
+fi
+
+swift_static_sdk_checksum=$(echo "$swift_releases" | jq -r '.[-1].platforms[] | select(.platform == "static-sdk") | .checksum')
+if [[ -z "$swift_static_sdk_checksum" || "$swift_static_sdk_checksum" == "null" ]]; then
+  echo "Unable to determine Swift Static SDK checksum"
+  exit 1
+fi
+
+swift_release_path_tag="${swift_tag/-RELEASE/-release}"
+if [[ "$swift_release_path_tag" == "$swift_tag" ]]; then
+  echo "Swift tag '$swift_tag' does not match expected '*-RELEASE' format"
+  exit 1
+fi
 
 if is_x64; then
-  swift_release_name="swift-${swift_version}-RELEASE-${image_label}"
-  archive_url="https://download.swift.org/swift-${swift_version}-release/${image_label//./}/swift-${swift_version}-RELEASE/${swift_release_name}.tar.gz"
+  swift_release_name="${swift_tag}-${image_label}"
+  url_image_label="${image_label//./}"
 elif is_arm64; then
-  swift_release_name="swift-${swift_version}-RELEASE-${image_label}-aarch64"
-  archive_url="https://download.swift.org/swift-${swift_version}-release/${image_label//./}-aarch64/swift-${swift_version}-RELEASE/${swift_release_name}.tar.gz"
+  swift_release_name="${swift_tag}-${image_label}-aarch64"
+  url_image_label="${image_label//./}-aarch64"
 else
   echo "Unsupported architecture"
   exit 1
 fi
 
-archive_path=$(download_with_retry "$archive_url")
+swift_archive_url="https://download.swift.org/${swift_release_path_tag}/${url_image_label}/${swift_tag}/${swift_release_name}.tar.gz"
+swift_static_sdk_archive_url="https://download.swift.org/${swift_release_path_tag}/static-sdk/${swift_tag}/${swift_tag}_static-linux-${swift_static_sdk_version}.artifactbundle.tar.gz"
 
 # Verifying PGP signature using official Swift PGP key. Referring to https://www.swift.org/install/linux/#Installation-via-Tarball
 # Download and import Swift PGP keys
@@ -43,7 +74,8 @@ gpg --keyserver hkps://keyserver.ubuntu.com:443 \
 gpg --keyserver hkps://keyserver.ubuntu.com:443 --refresh-keys Swift
 
 # Download and verify signature
-signature_path=$(download_with_retry "${archive_url}.sig")
+archive_path=$(download_with_retry "$swift_archive_url")
+signature_path=$(download_with_retry "${swift_archive_url}.sig")
 gpg --verify "$signature_path" "$archive_path"
 
 # Remove Swift PGP public key with temporary keyring
@@ -63,6 +95,10 @@ ln -s "$swift_bin_root/swift" /usr/local/bin/swift
 ln -s "$swift_bin_root/swiftc" /usr/local/bin/swiftc
 ln -s "$swift_lib_root/libsourcekitdInProc.so" /usr/local/lib/libsourcekitdInProc.so
 
+swift sdk install "$swift_static_sdk_archive_url" --checksum "$swift_static_sdk_checksum"
+
 set_etc_environment_variable "SWIFT_PATH" "${swift_bin_root}"
+set_etc_environment_variable "SWIFT_VERSION" "${swift_version}"
+set_etc_environment_variable "SWIFT_STATIC_SDK_VERSION" "${swift_static_sdk_version}"
 
 invoke_tests "Common" "Swift"
