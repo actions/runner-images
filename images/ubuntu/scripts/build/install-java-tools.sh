@@ -74,12 +74,7 @@ install_open_jdk() {
 # Add Adoptium PPA
 # apt-key is deprecated, dearmor and add manually
 wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptium.gpg
-# Adoptium doesn't have packages for Ubuntu 26.04 (resolute) yet, use noble as a fallback
-adoptium_codename=$(lsb_release -cs)
-if [[ "${adoptium_codename}" == "resolute" ]]; then
-    adoptium_codename="noble"
-fi
-echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ ${adoptium_codename} main" > /etc/apt/sources.list.d/adoptium.list
+echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $(lsb_release -cs) main" > /etc/apt/sources.list.d/adoptium.list
 
 # Get all the updates from enabled repositories.
 apt-get update
