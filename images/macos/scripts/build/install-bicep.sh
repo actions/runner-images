@@ -7,6 +7,7 @@
 source ~/utils/utils.sh
 
 echo "Installing bicep cli..."
+brew trust azure/bicep
 brew tap azure/bicep
 brew_smart_install bicep
 
