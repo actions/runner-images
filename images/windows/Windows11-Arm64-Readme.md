@@ -1,14 +1,14 @@
 | Announcements |
 |-|
 | [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
+| [[All OS] Azure PowerShell module will be updated from 12.5.0/14.6.0 to 15.6.1](https://github.com/actions/runner-images/issues/14104) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
-| [[All OS] Default Node.js version will be changed from 20 to 22 and Node.js 20 will be removed from runner images](https://github.com/actions/runner-images/issues/14029) |
 | [[Windows] `windows-latest` and `windows-2025` image-label will use Windows Server 2025 with Visual Studio 2026 image in June 2026](https://github.com/actions/runner-images/issues/14017) |
 | [[Windows] The Windows Server 2025 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14016) |
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8457
-- Image Version: 20260525.56.1
+- Image Version: 20260608.69.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -19,24 +19,24 @@
 - Bash 5.3.9(1)-release
 - Go 1.24.13
 - Julia 1.12.0
-- Kotlin 2.3.21
+- Kotlin 2.4.0
 - LLVM 20.1.6
 - Node 24.16.0
 - Perl 5.32.1
-- PHP 8.4.21
+- PHP 8.4.22
 - Python 3.13.13
 - Ruby 3.4.9
 
 ### Package Management
 - Chocolatey 2.7.2
-- Composer 2.9.8
+- Composer 2.10.1
 - Helm 4.1.4
 - NPM 11.13.0
 - NuGet 7.6.0.59
-- pip 26.1.1 (python 3.13)
-- Pipx 1.12.0
+- pip 26.1.2 (python 3.13)
+- Pipx 1.14.0
 - RubyGems 3.6.9
-- Vcpkg (build from commit d015e31e90)
+- Vcpkg (build from commit 6bbea753e7)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -51,20 +51,20 @@
 - sbt 1.12.11
 
 ### Tools
-- 7zip 26.00
+- 7zip 26.01
 - aria2 1.37.0
 - azcopy 10.32.4
-- Bazel 9.1.0
+- Bazel 9.1.1
 - Bazelisk 1.28.1
 - Bicep 0.43.8
 - CMake 4.3.3
-- CodeQL Action Bundle 2.25.5
+- CodeQL Action Bundle 2.25.6
 - Git 2.54.0.windows.1
 - Git LFS 3.7.1
-- ImageMagick 7.1.2-23
+- ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.1
-- Kind 0.31.0
+- Kind 0.32.0
 - Kubectl 1.36.1
 - Mercurial 6.3.1
 - gcc 14.2.0
@@ -74,7 +74,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.2
 - Packer 1.15.3
-- Pulumi 3.243.0
+- Pulumi 3.245.0
 - R 4.6.0
 - Stack 3.9.3
 - Swig 4.3.1
@@ -84,35 +84,35 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.16
-- AWS CLI 2.34.53
-- AWS SAM CLI 1.161.0
+- Alibaba Cloud CLI 3.3.22
+- AWS CLI 2.34.63
+- AWS SAM CLI 1.161.1
 - AWS Session Manager CLI 1.2.814.0
-- Azure CLI 2.86.0
+- Azure CLI 2.87.0
 - Azure DevOps CLI extension 1.0.4
-- GitHub CLI 2.92.0
+- GitHub CLI 2.93.0
 
 ### Rust Tools
-- Cargo 1.95.0
-- Rust 1.95.0
-- Rustdoc 1.95.0
+- Cargo 1.96.0
+- Rust 1.96.0
+- Rustdoc 1.96.0
 - Rustup 1.29.0
 
 #### Packages
 - bindgen 0.72.1
-- cargo-audit 0.22.1
+- cargo-audit 0.22.2
 - cargo-outdated 0.19.0
-- cbindgen 0.29.2
-- Clippy 0.1.95
+- cbindgen 0.29.3
+- Clippy 0.1.96
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 148.0.7778.179
-- Chrome Driver 148.0.7778.178
-- Microsoft Edge 148.0.3967.83
-- Microsoft Edge Driver 148.0.3967.83
-- Mozilla Firefox 151.0.1
-- Gecko Driver 0.36.0
+- Google Chrome 149.0.7827.103
+- Chrome Driver 149.0.7827.55
+- Microsoft Edge 149.0.4022.52
+- Microsoft Edge Driver 149.0.4022.52
+- Mozilla Firefox 151.0.3
+- Gecko Driver 0.37.0
 - IE Driver 4.14.0.0
 - Selenium server 4.44.0
 
@@ -136,7 +136,7 @@
 - 1.22.12
 - 1.23.12
 - 1.24.13
-- 1.25.10
+- 1.25.11
 
 #### Node.js
 - 22.22.3
@@ -152,7 +152,7 @@
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.27.0
-- DacFx 170.3.93.6
+- DacFx 170.4.83.3
 - MySQL 8.0.46.0
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
@@ -385,8 +385,8 @@
 - PowerShell 7.4.16
 
 #### Powershell Modules
-- Az: 12.5.0
-- AWSPowershell: 5.0.218
+- Az: 15.6.1
+- AWSPowershell: 5.0.229
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.37.0
