@@ -436,16 +436,18 @@ Describe "Copilot CLI" -Skip:(Test-IsUbuntu22) {
     }
 
     It "Copilot CLI binary exists in toolcache" {
+        $arch = if ((uname -m) -eq "aarch64") { "arm64" } else { "x64" }
         $copilotPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
         $latestVersion = Get-ChildItem -Path $copilotPath -Directory | Sort-Object -Property { [version]$_.Name } -Descending | Select-Object -First 1
-        $binPath = Join-Path $latestVersion.FullName "x64" "bin" "copilot"
+        $binPath = Join-Path $latestVersion.FullName $arch "bin" "copilot"
         $binPath | Should -Exist
     }
 
     It "Copilot CLI toolcache .complete marker exists" {
+        $arch = if ((uname -m) -eq "aarch64") { "arm64" } else { "x64" }
         $copilotPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
         $latestVersion = Get-ChildItem -Path $copilotPath -Directory | Sort-Object -Property { [version]$_.Name } -Descending | Select-Object -First 1
-        $completeMarker = Join-Path $latestVersion.FullName "x64.complete"
+        $completeMarker = Join-Path $latestVersion.FullName "$arch.complete"
         $completeMarker | Should -Exist
     }
 }
