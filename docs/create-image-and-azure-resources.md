@@ -1,6 +1,6 @@
 # GitHub Actions Runner Images
 
-The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for Windows 2022/2025 and Ubuntu 22.04/24.04.
+The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for Windows 2022/2025 and Ubuntu 22.04/24.04/26.04.
 
 Each image is configured by a HCL2 Packer template that specifies where to build the image (Azure, in this case),
 and what steps to run to install software and prepare the disk.
@@ -98,7 +98,7 @@ Finally, run the `GenerateResourcesAndImage` function, setting the mandatory arg
 - `ResourceGroupName` - the name of the resource group that will store the resulting artifact (e.g., "imagegen-test").
     The resource group must already exist in your Azure subscription;
 - `AzureLocation` - the location where resources will be created (e.g., "East US");
-- `ImageType` - the type of image to build (valid options are "Windows2022", "Windows2025", "Ubuntu2204", "Ubuntu2404").
+- `ImageType` - the type of image to build (valid options are "Windows2022", "Windows2025", "Windows2025_vs2026", "Ubuntu2204", "Ubuntu2404", "Ubuntu2604").
 
 This function automatically creates all required Azure resources and initiates the Packer image generation for the selected image type.
 
@@ -200,7 +200,7 @@ Then, you can invoke Packer in your CI/CD pipeline using the following commands:
 ```powershell
 packer plugins install github.com/hashicorp/azure 2.2.1
 
-packer build -only "$BuildName*" `
+packer build -only "$BuildName.*" `
              -var "subscription_id=$SubscriptionId" `
              -var "client_id=$ClientId" `
              -var "client_secret=$ClientSecret" `
