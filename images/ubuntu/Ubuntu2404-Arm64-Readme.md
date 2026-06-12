@@ -1,7 +1,13 @@
+| Announcements |
+|-|
+| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
+| [[All OS] Azure PowerShell module will be updated from 12.5.0/14.6.0 to 15.6.1](https://github.com/actions/runner-images/issues/14104) |
+| [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
+***
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
-- Kernel Version: 6.17.0-1015-azure
-- Image Version: 20260531.15.1
+- Kernel Version: 6.17.0-1018-azure
+- Image Version: 20260607.22.1
 - Systemd version: 255.4-1ubuntu8.15
 
 ## Installed Software
@@ -14,23 +20,23 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
-- Kotlin 2.3.21-release-298
+- Kotlin 2.4.0-release-281
 - Node.js 22.22.3
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 6.3.1
+- Swift 6.3.2
 
 ### Package Management
 - cpan 1.64
 - Helm 3.21.0
-- Homebrew 5.1.14
+- Homebrew 5.1.15
 - Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
-- Pipx 1.13.0
+- Pipx 1.14.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit f9ffbaa46a)
+- Vcpkg (build from commit 10ceb139a6)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,9 +60,9 @@ to accomplish this.
 - Maven 3.9.12
 
 ### Tools
-- Ansible 2.20.6
+- Ansible 2.21.0
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.1.0
+- Bazel 9.1.1
 - Bazelisk 1.28.1
 - Buildah 1.33.7
 - CMake 3.31.6
@@ -71,7 +77,7 @@ to accomplish this.
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
-- Kind 0.31.0
+- Kind 0.32.0
 - Kubectl 1.36.1
 - Kustomize 5.8.1
 - MediaInfo 24.01
@@ -79,27 +85,27 @@ to accomplish this.
 - Minikube 1.38.1
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.4
+- nvm 0.40.5
 - OpenSSL 3.0.13-0ubuntu3.9
-- Packer 1.15.3
+- Packer 1.15.4
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.244.0
+- Pulumi 3.245.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
-- yq 4.53.2
+- yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.34.57
+- AWS CLI 2.34.63
 - AWS CLI Session Manager Plugin 1.2.814.0
 - AWS SAM CLI 1.161.1
-- Azure CLI 2.86.0
+- Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.4
 - GitHub CLI 2.93.0
-- Google Cloud CLI 570.0.0
+- Google Cloud CLI 571.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -112,7 +118,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.10.0
+- Composer 2.10.1
 - PHPUnit 8.5.52
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -129,8 +135,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Browsers and Drivers
 - Selenium server 4.44.0
-- Mozilla Firefox 151.0.2
-- Geckodriver 0.36.0
+- Mozilla Firefox 151.0.3
+- Geckodriver 0.37.0
 
 #### Environment variables
 | Name              | Value                               |
@@ -148,7 +154,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.45.1
 
 #### MySQL
-- MySQL 8.0.45-0ubuntu0.24.04.1
+- MySQL 8.0.46-0ubuntu0.24.04.2
 ```
 User: root
 Password: root
@@ -160,7 +166,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - PowerShell 7.4.16
 
 #### PowerShell Modules
-- Az: 14.6.0
+- Az: 15.6.1
 - Microsoft.Graph: 2.37.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.25.0
@@ -245,6 +251,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | upx                    | 4.2.2-3                      |
 | wget                   | 1.21.4-1ubuntu4.1            |
 | xvfb                   | 2:21.1.12-1ubuntu1.5         |
-| xz-utils               | 5.6.1+really5.4.5-1ubuntu0.2 |
+| xz-utils               | 5.6.1+really5.4.5-1ubuntu0.3 |
 | zip                    | 3.0-13ubuntu0.2              |
 | zsync                  | 0.6.2-5build1                |
+

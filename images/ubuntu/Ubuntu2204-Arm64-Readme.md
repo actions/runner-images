@@ -1,7 +1,13 @@
+| Announcements |
+|-|
+| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
+| [[All OS] Azure PowerShell module will be updated from 12.5.0/14.6.0 to 15.6.1](https://github.com/actions/runner-images/issues/14104) |
+| [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
+***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1052-azure
-- Image Version: 20260531.15.1
+- Image Version: 20260607.22.1
 - Systemd version: 249.11-0ubuntu3.20
 
 ## Installed Software
@@ -14,26 +20,26 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Kotlin 2.3.21-release-298
+- Kotlin 2.4.0-release-281
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 22.22.3
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.3.1
+- Swift 6.3.2
 
 ### Package Management
 - cpan 1.64
 - Helm 3.21.0
-- Homebrew 5.1.14
+- Homebrew 5.1.15
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.13.0
+- Pipx 1.14.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit f9ffbaa46a)
+- Vcpkg (build from commit 10ceb139a6)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -60,7 +66,7 @@ to accomplish this.
 - Ansible 2.17.14
 - apt-fast 1.10.0
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.1.0
+- Bazel 9.1.1
 - Bazelisk 1.28.1
 - Buildah 1.23.1
 - CMake 3.31.6
@@ -75,7 +81,7 @@ to accomplish this.
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.6
-- Kind 0.31.0
+- Kind 0.32.0
 - Kubectl 1.36.1
 - Kustomize 5.8.1
 - MediaInfo 21.09
@@ -83,32 +89,32 @@ to accomplish this.
 - Minikube 1.38.1
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.4
+- nvm 0.40.5
 - OpenSSL 3.0.2-0ubuntu1.23
-- Packer 1.15.3
+- Packer 1.15.4
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.244.0
+- Pulumi 3.245.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
 - Terraform 1.15.5
 - yamllint 1.38.0
-- yq 4.53.2
+- yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.34.57
+- AWS CLI 2.34.63
 - AWS CLI Session Manager Plugin 1.2.814.0
 - AWS SAM CLI 1.161.1
-- Azure CLI 2.86.0
+- Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.4
 - GitHub CLI 2.93.0
-- Google Cloud CLI 570.0.0
+- Google Cloud CLI 571.0.0
 - Netlify CLI 26.1.0
-- OpenShift CLI 4.21.17
-- Vercel CLI 54.6.1
+- OpenShift CLI 4.21.18
+- Vercel CLI 54.9.1
 
 ### Java
 | Version              | Environment Variable |
@@ -121,7 +127,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.10.0
+- Composer 2.10.1
 - PHPUnit 8.5.52
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -135,7 +141,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 #### Packages
 - Bindgen 0.72.1
-- Cargo audit 0.22.1
+- Cargo audit 0.22.2
 - Cargo clippy 0.1.96
 - Cargo outdated 0.19.0
 - Cbindgen 0.29.3
@@ -143,8 +149,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Browsers and Drivers
 - Selenium server 4.44.0
-- Mozilla Firefox 151.0.2
-- Geckodriver 0.36.0
+- Mozilla Firefox 151.0.3
+- Geckodriver 0.37.0
 
 #### Environment variables
 | Name              | Value                               |
@@ -162,7 +168,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.37.2
 
 #### MySQL
-- MySQL 8.0.45-0ubuntu0.22.04.1
+- MySQL 8.0.46-0ubuntu0.22.04.2
 ```
 User: root
 Password: root
@@ -174,7 +180,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - PowerShell 7.4.16
 
 #### PowerShell Modules
-- Az: 14.6.0
+- Az: 15.6.1
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.37.0
 - Pester: 5.7.1
@@ -277,6 +283,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | wget                   | 1.21.2-2ubuntu1.1                   |
 | xorriso                | 1.5.4-2                             |
 | xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.16       |
-| xz-utils               | 5.2.5-2ubuntu1                      |
+| xz-utils               | 5.2.5-2ubuntu1.1                    |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
+
