@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[macOS] macos-latest label will use macos-26 in June 2026](https://github.com/actions/runner-images/issues/14167) |
 | [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
-| [[All OS] Default Node.js version will be changed from 20 to 22 and Node.js 20 will be removed from runner images](https://github.com/actions/runner-images/issues/14029) |
+| [[All OS] Azure PowerShell module will be updated from 12.5.0/14.6.0 to 15.6.1](https://github.com/actions/runner-images/issues/14104) |
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 26
 - OS Version: macOS 26.4 (25E246)
 - Kernel Version: Darwin 25.4.0
-- Image Version: 20260525.0161.1
+- Image Version: 20260608.0215.1
 
 ## Installed Software
 
@@ -22,24 +23,24 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
-- Kotlin 2.3.21-release-298
+- Kotlin 2.4.0-release-281
 - Node.js 24.16.0
 - Perl 5.42.2
-- PHP 8.5.6
+- PHP 8.5.7
 - Python3 3.14.5
 - Ruby 3.4.9
 
 ### Package Management
-- Bundler 4.0.12
+- Bundler 4.0.13
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.9.8
-- Homebrew 5.1.13
+- Composer 2.10.1
+- Homebrew 5.1.15
 - NPM 11.13.0
 - Pip3 26.1.1 (python 3.14)
-- Pipx 1.12.0
-- RubyGems 4.0.12
-- Vcpkg 2026 (build from commit d015e31e90)
+- Pipx 1.14.0
+- RubyGems 4.0.13
+- Vcpkg 2026 (build from commit 75672db6bd)
 - Yarn 1.22.22
 
 ### Project Management
@@ -51,53 +52,53 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.32.4
-- bazel 9.1.0
+- bazel 9.1.1
 - bazelisk 1.29.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.20.0
 - Git 2.54.0
 - Git LFS 3.7.1
-- GitHub CLI 2.92.0
+- GitHub CLI 2.93.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.20
 - jq 1.8.1
 - OpenSSL 3.6.2 7 Apr 2026 (Library: OpenSSL 3.6.2 7 Apr 2026)
-- Packer 1.15.3
+- Packer 1.15.4
 - pkgconf 2.5.1
 - Unxip 3.3
-- yq 4.53.2
+- yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.53
-- AWS SAM CLI 1.161.0
+- AWS CLI 2.34.63
+- AWS SAM CLI 1.161.1
 - AWS Session Manager CLI 1.2.814.0
-- Azure CLI 2.86.0
+- Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.4
 - Bicep CLI 0.43.8
-- Cmake 4.3.2
-- CodeQL Action Bundle 2.25.5
-- Fastlane 2.234.0
+- Cmake 4.3.3
+- CodeQL Action Bundle 2.25.6
+- Fastlane 2.235.0
 - SwiftFormat 0.61.1
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 26.5.0.0.1777544298
 - Xcodes 1.6.2
 
 ### Linters
-- SwiftLint 0.63.2
+- SwiftLint 0.63.3
 
 ### Browsers
 - Safari 26.4 (21624.1.16.11.4)
 - SafariDriver 26.4 (21624.1.16.11.4)
-- Google Chrome 148.0.7778.179
-- Google Chrome for Testing 148.0.7778.178
-- ChromeDriver 148.0.7778.178
-- Microsoft Edge 148.0.3967.83
-- Microsoft Edge WebDriver 148.0.3967.83
-- Mozilla Firefox 151.0.1
-- geckodriver 0.36.0
+- Google Chrome 149.0.7827.54
+- Google Chrome for Testing 149.0.7827.54
+- ChromeDriver 149.0.7827.54
+- Microsoft Edge 149.0.4022.52
+- Microsoft Edge WebDriver 149.0.4022.52
+- Mozilla Firefox 151.0.3
+- geckodriver 0.37.0
 - Selenium server 4.44.0
 
 #### Environment variables
@@ -136,35 +137,35 @@
 #### Go
 - 1.23.12
 - 1.24.13
-- 1.25.10
+- 1.25.11
 
 ### Rust Tools
-- Cargo 1.95.0
-- Rust 1.95.0
-- Rustdoc 1.95.0
+- Cargo 1.96.0
+- Rust 1.96.0
+- Rustdoc 1.96.0
 - Rustup 1.29.0
 
 #### Packages
-- Clippy 0.1.95
+- Clippy 0.1.96
 - Rustfmt 1.9.0-stable
 
 ### PowerShell Tools
 - PowerShell 7.4.16
 
 #### PowerShell Modules
-- Az: 14.6.0
+- Az: 15.6.1
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version          | Build  | Path                           | Symlinks                                                |
-| ---------------- | ------ | ------------------------------ | ------------------------------------------------------- |
-| 26.5             | 17F42  | /Applications/Xcode_26.5.app   | /Applications/Xcode_26.5.0.app                          |
-| 26.4.1 (default) | 17E202 | /Applications/Xcode_26.4.1.app | /Applications/Xcode_26.4.app<br>/Applications/Xcode.app |
-| 26.3             | 17C529 | /Applications/Xcode_26.3.app   | /Applications/Xcode_26.3.0.app                          |
-| 26.2             | 17C52  | /Applications/Xcode_26.2.app   | /Applications/Xcode_26.2.0.app                          |
-| 26.1.1           | 17B100 | /Applications/Xcode_26.1.1.app | /Applications/Xcode_26.1.app                            |
-| 26.0.1           | 17A400 | /Applications/Xcode_26.0.1.app | /Applications/Xcode_26.0.app                            |
+| Version        | Build  | Path                           | Symlinks                                                  |
+| -------------- | ------ | ------------------------------ | --------------------------------------------------------- |
+| 26.5 (default) | 17F42  | /Applications/Xcode_26.5.app   | /Applications/Xcode_26.5.0.app<br>/Applications/Xcode.app |
+| 26.4.1         | 17E202 | /Applications/Xcode_26.4.1.app | /Applications/Xcode_26.4.app                              |
+| 26.3           | 17C529 | /Applications/Xcode_26.3.app   | /Applications/Xcode_26.3.0.app                            |
+| 26.2           | 17C52  | /Applications/Xcode_26.2.app   | /Applications/Xcode_26.2.0.app                            |
+| 26.1.1         | 17B100 | /Applications/Xcode_26.1.1.app | /Applications/Xcode_26.1.app                              |
+| 26.0.1         | 17A400 | /Applications/Xcode_26.0.1.app | /Applications/Xcode_26.0.app                              |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -237,9 +238,9 @@
 | Package Name               | Version                                                                                                                                                                                                  |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                     |
-| Android Emulator           | 36.5.11                                                                                                                                                                                                  |
+| Android Emulator           | 36.6.11                                                                                                                                                                                                  |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                 |
-| Android SDK Platforms      | android-37.0 (rev 1)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
+| Android SDK Platforms      | android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
 | Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                   |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                   |
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                          |
