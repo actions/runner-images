@@ -1,13 +1,13 @@
 | Announcements |
 |-|
 | [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
+| [[All OS] Azure PowerShell module will be updated from 12.5.0/14.6.0 to 15.6.1](https://github.com/actions/runner-images/issues/14104) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
-| [[All OS] Default Node.js version will be changed from 20 to 22 and Node.js 20 will be removed from runner images](https://github.com/actions/runner-images/issues/14029) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1052-azure
-- Image Version: 20260525.156.1
+- Image Version: 20260607.168.1
 - Systemd version: 249.11-0ubuntu3.20
 
 ## Installed Software
@@ -21,27 +21,27 @@
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
 - Julia 1.12.6
-- Kotlin 2.3.21-release-298
+- Kotlin 2.4.0-release-281
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 22.22.3
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.3.1
+- Swift 6.3.2
 
 ### Package Management
 - cpan 1.64
 - Helm 3.21.0
-- Homebrew 5.1.14
+- Homebrew 5.1.15
 - Miniconda 26.3.2
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.12.0
+- Pipx 1.14.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit d015e31e90)
+- Vcpkg (build from commit 10ceb139a6)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -69,25 +69,25 @@ to accomplish this.
 - Ansible 2.17.14
 - apt-fast 1.10.0
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.1.0
+- Bazel 9.1.1
 - Bazelisk 1.28.1
 - Bicep 0.43.8
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.25.5
+- CodeQL Action Bundle 2.25.6
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
 - Docker-Buildx 0.34.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.234.0
+- Fastlane 2.235.0
 - Git 2.54.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - Heroku 11.4.0
 - jq 1.6
-- Kind 0.31.0
+- Kind 0.32.0
 - Kubectl 1.36.1
 - Kustomize 5.8.1
 - Leiningen 2.12.0
@@ -96,35 +96,35 @@ to accomplish this.
 - Minikube 1.38.1
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.4
+- nvm 0.40.5
 - OpenSSL 3.0.2-0ubuntu1.23
-- Packer 1.15.3
+- Packer 1.15.4
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.243.0
+- Pulumi 3.245.0
 - R 4.6.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.15.4
+- Terraform 1.15.5
 - yamllint 1.38.0
-- yq 4.53.2
+- yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.16
-- AWS CLI 2.34.53
+- Alibaba Cloud CLI 3.3.22
+- AWS CLI 2.34.63
 - AWS CLI Session Manager Plugin 1.2.814.0
-- AWS SAM CLI 1.161.0
-- Azure CLI 2.86.0
+- AWS SAM CLI 1.161.1
+- Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.4
-- GitHub CLI 2.92.0
-- Google Cloud CLI 569.0.0
+- GitHub CLI 2.93.0
+- Google Cloud CLI 571.0.0
 - ORAS CLI 1.3.2
-- Netlify CLI 26.0.2
-- OpenShift CLI 4.21.16
-- Vercel CLI 54.4.1
+- Netlify CLI 26.1.0
+- OpenShift CLI 4.21.18
+- Vercel CLI 54.9.1
 
 ### Java
 | Version              | Environment Variable |
@@ -137,7 +137,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.9.8
+- Composer 2.10.1
 - PHPUnit 8.5.52
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -150,28 +150,28 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.9.3
 
 ### Rust Tools
-- Cargo 1.95.0
-- Rust 1.95.0
-- Rustdoc 1.95.0
+- Cargo 1.96.0
+- Rust 1.96.0
+- Rustdoc 1.96.0
 - Rustup 1.29.0
 
 #### Packages
 - Bindgen 0.72.1
-- Cargo audit 0.22.1
-- Cargo clippy 0.1.95
+- Cargo audit 0.22.2
+- Cargo clippy 0.1.96
 - Cargo outdated 0.19.0
-- Cbindgen 0.29.2
+- Cbindgen 0.29.3
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 148.0.7778.178
-- ChromeDriver 148.0.7778.178
-- Chromium 148.0.7778.0
-- Microsoft Edge 148.0.3967.83
-- Microsoft Edge WebDriver 148.0.3967.83
+- Google Chrome 149.0.7827.53
+- ChromeDriver 149.0.7827.54
+- Chromium 149.0.7827.0
+- Microsoft Edge 149.0.4022.52
+- Microsoft Edge WebDriver 149.0.4022.52
 - Selenium server 4.44.0
-- Mozilla Firefox 151.0.1
-- Geckodriver 0.36.0
+- Mozilla Firefox 151.0.3
+- Geckodriver 0.37.0
 
 #### Environment variables
 | Name              | Value                                 |
@@ -197,7 +197,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.45-0ubuntu0.22.04.1
+- MySQL 8.0.46-0ubuntu0.22.04.2
 ```
 User: root
 Password: root
@@ -207,7 +207,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### MS SQL
 - sqlcmd 17.11.0001.1
-- SqlPackage 170.3.93.6
+- SqlPackage 170.4.83.3
 
 ### Cached Tools
 
@@ -215,7 +215,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.22.12
 - 1.23.12
 - 1.24.13
-- 1.25.10
+- 1.25.11
 
 #### Node.js
 - 22.22.3
@@ -233,7 +233,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
 - 3.10.16 [PyPy 7.3.19]
-- 3.11.15 [PyPy 7.3.22]
+- 3.11.15 [PyPy 7.3.23]
 
 #### Ruby
 - 3.2.11
@@ -245,7 +245,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - PowerShell 7.4.16
 
 #### PowerShell Modules
-- Az: 14.6.0
+- Az: 15.6.1
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.37.0
 - Pester: 5.7.1
@@ -263,7 +263,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Android Command Line Tools | 9.0                                                                                                                                                                                                                                                                                                                                           |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                            |
 | Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                                                                                                                                                        |
-| Android SDK Platforms      | android-37.0 (rev 1)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
+| Android SDK Platforms      | android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                        |
 | CMake                      | 3.18.1<br>3.22.1<br>3.31.5                                                                                                                                                                                                                                                                                                                    |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                            |
@@ -372,7 +372,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | wget                   | 1.21.2-2ubuntu1.1                   |
 | xorriso                | 1.5.4-2                             |
 | xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.16       |
-| xz-utils               | 5.2.5-2ubuntu1                      |
+| xz-utils               | 5.2.5-2ubuntu1.1                    |
 | zip                    | 3.0-12build2                        |
 | zsync                  | 0.6.2-3ubuntu1                      |
 
