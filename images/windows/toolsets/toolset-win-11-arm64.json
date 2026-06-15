@@ -36,7 +36,6 @@
             "arch": "arm64",
             "platform" : "win32",
             "versions": [
-                "20.*",
                 "22.*",
                 "24.*"
             ]
@@ -71,7 +70,7 @@
         {
             "name": "az",
             "versions": [
-                "12.5.0"
+                "15.6.1"
             ],
             "zip_versions": [
 
@@ -295,7 +294,12 @@
         "version": "3.10"
     },
     "llvm": {
-        "version": "20.1.6"
+        "version": "20.1.6",
+        "pinnedDetails": {
+            "reason": "Pinned to a specific version for Windows 11 ARM64 initial image support",
+            "link": "https://github.com/actions/runner-images/pull/13879",
+            "review-at": "2026-09-01"
+        }
     },
     "php": {
         "version": "8.4"
@@ -310,6 +314,6 @@
         "version": "3.*"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }

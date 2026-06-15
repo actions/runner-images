@@ -4,26 +4,28 @@
             "name": "Python",
             "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
             "platform" : "linux",
-            "platform_version": "26.04",
-            "arch": "x64",
+            "platform_version": "22.04",
+            "arch": "arm64",
             "versions": [
+                "3.10.*",
+                "3.11.*",
+                "3.12.*",
+                "3.13.*",
+                "3.14.*"
             ]
         },
         {
             "name": "PyPy",
-            "arch": "x64",
+            "arch": "arm64",
             "platform" : "linux",
             "versions": [
-                "3.9",
-                "3.10",
-                "3.11"
             ]
         },
         {
             "name": "node",
             "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
             "platform" : "linux",
-            "arch": "x64",
+            "arch": "arm64",
             "versions": [
                 "22.*",
                 "24.*"
@@ -32,38 +34,41 @@
         {
             "name": "go",
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
-            "arch": "x64",
+            "arch": "arm64",
             "platform" : "linux",
             "versions": [
                 "1.24.*",
                 "1.25.*",
                 "1.26.*"
             ],
-            "default": "1.26.*"
+            "default": "1.24.*"
         },
         {
             "name": "Ruby",
-            "platform_version": "26.04",
-            "arch": "x64",
+            "platform_version": "22.04",
+            "arch": "arm64",
             "versions": [
+                "3.2.*",
+                "3.3.*",
+                "3.4.*",
+                "4.0.*"
             ]
         },
         {
             "name": "CodeQL",
             "platform" : "linux",
-            "arch": "x64",
+            "arch": "arm64",
             "versions": [
-                "*"
             ]
         }
     ],
     "java": {
-        "default": "25",
-        "versions": [ "11", "17", "21", "25" ],
-        "maven": "3.9.15"
+        "default": "11",
+        "versions": [ "8", "11", "17", "21", "25"],
+        "maven": "3.9.12"
     },
     "android": {
-        "cmdline-tools": "commandlinetools-linux-14742923_latest.zip",
+        "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
         "platform_min_version": "34",
         "build_tools_min_version": "34.0.0",
         "extra_list": [
@@ -74,8 +79,9 @@
         "addon_list": [
         ],
         "additional_tools": [
-            "cmake;3.31.5",
-            "cmake;4.1.2"
+            "cmake;3.18.1",
+            "cmake;3.22.1",
+            "cmake;3.31.5"
         ],
         "ndk": {
             "default": "27",
@@ -85,6 +91,7 @@
         }
     },
     "powershellModules": [
+        {"name": "MarkdownPS"},
         {"name": "Microsoft.Graph"},
         {"name": "Pester"},
         {"name": "PSScriptAnalyzer"}
@@ -113,29 +120,46 @@
             "autoconf",
             "automake",
             "dbus",
-            "bind9-dnsutils",
+            "dnsutils",
             "dpkg",
             "dpkg-dev",
             "fakeroot",
             "fonts-noto-color-emoji",
             "gnupg2",
+            "imagemagick",
             "iproute2",
             "iputils-ping",
+            "libc++abi-dev",
+            "libc++-dev",
+            "libc6-dev",
+            "libcurl4",
+            "libgbm-dev",
+            "libgconf-2-4",
+            "libgsl-dev",
+            "libgtk-3-0",
+            "libmagic-dev",
+            "libmagickcore-dev",
+            "libmagickwand-dev",
+            "libsecret-1-dev",
+            "libsqlite3-dev",
             "libyaml-dev",
             "libtool",
+            "libunwind8",
+            "libxkbfile-dev",
+            "libxss1",
             "libssl-dev",
-            "libsqlite3-dev",
             "locales",
+            "mercurial",
             "openssh-client",
-            "7zip-rar",
+            "p7zip-rar",
             "pkg-config",
             "python-is-python3",
             "rpm",
             "texinfo",
             "tk",
-            "tree",
             "tzdata",
             "upx",
+            "xorriso",
             "xvfb",
             "xz-utils",
             "zsync"
@@ -152,20 +176,25 @@
             "findutils",
             "flex",
             "ftp",
+            "haveged",
             "lz4",
             "m4",
+            "mediainfo",
             "netcat",
             "net-tools",
-            "7zip",
+            "p7zip-full",
             "parallel",
+            "pass",
             "patchelf",
             "pigz",
             "pollinate",
             "rsync",
             "shellcheck",
+            "sphinxsearch",
             "sqlite3",
             "ssh",
             "sshpass",
+            "subversion",
             "sudo",
             "systemd-coredump",
             "swig",
@@ -174,8 +203,6 @@
             "zip"
         ]
     },
-    "brew": [
-    ],
     "docker": {
         "components": [
             {
@@ -184,23 +211,23 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "29.4.2"
+                "version": "28.0.4"
             },
             {
                 "package": "docker-ce",
-                "version": "29.4.2"
+                "version": "28.0.4"
             }
         ],
         "plugins": [
             {
                 "plugin": "buildx",
                 "version": "latest",
-                "asset": "linux-amd64"
-            },
+                "asset": "linux-arm64"
+            },            
             {
                 "plugin": "compose",
-                "version": "5.1.3",
-                "asset": "linux-x86_64"
+                "version": "2.38.2",
+                "asset": "linux-aarch64"
             }
         ]
     },
@@ -226,54 +253,99 @@
     },
     "clang": {
         "versions": [
-            "20",
-            "21",
-            "22"
+            "14",
+            "15"
         ],
-        "default_version": "21"
+        "default_version": "14"
     },
     "gcc": {
         "versions": [
-            "g++-13",
-            "g++-14",
-            "g++-15"
+            "g++-10",
+            "g++-12"
         ]
     },
     "gfortran": {
         "versions": [
-            "gfortran-13",
-            "gfortran-14",
-            "gfortran-15"
+            "gfortran-9",
+            "gfortran-10",
+            "gfortran-12"
         ]
     },
     "php": {
         "versions": [
-            "8.5"
+            "8.1"
         ]
     },
     "rubygems": [
+        {"name": "multi_json"},
+        {"name": "fastlane"}
     ],
     "selenium": {
         "version": "4"
     },
     "node": {
-        "default": "24"
+        "default": "22"
     },
     "node_modules": [
         {
+            "name": "grunt",
+            "command": "grunt"
+        },
+        {
+            "name": "gulp",
+            "command": "gulp"
+        },
+        {
             "name": "n",
             "command": "n"
+        },
+        {
+            "name": "parcel",
+            "command": "parcel"
+        },
+        {
+            "name": "typescript",
+            "command": "tsc"
+        },
+        {
+            "name": "newman",
+            "command": "newman"
+        },
+        {
+            "name": "vercel",
+            "command": "vercel"
+        },
+        {
+            "name": "webpack",
+            "command": "webpack"
+        },
+        {
+            "name": "webpack-cli",
+            "command": "webpack-cli"
+        },
+        {
+            "name": "netlify-cli",
+            "command": "netlify"
+        },
+        {
+            "name": "lerna",
+            "command": "lerna"
         },
         {
             "name": "yarn",
             "command": "yarn"
         }
     ],
-    "postgresql": {
-        "version": "18"
+     "postgresql": {
+        "version": "14"
     },
     "cmake": {
-        "version": "latest"
+        "version": "3.31.6",
+        "pinnedDetails": {
+            "reason": "Pinned to avoid CMake 4.0 compatibility issues",
+            "link": "https://github.com/actions/runner-images/issues/11926",
+            "review-at": "2026-09-01"
+        }
     },
     "pwsh": {
         "version": "7.6"

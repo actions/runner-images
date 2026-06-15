@@ -18,8 +18,8 @@ else
 fi
 
 
-if is_ubuntu22; then
-    # Install containernetworking-plugins for Ubuntu 22
+if is_ubuntu22_x64; then
+    # Install containernetworking-plugins for Ubuntu 22 x64
     curl -O http://archive.ubuntu.com/ubuntu/pool/universe/g/golang-github-containernetworking-plugins/containernetworking-plugins_1.1.1+ds1-3build1_amd64.deb
     dpkg -i containernetworking-plugins_1.1.1+ds1-3build1_amd64.deb
 fi

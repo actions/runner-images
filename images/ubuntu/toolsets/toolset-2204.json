@@ -32,7 +32,6 @@
             "platform" : "linux",
             "arch": "x64",
             "versions": [
-                "20.*",
                 "22.*",
                 "24.*"
             ]
@@ -108,7 +107,7 @@
         {
             "name": "az",
             "versions": [
-                "14.6.0"
+                "15.6.1"
             ]
         }
     ],
@@ -289,13 +288,14 @@
         ]
     },
     "rubygems": [
+        {"name": "multi_json"},
         {"name": "fastlane"}
     ],
     "selenium": {
         "version": "4"
     },
     "node": {
-        "default": "20"
+        "default": "22"
     },
     "node_modules": [
         {
@@ -351,9 +351,14 @@
         "version": "14"
     },
     "cmake": {
-        "version": "3.31.6"
+        "version": "3.31.6",
+        "pinnedDetails": {
+            "reason": "Pinned to avoid CMake 4.0 compatibility issues",
+            "link": "https://github.com/actions/runner-images/issues/11926",
+            "review-at": "2026-09-01"
+        }
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }

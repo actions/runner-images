@@ -153,7 +153,7 @@
         {
             "name": "Az",
             "versions": [
-                "14.6.0"
+                "15.6.1"
             ]
         },
         { "name": "Pester" },
@@ -219,6 +219,7 @@
     "ruby": {
         "default": "3.3",
         "rubygems": [
+            "multi_json",
             "cocoapods",
             "bundler",
             "fastlane"
@@ -256,14 +257,12 @@
             "arch": {
                 "x64": {
                     "versions": [
-                        "20.*",
                         "22.*",
                         "24.*"
                     ]
                 },
                 "arm64": {
                     "versions": [
-                        "20.*",
                         "22.*",
                         "24.*"
                     ]
@@ -318,7 +317,7 @@
         }
     ],
     "node": {
-        "default": "20"
+        "default": "22"
     },
     "llvm": {
         "version": "15"
@@ -327,7 +326,7 @@
         "version": "8.5"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     },
     "mono": {
         "framework":{

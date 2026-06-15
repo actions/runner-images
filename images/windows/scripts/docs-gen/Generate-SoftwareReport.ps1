@@ -79,7 +79,7 @@ $tools.AddToolVersion("CMake", $(Get-CMakeVersion))
 $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 if (Test-IsX64) {
     $tools.AddToolVersion("Docker", $(Get-DockerVersion))
-    $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeVersionV2))
+    $tools.AddToolVersion("Docker Compose", $(Get-DockerComposeVersion))
     $tools.AddToolVersion("Docker-wincred", $(Get-DockerWincredVersion))
     $tools.AddToolVersion("ghc", $(Get-GHCVersion))
 }

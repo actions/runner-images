@@ -56,7 +56,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "20.*",
                 "22.*",
                 "24.*"
             ]
@@ -91,7 +90,7 @@
         {
             "name": "az",
             "versions": [
-                "14.6.0"
+                "15.6.1"
             ]
         }
     ],
@@ -325,7 +324,7 @@
         ]
     },
     "node": {
-        "default": "20.*"
+        "default": "22.*"
     },
     "maven": {
         "version": "3.9"
@@ -355,6 +354,6 @@
         "version": "3.*"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }

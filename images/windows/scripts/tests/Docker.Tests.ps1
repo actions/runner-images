@@ -13,7 +13,7 @@ Describe "Docker" -Skip:(Test-IsWin11-Arm64) {
 }
 
 Describe "DockerCompose" -Skip:(Test-IsWin11-Arm64) {
-    It "docker compose v2" {
+    It "docker compose" {
         "docker compose version" | Should -ReturnZeroExitCode
     }
 

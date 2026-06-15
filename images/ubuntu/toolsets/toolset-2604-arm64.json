@@ -5,25 +5,22 @@
             "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
             "platform" : "linux",
             "platform_version": "26.04",
-            "arch": "x64",
+            "arch": "arm64",
             "versions": [
             ]
         },
         {
             "name": "PyPy",
-            "arch": "x64",
+            "arch": "arm64",
             "platform" : "linux",
             "versions": [
-                "3.9",
-                "3.10",
-                "3.11"
             ]
         },
         {
             "name": "node",
             "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
             "platform" : "linux",
-            "arch": "x64",
+            "arch": "arm64",
             "versions": [
                 "22.*",
                 "24.*"
@@ -32,7 +29,7 @@
         {
             "name": "go",
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
-            "arch": "x64",
+            "arch": "arm64",
             "platform" : "linux",
             "versions": [
                 "1.24.*",
@@ -44,16 +41,15 @@
         {
             "name": "Ruby",
             "platform_version": "26.04",
-            "arch": "x64",
+            "arch": "arm64",
             "versions": [
             ]
         },
         {
             "name": "CodeQL",
             "platform" : "linux",
-            "arch": "x64",
+            "arch": "arm64",
             "versions": [
-                "*"
             ]
         }
     ],
@@ -124,6 +120,7 @@
             "libyaml-dev",
             "libtool",
             "libssl-dev",
+            "libgbm-dev",
             "libsqlite3-dev",
             "locales",
             "openssh-client",
@@ -195,12 +192,12 @@
             {
                 "plugin": "buildx",
                 "version": "latest",
-                "asset": "linux-amd64"
+                "asset": "linux-arm64"
             },
             {
                 "plugin": "compose",
                 "version": "5.1.3",
-                "asset": "linux-x86_64"
+                "asset": "linux-aarch64"
             }
         ]
     },

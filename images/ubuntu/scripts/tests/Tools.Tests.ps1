@@ -9,7 +9,7 @@ Describe "azcopy" {
     }
 }
 
-Describe "Bicep" {
+Describe "Bicep" -Skip:(Test-IsArm64) {
     It "Bicep" {
         "bicep --version" | Should -ReturnZeroExitCode
     }
@@ -99,7 +99,7 @@ Describe "Docker" {
         }
     }
 
-    It "docker compose v2" {
+    It "docker compose" {
         $version=(Get-ToolsetContent).docker.plugins | Where-Object { $_.plugin -eq 'compose' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
             $(docker compose version --short) | Should -BeLike "*$version*"
@@ -176,25 +176,25 @@ Describe "Mono" -Skip:((-not (Test-IsUbuntu22))) {
     }
 }
 
-Describe "MSSQLCommandLineTools" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "MSSQLCommandLineTools" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "SqlPackage" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "SqlPackage" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "sqlpackage" {
         "sqlpackage /version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "R" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "R" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "r" {
         "R --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Sbt" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "Sbt" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
     }
@@ -245,7 +245,7 @@ Describe "Git-lfs" {
     }
 }
 
-Describe "Heroku" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "Heroku" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "heroku" {
         "heroku --version" | Should -ReturnZeroExitCode
     }
@@ -257,7 +257,7 @@ Describe "Homebrew" {
     }
 }
 
-Describe "Julia" {
+Describe "Julia" -Skip:(-not ((Test-IsUbuntu22-X64) -or (Test-IsUbuntu24-X64))) {
     It "julia" {
         "julia --version" | Should -ReturnZeroExitCode
     }
@@ -285,13 +285,13 @@ Describe "Kubernetes tools" {
     }
 }
 
-Describe "Leiningen" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "Leiningen" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "leiningen" {
         "lein --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Conda" {
+Describe "Conda" -Skip:(-not ((Test-IsUbuntu22-X64) -or (Test-IsUbuntu24-X64))) {
     It "conda" {
         "conda --version" | Should -ReturnZeroExitCode
     }
@@ -303,7 +303,7 @@ Describe "Packer" {
     }
 }
 
-Describe "Pulumi" {
+Describe "Pulumi" -Skip:(Test-IsUbuntu26) {
     It "pulumi" {
         "pulumi version" | Should -ReturnZeroExitCode
     }

@@ -7,7 +7,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
 - Kernel Version: 6.17.0-1018-azure
-- Image Version: 20260607.184.1
+- Image Version: 20260607.22.1
 - Systemd version: 255.4-1ubuntu8.15
 
 ## Installed Software
@@ -20,7 +20,6 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
-- Julia 1.12.6
 - Kotlin 2.4.0-release-281
 - Node.js 22.22.3
 - Perl 5.38.2
@@ -32,7 +31,6 @@
 - cpan 1.64
 - Helm 3.21.0
 - Homebrew 5.1.15
-- Miniconda 26.3.2
 - Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
@@ -44,7 +42,7 @@
 #### Environment variables
 | Name                    | Value                  |
 | ----------------------- | ---------------------- |
-| CONDA                   | /usr/share/miniconda   |
+| CONDA                   |                        |
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
 #### Homebrew note
@@ -59,17 +57,15 @@ to accomplish this.
 - Ant 1.10.14
 - Gradle 9.5.1
 - Lerna 9.0.7
-- Maven 3.9.16
+- Maven 3.9.12
 
 ### Tools
 - Ansible 2.21.0
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.1.1
 - Bazelisk 1.28.1
-- Bicep 0.43.8
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.25.6
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
 - Docker-Buildx 0.34.1
@@ -128,12 +124,6 @@ to accomplish this.
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
-### Haskell Tools
-- Cabal 3.16.1.0
-- GHC 9.14.1
-- GHCup 0.2.5.0
-- Stack 3.9.3
-
 ### Rust Tools
 - Cargo 1.96.0
 - Rust 1.96.0
@@ -144,22 +134,17 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.53
-- ChromeDriver 149.0.7827.54
-- Chromium 149.0.7827.0
-- Microsoft Edge 149.0.4022.52
-- Microsoft Edge WebDriver 149.0.4022.52
 - Selenium server 4.44.0
 - Mozilla Firefox 151.0.3
 - Geckodriver 0.37.0
 
 #### Environment variables
-| Name              | Value                                 |
-| ----------------- | ------------------------------------- |
-| CHROMEWEBDRIVER   | /usr/local/share/chromedriver-linux64 |
-| EDGEWEBDRIVER     | /usr/local/share/edge_driver          |
-| GECKOWEBDRIVER    | /usr/local/share/gecko_driver         |
-| SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
+| Name              | Value                               |
+| ----------------- | ----------------------------------- |
+| CHROMEWEBDRIVER   |                                     |
+| EDGEWEBDRIVER     |                                     |
+| GECKOWEBDRIVER    | /usr/local/share/gecko_driver       |
+| SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
 - .NET Core SDK: 8.0.127, 8.0.206, 8.0.319, 8.0.421, 9.0.117, 9.0.205, 9.0.314, 10.0.108, 10.0.204, 10.0.300
@@ -167,14 +152,6 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Databases
 - sqlite3 3.45.1
-
-#### PostgreSQL
-- PostgreSQL 16.14
-```
-User: postgres
-PostgreSQL service is disabled by default.
-Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
-```
 
 #### MySQL
 - MySQL 8.0.46-0ubuntu0.24.04.2
@@ -184,36 +161,6 @@ Password: root
 MySQL service is disabled by default.
 Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
 ```
-
-### Cached Tools
-
-#### Go
-- 1.22.12
-- 1.23.12
-- 1.24.13
-- 1.25.11
-
-#### Node.js
-- 22.22.3
-- 24.16.0
-
-#### Python
-- 3.10.20
-- 3.11.15
-- 3.12.13
-- 3.13.13
-- 3.14.5
-
-#### PyPy
-- 3.9.19 [PyPy 7.3.16]
-- 3.10.16 [PyPy 7.3.19]
-- 3.11.15 [PyPy 7.3.23]
-
-#### Ruby
-- 3.2.11
-- 3.3.11
-- 3.4.9
-- 4.0.5
 
 ### PowerShell Tools
 - PowerShell 7.4.16
@@ -229,29 +176,6 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ------- | ------- | ------------------------- | ------------- | ---------- |
 | apache2 | 2.4.58  | /etc/apache2/apache2.conf | inactive      | 80         |
 | nginx   | 1.24.0  | /etc/nginx/nginx.conf     | inactive      | 80         |
-
-### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                                                                                       |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 12.0                                                                                                                                                                                                                                                                                                                                          |
-| Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                            |
-| Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                                                                                                                                                        |
-| Android SDK Platforms      | android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                        |
-| CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                               |
-| Google Play services       | 49                                                                                                                                                                                                                                                                                                                                            |
-| Google Repository          | 58                                                                                                                                                                                                                                                                                                                                            |
-| NDK                        | 27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                     |
-
-#### Environment variables
-| Name                    | Value                                        |
-| ----------------------- | -------------------------------------------- |
-| ANDROID_HOME            | /usr/local/lib/android/sdk                   |
-| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/29.0.14206865 |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/27.3.13750724 |
-| ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                   |
 
 ### Installed apt packages
 | Name                   | Version                      |
@@ -283,6 +207,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.1.0-1ubuntu6.3             |
 | iputils-ping           | 3:20240117-1ubuntu0.1        |
 | jq                     | 1.7.1-3ubuntu0.24.04.2       |
+| libgbm-dev             | 25.2.8-0ubuntu0.24.04.1      |
 | libnss3-tools          | 2:3.98-1ubuntu0.1            |
 | libsqlite3-dev         | 3.45.1-1ubuntu2.5            |
 | libssl-dev             | 3.0.13-0ubuntu3.9            |
