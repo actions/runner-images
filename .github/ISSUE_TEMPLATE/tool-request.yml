@@ -58,7 +58,11 @@ body:
       label: Runner images where you need the tool
       options:
         - label: Ubuntu 22.04
+        - label: Ubuntu 22.04 Arm64
         - label: Ubuntu 24.04
+        - label: Ubuntu 24.04 Arm64
+        - label: Ubuntu 26.04
+        - label: Ubuntu 26.04 Arm64
         - label: Ubuntu Slim
         - label: macOS 14
         - label: macOS 14 Arm64
@@ -69,6 +73,8 @@ body:
         - label: Windows Server 2022
         - label: Windows Server 2025
         - label: Windows Server 2025 with Visual Studio 2026
+        - label: Windows Desktop 11
+        - label: Windows Desktop 11 with Visual Studio 2026
   - type: textarea
     attributes:
       label: Can this tool be installed during the build?
