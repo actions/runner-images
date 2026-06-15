@@ -24,9 +24,7 @@ git clone https://github.com/Homebrew/homebrew-cask $(brew --repository)/Library
 git clone https://github.com/Homebrew/homebrew-core $(brew --repository)/Library/Taps/homebrew/homebrew-core --origin=origin --template= --config core.fsmonitor=false --depth 1
 
 brew tap homebrew/cask
-brew trust homebrew/cask
 brew tap homebrew/core
-brew trust homebrew/core
 
 echo "Disabling Homebrew analytics..."
 brew analytics off

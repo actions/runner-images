@@ -12,8 +12,6 @@ for package in $common_packages; do
     case "$package" in
         packer)
             # Packer has been deprecated in Homebrew. Use tap to install Packer.
-            brew tap hashicorp/tap
-            brew trust hashicorp/tap
             brew install hashicorp/tap/packer
             ;;
 

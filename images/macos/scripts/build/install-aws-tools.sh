@@ -12,7 +12,6 @@ sudo installer -pkg "$awscliv2_pkg_path" -target /
 
 echo "Installing aws sam cli..."
 brew tap aws/tap
-brew trust aws/tap
 brew_smart_install aws-sam-cli
 
 echo "Install aws cli session manager"
