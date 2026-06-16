@@ -1,14 +1,15 @@
 | Announcements |
 |-|
+| [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
+| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
 | [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
-| [[All OS] Azure PowerShell module will be updated from 12.5.0/14.6.0 to 15.6.1](https://github.com/actions/runner-images/issues/14104) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
 - Kernel Version: 6.17.0-1018-azure
-- Image Version: 20260607.184.1
-- Systemd version: 255.4-1ubuntu8.15
+- Image Version: 20260615.205.1
+- Systemd version: 255.4-1ubuntu8.16
 
 ## Installed Software
 
@@ -30,15 +31,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.21.0
-- Homebrew 5.1.15
+- Helm 3.21.1
+- Homebrew 6.0.2
 - Miniconda 26.3.2
 - Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.14.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit 10ceb139a6)
+- Vcpkg (build from commit a7acc4f979)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -66,7 +67,7 @@ to accomplish this.
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.1.1
 - Bazelisk 1.28.1
-- Bicep 0.43.8
+- Bicep 0.44.1
 - Buildah 1.33.7
 - CMake 3.31.6
 - CodeQL Action Bundle 2.25.6
@@ -75,14 +76,14 @@ to accomplish this.
 - Docker-Buildx 0.34.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.235.0
+- Fastlane 2.236.1
 - Git 2.54.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.32.0
-- Kubectl 1.36.1
+- Kubectl 1.36.2
 - Kustomize 5.8.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -90,11 +91,11 @@ to accomplish this.
 - n 10.2.0
 - Newman 6.2.2
 - nvm 0.40.5
-- OpenSSL 3.0.13-0ubuntu3.9
+- OpenSSL 3.0.13-0ubuntu3.11
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.245.0
+- Pulumi 3.246.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -103,13 +104,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.34.63
+- AWS CLI 2.35.5
 - AWS CLI Session Manager Plugin 1.2.814.0
-- AWS SAM CLI 1.161.1
+- AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.4
-- GitHub CLI 2.93.0
-- Google Cloud CLI 571.0.0
+- GitHub CLI 2.94.0
+- Google Cloud CLI 572.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -131,8 +132,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.16.1.0
 - GHC 9.14.1
-- GHCup 0.2.5.0
-- Stack 3.9.3
+- GHCup 0.2.6.1
+- Stack 3.11.1
 
 ### Rust Tools
 - Cargo 1.96.0
@@ -144,13 +145,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.53
-- ChromeDriver 149.0.7827.54
+- Google Chrome 149.0.7827.114
+- ChromeDriver 149.0.7827.115
 - Chromium 149.0.7827.0
-- Microsoft Edge 149.0.4022.52
-- Microsoft Edge WebDriver 149.0.4022.52
+- Microsoft Edge 149.0.4022.69
+- Microsoft Edge WebDriver 149.0.4022.69
 - Selenium server 4.44.0
-- Mozilla Firefox 151.0.3
+- Mozilla Firefox 151.0.4
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -162,7 +163,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.127, 8.0.206, 8.0.319, 8.0.421, 9.0.117, 9.0.205, 9.0.314, 10.0.108, 10.0.204, 10.0.300
+- .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
 - nbgv 3.9.50+6feeb89450
 
 ### Databases
@@ -201,8 +202,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 3.10.20
 - 3.11.15
 - 3.12.13
-- 3.13.13
-- 3.14.5
+- 3.13.14
+- 3.14.6
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -216,7 +217,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 4.0.5
 
 ### PowerShell Tools
-- PowerShell 7.4.16
+- PowerShell 7.6.2
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -285,7 +286,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | jq                     | 1.7.1-3ubuntu0.24.04.2       |
 | libnss3-tools          | 2:3.98-1ubuntu0.1            |
 | libsqlite3-dev         | 3.45.1-1ubuntu2.5            |
-| libssl-dev             | 3.0.13-0ubuntu3.9            |
+| libssl-dev             | 3.0.13-0ubuntu3.11           |
 | libtool                | 2.4.7-7build1                |
 | libyaml-dev            | 0.2.5-1build1                |
 | locales                | 2.39-0ubuntu8.7              |
@@ -306,7 +307,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | pollinate              | 4.33-3.1ubuntu1.3            |
 | python-is-python3      | 3.11.4-1                     |
 | rpm                    | 4.18.2+dfsg-2.1build2        |
-| rsync                  | 3.2.7-1ubuntu1.4             |
+| rsync                  | 3.2.7-1ubuntu1.5             |
 | shellcheck             | 0.9.0-1                      |
 | sphinxsearch           | 2.2.11-8build1               |
 | sqlite3                | 3.45.1-1ubuntu2.5            |
@@ -314,9 +315,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sshpass                | 1.09-1                       |
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.2    |
 | swig                   | 4.2.0-2ubuntu1               |
-| systemd-coredump       | 255.4-1ubuntu8.15            |
+| systemd-coredump       | 255.4-1ubuntu8.16            |
 | tar                    | 1.35+dfsg-3build1            |
-| telnet                 | 0.17+2.5-3ubuntu4.1          |
+| telnet                 | 0.17+2.5-3ubuntu4.2          |
 | texinfo                | 7.1-3build2                  |
 | time                   | 1.9-0.2build1                |
 | tk                     | 8.6.14build1                 |
@@ -325,7 +326,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
 | wget                   | 1.21.4-1ubuntu4.1            |
-| xvfb                   | 2:21.1.12-1ubuntu1.5         |
+| xvfb                   | 2:21.1.12-1ubuntu1.6         |
 | xz-utils               | 5.6.1+really5.4.5-1ubuntu0.3 |
 | zip                    | 3.0-13ubuntu0.2              |
 | zsync                  | 0.6.2-5build1                |
