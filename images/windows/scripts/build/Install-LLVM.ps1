@@ -5,22 +5,6 @@
 
 $llvmVersion = (Get-ToolsetContent).llvm.version
 
-function Write-RecentChocoLog {
-    param(
-        [string] $LogPath,
-        [int] $Tail = 200
-    )
-
-    if (-not (Test-Path $LogPath)) {
-        Write-Host "Chocolatey log was not found at: $LogPath"
-        return
-    }
-
-    Write-Host "--- Last $Tail lines of $LogPath ---"
-    Get-Content -Path $LogPath -Tail $Tail
-    Write-Host "--- End of Chocolatey log tail ---"
-}
-
 if (Test-IsArm64) {
     $installDir = "C:\Program Files\LLVM"
 
@@ -45,38 +29,12 @@ if (Test-IsArm64) {
     Add-MachinePathItem (Join-Path $installDir "bin")
     Update-Environment
 } else {
-    $chocoLogPath = "C:\ProgramData\chocolatey\logs\chocolatey.log"
+    # DEBUG: print disk free space before installation
+    Write-Host "Disk free space before LLVM installation:"
+    Get-PSDrive -PSProvider FileSystem | Select-Object Name, @{N='Free(GB)';E={[math]::Round($_.Free/1GB,2)}} | Format-Table -AutoSize
+
     $latestChocoVersion = Resolve-ChocoPackageVersion -PackageName "llvm" -TargetVersion $llvmVersion
-
-    if (-not $latestChocoVersion) {
-        Write-RecentChocoLog -LogPath $chocoLogPath
-        throw "Unable to resolve Chocolatey version for llvm target version '$llvmVersion'."
-    }
-
-    Write-Host "Resolved llvm Chocolatey version: $latestChocoVersion"
-    Write-Host "Chocolatey CLI version: $(choco --version)"
-    Write-Host "Chocolatey source list:"
-    choco source list
-
-    $chocoArgs = @("install", "llvm", "--version", $latestChocoVersion, "-y", "--no-progress", "--require-checksums")
-    Write-Host "Running: choco $($chocoArgs -join ' ')"
-
-    & choco @chocoArgs
-    $chocoExitCode = $LASTEXITCODE
-    Write-Host "Chocolatey exit code: $chocoExitCode"
-
-    if ($chocoExitCode -ne 0) {
-        Write-RecentChocoLog -LogPath $chocoLogPath
-        throw "Chocolatey failed to install llvm version '$latestChocoVersion'. Exit code: $chocoExitCode"
-    }
-
-    $installedPackage = choco list --localonly llvm --exact --all --limitoutput
-    if (-not $installedPackage) {
-        Write-RecentChocoLog -LogPath $chocoLogPath
-        throw "llvm was not found in local Chocolatey package list after installation."
-    }
-
-    Write-Host "Package installed: $installedPackage"
+    Install-ChocoPackage llvm -ArgumentList '--version', $latestChocoVersion
 }
 
 Invoke-PesterTests -TestFile "LLVM"
