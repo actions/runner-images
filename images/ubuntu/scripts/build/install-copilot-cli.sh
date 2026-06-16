@@ -9,14 +9,18 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/os.sh
 
 # Detect host architecture to pick the matching release asset and toolcache
 # subdirectory.
-case "$(uname -m)" in
-    x86_64) arch="x64" ;;
-    aarch64) arch="arm64" ;;
-    *) echo "Error: unsupported architecture $(uname -m)"; exit 1 ;;
-esac
+if is_x64; then
+    arch="x64"
+elif is_arm64; then
+    arch="arm64"
+else
+    echo "Error: unsupported architecture $(uname -m)"
+    exit 1
+fi
 
 # Pin to the catch-all max-agent published in the gh-aw compatibility matrix
 # (https://github.com/github/gh-aw-actions/blob/main/.github/aw/compat.json).
