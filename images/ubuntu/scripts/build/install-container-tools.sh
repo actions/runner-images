@@ -28,6 +28,8 @@ fi
 apt-get update
 apt-get install ${install_packages[@]}
 mkdir -p /etc/containers
-printf "[registries.search]\nregistries = ['docker.io', 'quay.io']\n" | tee /etc/containers/registries.conf
+# Write registries.conf in v2 format; skopeo >= 1.8 rejects the legacy v1 schema
+# (see https://github.com/containers/image/blob/main/docs/containers-registries.conf.5.md)
+printf 'unqualified-search-registries = ["docker.io", "quay.io"]\n' | tee /etc/containers/registries.conf
 
 invoke_tests "Tools" "Containers"
