@@ -195,6 +195,7 @@ if (Test-IsUbuntu22) {
     $cliTools.AddToolVersion("OpenShift CLI", $(Get-OCCliVersion))
     $cliTools.AddToolVersion("Vercel CLI", $(Get-VerselCliversion))
 }
+$cliTools.AddToolVersion("Github Copilot CLI", $(Get-GithubCopilotCliVersion))
 
 # Java
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
