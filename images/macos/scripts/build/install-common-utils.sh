@@ -24,6 +24,11 @@ for package in $common_packages; do
             fi
             ;;
 
+        xcodes)
+            # Xcodes has migrated to separate org. Use correct link to install Xcodes.
+            brew install xcodesorg/made/xcodes
+            ;;
+
         # Default behaviour for all other packages
         *)
             brew_smart_install "$package"
