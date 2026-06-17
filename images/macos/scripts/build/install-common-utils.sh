@@ -31,7 +31,7 @@ for package in $common_packages; do
             else
                 # xcodes formulae for the rest of OS versions was broken, using pinned commit
                 echo "Installing pinned xcodes formulae..."
-                COMMIT=ce1b5c047a79752104c9f32b4873ca21f409a11f
+                COMMIT=7236cc49de96b89c4e46ca28a36993578423df8d
                 FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/x/xcodes.rb"
                 FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/x/xcodes.rb"
                 mkdir -p "$(dirname $FORMULA_PATH)"
