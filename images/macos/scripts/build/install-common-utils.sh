@@ -38,8 +38,6 @@ for package in $common_packages; do
                 curl -fsSL $FORMULA_URL -o $FORMULA_PATH
                 HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install xcodes
             fi
-            # Xcodes has migrated to separate org. Use correct link to install Xcodes.
-            brew install xcodesorg/made/xcodes
             ;;
 
         # Default behaviour for all other packages
