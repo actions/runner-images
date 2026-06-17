@@ -105,8 +105,8 @@ build {
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}", "INSTALL_VS_2026=true"]
     scripts           = [
       "${path.root}/../scripts/build/Install-VisualStudio.ps1",
+      "${path.root}/../scripts/build/Install-KubernetesTools.ps1",
       "${path.root}/../scripts/build/Install-LLVM.ps1",
-      "${path.root}/../scripts/build/Install-KubernetesTools.ps1"
     ]
     valid_exit_codes  = [0, 3010]
   }
