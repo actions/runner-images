@@ -25,6 +25,19 @@ for package in $common_packages; do
             ;;
 
         xcodes)
+            if is_SequoiaArm64 || is_TahoeArm64; then
+                # xcodes formulae still works on MacOS 15 ARM and 26 ARM
+                brew_smart_install "$package"
+            else
+                # xcodes formulae for the rest of OS versions was broken, using pinned commit
+                echo "Installing pinned xcodes formulae..."
+                COMMIT=ce1b5c047a79752104c9f32b4873ca21f409a11f
+                FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/x/xcodes.rb"
+                FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/x/xcodes.rb"
+                mkdir -p "$(dirname $FORMULA_PATH)"
+                curl -fsSL $FORMULA_URL -o $FORMULA_PATH
+                HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install xcodes
+            fi
             # Xcodes has migrated to separate org. Use correct link to install Xcodes.
             brew install xcodesorg/made/xcodes
             ;;
