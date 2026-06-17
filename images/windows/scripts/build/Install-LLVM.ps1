@@ -29,10 +29,6 @@ if (Test-IsArm64) {
     Add-MachinePathItem (Join-Path $installDir "bin")
     Update-Environment
 } else {
-    # DEBUG: print disk free space before installation
-    Write-Host "Disk free space before LLVM installation:"
-    Get-PSDrive -PSProvider FileSystem | Select-Object Name, @{N='Free(GB)';E={[math]::Round($_.Free/1GB,2)}} | Format-Table -AutoSize
-
     $latestChocoVersion = Resolve-ChocoPackageVersion -PackageName "llvm" -TargetVersion $llvmVersion
     Install-ChocoPackage llvm -ArgumentList '--version', $latestChocoVersion
 }
