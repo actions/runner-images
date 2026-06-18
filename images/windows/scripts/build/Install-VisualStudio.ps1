@@ -70,4 +70,69 @@ if (Test-IsWin25-X64) {
     }
 }
 
+# Log temporary directories size and free disk space
+Write-Host "================================"
+Write-Host "Temporary Directories Size Report"
+Write-Host "================================"
+
+$tempDirectories = @(
+    "$env:SystemRoot\Temp",
+    "$env:TEMP",
+    "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp"
+)
+
+function Get-DirectorySize {
+    param(
+        [string]$Path
+    )
+    
+    if (-not (Test-Path $Path)) {
+        return @{
+            Path = $Path
+            SizeGB = 0
+            SizeMB = 0
+            Exists = $false
+        }
+    }
+    
+    $size = (Get-ChildItem -Path $Path -Recurse -ErrorAction SilentlyContinue | Measure-Object -Property Length -Sum).Sum
+    $sizeGB = [math]::Round($size / 1GB, 2)
+    $sizeMB = [math]::Round($size / 1MB, 2)
+    
+    return @{
+        Path = $Path
+        SizeGB = $sizeGB
+        SizeMB = $sizeMB
+        Exists = $true
+    }
+}
+
+foreach ($dir in $tempDirectories) {
+    $dirInfo = Get-DirectorySize -Path $dir
+    if ($dirInfo.Exists) {
+        Write-Host "Directory: $($dirInfo.Path)"
+        Write-Host "  Size: $($dirInfo.SizeGB) GB ($($dirInfo.SizeMB) MB)"
+    } else {
+        Write-Host "Directory: $($dirInfo.Path) - NOT FOUND"
+    }
+}
+
+# Log free disk space
+Write-Host ""
+Write-Host "Free Disk Space on System Drive"
+Write-Host "================================"
+$systemDrive = $env:SystemDrive
+$diskInfo = Get-Volume | Where-Object { $_.DriveLetter -eq $systemDrive.TrimEnd(':') }
+if ($diskInfo) {
+    $freeGB = [math]::Round($diskInfo.SizeRemaining / 1GB, 2)
+    $totalGB = [math]::Round($diskInfo.Size / 1GB, 2)
+    $usedGB = [math]::Round(($diskInfo.Size - $diskInfo.SizeRemaining) / 1GB, 2)
+    $usagePercent = [math]::Round(($usedGB / $totalGB) * 100, 2)
+    
+    Write-Host "Drive: $($diskInfo.DriveLetter):"
+    Write-Host "  Total Size: $totalGB GB"
+    Write-Host "  Used: $usedGB GB ($usagePercent%)"
+    Write-Host "  Free: $freeGB GB"
+}
+
 Invoke-PesterTests -TestFile "VisualStudio"
