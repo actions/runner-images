@@ -4,6 +4,13 @@
 ##         Should be run at end, just before SoftwareReport and Finalize-VM.ps1.
 ################################################################################
 
+# Clean installer temp directory
+$installerTempPath = "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp"
+if (Test-Path $installerTempPath) {
+    Write-Host "Cleaning $installerTempPath"
+    Remove-Item -Path "$installerTempPath\*" -Recurse -Force -ErrorAction SilentlyContinue
+}
+
 Write-Host "Disk space before windows updates"
 Get-CimInstance Win32_LogicalDisk -Filter "DriveType = 3" | Sort-Object DeviceID | ForEach-Object {
     $totalSpaceGb = [Math]::Round($_.Size / 1GB, 2)
