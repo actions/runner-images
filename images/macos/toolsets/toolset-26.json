@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "26.4.1",
+        "default": "26.5",
         "x64": {
             "versions": [
                 {
@@ -143,7 +143,7 @@
         {
             "name": "Az",
             "versions": [
-                "14.6.0"
+                "15.6.1"
             ]
         },
         { "name": "Pester" },
@@ -208,6 +208,7 @@
     "ruby": {
         "default": "3.4",
         "rubygems": [
+            "multi_json",
             "cocoapods",
             "bundler",
             "fastlane"
@@ -311,6 +312,6 @@
         "version": "8.5"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }

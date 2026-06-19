@@ -69,7 +69,7 @@
         {
             "name": "az",
             "versions": [
-                "12.5.0"
+                "15.6.1"
             ],
             "zip_versions": [
 
@@ -305,6 +305,6 @@
         "version": "3.*"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }
