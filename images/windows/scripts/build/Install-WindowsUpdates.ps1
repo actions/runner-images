@@ -4,6 +4,14 @@
 ##         Should be run at end, just before SoftwareReport and Finalize-VM.ps1.
 ################################################################################
 
+Write-Host "Disk space before windows updates"
+Get-CimInstance Win32_LogicalDisk -Filter "DriveType = 3" | Sort-Object DeviceID | ForEach-Object {
+    $totalSpaceGb = [Math]::Round($_.Size / 1GB, 2)
+    $freeSpaceGb = [Math]::Round($_.FreeSpace / 1GB, 2)
+    $usedSpaceGb = [Math]::Round(($_.Size - $_.FreeSpace) / 1GB, 2)
+    Write-Host ("Drive {0}: used {1} GB, free {2} GB, total {3} GB" -f $_.DeviceID, $usedSpaceGb, $freeSpaceGb, $totalSpaceGb)
+}
+
 function Install-WindowsUpdates {
     Write-Host "Starting wuauserv"
     Start-Service -Name wuauserv -PassThru | Out-Host
