@@ -1,14 +1,15 @@
 | Announcements |
 |-|
+| [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
+| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
 | [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
-| [[All OS] Azure PowerShell module will be updated from 12.5.0/14.6.0 to 15.6.1](https://github.com/actions/runner-images/issues/14104) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
-- Kernel Version: 6.8.0-1052-azure
-- Image Version: 20260607.22.1
-- Systemd version: 249.11-0ubuntu3.20
+- Kernel Version: 6.8.0-1059-azure
+- Image Version: 20260615.31.1
+- Systemd version: 249.11-0ubuntu3.21
 
 ## Installed Software
 
@@ -31,15 +32,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.21.0
-- Homebrew 5.1.15
+- Helm 3.21.1
+- Homebrew 6.0.2
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.14.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 10ceb139a6)
+- Vcpkg (build from commit a7acc4f979)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -75,14 +76,14 @@ to accomplish this.
 - Docker-Buildx 0.34.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.235.0
+- Fastlane 2.236.1
 - Git 2.54.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.6
 - Kind 0.32.0
-- Kubectl 1.36.1
+- Kubectl 1.36.2
 - Kustomize 5.8.1
 - MediaInfo 21.09
 - Mercurial 6.1.1
@@ -90,31 +91,31 @@ to accomplish this.
 - n 10.2.0
 - Newman 6.2.2
 - nvm 0.40.5
-- OpenSSL 3.0.2-0ubuntu1.23
+- OpenSSL 3.0.2-0ubuntu1.25
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.245.0
+- Pulumi 3.246.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.15.5
+- Terraform 1.15.6
 - yamllint 1.38.0
 - yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.34.63
+- AWS CLI 2.35.5
 - AWS CLI Session Manager Plugin 1.2.814.0
-- AWS SAM CLI 1.161.1
+- AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.4
-- GitHub CLI 2.93.0
-- Google Cloud CLI 571.0.0
+- GitHub CLI 2.94.0
+- Google Cloud CLI 572.0.0
 - Netlify CLI 26.1.0
-- OpenShift CLI 4.21.18
-- Vercel CLI 54.9.1
+- OpenShift CLI 4.22.0
+- Vercel CLI 54.14.0
 
 ### Java
 | Version              | Environment Variable |
@@ -144,12 +145,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo audit 0.22.2
 - Cargo clippy 0.1.96
 - Cargo outdated 0.19.0
-- Cbindgen 0.29.3
+- Cbindgen 0.29.4
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
 - Selenium server 4.44.0
-- Mozilla Firefox 151.0.3
+- Mozilla Firefox 151.0.4
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -161,7 +162,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.127, 8.0.206, 8.0.319, 8.0.421, 9.0.117, 9.0.205, 9.0.314, 10.0.108, 10.0.204, 10.0.300
+- .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
 - nbgv 3.9.50+6feeb89450
 
 ### Databases
@@ -177,7 +178,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 ### PowerShell Tools
-- PowerShell 7.4.16
+- PowerShell 7.6.2
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -227,7 +228,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.13                    |
 | libcurl4               | 7.81.0-1ubuntu1.24                  |
-| libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.3          |
+| libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.4          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
 | libgtk-3-0             | 3.24.33-1ubuntu2.2                  |
@@ -237,7 +238,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libnss3-tools          | 2:3.98-0ubuntu0.22.04.3             |
 | libsecret-1-dev        | 0.20.5-2                            |
 | libsqlite3-dev         | 3.37.2-2ubuntu0.5                   |
-| libssl-dev             | 3.0.2-0ubuntu1.23                   |
+| libssl-dev             | 3.0.2-0ubuntu1.25                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
@@ -262,7 +263,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | pollinate              | 4.33-3ubuntu2.3                     |
 | python-is-python3      | 3.9.2-2                             |
 | rpm                    | 4.17.0+dfsg1-4build1                |
-| rsync                  | 3.2.7-0ubuntu0.22.04.6              |
+| rsync                  | 3.2.7-0ubuntu0.22.04.7              |
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
 | sqlite3                | 3.37.2-2ubuntu0.5                   |
@@ -271,7 +272,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.6                    |
 | swig                   | 4.0.2-1ubuntu1                      |
-| systemd-coredump       | 249.11-0ubuntu3.20                  |
+| systemd-coredump       | 249.11-0ubuntu3.21                  |
 | tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
