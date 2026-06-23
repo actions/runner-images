@@ -155,6 +155,7 @@
             "libxkbfile-dev",
             "libxss1",
             "libssl-dev",
+            "libicu-dev",
             "locales",
             "mercurial",
             "openssh-client",

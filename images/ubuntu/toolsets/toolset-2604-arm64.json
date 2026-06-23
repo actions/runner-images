@@ -120,6 +120,7 @@
             "libyaml-dev",
             "libtool",
             "libssl-dev",
+            "libicu-dev",
             "libgbm-dev",
             "libsqlite3-dev",
             "locales",
