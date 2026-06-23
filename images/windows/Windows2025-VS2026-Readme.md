@@ -2,14 +2,13 @@
 |-|
 | [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[Windows] Windows 11 Arm with Visual Studio 2026 is now available as a public preview](https://github.com/actions/runner-images/issues/14225) |
-| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 | [[Windows] `windows-latest` and `windows-2025` image-label will use Windows Server 2025 with Visual Studio 2026 image in June 2026](https://github.com/actions/runner-images/issues/14017) |
 | [[Windows] The Windows Server 2025 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14016) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 32995
-- Image Version: 20260614.141.1
+- Image Version: 20260622.153.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -23,7 +22,7 @@
 - Julia 1.12.0
 - Kotlin 2.4.0
 - LLVM 20.1.8
-- Node 22.22.3
+- Node 22.23.0
 - Perl 5.42.0
 - PHP 8.5.7
 - Python 3.12.10
@@ -37,9 +36,9 @@
 - NPM 10.9.8
 - NuGet 7.6.0.59
 - pip 26.1.2 (python 3.12)
-- Pipx 1.14.0
+- Pipx 1.14.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 44819aa2a6)
+- Vcpkg (build from commit 74a896d035)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,7 +61,7 @@
 - Bazelisk 1.28.1
 - Bicep 0.44.1
 - Cabal 3.16.1.0
-- CMake 4.3.3
+- CMake 4.3.4
 - CodeQL Action Bundle 2.25.6
 - Docker 29.1.5
 - Docker Compose 2.40.3
@@ -80,12 +79,12 @@
 - GNU Binutils 2.46
 - Newman 6.2.2
 - OpenSSL 3.6.3
-- Packer 1.15.3
-- Pulumi 3.245.0
+- Packer 1.15.4
+- Pulumi 3.247.0
 - R 4.6.0
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.11.1
-- Swig 4.3.1
+- Swig 4.4.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.14.1.8722
@@ -94,12 +93,12 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.4
+- AWS CLI 2.35.9
 - AWS SAM CLI 1.162.1
-- AWS Session Manager CLI 1.2.814.0
+- AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.87.0
 - Azure DevOps CLI extension 1.0.4
-- GitHub CLI 2.94.0
+- GitHub CLI 2.95.0
 
 ### Rust Tools
 - Cargo 1.96.0
@@ -112,14 +111,14 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.115
-- Chrome Driver 149.0.7827.115
-- Microsoft Edge 149.0.4022.69
-- Microsoft Edge Driver 149.0.4022.69
-- Mozilla Firefox 151.0.4
+- Google Chrome 149.0.7827.156
+- Chrome Driver 149.0.7827.155
+- Microsoft Edge 149.0.4022.80
+- Microsoft Edge Driver 149.0.4022.80
+- Mozilla Firefox 152.0.1
 - Gecko Driver 0.37.0
 - IE Driver 4.14.0.0
-- Selenium server 4.44.0
+- Selenium server 4.45.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -158,14 +157,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Tools
 
 #### Go
-- 1.22.12
-- 1.23.12
 - 1.24.13
 - 1.25.11
+- 1.26.4
 
 #### Node.js
-- 22.22.3
-- 24.16.0
+- 22.23.0
+- 24.17.0
 
 #### Python
 - 3.10.11
@@ -216,12 +214,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.1  | C:\tools\nginx-1.31.1\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.31.2  | C:\tools\nginx-1.31.2\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2026
 | Name                          | Version        | Path                                                   |
 | ----------------------------- | -------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.7.11903.348 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Visual Studio Enterprise 2026 | 18.7.11911.148 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -450,22 +448,22 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
 - Microsoft.NETCore.App: 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
 - Microsoft.WindowsDesktop.App: 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
-- nbgv 3.9.50+6feeb89450
+- nbgv 3.10.85+c46e47c69b
 
 ### PowerShell Tools
-- PowerShell 7.6.2
+- PowerShell 7.6.3
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.233
+- AWSPowershell: 5.0.239
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.37.0
+- Microsoft.Graph: 2.38.0
 - Pester: 3.4.0, 5.7.1
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
 - PSWindowsUpdate: 2.2.1.5
-- SqlServer: 22.3.0
+- SqlServer: 22.4.5.1
 - VSSetup: 2.2.16
 
 ### Android
