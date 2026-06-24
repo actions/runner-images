@@ -1,0 +1,234 @@
+{
+    "xcode": {
+        "default": "27_beta",
+        "x64": {
+            "versions": [
+                {
+                    "link": "27_beta",
+                    "filename": "Xcode_27_beta",
+                    "version": "27.0+27A5194q",
+                    "symlinks": ["27.0"],
+                    "sha256": "20f9e0a1afbd11aeb4f52c7c518427c637cf6f2f6f9695912264dc3de2b039f9",
+                    "install_runtimes": "default"
+                }
+            ]
+        },
+        "arm64": {
+            "versions": [
+                {
+                    "link": "27_beta",
+                    "filename": "Xcode_27_beta",
+                    "version": "27.0+27A5194q",
+                    "symlinks": ["27.0"],
+                    "sha256": "20f9e0a1afbd11aeb4f52c7c518427c637cf6f2f6f9695912264dc3de2b039f9",
+                    "install_runtimes": "default"
+                }
+            ]
+        } 
+    },
+    "java": {
+        "x64": {
+            "default": "21",
+            "versions": [ "11", "17", "21", "25" ]
+        },
+        "arm64": {
+            "default": "21",
+            "versions": [ "11", "17", "21", "25" ]
+        }
+    },
+    "android": {
+        "cmdline-tools": "commandlinetools-mac-12266719_latest.zip",
+        "sdk-tools": "sdk-tools-darwin-4333796.zip",
+        "platform_min_version": "35",
+        "build_tools_min_version": "35.0.0",
+        "extras": [
+            "android;m2repository", "google;m2repository", "google;google_play_services"
+        ],
+        "addons": [],
+        "additional_tools": [
+            "cmake;3.31.5",
+            "cmake;4.1.2"
+        ],
+        "ndk": {
+            "default": "27",
+            "versions": [
+                "27","28", "29"
+            ]
+        }
+    },
+    "powershellModules": [
+        {
+            "name": "Az",
+            "versions": [
+                "15.6.1"
+            ]
+        },
+        { "name": "Pester" },
+        { "name": "PSScriptAnalyzer" }
+    ],
+    "brew": {
+        "common_packages": [
+            "ant",
+            "aria2",
+            "azure-cli",
+            "bazelisk",
+            "carthage",
+            "cmake",
+            "gh",
+            "gnupg",
+            "gnu-tar",
+            "kotlin",
+            "libpq",
+            "libsodium",
+            "openssl",
+            "p7zip",
+            "packer",
+            "perl",
+            "pkgconf",
+            "swiftformat",
+            "tcl-tk@8",
+            "zstd",
+            "ninja",
+            "gmp",
+            "yq",
+            "unxip",
+            "xcbeautify",
+            "xcodes"
+        ],
+        "cask_packages": []
+    },
+    "gcc": {
+        "versions": [
+            "13",
+            "14",
+            "15"
+        ]
+    },
+    "dotnet": {
+        "arch":{
+            "x64": {
+                "versions": [
+                    "8.0",
+                    "9.0",
+                    "10.0"
+                ]
+            },
+            "arm64": {
+                "versions": [
+                    "8.0",
+                    "9.0",
+                    "10.0"
+                ]
+            }
+        }
+    },
+    "ruby": {
+        "default": "3.4",
+        "rubygems": [
+            "multi_json",
+            "cocoapods",
+            "bundler",
+            "fastlane"
+        ]
+    },
+    "toolcache": [
+        {
+            "name": "Python",
+            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "3.11.*",
+                        "3.12.*",
+                        "3.13.*",
+                        "3.14.*"
+                    ]
+                },
+                "arm64": {
+                    "versions": [
+                        "3.11.*",
+                        "3.12.*",
+                        "3.13.*",
+                        "3.14.*"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Node",
+            "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "22.*",
+                        "24.*"
+                    ]
+                },
+                "arm64": {
+                    "versions": [
+                        "22.*",
+                        "24.*"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Go",
+            "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
+            "platform" : "darwin",
+            "arch": {
+                "x64": {
+                    "variable_template" : "GOROOT_{0}_{1}_X64",
+                    "versions": [
+                        "1.24.*",
+                        "1.25.*",
+                        "1.26.*"
+                    ]
+                },
+                "arm64": {
+                    "variable_template" : "GOROOT_{0}_{1}_ARM64",
+                    "versions": [
+                        "1.24.*",
+                        "1.25.*",
+                        "1.26.*"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Ruby",
+            "arch": {
+                "x64": {
+                    "versions": [
+                        "3.2.*",
+                        "3.3.*",
+                        "3.4.*",
+                        "4.0.*"
+                    ]
+                },
+                "arm64": {
+                    "versions": [
+                        "3.2.*",
+                        "3.3.*",
+                        "3.4.*",
+                        "4.0.*"
+                    ]
+                }
+            }
+        }
+    ],
+    "node": {
+        "default": "24"
+    },
+    "llvm": {
+        "version": "20"
+    },
+    "php": {
+        "version": "8.5"
+    },
+    "pwsh": {
+        "version": "7.6"
+    }
+}
