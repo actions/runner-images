@@ -12,15 +12,6 @@
         {
             "name": "Python",
             "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
-            "arch": "x64",
-            "platform" : "win32",
-            "versions": [
-                "3.13.*"
-            ]
-        },
-        {
-            "name": "Python",
-            "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
             "arch": "arm64",
             "platform" : "win32",
             "versions": [
