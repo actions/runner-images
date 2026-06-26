@@ -1,14 +1,14 @@
 | Announcements |
 |-|
+| [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
 | [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
-| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
 - Kernel Version: 6.17.0-1018-azure
-- Image Version: 20260615.31.1
+- Image Version: 20260622.39.1
 - Systemd version: 255.4-1ubuntu8.16
 
 ## Installed Software
@@ -22,7 +22,7 @@
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
 - Kotlin 2.4.0-release-281
-- Node.js 22.22.3
+- Node.js 22.23.0
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -30,14 +30,14 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.21.1
-- Homebrew 6.0.2
+- Helm 3.21.2
+- Homebrew 6.0.3
 - Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
-- Pipx 1.14.0
+- Pipx 1.14.1
 - RubyGems 3.4.20
-- Vcpkg (build from commit a7acc4f979)
+- Vcpkg (build from commit 0bd2453fd3)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,12 +56,12 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.5.1
+- Gradle 9.6.0
 - Lerna 9.0.7
 - Maven 3.9.12
 
 ### Tools
-- Ansible 2.21.0
+- Ansible 2.21.1
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.1.1
 - Bazelisk 1.28.1
@@ -69,7 +69,7 @@ to accomplish this.
 - CMake 3.31.6
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.34.1
+- Docker-Buildx 0.35.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.236.1
@@ -91,7 +91,7 @@ to accomplish this.
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.246.0
+- Pulumi 3.247.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -100,13 +100,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.5
-- AWS CLI Session Manager Plugin 1.2.814.0
+- AWS CLI 2.35.10
+- AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.4
-- GitHub CLI 2.94.0
-- Google Cloud CLI 572.0.0
+- GitHub CLI 2.95.0
+- Google Cloud CLI 573.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -135,8 +135,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Selenium server 4.44.0
-- Mozilla Firefox 151.0.4
+- Selenium server 4.45.0
+- Mozilla Firefox 152.0.1
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -149,13 +149,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
-- nbgv 3.9.50+6feeb89450
+- nbgv 3.10.85+c46e47c69b
 
 ### Databases
 - sqlite3 3.45.1
 
 #### MySQL
-- MySQL 8.0.46-0ubuntu0.24.04.2
+- MySQL 8.0.46-0ubuntu0.24.04.3
 ```
 User: root
 Password: root
@@ -164,11 +164,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 ### PowerShell Tools
-- PowerShell 7.6.2
+- PowerShell 7.6.3
 
 #### PowerShell Modules
 - Az: 15.6.1
-- Microsoft.Graph: 2.37.0
+- Microsoft.Graph: 2.38.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.25.0
 
