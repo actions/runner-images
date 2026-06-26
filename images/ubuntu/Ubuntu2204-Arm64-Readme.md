@@ -1,14 +1,14 @@
 | Announcements |
 |-|
+| [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
 | [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
-| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1059-azure
-- Image Version: 20260615.31.1
+- Image Version: 20260623.43.1
 - Systemd version: 249.11-0ubuntu3.21
 
 ## Installed Software
@@ -24,7 +24,7 @@
 - Kotlin 2.4.0-release-281
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 22.22.3
+- Node.js 22.23.1
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
@@ -32,15 +32,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.21.1
-- Homebrew 6.0.2
+- Helm 3.21.2
+- Homebrew 6.0.3
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.14.0
+- Pipx 1.14.1
 - RubyGems 3.3.5
-- Vcpkg (build from commit a7acc4f979)
+- Vcpkg (build from commit 67b5ee32c6)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,7 +59,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.5.1
+- Gradle 9.6.0
 - Lerna 9.0.7
 - Maven 3.9.12
 
@@ -73,7 +73,7 @@ to accomplish this.
 - CMake 3.31.6
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.34.1
+- Docker-Buildx 0.35.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.236.1
@@ -95,7 +95,7 @@ to accomplish this.
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.246.0
+- Pulumi 3.247.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
@@ -106,16 +106,16 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.5
-- AWS CLI Session Manager Plugin 1.2.814.0
+- AWS CLI 2.35.11
+- AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.4
-- GitHub CLI 2.94.0
-- Google Cloud CLI 572.0.0
+- GitHub CLI 2.95.0
+- Google Cloud CLI 574.0.0
 - Netlify CLI 26.1.0
-- OpenShift CLI 4.22.0
-- Vercel CLI 54.14.0
+- OpenShift CLI 4.22.2
+- Vercel CLI 54.15.1
 
 ### Java
 | Version              | Environment Variable |
@@ -149,8 +149,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Selenium server 4.44.0
-- Mozilla Firefox 151.0.4
+- Selenium server 4.45.0
+- Mozilla Firefox 152.0.1
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -163,13 +163,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
-- nbgv 3.9.50+6feeb89450
+- nbgv 3.10.85+c46e47c69b
 
 ### Databases
 - sqlite3 3.37.2
 
 #### MySQL
-- MySQL 8.0.46-0ubuntu0.22.04.2
+- MySQL 8.0.46-0ubuntu0.22.04.3
 ```
 User: root
 Password: root
@@ -178,12 +178,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 ### PowerShell Tools
-- PowerShell 7.6.2
+- PowerShell 7.6.3
 
 #### PowerShell Modules
 - Az: 15.6.1
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.37.0
+- Microsoft.Graph: 2.38.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.25.0
 
@@ -232,6 +232,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
 | libgtk-3-0             | 3.24.33-1ubuntu2.2                  |
+| libicu-dev             | 70.1-2                              |
 | libmagic-dev           | 1:5.41-3ubuntu0.1                   |
 | libmagickcore-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
