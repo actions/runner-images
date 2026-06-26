@@ -1,52 +1,51 @@
 | Announcements |
 |-|
+| [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[macOS] macos-latest label will use macos-26 in June 2026](https://github.com/actions/runner-images/issues/14167) |
-| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
-| [[All OS] Azure PowerShell module will be updated from 12.5.0/14.6.0 to 15.6.1](https://github.com/actions/runner-images/issues/14104) |
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 26
 - OS Version: macOS 26.4 (25E246)
 - Kernel Version: Darwin 25.4.0
-- Image Version: 20260608.0215.1
+- Image Version: 20260623.0283.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.421, 9.0.102, 9.0.203, 9.0.314, 10.0.103, 10.0.203, 10.0.300
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.422, 9.0.102, 9.0.203, 9.0.315, 10.0.103, 10.0.203, 10.0.301
 - Bash 3.2.57(1)-release
 - Clang/LLVM 21.0.0
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
 - GCC 13 (Homebrew GCC 13.4.0) - available by `gcc-13` alias
 - GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
-- GCC 15 (Homebrew GCC 15.2.0_1) - available by `gcc-15` alias
+- GCC 15 (Homebrew GCC 15.3.0) - available by `gcc-15` alias
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
-- GNU Fortran 15 (Homebrew GCC 15.2.0_1) - available by `gfortran-15` alias
+- GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
 - Kotlin 2.4.0-release-281
-- Node.js 24.16.0
+- Node.js 24.17.0
 - Perl 5.42.2
 - PHP 8.5.7
-- Python3 3.14.5
+- Python3 3.14.6
 - Ruby 3.4.9
 
 ### Package Management
-- Bundler 4.0.13
+- Bundler 4.0.14
 - Carthage 0.40.0
 - CocoaPods 1.16.2
 - Composer 2.10.1
-- Homebrew 5.1.15
+- Homebrew 6.0.3
 - NPM 11.13.0
-- Pip3 26.1.1 (python 3.14)
-- Pipx 1.14.0
-- RubyGems 4.0.13
-- Vcpkg 2026 (build from commit 75672db6bd)
+- Pip3 26.1.2 (python 3.14)
+- Pipx 1.14.1
+- RubyGems 4.0.14
+- Vcpkg 2026 (build from commit a7eda31dc1)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.17
 - Apache Maven 3.9.16
-- Gradle 9.5.1
+- Gradle 9.6.0
 
 ### Utilities
 - 7-Zip 17.05
@@ -58,11 +57,11 @@
 - Curl 8.20.0
 - Git 2.54.0
 - Git LFS 3.7.1
-- GitHub CLI 2.93.0
+- GitHub CLI 2.95.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.20
-- jq 1.8.1
+- jq 1.8.2
 - OpenSSL 3.6.2 7 Apr 2026 (Library: OpenSSL 3.6.2 7 Apr 2026)
 - Packer 1.15.4
 - pkgconf 2.5.1
@@ -72,34 +71,34 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.34.63
-- AWS SAM CLI 1.161.1
-- AWS Session Manager CLI 1.2.814.0
+- AWS CLI 2.35.11
+- AWS SAM CLI 1.162.1
+- AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.4
-- Bicep CLI 0.43.8
-- Cmake 4.3.3
+- Bicep CLI 0.44.1
+- Cmake 4.3.4
 - CodeQL Action Bundle 2.25.6
-- Fastlane 2.235.0
+- Fastlane 2.236.1
 - SwiftFormat 0.61.1
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 26.5.0.0.1777544298
 - Xcodes 1.6.2
 
 ### Linters
-- SwiftLint 0.63.3
+- SwiftLint 0.64.1
 
 ### Browsers
 - Safari 26.4 (21624.1.16.11.4)
 - SafariDriver 26.4 (21624.1.16.11.4)
-- Google Chrome 149.0.7827.54
-- Google Chrome for Testing 149.0.7827.54
-- ChromeDriver 149.0.7827.54
-- Microsoft Edge 149.0.4022.52
-- Microsoft Edge WebDriver 149.0.4022.52
-- Mozilla Firefox 151.0.3
+- Google Chrome 149.0.7827.156
+- Google Chrome for Testing 149.0.7827.155
+- ChromeDriver 149.0.7827.155
+- Microsoft Edge 149.0.4022.80
+- Microsoft Edge WebDriver 149.0.4022.80
+- Mozilla Firefox 152.0.1
 - geckodriver 0.37.0
-- Selenium server 4.44.0
+- Selenium server 4.45.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -127,17 +126,17 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.13
-- 3.14.5
+- 3.13.14
+- 3.14.6
 
 #### Node.js
-- 22.22.3
-- 24.16.0
+- 22.23.0
+- 24.17.0
 
 #### Go
-- 1.23.12
 - 1.24.13
 - 1.25.11
+- 1.26.4
 
 ### Rust Tools
 - Cargo 1.96.0
@@ -150,7 +149,7 @@
 - Rustfmt 1.9.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.16
+- PowerShell 7.6.3
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -158,14 +157,15 @@
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version        | Build  | Path                           | Symlinks                                                  |
-| -------------- | ------ | ------------------------------ | --------------------------------------------------------- |
-| 26.5 (default) | 17F42  | /Applications/Xcode_26.5.app   | /Applications/Xcode_26.5.0.app<br>/Applications/Xcode.app |
-| 26.4.1         | 17E202 | /Applications/Xcode_26.4.1.app | /Applications/Xcode_26.4.app                              |
-| 26.3           | 17C529 | /Applications/Xcode_26.3.app   | /Applications/Xcode_26.3.0.app                            |
-| 26.2           | 17C52  | /Applications/Xcode_26.2.app   | /Applications/Xcode_26.2.0.app                            |
-| 26.1.1         | 17B100 | /Applications/Xcode_26.1.1.app | /Applications/Xcode_26.1.app                              |
-| 26.0.1         | 17A400 | /Applications/Xcode_26.0.1.app | /Applications/Xcode_26.0.app                              |
+| Version        | Build  | Path                                             | Symlinks                                                       |
+| -------------- | ------ | ------------------------------------------------ | -------------------------------------------------------------- |
+| 26.6           | 17F113 | /Applications/Xcode_26.6_Release_Candidate_2.app | /Applications/Xcode_26.6.0.app<br>/Applications/Xcode_26.6.app |
+| 26.5 (default) | 17F42  | /Applications/Xcode_26.5.app                     | /Applications/Xcode_26.5.0.app<br>/Applications/Xcode.app      |
+| 26.4.1         | 17E202 | /Applications/Xcode_26.4.1.app                   | /Applications/Xcode_26.4.app                                   |
+| 26.3           | 17C529 | /Applications/Xcode_26.3.app                     | /Applications/Xcode_26.3.0.app                                 |
+| 26.2           | 17C52  | /Applications/Xcode_26.2.app                     | /Applications/Xcode_26.2.0.app                                 |
+| 26.1.1         | 17B100 | /Applications/Xcode_26.1.1.app                   | /Applications/Xcode_26.1.app                                   |
+| 26.0.1         | 17A400 | /Applications/Xcode_26.0.1.app                   | /Applications/Xcode_26.0.app                                   |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -174,52 +174,52 @@
 | macOS 26.1                | macosx26.1           | 26.1.1        |
 | macOS 26.2                | macosx26.2           | 26.2, 26.3    |
 | macOS 26.4                | macosx26.4           | 26.4.1        |
-| macOS 26.5                | macosx26.5           | 26.5          |
+| macOS 26.5                | macosx26.5           | 26.5, 26.6    |
 | iOS 26.0                  | iphoneos26.0         | 26.0.1        |
 | iOS 26.1                  | iphoneos26.1         | 26.1.1        |
 | iOS 26.2                  | iphoneos26.2         | 26.2, 26.3    |
 | iOS 26.4                  | iphoneos26.4         | 26.4.1        |
-| iOS 26.5                  | iphoneos26.5         | 26.5          |
+| iOS 26.5                  | iphoneos26.5         | 26.5, 26.6    |
 | Simulator - iOS 26.0      | iphonesimulator26.0  | 26.0.1        |
 | Simulator - iOS 26.1      | iphonesimulator26.1  | 26.1.1        |
 | Simulator - iOS 26.2      | iphonesimulator26.2  | 26.2, 26.3    |
 | Simulator - iOS 26.4      | iphonesimulator26.4  | 26.4.1        |
-| Simulator - iOS 26.5      | iphonesimulator26.5  | 26.5          |
+| Simulator - iOS 26.5      | iphonesimulator26.5  | 26.5, 26.6    |
 | tvOS 26.0                 | appletvos26.0        | 26.0.1        |
 | tvOS 26.1                 | appletvos26.1        | 26.1.1        |
 | tvOS 26.2                 | appletvos26.2        | 26.2, 26.3    |
 | tvOS 26.4                 | appletvos26.4        | 26.4.1        |
-| tvOS 26.5                 | appletvos26.5        | 26.5          |
+| tvOS 26.5                 | appletvos26.5        | 26.5, 26.6    |
 | Simulator - tvOS 26.0     | appletvsimulator26.0 | 26.0.1        |
 | Simulator - tvOS 26.1     | appletvsimulator26.1 | 26.1.1        |
 | Simulator - tvOS 26.2     | appletvsimulator26.2 | 26.2, 26.3    |
 | Simulator - tvOS 26.4     | appletvsimulator26.4 | 26.4.1        |
-| Simulator - tvOS 26.5     | appletvsimulator26.5 | 26.5          |
+| Simulator - tvOS 26.5     | appletvsimulator26.5 | 26.5, 26.6    |
 | watchOS 26.0              | watchos26.0          | 26.0.1        |
 | watchOS 26.1              | watchos26.1          | 26.1.1        |
 | watchOS 26.2              | watchos26.2          | 26.2, 26.3    |
 | watchOS 26.4              | watchos26.4          | 26.4.1        |
-| watchOS 26.5              | watchos26.5          | 26.5          |
+| watchOS 26.5              | watchos26.5          | 26.5, 26.6    |
 | Simulator - watchOS 26.0  | watchsimulator26.0   | 26.0.1        |
 | Simulator - watchOS 26.1  | watchsimulator26.1   | 26.1.1        |
 | Simulator - watchOS 26.2  | watchsimulator26.2   | 26.2, 26.3    |
 | Simulator - watchOS 26.4  | watchsimulator26.4   | 26.4.1        |
-| Simulator - watchOS 26.5  | watchsimulator26.5   | 26.5          |
+| Simulator - watchOS 26.5  | watchsimulator26.5   | 26.5, 26.6    |
 | visionOS 26.0             | xros26.0             | 26.0.1        |
 | visionOS 26.1             | xros26.1             | 26.1.1        |
 | visionOS 26.2             | xros26.2             | 26.2, 26.3    |
 | visionOS 26.4             | xros26.4             | 26.4.1        |
-| visionOS 26.5             | xros26.5             | 26.5          |
+| visionOS 26.5             | xros26.5             | 26.5, 26.6    |
 | Simulator - visionOS 26.0 | xrsimulator26.0      | 26.0.1        |
 | Simulator - visionOS 26.1 | xrsimulator26.1      | 26.1.1        |
 | Simulator - visionOS 26.2 | xrsimulator26.2      | 26.2, 26.3    |
 | Simulator - visionOS 26.4 | xrsimulator26.4      | 26.4.1        |
-| Simulator - visionOS 26.5 | xrsimulator26.5      | 26.5          |
+| Simulator - visionOS 26.5 | xrsimulator26.5      | 26.5, 26.6    |
 | DriverKit 25.0            | driverkit25.0        | 26.0.1        |
 | DriverKit 25.1            | driverkit25.1        | 26.1.1        |
 | DriverKit 25.2            | driverkit25.2        | 26.2, 26.3    |
 | DriverKit 25.4            | driverkit25.4        | 26.4.1        |
-| DriverKit 25.5            | driverkit25.5        | 26.5          |
+| DriverKit 25.5            | driverkit25.5        | 26.5, 26.6    |
 
 #### Installed Simulators
 | Name         | OS     | Simulators                                                                                                                                                                                                           |
