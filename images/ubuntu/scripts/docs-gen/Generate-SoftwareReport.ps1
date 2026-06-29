@@ -259,9 +259,7 @@ $netCoreTools.AddNodes($(Get-DotnetTools))
 # Databases
 $databasesTools = $installedSoftware.AddHeader("Databases")
 $databasesTools.AddToolVersion("sqlite3", $(Get-SqliteVersion))
-if (Test-IsX64) {
-    $databasesTools.AddNode($(Build-PostgreSqlSection))
-}
+$databasesTools.AddNode($(Build-PostgreSqlSection))
 $databasesTools.AddNode($(Build-MySQLSection))
 if (Test-IsUbuntu22-X64) {
     $databasesTools.AddNode($(Build-MSSQLToolsSection))
