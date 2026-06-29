@@ -75,6 +75,25 @@ sleep 10
 docker info
 
 if ! is_ubuntu22; then
+    docker_images=$(get_toolset_value '.docker.images[]?')
+    while IFS= read -r docker_image; do
+        [[ -z "$docker_image" ]] && continue
+
+        image_registry=${docker_image%%/*}
+        is_dockerhub_image=false
+        if [[ "$image_registry" != *.* && "$image_registry" != *:* && "$image_registry" != "localhost" ]]; then
+            is_dockerhub_image=true
+        fi
+
+        if [[ "$is_dockerhub_image" == "true" && "${DOCKERHUB_PULL_IMAGES:-no}" != "yes" ]]; then
+            echo "Skipping Docker Hub image ${docker_image}; set DOCKERHUB_PULL_IMAGES=yes to pull it"
+            continue
+        fi
+
+        echo "Pulling Docker image ${docker_image}"
+        docker pull "$docker_image"
+    done <<< "$docker_images"
+
     # Pull Dependabot docker image
     docker pull ghcr.io/dependabot/dependabot-updater-core:latest
 
