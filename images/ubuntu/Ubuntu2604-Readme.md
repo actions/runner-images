@@ -8,7 +8,7 @@
 # Ubuntu 26.04 LTS
 - OS Version: 26.04 LTS
 - Kernel Version: 7.0.0-1007-azure
-- Image Version: 20260622.50.1
+- Image Version: 20260628.56.1
 - Systemd version: 259.5-0ubuntu3
 
 ## Installed Software
@@ -22,7 +22,7 @@
 - GNU C++: 13.4.0, 14.3.0, 15.2.0
 - GNU Fortran: 13.4.0, 14.3.0, 15.2.0
 - Kotlin 2.4.0-release-281
-- Node.js 24.17.0
+- Node.js 24.18.0
 - Perl 5.40.1
 - Python 3.14.4
 - Ruby 3.3.8
@@ -30,13 +30,13 @@
 ### Package Management
 - cpan 1.64
 - Helm 4.2.2
-- Homebrew 6.0.3
-- Npm 11.13.0
+- Homebrew 6.0.5
+- Npm 11.16.0
 - Pip 25.1.1
 - Pip3 25.1.1
-- Pipx 1.14.1
+- Pipx 1.15.0
 - RubyGems 3.6.7
-- Vcpkg (build from commit 0bd2453fd3)
+- Vcpkg (build from commit a040002471)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,7 +55,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.15
-- Gradle 9.6.0
+- Gradle 9.6.1
 - Maven 3.9.15
 
 ### Tools
@@ -92,13 +92,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.10
+- AWS CLI 2.35.11
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.4
+- Azure CLI (azure-devops) 1.0.5
 - GitHub CLI 2.95.0
-- Google Cloud CLI 573.0.0
+- Google Cloud CLI 574.0.0
 
 ### Java
 | Version            | Environment Variable |
@@ -132,13 +132,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.155
+- Google Chrome 149.0.7827.200
 - ChromeDriver 149.0.7827.155
 - Chromium 149.0.7827.0
-- Microsoft Edge 149.0.4022.80
-- Microsoft Edge WebDriver 149.0.4022.80
+- Microsoft Edge 149.0.4022.98
+- Microsoft Edge WebDriver 149.0.4022.98
 - Selenium server 4.45.0
-- Mozilla Firefox 152.0.1
+- Mozilla Firefox 152.0.3
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -242,6 +242,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.19.0-1ubuntu1              |
 | iputils-ping           | 3:20250605-1ubuntu1          |
 | jq                     | 1.8.1-4ubuntu2               |
+| libicu-dev             | 78.2-2ubuntu1                |
 | libnss3-tools          | 2:3.120-1ubuntu2             |
 | libsqlite3-dev         | 3.46.1-9                     |
 | libssl-dev             | 3.5.5-1ubuntu3.2             |
@@ -269,7 +270,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sudo                   | 1.9.17p2-1ubuntu3            |
 | swig                   | 4.4.0-1                      |
 | systemd-coredump       | 259.5-0ubuntu3               |
-| tar                    | 1.35+dfsg-4                  |
+| tar                    | 1.35+dfsg-4ubuntu0.1         |
 | telnet                 | 0.17+2.7-2ubuntu1.1          |
 | texinfo                | 7.2-5ubuntu2                 |
 | time                   | 1.9-0.4                      |
