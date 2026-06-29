@@ -1,12 +1,14 @@
+[CmdletBinding(DefaultParameterSetName = 'TempResourceGroup')]
 param(
     [String] [Parameter (Mandatory=$true)] $TemplatePath,
     [String] [Parameter (Mandatory=$true)] $BuildTemplateName,
     [String] [Parameter (Mandatory=$true)] $ClientId,
     [String] [Parameter (Mandatory=$false)] $ClientSecret,
-    [String] [Parameter (Mandatory=$true)] $Location,
+    [String] [Parameter (Mandatory=$true, ParameterSetName = 'TempResourceGroup')] $Location,
     [String] [Parameter (Mandatory=$true)] $ImageName,
     [String] [Parameter (Mandatory=$true)] $ImageResourceGroupName,
-    [String] [Parameter (Mandatory=$true)] $TempResourceGroupName,
+    [String] [Parameter (Mandatory=$true, ParameterSetName = 'TempResourceGroup')] $TempResourceGroupName,
+    [String] [Parameter (Mandatory=$true, ParameterSetName = 'ExistingResourceGroup')] $ExistingResourceGroupName,
     [String] [Parameter (Mandatory=$true)] $SubscriptionId,
     [String] [Parameter (Mandatory=$true)] $TenantId,
     [String] [Parameter (Mandatory=$true)] $ImageOS, # e.g. "ubuntu22", "ubuntu24" or "win22", "win25"
@@ -40,6 +42,20 @@ $SensitiveData = @(
 
 $azure_tags = $Tags | ConvertTo-Json -Compress
 
+function Add-PackerVariableFlag {
+    param(
+        [String[]]$packerVariables
+    )
+
+    $result = @()
+
+    foreach ($packerVariable in $packerVariables) {
+        $result += "-var", $packerVariable
+    }
+
+    return $result
+}
+
 Write-Host "Show Packer Version"
 packer --version
 
@@ -49,24 +65,46 @@ packer plugins install github.com/hashicorp/azure $pluginVersion
 Write-Host "Validate packer template"
 packer validate -syntax-only -only "$buildName*" $TemplatePath
 
+$packerVariablesList = Add-PackerVariableFlag -packerVariables @(
+                    "client_id=$ClientId",
+                    "client_secret=$ClientSecret",
+                    "install_password=$InstallPassword",
+                    "image_os=$ImageOS",
+                    "managed_image_name=$ImageName",
+                    "managed_image_resource_group_name=$ImageResourceGroupName",
+                    "subscription_id=$SubscriptionId",
+                    "tenant_id=$TenantId",
+                    "virtual_network_name=$VirtualNetworkName",
+                    "virtual_network_resource_group_name=$VirtualNetworkRG",
+                    "virtual_network_subnet_name=$VirtualNetworkSubnet",
+                    "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)",
+                    "use_azure_cli_auth=$UseAzureCliAuth",
+                    "azure_tags=$azure_tags"
+                )
+
+switch ($PSCmdlet.ParameterSetName) {
+    'TempResourceGroup' {
+        Write-Host "Use temporary resource group $TempResourceGroupName"
+        $packerVariablesList += Add-PackerVariableFlag -packerVariables @(
+                            "temp_resource_group_name=$TempResourceGroupName",
+                            "location=$Location"
+                        )
+        
+        break
+    }
+    'ExistingResourceGroup' {
+        Write-Host "Use existing resource group $ExistingResourceGroupName"
+        $packerVariablesList += Add-PackerVariableFlag -packerVariables @(
+                            "build_resource_group_name=$ExistingResourceGroupName"
+                        )
+
+        break
+    }
+}
+
 Write-Host "Build $buildName VM"
 packer build    -only "$buildName*" `
-                -var "client_id=$ClientId" `
-                -var "client_secret=$ClientSecret" `
-                -var "install_password=$InstallPassword" `
-                -var "location=$Location" `
-                -var "image_os=$ImageOS" `
-                -var "managed_image_name=$ImageName" `
-                -var "managed_image_resource_group_name=$ImageResourceGroupName" `
-                -var "subscription_id=$SubscriptionId" `
-                -var "temp_resource_group_name=$TempResourceGroupName" `
-                -var "tenant_id=$TenantId" `
-                -var "virtual_network_name=$VirtualNetworkName" `
-                -var "virtual_network_resource_group_name=$VirtualNetworkRG" `
-                -var "virtual_network_subnet_name=$VirtualNetworkSubnet" `
-                -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-                -var "use_azure_cli_auth=$UseAzureCliAuth" `
-                -var "azure_tags=$azure_tags" `
+                @packerVariablesList `
                 -color=false `
                 $TemplatePath `
         | Where-Object {
