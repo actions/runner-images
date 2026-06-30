@@ -4,11 +4,10 @@
 | [[Windows] Windows 11 Arm with Visual Studio 2026 is now available as a public preview](https://github.com/actions/runner-images/issues/14225) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 | [[Windows] `windows-latest` and `windows-2025` image-label will use Windows Server 2025 with Visual Studio 2026 image in June 2026](https://github.com/actions/runner-images/issues/14017) |
-| [[Windows] The Windows Server 2025 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14016) |
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8655
-- Image Version: 20260622.87.1
+- Image Version: 20260629.93.2
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -21,7 +20,7 @@
 - Julia 1.12.0
 - Kotlin 2.4.0
 - LLVM 20.1.6
-- Node 24.17.0
+- Node 24.18.0
 - Perl 5.32.1
 - PHP 8.4.22
 - Python 3.13.14
@@ -31,12 +30,12 @@
 - Chocolatey 2.7.3
 - Composer 2.10.1
 - Helm 4.1.4
-- NPM 11.13.0
+- NPM 11.16.0
 - NuGet 7.6.0.59
 - pip 26.1.2 (python 3.13)
-- Pipx 1.14.1
+- Pipx 1.15.0
 - RubyGems 3.6.9
-- Vcpkg (build from commit a0b1c8d3a4)
+- Vcpkg (build from commit a040002471)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -46,12 +45,12 @@
 
 ### Project Management
 - Ant 1.10.17
-- Gradle 9.5
+- Gradle 9.6
 - Maven 3.9.16
 - sbt 1.12.12
 
 ### Tools
-- 7zip 26.01
+- 7zip 26.02
 - aria2 1.37.0
 - azcopy 10.32.4
 - Bazel 9.1.1
@@ -74,8 +73,8 @@
 - NSIS 3.10
 - OpenSSL 3.6.3
 - Packer 1.15.4
-- Pulumi 3.247.0
-- R 4.6.0
+- Pulumi 3.248.0
+- R 4.6.1
 - Stack 3.11.1
 - Swig 4.4.1
 - VSWhere 3.1.7
@@ -84,12 +83,12 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.23
-- AWS CLI 2.35.9
+- Alibaba Cloud CLI 3.4.2
+- AWS CLI 2.35.11
 - AWS SAM CLI 1.162.1
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.87.0
-- Azure DevOps CLI extension 1.0.4
+- Azure DevOps CLI extension 1.0.5
 - GitHub CLI 2.95.0
 
 ### Rust Tools
@@ -107,11 +106,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.156
+- Google Chrome 149.0.7827.201
 - Chrome Driver 149.0.7827.155
-- Microsoft Edge 149.0.4022.80
-- Microsoft Edge Driver 149.0.4022.80
-- Mozilla Firefox 152.0.1
+- Microsoft Edge 149.0.4022.98
+- Microsoft Edge Driver 149.0.4022.98
+- Mozilla Firefox 152.0.3
 - Gecko Driver 0.37.0
 - IE Driver 4.14.0.0
 - Selenium server 4.45.0
@@ -138,8 +137,8 @@
 - 1.26.4
 
 #### Node.js
-- 22.23.0
-- 24.17.0
+- 22.23.1
+- 24.18.0
 
 #### Python
 - 3.12.10
@@ -385,7 +384,7 @@
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.238
+- AWSPowershell: 5.0.241
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.38.0
