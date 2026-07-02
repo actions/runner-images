@@ -2,7 +2,7 @@
 ################################################################################
 ##  File:  install-kubernetes-tools.sh
 ##  Desc:  Installs kubectl, helm, kustomize
-##  Supply chain security: KIND, minikube - checksum validation
+##  Supply chain security: KIND, minikube, kustomize - checksum validation
 ################################################################################
 
 # Source the helpers for use with the script
@@ -69,8 +69,16 @@ use_checksum_comparison "${minikube_binary_path}" "${minikube_hash}"
 install "${minikube_binary_path}" /usr/local/bin/minikube
 
 # Install kustomize
-download_url="https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh"
-curl -fsSL "$download_url" | bash
+exact_latest_url=$(curl -Ls -o /dev/null -w "%{url_effective}" "https://github.com/kubernetes-sigs/kustomize/releases/latest")
+latest_version=${exact_latest_url##*/}
+kustomize_archive_name="kustomize_${latest_version}_linux_${tools_arch}.tar.gz"
+kustomize_archive_path=$(download_with_retry "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F${latest_version}/${kustomize_archive_name}")
+
+# Supply chain security - Kustomize
+kustomize_hash=$(get_checksum_from_url "https://github.com/kubernetes-sigs/kustomize/releases/download/kustomize%2F${latest_version}/checksums.txt" "$kustomize_archive_name" "SHA256")
+use_checksum_comparison "$kustomize_archive_path" "$kustomize_hash"
+
+tar -xzf "$kustomize_archive_path"
 mv kustomize /usr/local/bin
 
 invoke_tests "Tools" "Kubernetes tools"
