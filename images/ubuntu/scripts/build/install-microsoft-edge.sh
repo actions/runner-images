@@ -19,11 +19,7 @@ echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL stable main" > $REPO_PATH
 apt-get update
 apt-get install --no-install-recommends microsoft-edge-stable
 
-echo "------DEBUG------"
-ls -la /etc/apt/sources.list.d
-
 rm $GPG_KEY
-rm $REPO_PATH
 rm -f /etc/apt/sources.list.d/*edge*
 
 echo "microsoft-edge $REPO_URL" >> $HELPER_SCRIPTS/apt-sources.txt
