@@ -8,7 +8,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
 - Kernel Version: 6.17.0-1018-azure
-- Image Version: 20260622.39.1
+- Image Version: 20260629.46.1
 - Systemd version: 255.4-1ubuntu8.16
 
 ## Installed Software
@@ -22,7 +22,7 @@
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
 - Kotlin 2.4.0-release-281
-- Node.js 22.23.0
+- Node.js 22.23.1
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -31,13 +31,13 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.21.2
-- Homebrew 6.0.3
+- Homebrew 6.0.5
 - Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
-- Pipx 1.14.1
+- Pipx 1.15.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit 0bd2453fd3)
+- Vcpkg (build from commit 8c2d4ef38e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,7 +56,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.6.0
+- Gradle 9.6.1
 - Lerna 9.0.7
 - Maven 3.9.12
 
@@ -91,7 +91,7 @@ to accomplish this.
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.247.0
+- Pulumi 3.248.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -100,13 +100,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.10
+- AWS CLI 2.35.12
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.4
+- Azure CLI (azure-devops) 1.0.5
 - GitHub CLI 2.95.0
-- Google Cloud CLI 573.0.0
+- Google Cloud CLI 574.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -136,7 +136,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Browsers and Drivers
 - Selenium server 4.45.0
-- Mozilla Firefox 152.0.1
+- Mozilla Firefox 152.0.3
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -209,8 +209,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iputils-ping           | 3:20240117-1ubuntu0.1        |
 | jq                     | 1.7.1-3ubuntu0.24.04.2       |
 | libgbm-dev             | 25.2.8-0ubuntu0.24.04.2      |
-| libnss3-tools          | 2:3.98-1ubuntu0.1            |
-| libsqlite3-dev         | 3.45.1-1ubuntu2.5            |
+| libicu-dev             | 74.2-1ubuntu3.1              |
+| libnss3-tools          | 2:3.98-1ubuntu0.2            |
+| libsqlite3-dev         | 3.45.1-1ubuntu2.6            |
 | libssl-dev             | 3.0.13-0ubuntu3.11           |
 | libtool                | 2.4.7-7build1                |
 | libyaml-dev            | 0.2.5-1build1                |
@@ -235,13 +236,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-1ubuntu1.5             |
 | shellcheck             | 0.9.0-1                      |
 | sphinxsearch           | 2.2.11-8build1               |
-| sqlite3                | 3.45.1-1ubuntu2.5            |
+| sqlite3                | 3.45.1-1ubuntu2.6            |
 | ssh                    | 1:9.6p1-3ubuntu13.16         |
 | sshpass                | 1.09-1                       |
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.2    |
 | swig                   | 4.2.0-2ubuntu1               |
 | systemd-coredump       | 255.4-1ubuntu8.16            |
-| tar                    | 1.35+dfsg-3build1            |
+| tar                    | 1.35+dfsg-3ubuntu0.1         |
 | telnet                 | 0.17+2.5-3ubuntu4.2          |
 | texinfo                | 7.1-3build2                  |
 | time                   | 1.9-0.2build1                |
