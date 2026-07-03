@@ -1,8 +1,11 @@
-Describe "Haskell" {
-    $GHCCommonPath = "/usr/local/.ghcup/ghc"
-    $GHCVersions = Get-ChildItem -Path $GHCCommonPath | Where-Object { $_.Name -match "\d+\.\d+" }
+Describe "Haskell" -Skip:(Test-IsArm64) {
+    BeforeDiscovery {
+        if (Test-IsArm64) { return }
+        $GHCCommonPath = "/usr/local/.ghcup/ghc"
+        $GHCVersions = Get-ChildItem -Path $GHCCommonPath | Where-Object { $_.Name -match "\d+\.\d+" }
 
-    $testCases = $GHCVersions | ForEach-Object { @{ GHCPath = "${_}/bin/ghc"} }
+        $testCases = $GHCVersions | ForEach-Object { @{ GHCPath = "${_}/bin/ghc"} }
+    }
 
     It "GHC version <GHCPath>" -TestCases $testCases {
         "$GHCPath --version" | Should -ReturnZeroExitCode

@@ -78,7 +78,7 @@ function Get-YqVersion {
     return $yqVersion.TrimStart("v").Trim()
 }
 
-function Get-DockerComposeV2Version {
+function Get-DockerComposeVersion {
     $composeVersion = docker compose version | Get-StringPart -Part 3 | Get-StringPart -Part 0 -Delimiter "v"
     return $composeVersion
 }

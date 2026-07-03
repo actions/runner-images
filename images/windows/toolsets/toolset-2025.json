@@ -41,7 +41,6 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "20.*",
                 "22.*",
                 "24.*"
             ]
@@ -52,10 +51,9 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.22.*",
-                "1.23.*",
                 "1.24.*",
-                "1.25.*"
+                "1.25.*",
+                "1.26.*"
             ],
             "default": "1.24.*"
         }
@@ -67,7 +65,7 @@
         { "name": "PowerShellGet" },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
-        { "name": "SqlServer", "versions": [ "22.3.0" ] },
+        { "name": "SqlServer" },
         { "name": "VSSetup" },
         { "name": "Microsoft.Graph" },
         {"name": "AWSPowershell"}
@@ -76,7 +74,7 @@
         {
             "name": "az",
             "versions": [
-                "14.6.0"
+                "15.6.1"
             ]
         }
     ],
@@ -323,6 +321,6 @@
         "version": "3.*"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }

@@ -65,7 +65,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGEDATA_FILE=${var.imagedata_file}"]
+    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "IMAGE_VERSION=${var.image_version}", "IMAGEDATA_FILE=${var.imagedata_file}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/../scripts/build/configure-image-data.sh"]
   }
@@ -124,19 +124,17 @@ provisioner "shell" {
       "${path.root}/../scripts/build/install-haskell.sh",
       "${path.root}/../scripts/build/install-java-tools.sh",
       "${path.root}/../scripts/build/install-kubernetes-tools.sh",
-      "${path.root}/../scripts/build/install-miniconda.sh",
       "${path.root}/../scripts/build/install-kotlin.sh",
       "${path.root}/../scripts/build/install-mysql.sh",
       "${path.root}/../scripts/build/install-nginx.sh",
       "${path.root}/../scripts/build/install-nvm.sh",
       "${path.root}/../scripts/build/install-nodejs.sh",
+      "${path.root}/../scripts/build/install-copilot-cli.sh",
       "${path.root}/../scripts/build/install-bazel.sh",
       "${path.root}/../scripts/build/install-php.sh",
       "${path.root}/../scripts/build/install-postgresql.sh",
-      "${path.root}/../scripts/build/install-pulumi.sh",
       "${path.root}/../scripts/build/install-ruby.sh",
       "${path.root}/../scripts/build/install-rust.sh",
-      "${path.root}/../scripts/build/install-julia.sh",
       "${path.root}/../scripts/build/install-selenium.sh",
       "${path.root}/../scripts/build/install-packer.sh",
       "${path.root}/../scripts/build/install-vcpkg.sh",

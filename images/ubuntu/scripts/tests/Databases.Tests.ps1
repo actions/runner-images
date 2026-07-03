@@ -1,4 +1,4 @@
-Describe "PostgreSQL" {
+Describe "PostgreSQL" -Skip:(Test-IsArm64) {
     It "PostgreSQL Service" {
         "sudo systemctl start postgresql" | Should -ReturnZeroExitCode
         "pg_isready" | Should -OutputTextMatchingRegex "/var/run/postgresql:5432 - accepting connections"

@@ -48,7 +48,7 @@ for toolset_version in ${toolset_versions[@]}; do
     echo "Expand '$package_tar_name' to the '$ruby_version_path' folder"
     tar xf "$package_archive_path" -C $ruby_version_path
 
-    complete_file_path="$ruby_version_path/x64.complete"
+    complete_file_path="$ruby_version_path/$arch.complete"
     if [[ ! -f $complete_file_path ]]; then
         echo "Create complete file"
         touch $complete_file_path
