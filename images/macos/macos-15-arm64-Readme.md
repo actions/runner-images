@@ -7,7 +7,7 @@
 # macOS 15
 - OS Version: macOS 15.7.7 (24G720)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20260623.0190.1
+- Image Version: 20260630.0202.1
 
 ## Installed Software
 
@@ -17,33 +17,33 @@
 - Clang/LLVM 17.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
 - GCC 13 (Homebrew GCC 13.4.0) - available by `gcc-13` alias
-- GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
+- GCC 14 (Homebrew GCC 14.4.0) - available by `gcc-14` alias
 - GCC 15 (Homebrew GCC 15.3.0) - available by `gcc-15` alias
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
-- GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
+- GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
 - Kotlin 2.4.0-release-281
-- Node.js 22.23.0
+- Node.js 22.23.1
 - Perl 5.42.2
 - Python3 3.14.6
 - Ruby 3.3.11
 
 ### Package Management
-- Bundler 4.0.14
+- Bundler 4.0.15
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Homebrew 6.0.3
+- Homebrew 6.0.6
 - NPM 10.9.8
 - Pip3 26.1.2 (python 3.14)
-- Pipx 1.14.1
-- RubyGems 4.0.14
-- Vcpkg 2026 (build from commit a7eda31dc1)
+- Pipx 1.15.0
+- RubyGems 4.0.15
+- Vcpkg 2026 (build from commit 86dc619bd8)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.17
 - Apache Maven 3.9.16
-- Gradle 9.6.0
+- Gradle 9.6.1
 
 ### Utilities
 - 7-Zip 17.05
@@ -53,7 +53,7 @@
 - bazelisk 1.29.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.54.0
+- Git 2.55.0
 - Git LFS 3.7.1
 - GitHub CLI 2.95.0
 - GNU Tar 1.35 - available by 'gtar' alias
@@ -69,11 +69,11 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.35.11
+- AWS CLI 2.35.12
 - AWS SAM CLI 1.162.1
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.4
+- Azure CLI (azure-devops) 1.0.5
 - Bicep CLI 0.44.1
 - Cmake 4.3.4
 - CodeQL Action Bundle 2.25.6
@@ -86,12 +86,12 @@
 ### Browsers
 - Safari 26.5 (20624.2.5.18.3)
 - SafariDriver 26.5 (20624.2.5.18.3)
-- Google Chrome 149.0.7827.156
+- Google Chrome 149.0.7827.201
 - Google Chrome for Testing 149.0.7827.155
 - ChromeDriver 149.0.7827.155
-- Microsoft Edge 149.0.4022.80
-- Microsoft Edge WebDriver 149.0.4022.80
-- Mozilla Firefox 152.0.1
+- Microsoft Edge 149.0.4022.98
+- Microsoft Edge WebDriver 149.0.4022.98
+- Mozilla Firefox 152.0.3
 - geckodriver 0.37.0
 - Selenium server 4.45.0
 
@@ -125,8 +125,8 @@
 - 3.14.6
 
 #### Node.js
-- 22.23.0
-- 24.17.0
+- 22.23.1
+- 24.18.0
 
 #### Go
 - 1.24.13
