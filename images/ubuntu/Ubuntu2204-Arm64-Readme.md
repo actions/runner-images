@@ -8,7 +8,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1059-azure
-- Image Version: 20260623.43.1
+- Image Version: 20260628.47.1
 - Systemd version: 249.11-0ubuntu3.21
 
 ## Installed Software
@@ -33,14 +33,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.21.2
-- Homebrew 6.0.3
+- Homebrew 6.0.5
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.14.1
+- Pipx 1.15.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 67b5ee32c6)
+- Vcpkg (build from commit a040002471)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,7 +59,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.6.0
+- Gradle 9.6.1
 - Lerna 9.0.7
 - Maven 3.9.12
 
@@ -95,11 +95,11 @@ to accomplish this.
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.247.0
+- Pulumi 3.248.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.15.6
+- Terraform 1.15.7
 - yamllint 1.38.0
 - yq 4.53.3
 - zstd 1.5.7
@@ -110,12 +110,12 @@ to accomplish this.
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.4
+- Azure CLI (azure-devops) 1.0.5
 - GitHub CLI 2.95.0
 - Google Cloud CLI 574.0.0
 - Netlify CLI 26.1.0
 - OpenShift CLI 4.22.2
-- Vercel CLI 54.15.1
+- Vercel CLI 54.18.1
 
 ### Java
 | Version              | Environment Variable |
@@ -150,7 +150,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Browsers and Drivers
 - Selenium server 4.45.0
-- Mozilla Firefox 152.0.1
+- Mozilla Firefox 152.0.3
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -274,7 +274,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sudo                   | 1.9.9-1ubuntu2.6                    |
 | swig                   | 4.0.2-1ubuntu1                      |
 | systemd-coredump       | 249.11-0ubuntu3.21                  |
-| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
+| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.3        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
