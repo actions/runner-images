@@ -276,7 +276,7 @@ build {
   }
 
   provisioner "file" {
-    destination = "${path.root}/../../image-output/xcode-27-Readme.md"
+    destination = "${path.root}/../../image-output/macos-26-xcode-27-Readme.md"
     direction   = "download"
     source      = "${local.image_folder}/output/software-report.md"
   }
