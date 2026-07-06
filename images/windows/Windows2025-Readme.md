@@ -8,11 +8,11 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 32995
-- Image Version: 20260623.176.1
+- Image Version: 20260628.181.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
-- Windows Subsystem for Linux (Default, WSLv2): 2.7.8.0
+- Windows Subsystem for Linux (Default, WSLv2): 2.7.10.0
 
 ## Installed Software
 
@@ -36,9 +36,9 @@
 - NPM 10.9.8
 - NuGet 7.6.0.59
 - pip 26.1.2 (python 3.12)
-- Pipx 1.14.1
+- Pipx 1.15.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 7b4a20365d)
+- Vcpkg (build from commit a040002471)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -49,12 +49,12 @@
 
 ### Project Management
 - Ant 1.10.17
-- Gradle 9.5
+- Gradle 9.6
 - Maven 3.9.16
 - sbt 1.12.12
 
 ### Tools
-- 7zip 26.01
+- 7zip 26.02
 - aria2 1.37.0
 - azcopy 10.32.4
 - Bazel 9.1.1
@@ -80,8 +80,8 @@
 - Newman 6.2.2
 - OpenSSL 3.6.3
 - Packer 1.15.4
-- Pulumi 3.247.0
-- R 4.6.0
+- Pulumi 3.248.0
+- R 4.6.1
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.11.1
 - Swig 4.4.1
@@ -93,11 +93,11 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.9
+- AWS CLI 2.35.11
 - AWS SAM CLI 1.162.1
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.87.0
-- Azure DevOps CLI extension 1.0.4
+- Azure DevOps CLI extension 1.0.5
 - GitHub CLI 2.95.0
 
 ### Rust Tools
@@ -111,11 +111,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.197
+- Google Chrome 149.0.7827.201
 - Chrome Driver 149.0.7827.155
-- Microsoft Edge 149.0.4022.80
-- Microsoft Edge Driver 149.0.4022.80
-- Mozilla Firefox 152.0.2
+- Microsoft Edge 149.0.4022.98
+- Microsoft Edge Driver 149.0.4022.98
+- Mozilla Firefox 152.0.3
 - Gecko Driver 0.37.0
 - IE Driver 4.14.0.0
 - Selenium server 4.45.0
@@ -162,8 +162,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 1.26.4
 
 #### Node.js
-- 22.23.0
-- 24.17.0
+- 22.23.1
+- 24.18.0
 
 #### Python
 - 3.10.11
@@ -208,7 +208,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.8.3
+- MongoDB Shell (mongosh) 2.9.0
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |

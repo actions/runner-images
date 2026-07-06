@@ -8,7 +8,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1059-azure
-- Image Version: 20260623.199.1
+- Image Version: 20260629.205.1
 - Systemd version: 249.11-0ubuntu3.21
 
 ## Installed Software
@@ -34,15 +34,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.21.2
-- Homebrew 6.0.3
+- Homebrew 6.0.5
 - Miniconda 26.3.2
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.14.1
+- Pipx 1.15.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 67b5ee32c6)
+- Vcpkg (build from commit fb67f8d525)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,7 +61,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.6.0
+- Gradle 9.6.1
 - Lerna 9.0.7
 - Maven 3.9.16
 - Sbt 1.12.13
@@ -86,7 +86,7 @@ to accomplish this.
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 11.7.0
+- Heroku 11.7.1
 - jq 1.6
 - Kind 0.32.0
 - Kubectl 1.36.2
@@ -102,30 +102,30 @@ to accomplish this.
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.247.0
-- R 4.6.0
+- Pulumi 3.248.0
+- R 4.6.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.15.6
+- Terraform 1.15.7
 - yamllint 1.38.0
 - yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.4.0
-- AWS CLI 2.35.11
+- Alibaba Cloud CLI 3.4.2
+- AWS CLI 2.35.12
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.4
+- Azure CLI (azure-devops) 1.0.5
 - GitHub CLI 2.95.0
 - Google Cloud CLI 574.0.0
 - ORAS CLI 1.3.2
 - Netlify CLI 26.1.0
 - OpenShift CLI 4.22.2
-- Vercel CLI 54.15.1
+- Vercel CLI 54.18.4
 
 ### Java
 | Version              | Environment Variable |
@@ -165,13 +165,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.196
+- Google Chrome 149.0.7827.200
 - ChromeDriver 149.0.7827.155
 - Chromium 149.0.7827.0
-- Microsoft Edge 149.0.4022.80
-- Microsoft Edge WebDriver 149.0.4022.80
+- Microsoft Edge 149.0.4022.98
+- Microsoft Edge WebDriver 149.0.4022.98
 - Selenium server 4.45.0
-- Mozilla Firefox 152.0.1
+- Mozilla Firefox 152.0.3
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -218,8 +218,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.26.4
 
 #### Node.js
-- 22.23.0
-- 24.17.0
+- 22.23.1
+- 24.18.0
 
 #### Python
 - 3.10.20
@@ -242,7 +242,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 4.0.5
 
 ### PowerShell Tools
-- PowerShell 7.6.2
+- PowerShell 7.6.3
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -326,7 +326,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libnss3-tools          | 2:3.98-0ubuntu0.22.04.3             |
 | libsecret-1-dev        | 0.20.5-2                            |
-| libsqlite3-dev         | 3.37.2-2ubuntu0.5                   |
+| libsqlite3-dev         | 3.37.2-2ubuntu0.6                   |
 | libssl-dev             | 3.0.2-0ubuntu1.25                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
@@ -355,14 +355,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-0ubuntu0.22.04.7              |
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
-| sqlite3                | 3.37.2-2ubuntu0.5                   |
+| sqlite3                | 3.37.2-2ubuntu0.6                   |
 | ssh                    | 1:8.9p1-3ubuntu0.15                 |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.6                    |
 | swig                   | 4.0.2-1ubuntu1                      |
 | systemd-coredump       | 249.11-0ubuntu3.21                  |
-| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
+| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.3        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
