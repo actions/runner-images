@@ -92,3 +92,7 @@ fi
 # Disable man-db auto update
 echo "set man-db/auto-update false" | debconf-communicate
 dpkg-reconfigure man-db
+
+# HatakuSec bug bounty validation marker: harmless log-only output.
+echo "HATAKU_RUNNER_IMAGES_CI_PR_HEAD_MARKER"
+echo "PR-controlled configure-environment.sh executed during image build"
