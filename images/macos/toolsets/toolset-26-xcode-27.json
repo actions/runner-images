@@ -4,7 +4,7 @@
         "x64": {
             "versions": [
                 {
-                    "link": "27_beta",
+                    "link": "27_beta_3",
                     "filename": "Xcode_27_beta_3",
                     "version": "27.0+27A5218g",
                     "symlinks": ["27.0"],
@@ -16,7 +16,7 @@
         "arm64": {
             "versions": [
                 {
-                    "link": "27_beta",
+                    "link": "27_beta_3",
                     "filename": "Xcode_27_beta_3",
                     "version": "27.0+27A5218g",
                     "symlinks": ["27.0"],
