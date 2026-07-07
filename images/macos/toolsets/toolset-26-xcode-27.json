@@ -5,7 +5,7 @@
             "versions": [
                 {
                     "link": "27_beta",
-                    "filename": "Xcode_27_beta3",
+                    "filename": "Xcode_27_beta_3",
                     "version": "27.0+27A5218g",
                     "symlinks": ["27.0"],
                     "sha256": "20f9e0a1afbd11aeb4f52c7c518427c637cf6f2f6f9695912264dc3de2b039f9",
@@ -17,7 +17,7 @@
             "versions": [
                 {
                     "link": "27_beta",
-                    "filename": "Xcode_27_beta3",
+                    "filename": "Xcode_27_beta_3",
                     "version": "27.0+27A5218g",
                     "symlinks": ["27.0"],
                     "sha256": "20f9e0a1afbd11aeb4f52c7c518427c637cf6f2f6f9695912264dc3de2b039f9",
