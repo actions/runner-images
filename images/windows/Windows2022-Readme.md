@@ -2,14 +2,13 @@
 |-|
 | [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[Windows] Windows 11 Arm with Visual Studio 2026 is now available as a public preview](https://github.com/actions/runner-images/issues/14225) |
-| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 | [[Windows] `windows-latest` and `windows-2025` image-label will use Windows Server 2025 with Visual Studio 2026 image in June 2026](https://github.com/actions/runner-images/issues/14017) |
 | [[Windows] The Windows Server 2025 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14016) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 5256
-- Image Version: 20260616.203.1
+- Image Version: 20260628.224.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -22,7 +21,7 @@
 - Julia 1.12.0
 - Kotlin 2.4.0
 - LLVM 20.1.8
-- Node 22.22.3
+- Node 22.23.1
 - Perl 5.32.1
 - PHP 8.5.7
 - Python 3.12.10
@@ -36,9 +35,9 @@
 - NPM 10.9.8
 - NuGet 7.6.0.59
 - pip 26.1.2 (python 3.12)
-- Pipx 1.14.0
+- Pipx 1.15.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit cac7d29f24)
+- Vcpkg (build from commit a040002471)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -49,12 +48,12 @@
 
 ### Project Management
 - Ant 1.10.17
-- Gradle 9.5
+- Gradle 9.6
 - Maven 3.9.16
 - sbt 1.12.12
 
 ### Tools
-- 7zip 26.01
+- 7zip 26.02
 - aria2 1.37.0
 - azcopy 10.32.4
 - Bazel 9.1.1
@@ -81,13 +80,13 @@
 - Newman 6.2.2
 - NSIS 3.10
 - OpenSSL 3.6.3
-- Packer 1.15.3
-- Pulumi 3.245.0
-- R 4.6.0
+- Packer 1.15.4
+- Pulumi 3.248.0
+- R 4.6.1
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.11.1
 - Subversion (SVN) 1.14.5
-- Swig 4.3.1
+- Swig 4.4.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.14.1.8722
@@ -96,13 +95,13 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.23
-- AWS CLI 2.35.5
+- Alibaba Cloud CLI 3.4.2
+- AWS CLI 2.35.11
 - AWS SAM CLI 1.162.1
-- AWS Session Manager CLI 1.2.814.0
+- AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.87.0
-- Azure DevOps CLI extension 1.0.4
-- GitHub CLI 2.94.0
+- Azure DevOps CLI extension 1.0.5
+- GitHub CLI 2.95.0
 
 ### Rust Tools
 - Cargo 1.96.0
@@ -119,11 +118,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.115
-- Chrome Driver 149.0.7827.115
-- Microsoft Edge 149.0.4022.69
-- Microsoft Edge Driver 149.0.4022.69
-- Mozilla Firefox 152.0
+- Google Chrome 149.0.7827.201
+- Chrome Driver 149.0.7827.155
+- Microsoft Edge 149.0.4022.98
+- Microsoft Edge Driver 149.0.4022.98
+- Mozilla Firefox 152.0.3
 - Gecko Driver 0.37.0
 - IE Driver 4.14.0.0
 - Selenium server 4.45.0
@@ -165,14 +164,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Tools
 
 #### Go
-- 1.22.12
-- 1.23.12
 - 1.24.13
 - 1.25.11
+- 1.26.4
 
 #### Node.js
-- 22.22.3
-- 24.16.0
+- 22.23.1
+- 24.18.0
 
 #### Python
 - 3.10.11
@@ -220,18 +218,18 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.8.3
+- MongoDB Shell (mongosh) 2.9.0
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.1  | C:\tools\nginx-1.31.1\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.31.2  | C:\tools\nginx-1.31.2\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
 | ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.37328.6 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.14.37411.7 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -256,7 +254,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Unreal.Android                                                  | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36907.17  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37320.22  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37409.10  |
 | Component.VisualStudio.GitHubCopilotForAzure.x64                          | 17.14.37202.16  |
 | Component.VSInstallerProjects2022                                         | 3.0.0           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
@@ -487,17 +485,17 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### .NET Core Tools
 - .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
 - .NET Framework: 4.7.2, 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 6.0.42, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
-- Microsoft.NETCore.App: 6.0.42, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
+- Microsoft.AspNetCore.App: 6.0.43, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
+- Microsoft.NETCore.App: 6.0.43, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
 - Microsoft.WindowsDesktop.App: 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
-- nbgv 3.9.50+6feeb89450
+- nbgv 3.10.85+c46e47c69b
 
 ### PowerShell Tools
-- PowerShell 7.6.2
+- PowerShell 7.6.3
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.234
+- AWSPowershell: 5.0.241
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.38.0
@@ -505,7 +503,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
 - PSWindowsUpdate: 2.2.1.5
-- SqlServer: 22.3.0
+- SqlServer: 22.4.5.1
 - VSSetup: 2.2.16
 
 ### Android

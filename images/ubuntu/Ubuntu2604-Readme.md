@@ -1,14 +1,14 @@
 | Announcements |
 |-|
+| [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
 | [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
-| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 ***
 # Ubuntu 26.04 LTS
 - OS Version: 26.04 LTS
-- Kernel Version: 7.0.0-1004-azure
-- Image Version: 20260615.44.1
+- Kernel Version: 7.0.0-1007-azure
+- Image Version: 20260628.56.1
 - Systemd version: 259.5-0ubuntu3
 
 ## Installed Software
@@ -22,21 +22,21 @@
 - GNU C++: 13.4.0, 14.3.0, 15.2.0
 - GNU Fortran: 13.4.0, 14.3.0, 15.2.0
 - Kotlin 2.4.0-release-281
-- Node.js 24.16.0
+- Node.js 24.18.0
 - Perl 5.40.1
 - Python 3.14.4
 - Ruby 3.3.8
 
 ### Package Management
 - cpan 1.64
-- Helm 4.2.1
-- Homebrew 6.0.2
-- Npm 11.13.0
+- Helm 4.2.2
+- Homebrew 6.0.5
+- Npm 11.16.0
 - Pip 25.1.1
 - Pip3 25.1.1
-- Pipx 1.14.0
+- Pipx 1.15.0
 - RubyGems 3.6.7
-- Vcpkg (build from commit a7acc4f979)
+- Vcpkg (build from commit a040002471)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,21 +55,21 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.15
-- Gradle 9.5.1
+- Gradle 9.6.1
 - Maven 3.9.15
 
 ### Tools
-- Ansible 2.21.0
+- Ansible 2.21.1
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.1.1
 - Bazelisk 1.28.1
 - Bicep 0.44.1
 - Buildah 1.42.1
-- CMake 4.3.3
+- CMake 4.3.4
 - CodeQL Action Bundle 2.25.6
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 5.1.3
-- Docker-Buildx 0.34.1
+- Docker-Buildx 0.35.0
 - Docker Client 29.4.2
 - Docker Server 29.4.2
 - Git 2.53.0
@@ -92,13 +92,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.5
-- AWS CLI Session Manager Plugin 1.2.814.0
+- AWS CLI 2.35.11
+- AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.4
-- GitHub CLI 2.94.0
-- Google Cloud CLI 572.0.0
+- Azure CLI (azure-devops) 1.0.5
+- GitHub CLI 2.95.0
+- Google Cloud CLI 574.0.0
 
 ### Java
 | Version            | Environment Variable |
@@ -119,7 +119,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ### Haskell Tools
 - Cabal 3.16.1.0
 - GHC 9.14.1
-- GHCup 0.2.6.1
+- GHCup 0.2.6.2
 - Stack 3.11.1
 
 ### Rust Tools
@@ -132,13 +132,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.114
-- ChromeDriver 149.0.7827.115
+- Google Chrome 149.0.7827.200
+- ChromeDriver 149.0.7827.155
 - Chromium 149.0.7827.0
-- Microsoft Edge 149.0.4022.69
-- Microsoft Edge WebDriver 149.0.4022.69
-- Selenium server 4.44.0
-- Mozilla Firefox 151.0.4
+- Microsoft Edge 149.0.4022.98
+- Microsoft Edge WebDriver 149.0.4022.98
+- Selenium server 4.45.0
+- Mozilla Firefox 152.0.3
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -151,7 +151,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
-- nbgv 3.9.50+6feeb89450
+- nbgv 3.10.85+c46e47c69b
 
 ### Databases
 - sqlite3 3.46.1
@@ -165,7 +165,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.4.9-0ubuntu0.26.04.1
+- MySQL 8.4.10-0ubuntu0.26.04.1
 ```
 User: root
 Password: root
@@ -174,11 +174,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 ### PowerShell Tools
-- PowerShell 7.6.2
+- PowerShell 7.6.3
 
 #### PowerShell Modules
 - Az: 15.6.1
-- Microsoft.Graph: 2.37.0
+- Microsoft.Graph: 2.38.0
 - Pester: 5.7.1
 - PSScriptAnalyzer: 1.25.0
 
@@ -242,6 +242,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.19.0-1ubuntu1              |
 | iputils-ping           | 3:20250605-1ubuntu1          |
 | jq                     | 1.8.1-4ubuntu2               |
+| libicu-dev             | 78.2-2ubuntu1                |
 | libnss3-tools          | 2:3.120-1ubuntu2             |
 | libsqlite3-dev         | 3.46.1-9                     |
 | libssl-dev             | 3.5.5-1ubuntu3.2             |
@@ -269,7 +270,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sudo                   | 1.9.17p2-1ubuntu3            |
 | swig                   | 4.4.0-1                      |
 | systemd-coredump       | 259.5-0ubuntu3               |
-| tar                    | 1.35+dfsg-4                  |
+| tar                    | 1.35+dfsg-4ubuntu0.1         |
 | telnet                 | 0.17+2.7-2ubuntu1.1          |
 | texinfo                | 7.2-5ubuntu2                 |
 | time                   | 1.9-0.4                      |

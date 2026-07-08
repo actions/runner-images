@@ -3,13 +3,12 @@
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
 | [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
-| [[All OS] PowerShell will be updated from 7.4 to 7.6 LTS on all runner images](https://github.com/actions/runner-images/issues/14150) |
 | [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1059-azure
-- Image Version: 20260617.186.1
+- Image Version: 20260629.205.1
 - Systemd version: 249.11-0ubuntu3.21
 
 ## Installed Software
@@ -26,7 +25,7 @@
 - Kotlin 2.4.0-release-281
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 22.22.3
+- Node.js 22.23.1
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
@@ -34,16 +33,16 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.21.1
-- Homebrew 6.0.2
+- Helm 3.21.2
+- Homebrew 6.0.5
 - Miniconda 26.3.2
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.14.0
+- Pipx 1.15.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit 5d35de2ee8)
+- Vcpkg (build from commit fb67f8d525)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,10 +61,10 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.5.1
+- Gradle 9.6.1
 - Lerna 9.0.7
 - Maven 3.9.16
-- Sbt 1.12.12
+- Sbt 1.12.13
 
 ### Tools
 - Ansible 2.17.14
@@ -79,7 +78,7 @@ to accomplish this.
 - CodeQL Action Bundle 2.25.6
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.34.1
+- Docker-Buildx 0.35.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.236.1
@@ -87,7 +86,7 @@ to accomplish this.
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 11.5.0
+- Heroku 11.7.1
 - jq 1.6
 - Kind 0.32.0
 - Kubectl 1.36.2
@@ -103,30 +102,30 @@ to accomplish this.
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.246.0
-- R 4.6.0
+- Pulumi 3.248.0
+- R 4.6.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.15.6
+- Terraform 1.15.7
 - yamllint 1.38.0
 - yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.3.23
-- AWS CLI 2.35.6
-- AWS CLI Session Manager Plugin 1.2.814.0
+- Alibaba Cloud CLI 3.4.2
+- AWS CLI 2.35.12
+- AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.162.1
 - Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.4
-- GitHub CLI 2.94.0
-- Google Cloud CLI 573.0.0
+- Azure CLI (azure-devops) 1.0.5
+- GitHub CLI 2.95.0
+- Google Cloud CLI 574.0.0
 - ORAS CLI 1.3.2
 - Netlify CLI 26.1.0
-- OpenShift CLI 4.22.1
-- Vercel CLI 54.14.0
+- OpenShift CLI 4.22.2
+- Vercel CLI 54.18.4
 
 ### Java
 | Version              | Environment Variable |
@@ -166,13 +165,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.155
+- Google Chrome 149.0.7827.200
 - ChromeDriver 149.0.7827.155
 - Chromium 149.0.7827.0
-- Microsoft Edge 149.0.4022.69
-- Microsoft Edge WebDriver 149.0.4022.69
+- Microsoft Edge 149.0.4022.98
+- Microsoft Edge WebDriver 149.0.4022.98
 - Selenium server 4.45.0
-- Mozilla Firefox 151.0.4
+- Mozilla Firefox 152.0.3
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -185,7 +184,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
-- nbgv 3.9.50+6feeb89450
+- nbgv 3.10.85+c46e47c69b
 
 ### Databases
 - sqlite3 3.37.2
@@ -199,7 +198,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.46-0ubuntu0.22.04.2
+- MySQL 8.0.46-0ubuntu0.22.04.3
 ```
 User: root
 Password: root
@@ -214,14 +213,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.22.12
-- 1.23.12
 - 1.24.13
 - 1.25.11
+- 1.26.4
 
 #### Node.js
-- 22.22.3
-- 24.16.0
+- 22.23.1
+- 24.18.0
 
 #### Python
 - 3.10.20
@@ -244,7 +242,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 4.0.5
 
 ### PowerShell Tools
-- PowerShell 7.6.2
+- PowerShell 7.6.3
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -322,12 +320,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
 | libgtk-3-0             | 3.24.33-1ubuntu2.2                  |
+| libicu-dev             | 70.1-2                              |
 | libmagic-dev           | 1:5.41-3ubuntu0.1                   |
 | libmagickcore-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libnss3-tools          | 2:3.98-0ubuntu0.22.04.3             |
 | libsecret-1-dev        | 0.20.5-2                            |
-| libsqlite3-dev         | 3.37.2-2ubuntu0.5                   |
+| libsqlite3-dev         | 3.37.2-2ubuntu0.6                   |
 | libssl-dev             | 3.0.2-0ubuntu1.25                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
@@ -356,14 +355,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-0ubuntu0.22.04.7              |
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
-| sqlite3                | 3.37.2-2ubuntu0.5                   |
+| sqlite3                | 3.37.2-2ubuntu0.6                   |
 | ssh                    | 1:8.9p1-3ubuntu0.15                 |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.6                    |
 | swig                   | 4.0.2-1ubuntu1                      |
 | systemd-coredump       | 249.11-0ubuntu3.21                  |
-| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.2        |
+| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.3        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
