@@ -1,31 +1,35 @@
 Describe "Android SDK" -Skip:(Test-IsArm64) {
-    $androidToolset = (Get-ToolsetContent).android
-    $androidInstalledPackages = Get-AndroidInstalledPackages
+    BeforeDiscovery {
+        if (Test-IsArm64) { return }
 
-    $platformList = Get-AndroidPlatformPackages -minVersion $androidToolset.platform_min_version
-    $platformTestCases = $platformList | ForEach-Object {
-        @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
-    }
+        $androidToolset = (Get-ToolsetContent).android
+        $androidInstalledPackages = Get-AndroidInstalledPackages
 
-    $buildToolsList = Get-AndroidBuildToolPackages -minVersion $androidToolset.build_tools_min_version
-    $buildToolsTestCases = $buildToolsList | ForEach-Object {
-        @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
-    }
+        $platformList = Get-AndroidPlatformPackages -minVersion $androidToolset.platform_min_version
+        $platformTestCases = $platformList | ForEach-Object {
+            @{ platformVersion = $_; installedPackages = $androidInstalledPackages }
+        }
 
-    $extraPackagesTestCases = $androidToolset.extra_list | ForEach-Object {
-        @{ extraPackage = $_; installedPackages = $androidInstalledPackages }
-    }
+        $buildToolsList = Get-AndroidBuildToolPackages -minVersion $androidToolset.build_tools_min_version
+        $buildToolsTestCases = $buildToolsList | ForEach-Object {
+            @{ buildToolsVersion = $_; installedPackages = $androidInstalledPackages }
+        }
 
-    $addonsTestCases = $androidToolset.addon_list | ForEach-Object {
-        @{ addonPackage = $_; installedPackages = $androidInstalledPackages }
-    }
+        $extraPackagesTestCases = $androidToolset.extra_list | ForEach-Object {
+            @{ extraPackage = $_; installedPackages = $androidInstalledPackages }
+        }
 
-    $additionalToolsTestCases = $androidToolset.additional_tools | ForEach-Object {
-        @{ additionalToolVersion = $_; installedPackages = $androidInstalledPackages }
-    }
+        $addonsTestCases = $androidToolset.addon_list | ForEach-Object {
+            @{ addonPackage = $_; installedPackages = $androidInstalledPackages }
+        }
 
-    $ndkPackagesTestCases = $androidToolset.ndk.versions | ForEach-Object {
-        @{ ndkPackage = $_; installedPackages = $androidInstalledPackages }
+        $additionalToolsTestCases = $androidToolset.additional_tools | ForEach-Object {
+            @{ additionalToolVersion = $_; installedPackages = $androidInstalledPackages }
+        }
+
+        $ndkPackagesTestCases = $androidToolset.ndk.versions | ForEach-Object {
+            @{ ndkPackage = $_; installedPackages = $androidInstalledPackages }
+        }
     }
 
     Context "SDKManagers" {
