@@ -1,6 +1,14 @@
 Describe "Android SDK" -Skip:(Test-IsArm64) {
     BeforeDiscovery {
-        if (Test-IsArm64) { return }
+        if (Test-IsArm64) {
+            $platformTestCases = @()
+            $buildToolsTestCases = @()
+            $extraPackagesTestCases = @()
+            $addonsTestCases = @()
+            $additionalToolsTestCases = @()
+            $ndkPackagesTestCases = @()
+            return
+        }
 
         $androidToolset = (Get-ToolsetContent).android
         $androidInstalledPackages = Get-AndroidInstalledPackages
