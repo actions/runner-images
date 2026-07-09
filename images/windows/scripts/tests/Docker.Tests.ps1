@@ -25,17 +25,22 @@ Describe "DockerWinCred" -Skip:(Test-IsWin11-Arm64) {
     }
 }
 
-Describe "DockerImages" -Skip:((Test-IsWin25-X64) -or (Test-IsWin11-Arm64)) {
+$skipDockerImages = (Test-IsWin25-X64) -or (Test-IsWin11-Arm64)
+
+Describe "DockerImages" -Skip:$skipDockerImages {
     BeforeDiscovery {
         $testCases = @()
-        if (-not (Test-IsWin25-X64) -and -not (Test-IsWin11-Arm64)) {
-            $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
+        if (-not $skipDockerImages) {
+            $dockerImages = (Get-ToolsetContent).docker.images
+            $testCases = $dockerImages | ForEach-Object { @{ ImageName = $_ } }
         }
     }
 
     Context "docker images" {
-        It "<ImageName>" -TestCases $testCases {
-            docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
+        if ($testCases.Count -gt 0) {
+            It "<ImageName>" -TestCases $testCases {
+                docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
+            }
         }
     }
 }
