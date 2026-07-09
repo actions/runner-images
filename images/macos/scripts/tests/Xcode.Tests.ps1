@@ -93,13 +93,18 @@ Describe "XCODE_DEVELOPER_DIR variables" {
     $majorVersions = $exactVersionsList.Version.Major | Select-Object -Unique
     $testCases = $majorVersions | ForEach-Object { @{ MajorVersion = $_; VersionsList = $exactVersionsList } }
 
-    It "XCODE_<MajorVersion>_DEVELOPER_DIR" -TestCases $testCases {
-        $variableName = "XCODE_${MajorVersion}_DEVELOPER_DIR"
-        $actualPath = [System.Environment]::GetEnvironmentVariable($variableName)
-        $expectedVersion = $VersionsList | Where-Object { $_.Version.Major -eq $MajorVersion } | Select-Object -First 1
-        $expectedPath = "$($expectedVersion.RootPath)/Contents/Developer"
-        $actualPath | Should -Exist
-        $actualPath | Should -Be $expectedPath
+    if (@($testCases).Count -eq 0) {
+        It "XCODE_<MajorVersion>_DEVELOPER_DIR" -Skip:$true -Because "No stable Xcode versions found in toolset for this image." {
+        }
+    } else {
+        It "XCODE_<MajorVersion>_DEVELOPER_DIR" -TestCases $testCases {
+            $variableName = "XCODE_${MajorVersion}_DEVELOPER_DIR"
+            $actualPath = [System.Environment]::GetEnvironmentVariable($variableName)
+            $expectedVersion = $VersionsList | Where-Object { $_.Version.Major -eq $MajorVersion } | Select-Object -First 1
+            $expectedPath = "$($expectedVersion.RootPath)/Contents/Developer"
+            $actualPath | Should -Exist
+            $actualPath | Should -Be $expectedPath
+        }
     }
 }
 
