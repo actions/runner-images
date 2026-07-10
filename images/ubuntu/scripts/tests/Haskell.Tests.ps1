@@ -1,14 +1,19 @@
 Describe "Haskell" -Skip:(Test-IsArm64) {
     BeforeDiscovery {
+        $testCases = @()
         if (Test-IsArm64) { return }
         $GHCCommonPath = "/usr/local/.ghcup/ghc"
-        $GHCVersions = Get-ChildItem -Path $GHCCommonPath | Where-Object { $_.Name -match "\d+\.\d+" }
 
-        $testCases = $GHCVersions | ForEach-Object { @{ GHCPath = "${_}/bin/ghc"} }
+        if (Test-Path -Path $GHCCommonPath) {
+            $GHCVersions = Get-ChildItem -Path $GHCCommonPath | Where-Object { $_.Name -match "\d+\.\d+" }
+            $testCases = @($GHCVersions | ForEach-Object { @{ GHCPath = "$($_.FullName)/bin/ghc"} })
+        }
     }
 
-    It "GHC version <GHCPath>" -TestCases $testCases {
-        "$GHCPath --version" | Should -ReturnZeroExitCode
+    if ($testCases.Count -gt 0) {
+        It "GHC version <GHCPath>" -TestCases $testCases {
+            "$GHCPath --version" | Should -ReturnZeroExitCode
+        }
     }
 
     It "GHCup" {
