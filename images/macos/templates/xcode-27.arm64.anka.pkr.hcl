@@ -184,7 +184,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["IMAGE_VERSION=${var.build_id}", "IMAGE_OS=${var.image_os}", "IMAGE_LABEL_OVERRIDE=macos-26-xcode-27", "PASSWORD=${var.vm_password}"]
+    environment_vars = ["IMAGE_VERSION=${var.build_id}", "IMAGE_OS=${var.image_os}", "IMAGE_LABEL_OVERRIDE=xcode-27", "PASSWORD=${var.vm_password}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts          = [
       "${path.root}/../scripts/build/configure-preimagedata.sh",
@@ -276,7 +276,7 @@ build {
   }
 
   provisioner "file" {
-    destination = "${path.root}/../../image-output/macos-26-xcode-27-Readme.md"
+    destination = "${path.root}/../../image-output/xcode-27-Readme.md"
     direction   = "download"
     source      = "${local.image_folder}/output/software-report.md"
   }
