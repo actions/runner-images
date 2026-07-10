@@ -29,11 +29,14 @@ for package in $common_packages; do
                 # xcodes formulae still works on MacOS 15 ARM and 26 ARM
                 brew_smart_install "$package"
             else
-                # homebrew-core provides no x86_64 bottle for current xcodes (Homebrew Tier 3),
-                # and the previously pinned 1.6.2 is too old to parse Apple's simulator runtime
-                # catalog. Install from XcodesOrg's own tap, which ships an Intel/universal bottle.
-                echo "Installing xcodes from XcodesOrg tap..."
-                HOMEBREW_NO_REQUIRE_TAP_TRUST=1 brew install xcodesorg/made/xcodes
+                # homebrew-core ships no x86_64 bottle for current xcodes, and building it
+                # from source needs xcbuild (unavailable during image build). Install the
+                # prebuilt Developer-ID-signed universal binary from XcodesOrg's release.
+                echo "Installing xcodes from XcodesOrg release..."
+                curl -fsSL "https://github.com/XcodesOrg/xcodes/releases/latest/download/xcodes.zip" -o /tmp/xcodes.zip
+                unzip -oq /tmp/xcodes.zip -d /tmp/xcodes-bin
+                sudo install -m 0755 /tmp/xcodes-bin/xcodes /usr/local/bin/xcodes
+                rm -rf /tmp/xcodes.zip /tmp/xcodes-bin
             fi
             ;;
 
