@@ -94,7 +94,7 @@ Describe "XCODE_DEVELOPER_DIR variables" {
     $testCases = $majorVersions | ForEach-Object { @{ MajorVersion = $_; VersionsList = $exactVersionsList } }
 
     if (@($testCases).Count -eq 0) {
-        It "XCODE_<MajorVersion>_DEVELOPER_DIR" -Skip:$true -Because "No stable Xcode versions found in toolset for this image." {
+        It "XCODE_<MajorVersion>_DEVELOPER_DIR" -Skip {
         }
     } else {
         It "XCODE_<MajorVersion>_DEVELOPER_DIR" -TestCases $testCases {
@@ -109,15 +109,22 @@ Describe "XCODE_DEVELOPER_DIR variables" {
 }
 
 Describe "Xcode simulators" {
-    $xcodeVersions.link | Where-Object { Test-XcodeStableRelease -Version $_ } | ForEach-Object {
-        Context "$_" {
-            $testCase = @{ XcodeVersion = $_ }
-            It "No duplicates in devices" -TestCases $testCase {
-                Switch-Xcode -Version $XcodeVersion
-                [array]$devicesList = @(Get-XcodeDevicesList | Where-Object { $_ })
-                Write-Host "Devices for $XcodeVersion"
-                Write-Host ($devicesList -join "`n")
-                Confirm-ArrayWithoutDuplicates $devicesList -Because "Found duplicate device simulators"
+    $stableXcodeVersions = @($xcodeVersions.link | Where-Object { Test-XcodeStableRelease -Version $_ })
+
+    if ($stableXcodeVersions.Count -eq 0) {
+        It "No duplicates in devices" -Skip {
+        }
+    } else {
+        $stableXcodeVersions | ForEach-Object {
+            Context "$_" {
+                $testCase = @{ XcodeVersion = $_ }
+                It "No duplicates in devices" -TestCases $testCase {
+                    Switch-Xcode -Version $XcodeVersion
+                    [array]$devicesList = @(Get-XcodeDevicesList | Where-Object { $_ })
+                    Write-Host "Devices for $XcodeVersion"
+                    Write-Host ($devicesList -join "`n")
+                    Confirm-ArrayWithoutDuplicates $devicesList -Because "Found duplicate device simulators"
+                }
             }
         }
     }
