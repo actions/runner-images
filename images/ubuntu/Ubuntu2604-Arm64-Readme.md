@@ -1,14 +1,12 @@
 | Announcements |
 |-|
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
-| [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
-| [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 ***
 # Ubuntu 26.04 LTS
 - OS Version: 26.04 LTS
 - Kernel Version: 7.0.0-1007-azure
-- Image Version: 20260629.44.2
+- Image Version: 20260705.52.1
 - Systemd version: 259.5-0ubuntu3
 
 ## Installed Software
@@ -30,13 +28,13 @@
 ### Package Management
 - cpan 1.64
 - Helm 4.2.2
-- Homebrew 6.0.5
+- Homebrew 6.0.6
 - Npm 11.16.0
 - Pip 25.1.1
 - Pip3 25.1.1
 - Pipx 1.15.0
 - RubyGems 3.6.7
-- Vcpkg (build from commit a040002471)
+- Vcpkg (build from commit dfcb04008a)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -90,13 +88,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.11
+- AWS CLI 2.35.15
 - AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.162.1
+- AWS SAM CLI 1.163.0
 - Azure CLI 2.87.0
 - Azure CLI (azure-devops) 1.0.5
-- GitHub CLI 2.95.0
-- Google Cloud CLI 574.0.0
+- GitHub CLI 2.96.0
+- Google Cloud CLI 575.0.0
 
 ### Java
 | Version            | Environment Variable |
@@ -108,16 +106,16 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.5.4
-- Composer 2.10.1
+- Composer 2.10.2
 - PHPUnit 8.5.52
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.96.0
-- Rust 1.96.0
-- Rustdoc 1.96.0
+- Cargo 1.96.1
+- Rust 1.96.1
+- Rustdoc 1.96.1
 - Rustup 1.29.0
 
 #### Packages
@@ -125,7 +123,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Browsers and Drivers
 - Selenium server 4.45.0
-- Mozilla Firefox 152.0.3
+- Mozilla Firefox 152.0.4
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -158,7 +156,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 15.6.1
 - Microsoft.Graph: 2.38.0
-- Pester: 5.7.1
+- Pester: 5.8.0
 - PSScriptAnalyzer: 1.25.0
 
 ### Web Servers
@@ -182,7 +180,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.2.0-3build1                |
 | bzip2                  | 1.0.8-6build2                |
 | coreutils              | 9.5-1ubuntu2+0.0.0\~ubuntu25 |
-| curl                   | 8.18.0-1ubuntu2.1            |
+| curl                   | 8.18.0-1ubuntu2.2            |
 | dbus                   | 1.16.2-2ubuntu4              |
 | dpkg                   | 1.23.7ubuntu1                |
 | dpkg-dev               | 1.23.7ubuntu1                |
@@ -195,13 +193,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | g++                    | 4:15.2.0-5ubuntu1            |
 | gcc                    | 4:15.2.0-5ubuntu1            |
 | gnupg2                 | 2.4.8-4ubuntu3               |
-| iproute2               | 6.19.0-1ubuntu1              |
+| iproute2               | 6.19.0-1ubuntu1.1            |
 | iputils-ping           | 3:20250605-1ubuntu1          |
 | jq                     | 1.8.1-4ubuntu2               |
 | libgbm-dev             | 26.0.3-1ubuntu1              |
 | libicu-dev             | 78.2-2ubuntu1                |
-| libnss3-tools          | 2:3.120-1ubuntu2             |
-| libsqlite3-dev         | 3.46.1-9                     |
+| libnss3-tools          | 2:3.120-1ubuntu2.1           |
+| libsqlite3-dev         | 3.46.1-9ubuntu0.1            |
 | libssl-dev             | 3.5.5-1ubuntu3.2             |
 | libtool                | 2.5.4-9                      |
 | libyaml-dev            | 0.2.5-2build3                |
@@ -221,7 +219,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rpm                    | 6.0.1-1build1                |
 | rsync                  | 3.4.1+ds1-7ubuntu0.3         |
 | shellcheck             | 0.11.0-2                     |
-| sqlite3                | 3.46.1-9                     |
+| sqlite3                | 3.46.1-9ubuntu0.1            |
 | ssh                    | 1:10.2p1-2ubuntu3.2          |
 | sshpass                | 1.10-0.1build1               |
 | sudo                   | 1.9.17p2-1ubuntu3            |
