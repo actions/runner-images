@@ -6,7 +6,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1059-azure
-- Image Version: 20260705.54.1
+- Image Version: 20260712.61.1
 - Systemd version: 249.11-0ubuntu3.21
 
 ## Installed Software
@@ -30,15 +30,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.21.2
-- Homebrew 6.0.6
+- Helm 3.21.3
+- Homebrew 6.0.9
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.15.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit dfcb04008a)
+- Vcpkg (build from commit f87344cac0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -93,27 +93,27 @@ to accomplish this.
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.250.0
+- Pulumi 3.251.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.15.7
+- Terraform 1.15.8
 - yamllint 1.38.0
 - yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.15
+- AWS CLI 2.35.21
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.163.0
-- Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.5
+- Azure CLI 2.88.0
+- Azure CLI (azure-devops) 1.0.6
 - GitHub CLI 2.96.0
-- Google Cloud CLI 575.0.0
-- Netlify CLI 26.1.0
-- OpenShift CLI 4.22.3
-- Vercel CLI 54.20.1
+- Google Cloud CLI 575.0.1
+- Netlify CLI 26.2.0
+- OpenShift CLI 4.22.4
+- Vercel CLI 55.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -127,28 +127,28 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.1.2
 - Composer 2.10.2
-- PHPUnit 8.5.52
+- PHPUnit 8.5.53
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.96.1
-- Rust 1.96.1
-- Rustdoc 1.96.1
+- Cargo 1.97.0
+- Rust 1.97.0
+- Rustdoc 1.97.0
 - Rustup 1.29.0
 
 #### Packages
 - Bindgen 0.72.1
 - Cargo audit 0.22.2
-- Cargo clippy 0.1.96
+- Cargo clippy 0.1.97
 - Cargo outdated 0.19.0
 - Cbindgen 0.29.4
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Selenium server 4.45.0
-- Mozilla Firefox 152.0.4
+- Selenium server 4.46.0
+- Mozilla Firefox 152.0.5
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -161,7 +161,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
-- nbgv 3.10.85+c46e47c69b
+- nbgv 3.10.91+e05abbcae4
 
 ### Databases
 - sqlite3 3.37.2
@@ -182,7 +182,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - Az: 15.6.1
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.38.0
-- Pester: 5.8.0
+- Pester: 6.0.0
 - PSScriptAnalyzer: 1.25.0
 
 ### Web Servers
@@ -272,12 +272,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sudo                   | 1.9.9-1ubuntu2.6                    |
 | swig                   | 4.0.2-1ubuntu1                      |
 | systemd-coredump       | 249.11-0ubuntu3.21                  |
-| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.3        |
+| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.4        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
 | tk                     | 8.6.11+1build2                      |
-| tzdata                 | 2026a-0ubuntu0.22.04.1              |
+| tzdata                 | 2026b-0ubuntu0.22.04.1              |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1.1                   |
