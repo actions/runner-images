@@ -6,7 +6,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
 - Kernel Version: 6.17.0-1018-azure
-- Image Version: 20260705.232.1
+- Image Version: 20260712.238.1
 - Systemd version: 255.4-1ubuntu8.16
 
 ## Installed Software
@@ -29,15 +29,15 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.21.2
-- Homebrew 6.0.6
-- Miniconda 26.3.2
+- Helm 3.21.3
+- Homebrew 6.0.9
+- Miniconda 26.5.3
 - Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.15.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit dfcb04008a)
+- Vcpkg (build from commit f87344cac0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -65,10 +65,10 @@ to accomplish this.
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.1.1
 - Bazelisk 1.28.1
-- Bicep 0.44.1
+- Bicep 0.45.6
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.25.6
+- CodeQL Action Bundle 2.26.0
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
 - Docker-Buildx 0.35.0
@@ -93,7 +93,7 @@ to accomplish this.
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.250.0
+- Pulumi 3.251.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -102,13 +102,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.15
+- AWS CLI 2.35.21
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.163.0
-- Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.5
+- Azure CLI 2.88.0
+- Azure CLI (azure-devops) 1.0.6
 - GitHub CLI 2.96.0
-- Google Cloud CLI 575.0.0
+- Google Cloud CLI 575.0.1
 
 ### Java
 | Version              | Environment Variable |
@@ -122,7 +122,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.3.6
 - Composer 2.10.2
-- PHPUnit 8.5.52
+- PHPUnit 8.5.53
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -134,22 +134,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.11.1
 
 ### Rust Tools
-- Cargo 1.96.1
-- Rust 1.96.1
-- Rustdoc 1.96.1
+- Cargo 1.97.0
+- Rust 1.97.0
+- Rustdoc 1.97.0
 - Rustup 1.29.0
 
 #### Packages
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 150.0.7871.46
-- ChromeDriver 150.0.7871.46
+- Google Chrome 150.0.7871.114
+- ChromeDriver 150.0.7871.115
 - Chromium 150.0.7871.0
-- Microsoft Edge 150.0.4078.48
-- Microsoft Edge WebDriver 150.0.4078.48
-- Selenium server 4.45.0
-- Mozilla Firefox 152.0.4
+- Microsoft Edge 150.0.4078.65
+- Microsoft Edge WebDriver 150.0.4078.65
+- Selenium server 4.46.0
+- Mozilla Firefox 152.0.5
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -162,7 +162,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
-- nbgv 3.10.85+c46e47c69b
+- nbgv 3.10.91+e05abbcae4
 
 ### Databases
 - sqlite3 3.45.1
@@ -188,8 +188,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Go
 - 1.24.13
-- 1.25.11
-- 1.26.4
+- 1.25.12
+- 1.26.5
 
 #### Node.js
 - 22.23.1
@@ -219,7 +219,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 15.6.1
 - Microsoft.Graph: 2.38.0
-- Pester: 5.8.0
+- Pester: 6.0.0
 - PSScriptAnalyzer: 1.25.0
 
 ### Web Servers
@@ -263,7 +263,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.1.0-2build2                |
 | bzip2                  | 1.0.8-5.1build0.1            |
 | coreutils              | 9.4-3ubuntu6.2               |
-| curl                   | 8.5.0-2ubuntu10.10           |
+| curl                   | 8.5.0-2ubuntu10.11           |
 | dbus                   | 1.14.10-4ubuntu4.1           |
 | dnsutils               | 1:9.18.39-0ubuntu0.24.04.5   |
 | dpkg                   | 1.22.6ubuntu6.6              |
@@ -314,13 +314,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.2    |
 | swig                   | 4.2.0-2ubuntu1               |
 | systemd-coredump       | 255.4-1ubuntu8.16            |
-| tar                    | 1.35+dfsg-3ubuntu0.1         |
+| tar                    | 1.35+dfsg-3ubuntu0.2         |
 | telnet                 | 0.17+2.5-3ubuntu4.2          |
 | texinfo                | 7.1-3build2                  |
 | time                   | 1.9-0.2build1                |
 | tk                     | 8.6.14build1                 |
 | tree                   | 2.1.1-2ubuntu3.24.04.2       |
-| tzdata                 | 2026a-0ubuntu0.24.04.1       |
+| tzdata                 | 2026b-0ubuntu0.24.04.1       |
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
 | wget                   | 1.21.4-1ubuntu4.1            |
