@@ -5,8 +5,8 @@
 ***
 # Ubuntu 26.04 LTS
 - OS Version: 26.04 LTS
-- Kernel Version: 7.0.0-1007-azure
-- Image Version: 20260705.52.1
+- Kernel Version: 7.0.0-1009-azure
+- Image Version: 20260712.60.1
 - Systemd version: 259.5-0ubuntu3
 
 ## Installed Software
@@ -27,14 +27,14 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 4.2.2
-- Homebrew 6.0.6
+- Helm 4.2.3
+- Homebrew 6.0.9
 - Npm 11.16.0
 - Pip 25.1.1
 - Pip3 25.1.1
 - Pipx 1.15.0
 - RubyGems 3.6.7
-- Vcpkg (build from commit dfcb04008a)
+- Vcpkg (build from commit f87344cac0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,7 +62,7 @@ to accomplish this.
 - Bazel 9.1.1
 - Bazelisk 1.28.1
 - Buildah 1.42.1
-- CMake 4.3.4
+- CMake 4.4.0
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 5.1.3
 - Docker-Buildx 0.35.0
@@ -88,13 +88,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.15
+- AWS CLI 2.35.21
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.163.0
-- Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.5
+- Azure CLI 2.88.0
+- Azure CLI (azure-devops) 1.0.6
 - GitHub CLI 2.96.0
-- Google Cloud CLI 575.0.0
+- Google Cloud CLI 575.0.1
 
 ### Java
 | Version            | Environment Variable |
@@ -107,23 +107,23 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.5.4
 - Composer 2.10.2
-- PHPUnit 8.5.52
+- PHPUnit 8.5.53
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.96.1
-- Rust 1.96.1
-- Rustdoc 1.96.1
+- Cargo 1.97.0
+- Rust 1.97.0
+- Rustdoc 1.97.0
 - Rustup 1.29.0
 
 #### Packages
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Selenium server 4.45.0
-- Mozilla Firefox 152.0.4
+- Selenium server 4.46.0
+- Mozilla Firefox 152.0.5
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -136,7 +136,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
-- nbgv 3.10.85+c46e47c69b
+- nbgv 3.10.91+e05abbcae4
 
 ### Databases
 - sqlite3 3.46.1
@@ -156,7 +156,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 15.6.1
 - Microsoft.Graph: 2.38.0
-- Pester: 5.8.0
+- Pester: 6.0.0
 - PSScriptAnalyzer: 1.25.0
 
 ### Web Servers
@@ -180,7 +180,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.2.0-3build1                |
 | bzip2                  | 1.0.8-6build2                |
 | coreutils              | 9.5-1ubuntu2+0.0.0\~ubuntu25 |
-| curl                   | 8.18.0-1ubuntu2.2            |
+| curl                   | 8.18.0-1ubuntu2.3            |
 | dbus                   | 1.16.2-2ubuntu4              |
 | dpkg                   | 1.23.7ubuntu1                |
 | dpkg-dev               | 1.23.7ubuntu1                |
@@ -225,13 +225,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sudo                   | 1.9.17p2-1ubuntu3            |
 | swig                   | 4.4.0-1                      |
 | systemd-coredump       | 259.5-0ubuntu3               |
-| tar                    | 1.35+dfsg-4ubuntu0.1         |
+| tar                    | 1.35+dfsg-4ubuntu0.2         |
 | telnet                 | 0.17+2.7-2ubuntu1.1          |
 | texinfo                | 7.2-5ubuntu2                 |
 | time                   | 1.9-0.4                      |
 | tk                     | 8.6.16build1                 |
 | tree                   | 2.3.1-1                      |
-| tzdata                 | 2026a-3ubuntu1               |
+| tzdata                 | 2026b-0ubuntu0.26.04.1       |
 | unzip                  | 6.0-29ubuntu1                |
 | upx                    | 4.2.4-1.1build1              |
 | wget                   | 1.25.0-2ubuntu4              |
