@@ -76,14 +76,14 @@
     "powershellModules": [
         { "name": "DockerMsftProvider" },
         { "name": "MarkdownPS" },
-        { "name": "Pester", "versions": "5.9.0" },
+        { "name": "Pester", "versions": [ "5.9.0"] },
         { "name": "PowerShellGet" },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
         { "name": "SqlServer" },
         { "name": "VSSetup" },
         { "name": "Microsoft.Graph" },
-        { "name": "AWSPowershell"}
+        { "name": "AWSPowershell" }
     ],
     "azureModules": [
         {
