@@ -2,7 +2,7 @@ Describe "WindowsFeatures" {
     $windowsFeatures = (Get-ToolsetContent).windowsFeatures
     $testCases = $windowsFeatures | ForEach-Object { @{ Name = $_.name; OptionalFeature = $_.optionalFeature } }
 
-    It "Windows Feature <Name> is installed" -TestCases $testCases {
+    It "Windows Feature <Name> is installed" -TestCases $testCases -AllowNullOrEmptyForEach {
         if ($OptionalFeature) {
             (Get-WindowsOptionalFeature -Online -FeatureName $Name).State | Should -Be "Enabled"
         } else {
@@ -74,7 +74,7 @@ Describe "Windows Updates" {
         }
     }
 
-    It "<Title>" -TestCases $testCases {
+    It "<Title>" -TestCases $testCases -AllowNullOrEmptyForEach {
         $expect = "Installed"
         if ( $Title -match "Microsoft Defender Antivirus" ) {
             $expect = "Installed", "Failed", "Running"
