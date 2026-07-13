@@ -1,0 +1,184 @@
+name: Repro WSL update prompt (win11-arm64) - issue 14264
+
+# Run manually from the Actions tab. Reproduces / disproves the report in
+# https://github.com/actions/runner-images/issues/14264 :
+# a foreground Terminal window running `wsl.exe --update --confirm --prompt-before-exit`
+# appears around logon and steals focus, breaking GUI test automation.
+#
+# The job does two things:
+#   1) OBSERVE  - watch the foreground window for ~2.5 min and screenshot the desktop,
+#                 to prove/disprove that a WSL/Terminal window takes focus.
+#   2) SOURCE   - dump every place the logon command could come from
+#                 (scheduled tasks, Run/RunOnce keys, Startup folders, WSL status/policy).
+# Artifacts (screenshots + window log) are uploaded so we can attach evidence to the issue.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  investigate:
+    # GitHub-hosted ARM label is 'windows-11-arm' (NOT the image name 'windows-11-arm64').
+    # If you get "no runner matching labels", try 'windows-11-arm64' instead.
+    runs-on: windows-11-arm
+    timeout-minutes: 15
+    steps:
+      # ---------------------------------------------------------------
+      # 1) OBSERVE: watch foreground window + screenshot for ~150s
+      # ---------------------------------------------------------------
+      - name: Watch foreground window and screenshot
+        shell: pwsh
+        run: |
+          Add-Type @"
+          using System;
+          using System.Text;
+          using System.Runtime.InteropServices;
+          public class Win {
+            [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
+            [DllImport("user32.dll")] public static extern int GetWindowText(IntPtr h, StringBuilder s, int n);
+            [DllImport("user32.dll")] public static extern bool IsWindowVisible(IntPtr h);
+            [DllImport("user32.dll")] public static extern bool EnumWindows(EnumProc cb, IntPtr p);
+            public delegate bool EnumProc(IntPtr h, IntPtr p);
+          }
+"@
+          $out = "$env:GITHUB_WORKSPACE\artifacts"
+          New-Item -ItemType Directory -Force -Path $out | Out-Null
+          $log = "$out\window-watch.log"
+          function Title([IntPtr]$h){ $sb = New-Object System.Text.StringBuilder 512; [void][Win]::GetWindowText($h,$sb,512); $sb.ToString() }
+
+          $suspicious = @('wsl','subsystem for linux','Terminal','Command Prompt','conhost')
+          $hit = $false
+          # ~150s window: runner job starts a few seconds after logon; the prompt has a 60s timeout
+          for ($i = 0; $i -lt 30; $i++) {
+            $fg = [Win]::GetForegroundWindow()
+            $fgTitle = Title $fg
+            $line = "[{0:HH:mm:ss}] foreground='{1}'" -f (Get-Date), $fgTitle
+            $line | Tee-Object -FilePath $log -Append
+
+            # enumerate all visible top-level windows this tick
+            $titles = New-Object System.Collections.ArrayList
+            $cb = [Win+EnumProc]{ param($h,$p)
+              if ([Win]::IsWindowVisible($h)) {
+                $t = (New-Object System.Text.StringBuilder 512)
+                [void][Win]::GetWindowText($h,$t,512)
+                if ($t.Length -gt 0) { [void]$titles.Add($t.ToString()) }
+              }
+              return $true
+            }
+            [void][Win]::EnumWindows($cb, [IntPtr]::Zero)
+            foreach ($t in $titles) {
+              foreach ($s in $suspicious) {
+                if ($t -match [regex]::Escape($s)) {
+                  "  visible-window-match: '$t'" | Tee-Object -FilePath $log -Append
+                  $hit = $true
+                }
+              }
+            }
+
+            # screenshot every ~15s
+            if ($i % 3 -eq 0) {
+              try {
+                Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+                $b = [System.Windows.Forms.SystemInformation]::VirtualScreen
+                $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+                $g = [System.Drawing.Graphics]::FromImage($bmp)
+                $g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size)
+                $bmp.Save(("{0}\screen-{1:D2}.png" -f $out,$i))
+                $g.Dispose(); $bmp.Dispose()
+              } catch { "  screenshot failed: $($_.Exception.Message)" | Tee-Object -FilePath $log -Append }
+            }
+            Start-Sleep -Seconds 5
+          }
+
+          "REPRODUCED=$hit" | Tee-Object -FilePath $log -Append
+          "reproduced=$hit" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+        id: watch
+
+      # ---------------------------------------------------------------
+      # 2) SOURCE: where could `wsl --update` at logon come from?
+      # ---------------------------------------------------------------
+      - name: Scheduled tasks referencing wsl / update
+        shell: pwsh
+        if: always()
+        run: |
+          $out = "$env:GITHUB_WORKSPACE\artifacts"; New-Item -ItemType Directory -Force -Path $out | Out-Null
+          $file = "$out\scheduled-tasks.txt"
+          Get-ScheduledTask | ForEach-Object {
+            $t = $_
+            $acts = ($t.Actions | ForEach-Object { "$($_.Execute) $($_.Arguments)" }) -join ' ; '
+            $trigs = ($t.Triggers | ForEach-Object { $_.CimClass.CimClassName }) -join ','
+            if ($acts -match 'wsl' -or $t.TaskName -match 'wsl|WSL|update' -or $acts -match '--update') {
+              "TaskPath=$($t.TaskPath) TaskName=$($t.TaskName) State=$($t.State)" | Tee-Object -FilePath $file -Append
+              "  triggers=$trigs" | Tee-Object -FilePath $file -Append
+              "  actions=$acts"   | Tee-Object -FilePath $file -Append
+              "  ---"             | Tee-Object -FilePath $file -Append
+            }
+          }
+          if (-not (Test-Path $file)) { "no scheduled task referencing wsl/update found" | Out-File $file }
+          Get-Content $file
+
+      - name: Run / RunOnce keys (machine, user, default hive) + Startup folders
+        shell: pwsh
+        if: always()
+        run: |
+          $out = "$env:GITHUB_WORKSPACE\artifacts"
+          $file = "$out\autostart.txt"
+          $keys = @(
+            'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run',
+            'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce',
+            'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Run',
+            'HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer\Run',
+            'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run',
+            'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce'
+          )
+          foreach ($k in $keys) {
+            "== $k ==" | Tee-Object -FilePath $file -Append
+            try { (Get-ItemProperty -Path $k -ErrorAction Stop).PSObject.Properties |
+                   Where-Object { $_.Name -notmatch '^PS' } |
+                   ForEach-Object { "  $($_.Name) = $($_.Value)" | Tee-Object -FilePath $file -Append } }
+            catch { "  (absent)" | Tee-Object -FilePath $file -Append }
+          }
+          # Default user hive (what a freshly-logged-in runner user inherits)
+          "== HKU Default hive Run ==" | Tee-Object -FilePath $file -Append
+          reg load "HKU\DefRepro" "C:\Users\Default\NTUSER.DAT" 2>$null
+          try { reg query "HKU\DefRepro\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" 2>&1 | Tee-Object -FilePath $file -Append } catch {}
+          reg unload "HKU\DefRepro" 2>$null
+          # Startup folders
+          foreach ($sf in @("$env:APPDATA\Microsoft\Windows\Start Menu\Programs\Startup",
+                             "$env:ProgramData\Microsoft\Windows\Start Menu\Programs\Startup")) {
+            "== Startup: $sf ==" | Tee-Object -FilePath $file -Append
+            Get-ChildItem -Path $sf -ErrorAction SilentlyContinue | ForEach-Object { "  $($_.Name)" | Tee-Object -FilePath $file -Append }
+          }
+          Get-Content $file
+
+      - name: WSL status / version / update policy
+        shell: pwsh
+        if: always()
+        run: |
+          $out = "$env:GITHUB_WORKSPACE\artifacts"
+          $file = "$out\wsl-status.txt"
+          "wsl.exe --version:" | Tee-Object -FilePath $file -Append
+          (& wsl.exe --version 2>&1) | Tee-Object -FilePath $file -Append
+          "`nwsl.exe --status:" | Tee-Object -FilePath $file -Append
+          (& wsl.exe --status 2>&1) | Tee-Object -FilePath $file -Append
+          "`nWSL policy key (HKLM\SOFTWARE\Policies\Microsoft\Windows\WSL):" | Tee-Object -FilePath $file -Append
+          (reg query "HKLM\SOFTWARE\Policies\Microsoft\Windows\WSL" 2>&1) | Tee-Object -FilePath $file -Append
+          "`nWSL appx package:" | Tee-Object -FilePath $file -Append
+          (Get-AppxPackage -AllUsers *WindowsSubsystemForLinux* 2>&1 | Format-List Name,Version,PackageFullName | Out-String) | Tee-Object -FilePath $file -Append
+          Get-Content $file
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wsl-update-repro-evidence
+          path: artifacts/**
+
+      - name: Fail if reproduced (so result is visible at a glance)
+        if: always()
+        shell: pwsh
+        run: |
+          if ('${{ steps.watch.outputs.reproduced }}' -eq 'True') {
+            Write-Host '::warning::WSL/Terminal window observed taking focus - issue 14264 REPRODUCED'
+          } else {
+            Write-Host 'No WSL/Terminal foreground window observed during the watch window.'
+          }
