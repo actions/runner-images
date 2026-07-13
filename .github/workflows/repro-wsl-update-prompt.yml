@@ -28,18 +28,18 @@ jobs:
       - name: Watch foreground window and screenshot
         shell: pwsh
         run: |
-          Add-Type @"
-          using System;
-          using System.Text;
-          using System.Runtime.InteropServices;
-          public class Win {
-            [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();
-            [DllImport("user32.dll")] public static extern int GetWindowText(IntPtr h, StringBuilder s, int n);
-            [DllImport("user32.dll")] public static extern bool IsWindowVisible(IntPtr h);
-            [DllImport("user32.dll")] public static extern bool EnumWindows(EnumProc cb, IntPtr p);
-            public delegate bool EnumProc(IntPtr h, IntPtr p);
-          }
-"@
+          # Build the P/Invoke type from a joined array so there is no column-0
+          # here-string terminator (which would break the YAML block scalar).
+          $cs = @(
+            'using System;'
+            'using System.Text;'
+            'using System.Runtime.InteropServices;'
+            'public class Win {'
+            '  [DllImport("user32.dll")] public static extern IntPtr GetForegroundWindow();'
+            '  [DllImport("user32.dll")] public static extern int GetWindowText(IntPtr h, StringBuilder s, int n);'
+            '}'
+          ) -join "`n"
+          Add-Type -TypeDefinition $cs
           $out = "$env:GITHUB_WORKSPACE\artifacts"
           New-Item -ItemType Directory -Force -Path $out | Out-Null
           $log = "$out\window-watch.log"
@@ -54,17 +54,15 @@ jobs:
             $line = "[{0:HH:mm:ss}] foreground='{1}'" -f (Get-Date), $fgTitle
             $line | Tee-Object -FilePath $log -Append
 
-            # enumerate all visible top-level windows this tick
-            $titles = New-Object System.Collections.ArrayList
-            $cb = [Win+EnumProc]{ param($h,$p)
-              if ([Win]::IsWindowVisible($h)) {
-                $t = (New-Object System.Text.StringBuilder 512)
-                [void][Win]::GetWindowText($h,$t,512)
-                if ($t.Length -gt 0) { [void]$titles.Add($t.ToString()) }
+            # flag if the FOREGROUND window itself matches (this is the focus-steal signal)
+            foreach ($s in $suspicious) {
+              if ($fgTitle -match [regex]::Escape($s)) {
+                "  FOREGROUND-match: '$fgTitle'" | Tee-Object -FilePath $log -Append
+                $hit = $true
               }
-              return $true
             }
-            [void][Win]::EnumWindows($cb, [IntPtr]::Zero)
+            # enumerate visible top-level windows with titles (no P/Invoke callback needed)
+            $titles = Get-Process | Where-Object { $_.MainWindowTitle } | ForEach-Object { $_.MainWindowTitle }
             foreach ($t in $titles) {
               foreach ($s in $suspicious) {
                 if ($t -match [regex]::Escape($s)) {
