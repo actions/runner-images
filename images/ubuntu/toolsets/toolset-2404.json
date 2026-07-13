@@ -95,7 +95,7 @@
     },
     "powershellModules": [
         {"name": "Microsoft.Graph"},
-        {"name": "Pester"},
+        {"name": "Pester", "versions": "5.9.0" },
         {"name": "PSScriptAnalyzer"}
     ],
     "azureModules": [
