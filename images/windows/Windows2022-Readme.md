@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 5256
-- Image Version: 20260706.237.1
+- Image Version: 20260712.242.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -27,13 +27,13 @@
 - Chocolatey 2.7.3
 - Composer 2.10.2
 - Helm 4.1.4
-- Miniconda 26.3.2 (pre-installed on the image but not added to PATH)
+- Miniconda 26.5.3 (pre-installed on the image but not added to PATH)
 - NPM 10.9.8
 - NuGet 7.6.0.59
 - pip 26.1.2 (python 3.12)
 - Pipx 1.15.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 42e4e33e15)
+- Vcpkg (build from commit f87344cac0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,10 +54,10 @@
 - azcopy 10.32.4
 - Bazel 9.1.1
 - Bazelisk 1.28.1
-- Bicep 0.44.1
+- Bicep 0.45.6
 - Cabal 3.16.1.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.25.6
+- CodeQL Action Bundle 2.26.0
 - Docker 29.1.5
 - Docker Compose 2.40.3
 - Docker-wincred 0.9.8
@@ -77,7 +77,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.3
 - Packer 1.15.4
-- Pulumi 3.250.0
+- Pulumi 3.251.0
 - R 4.6.1
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.11.1
@@ -91,18 +91,18 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.4.4
-- AWS CLI 2.35.15
+- Alibaba Cloud CLI 3.4.6
+- AWS CLI 2.35.21
 - AWS SAM CLI 1.163.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.87.0
-- Azure DevOps CLI extension 1.0.5
+- Azure CLI 2.88.0
+- Azure DevOps CLI extension 1.0.6
 - GitHub CLI 2.96.0
 
 ### Rust Tools
-- Cargo 1.96.1
-- Rust 1.96.1
-- Rustdoc 1.96.1
+- Cargo 1.97.0
+- Rust 1.97.0
+- Rustdoc 1.97.0
 - Rustup 1.29.0
 
 #### Packages
@@ -110,18 +110,18 @@
 - cargo-audit 0.22.2
 - cargo-outdated 0.19.0
 - cbindgen 0.29.4
-- Clippy 0.1.96
+- Clippy 0.1.97
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 150.0.7871.47
-- Chrome Driver 150.0.7871.46
-- Microsoft Edge 150.0.4078.48
-- Microsoft Edge Driver 150.0.4078.48
-- Mozilla Firefox 152.0.4
+- Google Chrome 150.0.7871.115
+- Chrome Driver 150.0.7871.115
+- Microsoft Edge 150.0.4078.65
+- Microsoft Edge Driver 150.0.4078.65
+- Mozilla Firefox 152.0.5
 - Gecko Driver 0.37.0
 - IE Driver 4.14.0.0
-- Selenium server 4.45.0
+- Selenium server 4.46.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -161,8 +161,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.24.13
-- 1.25.11
-- 1.26.4
+- 1.25.12
+- 1.26.5
 
 #### Node.js
 - 22.23.1
@@ -484,18 +484,18 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - Microsoft.AspNetCore.App: 6.0.43, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
 - Microsoft.NETCore.App: 6.0.43, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
 - Microsoft.WindowsDesktop.App: 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
-- nbgv 3.10.85+c46e47c69b
+- nbgv 3.10.91+e05abbcae4
 
 ### PowerShell Tools
 - PowerShell 7.6.3
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.246
+- AWSPowershell: 5.0.251
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.38.0
-- Pester: 3.4.0, 5.8.0
+- Pester: 3.4.0, 6.0.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
 - PSWindowsUpdate: 2.2.1.5
