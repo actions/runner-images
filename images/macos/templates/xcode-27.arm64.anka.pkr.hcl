@@ -149,7 +149,7 @@ build {
 
   provisioner "file" {
     destination = "${local.image_folder}/toolset.json"
-    source      = "${path.root}/../toolsets/toolset-26-xcode-27.json"
+    source      = "${path.root}/../toolsets/toolset-xcode-27.json"
   }
 
   provisioner "shell" {
