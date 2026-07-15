@@ -118,9 +118,7 @@ if (Test-IsX64) {
     $tools.AddToolVersion("WiX Toolset", $(Get-WixVersion))
 }
 $tools.AddToolVersion("yamllint", $(Get-YAMLLintVersion))
-if (Test-IsX64) {
-    $tools.AddToolVersion("zstd", $(Get-ZstdVersion))
-}
+$tools.AddToolVersion("zstd", $(Get-ZstdVersion))
 $tools.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # CLI Tools

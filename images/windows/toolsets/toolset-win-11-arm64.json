@@ -47,7 +47,7 @@
     "powershellModules": [
         { "name": "DockerMsftProvider" },
         { "name": "MarkdownPS" },
-        { "name": "Pester" },
+        { "name": "Pester", "versions": [ "5.9.0"] },
         { "name": "PowerShellGet" },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
