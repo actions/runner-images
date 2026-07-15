@@ -7,12 +7,12 @@
 # macOS 26
 - OS Version: macOS 26.5.2 (25F84)
 - Kernel Version: Darwin 25.5.0
-- Image Version: 20260714.0035.1
+- Image Version: 20260715.0036.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.422, 9.0.102, 9.0.203, 9.0.315, 10.0.103, 10.0.203, 10.0.301
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.423, 9.0.102, 9.0.203, 9.0.316, 10.0.103, 10.0.203, 10.0.302
 - Bash 3.2.57(1)-release
 - Clang/LLVM 21.0.0
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
@@ -22,7 +22,7 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
-- Kotlin 2.4.0-release-281
+- Kotlin 2.4.10-release-377
 - Node.js 24.18.0
 - Perl 5.42.2
 - Python3 3.14.6
@@ -32,12 +32,12 @@
 - Bundler 4.0.16
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 6.0.10
+- Homebrew 6.0.11
 - NPM 11.16.0
 - Pip3 26.1.2 (python 3.14)
 - Pipx 1.15.0
 - RubyGems 4.0.16
-- Vcpkg 2026 (build from commit b5229343b4)
+- Vcpkg 2026 (build from commit 8e8dfb4ba4)
 - Yarn 1.22.22
 
 ### Project Management
@@ -62,19 +62,19 @@
 - jq 1.8.2
 - OpenSSL 3.6.3 9 Jun 2026 (Library: OpenSSL 3.6.3 9 Jun 2026)
 - Packer 1.15.4
-- pkgconf 3.0.1
+- pkgconf 3.0.2
 - Unxip 3.3
 - yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.35.22
+- AWS CLI 2.35.23
 - AWS SAM CLI 1.163.0
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.88.0
 - Azure CLI (azure-devops) 1.0.6
-- Bicep CLI 0.45.6
+- Bicep CLI 0.45.15
 - Cmake 4.4.0
 - CodeQL Action Bundle 2.26.0
 - Fastlane 2.237.0
@@ -86,12 +86,12 @@
 ### Browsers
 - Safari 26.5.2 (21624.2.5.11.8)
 - SafariDriver 26.5.2 (21624.2.5.11.8)
-- Google Chrome 150.0.7871.115
-- Google Chrome for Testing 150.0.7871.115
-- ChromeDriver 150.0.7871.115
+- Google Chrome 150.0.7871.125
+- Google Chrome for Testing 150.0.7871.124
+- ChromeDriver 150.0.7871.124
 - Microsoft Edge 150.0.4078.65
 - Microsoft Edge WebDriver 150.0.4078.65
-- Mozilla Firefox 152.0.5
+- Mozilla Firefox 152.0.6
 - geckodriver 0.37.0
 - Selenium server 4.46.0
 
