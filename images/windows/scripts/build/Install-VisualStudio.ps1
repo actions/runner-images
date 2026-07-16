@@ -62,4 +62,8 @@ if (Test-IsWin25-X64) {
     }
 }
 
+$vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+$data = & $vswhere -all -products * -requires * -include packages -format json | ConvertFrom-Json
+$data[0].packages | Sort-Object type, id | Format-Table type, id, version -AutoSize
+
 Invoke-PesterTests -TestFile "VisualStudio"
