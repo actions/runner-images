@@ -38,6 +38,25 @@ install_podman_static() {
     tar -xzf "$archive_path" -C / --strip-components=1 \
         "podman-linux-${arch}/usr" "podman-linux-${arch}/etc"
     rm -f "$archive_path"
+
+    # Ubuntu >= 23.10 restricts unprivileged user namespaces via AppArmor
+    # (kernel.apparmor_restrict_unprivileged_userns=1). The distro podman package
+    # ships an /etc/apparmor.d/podman profile that grants the `userns` permission,
+    # but the static binary in /usr/local/bin has none, so rootless podman fails
+    # with "failed to reexec: Permission denied". Provide the same profile for it.
+    if [[ "$(cat /proc/sys/kernel/apparmor_restrict_unprivileged_userns 2>/dev/null)" == "1" ]]; then
+        cat > /etc/apparmor.d/podman <<'EOF'
+abi <abi/4.0>,
+include <tunables/global>
+
+profile podman /usr/{bin,local/bin}/podman flags=(unconfined) {
+  userns,
+
+  include if exists <local/podman>
+}
+EOF
+        apparmor_parser -r -W /etc/apparmor.d/podman
+    fi
 }
 
 apt-get update
