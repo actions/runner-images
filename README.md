@@ -27,6 +27,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | Ubuntu 22.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu22.json) | x64 | `ubuntu-22.04` | [ubuntu-22.04] |
 | Ubuntu 22.04 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu22-arm64.json) | arm64 | `ubuntu-22.04-arm` | [ubuntu-22.04-arm64] |
 | Ubuntu Slim<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu-slim.json) | x64 | `ubuntu-slim` | [ubuntu-slim] |
+| Xcode 27 Arm64 ![preview](https://img.shields.io/badge/preview-0969DA?style=flat&logoColor=white)<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fxcode-27.json) | arm64 | `xcode-27` or `xcode-27-xlarge` | [xcode-27-arm64] |
 | macOS 26 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-26-arm64.json) | arm64 | `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
 | macOS 26<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-26.json) | x64 | `macos-26-intel`, `macos-26-large` | [macOS-26] |
 | macOS 15<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-15.json) | x64 | `macos-latest-large`, `macos-15-large`, or `macos-15-intel` | [macOS-15] |
@@ -61,6 +62,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [macOS-15-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md
 [macOS-26]: https://github.com/actions/runner-images/blob/main/images/macos/macos-26-Readme.md
 [macOS-26-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md
+[xcode-27-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/xcode-27-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
 ## Announcements
