@@ -7,12 +7,12 @@
 # macOS 15
 - OS Version: macOS 15.7.7 (24G720)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20260706.0213.1
+- Image Version: 20260715.0234.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.422, 9.0.102, 9.0.203, 9.0.315, 10.0.103, 10.0.203, 10.0.301
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.423, 9.0.102, 9.0.203, 9.0.316, 10.0.103, 10.0.203, 10.0.302
 - Bash 3.2.57(1)-release
 - Clang/LLVM 17.0.0
 - Clang/LLVM (Homebrew) 18.1.8 - available on `$(brew --prefix llvm@18)/bin/clang`
@@ -22,22 +22,22 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
-- Kotlin 2.4.0-release-281
+- Kotlin 2.4.10-release-377
 - Node.js 22.23.1
 - Perl 5.42.2
 - Python3 3.14.6
 - Ruby 3.3.11
 
 ### Package Management
-- Bundler 4.0.15
+- Bundler 4.0.16
 - Carthage 0.40.0
-- CocoaPods 1.16.2
-- Homebrew 6.0.6
+- CocoaPods 1.17.0
+- Homebrew 6.0.11
 - NPM 10.9.8
 - Pip3 26.1.2 (python 3.14)
 - Pipx 1.15.0
-- RubyGems 4.0.15
-- Vcpkg 2026 (build from commit 1b31135aad)
+- RubyGems 4.0.16
+- Vcpkg 2026 (build from commit 8e8dfb4ba4)
 - Yarn 1.22.22
 
 ### Project Management
@@ -49,7 +49,7 @@
 - 7-Zip 17.05
 - aria2 1.37.0
 - azcopy 10.32.4
-- bazel 9.1.1
+- bazel 9.2.0
 - bazelisk 1.29.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
@@ -62,38 +62,38 @@
 - jq 1.8.2
 - OpenSSL 1.1.1w  11 Sep 2023
 - Packer 1.15.4
-- pkgconf 2.5.1
+- pkgconf 3.0.2
 - Unxip 3.3
 - yq 4.53.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.35.15
+- AWS CLI 2.35.23
 - AWS SAM CLI 1.163.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.5
-- Bicep CLI 0.44.1
-- Cmake 4.3.4
-- CodeQL Action Bundle 2.25.6
+- Azure CLI 2.88.0
+- Azure CLI (azure-devops) 1.0.6
+- Bicep CLI 0.45.15
+- Cmake 4.4.0
+- CodeQL Action Bundle 2.26.0
 - Fastlane 2.237.0
-- SwiftFormat 0.61.1
+- SwiftFormat 0.62.1
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
-- Xcodes 2.0.2
+- Xcodes 2.0.3
 
 ### Browsers
-- Safari 26.5 (20624.2.5.18.3)
-- SafariDriver 26.5 (20624.2.5.18.3)
-- Google Chrome 150.0.7871.47
-- Google Chrome for Testing 150.0.7871.46
-- ChromeDriver 150.0.7871.46
-- Microsoft Edge 150.0.4078.50
-- Microsoft Edge WebDriver 150.0.4078.50
-- Mozilla Firefox 152.0.4
+- Safari 26.5.2 (20624.2.5.18.7)
+- SafariDriver 26.5.2 (20624.2.5.18.7)
+- Google Chrome 150.0.7871.125
+- Google Chrome for Testing 150.0.7871.124
+- ChromeDriver 150.0.7871.124
+- Microsoft Edge 150.0.4078.65
+- Microsoft Edge WebDriver 150.0.4078.65
+- Mozilla Firefox 152.0.6
 - geckodriver 0.37.0
-- Selenium server 4.45.0
+- Selenium server 4.46.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -116,7 +116,7 @@
 - 3.2.11
 - 3.3.11
 - 3.4.10
-- 4.0.5
+- 4.0.6
 
 #### Python
 - 3.11.9
@@ -130,17 +130,17 @@
 
 #### Go
 - 1.24.13
-- 1.25.11
-- 1.26.4
+- 1.25.12
+- 1.26.5
 
 ### Rust Tools
-- Cargo 1.96.1
-- Rust 1.96.1
-- Rustdoc 1.96.1
+- Cargo 1.97.0
+- Rust 1.97.0
+- Rustdoc 1.97.0
 - Rustup 1.29.0
 
 #### Packages
-- Clippy 0.1.96
+- Clippy 0.1.97
 - Rustfmt 1.9.0-stable
 
 ### PowerShell Tools
@@ -148,7 +148,7 @@
 
 #### PowerShell Modules
 - Az: 15.6.1
-- Pester: 5.8.0
+- Pester: 5.9.0
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
