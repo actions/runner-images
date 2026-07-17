@@ -4,7 +4,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8655
-- Image Version: 20260706.102.1
+- Image Version: 20260714.109.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -32,7 +32,7 @@
 - pip 26.1.2 (python 3.13)
 - Pipx 1.15.0
 - RubyGems 3.6.9
-- Vcpkg (build from commit 42e4e33e15)
+- Vcpkg (build from commit b5229343b4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -50,11 +50,11 @@
 - 7zip 26.02
 - aria2 1.37.0
 - azcopy 10.32.4
-- Bazel 9.1.1
+- Bazel 9.2.0
 - Bazelisk 1.28.1
-- Bicep 0.44.1
-- CMake 4.3.4
-- CodeQL Action Bundle 2.25.6
+- Bicep 0.45.15
+- CMake 4.4.0
+- CodeQL Action Bundle 2.26.0
 - Git 2.55.0.windows.2
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-25
@@ -70,7 +70,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.3
 - Packer 1.15.4
-- Pulumi 3.250.0
+- Pulumi 3.252.0
 - R 4.6.1
 - Stack 3.11.1
 - Swig 4.4.1
@@ -81,18 +81,18 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.4.4
-- AWS CLI 2.35.15
+- Alibaba Cloud CLI 3.4.6
+- AWS CLI 2.35.22
 - AWS SAM CLI 1.163.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.87.0
-- Azure DevOps CLI extension 1.0.5
+- Azure CLI 2.88.0
+- Azure DevOps CLI extension 1.0.6
 - GitHub CLI 2.96.0
 
 ### Rust Tools
-- Cargo 1.96.1
-- Rust 1.96.1
-- Rustdoc 1.96.1
+- Cargo 1.97.0
+- Rust 1.97.0
+- Rustdoc 1.97.0
 - Rustup 1.29.0
 
 #### Packages
@@ -100,18 +100,18 @@
 - cargo-audit 0.22.2
 - cargo-outdated 0.19.0
 - cbindgen 0.29.4
-- Clippy 0.1.96
+- Clippy 0.1.97
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 150.0.7871.47
-- Chrome Driver 150.0.7871.46
-- Microsoft Edge 150.0.4078.48
-- Microsoft Edge Driver 150.0.4078.48
-- Mozilla Firefox 152.0.4
+- Google Chrome 150.0.7871.115
+- Chrome Driver 150.0.7871.115
+- Microsoft Edge 150.0.4078.65
+- Microsoft Edge Driver 150.0.4078.65
+- Mozilla Firefox 152.0.5
 - Gecko Driver 0.37.0
 - IE Driver 4.14.0.0
-- Selenium server 4.45.0
+- Selenium server 4.46.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -131,8 +131,8 @@
 
 #### Go
 - 1.24.13
-- 1.25.11
-- 1.26.4
+- 1.25.12
+- 1.26.5
 
 #### Node.js
 - 22.23.1
@@ -375,18 +375,18 @@
 - Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
 - Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
 - Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
-- nbgv 3.10.85+c46e47c69b
+- nbgv 3.10.91+e05abbcae4
 
 ### PowerShell Tools
 - PowerShell 7.6.3
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.246
+- AWSPowershell: 5.0.252
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.38.0
-- Pester: 3.4.0, 5.8.0
+- Microsoft.Graph: 2.38.1
+- Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
 - PSWindowsUpdate: 2.2.1.5
