@@ -29,14 +29,14 @@ for package in $common_packages; do
                 # xcodes formulae still works on MacOS 15 ARM and 26 ARM
                 brew_smart_install "$package"
             else
-                # xcodes formulae for the rest of OS versions was broken, using pinned commit
-                echo "Installing pinned xcodes formulae..."
-                COMMIT=7236cc49de96b89c4e46ca28a36993578423df8d
-                FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/x/xcodes.rb"
-                FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/x/xcodes.rb"
-                mkdir -p "$(dirname $FORMULA_PATH)"
-                curl -fsSL $FORMULA_URL -o $FORMULA_PATH
-                HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install xcodes
+                # homebrew-core ships no x86_64 bottle for current xcodes, and building it
+                # from source needs xcbuild (unavailable during image build). Install the
+                # prebuilt Developer-ID-signed universal binary from XcodesOrg's release.
+                echo "Installing xcodes from XcodesOrg release..."
+                curl -fsSL "https://github.com/XcodesOrg/xcodes/releases/latest/download/xcodes.zip" -o /tmp/xcodes.zip
+                unzip -oq /tmp/xcodes.zip -d /tmp/xcodes-bin
+                sudo install -m 0755 /tmp/xcodes-bin/xcodes /usr/local/bin/xcodes
+                rm -rf /tmp/xcodes.zip /tmp/xcodes-bin
             fi
             ;;
 
