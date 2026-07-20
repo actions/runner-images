@@ -103,7 +103,12 @@ if (-not (Test-IsWin25-X64)) {
 $tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
-$tools.AddToolVersion("R", $(Get-RVersion))
+if (Test-IsArm64) {
+    # The choco R.Project package ships only the x86_64 installer, so R runs emulated here
+    $tools.AddToolVersion("R", "$(Get-RVersion) (x86_64, emulated)")
+} else {
+    $tools.AddToolVersion("R", $(Get-RVersion))
+}
 if (Test-IsX64) {
     $tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
 }
