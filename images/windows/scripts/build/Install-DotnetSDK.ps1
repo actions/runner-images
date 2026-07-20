@@ -92,6 +92,9 @@ function Install-DotnetSDK {
     $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq "dotnet-sdk-win-$dotnetArch.zip" }).hash
     Test-FileChecksum $zipPath -ExpectedSHA512Sum $distributorFileHash
     #endregion
+
+    # Remove the SDK zip after checksum validation to free disk space
+    Remove-Item $zipPath -Force -ErrorAction SilentlyContinue
 }
 #endregion
 
