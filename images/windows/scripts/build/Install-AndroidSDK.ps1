@@ -170,3 +170,12 @@ if (Test-Path $ndkLatestPath) {
 }
 
 Invoke-PesterTests -TestFile "Android"
+
+if (Test-IsWin25-X64) {
+    Write-Host "Compressing 'C:\Program Files (x86)\Android' directory"
+    $ErrorActionPreviousValue = $ErrorActionPreference
+    $ErrorActionPreference = 'SilentlyContinue'
+    $compressionResult = & compact /s:"C:\Program Files (x86)\Android" /c /a /i /EXE:LZX *
+    $compressionResult | Select-Object -Last 3
+    $ErrorActionPreference = $ErrorActionPreviousValue
+}
