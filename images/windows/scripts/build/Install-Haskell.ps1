@@ -8,9 +8,29 @@
 if ($env:TEMP_DIR -and (Test-Path $env:TEMP_DIR)) {
     Write-Host "Cleaning up TEMP_DIR before Haskell/GHC installation..."
     Get-ChildItem -Path $env:TEMP_DIR | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
-    $freeSizeGB = [math]::Round((Get-PSDrive D).Free / 1GB, 2)
-    Write-Host "Free space available: $freeSizeGB GB"
 }
+
+# Clean up system temp directories on C: to maximize available space
+Write-Host "Cleaning up system temp directories..."
+@(
+    "C:\Windows\Temp",
+    "C:\temp",
+    "$env:TEMP",
+    "$env:LOCALAPPDATA\Temp"
+) | ForEach-Object {
+    if (Test-Path $_) {
+        Remove-Item -Path $_ -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
+# Clean up package manager caches
+Write-Host "Cleaning up package manager caches..."
+cmd /c "npm cache clean --force 2>&1" | Out-Null
+cmd /c "yarn cache clean 2>&1" | Out-Null
+
+# Report free space before installation
+$cDriveFreeGB = [math]::Round((Get-PSDrive C).Free / 1GB, 2)
+Write-Host "Free space on C: drive: $cDriveFreeGB GB"
 
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
 Write-Host 'Installing ghcup...'
@@ -75,6 +95,12 @@ foreach ($version in $versionsList) {
     if ($LastExitCode -ne 0) {
         Read-GhcupLogs
         throw "Setting GHC version failed with exit code $LastExitCode"
+    }
+    
+    # Clean up ghcup temporary files after each installation
+    if (Test-Path "C:\ghcup\tmp") {
+        Write-Host "Cleaning up ghcup temp files..."
+        Remove-Item "C:\ghcup\tmp" -Recurse -Force -ErrorAction SilentlyContinue
     }
 }
 
