@@ -3,6 +3,15 @@
 ##  Desc:  Install Haskell for Windows
 ################################################################################
 
+# Clean up TEMP_DIR to free disk space before installing GHC
+# Accumulated downloads from previous installers can consume 1-2 GB
+if ($env:TEMP_DIR -and (Test-Path $env:TEMP_DIR)) {
+    Write-Host "Cleaning up TEMP_DIR before Haskell/GHC installation..."
+    Get-ChildItem -Path $env:TEMP_DIR | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+    $freeSizeGB = [math]::Round((Get-PSDrive D).Free / 1GB, 2)
+    Write-Host "Free space available: $freeSizeGB GB"
+}
+
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
 Write-Host 'Installing ghcup...'
 $msysPath = "C:\msys64"
