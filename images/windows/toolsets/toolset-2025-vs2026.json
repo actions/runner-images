@@ -134,7 +134,6 @@
         "workloads": [
             "Component.Linux.CMake",
             "Component.UnityEngine.x64",
-            "Microsoft.Component.VC.Runtime.UCRTSDK",
             "Microsoft.Net.Component.4.8.1.SDK",
             "Microsoft.Net.Component.4.8.1.TargetingPack",
             "Microsoft.VisualStudio.Component.AspNet45",

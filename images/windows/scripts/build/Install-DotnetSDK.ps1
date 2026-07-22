@@ -92,6 +92,9 @@ function Install-DotnetSDK {
     $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq "dotnet-sdk-win-$dotnetArch.zip" }).hash
     Test-FileChecksum $zipPath -ExpectedSHA512Sum $distributorFileHash
     #endregion
+
+    # Remove the SDK zip after checksum validation to free disk space
+    Remove-Item $zipPath -Force -ErrorAction SilentlyContinue
 }
 #endregion
 
@@ -159,3 +162,12 @@ foreach ($dotnetTool in $dotnetToolset.tools) {
 }
 
 Invoke-PesterTests -TestFile "DotnetSDK"
+
+if (Test-IsWin25-X64) {
+    Write-Host "Compressing 'C:\Program Files\dotnet' directory"
+    $ErrorActionPreviousValue = $ErrorActionPreference
+    $ErrorActionPreference = 'SilentlyContinue'
+    $compressionResult = & compact /s:"C:\Program Files\dotnet" /c /a /i /EXE:LZX *
+    $compressionResult | Select-Object -Last 3
+    $ErrorActionPreference = $ErrorActionPreviousValue
+}

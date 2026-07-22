@@ -122,7 +122,6 @@
         "workloads": [
             "Component.Linux.CMake",
             "Component.Unreal.Android",
-            "Microsoft.Component.VC.Runtime.UCRTSDK",
             "Microsoft.Net.Component.4.7.2.SDK",
             "Microsoft.Net.Component.4.7.TargetingPack",
             "Microsoft.Net.Component.4.7.2.TargetingPack",

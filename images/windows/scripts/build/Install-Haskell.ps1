@@ -3,6 +3,35 @@
 ##  Desc:  Install Haskell for Windows
 ################################################################################
 
+# Clean up TEMP_DIR to free disk space before installing GHC
+# Accumulated downloads from previous installers can consume 1-2 GB
+if ($env:TEMP_DIR -and (Test-Path $env:TEMP_DIR)) {
+    Write-Host "Cleaning up TEMP_DIR before Haskell/GHC installation..."
+    Get-ChildItem -Path $env:TEMP_DIR | Remove-Item -Recurse -Force -ErrorAction SilentlyContinue
+}
+
+# Clean up system temp directories on C: to maximize available space
+Write-Host "Cleaning up system temp directories..."
+@(
+    "C:\Windows\Temp",
+    "C:\temp",
+    "$env:TEMP",
+    "$env:LOCALAPPDATA\Temp"
+) | ForEach-Object {
+    if (Test-Path $_) {
+        Remove-Item -Path $_ -Recurse -Force -ErrorAction SilentlyContinue
+    }
+}
+
+# Clean up package manager caches
+Write-Host "Cleaning up package manager caches..."
+cmd /c "npm cache clean --force 2>&1" | Out-Null
+cmd /c "yarn cache clean 2>&1" | Out-Null
+
+# Report free space before installation
+$cDriveFreeGB = [math]::Round((Get-PSDrive C).Free / 1GB, 2)
+Write-Host "Free space on C: drive: $cDriveFreeGB GB"
+
 # install minimal ghcup, utilizing pre-installed msys2 at C:\msys64
 Write-Host 'Installing ghcup...'
 $msysPath = "C:\msys64"
@@ -29,6 +58,20 @@ Add-MachinePathItem "$ghcupPrefix\ghcup\bin"
 Add-MachinePathItem "$cabalDir\bin"
 Update-Environment
 
+# Helper function to read and display ghcup logs
+function Read-GhcupLogs {
+    $logsPath = "C:\ghcup\logs"
+    if (Test-Path $logsPath) {
+        Write-Host "--- GHCup Logs ---"
+        Get-ChildItem -Path $logsPath -File | ForEach-Object {
+            Write-Host "Log file: $($_.Name)"
+            Write-Host (Get-Content -Path $_.FullName -Raw)
+        }
+    } else {
+        Write-Host "Log directory not found: $logsPath"
+    }
+}
+
 # Get 1 or 3 latest versions of GHC depending on the OS version
 If (Test-IsWin25-X64) {
     $numberOfVersions = 1
@@ -45,11 +88,19 @@ foreach ($version in $versionsList) {
     Write-Host "Installing ghc $version..."
     ghcup install ghc $version
     if ($LastExitCode -ne 0) {
+        Read-GhcupLogs
         throw "GHC installation failed with exit code $LastExitCode"
     }
     ghcup set ghc $version
     if ($LastExitCode -ne 0) {
+        Read-GhcupLogs
         throw "Setting GHC version failed with exit code $LastExitCode"
+    }
+    
+    # Clean up ghcup temporary files after each installation
+    if (Test-Path "C:\ghcup\tmp") {
+        Write-Host "Cleaning up ghcup temp files..."
+        Remove-Item "C:\ghcup\tmp" -Recurse -Force -ErrorAction SilentlyContinue
     }
 }
 
@@ -57,12 +108,14 @@ foreach ($version in $versionsList) {
 $defaultGhcVersion = $versionsList | Select-Object -Last 1
 ghcup set ghc $defaultGhcVersion
 if ($LastExitCode -ne 0) {
+    Read-GhcupLogs
     throw "Setting default GHC version failed with exit code $LastExitCode"
 }
 
 Write-Host 'Installing cabal...'
 ghcup install cabal latest
 if ($LastExitCode -ne 0) {
+    Read-GhcupLogs
     throw "Cabal installation failed with exit code $LastExitCode"
 }
 
