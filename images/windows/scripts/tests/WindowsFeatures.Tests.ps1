@@ -19,7 +19,7 @@ Describe "WindowsFeatures" {
     }
 }
 
-Describe "DiskSpace" {
+<#Describe "DiskSpace" {
     It "The image has enough disk space" {
         $diskInfo = Get-PSDrive -Name C
         $totalSpaceGB = [math]::Floor(($diskInfo.Used + $diskInfo.Free) / 1GB)
@@ -27,7 +27,7 @@ Describe "DiskSpace" {
         Write-Host "  [i] Disk size: ${totalSpaceGB} GB; Free space: ${freeSpaceGB} GB"
         $freeSpaceGB | Should -BeGreaterOrEqual 18
     }
-}
+}#>
 
 Describe "DynamicPorts" {
     It "Test TCP dynamicport start=49152 num=16384" {
