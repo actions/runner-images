@@ -323,6 +323,14 @@ Describe "Containers" {
         "podman network rm test-net" | Should -ReturnZeroExitCode
     }
 
+    # https://github.com/actions/runner-images/issues/14406
+    # registries.conf must be valid v2 format; a v1 file is rejected by newer podman.
+    It "podman registries.conf" {
+        "podman info" | Should -ReturnZeroExitCode
+        "podman info" | Should -OutputTextMatchingRegex "docker.io"
+        "podman info" | Should -OutputTextMatchingRegex "quay.io"
+    }
+
 }
 
 Describe "nvm" {
