@@ -124,11 +124,21 @@
                             "cpack",
                             "ctest"
                         ]
+                    },
+                    {
+                        "name": "make",
+                        "executables": [
+                            "mingw32-make"
+                        ]
+                    },
+                    {
+                        "name": "pkgconf",
+                        "executables": [
+                            "pkgconf"
+                        ]
                     }
                 ],
-                "additional_packages": [
-                    "toolchain"
-                ]
+                "additional_packages": []
             }
         ]
     },
