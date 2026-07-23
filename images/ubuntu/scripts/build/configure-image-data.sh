@@ -17,18 +17,13 @@ version_major=${os_version/.*/}
 version_wo_dot=${os_version/./}
 github_url="https://github.com/actions/runner-images/blob"
 
-if is_x64; then
-  image_label="ubuntu-${os_version}"
-  software_url="${github_url}/ubuntu${version_major}/${image_version_major}.${image_version_minor}/images/ubuntu/Ubuntu${version_wo_dot}-Readme.md"
-  releaseUrl="https://github.com/actions/runner-images/releases/tag/ubuntu${version_major}%2F${image_version_major}.${image_version_minor}"
-elif is_arm64; then
-  image_label="ubuntu-${os_version}-arm"
-  software_url="${github_url}/ubuntu${version_major}-arm64/${image_version_major}.${image_version_minor}/images/ubuntu/Ubuntu${version_wo_dot}-Arm64-Readme.md"
-  releaseUrl="https://github.com/actions/runner-images/releases/tag/ubuntu${version_major}-arm64%2F${image_version_major}.${image_version_minor}"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+image_label=$(select_by_arch "ubuntu-${os_version}" "ubuntu-${os_version}-arm")
+software_url=$(select_by_arch \
+  "${github_url}/ubuntu${version_major}/${image_version_major}.${image_version_minor}/images/ubuntu/Ubuntu${version_wo_dot}-Readme.md" \
+  "${github_url}/ubuntu${version_major}-arm64/${image_version_major}.${image_version_minor}/images/ubuntu/Ubuntu${version_wo_dot}-Arm64-Readme.md")
+releaseUrl=$(select_by_arch \
+  "https://github.com/actions/runner-images/releases/tag/ubuntu${version_major}%2F${image_version_major}.${image_version_minor}" \
+  "https://github.com/actions/runner-images/releases/tag/ubuntu${version_major}-arm64%2F${image_version_major}.${image_version_minor}")
 
 cat <<EOF > $imagedata_file
 [
