@@ -165,22 +165,18 @@ $browsersAndWebdrivers.AddHeader("Environment variables").AddTable($(Build-Brows
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
 
 # Shells
-if (Test-IsX64) {
-    $installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
-}
+$installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
 
 # MSYS2
-if (Test-IsX64) {
-    $msys2 = $installedSoftware.AddHeader("MSYS2")
-    $msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
+$msys2 = $installedSoftware.AddHeader("MSYS2")
+$msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
 
-    $notes = @'
+$notes = @'
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 '@
-    $msys2.AddHeader("Notes").AddNote($notes)
-}
+$msys2.AddHeader("Notes").AddNote($notes)
 
 # Cached Tools
 $installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection))

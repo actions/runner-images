@@ -99,7 +99,48 @@
     },
     "MsysPackages": {
         "msys2": [],
-        "mingw": []
+        "mingw": [
+            {
+                "arch": "mingw-w64-clang-aarch64",
+                "exec_dir": "clangarm64",
+                "runtime_packages": [
+                    {
+                        "name": "gcc-compat",
+                        "executables": [
+                            "gcc",
+                            "g++"
+                        ]
+                    },
+                    {
+                        "name": "clang",
+                        "executables": [
+                            "clang"
+                        ]
+                    },
+                    {
+                        "name": "cmake",
+                        "executables": [
+                            "cmake",
+                            "cpack",
+                            "ctest"
+                        ]
+                    },
+                    {
+                        "name": "make",
+                        "executables": [
+                            "mingw32-make"
+                        ]
+                    },
+                    {
+                        "name": "pkgconf",
+                        "executables": [
+                            "pkgconf"
+                        ]
+                    }
+                ],
+                "additional_packages": []
+            }
+        ]
     },
     "windowsFeatures": [
         { "name": "Containers", "optionalFeature": true },
