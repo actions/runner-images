@@ -268,15 +268,22 @@ if (Test-IsUbuntu22-X64) {
 }
 
 # Cached Tools
-if (-not(Test-IsUbuntu26-X64) -and -not(Test-IsArm64)) {
-    # Most cached tools are not yet available for Ubuntu 26.04
-    # Most cached tools are not included for arm
+# The cached tool set differs between images and architectures, so report
+# whatever is actually present in the toolcache instead of hardcoding it.
+$cachedToolVersions = [ordered]@{
+    "Go"      = @{ Versions = @(Get-ToolcacheGoVersions);     MajorVersionRegex = "^\d+\.\d+" }
+    "Node.js" = @{ Versions = @(Get-ToolcacheNodeVersions);   MajorVersionRegex = "^\d+" }
+    "Python"  = @{ Versions = @(Get-ToolcachePythonVersions); MajorVersionRegex = "^\d+\.\d+" }
+    "PyPy"    = @{ Versions = @(Get-ToolcachePyPyVersions);   MajorVersionRegex = "^\d+\.\d+" }
+    "Ruby"    = @{ Versions = @(Get-ToolcacheRubyVersions);   MajorVersionRegex = "^\d+\.\d+" }
+}
+
+$availableCachedTools = @($cachedToolVersions.GetEnumerator() | Where-Object { $_.Value.Versions.Count -gt 0 })
+if ($availableCachedTools.Count -gt 0) {
     $cachedTools = $installedSoftware.AddHeader("Cached Tools")
-    $cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+")
-    $cachedTools.AddToolVersionsList("Node.js", $(Get-ToolcacheNodeVersions), "^\d+")
-    $cachedTools.AddToolVersionsList("Python", $(Get-ToolcachePythonVersions), "^\d+\.\d+")
-    $cachedTools.AddToolVersionsList("PyPy", $(Get-ToolcachePyPyVersions), "^\d+\.\d+")
-    $cachedTools.AddToolVersionsList("Ruby", $(Get-ToolcacheRubyVersions), "^\d+\.\d+")
+    foreach ($tool in $availableCachedTools) {
+        $cachedTools.AddToolVersionsList($tool.Key, $tool.Value.Versions, $tool.Value.MajorVersionRegex)
+    }
 }
 
 # PowerShell Tools
