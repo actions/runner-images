@@ -151,6 +151,7 @@
             "binutils",
             "bison",
             "brotli",
+            "httpie",
             "libnss3-tools",
             "coreutils",
             "file",
