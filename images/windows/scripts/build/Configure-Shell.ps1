@@ -5,7 +5,7 @@ New-Item -Path $shellPath -ItemType Directory | Out-Null
 if ((Test-IsX64) -or (Test-IsArm64)) {
     # add a wrapper for C:\msys64\usr\bin\bash.exe
     # arm64 images carry the CLANGARM64 prefix, x64 images carry MINGW64
-    $msystem = if (Test-IsArm64) { "CLANGARM64" } else { "mingw64" }
+    $msystem = if (Test-IsArm64) { "CLANGARM64" } else { "MINGW64" }
 @"
 @echo off
 setlocal
