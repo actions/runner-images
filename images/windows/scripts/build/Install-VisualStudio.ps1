@@ -20,19 +20,6 @@ Install-VisualStudio `
     -ExtraArgs "--allWorkloads --includeRecommended --remove Component.CPython3.x64" `
     -Architecture $vsArch
 
-$vsPackagesPath = "C:\ProgramData\Microsoft\VisualStudio\Packages"
-if (Test-Path -Path $vsPackagesPath) {
-    $vsPackagesSizeBytes = (Get-ChildItem -Path $vsPackagesPath -Recurse -File -Force | Measure-Object -Property Length -Sum).Sum
-    if (-not $vsPackagesSizeBytes) {
-        $vsPackagesSizeBytes = 0
-    }
-
-    $vsPackagesSizeGb = [Math]::Round($vsPackagesSizeBytes / 1GB, 2)
-    Write-Host "Size of ${vsPackagesPath}: $vsPackagesSizeBytes bytes ($vsPackagesSizeGb GB)"
-} else {
-    Write-Host "Path not found: $vsPackagesPath"
-}
-
 # Find the version of VS installed for this instance
 # Only supports a single instance
 $vsProgramData = Get-Item -Path "C:\ProgramData\Microsoft\VisualStudio\Packages\_Instances"
