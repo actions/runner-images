@@ -6,7 +6,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
 - Kernel Version: 6.17.0-1020-azure
-- Image Version: 20260714.240.1
+- Image Version: 20260720.247.2
 - Systemd version: 255.4-1ubuntu8.16
 
 ## Installed Software
@@ -20,7 +20,7 @@
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
 - Julia 1.12.6
-- Kotlin 2.4.0-release-281
+- Kotlin 2.4.10-release-377
 - Node.js 22.23.1
 - Perl 5.38.2
 - Python 3.12.3
@@ -30,14 +30,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.21.3
-- Homebrew 6.0.10
+- Homebrew 6.0.11
 - Miniconda 26.5.3
 - Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
-- Pipx 1.15.0
+- Pipx 1.16.0
 - RubyGems 3.4.20
-- Vcpkg (build from commit 5b9d9a6d0e)
+- Vcpkg (build from commit a51bb4d143)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -68,7 +68,7 @@ to accomplish this.
 - Bicep 0.45.15
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.26.0
+- CodeQL Action Bundle 2.26.1
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
 - Docker-Buildx 0.35.0
@@ -88,12 +88,12 @@ to accomplish this.
 - Minikube 1.38.1
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.5
+- nvm 0.40.6
 - OpenSSL 3.0.13-0ubuntu3.11
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.252.0
+- Pulumi 3.253.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -102,13 +102,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.22
+- AWS CLI 2.36.2
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.163.0
 - Azure CLI 2.88.0
 - Azure CLI (azure-devops) 1.0.6
 - GitHub CLI 2.96.0
-- Google Cloud CLI 575.0.1
+- Google Cloud CLI 576.0.0
 
 ### Java
 | Version              | Environment Variable |
@@ -134,22 +134,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.11.1
 
 ### Rust Tools
-- Cargo 1.97.0
-- Rust 1.97.0
-- Rustdoc 1.97.0
+- Cargo 1.97.1
+- Rust 1.97.1
+- Rustdoc 1.97.1
 - Rustup 1.29.0
 
 #### Packages
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 150.0.7871.114
-- ChromeDriver 150.0.7871.115
+- Google Chrome 150.0.7871.128
+- ChromeDriver 150.0.7871.124
 - Chromium 150.0.7871.0
-- Microsoft Edge 150.0.4078.65
-- Microsoft Edge WebDriver 150.0.4078.65
+- Microsoft Edge 150.0.4078.83
+- Microsoft Edge WebDriver 150.0.4078.83
 - Selenium server 4.46.0
-- Mozilla Firefox 152.0.5
+- Mozilla Firefox 152.0.6
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -161,7 +161,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
+- .NET Core SDK: 8.0.129, 8.0.206, 8.0.319, 8.0.423, 9.0.119, 9.0.205, 9.0.316, 10.0.110, 10.0.204, 10.0.302
 - nbgv 3.10.91+e05abbcae4
 
 ### Databases
@@ -209,7 +209,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Ruby
 - 3.2.11
-- 3.3.11
+- 3.3.12
 - 3.4.10
 - 4.0.6
 
@@ -314,7 +314,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.2    |
 | swig                   | 4.2.0-2ubuntu1               |
 | systemd-coredump       | 255.4-1ubuntu8.16            |
-| tar                    | 1.35+dfsg-3ubuntu0.2         |
+| tar                    | 1.35+dfsg-3ubuntu0.3         |
 | telnet                 | 0.17+2.5-3ubuntu4.2          |
 | texinfo                | 7.1-3build2                  |
 | time                   | 1.9-0.2build1                |
@@ -323,7 +323,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | tzdata                 | 2026b-0ubuntu0.24.04.1       |
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
-| wget                   | 1.21.4-1ubuntu4.1            |
+| wget                   | 1.21.4-1ubuntu4.3            |
 | xvfb                   | 2:21.1.12-1ubuntu1.6         |
 | xz-utils               | 5.6.1+really5.4.5-1ubuntu0.3 |
 | zip                    | 3.0-13ubuntu0.2              |
