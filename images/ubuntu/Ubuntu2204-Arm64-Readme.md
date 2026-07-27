@@ -6,7 +6,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1062-azure
-- Image Version: 20260714.63.1
+- Image Version: 20260720.69.2
 - Systemd version: 249.11-0ubuntu3.21
 
 ## Installed Software
@@ -19,7 +19,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Kotlin 2.4.0-release-281
+- Kotlin 2.4.10-release-377
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 22.23.1
@@ -31,14 +31,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.21.3
-- Homebrew 6.0.10
+- Homebrew 6.0.11
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.15.0
+- Pipx 1.16.0
 - RubyGems 3.3.5
-- Vcpkg (build from commit b5229343b4)
+- Vcpkg (build from commit a51bb4d143)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -88,12 +88,12 @@ to accomplish this.
 - Minikube 1.38.1
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.5
+- nvm 0.40.6
 - OpenSSL 3.0.2-0ubuntu1.25
 - Packer 1.15.4
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.252.0
+- Pulumi 3.253.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
@@ -104,16 +104,16 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.22
+- AWS CLI 2.36.2
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.163.0
 - Azure CLI 2.88.0
 - Azure CLI (azure-devops) 1.0.6
 - GitHub CLI 2.96.0
-- Google Cloud CLI 575.0.1
+- Google Cloud CLI 576.0.0
 - Netlify CLI 26.2.0
-- OpenShift CLI 4.22.4
-- Vercel CLI 56.1.0
+- OpenShift CLI 4.22.5
+- Vercel CLI 56.3.2
 
 ### Java
 | Version              | Environment Variable |
@@ -133,9 +133,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.97.0
-- Rust 1.97.0
-- Rustdoc 1.97.0
+- Cargo 1.97.1
+- Rust 1.97.1
+- Rustdoc 1.97.1
 - Rustup 1.29.0
 
 #### Packages
@@ -148,7 +148,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Browsers and Drivers
 - Selenium server 4.46.0
-- Mozilla Firefox 152.0.5
+- Mozilla Firefox 152.0.6
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -160,7 +160,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
+- .NET Core SDK: 8.0.129, 8.0.206, 8.0.319, 8.0.423, 9.0.119, 9.0.205, 9.0.316, 10.0.110, 10.0.204, 10.0.302
 - nbgv 3.10.91+e05abbcae4
 
 ### Databases
@@ -272,7 +272,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sudo                   | 1.9.9-1ubuntu2.6                    |
 | swig                   | 4.0.2-1ubuntu1                      |
 | systemd-coredump       | 249.11-0ubuntu3.21                  |
-| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.4        |
+| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.5        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
@@ -280,7 +280,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | tzdata                 | 2026b-0ubuntu0.22.04.1              |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
-| wget                   | 1.21.2-2ubuntu1.1                   |
+| wget                   | 1.21.2-2ubuntu1.3                   |
 | xorriso                | 1.5.4-2                             |
 | xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.16       |
 | xz-utils               | 5.2.5-2ubuntu1.1                    |
