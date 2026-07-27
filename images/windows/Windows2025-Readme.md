@@ -4,7 +4,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 33158
-- Image Version: 20260714.195.3
+- Image Version: 20260719.202.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -32,9 +32,9 @@
 - NPM 10.9.8
 - NuGet 7.6.0.59
 - pip 26.1.2 (python 3.12)
-- Pipx 1.15.0
+- Pipx 1.16.0
 - RubyGems 3.5.22
-- Vcpkg (build from commit 4b866ceb02)
+- Vcpkg (build from commit 0878b5224d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -58,7 +58,7 @@
 - Bicep 0.45.15
 - Cabal 3.16.1.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.26.0
+- CodeQL Action Bundle 2.26.1
 - Docker 29.1.5
 - Docker Compose 2.40.3
 - Docker-wincred 0.9.8
@@ -89,7 +89,7 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.22
+- AWS CLI 2.36.2
 - AWS SAM CLI 1.163.0
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.88.0
@@ -97,9 +97,9 @@
 - GitHub CLI 2.96.0
 
 ### Rust Tools
-- Cargo 1.97.0
-- Rust 1.97.0
-- Rustdoc 1.97.0
+- Cargo 1.97.1
+- Rust 1.97.1
+- Rustdoc 1.97.1
 - Rustup 1.29.0
 
 #### Packages
@@ -107,10 +107,10 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 150.0.7871.125
+- Google Chrome 150.0.7871.129
 - Chrome Driver 150.0.7871.124
-- Microsoft Edge 150.0.4078.65
-- Microsoft Edge Driver 150.0.4078.65
+- Microsoft Edge 150.0.4078.83
+- Microsoft Edge Driver 150.0.4078.83
 - Mozilla Firefox 152.0.6
 - Gecko Driver 0.37.0
 - IE Driver 4.14.0.0
@@ -210,7 +210,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.2  | C:\tools\nginx-1.31.2\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.31.3  | C:\tools\nginx-1.31.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version        | Path                                                     |
@@ -471,7 +471,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.252
+- AWSPowershell: 5.0.256
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.38.1
