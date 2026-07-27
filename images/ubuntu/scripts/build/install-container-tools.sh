@@ -71,7 +71,9 @@ else
 fi
 
 mkdir -p /etc/containers
-printf "[registries.search]\nregistries = ['docker.io', 'quay.io']\n" | tee /etc/containers/registries.conf
+# Write registries.conf in v2 format; skopeo >= 1.8 rejects the legacy v1 schema
+# (see https://github.com/containers/image/blob/main/docs/containers-registries.conf.5.md)
+printf 'unqualified-search-registries = ["docker.io", "quay.io"]\n' | tee /etc/containers/registries.conf
 
 # netavark (used by podman 5.x) can default to nftables on Ubuntu and then fails
 # name resolution; force iptables. https://github.com/actions/runner-images/issues/14230
