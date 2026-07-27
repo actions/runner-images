@@ -6,7 +6,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1062-azure
-- Image Version: 20260720.69.2
+- Image Version: 20260726.76.1
 - Systemd version: 249.11-0ubuntu3.21
 
 ## Installed Software
@@ -31,14 +31,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.21.3
-- Homebrew 6.0.11
+- Homebrew 6.0.12
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.16.0
+- Pipx 1.16.2
 - RubyGems 3.3.5
-- Vcpkg (build from commit a51bb4d143)
+- Vcpkg (build from commit 40f3c709db)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -81,7 +81,7 @@ to accomplish this.
 - Haveged 1.9.14
 - jq 1.6
 - Kind 0.32.0
-- Kubectl 1.36.2
+- Kubectl 1.36.3
 - Kustomize 5.8.1
 - MediaInfo 21.09
 - Mercurial 6.1.1
@@ -90,10 +90,10 @@ to accomplish this.
 - Newman 6.2.2
 - nvm 0.40.6
 - OpenSSL 3.0.2-0ubuntu1.25
-- Packer 1.15.4
+- Packer 1.16.0
 - Parcel 2.16.4
-- Podman 3.4.4
-- Pulumi 3.253.0
+- Podman 5.8.4
+- Pulumi 3.254.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
@@ -104,25 +104,25 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.2
+- AWS CLI 2.36.8
 - AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.163.0
+- AWS SAM CLI 1.164.0
 - Azure CLI 2.88.0
 - Azure CLI (azure-devops) 1.0.6
 - GitHub CLI 2.96.0
-- Google Cloud CLI 576.0.0
-- Netlify CLI 26.2.0
-- OpenShift CLI 4.22.5
-- Vercel CLI 56.3.2
+- Google Cloud CLI 577.0.0
+- Netlify CLI 27.0.0
+- OpenShift CLI 4.22.6
+- Vercel CLI 57.0.0
 
 ### Java
-| Version              | Environment Variable |
-| -------------------- | -------------------- |
-| 8.0.492+9            | JAVA_HOME_8_X64      |
-| 11.0.31+11 (default) | JAVA_HOME_11_X64     |
-| 17.0.19+10           | JAVA_HOME_17_X64     |
-| 21.0.11+10           | JAVA_HOME_21_X64     |
-| 25.0.3+9             | JAVA_HOME_25_X64     |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.492+9           | JAVA_HOME_8_X64      |
+| 11.0.32+9 (default) | JAVA_HOME_11_X64     |
+| 17.0.19+10          | JAVA_HOME_17_X64     |
+| 21.0.12+8           | JAVA_HOME_21_X64     |
+| 25.0.3+9            | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.1.2
@@ -148,8 +148,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Browsers and Drivers
 - Selenium server 4.46.0
-- Mozilla Firefox 152.0.6
-- Geckodriver 0.37.0
+- Mozilla Firefox 153.0
+- Geckodriver 0.37.1
 
 #### Environment variables
 | Name              | Value                               |
@@ -176,7 +176,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 ### PowerShell Tools
-- PowerShell 7.6.3
+- PowerShell 7.6.4
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -236,7 +236,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libmagickwand-dev      | 8:6.9.11.60+dfsg-1.3ubuntu0.22.04.5 |
 | libnss3-tools          | 2:3.98-0ubuntu0.22.04.4             |
 | libsecret-1-dev        | 0.20.5-2                            |
-| libsqlite3-dev         | 3.37.2-2ubuntu0.6                   |
+| libsqlite3-dev         | 3.37.2-2ubuntu0.7                   |
 | libssl-dev             | 3.0.2-0ubuntu1.25                   |
 | libtool                | 2.4.6-15build2                      |
 | libunwind8             | 1.3.2-2build2.1                     |
@@ -265,14 +265,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-0ubuntu0.22.04.7              |
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
-| sqlite3                | 3.37.2-2ubuntu0.6                   |
+| sqlite3                | 3.37.2-2ubuntu0.7                   |
 | ssh                    | 1:8.9p1-3ubuntu0.16                 |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.6                    |
 | swig                   | 4.0.2-1ubuntu1                      |
 | systemd-coredump       | 249.11-0ubuntu3.21                  |
-| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.5        |
+| tar                    | 1.34+dfsg-1ubuntu0.1.22.04.6        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
@@ -280,7 +280,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | tzdata                 | 2026b-0ubuntu0.22.04.1              |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
-| wget                   | 1.21.2-2ubuntu1.3                   |
+| wget                   | 1.21.2-2ubuntu1.4                   |
 | xorriso                | 1.5.4-2                             |
 | xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.16       |
 | xz-utils               | 5.2.5-2ubuntu1.1                    |
