@@ -6,7 +6,7 @@
 # Ubuntu 26.04 LTS
 - OS Version: 26.04 LTS
 - Kernel Version: 7.0.0-1009-azure
-- Image Version: 20260720.80.1
+- Image Version: 20260727.87.1
 - Systemd version: 259.5-0ubuntu3
 
 ## Installed Software
@@ -28,13 +28,13 @@
 ### Package Management
 - cpan 1.64
 - Helm 4.2.3
-- Homebrew 6.0.12
+- Homebrew 6.0.13
 - Npm 11.16.0
 - Pip 25.1.1
 - Pip3 25.1.1
-- Pipx 1.16.1
+- Pipx 1.16.3
 - RubyGems 3.6.7
-- Vcpkg (build from commit 07425ae85e)
+- Vcpkg (build from commit 1ae2f2e5da)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -75,13 +75,13 @@ to accomplish this.
 - Git-ftp 1.6.0
 - jq 1.8.1
 - Kind 0.32.0
-- Kubectl 1.36.2
+- Kubectl 1.36.3
 - Kustomize 5.8.1
 - Minikube 1.38.1
 - n 10.2.0
 - nvm 0.40.6
 - OpenSSL 3.5.5-1ubuntu3.2
-- Packer 1.15.4
+- Packer 1.16.0
 - Podman 5.7.0
 - Skopeo 1.21.0-dev
 - yamllint 1.38.0
@@ -90,20 +90,20 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.3
+- AWS CLI 2.36.9
 - AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.163.0
+- AWS SAM CLI 1.164.0
 - Azure CLI 2.88.0
 - Azure CLI (azure-devops) 1.0.6
 - GitHub CLI 2.96.0
-- Google Cloud CLI 576.0.0
+- Google Cloud CLI 577.0.0
 
 ### Java
 | Version            | Environment Variable |
 | ------------------ | -------------------- |
-| 11.0.31+11         | JAVA_HOME_11_X64     |
-| 17.0.19+10         | JAVA_HOME_17_X64     |
-| 21.0.11+10         | JAVA_HOME_21_X64     |
+| 11.0.32+9          | JAVA_HOME_11_X64     |
+| 17.0.20+8          | JAVA_HOME_17_X64     |
+| 21.0.12+8          | JAVA_HOME_21_X64     |
 | 25.0.3+9 (default) | JAVA_HOME_25_X64     |
 
 ### PHP Tools
@@ -130,13 +130,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 150.0.7871.128
+- Google Chrome 150.0.7871.186
 - ChromeDriver 150.0.7871.124
 - Chromium 150.0.7871.0
-- Microsoft Edge 150.0.4078.83
-- Microsoft Edge WebDriver 150.0.4078.83
+- Microsoft Edge 150.0.4078.105
+- Microsoft Edge WebDriver 150.0.4078.105
 - Selenium server 4.46.0
-- Mozilla Firefox 152.0.6
+- Mozilla Firefox 153.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -172,7 +172,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 ### PowerShell Tools
-- PowerShell 7.6.3
+- PowerShell 7.6.4
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -246,7 +246,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libssl-dev             | 3.5.5-1ubuntu3.2             |
 | libtool                | 2.5.4-9                      |
 | libyaml-dev            | 0.2.5-2build3                |
-| locales                | 2.43-2ubuntu2                |
+| locales                | 2.43-2ubuntu2.3              |
 | lz4                    | 1.10.0-8                     |
 | m4                     | 1.4.21-1                     |
 | make                   | 4.4.1-3                      |
@@ -268,7 +268,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sudo                   | 1.9.17p2-1ubuntu3            |
 | swig                   | 4.4.0-1                      |
 | systemd-coredump       | 259.5-0ubuntu3               |
-| tar                    | 1.35+dfsg-4ubuntu0.3         |
+| tar                    | 1.35+dfsg-4ubuntu0.4         |
 | telnet                 | 0.17+2.7-2ubuntu1.1          |
 | texinfo                | 7.2-5ubuntu2                 |
 | time                   | 1.9-0.4                      |
