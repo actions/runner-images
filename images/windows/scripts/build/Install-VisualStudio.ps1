@@ -48,6 +48,14 @@ Install-Binary -Type EXE `
     -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
     -ExpectedSubject $(Get-MicrosoftPublisher)
 
+if (-not (Test-IsWin22-X64)) {
+# Install Windows 11 SDK version 10.0.28000
+    Install-Binary -Type EXE `
+    -Url 'https://go.microsoft.com/fwlink/?linkid=2366211' `
+    -InstallArgs @("/q", "/norestart", "/ceip off", "/features OptionId.UWPManaged OptionId.UWPCPP OptionId.UWPLocalized OptionId.DesktopCPPx86 OptionId.DesktopCPPx64 OptionId.DesktopCPParm64") `
+    -ExpectedSubject $(Get-MicrosoftPublisher)
+}
+
 # Enable Windows Desktop Debuggers (cdb.exe) on Windows Server 2025
 if (Test-IsWin25-X64) {
     $installerEntry = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* `
@@ -60,6 +68,13 @@ if (Test-IsWin25-X64) {
             -InstallArgs @("/features", "OptionId.WindowsDesktopDebuggers", "/q", "/norestart") `
             -ExpectedSubject $(Get-MicrosoftPublisher)
     }
+}
+
+# Clean installer temp directory
+$installerTempPath = "$env:SystemDrive\Users\$env:INSTALL_USER\AppData\Local\Temp"
+if (Test-Path $installerTempPath) {
+    Write-Host "Cleaning $installerTempPath"
+    Remove-Item -Path "$installerTempPath\*" -Recurse -Force -ErrorAction SilentlyContinue
 }
 
 Invoke-PesterTests -TestFile "VisualStudio"

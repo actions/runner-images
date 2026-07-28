@@ -54,6 +54,8 @@ function Install-Binary {
         [String] $InstallerLogPath
     )
 
+    $downloadedInstallerPath = $null
+
     if ($PSCmdlet.ParameterSetName -eq "LocalPath") {
         if (-not (Test-Path -Path $LocalPath)) {
             throw "LocalPath parameter is specified, but the file does not exist."
@@ -76,6 +78,7 @@ function Install-Binary {
             $fileName = [System.IO.Path]::GetFileNameWithoutExtension([System.IO.Path]::GetRandomFileName()) + ".$Type".ToLower()
         }
         $filePath = Invoke-DownloadWithRetry -Url $Url -Path "${env:TEMP_DIR}\$fileName"
+        $downloadedInstallerPath = $filePath
     }
 
     if ($PSBoundParameters.ContainsKey('ExpectedSubject')) {
@@ -122,8 +125,14 @@ function Install-Binary {
         $installCompleteTime = [math]::Round(($(Get-Date) - $installStartTime).TotalSeconds, 2)
         if ($exitCode -eq 0) {
             Write-Host "Installation successful in $installCompleteTime seconds"
+            if ($downloadedInstallerPath -and (Test-Path -Path $downloadedInstallerPath)) {
+                Remove-Item -Path $downloadedInstallerPath -Force -ErrorAction SilentlyContinue
+            }
         } elseif ($exitCode -eq 3010) {
             Write-Host "Installation successful in $installCompleteTime seconds. Reboot is required."
+            if ($downloadedInstallerPath -and (Test-Path -Path $downloadedInstallerPath)) {
+                Remove-Item -Path $downloadedInstallerPath -Force -ErrorAction SilentlyContinue
+            }
         } else {
             Write-Host "Installation process returned unexpected exit code: $exitCode"
             Write-Host "Time elapsed: $installCompleteTime seconds"

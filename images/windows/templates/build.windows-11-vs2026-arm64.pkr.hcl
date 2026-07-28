@@ -123,7 +123,7 @@ build {
 
   provisioner "windows-restart" {
     check_registry  = true
-    restart_timeout = "10m"
+    restart_timeout = "30m"
   }
 
   provisioner "powershell" {
