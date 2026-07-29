@@ -3,6 +3,12 @@
 ##  Desc:  Install the stable version of llvm and clang compilers
 ################################################################################
 
+Write-Host "[DEBUG] Testing space before installing LLVM"
+
+Invoke-PesterTests -TestFile "WindowsFeatures"
+
+Write-Host "[DEBUG] Tests passed"
+
 $llvmVersion = (Get-ToolsetContent).llvm.version
 
 if (Test-IsArm64) {
