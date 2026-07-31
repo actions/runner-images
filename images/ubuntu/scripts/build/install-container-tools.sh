@@ -43,11 +43,12 @@ install_podman_static() {
     # /usr/bin/crun precedes /usr/local/bin/crun, and the bundle does not pin the path
     # either, so podman picks the outdated crun that buildah pulls in from apt (1.14.1
     # on 24.04) instead of the one shipped with the bundle. That crun rejects the
-    # ociVersion written by podman 5.x with "unknown version specified".
+    # ociVersion written by podman 5.x with "unknown version specified". Only the path
+    # is corrected, and the drop-in is named to load first so user drop-ins still win.
     # https://github.com/actions/runner-images/issues/14473
     mkdir -p /etc/containers/containers.conf.d
-    printf '[engine]\nruntime = "crun"\n\n[engine.runtimes]\ncrun = ["/usr/local/bin/crun"]\n' \
-        | tee /etc/containers/containers.conf.d/99-fix-runtime.conf
+    printf '[engine.runtimes]\ncrun = ["/usr/local/bin/crun"]\n' \
+        | tee /etc/containers/containers.conf.d/00-fix-runtime.conf
 
     # Ubuntu >= 23.10 restricts unprivileged user namespaces via AppArmor
     # (kernel.apparmor_restrict_unprivileged_userns=1). The distro podman package
