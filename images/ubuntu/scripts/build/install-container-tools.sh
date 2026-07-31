@@ -34,8 +34,14 @@ install_podman_static() {
     archive_path=$(download_with_retry "$archive_url")
     use_checksum_comparison "$archive_path" "$checksum"
 
-    # The bundle ships ./usr and ./etc under a single top-level directory
-    tar -xzf "$archive_path" -C / --strip-components=1 \
+    # The bundle ships ./usr and ./etc under a single top-level directory.
+    # Every archive entry is stored as uid/gid 1001 (`runner`) because the bundle is
+    # built on a GitHub Actions runner, and the archive also carries the `usr` and
+    # `etc` directory entries themselves. As root, tar restores that ownership by
+    # default and hands /usr and /etc to the unprivileged user, so keep the metadata
+    # of the existing system directories untouched.
+    # https://github.com/actions/runner-images/issues/14477
+    tar -xzf "$archive_path" -C / --strip-components=1 --no-same-owner --no-overwrite-dir \
         "podman-linux-${arch}/usr" "podman-linux-${arch}/etc"
     rm -f "$archive_path"
 

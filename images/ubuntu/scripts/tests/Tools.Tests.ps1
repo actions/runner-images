@@ -336,6 +336,16 @@ Describe "Containers" {
         "podman info" | Should -OutputTextMatchingRegex "quay.io"
     }
 
+    # https://github.com/actions/runner-images/issues/14477
+    It "<Directory> is owned by root" -TestCases @(
+        @{ Directory = "/usr" }
+        @{ Directory = "/etc" }
+        @{ Directory = "/usr/local" }
+        @{ Directory = "/usr/local/bin" }
+    ) {
+        $(stat -c "%U" $Directory) | Should -Be "root"
+    }
+
 }
 
 Describe "nvm" {
