@@ -4,7 +4,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8875
-- Image Version: 20260719.114.1
+- Image Version: 20260727.122.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -30,9 +30,9 @@
 - NPM 11.16.0
 - NuGet 7.6.0.59
 - pip 26.1.2 (python 3.13)
-- Pipx 1.16.0
+- Pipx 1.16.3
 - RubyGems 3.6.9
-- Vcpkg (build from commit 0878b5224d)
+- Vcpkg (build from commit 99e82d9c9f)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,7 +61,7 @@
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.32.0
-- Kubectl 1.36.2
+- Kubectl 1.36.3
 - Mercurial 6.3.1
 - gcc 14.2.0
 - gdb 16.2
@@ -69,9 +69,9 @@
 - Newman 6.2.2
 - NSIS 3.10
 - OpenSSL 3.6.3
-- Packer 1.15.4
-- Pulumi 3.253.0
-- R 4.6.1
+- Packer 1.16.0
+- Pulumi 3.254.0
+- R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
 - VSWhere 3.1.7
@@ -81,9 +81,9 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.4.8
-- AWS CLI 2.36.2
-- AWS SAM CLI 1.163.0
+- Alibaba Cloud CLI 3.4.10
+- AWS CLI 2.36.8
+- AWS SAM CLI 1.164.0
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.88.0
 - Azure DevOps CLI extension 1.0.6
@@ -104,12 +104,12 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 150.0.7871.129
+- Google Chrome 150.0.7871.187
 - Chrome Driver 150.0.7871.124
-- Microsoft Edge 150.0.4078.83
-- Microsoft Edge Driver 150.0.4078.83
-- Mozilla Firefox 152.0.6
-- Gecko Driver 0.37.0
+- Microsoft Edge 150.0.4078.105
+- Microsoft Edge Driver 150.0.4078.99
+- Mozilla Firefox 153.0
+- Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.46.0
 
@@ -160,9 +160,9 @@
 | Nginx  | 1.31.3  | C:\tools\nginx-1.31.3\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
-| Name                          | Version        | Path                                                     |
-| ----------------------------- | -------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.37502.11 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Name                          | Version       | Path                                                     |
+| ----------------------------- | ------------- | -------------------------------------------------------- |
+| Visual Studio Enterprise 2022 | 17.14.37516.0 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -186,7 +186,7 @@
 | Component.Unreal.Android                                                  | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36907.17  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37502.0   |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37516.0   |
 | Component.VSInstallerProjects2022_arm64                                   | 3.0.0           |
 | Component.Xamarin                                                         | 17.14.36510.44  |
 | ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.37203.1   |
@@ -378,11 +378,11 @@
 - nbgv 3.10.91+e05abbcae4
 
 ### PowerShell Tools
-- PowerShell 7.6.3
+- PowerShell 7.6.4
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.256
+- AWSPowershell: 5.0.262
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.38.1
