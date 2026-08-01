@@ -36,6 +36,7 @@ $env:Path += ";$env:CARGO_HOME\bin"
 
 if (Test-IsArm64) {
     rustup target add aarch64-pc-windows-msvc
+    rustup target add aarch64-pc-windows-gnullvm
 } else {
     # Add i686 target for building 32-bit binaries
     rustup target add i686-pc-windows-msvc
