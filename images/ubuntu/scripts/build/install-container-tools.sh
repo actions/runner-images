@@ -34,10 +34,27 @@ install_podman_static() {
     archive_path=$(download_with_retry "$archive_url")
     use_checksum_comparison "$archive_path" "$checksum"
 
-    # The bundle ships ./usr and ./etc under a single top-level directory
-    tar -xzf "$archive_path" -C / --strip-components=1 \
+    # The bundle ships ./usr and ./etc under a single top-level directory.
+    # Every archive entry is stored as uid/gid 1001 (`runner`) because the bundle is
+    # built on a GitHub Actions runner, and the archive also carries the `usr` and
+    # `etc` directory entries themselves. As root, tar restores that ownership by
+    # default and hands /usr and /etc to the unprivileged user, so keep the metadata
+    # of the existing system directories untouched.
+    # https://github.com/actions/runner-images/issues/14477
+    tar -xzf "$archive_path" -C / --strip-components=1 --no-same-owner --no-overwrite-dir \
         "podman-linux-${arch}/usr" "podman-linux-${arch}/etc"
     rm -f "$archive_path"
+
+    # podman resolves its OCI runtime from a built-in list of absolute paths in which
+    # /usr/bin/crun precedes /usr/local/bin/crun, and the bundle does not pin the path
+    # either, so podman picks the outdated crun that buildah pulls in from apt (1.14.1
+    # on 24.04) instead of the one shipped with the bundle. That crun rejects the
+    # ociVersion written by podman 5.x with "unknown version specified". Only the path
+    # is corrected, and the drop-in is named to load first so user drop-ins still win.
+    # https://github.com/actions/runner-images/issues/14473
+    mkdir -p /etc/containers/containers.conf.d
+    printf '[engine.runtimes]\ncrun = ["/usr/local/bin/crun"]\n' \
+        | tee /etc/containers/containers.conf.d/00-fix-runtime.conf
 
     # Ubuntu >= 23.10 restricts unprivileged user namespaces via AppArmor
     # (kernel.apparmor_restrict_unprivileged_userns=1). The distro podman package
