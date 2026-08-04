@@ -323,12 +323,27 @@ Describe "Containers" {
         "podman network rm test-net" | Should -ReturnZeroExitCode
     }
 
+    # https://github.com/actions/runner-images/issues/14473
+    It "podman uses the crun shipped with the podman bundle" -Skip:(Test-IsUbuntu26) {
+        "podman info --format '{{.Host.OCIRuntime.Path}}'" | Should -OutputTextMatchingRegex "/usr/local/bin/crun"
+    }
+
     # https://github.com/actions/runner-images/issues/14406
     # registries.conf must be valid v2 format; a v1 file is rejected by newer podman.
     It "podman registries.conf" {
         "podman info" | Should -ReturnZeroExitCode
         "podman info" | Should -OutputTextMatchingRegex "docker.io"
         "podman info" | Should -OutputTextMatchingRegex "quay.io"
+    }
+
+    # https://github.com/actions/runner-images/issues/14477
+    It "<Directory> is owned by root" -TestCases @(
+        @{ Directory = "/usr" }
+        @{ Directory = "/etc" }
+        @{ Directory = "/usr/local" }
+        @{ Directory = "/usr/local/bin" }
+    ) {
+        $(stat -c "%U" $Directory) | Should -Be "root"
     }
 
 }
