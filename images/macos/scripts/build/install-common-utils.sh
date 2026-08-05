@@ -53,23 +53,12 @@ for package in $cask_packages; do
     if is_Arm64 && [[ $package == "parallels" ]]; then
         echo "Parallels installation is skipped for arm64 architecture"
     else
-        # Temporary tap name
-        TEMP_TAP="local/temp"
+        # Workaround for https://github.com/github/hosted-runners-images/issues/886
+        # brew install --cask $package
         CASK_NAME="parallels"
         CASK_URL="https://raw.githubusercontent.com/Homebrew/homebrew-cask/adfc07a7bc28a32037851be4d7a0bd4f8b239565/Casks/p/${CASK_NAME}.rb"
         
-        # Install parallels using temporary tap to comply with Homebrew's security requirements
-        brew tap-new "$TEMP_TAP"
-        TAP_DIR="$(brew --repository "$TEMP_TAP")"
-        curl -fsSL "$CASK_URL" -o "$TAP_DIR/Casks/${CASK_NAME}.rb"
-        brew trust --cask "$TEMP_TAP/$CASK_NAME"
-        brew install --cask "$TEMP_TAP/$CASK_NAME"
-
-        # Clean up temporary tap and cask
-        brew untrust --cask "$TEMP_TAP/$CASK_NAME"
-        brew untap "$TEMP_TAP"
-
-        # brew install --cask $package
+        brew_install_pinned_cask "$CASK_NAME" "$CASK_URL"
     fi
 done
 

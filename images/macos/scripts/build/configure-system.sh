@@ -116,3 +116,6 @@ sudo rm -rf /Users/$USER/Library/Caches/Homebrew/downloads/*
 
 # Uninstall expect used in configure-machine.sh
 brew uninstall expect
+
+# Remove temp tap if it was used
+brew_cleanup_temp_tap
