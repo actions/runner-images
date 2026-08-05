@@ -67,6 +67,9 @@ chmod +x $chromedriver_bin
 ln -s "$chromedriver_bin" /usr/bin/
 set_etc_environment_variable "CHROMEWEBDRIVER" "${CHROMEDRIVER_DIR}"
 
+# Workaround for https://github.com/actions/runner-images/issues/14475
+apt-get install libxtst6
+
 # Download and unpack Chromium
 chrome_revision=$(echo "${chrome_versions_json}" | jq -r '.builds["'"$chrome_version"'"].revision')
 chromium_revision=$(get_chromium_revision $chrome_revision)
