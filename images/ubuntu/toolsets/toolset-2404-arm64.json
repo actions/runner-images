@@ -91,7 +91,7 @@
     },
     "powershellModules": [
         {"name": "Microsoft.Graph"},
-        {"name": "Pester"},
+        {"name": "Pester", "versions": ["5.9.0"]},
         {"name": "PSScriptAnalyzer"}
     ],
     "azureModules": [
@@ -322,6 +322,14 @@
         "pinnedDetails": {
             "reason": "Pinned to avoid CMake 4.0 compatibility issues",
             "link": "https://github.com/actions/runner-images/issues/11926",
+            "review-at": "2026-09-01"
+        }
+    },
+    "vcpkg": {
+        "commit": "827a2e1203bc19941126c657166da44f2623acc4",
+        "pinnedDetails": {
+            "reason": "Pinned to a version compatible with CMake 3.31.6",
+            "link": "https://github.com/microsoft/vcpkg/commit/827a2e1203bc19941126c657166da44f2623acc4",
             "review-at": "2026-09-01"
         }
     },

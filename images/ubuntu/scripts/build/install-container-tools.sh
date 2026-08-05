@@ -2,40 +2,98 @@
 ################################################################################
 ##  File:  install-container-tools.sh
 ##  Desc:  Install container tools: podman, buildah and skopeo onto the image
+##  Supply chain security: podman static bundle - pinned version + SHA256 validation
 ################################################################################
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/os.sh
+source $HELPER_SCRIPTS/install.sh
 
-#
-# pin podman due to https://github.com/actions/runner-images/issues/7753
-#                   https://bugs.launchpad.net/ubuntu/+source/libpod/+bug/2024394
-#
-if ! is_ubuntu22; then
-    install_packages=(podman buildah skopeo)
-else
-    install_packages=(podman=3.4.4+ds1-1ubuntu1 buildah skopeo)
-fi
+# Ubuntu 22.04/24.04 only ship an outdated podman via apt (3.4.4 / 4.9.3) whose
+# Docker-compatible API is too old for the current Docker daemon and breaks
+# `podman push docker-daemon:` (actions/runner-images#13691, #549). There is no
+# maintained podman apt repository for Ubuntu (Kubic/OBS was discontinued), so a
+# current self-contained static bundle (podman + crun/runc + conmon + netavark +
+# aardvark-dns + pasta) is installed instead. Ubuntu 26.04 already ships podman 5.x.
+podman_static_tag="v5.8.4"
+podman_static_sha256_amd64="a58765fe8be6ab3fb79f892f1a027b4ce4a7e8eb589df1ef960c167cbde08d69"
+podman_static_sha256_arm64="a2f6b73cc0f7018e2e8518338a4ec27db70148e1af86e16719235605aefd1df3"
 
+install_podman_static() {
+    local arch checksum
+    if is_x64; then
+        arch="amd64"
+        checksum="$podman_static_sha256_amd64"
+    else
+        arch="arm64"
+        checksum="$podman_static_sha256_arm64"
+    fi
 
-if is_ubuntu22_x64; then
-    # Install containernetworking-plugins for Ubuntu 22 x64
-    curl -O http://archive.ubuntu.com/ubuntu/pool/universe/g/golang-github-containernetworking-plugins/containernetworking-plugins_1.1.1+ds1-3build1_amd64.deb
-    dpkg -i containernetworking-plugins_1.1.1+ds1-3build1_amd64.deb
-fi
+    local archive_url="https://github.com/mgoltzsche/podman-static/releases/download/${podman_static_tag}/podman-linux-${arch}.tar.gz"
+    local archive_path
+    archive_path=$(download_with_retry "$archive_url")
+    use_checksum_comparison "$archive_path" "$checksum"
 
-# Install podman, buildah, skopeo container's tools
-apt-get update
-apt-get install ${install_packages[@]}
-mkdir -p /etc/containers
-printf "[registries.search]\nregistries = ['docker.io', 'quay.io']\n" | tee /etc/containers/registries.conf
+    # The bundle ships ./usr and ./etc under a single top-level directory.
+    # Every archive entry is stored as uid/gid 1001 (`runner`) because the bundle is
+    # built on a GitHub Actions runner, and the archive also carries the `usr` and
+    # `etc` directory entries themselves. As root, tar restores that ownership by
+    # default and hands /usr and /etc to the unprivileged user, so keep the metadata
+    # of the existing system directories untouched.
+    # https://github.com/actions/runner-images/issues/14477
+    tar -xzf "$archive_path" -C / --strip-components=1 --no-same-owner --no-overwrite-dir \
+        "podman-linux-${arch}/usr" "podman-linux-${arch}/etc"
+    rm -f "$archive_path"
 
-# https://github.com/actions/runner-images/issues/14230
-# netavark on ubuntu 26 defaults to nftables and fails name resolution
-if is_ubuntu26; then
+    # podman resolves its OCI runtime from a built-in list of absolute paths in which
+    # /usr/bin/crun precedes /usr/local/bin/crun, and the bundle does not pin the path
+    # either, so podman picks the outdated crun that buildah pulls in from apt (1.14.1
+    # on 24.04) instead of the one shipped with the bundle. That crun rejects the
+    # ociVersion written by podman 5.x with "unknown version specified". Only the path
+    # is corrected, and the drop-in is named to load first so user drop-ins still win.
+    # https://github.com/actions/runner-images/issues/14473
     mkdir -p /etc/containers/containers.conf.d
-    printf '[network]\nfirewall_driver = "iptables"\n' | tee /etc/containers/containers.conf.d/99-fix-firewall.conf
-    podman network reload --all 2>/dev/null
+    printf '[engine.runtimes]\ncrun = ["/usr/local/bin/crun"]\n' \
+        | tee /etc/containers/containers.conf.d/00-fix-runtime.conf
+
+    # Ubuntu >= 23.10 restricts unprivileged user namespaces via AppArmor
+    # (kernel.apparmor_restrict_unprivileged_userns=1). The distro podman package
+    # ships an /etc/apparmor.d/podman profile that grants the `userns` permission,
+    # but the static binary in /usr/local/bin has none, so rootless podman fails
+    # with "failed to reexec: Permission denied". Provide the same profile for it.
+    if [[ "$(cat /proc/sys/kernel/apparmor_restrict_unprivileged_userns 2>/dev/null)" == "1" ]]; then
+        cat > /etc/apparmor.d/podman <<'EOF'
+abi <abi/4.0>,
+include <tunables/global>
+
+profile podman /usr/{bin,local/bin}/podman flags=(unconfined) {
+  userns,
+
+  include if exists <local/podman>
+}
+EOF
+        apparmor_parser -r -W /etc/apparmor.d/podman
+    fi
+}
+
+apt-get update
+if is_ubuntu26; then
+    # apt already provides a current podman on 26.04
+    apt-get install podman buildah skopeo
+else
+    # buildah and skopeo from apt (podman is not a dependency of either);
+    # uidmap keeps rootless podman working; podman itself comes from the bundle
+    apt-get install buildah skopeo uidmap
+    install_podman_static
 fi
+
+mkdir -p /etc/containers
+printf 'unqualified-search-registries = ["docker.io", "quay.io"]\n' | tee /etc/containers/registries.conf
+
+# netavark (used by podman 5.x) can default to nftables on Ubuntu and then fails
+# name resolution; force iptables. https://github.com/actions/runner-images/issues/14230
+mkdir -p /etc/containers/containers.conf.d
+printf '[network]\nfirewall_driver = "iptables"\n' | tee /etc/containers/containers.conf.d/99-fix-firewall.conf
+podman network reload --all 2>/dev/null || true
 
 invoke_tests "Tools" "Containers"

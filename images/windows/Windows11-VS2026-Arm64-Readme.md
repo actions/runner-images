@@ -1,14 +1,10 @@
 | Announcements |
 |-|
-| [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[Windows] Windows 11 Arm with Visual Studio 2026 is now available as a public preview](https://github.com/actions/runner-images/issues/14225) |
-| [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
-| [[Windows] `windows-latest` and `windows-2025` image-label will use Windows Server 2025 with Visual Studio 2026 image in June 2026](https://github.com/actions/runner-images/issues/14017) |
-| [[Windows] The Windows Server 2025 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14016) |
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8655
-- Image Version: 20260628.80.1
+- Image Version: 20260714.96.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -16,27 +12,27 @@
 ## Installed Software
 
 ### Language and Runtime
-- Bash 5.3.9(1)-release
+- Bash 5.3.15(1)-release
 - Go 1.24.13
 - Julia 1.12.0
 - Kotlin 2.4.0
 - LLVM 20.1.6
 - Node 24.18.0
 - Perl 5.32.1
-- PHP 8.4.22
+- PHP 8.4.23
 - Python 3.13.14
-- Ruby 3.4.9
+- Ruby 3.4.10
 
 ### Package Management
 - Chocolatey 2.7.3
-- Composer 2.10.1
+- Composer 2.10.2
 - Helm 4.1.4
 - NPM 11.16.0
 - NuGet 7.6.0.59
 - pip 26.1.2 (python 3.13)
 - Pipx 1.15.0
 - RubyGems 3.6.9
-- Vcpkg (build from commit a040002471)
+- Vcpkg (build from commit b5229343b4)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,12 +50,12 @@
 - 7zip 26.02
 - aria2 1.37.0
 - azcopy 10.32.4
-- Bazel 9.1.1
+- Bazel 9.2.0
 - Bazelisk 1.28.1
-- Bicep 0.44.1
-- CMake 4.3.4
-- CodeQL Action Bundle 2.25.6
-- Git 2.54.0.windows.1
+- Bicep 0.45.15
+- CMake 4.4.0
+- CodeQL Action Bundle 2.26.0
+- Git 2.55.0.windows.2
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
@@ -74,28 +70,29 @@
 - NSIS 3.10
 - OpenSSL 3.6.3
 - Packer 1.15.4
-- Pulumi 3.248.0
+- Pulumi 3.252.0
 - R 4.6.1
 - Stack 3.11.1
 - Swig 4.4.1
 - VSWhere 3.1.7
 - WinAppDriver 1.2.2009.02003
 - yamllint 1.38.0
+- zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.4.2
-- AWS CLI 2.35.11
-- AWS SAM CLI 1.162.1
+- Alibaba Cloud CLI 3.4.6
+- AWS CLI 2.35.22
+- AWS SAM CLI 1.163.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.87.0
-- Azure DevOps CLI extension 1.0.5
-- GitHub CLI 2.95.0
+- Azure CLI 2.88.0
+- Azure DevOps CLI extension 1.0.6
+- GitHub CLI 2.96.0
 
 ### Rust Tools
-- Cargo 1.96.0
-- Rust 1.96.0
-- Rustdoc 1.96.0
+- Cargo 1.97.0
+- Rust 1.97.0
+- Rustdoc 1.97.0
 - Rustup 1.29.0
 
 #### Packages
@@ -103,18 +100,18 @@
 - cargo-audit 0.22.2
 - cargo-outdated 0.19.0
 - cbindgen 0.29.4
-- Clippy 0.1.96
+- Clippy 0.1.97
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 149.0.7827.201
-- Chrome Driver 149.0.7827.155
-- Microsoft Edge 149.0.4022.98
-- Microsoft Edge Driver 149.0.4022.98
-- Mozilla Firefox 152.0.3
+- Google Chrome 150.0.7871.115
+- Chrome Driver 150.0.7871.115
+- Microsoft Edge 150.0.4078.65
+- Microsoft Edge Driver 150.0.4078.65
+- Mozilla Firefox 152.0.5
 - Gecko Driver 0.37.0
 - IE Driver 4.14.0.0
-- Selenium server 4.45.0
+- Selenium server 4.46.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -134,8 +131,8 @@
 
 #### Go
 - 1.24.13
-- 1.25.11
-- 1.26.4
+- 1.25.12
+- 1.26.5
 
 #### Node.js
 - 22.23.1
@@ -147,7 +144,7 @@
 - 3.14.6
 
 #### Ruby
-- 3.4.9
+- 3.4.10
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.27.0
@@ -165,7 +162,7 @@
 ### Visual Studio Enterprise 2026
 | Name                          | Version       | Path                                                   |
 | ----------------------------- | ------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.7.11919.86 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Visual Studio Enterprise 2026 | 18.7.11925.98 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -369,18 +366,18 @@
 - Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
 - Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
 - Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.28, 9.0.6, 9.0.17, 10.0.8, 10.0.9
-- nbgv 3.10.85+c46e47c69b
+- nbgv 3.10.91+e05abbcae4
 
 ### PowerShell Tools
 - PowerShell 7.6.3
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.241
+- AWSPowershell: 5.0.252
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.38.0
-- Pester: 3.4.0, 5.7.1
+- Microsoft.Graph: 2.38.1
+- Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
 - PSWindowsUpdate: 2.2.1.5

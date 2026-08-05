@@ -1,14 +1,12 @@
 | Announcements |
 |-|
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
-| [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
 | [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
-| [[ARM] Arm64 runner images now maintained by GitHub](https://github.com/actions/runner-images/issues/14100) |
 ***
 # Ubuntu 26.04 LTS
 - OS Version: 26.04 LTS
-- Kernel Version: 7.0.0-1007-azure
-- Image Version: 20260629.44.2
+- Kernel Version: 7.0.0-1009-azure
+- Image Version: 20260719.67.1
 - Systemd version: 259.5-0ubuntu3
 
 ## Installed Software
@@ -21,7 +19,7 @@
 - Dash 0.5.12-12ubuntu3
 - GNU C++: 13.4.0, 14.3.0, 15.2.0
 - GNU Fortran: 13.4.0, 14.3.0, 15.2.0
-- Kotlin 2.4.0-release-281
+- Kotlin 2.4.10-release-377
 - Node.js 24.18.0
 - Perl 5.40.1
 - Python 3.14.4
@@ -29,14 +27,14 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 4.2.2
-- Homebrew 6.0.5
+- Helm 4.2.3
+- Homebrew 6.0.11
 - Npm 11.16.0
 - Pip 25.1.1
 - Pip3 25.1.1
-- Pipx 1.15.0
+- Pipx 1.16.0
 - RubyGems 3.6.7
-- Vcpkg (build from commit a040002471)
+- Vcpkg (build from commit 0878b5224d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,12 +57,12 @@ to accomplish this.
 - Maven 3.9.15
 
 ### Tools
-- Ansible 2.21.1
+- Ansible 2.21.2
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.1.1
+- Bazel 9.2.0
 - Bazelisk 1.28.1
 - Buildah 1.42.1
-- CMake 4.3.4
+- CMake 4.4.0
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 5.1.3
 - Docker-Buildx 0.35.0
@@ -79,7 +77,7 @@ to accomplish this.
 - Kustomize 5.8.1
 - Minikube 1.38.1
 - n 10.2.0
-- nvm 0.40.5
+- nvm 0.40.6
 - OpenSSL 3.5.5-1ubuntu3.2
 - Packer 1.15.4
 - Podman 5.7.0
@@ -90,13 +88,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.11
+- AWS CLI 2.36.2
 - AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.162.1
-- Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.5
-- GitHub CLI 2.95.0
-- Google Cloud CLI 574.0.0
+- AWS SAM CLI 1.163.0
+- Azure CLI 2.88.0
+- Azure CLI (azure-devops) 1.0.6
+- GitHub CLI 2.96.0
+- Google Cloud CLI 576.0.0
 
 ### Java
 | Version            | Environment Variable |
@@ -108,24 +106,24 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.5.4
-- Composer 2.10.1
-- PHPUnit 8.5.52
+- Composer 2.10.2
+- PHPUnit 8.5.53
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.96.0
-- Rust 1.96.0
-- Rustdoc 1.96.0
+- Cargo 1.97.1
+- Rust 1.97.1
+- Rustdoc 1.97.1
 - Rustup 1.29.0
 
 #### Packages
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Selenium server 4.45.0
-- Mozilla Firefox 152.0.3
+- Selenium server 4.46.0
+- Mozilla Firefox 152.0.6
 - Geckodriver 0.37.0
 
 #### Environment variables
@@ -137,8 +135,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
-- nbgv 3.10.85+c46e47c69b
+- .NET Core SDK: 8.0.129, 8.0.206, 8.0.319, 8.0.423, 9.0.119, 9.0.205, 9.0.316, 10.0.110, 10.0.204, 10.0.302
+- nbgv 3.10.91+e05abbcae4
 
 ### Databases
 - sqlite3 3.46.1
@@ -157,8 +155,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 15.6.1
-- Microsoft.Graph: 2.38.0
-- Pester: 5.7.1
+- Microsoft.Graph: 2.38.1
+- Pester: 5.9.0
 - PSScriptAnalyzer: 1.25.0
 
 ### Web Servers
@@ -182,7 +180,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.2.0-3build1                |
 | bzip2                  | 1.0.8-6build2                |
 | coreutils              | 9.5-1ubuntu2+0.0.0\~ubuntu25 |
-| curl                   | 8.18.0-1ubuntu2.1            |
+| curl                   | 8.18.0-1ubuntu2.3            |
 | dbus                   | 1.16.2-2ubuntu4              |
 | dpkg                   | 1.23.7ubuntu1                |
 | dpkg-dev               | 1.23.7ubuntu1                |
@@ -195,13 +193,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | g++                    | 4:15.2.0-5ubuntu1            |
 | gcc                    | 4:15.2.0-5ubuntu1            |
 | gnupg2                 | 2.4.8-4ubuntu3               |
-| iproute2               | 6.19.0-1ubuntu1              |
+| iproute2               | 6.19.0-1ubuntu1.1            |
 | iputils-ping           | 3:20250605-1ubuntu1          |
 | jq                     | 1.8.1-4ubuntu2               |
 | libgbm-dev             | 26.0.3-1ubuntu1              |
 | libicu-dev             | 78.2-2ubuntu1                |
-| libnss3-tools          | 2:3.120-1ubuntu2             |
-| libsqlite3-dev         | 3.46.1-9                     |
+| libnss3-tools          | 2:3.120-1ubuntu2.1           |
+| libsqlite3-dev         | 3.46.1-9ubuntu0.1            |
 | libssl-dev             | 3.5.5-1ubuntu3.2             |
 | libtool                | 2.5.4-9                      |
 | libyaml-dev            | 0.2.5-2build3                |
@@ -211,7 +209,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | make                   | 4.4.1-3                      |
 | net-tools              | 2.10-2ubuntu1                |
 | netcat                 | 1.234-1                      |
-| openssh-client         | 1:10.2p1-2ubuntu3.2          |
+| openssh-client         | 1:10.2p1-2ubuntu3.4          |
 | parallel               | 20240222+ds-3                |
 | patchelf               | 0.18.0-1.4build1             |
 | pigz                   | 2.8-1build1                  |
@@ -221,22 +219,22 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rpm                    | 6.0.1-1build1                |
 | rsync                  | 3.4.1+ds1-7ubuntu0.3         |
 | shellcheck             | 0.11.0-2                     |
-| sqlite3                | 3.46.1-9                     |
-| ssh                    | 1:10.2p1-2ubuntu3.2          |
+| sqlite3                | 3.46.1-9ubuntu0.1            |
+| ssh                    | 1:10.2p1-2ubuntu3.4          |
 | sshpass                | 1.10-0.1build1               |
 | sudo                   | 1.9.17p2-1ubuntu3            |
 | swig                   | 4.4.0-1                      |
 | systemd-coredump       | 259.5-0ubuntu3               |
-| tar                    | 1.35+dfsg-4ubuntu0.1         |
+| tar                    | 1.35+dfsg-4ubuntu0.3         |
 | telnet                 | 0.17+2.7-2ubuntu1.1          |
 | texinfo                | 7.2-5ubuntu2                 |
 | time                   | 1.9-0.4                      |
 | tk                     | 8.6.16build1                 |
 | tree                   | 2.3.1-1                      |
-| tzdata                 | 2026a-3ubuntu1               |
+| tzdata                 | 2026b-0ubuntu0.26.04.1       |
 | unzip                  | 6.0-29ubuntu1                |
 | upx                    | 4.2.4-1.1build1              |
-| wget                   | 1.25.0-2ubuntu4              |
+| wget                   | 1.25.0-2ubuntu4.2            |
 | xvfb                   | 2:21.1.22-1ubuntu1           |
 | xz-utils               | 5.8.3-1                      |
 | zip                    | 3.0-15ubuntu3                |

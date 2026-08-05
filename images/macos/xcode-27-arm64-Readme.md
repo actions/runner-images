@@ -7,7 +7,7 @@
 # macOS 26
 - OS Version: macOS 26.5.2 (25F84)
 - Kernel Version: Darwin 25.5.0
-- Image Version: 20260728.0273.1
+- Image Version: 20260728.0060.1
 
 ## Installed Software
 
@@ -90,7 +90,7 @@
 - Google Chrome for Testing 150.0.7871.124
 - ChromeDriver 150.0.7871.124
 - Microsoft Edge 150.0.4078.105
-- Microsoft Edge WebDriver 150.0.4078.99
+- Microsoft Edge WebDriver 150.0.4078.105
 - Mozilla Firefox 153.0
 - geckodriver 0.37.1
 - Selenium server 4.46.0
@@ -152,85 +152,31 @@
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version        | Build  | Path                           | Symlinks                                                  |
-| -------------- | ------ | ------------------------------ | --------------------------------------------------------- |
-| 26.6 (default) | 17F113 | /Applications/Xcode_26.6.app   | /Applications/Xcode_26.6.0.app<br>/Applications/Xcode.app |
-| 26.5           | 17F42  | /Applications/Xcode_26.5.app   | /Applications/Xcode_26.5.0.app                            |
-| 26.4.1         | 17E202 | /Applications/Xcode_26.4.1.app | /Applications/Xcode_26.4.app                              |
-| 26.3           | 17C529 | /Applications/Xcode_26.3.app   | /Applications/Xcode_26.3.0.app                            |
-| 26.2           | 17C52  | /Applications/Xcode_26.2.app   | /Applications/Xcode_26.2.0.app                            |
-| 26.1.1         | 17B100 | /Applications/Xcode_26.1.1.app | /Applications/Xcode_26.1.app                              |
-| 26.0.1         | 17A400 | /Applications/Xcode_26.0.1.app | /Applications/Xcode_26.0.app                              |
+| Version               | Build    | Path                              | Symlinks                                                                                  |
+| --------------------- | -------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
+| 27.0 (beta) (default) | 27A5228h | /Applications/Xcode_27_beta_4.app | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
 | ------------------------- | -------------------- | ------------- |
-| macOS 26.0                | macosx26.0           | 26.0.1        |
-| macOS 26.1                | macosx26.1           | 26.1.1        |
-| macOS 26.2                | macosx26.2           | 26.2, 26.3    |
-| macOS 26.4                | macosx26.4           | 26.4.1        |
-| macOS 26.5                | macosx26.5           | 26.5, 26.6    |
-| iOS 26.0                  | iphoneos26.0         | 26.0.1        |
-| iOS 26.1                  | iphoneos26.1         | 26.1.1        |
-| iOS 26.2                  | iphoneos26.2         | 26.2, 26.3    |
-| iOS 26.4                  | iphoneos26.4         | 26.4.1        |
-| iOS 26.5                  | iphoneos26.5         | 26.5, 26.6    |
-| Simulator - iOS 26.0      | iphonesimulator26.0  | 26.0.1        |
-| Simulator - iOS 26.1      | iphonesimulator26.1  | 26.1.1        |
-| Simulator - iOS 26.2      | iphonesimulator26.2  | 26.2, 26.3    |
-| Simulator - iOS 26.4      | iphonesimulator26.4  | 26.4.1        |
-| Simulator - iOS 26.5      | iphonesimulator26.5  | 26.5, 26.6    |
-| tvOS 26.0                 | appletvos26.0        | 26.0.1        |
-| tvOS 26.1                 | appletvos26.1        | 26.1.1        |
-| tvOS 26.2                 | appletvos26.2        | 26.2, 26.3    |
-| tvOS 26.4                 | appletvos26.4        | 26.4.1        |
-| tvOS 26.5                 | appletvos26.5        | 26.5, 26.6    |
-| Simulator - tvOS 26.0     | appletvsimulator26.0 | 26.0.1        |
-| Simulator - tvOS 26.1     | appletvsimulator26.1 | 26.1.1        |
-| Simulator - tvOS 26.2     | appletvsimulator26.2 | 26.2, 26.3    |
-| Simulator - tvOS 26.4     | appletvsimulator26.4 | 26.4.1        |
-| Simulator - tvOS 26.5     | appletvsimulator26.5 | 26.5, 26.6    |
-| watchOS 26.0              | watchos26.0          | 26.0.1        |
-| watchOS 26.1              | watchos26.1          | 26.1.1        |
-| watchOS 26.2              | watchos26.2          | 26.2, 26.3    |
-| watchOS 26.4              | watchos26.4          | 26.4.1        |
-| watchOS 26.5              | watchos26.5          | 26.5, 26.6    |
-| Simulator - watchOS 26.0  | watchsimulator26.0   | 26.0.1        |
-| Simulator - watchOS 26.1  | watchsimulator26.1   | 26.1.1        |
-| Simulator - watchOS 26.2  | watchsimulator26.2   | 26.2, 26.3    |
-| Simulator - watchOS 26.4  | watchsimulator26.4   | 26.4.1        |
-| Simulator - watchOS 26.5  | watchsimulator26.5   | 26.5, 26.6    |
-| visionOS 26.0             | xros26.0             | 26.0.1        |
-| visionOS 26.1             | xros26.1             | 26.1.1        |
-| visionOS 26.2             | xros26.2             | 26.2, 26.3    |
-| visionOS 26.4             | xros26.4             | 26.4.1        |
-| visionOS 26.5             | xros26.5             | 26.5, 26.6    |
-| Simulator - visionOS 26.0 | xrsimulator26.0      | 26.0.1        |
-| Simulator - visionOS 26.1 | xrsimulator26.1      | 26.1.1        |
-| Simulator - visionOS 26.2 | xrsimulator26.2      | 26.2, 26.3    |
-| Simulator - visionOS 26.4 | xrsimulator26.4      | 26.4.1        |
-| Simulator - visionOS 26.5 | xrsimulator26.5      | 26.5, 26.6    |
-| DriverKit 25.0            | driverkit25.0        | 26.0.1        |
-| DriverKit 25.1            | driverkit25.1        | 26.1.1        |
-| DriverKit 25.2            | driverkit25.2        | 26.2, 26.3    |
-| DriverKit 25.4            | driverkit25.4        | 26.4.1        |
-| DriverKit 25.5            | driverkit25.5        | 26.5, 26.6    |
+| macOS 27.0                | macosx27.0           | 27.0          |
+| iOS 27.0                  | iphoneos27.0         | 27.0          |
+| Simulator - iOS 27.0      | iphonesimulator27.0  | 27.0          |
+| tvOS 27.0                 | appletvos27.0        | 27.0          |
+| Simulator - tvOS 27.0     | appletvsimulator27.0 | 27.0          |
+| watchOS 27.0              | watchos27.0          | 27.0          |
+| Simulator - watchOS 27.0  | watchsimulator27.0   | 27.0          |
+| visionOS 27.0             | xros27.0             | 27.0          |
+| Simulator - visionOS 27.0 | xrsimulator27.0      | 27.0          |
+| DriverKit 27.0            | driverkit27.0        | 27.0          |
 
 #### Installed Simulators
-| Name          | OS     | Simulators                                                                                                                                                                                                           |
-| ------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 26.2      | 26.2   | iPhone 16e<br>iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M3)<br>iPad Air 13-inch (M3)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
-| iOS 26.4      | 26.4.1 | iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone 17e<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
-| iOS 26.5      | 26.5   | iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone 17e<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
-| tvOS 26.2     | 26.2   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                  |
-| tvOS 26.4     | 26.4   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                  |
-| tvOS 26.5     | 26.5   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                  |
-| watchOS 26.2  | 26.2   | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                     |
-| watchOS 26.4  | 26.4   | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                     |
-| watchOS 26.5  | 26.5   | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                     |
-| visionOS 26.2 | 26.2   | Apple Vision Pro                                                                                                                                                                                                     |
-| visionOS 26.4 | 26.4.1 | Apple Vision Pro                                                                                                                                                                                                     |
-| visionOS 26.5 | 26.5   | Apple Vision Pro                                                                                                                                                                                                     |
+| Name          | OS   | Simulators                                                                                                                                                                                                           |
+| ------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iOS 27.0      | 27.0 | iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone 17e<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
+| tvOS 27.0     | 27.0 | Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                              |
+| watchOS 27.0  | 27.0 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                     |
+| visionOS 27.0 | 27.0 | Apple Vision Pro                                                                                                                                                                                                     |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                        |

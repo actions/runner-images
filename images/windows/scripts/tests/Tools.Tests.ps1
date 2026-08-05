@@ -160,7 +160,7 @@ Describe "WebPlatformInstaller" {
     }
 }
 
-Describe "Zstd" -Skip:(Test-IsWin11-Arm64) {
+Describe "Zstd" {
     It "zstd" {
         "zstd -V" | Should -ReturnZeroExitCode
     }
