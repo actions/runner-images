@@ -35,3 +35,13 @@ Describe "AutomationModeTool" {
         automationmodetool | Out-String | Should -Match "DOES NOT REQUIRE"
     }
 }
+
+Describe "Screen capture approval" {
+    It "Screen recording is pre-approved for the runner agent" {
+        # without this macOS re-confirms screen capture with a popup that steals
+        # focus from headed UI tests, see issue #14474
+        $approvalsPlist = "$env:HOME/Library/Group Containers/group.com.apple.replayd/ScreenCaptureApprovals.plist"
+        $approvalsPlist | Should -Exist
+        defaults read $approvalsPlist "/opt/hca/hosted-compute-agent" | Out-String | Should -Match "3024"
+    }
+}

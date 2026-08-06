@@ -62,7 +62,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [macOS-15-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md
 [macOS-26]: https://github.com/actions/runner-images/blob/main/images/macos/macos-26-Readme.md
 [macOS-26-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-26-arm64-Readme.md
-[xcode-27]: https://github.com/actions/runner-images/blob/main/images/macos/xcode-27-Readme.md
+[xcode-27]: https://github.com/actions/runner-images/blob/main/images/macos/xcode-27-arm64-Readme.md
 [self-hosted runners]: https://help.github.com/en/actions/hosting-your-own-runners
 
 ## Announcements
