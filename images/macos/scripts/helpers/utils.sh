@@ -245,7 +245,7 @@ brew_install_pinned_cask() {
 # WARNING! This function WILL fail if some packages/casks are installed from a temporary tap and the tap is not cleaned up after installation.
 # This is intended behavior - no temporary taps should be left behind after installation. 
 brew_cleanup_temp_tap() {
-    temp_tap="local/temp"
+    local temp_tap="local/temp"
 
     if brew tap | grep -Fxq "$temp_tap"; then
         echo "Temp Tap exists, cleaning up..."
