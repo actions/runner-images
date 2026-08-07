@@ -31,14 +31,14 @@ for package in $common_packages; do
                 # xcodes formulae still works on MacOS 15 ARM and 26 ARM
                 brew_smart_install "$package"
             else
-                # xcodes formulae for the rest of OS versions was broken, using pinned commit
-                echo "Installing pinned xcodes formulae..."
-                COMMIT=7236cc49de96b89c4e46ca28a36993578423df8d
-                FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/x/xcodes.rb"
-                FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/x/xcodes.rb"
-                mkdir -p "$(dirname $FORMULA_PATH)"
-                curl -fsSL $FORMULA_URL -o $FORMULA_PATH
-                HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install xcodes
+                # homebrew-core ships no x86_64 bottle for current xcodes, and building it
+                # from source needs xcbuild (unavailable during image build). Install the
+                # prebuilt Developer-ID-signed universal binary from XcodesOrg's release.
+                echo "Installing xcodes from XcodesOrg release..."
+                curl -fsSL "https://github.com/XcodesOrg/xcodes/releases/latest/download/xcodes.zip" -o /tmp/xcodes.zip
+                unzip -oq /tmp/xcodes.zip -d /tmp/xcodes-bin
+                sudo install -m 0755 /tmp/xcodes-bin/xcodes /usr/local/bin/xcodes
+                rm -rf /tmp/xcodes.zip /tmp/xcodes-bin
             fi
             ;;
 
@@ -55,7 +55,15 @@ for package in $cask_packages; do
     if is_Arm64 && [[ $package == "parallels" ]]; then
         echo "Parallels installation is skipped for arm64 architecture"
     else
-        brew install --cask $package
+        if [[ $package == "parallels" ]]; then
+            # Workaround for https://github.com/github/hosted-runners-images/issues/886
+            CASK_NAME="parallels"
+            CASK_URL="https://raw.githubusercontent.com/Homebrew/homebrew-cask/adfc07a7bc28a32037851be4d7a0bd4f8b239565/Casks/p/${CASK_NAME}.rb"
+            
+            brew_install_pinned_cask "$CASK_NAME" "$CASK_URL"
+        else
+            brew install --cask $package
+        fi
     fi
 done
 
