@@ -212,3 +212,46 @@ use_checksum_comparison() {
         echo "Checksum verification passed"
     fi
 }
+
+brew_install_pinned_cask() {
+    local cask_name=$1
+    local cask_url=$2
+    local temp_tap="local/temp"
+
+    echo "Installing pinned cask: $cask_name"
+
+    if brew tap | grep -Fxq "$temp_tap"; then
+        echo "Temp Tap already exists"
+    else
+        echo "No temp Tap found. Creating a new one"
+        brew tap-new "$temp_tap"
+        brew trust --tap "$temp_tap"
+    fi
+
+    TAP_DIR="$(brew --repository "$temp_tap")"
+    CASKS_DIR="$TAP_DIR/Casks"
+    if [[ -d "$CASKS_DIR" ]]; then
+        echo "Casks directory already exists"
+    else
+        echo "Casks directory does not exist. Creating a new one"
+        mkdir -p "$CASKS_DIR"
+    fi
+    
+    curl -fsSL "$cask_url" -o "$CASKS_DIR/${cask_name}.rb"
+    
+    brew install --cask "$temp_tap/$cask_name"
+}
+
+# WARNING! This function WILL fail if some packages/casks are installed from a temporary tap and the tap is not cleaned up after installation.
+# This is intended behavior - no temporary taps should be left behind after installation. 
+brew_cleanup_temp_tap() {
+    local temp_tap="local/temp"
+
+    if brew tap | grep -Fxq "$temp_tap"; then
+        echo "Temp Tap exists, cleaning up..."
+        brew untrust --tap "$temp_tap" -v
+        brew untap "$temp_tap" -v
+    else
+        echo "No Temp Tap found. Nothing to clean up."
+    fi
+}
