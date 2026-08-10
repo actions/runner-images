@@ -53,7 +53,15 @@ for package in $cask_packages; do
     if is_Arm64 && [[ $package == "parallels" ]]; then
         echo "Parallels installation is skipped for arm64 architecture"
     else
-        brew install --cask $package
+        if [[ $package == "parallels" ]]; then
+            # Workaround for https://github.com/github/hosted-runners-images/issues/886
+            CASK_NAME="parallels"
+            CASK_URL="https://raw.githubusercontent.com/Homebrew/homebrew-cask/adfc07a7bc28a32037851be4d7a0bd4f8b239565/Casks/p/${CASK_NAME}.rb"
+            
+            brew_install_pinned_cask "$CASK_NAME" "$CASK_URL"
+        else
+            brew install --cask $package
+        fi
     fi
 done
 
