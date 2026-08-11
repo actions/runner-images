@@ -4,7 +4,7 @@
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 5386
-- Image Version: 20260802.262.1
+- Image Version: 20260809.268.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -30,10 +30,10 @@
 - Miniconda 26.5.3 (pre-installed on the image but not added to PATH)
 - NPM 10.9.8
 - NuGet 7.6.0.59
-- pip 26.2 (python 3.12)
-- Pipx 1.16.5
+- pip 26.2.1 (python 3.12)
+- Pipx 1.16.6
 - RubyGems 3.5.22
-- Vcpkg (build from commit 39344dff01)
+- Vcpkg (build from commit ea1a7396b0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -44,7 +44,7 @@
 
 ### Project Management
 - Ant 1.10.17
-- Gradle 9.6
+- Gradle 9.7
 - Maven 3.9.16
 - sbt 1.12.12
 
@@ -77,7 +77,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.3
 - Packer 1.16.0
-- Pulumi 3.255.0
+- Pulumi 3.256.0
 - R 4.6.1
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.11.1
@@ -92,10 +92,10 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.4.11
-- AWS CLI 2.36.14
+- AWS CLI 2.36.19
 - AWS SAM CLI 1.165.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.88.0
+- Azure CLI 2.89.0
 - Azure DevOps CLI extension 1.0.6
 - GitHub CLI 2.97.0
 
@@ -114,11 +114,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 151.0.7922.72
-- Chrome Driver 151.0.7922.71
-- Microsoft Edge 151.0.4129.59
-- Microsoft Edge Driver 151.0.4129.59
-- Mozilla Firefox 153.0.1
+- Google Chrome 151.0.7922.109
+- Chrome Driver 151.0.7922.77
+- Microsoft Edge 151.0.4129.72
+- Microsoft Edge Driver 151.0.4129.72
+- Mozilla Firefox 153.0.3
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.46.0
@@ -166,14 +166,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 22.23.2
-- 24.18.1
+- 24.19.0
 
 #### Python
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.14
-- 3.14.6
+- 3.13.15
+- 3.14.7
 
 #### PyPy
 - 2.7.18 [PyPy 7.3.23]
@@ -208,7 +208,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 7.0.39.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.27.0
+- Azure CosmosDb Emulator 2.14.28.0
 - DacFx 170.4.83.3
 - MySQL 8.0.46.0
 - SQL OLEDB Driver 18 18.7.5.0
@@ -491,10 +491,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.267
+- AWSPowershell: 5.0.272
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.38.1
+- Microsoft.Graph: 2.39.0
 - Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
@@ -503,18 +503,18 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - VSSetup: 2.2.16
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| Android Emulator           | 37.1.11                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0<br>32.0.0                                                                                                                                                                                                                                                                                                                                                              |
-| Android SDK Platforms      | android-37.2-beta1 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33 (rev 3) |
-| Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| CMake                      | 3.22.1<br>3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| NDK                        | 27.3.13750724<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                                                                                                           |
+| Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 8.0                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Android Emulator           | 37.1.11                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0<br>32.0.0                                                                                                                                                                                                                                                                                                                                                                                            |
+| Android SDK Platforms      | android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33 (rev 3) |
+| Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| CMake                      | 3.22.1<br>3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| NDK                        | 27.3.13750724<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 #### Environment variables
 | Name                    | Value                                    |
