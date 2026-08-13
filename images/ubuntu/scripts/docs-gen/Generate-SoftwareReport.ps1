@@ -268,8 +268,7 @@ if (Test-IsUbuntu22-X64) {
 }
 
 # Cached Tools
-if (-not(Test-IsUbuntu26-X64) -and -not(Test-IsArm64)) {
-    # Most cached tools are not yet available for Ubuntu 26.04
+if (-not(Test-IsArm64)) {
     # Most cached tools are not included for arm
     $cachedTools = $installedSoftware.AddHeader("Cached Tools")
     $cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+")
