@@ -4,7 +4,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 33158
-- Image Version: 20260803.218.1
+- Image Version: 20260809.223.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -31,10 +31,10 @@
 - Miniconda 26.5.3 (pre-installed on the image but not added to PATH)
 - NPM 10.9.8
 - NuGet 7.6.0.59
-- pip 26.2 (python 3.12)
-- Pipx 1.16.5
+- pip 26.2.1 (python 3.12)
+- Pipx 1.16.6
 - RubyGems 3.5.22
-- Vcpkg (build from commit e06f5848a3)
+- Vcpkg (build from commit ea1a7396b0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -45,7 +45,7 @@
 
 ### Project Management
 - Ant 1.10.17
-- Gradle 9.6
+- Gradle 9.7
 - Maven 3.9.16
 - sbt 1.12.12
 
@@ -76,7 +76,7 @@
 - Newman 6.2.2
 - OpenSSL 3.6.3
 - Packer 1.16.0
-- Pulumi 3.255.0
+- Pulumi 3.256.0
 - R 4.6.1
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.11.1
@@ -89,10 +89,10 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.14
+- AWS CLI 2.36.19
 - AWS SAM CLI 1.165.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.88.0
+- Azure CLI 2.89.0
 - Azure DevOps CLI extension 1.0.6
 - GitHub CLI 2.97.0
 
@@ -107,11 +107,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 151.0.7922.72
-- Chrome Driver 151.0.7922.71
-- Microsoft Edge 151.0.4129.59
-- Microsoft Edge Driver 151.0.4129.59
-- Mozilla Firefox 153.0.1
+- Google Chrome 151.0.7922.109
+- Chrome Driver 151.0.7922.77
+- Microsoft Edge 151.0.4129.72
+- Microsoft Edge Driver 151.0.4129.72
+- Mozilla Firefox 153.0.3
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.46.0
@@ -159,14 +159,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 22.23.2
-- 24.18.1
+- 24.19.0
 
 #### Python
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.14
-- 3.14.6
+- 3.13.15
+- 3.14.7
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -198,7 +198,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 7.0.39.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.27.0
+- Azure CosmosDb Emulator 2.14.28.0
 - DacFx 170.4.83.3
 - MySQL 8.0.46.0
 - SQL OLEDB Driver 18 18.7.5.0
@@ -471,7 +471,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.268
+- AWSPowershell: 5.0.272
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.39.0

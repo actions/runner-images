@@ -5,9 +5,9 @@
 ***
 # Ubuntu 26.04 LTS
 - OS Version: 26.04 LTS
-- Kernel Version: 7.0.0-1009-azure
-- Image Version: 20260804.94.1
-- Systemd version: 259.5-0ubuntu3
+- Kernel Version: 7.0.0-1011-azure
+- Image Version: 20260810.99.1
+- Systemd version: 259.5-0ubuntu3.4
 
 ## Installed Software
 
@@ -28,13 +28,13 @@
 ### Package Management
 - cpan 1.64
 - Helm 4.2.3
-- Homebrew 6.0.15
+- Homebrew 6.0.16
 - Npm 11.17.0
 - Pip 25.1.1
 - Pip3 25.1.1
 - Pipx 1.16.6
 - RubyGems 3.6.7
-- Vcpkg (build from commit 9db9ee4daf)
+- Vcpkg (build from commit ddd110b8a0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -53,11 +53,11 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.15
-- Gradle 9.6.1
+- Gradle 9.7.0
 - Maven 3.9.15
 
 ### Tools
-- Ansible 2.21.2
+- Ansible 2.21.3
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.2.0
 - Bazelisk 1.28.1
@@ -90,7 +90,7 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.16
+- AWS CLI 2.36.20
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.165.0
 - Azure CLI 2.89.0
@@ -130,12 +130,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 151.0.7922.75
-- ChromeDriver 151.0.7922.76
+- Google Chrome 151.0.7922.108
+- ChromeDriver 151.0.7922.77
 - Chromium 151.0.7922.0
-- Microsoft Edge 151.0.4129.59
-- Microsoft Edge WebDriver 151.0.4129.59
-- Selenium server 4.46.0
+- Microsoft Edge 151.0.4129.78
+- Microsoft Edge WebDriver 151.0.4129.78
+- Selenium server 4.47.0
 - Mozilla Firefox 153.0.3
 - Geckodriver 0.37.1
 
@@ -218,7 +218,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.37.0+debian-4              |
 | autoconf               | 2.72-3.1ubuntu2              |
 | automake               | 1:1.18.1-3build1             |
-| bind9-dnsutils         | 1:9.20.18-1ubuntu2.1         |
+| bind9-dnsutils         | 1:9.20.24-1ubuntu0.1         |
 | binutils               | 2.46-3ubuntu2                |
 | bison                  | 2:3.8.2+dfsg-1build4         |
 | brotli                 | 1.2.0-3build1                |
@@ -267,7 +267,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sshpass                | 1.10-0.1build1               |
 | sudo                   | 1.9.17p2-1ubuntu3            |
 | swig                   | 4.4.0-1                      |
-| systemd-coredump       | 259.5-0ubuntu3               |
+| systemd-coredump       | 259.5-0ubuntu3.4             |
 | tar                    | 1.35+dfsg-4ubuntu0.4         |
 | telnet                 | 0.17+2.7-2ubuntu1.1          |
 | texinfo                | 7.2-5ubuntu2                 |

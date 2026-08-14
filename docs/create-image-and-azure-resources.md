@@ -233,8 +233,9 @@ The following variables are required to be passed to the Packer process:
 | ------------ | ------- | -----------
 | `subscription_id` | `ARM_SUBSCRIPTION_ID` | The subscription under which the build will be performed.
 | `client_id` | `ARM_CLIENT_ID` | The Active Directory service principal associated with your builder.
-| `client_secret` | `ARM_CLIENT_SECRET` | The password or secret for your service principal; may be omitted if `client_cert_path` is set.
-| `client_cert_path` | `ARM_CLIENT_CERT_PATH` | The location of a PEM file containing a certificate and private key for the service principal; may be omitted if `client_secret` is set.
+| `client_secret` | `ARM_CLIENT_SECRET` | The password or secret for your service principal; may be omitted if `client_cert_path` or `client_jwt` is set.
+| `client_cert_path` | `ARM_CLIENT_CERT_PATH` | The location of a PEM file containing a certificate and private key for the service principal; may be omitted if `client_secret` or `client_jwt` is set.
+| `client_jwt` | `ARM_CLIENT_JWT` | A bearer JWT assertion for federated/workload identity authentication (e.g. Azure DevOps workload identity federation); may be omitted if `client_secret` or `client_cert_path` is set.
 | `location` | `ARM_RESOURCE_LOCATION` | The Azure datacenter in which your VM will be built.
 | `managed_image_resource_group_name` | `ARM_RESOURCE_GROUP` | The resource group under which the final artifact will be stored.
 
