@@ -1,36 +1,20 @@
 {
     "xcode": {
-        "default": "27_beta_4",
-        "x64": {
-            "versions": [
-                {
-                    "link": "27_beta_4",
-                    "filename": "Xcode_27_beta_4",
-                    "version": "27.0+27A5228h",
-                    "symlinks": ["27.0"],
-                    "sha256": "808582beef282213b3a5a1132338ea7f866010a819543fcc91ab12f24c15919d",
-                    "install_runtimes": "default"
-                }
-            ]
-        },
+        "default": "27_beta_5",
         "arm64": {
             "versions": [
                 {
-                    "link": "27_beta_4",
-                    "filename": "Xcode_27_beta_4",
-                    "version": "27.0+27A5228h",
+                    "link": "27_beta_5",
+                    "filename": "Xcode_27_beta_5",
+                    "version": "27.0+27A5237l",
                     "symlinks": ["27.0"],
-                    "sha256": "808582beef282213b3a5a1132338ea7f866010a819543fcc91ab12f24c15919d",
+                    "sha256": "1f92c0fbb7268205e9b1f8061bf47db012a92e47729557c79ac053c9e5bd881a",
                     "install_runtimes": "default"
                 }
             ]
         } 
     },
     "java": {
-        "x64": {
-            "default": "21",
-            "versions": [ "11", "17", "21", "25" ]
-        },
         "arm64": {
             "default": "21",
             "versions": [ "11", "17", "21", "25" ]
@@ -106,13 +90,6 @@
     },
     "dotnet": {
         "arch":{
-            "x64": {
-                "versions": [
-                    "8.0",
-                    "9.0",
-                    "10.0"
-                ]
-            },
             "arm64": {
                 "versions": [
                     "8.0",
@@ -137,14 +114,6 @@
             "url" : "https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json",
             "platform" : "darwin",
             "arch": {
-                "x64": {
-                    "versions": [
-                        "3.11.*",
-                        "3.12.*",
-                        "3.13.*",
-                        "3.14.*"
-                    ]
-                },
                 "arm64": {
                     "versions": [
                         "3.11.*",
@@ -160,12 +129,6 @@
             "url" : "https://raw.githubusercontent.com/actions/node-versions/main/versions-manifest.json",
             "platform" : "darwin",
             "arch": {
-                "x64": {
-                    "versions": [
-                        "22.*",
-                        "24.*"
-                    ]
-                },
                 "arm64": {
                     "versions": [
                         "22.*",
@@ -179,14 +142,6 @@
             "url" : "https://raw.githubusercontent.com/actions/go-versions/main/versions-manifest.json",
             "platform" : "darwin",
             "arch": {
-                "x64": {
-                    "variable_template" : "GOROOT_{0}_{1}_X64",
-                    "versions": [
-                        "1.24.*",
-                        "1.25.*",
-                        "1.26.*"
-                    ]
-                },
                 "arm64": {
                     "variable_template" : "GOROOT_{0}_{1}_ARM64",
                     "versions": [
@@ -200,14 +155,6 @@
         {
             "name": "Ruby",
             "arch": {
-                "x64": {
-                    "versions": [
-                        "3.2.*",
-                        "3.3.*",
-                        "3.4.*",
-                        "4.0.*"
-                    ]
-                },
                 "arm64": {
                     "versions": [
                         "3.2.*",
