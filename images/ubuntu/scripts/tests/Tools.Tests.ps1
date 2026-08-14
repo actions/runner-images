@@ -346,6 +346,11 @@ Describe "Containers" {
         $(stat -c "%U" $Directory) | Should -Be "root"
     }
 
+    # https://github.com/actions/runner-images/issues/14516
+    It "fusermount3 resolves to the setuid distro helper, not the podman bundle shadow" -Skip:(Test-IsUbuntu26) {
+        (Get-Command fusermount3).Source | Should -Be "/usr/bin/fusermount3"
+    }
+
 }
 
 Describe "nvm" {

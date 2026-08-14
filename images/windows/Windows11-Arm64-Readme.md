@@ -4,7 +4,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8875
-- Image Version: 20260727.122.1
+- Image Version: 20260809.134.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -17,22 +17,22 @@
 - Julia 1.12.0
 - Kotlin 2.4.10
 - LLVM 20.1.6
-- Node 24.18.0
+- Node 24.19.0
 - Perl 5.32.1
-- PHP 8.4.23
-- Python 3.13.14
+- PHP 8.4.24
+- Python 3.13.15
 - Ruby 3.4.10
 
 ### Package Management
 - Chocolatey 2.7.3
 - Composer 2.10.2
 - Helm 4.1.4
-- NPM 11.16.0
+- NPM 11.17.0
 - NuGet 7.6.0.59
-- pip 26.1.2 (python 3.13)
-- Pipx 1.16.3
+- pip 26.2.1 (python 3.13)
+- Pipx 1.16.6
 - RubyGems 3.6.9
-- Vcpkg (build from commit 99e82d9c9f)
+- Vcpkg (build from commit ea1a7396b0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -42,7 +42,7 @@
 
 ### Project Management
 - Ant 1.10.17
-- Gradle 9.6
+- Gradle 9.7
 - Maven 3.9.16
 - sbt 1.12.12
 
@@ -52,9 +52,9 @@
 - azcopy 10.32.4
 - Bazel 9.2.0
 - Bazelisk 1.28.1
-- Bicep 0.45.15
-- CMake 4.4.0
-- CodeQL Action Bundle 2.26.1
+- Bicep 0.46.1
+- CMake 4.4.2
+- CodeQL Action Bundle 2.26.2
 - Git 2.55.0.windows.3
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-25
@@ -70,7 +70,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.3
 - Packer 1.16.0
-- Pulumi 3.254.0
+- Pulumi 3.256.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -81,13 +81,13 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.4.10
-- AWS CLI 2.36.8
-- AWS SAM CLI 1.164.0
+- Alibaba Cloud CLI 3.4.11
+- AWS CLI 2.36.19
+- AWS SAM CLI 1.165.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.88.0
+- Azure CLI 2.89.0
 - Azure DevOps CLI extension 1.0.6
-- GitHub CLI 2.96.0
+- GitHub CLI 2.97.0
 
 ### Rust Tools
 - Cargo 1.97.1
@@ -104,11 +104,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 150.0.7871.187
-- Chrome Driver 150.0.7871.124
-- Microsoft Edge 150.0.4078.105
-- Microsoft Edge Driver 150.0.4078.99
-- Mozilla Firefox 153.0
+- Google Chrome 151.0.7922.109
+- Chrome Driver 151.0.7922.77
+- Microsoft Edge 151.0.4129.72
+- Microsoft Edge Driver 151.0.4129.72
+- Mozilla Firefox 153.0.3
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.46.0
@@ -122,10 +122,10 @@
 | SELENIUM_JAR_PATH | C:\selenium\selenium-server.jar    |
 
 ### Java
-| Version                | Environment Variable |
-| ---------------------- | -------------------- |
-| 21.0.11+10.0 (default) | JAVA_HOME_21_AARCH64 |
-| 23.0.2+7               | JAVA_HOME_23_AARCH64 |
+| Version               | Environment Variable |
+| --------------------- | -------------------- |
+| 21.0.12+8.0 (default) | JAVA_HOME_21_AARCH64 |
+| 23.0.2+7              | JAVA_HOME_23_AARCH64 |
 
 ### Cached Tools
 
@@ -135,19 +135,19 @@
 - 1.26.5
 
 #### Node.js
-- 22.23.1
-- 24.18.0
+- 22.23.2
+- 24.19.0
 
 #### Python
 - 3.12.10
-- 3.13.14
-- 3.14.6
+- 3.13.15
+- 3.14.7
 
 #### Ruby
 - 3.4.10
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.27.0
+- Azure CosmosDb Emulator 2.14.28.0
 - DacFx 170.4.83.3
 - MySQL 8.0.46.0
 - SQL OLEDB Driver 18 18.7.5.0
@@ -382,10 +382,10 @@
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.262
+- AWSPowershell: 5.0.272
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.38.1
+- Microsoft.Graph: 2.39.0
 - Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0

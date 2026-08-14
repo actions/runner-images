@@ -30,14 +30,15 @@ Describe "ReadAhead udev rule" -Skip:(Test-IsUbuntu22) {
         "/etc/udev/rules.d/99-readahead.rules" | Should -Exist
     }
 
-    It "udev rule contains correct read_ahead_kb value" {
+    It "udev rule covers SCSI and NVMe devices with correct read_ahead_kb value" {
         $content = Get-Content "/etc/udev/rules.d/99-readahead.rules" -Raw
+        $content | Should -Match 'KERNEL=="sd\*\|nvme\*n\*"'
         $content | Should -Match 'ATTR\{queue/read_ahead_kb\}="128"'
     }
 
-    It "All sd* devices have read_ahead_kb set to 128" {
-        $devices = Get-ChildItem "/sys/block/sd*/queue/read_ahead_kb" -ErrorAction SilentlyContinue
-        $devices | Should -Not -BeNullOrEmpty -Because "there should be at least one sd* block device"
+    It "All SCSI and NVMe devices have read_ahead_kb set to 128" {
+        $devices = Get-ChildItem "/sys/block/sd*/queue/read_ahead_kb", "/sys/block/nvme*n*/queue/read_ahead_kb" -ErrorAction SilentlyContinue
+        $devices | Should -Not -BeNullOrEmpty -Because "there should be at least one sd* or nvme* block device"
         foreach ($dev in $devices) {
             $value = (Get-Content $dev.FullName).Trim()
             $value | Should -Be "128" -Because "read_ahead_kb for $($dev.FullName) should be 128 to prevent I/O thrashing"

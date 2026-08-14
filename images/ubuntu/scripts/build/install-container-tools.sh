@@ -56,6 +56,11 @@ install_podman_static() {
     printf '[engine.runtimes]\ncrun = ["/usr/local/bin/crun"]\n' \
         | tee /etc/containers/containers.conf.d/00-fix-runtime.conf
 
+    # The bundle's non-setuid fusermount3 shadows the distro's setuid
+    # /usr/bin/fusermount3 (PATH order) and breaks unprivileged FUSE mounts.
+    # https://github.com/actions/runner-images/issues/14516
+    rm -f /usr/local/bin/fusermount3
+
     # Ubuntu >= 23.10 restricts unprivileged user namespaces via AppArmor
     # (kernel.apparmor_restrict_unprivileged_userns=1). The distro podman package
     # ships an /etc/apparmor.d/podman profile that grants the `userns` permission,
