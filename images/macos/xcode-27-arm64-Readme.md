@@ -7,7 +7,7 @@
 # macOS 26
 - OS Version: macOS 26.5.2 (25F84)
 - Kernel Version: Darwin 25.5.0
-- Image Version: 20260805.0079.1
+- Image Version: 20260810.0090.1
 
 ## Installed Software
 
@@ -35,15 +35,15 @@
 - Homebrew 6.0.15
 - NPM 11.17.0
 - Pip3 26.1.2 (python 3.14)
-- Pipx 1.16.5
+- Pipx 1.16.6
 - RubyGems 4.0.18
-- Vcpkg 2026 (build from commit 170e212249)
+- Vcpkg 2026 (build from commit ea1a7396b0)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.17
 - Apache Maven 3.9.16
-- Gradle 9.6.1
+- Gradle 9.7.0
 
 ### Utilities
 - 7-Zip 17.05
@@ -69,7 +69,7 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.36.16
+- AWS CLI 2.36.19
 - AWS SAM CLI 1.165.0
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.89.0
@@ -86,11 +86,11 @@
 ### Browsers
 - Safari 26.5.2 (21624.2.5.11.8)
 - SafariDriver 26.5.2 (21624.2.5.11.8)
-- Google Chrome 151.0.7922.76
-- Google Chrome for Testing 151.0.7922.76
-- ChromeDriver 151.0.7922.76
-- Microsoft Edge 151.0.4129.59
-- Microsoft Edge WebDriver 151.0.4129.59
+- Google Chrome 151.0.7922.109
+- Google Chrome for Testing 151.0.7922.77
+- ChromeDriver 151.0.7922.77
+- Microsoft Edge 151.0.4129.72
+- Microsoft Edge WebDriver 151.0.4129.72
 - Mozilla Firefox 153.0.3
 - geckodriver 0.37.1
 - Selenium server 4.46.0
@@ -121,8 +121,8 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.14
-- 3.14.6
+- 3.13.15
+- 3.14.7
 
 #### Node.js
 - 22.23.2
