@@ -1,6 +1,7 @@
 source "azure-arm" "image" {
   client_cert_path                       = var.client_cert_path
   client_id                              = var.client_id
+  client_jwt                             = var.client_jwt
   client_secret                          = var.client_secret
   object_id                              = var.object_id
   oidc_request_token                     = var.oidc_request_token
