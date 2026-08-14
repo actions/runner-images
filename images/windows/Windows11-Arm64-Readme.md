@@ -4,7 +4,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 8875
-- Image Version: 20260804.129.1
+- Image Version: 20260809.134.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -20,7 +20,7 @@
 - Node 24.19.0
 - Perl 5.32.1
 - PHP 8.4.24
-- Python 3.13.14
+- Python 3.13.15
 - Ruby 3.4.10
 
 ### Package Management
@@ -32,7 +32,7 @@
 - pip 26.2.1 (python 3.13)
 - Pipx 1.16.6
 - RubyGems 3.6.9
-- Vcpkg (build from commit 170e212249)
+- Vcpkg (build from commit ea1a7396b0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -42,7 +42,7 @@
 
 ### Project Management
 - Ant 1.10.17
-- Gradle 9.6
+- Gradle 9.7
 - Maven 3.9.16
 - sbt 1.12.12
 
@@ -70,7 +70,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.3
 - Packer 1.16.0
-- Pulumi 3.255.0
+- Pulumi 3.256.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -82,7 +82,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.4.11
-- AWS CLI 2.36.15
+- AWS CLI 2.36.19
 - AWS SAM CLI 1.165.0
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.89.0
@@ -104,10 +104,10 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 151.0.7922.76
-- Chrome Driver 151.0.7922.76
-- Microsoft Edge 151.0.4129.59
-- Microsoft Edge Driver 151.0.4129.59
+- Google Chrome 151.0.7922.109
+- Chrome Driver 151.0.7922.77
+- Microsoft Edge 151.0.4129.72
+- Microsoft Edge Driver 151.0.4129.72
 - Mozilla Firefox 153.0.3
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
@@ -140,14 +140,14 @@
 
 #### Python
 - 3.12.10
-- 3.13.14
-- 3.14.6
+- 3.13.15
+- 3.14.7
 
 #### Ruby
 - 3.4.10
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.27.0
+- Azure CosmosDb Emulator 2.14.28.0
 - DacFx 170.4.83.3
 - MySQL 8.0.46.0
 - SQL OLEDB Driver 18 18.7.5.0
@@ -382,7 +382,7 @@
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.268
+- AWSPowershell: 5.0.272
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.39.0
