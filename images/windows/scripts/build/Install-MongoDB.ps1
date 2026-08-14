@@ -7,19 +7,25 @@
 $toolsetContent = Get-ToolsetContent
 $toolsetVersion = $toolsetContent.mongodb.version
 
-$getMongoReleases = Invoke-WebRequest -Uri "mongodb.com/docs/v$toolsetVersion/release-notes/$toolsetVersion/" -UseBasicParsing
-$targetReleases = $getMongoReleases.Links.href | Where-Object { $_ -like "#$toolsetVersion*---*" }
+# The canonical release notes URL has no trailing slash. The trailing slash variant answers
+# 308 Permanent Redirect, which Invoke-WebRequest on Windows PowerShell 5.1 does not follow.
+$releaseNotesUrl = "https://www.mongodb.com/docs/v$toolsetVersion/release-notes/$toolsetVersion"
+$getMongoReleases = Invoke-WebRequest -Uri $releaseNotesUrl -UseBasicParsing
 
-$minorVersions = @()
-foreach ($release in $targetReleases) {
-    if ($release -notlike "*upcoming*") {
-        $pattern = '\d+\.\d+\.\d+'
-        $version = $release | Select-String -Pattern $pattern -AllMatches | ForEach-Object { $_.Matches } | ForEach-Object { $_.Value }
-        $minorVersions += $version
-    }
+# Released patch versions are linked as changelog anchors, e.g.
+# /docs/v7.0/release-notes/7.0-changelog/#std-label-7.0.40-changelog
+# The section anchors on the same page have their dots stripped (#7040---aug-11-2026), so
+# they are not usable to recover the version number.
+$versionPattern = "#std-label-($([regex]::Escape($toolsetVersion))\.\d+)-changelog"
+$minorVersions = $getMongoReleases.Links.href | Where-Object { $_ -notlike "*upcoming*" } | ForEach-Object {
+    if ($_ -match $versionPattern) { $Matches[1] }
 }
 
-$latestVersion = $minorVersions[0]
+if (-not $minorVersions) {
+    throw "Failed to parse any $toolsetVersion.x release version from $releaseNotesUrl"
+}
+
+$latestVersion = $minorVersions | Sort-Object { [version]$_ } -Descending | Select-Object -First 1
 
 Install-Binary `
     -Url "https://fastdl.mongodb.org/windows/mongodb-windows-x86_64-$latestVersion-signed.msi" `
