@@ -7,6 +7,7 @@ on:
     branches: [ main ]
     paths:
       - 'helpers/software-report-base/**'
+      - 'images/windows/scripts/preflight/**'
 
 jobs:
   powershell-tests:
@@ -22,4 +23,9 @@ jobs:
         run: |
             $ErrorActionPreference = "Stop"
             Invoke-Pester -Output Detailed "helpers/software-report-base/tests"
-        
+
+      - name: Run Windows resolver preflight unit tests
+        shell: pwsh
+        run: |
+            $ErrorActionPreference = "Stop"
+            Invoke-Pester -Output Detailed "images/windows/scripts/preflight/tests"
