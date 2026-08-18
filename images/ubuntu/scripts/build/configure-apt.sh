@@ -14,8 +14,19 @@ systemctl stop apt-daily-upgrade.timer
 systemctl disable apt-daily-upgrade.timer
 systemctl disable apt-daily-upgrade.service
 
-# Enable retry logic for apt up to 10 times
-echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries
+# Bound apt's network failure handling.
+# apt reads `Acquire::Retries`, not `APT::Acquire::Retries`, so the previous
+# value here was a no-op and these images have run with apt's default of 3.
+# Retries are counterproductive here: sources use a 3-mirror mirrorlist
+# (configure-apt-sources.sh), so a dead mirror is already covered by failover,
+# and re-attempting it per index item is what turns one slow mirror into a
+# multi-minute `apt-get update`. `Acquire::http::Timeout` was never set at all,
+# leaving the stock 120s per attempt.
+cat > /etc/apt/apt.conf.d/80-retries <<EOF
+Acquire::Retries "0";
+Acquire::http::Timeout "15";
+Acquire::https::Timeout "15";
+EOF
 
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
