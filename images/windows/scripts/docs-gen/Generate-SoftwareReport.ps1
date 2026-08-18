@@ -254,7 +254,7 @@ if (Test-IsWin22-X64) {
     $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
 }
 
-# Notes (Windows 11 only): Defender can't be disabled here, Tamper Protection blocks it. See issue #14326
+# Notes (Windows 11 Arm64 only): Defender can't be disabled here, Tamper Protection blocks it. See issue #14326
 if (Test-IsWin11-Arm64) {
     $defenderNote = @'
 Microsoft Defender is not disabled on this image. Tamper Protection is enabled by default on Windows 11 and prevents the image build from disabling it. See https://github.com/actions/runner-images/issues/14326 for details.
