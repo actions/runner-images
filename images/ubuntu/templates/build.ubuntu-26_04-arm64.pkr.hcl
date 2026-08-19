@@ -127,6 +127,7 @@ provisioner "shell" {
       "${path.root}/../scripts/build/install-copilot-cli.sh",
       "${path.root}/../scripts/build/install-bazel.sh",
       "${path.root}/../scripts/build/install-php.sh",
+      "${path.root}/../scripts/build/install-postgresql.sh",
       "${path.root}/../scripts/build/install-ruby.sh",
       "${path.root}/../scripts/build/install-rust.sh",
       "${path.root}/../scripts/build/install-selenium.sh",
