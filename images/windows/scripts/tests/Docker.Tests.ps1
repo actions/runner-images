@@ -1,4 +1,4 @@
-Describe "Docker" -Skip:(Test-IsWin11-Arm64) {
+Describe "Docker" {
     It "docker is installed" {
         "docker --version" | Should -ReturnZeroExitCode
     }
@@ -12,14 +12,14 @@ Describe "Docker" -Skip:(Test-IsWin11-Arm64) {
     }
 }
 
-Describe "DockerCompose" -Skip:(Test-IsWin11-Arm64) {
+Describe "DockerCompose" {
     It "docker compose" {
         "docker compose version" | Should -ReturnZeroExitCode
     }
 
 }
 
-Describe "DockerWinCred" -Skip:(Test-IsWin11-Arm64) {
+Describe "DockerWinCred" {
     It "docker-wincred" {
         "docker-credential-wincred version" | Should -ReturnZeroExitCode
     }
