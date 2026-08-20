@@ -20,7 +20,11 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -Disa
 # Software report
 $softwareReport = [SoftwareReport]::new($(Build-OSInfoSection))
 $optionalFeatures = $softwareReport.Root.AddHeader("Windows features")
-$optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
+# WSL is not functional on Arm64: WSL2 needs nested virtualization (unavailable on Azure Arm64 sizes)
+# and WSL1 is a legacy component that does not work on Arm64. See actions/runner-images#14076.
+if (-not (Test-IsWin11-Arm64)) {
+    $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
+}
 if (Test-IsWin25-X64) {
     $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (Default, WSLv2):", $(Get-WSL2Version))
 }
@@ -103,7 +107,12 @@ if (-not (Test-IsWin25-X64)) {
 $tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
-$tools.AddToolVersion("R", $(Get-RVersion))
+if (Test-IsArm64) {
+    # The choco R.Project package ships only the x86_64 installer, so R runs emulated here
+    $tools.AddToolVersion("R", "$(Get-RVersion) (x86_64, emulated)")
+} else {
+    $tools.AddToolVersion("R", $(Get-RVersion))
+}
 if (Test-IsX64) {
     $tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
 }

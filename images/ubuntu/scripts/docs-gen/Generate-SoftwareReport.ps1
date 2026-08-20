@@ -259,17 +259,14 @@ $netCoreTools.AddNodes($(Get-DotnetTools))
 # Databases
 $databasesTools = $installedSoftware.AddHeader("Databases")
 $databasesTools.AddToolVersion("sqlite3", $(Get-SqliteVersion))
-if (Test-IsX64) {
-    $databasesTools.AddNode($(Build-PostgreSqlSection))
-}
+$databasesTools.AddNode($(Build-PostgreSqlSection))
 $databasesTools.AddNode($(Build-MySQLSection))
 if (Test-IsUbuntu22-X64) {
     $databasesTools.AddNode($(Build-MSSQLToolsSection))
 }
 
 # Cached Tools
-if (-not(Test-IsUbuntu26-X64) -and -not(Test-IsArm64)) {
-    # Most cached tools are not yet available for Ubuntu 26.04
+if (-not(Test-IsArm64)) {
     # Most cached tools are not included for arm
     $cachedTools = $installedSoftware.AddHeader("Cached Tools")
     $cachedTools.AddToolVersionsList("Go", $(Get-ToolcacheGoVersions), "^\d+\.\d+")

@@ -5,9 +5,9 @@
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
-- Kernel Version: 6.17.0-1018-azure
-- Image Version: 20260706.52.2
-- Systemd version: 255.4-1ubuntu8.16
+- Kernel Version: 6.17.0-1022-azure
+- Image Version: 20260810.90.1
+- Systemd version: 255.4-1ubuntu8.17
 
 ## Installed Software
 
@@ -19,8 +19,8 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
-- Kotlin 2.4.0-release-281
-- Node.js 22.23.1
+- Kotlin 2.4.10-release-377
+- Node.js 22.23.2
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -28,14 +28,14 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.21.2
-- Homebrew 6.0.7
+- Helm 3.21.3
+- Homebrew 6.0.16
 - Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
-- Pipx 1.15.0
+- Pipx 1.16.6
 - RubyGems 3.4.20
-- Vcpkg (build from commit fab1c6dc7a)
+- Vcpkg (build from commit 827a2e1203)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,20 +54,20 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.6.1
-- Lerna 9.0.7
+- Gradle 9.7.0
+- Lerna 10.0.0
 - Maven 3.9.12
 
 ### Tools
-- Ansible 2.21.1
+- Ansible 2.21.3
 - AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.1.1
+- Bazel 9.2.0
 - Bazelisk 1.28.1
 - Buildah 1.33.7
 - CMake 3.31.6
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.35.0
+- Docker-Buildx 0.36.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.237.0
@@ -77,19 +77,19 @@ to accomplish this.
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.32.0
-- Kubectl 1.36.2
+- Kubectl 1.36.3
 - Kustomize 5.8.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.38.1
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.5
-- OpenSSL 3.0.13-0ubuntu3.11
-- Packer 1.15.4
+- nvm 0.40.6
+- OpenSSL 3.0.13-0ubuntu3.12
+- Packer 1.16.0
 - Parcel 2.16.4
-- Podman 4.9.3
-- Pulumi 3.250.0
+- Podman 5.8.4
+- Pulumi 3.256.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -98,44 +98,44 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.35.15
+- AWS CLI 2.36.20
 - AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.163.0
-- Azure CLI 2.87.0
-- Azure CLI (azure-devops) 1.0.5
-- GitHub CLI 2.96.0
-- Google Cloud CLI 575.0.0
+- AWS SAM CLI 1.165.0
+- Azure CLI 2.89.0
+- Azure CLI (azure-devops) 1.0.6
+- GitHub CLI 2.97.0
+- Google Cloud CLI 579.0.0
 
 ### Java
-| Version              | Environment Variable |
-| -------------------- | -------------------- |
-| 8.0.492+9            | JAVA_HOME_8_X64      |
-| 11.0.31+11           | JAVA_HOME_11_X64     |
-| 17.0.19+10 (default) | JAVA_HOME_17_X64     |
-| 21.0.11+10           | JAVA_HOME_21_X64     |
-| 25.0.3+9             | JAVA_HOME_25_X64     |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.502+7           | JAVA_HOME_8_X64      |
+| 11.0.32+9           | JAVA_HOME_11_X64     |
+| 17.0.20+8 (default) | JAVA_HOME_17_X64     |
+| 21.0.12+8           | JAVA_HOME_21_X64     |
+| 25.0.4+7            | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
 - Composer 2.10.2
-- PHPUnit 8.5.52
+- PHPUnit 8.5.53
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.96.1
-- Rust 1.96.1
-- Rustdoc 1.96.1
+- Cargo 1.97.1
+- Rust 1.97.1
+- Rustdoc 1.97.1
 - Rustup 1.29.0
 
 #### Packages
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Selenium server 4.45.0
-- Mozilla Firefox 152.0.4
-- Geckodriver 0.37.0
+- Selenium server 4.47.0
+- Mozilla Firefox 153.0.3
+- Geckodriver 0.37.1
 
 #### Environment variables
 | Name              | Value                               |
@@ -146,8 +146,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.128, 8.0.206, 8.0.319, 8.0.422, 9.0.118, 9.0.205, 9.0.315, 10.0.109, 10.0.204, 10.0.301
-- nbgv 3.10.85+c46e47c69b
+- .NET Core SDK: 8.0.129, 8.0.206, 8.0.319, 8.0.423, 9.0.119, 9.0.205, 9.0.316, 10.0.110, 10.0.204, 10.0.302
+- nbgv 3.10.91+e05abbcae4
 
 ### Databases
 - sqlite3 3.45.1
@@ -162,12 +162,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 ### PowerShell Tools
-- PowerShell 7.6.3
+- PowerShell 7.6.4
 
 #### PowerShell Modules
 - Az: 15.6.1
-- Microsoft.Graph: 2.38.0
-- Pester: 5.8.0
+- Microsoft.Graph: 2.39.0
+- Pester: 5.9.0
 - PSScriptAnalyzer: 1.25.0
 
 ### Web Servers
@@ -188,7 +188,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.1.0-2build2                |
 | bzip2                  | 1.0.8-5.1build0.1            |
 | coreutils              | 9.4-3ubuntu6.2               |
-| curl                   | 8.5.0-2ubuntu10.10           |
+| curl                   | 8.5.0-2ubuntu10.11           |
 | dbus                   | 1.14.10-4ubuntu4.1           |
 | dnsutils               | 1:9.18.39-0ubuntu0.24.04.5   |
 | dpkg                   | 1.22.6ubuntu6.6              |
@@ -209,11 +209,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libgbm-dev             | 25.2.8-0ubuntu0.24.04.2      |
 | libicu-dev             | 74.2-1ubuntu3.1              |
 | libnss3-tools          | 2:3.98-1ubuntu0.2            |
-| libsqlite3-dev         | 3.45.1-1ubuntu2.6            |
-| libssl-dev             | 3.0.13-0ubuntu3.11           |
+| libsqlite3-dev         | 3.45.1-1ubuntu2.7            |
+| libssl-dev             | 3.0.13-0ubuntu3.12           |
 | libtool                | 2.4.7-7build1                |
 | libyaml-dev            | 0.2.5-1build1                |
-| locales                | 2.39-0ubuntu8.7              |
+| locales                | 2.39-0ubuntu8.8              |
 | lz4                    | 1.9.4-1build1.1              |
 | m4                     | 1.4.19-4build1               |
 | make                   | 4.3-4.1build2                |
@@ -221,7 +221,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 6.7.2-1ubuntu2.2             |
 | net-tools              | 2.10-0.1ubuntu4.4            |
 | netcat                 | 1.226-1ubuntu2               |
-| openssh-client         | 1:9.6p1-3ubuntu13.16         |
+| openssh-client         | 1:9.6p1-3ubuntu13.18         |
 | p7zip-full             | 16.02+transitional.1         |
 | p7zip-rar              | 16.02+transitional.1         |
 | parallel               | 20231122+ds-1                |
@@ -234,22 +234,22 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-1ubuntu1.5             |
 | shellcheck             | 0.9.0-1                      |
 | sphinxsearch           | 2.2.11-8build1               |
-| sqlite3                | 3.45.1-1ubuntu2.6            |
-| ssh                    | 1:9.6p1-3ubuntu13.16         |
+| sqlite3                | 3.45.1-1ubuntu2.7            |
+| ssh                    | 1:9.6p1-3ubuntu13.18         |
 | sshpass                | 1.09-1                       |
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.2    |
 | swig                   | 4.2.0-2ubuntu1               |
-| systemd-coredump       | 255.4-1ubuntu8.16            |
-| tar                    | 1.35+dfsg-3ubuntu0.1         |
+| systemd-coredump       | 255.4-1ubuntu8.17            |
+| tar                    | 1.35+dfsg-3ubuntu0.4         |
 | telnet                 | 0.17+2.5-3ubuntu4.2          |
 | texinfo                | 7.1-3build2                  |
 | time                   | 1.9-0.2build1                |
 | tk                     | 8.6.14build1                 |
 | tree                   | 2.1.1-2ubuntu3.24.04.2       |
-| tzdata                 | 2026a-0ubuntu0.24.04.1       |
+| tzdata                 | 2026c-0ubuntu0.24.04.1       |
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
-| wget                   | 1.21.4-1ubuntu4.1            |
+| wget                   | 1.21.4-1ubuntu4.4            |
 | xvfb                   | 2:21.1.12-1ubuntu1.6         |
 | xz-utils               | 5.6.1+really5.4.5-1ubuntu0.3 |
 | zip                    | 3.0-13ubuntu0.2              |
