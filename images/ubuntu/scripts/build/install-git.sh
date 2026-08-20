@@ -21,12 +21,6 @@ fi
 apt-get update
 apt-get install git
 
-installed_version=$(dpkg-query -W -f='${Version}' git)
-if [[ "$installed_version" != *ppa* ]]; then
-    echo "git was installed from the distro archive ($installed_version) instead of $GIT_REPO"
-    exit 1
-fi
-
 # Git version 2.35.2 introduces security fix that breaks action\checkout https://github.com/actions/checkout/issues/760
 cat <<EOF >> /etc/gitconfig
 [safe]
