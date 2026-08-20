@@ -15,7 +15,7 @@ source $HELPER_SCRIPTS/os.sh
 # systemctl disable apt-daily-upgrade.service
 
 # Enable retry logic for apt up to 10 times
-echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries
+echo 'Acquire::Retries "10";' > /etc/apt/apt.conf.d/80-retries
 
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
