@@ -6,7 +6,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1064-azure
-- Image Version: 20260810.93.1
+- Image Version: 20260817.99.1
 - Systemd version: 249.11-0ubuntu3.22
 
 ## Installed Software
@@ -30,13 +30,13 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 3.21.3
-- Homebrew 6.0.16
+- Helm 3.21.4
+- Homebrew 6.0.18
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.16.6
+- Pipx 1.16.7
 - RubyGems 3.3.5
 - Vcpkg (build from commit 827a2e1203)
 - Yarn 1.22.22
@@ -64,7 +64,7 @@ to accomplish this.
 ### Tools
 - Ansible 2.17.14
 - apt-fast 1.10.0
-- AzCopy 10.32.4 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.32.7 - available by `azcopy` and `azcopy10` aliases
 - Bazel 9.2.0
 - Bazelisk 1.28.1
 - Buildah 1.23.1
@@ -74,8 +74,8 @@ to accomplish this.
 - Docker-Buildx 0.36.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.237.0
-- Git 2.54.0
+- Fastlane 2.238.0
+- Git 2.55.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
@@ -93,7 +93,7 @@ to accomplish this.
 - Packer 1.16.0
 - Parcel 2.16.4
 - Podman 5.8.4
-- Pulumi 3.256.0
+- Pulumi 3.258.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
@@ -104,16 +104,16 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.20
+- AWS CLI 2.36.24
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.165.0
-- Azure CLI 2.89.0
+- Azure CLI 2.89.1
 - Azure CLI (azure-devops) 1.0.6
 - GitHub CLI 2.97.0
-- Google Cloud CLI 579.0.0
+- Google Cloud CLI 580.0.0
 - Netlify CLI 27.1.1
-- OpenShift CLI 4.22.8
-- Vercel CLI 58.9.1
+- OpenShift CLI 4.22.9
+- Vercel CLI 59.1.4
 
 ### Java
 | Version             | Environment Variable |
@@ -127,7 +127,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.1.2
 - Composer 2.10.2
-- PHPUnit 8.5.53
+- PHPUnit 8.5.54
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -148,7 +148,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Browsers and Drivers
 - Selenium server 4.47.0
-- Mozilla Firefox 153.0.3
+- Mozilla Firefox 153.0.4
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -160,7 +160,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.129, 8.0.206, 8.0.319, 8.0.423, 9.0.119, 9.0.205, 9.0.316, 10.0.110, 10.0.204, 10.0.302
+- .NET Core SDK: 8.0.130, 8.0.206, 8.0.319, 8.0.424, 9.0.120, 9.0.205, 9.0.317, 10.0.111, 10.0.204, 10.0.303, 10.0.400
 - nbgv 3.10.91+e05abbcae4
 
 ### Databases
@@ -176,7 +176,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 ### PowerShell Tools
-- PowerShell 7.6.4
+- PowerShell 7.6.5
 
 #### PowerShell Modules
 - Az: 15.6.1
