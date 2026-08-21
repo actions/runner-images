@@ -1,6 +1,6 @@
 | Announcements |
 |-|
-| [[Windows] Windows 11 Arm with Visual Studio 2026 is now available as a public preview](https://github.com/actions/runner-images/issues/14225) |
+| [[Windows] Windows 11 Arm64 with Visual Studio 2026 is now generally available](https://github.com/actions/runner-images/issues/14592) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 5386
