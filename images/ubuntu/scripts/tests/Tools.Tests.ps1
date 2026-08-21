@@ -234,6 +234,11 @@ Describe "Git" {
         "git --version" | Should -ReturnZeroExitCode
     }
 
+    # https://github.com/actions/runner-images/issues/14583
+    It "git comes from the git-core PPA" {
+        $(dpkg-query -W -f '${Version}' git) | Should -BeLike "*ppa*"
+    }
+
     It "git-ftp" {
         "git-ftp --version" | Should -ReturnZeroExitCode
     }
