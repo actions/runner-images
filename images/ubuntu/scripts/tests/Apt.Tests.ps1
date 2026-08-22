@@ -5,10 +5,12 @@ Describe "Apt" {
     $testCases = $packages | ForEach-Object { @{ toolName = $_ } }
 
     It "<toolName> is available" -TestCases $testCases {
+        $originalName = $toolName
         switch ($toolName) {
             "acl"               { $toolName = "getfacl"; break }
             "aria2"             { $toolName = "aria2c"; break }
             "libnss3-tools"     { $toolName = "certutil"; break }
+            "httpie"            { $toolName = "http"; break }
             "p7zip-full"        { $toolName = "p7zip"; break }
             "7zip"              { $toolName = "7z"; break }
             "subversion"        { $toolName = "svn"; break }
@@ -22,5 +24,11 @@ Describe "Apt" {
         }
 
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
+
+        if ($originalName -eq "httpie") {
+            $path = (Get-Command -Name $toolName).Source
+            $owner = dpkg -S $path
+            $owner | Should -Match "^httpie(:[^:]+)?:"
+        }
     }
 }
