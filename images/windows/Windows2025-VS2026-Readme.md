@@ -78,7 +78,7 @@
 - Packer 1.16.0
 - Pulumi 3.258.0
 - R 4.6.1
-- Service Fabric SDK 10.1.2493.9590
+- Service Fabric SDK 11.7.157.1
 - Stack 3.11.1
 - Swig 4.4.1
 - VSWhere 3.1.7
@@ -486,4 +486,3 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\29.0.14206865 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.3.13750724 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
-
