@@ -44,10 +44,25 @@ done
 # Install plugins that are best installed from the GitHub repository
 # Be aware that `url` built from github repo name and plugin name because of current repo naming for those plugins
 
+case "$docker_arch" in
+    amd64) arch_pattern="amd64|x86_64" ;;
+    arm64) arch_pattern="arm64|aarch64" ;;
+esac
+
 plugins=$(get_toolset_value '.docker.plugins[] .plugin')
 for plugin in $plugins; do
     version=$(get_toolset_value ".docker.plugins[] | select(.plugin == \"$plugin\") | .version")
     filter=$(get_toolset_value ".docker.plugins[] | select(.plugin == \"$plugin\") | .asset")
+
+    # Toolset asset filters are architecture-specific strings (e.g. "linux-arm64"), unlike the
+    # engine arch above, which is machine-detected. Fail fast instead of silently installing a
+    # plugin binary that doesn't match the host, which fails at runtime with "exec format error".
+    if ! [[ "$filter" =~ ($arch_pattern) ]]; then
+        echo "Error: host architecture is '$docker_arch' but toolset plugin '$plugin' targets asset '$filter'." >&2
+        echo "This build definition/toolset combination doesn't match the host it's running on." >&2
+        exit 1
+    fi
+
     url=$(resolve_github_release_asset_url "docker/$plugin" "endswith(\"$filter\")" "$version")
     binary_path=$(download_with_retry "$url" "/tmp/docker-$plugin")
     mkdir -pv "/usr/libexec/docker/cli-plugins"
