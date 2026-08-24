@@ -27,6 +27,20 @@ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $GPG_
 echo "deb [arch=$docker_arch signed-by=$GPG_KEY] $REPO_URL ${os_codename} stable" > $REPO_PATH
 apt-get update
 
+# Ubuntu 22.04 and 24.04 ship Podman clients whose docker-daemon transport uses
+# API 1.41. Keep that transport compatible with Docker 28 and later.
+# https://github.com/actions/runner-images/issues/13691
+if ! is_ubuntu26; then
+    daemon_config_temp=$(mktemp)
+    if [[ -f /etc/docker/daemon.json ]]; then
+        jq '.["min-api-version"] = "1.41"' /etc/docker/daemon.json > "$daemon_config_temp"
+    else
+        jq -n '{"min-api-version": "1.41"}' > "$daemon_config_temp"
+    fi
+    install -D -m 0644 "$daemon_config_temp" /etc/docker/daemon.json
+    rm -f "$daemon_config_temp"
+fi
+
 # Install docker components which available via apt-get
 # Using toolsets keep installation order to install dependencies before the package in order to control versions
 

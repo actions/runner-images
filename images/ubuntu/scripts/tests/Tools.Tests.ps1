@@ -90,6 +90,32 @@ Describe "Docker" {
         $clientVersion | Should -Be $serverVersion
     }
 
+    # https://github.com/actions/runner-images/issues/13691
+    It "docker accepts API 1.41 clients" -Skip:(Test-IsUbuntu26) {
+        "sudo env DOCKER_API_VERSION=1.41 docker version --format '{{.Server.APIVersion}}'" | Should -ReturnZeroExitCode
+    }
+
+    It "podman pushes images to the docker daemon" -Skip:(Test-IsUbuntu26) {
+        $command = @'
+set -e
+test_dir=$(mktemp -d)
+source_image=localhost/podman-docker-daemon-test:latest
+destination_image=podman-docker-daemon-test:latest
+cleanup() {
+    sudo podman image rm -f "$source_image" >/dev/null 2>&1 || true
+    sudo docker image rm -f "$destination_image" >/dev/null 2>&1 || true
+    rm -rf "$test_dir"
+}
+trap cleanup EXIT
+printf 'runner-images podman test\n' > "$test_dir/marker"
+tar -C "$test_dir" -cf "$test_dir/rootfs.tar" marker
+sudo podman import "$test_dir/rootfs.tar" "$source_image"
+sudo podman push "$source_image" "docker-daemon:$destination_image"
+sudo docker image inspect "$destination_image"
+'@
+        $command | Should -ReturnZeroExitCode
+    }
+
     It "docker buildx" {
         $version=(Get-ToolsetContent).docker.plugins | Where-Object { $_.plugin -eq 'buildx' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
@@ -328,9 +354,10 @@ Describe "Containers" {
         "podman network rm test-net" | Should -ReturnZeroExitCode
     }
 
-    # https://github.com/actions/runner-images/issues/14473
-    It "podman uses the crun shipped with the podman bundle" -Skip:(Test-IsUbuntu26) {
-        "podman info --format '{{.Host.OCIRuntime.Path}}'" | Should -OutputTextMatchingRegex "/usr/local/bin/crun"
+    # https://github.com/actions/runner-images/issues/14611
+    It "podman is installed from the Ubuntu package" {
+        (Get-Command podman).Source | Should -Be "/usr/bin/podman"
+        "dpkg-query --show podman" | Should -ReturnZeroExitCode
     }
 
     # https://github.com/actions/runner-images/issues/14406
