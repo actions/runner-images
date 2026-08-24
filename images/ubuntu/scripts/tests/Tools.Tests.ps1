@@ -234,6 +234,11 @@ Describe "Git" {
         "git --version" | Should -ReturnZeroExitCode
     }
 
+    # https://github.com/actions/runner-images/issues/14583
+    It "git comes from the git-core PPA" {
+        $(dpkg-query -W -f '${Version}' git) | Should -BeLike "*ppa*"
+    }
+
     It "git-ftp" {
         "git-ftp --version" | Should -ReturnZeroExitCode
     }
@@ -321,6 +326,34 @@ Describe "Containers" {
         "podman network create -d bridge test-net" | Should -ReturnZeroExitCode
         "podman network ls" | Should -Not -OutputTextMatchingRegex "Error"
         "podman network rm test-net" | Should -ReturnZeroExitCode
+    }
+
+    # https://github.com/actions/runner-images/issues/14473
+    It "podman uses the crun shipped with the podman bundle" -Skip:(Test-IsUbuntu26) {
+        "podman info --format '{{.Host.OCIRuntime.Path}}'" | Should -OutputTextMatchingRegex "/usr/local/bin/crun"
+    }
+
+    # https://github.com/actions/runner-images/issues/14406
+    # registries.conf must be valid v2 format; a v1 file is rejected by newer podman.
+    It "podman registries.conf" {
+        "podman info" | Should -ReturnZeroExitCode
+        "podman info" | Should -OutputTextMatchingRegex "docker.io"
+        "podman info" | Should -OutputTextMatchingRegex "quay.io"
+    }
+
+    # https://github.com/actions/runner-images/issues/14477
+    It "<Directory> is owned by root" -TestCases @(
+        @{ Directory = "/usr" }
+        @{ Directory = "/etc" }
+        @{ Directory = "/usr/local" }
+        @{ Directory = "/usr/local/bin" }
+    ) {
+        $(stat -c "%U" $Directory) | Should -Be "root"
+    }
+
+    # https://github.com/actions/runner-images/issues/14516
+    It "fusermount3 resolves to the setuid distro helper, not the podman bundle shadow" -Skip:(Test-IsUbuntu26) {
+        (Get-Command fusermount3).Source | Should -Be "/usr/bin/fusermount3"
     }
 
 }
