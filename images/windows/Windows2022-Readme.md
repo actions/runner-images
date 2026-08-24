@@ -79,7 +79,8 @@
 - Packer 1.16.0
 - Pulumi 3.258.0
 - R 4.6.1
-- Service Fabric SDK 11.7.157.1
+- Service Fabric SDK 8.7.157
+- Service Fabric Runtime 11.7.157.1
 - Stack 3.11.1
 - Subversion (SVN) 1.14.5
 - Swig 4.4.1
