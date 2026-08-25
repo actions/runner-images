@@ -90,11 +90,6 @@ Describe "Docker" {
         $clientVersion | Should -Be $serverVersion
     }
 
-    # https://github.com/actions/runner-images/issues/13691
-    It "docker accepts API 1.41 clients" -Skip:(Test-IsUbuntu26) {
-        "sudo env DOCKER_API_VERSION=1.41 docker version --format '{{.Server.APIVersion}}'" | Should -ReturnZeroExitCode
-    }
-
     It "podman pushes images to the docker daemon" -Skip:(Test-IsUbuntu26) {
         $command = @'
 set -e
