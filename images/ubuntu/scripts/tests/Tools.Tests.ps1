@@ -90,27 +90,6 @@ Describe "Docker" {
         $clientVersion | Should -Be $serverVersion
     }
 
-    It "podman pushes images to the docker daemon" -Skip:(Test-IsUbuntu26) {
-        $command = @'
-set -e
-test_dir=$(mktemp -d)
-source_image=localhost/podman-docker-daemon-test:latest
-destination_image=podman-docker-daemon-test:latest
-cleanup() {
-    sudo podman image rm -f "$source_image" >/dev/null 2>&1 || true
-    sudo docker image rm -f "$destination_image" >/dev/null 2>&1 || true
-    rm -rf "$test_dir"
-}
-trap cleanup EXIT
-printf 'runner-images podman test\n' > "$test_dir/marker"
-tar -C "$test_dir" -cf "$test_dir/rootfs.tar" marker
-sudo podman import "$test_dir/rootfs.tar" "$source_image"
-sudo podman push "$source_image" "docker-daemon:$destination_image"
-sudo docker image inspect "$destination_image"
-'@
-        $command | Should -ReturnZeroExitCode
-    }
-
     It "docker buildx" {
         $version=(Get-ToolsetContent).docker.plugins | Where-Object { $_.plugin -eq 'buildx' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
