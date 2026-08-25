@@ -5,8 +5,8 @@
 ***
 # Ubuntu 26.04 LTS
 - OS Version: 26.04 LTS
-- Kernel Version: 7.0.0-1011-azure
-- Image Version: 20260817.108.1
+- Kernel Version: 7.0.0-1012-azure
+- Image Version: 20260824.116.1
 - Systemd version: 259.5-0ubuntu3.4
 
 ## Installed Software
@@ -28,13 +28,13 @@
 ### Package Management
 - cpan 1.64
 - Helm 4.2.4
-- Homebrew 6.0.18
+- Homebrew 6.0.19
 - Npm 11.17.0
 - Pip 25.1.1
 - Pip3 25.1.1
 - Pipx 1.16.7
 - RubyGems 3.6.7
-- Vcpkg (build from commit 9f8f0c7bfa)
+- Vcpkg (build from commit 0ac8df3b98)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -53,7 +53,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.15
-- Gradle 9.7.0
+- Gradle 9.7.1
 - Maven 3.9.15
 
 ### Tools
@@ -70,41 +70,41 @@ to accomplish this.
 - Docker-Buildx 0.36.1
 - Docker Client 29.4.2
 - Docker Server 29.4.2
-- Git 2.53.0
+- Git 2.55.0
 - Git LFS 3.7.1
 - Git-ftp 1.6.0
 - jq 1.8.1
 - Kind 0.32.0
-- Kubectl 1.36.3
+- Kubectl 1.36.4
 - Kustomize 5.8.1
 - Minikube 1.38.1
 - n 10.2.0
-- nvm 0.40.6
+- nvm 0.40.7
 - OpenSSL 3.5.5-1ubuntu3.3
 - Packer 1.16.0
 - Podman 5.7.0
 - Skopeo 1.21.0-dev
 - yamllint 1.38.0
-- yq 4.53.3
+- yq 4.53.6
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.24
+- AWS CLI 2.36.30
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.165.0
 - Azure CLI 2.89.1
 - Azure CLI (azure-devops) 1.0.6
-- GitHub CLI 2.97.0
-- Google Cloud CLI 580.0.0
+- GitHub CLI 2.98.0
+- Google Cloud CLI 581.0.0
 
 ### Java
 | Version            | Environment Variable |
 | ------------------ | -------------------- |
 | 11.0.32+9          | JAVA_HOME_11_X64     |
-| 17.0.20+8          | JAVA_HOME_17_X64     |
-| 21.0.12+8          | JAVA_HOME_21_X64     |
-| 25.0.4+7 (default) | JAVA_HOME_25_X64     |
+| 17.0.20+1          | JAVA_HOME_17_X64     |
+| 21.0.12+1          | JAVA_HOME_21_X64     |
+| 25.0.4+1 (default) | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.5.4
@@ -121,22 +121,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.11.1
 
 ### Rust Tools
-- Cargo 1.97.1
-- Rust 1.97.1
-- Rustdoc 1.97.1
+- Cargo 1.98.0
+- Rust 1.98.0
+- Rustdoc 1.98.0
 - Rustup 1.29.0
 
 #### Packages
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 151.0.7922.137
+- Google Chrome 151.0.7922.173
 - ChromeDriver 151.0.7922.138
 - Chromium 151.0.7922.0
-- Microsoft Edge 151.0.4129.93
-- Microsoft Edge WebDriver 151.0.4129.86
+- Microsoft Edge 151.0.4129.107
+- Microsoft Edge WebDriver 151.0.4129.101
 - Selenium server 4.47.0
-- Mozilla Firefox 153.0.4
+- Mozilla Firefox 154.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -170,6 +170,35 @@ Password: root
 MySQL service is disabled by default.
 Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
 ```
+
+### Cached Tools
+
+#### Go
+- 1.24.13
+- 1.25.14
+- 1.26.7
+
+#### Node.js
+- 22.23.2
+- 24.19.0
+
+#### Python
+- 3.10.21
+- 3.11.16
+- 3.12.14
+- 3.13.15
+- 3.14.7
+
+#### PyPy
+- 3.9.19 [PyPy 7.3.16]
+- 3.10.16 [PyPy 7.3.19]
+- 3.11.15 [PyPy 7.3.23]
+
+#### Ruby
+- 3.2.11
+- 3.3.12
+- 3.4.10
+- 4.0.6
 
 ### PowerShell Tools
 - PowerShell 7.6.5
@@ -218,13 +247,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.37.0+debian-4              |
 | autoconf               | 2.72-3.1ubuntu2              |
 | automake               | 1:1.18.1-3build1             |
-| bind9-dnsutils         | 1:9.20.24-1ubuntu0.1         |
+| bind9-dnsutils         | 1:9.20.24-1ubuntu0.2         |
 | binutils               | 2.46-3ubuntu2                |
 | bison                  | 2:3.8.2+dfsg-1build4         |
 | brotli                 | 1.2.0-3build1                |
 | bzip2                  | 1.0.8-6build2                |
 | coreutils              | 9.5-1ubuntu2+0.0.0\~ubuntu25 |
-| curl                   | 8.18.0-1ubuntu2.3            |
+| curl                   | 8.18.0-1ubuntu2.4            |
 | dbus                   | 1.16.2-2ubuntu4              |
 | dpkg                   | 1.23.7ubuntu1                |
 | dpkg-dev               | 1.23.7ubuntu1                |
@@ -277,7 +306,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | tzdata                 | 2026c-0ubuntu0.26.04.1       |
 | unzip                  | 6.0-29ubuntu1                |
 | upx                    | 4.2.4-1.1build1              |
-| wget                   | 1.25.0-2ubuntu4.3            |
+| wget                   | 1.25.0-2ubuntu4.4            |
 | xvfb                   | 2:21.1.22-1ubuntu1           |
 | xz-utils               | 5.8.3-1                      |
 | zip                    | 3.0-15ubuntu3                |
