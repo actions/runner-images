@@ -1,12 +1,12 @@
 {
     "xcode": {
-        "default": "27_beta_5",
+        "default": "27_beta_6",
         "arm64": {
             "versions": [
                 {
-                    "link": "27_beta_5",
-                    "filename": "Xcode_27_beta_5",
-                    "version": "27.0+27A5237l",
+                    "link": "27_beta_6",
+                    "filename": "Xcode_27_beta_6",
+                    "version": "27.0+27A5252f",
                     "symlinks": ["27.0"],
                     "sha256": "1f92c0fbb7268205e9b1f8061bf47db012a92e47729557c79ac053c9e5bd881a",
                     "install_runtimes": "default"
