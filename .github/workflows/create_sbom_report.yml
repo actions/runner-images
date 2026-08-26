@@ -1,10 +1,15 @@
 name: Create SBOM for the release
 
-run-name: Collecting SBOM for ${{ github.event.client_payload.agentSpec || 'unknown image' }} - ${{ github.event.client_payload.imageVersion || 'unknown version' }}
+run-name: Collecting SBOM for ${{ github.event.client_payload.agentSpec || 'unknown image' }} - ${{ github.event.client_payload.imageVersion || 'unknown version' }} (dispatch ${{ github.event.client_payload.DispatchId || 'unknown' }})
 
 on:
   repository_dispatch:
     types: [generate-sbom]
+
+# Serialize runs per release so a retry waits for the in-flight scan instead of duplicating it.
+concurrency:
+  group: sbom-${{ github.event.client_payload.ReleaseID || github.run_id }}
+  cancel-in-progress: false
 
 defaults:
   run:
@@ -102,11 +107,19 @@ jobs:
           if-no-files-found: warn
 
       - name: Upload release asset
-        uses: actions/upload-release-asset@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: "https://uploads.github.com/repos/actions/runner-images/releases/${{ env.RELEASE_ID }}/assets{?name,label}"
-          asset_path: ./sbom.json.zip
-          asset_name: sbom.${{ env.AGENT_SPEC }}.json.zip
-          asset_content_type: application/zip
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          $releaseTag = gh api "repos/${{ github.repository }}/releases/$($env:RELEASE_ID)" --jq ".tag_name"
+          if ($LASTEXITCODE -ne 0) {
+            throw "Failed to resolve the tag name of release $($env:RELEASE_ID)"
+          }
+
+          $assetName = "sbom.$($env:AGENT_SPEC).json.zip"
+          Copy-Item sbom.json.zip $assetName
+
+          # --clobber keeps the upload idempotent when a duplicate scan reaches this step.
+          gh release upload $releaseTag $assetName --repo "${{ github.repository }}" --clobber
+          if ($LASTEXITCODE -ne 0) {
+            throw "Failed to upload $assetName to release $releaseTag"
+          }
