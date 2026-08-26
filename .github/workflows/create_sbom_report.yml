@@ -100,7 +100,7 @@ jobs:
       - name: Compress SBOM file
         run: Compress-Archive sbom.json sbom.json.zip
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: sbom-${{ env.AGENT_SPEC }}-${{ env.IMAGE_VERSION }}
           path: sbom.json.zip
