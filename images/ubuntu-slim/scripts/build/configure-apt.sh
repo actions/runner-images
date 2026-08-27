@@ -24,6 +24,8 @@ Acquire::http::Timeout "15";
 Acquire::https::Timeout "15";
 EOF
 
+echo 'Acquire::IndexTargets::deb::DEP-11::DefaultEnabled "false";' > /etc/apt/apt.conf.d/90-index-targets
+
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
