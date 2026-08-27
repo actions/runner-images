@@ -182,6 +182,19 @@
             "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjectsArm64"
         ]
     },
+    "docker": {
+        "images": [
+            "mcr.microsoft.com/windows/servercore:ltsc2022",
+            "mcr.microsoft.com/windows/nanoserver:ltsc2022",
+            "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022",
+            "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022",
+            "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022"
+        ],
+        "components": {
+            "docker": "26.1.3",
+            "compose": "2.27.1"
+        }
+    },
     "pipx": [
         {
             "package": "yamllint",
