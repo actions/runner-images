@@ -14,8 +14,20 @@ systemctl stop apt-daily-upgrade.timer
 systemctl disable apt-daily-upgrade.timer
 systemctl disable apt-daily-upgrade.service
 
-# Enable retry logic for apt up to 10 times
-echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries
+# Bound apt's acquire behaviour so a stalled mirror fails over in seconds instead of minutes.
+# apt reads Acquire::Retries (default 3), not APT::Acquire::Retries, and spends every retry on the
+# same URI before trying the next mirror in /etc/apt/apt-mirrors.txt, so a high count delays failover.
+# https://github.com/actions/runner-images/issues/14594
+cat <<EOF > /etc/apt/apt.conf.d/80-retries
+Acquire::Retries "1";
+Acquire::http::Timeout "15";
+Acquire::https::Timeout "15";
+EOF
+
+# DEP-11/AppStream is desktop software-catalog metadata with no CI use. Skipping it drops 15 of the 51
+# index items and 7.6 MB from every apt-get update, which is also 15 fewer chances to hit a sick mirror.
+# Sorts after appstream's own /etc/apt/apt.conf.d/50appstream, so it wins.
+echo 'Acquire::IndexTargets::deb::DEP-11::DefaultEnabled "false";' > /etc/apt/apt.conf.d/90-index-targets
 
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes

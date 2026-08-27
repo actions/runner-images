@@ -24,3 +24,34 @@ Describe "Apt" {
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
     }
 }
+
+Describe "Apt acquire configuration" {
+    # Asserts the effective values, because a setting written under a key apt does not read is silently
+    # ignored and leaves the image on apt's defaults.
+    # https://github.com/actions/runner-images/issues/14594
+    $settingsTestCases = @(
+        @{ setting = "Acquire::Retries"; expectedValue = "1" }
+        @{ setting = "Acquire::http::Timeout"; expectedValue = "15" }
+        @{ setting = "Acquire::https::Timeout"; expectedValue = "15" }
+        @{ setting = "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled"; expectedValue = "false" }
+    )
+
+    It "<setting> is set to <expectedValue>" -TestCases $settingsTestCases {
+        (Get-CommandResult "apt-config dump $setting").Output | Should -BeExactly "$setting `"$expectedValue`";"
+    }
+
+    It "APT::Acquire::Retries is not set" {
+        (Get-CommandResult "apt-config dump APT::Acquire::Retries").Output | Should -BeNullOrEmpty
+    }
+
+    It "Apt sources resolve through the mirror list" {
+        $sourcesFile = if (Test-IsUbuntu22) { "/etc/apt/sources.list" } else { "/etc/apt/sources.list.d/ubuntu.sources" }
+        Get-Content $sourcesFile -Raw | Should -Match ([regex]::Escape("mirror+file:/etc/apt/apt-mirrors.txt"))
+    }
+
+    It "Mirror list defines a failover chain with unique priorities" {
+        $priorities = Get-Content "/etc/apt/apt-mirrors.txt" | ForEach-Object { ($_ -split "priority:")[1] }
+        $priorities.Count | Should -BeGreaterThan 1
+        ($priorities | Select-Object -Unique).Count | Should -BeExactly $priorities.Count
+    }
+}
