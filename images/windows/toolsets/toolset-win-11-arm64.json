@@ -284,7 +284,12 @@
         "version": "3.10"
     },
     "llvm": {
-        "version": "22.1.8"
+        "version": "22.1.8",
+        "pinnedDetails": {
+            "reason": "Pinned to a specific validated version for the Windows 11 ARM64 image",
+            "link": "https://github.com/actions/runner-images/pull/14640",
+            "review-at": "2026-12-01"
+        }
     },
     "php": {
         "version": "8.4"
