@@ -1,18 +1,19 @@
 | Announcements |
 |-|
-| [[Windows] Windows 11 Arm64 with Visual Studio 2026 is now generally available](https://github.com/actions/runner-images/issues/14592) |
+| [[Windows] The `windows-11-arm` image label will use Windows 11 Arm64 with Visual Studio 2026 image in September 2026](https://github.com/actions/runner-images/issues/14602) |
+| [[Windows] The Windows 11 Arm64 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14592) |
+| [[Windows] Windows 11 Arm with Visual Studio 2026 is now available as a public preview](https://github.com/actions/runner-images/issues/14225) |
 ***
 # Windows 11 Enterprise
-- OS Version: 10.0.26200 Build 8875
-- Image Version: 20260809.134.1
+- OS Version: 10.0.26200 Build 9168
+- Image Version: 20260823.149.1
 
 ## Windows features
-- Windows Subsystem for Linux (WSLv1): Enabled
 
 ## Installed Software
 
 ### Language and Runtime
-- Bash 5.3.15(1)-release
+- Bash 5.3.15(2)-release
 - Go 1.24.13
 - Julia 1.12.0
 - Kotlin 2.4.10
@@ -24,15 +25,15 @@
 - Ruby 3.4.10
 
 ### Package Management
-- Chocolatey 2.7.3
+- Chocolatey 2.7.4
 - Composer 2.10.2
 - Helm 4.1.4
 - NPM 11.17.0
-- NuGet 7.6.0.59
+- NuGet 7.9.0.83
 - pip 26.2.1 (python 3.13)
-- Pipx 1.16.6
+- Pipx 1.16.7
 - RubyGems 3.6.9
-- Vcpkg (build from commit ea1a7396b0)
+- Vcpkg (build from commit 127402f1c7)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -49,19 +50,19 @@
 ### Tools
 - 7zip 26.02
 - aria2 1.37.0
-- azcopy 10.32.4
+- azcopy 10.32.7
 - Bazel 9.2.0
 - Bazelisk 1.28.1
 - Bicep 0.46.1
 - CMake 4.4.2
-- CodeQL Action Bundle 2.26.2
-- Git 2.55.0.windows.3
+- CodeQL Action Bundle 2.26.3
+- Git 2.55.0.windows.5
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.32.0
-- Kubectl 1.36.3
+- Kubectl 1.36.4
 - Mercurial 6.3.1
 - gcc 14.2.0
 - gdb 16.2
@@ -70,7 +71,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.3
 - Packer 1.16.0
-- Pulumi 3.256.0
+- Pulumi 3.259.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -82,17 +83,17 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.4.11
-- AWS CLI 2.36.19
+- AWS CLI 2.36.29
 - AWS SAM CLI 1.165.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.89.0
+- Azure CLI 2.89.1
 - Azure DevOps CLI extension 1.0.6
-- GitHub CLI 2.97.0
+- GitHub CLI 2.98.0
 
 ### Rust Tools
-- Cargo 1.97.1
-- Rust 1.97.1
-- Rustdoc 1.97.1
+- Cargo 1.98.0
+- Rust 1.98.0
+- Rustdoc 1.98.0
 - Rustup 1.29.0
 
 #### Packages
@@ -100,18 +101,18 @@
 - cargo-audit 0.22.2
 - cargo-outdated 0.19.0
 - cbindgen 0.29.4
-- Clippy 0.1.97
+- Clippy 0.1.98
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 151.0.7922.109
-- Chrome Driver 151.0.7922.77
-- Microsoft Edge 151.0.4129.72
-- Microsoft Edge Driver 151.0.4129.72
-- Mozilla Firefox 153.0.3
+- Google Chrome 151.0.7922.174
+- Chrome Driver 151.0.7922.138
+- Microsoft Edge 151.0.4129.101
+- Microsoft Edge Driver 151.0.4129.101
+- Mozilla Firefox 154.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.46.0
+- Selenium server 4.47.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -131,8 +132,8 @@
 
 #### Go
 - 1.24.13
-- 1.25.12
-- 1.26.5
+- 1.25.14
+- 1.26.7
 
 #### Node.js
 - 22.23.2
@@ -157,12 +158,12 @@
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.3  | C:\tools\nginx-1.31.3\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.31.4  | C:\tools\nginx-1.31.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
 | ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.37516.0 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.14.37614.0 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -186,7 +187,7 @@
 | Component.Unreal.Android                                                  | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36907.17  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37516.0   |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37612.4   |
 | Component.VSInstallerProjects2022_arm64                                   | 3.0.0           |
 | Component.Xamarin                                                         | 17.14.36510.44  |
 | ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.37203.1   |
@@ -216,19 +217,19 @@
 | Microsoft.Net.ComponentGroup.4.8.DeveloperTools                           | 17.14.36510.44  |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 17.14.36510.44  |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 17.14.36510.44  |
-| microsoft.net.runtime.android                                             | 9.0.1826.31522  |
-| microsoft.net.runtime.android.aot                                         | 9.0.1826.31522  |
-| microsoft.net.runtime.android.aot.net8                                    | 9.0.1826.31522  |
-| microsoft.net.runtime.android.net8                                        | 9.0.1826.31522  |
-| microsoft.net.runtime.ios                                                 | 9.0.1826.31522  |
-| microsoft.net.runtime.maccatalyst                                         | 9.0.1826.31522  |
-| microsoft.net.runtime.mono.tooling                                        | 9.0.1826.31522  |
-| microsoft.net.runtime.mono.tooling.net8                                   | 9.0.1826.31522  |
-| microsoft.net.sdk.emscripten                                              | 9.0.14.31002    |
+| microsoft.net.runtime.android                                             | 9.0.1926.36724  |
+| microsoft.net.runtime.android.aot                                         | 9.0.1926.36724  |
+| microsoft.net.runtime.android.aot.net8                                    | 9.0.1926.36724  |
+| microsoft.net.runtime.android.net8                                        | 9.0.1926.36724  |
+| microsoft.net.runtime.ios                                                 | 9.0.1926.36724  |
+| microsoft.net.runtime.maccatalyst                                         | 9.0.1926.36724  |
+| microsoft.net.runtime.mono.tooling                                        | 9.0.1926.36724  |
+| microsoft.net.runtime.mono.tooling.net8                                   | 9.0.1926.36724  |
+| microsoft.net.sdk.emscripten                                              | 9.0.14.35603    |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 17.14.36510.44  |
-| Microsoft.NetCore.Component.Runtime.8.0                                   | 17.14.37502.8   |
-| Microsoft.NetCore.Component.Runtime.9.0                                   | 17.14.37502.8   |
-| Microsoft.NetCore.Component.SDK                                           | 17.14.37502.8   |
+| Microsoft.NetCore.Component.Runtime.8.0                                   | 17.14.37531.7   |
+| Microsoft.NetCore.Component.Runtime.9.0                                   | 17.14.37531.7   |
+| Microsoft.NetCore.Component.SDK                                           | 17.14.37531.7   |
 | Microsoft.NetCore.Component.Web                                           | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.AspNet                                   | 17.14.36510.44  |
@@ -346,9 +347,9 @@
 | Microsoft.VisualStudio.Workload.Node                                      | 17.14.36517.7   |
 | Microsoft.VisualStudio.Workload.Universal                                 | 17.14.36331.10  |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 17.14.36015.10  |
-| runtimes.ios                                                              | 9.0.1826.31522  |
-| runtimes.maccatalyst                                                      | 9.0.1826.31522  |
-| wasm.tools                                                                | 9.0.1826.31522  |
+| runtimes.ios                                                              | 9.0.1926.36724  |
+| runtimes.maccatalyst                                                      | 9.0.1926.36724  |
+| wasm.tools                                                                | 9.0.1926.36724  |
 | SSIS.MicrosoftDataToolsIntegrationServices                                | 2.2             |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjectsArm64        | 3.0.0           |
 | Windows Driver Kit                                                        | 10.1.26100.6584 |
@@ -370,11 +371,11 @@
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.129, 8.0.206, 8.0.319, 8.0.423, 9.0.119, 9.0.205, 9.0.316, 10.0.110, 10.0.204, 10.0.302
+- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.130, 8.0.206, 8.0.319, 8.0.424, 9.0.120, 9.0.205, 9.0.317, 10.0.111, 10.0.204, 10.0.303, 10.0.400
 - .NET Framework: 4.7.2, 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.29, 9.0.6, 9.0.18, 10.0.8, 10.0.10
-- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.29, 9.0.6, 9.0.18, 10.0.8, 10.0.10
-- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.29, 9.0.6, 9.0.18, 10.0.8, 10.0.10
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.30, 9.0.6, 9.0.19, 10.0.8, 10.0.11
+- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.30, 9.0.6, 9.0.19, 10.0.8, 10.0.11
+- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.30, 9.0.6, 9.0.19, 10.0.8, 10.0.11
 - nbgv 3.10.91+e05abbcae4
 
 ### PowerShell Tools
@@ -382,7 +383,7 @@
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.272
+- AWSPowershell: 5.0.282
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.39.0
