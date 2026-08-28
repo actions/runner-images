@@ -328,9 +328,10 @@ Describe "Containers" {
         "podman network rm test-net" | Should -ReturnZeroExitCode
     }
 
-    # https://github.com/actions/runner-images/issues/14473
-    It "podman uses the crun shipped with the podman bundle" -Skip:(Test-IsUbuntu26) {
-        "podman info --format '{{.Host.OCIRuntime.Path}}'" | Should -OutputTextMatchingRegex "/usr/local/bin/crun"
+    # https://github.com/actions/runner-images/issues/14611
+    It "podman is installed from the Ubuntu package" {
+        (Get-Command podman).Source | Should -Be "/usr/bin/podman"
+        "dpkg-query --show podman" | Should -ReturnZeroExitCode
     }
 
     # https://github.com/actions/runner-images/issues/14406
