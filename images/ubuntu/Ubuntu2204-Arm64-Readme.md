@@ -6,7 +6,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1064-azure
-- Image Version: 20260817.99.1
+- Image Version: 20260823.107.1
 - Systemd version: 249.11-0ubuntu3.22
 
 ## Installed Software
@@ -57,8 +57,8 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.7.0
-- Lerna 10.0.0
+- Gradle 9.7.1
+- Lerna 10.0.1
 - Maven 3.9.12
 
 ### Tools
@@ -81,39 +81,39 @@ to accomplish this.
 - Haveged 1.9.14
 - jq 1.6
 - Kind 0.32.0
-- Kubectl 1.36.3
+- Kubectl 1.36.4
 - Kustomize 5.8.1
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.38.1
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.6
+- nvm 0.40.7
 - OpenSSL 3.0.2-0ubuntu1.26
 - Packer 1.16.0
 - Parcel 2.16.4
 - Podman 5.8.4
-- Pulumi 3.258.0
+- Pulumi 3.259.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.15.8
+- Terraform 1.15.9
 - yamllint 1.38.0
-- yq 4.53.3
+- yq 4.53.6
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.24
+- AWS CLI 2.36.29
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.165.0
 - Azure CLI 2.89.1
 - Azure CLI (azure-devops) 1.0.6
-- GitHub CLI 2.97.0
-- Google Cloud CLI 580.0.0
-- Netlify CLI 27.1.1
-- OpenShift CLI 4.22.9
-- Vercel CLI 59.1.4
+- GitHub CLI 2.98.0
+- Google Cloud CLI 581.0.0
+- Netlify CLI 27.1.2
+- OpenShift CLI 4.22.10
+- Vercel CLI 59.5.0
 
 ### Java
 | Version             | Environment Variable |
@@ -121,8 +121,8 @@ to accomplish this.
 | 8.0.502+7           | JAVA_HOME_8_X64      |
 | 11.0.32+9 (default) | JAVA_HOME_11_X64     |
 | 17.0.20+8           | JAVA_HOME_17_X64     |
-| 21.0.12+8           | JAVA_HOME_21_X64     |
-| 25.0.4+7            | JAVA_HOME_25_X64     |
+| 21.0.12+1           | JAVA_HOME_21_X64     |
+| 25.0.4+1            | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.1.2
@@ -133,22 +133,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.97.1
-- Rust 1.97.1
-- Rustdoc 1.97.1
+- Cargo 1.98.0
+- Rust 1.98.0
+- Rustdoc 1.98.0
 - Rustup 1.29.0
 
 #### Packages
 - Bindgen 0.72.1
 - Cargo audit 0.22.2
-- Cargo clippy 0.1.97
+- Cargo clippy 0.1.98
 - Cargo outdated 0.19.0
 - Cbindgen 0.29.4
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
 - Selenium server 4.47.0
-- Mozilla Firefox 153.0.4
+- Mozilla Firefox 154.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -165,6 +165,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Databases
 - sqlite3 3.37.2
+
+#### PostgreSQL
+- PostgreSQL 14.24
+```
+User: postgres
+PostgreSQL service is disabled by default.
+Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
+```
 
 #### MySQL
 - MySQL 8.0.46-0ubuntu0.22.04.3
@@ -203,9 +211,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.9-2build6                       |
 | bzip2                  | 1.0.8-5build1                       |
 | coreutils              | 8.32-4.1ubuntu1.3                   |
-| curl                   | 7.81.0-1ubuntu1.25                  |
+| curl                   | 7.81.0-1ubuntu1.26                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
-| dnsutils               | 1:9.18.39-0ubuntu0.22.04.4          |
+| dnsutils               | 1:9.18.39-0ubuntu0.22.04.5          |
 | dpkg                   | 1.21.1ubuntu2.6                     |
 | dpkg-dev               | 1.21.1ubuntu2.6                     |
 | fakeroot               | 1.28-1ubuntu1                       |
@@ -225,7 +233,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.14                    |
-| libcurl4               | 7.81.0-1ubuntu1.25                  |
+| libcurl4               | 7.81.0-1ubuntu1.26                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.4          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
@@ -280,7 +288,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | tzdata                 | 2026c-0ubuntu0.22.04.1              |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
-| wget                   | 1.21.2-2ubuntu1.4                   |
+| wget                   | 1.21.2-2ubuntu1.5                   |
 | xorriso                | 1.5.4-2                             |
 | xvfb                   | 2:21.1.4-2ubuntu1.7\~22.04.16       |
 | xz-utils               | 5.2.5-2ubuntu1.1                    |
