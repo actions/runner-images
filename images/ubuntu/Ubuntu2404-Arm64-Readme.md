@@ -6,7 +6,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
 - Kernel Version: 6.17.0-1022-azure
-- Image Version: 20260817.96.1
+- Image Version: 20260823.101.1
 - Systemd version: 255.4-1ubuntu8.17
 
 ## Installed Software
@@ -54,8 +54,8 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.7.0
-- Lerna 10.0.0
+- Gradle 9.7.1
+- Lerna 10.0.1
 - Maven 3.9.12
 
 ### Tools
@@ -77,34 +77,34 @@ to accomplish this.
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.32.0
-- Kubectl 1.36.3
+- Kubectl 1.36.4
 - Kustomize 5.8.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.38.1
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.6
+- nvm 0.40.7
 - OpenSSL 3.0.13-0ubuntu3.12
 - Packer 1.16.0
 - Parcel 2.16.4
 - Podman 5.8.4
-- Pulumi 3.258.0
+- Pulumi 3.259.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
-- yq 4.53.3
+- yq 4.53.6
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.24
+- AWS CLI 2.36.29
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.165.0
 - Azure CLI 2.89.1
 - Azure CLI (azure-devops) 1.0.6
-- GitHub CLI 2.97.0
-- Google Cloud CLI 580.0.0
+- GitHub CLI 2.98.0
+- Google Cloud CLI 581.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -112,8 +112,8 @@ to accomplish this.
 | 8.0.502+7           | JAVA_HOME_8_X64      |
 | 11.0.32+9           | JAVA_HOME_11_X64     |
 | 17.0.20+8 (default) | JAVA_HOME_17_X64     |
-| 21.0.12+8           | JAVA_HOME_21_X64     |
-| 25.0.4+7            | JAVA_HOME_25_X64     |
+| 21.0.12+1           | JAVA_HOME_21_X64     |
+| 25.0.4+1            | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
@@ -124,9 +124,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.97.1
-- Rust 1.97.1
-- Rustdoc 1.97.1
+- Cargo 1.98.0
+- Rust 1.98.0
+- Rustdoc 1.98.0
 - Rustup 1.29.0
 
 #### Packages
@@ -134,7 +134,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Browsers and Drivers
 - Selenium server 4.47.0
-- Mozilla Firefox 153.0.4
+- Mozilla Firefox 154.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -151,6 +151,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### Databases
 - sqlite3 3.45.1
+
+#### PostgreSQL
+- PostgreSQL 16.15
+```
+User: postgres
+PostgreSQL service is disabled by default.
+Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
+```
 
 #### MySQL
 - MySQL 8.0.46-0ubuntu0.24.04.3
@@ -188,9 +196,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.1.0-2build2                |
 | bzip2                  | 1.0.8-5.1build0.1            |
 | coreutils              | 9.4-3ubuntu6.2               |
-| curl                   | 8.5.0-2ubuntu10.11           |
+| curl                   | 8.5.0-2ubuntu10.12           |
 | dbus                   | 1.14.10-4ubuntu4.1           |
-| dnsutils               | 1:9.18.39-0ubuntu0.24.04.5   |
+| dnsutils               | 1:9.18.39-0ubuntu0.24.04.6   |
 | dpkg                   | 1.22.6ubuntu6.6              |
 | dpkg-dev               | 1.22.6ubuntu6.6              |
 | fakeroot               | 1.33-1                       |
@@ -249,7 +257,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | tzdata                 | 2026c-0ubuntu0.24.04.1       |
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
-| wget                   | 1.21.4-1ubuntu4.4            |
+| wget                   | 1.21.4-1ubuntu4.5            |
 | xvfb                   | 2:21.1.12-1ubuntu1.6         |
 | xz-utils               | 5.6.1+really5.4.5-1ubuntu0.3 |
 | zip                    | 3.0-13ubuntu0.2              |
