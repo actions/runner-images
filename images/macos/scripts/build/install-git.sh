@@ -17,13 +17,10 @@ if is_Arm64; then
     brew_smart_install "git-lfs"
 else
     # For the Intel images git-lfs stopped to work, using pinned commit
-    echo "Installing pinned git-lfs formulae..."
     COMMIT=70cbd7e455267402af156a5b733a774b15ef9949
-    FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/g/git-lfs.rb"
-    FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/g/git-lfs.rb"
-    mkdir -p "$(dirname $FORMULA_PATH)"
-    curl -fsSL $FORMULA_URL -o $FORMULA_PATH
-    HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install git-lfs
+    FILE_NAME="g/git-lfs.rb"
+    FORMULA_NAME="git-lfs"
+    brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
 fi
 
 # Update global git config

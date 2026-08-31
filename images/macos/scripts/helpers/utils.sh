@@ -134,6 +134,22 @@ brew_smart_install() {
     fi
 }
 
+brew_install_pinned_formula() {
+    local formula_name=$1
+    local formula_file=$2
+    local commit_hash=$3
+
+    echo "Installing pinned formula: $formula_name"
+
+    local FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$commit_hash/Formula/$formula_file"
+    local FORMULA_PATH
+    FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/$formula_file"
+    mkdir -p "$(dirname "$FORMULA_PATH")"
+    curl -fsSL "$FORMULA_URL" -o "$FORMULA_PATH"
+
+    HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install "$formula_name"
+}
+
 configure_system_tccdb () {
     local values=$1
     local dbPath="/Library/Application Support/com.apple.TCC/TCC.db"
