@@ -11,7 +11,8 @@ suite_has_azure_cli() {
     local url="$AZURE_CLI_REPO_URL/dists/$suite/main/binary-$(dpkg --print-architecture)/Packages"
     local packages
 
-    packages=$(curl -fsL "$url") || return 1
+    # Without a retry a transient failure here would silently downgrade the image to the fallback suite
+    packages=$(curl -fsL --retry 3 "$url") || return 1
     grep -q '^Package: azure-cli$' <<< "$packages"
 }
 
