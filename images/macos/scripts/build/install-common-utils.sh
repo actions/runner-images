@@ -50,6 +50,13 @@ for package in $common_packages; do
             brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
             ;;
 
+        swiftformat)
+            COMMIT=cb845e90e905cb254daaf82a721ac972c3307b03
+            FILE_NAME="s/swiftformat.rb"
+            FORMULA_NAME="swiftformat"
+            brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+            ;;
+
         # Default behaviour for all other packages
         *)
             brew_smart_install "$package"
