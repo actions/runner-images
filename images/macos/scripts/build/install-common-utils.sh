@@ -42,6 +42,14 @@ for package in $common_packages; do
             fi
             ;;
 
+        gnu-tar)
+            # For the Intel images gnu-tar stopped to work, using pinned commit
+            COMMIT=f80d41dc9db047924348b69d03f398e9e8b19598
+            FILE_NAME="g/gnu-tar.rb"
+            FORMULA_NAME="gnu-tar"
+            brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+            ;;
+
         # Default behaviour for all other packages
         *)
             brew_smart_install "$package"
