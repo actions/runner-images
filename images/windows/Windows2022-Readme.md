@@ -1,10 +1,12 @@
 | Announcements |
 |-|
-| [[Windows] Windows 11 Arm64 with Visual Studio 2026 is now generally available](https://github.com/actions/runner-images/issues/14592) |
+| [[Windows] The `windows-11-arm` image label will use Windows 11 Arm64 with Visual Studio 2026 image in September 2026](https://github.com/actions/runner-images/issues/14602) |
+| [[Windows] The Windows 11 Arm64 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14592) |
+| [[Windows] Windows 11 Arm with Visual Studio 2026 is now available as a public preview](https://github.com/actions/runner-images/issues/14225) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 5499
-- Image Version: 20260818.277.1
+- Image Version: 20260824.284.2
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -12,7 +14,7 @@
 ## Installed Software
 
 ### Language and Runtime
-- Bash 5.3.15(1)-release
+- Bash 5.3.15(2)-release
 - Go 1.24.13
 - Julia 1.12.0
 - Kotlin 2.4.10
@@ -24,7 +26,7 @@
 - Ruby 3.3.12
 
 ### Package Management
-- Chocolatey 2.7.3
+- Chocolatey 2.7.4
 - Composer 2.10.2
 - Helm 4.1.4
 - Miniconda 26.5.3 (pre-installed on the image but not added to PATH)
@@ -33,7 +35,7 @@
 - pip 26.2.1 (python 3.12)
 - Pipx 1.16.7
 - RubyGems 3.5.22
-- Vcpkg (build from commit f007e903c4)
+- Vcpkg (build from commit f74a2eade1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,13 +64,13 @@
 - Docker Compose 2.40.3
 - Docker-wincred 0.9.8
 - ghc 9.14.1
-- Git 2.55.0.windows.4
+- Git 2.55.0.windows.5
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.32.0
-- Kubectl 1.36.3
+- Kubectl 1.36.4
 - Mercurial 6.3.1
 - gcc 14.2.0
 - gdb 16.2
@@ -77,7 +79,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.3
 - Packer 1.16.0
-- Pulumi 3.258.0
+- Pulumi 3.259.0
 - R 4.6.1
 - Service Fabric SDK 10.1.2493.9590
 - Stack 3.11.1
@@ -92,17 +94,17 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.4.11
-- AWS CLI 2.36.25
+- AWS CLI 2.36.29
 - AWS SAM CLI 1.165.0
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.89.1
 - Azure DevOps CLI extension 1.0.6
-- GitHub CLI 2.97.0
+- GitHub CLI 2.98.0
 
 ### Rust Tools
-- Cargo 1.97.1
-- Rust 1.97.1
-- Rustdoc 1.97.1
+- Cargo 1.98.0
+- Rust 1.98.0
+- Rustdoc 1.98.0
 - Rustup 1.29.0
 
 #### Packages
@@ -110,14 +112,14 @@
 - cargo-audit 0.22.2
 - cargo-outdated 0.19.0
 - cbindgen 0.29.4
-- Clippy 0.1.97
+- Clippy 0.1.98
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 151.0.7922.170
+- Google Chrome 151.0.7922.174
 - Chrome Driver 151.0.7922.138
 - Microsoft Edge 151.0.4129.72
-- Microsoft Edge Driver 151.0.4129.93
+- Microsoft Edge Driver 151.0.4129.107
 - Mozilla Firefox 154.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
@@ -136,9 +138,9 @@
 | ------------------- | -------------------- |
 | 8.0.502+7 (default) | JAVA_HOME_8_X64      |
 | 11.0.32+9           | JAVA_HOME_11_X64     |
-| 17.0.20+8           | JAVA_HOME_17_X64     |
-| 21.0.12+8.0         | JAVA_HOME_21_X64     |
-| 25.0.4+7.0          | JAVA_HOME_25_X64     |
+| 17.0.20+101         | JAVA_HOME_17_X64     |
+| 21.0.12+101.0       | JAVA_HOME_21_X64     |
+| 25.0.4+101.0        | JAVA_HOME_25_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -161,8 +163,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Go
 - 1.24.13
-- 1.25.13
-- 1.26.6
+- 1.25.14
+- 1.26.7
 
 #### Node.js
 - 22.23.2
@@ -220,7 +222,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.3  | C:\tools\nginx-1.31.3\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.31.4  | C:\tools\nginx-1.31.4\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
@@ -491,7 +493,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.278
+- AWSPowershell: 5.0.282
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.39.0
