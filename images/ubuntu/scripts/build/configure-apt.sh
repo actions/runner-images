@@ -14,11 +14,11 @@ systemctl stop apt-daily-upgrade.timer
 systemctl disable apt-daily-upgrade.timer
 systemctl disable apt-daily-upgrade.service
 
-# Bound apt's acquire behaviour so a stalled mirror fails over in seconds instead of minutes.
+# Bound apt's acquire behavior so a stalled mirror fails over in seconds instead of minutes.
 # apt reads Acquire::Retries (default 3), not APT::Acquire::Retries, and spends every retry on the
 # same URI before trying the next mirror in /etc/apt/apt-mirrors.txt, so a high count delays failover.
-# arm64 sources come from ports.ubuntu.com, which the mirror list does not cover, so there retries are
-# the only failover apt has and the count stays at apt's default.
+# arm64 sources come from ports.ubuntu.com, which the mirror list does not cover, leaving retries as
+# the only failover apt has, so the count stays at apt's default.
 # https://github.com/actions/runner-images/issues/14594
 if is_arm64; then
     apt_retries=3
