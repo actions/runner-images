@@ -99,7 +99,7 @@ brew_smart_install() {
 
     failed=true
     for i in {1..10}; do
-        brew deps $tool_name > /tmp/$tool_name && failed=false || sleep 60
+        brew deps --missing $tool_name > /tmp/$tool_name && failed=false || sleep 60
         [ "$failed" = false ] && break
     done
 
