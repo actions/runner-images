@@ -99,7 +99,7 @@ brew_smart_install() {
 
     failed=true
     for i in {1..10}; do
-        brew deps --missing $tool_name > /tmp/$tool_name && failed=false || sleep 60
+        brew deps $tool_name > /tmp/$tool_name && failed=false || sleep 60
         [ "$failed" = false ] && break
     done
 
@@ -148,6 +148,7 @@ brew_install_pinned_formula() {
     curl -fsSL "$FORMULA_URL" -o "$FORMULA_PATH"
 
     HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install "$formula_name"
+    brew pin "$formula_name"
 }
 
 configure_system_tccdb () {
