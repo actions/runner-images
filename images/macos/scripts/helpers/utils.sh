@@ -124,7 +124,7 @@ brew_smart_install() {
 
     failed=true
     for i in {1..10}; do
-        brew install $tool_name && failed=false || sleep 60
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install $tool_name && failed=false || sleep 60
         [ "$failed" = false ] && break
     done
 
