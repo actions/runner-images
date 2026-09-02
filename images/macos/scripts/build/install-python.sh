@@ -11,7 +11,7 @@ echo "Installing Python Tooling"
 # Close Finder window
 close_finder_window
 
-if ! is_SonomaArm64; then
+if is_SonomaX64; then
     # For the MacOS 14 Intel python dependency expat stopped to work, using pinned commit
     COMMIT=808c33c0f058f5898ef0556a343a5599f801f942
     FILE_NAME="e/expat.rb"
