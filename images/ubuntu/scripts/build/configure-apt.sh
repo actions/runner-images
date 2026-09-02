@@ -67,6 +67,9 @@ else
     cat /etc/apt/sources.list.d/ubuntu.sources
 fi
 
+echo 'APT mirrors'
+cat /etc/apt/apt-mirrors.txt
+
 apt-get update
 apt-get upgrade -y
 # Install jq
