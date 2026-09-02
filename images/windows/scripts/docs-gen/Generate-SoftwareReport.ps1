@@ -169,22 +169,18 @@ $browsersAndWebdrivers.AddHeader("Environment variables").AddTable($(Build-Brows
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
 
 # Shells
-if (Test-IsX64) {
-    $installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
-}
+$installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
 
 # MSYS2
-if (Test-IsX64) {
-    $msys2 = $installedSoftware.AddHeader("MSYS2")
-    $msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
+$msys2 = $installedSoftware.AddHeader("MSYS2")
+$msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
 
-    $notes = @'
+$notes = @'
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 '@
-    $msys2.AddHeader("Notes").AddNote($notes)
-}
+$msys2.AddHeader("Notes").AddNote($notes)
 
 # Cached Tools
 $installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection))
@@ -252,6 +248,14 @@ if (Test-IsX64) {
 # Cached Docker images
 if (Test-IsWin22-X64) {
     $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
+}
+
+# Notes (Windows 11 Arm64 only): Defender can't be disabled here, Tamper Protection blocks it. See issue #14326
+if (Test-IsWin11-Arm64) {
+    $defenderNote = @'
+Microsoft Defender is not disabled on this image. Tamper Protection is enabled by default on Windows 11 and prevents the image build from disabling it. See https://github.com/actions/runner-images/issues/14326 for details.
+'@
+    $softwareReport.Root.AddHeader("Notes").AddNote($defenderNote)
 }
 
 # Generate reports
