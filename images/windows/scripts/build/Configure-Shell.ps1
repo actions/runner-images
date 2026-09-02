@@ -2,17 +2,17 @@
 $shellPath = "C:\shells"
 New-Item -Path $shellPath -ItemType Directory | Out-Null
 
-if (Test-IsX64) {
-    # add a wrapper for C:\msys64\usr\bin\bash.exe
-@'
+# add a wrapper for C:\msys64\usr\bin\bash.exe
+# arm64 images use the CLANGARM64 environment, x64 images MINGW64
+$msystem = if (Test-IsArm64) { "CLANGARM64" } else { "MINGW64" }
+@"
 @echo off
 setlocal
 IF NOT DEFINED MSYS2_PATH_TYPE set MSYS2_PATH_TYPE=strict
-IF NOT DEFINED MSYSTEM set MSYSTEM=mingw64
+IF NOT DEFINED MSYSTEM set MSYSTEM=$msystem
 set CHERE_INVOKING=1
 C:\msys64\usr\bin\bash.exe -leo pipefail %*
-'@ | Out-File -FilePath "$shellPath\msys2bash.cmd" -Encoding ascii
-}
+"@ | Out-File -FilePath "$shellPath\msys2bash.cmd" -Encoding ascii
 
 # gitbash <--> C:\Program Files\Git\bin\bash.exe
 New-Item -ItemType SymbolicLink -Path "$shellPath\gitbash.exe" -Target "$env:ProgramFiles\Git\bin\bash.exe" | Out-Null
