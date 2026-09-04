@@ -9,14 +9,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  docker_arch="amd64"
-elif is_arm64; then
-  docker_arch="arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+docker_arch=$(select_by_arch "amd64" "arm64")
 
 REPO_URL="https://download.docker.com/linux/ubuntu"
 GPG_KEY="/usr/share/keyrings/docker.gpg"

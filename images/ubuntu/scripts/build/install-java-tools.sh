@@ -9,14 +9,7 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  java_arch="amd64"
-elif is_arm64; then
-  java_arch="arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+java_arch=$(select_by_arch "amd64" "arm64")
 
 create_java_environment_variable() {
     local java_version=$1
