@@ -290,6 +290,7 @@ build {
   }
 
   provisioner "shell" {
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline = ["rm -rf \"$(brew --cache)\""]
   }
 
