@@ -42,6 +42,29 @@ for package in $common_packages; do
             fi
             ;;
 
+        gnu-tar)
+            if ! is_Arm64; then
+                # For the Intel images gnu-tar stopped to work, using pinned commit
+                COMMIT=f80d41dc9db047924348b69d03f398e9e8b19598
+                FILE_NAME="g/gnu-tar.rb"
+                FORMULA_NAME="gnu-tar"
+                brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+            else
+                brew_smart_install "$package"
+            fi
+            ;;
+
+        swiftformat)
+            if ! is_Arm64; then
+                COMMIT=cb845e90e905cb254daaf82a721ac972c3307b03
+                FILE_NAME="s/swiftformat.rb"
+                FORMULA_NAME="swiftformat"
+                brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+            else
+                brew_smart_install "$package"
+            fi
+            ;;
+
         # Default behaviour for all other packages
         *)
             brew_smart_install "$package"
