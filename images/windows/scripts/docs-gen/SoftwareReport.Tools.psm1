@@ -252,9 +252,16 @@ function Get-StackVersion {
     return $stackVersion
 }
 
-function Get-ServiceFabricSDKVersion {
-    $serviceFabricSDKVersion = Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion
-    return $serviceFabricSDKVersion
+function Get-ServiceFabricVersions {
+    [pscustomobject]@{
+        RuntimeVersion = Get-ItemPropertyValue `
+            -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Service Fabric' `
+            -Name 'FabricVersion'
+
+        SDKVersion = Get-ItemPropertyValue `
+            -LiteralPath 'HKLM:\SOFTWARE\Microsoft\Service Fabric SDK' `
+            -Name 'FabricSDKVersion'
+    }
 }
 
 function Get-NewmanVersion {
