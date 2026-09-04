@@ -14,8 +14,17 @@ source $HELPER_SCRIPTS/os.sh
 # systemctl disable apt-daily-upgrade.timer
 # systemctl disable apt-daily-upgrade.service
 
-# Enable retry logic for apt up to 10 times
-echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries
+# Bound apt's acquire behavior so a stalled mirror fails over in seconds instead of minutes.
+# apt reads Acquire::Retries (default 3), not APT::Acquire::Retries, and spends every retry on the
+# same URI before trying the next mirror in /etc/apt/apt-mirrors.txt, so a high count delays failover.
+# https://github.com/actions/runner-images/issues/14594
+cat <<EOF > /etc/apt/apt.conf.d/80-retries
+Acquire::Retries "1";
+Acquire::http::Timeout "15";
+Acquire::https::Timeout "15";
+EOF
+
+echo 'Acquire::IndexTargets::deb::DEP-11::DefaultEnabled "false";' > /etc/apt/apt.conf.d/90-index-targets
 
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
@@ -42,6 +51,9 @@ if ! is_ubuntu24; then
 else
     cat /etc/apt/sources.list.d/ubuntu.sources
 fi
+
+echo 'APT mirrors'
+cat /etc/apt/apt-mirrors.txt
 
 apt-get update
 

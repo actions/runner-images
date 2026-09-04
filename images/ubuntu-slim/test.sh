@@ -99,3 +99,11 @@ run_test "docker buildx is installed" docker buildx version
 
 # Quick check: ensure the imagedata JSON file was created during image build
 run_test "imagedata JSON file exists" test -f /imagegeneration/imagedata.json
+
+# Assert the effective apt acquire bounds, since a setting written under a key apt does not read is
+# silently ignored: https://github.com/actions/runner-images/issues/14594
+run_test "apt acquire retries are bounded" bash -c 'apt-config dump Acquire::Retries | grep -Fxq "Acquire::Retries \"1\";"'
+run_test "apt http timeout is bounded" bash -c 'apt-config dump Acquire::http::Timeout | grep -Fxq "Acquire::http::Timeout \"15\";"'
+run_test "apt https timeout is bounded" bash -c 'apt-config dump Acquire::https::Timeout | grep -Fxq "Acquire::https::Timeout \"15\";"'
+run_test "apt DEP-11 index target is disabled" bash -c 'apt-config dump Acquire::IndexTargets::deb::DEP-11::DefaultEnabled | grep -Fxq "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled \"false\";"'
+run_test "apt sources resolve through the mirror list" bash -c 'grep -Rq "mirror+file:/etc/apt/apt-mirrors.txt" /etc/apt/'
