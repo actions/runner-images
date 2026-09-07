@@ -252,8 +252,13 @@ function Get-StackVersion {
     return $stackVersion
 }
 
+function Get-ServiceFabricRuntimeVersion {
+    $serviceFabricRuntimeVersion = Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion
+    return $serviceFabricRuntimeVersion
+}
+
 function Get-ServiceFabricSDKVersion {
-    $serviceFabricSDKVersion = Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion
+    $serviceFabricSDKVersion = Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric SDK\' -Name FabricSDKVersion
     return $serviceFabricSDKVersion
 }
 
