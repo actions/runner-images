@@ -34,6 +34,13 @@ echo "Installing jq..."
 brew_smart_install jq
 
 echo "Installing curl..."
+if ! is_Arm64; then
+    # For the Intel images curl dependency openssl@3 stopped to work, using pinned commit
+    COMMIT=ac0bc95fef0e5aed25b3662f6271020410cfbc3d
+    FILE_NAME="o/openssl@3.rb"
+    FORMULA_NAME="openssl@3"
+    brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+fi
 brew_smart_install curl
 
 echo "Installing wget..."
