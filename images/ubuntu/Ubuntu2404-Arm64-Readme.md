@@ -1,12 +1,14 @@
 | Announcements |
 |-|
+| [[Ubuntu] PostgreSQL is now available on the Ubuntu Arm64 images](https://github.com/actions/runner-images/issues/14651) |
+| [[Ubuntu] Podman will be downgraded on Ubuntu 22.04 and 24.04 runner images](https://github.com/actions/runner-images/issues/14642) |
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
 | [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.4 LTS
 - Kernel Version: 6.17.0-1022-azure
-- Image Version: 20260823.101.1
+- Image Version: 20260831.111.1
 - Systemd version: 255.4-1ubuntu8.17
 
 ## Installed Software
@@ -29,7 +31,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.21.4
-- Homebrew 6.0.18
+- Homebrew 6.0.20
 - Npm 10.9.8
 - Pip 24.0
 - Pip3 24.0
@@ -72,12 +74,12 @@ to accomplish this.
 - Docker Server 28.0.4
 - Fastlane 2.238.0
 - Git 2.55.0
-- Git LFS 3.7.1
+- Git LFS 3.8.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
 - jq 1.7
-- Kind 0.32.0
-- Kubectl 1.36.4
+- Kind 0.33.0
+- Kubectl 1.37.0
 - Kustomize 5.8.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
@@ -85,11 +87,11 @@ to accomplish this.
 - n 10.2.0
 - Newman 6.2.2
 - nvm 0.40.7
-- OpenSSL 3.0.13-0ubuntu3.12
+- OpenSSL 3.0.13-0ubuntu3.15
 - Packer 1.16.0
 - Parcel 2.16.4
-- Podman 5.8.4
-- Pulumi 3.259.0
+- Podman 4.9.3
+- Pulumi 3.260.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -98,18 +100,18 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.29
+- AWS CLI 2.36.35
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.165.0
 - Azure CLI 2.89.1
-- Azure CLI (azure-devops) 1.0.6
+- Azure CLI (azure-devops) 1.0.7
 - GitHub CLI 2.98.0
-- Google Cloud CLI 581.0.0
+- Google Cloud CLI 582.0.0
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.502+7           | JAVA_HOME_8_X64      |
+| 8.0.504+1           | JAVA_HOME_8_X64      |
 | 11.0.32+9           | JAVA_HOME_11_X64     |
 | 17.0.20+8 (default) | JAVA_HOME_17_X64     |
 | 21.0.12+1           | JAVA_HOME_21_X64     |
@@ -117,7 +119,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.10.2
+- Composer 2.10.3
 - PHPUnit 8.5.54
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -133,8 +135,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Selenium server 4.47.0
-- Mozilla Firefox 154.0
+- Selenium server 4.48.0
+- Mozilla Firefox 154.0.1
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -147,7 +149,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 
 ### .NET Tools
 - .NET Core SDK: 8.0.130, 8.0.206, 8.0.319, 8.0.424, 9.0.120, 9.0.205, 9.0.317, 10.0.111, 10.0.204, 10.0.303, 10.0.400
-- nbgv 3.10.91+e05abbcae4
+- nbgv 3.10.94+dea9a6c17c
 
 ### Databases
 - sqlite3 3.45.1
@@ -161,13 +163,37 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.46-0ubuntu0.24.04.3
+- MySQL 8.0.46-0ubuntu0.24.04.4
 ```
 User: root
 Password: root
 MySQL service is disabled by default.
 Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
 ```
+
+### Cached Tools
+
+#### Go
+- 1.24.13
+- 1.25.14
+- 1.26.7
+
+#### Node.js
+- 22.23.2
+- 24.20.0
+
+#### Python
+- 3.10.21
+- 3.11.16
+- 3.12.14
+- 3.13.15
+- 3.14.7
+
+#### Ruby
+- 3.2.11
+- 3.3.12
+- 3.4.10
+- 4.0.6
 
 ### PowerShell Tools
 - PowerShell 7.6.5
@@ -194,11 +220,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | binutils               | 2.42-4ubuntu2.10             |
 | bison                  | 2:3.8.2+dfsg-1build2         |
 | brotli                 | 1.1.0-2build2                |
-| bzip2                  | 1.0.8-5.1build0.1            |
-| coreutils              | 9.4-3ubuntu6.2               |
-| curl                   | 8.5.0-2ubuntu10.12           |
+| bzip2                  | 1.0.8-5.1ubuntu0.1           |
+| coreutils              | 9.4-3ubuntu6.3               |
+| curl                   | 8.5.0-2ubuntu10.13           |
 | dbus                   | 1.14.10-4ubuntu4.1           |
-| dnsutils               | 1:9.18.39-0ubuntu0.24.04.6   |
+| dnsutils               | 1:9.18.39-0ubuntu0.24.04.7   |
 | dpkg                   | 1.22.6ubuntu6.6              |
 | dpkg-dev               | 1.22.6ubuntu6.6              |
 | fakeroot               | 1.33-1                       |
@@ -218,7 +244,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libicu-dev             | 74.2-1ubuntu3.1              |
 | libnss3-tools          | 2:3.98-1ubuntu0.2            |
 | libsqlite3-dev         | 3.45.1-1ubuntu2.7            |
-| libssl-dev             | 3.0.13-0ubuntu3.12           |
+| libssl-dev             | 3.0.13-0ubuntu3.15           |
 | libtool                | 2.4.7-7build1                |
 | libyaml-dev            | 0.2.5-1build1                |
 | locales                | 2.39-0ubuntu8.8              |
