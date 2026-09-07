@@ -27,7 +27,7 @@ for package in $common_packages; do
             ;;
 
         xcodes)
-            if is_SequoiaArm64 || is_TahoeArm64; then
+            if is_SequoiaArm64 || is_TahoeArm64 || is_GoldenGate; then
                 # xcodes formulae still works on MacOS 15 ARM and 26 ARM
                 brew_smart_install "$package"
             else

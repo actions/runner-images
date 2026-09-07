@@ -45,6 +45,14 @@ is_Arm64() {
     [ "$(arch)" = "arm64" ]
 }
 
+is_GoldenGate() {
+    [ "$OSTYPE" = "darwin26" ]
+}
+
+is_GoldenGateArm64() {
+    is_GoldenGate && is_Arm64
+}
+
 is_Tahoe() {
     [ "$OSTYPE" = "darwin25" ]
 }
