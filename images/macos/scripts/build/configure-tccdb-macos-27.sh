@@ -1,6 +1,6 @@
 #!/bin/bash -e -o pipefail
 ################################################################################
-##  File:  configure-tccdb-macos.sh
+##  File:  configure-tccdb-macos-27.sh
 ##  Desc:  Configure permissions in the TCC databases
 ################################################################################
 
