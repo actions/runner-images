@@ -33,8 +33,11 @@ for key in ${!windowslist[@]}; do
         echo "[Warning] ${windowslist[$key]}"
     else
         echo " - ${windowslist[$key]}" | xargs
-        # Disabled only for testing xcode-27 with MacOS 27!
-        # scripterror=true
+
+        # Disabled error exit for MacOS 27 - still in preview
+        if ! is_GoldenGate; then
+            scripterror=true
+        fi
     fi
 done
 

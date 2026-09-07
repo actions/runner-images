@@ -165,23 +165,11 @@ configure_system_tccdb () {
     sudo sqlite3 "$dbPath" "$sqlQuery"
 }
 
-print_system_tccdb_structure () {
-    local dbPath="/Library/Application Support/com.apple.TCC/TCC.db"
-    local sqlQuery="SELECT cid + 1 AS position, name AS column_name FROM pragma_table_info('access') ORDER BY cid;"
-    sudo sqlite3 -header -column "$dbPath" "$sqlQuery"
-}
-
 configure_user_tccdb () {
     local values=$1
     local dbPath="$HOME/Library/Application Support/com.apple.TCC/TCC.db"
     local sqlQuery="INSERT OR IGNORE INTO access VALUES($values);"
     sqlite3 "$dbPath" "$sqlQuery"
-}
-
-print_user_tccdb_structure () {
-    local dbPath="$HOME/Library/Application Support/com.apple.TCC/TCC.db"
-    local sqlQuery="SELECT cid + 1 AS position, name AS column_name FROM pragma_table_info('access') ORDER BY cid;"
-    sqlite3 -header -column "$dbPath" "$sqlQuery"
 }
 
 resolve_github_release_asset_url() {

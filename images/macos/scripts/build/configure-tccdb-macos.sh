@@ -6,10 +6,6 @@
 
 source ~/utils/utils.sh
 
-print_system_tccdb_structure
-
-print_user_tccdb_structure
-
 # /Library/Application\ Support/com.apple.TCC/TCC.db
 systemValuesArray=(
     "'kTCCServiceAccessibility','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
