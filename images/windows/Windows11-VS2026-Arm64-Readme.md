@@ -2,11 +2,10 @@
 |-|
 | [[Windows] The `windows-11-arm` image label will use Windows 11 Arm64 with Visual Studio 2026 image in September 2026](https://github.com/actions/runner-images/issues/14602) |
 | [[Windows] The Windows 11 Arm64 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14592) |
-| [[Windows] Windows 11 Arm with Visual Studio 2026 is now available as a public preview](https://github.com/actions/runner-images/issues/14225) |
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9168
-- Image Version: 20260823.138.1
+- Image Version: 20260830.144.1
 
 ## Windows features
 
@@ -18,22 +17,22 @@
 - Julia 1.12.0
 - Kotlin 2.4.10
 - LLVM 20.1.6
-- Node 24.19.0
+- Node 24.20.0
 - Perl 5.32.1
-- PHP 8.4.24
+- PHP 8.4.25
 - Python 3.13.15
 - Ruby 3.4.10
 
 ### Package Management
 - Chocolatey 2.7.4
-- Composer 2.10.2
+- Composer 2.10.3
 - Helm 4.1.4
-- NPM 11.17.0
+- NPM 11.19.0
 - NuGet 7.9.0.83
 - pip 26.2.1 (python 3.13)
-- Pipx 1.16.7
+- Pipx 1.17.1
 - RubyGems 3.6.9
-- Vcpkg (build from commit 127402f1c7)
+- Vcpkg (build from commit 194964eec5)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,24 +53,24 @@
 - Bazel 9.2.0
 - Bazelisk 1.28.1
 - Bicep 0.46.1
-- CMake 4.4.2
-- CodeQL Action Bundle 2.26.3
+- CMake 4.4.3
+- CodeQL Action Bundle 2.26.4
 - Git 2.55.0.windows.5
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.1
-- Kind 0.32.0
-- Kubectl 1.36.4
+- Kind 0.33.0
+- Kubectl 1.37.0
 - Mercurial 6.3.1
 - gcc 14.2.0
 - gdb 16.2
 - GNU Binutils 2.44
 - Newman 6.2.2
 - NSIS 3.10
-- OpenSSL 3.6.3
+- OpenSSL 3.6.4
 - Packer 1.16.0
-- Pulumi 3.259.0
+- Pulumi 3.260.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -83,11 +82,11 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.4.11
-- AWS CLI 2.36.29
+- AWS CLI 2.36.34
 - AWS SAM CLI 1.165.0
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.89.1
-- Azure DevOps CLI extension 1.0.6
+- Azure DevOps CLI extension 1.0.7
 - GitHub CLI 2.98.0
 
 ### Rust Tools
@@ -105,14 +104,14 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 151.0.7922.174
-- Chrome Driver 151.0.7922.138
-- Microsoft Edge 151.0.4129.101
-- Microsoft Edge Driver 151.0.4129.101
-- Mozilla Firefox 154.0
+- Google Chrome 152.0.7977.65
+- Chrome Driver 152.0.7977.64
+- Microsoft Edge 152.0.4191.53
+- Microsoft Edge Driver 152.0.4191.53
+- Mozilla Firefox 154.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.47.0
+- Selenium server 4.48.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -123,10 +122,10 @@
 | SELENIUM_JAR_PATH | C:\selenium\selenium-server.jar    |
 
 ### Java
-| Version               | Environment Variable |
-| --------------------- | -------------------- |
-| 21.0.12+8.0 (default) | JAVA_HOME_21_AARCH64 |
-| 23.0.2+7              | JAVA_HOME_23_AARCH64 |
+| Version                 | Environment Variable |
+| ----------------------- | -------------------- |
+| 21.0.12+101.0 (default) | JAVA_HOME_21_AARCH64 |
+| 23.0.2+7                | JAVA_HOME_23_AARCH64 |
 
 ### Cached Tools
 
@@ -137,7 +136,7 @@
 
 #### Node.js
 - 22.23.2
-- 24.19.0
+- 24.20.0
 
 #### Python
 - 3.12.10
@@ -163,7 +162,7 @@
 ### Visual Studio Enterprise 2026
 | Name                          | Version        | Path                                                   |
 | ----------------------------- | -------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.9.12112.369 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Visual Studio Enterprise 2026 | 18.9.12120.119 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -368,14 +367,14 @@
 - Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.30, 9.0.6, 9.0.19, 10.0.8, 10.0.11
 - Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.30, 9.0.6, 9.0.19, 10.0.8, 10.0.11
 - Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.30, 9.0.6, 9.0.19, 10.0.8, 10.0.11
-- nbgv 3.10.91+e05abbcae4
+- nbgv 3.10.94+dea9a6c17c
 
 ### PowerShell Tools
 - PowerShell 7.6.4
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.282
+- AWSPowershell: 5.0.287
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.39.0
