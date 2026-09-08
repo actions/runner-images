@@ -8,7 +8,7 @@
 # Ubuntu 26.04
 - OS Version: 26.04.1 LTS
 - Kernel Version: 7.0.0-1012-azure
-- Image Version: 20260831.111.1
+- Image Version: 20260907.118.1
 - Systemd version: 259.5-0ubuntu3.4
 
 ## Installed Software
@@ -21,7 +21,7 @@
 - Dash 0.5.12-12ubuntu3
 - GNU C++: 13.4.0, 14.3.0, 15.2.0
 - GNU Fortran: 13.4.0, 14.3.0, 15.2.0
-- Kotlin 2.4.10-release-377
+- Kotlin 2.4.20
 - Node.js 24.20.0
 - Perl 5.40.1
 - Python 3.14.4
@@ -30,13 +30,13 @@
 ### Package Management
 - cpan 1.64
 - Helm 4.2.4
-- Homebrew 6.0.20
+- Homebrew 6.0.22
 - Npm 11.19.0
 - Pip 25.1.1
 - Pip3 25.1.1
-- Pipx 1.17.1
+- Pipx 1.17.2
 - RubyGems 3.6.7
-- Vcpkg (build from commit 30ef65cad9)
+- Vcpkg (build from commit 04a9d8e521)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -67,7 +67,7 @@ to accomplish this.
 - CMake 4.4.3
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 5.1.3
-- Docker-Buildx 0.36.1
+- Docker-Buildx 0.37.0
 - Docker Client 29.4.2
 - Docker Server 29.4.2
 - Git 2.55.0
@@ -77,7 +77,7 @@ to accomplish this.
 - Kind 0.33.0
 - Kubectl 1.37.0
 - Kustomize 5.8.1
-- Minikube 1.38.1
+- Minikube 1.39.0
 - n 10.2.0
 - nvm 0.40.7
 - OpenSSL 3.5.5-1ubuntu3.5
@@ -90,19 +90,19 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.35
+- AWS CLI 2.36.40
 - AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.165.0
-- Azure CLI 2.89.1
-- Azure CLI (azure-devops) 1.0.7
-- GitHub CLI 2.98.0
-- Google Cloud CLI 582.0.0
+- AWS SAM CLI 1.166.1
+- Azure CLI 2.90.0
+- Azure CLI (azure-devops) 1.0.8
+- GitHub CLI 2.100.0
+- Google Cloud CLI 583.0.0
 
 ### Java
 | Version            | Environment Variable |
 | ------------------ | -------------------- |
 | 11.0.32+9          | JAVA_HOME_11_X64     |
-| 17.0.20+8          | JAVA_HOME_17_X64     |
+| 17.0.20+1          | JAVA_HOME_17_X64     |
 | 21.0.12+1          | JAVA_HOME_21_X64     |
 | 25.0.4+1 (default) | JAVA_HOME_25_X64     |
 
@@ -115,17 +115,17 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.98.0
-- Rust 1.98.0
-- Rustdoc 1.98.0
-- Rustup 1.29.0
+- Cargo 1.98.1
+- Rust 1.98.1
+- Rustdoc 1.98.1
+- Rustup 1.29.1
 
 #### Packages
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
 - Selenium server 4.48.0
-- Mozilla Firefox 154.0.1
+- Mozilla Firefox 155.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -165,7 +165,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.7
+- 1.26.8
 
 #### Node.js
 - 22.23.2
@@ -226,7 +226,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ftp                    | 20260211-1                   |
 | g++                    | 4:15.2.0-5ubuntu1            |
 | gcc                    | 4:15.2.0-5ubuntu1            |
-| gnupg2                 | 2.4.8-4ubuntu3               |
+| gnupg2                 | 2.4.8-4ubuntu3.1             |
 | iproute2               | 6.19.0-1ubuntu1.1            |
 | iputils-ping           | 3:20250605-1ubuntu1          |
 | jq                     | 1.8.1-4ubuntu2               |
@@ -243,7 +243,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | make                   | 4.4.1-3                      |
 | net-tools              | 2.10-2ubuntu1                |
 | netcat                 | 1.234-1                      |
-| openssh-client         | 1:10.2p1-2ubuntu3.5          |
+| openssh-client         | 1:10.2p1-2ubuntu3.6          |
 | parallel               | 20240222+ds-3                |
 | patchelf               | 0.18.0-1.4build1             |
 | pigz                   | 2.8-1build1                  |
@@ -254,7 +254,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.4.1+ds1-7ubuntu0.3         |
 | shellcheck             | 0.11.0-2                     |
 | sqlite3                | 3.46.1-9ubuntu0.2            |
-| ssh                    | 1:10.2p1-2ubuntu3.5          |
+| ssh                    | 1:10.2p1-2ubuntu3.6          |
 | sshpass                | 1.10-0.1build1               |
 | sudo                   | 1.9.17p2-1ubuntu3            |
 | swig                   | 4.4.0-1                      |
