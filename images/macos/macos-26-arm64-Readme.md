@@ -7,7 +7,7 @@
 # macOS 26
 - OS Version: macOS 26.6.2 (25G83)
 - Kernel Version: Darwin 25.6.0
-- Image Version: 20260831.0337.3
+- Image Version: 20260907.0351.1
 
 ## Installed Software
 
@@ -29,19 +29,19 @@
 - Ruby 3.4.10
 
 ### Package Management
-- Bundler 4.0.19
+- Bundler 4.0.20
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 6.0.20
+- Homebrew 6.0.22
 - NPM 11.19.0
 - Pip3 26.2.1 (python 3.14)
-- Pipx 1.16.7
-- RubyGems 4.0.19
-- Vcpkg 2026 (build from commit b70085cf11)
+- Pipx 1.17.2
+- RubyGems 4.0.20
+- Vcpkg 2026 (build from commit 04a9d8e521)
 - Yarn 1.22.22
 
 ### Project Management
-- Apache Ant 1.10.17
+- Apache Ant 1.10.18
 - Apache Maven 3.9.16
 - Gradle 9.7.1
 
@@ -55,29 +55,29 @@
 - Curl 8.7.1
 - Git 2.55.0
 - Git LFS 3.8.0
-- GitHub CLI 2.98.0
+- GitHub CLI 2.100.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.5.21
+- gpg (GnuPG) 2.5.22
 - jq 1.8.2
-- OpenSSL 3.6.3 9 Jun 2026 (Library: OpenSSL 3.6.3 9 Jun 2026)
+- OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)
 - Packer 1.16.0
-- pkgconf 3.0.6
+- pkgconf 3.0.7
 - Unxip 3.3
 - yq 4.53.6
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.36.34
-- AWS SAM CLI 1.165.0
+- AWS CLI 2.36.40
+- AWS SAM CLI 1.166.1
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.89.1
-- Azure CLI (azure-devops) 1.0.7
+- Azure CLI 2.90.0
+- Azure CLI (azure-devops) 1.0.8
 - Bicep CLI 0.46.1
 - Cmake 4.4.3
 - CodeQL Action Bundle 2.26.4
-- Fastlane 2.238.0
+- Fastlane 2.239.0
 - SwiftFormat 0.63.0
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 26.6.0.0.1781586589
@@ -86,12 +86,12 @@
 ### Browsers
 - Safari 26.6.2 (21624.5.1.11.3)
 - SafariDriver 26.6.2 (21624.5.1.11.3)
-- Google Chrome 152.0.7977.65
-- Google Chrome for Testing 152.0.7977.64
-- ChromeDriver 152.0.7977.64
-- Microsoft Edge 152.0.4191.53
-- Microsoft Edge WebDriver 152.0.4191.53
-- Mozilla Firefox 154.0.1
+- Google Chrome 152.0.7977.83
+- Google Chrome for Testing 152.0.7977.82
+- ChromeDriver 152.0.7977.82
+- Microsoft Edge 152.0.4191.66
+- Microsoft Edge WebDriver 152.0.4191.62
+- Mozilla Firefox 155.0.1
 - geckodriver 0.37.1
 - Selenium server 4.48.0
 
@@ -131,12 +131,12 @@
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.7
+- 1.26.8
 
 ### Rust Tools
-- Cargo 1.98.0
-- Rust 1.98.0
-- Rustdoc 1.98.0
+- Cargo 1.98.1
+- Rust 1.98.1
+- Rustdoc 1.98.1
 - Rustup 1.29.0
 
 #### Packages
@@ -144,7 +144,7 @@
 - Rustfmt 1.9.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.6.4
+- PowerShell 7.6.5
 
 #### PowerShell Modules
 - Az: 15.6.1
