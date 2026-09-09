@@ -41,7 +41,10 @@ apt-get install "$chrome_deb_path" -f
 set_etc_environment_variable "CHROME_BIN" "/usr/bin/google-chrome"
 
 # Remove Google Chrome repo
-rm -f /etc/cron.daily/google-chrome /etc/apt/sources.list.d/google-chrome.list /etc/apt/sources.list.d/google-chrome.list.save
+rm -f /etc/cron.daily/google-chrome \
+      /etc/apt/sources.list.d/google-chrome.list \
+      /etc/apt/sources.list.d/google-chrome.sources \
+      /etc/apt/sources.list.d/google-chrome.list.save
 
 # Parse Google Chrome version
 full_chrome_version=$(google-chrome --product-version)
