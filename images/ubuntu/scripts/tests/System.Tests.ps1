@@ -45,3 +45,28 @@ Describe "ReadAhead udev rule" -Skip:(Test-IsUbuntu22) {
         }
     }
 }
+
+Describe "Root filesystem performance options" {
+    It "GRUB drop-in sets the root filesystem mount options" {
+        $content = Get-Content "/etc/default/grub.d/99-runner-performance.cfg" -Raw
+        $content | Should -Match "rootflags=nobarrier,data=writeback,journal_async_commit,commit=30"
+    }
+
+    It "Kernel command line contains the root filesystem mount options" {
+        $cmdline = & cat /proc/cmdline
+        $cmdline | Should -Match "rootflags=nobarrier,data=writeback,journal_async_commit,commit=30"
+    }
+
+    It "Root filesystem is mounted with the relaxed durability options" {
+        $mountOptions = (findmnt --noheadings --first-only --output OPTIONS --target /) -split ","
+        $mountOptions | Should -Contain "data=writeback"
+        $mountOptions | Should -Contain "commit=30"
+    }
+}
+
+Describe "Dpkg options" {
+    It "Package unpacking is configured with --force-unsafe-io" {
+        $dpkgOptions = (apt-config dump "Dpkg::Options") -join "`n"
+        $dpkgOptions | Should -Match "--force-unsafe-io"
+    }
+}
