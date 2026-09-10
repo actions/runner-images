@@ -5,7 +5,7 @@
             "versions": [
                 {
                     "link": "27_Release_Candidate",
-                    "filename": "Xcode_Release_Candidate",
+                    "filename": "Xcode_27_Release_Candidate",
                     "version": "27.0+27A266a",
                     "symlinks": ["27.0"],
                     "sha256": "126b0587e75a96e4cb446403a542e55662690930ab67f6cc21254abcd32a08d6",
