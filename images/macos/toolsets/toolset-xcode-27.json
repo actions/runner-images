@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "27",
+        "default": "27_Release_Candidate",
         "arm64": {
             "versions": [
                 {
