@@ -40,8 +40,9 @@ chrome_deb_path=$(download_with_retry "$CHROME_DEB_URL")
 apt-get install "$chrome_deb_path" -f
 set_etc_environment_variable "CHROME_BIN" "/usr/bin/google-chrome"
 
-# Remove Google Chrome repo
-rm -f /etc/cron.daily/google-chrome /etc/apt/sources.list.d/google-chrome.list /etc/apt/sources.list.d/google-chrome.list.save
+# Remove Google Chrome repo. The glob covers the legacy .list and the deb822 .sources layouts.
+# Keep /etc/default/google-chrome: its repo_add_once="false" is what stops the repo coming back.
+rm -f /etc/cron.daily/google-chrome /etc/apt/sources.list.d/google-chrome*
 
 # Parse Google Chrome version
 full_chrome_version=$(google-chrome --product-version)
