@@ -41,30 +41,38 @@ foreach ($xcodeVersion in $xcodeVersions.link) {
             }
         }
         Write-Host "///////////////////////////////////////////////////////////////////"
-        for ($i = 0; $i -lt $sameRuntimeDevices.Count; $i++) {
-            if ( [string]::IsNullOrEmpty($($sameRuntimeDevices[$i+1].DeviceName)) ){
-                Write-Host "No more devices to compare in $simRuntume"
-                Write-Host "-------------------------------------------------------------------"
-                continue
-            }
-            Write-Host "$($sameRuntimeDevices[$i].DeviceName) - DeviceId $($sameRuntimeDevices[$i].DeviceId) comparing with"
-            Write-Host "$($sameRuntimeDevices[$i+1].DeviceName) - DeviceId $($sameRuntimeDevices[$i+1].DeviceId)"
+
+        # Fixed iteration logic - don't increment when removing duplicates
+        $i = 0
+        while ($i -lt ($sameRuntimeDevices.Count - 1)) {
+            $current = $sameRuntimeDevices[$i]
+            $next = $sameRuntimeDevices[$i + 1]
+
+            Write-Host "$($current.DeviceName) - DeviceId $($current.DeviceId) comparing with"
+            Write-Host "$($next.DeviceName) - DeviceId $($next.DeviceId)"
             Write-Host "-------------------------------------------------------------------"
-            if ($sameRuntimeDevices[$i].DeviceName -eq $sameRuntimeDevices[$i+1].DeviceName) {
+
+            if ($current.DeviceName -eq $next.DeviceName) {
                 Write-Host "*******************************************************************"
                 Write-Host "** Duplicate found"
-                if ($sameRuntimeDevices[$i].DeviceCreationTime -lt $sameRuntimeDevices[$i+1].DeviceCreationTime) {
-                    Write-Host "** will be removed $($sameRuntimeDevices[$i+1].DeviceName) with id $($sameRuntimeDevices[$i+1].DeviceId)"
-                    xcrun simctl delete $sameRuntimeDevices[$i+1].DeviceId
-                    $sameRuntimeDevices.RemoveAt($i+1)
+                if ($current.DeviceCreationTime -lt $next.DeviceCreationTime) {
+                    Write-Host "** will be removed $($next.DeviceName) with id $($next.DeviceId)"
+                    xcrun simctl delete $next.DeviceId
+                    $sameRuntimeDevices.RemoveAt($i + 1)
                 } else {
-                    Write-Host "** will be removed $($sameRuntimeDevices[$i].DeviceName) with id $($sameRuntimeDevices[$i].DeviceId)"
-                    xcrun simctl delete $sameRuntimeDevices[$i].DeviceId
+                    Write-Host "** will be removed $($current.DeviceName) with id $($current.DeviceId)"
+                    xcrun simctl delete $current.DeviceId
                     $sameRuntimeDevices.RemoveAt($i)
                 }
                 Write-Host "*******************************************************************"
+                # don't increment; compare again at same index
+            } else {
+                $i++
             }
         }
+
+        Write-Host "No more devices to compare in $simRuntume"
+        Write-Host "-------------------------------------------------------------------"
     }
 }
 
