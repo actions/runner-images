@@ -4,10 +4,10 @@
 | [[macOS] Default Xcode on macOS 26 Tahoe will be set to Xcode 26.6 on 2026.07.21](https://github.com/actions/runner-images/issues/14344) |
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 ***
-# macOS 26
-- OS Version: macOS 26.5.2 (25F84)
-- Kernel Version: Darwin 25.5.0
-- Image Version: 20260901.0153.1
+# macOS 27
+- OS Version: macOS 27.0 (26A5406e)
+- Kernel Version: Darwin 27.0.0
+- Image Version: 20260907.0173.1
 
 ## Installed Software
 
@@ -29,19 +29,19 @@
 - Ruby 3.4.10
 
 ### Package Management
-- Bundler 4.0.19
+- Bundler 4.0.20
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 6.0.20
+- Homebrew 6.0.22
 - NPM 11.19.0
 - Pip3 26.2.1 (python 3.14)
-- Pipx 1.17.1
-- RubyGems 4.0.19
-- Vcpkg 2026 (build from commit 30ef65cad9)
+- Pipx 1.17.2
+- RubyGems 4.0.20
+- Vcpkg 2026 (build from commit 04a9d8e521)
 - Yarn 1.22.22
 
 ### Project Management
-- Apache Ant 1.10.17
+- Apache Ant 1.10.18
 - Apache Maven 3.9.16
 - Gradle 9.7.1
 
@@ -55,43 +55,43 @@
 - Curl 8.7.1
 - Git 2.55.0
 - Git LFS 3.8.0
-- GitHub CLI 2.98.0
+- GitHub CLI 2.100.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.5.21
+- gpg (GnuPG) 2.5.22
 - jq 1.8.2
 - OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)
 - Packer 1.16.0
-- pkgconf 3.0.6
+- pkgconf 3.0.7
 - Unxip 3.3
 - yq 4.53.6
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.36.36
-- AWS SAM CLI 1.165.0
+- AWS CLI 2.36.40
+- AWS SAM CLI 1.166.1
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.89.1
-- Azure CLI (azure-devops) 1.0.7
+- Azure CLI 2.90.0
+- Azure CLI (azure-devops) 1.0.8
 - Bicep CLI 0.46.1
 - Cmake 4.4.3
 - CodeQL Action Bundle 2.26.4
-- Fastlane 2.238.0
+- Fastlane 2.239.0
 - SwiftFormat 0.63.0
 - Xcbeautify 3.2.1
-- Xcode Command Line Tools 26.6.0.0.1781586589
+- Xcode Command Line Tools 27.0.0.0.1787197235
 - Xcodes 2.0.3
 
 ### Browsers
-- Safari 26.5.2 (21624.2.5.11.8)
-- SafariDriver 26.5.2 (21624.2.5.11.8)
-- Google Chrome 152.0.7977.65
-- Google Chrome for Testing 152.0.7977.64
-- ChromeDriver 152.0.7977.64
-- Microsoft Edge 152.0.4191.53
-- Microsoft Edge WebDriver 152.0.4191.53
-- Mozilla Firefox 154.0.1
+- Safari 27.0 (22625.1.29.11.2)
+- SafariDriver 27.0 (22625.1.29.11.2)
+- Google Chrome 152.0.7977.83
+- Google Chrome for Testing 152.0.7977.82
+- ChromeDriver 152.0.7977.82
+- Microsoft Edge 152.0.4191.66
+- Microsoft Edge WebDriver 152.0.4191.62
+- Mozilla Firefox 155.0.1
 - geckodriver 0.37.1
 - Selenium server 4.48.0
 
@@ -131,12 +131,12 @@
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.7
+- 1.26.8
 
 ### Rust Tools
-- Cargo 1.98.0
-- Rust 1.98.0
-- Rustdoc 1.98.0
+- Cargo 1.98.1
+- Rust 1.98.1
+- Rustdoc 1.98.1
 - Rustup 1.29.0
 
 #### Packages
@@ -144,7 +144,7 @@
 - Rustfmt 1.9.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.6.4
+- PowerShell 7.6.5
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -201,7 +201,4 @@
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/29.0.14206865 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
-
-### Miscellaneous
-- Tcl/Tk 8.6.18
 
