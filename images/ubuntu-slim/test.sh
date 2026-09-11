@@ -99,3 +99,6 @@ run_test "docker buildx is installed" docker buildx version
 
 # Quick check: ensure the imagedata JSON file was created during image build
 run_test "imagedata JSON file exists" test -f /imagegeneration/imagedata.json
+
+# Assert the effective value, since a setting written under a key apt does not read is silently ignored.
+run_test "apt DEP-11 index target is disabled" bash -c 'apt-config dump Acquire::IndexTargets::deb::DEP-11::DefaultEnabled | grep -Fxq "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled \"false\";"'
