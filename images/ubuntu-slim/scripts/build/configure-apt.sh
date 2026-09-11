@@ -27,6 +27,11 @@ echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 # apt-cache policy pkgname
 echo 'APT::Get::Always-Include-Phased-Updates "true";' > /etc/apt/apt.conf.d/99-phased-updates
 
+# DEP-11/AppStream is desktop software-catalog metadata with no CI use. Skipping it drops 15 of the 51
+# index items and 7.6 MB from every apt-get update.
+# Sorts after appstream's own /etc/apt/apt.conf.d/50appstream, so it wins.
+echo 'Acquire::IndexTargets::deb::DEP-11::DefaultEnabled "false";' > /etc/apt/apt.conf.d/90-index-targets
+
 # Fix bad proxy and http headers settings
 cat <<EOF >> /etc/apt/apt.conf.d/99bad_proxy
 Acquire::http::Pipeline-Depth 0;

@@ -24,3 +24,12 @@ Describe "Apt" {
         (Get-Command -Name $toolName).CommandType | Should -BeExactly "Application"
     }
 }
+
+Describe "Apt index targets" {
+    # Asserts the effective value, because a setting written under a key apt does not read is silently
+    # ignored and leaves the image on apt's defaults.
+    It "DEP-11 is disabled" {
+        $setting = "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled"
+        (Get-CommandResult "apt-config dump $setting").Output | Should -BeExactly "$setting `"false`";"
+    }
+}
