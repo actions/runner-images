@@ -6,6 +6,16 @@
 
 source ~/utils/utils.sh
 
+# homebrew-core dropped the Intel bottles for gmp on 2026-09-02, and gmplib.org blocks
+# GitHub server IPs so the source build cannot fetch the tarball. Install the last bottled
+# revision before gnupg pulls gmp in as a dependency.
+if ! is_Arm64; then
+    COMMIT=f97a5a6fd3dee66c7f015608b82ad047a29e2c9b
+    FILE_NAME="g/gmp.rb"
+    FORMULA_NAME="gmp"
+    brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+fi
+
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
