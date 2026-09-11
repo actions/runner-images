@@ -8,7 +8,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1064-azure
-- Image Version: 20260831.284.1
+- Image Version: 20260907.292.1
 - Systemd version: 249.11-0ubuntu3.22
 
 ## Installed Software
@@ -22,7 +22,7 @@
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
 - Julia 1.12.7
-- Kotlin 2.4.10-release-377
+- Kotlin 2.4.20
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 22.23.2
@@ -34,15 +34,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.21.4
-- Homebrew 6.0.20
+- Homebrew 6.0.22
 - Miniconda 26.7.1
 - Npm 10.9.8
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.17.1
+- Pipx 1.17.2
 - RubyGems 3.3.5
-- Vcpkg (build from commit 30ef65cad9)
+- Vcpkg (build from commit 04a9d8e521)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -78,7 +78,7 @@ to accomplish this.
 - CodeQL Action Bundle 2.26.4
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.36.1
+- Docker-Buildx 0.37.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.238.0
@@ -94,7 +94,7 @@ to accomplish this.
 - Leiningen 2.12.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
-- Minikube 1.38.1
+- Minikube 1.39.0
 - n 10.2.0
 - Newman 6.2.2
 - nvm 0.40.7
@@ -102,30 +102,30 @@ to accomplish this.
 - Packer 1.16.0
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.260.0
+- Pulumi 3.261.0
 - R 4.6.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.16.0
+- Terraform 1.16.1
 - yamllint 1.38.0
 - yq 4.53.6
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.4.11
-- AWS CLI 2.36.35
+- Alibaba Cloud CLI 3.5.0
+- AWS CLI 2.36.40
 - AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.165.0
-- Azure CLI 2.89.1
-- Azure CLI (azure-devops) 1.0.7
-- GitHub CLI 2.98.0
-- Google Cloud CLI 582.0.0
+- AWS SAM CLI 1.166.1
+- Azure CLI 2.90.0
+- Azure CLI (azure-devops) 1.0.8
+- GitHub CLI 2.100.0
+- Google Cloud CLI 583.0.0
 - ORAS CLI 1.3.4
-- Netlify CLI 27.4.2
-- OpenShift CLI 4.22.11
-- Vercel CLI 59.10.0
+- Netlify CLI 27.5.0
+- OpenShift CLI 4.22.12
+- Vercel CLI 59.11.7
 
 ### Java
 | Version             | Environment Variable |
@@ -151,13 +151,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.11.1
 
 ### Rust Tools
-- Cargo 1.98.0
-- Rust 1.98.0
-- Rustdoc 1.98.0
-- Rustup 1.29.0
+- Cargo 1.98.1
+- Rust 1.98.1
+- Rustdoc 1.98.1
+- Rustup 1.29.1
 
 #### Packages
-- Bindgen 0.72.1
+- Bindgen 0.73.1
 - Cargo audit 0.22.2
 - Cargo clippy 0.1.98
 - Cargo outdated 0.19.0
@@ -165,13 +165,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 152.0.7977.64
-- ChromeDriver 152.0.7977.64
+- Google Chrome 152.0.7977.82
+- ChromeDriver 152.0.7977.82
 - Chromium 152.0.7977.0
-- Microsoft Edge 152.0.4191.53
-- Microsoft Edge WebDriver 152.0.4191.53
+- Microsoft Edge 152.0.4191.66
+- Microsoft Edge WebDriver 152.0.4191.66
 - Selenium server 4.48.0
-- Mozilla Firefox 154.0.1
+- Mozilla Firefox 155.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -215,7 +215,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.7
+- 1.26.8
 
 #### Node.js
 - 22.23.2
@@ -341,7 +341,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 6.1.1-1ubuntu1                      |
 | net-tools              | 1.60+git20181103.0eebece-1ubuntu5.4 |
 | netcat                 | 1.218-4ubuntu1                      |
-| openssh-client         | 1:8.9p1-3ubuntu0.16                 |
+| openssh-client         | 1:8.9p1-3ubuntu0.17                 |
 | p7zip-full             | 16.02+dfsg-8                        |
 | p7zip-rar              | 16.02-3build1                       |
 | parallel               | 20210822+ds-2                       |
@@ -356,7 +356,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
 | sqlite3                | 3.37.2-2ubuntu0.7                   |
-| ssh                    | 1:8.9p1-3ubuntu0.16                 |
+| ssh                    | 1:8.9p1-3ubuntu0.17                 |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.6                    |
