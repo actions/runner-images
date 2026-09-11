@@ -17,20 +17,22 @@ systemctl disable apt-daily-upgrade.service
 # Bound apt's acquire behavior so a stalled mirror fails over in seconds instead of minutes.
 # apt reads Acquire::Retries (default 3), not APT::Acquire::Retries, and spends every retry on the
 # same URI before trying the next mirror in /etc/apt/apt-mirrors.txt, so a high count delays failover.
-# 22.04 and 24.04 arm64 are served by ports.ubuntu.com, which the mirror list does not cover, leaving
-# retries as the only failover apt has there, so the count stays at apt's default. 26.04 merged arm64
-# into the main archive, so it uses the mirror list like x64 does.
+# 22.04 and 24.04 arm64 keep apt's defaults: they are served by ports.ubuntu.com, which the mirror
+# list does not cover, so retries are their only failover and a timeout is a hard failure rather than
+# a fallback. 26.04 merged arm64 into the main archive, so it uses the mirror list like x64 does.
 # https://github.com/actions/runner-images/issues/14594
 if is_ubuntu22_arm64 || is_ubuntu24_arm64; then
     apt_retries=3
+    apt_timeout=30
 else
     apt_retries=1
+    apt_timeout=15
 fi
 
 cat <<EOF > /etc/apt/apt.conf.d/80-retries
 Acquire::Retries "$apt_retries";
-Acquire::http::Timeout "15";
-Acquire::https::Timeout "15";
+Acquire::http::Timeout "$apt_timeout";
+Acquire::https::Timeout "$apt_timeout";
 EOF
 
 # Configure apt to always assume Y

@@ -31,11 +31,12 @@ Describe "Apt acquire configuration" {
     # https://github.com/actions/runner-images/issues/14594
     # 22.04 and 24.04 arm64 are served by ports.ubuntu.com; 26.04 merged arm64 into the main archive.
     $usesPortsArchive = (Test-IsUbuntu22-Arm64) -or (Test-IsUbuntu24-Arm64)
+    $expectedTimeout = if ($usesPortsArchive) { "30" } else { "15" }
 
     $settingsTestCases = @(
         @{ setting = "Acquire::Retries"; expectedValue = if ($usesPortsArchive) { "3" } else { "1" } }
-        @{ setting = "Acquire::http::Timeout"; expectedValue = "15" }
-        @{ setting = "Acquire::https::Timeout"; expectedValue = "15" }
+        @{ setting = "Acquire::http::Timeout"; expectedValue = $expectedTimeout }
+        @{ setting = "Acquire::https::Timeout"; expectedValue = $expectedTimeout }
     )
 
     It "<setting> is set to <expectedValue>" -TestCases $settingsTestCases {
