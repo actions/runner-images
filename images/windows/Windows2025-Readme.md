@@ -5,11 +5,11 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 33296
-- Image Version: 20260830.247.1
+- Image Version: 20260907.255.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
-- Windows Subsystem for Linux (Default, WSLv2): 2.7.12.0
+- Windows Subsystem for Linux (Default, WSLv2): 2.7.13.0
 
 ## Installed Software
 
@@ -17,7 +17,7 @@
 - Bash 5.3.15(2)-release
 - Go 1.24.13
 - Julia 1.12.0
-- Kotlin 2.4.10
+- Kotlin 2.4.20
 - LLVM 20.1.8
 - Node 22.23.2
 - Perl 5.42.0
@@ -33,9 +33,9 @@
 - NPM 10.9.8
 - NuGet 7.9.0.83
 - pip 26.2.1 (python 3.12)
-- Pipx 1.17.1
+- Pipx 1.17.2
 - RubyGems 3.5.22
-- Vcpkg (build from commit 194964eec5)
+- Vcpkg (build from commit 04a9d8e521)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -45,13 +45,13 @@
 | CONDA                   | C:\Miniconda |
 
 ### Project Management
-- Ant 1.10.17
+- Ant 1.10.18
 - Gradle 9.7
 - Maven 3.9.16
 - sbt 1.12.12
 
 ### Tools
-- 7zip 26.02
+- 7zip 26.03
 - aria2 1.37.0
 - azcopy 10.32.7
 - Bazel 9.2.0
@@ -77,9 +77,10 @@
 - Newman 6.2.2
 - OpenSSL 3.6.4
 - Packer 1.16.0
-- Pulumi 3.260.0
+- Pulumi 3.261.0
 - R 4.6.1
-- Service Fabric SDK 10.1.2493.9590
+- Service Fabric Runtime 11.7.157.1
+- Service Fabric SDK 8.7.157.1
 - Stack 3.11.1
 - Swig 4.4.1
 - VSWhere 3.1.7
@@ -90,29 +91,29 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.34
-- AWS SAM CLI 1.165.0
+- AWS CLI 2.36.40
+- AWS SAM CLI 1.166.1
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.89.1
-- Azure DevOps CLI extension 1.0.7
-- GitHub CLI 2.98.0
+- Azure CLI 2.90.0
+- Azure DevOps CLI extension 1.0.8
+- GitHub CLI 2.100.0
 
 ### Rust Tools
-- Cargo 1.98.0
-- Rust 1.98.0
-- Rustdoc 1.98.0
-- Rustup 1.29.0
+- Cargo 1.98.1
+- Rust 1.98.1
+- Rustdoc 1.98.1
+- Rustup 1.29.1
 
 #### Packages
 - Clippy 0.1.98
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 152.0.7977.65
-- Chrome Driver 152.0.7977.64
-- Microsoft Edge 152.0.4191.53
-- Microsoft Edge Driver 152.0.4191.53
-- Mozilla Firefox 154.0.1
+- Google Chrome 152.0.7977.83
+- Chrome Driver 152.0.7977.82
+- Microsoft Edge 152.0.4191.66
+- Microsoft Edge Driver 152.0.4191.66
+- Mozilla Firefox 155.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.48.0
@@ -156,7 +157,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.7
+- 1.26.8
 
 #### Node.js
 - 22.23.2
@@ -211,7 +212,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.4  | C:\tools\nginx-1.31.4\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.31.5  | C:\tools\nginx-1.31.5\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
@@ -472,7 +473,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.287
+- AWSPowershell: 5.0.293
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.39.0
