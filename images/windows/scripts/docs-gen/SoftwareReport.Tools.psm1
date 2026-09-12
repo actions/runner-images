@@ -179,6 +179,11 @@ function Get-WinAppDriver {
     return $winAppDriverVersion
 }
 
+function Get-DokanyVersion {
+    $driver = Get-Item (Join-Path $env:SystemRoot "System32\drivers\dokan2.sys")
+    return $driver.VersionInfo.FileVersion
+}
+
 function Get-WixVersion {
     $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
     $installedApplications = Get-ItemProperty -Path $regKey

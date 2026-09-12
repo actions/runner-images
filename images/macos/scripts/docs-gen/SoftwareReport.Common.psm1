@@ -5,6 +5,11 @@ function Get-BashVersion {
     return $version
 }
 
+function Get-MacFUSEVersion {
+    $packageInfo = Run-Command "pkgutil --pkg-info io.macfuse.installer.components.core"
+    return ($packageInfo | Select-String "^version:").Line.Split(":", 2)[1].Trim()
+}
+
 function Get-DotnetVersionList {
     $sdkRawList = Run-Command "dotnet --list-sdks"
     return $sdkRawList | ForEach-Object { Take-Part $_ -Part 0 }
