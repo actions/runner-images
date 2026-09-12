@@ -9,14 +9,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-	cmake_arch="x86_64"
-elif is_arm64; then
-	cmake_arch="aarch64"
-else
-	echo "Unsupported architecture"
-	exit 1
-fi
+cmake_arch=$(select_by_arch "x86_64" "aarch64")
 
 cmake_version=$(get_toolset_value .cmake.version)
 
