@@ -478,15 +478,14 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | CMake                      | 3.30.5<br>3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| NDK                        | 27.3.13750724<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| NDK                        | 28.2.13676358<br>29.0.14206865<br>30.0.16248370                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 #### Environment variables
 | Name                    | Value                                    |
 | ----------------------- | ---------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                   |
-| ANDROID_NDK             | C:\Android\android-sdk\ndk\27.3.13750724 |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.3.13750724 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\29.0.14206865 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.3.13750724 |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\28.2.13676358 |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\28.2.13676358 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\30.0.16248370 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\28.2.13676358 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
-

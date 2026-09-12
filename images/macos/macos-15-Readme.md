@@ -281,16 +281,16 @@
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| NDK                        | 27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                                                                                                                                       |
+| NDK                        | 28.2.13676358 (default)<br>29.0.14206865<br>30.0.16248370                                                                                                                                                                                                                                                                                                                                                                                                       |
 
 #### Environment variables
 | Name                    | Value                                               |
 | ----------------------- | --------------------------------------------------- |
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/29.0.14206865 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
+| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/28.2.13676358 |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/28.2.13676358 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/30.0.16248370 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/28.2.13676358 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
 ### Miscellaneous
@@ -306,4 +306,3 @@
 If you want to use Parallels Desktop you should download a package from URL stored in
 PARALLELS_DMG_URL environment variable. A system extension is allowed for this version.
 ```
-

@@ -84,9 +84,9 @@
             "cmake;3.31.5"
         ],
         "ndk": {
-            "default": "27",
+            "default": "28",
             "versions": [
-                "27", "28", "29"
+                "28", "29", "30"
             ]
         }
     },
@@ -224,7 +224,7 @@
                 "plugin": "buildx",
                 "version": "latest",
                 "asset": "linux-arm64"
-            },            
+            },
             {
                 "plugin": "compose",
                 "version": "2.38.2",
