@@ -29,11 +29,19 @@ else
     apt_timeout=15
 fi
 
-cat <<EOF > /etc/apt/apt.conf.d/80-retries
+# Write these where apt applies them last. apt reads /etc/apt/apt.conf.d in C-locale filename order
+# and the last setting for a key wins; another file on the image sorts after 80-* and was overriding
+# these Timeout/Retries values (canary saw apt's defaults, not these). A leaf name sorts after every
+# NN-* file, so ours wins.
+cat <<EOF > /etc/apt/apt.conf.d/zz-retries
 Acquire::Retries "$apt_retries";
 Acquire::http::Timeout "$apt_timeout";
 Acquire::https::Timeout "$apt_timeout";
 EOF
+
+# Log the effective, post-merge values so canary/CI shows exactly what apt will use.
+echo 'Effective apt acquire configuration'
+apt-config dump Acquire::Retries Acquire::http::Timeout Acquire::https::Timeout
 
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
