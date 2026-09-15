@@ -4,8 +4,8 @@
 | [[Windows] The Windows 11 Arm64 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14592) |
 ***
 # Windows 11 Enterprise
-- OS Version: 10.0.26200 Build 9168
-- Image Version: 20260906.161.1
+- OS Version: 10.0.26200 Build 9457
+- Image Version: 20260914.169.1
 
 ## Windows features
 
@@ -15,9 +15,9 @@
 - Bash 5.3.15(2)-release
 - Go 1.24.13
 - Julia 1.12.0
-- Kotlin 2.4.10
+- Kotlin 2.4.20
 - LLVM 22.1.8
-- Node 24.20.0
+- Node 24.21.0
 - Perl 5.32.1
 - PHP 8.4.25
 - Python 3.13.15
@@ -32,7 +32,7 @@
 - pip 26.2.1 (python 3.13)
 - Pipx 1.17.2
 - RubyGems 3.6.9
-- Vcpkg (build from commit 04a9d8e521)
+- Vcpkg (build from commit 0c8f465c54)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -41,7 +41,7 @@
 | VCPKG_INSTALLATION_ROOT | C:\vcpkg |
 
 ### Project Management
-- Ant 1.10.17
+- Ant 1.10.18
 - Gradle 9.7
 - Maven 3.9.16
 - sbt 1.12.12
@@ -52,9 +52,9 @@
 - azcopy 10.32.7
 - Bazel 9.2.0
 - Bazelisk 1.28.1
-- Bicep 0.46.1
+- Bicep 0.47.16
 - CMake 4.4.3
-- CodeQL Action Bundle 2.26.4
+- CodeQL Action Bundle 2.27.0
 - Git 2.55.0.windows.5
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-25
@@ -70,7 +70,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.4
 - Packer 1.16.0
-- Pulumi 3.261.0
+- Pulumi 3.262.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -81,9 +81,9 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.4.11
-- AWS CLI 2.36.40
-- AWS SAM CLI 1.166.1
+- Alibaba Cloud CLI 3.5.0
+- AWS CLI 2.36.44
+- AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
 - Azure DevOps CLI extension 1.0.8
@@ -96,7 +96,7 @@
 - Rustup 1.29.1
 
 #### Packages
-- bindgen 0.73.1
+- bindgen 0.73.2
 - cargo-audit 0.22.2
 - cargo-outdated 0.19.0
 - cbindgen 0.29.4
@@ -104,14 +104,14 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 152.0.7977.83
-- Chrome Driver 152.0.7977.82
-- Microsoft Edge 152.0.4191.66
-- Microsoft Edge Driver 152.0.4191.66
+- Google Chrome 153.0.8010.37
+- Chrome Driver 153.0.8010.36
+- Microsoft Edge 153.0.4234.32
+- Microsoft Edge Driver 153.0.4234.32
 - Mozilla Firefox 155.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.48.0
+- Selenium server 4.49.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -153,7 +153,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 22.23.2
-- 24.20.0
+- 24.21.0
 
 #### Python
 - 3.12.10
@@ -179,7 +179,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
 | ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.37614.0 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.14.37628.2 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -203,10 +203,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.Unreal.Android                                                  | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36907.17  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37612.4   |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37627.15  |
 | Component.VSInstallerProjects2022_arm64                                   | 3.0.0           |
 | Component.Xamarin                                                         | 17.14.36510.44  |
-| ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.37203.1   |
+| ComponentGroup.Microsoft.NET.AppModernization                             | 17.14.37627.15  |
 | ios                                                                       | 26.0.9752.0     |
 | maccatalyst                                                               | 26.0.9752.0     |
 | maui.blazor                                                               | 9.0.111.6930    |
@@ -233,19 +233,19 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.4.8.DeveloperTools                           | 17.14.36510.44  |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 17.14.36510.44  |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 17.14.36510.44  |
-| microsoft.net.runtime.android                                             | 9.0.1926.36724  |
-| microsoft.net.runtime.android.aot                                         | 9.0.1926.36724  |
-| microsoft.net.runtime.android.aot.net8                                    | 9.0.1926.36724  |
-| microsoft.net.runtime.android.net8                                        | 9.0.1926.36724  |
-| microsoft.net.runtime.ios                                                 | 9.0.1926.36724  |
-| microsoft.net.runtime.maccatalyst                                         | 9.0.1926.36724  |
-| microsoft.net.runtime.mono.tooling                                        | 9.0.1926.36724  |
-| microsoft.net.runtime.mono.tooling.net8                                   | 9.0.1926.36724  |
-| microsoft.net.sdk.emscripten                                              | 9.0.14.35603    |
+| microsoft.net.runtime.android                                             | 9.0.2026.41315  |
+| microsoft.net.runtime.android.aot                                         | 9.0.2026.41315  |
+| microsoft.net.runtime.android.aot.net8                                    | 9.0.2026.41315  |
+| microsoft.net.runtime.android.net8                                        | 9.0.2026.41315  |
+| microsoft.net.runtime.ios                                                 | 9.0.2026.41315  |
+| microsoft.net.runtime.maccatalyst                                         | 9.0.2026.41315  |
+| microsoft.net.runtime.mono.tooling                                        | 9.0.2026.41315  |
+| microsoft.net.runtime.mono.tooling.net8                                   | 9.0.2026.41315  |
+| microsoft.net.sdk.emscripten                                              | 9.0.14.40607    |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 17.14.36510.44  |
-| Microsoft.NetCore.Component.Runtime.8.0                                   | 17.14.37531.7   |
-| Microsoft.NetCore.Component.Runtime.9.0                                   | 17.14.37531.7   |
-| Microsoft.NetCore.Component.SDK                                           | 17.14.37531.7   |
+| Microsoft.NetCore.Component.Runtime.8.0                                   | 17.14.37627.15  |
+| Microsoft.NetCore.Component.Runtime.9.0                                   | 17.14.37627.15  |
+| Microsoft.NetCore.Component.SDK                                           | 17.14.37627.15  |
 | Microsoft.NetCore.Component.Web                                           | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.AspNet                                   | 17.14.36510.44  |
@@ -363,9 +363,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Node                                      | 17.14.36517.7   |
 | Microsoft.VisualStudio.Workload.Universal                                 | 17.14.36331.10  |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 17.14.36015.10  |
-| runtimes.ios                                                              | 9.0.1926.36724  |
-| runtimes.maccatalyst                                                      | 9.0.1926.36724  |
-| wasm.tools                                                                | 9.0.1926.36724  |
+| runtimes.ios                                                              | 9.0.2026.41315  |
+| runtimes.maccatalyst                                                      | 9.0.2026.41315  |
+| wasm.tools                                                                | 9.0.2026.41315  |
 | SSIS.MicrosoftDataToolsIntegrationServices                                | 2.2             |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjectsArm64        | 3.0.0           |
 | Windows Driver Kit                                                        | 10.1.26100.6584 |
@@ -387,19 +387,19 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.130, 8.0.206, 8.0.319, 8.0.424, 9.0.120, 9.0.205, 9.0.317, 10.0.111, 10.0.204, 10.0.303, 10.0.400
+- .NET Core SDK: 6.0.136, 6.0.203, 6.0.321, 6.0.428, 8.0.131, 8.0.206, 8.0.319, 8.0.425, 9.0.121, 9.0.205, 9.0.318, 10.0.112, 10.0.204, 10.0.303, 10.0.401
 - .NET Framework: 4.7.2, 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.30, 9.0.6, 9.0.19, 10.0.8, 10.0.11
-- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.30, 9.0.6, 9.0.19, 10.0.8, 10.0.11
-- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.30, 9.0.6, 9.0.19, 10.0.8, 10.0.11
+- Microsoft.AspNetCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.31, 9.0.6, 9.0.20, 10.0.8, 10.0.11, 10.0.12
+- Microsoft.NETCore.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.31, 9.0.6, 9.0.20, 10.0.8, 10.0.11, 10.0.12
+- Microsoft.WindowsDesktop.App: 6.0.5, 6.0.26, 6.0.36, 8.0.6, 8.0.22, 8.0.31, 9.0.6, 9.0.20, 10.0.8, 10.0.11, 10.0.12
 - nbgv 3.10.94+dea9a6c17c
 
 ### PowerShell Tools
-- PowerShell 7.6.5
+- PowerShell 7.6.6
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.293
+- AWSPowershell: 5.0.298
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.39.0
