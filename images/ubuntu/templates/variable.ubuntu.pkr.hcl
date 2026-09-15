@@ -137,6 +137,10 @@ variable "winrm_username" { // The username used to connect to the VM via WinRM
 }
 
 // Image related variables
+variable "apt_snapshot_timestamp" {
+  type    = string
+  default = ""
+}
 variable "helper_script_folder" {
   type    = string
   default = "/imagegeneration/helpers"
