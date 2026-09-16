@@ -42,3 +42,26 @@ fi
 if [[ -n "${APT_SNAPSHOT_TIMESTAMP:-}" ]]; then
     echo "APT::Snapshot \"${APT_SNAPSHOT_TIMESTAMP}\";" > /etc/apt/apt.conf.d/zz-snapshot
 fi
+
+echo "Configured APT repositories"
+for repository_file in /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/*.sources; do
+    [[ -f "$repository_file" ]] || continue
+    echo "--- $repository_file"
+    cat "$repository_file"
+done
+
+echo "Configured APT mirrors"
+cat /etc/apt/apt-mirrors.txt
+
+if [[ -n "${APT_SNAPSHOT_TIMESTAMP:-}" ]]; then
+    snapshot_uri="https://snapshot.ubuntu.com/ubuntu/${APT_SNAPSHOT_TIMESTAMP}/"
+    apt_update_uris=$(apt-get update --print-uris)
+
+    echo "APT update URIs"
+    echo "$apt_update_uris"
+
+    if ! grep -Fq "$snapshot_uri" <<< "$apt_update_uris"; then
+        echo "APT repositories are not using the requested snapshot: $APT_SNAPSHOT_TIMESTAMP" >&2
+        exit 1
+    fi
+fi
