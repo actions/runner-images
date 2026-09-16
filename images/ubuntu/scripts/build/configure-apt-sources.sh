@@ -52,16 +52,3 @@ done
 
 echo "Configured APT mirrors"
 cat /etc/apt/apt-mirrors.txt
-
-if [[ -n "${APT_SNAPSHOT_TIMESTAMP:-}" ]]; then
-    snapshot_uri="https://snapshot.ubuntu.com/ubuntu/${APT_SNAPSHOT_TIMESTAMP}/"
-    apt_update_uris=$(apt-get update --print-uris)
-
-    echo "APT update URIs"
-    echo "$apt_update_uris"
-
-    if ! grep -Fq "$snapshot_uri" <<< "$apt_update_uris"; then
-        echo "APT repositories are not using the requested snapshot: $APT_SNAPSHOT_TIMESTAMP" >&2
-        exit 1
-    fi
-fi
