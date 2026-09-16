@@ -48,6 +48,7 @@ for repository_file in /etc/apt/sources.list /etc/apt/sources.list.d/*.list /etc
     [[ -f "$repository_file" ]] || continue
     echo "--- $repository_file"
     cat "$repository_file"
+    apt-get update
 done
 
 echo "Configured APT mirrors"
