@@ -37,3 +37,8 @@ else
     # Apt changes to survive Cloud Init
     cp -f /etc/apt/sources.list /etc/cloud/templates/sources.list.ubuntu.tmpl
 fi
+
+# Configure APT snapshot if the timestamp is provided
+if [[ -n "${APT_SNAPSHOT_TIMESTAMP:-}" ]]; then
+    echo "APT::Snapshot \"${APT_SNAPSHOT_TIMESTAMP}\";" > /etc/apt/apt.conf.d/zz-snapshot
+fi

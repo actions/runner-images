@@ -6,11 +6,6 @@
 
 source $HELPER_SCRIPTS/os.sh
 
-# Configure APT snapshot if the timestamp is provided
-if [[ -n "${APT_SNAPSHOT_TIMESTAMP:-}" ]]; then
-    echo "APT::Snapshot \"${APT_SNAPSHOT_TIMESTAMP}\";" > /etc/apt/apt.conf.d/zz-snapshot
-fi
-
 # Stop and disable apt-daily upgrade services;
 systemctl stop apt-daily.timer
 systemctl disable apt-daily.timer
