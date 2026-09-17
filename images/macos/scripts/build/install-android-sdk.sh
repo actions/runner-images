@@ -75,9 +75,6 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest:$ANDROID_HOME/cmdline-tools
 
 SDKMANAGER=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
 
-echo "Getting package list..."
-$SDKMANAGER --list
-
 echo "Installing latest emulator and platform tools..."
 echo y | $SDKMANAGER "emulator" "platform-tools"
 
