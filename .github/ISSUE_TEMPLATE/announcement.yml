@@ -49,6 +49,7 @@ body:
         - label: macOS 15 Arm64
         - label: macOS 26
         - label: macOS 26 Arm64
+        - label: Xcode 27
         - label: Windows Server 2022
         - label: Windows Server 2025
         - label: Windows Server 2025 with Visual Studio 2026
