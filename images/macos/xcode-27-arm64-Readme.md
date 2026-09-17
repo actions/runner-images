@@ -7,12 +7,12 @@
 # macOS 27
 - OS Version: macOS 27.0 (26A5406e)
 - Kernel Version: Darwin 27.0.0
-- Image Version: 20260907.0173.1
+- Image Version: 20260912.0186.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.424, 9.0.102, 9.0.203, 9.0.317, 10.0.103, 10.0.203, 10.0.302, 10.0.400
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.425, 9.0.102, 9.0.203, 9.0.318, 10.0.103, 10.0.203, 10.0.302, 10.0.401
 - Bash 3.2.57(1)-release
 - Clang/LLVM 21.0.0
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
@@ -22,7 +22,7 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
-- Kotlin 2.4.10-release-377
+- Kotlin 2.4.20
 - Node.js 24.20.0
 - Perl 5.44.0
 - Python3 3.14.7
@@ -37,7 +37,7 @@
 - Pip3 26.2.1 (python 3.14)
 - Pipx 1.17.2
 - RubyGems 4.0.20
-- Vcpkg 2026 (build from commit 04a9d8e521)
+- Vcpkg 2026 (build from commit a1cae005c3)
 - Yarn 1.22.22
 
 ### Project Management
@@ -69,31 +69,31 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.36.40
+- AWS CLI 2.36.44
 - AWS SAM CLI 1.166.1
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
 - Azure CLI (azure-devops) 1.0.8
-- Bicep CLI 0.46.1
+- Bicep CLI 0.47.16
 - Cmake 4.4.3
-- CodeQL Action Bundle 2.26.4
+- CodeQL Action Bundle 2.27.0
 - Fastlane 2.239.0
 - SwiftFormat 0.63.0
 - Xcbeautify 3.2.1
-- Xcode Command Line Tools 27.0.0.0.1787197235
+- Xcode Command Line Tools 27.0.0.0.1788430756
 - Xcodes 2.0.3
 
 ### Browsers
 - Safari 27.0 (22625.1.29.11.2)
 - SafariDriver 27.0 (22625.1.29.11.2)
-- Google Chrome 152.0.7977.83
-- Google Chrome for Testing 152.0.7977.82
-- ChromeDriver 152.0.7977.82
-- Microsoft Edge 152.0.4191.66
-- Microsoft Edge WebDriver 152.0.4191.62
+- Google Chrome 153.0.8010.37
+- Google Chrome for Testing 153.0.8010.36
+- ChromeDriver 153.0.8010.36
+- Microsoft Edge 153.0.4234.32
+- Microsoft Edge WebDriver 153.0.4234.32
 - Mozilla Firefox 155.0.1
 - geckodriver 0.37.1
-- Selenium server 4.48.0
+- Selenium server 4.49.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -126,7 +126,7 @@
 
 #### Node.js
 - 22.23.2
-- 24.20.0
+- 24.21.0
 
 #### Go
 - 1.24.13
@@ -144,7 +144,7 @@
 - Rustfmt 1.9.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.6.5
+- PowerShell 7.6.6
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -152,9 +152,9 @@
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version               | Build    | Path                              | Symlinks                                                                                  |
-| --------------------- | -------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
-| 27.0 (beta) (default) | 27A5252f | /Applications/Xcode_27_beta_6.app | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
+| Version        | Build   | Path                                         | Symlinks                                                                                  |
+| -------------- | ------- | -------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| 27.0 (default) | 27A266a | /Applications/Xcode_27_Release_Candidate.app | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -173,9 +173,9 @@
 #### Installed Simulators
 | Name          | OS   | Simulators                                                                                                                                                                                                           |
 | ------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 27.0      | 27.0 | iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone 17e<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
+| iOS 27.0      | 27.0 | iPhone 17<br>iPhone 17e<br>iPhone 18 Pro<br>iPhone 18 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
 | tvOS 27.0     | 27.0 | Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                              |
-| watchOS 27.0  | 27.0 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                     |
+| watchOS 27.0  | 27.0 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 12 (42mm)<br>Apple Watch Series 12 (46mm)<br>Apple Watch Ultra 4 (49mm)                                                                     |
 | visionOS 27.0 | 27.0 | Apple Vision Pro                                                                                                                                                                                                     |
 
 ### Android
