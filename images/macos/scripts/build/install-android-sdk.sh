@@ -78,8 +78,8 @@ SDKMANAGER=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
 echo "Getting package list..."
 $SDKMANAGER --list
 
-echo "Installing latest platform tools..."
-echo y | $SDKMANAGER "platform-tools"
+echo "Installing latest emulator and platform tools..."
+echo y | $SDKMANAGER "emulator" "platform-tools"
 
 echo "Installing latest ndk..."
 for ndk_version in "${android_ndk_major_versions[@]}"
