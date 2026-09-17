@@ -10,14 +10,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  gh_cli_arch="amd64"
-elif is_arm64; then
-  gh_cli_arch="arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+gh_cli_arch=$(select_by_arch "amd64" "arm64")
 
 # Download GitHub CLI
 gh_cli_url=$(resolve_github_release_asset_url "cli/cli" "contains(\"linux\") and contains(\"$gh_cli_arch\") and endswith(\".deb\")" "latest")

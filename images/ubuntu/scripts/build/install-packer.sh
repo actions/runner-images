@@ -8,14 +8,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  packer_arch="amd64"
-elif is_arm64; then
-  packer_arch="arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+packer_arch=$(select_by_arch "amd64" "arm64")
 
 # Install Packer
 download_url=$(curl -fsSL https://api.releases.hashicorp.com/v1/releases/packer/latest | jq -r ".builds[] | select((.arch==\"$packer_arch\") and (.os==\"linux\")).url")

@@ -9,14 +9,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  yq_arch="amd64"
-elif is_arm64; then
-  yq_arch="arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+yq_arch=$(select_by_arch "amd64" "arm64")
 
 # Download yq
 yq_url=$(resolve_github_release_asset_url "mikefarah/yq" "endswith(\"yq_linux_${yq_arch}\")" "latest")
