@@ -12,7 +12,7 @@
                     "install_runtimes": "none"
                 },
                 {
-                    "link": "27.1",
+                    "link": "27.1_beta",
                     "filename": "Xcode_27.1_beta",
                     "version": "27.1+27A9269",
                     "symlinks": ["27.1"],
