@@ -12,7 +12,7 @@
                     "install_runtimes": "default"
                 }
             ]
-        } 
+        }
     },
     "java": {
         "arm64": {
@@ -34,9 +34,9 @@
             "cmake;4.1.2"
         ],
         "ndk": {
-            "default": "27",
+            "default": "28",
             "versions": [
-                "27","28", "29"
+                "28", "29", "30"
             ]
         }
     },

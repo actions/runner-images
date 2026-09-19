@@ -516,16 +516,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | CMake                      | 3.22.1<br>3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| NDK                        | 27.3.13750724<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| NDK                        | 28.2.13676358<br>29.0.14206865<br>30.0.16248370                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 
 #### Environment variables
 | Name                    | Value                                    |
 | ----------------------- | ---------------------------------------- |
 | ANDROID_HOME            | C:\Android\android-sdk                   |
-| ANDROID_NDK             | C:\Android\android-sdk\ndk\27.3.13750724 |
-| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.3.13750724 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\29.0.14206865 |
-| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.3.13750724 |
+| ANDROID_NDK             | C:\Android\android-sdk\ndk\28.2.13676358 |
+| ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\28.2.13676358 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\30.0.16248370 |
+| ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\28.2.13676358 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 
 ### Cached Docker images
@@ -536,4 +536,3 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:460dedaed73224f73ff10dc3ad754d0ed250aa57bcdf6c5052a811b4b7e29345 | 2025-09-09 |
 | mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:e4ce8c20390c3785c3cbeef15c579d186b3599d37525c596590cf4508e38d3ff | 2026-08-09 |
 | mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:0df5b1c3394198525f426e379b61d8f09ce60cb449b1cb4cab163e965672cd67 | 2026-08-09 |
-
