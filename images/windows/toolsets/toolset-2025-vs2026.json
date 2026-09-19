@@ -83,8 +83,8 @@
         "versions": [ "8", "11", "17", "21", "25"]
     },
     "android": {
-        "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-13114758_latest.zip",
-        "hash": "98B565CB657B012DAE6794CEFC0F66AE1EFB4690C699B78A614B4A6A3505B003",
+        "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-15859902_latest.zip",
+        "hash": "E5885E2E59038C0778A85FC19F01DE7CE7C567C105553F7617B936B1E0E87B2B",
         "platform_min_version": "34",
         "build_tools_min_version": "34.0.0",
         "extras": [
