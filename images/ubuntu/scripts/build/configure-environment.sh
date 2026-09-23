@@ -24,6 +24,15 @@ sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=4096/g' /etc/waagent.conf
 
+# Ephemeral-OS VMs have no Azure resource disk, so cloud-init's default /mnt mount waits ~90s
+# at boot for a device that never appears. Cap that wait via cloud-init, which rewrites
+# /etc/fstab on every boot (so a direct fstab edit would not survive).
+mkdir -p /etc/cloud/cloud.cfg.d
+tee /etc/cloud/cloud.cfg.d/99-azure-resource-disk-timeout.cfg > /dev/null <<'EOF'
+mounts:
+  - [ ephemeral0, /mnt, auto, "defaults,nofail,x-systemd.device-timeout=1s,_netdev", "0", "2" ]
+EOF
+
 # Add localhost alias to ::1 IPv6
 sed -i 's/::1 ip6-localhost ip6-loopback/::1     localhost ip6-localhost ip6-loopback/g' /etc/hosts
 
