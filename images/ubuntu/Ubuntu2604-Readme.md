@@ -271,6 +271,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.19.0-1ubuntu1.1            |
 | iputils-ping           | 3:20250605-1ubuntu1          |
 | jq                     | 1.8.1-4ubuntu2               |
+| libcrypt-dev           | 1:4.5.1-1                    |
 | libicu-dev             | 78.2-2ubuntu1                |
 | libnss3-tools          | 2:3.120-1ubuntu2.1           |
 | libsqlite3-dev         | 3.46.1-9ubuntu0.2            |
@@ -313,4 +314,3 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | xz-utils               | 5.8.3-1                      |
 | zip                    | 3.0-15ubuntu3                |
 | zsync                  | 0.6.2-9                      |
-
