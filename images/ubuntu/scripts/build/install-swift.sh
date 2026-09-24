@@ -13,16 +13,10 @@ source $HELPER_SCRIPTS/os.sh
 image_label="ubuntu$(lsb_release -rs)"
 swift_version=$(curl -fsSL "https://api.github.com/repos/apple/swift/releases/latest" | jq -r '.tag_name | match("[0-9.]+").string')
 
-if is_x64; then
-  swift_release_name="swift-${swift_version}-RELEASE-${image_label}"
-  archive_url="https://download.swift.org/swift-${swift_version}-release/${image_label//./}/swift-${swift_version}-RELEASE/${swift_release_name}.tar.gz"
-elif is_arm64; then
-  swift_release_name="swift-${swift_version}-RELEASE-${image_label}-aarch64"
-  archive_url="https://download.swift.org/swift-${swift_version}-release/${image_label//./}-aarch64/swift-${swift_version}-RELEASE/${swift_release_name}.tar.gz"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+swift_release_name=$(select_by_arch "swift-${swift_version}-RELEASE-${image_label}" "swift-${swift_version}-RELEASE-${image_label}-aarch64")
+archive_url=$(select_by_arch \
+  "https://download.swift.org/swift-${swift_version}-release/${image_label//./}/swift-${swift_version}-RELEASE/${swift_release_name}.tar.gz" \
+  "https://download.swift.org/swift-${swift_version}-release/${image_label//./}-aarch64/swift-${swift_version}-RELEASE/${swift_release_name}.tar.gz")
 
 archive_path=$(download_with_retry "$archive_url")
 

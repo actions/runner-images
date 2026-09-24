@@ -8,14 +8,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  pwsh_arch="x64"
-elif is_arm64; then
-  pwsh_arch="arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+pwsh_arch=$(select_by_arch "x64" "arm64")
 
 pwsh_version=$(get_toolset_value .pwsh.version)
 
