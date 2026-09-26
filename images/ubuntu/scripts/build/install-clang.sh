@@ -32,6 +32,20 @@ set_default_clang() {
     fi
 }
 
+keep_default_bfd_plugin() {
+    local version=$1
+
+    # Every llvm-<version>-linker-tools package registers its LLVMgold plugin in /usr/lib/bfd-plugins.
+    # GNU ar/ranlib/nm may load an older plugin that cannot read LTO bitcode produced by the default clang,
+    # which leaves archives without a symbol index, so keep only the plugin of the default version.
+    echo "Keep only LLVMgold-${version}.so in /usr/lib/bfd-plugins"
+    for plugin in /usr/lib/bfd-plugins/LLVMgold-*.so; do
+        if [[ $plugin != "/usr/lib/bfd-plugins/LLVMgold-${version}.so" ]]; then
+            rm -f "$plugin"
+        fi
+    done
+}
+
 versions=$(get_toolset_value '.clang.versions[]')
 default_clang_version=$(get_toolset_value '.clang.default_version')
 
@@ -43,5 +57,6 @@ done
 
 install_clang $default_clang_version
 set_default_clang $default_clang_version
+keep_default_bfd_plugin $default_clang_version
 
 invoke_tests "Tools" "clang"
