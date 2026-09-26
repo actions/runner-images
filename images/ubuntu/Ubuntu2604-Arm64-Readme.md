@@ -26,6 +26,7 @@
 - Perl 5.40.1
 - Python 3.14.4
 - Ruby 3.3.8
+- Swift 6.4
 
 ### Package Management
 - cpan 1.64
