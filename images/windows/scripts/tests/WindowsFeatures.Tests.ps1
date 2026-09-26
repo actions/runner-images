@@ -62,6 +62,14 @@ Describe "Test Signed Drivers" {
     }
 }
 
+Describe "PrivacyExperience" -Skip:(-not (Test-IsWin11-Arm64)) {
+    It "The privacy settings experience is disabled for all users" {
+        $regPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OOBE"
+        Get-ItemPropertyValue -Path $regPath -Name DisablePrivacyExperience | Should -BeExactly 1
+        (Get-Item -Path $regPath).GetValueKind("DisablePrivacyExperience") | Should -Be "DWord"
+    }
+}
+
 Describe "Windows Updates" {
     It "WindowsUpdateDone.txt should exist" {
         "$env:windir\WindowsUpdateDone.txt" | Should -Exist
