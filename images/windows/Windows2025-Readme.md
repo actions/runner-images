@@ -5,7 +5,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 33438
-- Image Version: 20260922.270.2
+- Image Version: 20260927.275.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -19,9 +19,9 @@
 - Julia 1.12.0
 - Kotlin 2.4.20
 - LLVM 20.1.8
-- Node 22.23.2
+- Node 22.23.3
 - Perl 5.42.0
-- PHP 8.5.10
+- PHP 8.5.11
 - Python 3.12.10
 - Ruby 3.3.12
 
@@ -30,12 +30,12 @@
 - Composer 2.10.3
 - Helm 4.1.4
 - Miniconda 26.7.1 (pre-installed on the image but not added to PATH)
-- NPM 10.9.8
+- NPM 10.9.9
 - NuGet 7.9.0.83
 - pip 26.2.1 (python 3.12)
-- Pipx 1.17.5
+- Pipx 1.17.6
 - RubyGems 3.5.22
-- Vcpkg (build from commit 68112cf89d)
+- Vcpkg (build from commit 07f4812200)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -46,7 +46,7 @@
 
 ### Project Management
 - Ant 1.10.18
-- Gradle 9.7
+- Gradle 9.8
 - Maven 3.9.16
 - sbt 1.12.12
 
@@ -59,7 +59,7 @@
 - Bicep 0.47.16
 - Cabal 3.18.1.0
 - CMake 3.31.6
-- CodeQL Action Bundle 2.27.0
+- CodeQL Action Bundle 2.27.1
 - Docker 29.7.2
 - Docker Compose 2.40.3
 - Docker-wincred 0.9.9
@@ -70,14 +70,14 @@
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.33.0
-- Kubectl 1.37.0
+- Kubectl 1.37.1
 - gcc 15.2.0
 - gdb 17.1
 - GNU Binutils 2.46
 - Newman 6.2.2
 - OpenSSL 3.6.4
 - Packer 1.16.0
-- Pulumi 3.263.0
+- Pulumi 3.265.0
 - R 4.6.1
 - Service Fabric Runtime 11.7.157.1
 - Service Fabric SDK 8.7.157.1
@@ -91,7 +91,7 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.49
+- AWS CLI 2.37.4
 - AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
@@ -109,11 +109,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 153.0.8010.53
-- Chrome Driver 153.0.8010.52
-- Microsoft Edge 153.0.4234.48
-- Microsoft Edge Driver 153.0.4234.48
-- Mozilla Firefox 156.0
+- Google Chrome 154.0.8037.58
+- Chrome Driver 154.0.8037.57
+- Microsoft Edge 154.0.4258.37
+- Microsoft Edge Driver 154.0.4258.37
+- Mozilla Firefox 156.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.49.0
@@ -160,7 +160,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 1.26.8
 
 #### Node.js
-- 22.23.2
+- 22.23.3
 - 24.21.0
 
 #### Python
@@ -177,7 +177,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Ruby
 - 3.2.11
 - 3.3.12
-- 3.4.10
+- 3.4.11
 - 4.0.7
 
 ### Databases
@@ -473,7 +473,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.303
+- AWSPowershell: 5.0.307
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.40.0
