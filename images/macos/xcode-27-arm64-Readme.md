@@ -5,9 +5,9 @@
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 27
-- OS Version: macOS 27.0 (26A5406e)
+- OS Version: macOS 27.0 (26A428)
 - Kernel Version: Darwin 27.0.0
-- Image Version: 20260912.0186.1
+- Image Version: 20260921.0210.1
 
 ## Installed Software
 
@@ -23,21 +23,21 @@
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
 - Kotlin 2.4.20
-- Node.js 24.20.0
+- Node.js 24.21.0
 - Perl 5.44.0
 - Python3 3.14.7
 - Ruby 3.4.10
 
 ### Package Management
-- Bundler 4.0.20
+- Bundler 4.0.21
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 6.0.22
+- Homebrew 7.0.4
 - NPM 11.19.0
 - Pip3 26.2.1 (python 3.14)
-- Pipx 1.17.2
-- RubyGems 4.0.20
-- Vcpkg 2026 (build from commit a1cae005c3)
+- Pipx 1.17.4
+- RubyGems 4.0.21
+- Vcpkg 2026 (build from commit 5f96cd15fd)
 - Yarn 1.22.22
 
 ### Project Management
@@ -55,13 +55,13 @@
 - Curl 8.7.1
 - Git 2.55.0
 - Git LFS 3.8.0
-- GitHub CLI 2.100.0
+- GitHub CLI 2.101.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.22
 - jq 1.8.2
 - OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)
-- Packer 1.16.0
+- Packer 1.16.1
 - pkgconf 3.0.7
 - Unxip 3.3
 - yq 4.53.6
@@ -69,29 +69,29 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.36.44
-- AWS SAM CLI 1.166.1
+- AWS CLI 2.36.49
+- AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
 - Azure CLI (azure-devops) 1.0.8
 - Bicep CLI 0.47.16
 - Cmake 4.4.3
 - CodeQL Action Bundle 2.27.0
-- Fastlane 2.239.0
+- Fastlane 2.240.1
 - SwiftFormat 0.63.0
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 27.0.0.0.1788430756
-- Xcodes 2.0.3
+- Xcodes 2.1.0
 
 ### Browsers
-- Safari 27.0 (22625.1.29.11.2)
-- SafariDriver 27.0 (22625.1.29.11.2)
-- Google Chrome 153.0.8010.37
-- Google Chrome for Testing 153.0.8010.36
-- ChromeDriver 153.0.8010.36
-- Microsoft Edge 153.0.4234.32
-- Microsoft Edge WebDriver 153.0.4234.32
-- Mozilla Firefox 155.0.1
+- Safari 27.0 (22625.1.29.11.27)
+- SafariDriver 27.0 (22625.1.29.11.27)
+- Google Chrome 153.0.8010.53
+- Google Chrome for Testing 153.0.8010.52
+- ChromeDriver 153.0.8010.52
+- Microsoft Edge 153.0.4234.48
+- Microsoft Edge WebDriver 153.0.4234.48
+- Mozilla Firefox 156.0
 - geckodriver 0.37.1
 - Selenium server 4.49.0
 
@@ -116,7 +116,7 @@
 - 3.2.11
 - 3.3.12
 - 3.4.10
-- 4.0.6
+- 4.0.7
 
 #### Python
 - 3.11.9
@@ -152,23 +152,37 @@
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version        | Build   | Path                                         | Symlinks                                                                                  |
-| -------------- | ------- | -------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 27.0 (default) | 27A266a | /Applications/Xcode_27_Release_Candidate.app | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
+| Version        | Build    | Path                              | Symlinks                                                                                  |
+| -------------- | -------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
+| 27.2 (beta)    | 27B5019j | /Applications/Xcode_27.2_beta.app | /Applications/Xcode_27.2.0.app<br>/Applications/Xcode_27.2.app                            |
+| 27.1           | 27A9269  | /Applications/Xcode_27.1_beta.app | /Applications/Xcode_27.1.0.app<br>/Applications/Xcode_27.1.app                            |
+| 27.0 (default) | 27A266a  | /Applications/Xcode_27.app        | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
 | ------------------------- | -------------------- | ------------- |
-| macOS 27.0                | macosx27.0           | 27.0          |
+| macOS 27.0                | macosx27.0           | 27.0, 27.1    |
+| macOS 27.2                | macosx27.2           | 27.2          |
 | iOS 27.0                  | iphoneos27.0         | 27.0          |
+| iOS 27.1                  | iphoneos27.1         | 27.1          |
+| iOS 27.2                  | iphoneos27.2         | 27.2          |
 | Simulator - iOS 27.0      | iphonesimulator27.0  | 27.0          |
-| tvOS 27.0                 | appletvos27.0        | 27.0          |
-| Simulator - tvOS 27.0     | appletvsimulator27.0 | 27.0          |
-| watchOS 27.0              | watchos27.0          | 27.0          |
-| Simulator - watchOS 27.0  | watchsimulator27.0   | 27.0          |
-| visionOS 27.0             | xros27.0             | 27.0          |
-| Simulator - visionOS 27.0 | xrsimulator27.0      | 27.0          |
-| DriverKit 27.0            | driverkit27.0        | 27.0          |
+| Simulator - iOS 27.1      | iphonesimulator27.1  | 27.1          |
+| Simulator - iOS 27.2      | iphonesimulator27.2  | 27.2          |
+| tvOS 27.0                 | appletvos27.0        | 27.0, 27.1    |
+| tvOS 27.2                 | appletvos27.2        | 27.2          |
+| Simulator - tvOS 27.0     | appletvsimulator27.0 | 27.0, 27.1    |
+| Simulator - tvOS 27.2     | appletvsimulator27.2 | 27.2          |
+| watchOS 27.0              | watchos27.0          | 27.0, 27.1    |
+| watchOS 27.2              | watchos27.2          | 27.2          |
+| Simulator - watchOS 27.0  | watchsimulator27.0   | 27.0, 27.1    |
+| Simulator - watchOS 27.2  | watchsimulator27.2   | 27.2          |
+| visionOS 27.0             | xros27.0             | 27.0, 27.1    |
+| visionOS 27.2             | xros27.2             | 27.2          |
+| Simulator - visionOS 27.0 | xrsimulator27.0      | 27.0, 27.1    |
+| Simulator - visionOS 27.2 | xrsimulator27.2      | 27.2          |
+| DriverKit 27.0            | driverkit27.0        | 27.0, 27.1    |
+| DriverKit 27.2            | driverkit27.2        | 27.2          |
 
 #### Installed Simulators
 | Name          | OS   | Simulators                                                                                                                                                                                                           |
@@ -186,6 +200,7 @@
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                                           |
 | Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                             |
+| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                             |
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                    |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                 |
