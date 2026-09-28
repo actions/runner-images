@@ -5,7 +5,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 33438
-- Image Version: 20260913.261.1
+- Image Version: 20260922.270.2
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -33,9 +33,9 @@
 - NPM 10.9.8
 - NuGet 7.9.0.83
 - pip 26.2.1 (python 3.12)
-- Pipx 1.17.2
+- Pipx 1.17.5
 - RubyGems 3.5.22
-- Vcpkg (build from commit a1cae005c3)
+- Vcpkg (build from commit 68112cf89d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -77,7 +77,7 @@
 - Newman 6.2.2
 - OpenSSL 3.6.4
 - Packer 1.16.0
-- Pulumi 3.262.0
+- Pulumi 3.263.0
 - R 4.6.1
 - Service Fabric Runtime 11.7.157.1
 - Service Fabric SDK 8.7.157.1
@@ -91,12 +91,12 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.44
+- AWS CLI 2.36.49
 - AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
 - Azure DevOps CLI extension 1.0.8
-- GitHub CLI 2.100.0
+- GitHub CLI 2.101.0
 
 ### Rust Tools
 - Cargo 1.98.1
@@ -109,11 +109,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 153.0.8010.37
-- Chrome Driver 153.0.8010.36
-- Microsoft Edge 153.0.4234.32
-- Microsoft Edge Driver 153.0.4234.32
-- Mozilla Firefox 155.0.1
+- Google Chrome 153.0.8010.53
+- Chrome Driver 153.0.8010.52
+- Microsoft Edge 153.0.4234.48
+- Microsoft Edge Driver 153.0.4234.48
+- Mozilla Firefox 156.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.49.0
@@ -178,7 +178,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.2.11
 - 3.3.12
 - 3.4.10
-- 4.0.6
+- 4.0.7
 
 ### Databases
 
@@ -206,18 +206,18 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.10.0
+- MongoDB Shell (mongosh) 2.12.0
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
 | ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
 | Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.5  | C:\tools\nginx-1.31.5\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Nginx  | 1.31.6  | C:\tools\nginx-1.31.6\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2022
 | Name                          | Version       | Path                                                     |
 | ----------------------------- | ------------- | -------------------------------------------------------- |
-| Visual Studio Enterprise 2022 | 17.14.37628.2 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
+| Visual Studio Enterprise 2022 | 17.14.37710.0 | C:\Program Files\Microsoft Visual Studio\2022\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -240,7 +240,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Component.UnityEngine.x64                                                 | 17.14.36510.44  |
 | Component.Unreal.Debugger                                                 | 17.14.36907.17  |
 | Component.Unreal.Ide                                                      | 17.14.36510.44  |
-| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37627.15  |
+| Component.VisualStudio.GitHub.Copilot                                     | 17.14.37709.7   |
 | Component.VisualStudio.GitHubCopilotForAzure.x64                          | 17.14.37202.16  |
 | Component.VSInstallerProjects2022                                         | 3.0.0           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
@@ -317,7 +317,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Component.Graphics.Tools                           | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.HLSL                                     | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.IISExpress                               | 17.14.36510.44  |
-| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.37502.0   |
+| Microsoft.VisualStudio.Component.IntelliCode                              | 17.14.37709.7   |
 | Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 17.14.36510.44  |
 | Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 17.14.36510.44  |
@@ -473,10 +473,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.297
+- AWSPowershell: 5.0.303
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.39.0
+- Microsoft.Graph: 2.40.0
 - Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
