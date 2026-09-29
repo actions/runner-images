@@ -212,6 +212,7 @@ build {
       "${path.root}/../scripts/build/install-ruby.sh",
       "${path.root}/../scripts/build/install-rubygems.sh",
       "${path.root}/../scripts/build/install-git.sh",
+      "${path.root}/../scripts/build/install-node.sh"
     ]
   }
 
