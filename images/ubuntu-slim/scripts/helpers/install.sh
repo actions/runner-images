@@ -73,6 +73,8 @@ get_github_api_json() {
             if [[ "$http_code" =~ ^(401|403)$ ]] && [ ${#auth_header[@]} -gt 0 ]; then
                 echo "API_PAT was rejected with HTTP ${http_code}, falling back to unauthenticated requests" >&2
                 auth_header=()
+                # Cancels the loop's decrement so the rejected attempt costs no retry budget.
+                retries=$((retries + 1))
                 continue
             fi
             if [[ ! "$http_code" =~ ^(403|429|5[0-9][0-9])$ ]]; then

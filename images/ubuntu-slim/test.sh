@@ -53,7 +53,11 @@ run_test() {
 # Build the image only if using the default name (for backward compatibility)
 if [[ "$IMAGE_NAME" == "ubuntu-slim:test" ]]; then
     echo "Building image: $IMAGE_NAME"
-    if ! docker build --no-cache --debug --progress plain -t "$IMAGE_NAME" .; then
+    api_pat_args=()
+    if [[ -n "${GITHUB_TOKEN:-}" ]]; then
+        api_pat_args=(--secret "id=api_pat,env=GITHUB_TOKEN")
+    fi
+    if ! docker build --no-cache --debug --progress plain "${api_pat_args[@]}" -t "$IMAGE_NAME" .; then
         echo "Error: Docker build failed"
         exit 1
     fi
