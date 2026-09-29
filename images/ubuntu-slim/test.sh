@@ -100,6 +100,9 @@ run_test "docker buildx is installed" docker buildx version
 # Quick check: ensure the imagedata JSON file was created during image build
 run_test "imagedata JSON file exists" test -f /imagegeneration/imagedata.json
 
+# Quick check: ensure the action archive cache was downloaded and extracted during image build
+run_test "action archive cache is populated" bash -c '[ "$(find /opt/actionarchivecache -name "*.tar.gz" | wc -l)" -gt 0 ]'
+
 # Assert the effective apt acquire bounds, since a setting written under a key apt does not read is
 # silently ignored: https://github.com/actions/runner-images/issues/14594
 run_test "apt acquire retries are bounded" bash -c 'apt-config dump Acquire::Retries | grep -Fxq "Acquire::Retries \"1\";"'
