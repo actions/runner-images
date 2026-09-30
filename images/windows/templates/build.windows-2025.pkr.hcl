@@ -166,6 +166,7 @@ build {
       "${path.root}/../scripts/build/Install-Nginx.ps1",
       "${path.root}/../scripts/build/Install-Msys2.ps1",
       "${path.root}/../scripts/build/Install-WinAppDriver.ps1",
+      "${path.root}/../scripts/build/Install-Dokany.ps1",
       "${path.root}/../scripts/build/Install-R.ps1",
       "${path.root}/../scripts/build/Install-AWSTools.ps1",
       "${path.root}/../scripts/build/Install-DACFx.ps1",

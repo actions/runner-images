@@ -85,6 +85,7 @@ if (Test-IsX64) {
     $tools.AddToolVersion("Docker", $(Get-DockerVersion))
     $tools.AddToolVersion("Docker Compose", $(Get-DockerComposeVersion))
     $tools.AddToolVersion("Docker-wincred", $(Get-DockerWincredVersion))
+    $tools.AddToolVersion("Dokany", $(Get-DokanyVersion))
     $tools.AddToolVersion("ghc", $(Get-GHCVersion))
 }
 $tools.AddToolVersion("Git", $(Get-GitVersion))

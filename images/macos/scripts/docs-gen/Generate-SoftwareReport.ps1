@@ -89,6 +89,9 @@ $utilities.AddToolVersion("GNU Tar", $(Get-GnuTarVersion))
 $utilities.AddToolVersion("GNU Wget", $(Get-WgetVersion))
 $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
+if ($os.IsSequoiaX64) {
+    $utilities.AddToolVersion("macFUSE", $(Get-MacFUSEVersion))
+}
 $utilities.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $utilities.AddToolVersion("Packer", $(Get-PackerVersion))
 $utilities.AddToolVersion("pkgconf", $(Get-PKGConfVersion))
