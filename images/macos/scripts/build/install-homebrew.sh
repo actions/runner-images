@@ -9,7 +9,15 @@ source ~/utils/utils.sh
 arch=$(get_arch)
 
 echo "Installing Homebrew..."
-homebrew_installer_path=$(download_with_retry "https://raw.githubusercontent.com/Homebrew/install/master/install.sh")
+if is_Arm64; then
+    # For ARM64 architecture, download the latest Homebrew installer script
+    homebrew_installer_path=$(download_with_retry "https://raw.githubusercontent.com/Homebrew/install/master/install.sh")
+else
+    # For Intel architecture, download the pinned Homebrew installer script
+    # Homebrew dropped support for MacOS Intel since v 7.0.0
+    # https://github.com/Homebrew/install/pull/1140
+    homebrew_installer_path=$(download_with_retry "https://raw.githubusercontent.com/Homebrew/install/0f5b7666a65fc2d1a2615549f02771353c250f9a/install.sh")
+fi
 /bin/bash $homebrew_installer_path
 
 if [[ $arch == "arm64" ]]; then
@@ -40,8 +48,15 @@ if ! is_Arm64; then
     FILE_NAME="o/openssl@3.rb"
     FORMULA_NAME="openssl@3"
     brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+
+    # Pinning curl to bypass dropping Intel support
+    COMMIT_CURL=bce3d09048e3cb6e0a9e75a49f79ec33e321f328
+    FILE_NAME_CURL="c/curl.rb"
+    FORMULA_NAME_CURL="curl"
+    brew_install_pinned_formula "$FORMULA_NAME_CURL" "$FILE_NAME_CURL" "$COMMIT_CURL"
+else
+    brew_smart_install curl
 fi
-brew_smart_install curl
 
 echo "Installing wget..."
 brew_smart_install "wget"
