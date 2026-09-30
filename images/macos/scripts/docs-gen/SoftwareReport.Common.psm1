@@ -236,7 +236,11 @@ function Get-PackerVersion {
 }
 
 function Get-OpenSSLVersion {
-    $opensslVersion = Run-Command "openssl version"
+    param (
+        [string] $OpenSSLPath = "openssl"
+    )
+
+    $opensslVersion = Run-Command "`"$OpenSSLPath`" version"
     return ($opensslVersion -replace "^OpenSSL").Trim()
 }
 
