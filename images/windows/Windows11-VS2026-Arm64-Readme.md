@@ -5,7 +5,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9457
-- Image Version: 20260920.164.1
+- Image Version: 20260924.168.1
 
 ## Windows features
 
@@ -19,7 +19,7 @@
 - LLVM 22.1.8
 - Node 24.21.0
 - Perl 5.32.1
-- PHP 8.4.25
+- PHP 8.4.26
 - Python 3.13.15
 - Ruby 3.4.10
 
@@ -30,9 +30,9 @@
 - NPM 11.19.0
 - NuGet 7.9.0.83
 - pip 26.2.1 (python 3.13)
-- Pipx 1.17.5
+- Pipx 1.17.6
 - RubyGems 3.6.9
-- Vcpkg (build from commit 5f96cd15fd)
+- Vcpkg (build from commit e143402b55)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,7 +54,7 @@
 - Bazelisk 1.28.1
 - Bicep 0.47.16
 - CMake 4.4.3
-- CodeQL Action Bundle 2.27.0
+- CodeQL Action Bundle 2.27.1
 - Git 2.55.0.windows.5
 - Git LFS 3.7.1
 - ImageMagick 7.1.2-25
@@ -70,7 +70,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.4
 - Packer 1.16.0
-- Pulumi 3.263.0
+- Pulumi 3.264.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -82,7 +82,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.1
-- AWS CLI 2.36.49
+- AWS CLI 2.37.1
 - AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
@@ -104,11 +104,11 @@
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 153.0.8010.53
-- Chrome Driver 153.0.8010.52
-- Microsoft Edge 153.0.4234.48
-- Microsoft Edge Driver 153.0.4234.48
-- Mozilla Firefox 156.0
+- Google Chrome 154.0.8037.58
+- Chrome Driver 154.0.8037.57
+- Microsoft Edge 154.0.4258.37
+- Microsoft Edge Driver 154.0.4258.32
+- Mozilla Firefox 156.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.49.0
@@ -152,7 +152,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 1.26.8
 
 #### Node.js
-- 22.23.2
+- 22.23.3
 - 24.21.0
 
 #### Python
@@ -179,7 +179,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2026
 | Name                          | Version         | Path                                                   |
 | ----------------------------- | --------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.10.12210.168 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Visual Studio Enterprise 2026 | 18.10.12217.157 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -391,7 +391,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.302
+- AWSPowershell: 5.0.306
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.40.0

@@ -7,7 +7,7 @@
 # macOS 27
 - OS Version: macOS 27.0 (26A428)
 - Kernel Version: Darwin 27.0.0
-- Image Version: 20260921.0210.1
+- Image Version: 20260928.0222.1
 
 ## Installed Software
 
@@ -26,24 +26,24 @@
 - Node.js 24.21.0
 - Perl 5.44.0
 - Python3 3.14.7
-- Ruby 3.4.10
+- Ruby 3.4.11
 
 ### Package Management
 - Bundler 4.0.21
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 7.0.4
+- Homebrew 7.0.6
 - NPM 11.19.0
 - Pip3 26.2.1 (python 3.14)
-- Pipx 1.17.4
+- Pipx 1.17.6
 - RubyGems 4.0.21
-- Vcpkg 2026 (build from commit 5f96cd15fd)
+- Vcpkg 2026 (build from commit 07f4812200)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.18
 - Apache Maven 3.9.16
-- Gradle 9.7.1
+- Gradle 9.8.0
 
 ### Utilities
 - 7-Zip 17.05
@@ -58,7 +58,7 @@
 - GitHub CLI 2.101.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.5.22
+- gpg (GnuPG) 2.5.24
 - jq 1.8.2
 - OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)
 - Packer 1.16.1
@@ -69,14 +69,14 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.36.49
+- AWS CLI 2.37.4
 - AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
 - Azure CLI (azure-devops) 1.0.8
 - Bicep CLI 0.47.16
 - Cmake 4.4.3
-- CodeQL Action Bundle 2.27.0
+- CodeQL Action Bundle 2.27.1
 - Fastlane 2.240.1
 - SwiftFormat 0.63.0
 - Xcbeautify 3.2.1
@@ -86,12 +86,12 @@
 ### Browsers
 - Safari 27.0 (22625.1.29.11.27)
 - SafariDriver 27.0 (22625.1.29.11.27)
-- Google Chrome 153.0.8010.53
-- Google Chrome for Testing 153.0.8010.52
-- ChromeDriver 153.0.8010.52
-- Microsoft Edge 153.0.4234.48
-- Microsoft Edge WebDriver 153.0.4234.48
-- Mozilla Firefox 156.0
+- Google Chrome 154.0.8037.58
+- Google Chrome for Testing 154.0.8037.57
+- ChromeDriver 154.0.8037.57
+- Microsoft Edge 154.0.4258.37
+- Microsoft Edge WebDriver 154.0.4258.37
+- Mozilla Firefox 156.0.1
 - geckodriver 0.37.1
 - Selenium server 4.49.0
 
@@ -115,7 +115,7 @@
 #### Ruby
 - 3.2.11
 - 3.3.12
-- 3.4.10
+- 3.4.11
 - 4.0.7
 
 #### Python
@@ -125,7 +125,7 @@
 - 3.14.7
 
 #### Node.js
-- 22.23.2
+- 22.23.3
 - 24.21.0
 
 #### Go
