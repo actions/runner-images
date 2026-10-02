@@ -28,4 +28,6 @@ jobs:
 
       - name: Run test.sh
         working-directory: ${{ matrix.directory }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./test.sh
