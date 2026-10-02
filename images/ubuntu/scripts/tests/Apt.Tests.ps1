@@ -37,6 +37,7 @@ Describe "Apt acquire configuration" {
         @{ setting = "Acquire::Retries"; expectedValue = if ($usesPortsArchive) { "3" } else { "1" } }
         @{ setting = "Acquire::http::Timeout"; expectedValue = $expectedTimeout }
         @{ setting = "Acquire::https::Timeout"; expectedValue = $expectedTimeout }
+        @{ setting = "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled"; expectedValue = "false" }
     )
 
     It "<setting> is set to <expectedValue>" -TestCases $settingsTestCases {
