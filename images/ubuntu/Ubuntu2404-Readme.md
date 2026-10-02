@@ -8,7 +8,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.5 LTS
 - Kernel Version: 6.17.0-1022-azure
-- Image Version: 20260920.314.1
+- Image Version: 20260927.320.1
 - Systemd version: 255.4-1ubuntu8.17
 
 ## Installed Software
@@ -21,9 +21,9 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
-- Julia 1.13.0
+- Julia 1.13.1
 - Kotlin 2.4.20
-- Node.js 22.23.2
+- Node.js 22.23.3
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -32,14 +32,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.22.0
-- Homebrew 7.0.4
+- Homebrew 7.0.6
 - Miniconda 26.7.1
-- Npm 10.9.8
+- Npm 10.9.9
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.16.7
 - RubyGems 3.4.20
-- Vcpkg (build from commit 5f96cd15fd)
+- Vcpkg (build from commit 07f4812200)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -58,7 +58,7 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.7.1
+- Gradle 9.8.0
 - Lerna 10.0.1
 - Maven 3.9.16
 
@@ -70,7 +70,7 @@ to accomplish this.
 - Bicep 0.47.16
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.27.0
+- CodeQL Action Bundle 2.27.1
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
 - Docker-Buildx 0.37.1
@@ -83,19 +83,19 @@ to accomplish this.
 - Haveged 1.9.14
 - jq 1.7
 - Kind 0.33.0
-- Kubectl 1.37.0
+- Kubectl 1.37.1
 - Kustomize 5.8.1
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.39.0
 - n 10.2.0
 - Newman 6.2.2
-- nvm 0.40.7
+- nvm 0.40.8
 - OpenSSL 3.0.13-0ubuntu3.15
 - Packer 1.16.1
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.263.0
+- Pulumi 3.265.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -104,13 +104,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.49
+- AWS CLI 2.37.4
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.166.2
 - Azure CLI 2.90.0
 - Azure CLI (azure-devops) 1.0.8
 - GitHub CLI 2.101.0
-- Google Cloud CLI 585.0.0
+- Google Cloud CLI 586.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -124,7 +124,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.3.6
 - Composer 2.10.3
-- PHPUnit 8.5.54
+- PHPUnit 8.5.55
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -145,11 +145,11 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.9.0
 
 ### Browsers and Drivers
-- Google Chrome 153.0.8010.52
-- ChromeDriver 153.0.8010.52
-- Chromium 153.0.8010.0
-- Microsoft Edge 153.0.4234.48
-- Microsoft Edge WebDriver 153.0.4234.48
+- Google Chrome 154.0.8037.57
+- ChromeDriver 154.0.8037.57
+- Chromium 154.0.8037.0
+- Microsoft Edge 154.0.4258.37
+- Microsoft Edge WebDriver 154.0.4258.37
 - Selenium server 4.49.0
 - Mozilla Firefox 156.0
 - Geckodriver 0.37.1
@@ -194,7 +194,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 1.26.8
 
 #### Node.js
-- 22.23.2
+- 22.23.3
 - 24.21.0
 
 #### Python
@@ -207,12 +207,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
 - 3.10.16 [PyPy 7.3.19]
-- 3.11.15 [PyPy 7.3.23]
+- 3.11.16 [PyPy 8.0.0]
 
 #### Ruby
 - 3.2.11
 - 3.3.12
-- 3.4.10
+- 3.4.11
 - 4.0.7
 
 ### PowerShell Tools
@@ -265,7 +265,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.1.0-2build2                 |
 | bzip2                  | 1.0.8-5.1ubuntu0.1            |
 | coreutils              | 9.4-3ubuntu6.3                |
-| curl                   | 8.5.0-2ubuntu10.13            |
+| curl                   | 8.5.0-2ubuntu10.15            |
 | dbus                   | 1.14.10-4ubuntu4.1            |
 | dnsutils               | 1:9.18.39-0ubuntu0.24.04.7    |
 | dpkg                   | 1.22.6ubuntu6.6               |
@@ -313,7 +313,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sqlite3                | 3.45.1-1ubuntu2.8             |
 | ssh                    | 1:9.6p1-3ubuntu13.19          |
 | sshpass                | 1.09-1                        |
-| sudo                   | 1.9.15p5-3ubuntu5.24.04.2     |
+| sudo                   | 1.9.15p5-3ubuntu5.24.04.3     |
 | swig                   | 4.2.0-2ubuntu1                |
 | systemd-coredump       | 255.4-1ubuntu8.17             |
 | tar                    | 1.35+dfsg-3ubuntu0.4          |
@@ -326,7 +326,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | unzip                  | 6.0-28ubuntu4.1               |
 | upx                    | 4.2.2-3                       |
 | wget                   | 1.21.4-1ubuntu4.5             |
-| xvfb                   | 2:21.1.12-1ubuntu1.6          |
+| xvfb                   | 2:21.1.12-1ubuntu1.8          |
 | xz-utils               | 5.6.1+really5.4.5-1ubuntu0.3  |
 | zip                    | 3.0-13ubuntu0.2               |
 | zsync                  | 0.6.2-5build1                 |
