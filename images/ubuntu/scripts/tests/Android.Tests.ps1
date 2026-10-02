@@ -97,6 +97,14 @@ Describe "Android" -Skip:(Test-IsArm64) {
         }
     }
 
+    # The Android CLI ships with command-line tools 22.0 and later, the first revision that also writes
+    # valid AVD targets for Major.Minor packages; ubuntu-22.04 stays behind because 22.0 requires Java 17
+    Context "Command-line tools" -Skip:(Test-IsUbuntu22) {
+        It "Android CLI is available" {
+            "$env:ANDROID_HOME/cmdline-tools/latest/bin/android" | Should -Exist
+        }
+    }
+
     Context "Packages" {
         $testCases = $androidPackages | ForEach-Object { @{ PackageName = $_ } }
 
