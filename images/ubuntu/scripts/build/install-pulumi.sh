@@ -9,14 +9,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  pulumi_arch="x64"
-elif is_arm64; then
-  pulumi_arch="arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+pulumi_arch=$(select_by_arch "x64" "arm64")
 
 # Dowload Pulumi
 version=$(curl -fsSL "https://www.pulumi.com/latest-version")
