@@ -138,6 +138,11 @@ Describe "clang" {
         "clang-tidy-$ClangVersion --version" | Should -ReturnZeroExitCode
         "run-clang-tidy-$ClangVersion --help" | Should -ReturnZeroExitCode
     }
+
+    It "Only default clang LLVMgold plugin is registered for binutils" {
+        $defaultVersion = (Get-ToolsetContent).clang.default_version
+        (Get-ChildItem -Path "/usr/lib/bfd-plugins" -Filter "LLVMgold-*.so").Name | Should -Be "LLVMgold-$defaultVersion.so"
+    }
 }
 
 Describe "Cmake" {
