@@ -104,6 +104,7 @@ build {
     elevated_user     = "${var.install_user}"
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}", "INSTALL_VS_2026=true"]
     scripts           = [
+      "${path.root}/../scripts/build/Show-DiskSpace.ps1",
       "${path.root}/../scripts/build/Install-VisualStudio.ps1",
       "${path.root}/../scripts/build/Install-KubernetesTools.ps1"
     ]
@@ -183,6 +184,7 @@ build {
       "${path.root}/../scripts/build/Install-Bazel.ps1",
       "${path.root}/../scripts/build/Install-RootCA.ps1",
       "${path.root}/../scripts/build/Install-MongoDB.ps1",
+      "${path.root}/../scripts/build/Show-DiskSpace.ps1",
       "${path.root}/../scripts/build/Install-CodeQLBundle.ps1",
       "${path.root}/../scripts/build/Configure-Diagnostics.ps1"
     ]
@@ -193,13 +195,17 @@ build {
     elevated_user     = "${var.install_user}"
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts           = [
+      "${path.root}/../scripts/build/Show-DiskSpace.ps1",
+      "${path.root}/../scripts/build/Install-LLVM.ps1",
+      "${path.root}/../scripts/build/Show-DiskSpace.ps1",
       "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
+      "${path.root}/../scripts/build/Show-DiskSpace.ps1",
       "${path.root}/../scripts/build/Install-WindowsUpdates.ps1",
       "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
       "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
       "${path.root}/../scripts/build/Configure-Shell.ps1",
       "${path.root}/../scripts/build/Configure-DeveloperMode.ps1",
-      "${path.root}/../scripts/build/Install-LLVM.ps1"
+      "${path.root}/../scripts/build/Show-DiskSpace.ps1"
     ]
   }
 
@@ -213,8 +219,11 @@ build {
     pause_before     = "2m0s"
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
+      "${path.root}/../scripts/build/Show-DiskSpace.ps1",
       "${path.root}/../scripts/build/Install-WindowsUpdatesAfterReboot.ps1",
+      "${path.root}/../scripts/build/Show-DiskSpace.ps1",
       "${path.root}/../scripts/build/Invoke-Cleanup.ps1",
+      "${path.root}/../scripts/build/Show-DiskSpace.ps1",
       "${path.root}/../scripts/tests/RunAll-Tests.ps1"
     ]
   }
