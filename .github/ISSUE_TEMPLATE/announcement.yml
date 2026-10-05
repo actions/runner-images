@@ -1,6 +1,5 @@
 name: Announcement
 description: Submit an announcement
-labels: [Announcement]
 body:
   - type: textarea
     attributes:
