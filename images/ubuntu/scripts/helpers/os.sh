@@ -47,3 +47,14 @@ is_ubuntu24_x64() {
 is_ubuntu26_x64() {
     is_ubuntu26 && is_x64
 }
+
+select_by_arch() {
+    if is_x64; then
+        echo "$1"
+    elif is_arm64; then
+        echo "$2"
+    else
+        echo "Unsupported architecture"
+        exit 1
+    fi
+}

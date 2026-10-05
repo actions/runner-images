@@ -9,14 +9,7 @@ source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  driver_arch="linux64"
-elif is_arm64; then
-  driver_arch="linux-aarch64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+driver_arch=$(select_by_arch "linux64" "linux-aarch64")
 
 FIREFOX_REPO="ppa:mozillateam/ppa"
 

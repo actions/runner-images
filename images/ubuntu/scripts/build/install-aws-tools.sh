@@ -9,18 +9,9 @@
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
 
-if is_x64; then
-  cli_suffix="x86_64"
-  smplugin_arch="64bit"
-  sam_cli_suffix="x86_64"
-elif is_arm64; then
-  cli_suffix="aarch64"
-  smplugin_arch="arm64"
-  sam_cli_suffix="arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+cli_suffix=$(select_by_arch "x86_64" "aarch64")
+smplugin_arch=$(select_by_arch "64bit" "arm64")
+sam_cli_suffix=$(select_by_arch "x86_64" "arm64")
 
 awscliv2_archive_path=$(download_with_retry "https://awscli.amazonaws.com/awscli-exe-linux-${cli_suffix}.zip")
 unzip -qq "$awscliv2_archive_path" -d /tmp
