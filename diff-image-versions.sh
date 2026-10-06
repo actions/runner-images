@@ -15,14 +15,14 @@ set -euo pipefail
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 usage() {
-  cat <<EOF
+  cat <<USAGE
 Usage: $(basename "${0}") <os-name> <version1> <version2>
 
 Compare runner image versions and display software changes.
 
 Arguments:
-  os-name    OS identifier (ubuntu22, ubuntu24, ubuntu26, win22, win25, 
-             macos-14, macos-15, arm64 variants)
+  os-name    OS identifier (ubuntu22, ubuntu24, ubuntu26, win22, win25,
+             win11, macos-14, macos-15, macos-26, and arm64 variants)
   version1   Earlier version (YYYYMMDD.NNN)
   version2   Later version (YYYYMMDD.NNN)
 
@@ -30,7 +30,7 @@ Examples:
   $(basename "${0}") ubuntu22 20251102.127 20251125.163
   $(basename "${0}") win25 20251102.77 20251125.122
   $(basename "${0}") macos-14 20251102.0024 20251125.0031
-EOF
+USAGE
 }
 
 resolve_readme_path() {
@@ -96,7 +96,7 @@ resolve_readme_path() {
       ;;
     *)
       echo "Error: Unknown OS '${os_name}'" >&2
-      echo "Valid: ubuntu22|ubuntu24|ubuntu26, win22|win25, macos-14|macos-15|macos-26, and arm64 variants" >&2
+      echo "Valid: ubuntu22|ubuntu24|ubuntu26, win22|win25|win11, macos-14|macos-15|macos-26, and arm64 variants" >&2
       return 1
       ;;
   esac
@@ -245,6 +245,7 @@ main() {
     local -a removals=()
     local -a additions=()
     local -a breaking_changes=()
+
     while IFS= read -r line; do
       if [[ "${line}" =~ ^\-(.+)$ ]]; then
         removals+=("${BASH_REMATCH[1]}")
