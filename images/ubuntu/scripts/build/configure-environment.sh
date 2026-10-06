@@ -24,6 +24,15 @@ sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
 sed -i 's/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=4096/g' /etc/waagent.conf
 
+# Ephemeral-OS VMs have no Azure resource disk, so cloud-init's default /mnt mount waits ~90s
+# at boot for a device that never appears. Cap that wait via cloud-init, which rewrites
+# /etc/fstab on every boot (so a direct fstab edit would not survive).
+mkdir -p /etc/cloud/cloud.cfg.d
+tee /etc/cloud/cloud.cfg.d/99-azure-resource-disk-timeout.cfg > /dev/null <<'EOF'
+mounts:
+  - [ ephemeral0, /mnt, auto, "defaults,nofail,x-systemd.device-timeout=1s,_netdev", "0", "2" ]
+EOF
+
 # Add localhost alias to ::1 IPv6
 sed -i 's/::1 ip6-localhost ip6-loopback/::1     localhost ip6-localhost ip6-loopback/g' /etc/hosts
 
@@ -57,10 +66,26 @@ echo 'ACTION=="add", SUBSYSTEM=="module", KERNEL=="nf_conntrack", RUN+="/usr/sbi
 # Linux kernel 6.17 changed read_ahead_kb default from 128 to 4096 on Azure VMs
 # where disks are presented as rotational (ROTA=1). This floods the page cache
 # with unused data during random-access I/O and causes memory exhaustion and thrashing.
+# Azure v4 VM series use SCSI disks (sd*); v5/v6 use NVMe namespaces (nvme*n*).
 if ! is_ubuntu22; then
     readahead_rule='/etc/udev/rules.d/99-readahead.rules'
-    echo 'ACTION=="add|change", KERNEL=="sd*", ATTR{queue/read_ahead_kb}="128"' | tee "$readahead_rule"
+    echo 'ACTION=="add|change", KERNEL=="sd*|nvme*n*", ATTR{queue/read_ahead_kb}="128"' | tee "$readahead_rule"
 fi
+
+# Relax root filesystem durability guarantees to speed up I/O heavy workloads. Runner VMs are
+# ephemeral, so losing recent writes on an unclean shutdown is acceptable.
+# data= and journal_async_commit can only be set on the initial mount performed by the initramfs,
+# so they have to be passed through rootflags on the kernel command line rather than through fstab.
+root_fs_type=$(findmnt --noheadings --first-only --output FSTYPE --target /)
+if [[ "$root_fs_type" != "ext4" ]]; then
+    echo "Expected an ext4 root filesystem but found '${root_fs_type}', refusing to set ext4 rootflags"
+    exit 1
+fi
+
+grub_dropin='/etc/default/grub.d/99-runner-performance.cfg'
+mkdir -p "$(dirname "$grub_dropin")"
+echo 'GRUB_CMDLINE_LINUX_DEFAULT="$GRUB_CMDLINE_LINUX_DEFAULT rootflags=nobarrier,data=writeback,journal_async_commit,commit=30"' | tee "$grub_dropin"
+update-grub
 
 # Create symlink for tests running
 chmod +x $HELPER_SCRIPTS/invoke-tests.sh

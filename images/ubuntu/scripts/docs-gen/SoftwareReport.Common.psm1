@@ -275,7 +275,7 @@ function Get-CachedDockerImages {
 }
 
 function Get-CachedDockerImagesTableData {
-    $allImages = sudo docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}"
+    $allImages = sudo docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}}|{{.CreatedAt}}"
     $allImages.Split("*") | Where-Object { $_ } | ForEach-Object {
         $parts = $_.Split("|")
         [PSCustomObject] @{
