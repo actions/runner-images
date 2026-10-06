@@ -156,7 +156,7 @@
                 "15.6.1"
             ]
         },
-        { "name": "Pester" },
+        { "name": "Pester", "versions": ["5.9.0"] },
         { "name": "PSScriptAnalyzer" }
     ],
     "brew": {
@@ -277,19 +277,17 @@
                 "x64": {
                     "variable_template" : "GOROOT_{0}_{1}_X64",
                     "versions": [
-                        "1.22.*",
-                        "1.23.*",
                         "1.24.*",
-                        "1.25.*"
+                        "1.25.*",
+                        "1.26.*"
                     ]
                 },
                 "arm64": {
                     "variable_template" : "GOROOT_{0}_{1}_ARM64",
                     "versions": [
-                        "1.22.*",
-                        "1.23.*",
                         "1.24.*",
-                        "1.25.*"
+                        "1.25.*",
+                        "1.26.*"
                     ]
                 }
             }
@@ -326,7 +324,7 @@
         "version": "8.5"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     },
     "mono": {
         "framework":{

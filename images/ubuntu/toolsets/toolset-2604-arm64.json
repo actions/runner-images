@@ -7,6 +7,11 @@
             "platform_version": "26.04",
             "arch": "arm64",
             "versions": [
+                "3.10.*",
+                "3.11.*",
+                "3.12.*",
+                "3.13.*",
+                "3.14.*"
             ]
         },
         {
@@ -43,6 +48,10 @@
             "platform_version": "26.04",
             "arch": "arm64",
             "versions": [
+                "3.2.*",
+                "3.3.*",
+                "3.4.*",
+                "4.0.*"
             ]
         },
         {
@@ -76,13 +85,13 @@
         "ndk": {
             "default": "27",
             "versions": [
-                "27", "28", "29"
+                "27", "29", "30"
             ]
         }
     },
     "powershellModules": [
         {"name": "Microsoft.Graph"},
-        {"name": "Pester"},
+        {"name": "Pester", "versions": ["5.9.0"]},
         {"name": "PSScriptAnalyzer"}
     ],
     "azureModules": [
@@ -120,6 +129,8 @@
             "libyaml-dev",
             "libtool",
             "libssl-dev",
+            "libcrypt-dev",
+            "libicu-dev",
             "libgbm-dev",
             "libsqlite3-dev",
             "locales",

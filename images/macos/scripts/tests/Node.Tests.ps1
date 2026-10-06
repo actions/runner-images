@@ -25,7 +25,11 @@ Describe "Global NPM Packages" {
     $globalNpmPackages = (Get-ToolsetContent).npm.global_packages
     $globalNpmPackagesWithTests = $globalNpmPackages | Where-Object { $_.test } | ForEach-Object { @{ Name = $_.name; Test = $_.test } }
 
-    It "<Name>" -TestCases $globalNpmPackagesWithTests {
-        $Test | Should -ReturnZeroExitCode
+    if ($globalNpmPackagesWithTests.Count -gt 0) {
+        It "<Name>" -TestCases $globalNpmPackagesWithTests {
+            $Test | Should -ReturnZeroExitCode
+        }
+    } else {
+        It "has no global npm package tests defined" -Skip:$true {}
     }
 }

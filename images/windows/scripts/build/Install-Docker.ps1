@@ -28,7 +28,8 @@ $dockerPath = "$env:TEMP_DIR\docker\docker.exe"
 $dockerdPath = "$env:TEMP_DIR\docker\dockerd.exe"
 
 Write-Host "Install Docker CE"
-$instScriptUrl = "https://raw.githubusercontent.com/microsoft/Windows-Containers/Main/helpful_tools/Install-DockerCE/install-docker-ce.ps1"
+# Pinned to the last commit before docker.exe moved out of System32, which breaks the symlink below (actions/runner-images#14572)
+$instScriptUrl = "https://raw.githubusercontent.com/microsoft/Windows-Containers/8ea2a92d8dfa7815abcf5cc44a756a0ac3d0f513/helpful_tools/Install-DockerCE/install-docker-ce.ps1"
 $instScriptPath = Invoke-DownloadWithRetry $instScriptUrl
 & $instScriptPath -DockerPath $dockerPath -DockerDPath $dockerdPath
 if ($LastExitCode -ne 0) {

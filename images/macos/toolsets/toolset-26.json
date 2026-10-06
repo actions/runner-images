@@ -1,8 +1,15 @@
 {
     "xcode": {
-        "default": "26.5",
+        "default": "26.6",
         "x64": {
             "versions": [
+                {
+                    "link": "26.6",
+                    "filename": "Xcode_26.6_Universal",
+                    "version": "26.6+17F113",
+                    "sha256": "3f7e2985a080d6166f178034a76a7e7a24e5e64a31f36772f9a3f55e27c94591",
+                    "install_runtimes": "none"
+                },
                 {
                     "link": "26.5",
                     "filename": "Xcode_26.5_Universal",
@@ -56,6 +63,13 @@
         },
         "arm64": {
             "versions": [
+                {
+                    "link": "26.6",
+                    "filename": "Xcode_26.6_Universal",
+                    "version": "26.6+17F113",
+                    "sha256": "3f7e2985a080d6166f178034a76a7e7a24e5e64a31f36772f9a3f55e27c94591",
+                    "install_runtimes": "none"
+                },
                 {
                     "link": "26.5",
                     "filename": "Xcode_26.5_Universal",
@@ -146,7 +160,7 @@
                 "15.6.1"
             ]
         },
-        { "name": "Pester" },
+        { "name": "Pester", "versions": ["5.9.0"] },
         { "name": "PSScriptAnalyzer" }
     ],
     "brew": {
@@ -163,7 +177,8 @@
             "kotlin",
             "libpq",
             "libsodium",
-            "openssl",
+            "openssl@3",
+            "openssl@4",
             "p7zip",
             "packer",
             "perl",
@@ -246,7 +261,7 @@
                 "x64": {
                     "versions": [
                         "22.*",
-                        "24.*"
+                        "24.19.*"
                     ]
                 },
                 "arm64": {
@@ -265,17 +280,17 @@
                 "x64": {
                     "variable_template" : "GOROOT_{0}_{1}_X64",
                     "versions": [
-                        "1.23.*",
                         "1.24.*",
-                        "1.25.*"
+                        "1.25.*",
+                        "1.26.*"
                     ]
                 },
                 "arm64": {
                     "variable_template" : "GOROOT_{0}_{1}_ARM64",
                     "versions": [
-                        "1.23.*",
                         "1.24.*",
-                        "1.25.*"
+                        "1.25.*",
+                        "1.26.*"
                     ]
                 }
             }
@@ -312,6 +327,6 @@
         "version": "8.5"
     },
     "pwsh": {
-        "version": "7.4"
+        "version": "7.6"
     }
 }
