@@ -81,7 +81,7 @@ variable "ram_size" {
 
 variable "image_os" {
   type    = string
-  default = "macos26"
+  default = "macos27"
 }
 
 source "veertu-anka-vm-clone" "template" {
@@ -175,7 +175,7 @@ build {
     environment_vars = ["PASSWORD=${var.vm_password}", "USERNAME=${var.vm_username}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; sudo {{ .Vars }} {{ .Path }}"
     scripts          = [
-      "${path.root}/../scripts/build/configure-tccdb-macos.sh",
+      "${path.root}/../scripts/build/configure-tccdb-macos-27.sh",
       "${path.root}/../scripts/build/configure-autologin.sh",
       "${path.root}/../scripts/build/configure-auto-updates.sh",
       "${path.root}/../scripts/build/configure-ntpconf.sh",
@@ -184,7 +184,7 @@ build {
   }
 
   provisioner "shell" {
-    environment_vars = ["IMAGE_VERSION=${var.build_id}", "IMAGE_OS=${var.image_os}", "IMAGE_LABEL_OVERRIDE=xcode-27", "PASSWORD=${var.vm_password}"]
+    environment_vars = ["IMAGE_VERSION=${var.build_id}", "IMAGE_OS=${var.image_os}", "IMAGE_LABEL_OVERRIDE=xcode-27-arm64", "PASSWORD=${var.vm_password}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts          = [
       "${path.root}/../scripts/build/configure-preimagedata.sh",
@@ -268,6 +268,12 @@ build {
 
   provisioner "shell" {
     environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
+    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    script           = "${path.root}/../scripts/build/install-openssl.sh"
+  }
+
+  provisioner "shell" {
+    environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     inline           = [
       "pwsh -File \"${local.image_folder}/software-report/Generate-SoftwareReport.ps1\" -OutputDirectory \"${local.image_folder}/output\" -ImageName ${var.build_id}",
@@ -276,7 +282,7 @@ build {
   }
 
   provisioner "file" {
-    destination = "${path.root}/../../image-output/xcode-27-Readme.md"
+    destination = "${path.root}/../../image-output/xcode-27-arm64-Readme.md"
     direction   = "download"
     source      = "${local.image_folder}/output/software-report.md"
   }

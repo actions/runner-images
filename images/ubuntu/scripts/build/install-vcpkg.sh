@@ -6,6 +6,7 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/etc-environment.sh
+source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
 if is_arm64; then
@@ -19,6 +20,10 @@ set_etc_environment_variable "VCPKG_INSTALLATION_ROOT" "${VCPKG_INSTALLATION_ROO
 
 # Install vcpkg
 git clone https://github.com/Microsoft/vcpkg $VCPKG_INSTALLATION_ROOT
+vcpkg_commit=$(get_toolset_value '.vcpkg.commit // empty')
+if [[ -n "$vcpkg_commit" ]]; then
+  git -C $VCPKG_INSTALLATION_ROOT checkout "$vcpkg_commit"
+fi
 
 $VCPKG_INSTALLATION_ROOT/bootstrap-vcpkg.sh
 
