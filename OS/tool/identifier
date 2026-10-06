@@ -1,0 +1,151 @@
+#!/usr/bin/env bash
+################################################################################
+##  File:  diff-image-versions.sh
+##  Desc:  Compare software versions between two runner image releases
+##  Usage: ./diff-image-versions.sh <os-name> <version1> <version2>
+##
+##  Example: Arguements
+##    ./diff-image-versions.sh ubuntu22 20251102.127 20251125.163
+##    ./diff-image-versions.sh win25 20251102.77 20251125.122
+################################################################################
+
+set -euo pipefail
+
+usage() {
+  cat <<EOF
+Usage: $(basename "${0}") <os-name> <version1> <version2>
+
+Compare runner image versions and display software changes.
+
+Arguments: Examples
+  os-name    OS identifier (ubuntu22, ubuntu24, win19, win22, win25)
+  version1   Earlier version (YYYYMMDD.NNN)
+  version2   Later version (YYYYMMDD.NNN)
+
+Examples:
+  $(basename "${0}") ubuntu22 20251102.127 20251125.163
+  $(basename "${0}") win25 20251102.77 20251125.122
+EOF
+}
+
+get_readme_path() {
+  local os_name="${1}"
+  local os_folder=""
+  local pattern=""
+  
+  case "${os_name}" in
+    ubuntu*)
+      os_folder="ubuntu"
+      local version="${os_name#ubuntu}"
+      pattern="Ubuntu${version}04-Readme.md"
+      ;;
+    win*)
+      os_folder="windows"
+      local version="${os_name#win}"
+      pattern="Windows20${version}-Readme.md"
+      ;;
+    *)
+      echo "Error: Unknown OS '${os_name}'" >&2
+      echo "Valid: ubuntu*, win*" >&2
+      return 1
+      ;;
+  esac
+  
+  local readme_path="images/${os_folder}/${pattern}"
+  
+  if ! git cat-file -e "HEAD:${readme_path}" 2>/dev/null; then
+    echo "Error: Readme not found: ${readme_path}" >&2
+    return 1
+  fi
+  
+  echo "${readme_path}"
+}
+
+validate_version() {
+  local version="${1}"
+  
+  if [[ ! "${version}" =~ ^[0-9]{8}\.[0-9]+$ ]]; then
+    echo "Error: Invalid version '${version}'" >&2
+    echo "Format: YYYYMMDD.NNN (e.g., 20251102.127)" >&2
+    return 1
+  fi
+  
+  return 0
+}
+
+tag_exists() {
+  local tag="${1}"
+  
+  if git rev-parse "${tag}" >/dev/null 2>&1; then
+    return 0
+  else
+    echo "Error: Tag '${tag}' not found" >&2
+    return 1
+  fi
+}
+
+main() {
+  if [[ $# -ne 3 ]]; then
+    usage
+    return 1
+  fi
+  
+  local os_name="${1}"
+  local version1="${2}"
+  local version2="${3}"
+  
+  validate_version "${version1}" || return 1
+  validate_version "${version2}" || return 1
+  
+  local readme_path
+  readme_path="$(get_readme_path "${os_name}")" || return 1
+  
+  local tag1="${os_name}/${version1}"
+  local tag2="${os_name}/${version2}"
+  
+  tag_exists "${tag1}" || return 1
+  tag_exists "${tag2}" || return 1
+  
+  local date1
+  local date2
+  date1=$(git log -1 --format="%ci" "${tag1}" | cut -d' ' -f1)
+  date2=$(git log -1 --format="%ci" "${tag2}" | cut -d' ' -f1)
+  
+  local days_diff
+  days_diff=$(( ($(date -d "${date2}" +%s) - $(date -d "${date1}" +%s)) / 86400 ))
+  
+  echo "================================================================================"
+  echo "Comparing: ${os_name}"
+  echo "  From: ${version1} (${date1})"
+  echo "    To: ${version2} (${date2})"
+  echo "  Span: ${days_diff} days"
+  echo "================================================================================"
+  echo ""
+  
+  local diff_output
+  diff_output=$(git diff --color=always --unified=0 "${tag1}:${readme_path}" "${tag2}:${readme_path}" | \
+                grep -E $'^\x1b\[(31|32)m' | \
+                grep -v -E $'^\x1b\[1m(---|\\+\\+\\+)')
+  
+  if [[ -n "${diff_output}" ]]; then
+    echo "Full Diff:"
+    echo "────────────────────────────────────────────────────────────────────────────────"
+    echo "${diff_output}"
+    echo "────────────────────────────────────────────────────────────────────────────────"
+    echo ""
+    
+    local changes
+    changes=$(echo "${diff_output}" | wc -l)
+    echo "Changes: ${changes} lines"
+  else
+    echo "No changes found."
+  fi
+  
+  local commit_count
+  commit_count=$(git rev-list --count "${tag1}..${tag2}")
+  echo "Commits: ${commit_count}"
+  
+  return 0
+}
+
+main "$@"
