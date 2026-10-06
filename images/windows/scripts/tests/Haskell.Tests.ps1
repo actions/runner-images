@@ -26,20 +26,22 @@ Describe "Haskell" -Skip:(Test-IsWin11-Arm64) {
         $numberOfVersions = if (Test-IsWin25-X64) { 1 } else { 3 }
     }
 
-    It "<envVar> environment variable exists" -TestCases $ghcupEnvExists {
-        Test-Path env:\$envVar
-    }
+    if (-not (Test-IsWin11-Arm64)) {
+        It "<envVar> environment variable exists" -TestCases $ghcupEnvExists {
+            Test-Path env:\$envVar
+        }
 
-    It "Accurate $numberOfVersions versions of GHC are installed" -TestCases @{ghcCount = $ghcCount; numberOfVersions = $numberOfVersions} {
-        $ghcCount | Should -BeExactly $numberOfVersions
-    }
+        It "Accurate $numberOfVersions versions of GHC are installed" -TestCases @{ghcCount = $ghcCount; numberOfVersions = $numberOfVersions} {
+            $ghcCount | Should -BeExactly $numberOfVersions
+        }
 
-    It "GHC <ghcVersion> is installed" -TestCases $ghcTestCases {
-        "$binGhcPath --version" | Should -OutputTextMatchingRegex $ghcShortVersion
-    }
+        It "GHC <ghcVersion> is installed" -TestCases $ghcTestCases {
+            "$binGhcPath --version" | Should -OutputTextMatchingRegex $ghcShortVersion
+        }
 
-    It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases $ghcDefaultCases {
-        "ghc --version" | Should -OutputTextMatchingRegex $defaultGhcShortVersion
+        It "GHC <defaultGhcVersion> is the default version and should be the latest installed" -TestCases $ghcDefaultCases {
+            "ghc --version" | Should -OutputTextMatchingRegex $defaultGhcShortVersion
+        }
     }
 
     It "Cabal is installed" {

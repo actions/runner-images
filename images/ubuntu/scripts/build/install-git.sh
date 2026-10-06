@@ -6,11 +6,30 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/os.sh
 
 GIT_REPO="ppa:git-core/ppa"
 
+# Applies a sed script to the git-core PPA stanza, wherever add-apt-repository wrote it
+update_git_ppa_sources() {
+    local sed_script=$1
+    local sources_file
+
+    for sources_file in /etc/apt/sources.list.d/*.sources; do
+        if grep -q '^URIs:.*git-core' "$sources_file"; then
+            sed -i "$sed_script" "$sources_file"
+        fi
+    done
+}
+
 ## Install git
 add-apt-repository $GIT_REPO -y
+
+# Launchpad advertises an amd64v3 index for this PPA that contains no git (LP#2127888)
+if is_ubuntu26_x64; then
+    update_git_ppa_sources '/^URIs:.*git-core/a Architectures: amd64'
+fi
+
 apt-get update
 apt-get install git
 
@@ -22,6 +41,11 @@ EOF
 
 # Install git-ftp
 apt-get install git-ftp
+
+# Restore the entry to what add-apt-repository wrote so --remove still matches it
+if is_ubuntu26_x64; then
+    update_git_ppa_sources '/^URIs:.*git-core/{n;/^Architectures: amd64$/d}'
+fi
 
 # Remove source repo's
 add-apt-repository --remove $GIT_REPO

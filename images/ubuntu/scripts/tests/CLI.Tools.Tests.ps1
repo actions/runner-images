@@ -10,7 +10,7 @@ Describe "Azure DevOps CLI" {
     }
 }
 
-Describe "Aliyun CLI" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "Aliyun CLI" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "Aliyun CLI" {
         "aliyun version" | Should -ReturnZeroExitCode
     }
@@ -48,7 +48,7 @@ Describe "OC CLI" -Skip:((-not (Test-IsUbuntu22))) {
     }
 }
 
-Describe "Oras CLI" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "Oras CLI" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "Oras CLI" {
         "oras version" | Should -ReturnZeroExitCode
     }

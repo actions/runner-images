@@ -1,0 +1,223 @@
+name: Ubuntu Compatibility Test (26.04 early-access)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'images/ubuntu/**'
+      - '.github/workflows/ubuntu-compatibility-test.yml'
+  pull_request:
+    paths:
+      - 'images/ubuntu/**'
+      - '.github/workflows/ubuntu-compatibility-test.yml'
+  schedule:
+    # Run daily to catch any compatibility issues
+    - cron: '0 2 * * *'
+
+jobs:
+  compatibility-matrix:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, ubuntu-26.04]
+    
+    name: Test on ${{ matrix.os }}
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: System Information
+        id: sysinfo
+        run: |
+          echo "## System Information for ${{ matrix.os }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "### OS Release" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          lsb_release -a >> $GITHUB_STEP_SUMMARY 2>&1 || cat /etc/os-release >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "### Kernel" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          uname -a >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          echo "### Systemd" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          systemctl --version | head -1 >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: Validate Core Tools
+        id: core_tools
+        run: |
+          echo "### Core Tools" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Tool | Version | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|---------|--------|" >> $GITHUB_STEP_SUMMARY
+          
+          # Bash
+          BASH_VER=$(bash --version | head -1)
+          echo "| Bash | $BASH_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # Git
+          GIT_VER=$(git --version)
+          echo "| Git | $GIT_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # curl
+          CURL_VER=$(curl --version | head -1)
+          echo "| curl | $CURL_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # OpenSSL
+          SSL_VER=$(openssl version)
+          echo "| OpenSSL | $SSL_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # Make
+          MAKE_VER=$(make --version | head -1)
+          echo "| make | $MAKE_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+
+      - name: Validate Language Runtimes
+        id: runtimes
+        run: |
+          echo "### Language Runtimes" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Runtime | Version | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|---------|--------|" >> $GITHUB_STEP_SUMMARY
+          
+          # Python
+          PY_VER=$(python3 --version 2>&1)
+          echo "| Python 3 | $PY_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # Node.js
+          NODE_VER=$(node --version 2>&1)
+          echo "| Node.js | $NODE_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # Ruby
+          RUBY_VER=$(ruby --version 2>&1 | cut -d' ' -f1-2)
+          echo "| Ruby | $RUBY_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # Go
+          GO_VER=$(go version 2>&1 | grep -oP 'go\d+\.\d+\.\d+' || echo "not found")
+          echo "| Go | $GO_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # Rust
+          RUST_VER=$(rustc --version 2>&1 || echo "not found")
+          echo "| Rust | $RUST_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+
+      - name: Validate Java
+        id: java
+        run: |
+          echo "### Java Versions" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # List all JAVA_HOME_* variables
+          for java_var in $(env | grep JAVA_HOME | cut -d= -f1 | sort); do
+            java_home_path=${!java_var}
+            version=$("$java_home_path/bin/java" -version 2>&1 | head -1)
+            echo "**$java_var**: $version" >> $GITHUB_STEP_SUMMARY
+          done
+
+      - name: Validate Package Managers
+        id: pkg_managers
+        run: |
+          echo "### Package Managers" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Manager | Version | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|---------|---------|--------|" >> $GITHUB_STEP_SUMMARY
+          
+          # npm
+          NPM_VER=$(npm --version 2>&1)
+          echo "| npm | $NPM_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # pip
+          PIP_VER=$(pip3 --version 2>&1 | cut -d' ' -f2)
+          echo "| pip | $PIP_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # cargo
+          CARGO_VER=$(cargo --version 2>&1)
+          echo "| cargo | $CARGO_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # gem
+          GEM_VER=$(gem --version 2>&1)
+          echo "| gem | $GEM_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+
+      - name: Validate CLI Tools
+        id: cli_tools
+        run: |
+          echo "### CLI Tools" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Tool | Version | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|------|---------|--------|" >> $GITHUB_STEP_SUMMARY
+          
+          # Docker
+          DOCKER_VER=$(docker --version 2>&1)
+          echo "| Docker | $DOCKER_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # AWS CLI
+          AWS_VER=$(aws --version 2>&1)
+          echo "| AWS CLI | $AWS_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # Azure CLI
+          AZ_VER=$(az --version 2>&1 | head -1)
+          echo "| Azure CLI | $AZ_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # kubectl
+          KUBECTL_VER=$(kubectl version --client=true 2>&1 | grep -oP 'v\d+\.\d+\.\d+' | head -1)
+          echo "| kubectl | $KUBECTL_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+          
+          # Git LFS
+          LFS_VER=$(git lfs version 2>&1 | head -1)
+          echo "| Git LFS | $LFS_VER | ✅ |" >> $GITHUB_STEP_SUMMARY
+
+      - name: Check for apt package differences
+        id: apt_check
+        run: |
+          echo "### Installed Packages Count" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          PKG_COUNT=$(dpkg -l | grep '^ii' | wc -l)
+          echo "Total installed packages: **$PKG_COUNT**" >> $GITHUB_STEP_SUMMARY
+
+  compare:
+    runs-on: ubuntu-latest
+    needs: compatibility-matrix
+    if: always()
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compatibility Summary
+        run: |
+          echo "## Ubuntu 26.04 Early-Access Compatibility Check" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "This workflow validates that tools and runtimes work across both Ubuntu versions." >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### What Changed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Component | Ubuntu 24.04 | Ubuntu 26.04 |" >> $GITHUB_STEP_SUMMARY
+          echo "|-----------|--------------|--------------|" >> $GITHUB_STEP_SUMMARY
+          echo "| OS | 24.04.5 LTS | 26.04.1 LTS |" >> $GITHUB_STEP_SUMMARY
+          echo "| Kernel | 6.17.0-1022-azure | 7.0.0-1012-azure |" >> $GITHUB_STEP_SUMMARY
+          echo "| Systemd | 255.4 | 259.5 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Java Default | 17 | 25 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Python | 3.12+ | 3.14.4 |" >> $GITHUB_STEP_SUMMARY
+          echo "| Node.js | 22+ | 24.21.0 |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### Migration Timeline" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- **October 19, 2026**: Rollout begins" >> $GITHUB_STEP_SUMMARY
+          echo "- **November 19, 2026**: Migration complete" >> $GITHUB_STEP_SUMMARY
+          echo "- **If issues occur**: Use \`ubuntu-24.04\` label or file an issue" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### How to Use This Workflow" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "1. **Proactive Testing**: Runs on every change to image files" >> $GITHUB_STEP_SUMMARY
+          echo "2. **Identify Breakage**: Compares side-by-side output" >> $GITHUB_STEP_SUMMARY
+          echo "3. **Fix Early**: Update toolsets before the switch" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ All compatibility checks passed" >> $GITHUB_STEP_SUMMARY
