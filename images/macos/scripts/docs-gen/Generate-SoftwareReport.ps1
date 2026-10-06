@@ -90,6 +90,10 @@ $utilities.AddToolVersion("GNU Wget", $(Get-WgetVersion))
 $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
 $utilities.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
+if ($os.IsTahoe -or $os.IsGoldenGate) {
+    $openSSL4Path = "$(brew --prefix openssl@4)/bin/openssl"
+    $utilities.AddToolVersion("OpenSSL (openssl@4)", "$(Get-OpenSSLVersion -OpenSSLPath $openSSL4Path) - available on ``$openSSL4Path``")
+}
 $utilities.AddToolVersion("Packer", $(Get-PackerVersion))
 $utilities.AddToolVersion("pkgconf", $(Get-PKGConfVersion))
 $utilities.AddToolVersion("Unxip", $(Get-UnxipVersion))

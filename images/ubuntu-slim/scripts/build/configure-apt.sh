@@ -14,8 +14,23 @@ source $HELPER_SCRIPTS/os.sh
 # systemctl disable apt-daily-upgrade.timer
 # systemctl disable apt-daily-upgrade.service
 
-# Enable retry logic for apt up to 10 times
-echo "APT::Acquire::Retries \"10\";" > /etc/apt/apt.conf.d/80-retries
+# Bound apt's acquire behavior so a stalled mirror fails over in seconds instead of minutes.
+# apt reads Acquire::Retries (default 3), not APT::Acquire::Retries, and spends every retry on the
+# same URI before trying the next mirror in /etc/apt/apt-mirrors.txt, so a high count delays failover.
+# https://github.com/actions/runner-images/issues/14594
+# Write these where apt applies them last. apt reads /etc/apt/apt.conf.d in C-locale filename order
+# and the last setting for a key wins; another file on the image sorts after 80-* and was overriding
+# these Timeout/Retries values (canary saw apt's defaults, not these). A leaf name sorts after every
+# NN-* file, so ours wins.
+cat <<EOF > /etc/apt/apt.conf.d/zz-retries
+Acquire::Retries "1";
+Acquire::http::Timeout "15";
+Acquire::https::Timeout "15";
+EOF
+
+# Log the effective, post-merge values so canary/CI shows exactly what apt will use.
+echo 'Effective apt acquire configuration'
+apt-config dump Acquire::Retries Acquire::http::Timeout Acquire::https::Timeout
 
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
@@ -26,6 +41,11 @@ echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 # or set APT::Get::Never-Include-Phased-Updates or APT::Get::Always-Include-Phased-Updates to true such that APT will never/always consider phased updates.
 # apt-cache policy pkgname
 echo 'APT::Get::Always-Include-Phased-Updates "true";' > /etc/apt/apt.conf.d/99-phased-updates
+
+# DEP-11/AppStream is desktop software-catalog metadata with no CI use. Skipping it drops 15 of the 51
+# index items and 7.6 MB from every apt-get update.
+# Sorts after appstream's own /etc/apt/apt.conf.d/50appstream, so it wins.
+echo 'Acquire::IndexTargets::deb::DEP-11::DefaultEnabled "false";' > /etc/apt/apt.conf.d/90-index-targets
 
 # Fix bad proxy and http headers settings
 cat <<EOF >> /etc/apt/apt.conf.d/99bad_proxy
@@ -42,6 +62,9 @@ if ! is_ubuntu24; then
 else
     cat /etc/apt/sources.list.d/ubuntu.sources
 fi
+
+echo 'APT mirrors'
+cat /etc/apt/apt-mirrors.txt
 
 apt-get update
 

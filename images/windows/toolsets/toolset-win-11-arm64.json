@@ -47,7 +47,7 @@
     "powershellModules": [
         { "name": "DockerMsftProvider" },
         { "name": "MarkdownPS" },
-        { "name": "Pester" },
+        { "name": "Pester", "versions": [ "5.9.0"] },
         { "name": "PowerShellGet" },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
@@ -89,7 +89,7 @@
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27", "28"
+                "27", "29", "30"
             ]
         }
     },
@@ -191,19 +191,6 @@
             "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjectsArm64"
         ]
     },
-    "docker": {
-        "images": [
-            "mcr.microsoft.com/windows/servercore:ltsc2022",
-            "mcr.microsoft.com/windows/nanoserver:ltsc2022",
-            "mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022",
-            "mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022",
-            "mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022"
-        ],
-        "components": {
-            "docker": "26.1.3",
-            "compose": "2.27.1"
-        }
-    },
     "pipx": [
         {
             "package": "yamllint",
@@ -224,12 +211,12 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "10.1.2493.9590",
-            "checksum": "09C63A971BACDE338282C73B3C9174BED9AAD53E1D3A1B73D44515852C9C00CF"
+            "version": "11.7.157.1",
+            "checksum": "BBD4531D80ED5FA8D2704C9267F701684FC58306987184BE9CAF35153F358C7B"
         },
         "sdk": {
-            "version": "7.1.2493",
-            "checksum": "0CB1084156C75CF5075EA91ABA330CF10B58648B8E036C9C2F286805263C497F"
+            "version": "8.7.157",
+            "checksum": "32ECB92CA3C9369A0BEA688737F9714E93EC1F8022D1708ABF5084E5B1F9EFBA"
         }
     },
     "dotnet": {
@@ -284,11 +271,11 @@
         "version": "3.10"
     },
     "llvm": {
-        "version": "20.1.6",
+        "version": "22.1.8",
         "pinnedDetails": {
-            "reason": "Pinned to a specific version for Windows 11 ARM64 initial image support",
-            "link": "https://github.com/actions/runner-images/pull/13879",
-            "review-at": "2026-09-01"
+            "reason": "Pinned to a specific validated version for the Windows 11 ARM64 image",
+            "link": "https://github.com/actions/runner-images/pull/14640",
+            "review-at": "2026-12-01"
         }
     },
     "php": {

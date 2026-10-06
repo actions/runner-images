@@ -21,9 +21,17 @@ function Install-Asset {
     tar -xzf $assetArchivePath -C $assetFolderPath
 
     Write-Host "Invoke installation script..."
-    Push-Location -Path $assetFolderPath
-    Invoke-Expression "bash ./setup.sh"
-    Pop-Location
+    try {
+        Push-Location -Path $assetFolderPath
+        try {
+            Invoke-Expression "bash ./setup.sh"
+        } finally {
+            Pop-Location
+        }
+    } finally {
+        Remove-Item -Path $assetArchivePath -Force
+        Remove-Item -Path $assetFolderPath -Recurse -Force
+    }
 }
 
 $ErrorActionPreference = "Stop"

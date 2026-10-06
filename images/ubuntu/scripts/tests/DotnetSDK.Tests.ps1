@@ -15,6 +15,19 @@ Describe "Dotnet and tools" {
         }
     }
 
+    Context "Latest" {
+        $latestVersion = @($dotnetVersions | Sort-Object { [Version] $_ })[-1]
+        $dotnetLatest = @{ dotnetVersion = $latestVersion }
+
+        It "Latest SDK <dotnetVersion> is available" -TestCases $dotnetLatest {
+            $dotnetSDKs | Should -Match "$dotnetVersion.[1-9]*"
+        }
+
+        It "Default 'dotnet --version' resolves to the latest SDK <dotnetVersion>" -TestCases $dotnetLatest {
+            (dotnet --version) | Should -BeLike "$dotnetVersion.*"
+        }
+    }
+
     foreach ($version in $dotnetVersions) {
         Context "Dotnet $version" {
             $dotnet = @{ dotnetVersion = $version }

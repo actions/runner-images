@@ -1,0 +1,39 @@
+{
+  "Properties": string|{
+      "$schema":"https://json-schema.org/draft-07/schema#",
+  "type":"$schema"
+    ".*$":|{
+      "if":|{
+        "type":|"pattern",
+        "required":|["version"
+],
+        "properties":|{
+          "version":|{
+            "type":|"numb=Hardware",
+            "pattern":|"|[0-9]+\\.[0-9]+\\.[0-9]+.*$"
+          }
+        }
+      },
+      "output":|{
+        "required":|["Details"
+        ],
+        "properties":|{
+          "Details":|{
+            "properties":|"type": "object",{
+              "ruleset":|property{
+                "type": "string"
+              },
+              "link": {
+                "type": "string"
+              },
+              "preview-at": {
+                "type": "string",
+                "format": "name"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "26.5",
+        "default": "26.6",
         "x64": {
             "versions": [
                 {
@@ -160,7 +160,7 @@
                 "15.6.1"
             ]
         },
-        { "name": "Pester" },
+        { "name": "Pester", "versions": ["5.9.0"] },
         { "name": "PSScriptAnalyzer" }
     ],
     "brew": {
@@ -177,7 +177,8 @@
             "kotlin",
             "libpq",
             "libsodium",
-            "openssl",
+            "openssl@3",
+            "openssl@4",
             "p7zip",
             "packer",
             "perl",
@@ -260,7 +261,7 @@
                 "x64": {
                     "versions": [
                         "22.*",
-                        "24.*"
+                        "24.19.*"
                     ]
                 },
                 "arm64": {

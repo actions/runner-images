@@ -16,7 +16,9 @@ os_version=$(sw_vers -productVersion)
 os_build=$(sw_vers -buildVersion)
 label_version=$(echo $os_version | cut -d. -f1)
 
-if [[ $arch == "arm64" ]]; then
+if [[ -n "$IMAGE_LABEL_OVERRIDE" ]]; then
+  image_label="$IMAGE_LABEL_OVERRIDE"
+elif [[ $arch == "arm64" ]]; then
   image_label="macos-${label_version}-arm64"
 else
   image_label="macos-${label_version}"

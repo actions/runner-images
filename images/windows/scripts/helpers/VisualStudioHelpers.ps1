@@ -70,6 +70,13 @@ Function Install-VisualStudio {
         $responseDataPath = "$env:TEMP\vs_install_response.json"
         $responseData | ConvertTo-Json | Out-File -FilePath $responseDataPath
 
+        # Disable keeping downloaded VS payloads in cache via policy.
+        $vsSetupPolicyPath = "HKLM:\SOFTWARE\Policies\Microsoft\VisualStudio\Setup"
+        if (-not (Test-Path -Path $vsSetupPolicyPath)) {
+            New-Item -Path $vsSetupPolicyPath -Force | Out-Null
+        }
+        New-ItemProperty -Path $vsSetupPolicyPath -Name "KeepDownloadedPayloads" -PropertyType DWord -Value 0 -Force | Out-Null
+
         $installStartTime = Get-Date
         Write-Host "Starting Install ..."
         $bootstrapperArgumentList = ('/c', $bootstrapperFilePath, '--in', $responseDataPath, $ExtraArgs, '--quiet', '--norestart', '--wait', '--nocache' )

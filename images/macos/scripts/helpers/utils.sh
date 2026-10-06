@@ -45,6 +45,14 @@ is_Arm64() {
     [ "$(arch)" = "arm64" ]
 }
 
+is_GoldenGate() {
+    [ "$OSTYPE" = "darwin26" ]
+}
+
+is_GoldenGateArm64() {
+    is_GoldenGate && is_Arm64
+}
+
 is_Tahoe() {
     [ "$OSTYPE" = "darwin25" ]
 }
@@ -124,7 +132,7 @@ brew_smart_install() {
 
     failed=true
     for i in {1..10}; do
-        brew install $tool_name && failed=false || sleep 60
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install "$tool_name" && failed=false || sleep 60
         [ "$failed" = false ] && break
     done
 
@@ -132,6 +140,22 @@ brew_smart_install() {
        echo "Failed: brew install $tool_name"
        exit 1;
     fi
+}
+
+brew_install_pinned_formula() {
+    local formula_name=$1
+    local formula_file=$2
+    local commit_hash=$3
+
+    echo "Installing pinned formula: $formula_name"
+
+    local FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$commit_hash/Formula/$formula_file"
+    local FORMULA_PATH
+    FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/$formula_file"
+    mkdir -p "$(dirname "$FORMULA_PATH")"
+    curl -fsSL "$FORMULA_URL" -o "$FORMULA_PATH"
+
+    HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install "$formula_name"
 }
 
 configure_system_tccdb () {
@@ -210,5 +234,48 @@ use_checksum_comparison() {
         exit 1
     else
         echo "Checksum verification passed"
+    fi
+}
+
+brew_install_pinned_cask() {
+    local cask_name=$1
+    local cask_url=$2
+    local temp_tap="local/temp"
+
+    echo "Installing pinned cask: $cask_name"
+
+    if brew tap | grep -Fxq "$temp_tap"; then
+        echo "Temp Tap already exists"
+    else
+        echo "No temp Tap found. Creating a new one"
+        brew tap-new "$temp_tap"
+        brew trust --tap "$temp_tap"
+    fi
+
+    TAP_DIR="$(brew --repository "$temp_tap")"
+    CASKS_DIR="$TAP_DIR/Casks"
+    if [[ -d "$CASKS_DIR" ]]; then
+        echo "Casks directory already exists"
+    else
+        echo "Casks directory does not exist. Creating a new one"
+        mkdir -p "$CASKS_DIR"
+    fi
+    
+    curl -fsSL "$cask_url" -o "$CASKS_DIR/${cask_name}.rb"
+    
+    brew install --cask "$temp_tap/$cask_name"
+}
+
+# WARNING! This function WILL fail if some packages/casks are installed from a temporary tap and the tap is not cleaned up after installation.
+# This is intended behavior - no temporary taps should be left behind after installation. 
+brew_cleanup_temp_tap() {
+    local temp_tap="local/temp"
+
+    if brew tap | grep -Fxq "$temp_tap"; then
+        echo "Temp Tap exists, cleaning up..."
+        brew untrust --tap "$temp_tap" -v
+        brew untap "$temp_tap" -v
+    else
+        echo "No Temp Tap found. Nothing to clean up."
     fi
 }

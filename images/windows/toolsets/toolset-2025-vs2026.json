@@ -61,14 +61,14 @@
     "powershellModules": [
         { "name": "DockerMsftProvider" },
         { "name": "MarkdownPS" },
-        { "name": "Pester" },
+        { "name": "Pester", "versions": [ "5.9.0"] },
         { "name": "PowerShellGet" },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
         { "name": "SqlServer" },
         { "name": "VSSetup" },
         { "name": "Microsoft.Graph" },
-        {"name": "AWSPowershell"}
+        { "name": "AWSPowershell" }
     ],
     "azureModules": [
         {
@@ -101,7 +101,7 @@
         "ndk": {
             "default": "27",
             "versions": [
-                "27", "28", "29"
+                "27", "29", "30"
             ]
         }
     },
@@ -134,7 +134,6 @@
         "workloads": [
             "Component.Linux.CMake",
             "Component.UnityEngine.x64",
-            "Microsoft.Component.VC.Runtime.UCRTSDK",
             "Microsoft.Net.Component.4.8.1.SDK",
             "Microsoft.Net.Component.4.8.1.TargetingPack",
             "Microsoft.VisualStudio.Component.AspNet45",
@@ -202,13 +201,14 @@
             "VisualStudioClient.MicrosoftVisualStudio2022InstallerProjects",
             "WixToolset.WixToolsetVisualStudio2022Extension",
             "ProBITools.MicrosoftReportProjectsforVisualStudio2022",
-            "ProBITools.MicrosoftAnalysisServicesModelingProjects2022"
+            "ProBITools.MicrosoftAnalysisServicesModelingProjects2022",
+            "ms-azuretools.MicrosoftVisualStudioAzureFabricVsix"
         ]
     },
     "docker": {
         "images": [],
         "components": {
-            "docker": "29.1.5",
+            "docker": "29.7.2",
             "compose": "2.40.3"
         }
     },
@@ -232,12 +232,12 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "10.1.2493.9590",
-            "checksum": "09C63A971BACDE338282C73B3C9174BED9AAD53E1D3A1B73D44515852C9C00CF"
+            "version": "11.7.157.1",
+            "checksum": "BBD4531D80ED5FA8D2704C9267F701684FC58306987184BE9CAF35153F358C7B"
         },
         "sdk": {
-            "version": "7.1.2493",
-            "checksum": "0CB1084156C75CF5075EA91ABA330CF10B58648B8E036C9C2F286805263C497F"
+            "version": "8.7.157",
+            "checksum": "32ECB92CA3C9369A0BEA688737F9714E93EC1F8022D1708ABF5084E5B1F9EFBA"
         }
     },
     "dotnet": {
