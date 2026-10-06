@@ -47,10 +47,10 @@ Write-Host "Download packer plugins"
 packer plugins install github.com/hashicorp/azure $pluginVersion
 
 Write-Host "Validate packer template"
-packer validate -syntax-only -only "$buildName*" $TemplatePath
+packer validate -syntax-only -only "$buildName.*" $TemplatePath
 
 Write-Host "Build $buildName VM"
-packer build    -only "$buildName*" `
+packer build    -only "$buildName.*" `
                 -var "client_id=$ClientId" `
                 -var "client_secret=$ClientSecret" `
                 -var "install_password=$InstallPassword" `

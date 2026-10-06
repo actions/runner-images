@@ -9,13 +9,22 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
+if is_x64; then
+  docker_arch="amd64"
+elif is_arm64; then
+  docker_arch="arm64"
+else
+  echo "Unsupported architecture"
+  exit 1
+fi
+
 REPO_URL="https://download.docker.com/linux/ubuntu"
 GPG_KEY="/usr/share/keyrings/docker.gpg"
 REPO_PATH="/etc/apt/sources.list.d/docker.list"
 os_codename=$(lsb_release -cs)
 
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o $GPG_KEY
-echo "deb [arch=amd64 signed-by=$GPG_KEY] $REPO_URL ${os_codename} stable" > $REPO_PATH
+echo "deb [arch=$docker_arch signed-by=$GPG_KEY] $REPO_URL ${os_codename} stable" > $REPO_PATH
 apt-get update
 
 # Install docker components which available via apt-get
@@ -35,10 +44,25 @@ done
 # Install plugins that are best installed from the GitHub repository
 # Be aware that `url` built from github repo name and plugin name because of current repo naming for those plugins
 
+case "$docker_arch" in
+    amd64) arch_pattern="amd64|x86_64" ;;
+    arm64) arch_pattern="arm64|aarch64" ;;
+esac
+
 plugins=$(get_toolset_value '.docker.plugins[] .plugin')
 for plugin in $plugins; do
     version=$(get_toolset_value ".docker.plugins[] | select(.plugin == \"$plugin\") | .version")
     filter=$(get_toolset_value ".docker.plugins[] | select(.plugin == \"$plugin\") | .asset")
+
+    # Toolset asset filters are architecture-specific strings (e.g. "linux-arm64"), unlike the
+    # engine arch above, which is machine-detected. Fail fast instead of silently installing a
+    # plugin binary that doesn't match the host, which fails at runtime with "exec format error".
+    if ! [[ "$filter" =~ ($arch_pattern) ]]; then
+        echo "Error: host architecture is '$docker_arch' but toolset plugin '$plugin' targets asset '$filter'." >&2
+        echo "This build definition/toolset combination doesn't match the host it's running on." >&2
+        exit 1
+    fi
+
     url=$(resolve_github_release_asset_url "docker/$plugin" "endswith(\"$filter\")" "$version")
     binary_path=$(download_with_retry "$url" "/tmp/docker-$plugin")
     mkdir -pv "/usr/libexec/docker/cli-plugins"
@@ -79,7 +103,7 @@ fi
 
 # Download amazon-ecr-credential-helper
 aws_latest_release_url="https://api.github.com/repos/awslabs/amazon-ecr-credential-helper/releases/latest"
-aws_helper_url=$(curl -fsSL "${aws_latest_release_url}" | jq -r '.body' | awk -F'[()]' '/linux-amd64/ {print $2}')
+aws_helper_url=$(curl -fsSL "${aws_latest_release_url}" | jq -r '.body' | awk -F'[()]' '/linux-'"${docker_arch}"'/ {print $2}')
 aws_helper_binary_path=$(download_with_retry "$aws_helper_url")
 
 # Supply chain security - amazon-ecr-credential-helper

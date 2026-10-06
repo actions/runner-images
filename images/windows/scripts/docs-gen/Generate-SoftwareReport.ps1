@@ -20,7 +20,11 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -Disa
 # Software report
 $softwareReport = [SoftwareReport]::new($(Build-OSInfoSection))
 $optionalFeatures = $softwareReport.Root.AddHeader("Windows features")
-$optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
+# WSL is not functional on Arm64: WSL2 needs nested virtualization (unavailable on Azure Arm64 sizes)
+# and WSL1 is a legacy component that does not work on Arm64. See actions/runner-images#14076.
+if (-not (Test-IsWin11-Arm64)) {
+    $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (WSLv1):", "Enabled")
+}
 if (Test-IsWin25-X64) {
     $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (Default, WSLv2):", $(Get-WSL2Version))
 }
@@ -79,7 +83,7 @@ $tools.AddToolVersion("CMake", $(Get-CMakeVersion))
 $tools.AddToolVersion("CodeQL Action Bundle", $(Get-CodeQLBundleVersion))
 if (Test-IsX64) {
     $tools.AddToolVersion("Docker", $(Get-DockerVersion))
-    $tools.AddToolVersion("Docker Compose v2", $(Get-DockerComposeVersionV2))
+    $tools.AddToolVersion("Docker Compose", $(Get-DockerComposeVersion))
     $tools.AddToolVersion("Docker-wincred", $(Get-DockerWincredVersion))
     $tools.AddToolVersion("ghc", $(Get-GHCVersion))
 }
@@ -103,8 +107,14 @@ if (-not (Test-IsWin25-X64)) {
 $tools.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 $tools.AddToolVersion("Packer", $(Get-PackerVersion))
 $tools.AddToolVersion("Pulumi", $(Get-PulumiVersion))
-$tools.AddToolVersion("R", $(Get-RVersion))
+if (Test-IsArm64) {
+    # The choco R.Project package ships only the x86_64 installer, so R runs emulated here
+    $tools.AddToolVersion("R", "$(Get-RVersion) (x86_64, emulated)")
+} else {
+    $tools.AddToolVersion("R", $(Get-RVersion))
+}
 if (Test-IsX64) {
+    $tools.AddToolVersion("Service Fabric Runtime", $(Get-ServiceFabricRuntimeVersion))
     $tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
 }
 $tools.AddToolVersion("Stack", $(Get-StackVersion))
@@ -118,9 +128,7 @@ if (Test-IsX64) {
     $tools.AddToolVersion("WiX Toolset", $(Get-WixVersion))
 }
 $tools.AddToolVersion("yamllint", $(Get-YAMLLintVersion))
-if (Test-IsX64) {
-    $tools.AddToolVersion("zstd", $(Get-ZstdVersion))
-}
+$tools.AddToolVersion("zstd", $(Get-ZstdVersion))
 $tools.AddToolVersion("Ninja", $(Get-NinjaVersion))
 
 # CLI Tools
@@ -162,22 +170,18 @@ $browsersAndWebdrivers.AddHeader("Environment variables").AddTable($(Build-Brows
 $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
 
 # Shells
-if (Test-IsX64) {
-    $installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
-}
+$installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
 
 # MSYS2
-if (Test-IsX64) {
-    $msys2 = $installedSoftware.AddHeader("MSYS2")
-    $msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
+$msys2 = $installedSoftware.AddHeader("MSYS2")
+$msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
 
-    $notes = @'
+$notes = @'
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 '@
-    $msys2.AddHeader("Notes").AddNote($notes)
-}
+$msys2.AddHeader("Notes").AddNote($notes)
 
 # Cached Tools
 $installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection))
@@ -245,6 +249,14 @@ if (Test-IsX64) {
 # Cached Docker images
 if (Test-IsWin22-X64) {
     $installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
+}
+
+# Notes (Windows 11 Arm64 only): Defender can't be disabled here, Tamper Protection blocks it. See issue #14326
+if (Test-IsWin11-Arm64) {
+    $defenderNote = @'
+Microsoft Defender is not disabled on this image. Tamper Protection is enabled by default on Windows 11 and prevents the image build from disabling it. See https://github.com/actions/runner-images/issues/14326 for details.
+'@
+    $softwareReport.Root.AddHeader("Notes").AddNote($defenderNote)
 }
 
 # Generate reports

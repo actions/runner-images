@@ -222,7 +222,7 @@ function Get-GHCVersion {
 }
 
 function Get-GHCupVersion {
-    $(ghcup --version) -match "version (?<version>\d+(\.\d+){2,})" | Out-Null
+    $(ghcup --version) -match "version v?(?<version>\d+(\.\d+){2,})" | Out-Null
     return $Matches.version
 }
 
@@ -275,7 +275,7 @@ function Get-CachedDockerImages {
 }
 
 function Get-CachedDockerImagesTableData {
-    $allImages = sudo docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}} |{{.CreatedAt}}"
+    $allImages = sudo docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}}|{{.CreatedAt}}"
     $allImages.Split("*") | Where-Object { $_ } | ForEach-Object {
         $parts = $_.Split("|")
         [PSCustomObject] @{

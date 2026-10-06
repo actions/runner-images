@@ -28,6 +28,13 @@ Describe "Rust" {
         @{envVar = "CARGO_HOME"}
     )
 
+    $rustTargetNames = if (Test-IsArm64) {
+        @("aarch64-pc-windows-msvc", "aarch64-pc-windows-gnullvm")
+    } else {
+        @("i686-pc-windows-msvc", "x86_64-pc-windows-gnu")
+    }
+    $rustTargets = $rustTargetNames | ForEach-Object { @{ Target = $_ } }
+
     It "C:\Users\Default\.rustup and C:\Users\Default\.cargo folders exist" {
         "C:\Users\Default\.rustup", "C:\Users\Default\.cargo" | Should -Exist
     }
@@ -39,5 +46,9 @@ Describe "Rust" {
     It "<ToolName> is installed to the '<binPath>' folder" -TestCases $rustTools {
         "$ToolName --version" | Should -ReturnZeroExitCode
         $binPath | Should -Exist
+    }
+
+    It "<Target> rustup target is installed" -TestCases $rustTargets {
+        (rustup target list --installed) | Should -Contain $Target
     }
 }
