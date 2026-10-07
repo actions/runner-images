@@ -7,7 +7,7 @@
 ***
 # Ubuntu-Slim
 - OS Version: 24.04.5 LTS
-- Image Version: 20260922.6.5
+- Image Version: 20260925.9.1
 - Systemd version: 255.4-1ubuntu8.17
 
 ## Installed Software
@@ -23,7 +23,7 @@
 - Npm 11.19.0
 - Pip 24.0
 - Pip3 24.0
-- Pipx 1.17.5
+- Pipx 1.17.6
 
 ### Tools
 - AzCopy 10.32.7 - available by `azcopy` and `azcopy10` aliases
@@ -41,13 +41,13 @@
 - zstd 1.5.7
 
 ### CLI Tools
-- AWS CLI 2.36.50
+- AWS CLI 2.37.4
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.166.2
 - Azure CLI 2.90.0
 - Azure CLI (azure-devops) 1.0.8
 - GitHub CLI 2.101.0
-- Google Cloud CLI 585.0.0
+- Google Cloud CLI 586.0.0
 
 ### PowerShell Tools
 - PowerShell 7.6.6
@@ -64,7 +64,7 @@
 | bzip2                  | 1.0.8-5.1ubuntu0.1           |
 | ca-certificates        | 20260601\~24.04.1            |
 | coreutils              | 9.4-3ubuntu6.3               |
-| curl                   | 8.5.0-2ubuntu10.13           |
+| curl                   | 8.5.0-2ubuntu10.15           |
 | dbus                   | 1.14.10-4ubuntu4.1           |
 | dnsutils               | 1:9.18.39-0ubuntu0.24.04.7   |
 | dpkg                   | 1.22.6ubuntu6.6              |
@@ -109,7 +109,7 @@
 | sqlite3                | 3.45.1-1ubuntu2.8            |
 | ssh                    | 1:9.6p1-3ubuntu13.19         |
 | sshpass                | 1.09-1                       |
-| sudo                   | 1.9.15p5-3ubuntu5.24.04.2    |
+| sudo                   | 1.9.15p5-3ubuntu5.24.04.3    |
 | systemd-coredump       | 255.4-1ubuntu8.17            |
 | tar                    | 1.35+dfsg-3ubuntu0.4         |
 | telnet                 | 0.17+2.5-3ubuntu4.2          |
@@ -121,7 +121,7 @@
 | unzip                  | 6.0-28ubuntu4.1              |
 | upx                    | 4.2.2-3                      |
 | wget                   | 1.21.4-1ubuntu4.5            |
-| xvfb                   | 2:21.1.12-1ubuntu1.6         |
+| xvfb                   | 2:21.1.12-1ubuntu1.8         |
 | xz-utils               | 5.6.1+really5.4.5-1ubuntu0.3 |
 | zip                    | 3.0-13ubuntu0.2              |
 | zsync                  | 0.6.2-5build1                |
