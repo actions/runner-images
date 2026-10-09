@@ -8,7 +8,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.5 LTS
 - Kernel Version: 6.17.0-1022-azure
-- Image Version: 20260927.135.1
+- Image Version: 20261004.142.1
 - Systemd version: 255.4-1ubuntu8.17
 
 ## Installed Software
@@ -31,7 +31,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.22.0
-- Homebrew 7.0.6
+- Homebrew 7.0.7
 - Npm 10.9.9
 - Pip 24.0
 - Pip3 24.0
@@ -69,7 +69,7 @@ to accomplish this.
 - CMake 3.31.6
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.37.1
+- Docker-Buildx 0.37.2
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.240.1
@@ -80,33 +80,33 @@ to accomplish this.
 - jq 1.7
 - Kind 0.33.0
 - Kubectl 1.37.1
-- Kustomize 5.8.1
+- Kustomize 5.8.2
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.39.0
 - n 10.2.0
 - Newman 6.2.2
 - nvm 0.40.8
-- OpenSSL 3.0.13-0ubuntu3.15
+- OpenSSL 3.0.13-0ubuntu3.16
 - Packer 1.16.1
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.265.0
+- Pulumi 3.267.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
-- yq 4.53.6
+- yq 4.54.1
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.37.4
+- AWS CLI 2.37.9
 - AWS CLI Session Manager Plugin 1.2.835.0
 - AWS SAM CLI 1.166.2
 - Azure CLI 2.90.0
 - Azure CLI (azure-devops) 1.0.8
-- GitHub CLI 2.101.0
-- Google Cloud CLI 586.0.0
+- GitHub CLI 2.102.0
+- Google Cloud CLI 587.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -126,17 +126,17 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.98.1
-- Rust 1.98.1
-- Rustdoc 1.98.1
+- Cargo 1.99.0
+- Rust 1.99.0
+- Rustdoc 1.99.0
 - Rustup 1.29.1
 
 #### Packages
-- Rustfmt 1.9.0
+- Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Selenium server 4.49.0
-- Mozilla Firefox 156.0
+- Selenium server 4.50.0
+- Mozilla Firefox 157.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -183,11 +183,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 24.21.0
 
 #### Python
-- 3.10.21
-- 3.11.16
-- 3.12.14
-- 3.13.15
-- 3.14.7
+- 3.10.22
+- 3.11.17
+- 3.12.15
+- 3.13.16
+- 3.14.8
 
 #### Ruby
 - 3.2.11
@@ -200,7 +200,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 15.6.1
-- Microsoft.Graph: 2.40.0
+- Microsoft.Graph: 2.41.0
 - Pester: 5.9.0
 - PSScriptAnalyzer: 1.25.0
 
@@ -240,11 +240,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.1.0-1ubuntu6.4              |
 | iputils-ping           | 3:20240117-1ubuntu0.1         |
 | jq                     | 1.7.1-3ubuntu0.24.04.2        |
-| libgbm-dev             | 25.2.8-0ubuntu0.24.04.2       |
+| libgbm-dev             | 25.2.8-0ubuntu0.24.04.4       |
 | libicu-dev             | 74.2-1ubuntu3.1               |
 | libnss3-tools          | 2:3.98-1ubuntu0.2             |
 | libsqlite3-dev         | 3.45.1-1ubuntu2.8             |
-| libssl-dev             | 3.0.13-0ubuntu3.15            |
+| libssl-dev             | 3.0.13-0ubuntu3.16            |
 | libtool                | 2.4.7-7build1                 |
 | libyaml-dev            | 0.2.5-1build1                 |
 | locales                | 2.39-0ubuntu8.9               |
