@@ -5,14 +5,14 @@
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 27
-- OS Version: macOS 27.0 (26A5406e)
+- OS Version: macOS 27.0 (26A428)
 - Kernel Version: Darwin 27.0.0
-- Image Version: 20260907.0173.1
+- Image Version: 20260928.0222.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.424, 9.0.102, 9.0.203, 9.0.317, 10.0.103, 10.0.203, 10.0.302, 10.0.400
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.425, 9.0.102, 9.0.203, 9.0.318, 10.0.103, 10.0.203, 10.0.302, 10.0.401
 - Bash 3.2.57(1)-release
 - Clang/LLVM 21.0.0
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
@@ -22,28 +22,28 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
-- Kotlin 2.4.10-release-377
-- Node.js 24.20.0
+- Kotlin 2.4.20
+- Node.js 24.21.0
 - Perl 5.44.0
 - Python3 3.14.7
-- Ruby 3.4.10
+- Ruby 3.4.11
 
 ### Package Management
-- Bundler 4.0.20
+- Bundler 4.0.21
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 6.0.22
+- Homebrew 7.0.6
 - NPM 11.19.0
 - Pip3 26.2.1 (python 3.14)
-- Pipx 1.17.2
-- RubyGems 4.0.20
-- Vcpkg 2026 (build from commit 04a9d8e521)
+- Pipx 1.17.6
+- RubyGems 4.0.21
+- Vcpkg 2026 (build from commit 07f4812200)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.18
 - Apache Maven 3.9.16
-- Gradle 9.7.1
+- Gradle 9.8.0
 
 ### Utilities
 - 7-Zip 17.05
@@ -55,13 +55,13 @@
 - Curl 8.7.1
 - Git 2.55.0
 - Git LFS 3.8.0
-- GitHub CLI 2.100.0
+- GitHub CLI 2.101.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.5.22
+- gpg (GnuPG) 2.5.24
 - jq 1.8.2
 - OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)
-- Packer 1.16.0
+- Packer 1.16.1
 - pkgconf 3.0.7
 - Unxip 3.3
 - yq 4.53.6
@@ -69,31 +69,31 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.36.40
-- AWS SAM CLI 1.166.1
+- AWS CLI 2.37.4
+- AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
 - Azure CLI (azure-devops) 1.0.8
-- Bicep CLI 0.46.1
+- Bicep CLI 0.47.16
 - Cmake 4.4.3
-- CodeQL Action Bundle 2.26.4
-- Fastlane 2.239.0
+- CodeQL Action Bundle 2.27.1
+- Fastlane 2.240.1
 - SwiftFormat 0.63.0
 - Xcbeautify 3.2.1
-- Xcode Command Line Tools 27.0.0.0.1787197235
-- Xcodes 2.0.3
+- Xcode Command Line Tools 27.0.0.0.1788430756
+- Xcodes 2.1.0
 
 ### Browsers
-- Safari 27.0 (22625.1.29.11.2)
-- SafariDriver 27.0 (22625.1.29.11.2)
-- Google Chrome 152.0.7977.83
-- Google Chrome for Testing 152.0.7977.82
-- ChromeDriver 152.0.7977.82
-- Microsoft Edge 152.0.4191.66
-- Microsoft Edge WebDriver 152.0.4191.62
-- Mozilla Firefox 155.0.1
+- Safari 27.0 (22625.1.29.11.27)
+- SafariDriver 27.0 (22625.1.29.11.27)
+- Google Chrome 154.0.8037.58
+- Google Chrome for Testing 154.0.8037.57
+- ChromeDriver 154.0.8037.57
+- Microsoft Edge 154.0.4258.37
+- Microsoft Edge WebDriver 154.0.4258.37
+- Mozilla Firefox 156.0.1
 - geckodriver 0.37.1
-- Selenium server 4.48.0
+- Selenium server 4.49.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -115,8 +115,8 @@
 #### Ruby
 - 3.2.11
 - 3.3.12
-- 3.4.10
-- 4.0.6
+- 3.4.11
+- 4.0.7
 
 #### Python
 - 3.11.9
@@ -125,8 +125,8 @@
 - 3.14.7
 
 #### Node.js
-- 22.23.2
-- 24.20.0
+- 22.23.3
+- 24.21.0
 
 #### Go
 - 1.24.13
@@ -144,7 +144,7 @@
 - Rustfmt 1.9.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.6.5
+- PowerShell 7.6.6
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -152,30 +152,44 @@
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version               | Build    | Path                              | Symlinks                                                                                  |
-| --------------------- | -------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
-| 27.0 (beta) (default) | 27A5252f | /Applications/Xcode_27_beta_6.app | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
+| Version        | Build    | Path                              | Symlinks                                                                                  |
+| -------------- | -------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
+| 27.2 (beta)    | 27B5019j | /Applications/Xcode_27.2_beta.app | /Applications/Xcode_27.2.0.app<br>/Applications/Xcode_27.2.app                            |
+| 27.1           | 27A9269  | /Applications/Xcode_27.1_beta.app | /Applications/Xcode_27.1.0.app<br>/Applications/Xcode_27.1.app                            |
+| 27.0 (default) | 27A266a  | /Applications/Xcode_27.app        | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
 | ------------------------- | -------------------- | ------------- |
-| macOS 27.0                | macosx27.0           | 27.0          |
+| macOS 27.0                | macosx27.0           | 27.0, 27.1    |
+| macOS 27.2                | macosx27.2           | 27.2          |
 | iOS 27.0                  | iphoneos27.0         | 27.0          |
+| iOS 27.1                  | iphoneos27.1         | 27.1          |
+| iOS 27.2                  | iphoneos27.2         | 27.2          |
 | Simulator - iOS 27.0      | iphonesimulator27.0  | 27.0          |
-| tvOS 27.0                 | appletvos27.0        | 27.0          |
-| Simulator - tvOS 27.0     | appletvsimulator27.0 | 27.0          |
-| watchOS 27.0              | watchos27.0          | 27.0          |
-| Simulator - watchOS 27.0  | watchsimulator27.0   | 27.0          |
-| visionOS 27.0             | xros27.0             | 27.0          |
-| Simulator - visionOS 27.0 | xrsimulator27.0      | 27.0          |
-| DriverKit 27.0            | driverkit27.0        | 27.0          |
+| Simulator - iOS 27.1      | iphonesimulator27.1  | 27.1          |
+| Simulator - iOS 27.2      | iphonesimulator27.2  | 27.2          |
+| tvOS 27.0                 | appletvos27.0        | 27.0, 27.1    |
+| tvOS 27.2                 | appletvos27.2        | 27.2          |
+| Simulator - tvOS 27.0     | appletvsimulator27.0 | 27.0, 27.1    |
+| Simulator - tvOS 27.2     | appletvsimulator27.2 | 27.2          |
+| watchOS 27.0              | watchos27.0          | 27.0, 27.1    |
+| watchOS 27.2              | watchos27.2          | 27.2          |
+| Simulator - watchOS 27.0  | watchsimulator27.0   | 27.0, 27.1    |
+| Simulator - watchOS 27.2  | watchsimulator27.2   | 27.2          |
+| visionOS 27.0             | xros27.0             | 27.0, 27.1    |
+| visionOS 27.2             | xros27.2             | 27.2          |
+| Simulator - visionOS 27.0 | xrsimulator27.0      | 27.0, 27.1    |
+| Simulator - visionOS 27.2 | xrsimulator27.2      | 27.2          |
+| DriverKit 27.0            | driverkit27.0        | 27.0, 27.1    |
+| DriverKit 27.2            | driverkit27.2        | 27.2          |
 
 #### Installed Simulators
 | Name          | OS   | Simulators                                                                                                                                                                                                           |
 | ------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| iOS 27.0      | 27.0 | iPhone 17<br>iPhone 17 Pro<br>iPhone 17 Pro Max<br>iPhone 17e<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
+| iOS 27.0      | 27.0 | iPhone 17<br>iPhone 17e<br>iPhone 18 Pro<br>iPhone 18 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
 | tvOS 27.0     | 27.0 | Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                              |
-| watchOS 27.0  | 27.0 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 11 (42mm)<br>Apple Watch Series 11 (46mm)<br>Apple Watch Ultra 3 (49mm)                                                                     |
+| watchOS 27.0  | 27.0 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 12 (42mm)<br>Apple Watch Series 12 (46mm)<br>Apple Watch Ultra 4 (49mm)                                                                     |
 | visionOS 27.0 | 27.0 | Apple Vision Pro                                                                                                                                                                                                     |
 
 ### Android
@@ -186,6 +200,7 @@
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                                           |
 | Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                             |
+| Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                             |
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                    |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                 |

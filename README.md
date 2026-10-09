@@ -20,8 +20,8 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 | Image | Architecture | YAML Label | Included Software |
 | --------------------|--------------|---------------------|------------------|
-| Ubuntu 26.04 ![preview](https://img.shields.io/badge/preview-0969DA?style=flat&logoColor=white)<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26.json) | x64 | `ubuntu-26.04` | [ubuntu-26.04] |
-| Ubuntu 26.04 Arm64 ![preview](https://img.shields.io/badge/preview-0969DA?style=flat&logoColor=white)<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26-arm64.json) | arm64 | `ubuntu-26.04-arm` | [ubuntu-26.04-arm64] |
+| Ubuntu 26.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26.json) | x64 | `ubuntu-26.04` | [ubuntu-26.04] |
+| Ubuntu 26.04 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26-arm64.json) | arm64 | `ubuntu-26.04-arm` | [ubuntu-26.04-arm64] |
 | Ubuntu 24.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu24.json) | x64 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
 | Ubuntu 24.04 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu24-arm64.json) | arm64 | `ubuntu-24.04-arm` | [ubuntu-24.04-arm64] |
 | Ubuntu 22.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu22.json) | x64 | `ubuntu-22.04` | [ubuntu-22.04] |

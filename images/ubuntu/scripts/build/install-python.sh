@@ -29,6 +29,10 @@ if is_ubuntu24; then
     # Noble ships Debian-managed packaging 24.0, which pip cannot replace for pipx 1.17.1.
     # Keep this pin for the Ubuntu 24.04 lifetime unless the distro package is upgraded.
     python3 -m pip install "pipx==1.16.7"
+elif is_ubuntu26; then
+    # Resolute ships Debian-managed packaging 26.0, which pip cannot replace for pipx 1.17.11 (packaging>=26.3).
+    # Keep this pin for the Ubuntu 26.04 lifetime unless the distro package is upgraded.
+    python3 -m pip install "pipx==1.17.10"
 else
     python3 -m pip install pipx
 fi
