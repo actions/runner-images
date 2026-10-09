@@ -13,8 +13,8 @@ source $HELPER_SCRIPTS/os.sh
 apt-get install --no-install-recommends python3 python3-dev python3-pip python3-venv
 
 if ! is_ubuntu22; then
-# allow user to continue using pip
-    sudo cat <<EOF > /etc/pip.conf
+    # allow user to continue using pip
+    sudo tee /etc/pip.conf > /dev/null <<EOF
 [global]
 break-system-packages = true
 EOF
