@@ -24,7 +24,7 @@ Describe "PHP" {
     }
 }
 
-Describe "Swift" -Skip:(Test-IsUbuntu26) {
+Describe "Swift" {
     It "swift" {
         "swift --version" | Should -ReturnZeroExitCode
     }
