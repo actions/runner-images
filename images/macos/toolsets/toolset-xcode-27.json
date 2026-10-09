@@ -12,11 +12,11 @@
                     "install_runtimes": "none"
                 },
                 {
-                    "link": "27.1_beta",
-                    "filename": "Xcode_27.1_beta",
-                    "version": "27.1+27A9269",
+                    "link": "27.1_Release_Candidate",
+                    "filename": "Xcode_27.1_Release_Candidate",
+                    "version": "27.1+27A9275",
                     "symlinks": ["27.1"],
-                    "sha256": "7e90e1757f490f163e01d5262baa5db5c9d64c63d9f42450eeface0749f086fe",
+                    "sha256": "038ad29cc2cd87e7762aac596833943000fd3d5fb64be530e2ecdbe5449cd660",
                     "install_runtimes": "none"
                 },
                 {
