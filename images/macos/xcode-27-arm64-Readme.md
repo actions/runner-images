@@ -1,13 +1,13 @@
 | Announcements |
 |-|
+| [[macOS] The default OpenSSL version will be updated from 3 to 4 on macOS 26 and Xcode 27](https://github.com/actions/runner-images/issues/14856) |
 | [[macOS] Xcode 27 is now available as a public preview](https://github.com/actions/runner-images/issues/14404) |
-| [[macOS] Default Xcode on macOS 26 Tahoe will be set to Xcode 26.6 on 2026.07.21](https://github.com/actions/runner-images/issues/14344) |
 | [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 27
-- OS Version: macOS 27.0 (26A428)
+- OS Version: macOS 27.0.1 (26A434)
 - Kernel Version: Darwin 27.0.0
-- Image Version: 20260928.0222.1
+- Image Version: 20261006.0244.1
 
 ## Installed Software
 
@@ -25,24 +25,24 @@
 - Kotlin 2.4.20
 - Node.js 24.21.0
 - Perl 5.44.0
-- Python3 3.14.7
+- Python3 3.14.8
 - Ruby 3.4.11
 
 ### Package Management
-- Bundler 4.0.21
+- Bundler 4.0.22
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 7.0.6
+- Homebrew 7.0.8
 - NPM 11.19.0
 - Pip3 26.2.1 (python 3.14)
-- Pipx 1.17.6
-- RubyGems 4.0.21
-- Vcpkg 2026 (build from commit 07f4812200)
+- Pipx 1.17.11
+- RubyGems 4.0.22
+- Vcpkg 2026 (build from commit 0bc1a55f42)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.18
-- Apache Maven 3.9.16
+- Apache Maven 3.10.0
 - Gradle 9.8.0
 
 ### Utilities
@@ -53,47 +53,48 @@
 - bazelisk 1.29.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
-- Git 2.55.0
+- Git 2.56.0
 - Git LFS 3.8.0
-- GitHub CLI 2.101.0
+- GitHub CLI 2.102.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.24
 - jq 1.8.2
-- OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)
+- OpenSSL 3.6.5 29 Sep 2026 (Library: OpenSSL 3.6.5 29 Sep 2026)
+- OpenSSL (openssl@4) 4.0.3 29 Sep 2026 (Library: OpenSSL 4.0.3 29 Sep 2026) - available on `/opt/homebrew/opt/openssl@4/bin/openssl`
 - Packer 1.16.1
 - pkgconf 3.0.7
 - Unxip 3.3
-- yq 4.53.6
+- yq 4.54.1
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.37.4
+- AWS CLI 2.37.9
 - AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
 - Azure CLI (azure-devops) 1.0.8
-- Bicep CLI 0.47.16
-- Cmake 4.4.3
+- Bicep CLI 0.48.1
+- Cmake 4.4.4
 - CodeQL Action Bundle 2.27.1
 - Fastlane 2.240.1
-- SwiftFormat 0.63.0
+- SwiftFormat 0.63.1
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 27.0.0.0.1788430756
 - Xcodes 2.1.0
 
 ### Browsers
-- Safari 27.0 (22625.1.29.11.27)
-- SafariDriver 27.0 (22625.1.29.11.27)
-- Google Chrome 154.0.8037.58
-- Google Chrome for Testing 154.0.8037.57
-- ChromeDriver 154.0.8037.57
-- Microsoft Edge 154.0.4258.37
-- Microsoft Edge WebDriver 154.0.4258.37
-- Mozilla Firefox 156.0.1
+- Safari 27.0.1 (22625.1.29.11.28)
+- SafariDriver 27.0.1 (22625.1.29.11.28)
+- Google Chrome 154.0.8037.98
+- Google Chrome for Testing 154.0.8037.92
+- ChromeDriver 154.0.8037.92
+- Microsoft Edge 154.0.4258.62
+- Microsoft Edge WebDriver 154.0.4258.53
+- Mozilla Firefox 157.0
 - geckodriver 0.37.1
-- Selenium server 4.49.0
+- Selenium server 4.50.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -121,8 +122,8 @@
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.15
-- 3.14.7
+- 3.13.16
+- 3.14.8
 
 #### Node.js
 - 22.23.3
@@ -134,14 +135,14 @@
 - 1.26.8
 
 ### Rust Tools
-- Cargo 1.98.1
-- Rust 1.98.1
-- Rustdoc 1.98.1
+- Cargo 1.99.0
+- Rust 1.99.0
+- Rustdoc 1.99.0
 - Rustup 1.29.0
 
 #### Packages
-- Clippy 0.1.98
-- Rustfmt 1.9.0-stable
+- Clippy 0.1.99
+- Rustfmt 1.10.0-stable
 
 ### PowerShell Tools
 - PowerShell 7.6.6
@@ -152,11 +153,11 @@
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version        | Build    | Path                              | Symlinks                                                                                  |
-| -------------- | -------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
-| 27.2 (beta)    | 27B5019j | /Applications/Xcode_27.2_beta.app | /Applications/Xcode_27.2.0.app<br>/Applications/Xcode_27.2.app                            |
-| 27.1           | 27A9269  | /Applications/Xcode_27.1_beta.app | /Applications/Xcode_27.1.0.app<br>/Applications/Xcode_27.1.app                            |
-| 27.0 (default) | 27A266a  | /Applications/Xcode_27.app        | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
+| Version        | Build    | Path                                | Symlinks                                                                                  |
+| -------------- | -------- | ----------------------------------- | ----------------------------------------------------------------------------------------- |
+| 27.2 (beta)    | 27B5028f | /Applications/Xcode_27.2_beta_2.app | /Applications/Xcode_27.2.0.app<br>/Applications/Xcode_27.2.app                            |
+| 27.1           | 27A9269  | /Applications/Xcode_27.1_beta.app   | /Applications/Xcode_27.1.0.app<br>/Applications/Xcode_27.1.app                            |
+| 27.0 (default) | 27A266a  | /Applications/Xcode_27.app          | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -196,7 +197,7 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                            |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                                               |
-| Android Emulator           | 37.1.11                                                                                                                                                                                                                                                                                                                                            |
+| Android Emulator           | 37.2.12                                                                                                                                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                                           |
 | Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                             |
