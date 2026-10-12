@@ -90,6 +90,18 @@ jobs:
             -Repository "${env:CI_REPO}" `
             -AccessToken "${env:CI_PR_TOKEN}"
 
+      # The CI workflow publishes the Copilot analysis of the failure as an artifact
+      - name: Download Copilot analysis
+        if: failure() && env.CI_WORKFLOW_RUN_RESULT == 'failure'
+        continue-on-error: true
+        uses: actions/download-artifact@v8
+        with:
+          pattern: copilot-analysis
+          path: ${{ runner.temp }}/copilot-analysis
+          repository: ${{ vars.CI_REPO }}
+          run-id: ${{ needs.trigger-workflow.outputs.ci_workflow_run_id }}
+          github-token: ${{ secrets.CI_PR_TOKEN }}
+
       - name: Add Summary
         if: always()
         run: |
@@ -99,6 +111,11 @@ jobs:
           "| Workflow Run | [Link](${{ needs.trigger-workflow.outputs.ci_workflow_run_url }}) |" >> $env:GITHUB_STEP_SUMMARY
           "| Workflow Result | $env:CI_WORKFLOW_RUN_RESULT |" >> $env:GITHUB_STEP_SUMMARY
           "  " >> $env:GITHUB_STEP_SUMMARY
+
+          $analysisPath = "${{ runner.temp }}/copilot-analysis/copilot-analysis.md"
+          if (Test-Path $analysisPath) {
+            Get-Content -Path $analysisPath -Raw >> $env:GITHUB_STEP_SUMMARY
+          }
 
   cancel-workflow:
     runs-on: ubuntu-latest
