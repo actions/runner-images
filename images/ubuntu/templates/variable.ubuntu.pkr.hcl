@@ -36,3 +36,8 @@ variable "install_user" {
   type    = string
   default = "installer"
 }
+variable "github_token" {
+  type      = string
+  default   = ""
+  sensitive = true
+}
