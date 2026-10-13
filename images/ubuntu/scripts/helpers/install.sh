@@ -53,18 +53,24 @@ get_toolset_value() {
 }
 
 # Unauthenticated api.github.com requests are limited to 60 per hour per source IP,
-# so one refused request would otherwise kill the whole build.
+# so one refused request would otherwise kill the whole build. Authenticate
+# them with GITHUB_TOKEN when it is set.
 get_github_api_json() {
     local api_path=$1
     local url="https://api.github.com/${api_path}"
     local response_path
     local http_code
+    local curl_args=(-sSL -w '%{http_code}')
+
+    if [[ -n "${GITHUB_TOKEN:-}" ]]; then
+        curl_args+=(-H "Authorization: Bearer ${GITHUB_TOKEN}")
+    fi
 
     response_path=$(mktemp)
     interval=15
 
     for ((retries=5; retries>0; retries--)); do
-        if http_code=$(curl -sSL -o "$response_path" -w '%{http_code}' "$url"); then
+        if http_code=$(curl "${curl_args[@]}" -o "$response_path" "$url"); then
             if [ "$http_code" -eq 200 ]; then
                 cat "$response_path"
                 rm -f "$response_path"
