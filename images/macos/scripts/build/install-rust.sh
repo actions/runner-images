@@ -12,7 +12,7 @@ source ~/utils/utils.sh
 # # FILE_NAME="r/rustup.rb"
 # # FORMULA_NAME="rustup"
 # # brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
-# brew_smart_install rustup
+brew_smart_install rustup
 
 brew_smart_install rust
 
