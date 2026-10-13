@@ -71,7 +71,8 @@ Describe "ReadAhead udev rule" -Skip:(Test-IsUbuntu22) {
         $content | Should -Match 'ATTR\{queue/read_ahead_kb\}="128"'
     }
 
-    It "All SCSI and NVMe devices have read_ahead_kb set to 128" {
+    # A container sees the block devices of its host
+    It "All SCSI and NVMe devices have read_ahead_kb set to 128" -Skip:(Test-IsContainer) {
         $devices = Get-ChildItem "/sys/block/sd*/queue/read_ahead_kb", "/sys/block/nvme*n*/queue/read_ahead_kb" -ErrorAction SilentlyContinue
         $devices | Should -Not -BeNullOrEmpty -Because "there should be at least one sd* or nvme* block device"
         foreach ($dev in $devices) {
@@ -81,7 +82,8 @@ Describe "ReadAhead udev rule" -Skip:(Test-IsUbuntu22) {
     }
 }
 
-Describe "Root filesystem performance options" {
+# A container has no grub and sees the kernel command line and the mounts of its host
+Describe "Root filesystem performance options" -Skip:(Test-IsContainer) {
     It "GRUB drop-in sets the root filesystem mount options" {
         $content = Get-Content "/etc/default/grub.d/99-runner-performance.cfg" -Raw
         $content | Should -Match "rootflags=nobarrier,data=writeback,journal_async_commit,commit=30"

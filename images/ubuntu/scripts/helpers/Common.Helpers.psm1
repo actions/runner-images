@@ -62,6 +62,11 @@ function Test-IsUbuntu24 {
     return (lsb_release -rs) -eq "24.04"
 }
 
+function Test-IsContainer {
+    systemd-detect-virt --container --quiet
+    return $LASTEXITCODE -eq 0
+}
+
 function Test-IsUbuntu26 {
     return (lsb_release -rs) -eq "26.04"
 }
