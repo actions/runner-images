@@ -14,8 +14,8 @@ echo "Installing Rustup..."
 # brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
 brew_smart_install rustup
 
-echo "Installing Rust language..."
-rustup-init -y --no-modify-path --default-toolchain=stable --profile=minimal
+# echo "Installing Rust language..."
+# rustup-init -y --no-modify-path --default-toolchain=stable --profile=minimal
 
 echo "Initialize environment variables..."
 CARGO_HOME=$HOME/.cargo
