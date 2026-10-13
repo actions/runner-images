@@ -31,9 +31,9 @@ build {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}","DEBIAN_FRONTEND=noninteractive"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = [
-      "${path.root}/../scripts/build/install-ms-repos.sh",
       "${path.root}/../scripts/build/configure-apt-sources.sh",
-      "${path.root}/../scripts/build/configure-apt.sh"
+      "${path.root}/../scripts/build/configure-apt.sh",
+      "${path.root}/../scripts/build/install-ms-repos.sh"
     ]
   }
 
