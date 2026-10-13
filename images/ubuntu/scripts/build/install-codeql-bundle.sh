@@ -8,7 +8,7 @@
 source $HELPER_SCRIPTS/install.sh
 
 # Retrieve the latest major version of the CodeQL Action to use in the base URL for downloading the bundle.
-releases=$(curl -fsSL "https://api.github.com/repos/github/codeql-action/releases")
+releases=$(get_github_api_json "repos/github/codeql-action/releases")
 
 # Get the release tags starting with v[0-9] and sort them in descending order, then take the first major version.
 codeql_action_latest_major_version=$(echo "$releases" |

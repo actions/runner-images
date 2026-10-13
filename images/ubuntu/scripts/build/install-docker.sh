@@ -103,8 +103,7 @@ if ! is_ubuntu22; then
 fi
 
 # Download amazon-ecr-credential-helper
-aws_latest_release_url="https://api.github.com/repos/awslabs/amazon-ecr-credential-helper/releases/latest"
-aws_helper_url=$(curl -fsSL "${aws_latest_release_url}" | jq -r '.body' | awk -F'[()]' '/linux-'"${docker_arch}"'/ {print $2}')
+aws_helper_url=$(get_github_api_json "repos/awslabs/amazon-ecr-credential-helper/releases/latest" | jq -r '.body' | awk -F'[()]' '/linux-'"${docker_arch}"'/ {print $2}')
 aws_helper_binary_path=$(download_with_retry "$aws_helper_url")
 
 # Supply chain security - amazon-ecr-credential-helper

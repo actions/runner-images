@@ -12,7 +12,7 @@ source $HELPER_SCRIPTS/install.sh
 NUM_VERSIONS=3
 
 # Get the most recent stable releases (exclude pre-releases, beta and release without assets)
-releases=$(curl -fsSL "https://api.github.com/repos/github/gh-aw-firewall/releases?per_page=10")
+releases=$(get_github_api_json "repos/github/gh-aw-firewall/releases?per_page=10")
 versions=$(echo "$releases" | jq -r '[.[] | select(.assets | length > 0) | select(.prerelease == false) | select(.tag_name | test(".*-[a-z]|beta") | not)] | .[:'"$NUM_VERSIONS"'] | .[].tag_name')
 
 if [[ -z "$versions" ]]; then

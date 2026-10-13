@@ -11,7 +11,7 @@ source $HELPER_SCRIPTS/os.sh
 
 # Install
 image_label="ubuntu$(lsb_release -rs)"
-swift_version=$(curl -fsSL "https://api.github.com/repos/apple/swift/releases/latest" | jq -r '.tag_name | match("[0-9.]+").string')
+swift_version=$(get_github_api_json "repos/apple/swift/releases/latest" | jq -r '.tag_name | match("[0-9.]+").string')
 
 if is_x64; then
   swift_release_name="swift-${swift_version}-RELEASE-${image_label}"
