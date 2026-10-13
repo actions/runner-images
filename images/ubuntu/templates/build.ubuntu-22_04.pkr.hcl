@@ -14,12 +14,12 @@ build {
 
   provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    inline          = ["mkdir ${var.image_folder}", "chmod 777 ${var.image_folder}"]
+    inline          = ["mkdir ${var.image_folder} ${var.helper_script_folder} ${var.installer_script_folder}", "chmod 777 ${var.image_folder} ${var.helper_script_folder} ${var.installer_script_folder}"]
   }
 
   provisioner "file" {
     destination = "${var.helper_script_folder}"
-    source      = "${path.root}/../scripts/helpers"
+    source      = "${path.root}/../scripts/helpers/"
   }
 
   provisioner "shell" {
@@ -44,7 +44,7 @@ build {
 
   provisioner "file" {
     destination = "${var.installer_script_folder}"
-    source      = "${path.root}/../scripts/build"
+    source      = "${path.root}/../scripts/build/"
   }
 
   provisioner "file" {
@@ -70,7 +70,8 @@ build {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline          = [
       "mv ${var.image_folder}/docs-gen ${var.image_folder}/SoftwareReport",
-      "mv ${var.image_folder}/post-gen ${var.image_folder}/post-generation"
+      "mv ${var.image_folder}/post-gen ${var.image_folder}/post-generation",
+      "chmod 644 ${var.installer_script_folder}/toolset.json"
     ]
   }
 
