@@ -1,0 +1,46 @@
+name: Set up LXD for image builds
+description: Initialize LXD with storage under /merged prepared by prepare-image-storage
+runs:
+  using: composite
+  steps:
+    # LXD does not create the source directory of a dir pool.
+    - name: Create LXD pool directory
+      shell: bash
+      run: sudo mkdir /merged/lxd
+
+    - name: Set up LXD
+      uses: canonical/setup-lxd@v1
+      with:
+        channel: 5.21/stable
+        preseed: |
+          config:
+            images.compression_algorithm: none
+          storage_pools:
+          - name: default
+            driver: dir
+            config:
+              source: /merged/lxd
+          networks:
+          - name: lxdbr0
+            type: bridge
+            config:
+              ipv4.address: auto
+              ipv6.address: none
+          profiles:
+          - name: default
+            devices:
+              root:
+                path: /
+                pool: default
+                type: disk
+              eth0:
+                name: eth0
+                network: lxdbr0
+                type: nic
+
+    # Keep image storage and exports off the root filesystem as well.
+    - name: Configure LXD image storage
+      shell: bash
+      run: |
+        lxc storage volume create default images
+        lxc config set storage.images_volume default/images

@@ -55,6 +55,10 @@ jobs:
       - name: Prepare image storage
         uses: ./.github/actions/prepare-image-storage
 
+      - name: Set up LXD
+        if: matrix.format == 'lxd' || matrix.format == 'vm'
+        uses: ./.github/actions/setup-lxd
+
       - name: Resolve image type
         shell: pwsh
         env:
