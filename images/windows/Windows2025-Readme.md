@@ -5,11 +5,11 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 33438
-- Image Version: 20260927.275.1
+- Image Version: 20261004.281.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
-- Windows Subsystem for Linux (Default, WSLv2): 2.7.14.0
+- Windows Subsystem for Linux (Default, WSLv2): 3.0.1.0
 
 ## Installed Software
 
@@ -33,9 +33,9 @@
 - NPM 10.9.9
 - NuGet 7.9.0.83
 - pip 26.2.1 (python 3.12)
-- Pipx 1.17.6
+- Pipx 1.17.11
 - RubyGems 3.5.22
-- Vcpkg (build from commit 07f4812200)
+- Vcpkg (build from commit 19780d9cdf)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -64,8 +64,8 @@
 - Docker Compose 2.40.3
 - Docker-wincred 0.9.9
 - ghc 9.14.1
-- Git 2.55.0.windows.5
-- Git LFS 3.7.1
+- Git 2.56.0.windows.1
+- Git LFS 3.8.0
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.1
@@ -75,9 +75,9 @@
 - gdb 17.1
 - GNU Binutils 2.46
 - Newman 6.2.2
-- OpenSSL 3.6.4
+- OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.265.0
+- Pulumi 3.267.0
 - R 4.6.1
 - Service Fabric Runtime 11.7.157.1
 - Service Fabric SDK 8.7.157.1
@@ -91,32 +91,32 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.37.4
+- AWS CLI 2.37.7
 - AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
 - Azure DevOps CLI extension 1.0.8
-- GitHub CLI 2.101.0
+- GitHub CLI 2.102.0
 
 ### Rust Tools
-- Cargo 1.98.1
-- Rust 1.98.1
-- Rustdoc 1.98.1
+- Cargo 1.99.0
+- Rust 1.99.0
+- Rustdoc 1.99.0
 - Rustup 1.29.1
 
 #### Packages
-- Clippy 0.1.98
-- Rustfmt 1.9.0
+- Clippy 0.1.99
+- Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Google Chrome 154.0.8037.58
-- Chrome Driver 154.0.8037.57
-- Microsoft Edge 154.0.4258.37
-- Microsoft Edge Driver 154.0.4258.37
-- Mozilla Firefox 156.0.1
+- Google Chrome 154.0.8037.98
+- Chrome Driver 154.0.8037.92
+- Microsoft Edge 154.0.4258.53
+- Microsoft Edge Driver 154.0.4258.53
+- Mozilla Firefox 157.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.49.0
+- Selenium server 4.50.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -167,8 +167,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.10.11
 - 3.11.9
 - 3.12.10
-- 3.13.15
-- 3.14.7
+- 3.13.16
+- 3.14.8
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -473,10 +473,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.307
+- AWSPowershell: 5.0.312
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.40.0
+- Microsoft.Graph: 2.41.0
 - Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
@@ -488,7 +488,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Android Emulator           | 37.1.11                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Android Emulator           | 37.2.12                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
@@ -496,7 +496,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | CMake                      | 3.30.5<br>3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| NDK                        | 27.3.13750724<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| NDK                        | 27.3.13750724<br>29.0.14206865<br>30.0.16248370                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 
 #### Environment variables
 | Name                    | Value                                    |
@@ -504,7 +504,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | ANDROID_HOME            | C:\Android\android-sdk                   |
 | ANDROID_NDK             | C:\Android\android-sdk\ndk\27.3.13750724 |
 | ANDROID_NDK_HOME        | C:\Android\android-sdk\ndk\27.3.13750724 |
-| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\29.0.14206865 |
+| ANDROID_NDK_LATEST_HOME | C:\Android\android-sdk\ndk\30.0.16248370 |
 | ANDROID_NDK_ROOT        | C:\Android\android-sdk\ndk\27.3.13750724 |
 | ANDROID_SDK_ROOT        | C:\Android\android-sdk                   |
 

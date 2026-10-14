@@ -5,7 +5,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9457
-- Image Version: 20260927.180.1
+- Image Version: 20261004.186.1
 
 ## Windows features
 
@@ -20,7 +20,7 @@
 - Node 24.21.0
 - Perl 5.32.1
 - PHP 8.4.26
-- Python 3.13.15
+- Python 3.13.16
 - Ruby 3.4.11
 
 ### Package Management
@@ -30,9 +30,9 @@
 - NPM 11.19.0
 - NuGet 7.9.0.83
 - pip 26.2.1 (python 3.13)
-- Pipx 1.17.6
+- Pipx 1.17.11
 - RubyGems 3.6.9
-- Vcpkg (build from commit 07f4812200)
+- Vcpkg (build from commit 19780d9cdf)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -53,10 +53,10 @@
 - Bazel 9.2.0
 - Bazelisk 1.28.1
 - Bicep 0.47.16
-- CMake 4.4.3
+- CMake 4.4.4
 - CodeQL Action Bundle 2.27.1
-- Git 2.55.0.windows.5
-- Git LFS 3.7.1
+- Git 2.56.0.windows.1
+- Git LFS 3.8.0
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.1
@@ -68,9 +68,9 @@
 - GNU Binutils 2.44
 - Newman 6.2.2
 - NSIS 3.10
-- OpenSSL 3.6.4
+- OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.265.0
+- Pulumi 3.267.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -82,17 +82,17 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.1
-- AWS CLI 2.37.4
+- AWS CLI 2.37.7
 - AWS SAM CLI 1.166.2
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.90.0
 - Azure DevOps CLI extension 1.0.8
-- GitHub CLI 2.101.0
+- GitHub CLI 2.102.0
 
 ### Rust Tools
-- Cargo 1.98.1
-- Rust 1.98.1
-- Rustdoc 1.98.1
+- Cargo 1.99.0
+- Rust 1.99.0
+- Rustdoc 1.99.0
 - Rustup 1.29.1
 
 #### Packages
@@ -100,18 +100,18 @@
 - cargo-audit 0.22.2
 - cargo-outdated 0.19.0
 - cbindgen 0.29.4
-- Clippy 0.1.98
-- Rustfmt 1.9.0
+- Clippy 0.1.99
+- Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Google Chrome 154.0.8037.58
-- Chrome Driver 154.0.8037.57
-- Microsoft Edge 154.0.4258.37
-- Microsoft Edge Driver 154.0.4258.37
-- Mozilla Firefox 156.0.1
+- Google Chrome 154.0.8037.98
+- Chrome Driver 154.0.8037.92
+- Microsoft Edge 154.0.4258.53
+- Microsoft Edge Driver 154.0.4258.53
+- Mozilla Firefox 157.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.49.0
+- Selenium server 4.50.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -157,8 +157,8 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Python
 - 3.12.10
-- 3.13.15
-- 3.14.7
+- 3.13.16
+- 3.14.8
 
 #### Ruby
 - 3.4.11
@@ -399,10 +399,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.307
+- AWSPowershell: 5.0.312
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.40.0
+- Microsoft.Graph: 2.41.0
 - Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
