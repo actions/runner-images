@@ -52,6 +52,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
+      - name: Prepare image storage
+        uses: ./.github/actions/prepare-image-storage
+
       - name: Resolve image type
         shell: pwsh
         env:
@@ -71,6 +74,6 @@ jobs:
           Image build scaffold: $env:IMAGE_TYPE
 
           No image is built or published by this scaffold.
-          Following commits will wire platform-specific storage and builder setup,
+          Following commits will wire platform-specific builder setup,
           Packer provisioning and upstream tests, reports, and OCI packaging.
           "@ >> $env:GITHUB_STEP_SUMMARY

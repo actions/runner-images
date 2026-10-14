@@ -1,0 +1,71 @@
+name: Prepare image storage
+description: Free Linux or Windows runner disk space and provide /merged on Linux
+runs:
+  using: composite
+  steps:
+    - name: Free Linux disk space
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        df -h
+        sudo swapoff -a
+        sudo rm -f /mnt/swapfile
+        docker image prune --all --force
+        sudo rm -rf \
+          /opt/ghc \
+          /opt/hostedtoolcache \
+          /usr/local/.ghcup \
+          /usr/local/lib/android \
+          /usr/local/share/boost \
+          /usr/share/dotnet \
+          /usr/share/swift
+        df -h
+
+    - name: Free Windows disk space
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        $ErrorActionPreference = 'Stop'
+        Get-PSDrive -PSProvider FileSystem
+        if (Get-Command docker -ErrorAction SilentlyContinue) {
+          $dockerService = Get-Service docker -ErrorAction SilentlyContinue
+          if ($dockerService) {
+            if ($dockerService.Status -ne 'Running') {
+              Start-Service docker -ErrorAction Stop
+            }
+            docker image prune --all --force
+            if ($LASTEXITCODE -ne 0) {
+              throw 'Failed to prune Docker images.'
+            }
+          } else {
+            Write-Host 'Docker service is not installed; skipping image pruning.'
+          }
+        } else {
+          Write-Host 'Docker is not installed; skipping image pruning.'
+        }
+        Get-PSDrive -PSProvider FileSystem
+
+    # Runners with a separate temporary disk on /mnt need both disks to hold
+    # the LXD images. The others have a single large disk.
+    - name: Merge disks
+      if: runner.os == 'Linux'
+      shell: bash
+      run: |
+        if ! mountpoint --quiet /mnt; then
+          sudo mkdir /merged
+          exit
+        fi
+        reserve_kb=$((2 * 1024 * 1024))
+        devices=()
+        for dir in "" /mnt; do
+          free_kb=$(df --block-size=1024 --output=avail "${dir:-/}" | tail -n 1)
+          sudo fallocate --length $(((free_kb - reserve_kb) * 1024)) "${dir}/loop.img"
+          devices+=("$(sudo losetup --find --show "${dir}/loop.img")")
+        done
+        sudo pvcreate --force "${devices[@]}"
+        sudo vgcreate vgmerged "${devices[@]}"
+        sudo lvcreate --extents 100%FREE --name lvmerged vgmerged
+        sudo mkfs.ext4 -m 0 /dev/vgmerged/lvmerged
+        sudo mkdir /merged
+        sudo mount /dev/vgmerged/lvmerged /merged
+        df -h /merged
