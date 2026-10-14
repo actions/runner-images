@@ -58,6 +58,8 @@ jobs:
       - name: Set up LXD
         if: matrix.format == 'lxd' || matrix.format == 'vm'
         uses: ./.github/actions/setup-lxd
+        with:
+          instance-type: ${{ matrix.format == 'vm' && 'vm' || 'container' }}
 
       - name: Resolve image type
         shell: pwsh

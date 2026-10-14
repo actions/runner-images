@@ -1,5 +1,9 @@
 name: Set up LXD for image builds
 description: Initialize LXD with storage under /merged prepared by prepare-image-storage
+inputs:
+  instance-type:
+    description: LXD instance type to build (container or vm)
+    default: container
 runs:
   using: composite
   steps:
@@ -44,3 +48,11 @@ runs:
       run: |
         lxc storage volume create default images
         lxc config set storage.images_volume default/images
+
+    # LXD defaults to 1 CPU, 1 GiB RAM and a 10 GiB disk for virtual machines.
+    - name: Size virtual machines
+      if: inputs.instance-type == 'vm'
+      shell: bash
+      run: |
+        lxc profile set default limits.cpu="$(nproc)" limits.memory=12GiB
+        lxc profile device set default root size=75GiB
