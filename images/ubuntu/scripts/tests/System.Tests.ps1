@@ -95,7 +95,11 @@ Describe "Root filesystem performance options" -Skip:(Test-IsContainer) {
     }
 
     It "Root filesystem is mounted with the relaxed durability options" {
-        $mountOptions = (findmnt --noheadings --first-only --output OPTIONS --target /) -split ","
+        # Mount tables omit defaults; Ubuntu's KVM kernel defaults to commit=30.
+        # Resolve the device number because the mount source can be /dev/root.
+        $rootDeviceNumber = (findmnt --noheadings --first-only --output MAJ:MIN --target /).Trim()
+        $rootDevice = Split-Path -Leaf (readlink -f "/sys/dev/block/$rootDeviceNumber")
+        $mountOptions = Get-Content "/proc/fs/ext4/$rootDevice/options" -ErrorAction Stop
         $mountOptions | Should -Contain "data=writeback"
         $mountOptions | Should -Contain "commit=30"
     }
