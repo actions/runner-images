@@ -73,13 +73,17 @@ jobs:
           $imageType = ($name.Split('_') | ForEach-Object { $textInfo.ToTitleCase($_) }) -join '_'
           "IMAGE_TYPE=$imageType" >> $env:GITHUB_ENV
 
-      - name: Show build implementation status
-        shell: pwsh
-        run: |
-          @"
-          Image build scaffold: $env:IMAGE_TYPE
+      - name: Set up Packer
+        uses: hashicorp/setup-packer@v3
+        with:
+          version: 1.16.1
 
-          No image is built or published by this scaffold.
-          Following commits will wire platform-specific builder setup,
-          Packer provisioning and upstream tests, reports, and OCI packaging.
-          "@ >> $env:GITHUB_STEP_SUMMARY
+      - name: Build image
+        shell: pwsh
+        env:
+          PACKER_GITHUB_API_TOKEN: ${{ github.token }}
+          PKR_VAR_github_token: ${{ github.token }}
+          PACKER_NO_COLOR: 1
+        run: |
+          Import-Module ./helpers/GenerateResourcesAndImage.ps1
+          GenerateResourcesAndImage -ImageType $env:IMAGE_TYPE -OnError cleanup

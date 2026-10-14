@@ -113,82 +113,16 @@ Function Show-LatestCommit {
     }
 }
 
-function Get-GitHubActionsOidcIdToken {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory = $True)]
-        [string] $RequestUrl,
-        [Parameter(Mandatory = $True)]
-        [string] $RequestToken,
-        [Parameter(Mandatory = $False)]
-        [string] $Audience = 'api://AzureADTokenExchange'
-    )
-
-    $separator = if ($RequestUrl -match '\?') { '&' } else { '?' }
-    $urlWithAudience = "${RequestUrl}${separator}audience=$([System.Uri]::EscapeDataString($Audience))"
-    $headers = @{ Authorization = "Bearer $RequestToken" }
-
-    try {
-        $response = Invoke-RestMethod -Method Get -Uri $urlWithAudience -Headers $headers
-    }
-    catch {
-        throw "Failed to request GitHub Actions OIDC ID token. Ensure workflow permissions include 'id-token: write'. Details: $($_.Exception.Message)"
-    }
-
-    if ([string]::IsNullOrEmpty($response.value)) {
-        throw "GitHub Actions OIDC token response did not contain a 'value' field."
-    }
-
-    return $response.value
-}
-
-function Start-Sleep($seconds) {
-    $doneDT = (Get-Date).AddSeconds($seconds)
-    while ($doneDT -gt (Get-Date)) {
-        $secondsLeft = $doneDT.Subtract((Get-Date)).TotalSeconds
-        $percent = ($seconds - $secondsLeft) / $seconds * 100
-        Write-Progress -Activity "Sleeping" -Status "Sleeping..." -SecondsRemaining $secondsLeft -PercentComplete $percent
-        [System.Threading.Thread]::Sleep(500)
-    }
-    Write-Progress -Activity "Sleeping" -Status "Sleeping..." -SecondsRemaining 0 -Completed
-}
-
 Function GenerateResourcesAndImage {
     <#
         .SYNOPSIS
             A helper function to help generate an image.
         .DESCRIPTION
-            This function will generate the Azure resources and image for the specified image type.
-        .PARAMETER SubscriptionId
-            The Azure subscription id where the Azure resources will be created.
-        .PARAMETER ResourceGroupName
-            The name of the resource group to store the resulting artifact. Resource group must already exist.
+            Build an LXD or Docker image of the specified image type with Packer.
         .PARAMETER ImageType
             ImageType enum value, e.g. Ubuntu2604_Amd64_Lxd.
-        .PARAMETER ManagedImageName
-            The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
-        .PARAMETER AzureLocation
-            The Azure location where the Azure resources will be created. For example: "East US"
         .PARAMETER ImageGenerationRepositoryRoot
             The root directory of the image generation repository. This is used to locate the packer template.
-        .PARAMETER SecondsToWaitForServicePrincipalSetup
-            The number of seconds to wait for the service principal to be setup. The default is 120 seconds.
-        .PARAMETER AzureClientId
-            The Azure client id to use to authenticate with Azure. If not specified, the current user's credentials will be used.
-        .PARAMETER AzureClientSecret
-            The Azure client secret to use to authenticate with Azure. If not specified, the current user's credentials will be used.
-        .PARAMETER AzureTenantId
-            The Azure tenant id to use to authenticate with Azure. If not specified, the current user's credentials will be used.
-        .PARAMETER UseOidc
-            If set, authenticate using GitHub Actions OIDC (federated credentials) instead of a client secret.
-            Requires AzureClientId and AzureTenantId, and OidcRequestToken/OidcRequestUrl parameters.
-        .PARAMETER OidcRequestToken
-            GitHub Actions OIDC request token.
-        .PARAMETER OidcRequestUrl
-            GitHub Actions OIDC request URL.
-        .PARAMETER RestrictToAgentIpAddress
-            If set, access to the VM used by packer to generate the image is restricted to the public IP address this script is run from. 
-            This parameter cannot be used in combination with the virtual_network_name packer parameter.
         .PARAMETER OnError
             Specify how packer handles an error during image creation.
             Options:
@@ -197,55 +131,17 @@ Function GenerateResourcesAndImage {
                 cleanup - attempt to cleanup and then abort
                 run-cleanup-provisioner - run the cleanup provisioner and then abort
             The default is 'ask'.
-        .PARAMETER Tags
-            Tags to be applied to the Azure resources created.
-        .PARAMETER PluginVersion
-            Specify the version of the packer Azure plugin to use. The default is "2.2.1".
-        .PARAMETER AmazonPluginVersion
-            Specify the version of the Packer Amazon plugin required by Ubuntu templates. The default is "1.8.2".
         .EXAMPLE
-            GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2204 -AzureLocation "East US"
+            GenerateResourcesAndImage -ImageGenerationRepositoryRoot "$HOME/runner-images" -ImageType Ubuntu2204_Amd64_Vm
     #>
     param (
         [Parameter(Mandatory = $True)]
-        [string] $SubscriptionId,
-        [Parameter(Mandatory = $True)]
-        [string] $ResourceGroupName,
-        [Parameter(Mandatory = $True)]
         [ImageType] $ImageType,
-        [Parameter(Mandatory = $False)]
-        [string] $ManagedImageName = "Runner-Image-$($ImageType)",
-        [Parameter(Mandatory = $False)]
-        [string] $AzureLocation,
         [Parameter(Mandatory = $False)]
         [string] $ImageGenerationRepositoryRoot = $pwd,
         [Parameter(Mandatory = $False)]
-        [int] $SecondsToWaitForServicePrincipalSetup = 120,
-        [Parameter(Mandatory = $False)]
-        [string] $AzureClientId,
-        [Parameter(Mandatory = $False)]
-        [string] $AzureClientSecret,
-        [Parameter(Mandatory = $False)]
-        [string] $AzureTenantId,
-        [Parameter(Mandatory = $False)]
-        [switch] $UseOidc,
-        [Parameter(Mandatory = $False)]
-        [ValidateNotNullOrEmpty()]
-        [string] $OidcRequestToken,
-        [Parameter(Mandatory = $False)]
-        [ValidateNotNullOrEmpty()]
-        [string] $OidcRequestUrl,
-        [Parameter(Mandatory = $False)]
-        [string] $PluginVersion = "2.2.1",
-        [Parameter(Mandatory = $False)]
-        [switch] $RestrictToAgentIpAddress,
-        [Parameter(Mandatory = $False)]
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
-        [string] $OnError = "ask",
-        [Parameter(Mandatory = $False)]
-        [hashtable] $Tags = @{},
-        [Parameter(Mandatory = $False)]
-        [string] $AmazonPluginVersion = "1.8.2"
+        [string] $OnError = "ask"
     )
 
     Show-LatestCommit -ErrorAction SilentlyContinue
@@ -260,84 +156,22 @@ Function GenerateResourcesAndImage {
     $PackerTemplate = Get-PackerTemplate -RepositoryRoot $ImageGenerationRepositoryRoot -ImageType $ImageType
     Write-Debug "Template path: $($PackerTemplate.Path)."
 
-    # Prepare list of allowed inbound IP addresses
-    if ($RestrictToAgentIpAddress) {
-        $AgentIp = (Invoke-RestMethod https://ipinfo.io/json).ip
-        if (-not $AgentIp) {
-            throw "Unable to determine agent IP address."
-        }
-
-        Write-Host "Access to packer generated VM will be restricted to agent IP Address: $AgentIp."
-        if ($PSVersionTable.PSVersion.Major -eq 5) {
-            Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
-            $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
-        }
-        elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
-            Write-Verbose "PowerShell 7.0-7.2 detected. Replacing double quotes with escaped double quotes in allowed inbound IP addresses."
-            $AllowedInboundIpAddresses = '[\"{0}\"]' -f $AgentIp
-        }
-        else {
-            $AllowedInboundIpAddresses = '["{0}"]' -f $AgentIp
-        }
-    }
-    else {
-        $AllowedInboundIpAddresses = "[]"
-    }
-    Write-Debug "Allowed inbound IP addresses: $AllowedInboundIpAddresses."
-
-    # Prepare tags
-    $TagsList = $Tags.GetEnumerator() | ForEach-Object { "$($_.Key)=$($_.Value)" }
-    Write-Debug "Tags list: $TagsList."
-    $TagsJson = $Tags | ConvertTo-Json -Compress
-    if ($PSVersionTable.PSVersion.Major -eq 5) {
-        Write-Verbose "PowerShell 5 detected. Replacing double quotes with escaped double quotes in tags JSON."
-        $TagsJson = $TagsJson -replace '"', '\"'
-    }
-    elseif ($PSVersionTable.PSVersion.Major -eq 7 -and $PSVersionTable.PSVersion.Minor -le 2) {
-        Write-Verbose "PowerShell 7.0-7.2 detected. Replacing double quotes with escaped double quotes in tags JSON."
-        $TagsJson = $TagsJson -replace '"', '\"'
-    }
-    Write-Debug "Tags JSON: $TagsJson."
+    $source = $PackerTemplate.Source
 
     $InstallPassword = $env:UserName + [System.GUID]::NewGuid().ToString().ToUpper()
 
     Write-Host "Downloading packer plugins..."
-    & $PackerBinary plugins install github.com/hashicorp/azure $PluginVersion
+    & $PackerBinary init $PackerTemplate.Path
 
     if ($LastExitCode -ne 0) {
         throw "Packer plugins download failed."
     }
 
-    if ($PackerTemplate.ImageOS -like "ubuntu*") {
-        # Packer decodes all sources in the template directory, including unselected AWS sources.
-        & $PackerBinary plugins install github.com/hashicorp/amazon $AmazonPluginVersion
-
-        if ($LastExitCode -ne 0) {
-            throw "Packer Amazon plugin download failed."
-        }
-    }
-
     Write-Host "Validating packer template..."
-    $validateClientSecret = "fake"
-    if ($UseOidc) {
-        $validateClientSecret = ""
-    }
-
     & $PackerBinary validate `
-        "-only=$($PackerTemplate.BuildName).*" `
-        "-var=client_id=fake" `
-        "-var=client_secret=$($validateClientSecret)" `
-        "-var=oidc_request_token=fake" `
-        "-var=oidc_request_url=fake" `
-        "-var=subscription_id=$($SubscriptionId)" `
-        "-var=tenant_id=fake" `
-        "-var=location=$($AzureLocation)" `
+        "-only=$source" `
         "-var=image_os=$($PackerTemplate.ImageOS)" `
-        "-var=managed_image_name=$($ManagedImageName)" `
-        "-var=managed_image_resource_group_name=$($ResourceGroupName)" `
         "-var=install_password=$($InstallPassword)" `
-        "-var=allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-        "-var=azure_tags=$($TagsJson)" `
         $PackerTemplate.Path
 
     if ($LastExitCode -ne 0) {
@@ -345,101 +179,10 @@ Function GenerateResourcesAndImage {
     }
 
     try {
-        # Login to Azure subscription
-        if ([string]::IsNullOrEmpty($AzureClientId)) {
-            Write-Verbose "No AzureClientId was provided, will use interactive login."
-            az login --output none
-        }
-        elseif ($UseOidc) {
-            if ([string]::IsNullOrEmpty($AzureTenantId)) {
-                throw "AzureTenantId is required for OIDC authentication."
-            }
-
-            Write-Verbose "Using OIDC service principal login (federated credentials)."
-            $idToken = Get-GitHubActionsOidcIdToken -RequestUrl $OidcRequestUrl -RequestToken $OidcRequestToken
-            az login --service-principal --username $AzureClientId --tenant $AzureTenantId --federated-token $idToken --output none
-        }
-        else {
-            if ([string]::IsNullOrEmpty($AzureClientSecret) -or [string]::IsNullOrEmpty($AzureTenantId)) {
-                throw "AzureClientSecret and AzureTenantId are required for service principal login unless -UseOidc is specified."
-            }
-            Write-Verbose "AzureClientId was provided, will use service principal login (client secret)."
-            az login --service-principal --username $AzureClientId --password=$AzureClientSecret --tenant $AzureTenantId --output none
-        }
-
-        az account set --subscription $SubscriptionId
-        if ($LastExitCode -ne 0) {
-            throw "Failed to login to Azure subscription '$SubscriptionId'."
-        }
-
-        # Check resource group
-        $ResourceGroupExists = [System.Convert]::ToBoolean((az group exists --name $ResourceGroupName));
-        if ($ResourceGroupExists) {
-            Write-Verbose "Resource group '$ResourceGroupName' already exists."
-        }
-        else {
-            throw "Resource group '$ResourceGroupName' does not exist."
-        }
-
-        # Create / choose authentication for packer
-        if ([string]::IsNullOrEmpty($AzureClientId)) {
-            Write-Host "Creating service principal for packer..."
-            $ADCleanupRequired = $true
-
-            $ServicePrincipalName = "packer-" + [System.GUID]::NewGuid().ToString().ToUpper()
-            $ServicePrincipal = az ad sp create-for-rbac --name $ServicePrincipalName --role Contributor --scopes /subscriptions/$SubscriptionId --only-show-errors | ConvertFrom-Json
-            if ($LastExitCode -ne 0) {
-                throw "Failed to create service principal '$ServicePrincipalName'."
-            }
-
-            $ServicePrincipalAppId = $ServicePrincipal.appId
-            $ServicePrincipalPassword = $ServicePrincipal.password
-            $TenantId = $ServicePrincipal.tenant
-
-            Write-Verbose "Waiting for service principal to propagate..."
-            Start-Sleep $SecondsToWaitForServicePrincipalSetup
-            Write-Host "Service principal created with id '$ServicePrincipalAppId'. It will be deleted after the build."
-        }
-        else {
-            if ($UseOidc) {
-                if ([string]::IsNullOrEmpty($AzureTenantId)) {
-                    throw "AzureTenantId is required for OIDC authentication."
-                }
-
-                $ServicePrincipalAppId = $AzureClientId
-                $ServicePrincipalPassword = ""
-                $TenantId = $AzureTenantId
-                # Avoid leaking OIDC request values via command line arguments.
-                $env:PKR_VAR_oidc_request_token = $OidcRequestToken
-                $env:PKR_VAR_oidc_request_url = $OidcRequestUrl
-            }
-            else {
-                if ([string]::IsNullOrEmpty($AzureClientSecret) -or [string]::IsNullOrEmpty($AzureTenantId)) {
-                    throw "AzureClientSecret and AzureTenantId are required for service principal authentication unless -UseOidc is specified."
-                }
-                $ServicePrincipalAppId = $AzureClientId
-                $ServicePrincipalPassword = $AzureClientSecret
-                $TenantId = $AzureTenantId
-            }
-        }
-        Write-Debug "Service principal app id: $ServicePrincipalAppId."
-        Write-Debug "Tenant id: $TenantId."
-
         & $PackerBinary build -on-error="$($OnError)" `
-            -only "$($PackerTemplate.BuildName).*" `
-            -var "client_id=$($ServicePrincipalAppId)" `
-            -var "client_secret=$($ServicePrincipalPassword)" `
-            -var "oidc_request_token=$($env:PKR_VAR_oidc_request_token)" `
-            -var "oidc_request_url=$($env:PKR_VAR_oidc_request_url)" `
-            -var "subscription_id=$($SubscriptionId)" `
-            -var "tenant_id=$($TenantId)" `
-            -var "location=$($AzureLocation)" `
+            -only $source `
             -var "image_os=$($PackerTemplate.ImageOS)" `
-            -var "managed_image_name=$($ManagedImageName)" `
-            -var "managed_image_resource_group_name=$($ResourceGroupName)" `
             -var "install_password=$($InstallPassword)" `
-            -var "allowed_inbound_ip_addresses=$($AllowedInboundIpAddresses)" `
-            -var "azure_tags=$($TagsJson)" `
             $PackerTemplate.Path
 
         if ($LastExitCode -ne 0) {
@@ -447,21 +190,5 @@ Function GenerateResourcesAndImage {
         }
     } catch {
         Write-Error $_
-    } finally {
-        Write-Verbose "`nCleaning up..."
-
-        # Remove ADServicePrincipal and ADApplication
-        if ($ADCleanupRequired) {
-            Write-Host "Removing ADServicePrincipal..."
-            if (az ad sp show --id $ServicePrincipalAppId --query id) {
-                az ad sp delete --id $ServicePrincipalAppId
-            }
-
-            Write-Host "Removing ADApplication..."
-            if (az ad app show --id $ServicePrincipalAppId --query id) {
-                az ad app delete --id $ServicePrincipalAppId
-            }
-        }
-        Write-Verbose "Cleanup completed."
     }
 }
