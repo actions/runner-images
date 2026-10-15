@@ -136,5 +136,7 @@ if is_ubuntu22; then
 fi
 
 # Disable man-db auto update
-echo "set man-db/auto-update false" | debconf-communicate
-dpkg-reconfigure man-db
+if [ "$(dpkg-query -W -f='${Status}' man-db 2>/dev/null)" = "install ok installed" ]; then
+    echo "set man-db/auto-update false" | debconf-communicate
+    dpkg-reconfigure man-db
+fi
