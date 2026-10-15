@@ -3,6 +3,11 @@ build {
   name = "ubuntu-22_04-arm64"
 
   provisioner "shell" {
+    only   = ["docker.container"]
+    inline = ["apt-get update", "apt-get install --no-install-recommends --yes sudo lsb-release wget ca-certificates iptables"]
+  }
+
+  provisioner "shell" {
     execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     script          = "${path.root}/../scripts/build/configure-packer-user.sh"
   }
