@@ -36,7 +36,9 @@ mounts:
 EOF
 
 # Add localhost alias to ::1 IPv6
-sed -i 's/::1 ip6-localhost ip6-loopback/::1     localhost ip6-localhost ip6-loopback/g' /etc/hosts
+if [ ! -f /.dockerenv ]; then
+    sed -i 's/::1 ip6-localhost ip6-loopback/::1     localhost ip6-localhost ip6-loopback/g' /etc/hosts
+fi
 
 # Prepare directory and env variable for toolcache
 AGENT_TOOLSDIRECTORY=/opt/hostedtoolcache
@@ -94,12 +96,14 @@ chmod +x $HELPER_SCRIPTS/invoke-tests.sh
 ln -s $HELPER_SCRIPTS/invoke-tests.sh /usr/local/bin/invoke_tests
 
 # Disable motd updates metadata
-sed -i 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news
+if [ -f /etc/default/motd-news ]; then
+    sed -i 's/ENABLED=1/ENABLED=0/g' /etc/default/motd-news
+fi
 
 # Remove fwupd if installed. We're running on VMs in Azure and the fwupd package is not needed.
 # Leaving it enabled means periodic refreshes show in network traffic and firewall logs
 # Check if fwupd-refresh.timer exists in systemd
-if systemctl list-unit-files fwupd-refresh.timer &>/dev/null; then
+if [ -d /run/systemd/system ] && systemctl list-unit-files fwupd-refresh.timer &>/dev/null; then
     echo "Masking fwupd-refresh.timer..."
     systemctl mask fwupd-refresh.timer
 fi

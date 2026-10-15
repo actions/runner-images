@@ -7,12 +7,14 @@
 source $HELPER_SCRIPTS/os.sh
 
 # Stop and disable apt-daily upgrade services;
-systemctl stop apt-daily.timer
-systemctl disable apt-daily.timer
-systemctl disable apt-daily.service
-systemctl stop apt-daily-upgrade.timer
-systemctl disable apt-daily-upgrade.timer
-systemctl disable apt-daily-upgrade.service
+if [ -d /run/systemd/system ]; then
+    systemctl stop apt-daily.timer
+    systemctl disable apt-daily.timer
+    systemctl disable apt-daily.service
+    systemctl stop apt-daily-upgrade.timer
+    systemctl disable apt-daily-upgrade.timer
+    systemctl disable apt-daily-upgrade.service
+fi
 
 # Bound apt's acquire behavior so a stalled mirror fails over in seconds instead of minutes.
 # apt reads Acquire::Retries (default 3), not APT::Acquire::Retries, and spends every retry on the
