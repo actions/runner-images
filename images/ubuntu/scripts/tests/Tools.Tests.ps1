@@ -67,15 +67,16 @@ Describe "Rust" {
 
 Describe "Docker" {
     It "docker client" {
+        $command = if (Test-IsDockerContainer) { "docker --version" } else { "sudo docker version --format '{{.Client.Version}}'" }
         $version=(Get-ToolsetContent).docker.components | Where-Object { $_.package -eq 'docker-ce-cli' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
-            $(sudo docker version --format '{{.Client.Version}}') | Should -BeLike "*$version*"
+            ((Get-CommandResult $command).Output) | Should -BeLike "*$version*"
         }else{
-            "sudo docker version --format '{{.Client.Version}}'" | Should -ReturnZeroExitCode
+            $command | Should -ReturnZeroExitCode
         }
     }
 
-    It "docker server" {
+    It "docker server" -Skip:(Test-IsDockerContainer) {
         $version=(Get-ToolsetContent).docker.components | Where-Object { $_.package -eq 'docker-ce' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
             $(sudo docker version --format '{{.Server.Version}}') | Should -BeLike "*$version*"
@@ -84,7 +85,7 @@ Describe "Docker" {
         }
     }
 
-    It "docker client/server versions match" {
+    It "docker client/server versions match" -Skip:(Test-IsDockerContainer) {
         $clientVersion = $(sudo docker version --format '{{.Client.Version}}')
         $serverVersion = $(sudo docker version --format '{{.Server.Version}}')
         $clientVersion | Should -Be $serverVersion

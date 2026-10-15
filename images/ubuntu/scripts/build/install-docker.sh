@@ -73,33 +73,35 @@ done
 gid=$(cut -d ":" -f 3 /etc/group | grep "^1..$" | sort -n | tail -n 1 | awk '{ print $1+1 }')
 groupmod -g "$gid" docker
 
-# Create systemd-tmpfiles configuration for Docker
-cat <<EOF | sudo tee /etc/tmpfiles.d/docker.conf
+if [[ ! -f /.dockerenv ]]; then
+    # Create systemd-tmpfiles configuration for Docker
+    cat <<EOF | sudo tee /etc/tmpfiles.d/docker.conf
 L /run/docker.sock - - - - root docker 0770
 EOF
 
-# Reload systemd-tmpfiles to apply the new configuration
-systemd-tmpfiles --create /etc/tmpfiles.d/docker.conf
+    # Reload systemd-tmpfiles to apply the new configuration
+    systemd-tmpfiles --create /etc/tmpfiles.d/docker.conf
 
-# Enable docker.service
-systemctl is-active --quiet docker.service || systemctl start docker.service
-systemctl is-enabled --quiet docker.service || systemctl enable docker.service
+    # Enable docker.service
+    systemctl is-active --quiet docker.service || systemctl start docker.service
+    systemctl is-enabled --quiet docker.service || systemctl enable docker.service
 
-# Docker daemon takes time to come up after installing
-sleep 10
-docker info
+    # Docker daemon takes time to come up after installing
+    sleep 10
+    docker info
 
-if ! is_ubuntu22; then
-    # Pull Dependabot docker image
-    # The image is published for amd64 only, so pin the platform to keep ARM64 pulls working: https://github.com/dependabot/dependabot-core/issues/15874
-    docker pull --platform linux/amd64 ghcr.io/dependabot/dependabot-updater-core:latest
+    if ! is_ubuntu22; then
+        # Pull Dependabot docker image
+        # The image is published for amd64 only, so pin the platform to keep ARM64 pulls working: https://github.com/dependabot/dependabot-core/issues/15874
+        docker pull --platform linux/amd64 ghcr.io/dependabot/dependabot-updater-core:latest
 
-    # Pull AW docker images
-    docker pull ghcr.io/github/gh-aw-mcpg:latest
-    docker pull ghcr.io/github/gh-aw-firewall/agent:latest
-    docker pull ghcr.io/github/gh-aw-firewall/api-proxy:latest
-    docker pull ghcr.io/github/gh-aw-firewall/squid:latest
-    docker pull ghcr.io/github/github-mcp-server:latest
+        # Pull AW docker images
+        docker pull ghcr.io/github/gh-aw-mcpg:latest
+        docker pull ghcr.io/github/gh-aw-firewall/agent:latest
+        docker pull ghcr.io/github/gh-aw-firewall/api-proxy:latest
+        docker pull ghcr.io/github/gh-aw-firewall/squid:latest
+        docker pull ghcr.io/github/github-mcp-server:latest
+    fi
 fi
 
 # Download amazon-ecr-credential-helper
