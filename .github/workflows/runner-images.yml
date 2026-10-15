@@ -1,0 +1,73 @@
+name: Runner image PR builds
+run-name: ${{ github.event.label.name }} - ${{ github.event.pull_request.title }}
+
+on:
+  pull_request:
+    branches: [main]
+    types: [labeled]
+    paths:
+    - 'images/ubuntu/**'
+    - 'images/windows/**'
+    - 'helpers/**'
+    - '.github/actions/**'
+    - '.github/workflows/build-runner-images.yml'
+    - '.github/workflows/runner-images.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  select:
+    name: Select requested images
+    runs-on: ubuntu-24.04
+    outputs:
+      images: ${{ steps.select.outputs.images }}
+      has_images: ${{ steps.select.outputs.has_images }}
+    steps:
+      - name: Resolve the added CI label
+        id: select
+        env:
+          CI_LABEL: ${{ github.event.label.name }}
+        shell: python
+        run: |
+          import json
+          import os
+
+          catalog = {
+              'ubuntu-2204': ('ubuntu2204', 'ubuntu-24.04'),
+              'ubuntu-2204-arm64': ('ubuntu2204-arm64', 'ubuntu-24.04-arm'),
+              'ubuntu-2404': ('ubuntu2404', 'ubuntu-24.04'),
+              'ubuntu-2404-arm64': ('ubuntu2404-arm64', 'ubuntu-24.04-arm'),
+              'ubuntu-2604': ('ubuntu2604', 'ubuntu-24.04'),
+              'ubuntu-2604-arm64': ('ubuntu2604-arm64', 'ubuntu-24.04-arm'),
+              'windows-2022': ('windows2022', 'windows-2022'),
+              'windows-2025': ('windows2025', 'windows-2025'),
+              'windows-2025-vs2026': ('windows2025-vs2026', 'windows-2025-vs2026'),
+              'windows-11-arm64': ('windows11-arm64', 'windows-11-arm'),
+              'windows-11-vs2026-arm64': ('windows11-vs2026-arm64', 'windows-11-vs2026-arm'),
+          }
+          label = os.environ['CI_LABEL']
+          images = [
+              {'image_type': image_type, 'runner': runner}
+              for name, (image_type, runner) in catalog.items()
+              if label in (f'CI {name}', f"CI {name.split('-')[0]}-all")
+          ]
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write(f'images={json.dumps(images)}\n')
+              output.write(f'has_images={str(bool(images)).lower()}\n')
+
+  build:
+    name: ${{ matrix.image_type }}
+    needs: select
+    if: needs.select.outputs.has_images == 'true'
+    strategy:
+      fail-fast: false
+      matrix:
+        include: ${{ fromJSON(needs.select.outputs.images) }}
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number }}-${{ matrix.image_type }}
+      cancel-in-progress: true
+    uses: ./.github/workflows/build-runner-images.yml
+    with:
+      image_type: ${{ matrix.image_type }}
+      runner: ${{ matrix.runner }}

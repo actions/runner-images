@@ -1,0 +1,67 @@
+name: Build runner images
+
+on:
+  workflow_call:
+    inputs:
+      image_type:
+        description: OS version and architecture selected by the CI entry point
+        required: true
+        type: string
+      runner:
+        description: Hosted runner matching the build OS and architecture
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  capabilities:
+    runs-on: ${{ inputs.runner }}
+    outputs:
+      formats: ${{ steps.linux.outputs.formats || steps.windows.outputs.formats }}
+    steps:
+      - name: Select Linux formats and detect KVM
+        if: runner.os == 'Linux'
+        id: linux
+        shell: bash
+        run: |
+          if [[ -c /dev/kvm ]]; then
+            echo 'formats=["lxd", "vm", "docker"]' >> "${GITHUB_OUTPUT}"
+          else
+            echo 'formats=["lxd", "docker"]' >> "${GITHUB_OUTPUT}"
+            echo 'VM builds skipped: KVM is unavailable.' >> "${GITHUB_STEP_SUMMARY}"
+          fi
+
+      - name: Select Windows Docker format
+        if: runner.os == 'Windows'
+        id: windows
+        shell: pwsh
+        run: |
+          'formats=["docker"]' >> $env:GITHUB_OUTPUT
+
+  build:
+    needs: capabilities
+    runs-on: ${{ inputs.runner }}
+    timeout-minutes: 360
+    strategy:
+      fail-fast: false
+      matrix:
+        format: ${{ fromJSON(needs.capabilities.outputs.formats) }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Show build implementation status
+        shell: pwsh
+        env:
+          IMAGE_TYPE: ${{ inputs.image_type }}
+          IMAGE_FORMAT: ${{ matrix.format }}
+        run: |
+          @"
+          Image build scaffold: $env:IMAGE_TYPE / $env:IMAGE_FORMAT
+
+          No image is built or published by this scaffold.
+          Following commits will wire platform-specific storage and builder setup,
+          Packer provisioning and upstream tests, reports, and OCI packaging.
+          "@ >> $env:GITHUB_STEP_SUMMARY
