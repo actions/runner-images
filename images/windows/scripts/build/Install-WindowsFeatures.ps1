@@ -6,6 +6,11 @@
 $windowsFeatures = (Get-ToolsetContent).windowsFeatures
 
 foreach ($feature in $windowsFeatures) {
+    if ($env:PACKER_BUILDER_TYPE -eq "docker" -and $feature.name -eq "Containers") {
+        Write-Host "Skipping Windows Feature '$($feature.name)' in Docker builds..."
+        continue
+    }
+
     if ($feature.optionalFeature) {
         Write-Host "Activating Windows Optional Feature '$($feature.name)'..."
         Enable-WindowsOptionalFeature -Online -FeatureName $feature.name -NoRestart
