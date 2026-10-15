@@ -1,5 +1,5 @@
 build {
-  sources = ["source.azure-arm.image"]
+  sources = ["source.docker.container"]
   name = "windows-2022"
 
   provisioner "powershell" {
