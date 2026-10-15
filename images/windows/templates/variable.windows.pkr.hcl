@@ -34,5 +34,5 @@ variable "install_user" {
 }
 variable "temp_dir" {
   type    = string
-  default = "D:\\temp"
+  default = "C:\\temp"
 }
