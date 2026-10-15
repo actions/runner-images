@@ -8,6 +8,7 @@
                     "filename": "Xcode_27.2_beta_3",
                     "version": "27.2+27B5038j",
                     "symlinks": ["27.2"],
+                    "sha256": "3bca546ea4e5280f96fbcf67b424d646c1cc5c8ef5bc90c2f2fa42235f692c4e",
                     "install_runtimes": "none"
                 },
                 {
