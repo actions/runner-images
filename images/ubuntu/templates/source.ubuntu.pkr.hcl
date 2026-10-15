@@ -1,5 +1,9 @@
 packer {
   required_plugins {
+    docker = {
+      version = ">= 1.1.1"
+      source  = "github.com/hashicorp/docker"
+    }
     lxd = {
       version = ">= 1.0.3"
       source  = "github.com/hashicorp/lxd"

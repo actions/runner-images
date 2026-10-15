@@ -1,5 +1,5 @@
 build {
-  sources = ["source.lxd.container", "source.lxd.vm"]
+  sources = ["source.lxd.container", "source.lxd.vm", "source.docker.container"]
   name = "ubuntu-24_04-arm64"
 
   provisioner "shell" {

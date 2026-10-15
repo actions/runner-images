@@ -1,5 +1,5 @@
 build {
-  sources = ["source.lxd.container", "source.lxd.vm"]
+  sources = ["source.lxd.container", "source.lxd.vm", "source.docker.container"]
   name = "ubuntu-22_04"
 
   provisioner "shell" {
