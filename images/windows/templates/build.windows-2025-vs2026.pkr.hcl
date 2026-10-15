@@ -74,12 +74,6 @@ build {
     ]
   }
 
-  provisioner "windows-restart" {
-    check_registry        = true
-    restart_check_command = "powershell -command \"& {while ( (Get-WindowsOptionalFeature -Online -FeatureName Containers -ErrorAction SilentlyContinue).State -ne 'Enabled' ) { Start-Sleep 30; Write-Output 'InProgress' }}\""
-    restart_timeout       = "10m"
-  }
-
   provisioner "powershell" {
     inline = ["Set-Service -Name wlansvc -StartupType Manual", "if ($(Get-Service -Name wlansvc).Status -eq 'Running') { Stop-Service -Name wlansvc}"]
   }
@@ -95,10 +89,6 @@ build {
     ]
   }
 
-  provisioner "windows-restart" {
-    restart_timeout = "30m"
-  }
-
   provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
@@ -108,11 +98,6 @@ build {
       "${path.root}/../scripts/build/Install-KubernetesTools.ps1"
     ]
     valid_exit_codes  = [0, 3010]
-  }
-
-  provisioner "windows-restart" {
-    check_registry  = true
-    restart_timeout = "10m"
   }
 
   provisioner "powershell" {
@@ -134,10 +119,6 @@ build {
     execution_policy = "remotesigned"
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = ["${path.root}/../scripts/build/Install-ServiceFabricSDK.ps1"]
-  }
-
-  provisioner "windows-restart" {
-    restart_timeout = "10m"
   }
 
   provisioner "powershell" {
@@ -203,12 +184,6 @@ build {
     ]
   }
 
-  provisioner "windows-restart" {
-    check_registry        = true
-    restart_check_command = "powershell -command \"& {if ((-not (Get-Process TiWorker.exe -ErrorAction SilentlyContinue)) -and (-not [System.Environment]::HasShutdownStarted) ) { Write-Output 'Restart complete' }}\""
-    restart_timeout       = "30m"
-  }
-
   provisioner "powershell" {
     pause_before     = "2m0s"
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
@@ -253,10 +228,6 @@ build {
       "${path.root}/../scripts/build/Post-Build-Validation.ps1"
     ]
     skip_clean       = true
-  }
-
-  provisioner "windows-restart" {
-    restart_timeout = "10m"
   }
 
   provisioner "powershell" {
