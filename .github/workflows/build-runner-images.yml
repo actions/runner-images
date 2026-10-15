@@ -92,6 +92,7 @@ jobs:
           version: 1.16.1
 
       - name: Build image
+        id: build
         shell: pwsh
         env:
           PACKER_GITHUB_API_TOKEN: ${{ github.token }}
@@ -100,3 +101,13 @@ jobs:
         run: |
           Import-Module ./helpers/GenerateResourcesAndImage.ps1
           GenerateResourcesAndImage -ImageType $env:IMAGE_TYPE -OnError cleanup
+          $template = Get-PackerTemplate -RepositoryRoot $pwd -ImageType $env:IMAGE_TYPE
+          "build_name=$($template.BuildName)" >> $env:GITHUB_OUTPUT
+
+      - name: Collect image reports
+        id: reports
+        if: runner.os == 'Linux'
+        uses: ./.github/actions/collect-image-reports
+        with:
+          image-type: ${{ env.IMAGE_TYPE }}
+          build-name: ${{ steps.build.outputs.build_name }}

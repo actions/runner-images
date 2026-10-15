@@ -1,0 +1,57 @@
+name: Collect image reports
+description: Show and upload the software reports downloaded by Packer
+inputs:
+  image-type:
+    description: Image type used to distinguish report artifacts
+    required: true
+  build-name:
+    description: Resolved Packer build name, such as ubuntu-26_04-arm64
+    required: true
+outputs:
+  readme:
+    description: Markdown report named for the full image type
+    value: ${{ steps.report.outputs.readme }}
+  report:
+    description: JSON report named for the full image type
+    value: ${{ steps.report.outputs.report }}
+runs:
+  using: composite
+  steps:
+    - name: Locate generated reports
+      id: report
+      shell: pwsh
+      env:
+        IMAGE_TYPE: ${{ inputs.image-type }}
+        BUILD_NAME: ${{ inputs.build-name }}
+      run: |
+        $ErrorActionPreference = 'Stop'
+        $imageName = $env:BUILD_NAME.Replace('ubuntu-', 'Ubuntu').Replace('_', '').Replace('-arm64', '-Arm64')
+        $readme = "images/ubuntu/$imageName-Readme.md"
+        $report = 'images/ubuntu/software-report.json'
+        foreach ($path in @($readme, $report)) {
+            if (-not (Test-Path $path -PathType Leaf)) {
+                throw "Generated image report '$path' is missing."
+            }
+        }
+
+        $imageType = $env:IMAGE_TYPE.ToLowerInvariant().Replace('_', '-')
+        $targetReadme = "images/ubuntu/$imageType-Readme.md"
+        $targetReport = "images/ubuntu/$imageType-software-report.json"
+        Copy-Item $readme $targetReadme
+        Copy-Item $report $targetReport
+        $readme = $targetReadme
+        $report = $targetReport
+        Get-Content -Raw $readme >> $env:GITHUB_STEP_SUMMARY
+        $artifactName = 'reports-' + $imageType
+        "name=$artifactName" >> $env:GITHUB_OUTPUT
+        "readme=$readme" >> $env:GITHUB_OUTPUT
+        "report=$report" >> $env:GITHUB_OUTPUT
+
+    - name: Upload generated reports
+      uses: actions/upload-artifact@v7
+      with:
+        name: ${{ steps.report.outputs.name }}-${{ github.run_attempt }}
+        if-no-files-found: error
+        path: |
+          ${{ steps.report.outputs.readme }}
+          ${{ steps.report.outputs.report }}
