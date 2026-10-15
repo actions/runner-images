@@ -52,14 +52,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Show build implementation status
+      - name: Resolve image type
         shell: pwsh
         env:
           IMAGE_TYPE: ${{ inputs.image_type }}
-          IMAGE_FORMAT: ${{ matrix.format }}
+        run: |
+          $imageOS = ($env:IMAGE_TYPE -replace '-arm64$', '').Replace('-', '_')
+          $architecture = if ($env:RUNNER_ARCH -eq 'ARM64') { 'arm64' } else { 'amd64' }
+          $name = '{0}_{1}_{2}' -f $imageOS, $architecture, '${{ matrix.format }}'
+          $textInfo = [Globalization.CultureInfo]::InvariantCulture.TextInfo
+          $imageType = ($name.Split('_') | ForEach-Object { $textInfo.ToTitleCase($_) }) -join '_'
+          "IMAGE_TYPE=$imageType" >> $env:GITHUB_ENV
+
+      - name: Show build implementation status
+        shell: pwsh
         run: |
           @"
-          Image build scaffold: $env:IMAGE_TYPE / $env:IMAGE_FORMAT
+          Image build scaffold: $env:IMAGE_TYPE
 
           No image is built or published by this scaffold.
           Following commits will wire platform-specific storage and builder setup,

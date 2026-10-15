@@ -1,12 +1,26 @@
 $ErrorActionPreference = 'Stop'
 
 enum ImageType {
-    Windows2022         = 1
-    Windows2025         = 2
-    Windows2025_vs2026  = 3
-    Ubuntu2204          = 4
-    Ubuntu2404          = 5
-    Ubuntu2604          = 6
+    Ubuntu2204_Amd64_Lxd = 1
+    Ubuntu2204_Amd64_Vm
+    Ubuntu2204_Amd64_Docker
+    Ubuntu2204_Arm64_Lxd
+    Ubuntu2204_Arm64_Docker
+    Ubuntu2404_Amd64_Lxd
+    Ubuntu2404_Amd64_Vm
+    Ubuntu2404_Amd64_Docker
+    Ubuntu2404_Arm64_Lxd
+    Ubuntu2404_Arm64_Docker
+    Ubuntu2604_Amd64_Lxd
+    Ubuntu2604_Amd64_Vm
+    Ubuntu2604_Amd64_Docker
+    Ubuntu2604_Arm64_Lxd
+    Ubuntu2604_Arm64_Docker
+    Windows2022_Amd64_Docker
+    Windows2025_Amd64_Docker
+    Windows2025_Vs2026_Amd64_Docker
+    Windows11_Arm64_Docker
+    Windows11_Vs2026_Arm64_Docker
 }
 
 Function Get-PackerTemplate {
@@ -17,33 +31,57 @@ Function Get-PackerTemplate {
         [ImageType] $ImageType
     )
 
-    switch ($ImageType) {
-        # Note: Double Join-Path is required to support PowerShell 5.1
-        ([ImageType]::Windows2022) {
-            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2022.pkr.hcl"
-            $imageOS = "win22"
+    switch -Wildcard ($ImageType.ToString()) {
+        'Ubuntu2204_Amd64_*' {
+            $relativeTemplatePath = Join-Path 'ubuntu/templates' 'build.ubuntu-22_04.pkr.hcl'
+            $imageOS = 'ubuntu22'
         }
-        ([ImageType]::Windows2025) {
-            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2025.pkr.hcl"
-            $imageOS = "win25"
+        'Ubuntu2204_Arm64_*' {
+            $relativeTemplatePath = Join-Path 'ubuntu/templates' 'build.ubuntu-22_04-arm64.pkr.hcl'
+            $imageOS = 'ubuntu22-arm64'
         }
-        ([ImageType]::Windows2025_vs2026) {
-            $relativeTemplatePath = Join-Path (Join-Path "windows" "templates") "build.windows-2025-vs2026.pkr.hcl"
-            $imageOS = "win25-vs2026"
+        'Ubuntu2404_Amd64_*' {
+            $relativeTemplatePath = Join-Path 'ubuntu/templates' 'build.ubuntu-24_04.pkr.hcl'
+            $imageOS = 'ubuntu24'
         }
-        ([ImageType]::Ubuntu2204) {
-            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-22_04.pkr.hcl"
-            $imageOS = "ubuntu22"
+        'Ubuntu2404_Arm64_*' {
+            $relativeTemplatePath = Join-Path 'ubuntu/templates' 'build.ubuntu-24_04-arm64.pkr.hcl'
+            $imageOS = 'ubuntu24-arm64'
         }
-        ([ImageType]::Ubuntu2404) {
-            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-24_04.pkr.hcl"
-            $imageOS = "ubuntu24"
+        'Ubuntu2604_Amd64_*' {
+            $relativeTemplatePath = Join-Path 'ubuntu/templates' 'build.ubuntu-26_04.pkr.hcl'
+            $imageOS = 'ubuntu26'
         }
-        ([ImageType]::Ubuntu2604) {
-            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-26_04.pkr.hcl"
-            $imageOS = "ubuntu26"
+        'Ubuntu2604_Arm64_*' {
+            $relativeTemplatePath = Join-Path 'ubuntu/templates' 'build.ubuntu-26_04-arm64.pkr.hcl'
+            $imageOS = 'ubuntu26-arm64'
         }
-        default { throw "Unknown type of image" }
+        'Windows2022_Amd64_*' {
+            $relativeTemplatePath = Join-Path 'windows/templates' 'build.windows-2022.pkr.hcl'
+            $imageOS = 'win22'
+        }
+        'Windows2025_Amd64_*' {
+            $relativeTemplatePath = Join-Path 'windows/templates' 'build.windows-2025.pkr.hcl'
+            $imageOS = 'win25'
+        }
+        'Windows2025_Vs2026_Amd64_*' {
+            $relativeTemplatePath = Join-Path 'windows/templates' 'build.windows-2025-vs2026.pkr.hcl'
+            $imageOS = 'win25-vs2026'
+        }
+        'Windows11_Arm64_*' {
+            $relativeTemplatePath = Join-Path 'windows/templates' 'build.windows-11-arm64.pkr.hcl'
+            $imageOS = 'win11-arm64'
+        }
+        'Windows11_Vs2026_Arm64_*' {
+            $relativeTemplatePath = Join-Path 'windows/templates' 'build.windows-11-vs2026-arm64.pkr.hcl'
+            $imageOS = 'win11-vs2026-arm64'
+        }
+        default { throw "Unknown type of image '$ImageType'." }
+    }
+    switch -Wildcard ($ImageType.ToString()) {
+        '*_lxd' { $backend = 'lxd'; $instanceType = 'container' }
+        '*_vm' { $backend = 'lxd'; $instanceType = 'vm' }
+        '*_docker' { $backend = 'docker'; $instanceType = 'container' }
     }
 
     $imageTemplatePath = [IO.Path]::Combine($RepositoryRoot, "images", $relativeTemplatePath)
@@ -53,11 +91,15 @@ Function Get-PackerTemplate {
     if (-not (Test-Path $imageTemplatePath)) {
         throw "Template for image '$ImageType' doesn't exist on path '$imageTemplatePath'."
     }
-
+    $sourceName = if ($backend -eq 'docker') { '*' } else { $instanceType }
     return [PSCustomObject] @{
-        "BuildName" = $buildName
-        "ImageOS"   = $imageOS
-        "Path"      = [IO.Path]::GetDirectoryName($imageTemplatePath)
+        BuildName    = $buildName
+        ImageOS      = $imageOS
+        Path         = [IO.Path]::GetDirectoryName($imageTemplatePath)
+        Backend      = $backend
+        InstanceType = $instanceType
+        Source       = "$buildName.$backend.$sourceName"
+        IsWindows    = $imageOS.StartsWith('win')
     }
 }
 
@@ -122,7 +164,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER ResourceGroupName
             The name of the resource group to store the resulting artifact. Resource group must already exist.
         .PARAMETER ImageType
-            The type of image to generate. Valid values are: Windows2022, Windows2025, Windows2025_vs2026, Ubuntu2204, Ubuntu2404, Ubuntu2604.
+            ImageType enum value, e.g. Ubuntu2604_Amd64_Lxd.
         .PARAMETER ManagedImageName
             The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation
