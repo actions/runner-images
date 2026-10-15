@@ -1,5 +1,5 @@
 build {
-  sources = ["source.azure-arm.image"]
+  sources = ["source.lxd.container", "source.lxd.vm"]
   name = "ubuntu-24_04-arm64"
 
   provisioner "shell" {
