@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
+
 Describe "PostgreSQL" {
     It "PostgreSQL Service" {
         "sudo systemctl start postgresql" | Should -ReturnZeroExitCode
@@ -19,7 +21,7 @@ Describe "MySQL" {
         "mysql -V" | Should -ReturnZeroExitCode
     }
 
-    It "MySQL Service" {
+    It "MySQL Service" -Skip:(Test-IsDockerContainer) {
         "sudo systemctl start mysql" | Should -ReturnZeroExitCode
         mysql -s -N -h localhost -uroot -proot -e "select count(*) from mysql.user where user='root' and authentication_string is null;" | Should -BeExactly 0
         "sudo mysql -vvv -e 'CREATE DATABASE smoke_test' -uroot -proot" | Should -ReturnZeroExitCode
