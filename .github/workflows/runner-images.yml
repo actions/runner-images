@@ -23,6 +23,7 @@ jobs:
     outputs:
       images: ${{ steps.select.outputs.images }}
       has_images: ${{ steps.select.outputs.has_images }}
+      image_version: ${{ steps.version.outputs.image_version }}
     steps:
       - name: Resolve the added CI label
         id: select
@@ -56,6 +57,20 @@ jobs:
               output.write(f'images={json.dumps(images)}\n')
               output.write(f'has_images={str(bool(images)).lower()}\n')
 
+      - name: Check out build source history
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Prepare PR image version
+        id: version
+        shell: bash
+        run: |
+          git merge-base --is-ancestor 92cd4626 HEAD
+          minor="$(git rev-list --count 92cd4626..HEAD)"
+          version="$(date --utc +%Y%m%d).${minor}.1"
+          echo "image_version=${version}" >> "${GITHUB_OUTPUT}"
+
   build:
     name: ${{ matrix.image_type }}
     needs: select
@@ -71,3 +86,4 @@ jobs:
     with:
       image_type: ${{ matrix.image_type }}
       runner: ${{ matrix.runner }}
+      image_version: ${{ needs.select.outputs.image_version }}

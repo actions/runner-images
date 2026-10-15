@@ -11,6 +11,10 @@ on:
         description: Hosted runner matching the build OS and architecture
         required: true
         type: string
+      image_version:
+        description: Version recorded in the image metadata
+        required: true
+        type: string
 
 permissions:
   contents: read
@@ -97,6 +101,7 @@ jobs:
         env:
           PACKER_GITHUB_API_TOKEN: ${{ github.token }}
           PKR_VAR_github_token: ${{ github.token }}
+          PKR_VAR_image_version: ${{ inputs.image_version }}
           PACKER_NO_COLOR: 1
         run: |
           Import-Module ./helpers/GenerateResourcesAndImage.ps1
