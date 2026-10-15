@@ -41,14 +41,27 @@ jobs:
           'formats=["docker"]' >> $env:GITHUB_OUTPUT
 
   build:
+    name: ${{ inputs.image_type }} (${{ matrix.format }})${{ startsWith(inputs.image_type, 'windows') && endsWith(inputs.image_type, '-arm64') && ' [known failure]' || '' }}
     needs: capabilities
     runs-on: ${{ inputs.runner }}
+    continue-on-error: ${{ startsWith(inputs.image_type, 'windows') && endsWith(inputs.image_type, '-arm64') }}
     timeout-minutes: 360
     strategy:
       fail-fast: false
       matrix:
         format: ${{ fromJSON(needs.capabilities.outputs.formats) }}
     steps:
+      - name: Explain Windows ARM64 known failure
+        if: runner.os == 'Windows' && runner.arch == 'ARM64'
+        shell: pwsh
+        run: |
+          @'
+          ### Known failure: Windows ARM64 Docker build
+
+          Packer 1.16.1 has no Windows ARM64 binary, and the hosted runner has no Docker installation.
+          This build is still attempted, but its failure is allowed while Windows ARM64 support remains unresolved.
+          '@ >> $env:GITHUB_STEP_SUMMARY
+
       - name: Checkout code
         uses: actions/checkout@v7
 
