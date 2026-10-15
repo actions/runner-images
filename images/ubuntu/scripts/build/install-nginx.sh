@@ -4,6 +4,10 @@
 ##  Desc:  Install Nginx
 ################################################################################
 
+if [[ -f /.dockerenv ]]; then
+    exit 0
+fi
+
 # Install Nginx
 apt-get install nginx
 
