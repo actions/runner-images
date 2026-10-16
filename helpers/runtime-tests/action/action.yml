@@ -1,0 +1,8 @@
+name: Image JavaScript smoke test
+description: Exercise JavaScript action execution and output propagation
+outputs:
+  result:
+    description: Smoke test completion marker
+runs:
+  using: node24
+  main: index.js

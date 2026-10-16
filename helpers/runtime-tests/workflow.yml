@@ -1,0 +1,51 @@
+name: Built Ubuntu image smoke tests
+on: push
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare workflow fixture workspace
+        run: cp --archive "${IMAGE_SMOKE_FIXTURE}/." "${GITHUB_WORKSPACE}/"
+
+      - name: Check runtime account and tools
+        run: |
+          test "$(id -un)" = packer
+          test "$(id -u)" -ne 0
+          sudo -n true
+          git --version
+          node --version
+          npm --version
+          python3 --version
+
+      - name: Exercise checkout
+        uses: actions/checkout@v7
+        with:
+          repository: actions/hello-world-javascript-action
+          ref: main
+          path: checked-out
+          persist-credentials: false
+
+      - name: Verify checked-out repository
+        run: test -d checked-out/.git
+
+      - name: Exercise JavaScript action
+        id: javascript
+        uses: ./action
+
+      - name: Check action output
+        env:
+          RESULT: ${{ steps.javascript.outputs.result }}
+        run: test "$RESULT" = image-smoke-ok
+
+      - name: Exercise Python
+        run: |
+          python3 -m venv --without-pip python-smoke
+          python-smoke/bin/python -c 'import hashlib, ssl; assert hashlib.sha256(b"smoke").hexdigest()'
+
+      - name: Build and test a CMake project
+        run: |
+          cmake -S project -B build
+          cmake --build build
+          ctest --test-dir build --output-on-failure

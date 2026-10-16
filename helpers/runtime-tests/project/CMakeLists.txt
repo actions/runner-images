@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.16)
+project(image_smoke LANGUAGES CXX)
+add_executable(image_smoke main.cpp)
+enable_testing()
+add_test(NAME image_smoke COMMAND image_smoke)

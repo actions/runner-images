@@ -103,6 +103,9 @@ jobs:
           GenerateResourcesAndImage -ImageType $env:IMAGE_TYPE -OnError cleanup
           $template = Get-PackerTemplate -RepositoryRoot $pwd -ImageType $env:IMAGE_TYPE
           "build_name=$($template.BuildName)" >> $env:GITHUB_OUTPUT
+          "image_os=$($template.ImageOS)" >> $env:GITHUB_OUTPUT
+          "backend=$($template.Backend)" >> $env:GITHUB_OUTPUT
+          "instance_type=$($template.InstanceType)" >> $env:GITHUB_OUTPUT
 
       - name: Collect image reports
         id: reports
@@ -111,3 +114,12 @@ jobs:
         with:
           image-type: ${{ env.IMAGE_TYPE }}
           build-name: ${{ steps.build.outputs.build_name }}
+
+      - name: Test built Ubuntu image workflows
+        if: runner.os == 'Linux'
+        uses: ./.github/actions/test-image-workflow
+        with:
+          image-type: ${{ env.IMAGE_TYPE }}
+          image-os: ${{ steps.build.outputs.image_os }}
+          backend: ${{ steps.build.outputs.backend }}
+          instance-type: ${{ steps.build.outputs.instance_type }}

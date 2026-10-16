@@ -1,0 +1,83 @@
+name: Test built Ubuntu image workflows
+description: Run act in a disposable instance before exporting the built image
+inputs:
+  image-type:
+    description: Full image type used to distinguish test logs
+    required: true
+  image-os:
+    description: Resolved Packer image OS and LXD alias
+    required: true
+  backend:
+    description: Resolved Packer backend
+    required: true
+  instance-type:
+    description: Resolved instance type
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Download act
+      id: act
+      shell: bash
+      env:
+        GH_TOKEN: ${{ github.token }}
+      run: |
+        case "${RUNNER_ARCH}" in
+          X64) architecture=x86_64 ;;
+          ARM64) architecture=arm64 ;;
+          *) echo "Unsupported act architecture: ${RUNNER_ARCH}" >&2; exit 1 ;;
+        esac
+        directory="$(mktemp -d "${RUNNER_TEMP}/act.XXXXXX")"
+        gh release download v0.2.89 --repo nektos/act \
+          --pattern "act_Linux_${architecture}.tar.gz" --pattern checksums.txt --dir "${directory}"
+        (cd "${directory}" && sha256sum --check --ignore-missing checksums.txt)
+        tar -xzf "${directory}/act_Linux_${architecture}.tar.gz" -C "${directory}" act
+        echo "path=${directory}/act" >> "${GITHUB_OUTPUT}"
+
+    - name: Run built image smoke workflow
+      shell: bash
+      env:
+        ACT_BINARY: ${{ steps.act.outputs.path }}
+        IMAGE_OS: ${{ inputs.image-os }}
+        BACKEND: ${{ inputs.backend }}
+        INSTANCE_TYPE: ${{ inputs.instance-type }}
+        GITHUB_TOKEN: ${{ github.token }}
+      run: |
+        python3 helpers/test_image_workflow.py \
+          --backend "${BACKEND}" --instance-type "${INSTANCE_TYPE}" \
+          --image-os "${IMAGE_OS}" \
+          --act-binary "${ACT_BINARY}" \
+          --junit-output "${RUNNER_TEMP}/image-runtime.xml" 2>&1 | tee "${RUNNER_TEMP}/image-runtime.log"
+
+    - name: Summarize runtime workflow result
+      if: always()
+      shell: bash
+      env:
+        IMAGE_TYPE: ${{ inputs.image-type }}
+      run: |
+        python3 - <<'PY'
+        import os
+        from pathlib import Path
+        import xml.etree.ElementTree as ET
+
+        result = Path(os.environ['RUNNER_TEMP']) / 'image-runtime.xml'
+        with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+            summary.write(f"\n### Runtime workflow: {os.environ['IMAGE_TYPE']}\n\n")
+            if result.is_file():
+                suite = ET.parse(result).getroot()
+                failed = int(suite.get('failures', '0')) + int(suite.get('errors', '0'))
+                status = 'failed' if failed else 'passed'
+                summary.write(f"act smoke test {status} ({suite.get('time')} seconds).\n")
+            else:
+                summary.write('No JUnit result was produced; see the runtime workflow log.\n')
+        PY
+
+    - name: Upload runtime workflow log
+      if: always()
+      uses: actions/upload-artifact@v7
+      with:
+        name: runtime-${{ inputs.image-type }}-${{ github.run_attempt }}
+        path: |
+          ${{ runner.temp }}/image-runtime.log
+          ${{ runner.temp }}/image-runtime.xml
+        if-no-files-found: warn
