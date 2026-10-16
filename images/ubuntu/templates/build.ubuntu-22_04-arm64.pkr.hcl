@@ -244,4 +244,11 @@ build {
     scripts          = ["${path.root}/../scripts/build/post-build-validation.sh"]
   }
 
+  post-processor "manifest" {
+    only        = ["docker.container"]
+    output      = "packer-manifest.json"
+    custom_data = {
+      image_os = var.image_os
+    }
+  }
 }
