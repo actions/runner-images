@@ -151,3 +151,8 @@ jobs:
           title: ${{ env.IMAGE_TYPE }}
           output-directory: ${{ runner.os == 'Linux' && '/merged/oci/image' || format('{0}/oci/image', runner.temp) }}
 
+      - name: Report OCI image details
+        uses: ./.github/actions/report-oci-image
+        with:
+          layout-directory: ${{ steps.export.outputs.directory }}
+          instance-type: ${{ steps.build.outputs.instance_type }}

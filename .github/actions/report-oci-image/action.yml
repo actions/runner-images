@@ -1,0 +1,25 @@
+name: Report OCI image details
+description: Inspect exported image metadata and VM disks directly from OCI chunks
+inputs:
+  layout-directory:
+    description: OCI layout produced by the image export action
+    required: true
+  instance-type:
+    description: Resolved instance type, such as container or vm
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Install VM inspection tools
+      if: inputs.instance-type == 'vm'
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install --yes --no-install-recommends guestfish qemu-utils nbdkit
+
+    - name: Report exported image details
+      shell: bash
+      env:
+        OCI_DIRECTORY: ${{ inputs.layout-directory }}
+      run: |
+        python3 helpers/report-oci-image --layout-directory "${OCI_DIRECTORY}" | tee -a "${GITHUB_STEP_SUMMARY}"

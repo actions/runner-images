@@ -131,3 +131,18 @@ docker pull ghcr.io/OWNER/IMAGE:TAG
 ```
 
 The conversion commands themselves never publish, including in PR runs.
+
+## Workflow integration and inspection
+
+The build workflow resolves the LXD alias or exact Packer-committed Docker image
+ID and passes generic arguments to the matching command. Repository image names
+are optional title annotations, not conversion parameters. Only the composite
+action writes `GITHUB_OUTPUT` and `GITHUB_STEP_SUMMARY`. Summary generation follows
+source-image cleanup; failed export retains the LXD source.
+
+`helpers/report-oci-image` reports runtime config for runnable images. For VM
+artifacts it inspects metadata archives across chunks and exposes the disk via
+`nbdkit`'s read-only split plugin. `qemu-img` and `guestfish` inspect disk format,
+virtual size, partition table and filesystems without reconstructing a disk.
+Inspection errors remain visible in logs and summaries. Guestfish inspection
+requires CI validation when guestfish is unavailable locally.
