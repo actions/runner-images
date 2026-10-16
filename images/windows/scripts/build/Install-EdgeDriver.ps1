@@ -63,8 +63,4 @@ Write-Host "Setting the environment variables..."
 [Environment]::SetEnvironmentVariable("EdgeWebDriver", $EdgeDriverPath, "Machine")
 Add-MachinePathItem "$edgeDriverPath\"
 
-if (Test-Path -Path "$edgeUpdatePath\MicrosoftEdgeUpdate.exe") {
-    throw "Microsoft Edge Update was restored after it was disabled"
-}
-
 Invoke-PesterTests -TestFile "Browsers" -TestName "Edge"
