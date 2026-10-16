@@ -8,7 +8,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.5 LTS
 - Kernel Version: 6.17.0-1022-azure
-- Image Version: 20261004.142.1
+- Image Version: 20261012.149.1
 - Systemd version: 255.4-1ubuntu8.17
 
 ## Installed Software
@@ -21,7 +21,7 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
-- Kotlin 2.4.20
+- Kotlin 2.4.21
 - Node.js 22.23.3
 - Perl 5.38.2
 - Python 3.12.3
@@ -31,7 +31,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.22.0
-- Homebrew 7.0.7
+- Homebrew 7.0.9
 - Npm 10.9.9
 - Pip 24.0
 - Pip3 24.0
@@ -56,23 +56,23 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.8.0
-- Lerna 10.0.1
+- Gradle 9.8.1
+- Lerna 10.1.0
 - Maven 3.9.12
 
 ### Tools
-- Ansible 2.21.4
-- AzCopy 10.32.7 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.2.0
+- Ansible 2.21.5
+- AzCopy 10.32.8 - available by `azcopy` and `azcopy10` aliases
+- Bazel 9.3.0
 - Bazelisk 1.28.1
 - Buildah 1.33.7
 - CMake 3.31.6
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.37.2
+- Docker-Buildx 0.38.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.240.1
+- Fastlane 2.241.0
 - Git 2.55.0
 - Git LFS 3.8.0
 - Git-ftp 1.6.0
@@ -80,18 +80,18 @@ to accomplish this.
 - jq 1.7
 - Kind 0.33.0
 - Kubectl 1.37.1
-- Kustomize 5.8.2
+- Kustomize 5.8.3
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.39.0
 - n 10.2.0
-- Newman 6.2.2
+- Newman 6.2.3
 - nvm 0.40.8
 - OpenSSL 3.0.13-0ubuntu3.16
 - Packer 1.16.1
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.267.0
+- Pulumi 3.268.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -100,13 +100,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.37.9
-- AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.166.2
-- Azure CLI 2.90.0
+- AWS CLI 2.37.13
+- AWS CLI Session Manager Plugin 1.2.896.0
+- AWS SAM CLI 1.168.0
+- Azure CLI 2.91.0
 - Azure CLI (azure-devops) 1.0.8
 - GitHub CLI 2.102.0
-- Google Cloud CLI 587.0.0
+- Google Cloud CLI 588.0.0
 
 ### Java
 | Version             | Environment Variable |
@@ -120,7 +120,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.3.6
 - Composer 2.10.3
-- PHPUnit 8.5.55
+- PHPUnit 8.5.56
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -135,7 +135,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Selenium server 4.50.0
+- Selenium server 4.51.0
 - Mozilla Firefox 157.0
 - Geckodriver 0.37.1
 
@@ -176,7 +176,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.8
+- 1.26.9
 
 #### Node.js
 - 22.23.3
@@ -200,7 +200,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 15.6.1
-- Microsoft.Graph: 2.41.0
+- Microsoft.Graph: 2.41.1
 - Pester: 5.9.0
 - PSScriptAnalyzer: 1.25.0
 
@@ -271,7 +271,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sqlite3                | 3.45.1-1ubuntu2.8             |
 | ssh                    | 1:9.6p1-3ubuntu13.19          |
 | sshpass                | 1.09-1                        |
-| sudo                   | 1.9.15p5-3ubuntu5.24.04.3     |
+| sudo                   | 1.9.15p5-3ubuntu5.24.04.4     |
 | swig                   | 4.2.0-2ubuntu1                |
 | systemd-coredump       | 255.4-1ubuntu8.17             |
 | tar                    | 1.35+dfsg-3ubuntu0.4          |
