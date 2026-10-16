@@ -8,7 +8,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1064-azure
-- Image Version: 20261004.315.1
+- Image Version: 20261012.322.1
 - Systemd version: 249.11-0ubuntu3.22
 
 ## Installed Software
@@ -22,7 +22,7 @@
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
 - Julia 1.13.1
-- Kotlin 2.4.20
+- Kotlin 2.4.21
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
 - Node.js 22.23.3
@@ -34,15 +34,15 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.22.0
-- Homebrew 7.0.7
+- Homebrew 7.0.9
 - Miniconda 26.7.1
 - Npm 10.9.9
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
-- Pipx 1.17.11
+- Pipx 1.17.12
 - RubyGems 3.3.5
-- Vcpkg (build from commit 19780d9cdf)
+- Vcpkg (build from commit e456309491)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,24 +61,24 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.8.0
-- Lerna 10.0.1
+- Gradle 9.8.1
+- Lerna 10.1.0
 - Maven 3.10.0
 - Sbt 1.13.0
 
 ### Tools
 - Ansible 2.17.14
 - apt-fast 1.10.0
-- AzCopy 10.32.7 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.2.0
+- AzCopy 10.32.8 - available by `azcopy` and `azcopy10` aliases
+- Bazel 9.3.0
 - Bazelisk 1.28.1
-- Bicep 0.47.16
+- Bicep 0.48.1
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.27.1
+- CodeQL Action Bundle 2.27.2
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.37.2
+- Docker-Buildx 0.38.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.238.0
@@ -90,19 +90,19 @@ to accomplish this.
 - jq 1.6
 - Kind 0.33.0
 - Kubectl 1.37.1
-- Kustomize 5.8.2
+- Kustomize 5.8.3
 - Leiningen 2.12.0
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.39.0
 - n 10.2.0
-- Newman 6.2.2
+- Newman 6.2.3
 - nvm 0.40.8
 - OpenSSL 3.0.2-0ubuntu1.30
 - Packer 1.16.1
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.267.0
+- Pulumi 3.268.0
 - R 4.6.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -115,17 +115,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.1
-- AWS CLI 2.37.9
-- AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.166.2
-- Azure CLI 2.90.0
+- AWS CLI 2.37.13
+- AWS CLI Session Manager Plugin 1.2.896.0
+- AWS SAM CLI 1.168.0
+- Azure CLI 2.91.0
 - Azure CLI (azure-devops) 1.0.8
 - GitHub CLI 2.102.0
-- Google Cloud CLI 587.0.0
+- Google Cloud CLI 588.0.0
 - ORAS CLI 1.3.4
-- Netlify CLI 27.10.2
-- OpenShift CLI 4.22.16
-- Vercel CLI 62.2.0
+- Netlify CLI 27.12.0
+- OpenShift CLI 4.22.17
+- Vercel CLI 63.1.2
 
 ### Java
 | Version             | Environment Variable |
@@ -139,7 +139,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.1.2
 - Composer 2.10.3
-- PHPUnit 8.5.55
+- PHPUnit 8.5.56
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -165,12 +165,12 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Google Chrome 154.0.8037.97
-- ChromeDriver 154.0.8037.92
-- Chromium 154.0.8037.0
-- Microsoft Edge 154.0.4258.53
-- Microsoft Edge WebDriver 154.0.4258.53
-- Selenium server 4.50.0
+- Google Chrome 155.0.8059.39
+- ChromeDriver 155.0.8059.39
+- Chromium 155.0.8059.0
+- Microsoft Edge 155.0.4283.45
+- Microsoft Edge WebDriver 155.0.4283.45
+- Selenium server 4.51.0
 - Mozilla Firefox 157.0
 - Geckodriver 0.37.1
 
@@ -215,7 +215,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.8
+- 1.26.9
 
 #### Node.js
 - 22.23.3
@@ -247,7 +247,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### PowerShell Modules
 - Az: 15.6.1
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.41.0
+- Microsoft.Graph: 2.41.1
 - Pester: 5.9.0
 - PSScriptAnalyzer: 1.25.0
 
@@ -359,7 +359,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | ssh                    | 1:8.9p1-3ubuntu0.17                 |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
-| sudo                   | 1.9.9-1ubuntu2.6                    |
+| sudo                   | 1.9.9-1ubuntu2.7                    |
 | swig                   | 4.0.2-1ubuntu1                      |
 | systemd-coredump       | 249.11-0ubuntu3.22                  |
 | tar                    | 1.34+dfsg-1ubuntu0.1.22.04.6        |
