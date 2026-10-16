@@ -7,7 +7,7 @@
 # macOS 27
 - OS Version: macOS 27.0.1 (26A434)
 - Kernel Version: Darwin 27.0.0
-- Image Version: 20261006.0244.1
+- Image Version: 20261012.0260.1
 
 ## Installed Software
 
@@ -22,34 +22,34 @@
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
-- Kotlin 2.4.20
+- Kotlin 2.4.21
 - Node.js 24.21.0
 - Perl 5.44.0
-- Python3 3.14.8
+- Python3 3.15.0
 - Ruby 3.4.11
 
 ### Package Management
 - Bundler 4.0.22
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 7.0.8
+- Homebrew 7.0.9
 - NPM 11.19.0
-- Pip3 26.2.1 (python 3.14)
-- Pipx 1.17.11
+- Pip3 26.2.1 (python 3.15)
+- Pipx 1.17.13
 - RubyGems 4.0.22
-- Vcpkg 2026 (build from commit 0bc1a55f42)
+- Vcpkg 2026 (build from commit e456309491)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.18
 - Apache Maven 3.10.0
-- Gradle 9.8.0
+- Gradle 9.8.1
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.32.7
-- bazel 9.2.0
+- azcopy 10.32.8
+- bazel 9.3.0
 - bazelisk 1.29.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
@@ -63,22 +63,22 @@
 - OpenSSL 3.6.5 29 Sep 2026 (Library: OpenSSL 3.6.5 29 Sep 2026)
 - OpenSSL (openssl@4) 4.0.3 29 Sep 2026 (Library: OpenSSL 4.0.3 29 Sep 2026) - available on `/opt/homebrew/opt/openssl@4/bin/openssl`
 - Packer 1.16.1
-- pkgconf 3.0.7
+- pkgconf 3.0.8
 - Unxip 3.3
 - yq 4.54.1
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.37.9
-- AWS SAM CLI 1.166.2
+- AWS CLI 2.37.12
+- AWS SAM CLI 1.168.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.90.0
+- Azure CLI 2.91.0
 - Azure CLI (azure-devops) 1.0.8
 - Bicep CLI 0.48.1
 - Cmake 4.4.4
-- CodeQL Action Bundle 2.27.1
-- Fastlane 2.240.1
+- CodeQL Action Bundle 2.27.2
+- Fastlane 2.241.0
 - SwiftFormat 0.63.1
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 27.0.0.0.1788430756
@@ -87,14 +87,14 @@
 ### Browsers
 - Safari 27.0.1 (22625.1.29.11.28)
 - SafariDriver 27.0.1 (22625.1.29.11.28)
-- Google Chrome 154.0.8037.98
-- Google Chrome for Testing 154.0.8037.92
-- ChromeDriver 154.0.8037.92
-- Microsoft Edge 154.0.4258.62
-- Microsoft Edge WebDriver 154.0.4258.53
-- Mozilla Firefox 157.0
+- Google Chrome 155.0.8059.40
+- Google Chrome for Testing 155.0.8059.39
+- ChromeDriver 155.0.8059.39
+- Microsoft Edge 155.0.4283.45
+- Microsoft Edge WebDriver 155.0.4283.45
+- Mozilla Firefox 157.0.1
 - geckodriver 0.37.1
-- Selenium server 4.50.0
+- Selenium server 4.51.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -132,7 +132,7 @@
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.8
+- 1.26.9
 
 ### Rust Tools
 - Cargo 1.99.0
@@ -153,11 +153,11 @@
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version        | Build    | Path                                | Symlinks                                                                                  |
-| -------------- | -------- | ----------------------------------- | ----------------------------------------------------------------------------------------- |
-| 27.2 (beta)    | 27B5028f | /Applications/Xcode_27.2_beta_2.app | /Applications/Xcode_27.2.0.app<br>/Applications/Xcode_27.2.app                            |
-| 27.1           | 27A9269  | /Applications/Xcode_27.1_beta.app   | /Applications/Xcode_27.1.0.app<br>/Applications/Xcode_27.1.app                            |
-| 27.0 (default) | 27A266a  | /Applications/Xcode_27.app          | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
+| Version        | Build    | Path                                           | Symlinks                                                                                  |
+| -------------- | -------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| 27.2 (beta)    | 27B5028f | /Applications/Xcode_27.2_beta_2.app            | /Applications/Xcode_27.2.0.app<br>/Applications/Xcode_27.2.app                            |
+| 27.1           | 27A9275  | /Applications/Xcode_27.1_Release_Candidate.app | /Applications/Xcode_27.1.0.app<br>/Applications/Xcode_27.1.app                            |
+| 27.0 (default) | 27A266a  | /Applications/Xcode_27.app                     | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
