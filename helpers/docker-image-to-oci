@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+"""Standalone image converter; keep oci_image.py alongside this command."""
+
+from oci_image import docker_main
+
+
+if __name__ == "__main__":
+    docker_main()

@@ -1,0 +1,127 @@
+name: Export OCI image
+description: Export built images directly into a local OCI layout
+inputs:
+  image:
+    description: Local LXD alias or exact committed Docker image ID
+    required: true
+  backend:
+    description: Resolved Packer backend (lxd or docker)
+    required: true
+  instance-type:
+    description: Resolved instance type, such as container or vm
+    default: container
+  architecture:
+    description: OCI architecture for LXD exports, such as amd64 or arm64
+    required: true
+  title:
+    description: Optional image title annotation
+    default: ''
+  output-directory:
+    description: New directory on the prepared image storage for the OCI layout
+    default: /merged/oci/image
+outputs:
+  directory:
+    description: OCI image layout directory, with local reference image
+    value: ${{ steps.export.outputs.directory }}
+  digest:
+    description: OCI manifest digest
+    value: ${{ steps.export.outputs.digest }}
+runs:
+  using: composite
+  steps:
+    - name: Prepare OCI workspace
+      shell: bash
+      env:
+        OUTPUT_DIRECTORY: ${{ inputs.output-directory }}
+      run: |
+        parent="$(dirname -- "${OUTPUT_DIRECTORY}")"
+        if [[ ! -d "${parent}" ]]; then
+          if [[ "${RUNNER_OS}" == Linux ]]; then
+            sudo install --directory --mode=0755 --owner="$(id -u)" --group="$(id -g)" -- "${parent}"
+          else
+            mkdir -p -- "${parent}"
+          fi
+        fi
+
+    - name: Install SquashFS conversion tools
+      if: inputs.backend == 'lxd' && inputs.instance-type == 'container'
+      shell: bash
+      run: |
+        sudo apt-get update
+        sudo apt-get install --yes --no-install-recommends squashfs-tools-ng
+
+    - name: Export image directly into OCI layers
+      id: export
+      shell: bash
+      env:
+        SOURCE_IMAGE: ${{ inputs.image }}
+        BACKEND: ${{ inputs.backend }}
+        INSTANCE_TYPE: ${{ inputs.instance-type }}
+        ARCHITECTURE: ${{ inputs.architecture }}
+        IMAGE_TITLE: ${{ inputs.title }}
+        OUTPUT_DIRECTORY: ${{ inputs.output-directory }}
+      run: |
+        args=(--image "${SOURCE_IMAGE}" --output-directory "${OUTPUT_DIRECTORY}")
+        if [[ -n "${IMAGE_TITLE}" ]]; then
+          args+=(--annotation "org.opencontainers.image.title=${IMAGE_TITLE}")
+        fi
+        case "${BACKEND}:${INSTANCE_TYPE}" in
+          lxd:container) command=lxd-image-to-oci; args+=(--architecture "${ARCHITECTURE}") ;;
+          lxd:vm) command=lxd-vm-image-to-oci; args+=(--architecture "${ARCHITECTURE}") ;;
+          docker:*) command=docker-image-to-oci ;;
+          *) echo "Unsupported image backend/type: ${BACKEND}:${INSTANCE_TYPE}" >&2; exit 1 ;;
+        esac
+        python3 "helpers/${command}" "${args[@]}"
+        python3 - <<'PYTHON' >> "${GITHUB_OUTPUT}"
+        import json
+        import os
+        from pathlib import Path
+
+        layout = Path(os.environ['OUTPUT_DIRECTORY']).resolve()
+        entry = json.loads((layout / 'index.json').read_bytes())['manifests'][0]
+        print(f'directory={layout}')
+        print(f'digest={entry["digest"]}')
+        PYTHON
+
+    - name: Remove built LXD image
+      if: inputs.backend == 'lxd'
+      shell: bash
+      env:
+        SOURCE_IMAGE: ${{ inputs.image }}
+      run: lxc image delete "${SOURCE_IMAGE}"
+
+    - name: Summarize exported OCI image
+      shell: bash
+      env:
+        OCI_DIRECTORY: ${{ steps.export.outputs.directory }}
+      run: |
+        python3 - <<'PYTHON' | tee -a "${GITHUB_STEP_SUMMARY}"
+        import json
+        import os
+        from pathlib import Path
+
+        layout = Path(os.environ['OCI_DIRECTORY'])
+        blobs = layout / 'blobs' / 'sha256'
+
+        def read_blob(descriptor):
+            return json.loads((blobs / descriptor['digest'].split(':')[1]).read_bytes())
+
+        entry = json.loads((layout / 'index.json').read_bytes())['manifests'][0]
+        manifest = read_blob(entry)
+        config = read_blob(manifest['config'])
+        layers = manifest['layers']
+        title = manifest.get('annotations', {}).get('org.opencontainers.image.title', 'image')
+        print(f'### OCI image package: {title}\n')
+        print(f'Manifest: `{entry["digest"]}`\n')
+        print('| Blob | Media type | Bytes | Allocated bytes | Digest |')
+        print('| --- | --- | ---: | ---: | --- |')
+        for label, blob in [('Config', manifest['config']),
+                            *[(f'Layer {i}', layer) for i, layer in enumerate(layers)]]:
+            stat = (blobs / blob['digest'].split(':')[1]).stat()
+            allocated = stat.st_blocks * 512 if hasattr(stat, 'st_blocks') else 'unavailable'
+            print(f'| {label} | {blob["mediaType"]} | {blob["size"]} | {allocated} | `{blob["digest"]}` |')
+        payload_bytes = sum(layer['size'] for layer in layers)
+        unique = {layer['digest']: layer['size'] for layer in layers}
+        print(f'\n{len(layers)} payload blobs ({len(unique)} unique), {payload_bytes} payload bytes; '
+              f'{sum(unique.values())} unique payload bytes.')
+        PYTHON

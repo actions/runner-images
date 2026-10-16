@@ -106,6 +106,22 @@ jobs:
           "image_os=$($template.ImageOS)" >> $env:GITHUB_OUTPUT
           "backend=$($template.Backend)" >> $env:GITHUB_OUTPUT
           "instance_type=$($template.InstanceType)" >> $env:GITHUB_OUTPUT
+          if ($template.Backend -eq 'docker') {
+              $manifest = Get-Content -Raw packer-manifest.json | ConvertFrom-Json
+              $builds = @($manifest.builds | Where-Object {
+                  $_.packer_run_uuid -eq $manifest.last_run_uuid -and
+                  $_.builder_type -eq 'docker' -and $_.custom_data.image_os -eq $template.ImageOS
+              })
+              if (-not $manifest.last_run_uuid -or $builds.Count -ne 1 -or
+                  $builds[0].artifact_id -notmatch '^sha256:[0-9a-f]{64}$') {
+                  throw 'Packer manifest must identify exactly one committed Docker image.'
+              }
+              "image=$($builds[0].artifact_id)" >> $env:GITHUB_OUTPUT
+          } else {
+              $alias = $template.ImageOS
+              if ($template.InstanceType -eq 'vm') { $alias += '-vm' }
+              "image=$alias" >> $env:GITHUB_OUTPUT
+          }
 
       - name: Collect image reports
         id: reports
@@ -123,3 +139,15 @@ jobs:
           image-os: ${{ steps.build.outputs.image_os }}
           backend: ${{ steps.build.outputs.backend }}
           instance-type: ${{ steps.build.outputs.instance_type }}
+
+      - name: Export OCI image
+        id: export
+        uses: ./.github/actions/export-oci-image
+        with:
+          image: ${{ steps.build.outputs.image }}
+          backend: ${{ steps.build.outputs.backend }}
+          instance-type: ${{ steps.build.outputs.instance_type }}
+          architecture: ${{ runner.arch == 'ARM64' && 'arm64' || 'amd64' }}
+          title: ${{ env.IMAGE_TYPE }}
+          output-directory: ${{ runner.os == 'Linux' && '/merged/oci/image' || format('{0}/oci/image', runner.temp) }}
+
