@@ -6,17 +6,18 @@
 
 source ~/utils/utils.sh
 
-echo "Installing Rustup..."
-## Pin rustup due to https://github.com/actions/runner-images/issues/14097
-COMMIT=cfffe64fa6fc4d56b3b2299ce07f224191098b6a
-FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/r/rustup.rb"
-FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/r/rustup.rb"
-mkdir -p "$(dirname $FORMULA_PATH)"
-curl -fsSL $FORMULA_URL -o $FORMULA_PATH
-HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install rustup
+# echo "Installing Rustup..."
+# # ## Pin rustup due to https://github.com/actions/runner-images/issues/14097
+# # COMMIT=cfffe64fa6fc4d56b3b2299ce07f224191098b6a
+# # FILE_NAME="r/rustup.rb"
+# # FORMULA_NAME="rustup"
+# # brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+brew_smart_install rustup
 
-echo "Installing Rust language..."
-rustup-init -y --no-modify-path --default-toolchain=stable --profile=minimal
+brew_smart_install rust
+
+# echo "Installing Rust language..."
+# rustup-init -y --no-modify-path --default-toolchain=stable --profile=minimal
 
 echo "Initialize environment variables..."
 CARGO_HOME=$HOME/.cargo
