@@ -5,7 +5,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9457
-- Image Version: 20261004.176.1
+- Image Version: 20261013.183.4
 
 ## Windows features
 
@@ -15,7 +15,7 @@
 - Bash 5.3.15(2)-release
 - Go 1.24.13
 - Julia 1.12.0
-- Kotlin 2.4.20
+- Kotlin 2.4.21
 - LLVM 22.1.8
 - Node 24.21.0
 - Perl 5.32.1
@@ -30,9 +30,9 @@
 - NPM 11.19.0
 - NuGet 7.9.0.83
 - pip 26.2.1 (python 3.13)
-- Pipx 1.17.11
+- Pipx 1.17.14
 - RubyGems 3.6.9
-- Vcpkg (build from commit 19780d9cdf)
+- Vcpkg (build from commit e456309491)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -47,30 +47,30 @@
 - sbt 1.12.12
 
 ### Tools
-- 7zip 26.03
+- 7zip 26.04
 - aria2 1.37.0
-- azcopy 10.32.7
-- Bazel 9.2.0
+- azcopy 10.32.8
+- Bazel 9.3.0
 - Bazelisk 1.28.1
-- Bicep 0.47.16
+- Bicep 0.48.1
 - CMake 4.4.4
-- CodeQL Action Bundle 2.27.1
-- Git 2.56.0.windows.1
+- CodeQL Action Bundle 2.27.2
+- Git 2.56.0.windows.2
 - Git LFS 3.8.0
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
-- jq 1.8.1
+- jq 1.8.2
 - Kind 0.33.0
 - Kubectl 1.37.1
 - Mercurial 6.3.1
 - gcc 14.2.0
 - gdb 16.2
 - GNU Binutils 2.44
-- Newman 6.2.2
+- Newman 6.2.3
 - NSIS 3.10
 - OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.267.0
+- Pulumi 3.268.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -82,11 +82,11 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.1
-- AWS CLI 2.37.7
-- AWS SAM CLI 1.166.2
-- AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.90.0
-- Azure DevOps CLI extension 1.0.8
+- AWS CLI 2.37.12
+- AWS SAM CLI 1.168.0
+- AWS Session Manager CLI 1.2.896.0
+- Azure CLI 2.91.0
+- Azure DevOps CLI extension 1.0.9
 - GitHub CLI 2.102.0
 
 ### Rust Tools
@@ -104,14 +104,14 @@
 - Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Google Chrome 154.0.8037.98
-- Chrome Driver 154.0.8037.92
-- Microsoft Edge 154.0.4258.53
-- Microsoft Edge Driver 154.0.4258.53
-- Mozilla Firefox 157.0
+- Google Chrome 155.0.8059.40
+- Chrome Driver 155.0.8059.39
+- Microsoft Edge 155.0.4283.45
+- Microsoft Edge Driver 155.0.4283.45
+- Mozilla Firefox 158.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.50.0
+- Selenium server 4.51.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -149,7 +149,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.8
+- 1.26.9
 
 #### Node.js
 - 22.23.3
@@ -391,10 +391,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.312
+- AWSPowershell: 5.0.316
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.41.0
+- Microsoft.Graph: 2.41.1
 - Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
