@@ -32,7 +32,10 @@ printf 'unqualified-search-registries = ["docker.io", "quay.io"]\n' | tee /etc/c
 if is_ubuntu26; then
     mkdir -p /etc/containers/containers.conf.d
     printf '[network]\nfirewall_driver = "iptables"\n' | tee /etc/containers/containers.conf.d/99-fix-firewall.conf
-    podman network reload --all 2>/dev/null
+    if [[ ! -f /.dockerenv ]]; then
+        # Docker builds do not run nested Podman containers to reload.
+        podman network reload --all
+    fi
 fi
 
 invoke_tests "Tools" "Containers"
