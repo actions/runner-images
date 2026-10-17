@@ -49,6 +49,18 @@ Get-ScheduledTask -TaskName ServerManager -ErrorAction SilentlyContinue | Disabl
 Write-Host "Disable 'Allow your PC to be discoverable by other PCs' popup"
 New-Item -Path HKLM:\System\CurrentControlSet\Control\Network -Name NewNetworkWindowOff -Force
 
+if (Test-IsWin11-Arm64) {
+    Write-Host "Disable the privacy settings experience for new user logons"
+    # Apply the device policy before image capture so it covers newly created runner users.
+    # https://learn.microsoft.com/windows/client-management/mdm/policy-csp-privacy#disableprivacyexperience
+    $privacyPolicyPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\OOBE"
+    if (-not (Test-Path -Path $privacyPolicyPath)) {
+        New-Item -Path $privacyPolicyPath -Force -ErrorAction Stop | Out-Null
+    }
+    New-ItemProperty -Path $privacyPolicyPath -Name DisablePrivacyExperience -PropertyType DWORD -Value 1 -Force -ErrorAction Stop | Out-Null
+    Invoke-PesterTests -TestFile "WindowsFeatures" -TestName "PrivacyExperience"
+}
+
 Write-Host 'Disable Windows Update Medic Service'
 Set-ItemProperty -Path HKLM:\System\CurrentControlSet\Services\WaaSMedicSvc -Name Start -Value 4 -Force
 
