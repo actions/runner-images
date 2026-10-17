@@ -27,7 +27,7 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | Ubuntu 22.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu22.json) | x64 | `ubuntu-22.04` | [ubuntu-22.04] |
 | Ubuntu 22.04 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu22-arm64.json) | arm64 | `ubuntu-22.04-arm` | [ubuntu-22.04-arm64] |
 | Ubuntu Slim<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu-slim.json) | x64 | `ubuntu-slim` | [ubuntu-slim] |
-| Xcode 27 [![preview](https://img.shields.io/badge/preview-0969DA?style=flat&logoColor=white)](https://github.com/actions/runner-images/issues/14404)<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fxcode-27-arm64.json) | arm64 | `xcode-27` or `xcode-27-xlarge` | [xcode-27] |
+| Xcode 27<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fxcode-27-arm64.json) | arm64 | `xcode-27` or `xcode-27-xlarge` | [xcode-27] |
 | macOS 26<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-26.json) | x64 | `macos-latest-large`, `macos-26-intel`, `macos-26-large` | [macOS-26] |
 | macOS 26 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-26-arm64.json) | arm64 | `macos-latest`, `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
 | macOS 15<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-15.json) | x64 | `macos-15-large`, or `macos-15-intel` | [macOS-15] |
@@ -176,7 +176,7 @@ In general, these are the guidelines we follow when deciding what to pre-install
 
 ## How to Interact with the Repo
 
-- **Issues**: To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/runner-images/issues/new/choose)
+- **Issues**: To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/runner-images/issues/new/choose)
 - **Discussions**: If you want to share your thoughts about image configuration, installed software, or bring a new idea, please create a [new discussion](https://github.com/orgs/community/discussions/new?category=actions). Before making a new discussion, please make sure no similar topics were created earlier in the [actions category](https://github.com/orgs/community/discussions/categories/actions).
 - For general questions about using the runner images or writing your Actions workflow, please open requests in the [GitHub Community discussion Actions category](https://github.com/orgs/community/discussions/categories/actions).
 
