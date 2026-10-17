@@ -9,7 +9,7 @@ locals {
             os_disk_size_gb = 75
       },
       "ubuntu24" = {
-            source_image_marketplace_sku = "canonical:ubuntu-24_04-lts:server"
+            source_image_marketplace_sku = "canonical:ubuntu-24_04-lts:server-gen1"
             os_disk_size_gb = 75
       },
       "ubuntu24-arm64" = {
