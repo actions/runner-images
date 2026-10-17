@@ -1,0 +1,14 @@
+################################################################################
+##  File:  Configure-DeveloperMode.ps1
+##  Desc:  Enables Developer Mode by toggling registry setting. Developer Mode is required to enable certain tools (e.g. WinAppDriver). 
+################################################################################
+
+# Create AppModelUnlock if it doesn't exist, required for enabling Developer Mode
+$registryKeyPath = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\AppModelUnlock"
+if (-not(Test-Path -Path $registryKeyPath)) {
+    New-Item -Path $registryKeyPath -ItemType Directory -Force
+}
+
+# Add registry value to enable Developer Mode. Use -Force to keep this script idempotent
+# when it is run more than once in the same image build.
+New-ItemProperty -Path $registryKeyPath -Name AllowDevelopmentWithoutDevLicense -PropertyType DWORD -Value 1 -Force
