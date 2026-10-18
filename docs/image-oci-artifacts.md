@@ -140,6 +140,11 @@ are optional title annotations, not conversion parameters. Only the composite
 action writes `GITHUB_OUTPUT` and `GITHUB_STEP_SUMMARY`. Summary generation follows
 source-image cleanup; failed export retains the LXD source.
 
+Before export, the action prunes unused Docker data and removes host SDKs that
+are no longer needed. A stopped container protects the exact, untagged Packer image
+during pruning. Storage usage is logged before and after cleanup. The source
+image and final OCI layout still need to fit at the same time.
+
 `helpers/report-oci-image` reports runtime config for runnable images. For VM
 artifacts it inspects metadata archives across chunks and exposes the disk via
 `nbdkit`'s read-only split plugin. `qemu-img` and `guestfish` inspect disk format,

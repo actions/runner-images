@@ -43,6 +43,45 @@ runs:
           fi
         fi
 
+    - name: Reclaim Docker host space before OCI export
+      if: runner.os == 'Linux' && inputs.backend == 'docker'
+      shell: bash
+      env:
+        SOURCE_IMAGE: ${{ inputs.image }}
+        OUTPUT_DIRECTORY: ${{ inputs.output-directory }}
+      run: |
+        echo 'Host storage before export cleanup'
+        df -h / "$(dirname -- "${OUTPUT_DIRECTORY}")"
+        docker info --format 'Docker root: {{.DockerRootDir}}; driver: {{.Driver}}; status: {{json .DriverStatus}}'
+        docker system df --verbose
+
+        docker container prune --force
+        # A Packer-committed image is untagged. Keep a container reference so
+        # image pruning cannot delete the exact source needed by docker save.
+        pin_container=$(docker create --entrypoint /bin/true "${SOURCE_IMAGE}")
+        trap 'docker rm "${pin_container}" >/dev/null' EXIT
+        docker builder prune --all --force
+        docker image prune --all --force
+        docker image inspect --format 'Retained image: {{.Id}}; bytes: {{.Size}}' "${SOURCE_IMAGE}"
+
+        # Provisioning and smoke tests are complete. These are host tools,
+        # not files in the built image or dependencies of the OCI exporter.
+        sudo apt-get clean
+        sudo rm -rf -- \
+          /opt/az \
+          /opt/google \
+          /opt/microsoft \
+          /usr/lib/google-cloud-sdk \
+          /usr/lib/jvm \
+          /usr/local/aws-cli \
+          /usr/local/share/chromium \
+          /usr/local/share/powershell \
+          /usr/share/miniconda
+
+        echo 'Host storage after export cleanup'
+        docker system df --verbose
+        df -h / "$(dirname -- "${OUTPUT_DIRECTORY}")"
+
     - name: Install SquashFS conversion tools
       if: inputs.backend == 'lxd' && inputs.instance-type == 'container'
       shell: bash
