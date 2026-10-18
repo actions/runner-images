@@ -90,5 +90,6 @@ apt-get install jq
 if is_ubuntu22; then
     # Install apt-fast using quick-install.sh
     # https://github.com/ilikenwf/apt-fast
-    bash -c "$(curl -fsSL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)"
+    apt_fast_installer=$(curl -fsSL https://raw.githubusercontent.com/ilikenwf/apt-fast/master/quick-install.sh)
+    bash -c "$apt_fast_installer"
 fi

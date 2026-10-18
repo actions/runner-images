@@ -4,7 +4,7 @@ build {
 
   provisioner "shell" {
     only   = ["docker.container"]
-    inline = ["apt-get update", "apt-get install --no-install-recommends --yes sudo lsb-release wget ca-certificates iptables"]
+    inline = ["apt-get update", "apt-get install --no-install-recommends --yes sudo lsb-release wget curl ca-certificates iptables"]
   }
 
   provisioner "shell" {
