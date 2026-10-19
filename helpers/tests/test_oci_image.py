@@ -271,7 +271,8 @@ class ConversionTests(unittest.TestCase):
             self.assertEqual(arguments, ['docker', 'container', 'export', 'export-container'])
             yield io.BytesIO(payload)
 
-        with patch.object(oci.subprocess, 'run', side_effect=run), patch.object(oci, 'command_stream', stream):
+        with patch.object(oci.subprocess, 'run', side_effect=run), patch.object(oci, 'command_stream', stream), \
+                patch.object(oci, 'docker_original_files', return_value={}):
             oci.convert_docker('original:tag', self.output, 20480)
         _, config, layers = read_layout(self.output)
         self.assertEqual(config['config'], runtime)
@@ -295,12 +296,73 @@ class ConversionTests(unittest.TestCase):
             yield io.BytesIO(tar([('large', b'L' * 15000)]))
             raise RuntimeError('export failed')
 
-        with patch.object(oci.subprocess, 'run', side_effect=run), patch.object(oci, 'command_stream', stream):
+        with patch.object(oci.subprocess, 'run', side_effect=run), patch.object(oci, 'command_stream', stream), \
+                patch.object(oci, 'docker_original_files', return_value={}):
             with self.assertRaisesRegex(RuntimeError, 'export failed'):
                 oci.convert_docker('original:tag', self.output, 20480)
         self.assertEqual(calls[-1], ['docker', 'container', 'rm', '--volumes', 'export-container'])
         self.assertFalse(self.output.exists())
         self.assertFalse(list(self.root.glob('.image-oci-*')))
+
+    def test_docker_original_files_restore_contents_and_metadata(self):
+        originals = []
+        for name, data in [('etc/hostname', b'original-host\n'), ('etc/hosts', b'old hosts'),
+                           ('etc/resolv.conf', b'old resolver')]:
+            member = tarfile.TarInfo(name)
+            member.size = len(data)
+            member.uid, member.gid, member.mode, member.mtime = 123, 456, 0o640, 123456789
+            member.pax_headers = {'SCHILY.xattr.user.test': 'preserved'}
+            originals.append((member, data))
+        calls = []
+
+        @contextlib.contextmanager
+        def stream(arguments):
+            calls.append(arguments)
+            yield io.BytesIO(tar(originals))
+
+        image_id = 'sha256:' + 'a' * 64
+        with oci.Layout(self.output) as layout:
+            with patch.object(oci.subprocess, 'run') as run, patch.object(oci, 'command_stream', stream):
+                replacements = oci.docker_original_files(image_id, layout)
+            run.assert_called_once_with(['docker', 'image', 'tag', image_id,
+                                         'oci-export-source:' + 'a' * 64], check=True)
+            self.assertEqual(calls[0][:3], ['docker', 'build', '--builder'])
+            self.assertNotIn('RUN ', (layout.workspace / 'original-files/Dockerfile').read_text())
+            exported = tar([('etc/hostname', b'docker hostname'), ('etc/hosts', b'docker hosts'),
+                            ('etc/resolv.conf', b'docker resolver'), ('.dockerenv', b''),
+                            ('application', b'unchanged')])
+            layers, _ = oci.tar_layers(io.BytesIO(exported), layout, 20480,
+                                       replacements=replacements, excluded=('.dockerenv',))
+            layout.finish({'architecture': 'amd64', 'os': 'linux',
+                           'rootfs': {'type': 'layers', 'diff_ids': [part['digest'] for part in layers]}}, layers)
+        _, _, layers = read_layout(self.output)
+        found = {}
+        for data in layers:
+            with tarfile.open(fileobj=io.BytesIO(data)) as archive:
+                for member in archive:
+                    found[member.name] = member, archive.extractfile(member).read()
+        self.assertNotIn('.dockerenv', found)
+        self.assertEqual(found['application'][1], b'unchanged')
+        for name in replacements:
+            member, data = found[name]
+            self.assertEqual(data, b'original-host\n' if name == 'etc/hostname' else b'')
+            self.assertEqual((member.uid, member.gid, member.mode, member.mtime), (123, 456, 0o640, 123456789))
+            self.assertEqual(member.pax_headers['SCHILY.xattr.user.test'], 'preserved')
+
+    def test_docker_original_files_reject_missing_or_nonregular_sources(self):
+        invalid = tarfile.TarInfo('etc/hostname')
+        invalid.type = tarfile.SYMTYPE
+        invalid.linkname = '/other-hostname'
+        for payload in [tar([]), tar([(invalid, None)])]:
+            @contextlib.contextmanager
+            def stream(arguments):
+                yield io.BytesIO(payload)
+            with self.subTest(payload=payload[:100]):
+                with oci.Layout(self.output) as layout:
+                    with patch.object(oci.subprocess, 'run'), patch.object(oci, 'command_stream', stream):
+                        with self.assertRaises(ValueError):
+                            oci.docker_original_files('sha256:' + 'a' * 64, layout)
+                self.assertFalse(self.output.exists())
 
     def docker(self, modern=False, bad_digest=False, index_id=False, config_change=None, bad_config_hash=False):
         runtime = {'User': '123:456', 'Env': ['FOO=bar'], 'WorkingDir': '/work', 'Cmd': ['test'],

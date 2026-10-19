@@ -13,6 +13,7 @@ from email.message import Message
 import gzip
 import hashlib
 import http.client
+import io
 import json
 import lzma
 import os
@@ -470,7 +471,8 @@ def decompressed(source):
             stream.close()
 
 
-def tar_layers(source, layout, limit, rootfs_prefix=None, docker=False, metadata=None):
+def tar_layers(source, layout, limit, rootfs_prefix=None, docker=False, metadata=None,
+               replacements=None, excluded=()):
     """Move whiteouts ahead of split changesets, retaining their original scope."""
     writer = LayerWriter(layout, limit)
     whiteouts = LayerWriter(layout, limit)
@@ -483,6 +485,8 @@ def tar_layers(source, layout, limit, rootfs_prefix=None, docker=False, metadata
                 for member in archive:
                     member = copy.copy(member)
                     name = safe_name(member.name)
+                    if name in excluded:
+                        continue
                     if rootfs_prefix is not None:
                         if name == rootfs_prefix:
                             name = '.'
@@ -517,7 +521,12 @@ def tar_layers(source, layout, limit, rootfs_prefix=None, docker=False, metadata
                             raise ValueError(f'Unsupported whiteout entry: {name}')
                         whiteouts.add(member)
                         continue
-                    contents = archive.extractfile(member) if member.isfile() else None
+                    if replacements is not None and name in replacements:
+                        member, data = replacements[name]
+                        member = copy.copy(member)
+                        contents = io.BytesIO(data)
+                    else:
+                        contents = archive.extractfile(member) if member.isfile() else None
                     try:
                         writer.add(member, contents)
                     finally:
@@ -845,6 +854,40 @@ def docker_archive(source, layout, image_id, limit, os_name, platform=None):
     return config, layers
 
 
+def docker_original_files(image_id, layout):
+    """Read original configuration files through COPY, outside container init layers."""
+    # BuildKit resolves local image names rather than config IDs. Retain this
+    # source reference: deleting its last tag could delete an untagged input.
+    reference = 'oci-export-source:' + image_id.split(':')[1]
+    subprocess.run(['docker', 'image', 'tag', image_id, reference], check=True)
+    context = layout.workspace / 'original-files'
+    context.mkdir()
+    (context / 'Dockerfile').write_text(
+        f'FROM {reference} AS original\nFROM scratch\n'
+        'COPY --from=original /etc/hostname /etc/hosts /etc/resolv.conf /etc/\n')
+    files = {}
+    with command_stream(['docker', 'build', '--builder', 'default', '--pull=false',
+                         '--output', 'type=tar,dest=-', str(context)]) as source:
+        with tarfile.open(fileobj=source, mode='r|') as archive:
+            for member in archive:
+                name = safe_name(member.name)
+                if name not in ('etc/hostname', 'etc/hosts', 'etc/resolv.conf'):
+                    continue
+                if not member.isfile() or member.size > METADATA_LIMIT:
+                    raise ValueError(f'Expected a bounded regular image configuration file: {name}')
+                with archive.extractfile(member) as contents:
+                    data = contents.read(member.size)
+                member = copy.copy(member)
+                member.name = name
+                if name != 'etc/hostname':
+                    data = b''
+                member.size = len(data)
+                files[name] = member, data
+    if len(files) != 3:
+        raise ValueError('Original image must provide /etc/hostname, /etc/hosts, and /etc/resolv.conf.')
+    return files
+
+
 def convert_docker(image, output_directory, limit=CHUNK_SIZE, reference='image', annotations=None):
     result = subprocess.run(['docker', 'image', 'inspect', image], check=True, stdout=subprocess.PIPE)
     inspected = json.loads(result.stdout)
@@ -853,13 +896,15 @@ def convert_docker(image, output_directory, limit=CHUNK_SIZE, reference='image',
     image_id = inspected[0]['Id']
     with Layout(output_directory, reference, annotations) as layout:
         if inspected[0]['Os'] == 'linux':
+            original_files = docker_original_files(image_id, layout)
             result = subprocess.run(['docker', 'container', 'create', '--network', 'none',
                                      '--entrypoint', '/bin/true', image_id],
                                     check=True, stdout=subprocess.PIPE, text=True)
             container = result.stdout.strip()
             try:
                 with command_stream(['docker', 'container', 'export', container]) as source:
-                    layers, _ = tar_layers(source, layout, limit)
+                    layers, _ = tar_layers(source, layout, limit, replacements=original_files,
+                                            excluded=('.dockerenv',))
             finally:
                 subprocess.run(['docker', 'container', 'rm', '--volumes', container],
                                check=True, stdout=subprocess.DEVNULL)

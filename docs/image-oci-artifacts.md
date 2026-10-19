@@ -92,7 +92,18 @@ Original layer history is replaced with records matching the generated layers.
 Runtime config and platform fields, including user, command, environment, labels,
 working directory and architecture variant, come from the original image rather
 than the export container. Ownership, modes, symlinks, hardlinks and PAX xattrs
-are retained. Docker's container initialization files are currently included.
+are retained. During streaming, `/etc/hosts` and `/etc/resolv.conf` become empty
+regular files, `/etc/hostname` regains its original bytes, and `/.dockerenv` is
+omitted. The three files retain their original ownership, modes and timestamps;
+other Docker initialization placeholders remain.
+
+Reading the original files requires Docker BuildKit through the default local
+builder. A scratch stage uses only `COPY` to export these three files from the
+image, without running its commands or exporting its complete filesystem. The
+source must provide all three as regular files, each no larger than 8 MiB.
+The converter retains an `oci-export-source:<image-ID>` tag for this immutable
+local source, because removing the last tag of an originally untagged image can
+delete it. Source images are retained on both success and failure.
 
 Windows keeps the `docker image save` path, accepting legacy and OCI-backed
 archives and preserving its runtime config and Windows OS version.
