@@ -7,9 +7,9 @@
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
-- Kernel Version: 6.8.0-1064-azure
-- Image Version: 20261012.322.1
-- Systemd version: 249.11-0ubuntu3.22
+- Kernel Version: 6.8.0-1070-azure
+- Image Version: 20261018.327.1
+- Systemd version: 249.11-0ubuntu3.23
 
 ## Installed Software
 
@@ -21,7 +21,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.13.1
+- Julia 1.13.2
 - Kotlin 2.4.21
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -29,20 +29,20 @@
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.4
+- Swift 6.4.1
 
 ### Package Management
 - cpan 1.64
-- Helm 3.22.0
+- Helm 3.22.1
 - Homebrew 7.0.9
-- Miniconda 26.7.1
+- Miniconda 26.9.3
 - Npm 10.9.9
 - NuGet 6.6.1.2
 - Pip 22.0.2
 - Pip3 22.0.2
 - Pipx 1.17.12
 - RubyGems 3.3.5
-- Vcpkg (build from commit e456309491)
+- Vcpkg (build from commit 664933b8d3)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -62,7 +62,7 @@ to accomplish this.
 ### Project Management
 - Ant 1.10.12
 - Gradle 9.8.1
-- Lerna 10.1.0
+- Lerna 10.1.1
 - Maven 3.10.0
 - Sbt 1.13.0
 
@@ -86,7 +86,7 @@ to accomplish this.
 - Git LFS 3.8.0
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 11.11.0
+- Heroku 11.12.0
 - jq 1.6
 - Kind 0.33.0
 - Kubectl 1.37.1
@@ -95,19 +95,19 @@ to accomplish this.
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.39.0
-- n 10.2.0
+- n 11.0.0
 - Newman 6.2.3
 - nvm 0.40.8
 - OpenSSL 3.0.2-0ubuntu1.30
 - Packer 1.16.1
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.268.0
+- Pulumi 3.270.0
 - R 4.6.1
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.16.5
+- Terraform 1.16.6
 - yamllint 1.38.0
 - yq 4.54.1
 - zstd 1.5.7
@@ -115,17 +115,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.1
-- AWS CLI 2.37.13
+- AWS CLI 2.38.1
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.168.0
+- AWS SAM CLI 1.169.0
 - Azure CLI 2.91.0
-- Azure CLI (azure-devops) 1.0.8
+- Azure CLI (azure-devops) 1.0.9
 - GitHub CLI 2.102.0
-- Google Cloud CLI 588.0.0
+- Google Cloud CLI 589.0.0
 - ORAS CLI 1.3.4
-- Netlify CLI 27.12.0
-- OpenShift CLI 4.22.17
-- Vercel CLI 63.1.2
+- Netlify CLI 27.13.0
+- OpenShift CLI 4.22.18
+- Vercel CLI 64.5.0
 
 ### Java
 | Version             | Environment Variable |
@@ -151,9 +151,9 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.11.1
 
 ### Rust Tools
-- Cargo 1.99.0
-- Rust 1.99.0
-- Rustdoc 1.99.0
+- Cargo 1.99.1
+- Rust 1.99.1
+- Rustdoc 1.99.1
 - Rustup 1.29.1
 
 #### Packages
@@ -165,13 +165,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Google Chrome 155.0.8059.39
-- ChromeDriver 155.0.8059.39
+- Google Chrome 155.0.8059.84
+- ChromeDriver 155.0.8059.84
 - Chromium 155.0.8059.0
-- Microsoft Edge 155.0.4283.45
-- Microsoft Edge WebDriver 155.0.4283.45
+- Microsoft Edge 155.0.4283.62
+- Microsoft Edge WebDriver 155.0.4283.62
 - Selenium server 4.51.0
-- Mozilla Firefox 157.0
+- Mozilla Firefox 158.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -183,7 +183,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.131, 8.0.206, 8.0.319, 8.0.425, 9.0.121, 9.0.205, 9.0.318, 10.0.112, 10.0.204, 10.0.303, 10.0.401
+- .NET Core SDK: 8.0.132, 8.0.206, 8.0.319, 8.0.426, 9.0.122, 9.0.205, 9.0.319, 10.0.113, 10.0.204, 10.0.303, 10.0.402
 - nbgv 3.10.94+dea9a6c17c
 
 ### Databases
@@ -219,21 +219,21 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 22.23.3
-- 24.21.0
+- 24.22.0
 
 #### Python
-- 3.10.22
 - 3.11.17
 - 3.12.15
 - 3.13.16
 - 3.14.8
+- 3.15.0
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
 - 3.8.16 [PyPy 7.3.11]
 - 3.9.19 [PyPy 7.3.16]
 - 3.10.16 [PyPy 7.3.19]
-- 3.11.16 [PyPy 8.0.0]
+- 3.11.17 [PyPy 8.0.1]
 
 #### Ruby
 - 3.2.11
@@ -242,12 +242,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 4.0.7
 
 ### PowerShell Tools
-- PowerShell 7.6.6
+- PowerShell 7.6.7
 
 #### PowerShell Modules
 - Az: 15.6.1
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.41.1
+- Microsoft.Graph: 2.41.2
 - Pester: 5.9.0
 - PSScriptAnalyzer: 1.25.0
 
@@ -292,9 +292,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.0.9-2build6                       |
 | bzip2                  | 1.0.8-5ubuntu0.1                    |
 | coreutils              | 8.32-4.1ubuntu1.4                   |
-| curl                   | 7.81.0-1ubuntu1.29                  |
+| curl                   | 7.81.0-1ubuntu1.30                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
-| dnsutils               | 1:9.18.39-0ubuntu0.22.04.6          |
+| dnsutils               | 1:9.18.39-0ubuntu0.22.04.7          |
 | dpkg                   | 1.21.1ubuntu2.6                     |
 | dpkg-dev               | 1.21.1ubuntu2.6                     |
 | fakeroot               | 1.28-1ubuntu1                       |
@@ -315,7 +315,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
 | libc6-dev              | 2.35-0ubuntu3.15                    |
-| libcurl4               | 7.81.0-1ubuntu1.29                  |
+| libcurl4               | 7.81.0-1ubuntu1.30                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.4          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
 | libgsl-dev             | 2.7.1+dfsg-3                        |
@@ -341,7 +341,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | mercurial              | 6.1.1-1ubuntu1                      |
 | net-tools              | 1.60+git20181103.0eebece-1ubuntu5.4 |
 | netcat                 | 1.218-4ubuntu1                      |
-| openssh-client         | 1:8.9p1-3ubuntu0.17                 |
+| openssh-client         | 1:8.9p1-3ubuntu0.18                 |
 | p7zip-full             | 16.02+dfsg-8                        |
 | p7zip-rar              | 16.02-3build1                       |
 | parallel               | 20210822+ds-2                       |
@@ -356,18 +356,18 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | shellcheck             | 0.8.0-2                             |
 | sphinxsearch           | 2.2.11-8                            |
 | sqlite3                | 3.37.2-2ubuntu0.8                   |
-| ssh                    | 1:8.9p1-3ubuntu0.17                 |
+| ssh                    | 1:8.9p1-3ubuntu0.18                 |
 | sshpass                | 1.09-1                              |
 | subversion             | 1.14.1-3ubuntu0.22.04.1             |
 | sudo                   | 1.9.9-1ubuntu2.7                    |
 | swig                   | 4.0.2-1ubuntu1                      |
-| systemd-coredump       | 249.11-0ubuntu3.22                  |
+| systemd-coredump       | 249.11-0ubuntu3.23                  |
 | tar                    | 1.34+dfsg-1ubuntu0.1.22.04.6        |
 | telnet                 | 0.17-44build1                       |
 | texinfo                | 6.8-4build1                         |
 | time                   | 1.9-0.1build2                       |
 | tk                     | 8.6.11+1build2                      |
-| tzdata                 | 2026c-0ubuntu0.22.04.1              |
+| tzdata                 | 2026e-0ubuntu0.22.04.1              |
 | unzip                  | 6.0-26ubuntu3.2                     |
 | upx                    | 3.96-3                              |
 | wget                   | 1.21.2-2ubuntu1.5                   |
