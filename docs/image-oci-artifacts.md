@@ -81,16 +81,21 @@ helpers/docker-image-to-oci --image my-image:local \
 ```
 
 Requires the Docker CLI and access to its daemon. The command inspects the local
-image, pins its full ID, and streams `docker image save` without creating a saved
-archive. Both legacy and OCI-backed Docker archives are accepted. For containerd
-indexes, export selects the inspected OS/architecture, rather than exporting
-unrelated platforms. Runtime config and platform fields, including user, command,
-environment, labels, working directory and Windows OS version, are retained.
+image and pins its full ID. For Linux it creates a container without starting it
+and streams `docker container export` directly into OCI layers. The temporary
+container and its anonymous volumes are removed on both success and failure.
+This avoids the classic Docker image store's full layer staging during
+`docker image save`; the source image and final OCI layout still coexist.
 
-Linux layers are repacked into valid tar layers at entry boundaries; diffIDs and
-history are updated for the new layer count. Whiteouts precede split additions
-from the same source layer so removals and opaque directories retain their
-original scope. Ownership, modes, symlinks, hardlinks and PAX xattrs are retained.
+The merged Linux filesystem is flattened and split at tar-entry boundaries.
+Original layer history is replaced with records matching the generated layers.
+Runtime config and platform fields, including user, command, environment, labels,
+working directory and architecture variant, come from the original image rather
+than the export container. Ownership, modes, symlinks, hardlinks and PAX xattrs
+are retained. Docker's container initialization files are currently included.
+
+Windows keeps the `docker image save` path, accepting legacy and OCI-backed
+archives and preserving its runtime config and Windows OS version.
 Windows layers are preserved exactly when within the size limit. Oversized
 Windows layers fail explicitly; splitting their platform-specific state needs
 Windows validation. Windows conversion cannot be tested on the local Linux host.

@@ -852,6 +852,25 @@ def convert_docker(image, output_directory, limit=CHUNK_SIZE, reference='image',
         raise ValueError('Expected one local Docker image with a full ID.')
     image_id = inspected[0]['Id']
     with Layout(output_directory, reference, annotations) as layout:
+        if inspected[0]['Os'] == 'linux':
+            result = subprocess.run(['docker', 'container', 'create', '--network', 'none',
+                                     '--entrypoint', '/bin/true', image_id],
+                                    check=True, stdout=subprocess.PIPE, text=True)
+            container = result.stdout.strip()
+            try:
+                with command_stream(['docker', 'container', 'export', container]) as source:
+                    layers, _ = tar_layers(source, layout, limit)
+            finally:
+                subprocess.run(['docker', 'container', 'rm', '--volumes', container],
+                               check=True, stdout=subprocess.DEVNULL)
+            config = {'architecture': inspected[0]['Architecture'], 'os': 'linux',
+                      'config': inspected[0]['Config'],
+                      'rootfs': {'type': 'layers', 'diff_ids': [part['digest'] for part in layers]},
+                      'history': [{'created_by': 'docker container export'} for _ in layers]}
+            for original, field in [('Created', 'created'), ('Author', 'author'), ('Variant', 'variant')]:
+                if inspected[0].get(original):
+                    config[field] = inspected[0][original]
+            return layout.finish(config, layers)
         arguments = ['docker', 'image', 'save']
         if inspected[0].get('Descriptor', {}).get('mediaType') in (
                 INDEX, 'application/vnd.docker.distribution.manifest.list.v2+json'):

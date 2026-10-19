@@ -248,6 +248,60 @@ class ConversionTests(unittest.TestCase):
             self.response(Response(data), data)
         self.assertEqual(sentinel.read_text(), 'unchanged')
 
+    def test_linux_docker_export_preserves_runtime_without_image_save(self):
+        runtime = {'User': '123:456', 'Env': ['FOO=bar'], 'WorkingDir': '/work',
+                   'Cmd': ['test'], 'Entrypoint': ['/entry'], 'Labels': {'keep': 'yes'}}
+        inspected = {'Id': 'sha256:' + 'a' * 64, 'Architecture': 'arm64', 'Os': 'linux',
+                     'Variant': 'v8', 'Config': runtime, 'Created': '2026-01-01T00:00:00Z'}
+        payload = tar([('old', b'F' * 15000), ('large', b'L' * 15000)])
+        calls = []
+
+        def run(arguments, **kwargs):
+            calls.append(arguments)
+            if arguments[1:3] == ['image', 'inspect']:
+                return subprocess.CompletedProcess(arguments, 0, oci.encoded([inspected]))
+            if arguments[1:3] == ['container', 'create']:
+                self.assertEqual(arguments[-1], inspected['Id'])
+                return subprocess.CompletedProcess(arguments, 0, 'export-container\n')
+            self.assertEqual(arguments, ['docker', 'container', 'rm', '--volumes', 'export-container'])
+            return subprocess.CompletedProcess(arguments, 0)
+
+        @contextlib.contextmanager
+        def stream(arguments):
+            self.assertEqual(arguments, ['docker', 'container', 'export', 'export-container'])
+            yield io.BytesIO(payload)
+
+        with patch.object(oci.subprocess, 'run', side_effect=run), patch.object(oci, 'command_stream', stream):
+            oci.convert_docker('original:tag', self.output, 20480)
+        _, config, layers = read_layout(self.output)
+        self.assertEqual(config['config'], runtime)
+        self.assertEqual(config['variant'], 'v8')
+        self.assertEqual(config['created'], inspected['Created'])
+        self.assertGreater(len(layers), 1)
+        self.assertFalse(any('save' in arguments or 'start' in arguments for arguments in calls))
+
+    def test_linux_docker_export_failure_removes_container_and_partial_layout(self):
+        inspected = {'Id': 'sha256:' + 'a' * 64, 'Architecture': 'amd64', 'Os': 'linux', 'Config': {}}
+        calls = []
+
+        def run(arguments, **kwargs):
+            calls.append(arguments)
+            if arguments[1:3] == ['image', 'inspect']:
+                return subprocess.CompletedProcess(arguments, 0, oci.encoded([inspected]))
+            return subprocess.CompletedProcess(arguments, 0, 'export-container\n')
+
+        @contextlib.contextmanager
+        def stream(arguments):
+            yield io.BytesIO(tar([('large', b'L' * 15000)]))
+            raise RuntimeError('export failed')
+
+        with patch.object(oci.subprocess, 'run', side_effect=run), patch.object(oci, 'command_stream', stream):
+            with self.assertRaisesRegex(RuntimeError, 'export failed'):
+                oci.convert_docker('original:tag', self.output, 20480)
+        self.assertEqual(calls[-1], ['docker', 'container', 'rm', '--volumes', 'export-container'])
+        self.assertFalse(self.output.exists())
+        self.assertFalse(list(self.root.glob('.image-oci-*')))
+
     def docker(self, modern=False, bad_digest=False, index_id=False, config_change=None, bad_config_hash=False):
         runtime = {'User': '123:456', 'Env': ['FOO=bar'], 'WorkingDir': '/work', 'Cmd': ['test'],
                    'Entrypoint': ['/entry'], 'Labels': {'keep': 'yes'}, 'StopSignal': 'SIGTERM'}
