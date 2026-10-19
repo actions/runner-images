@@ -7,12 +7,12 @@
 # macOS 27
 - OS Version: macOS 27.0.1 (26A434)
 - Kernel Version: Darwin 27.0.0
-- Image Version: 20261012.0260.1
+- Image Version: 20261019.0289.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.425, 9.0.102, 9.0.203, 9.0.318, 10.0.103, 10.0.203, 10.0.302, 10.0.401
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.426, 9.0.102, 9.0.203, 9.0.319, 10.0.103, 10.0.203, 10.0.302, 10.0.402
 - Bash 3.2.57(1)-release
 - Clang/LLVM 21.0.0
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
@@ -23,21 +23,21 @@
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
 - Kotlin 2.4.21
-- Node.js 24.21.0
+- Node.js 24.22.0
 - Perl 5.44.0
 - Python3 3.15.0
 - Ruby 3.4.11
 
 ### Package Management
-- Bundler 4.0.22
+- Bundler 4.0.23
 - Carthage 0.40.0
 - CocoaPods 1.17.0
 - Homebrew 7.0.9
-- NPM 11.19.0
+- NPM 11.19.1
 - Pip3 26.2.1 (python 3.15)
-- Pipx 1.17.13
-- RubyGems 4.0.22
-- Vcpkg 2026 (build from commit e456309491)
+- Pipx 1.18.3
+- RubyGems 4.0.23
+- Vcpkg 2026 (build from commit 664933b8d3)
 - Yarn 1.22.22
 
 ### Project Management
@@ -60,26 +60,26 @@
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.24
 - jq 1.8.2
-- OpenSSL 3.6.5 29 Sep 2026 (Library: OpenSSL 3.6.5 29 Sep 2026)
+- OpenSSL 3.5.9 29 Sep 2026 (Library: OpenSSL 3.5.9 29 Sep 2026)
 - OpenSSL (openssl@4) 4.0.3 29 Sep 2026 (Library: OpenSSL 4.0.3 29 Sep 2026) - available on `/opt/homebrew/opt/openssl@4/bin/openssl`
 - Packer 1.16.1
-- pkgconf 3.0.8
+- pkgconf 3.0.9
 - Unxip 3.3
 - yq 4.54.1
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.37.12
-- AWS SAM CLI 1.168.0
+- AWS CLI 2.38.1
+- AWS SAM CLI 1.169.0
 - AWS Session Manager CLI 1.2.835.0
 - Azure CLI 2.91.0
-- Azure CLI (azure-devops) 1.0.8
+- Azure CLI (azure-devops) 1.0.9
 - Bicep CLI 0.48.1
 - Cmake 4.4.4
 - CodeQL Action Bundle 2.27.2
-- Fastlane 2.241.0
-- SwiftFormat 0.63.1
+- Fastlane 2.241.1
+- SwiftFormat 0.64.0
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 27.0.0.0.1788430756
 - Xcodes 2.1.0
@@ -87,12 +87,12 @@
 ### Browsers
 - Safari 27.0.1 (22625.1.29.11.28)
 - SafariDriver 27.0.1 (22625.1.29.11.28)
-- Google Chrome 155.0.8059.40
-- Google Chrome for Testing 155.0.8059.39
-- ChromeDriver 155.0.8059.39
-- Microsoft Edge 155.0.4283.45
-- Microsoft Edge WebDriver 155.0.4283.45
-- Mozilla Firefox 157.0.1
+- Google Chrome 155.0.8059.85
+- Google Chrome for Testing 155.0.8059.84
+- ChromeDriver 155.0.8059.84
+- Microsoft Edge 155.0.4283.62
+- Microsoft Edge WebDriver 155.0.4283.62
+- Mozilla Firefox 158.0
 - geckodriver 0.37.1
 - Selenium server 4.51.0
 
@@ -127,7 +127,7 @@
 
 #### Node.js
 - 22.23.3
-- 24.21.0
+- 24.22.0
 
 #### Go
 - 1.24.13
@@ -135,9 +135,9 @@
 - 1.26.9
 
 ### Rust Tools
-- Cargo 1.99.0
-- Rust 1.99.0
-- Rustdoc 1.99.0
+- Cargo 1.99.1
+- Rust 1.99.1
+- Rustdoc 1.99.1
 - Rustup 1.29.0
 
 #### Packages
@@ -145,7 +145,7 @@
 - Rustfmt 1.10.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.6.6
+- PowerShell 7.6.7
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -155,7 +155,7 @@
 ### Xcode
 | Version        | Build    | Path                                           | Symlinks                                                                                  |
 | -------------- | -------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| 27.2 (beta)    | 27B5028f | /Applications/Xcode_27.2_beta_2.app            | /Applications/Xcode_27.2.0.app<br>/Applications/Xcode_27.2.app                            |
+| 27.2 (beta)    | 27B5038j | /Applications/Xcode_27.2_beta_3.app            | /Applications/Xcode_27.2.0.app<br>/Applications/Xcode_27.2.app                            |
 | 27.1           | 27A9275  | /Applications/Xcode_27.1_Release_Candidate.app | /Applications/Xcode_27.1.0.app<br>/Applications/Xcode_27.1.app                            |
 | 27.0 (default) | 27A266a  | /Applications/Xcode_27.app                     | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app<br>/Applications/Xcode.app |
 
@@ -217,4 +217,7 @@
 | ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/29.0.14206865 |
 | ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
+
+### Miscellaneous
+- Tcl/Tk 8.6.18
 
