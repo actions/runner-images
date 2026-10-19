@@ -28,12 +28,30 @@ Describe "OpenSSL" {
             $openSSLpath = brew --prefix openssl@3
             $openSSLpath | Should -Exist
         }
+
+        It "OpenSSL 3 is available by explicit path" {
+            $openSSLpath = "$(brew --prefix openssl@3)/bin/openssl"
+            $commandResult = Get-CommandResult "`"$openSSLpath`" version"
+            $commandResult.ExitCode | Should -Be 0
+            $commandResult.Output | Should -Match "^OpenSSL 3\."
+        }
     }
 
     Context "OpenSSL 3 is default" -Skip:(-not ($os.IsTahoe -or $os.IsGoldenGate)) {
         It "Default OpenSSL version is 3" {
             $commandResult = Get-CommandResult "openssl version"
-            $commandResult.Output | Should -Match "OpenSSL 3"
+            $commandResult.ExitCode | Should -Be 0
+            $commandResult.Output | Should -Match "^OpenSSL 3\."
+        }
+    }
+
+    Context "OpenSSL 4 Path Check" -Skip:(-not ($os.IsTahoe -or $os.IsGoldenGate)) {
+        It "OpenSSL 4 is available by explicit path" {
+            $openSSLpath = "$(brew --prefix openssl@4)/bin/openssl"
+            $openSSLpath | Should -Exist
+            $commandResult = Get-CommandResult "`"$openSSLpath`" version"
+            $commandResult.ExitCode | Should -Be 0
+            $commandResult.Output | Should -Match "^OpenSSL 4\."
         }
     }
 }
