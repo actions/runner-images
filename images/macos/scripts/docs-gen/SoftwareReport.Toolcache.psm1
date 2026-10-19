@@ -2,22 +2,22 @@ Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 
 function Get-ToolcacheRubyVersions {
     $toolcachePath = Join-Path $env:HOME "hostedtoolcache" "Ruby"
-    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { ($_ -split '-', 2)[0] -as [Version] }, { $_ }
 }
 
 function Get-ToolcachePythonVersions {
     $toolcachePath = Join-Path $env:HOME "hostedtoolcache" "Python"
-    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { ($_ -split '-', 2)[0] -as [Version] }, { $_ }
 }
 
 function Get-ToolcacheNodeVersions {
     $toolcachePath = Join-Path $env:HOME "hostedtoolcache" "Node"
-    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { ($_ -split '-', 2)[0] -as [Version] }, { $_ }
 }
 
 function Get-ToolcacheGoVersions {
     $toolcachePath = Join-Path $env:HOME "hostedtoolcache" "Go"
-    return Get-ChildItem $toolcachePath -Name | Sort-Object { [Version]$_ }
+    return Get-ChildItem $toolcachePath -Name | Sort-Object { ($_ -split '-', 2)[0] -as [Version] }, { $_ }
 }
 
 function Build-ToolcacheSection {

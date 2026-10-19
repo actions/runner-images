@@ -5,7 +5,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9457
-- Image Version: 20261004.186.1
+- Image Version: 20261006.188.1
 
 ## Windows features
 
@@ -32,7 +32,7 @@
 - pip 26.2.1 (python 3.13)
 - Pipx 1.17.11
 - RubyGems 3.6.9
-- Vcpkg (build from commit 19780d9cdf)
+- Vcpkg (build from commit 2976266a3b)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,7 +55,7 @@
 - Bicep 0.47.16
 - CMake 4.4.4
 - CodeQL Action Bundle 2.27.1
-- Git 2.56.0.windows.1
+- Git 2.56.0.windows.2
 - Git LFS 3.8.0
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
@@ -82,10 +82,10 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.1
-- AWS CLI 2.37.7
-- AWS SAM CLI 1.166.2
+- AWS CLI 2.37.9
+- AWS SAM CLI 1.167.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.90.0
+- Azure CLI 2.91.0
 - Azure DevOps CLI extension 1.0.8
 - GitHub CLI 2.102.0
 
@@ -104,11 +104,11 @@
 - Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Google Chrome 154.0.8037.98
-- Chrome Driver 154.0.8037.92
-- Microsoft Edge 154.0.4258.53
-- Microsoft Edge Driver 154.0.4258.53
-- Mozilla Firefox 157.0
+- Google Chrome 155.0.8059.40
+- Chrome Driver 155.0.8059.39
+- Microsoft Edge 154.0.4258.62
+- Microsoft Edge Driver 154.0.4258.62
+- Mozilla Firefox 157.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.50.0
@@ -402,7 +402,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - AWSPowershell: 5.0.312
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.41.0
+- Microsoft.Graph: 2.41.1
 - Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0
