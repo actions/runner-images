@@ -7,8 +7,8 @@
 ***
 # Ubuntu 26.04
 - OS Version: 26.04.1 LTS
-- Kernel Version: 7.0.0-1012-azure
-- Image Version: 20260920.129.1
+- Kernel Version: 7.0.0-1017-azure
+- Image Version: 20261012.150.1
 - Systemd version: 259.5-0ubuntu3.4
 
 ## Installed Software
@@ -21,22 +21,23 @@
 - Dash 0.5.12-12ubuntu3
 - GNU C++: 13.4.0, 14.3.0, 15.2.0
 - GNU Fortran: 13.4.0, 14.3.0, 15.2.0
-- Kotlin 2.4.20
+- Kotlin 2.4.21
 - Node.js 24.21.0
 - Perl 5.40.1
 - Python 3.14.4
 - Ruby 3.3.8
+- Swift 6.4
 
 ### Package Management
 - cpan 1.64
 - Helm 4.3.0
-- Homebrew 7.0.4
+- Homebrew 7.0.9
 - Npm 11.19.0
 - Pip 25.1.1
 - Pip3 25.1.1
-- Pipx 1.17.5
+- Pipx 1.17.10
 - RubyGems 3.6.7
-- Vcpkg (build from commit 5f96cd15fd)
+- Vcpkg (build from commit e456309491)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -55,19 +56,19 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.15
-- Gradle 9.7.1
+- Gradle 9.8.1
 - Maven 3.9.15
 
 ### Tools
-- Ansible 2.21.4
-- AzCopy 10.32.7 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.2.0
+- Ansible 2.21.5
+- AzCopy 10.32.8 - available by `azcopy` and `azcopy10` aliases
+- Bazel 9.3.0
 - Bazelisk 1.28.1
 - Buildah 1.42.1
-- CMake 4.4.3
+- CMake 4.4.4
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 5.1.3
-- Docker-Buildx 0.37.1
+- Docker-Buildx 0.38.0
 - Docker Client 29.4.2
 - Docker Server 29.4.2
 - Git 2.55.0
@@ -75,28 +76,28 @@ to accomplish this.
 - Git-ftp 1.6.0
 - jq 1.8.1
 - Kind 0.33.0
-- Kubectl 1.37.0
-- Kustomize 5.8.1
+- Kubectl 1.37.1
+- Kustomize 5.8.3
 - Minikube 1.39.0
 - n 10.2.0
-- nvm 0.40.7
-- OpenSSL 3.5.5-1ubuntu3.5
+- nvm 0.40.8
+- OpenSSL 3.5.5-1ubuntu3.7
 - Packer 1.16.1
 - Podman 5.7.0
 - Skopeo 1.21.0-dev
 - yamllint 1.38.0
-- yq 4.53.6
+- yq 4.54.1
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.36.49
-- AWS CLI Session Manager Plugin 1.2.835.0
-- AWS SAM CLI 1.166.2
-- Azure CLI 2.90.0
+- AWS CLI 2.37.13
+- AWS CLI Session Manager Plugin 1.2.896.0
+- AWS SAM CLI 1.168.0
+- Azure CLI 2.91.0
 - Azure CLI (azure-devops) 1.0.8
-- GitHub CLI 2.101.0
-- Google Cloud CLI 585.0.0
+- GitHub CLI 2.102.0
+- Google Cloud CLI 588.0.0
 
 ### Java
 | Version            | Environment Variable |
@@ -109,23 +110,23 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.5.4
 - Composer 2.10.3
-- PHPUnit 8.5.54
+- PHPUnit 8.5.56
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.98.1
-- Rust 1.98.1
-- Rustdoc 1.98.1
+- Cargo 1.99.0
+- Rust 1.99.0
+- Rustdoc 1.99.0
 - Rustup 1.29.1
 
 #### Packages
-- Rustfmt 1.9.0
+- Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Selenium server 4.49.0
-- Mozilla Firefox 156.0
+- Selenium server 4.51.0
+- Mozilla Firefox 157.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -165,23 +166,23 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.8
+- 1.26.9
 
 #### Node.js
-- 22.23.2
+- 22.23.3
 - 24.21.0
 
 #### Python
-- 3.10.21
-- 3.11.16
-- 3.12.14
-- 3.13.15
-- 3.14.7
+- 3.10.22
+- 3.11.17
+- 3.12.15
+- 3.13.16
+- 3.14.8
 
 #### Ruby
 - 3.2.11
 - 3.3.12
-- 3.4.10
+- 3.4.11
 - 4.0.7
 
 ### PowerShell Tools
@@ -189,7 +190,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### PowerShell Modules
 - Az: 15.6.1
-- Microsoft.Graph: 2.40.0
+- Microsoft.Graph: 2.41.1
 - Pester: 5.9.0
 - PSScriptAnalyzer: 1.25.0
 
@@ -214,7 +215,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | brotli                 | 1.2.0-3build1                 |
 | bzip2                  | 1.0.8-6ubuntu0.1              |
 | coreutils              | 9.5-1ubuntu2+0.0.0\~ubuntu25  |
-| curl                   | 8.18.0-1ubuntu2.5             |
+| curl                   | 8.18.0-1ubuntu2.7             |
 | dbus                   | 1.16.2-2ubuntu4               |
 | dpkg                   | 1.23.7ubuntu1                 |
 | dpkg-dev               | 1.23.7ubuntu1                 |
@@ -230,11 +231,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | iproute2               | 6.19.0-1ubuntu1.1             |
 | iputils-ping           | 3:20250605-1ubuntu1           |
 | jq                     | 1.8.1-4ubuntu2                |
+| libcrypt-dev           | 1:4.5.1-1                     |
 | libgbm-dev             | 26.0.8-1ubuntu0.3             |
 | libicu-dev             | 78.2-2ubuntu1                 |
 | libnss3-tools          | 2:3.120-1ubuntu2.1            |
 | libsqlite3-dev         | 3.46.1-9ubuntu0.3             |
-| libssl-dev             | 3.5.5-1ubuntu3.5              |
+| libssl-dev             | 3.5.5-1ubuntu3.7              |
 | libtool                | 2.5.4-9                       |
 | libyaml-dev            | 0.2.5-2build3                 |
 | locales                | 2.43-2ubuntu2.4               |
@@ -243,7 +245,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | make                   | 4.4.1-3                       |
 | net-tools              | 2.10-2ubuntu1                 |
 | netcat                 | 1.234-1                       |
-| openssh-client         | 1:10.2p1-2ubuntu3.6           |
+| openssh-client         | 1:10.2p1-2ubuntu3.7           |
 | parallel               | 20240222+ds-3                 |
 | patchelf               | 0.18.0-1.4build1              |
 | pigz                   | 2.8-1build1                   |
@@ -254,9 +256,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.4.1+ds1-7ubuntu0.3          |
 | shellcheck             | 0.11.0-2                      |
 | sqlite3                | 3.46.1-9ubuntu0.3             |
-| ssh                    | 1:10.2p1-2ubuntu3.6           |
+| ssh                    | 1:10.2p1-2ubuntu3.7           |
 | sshpass                | 1.10-0.1build1                |
-| sudo                   | 1.9.17p2-1ubuntu3             |
+| sudo                   | 1.9.17p2-1ubuntu3.2           |
 | swig                   | 4.4.0-1                       |
 | systemd-coredump       | 259.5-0ubuntu3.4              |
 | tar                    | 1.35+dfsg-4ubuntu0.4          |
@@ -269,7 +271,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | unzip                  | 6.0-29ubuntu1                 |
 | upx                    | 4.2.4-1.1build1               |
 | wget                   | 1.25.0-2ubuntu4.4             |
-| xvfb                   | 2:21.1.22-1ubuntu1            |
+| xvfb                   | 2:21.1.22-1ubuntu1.2          |
 | xz-utils               | 5.8.3-1                       |
 | zip                    | 3.0-15ubuntu3                 |
 | zsync                  | 0.6.2-9                       |

@@ -24,7 +24,10 @@ else
   exit 1
 fi
 
-archive_path=$(download_with_retry "$archive_url")
+# Stage the download on the root disk: on Ubuntu 26.04 /tmp is a RAM-backed tmpfs
+# that is too small for the toolchain archive and its extracted contents
+download_dir=$(mktemp -d -p /var/tmp)
+archive_path=$(download_with_retry "$archive_url" "${download_dir}/${swift_release_name}.tar.gz")
 
 # Verifying PGP signature using official Swift PGP key. Referring to https://www.swift.org/install/linux/#Installation-via-Tarball
 # Download and import Swift PGP keys
@@ -43,20 +46,21 @@ gpg --keyserver hkps://keyserver.ubuntu.com:443 \
 gpg --keyserver hkps://keyserver.ubuntu.com:443 --refresh-keys Swift
 
 # Download and verify signature
-signature_path=$(download_with_retry "${archive_url}.sig")
+signature_path=$(download_with_retry "${archive_url}.sig" "${archive_path}.sig")
 gpg --verify "$signature_path" "$archive_path"
 
 # Remove Swift PGP public key with temporary keyring
 rm -rf ~/.gnupg
 
 # Extract and install swift
-tar xzf "$archive_path" -C /tmp
+tar xzf "$archive_path" -C "$download_dir"
 
 SWIFT_INSTALL_ROOT="/usr/share/swift"
 swift_bin_root="$SWIFT_INSTALL_ROOT/usr/bin"
 swift_lib_root="$SWIFT_INSTALL_ROOT/usr/lib"
 
-mv "/tmp/${swift_release_name}" $SWIFT_INSTALL_ROOT
+mv "${download_dir}/${swift_release_name}" $SWIFT_INSTALL_ROOT
+rm -rf "$download_dir"
 mkdir -p /usr/local/lib
 
 ln -s "$swift_bin_root/swift" /usr/local/bin/swift
