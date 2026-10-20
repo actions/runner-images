@@ -21,6 +21,10 @@
 - `default` - version of Xcode to set as default (should be matched with any `link` in `versions` property)
     **Example:** `"11.2"`  
 
+- `command_line_tools` - optional version of Xcode Command Line Tools to install from `softwareupdate`. Matches the exact version and its patch releases (`"26.6"` matches `26.6` and `26.6.1`). If omitted, the latest available version is installed.  
+    Set it when the latest Command Line Tools are newer than the `default` Xcode: a newer Command Line Tools SDK can be incompatible with the default Xcode linker ([#14940](https://github.com/actions/runner-images/issues/14940)).  
+    **Example:** `"26.6"`  
+
 **Note:**
 
 - `version` is specified with `+` or `-`, exact Xcode name should be like `16.2.0-Beta.3+16C5023f` or `16.2_Release_Candidate+16C5031c` and will be matching `.xip` file name.
