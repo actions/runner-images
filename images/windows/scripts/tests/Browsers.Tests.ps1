@@ -85,6 +85,10 @@ Describe "Edge" {
         It "msedge.exe is installed" {
             "${env:ProgramFiles(x86)}\Microsoft\Edge\Application\msedge.exe" | Should -Exist
         }
+
+        It "Edge Update is disabled" {
+            "${env:ProgramFiles(x86)}\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" | Should -Not -Exist
+        }
     }
 }
 

@@ -77,7 +77,7 @@ append_etc_environment_path() {
 #    of value of the exiting PATH variable exactly as it would happen with real PAM app read
 #    /etc/environment
 #
-# TODO: there might be the others variables to be processed in the same way as "PATH" variable
+# TODO: there might be other variables to be processed in the same way as "PATH" variable
 #       ie MANPATH, INFOPATH, LD_*, etc. In the current implementation the values from /etc/environment
 #       replace the values of the current environment
 reload_etc_environment() {

@@ -18,7 +18,7 @@ else
   exit 1
 fi
 
-# Dowload Pulumi
+# Download Pulumi
 version=$(curl -fsSL "https://www.pulumi.com/latest-version")
 download_url="https://get.pulumi.com/releases/sdk/pulumi-v${version}-linux-${pulumi_arch}.tar.gz"
 archive_path=$(download_with_retry "$download_url")
