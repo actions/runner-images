@@ -1,6 +1,6 @@
 {
     "xcode": {
-        "default": "27",
+        "default": "27.1",
         "arm64": {
             "versions": [
                 {
