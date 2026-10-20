@@ -1,0 +1,1 @@
+docker run --rm <image> bash -c 'set -euo pipefail; "$(command -v ldconfig || echo /sbin/ldconfig)" -p | grep -F -- "libatomic.so.1"'
