@@ -5,16 +5,40 @@
 
 if (Test-IsArm64) {
     $driverArch = "arm64"
+    $edgeArch = "arm64"
 } else {
     $driverArch = "win64"
+    $edgeArch = "x64"
 }
 
+# Install the latest Edge Stable explicitly, the background updater can fail during the build
+Write-Host "Get the latest Microsoft Edge Stable version..."
+$edgeProducts = Invoke-RestMethod -Uri "https://edgeupdates.microsoft.com/api/products"
+$edgeRelease = ($edgeProducts | Where-Object { $_.Product -eq "Stable" }).Releases |
+    Where-Object { $_.Platform -eq "Windows" -and $_.Architecture -eq $edgeArch } |
+    Sort-Object { [version] $_.ProductVersion } -Descending |
+    Select-Object -First 1
+$edgeMsi = $edgeRelease.Artifacts | Where-Object { $_.ArtifactName -eq "msi" }
+
+Write-Host "Install Microsoft Edge $($edgeRelease.ProductVersion)..."
+Install-Binary -Type MSI `
+    -Url $edgeMsi.Location `
+    -ExpectedSHA256Sum $edgeMsi.Hash `
+    -ExpectedSubject $(Get-MicrosoftPublisher)
+
 # Disable Edge auto-updates
-Rename-Item -Path "C:\Program Files (x86)\Microsoft\EdgeUpdate\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
+# The MSI starts Edge Update in the background, let it finish so it does not restore the executable after the rename
+Get-Process -Name "MicrosoftEdgeUpdate*" -ErrorAction SilentlyContinue | Wait-Process -Timeout 300 -ErrorAction SilentlyContinue
+Stop-Service -Name "edgeupdate", "edgeupdatem" -Force -ErrorAction SilentlyContinue
+$edgeUpdatePath = "${env:ProgramFiles(x86)}\Microsoft\EdgeUpdate"
+Rename-Item -Path "$edgeUpdatePath\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
 
 Write-Host "Get the Microsoft Edge WebDriver version..."
 $edgeBinaryPath = (Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\msedge.exe").'(default)'
 [version] $edgeVersion = [System.Diagnostics.FileVersionInfo]::GetVersionInfo($edgeBinaryPath).ProductVersion
+if ($edgeVersion -lt [version] $edgeRelease.ProductVersion) {
+    throw "Microsoft Edge $edgeVersion is installed, expected $($edgeRelease.ProductVersion)"
+}
 
 $edgeDriverPath = "$($env:SystemDrive)\SeleniumWebDrivers\EdgeDriver"
 if (-not (Test-Path -Path $edgeDriverPath)) {
