@@ -4,19 +4,19 @@
         "arm64": {
             "versions": [
                 {
-                    "link": "27.2_beta_2",
-                    "filename": "Xcode_27.2_beta_2",
-                    "version": "27.2+27B5028f",
+                    "link": "27.2_beta_3",
+                    "filename": "Xcode_27.2_beta_3",
+                    "version": "27.2+27B5038j",
                     "symlinks": ["27.2"],
-                    "sha256": "31ca3b5b6e1faa43fe691504b9c53b9267f85413bd42ddeb1f0d5b951549ff9e",
+                    "sha256": "3bca546ea4e5280f96fbcf67b424d646c1cc5c8ef5bc90c2f2fa42235f692c4e",
                     "install_runtimes": "none"
                 },
                 {
-                    "link": "27.1_beta",
-                    "filename": "Xcode_27.1_beta",
-                    "version": "27.1+27A9269",
+                    "link": "27.1_Release_Candidate",
+                    "filename": "Xcode_27.1_Release_Candidate",
+                    "version": "27.1+27A9275",
                     "symlinks": ["27.1"],
-                    "sha256": "7e90e1757f490f163e01d5262baa5db5c9d64c63d9f42450eeface0749f086fe",
+                    "sha256": "038ad29cc2cd87e7762aac596833943000fd3d5fb64be530e2ecdbe5449cd660",
                     "install_runtimes": "none"
                 },
                 {
