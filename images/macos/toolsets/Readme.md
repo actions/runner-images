@@ -29,10 +29,10 @@
 
 - `version` is specified with `+` or `-`, exact Xcode name should be like `16.2.0-Beta.3+16C5023f` or `16.2_Release_Candidate+16C5031c` and will be matching `.xip` file name.
 - `link` is specified with `_` and doesn't contain spaces, example: `16.2_Release_Candidate` or `16.1`; pattern description:
-  - DOWNLOAD_URL="https://download.developer.apple.com/Developer_Tools/$SOURCE_FILE_LOCATION/$SOURCE_FILE_NAME.$FILE_EXTENSION"
-  - SOURCE_FILE_NAME: "Xcode_$link"
-  - SOURCE_FILE_LOCATION: "Xcode_$link"
-  - FILE_EXTENSION: xip
+  - `DOWNLOAD_URL="https://download.developer.apple.com/Developer_Tools/$SOURCE_FILE_LOCATION/$SOURCE_FILE_NAME.$FILE_EXTENSION"`
+  - `SOURCE_FILE_NAME`: `"Xcode_$link"`
+  - `SOURCE_FILE_LOCATION`: `"Xcode_$link"`
+  - `FILE_EXTENSION`: `xip`
 
 **Example:**
 
