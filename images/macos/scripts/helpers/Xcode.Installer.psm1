@@ -142,10 +142,13 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName 'xcodebuild'
     $validRuntimes = @("iOS", "watchOS", "tvOS")
 
-    # Determine architecture variant suffix for Xcode 26+
+    # Xcode 27.1+ cannot resolve universal runtimes; let Xcode select the variant.
     $archSuffix = ""
-    if ($Version -match '^(\d+)\.' -and [int]$matches[1] -ge 26) {
-        $archSuffix = "-architectureVariant universal"
+    if ($Version -match '^\d+\.\d+') {
+        $xcodeVersion = [version]$matches[0]
+        if ($xcodeVersion -ge [version]"26.0" -and $xcodeVersion -lt [version]"27.1") {
+            $archSuffix = "-architectureVariant universal"
+        }
     }
 
     # visionOS is only available on arm64
