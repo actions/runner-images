@@ -102,6 +102,13 @@ if systemctl list-unit-files fwupd-refresh.timer &>/dev/null; then
     systemctl mask fwupd-refresh.timer
 fi
 
+# Ubuntu 26.04 mounts /tmp as a RAM-backed tmpfs (size=50% of RAM, per-user quota).
+# Keep /tmp on the root disk like earlier images so large builds don't run out of space.
+# https://github.com/actions/runner-images/issues/14777
+if is_ubuntu26; then
+    systemctl mask tmp.mount
+fi
+
 # This is a legacy check, leaving for earlier versions of Ubuntu
 # If fwupd config still exists, disable the motd updates
 if [[ -f "/etc/fwupd/daemon.conf" ]]; then
