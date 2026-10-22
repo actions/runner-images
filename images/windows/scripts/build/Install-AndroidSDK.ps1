@@ -126,7 +126,10 @@ $buildToolsList = Get-AndroidBuildToolPackages `
 Install-AndroidSDKPackages $buildToolsList
 
 # Install Android Emulator
-Install-AndroidSDKPackages "emulator"
+# The emulator is published for x64 Windows hosts only
+if (-not (Test-IsArm64)) {
+    Install-AndroidSDKPackages "emulator"
+}
 
 # Install extras, add-ons and additional tools
 Write-Host "Installing Android SDK extras, add-ons and additional tools..."
