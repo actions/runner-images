@@ -8,8 +8,8 @@
 # Ubuntu 26.04
 - OS Version: 26.04.1 LTS
 - Kernel Version: 7.0.0-1017-azure
-- Image Version: 20261018.155.1
-- Systemd version: 259.5-0ubuntu3.4
+- Image Version: 20261021.158.11
+- Systemd version: 259.9-0ubuntu0.1
 
 ## Installed Software
 
@@ -22,7 +22,7 @@
 - GNU C++: 13.4.0, 14.3.0, 15.2.0
 - GNU Fortran: 13.4.0, 14.3.0, 15.2.0
 - Kotlin 2.4.21
-- Node.js 24.22.0
+- Node.js 24.22.1
 - Perl 5.40.1
 - Python 3.14.4
 - Ruby 3.3.8
@@ -31,13 +31,13 @@
 ### Package Management
 - cpan 1.64
 - Helm 4.3.1
-- Homebrew 7.0.9
+- Homebrew 7.0.10
 - Npm 11.19.1
 - Pip 25.1.1
 - Pip3 25.1.1
 - Pipx 1.17.10
 - RubyGems 3.6.7
-- Vcpkg (build from commit 664933b8d3)
+- Vcpkg (build from commit 788afd74eb)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,19 +56,19 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.15
-- Gradle 9.8.1
+- Gradle 9.8.2
 - Maven 3.9.15
 
 ### Tools
 - Ansible 2.21.5
 - AzCopy 10.32.8 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.3.0
+- Bazel 9.3.1
 - Bazelisk 1.28.1
 - Buildah 1.42.1
 - CMake 4.4.4
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 5.1.3
-- Docker-Buildx 0.38.0
+- Docker-Buildx 0.38.1
 - Docker Client 29.4.2
 - Docker Server 29.4.2
 - Git 2.55.0
@@ -91,13 +91,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.38.1
+- AWS CLI 2.38.4
 - AWS CLI Session Manager Plugin 1.2.896.0
 - AWS SAM CLI 1.169.0
 - Azure CLI 2.91.0
 - Azure CLI (azure-devops) 1.0.9
-- GitHub CLI 2.102.0
-- Google Cloud CLI 589.0.0
+- GitHub CLI 2.103.0
+- Google Cloud CLI 590.0.0
 
 ### Java
 | Version            | Environment Variable |
@@ -119,14 +119,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo 1.99.1
 - Rust 1.99.1
 - Rustdoc 1.99.1
-- Rustup 1.29.1
+- Rustup 1.29.2
 
 #### Packages
 - Rustfmt 1.10.0
 
 ### Browsers and Drivers
 - Selenium server 4.51.0
-- Mozilla Firefox 158.0
+- Mozilla Firefox 158.0.1
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -166,18 +166,18 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.9
+- 1.26.10
 
 #### Node.js
-- 22.23.3
-- 24.22.0
+- 22.23.4
+- 24.22.1
 
 #### Python
 - 3.11.17
 - 3.12.15
 - 3.13.16
-- 3.14.8
-- 3.15.0
+- 3.14.9
+- 3.15.1
 
 #### Ruby
 - 3.2.11
@@ -234,7 +234,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libcrypt-dev           | 1:4.5.1-1                     |
 | libgbm-dev             | 26.0.8-1ubuntu0.3             |
 | libicu-dev             | 78.2-2ubuntu1                 |
-| libnss3-tools          | 2:3.120-1ubuntu2.1            |
+| libnss3-tools          | 2:3.120-1ubuntu2.2            |
 | libsqlite3-dev         | 3.46.1-9ubuntu0.3             |
 | libssl-dev             | 3.5.5-1ubuntu3.7              |
 | libtool                | 2.5.4-9                       |
@@ -260,7 +260,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sshpass                | 1.10-0.1build1                |
 | sudo                   | 1.9.17p2-1ubuntu3.2           |
 | swig                   | 4.4.0-1                       |
-| systemd-coredump       | 259.5-0ubuntu3.4              |
+| systemd-coredump       | 259.9-0ubuntu0.1              |
 | tar                    | 1.35+dfsg-4ubuntu0.4          |
 | telnet                 | 0.17+2.7-2ubuntu1.1           |
 | texinfo                | 7.2-5ubuntu2                  |
@@ -271,8 +271,8 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | unzip                  | 6.0-29ubuntu1                 |
 | upx                    | 4.2.4-1.1build1               |
 | wget                   | 1.25.0-2ubuntu4.4             |
-| xvfb                   | 2:21.1.22-1ubuntu1.2          |
-| xz-utils               | 5.8.3-1                       |
+| xvfb                   | 2:21.1.22-1ubuntu1.3          |
+| xz-utils               | 5.8.3-1ubuntu0.1              |
 | zip                    | 3.0-15ubuntu3                 |
 | zsync                  | 0.6.2-9                       |
 
