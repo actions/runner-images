@@ -45,13 +45,17 @@ jobs:
     env:
       AGENT_SPEC: ${{ github.event.client_payload.agentSpec }}
       RELEASE_ID: ${{ github.event.client_payload.ReleaseID }}
-      IMAGE_VERSION: ${{ github.event.client_payload.imageVersion }}
+      EXPECTED_IMAGE_VERSION: ${{ github.event.client_payload.imageVersion }}
     steps:
       - name: Available image version check
         run: |
-          $expectedVersion = $env:IMAGE_VERSION
+          $expectedVersion = $env:EXPECTED_IMAGE_VERSION
           $runnerVersion = $env:ImageVersion
-          
+
+          if (!$runnerVersion) {
+            $runnerVersion = $env:IMAGE_VERSION
+          }
+
           # Split versions by dot
           $expectedParts = $expectedVersion.Split('.')
           $runnerParts = $runnerVersion.Split('.')
@@ -97,7 +101,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: sbom-${{ env.AGENT_SPEC }}-${{ env.IMAGE_VERSION }}
+          name: sbom-${{ env.AGENT_SPEC }}-${{ env.EXPECTED_IMAGE_VERSION }}
           path: sbom.json.zip
           if-no-files-found: warn
 

@@ -212,8 +212,7 @@ build {
       "${path.root}/../scripts/build/install-ruby.sh",
       "${path.root}/../scripts/build/install-rubygems.sh",
       "${path.root}/../scripts/build/install-git.sh",
-      "${path.root}/../scripts/build/install-node.sh",
-      "${path.root}/../scripts/build/install-common-utils.sh"
+      "${path.root}/../scripts/build/install-node.sh"
     ]
   }
 
@@ -230,11 +229,19 @@ build {
   }
 
   provisioner "shell" {
+    environment_vars = ["API_PAT=${var.github_api_pat}", "USER_PASSWORD=${var.vm_password}", "IMAGE_FOLDER=${local.image_folder}"]
+    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    pause_before     = "30s"
+    scripts          = [
+      "${path.root}/../scripts/build/install-common-utils.sh"
+    ]
+  }
+
+  provisioner "shell" {
     environment_vars = ["API_PAT=${var.github_api_pat}", "IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts          = [
       "${path.root}/../scripts/build/install-actions-cache.sh",
-      "${path.root}/../scripts/build/install-runner-package.sh",
       "${path.root}/../scripts/build/install-llvm.sh",
       "${path.root}/../scripts/build/install-swiftlint.sh",
       "${path.root}/../scripts/build/install-openjdk.sh",
@@ -273,18 +280,25 @@ build {
     environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     inline           = [
-      "pwsh -File \"${local.image_folder}/software-report/Generate-SoftwareReport.ps1\" -OutputDirectory \"${local.image_folder}/output/software-report\" -ImageName ${var.build_id}",
+      "pwsh -File \"${local.image_folder}/software-report/Generate-SoftwareReport.ps1\" -OutputDirectory \"${local.image_folder}/output\" -ImageName ${var.build_id}",
       "pwsh -File \"${local.image_folder}/tests/RunAll-Tests.ps1\""
     ]
   }
 
   provisioner "file" {
-    destination = "${path.root}/../../image-output/"
+    destination = "${path.root}/../../image-output/macos-15-Readme.md"
     direction   = "download"
-    source      = "${local.image_folder}/output/"
+    source      = "${local.image_folder}/output/software-report.md"
+  }
+
+  provisioner "file" {
+    destination = "${path.root}/../../image-output/software-report.json"
+    direction   = "download"
+    source      = "${local.image_folder}/output/software-report.json"
   }
 
   provisioner "shell" {
+    execute_command = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     inline = ["rm -rf \"$(brew --cache)\""]
   }
 

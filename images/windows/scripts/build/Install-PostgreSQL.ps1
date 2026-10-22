@@ -85,7 +85,7 @@ $installerArgs = @(
 Install-Binary `
     -Url $installerUrl `
     -InstallArgs $installerArgs `
-    -ExpectedSubject 'CN=EnterpriseDB Corporation, O=EnterpriseDB Corporation, S=Massachusetts, C=US' `
+    -ExpectedSubject 'CN=EnterpriseDB Corporation, O=EnterpriseDB Corporation, L=Wilmington, S=Delaware, C=US' `
     -InstallerLogPath "$env:TEMP\**\install-postgresql.log"
 
 # Get Path to pg_ctl.exe

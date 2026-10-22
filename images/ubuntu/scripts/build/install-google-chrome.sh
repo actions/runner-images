@@ -40,8 +40,9 @@ chrome_deb_path=$(download_with_retry "$CHROME_DEB_URL")
 apt-get install "$chrome_deb_path" -f
 set_etc_environment_variable "CHROME_BIN" "/usr/bin/google-chrome"
 
-# Remove Google Chrome repo
-rm -f /etc/cron.daily/google-chrome /etc/apt/sources.list.d/google-chrome.list /etc/apt/sources.list.d/google-chrome.list.save
+# Remove Google Chrome repo. The glob covers the legacy .list and the deb822 .sources layouts.
+# Keep /etc/default/google-chrome: its repo_add_once="false" is what stops the repo coming back.
+rm -f /etc/cron.daily/google-chrome /etc/apt/sources.list.d/google-chrome*
 
 # Parse Google Chrome version
 full_chrome_version=$(google-chrome --product-version)
@@ -66,6 +67,9 @@ unzip -qq "$driver_archive_path" -d /usr/local/share
 chmod +x $chromedriver_bin
 ln -s "$chromedriver_bin" /usr/bin/
 set_etc_environment_variable "CHROMEWEBDRIVER" "${CHROMEDRIVER_DIR}"
+
+# Workaround for https://github.com/actions/runner-images/issues/14475
+apt-get install libxtst6
 
 # Download and unpack Chromium
 chrome_revision=$(echo "${chrome_versions_json}" | jq -r '.builds["'"$chrome_version"'"].revision')

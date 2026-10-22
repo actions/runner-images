@@ -43,8 +43,11 @@ function Disable-WindowsUpdate {
 # Enable $ErrorActionPreference='Stop' for AllUsersAllHosts
 Add-Content -Path $profile.AllUsersAllHosts -Value '$ErrorActionPreference="Stop"'
 
+Write-Host "Setting system time zone to UTC"
+Set-TimeZone -Id "UTC" -ErrorAction Stop
+
 Write-Host "Disable Server Manager on Logon"
-Get-ScheduledTask -TaskName ServerManager | Disable-ScheduledTask
+Get-ScheduledTask -TaskName ServerManager -ErrorAction SilentlyContinue | Disable-ScheduledTask
 
 Write-Host "Disable 'Allow your PC to be discoverable by other PCs' popup"
 New-Item -Path HKLM:\System\CurrentControlSet\Control\Network -Name NewNetworkWindowOff -Force

@@ -75,8 +75,8 @@ export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest:$ANDROID_HOME/cmdline-tools
 
 SDKMANAGER=$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager
 
-echo "Installing latest tools & platform tools..."
-echo y | $SDKMANAGER "tools" "platform-tools"
+echo "Installing latest emulator and platform tools..."
+echo y | $SDKMANAGER "emulator" "platform-tools"
 
 echo "Installing latest ndk..."
 for ndk_version in "${android_ndk_major_versions[@]}"

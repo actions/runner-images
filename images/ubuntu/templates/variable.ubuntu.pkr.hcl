@@ -7,6 +7,11 @@ variable "client_id" {
   type    = string
   default = "${env("ARM_CLIENT_ID")}"
 }
+variable "client_jwt" {
+  type      = string
+  default   = "${env("ARM_CLIENT_JWT")}"
+  sensitive = true
+}
 variable "client_secret" {
   type      = string
   default   = "${env("ARM_CLIENT_SECRET")}"
@@ -132,14 +137,6 @@ variable "winrm_username" {         // The username used to connect to the VM vi
 }
 
 // Image related variables
-variable "dockerhub_login" {
-  type    = string
-  default = "${env("DOCKERHUB_LOGIN")}"
-}
-variable "dockerhub_password" {
-  type    = string
-  default = "${env("DOCKERHUB_PASSWORD")}"
-}
 variable "helper_script_folder" {
   type    = string
   default = "/imagegeneration/helpers"

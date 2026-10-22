@@ -19,6 +19,12 @@ Describe "WindowsFeatures" {
     }
 }
 
+Describe "TimeZone" {
+    It "System time zone is UTC" {
+        (Get-TimeZone -ErrorAction Stop).Id | Should -BeExactly "UTC"
+    }
+}
+
 Describe "DiskSpace" {
     It "The image has enough disk space" {
         $diskInfo = Get-PSDrive -Name C
@@ -79,12 +85,18 @@ Describe "Windows Updates" {
         if ( $Title -match "Microsoft Defender Antivirus" ) {
             $expect = "Installed", "Failed", "Running"
         }
+        if ( $Title -match "MicrosoftWindows.Client.WebExperience" ) {
+            $expect = "Installed", "Failed", "Running"
+        }
+        if ( $Title -match "Microsoft.WidgetsPlatformRuntime" ) {
+            $expect = "Installed", "Failed", "Running"
+        }
 
         $State | Should -BeIn $expect
     }
 }
 
-Describe "WSL2" -Skip:((Test-IsWin19) -or (Test-IsWin22)) {
+Describe "WSL2" -Skip:((Test-IsWin22-X64) -or (Test-IsWin11-Arm64)) {
     It "WSL status should return zero exit code" {
         "wsl --status" | Should -ReturnZeroExitCode
     }

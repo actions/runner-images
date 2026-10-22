@@ -23,8 +23,8 @@ prepend_etc_environment_path $ghcup_bin
 
 available_versions=$(ghcup list -t ghc -r | grep -v "prerelease" | awk '{print $2}')
 
-# Install 2 latest Haskell Major.Minor versions
-major_minor_versions=$(echo "$available_versions" | cut -d"." -f 1,2 | uniq | tail -n2)
+# Install latest Haskell Major.Minor version
+major_minor_versions=$(echo "$available_versions" | cut -d"." -f 1,2 | uniq | tail -n1)
 for major_minor_version in $major_minor_versions; do
     full_version=$(echo "$available_versions" | grep "$major_minor_version." | tail -n1)
     echo "install ghc version $full_version..."

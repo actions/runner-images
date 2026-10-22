@@ -6,12 +6,16 @@
 
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
+source $HELPER_SCRIPTS/os.sh
 
 install_clang() {
     local version=$1
 
     echo "Installing clang-$version..."
     apt-get install "clang-$version" "lldb-$version" "lld-$version" "clang-format-$version" "clang-tidy-$version"
+    if is_ubuntu22_arm64 || is_ubuntu24_arm64; then
+        apt-get install "llvm-$version"
+    fi
 }
 
 set_default_clang() {
@@ -23,6 +27,9 @@ set_default_clang() {
     update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-${version} 100
     update-alternatives --install /usr/bin/clang-tidy clang-tidy /usr/bin/clang-tidy-${version} 100
     update-alternatives --install /usr/bin/run-clang-tidy run-clang-tidy /usr/bin/run-clang-tidy-${version} 100
+    if is_ubuntu22_arm64 || is_ubuntu24_arm64; then
+        update-alternatives --install /usr/bin/llvm-config llvm-config /usr/bin/llvm-config-${version} 100
+    fi
 }
 
 versions=$(get_toolset_value '.clang.versions[]')

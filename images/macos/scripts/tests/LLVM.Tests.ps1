@@ -9,4 +9,9 @@ Describe "Clang/LLVM" {
         $clangVersion = & "$(brew --prefix llvm@$toolsetVersion)/bin/clang" --version
         $clangVersion[0] | Should -BeLike "*${toolsetVersion}*"
     }
+
+    It "Default clang points to Apple clang" {
+        (Get-CommandResult "which clang").Output.Trim() | Should -Be "/usr/bin/clang"
+        (Get-CommandResult "clang --version").Output | Should -BeLike "*Apple clang*"
+    }
 }

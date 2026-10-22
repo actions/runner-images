@@ -50,15 +50,6 @@ Describe "AzureModules" {
                     $moduleVersion | Should -Match $expectedVersion
                 }
             }
-
-            if ($module.default) {
-                $moduleInfo = @{ moduleName = $moduleName; moduleDefault = $module.default }
-
-                It "<moduleDefault> set as default" -TestCases $moduleInfo {
-                        $moduleVersion = (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
-                        $moduleVersion | Should -Match $moduleDefault
-                }
-            }
         }
     }
 }

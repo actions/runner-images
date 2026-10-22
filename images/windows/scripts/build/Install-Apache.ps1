@@ -4,7 +4,10 @@
 ################################################################################
 
 # Stop w3svc service
-Stop-Service -Name w3svc
+$w3svcService = Get-Service -Name "w3svc" -ErrorAction SilentlyContinue
+if ($w3svcService) {
+    Stop-Service $w3svcService
+}
 
 # Install latest apache in chocolatey
 $installDir = "C:\tools"
@@ -15,7 +18,10 @@ Stop-Service -Name Apache
 Set-Service -Name Apache -StartupType Disabled
 
 # Start w3svc service
-Start-Service -Name w3svc
+$w3svcService = Get-Service -Name "w3svc" -ErrorAction SilentlyContinue
+if ($w3svcService) {
+    Start-Service $w3svcService
+}
 
 # Invoke Pester Tests
 Invoke-PesterTests -TestFile "Apache"

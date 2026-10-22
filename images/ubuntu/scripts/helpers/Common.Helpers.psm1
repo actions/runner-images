@@ -62,6 +62,42 @@ function Test-IsUbuntu24 {
     return (lsb_release -rs) -eq "24.04"
 }
 
+function Test-IsUbuntu26 {
+    return (lsb_release -rs) -eq "26.04"
+}
+
+function Test-IsArm64 {
+    return (uname -m) -eq "aarch64"
+}
+
+function Test-IsX64 {
+    return (uname -m) -eq "x86_64"
+}
+
+function Test-IsUbuntu22-Arm64 {
+    return (Test-IsUbuntu22) -and (Test-IsArm64)
+}
+
+function Test-IsUbuntu24-Arm64 {
+    return (Test-IsUbuntu24) -and (Test-IsArm64)
+}
+
+function Test-IsUbuntu26-Arm64 {
+    return (Test-IsUbuntu26) -and (Test-IsArm64)
+}
+
+function Test-IsUbuntu22-X64 {
+    return (Test-IsUbuntu22) -and (Test-IsX64)
+}
+
+function Test-IsUbuntu24-X64 {
+    return (Test-IsUbuntu24) -and (Test-IsX64)
+}
+
+function Test-IsUbuntu26-X64 {
+    return (Test-IsUbuntu26) -and (Test-IsX64)
+}
+
 function Get-ToolsetContent {
     <#
     .SYNOPSIS

@@ -35,14 +35,10 @@ $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
     Install-XcodeAdditionalSimulatorRuntimes -Version $_.link -Arch $arch -Runtimes $_.install_runtimes
-    if (($_.link -match '^(\d+)\.(\d+)$') -and ([int]$matches[1] -ge 26)) {
+    if ($_.link -match '^(\d+)\.(\d+)(?:\.(\d+))?$' -and [int]$matches[1] -ge 26) {
         Install-XcodeAdditionalComponents -Version $_.link
+        Update-DyldCache -Version $_.link
     }
-}
-
-# Update dyld shared cache for the latest stable Xcode version
-if ((-not $os.IsSonoma)) {
-    Update-DyldCache -XcodeVersions $xcodeVersions
 }
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode

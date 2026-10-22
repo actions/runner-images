@@ -1,0 +1,20 @@
+name: Trigger Windows11 Arm64 with VS 2026 CI
+run-name: Windows11 Arm64 with VS 2026 - ${{ github.event.pull_request.title }}
+
+on:
+  pull_request_target:
+    types: labeled
+    paths:
+    - 'images/windows/**'
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  Windows_11_vs_2026_Arm64:
+    if: github.event.label.name == 'CI windows-all' || github.event.label.name == 'CI windows-11-vs2026-arm64'
+    uses: ./.github/workflows/trigger-ubuntu-win-build.yml
+    with:
+      image_type: 'windows11-vs2026-arm64'
+    secrets: inherit

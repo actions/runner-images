@@ -12,9 +12,9 @@ source $HELPER_SCRIPTS/os.sh
 # Install Python, Python 3, pip, pip3
 apt-get install --no-install-recommends python3 python3-dev python3-pip python3-venv
 
-if is_ubuntu24; then
-# Create temporary workaround to allow user to continue using pip
-    sudo cat <<EOF > /etc/pip.conf
+if ! is_ubuntu22; then
+    # allow user to continue using pip
+    sudo tee /etc/pip.conf > /dev/null <<EOF
 [global]
 break-system-packages = true
 EOF
@@ -25,7 +25,17 @@ fi
 export PIPX_BIN_DIR=/opt/pipx_bin
 export PIPX_HOME=/opt/pipx
 
-python3 -m pip install pipx
+if is_ubuntu24; then
+    # Noble ships Debian-managed packaging 24.0, which pip cannot replace for pipx 1.17.1.
+    # Keep this pin for the Ubuntu 24.04 lifetime unless the distro package is upgraded.
+    python3 -m pip install "pipx==1.16.7"
+elif is_ubuntu26; then
+    # Resolute ships Debian-managed packaging 26.0, which pip cannot replace for pipx 1.17.11 (packaging>=26.3).
+    # Keep this pin for the Ubuntu 26.04 lifetime unless the distro package is upgraded.
+    python3 -m pip install "pipx==1.17.10"
+else
+    python3 -m pip install pipx
+fi
 python3 -m pipx ensurepath
 
 # Update /etc/environment

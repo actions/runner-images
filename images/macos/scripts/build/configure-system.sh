@@ -33,11 +33,17 @@ sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.backupd.plist
 echo "Disable Apple Push Notification Service daemon"
 sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.apsd.plist
 
+echo "Set SMC monitoring cadence to 0 to reduce CPU usage"
+sudo defaults -currentHost write /Library/Preferences/com.apple.powerlogd SMCMonitorCadence 0
+
+echo "Disable Performance and Power Management daemon if possible"
+sudo launchctl unload -w /System/Library/LaunchDaemons/com.apple.PerfPowerServices.plist
+
 # Remove Parallels Desktop
 # https://github.com/actions/runner-images/issues/6105
 # https://github.com/actions/runner-images/issues/10143
-if is_SonomaX64 || is_VenturaX64 || is_SequoiaX64; then
-    brew uninstall parallels
+if is_SonomaX64 || is_SequoiaX64; then
+    brew uninstall --cask parallels
 fi
 
 # Simple warmup of the default Xcode
@@ -47,7 +53,7 @@ xcrun simctl list > /dev/null
 xcrun simctl list devices > /dev/null
 
 echo "Put documentation to $HOME root"
-cp $HOME/image-generation/output/software-report/systeminfo.* $HOME/
+cp $HOME/image-generation/output/software-report.* $HOME/
 
 echo "Remove fastlane cached cookie"
 rm -rf ~/.fastlane
@@ -110,3 +116,6 @@ sudo rm -rf /Users/$USER/Library/Caches/Homebrew/downloads/*
 
 # Uninstall expect used in configure-machine.sh
 brew uninstall expect
+
+# Remove temp tap if it was used
+brew_cleanup_temp_tap

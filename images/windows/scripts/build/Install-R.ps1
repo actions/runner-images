@@ -6,6 +6,13 @@
 Install-ChocoPackage R.Project
 Install-ChocoPackage rtools
 
-$rscriptPath = Resolve-Path "C:\Program Files\R\*\bin\x64"
+if (Test-IsArm64) {
+    $rscriptPathPattern = "C:\Program Files (x86)\R\*\bin\x64"
+} else {
+    $rscriptPathPattern = "C:\Program Files\R\*\bin\x64"
+}
+
+$rscriptPath = Resolve-Path $rscriptPathPattern
 Add-MachinePathItem $rscriptPath
+
 Invoke-PesterTests -TestFile "Tools" -TestName "R"

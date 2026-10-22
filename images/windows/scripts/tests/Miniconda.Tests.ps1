@@ -1,4 +1,4 @@
-Describe "Miniconda" {
+Describe "Miniconda" -Skip:(Test-IsWin11-Arm64) {
     It "Miniconda Environment variables is set. " {
         ${env:CONDA} | Should -Not -BeNullOrEmpty
     }

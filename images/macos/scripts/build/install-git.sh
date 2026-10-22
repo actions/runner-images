@@ -7,20 +7,21 @@
 source ~/utils/utils.sh
 
 echo "Installing Git..."
-#brew_smart_install "git"
-
-# pin Git to 2.50.1 due to problems in the latest Git version 2.51.0
-COMMIT=6b39030bc0d0a0a8df99afe37e5ae4d61ba07c88
-FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Formula/g/git.rb"
-FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/g/git.rb"
-mkdir -p "$(dirname $FORMULA_PATH)"
-curl -fsSL $FORMULA_URL -o $FORMULA_PATH
-HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install git
+brew_smart_install "git"
 
 git config --global --add safe.directory "*"
 
 echo "Installing Git LFS"
-brew_smart_install "git-lfs"
+if is_Arm64; then
+    # git-lfs works fine on ARM64 images
+    brew_smart_install "git-lfs"
+else
+    # For the Intel images git-lfs stopped to work, using pinned commit
+    COMMIT=70cbd7e455267402af156a5b733a774b15ef9949
+    FILE_NAME="g/git-lfs.rb"
+    FORMULA_NAME="git-lfs"
+    brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+fi
 
 # Update global git config
 git lfs install

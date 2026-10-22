@@ -16,13 +16,6 @@ Describe "MSYS2 packages" {
         @{ ToolName = "bash.exe" }
     )
 
-    if (Test-IsWin19) {
-        $TestCases += @(
-            @{ ToolName = "tar.exe" }
-            @{ ToolName = "make.exe" }
-        )
-    }
-
     It "<ToolName> is installed in <msys2Dir>" -TestCases $TestCases {
         (Get-Command "$ToolName").Source | Should -BeLike "$msys2Dir*"
     }

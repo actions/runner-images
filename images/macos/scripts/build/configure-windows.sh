@@ -6,7 +6,7 @@
 
 source ~/utils/utils.sh
 
-# Close System Preferences window because in Ventura arm64 it is opened by default on Apperance tab
+# Close System Preferences window because since Ventura arm64 it is opened by default on Apperance tab
 if is_Arm64; then
     echo "Close System Preferences window"
     osascript -e 'tell application "System Preferences" to quit'
@@ -33,7 +33,11 @@ for key in ${!windowslist[@]}; do
         echo "[Warning] ${windowslist[$key]}"
     else
         echo " - ${windowslist[$key]}" | xargs
-        scripterror=true
+
+        # Disabled error exit for MacOS 27 - still in preview
+        if ! is_GoldenGate; then
+            scripterror=true
+        fi
     fi
 done
 

@@ -8,7 +8,6 @@ $avPreference = @(
     @{DisableArchiveScanning = $true}
     @{DisableAutoExclusions = $true}
     @{DisableBehaviorMonitoring = $true}
-    @{DisableBlockAtFirstSeen = $true}
     @{DisableCatchupFullScan = $true}
     @{DisableCatchupQuickScan = $true}
     @{DisableIntrusionPreventionSystem = $true}
@@ -29,6 +28,13 @@ $avPreference += @(
     @{EnableControlledFolderAccess = "Disable"}
     @{EnableNetworkProtection = "Disabled"}
 )
+
+# DisableBlockAtFirstSeen=1 is flagged as a threat by defender and gets remediated (removed) on Windows 11 during build
+# Running defender scan later causes false positive alert on older remediation event
+# Set this preference only for Windows Servers
+if (-not (Test-IsWin11-Arm64)) {
+    $avPreference += @{DisableBlockAtFirstSeen = $true}
+}
 
 $avPreference | Foreach-Object {
     $avParams = $_

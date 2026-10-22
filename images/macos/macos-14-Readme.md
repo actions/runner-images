@@ -1,107 +1,106 @@
 | Announcements |
 |-|
-| [[macOS] The macOS 13 Ventura based runner images will begin deprecation on September 22nd and will be fully unsupported by December 4th for GitHub and ADO](https://github.com/actions/runner-images/issues/13046) |
-| [[macOS] The additional macOS 15 Sonoma Intel-based image will be available in GitHub Actions](https://github.com/actions/runner-images/issues/13045) |
-| [macOS 26 (Tahoe) is now available as a public beta in GitHub Actions](https://github.com/actions/runner-images/issues/13008) |
-| [[macOS] Deprecation of 4 tools on November 3rd.](https://github.com/actions/runner-images/issues/12873) |
+| [Go versions <=1.23  will be removed from tool-cache](https://github.com/actions/runner-images/issues/14237) |
+| [[macOS] macos-latest label will use macos-26 in June 2026](https://github.com/actions/runner-images/issues/14167) |
+| [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 14
-- OS Version: macOS 14.8.1 (23J30)
+- OS Version: macOS 14.8.7 (23J520)
 - Kernel Version: Darwin 23.6.0
-- Image Version: 20251104.0148
+- Image Version: 20260629.0276.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.415, 9.0.102, 9.0.203, 9.0.306
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.422, 9.0.102, 9.0.203, 9.0.315, 10.0.103, 10.0.203, 10.0.301
 - Bash 3.2.57(1)-release
 - Clang/LLVM 15.0.0
 - Clang/LLVM (Homebrew) 15.0.7 - available on `$(brew --prefix llvm@15)/bin/clang`
 - GCC 13 (Homebrew GCC 13.4.0) - available by `gcc-13` alias
-- GCC 14 (Homebrew GCC 14.3.0) - available by `gcc-14` alias
-- GCC 15 (Homebrew GCC 15.2.0) - available by `gcc-15` alias
+- GCC 14 (Homebrew GCC 14.4.0) - available by `gcc-14` alias
+- GCC 15 (Homebrew GCC 15.3.0) - available by `gcc-15` alias
 - GNU Fortran 13 (Homebrew GCC 13.4.0) - available by `gfortran-13` alias
-- GNU Fortran 14 (Homebrew GCC 14.3.0) - available by `gfortran-14` alias
-- GNU Fortran 15 (Homebrew GCC 15.2.0) - available by `gfortran-15` alias
-- Kotlin 2.2.21-release-469
+- GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
+- GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
+- Kotlin 2.4.0-release-281
 - Mono 6.12.0.188
-- Node.js 20.19.5
-- Perl 5.40.2
-- PHP 8.4.14
-- Python3 3.14.0
-- Ruby 3.3.10
+- Node.js 22.23.1
+- Perl 5.42.2
+- PHP 8.5.7
+- Python3 3.14.6
+- Ruby 3.3.11
 
 ### Package Management
-- Bundler 2.7.2
+- Bundler 4.0.15
 - Carthage 0.40.0
 - CocoaPods 1.16.2
-- Composer 2.8.12
-- Homebrew 4.6.20
-- NPM 10.8.2
+- Composer 2.10.1
+- Homebrew 6.0.5
+- NPM 10.9.8
 - NuGet 6.3.1.1
-- Pip3 25.3 (python 3.14)
-- Pipx 1.8.0
-- RubyGems 3.7.2
-- Vcpkg 2025 (build from commit b27f6bfad3)
+- Pip3 26.1.2 (python 3.14)
+- Pipx 1.15.0
+- RubyGems 4.0.15
+- Vcpkg 2026 (build from commit a040002471)
 - Yarn 1.22.22
 
 ### Project Management
-- Apache Ant 1.10.15
-- Apache Maven 3.9.11
-- Gradle 9.2.0
+- Apache Ant 1.10.17
+- Apache Maven 3.9.16
+- Gradle 9.6.1
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.31.0
-- bazel 8.4.2
-- bazelisk 1.27.0
+- azcopy 10.32.4
+- bazel 9.1.1
+- bazelisk 1.29.0
 - bsdtar 3.5.3 - available by 'tar' alias
-- Curl 8.16.0
-- Git 2.50.1
+- Curl 8.21.0
+- Git 2.54.0
 - Git LFS 3.7.1
-- GitHub CLI 2.82.1
+- GitHub CLI 2.95.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
-- gpg (GnuPG) 2.4.8
-- jq 1.8.1
+- gpg (GnuPG) 2.5.20
+- jq 1.8.2
 - OpenSSL 1.1.1w  11 Sep 2023
-- Packer 1.14.2
+- Packer 1.15.4
 - pkgconf 2.5.1
-- Unxip 3.2
-- yq 4.48.1
+- Unxip 3.3
+- yq 4.53.3
 - zstd 1.5.7
-- Ninja 1.13.1
+- Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.31.28
-- AWS SAM CLI 1.145.2
-- AWS Session Manager CLI 1.2.707.0
-- Azure CLI 2.78.0
-- Azure CLI (azure-devops) 1.0.2
-- Bicep CLI 0.38.33
-- Cmake 4.1.2
-- CodeQL Action Bundle 2.23.3
-- Fastlane 2.228.0
-- SwiftFormat 0.58.5
-- Xcbeautify 3.1.0
+- AWS CLI 2.35.11
+- AWS SAM CLI 1.162.1
+- AWS Session Manager CLI 1.2.835.0
+- Azure CLI 2.87.0
+- Azure CLI (azure-devops) 1.0.5
+- Bicep CLI 0.44.1
+- Cmake 4.3.4
+- CodeQL Action Bundle 2.25.6
+- Fastlane 2.236.1
+- SwiftFormat 0.61.1
+- Xcbeautify 3.2.1
 - Xcode Command Line Tools 16.2.0.0.1.1733547573
 - Xcodes 1.6.2
 
 ### Linters
-- SwiftLint 0.62.2
+- SwiftLint 0.65.0
 
 ### Browsers
-- Safari 26.0.1 (19622.1.22.118.4)
-- SafariDriver 26.0.1 (19622.1.22.118.4)
-- Google Chrome 142.0.7444.60
-- Google Chrome for Testing 142.0.7444.59
-- ChromeDriver 142.0.7444.59
-- Microsoft Edge 142.0.3595.53
-- Microsoft Edge WebDriver 142.0.3595.53
-- Mozilla Firefox 144.0.2
-- geckodriver 0.36.0
-- Selenium server 4.38.0
+- Safari 26.5 (19624.2.5.18.3)
+- SafariDriver 26.5 (19624.2.5.18.3)
+- Google Chrome 149.0.7827.201
+- Google Chrome for Testing 149.0.7827.155
+- ChromeDriver 149.0.7827.155
+- Microsoft Edge 149.0.4022.98
+- Microsoft Edge WebDriver 149.0.4022.98
+- Mozilla Firefox 152.0.3
+- geckodriver 0.37.0
+- Selenium server 4.45.0
 
 #### Environment variables
 | Name            | Value                                 |
@@ -111,57 +110,55 @@
 | GECKOWEBDRIVER  | /usr/local/opt/geckodriver/bin        |
 
 ### Java
-| Version               | Environment Variable |
-| --------------------- | -------------------- |
-| 8.0.462+8             | JAVA_HOME_8_X64      |
-| 11.0.28+6             | JAVA_HOME_11_X64     |
-| 17.0.16+8             | JAVA_HOME_17_X64     |
-| 21.0.9+10.0 (default) | JAVA_HOME_21_X64     |
-| 25.0.1+8.0            | JAVA_HOME_25_X64     |
+| Version                | Environment Variable |
+| ---------------------- | -------------------- |
+| 8.0.492+9              | JAVA_HOME_8_X64      |
+| 11.0.31+11             | JAVA_HOME_11_X64     |
+| 17.0.19+10             | JAVA_HOME_17_X64     |
+| 21.0.11+10.0 (default) | JAVA_HOME_21_X64     |
+| 25.0.3+9.0             | JAVA_HOME_25_X64     |
 
 ### Cached Tools
 
 #### Ruby
-- 3.2.9
-- 3.3.10
-- 3.4.7
+- 3.2.11
+- 3.3.11
+- 3.4.9
+- 4.0.5
 
 #### Python
-- 3.9.25
-- 3.10.19
+- 3.10.20
 - 3.11.9
 - 3.12.10
-- 3.13.9
-- 3.14.0
+- 3.13.14
+- 3.14.6
 
 #### Node.js
-- 20.19.5
-- 22.21.1
-- 24.11.0
+- 22.23.1
+- 24.18.0
 
 #### Go
-- 1.22.12
-- 1.23.12
-- 1.24.9
-- 1.25.3
+- 1.24.13
+- 1.25.11
+- 1.26.4
 
 ### Rust Tools
-- Cargo 1.91.0
-- Rust 1.91.0
-- Rustdoc 1.91.0
-- Rustup 1.28.2
+- Cargo 1.96.0
+- Rust 1.96.0
+- Rustdoc 1.96.0
+- Rustup 1.29.0
 
 #### Packages
-- Clippy 0.1.91
-- Rustfmt 1.8.0-stable
+- Clippy 0.1.96
+- Rustfmt 1.9.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.4.13
+- PowerShell 7.6.3
 
 #### PowerShell Modules
-- Az: 12.5.0
+- Az: 15.6.1
 - Pester: 5.7.1
-- PSScriptAnalyzer: 1.24.0
+- PSScriptAnalyzer: 1.25.0
 
 ### Xcode
 | Version        | Build    | Path                           | Symlinks                                                  |
@@ -237,58 +234,58 @@
 | DriverKit 24.2           | driverkit24.2        | 16.2          |
 
 #### Installed Simulators
-| Name         | OS     | Simulators                                                                                                                                                                                                                                                                                                                                                               |
-| ------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| iOS 17.0     | 17.0.1 | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                     |
-| iOS 17.2     | 17.2   | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                     |
-| iOS 17.4     | 17.4   | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4) |
-| iOS 17.5     | 17.5   | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                              |
-| iOS 18.1     | 18.1   | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                     |
-| iOS 18.2     | 18.2   | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                     |
-| tvOS 17.0    | 17.0   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                      |
-| tvOS 17.2    | 17.2   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                      |
-| tvOS 17.4    | 17.4   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                      |
-| tvOS 17.5    | 17.5   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                      |
-| tvOS 18.1    | 18.1   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                      |
-| tvOS 18.2    | 18.2   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                      |
-| watchOS 10.0 | 10.0   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)   |
-| watchOS 10.2 | 10.2   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)   |
-| watchOS 10.4 | 10.4   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)   |
-| watchOS 10.5 | 10.5   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                             |
-| watchOS 11.1 | 11.1   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                           |
-| watchOS 11.2 | 11.2   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                           |
+| Name         | OS     | Simulators                                                                                                                                                                                                                                                                                                                                                             |
+| ------------ | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iOS 17.0     | 17.0.1 | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                   |
+| iOS 17.2     | 17.2   | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air (5th generation)<br>iPad mini (6th generation)<br>iPad Pro (11-inch) (4th generation)<br>iPad Pro (12.9-inch) (6th generation)                                                                                                   |
+| iOS 17.4     | 17.4   | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro (12.9-inch) (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                   |
+| iOS 17.5     | 17.5   | iPhone 15<br>iPhone 15 Plus<br>iPhone 15 Pro<br>iPhone 15 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (6th generation)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                            |
+| iOS 18.1     | 18.1   | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |
+| iOS 18.2     | 18.2   | iPhone 16<br>iPhone 16 Plus<br>iPhone 16 Pro<br>iPhone 16 Pro Max<br>iPhone SE (3rd generation)<br>iPad (10th generation)<br>iPad Air 11-inch (M2)<br>iPad Air 13-inch (M2)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M4)<br>iPad Pro 13-inch (M4)                                                                                                                   |
+| tvOS 17.0    | 17.0   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
+| tvOS 17.2    | 17.2   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
+| tvOS 17.4    | 17.4   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
+| tvOS 17.5    | 17.5   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
+| tvOS 18.1    | 18.1   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
+| tvOS 18.2    | 18.2   | Apple TV<br>Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                                                                                                                                                                    |
+| watchOS 10.0 | 10.0   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm) |
+| watchOS 10.2 | 10.2   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm) |
+| watchOS 10.4 | 10.4   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 5 (40mm)<br>Apple Watch Series 5 (44mm)<br>Apple Watch Series 6 (40mm)<br>Apple Watch Series 6 (44mm)<br>Apple Watch Series 7 (41mm)<br>Apple Watch Series 7 (45mm)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm) |
+| watchOS 10.5 | 10.5   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 9 (41mm)<br>Apple Watch Series 9 (45mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                           |
+| watchOS 11.1 | 11.1   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                         |
+| watchOS 11.2 | 11.2   | Apple Watch SE (40mm) (2nd generation)<br>Apple Watch SE (44mm) (2nd generation)<br>Apple Watch Series 10 (42mm)<br>Apple Watch Series 10 (46mm)<br>Apple Watch Ultra 2 (49mm)                                                                                                                                                                                         |
 
 ### Android
-| Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                           |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                                                                                                              |
-| Android Emulator           | 36.2.12                                                                                                                                                                                                                                                                                                                                                                                           |
-| Android SDK Build-tools    | 36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0<br>33.0.2 33.0.3                                                                                                                                                                                                                                                                                                                                         |
-| Android SDK Platforms      | android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3)<br>android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 3) |
-| Android SDK Platform-Tools | 36.0.0                                                                                                                                                                                                                                                                                                                                                                                            |
-| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                            |
-| CMake                      | 3.31.5                                                                                                                                                                                                                                                                                                                                                                                            |
-| Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                |
-| Google Repository          | 58                                                                                                                                                                                                                                                                                                                                                                                                |
-| NDK                        | 26.3.11579264 (default)<br>27.3.13750724<br>28.2.13676358                                                                                                                                                                                                                                                                                                                                         |
+| Package Name               | Version                                                                                                                                                                                                                                                                                                                                       |
+| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Android Command Line Tools | 11.0                                                                                                                                                                                                                                                                                                                                          |
+| Android Emulator           | 36.6.11                                                                                                                                                                                                                                                                                                                                       |
+| Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                            |
+| Android SDK Platforms      | android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
+| Android SDK Platform-Tools | 37.0.0                                                                                                                                                                                                                                                                                                                                        |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                        |
+| CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                               |
+| Google Play services       | 49                                                                                                                                                                                                                                                                                                                                            |
+| Google Repository          | 58                                                                                                                                                                                                                                                                                                                                            |
+| NDK                        | 27.3.13750724 (default)<br>28.2.13676358<br>29.0.14206865                                                                                                                                                                                                                                                                                     |
 
 #### Environment variables
 | Name                    | Value                                               |
 | ----------------------- | --------------------------------------------------- |
 | ANDROID_HOME            | /Users/runner/Library/Android/sdk                   |
-| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
-| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/28.2.13676358 |
-| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/26.3.11579264 |
+| ANDROID_NDK             | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
+| ANDROID_NDK_HOME        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
+| ANDROID_NDK_LATEST_HOME | /Users/runner/Library/Android/sdk/ndk/29.0.14206865 |
+| ANDROID_NDK_ROOT        | /Users/runner/Library/Android/sdk/ndk/27.3.13750724 |
 | ANDROID_SDK_ROOT        | /Users/runner/Library/Android/sdk                   |
 
 ### Miscellaneous
-- Tcl/Tk 8.6.17
+- Tcl/Tk 8.6.18
 
 #### Environment variables
 | Name              | Value                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------- |
-| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v26/26.1.1-57288/ParallelsDesktop-26.1.1-57288.dmg |
+| PARALLELS_DMG_URL | https://download.parallels.com/desktop/v26/26.4.0-57513/ParallelsDesktop-26.4.0-57513.dmg |
 
 ##### Notes
 ```

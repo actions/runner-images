@@ -98,7 +98,7 @@ function Approve-XcodeLicense {
     Write-Host "Approving Xcode license for '$XcodeRootPath'..."
     $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $XcodeRootPath -ToolName "xcodebuild"
 
-    if ($os.IsVentura -or $os.IsSonoma) {
+    if ($os.IsSonoma) {
         Invoke-ValidateCommand -Command "sudo $xcodeBuildPath -license accept" -Timeout 15
     } else {
         Invoke-ValidateCommand -Command "sudo $xcodeBuildPath -license accept"
@@ -142,6 +142,15 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName 'xcodebuild'
     $validRuntimes = @("iOS", "watchOS", "tvOS")
 
+    # Xcode 27.1+ cannot resolve universal runtimes; let Xcode select the variant.
+    $archSuffix = ""
+    if ($Version -match '^\d+\.\d+') {
+        $xcodeVersion = [version]$matches[0]
+        if ($xcodeVersion -ge [version]"26.0" -and $xcodeVersion -lt [version]"27.1") {
+            $archSuffix = "-architectureVariant universal"
+        }
+    }
+
     # visionOS is only available on arm64
     if ($Arch -eq "arm64") {
         $validRuntimes += "visionOS"
@@ -150,7 +159,7 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     # Install all runtimes / skip runtimes
     if ($Runtimes -eq "default") {
         Write-Host "Installing all runtimes for Xcode $Version ..."
-        Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms" | Out-Null
+        Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms $archSuffix" | Out-Null
         return
     } elseif ($Runtimes -eq "none") {
         Write-Host "Skipping runtimes installation for Xcode $Version ..."
@@ -197,17 +206,17 @@ function Install-XcodeAdditionalSimulatorRuntimes {
                 }
                 "default" {
                     Write-Host "Installing default $platform runtime for Xcode $Version ..."
-                    Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform" | Out-Null
+                    Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform $archSuffix" | Out-Null
                     continue
                 }
                 default {
                     # Version might be a semver or a build number
                     if (($platformVersion -match "^\d{1,2}\.\d(\.\d)?$") -or ($platformVersion -match "^[a-zA-Z0-9]{6,8}$")) {
                         Write-Host "Installing $platform $platformVersion runtime for Xcode $Version ..."
-                        Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion" | Out-Null
+                        Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion $archSuffix" | Out-Null
                         continue
                     }
-                    throw "$platformVersion is not a valid value for $platform version. Valid values are 'latest' or 'skip' or a semver from 0.0 to 99.9.(9)."
+                    throw "$platformVersion is not a valid value for $platform version. Valid values are 'default', or 'skip', or a semver from 0.0 to 99.9.(9), or a build number."
                 }
             }
         }
@@ -320,19 +329,10 @@ function Invoke-ValidateCommand {
 function Update-DyldCache {
     param (
         [Parameter(Mandatory)]
-        [array] $XcodeVersions
+        [string] $Version
     )
 
-    # Find the latest stable Xcode version (excluding beta and RC versions)
-    $latestStableXcode = $XcodeVersions | Where-Object { 
-        -not ($_.link.Contains("beta") -or $_.link.Contains("Release_Candidate") -or $_.link.Contains("_RC"))
-    } | Sort-Object { [version]($_.version -split '\+')[0] } -Descending | Select-Object -First 1
-
-    if ($latestStableXcode) {
-        Write-Host "Updating dyld shared cache for Xcode $($latestStableXcode.link)..."
-        Switch-Xcode -Version $latestStableXcode.link
-        Invoke-ValidateCommand "xcrun simctl runtime dyld_shared_cache update --all"
-    } else {
-        Write-Host "No stable Xcode version found for dyld cache update."
-    }
+    Write-Host "Updating dyld shared cache for Xcode $Version ..."
+    Switch-Xcode -Version $Version
+    Invoke-ValidateCommand "xcrun simctl runtime dyld_shared_cache update --all"
 }

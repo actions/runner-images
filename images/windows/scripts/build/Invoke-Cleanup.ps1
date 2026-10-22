@@ -49,7 +49,7 @@ if ($LASTEXITCODE -ne 0) {
     throw "Failed to clean npm cache"
 }
 
-if (Test-IsWin25) {
+if (Test-IsWin25-X64) {
     $directoriesToCompact = @(
         "C:\Program Files (x86)\Android",
         "C:\Program Files\dotnet",

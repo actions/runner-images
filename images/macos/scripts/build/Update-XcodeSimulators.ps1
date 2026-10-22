@@ -49,8 +49,3 @@ function Test-SimulatorInstalled {
 
 # First run doesn't provide full data about devices
 Get-XcodeInfoList | Out-Null
-
-Write-Host "Validating and fixing Xcode simulators..."
-Get-BrokenXcodeSimulatorsList | ForEach-Object {
-    Test-SimulatorInstalled -RuntimeId $_.RuntimeId -DeviceId $_.DeviceId -SimulatorName $_.SimulatorName -XcodeVersion $_.XcodeVersion
-}

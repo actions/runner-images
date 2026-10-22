@@ -36,6 +36,10 @@ if is_ubuntu24; then
     apt-get install --no-install-recommends libicu74
 fi
 
+if is_ubuntu26; then
+    apt-get install --no-install-recommends libicu78
+fi
+
 # Install .NET SDKs and Runtimes
 mkdir -p /usr/share/dotnet
 
@@ -47,7 +51,11 @@ for version in ${dotnet_versions[@]}; do
     sdks=("${sdks[@]}" $(echo "${releases}" | jq -r '.releases[].sdks[]?.version | select(contains("preview") or contains("rc") | not)'))
 done
 
-sorted_sdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -r | uniq -w 5)
+sorted_sdks=$(echo ${sdks[@]} | tr ' ' '\n' | sort -rV | awk -F'.' '!seen[$1"."$2"."int($3/100)]++' )
+
+# Issue https://github.com/actions/runner-images/issues/13705
+# Workaround for broken .NET SDK 10.0.103 - replace it with .NET SDK 10.0.102
+sorted_sdks=$(echo "${sorted_sdks}" | sed 's/^10\.0\.103$/10.0.102/')
 
 ## Download installer from dot.net
 DOTNET_INSTALL_SCRIPT="https://dot.net/v1/dotnet-install.sh"

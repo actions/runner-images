@@ -52,6 +52,44 @@ get_toolset_value() {
     echo "$(jq -r "$query" $toolset_path)"
 }
 
+# Unauthenticated api.github.com requests are limited to 60 per hour per source IP,
+# so one refused request would otherwise kill the whole build.
+get_github_api_json() {
+    local api_path=$1
+    local url="https://api.github.com/${api_path}"
+    local response_path
+    local http_code
+
+    response_path=$(mktemp)
+    interval=15
+
+    for ((retries=5; retries>0; retries--)); do
+        if http_code=$(curl -sSL -o "$response_path" -w '%{http_code}' "$url"); then
+            if [ "$http_code" -eq 200 ]; then
+                cat "$response_path"
+                rm -f "$response_path"
+                return 0
+            fi
+            echo "Request to ${url} returned HTTP status code ${http_code}: $(head -c 500 "$response_path")" >&2
+            if [[ ! "$http_code" =~ ^(403|429|5[0-9][0-9])$ ]]; then
+                rm -f "$response_path"
+                return 1
+            fi
+        else
+            echo "Request to ${url} failed" >&2
+        fi
+
+        if [ "$retries" -le 1 ]; then
+            echo "Request to ${url} failed after all attempts" >&2
+            rm -f "$response_path"
+            return 1
+        fi
+
+        echo "Waiting $interval seconds before retrying (retries left: $retries)..." >&2
+        sleep $interval
+    done
+}
+
 get_github_releases_by_version() {
     local repo=$1
     local version=${2:-".+"}
@@ -60,10 +98,8 @@ get_github_releases_by_version() {
 
     page_size="100"
 
-    json=$(curl -fsSL "https://api.github.com/repos/${repo}/releases?per_page=${page_size}")
-
-    if [[ -z "$json" ]]; then
-        echo "Failed to get releases" >&2
+    if ! json=$(get_github_api_json "repos/${repo}/releases?per_page=${page_size}") || [[ -z "$json" ]]; then
+        echo "Failed to get releases from ${repo}" >&2
         exit 1
     fi
 
@@ -108,6 +144,9 @@ resolve_github_release_asset_url() {
     local allow_multiple_matches=${5:-false}
 
     matching_releases=$(get_github_releases_by_version "${repo}" "${version}" "${allow_pre_release}" "true")
+    if [[ -z "$matching_releases" ]]; then
+        exit 1
+    fi
     matched_url=$(echo $matching_releases | jq -r ".assets[].browser_download_url | select(${url_filter})")
 
     if [[ -z "$matched_url" ]]; then
@@ -150,6 +189,9 @@ get_checksum_from_github_release() {
     fi
 
     matching_releases=$(get_github_releases_by_version "${repo}" "${version}" "${allow_pre_release}" "true")
+    if [[ -z "$matching_releases" ]]; then
+        exit 1
+    fi
     matched_line=$(printf "$(echo $matching_releases | jq '.body')\n" | grep "$file_name")
 
     if [[ -z "$matched_line" ]]; then

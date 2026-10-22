@@ -3,11 +3,6 @@ function Get-PostgreSqlVersion {
     return $postgreSQLVersion
 }
 
-function Get-MongoDbVersion {
-    $mongoDBVersion = mongod --version | Select-Object -First 1 | Get-StringPart -Part 2 -Delimiter "v"
-    return $mongoDBVersion
-}
-
 function Get-SqliteVersion {
     $sqliteVersion = sqlite3 --version | Get-StringPart -Part 0
     return $sqliteVersion

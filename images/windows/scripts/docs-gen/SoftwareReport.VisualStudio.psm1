@@ -43,7 +43,7 @@ function Get-VisualStudioExtensions {
     )
 
     # WDK
-    if (-not (Test-IsWin25)) {
+    if (-not (Test-IsWin25-X64)) {
         $wdkVersion = Get-WDKVersion
         $wdkPackages = @(
             @{Package = 'Windows Driver Kit'; Version = $wdkVersion }

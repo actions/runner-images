@@ -7,10 +7,12 @@
 source ~/utils/utils.sh
 
 echo "Installing Rustup..."
-brew_smart_install "rustup-init"
+brew_smart_install rustup
 
-echo "Installing Rust language..."
-rustup-init -y --no-modify-path --default-toolchain=stable --profile=minimal
+export PATH="$(brew --prefix rustup)/bin:$PATH"
+echo "export PATH=\"$(brew --prefix rustup)/bin:\$PATH\"" >> "$HOME/.bashrc"
+rustup set profile minimal
+rustup default stable
 
 echo "Initialize environment variables..."
 CARGO_HOME=$HOME/.cargo

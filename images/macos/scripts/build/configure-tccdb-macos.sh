@@ -48,12 +48,7 @@ systemValuesArray=(
     "'kTCCServiceSystemPolicyNetworkVolumes','com.apple.Terminal',0,2,4,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,0,'UNUSED',NULL,0,1678990068"
 )
 for values in "${systemValuesArray[@]}"; do
-    if ! is_Ventura; then
-        # TCC access table in Sonoma and later has extra 4 columns: pid, pid_version, boot_uuid, last_reminded
-        configure_system_tccdb "$values,NULL,NULL,'UNUSED',${values##*,}"
-    else
-        configure_system_tccdb "$values"
-    fi
+    configure_system_tccdb "$values,NULL,NULL,'UNUSED',${values##*,}"
 done
 
 # $HOME/Library/Application\ Support/com.apple.TCC/TCC.db
@@ -100,10 +95,24 @@ userValuesArray=(
     "'kTCCServiceUbiquity','com.apple.mail',0,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1551941469"
 )
 for values in "${userValuesArray[@]}"; do
-    if ! is_Ventura; then
-        # TCC access table in Sonoma and later has extra 4 columns: pid, pid_version, boot_uuid, last_reminded
-        configure_user_tccdb "$values,NULL,NULL,'UNUSED',${values##*,}"
-    else
-        configure_user_tccdb "$values"
-    fi
+    configure_user_tccdb "$values,NULL,NULL,'UNUSED',${values##*,}"
 done
+
+# Pre-approve screen capture for the runner agent.
+# Granting kTCCServiceScreenCapture above is not enough on macOS 15+: capturing
+# the screen through a legacy API instead of ScreenCaptureKit's picker raises a
+# recurring "<app> is requesting to bypass the system private window picker"
+# alert, which takes focus and breaks headed UI tests. replayd tracks the
+# reminder in its own approvals file, keyed by the *responsible* process - on a
+# hosted runner that is the agent, whatever tool the job actually runs. Since
+# the file is absent in the image and every job gets a fresh VM, the reminder is
+# always overdue and the alert fires on the first capture of every job.
+# A far-future date suppresses it; replayd expands this into its own dictionary
+# form on first use and keeps the date.
+approvalsPlist="$HOME/Library/Group Containers/group.com.apple.replayd/ScreenCaptureApprovals.plist"
+mkdir -p "$(dirname "$approvalsPlist")"
+defaults write "$approvalsPlist" "/opt/hca/hosted-compute-agent" -date "3024-01-01 00:00:00 +0000"
+
+# flush the preferences cache so the write is on disk; System.Tests.ps1 asserts
+# the approval is there
+killall cfprefsd 2>/dev/null || true

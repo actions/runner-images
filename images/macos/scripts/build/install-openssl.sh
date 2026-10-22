@@ -6,6 +6,13 @@
 
 source ~/utils/utils.sh
 
+if is_Tahoe || is_GoldenGate; then
+  echo "Set openssl@3 as the default OpenSSL"
+  ln -sf "$(brew --prefix openssl@3)/bin/openssl" "$(brew --prefix)/bin/openssl"
+  invoke_tests "OpenSSL"
+  exit 0
+fi
+
 echo "Install openssl@1.1"
 
 COMMIT=d91dabd087cb0b906c92a825df9e5e5e1a4f59f8

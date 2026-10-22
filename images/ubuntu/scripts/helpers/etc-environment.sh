@@ -26,7 +26,7 @@ replace_etc_environment_variable() {
     local variable_name=$1
     local variable_value=$2
 
-    # modify /etc/environemnt in place by replacing a string that begins with variable_name
+    # modify /etc/environment in place by replacing a string that begins with variable_name
     sudo sed -i -e "s%^${variable_name}=.*$%${variable_name}=${variable_value}%" /etc/environment
 }
 
@@ -77,11 +77,11 @@ append_etc_environment_path() {
 #    of value of the exiting PATH variable exactly as it would happen with real PAM app read
 #    /etc/environment
 #
-# TODO: there might be the others variables to be processed in the same way as "PATH" variable
-#       ie MANPATH, INFOPATH, LD_*, etc. In the current implementation the values from /etc/evironments
+# TODO: there might be other variables to be processed in the same way as "PATH" variable
+#       ie MANPATH, INFOPATH, LD_*, etc. In the current implementation the values from /etc/environment
 #       replace the values of the current environment
 reload_etc_environment() {
-    # add `export ` to every variable of /etc/environemnt except PATH and eval the result shell script
+    # add `export ` to every variable of /etc/environment except PATH and eval the result shell script
     eval $(grep -v '^PATH=' /etc/environment | sed -e 's%^%export %')
     # handle PATH specially
     etc_path=$(get_etc_environment_variable PATH)

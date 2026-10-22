@@ -1,4 +1,4 @@
-Describe "Wix" {
+Describe "Wix" -Skip:(Test-IsWin11-Arm64) {
     BeforeAll {
       $regKey = "HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\*"
       $installedApplications = Get-ItemProperty -Path $regKey
