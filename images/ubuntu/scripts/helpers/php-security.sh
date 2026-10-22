@@ -6,7 +6,7 @@
 
 php_security_upstream_fixed() {
     local version=${1#*:}
-    [[ $version != *~* && ! $version =~ -(dev|alpha|beta|RC|rc)[0-9]*($|[-+]) ]] || return 1
+    [[ $version != *~* && ! $version =~ -(dev|alpha|beta|[Rr][Cc]) ]] || return 1
     version=${version%%-*}
     version=${version%%+*}
     [[ $version =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]] || return 1
