@@ -29,17 +29,29 @@ php_formula_branch() {
 phpVersionToolset=$(get_toolset_value '.php.version')
 assert_php_formula_branch "php@${phpVersionToolset}" "$phpVersionToolset"
 phpFormulas=$(brew list --formula)
+phpExistingFormulas=()
+phpExistingBranches=()
 while IFS= read -r phpFormula; do
     [[ $phpFormula =~ (^|/)php(@[0-9]+\.[0-9]+)?$ ]] || continue
     phpBranch=$(php_formula_branch "$phpFormula")
     assert_php_formula_branch "$phpFormula" "$phpBranch"
+    phpExistingFormulas+=("$phpFormula")
+    phpExistingBranches+=("$phpBranch")
 done <<< "$phpFormulas"
 
 echo Installing PHP
-brew_smart_install "php@${phpVersionToolset}"
+HOMEBREW_NO_AUTO_UPDATE=1 brew_smart_install "php@${phpVersionToolset}"
 
 echo Installing composer
-brew_smart_install "composer"
+HOMEBREW_NO_AUTO_UPDATE=1 brew_smart_install "composer"
+
+for ((phpFormulaIndex=0; phpFormulaIndex<${#phpExistingFormulas[@]}; phpFormulaIndex++)); do
+    phpFormula=${phpExistingFormulas[$phpFormulaIndex]}
+    if [[ $(php_formula_branch "$phpFormula") != "${phpExistingBranches[$phpFormulaIndex]}" ]]; then
+        echo "PHP release branch changed while installing PHP or Composer: $phpFormula." >&2
+        exit 1
+    fi
+done
 
 # Check every installed PHP formula, including Composer's PHP dependency.
 phpFormulas=$(brew list --formula)

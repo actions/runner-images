@@ -53,6 +53,9 @@ elif command == '--cellar':
     print(root / 'Cellar' / formula(args[1]))
 elif command == 'install':
     name = formula(args[-1])
+    if name == 'composer' and state.get('composer_upgrade_version'):
+        state['installed']['php'] = state['composer_upgrade_version']
+        make_keg('php', state['composer_upgrade_version'])
     if name != 'composer' and name not in state['installed'] and not state.get('skip_install'):
         state['installed'][name] = state['candidates'][name]
         make_keg(name, state['installed'][name])
@@ -142,6 +145,12 @@ class PhpMacosInstallerTests(unittest.TestCase):
         result, _, _, _ = self.run_installer(upgrade_version='9.0.0')
         self.assertNotEqual(result.returncode, 0)
         self.assertIn('release branch changed', result.stderr)
+
+    def test_composer_cannot_change_an_existing_php_release_branch(self):
+        result, commands, _, _ = self.run_installer(composer_upgrade_version='9.0.0')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn('release branch changed while installing PHP or Composer', result.stderr)
+        self.assertNotIn('upgrade ', commands)
 
     def test_versioned_and_composer_php_formulas_are_both_checked(self):
         result, commands, _, remaining = self.run_installer(
