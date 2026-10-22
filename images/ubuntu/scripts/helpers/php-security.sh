@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ################################################################################
 ##  File:  php-security.sh
 ##  Desc:  Validate PHP fixes for CVE-2026-109618 and CVE-2026-109619
