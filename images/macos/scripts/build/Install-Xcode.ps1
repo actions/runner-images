@@ -36,7 +36,6 @@ $xcodeVersions | ForEach-Object {
     Invoke-XcodeRunFirstLaunch -Version $_.link
     Install-XcodeAdditionalSimulatorRuntimes -Version $_.link -Arch $arch -Runtimes $_.install_runtimes
     if ($_.link -match '^(\d+)(?:\.(\d+))?(?:\.(\d+))?$' -and [int]$matches[1] -ge 26) {
-        Write-Host "[DEBUG] Installing additional components for Xcode $($_.link) ..."
         Install-XcodeAdditionalComponents -Version $_.link
         Update-DyldCache -Version $_.link
     }
