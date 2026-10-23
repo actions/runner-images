@@ -1,9 +1,0 @@
-{
-  "recommendations": [
-    "streetsidesoftware.code-spell-checker",
-    "hashicorp.hcl",
-    "davidanson.vscode-markdownlint",
-    "ms-vscode.powershell",
-    "timonwong.shellcheck"
-  ]
-}
