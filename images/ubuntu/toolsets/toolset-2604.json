@@ -136,6 +136,7 @@
             "libcrypt-dev",
             "libicu-dev",
             "libsqlite3-dev",
+            "libjitterentropy3-dev",
             "locales",
             "openssh-client",
             "7zip-rar",
