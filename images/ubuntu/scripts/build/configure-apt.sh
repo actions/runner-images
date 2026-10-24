@@ -43,6 +43,10 @@ EOF
 echo 'Effective apt acquire configuration'
 apt-config dump Acquire::Retries Acquire::http::Timeout Acquire::https::Timeout
 
+# Fail fast instead of hanging indefinitely on a stalled mirror connection
+echo 'Acquire::http::Timeout "30";' > /etc/apt/apt.conf.d/81-timeouts
+echo 'Acquire::https::Timeout "30";' >> /etc/apt/apt.conf.d/81-timeouts
+
 # Configure apt to always assume Y
 echo "APT::Get::Assume-Yes \"true\";" > /etc/apt/apt.conf.d/90assumeyes
 
