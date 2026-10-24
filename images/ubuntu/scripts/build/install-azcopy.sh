@@ -8,14 +8,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  azcopy_download_url="https://aka.ms/downloadazcopy-v10-linux"
-elif is_arm64; then
-  azcopy_download_url="https://aka.ms/downloadazcopy-v10-linux-arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+azcopy_download_url=$(select_by_arch "https://aka.ms/downloadazcopy-v10-linux" "https://aka.ms/downloadazcopy-v10-linux-arm64")
 
 # Install AzCopy10
 archive_path=$(download_with_retry "$azcopy_download_url")

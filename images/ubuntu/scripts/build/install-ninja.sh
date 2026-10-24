@@ -8,14 +8,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  ninja_asset_name="ninja-linux.zip"
-elif is_arm64; then
-  ninja_asset_name="ninja-linux-aarch64.zip"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+ninja_asset_name=$(select_by_arch "ninja-linux.zip" "ninja-linux-aarch64.zip")
 
 # Install ninja
 download_url=$(resolve_github_release_asset_url "ninja-build/ninja" "endswith(\"${ninja_asset_name}\")" "latest")
