@@ -12,6 +12,10 @@ on:
       - 'byoi/scripts/**/php-security.sh'
       - 'byoi/scripts/build/install-php.sh'
       - 'tests/test_php_*.py'
+      - 'tests/test_runtime_security_toolsets.py'
+      - 'images/**/toolsets/*.json'
+      - 'byoi/toolsets/*.json'
+      - 'images/**/scripts/**/install-node.sh'
       - 'tests/php-security/**'
       - '.github/workflows/php-security.yml'
 
@@ -31,6 +35,7 @@ jobs:
         run: |
           command -v dpkg php jq
           python3 -m unittest discover -s tests -p 'test_php_*.py' -v
+          python3 -m unittest discover -s tests -p 'test_runtime_security_toolsets.py' -v
       - name: Validate Windows release policy
         shell: pwsh
         run: |
