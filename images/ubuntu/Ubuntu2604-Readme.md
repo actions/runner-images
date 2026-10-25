@@ -8,7 +8,7 @@
 # Ubuntu 26.04
 - OS Version: 26.04.1 LTS
 - Kernel Version: 7.0.0-1017-azure
-- Image Version: 20261012.163.1
+- Image Version: 20261023.163.3
 - Systemd version: 259.5-0ubuntu3.4
 
 ## Installed Software
@@ -62,7 +62,7 @@ to accomplish this.
 ### Tools
 - Ansible 2.21.5
 - AzCopy 10.32.8 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.3.0
+- Bazel 9.3.1
 - Bazelisk 1.28.1
 - Bicep 0.48.1
 - Buildah 1.42.1
