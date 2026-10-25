@@ -8,7 +8,7 @@
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1064-azure
-- Image Version: 20261012.322.1
+- Image Version: 20261023.322.3
 - Systemd version: 249.11-0ubuntu3.22
 
 ## Installed Software
@@ -70,7 +70,7 @@ to accomplish this.
 - Ansible 2.17.14
 - apt-fast 1.10.0
 - AzCopy 10.32.8 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.3.0
+- Bazel 9.3.1
 - Bazelisk 1.28.1
 - Bicep 0.48.1
 - Buildah 1.23.1
