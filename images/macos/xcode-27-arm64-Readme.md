@@ -7,7 +7,7 @@
 # macOS 27
 - OS Version: macOS 27.0.1 (26A434)
 - Kernel Version: Darwin 27.0.0
-- Image Version: 20261023.0307.1
+- Image Version: 20261022.0305.3
 
 ## Installed Software
 
@@ -37,7 +37,7 @@
 - Pip3 26.2.2 (python 3.15)
 - Pipx 1.18.4
 - RubyGems 4.0.23
-- Vcpkg 2026 (build from commit 40a678a192)
+- Vcpkg 2026 (build from commit 67972e92ed)
 - Yarn 1.22.22
 
 ### Project Management
@@ -48,13 +48,13 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.34.1
+- azcopy 10.32.8
 - bazel 9.3.1
 - bazelisk 1.30.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.56.0
-- Git LFS 3.8.1
+- Git LFS 3.8.0
 - GitHub CLI 2.103.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
@@ -62,7 +62,7 @@
 - jq 1.8.2
 - OpenSSL 3.5.9 29 Sep 2026 (Library: OpenSSL 3.5.9 29 Sep 2026)
 - OpenSSL (openssl@4) 4.0.3 29 Sep 2026 (Library: OpenSSL 4.0.3 29 Sep 2026) - available on `/opt/homebrew/opt/openssl@4/bin/openssl`
-- Packer 1.16.2
+- Packer 1.16.1
 - pkgconf 3.0.10
 - Unxip 3.3
 - yq 4.54.1
@@ -70,16 +70,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.38.5
+- AWS CLI 2.38.4
 - AWS SAM CLI 1.169.0
 - AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.91.0
-- Azure CLI (azure-devops) 1.0.10
+- Azure CLI (azure-devops) 1.0.9
 - Bicep CLI 0.48.1
 - Cmake 4.4.4
 - CodeQL Action Bundle 2.27.3
 - Fastlane 2.241.1
-- SwiftFormat 0.64.1
+- SwiftFormat 0.64.0
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 27.0.0.0.1788430756
 - Xcodes 2.1.0
@@ -90,8 +90,8 @@
 - Google Chrome 156.0.8078.48
 - Google Chrome for Testing 156.0.8078.47
 - ChromeDriver 156.0.8078.47
-- Microsoft Edge 156.0.4314.42
-- Microsoft Edge WebDriver 156.0.4314.42
+- Microsoft Edge 155.0.4283.62
+- Microsoft Edge WebDriver 155.0.4283.62
 - Mozilla Firefox 158.0.1
 - geckodriver 0.37.1
 - Selenium server 4.51.0
@@ -145,7 +145,7 @@
 - Rustfmt 1.10.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.6.8
+- PowerShell 7.6.7
 
 #### PowerShell Modules
 - Az: 15.6.1
