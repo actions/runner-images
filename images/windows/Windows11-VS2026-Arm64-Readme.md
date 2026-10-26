@@ -5,7 +5,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9711
-- Image Version: 20261022.194.1
+- Image Version: 20261021.192.1
 
 ## Windows features
 
@@ -32,7 +32,7 @@
 - pip 26.2.2 (python 3.13)
 - Pipx 1.18.4
 - RubyGems 3.6.9
-- Vcpkg (build from commit a073c28e52)
+- Vcpkg (build from commit 8c5c88430a)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -49,14 +49,14 @@
 ### Tools
 - 7zip 26.05
 - aria2 1.37.0
-- azcopy 10.34.1
+- azcopy 10.32.8
 - Bazel 9.3.1
 - Bazelisk 1.28.1
 - Bicep 0.48.1
 - CMake 4.4.4
 - CodeQL Action Bundle 2.27.3
-- Git 2.56.0.windows.3
-- Git LFS 3.8.1
+- Git 2.56.0.windows.2
+- Git LFS 3.8.0
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.2
@@ -70,7 +70,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.271.0
+- Pulumi 3.270.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -81,9 +81,9 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.5.2
-- AWS CLI 2.38.4
-- AWS SAM CLI 1.170.0
+- Alibaba Cloud CLI 3.5.1
+- AWS CLI 2.38.3
+- AWS SAM CLI 1.169.0
 - AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.91.0
 - Azure DevOps CLI extension 1.0.9
@@ -106,8 +106,8 @@
 ### Browsers and Drivers
 - Google Chrome 156.0.8078.48
 - Chrome Driver 156.0.8078.47
-- Microsoft Edge 156.0.4314.42
-- Microsoft Edge Driver 156.0.4314.42
+- Microsoft Edge 155.0.4283.62
+- Microsoft Edge Driver 155.0.4283.62
 - Mozilla Firefox 158.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
@@ -157,7 +157,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Python
 - 3.12.10
-- 3.13.17
+- 3.13.16
 - 3.14.9
 - 3.15.1
 
@@ -388,11 +388,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - nbgv 3.10.94+dea9a6c17c
 
 ### PowerShell Tools
-- PowerShell 7.6.8
+- PowerShell 7.6.7
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.322
+- AWSPowershell: 5.0.320
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
