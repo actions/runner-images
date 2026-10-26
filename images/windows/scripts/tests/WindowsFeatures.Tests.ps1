@@ -19,6 +19,12 @@ Describe "WindowsFeatures" {
     }
 }
 
+Describe "TimeZone" {
+    It "System time zone is UTC" {
+        (Get-TimeZone -ErrorAction Stop).Id | Should -BeExactly "UTC"
+    }
+}
+
 Describe "DiskSpace" {
     It "The image has enough disk space" {
         $diskInfo = Get-PSDrive -Name C
