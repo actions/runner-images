@@ -19,8 +19,8 @@
 - LLVM 22.1.8
 - Node 24.22.1
 - Perl 5.32.1
-- PHP 8.4.26
-- Python 3.13.16
+- PHP 8.4.27
+- Python 3.13.17
 - Ruby 3.4.11
 
 ### Package Management
@@ -47,7 +47,7 @@
 - sbt 1.12.12
 
 ### Tools
-- 7zip 26.04
+- 7zip 26.05
 - aria2 1.37.0
 - azcopy 10.32.8
 - Bazel 9.3.1
@@ -167,7 +167,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Database tools
 - Azure CosmosDb Emulator 2.14.28.0
 - DacFx 170.4.83.3
-- MySQL 8.0.46.0
+- MySQL 8.4.13.0
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 
