@@ -45,6 +45,22 @@ Describe "tmp.mount masked" -Skip:(-not (Test-IsUbuntu26)) {
     }
 }
 
+# https://github.com/actions/runner-images/issues/15108
+# Kernel parameters set in configure-environment.sh must be applied after reboot
+Describe "Kernel parameters" {
+    It "<Name> is <Value>" -TestCases @(
+        @{ Name = "fs.inotify.max_user_watches"; Value = "655360" }
+        @{ Name = "fs.inotify.max_user_instances"; Value = "1280" }
+        @{ Name = "vm.mmap_rnd_bits"; Value = "28" }
+    ) {
+        (sudo sysctl -n $Name) | Should -Be $Value
+    }
+
+    It "vm.max_map_count is at least 262144" {
+        [int](sudo sysctl -n vm.max_map_count) | Should -BeGreaterOrEqual 262144
+    }
+}
+
 # https://github.com/actions/runner-images/issues/13770
 # Linux kernel 6.17 changed read_ahead_kb from 128 to 4096 on Azure VMs, causing I/O thrashing
 Describe "ReadAhead udev rule" -Skip:(Test-IsUbuntu22) {
