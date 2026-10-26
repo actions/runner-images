@@ -213,7 +213,6 @@
     },
     "dotnet": {
         "versions": [
-            "6.0",
             "8.0",
             "9.0",
             "10.0"
@@ -254,7 +253,7 @@
         "version": "3.9"
     },
     "mysql": {
-        "version": "8.0"
+        "version": "8.4"
     },
     "mongodb": {
         "version": "5.0"
