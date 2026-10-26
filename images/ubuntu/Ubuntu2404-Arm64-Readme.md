@@ -8,7 +8,7 @@
 # Ubuntu 24.04
 - OS Version: 24.04.5 LTS
 - Kernel Version: 6.17.0-1022-azure
-- Image Version: 20261012.149.1
+- Image Version: 20261023.149.3
 - Systemd version: 255.4-1ubuntu8.17
 
 ## Installed Software
@@ -63,7 +63,7 @@ to accomplish this.
 ### Tools
 - Ansible 2.21.5
 - AzCopy 10.32.8 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.3.0
+- Bazel 9.3.1
 - Bazelisk 1.28.1
 - Buildah 1.33.7
 - CMake 3.31.6

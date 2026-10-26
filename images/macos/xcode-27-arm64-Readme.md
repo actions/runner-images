@@ -104,12 +104,12 @@
 | GECKOWEBDRIVER  | /opt/homebrew/opt/geckodriver/bin       |
 
 ### Java
-| Version                 | Environment Variable |
-| ----------------------- | -------------------- |
-| 11.0.32+101             | JAVA_HOME_11_arm64   |
-| 17.0.20+101             | JAVA_HOME_17_arm64   |
-| 21.0.12+101.0 (default) | JAVA_HOME_21_arm64   |
-| 25.0.4+101.0            | JAVA_HOME_25_arm64   |
+| Version               | Environment Variable |
+| --------------------- | -------------------- |
+| 11.0.32+101           | JAVA_HOME_11_arm64   |
+| 17.0.21+9             | JAVA_HOME_17_arm64   |
+| 21.0.13+9.0 (default) | JAVA_HOME_21_arm64   |
+| 25.0.5+8.0            | JAVA_HOME_25_arm64   |
 
 ### Cached Tools
 
