@@ -5,7 +5,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9711
-- Image Version: 20261021.192.1
+- Image Version: 20261026.197.1
 
 ## Windows features
 
@@ -21,7 +21,7 @@
 - Perl 5.32.1
 - PHP 8.4.27
 - Python 3.13.17
-- Ruby 3.4.11
+- Ruby 3.4.12
 
 ### Package Management
 - Chocolatey 2.7.4
@@ -32,7 +32,7 @@
 - pip 26.2.2 (python 3.13)
 - Pipx 1.18.4
 - RubyGems 3.6.9
-- Vcpkg (build from commit 8c5c88430a)
+- Vcpkg (build from commit 817892b0ec)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -49,14 +49,14 @@
 ### Tools
 - 7zip 26.05
 - aria2 1.37.0
-- azcopy 10.32.8
+- azcopy 10.34.1
 - Bazel 9.3.1
 - Bazelisk 1.28.1
 - Bicep 0.48.1
 - CMake 4.4.4
 - CodeQL Action Bundle 2.27.3
-- Git 2.56.0.windows.2
-- Git LFS 3.8.0
+- Git 2.56.0.windows.3
+- Git LFS 3.8.1
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.2
@@ -70,7 +70,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.270.0
+- Pulumi 3.272.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -81,13 +81,13 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.5.1
-- AWS CLI 2.38.3
-- AWS SAM CLI 1.169.0
+- Alibaba Cloud CLI 3.5.2
+- AWS CLI 2.38.5
+- AWS SAM CLI 1.170.0
 - AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.91.0
-- Azure DevOps CLI extension 1.0.9
-- GitHub CLI 2.103.0
+- Azure DevOps CLI extension 1.0.10
+- GitHub CLI 2.103.2
 
 ### Rust Tools
 - Cargo 1.99.1
@@ -106,8 +106,8 @@
 ### Browsers and Drivers
 - Google Chrome 156.0.8078.48
 - Chrome Driver 156.0.8078.47
-- Microsoft Edge 155.0.4283.62
-- Microsoft Edge Driver 155.0.4283.62
+- Microsoft Edge 156.0.4314.42
+- Microsoft Edge Driver 156.0.4314.42
 - Mozilla Firefox 158.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
@@ -157,12 +157,12 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Python
 - 3.12.10
-- 3.13.16
+- 3.13.17
 - 3.14.9
 - 3.15.1
 
 #### Ruby
-- 3.4.11
+- 3.4.12
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.28.0
@@ -180,7 +180,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2026
 | Name                          | Version         | Path                                                   |
 | ----------------------------- | --------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.11.12315.225 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Visual Studio Enterprise 2026 | 18.11.12324.101 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -229,21 +229,21 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.Net.ComponentGroup.4.8.DeveloperTools                           | 18.11.12301.404 |
 | Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 18.11.12301.404 |
 | Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 18.11.12301.404 |
-| microsoft.net.runtime.android                                             | 10.1.1326.50504 |
-| microsoft.net.runtime.android.aot                                         | 10.1.1326.50504 |
-| microsoft.net.runtime.android.aot.net9                                    | 10.1.1326.50504 |
-| microsoft.net.runtime.android.net9                                        | 10.1.1326.50504 |
-| microsoft.net.runtime.ios                                                 | 10.1.1326.50504 |
-| microsoft.net.runtime.ios.net9                                            | 10.1.1326.50504 |
-| microsoft.net.runtime.maccatalyst                                         | 10.1.1326.50504 |
-| microsoft.net.runtime.maccatalyst.net9                                    | 10.1.1326.50504 |
-| microsoft.net.runtime.mono.tooling                                        | 10.1.1326.50504 |
-| microsoft.net.runtime.mono.tooling.net9                                   | 10.1.1326.50504 |
-| microsoft.net.sdk.emscripten                                              | 10.1.1326.50504 |
+| microsoft.net.runtime.android                                             | 10.1.1426.52326 |
+| microsoft.net.runtime.android.aot                                         | 10.1.1426.52326 |
+| microsoft.net.runtime.android.aot.net9                                    | 10.1.1426.52326 |
+| microsoft.net.runtime.android.net9                                        | 10.1.1426.52326 |
+| microsoft.net.runtime.ios                                                 | 10.1.1426.52326 |
+| microsoft.net.runtime.ios.net9                                            | 10.1.1426.52326 |
+| microsoft.net.runtime.maccatalyst                                         | 10.1.1426.52326 |
+| microsoft.net.runtime.maccatalyst.net9                                    | 10.1.1426.52326 |
+| microsoft.net.runtime.mono.tooling                                        | 10.1.1426.52326 |
+| microsoft.net.runtime.mono.tooling.net9                                   | 10.1.1426.52326 |
+| microsoft.net.sdk.emscripten                                              | 10.1.1426.52326 |
 | Microsoft.NetCore.Component.DevelopmentTools                              | 18.11.12301.404 |
-| Microsoft.NetCore.Component.Runtime.10.0                                  | 18.11.12306.233 |
-| Microsoft.NetCore.Component.Runtime.8.0                                   | 18.11.12306.233 |
-| Microsoft.NetCore.Component.SDK                                           | 18.11.12306.233 |
+| Microsoft.NetCore.Component.Runtime.10.0                                  | 18.11.12324.64  |
+| Microsoft.NetCore.Component.Runtime.8.0                                   | 18.11.12324.64  |
+| Microsoft.NetCore.Component.SDK                                           | 18.11.12324.64  |
 | Microsoft.NetCore.Component.Web                                           | 18.11.12301.404 |
 | Microsoft.VisualStudio.Component.AppInsights.Tools                        | 18.11.12301.404 |
 | Microsoft.VisualStudio.Component.AspNet                                   | 18.11.12301.404 |
@@ -355,11 +355,11 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Microsoft.VisualStudio.Workload.Node                                      | 18.9.11915.232  |
 | Microsoft.VisualStudio.Workload.Universal                                 | 18.9.11915.232  |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 18.9.11915.232  |
-| runtimes.ios                                                              | 10.1.1326.50504 |
-| runtimes.ios.net9                                                         | 10.1.1326.50504 |
-| runtimes.maccatalyst                                                      | 10.1.1326.50504 |
-| runtimes.maccatalyst.net9                                                 | 10.1.1326.50504 |
-| wasm.tools                                                                | 10.1.1326.50504 |
+| runtimes.ios                                                              | 10.1.1426.52326 |
+| runtimes.ios.net9                                                         | 10.1.1426.52326 |
+| runtimes.maccatalyst                                                      | 10.1.1426.52326 |
+| runtimes.maccatalyst.net9                                                 | 10.1.1426.52326 |
+| wasm.tools                                                                | 10.1.1426.52326 |
 | SSIS.MicrosoftDataToolsIntegrationServices                                | 2.2             |
 | VisualStudioClient.MicrosoftVisualStudio2022InstallerProjectsArm64        | 3.0.0           |
 | Windows Driver Kit                                                        | 10.1.26100.6584 |
@@ -380,19 +380,19 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 8.0.132, 8.0.206, 8.0.319, 8.0.426, 9.0.122, 9.0.205, 9.0.319, 10.0.113, 10.0.204, 10.0.303, 10.0.402
+- .NET Core SDK: 8.0.133, 8.0.206, 8.0.319, 8.0.427, 9.0.123, 9.0.205, 9.0.320, 10.0.114, 10.0.204, 10.0.303, 10.0.403
 - .NET Framework: 4.7.2, 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 8.0.6, 8.0.22, 8.0.32, 9.0.6, 9.0.21, 10.0.8, 10.0.11, 10.0.13
-- Microsoft.NETCore.App: 8.0.6, 8.0.22, 8.0.32, 9.0.6, 9.0.21, 10.0.8, 10.0.11, 10.0.13
-- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.22, 8.0.32, 9.0.6, 9.0.21, 10.0.8, 10.0.11, 10.0.13
+- Microsoft.AspNetCore.App: 8.0.6, 8.0.22, 8.0.33, 9.0.6, 9.0.22, 10.0.8, 10.0.11, 10.0.14
+- Microsoft.NETCore.App: 8.0.6, 8.0.22, 8.0.33, 9.0.6, 9.0.22, 10.0.8, 10.0.11, 10.0.14
+- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.22, 8.0.33, 9.0.6, 9.0.22, 10.0.8, 10.0.11, 10.0.14
 - nbgv 3.10.94+dea9a6c17c
 
 ### PowerShell Tools
-- PowerShell 7.6.7
+- PowerShell 7.6.9
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.320
+- AWSPowershell: 5.0.322
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
