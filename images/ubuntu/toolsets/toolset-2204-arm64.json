@@ -329,9 +329,6 @@
     "azure-devops-cli": {
         "install_script": "../scripts/build/install-azure-devops-cli.sh"
     },
-    "bicep": {
-        "install_script": "../scripts/build/install-bicep.sh"
-    },
     "apache": {
         "install_script": "../scripts/build/install-apache.sh"
     },
@@ -346,12 +343,6 @@
     },
     "firefox": {
         "install_script": "../scripts/build/install-firefox.sh"
-    },
-    "microsoft-edge": {
-        "install_script": "../scripts/build/install-microsoft-edge.sh"
-    },
-    "google-chrome": {
-        "install_script": "../scripts/build/install-google-chrome.sh"
     },
     "haskell": {
         "install_script": "../scripts/build/install-haskell.sh"
@@ -373,9 +364,6 @@
     },
     "ninja": {
         "install_script": "../scripts/build/install-ninja.sh"
-    },
-    "codeql-bundle": {
-        "install_script": "../scripts/build/install-codeql-bundle.sh"
     },
     "actions-cache": {
         "install_script": "../scripts/build/install-actions-cache.sh"
