@@ -22,6 +22,68 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Rust.psm1") -DisableNameC
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Tools.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -DisableNameChecking
 
+function Get-ToolsetConfig {
+    if ($script:ToolsetConfig) {
+        return $script:ToolsetConfig
+    }
+
+    $candidatePaths = @()
+    if ($env:TOOLSET_PATH) {
+        $candidatePaths += $env:TOOLSET_PATH
+    }
+
+    if ($env:TOOLSET_FILE) {
+        $candidatePaths += $env:TOOLSET_FILE
+    }
+
+    if ($env:IMAGE_FOLDER) {
+        $candidatePaths += Join-Path $env:IMAGE_FOLDER "toolset.json"
+    }
+
+    if ($env:INSTALLER_SCRIPT_FOLDER) {
+        $candidatePaths += Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
+    }
+
+    foreach ($candidatePath in $candidatePaths) {
+        if ($candidatePath -and (Test-Path $candidatePath)) {
+            $script:ToolsetConfig = Get-Content -Raw -Path $candidatePath | ConvertFrom-Json
+            return $script:ToolsetConfig
+        }
+    }
+
+    return $null
+}
+
+function Test-ToolsetModuleEnabled {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $ModuleName
+    )
+
+    $toolset = Get-ToolsetConfig
+    if (-not $toolset) {
+        return $true
+    }
+
+    $normalizedModuleName = $ModuleName.ToLowerInvariant()
+
+    foreach ($property in $toolset.PSObject.Properties) {
+        if ($property.Name.ToLowerInvariant() -eq $normalizedModuleName) {
+            return $true
+        }
+    }
+
+    if ($toolset.toolcache) {
+        foreach ($tool in $toolset.toolcache) {
+            if ($tool.name -and $tool.name.ToLowerInvariant() -eq $normalizedModuleName) {
+                return $true
+            }
+        }
+    }
+
+    return $false
+}
+
 # Restore file owner in user profile
 sudo chown -R ${env:USER}: $env:HOME
 
@@ -194,17 +256,21 @@ if (Test-IsUbuntu22) {
 }
 
 # Java
-$installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
+if (Test-ToolsetModuleEnabled "java") {
+    $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersionsTable))
+}
 
 # PHP Tools
-$phpTools = $installedSoftware.AddHeader("PHP Tools")
-$phpTools.AddToolVersionsListInline("PHP", $(Get-PHPVersions), "^\d+\.\d+")
-$phpTools.AddToolVersion("Composer", $(Get-ComposerVersion))
-$phpTools.AddToolVersion("PHPUnit", $(Get-PHPUnitVersion))
-$phpTools.AddNote("Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.")
+if (Test-ToolsetModuleEnabled "php") {
+    $phpTools = $installedSoftware.AddHeader("PHP Tools")
+    $phpTools.AddToolVersionsListInline("PHP", $(Get-PHPVersions), "^\d+\.\d+")
+    $phpTools.AddToolVersion("Composer", $(Get-ComposerVersion))
+    $phpTools.AddToolVersion("PHPUnit", $(Get-PHPUnitVersion))
+    $phpTools.AddNote("Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.")
+}
 
 # Haskell Tools
-if (Test-IsX64) {
+if ((Test-IsX64) -and (Test-ToolsetModuleEnabled "haskell")) {
     $haskellTools = $installedSoftware.AddHeader("Haskell Tools")
     $haskellTools.AddToolVersion("Cabal", $(Get-CabalVersion))
     $haskellTools.AddToolVersion("GHC", $(Get-GHCVersion))
@@ -213,40 +279,51 @@ if (Test-IsX64) {
 }
 
 # Rust Tools
-Initialize-RustEnvironment
-$rustTools = $installedSoftware.AddHeader("Rust Tools")
-$rustTools.AddToolVersion("Cargo", $(Get-CargoVersion))
-$rustTools.AddToolVersion("Rust", $(Get-RustVersion))
-$rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
-$rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
+if (Test-ToolsetModuleEnabled "rust") {
+    Initialize-RustEnvironment
+    $rustTools = $installedSoftware.AddHeader("Rust Tools")
+    $rustTools.AddToolVersion("Cargo", $(Get-CargoVersion))
+    $rustTools.AddToolVersion("Rust", $(Get-RustVersion))
+    $rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
+    $rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
 
-# Packages
-$rustToolsPackages = $rustTools.AddHeader("Packages")
-if (Test-IsUbuntu22) {
-    $rustToolsPackages.AddToolVersion("Bindgen", $(Get-BindgenVersion))
-    $rustToolsPackages.AddToolVersion("Cargo audit", $(Get-CargoAuditVersion))
-    $rustToolsPackages.AddToolVersion("Cargo clippy", $(Get-CargoClippyVersion))
-    $rustToolsPackages.AddToolVersion("Cargo outdated", $(Get-CargoOutdatedVersion))
-    $rustToolsPackages.AddToolVersion("Cbindgen", $(Get-CbindgenVersion))
+    # Packages
+    $rustToolsPackages = $rustTools.AddHeader("Packages")
+    if (Test-IsUbuntu22) {
+        $rustToolsPackages.AddToolVersion("Bindgen", $(Get-BindgenVersion))
+        $rustToolsPackages.AddToolVersion("Cargo audit", $(Get-CargoAuditVersion))
+        $rustToolsPackages.AddToolVersion("Cargo clippy", $(Get-CargoClippyVersion))
+        $rustToolsPackages.AddToolVersion("Cargo outdated", $(Get-CargoOutdatedVersion))
+        $rustToolsPackages.AddToolVersion("Cbindgen", $(Get-CbindgenVersion))
+    }
+    $rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 }
-$rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 
 # Browsers and Drivers
-$browsersTools = $installedSoftware.AddHeader("Browsers and Drivers")
-if (Test-IsX64) {
-    $browsersTools.AddToolVersion("Google Chrome", $(Get-ChromeVersion))
-    $browsersTools.AddToolVersion("ChromeDriver", $(Get-ChromeDriverVersion))
-    $browsersTools.AddToolVersion("Chromium", $(Get-ChromiumVersion))
-    $browsersTools.AddToolVersion("Microsoft Edge", $(Get-EdgeVersion))
-    $browsersTools.AddToolVersion("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
+if ((Test-ToolsetModuleEnabled "google-chrome") -or (Test-ToolsetModuleEnabled "microsoft-edge") -or (Test-ToolsetModuleEnabled "firefox") -or (Test-ToolsetModuleEnabled "selenium")) {
+    $browsersTools = $installedSoftware.AddHeader("Browsers and Drivers")
+    if (Test-IsX64) {
+        if (Test-ToolsetModuleEnabled "google-chrome") {
+            $browsersTools.AddToolVersion("Google Chrome", $(Get-ChromeVersion))
+            $browsersTools.AddToolVersion("ChromeDriver", $(Get-ChromeDriverVersion))
+            $browsersTools.AddToolVersion("Chromium", $(Get-ChromiumVersion))
+        }
+        if (Test-ToolsetModuleEnabled "microsoft-edge") {
+            $browsersTools.AddToolVersion("Microsoft Edge", $(Get-EdgeVersion))
+            $browsersTools.AddToolVersion("Microsoft Edge WebDriver", $(Get-EdgeDriverVersion))
+        }
+    }
+    if (Test-ToolsetModuleEnabled "selenium") {
+        $browsersTools.AddToolVersion("Selenium server", $(Get-SeleniumVersion))
+    }
+    if (Test-ToolsetModuleEnabled "firefox") {
+        $browsersTools.AddToolVersion("Mozilla Firefox", $(Get-FirefoxVersion))
+        $browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
+    }
+
+    # Environment variables
+    $browsersTools.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))
 }
-$browsersTools.AddToolVersion("Selenium server", $(Get-SeleniumVersion))
-$browsersTools.AddToolVersion("Mozilla Firefox", $(Get-FirefoxVersion))
-$browsersTools.AddToolVersion("Geckodriver", $(Get-GeckodriverVersion))
-
-
-# Environment variables
-$browsersTools.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))
 
 # .NET Tools
 $netCoreTools = $installedSoftware.AddHeader(".NET Tools")
@@ -288,7 +365,7 @@ $powerShellTools.AddHeader("PowerShell Modules").AddNodes($(Get-PowerShellModule
 
 $installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersTable))
 
-if (Test-IsX64) {
+if ((Test-IsX64) -and (Test-ToolsetModuleEnabled "android")) {
     $androidTools = $installedSoftware.AddHeader("Android")
     $androidTools.AddTable($(Build-AndroidTable))
 
