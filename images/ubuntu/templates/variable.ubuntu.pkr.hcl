@@ -153,6 +153,10 @@ variable "image_version" {
   type    = string
   default = "dev"
 }
+variable "toolset_file" {
+  type    = string
+  default = ""
+}
 variable "imagedata_file" {
   type    = string
   default = "/imagegeneration/imagedata.json"

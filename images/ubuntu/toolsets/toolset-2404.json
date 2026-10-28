@@ -69,7 +69,8 @@
     "java": {
         "default": "17",
         "versions": [ "8", "11", "17", "21", "25"],
-        "maven": "3"
+        "maven": "3",
+        "install_script": "../scripts/build/install-java-tools.sh"
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-11076708_latest.zip",
@@ -91,7 +92,8 @@
             "versions": [
                 "27", "29", "30"
             ]
-        }
+        },
+        "install_script": "../scripts/build/install-android-sdk.sh"
     },
     "powershellModules": [
         {"name": "Microsoft.Graph"},
@@ -244,36 +246,132 @@
             "17",
             "18"
         ],
-        "default_version": "18"
+        "default_version": "18",
+        "install_script": "../scripts/build/install-clang.sh"
     },
     "gcc": {
         "versions": [
             "g++-12",
             "g++-13",
             "g++-14"
-        ]
+        ],
+        "install_script": "../scripts/build/install-gcc-compilers.sh"
     },
     "gfortran": {
         "versions": [
             "gfortran-12",
             "gfortran-13",
             "gfortran-14"
-        ]
+        ],
+        "install_script": "../scripts/build/install-gfortran.sh"
     },
     "php": {
         "versions": [
             "8.3"
-        ]
+        ],
+        "install_script": "../scripts/build/install-php.sh"
     },
     "rubygems": [
         {"name": "multi_json"},
         {"name": "fastlane"}
     ],
     "selenium": {
-        "version": "4"
+        "version": "4",
+        "install_script": "../scripts/build/install-selenium.sh"
     },
     "node": {
-        "default": "22"
+        "default": "22",
+        "install_script": "../scripts/build/install-nodejs.sh"
+    },
+    "nvm": {
+        "install_script": "../scripts/build/install-nvm.sh"
+    },
+    "python": {
+        "install_script": "../scripts/build/install-python.sh"
+    },
+    "pypy": {
+        "install_script": "../scripts/build/install-pypy.sh"
+    },
+    "ruby": {
+        "install_script": "../scripts/build/install-ruby.sh"
+    },
+    "rust": {
+        "install_script": "../scripts/build/install-rust.sh"
+    },
+    "google-cloud-cli": {
+        "install_script": "../scripts/build/install-google-cloud-cli.sh"
+    },
+    "github-cli": {
+        "install_script": "../scripts/build/install-github-cli.sh"
+    },
+    "git": {
+        "install_script": "../scripts/build/install-git.sh"
+    },
+    "git-lfs": {
+        "install_script": "../scripts/build/install-git-lfs.sh"
+    },
+    "azcopy": {
+        "install_script": "../scripts/build/install-azcopy.sh"
+    },
+    "azure-cli": {
+        "install_script": "../scripts/build/install-azure-cli.sh"
+    },
+    "azure-devops-cli": {
+        "install_script": "../scripts/build/install-azure-devops-cli.sh"
+    },
+    "bicep": {
+        "install_script": "../scripts/build/install-bicep.sh"
+    },
+    "apache": {
+        "install_script": "../scripts/build/install-apache.sh"
+    },
+    "aws-tools": {
+        "install_script": "../scripts/build/install-aws-tools.sh"
+    },
+    "container-tools": {
+        "install_script": "../scripts/build/install-container-tools.sh"
+    },
+    "dotnetcore-sdk": {
+        "install_script": "../scripts/build/install-dotnetcore-sdk.sh"
+    },
+    "firefox": {
+        "install_script": "../scripts/build/install-firefox.sh"
+    },
+    "microsoft-edge": {
+        "install_script": "../scripts/build/install-microsoft-edge.sh"
+    },
+    "google-chrome": {
+        "install_script": "../scripts/build/install-google-chrome.sh"
+    },
+    "haskell": {
+        "install_script": "../scripts/build/install-haskell.sh"
+    },
+    "kubernetes-tools": {
+        "install_script": "../scripts/build/install-kubernetes-tools.sh"
+    },
+    "packer": {
+        "install_script": "../scripts/build/install-packer.sh"
+    },
+    "vcpkg": {
+        "install_script": "../scripts/build/install-vcpkg.sh"
+    },
+    "yq": {
+        "install_script": "../scripts/build/install-yq.sh"
+    },
+    "zstd": {
+        "install_script": "../scripts/build/install-zstd.sh"
+    },
+    "ninja": {
+        "install_script": "../scripts/build/install-ninja.sh"
+    },
+    "codeql-bundle": {
+        "install_script": "../scripts/build/install-codeql-bundle.sh"
+    },
+    "actions-cache": {
+        "install_script": "../scripts/build/install-actions-cache.sh"
+    },
+    "apt-common": {
+        "install_script": "../scripts/build/install-apt-common.sh"
     },
     "node_modules": [
         {
@@ -318,7 +416,8 @@
         }
     ],
     "postgresql": {
-        "version": "16"
+        "version": "16",
+        "install_script": "../scripts/build/install-postgresql.sh"
     },
     "cmake": {
         "version": "3.31.6",
@@ -326,7 +425,8 @@
             "reason": "Pinned to avoid CMake 4.0 compatibility issues",
             "link": "https://github.com/actions/runner-images/issues/11926",
             "review-at": "2026-12-01"
-        }
+        },
+        "install_script": "../scripts/build/install-cmake.sh"
     },
     "pwsh": {
         "version": "7.6"

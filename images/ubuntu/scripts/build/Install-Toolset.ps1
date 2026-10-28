@@ -36,8 +36,63 @@ function Install-Asset {
 
 $ErrorActionPreference = "Stop"
 
+function Resolve-ToolsetInstallScriptPath {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $RelativePath
+    )
+
+    if ([string]::IsNullOrWhiteSpace($RelativePath)) {
+        return $null
+    }
+
+    if ([System.IO.Path]::IsPathRooted($RelativePath)) {
+        return $RelativePath
+    }
+
+    $toolsetPath = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
+    $toolsetDirectory = Split-Path -Parent $toolsetPath
+    $scriptFileName = Split-Path -Leaf $RelativePath
+
+    $candidatePaths = @(
+        [System.IO.Path]::GetFullPath((Join-Path $toolsetDirectory $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $env:INSTALLER_SCRIPT_FOLDER $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $env:INSTALLER_SCRIPT_FOLDER $scriptFileName))
+    )
+
+    foreach ($candidate in $candidatePaths) {
+        if (Test-Path $candidate) {
+            return $candidate
+        }
+    }
+
+    return $candidatePaths[0]
+}
+
+# Run any tool-specific install scripts declared in the toolset JSON.
+$toolsetContent = Get-ToolsetContent
+$installScripts = @(
+    foreach ($property in $toolsetContent.PSObject.Properties) {
+        if ($property.Value -is [pscustomobject] -and ($property.Value.PSObject.Properties.Name -contains "install_script")) {
+            $scriptPath = Resolve-ToolsetInstallScriptPath -RelativePath $property.Value.install_script
+            if ($scriptPath) {
+                [pscustomobject]@{
+                    Tool = $property.Name
+                    ScriptPath = $scriptPath
+                }
+            }
+        }
+    }
+)
+
+foreach ($installScript in $installScripts) {
+    Write-Host "Running install script for tool '$($installScript.Tool)' from $($installScript.ScriptPath)"
+    & bash $installScript.ScriptPath
+}
+
 # Get toolcache content from toolset
-$tools = (Get-ToolsetContent).toolcache | Where-Object { $_.url -ne $null }
+$tools = $toolsetContent.toolcache | Where-Object { $_.url -ne $null }
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool
