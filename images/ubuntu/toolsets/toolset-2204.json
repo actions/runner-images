@@ -243,16 +243,6 @@
             }
         ]
     },
-    "pipx": [
-        {
-            "package": "yamllint",
-            "cmd": "yamllint"
-        },
-        {
-            "package": "ansible-core",
-            "cmd": "ansible"
-        }
-    ],
     "dotnet": {
         "versions": [
             "8.0",
@@ -410,6 +400,16 @@
     "apt-common": {
         "install_script": "../scripts/build/install-apt-common.sh"
     },
+    "pipx": [
+        {
+            "package": "yamllint",
+            "cmd": "yamllint"
+        },
+        {
+            "package": "ansible-core",
+            "cmd": "ansible"
+        }
+    ],
     "node_modules": [
         {
             "name": "grunt",
