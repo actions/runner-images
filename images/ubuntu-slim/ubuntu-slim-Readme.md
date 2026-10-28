@@ -7,7 +7,7 @@
 ***
 # Ubuntu-Slim
 - OS Version: 24.04.5 LTS
-- Image Version: 20261021.31.1
+- Image Version: 20261026.36.1
 - Systemd version: 255.4-1ubuntu8.18
 
 ## Installed Software
@@ -26,13 +26,13 @@
 - Pipx 1.18.4
 
 ### Tools
-- AzCopy 10.32.8 - available by `azcopy` and `azcopy10` aliases
+- AzCopy 10.34.1 - available by `azcopy` and `azcopy10` aliases
 - Bicep 0.48.1
 - Docker Compose 5.6.1
 - Docker-Buildx 0.38.1
 - Docker Client 29.9.2
-- Git 2.43.0
-- Git LFS 3.8.0
+- Git 2.56.0
+- Git LFS 3.8.1
 - Git-ftp 1.6.0
 - jq 1.7
 - nvm 0.40.8
@@ -41,16 +41,16 @@
 - zstd 1.5.7
 
 ### CLI Tools
-- AWS CLI 2.38.3
+- AWS CLI 2.38.5
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.169.0
+- AWS SAM CLI 1.170.0
 - Azure CLI 2.91.0
-- Azure CLI (azure-devops) 1.0.9
-- GitHub CLI 2.103.0
-- Google Cloud CLI 590.0.0
+- Azure CLI (azure-devops) 1.0.10
+- GitHub CLI 2.103.2
+- Google Cloud CLI 590.0.1
 
 ### PowerShell Tools
-- PowerShell 7.6.7
+- PowerShell 7.6.9
 
 ### Installed apt packages
 | Name                   | Version                      |
@@ -82,7 +82,7 @@
 | iproute2               | 6.1.0-1ubuntu6.4             |
 | iputils-ping           | 3:20240117-1ubuntu0.1        |
 | jq                     | 1.7.1-3ubuntu0.24.04.2       |
-| libnss3-tools          | 2:3.98-1ubuntu0.2            |
+| libnss3-tools          | 2:3.98-1ubuntu0.3            |
 | libsqlite3-dev         | 3.45.1-1ubuntu2.8            |
 | libssl-dev             | 3.0.13-0ubuntu3.16           |
 | libtool                | 2.4.7-7build1                |
