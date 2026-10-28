@@ -25,7 +25,8 @@ function Install-WindowsUpdates {
     # Get-WUHistory doesn't support Windows Server 2022
     $notFailedUpdateNames = Get-WindowsUpdateStates | Where-Object { $_.State -in ("Installed", "Running") } | Select-Object -ExpandProperty Title
     # We ignore Microsoft Defender Antivirus updates; Azure service updates AV automatically
-    $failedUpdates = $updates[0] | Where-Object Title -notmatch "Microsoft Defender Antivirus" | Where-Object { -not ($notFailedUpdateNames -match $_.KB) }
+    # We ignore Malicious Software Removal Tool (KB890830) updates; it is a malware cleanup tool, not a security fix
+    $failedUpdates = $updates[0] | Where-Object Title -notmatch "Microsoft Defender Antivirus|Malicious Software Removal Tool" | Where-Object { -not ($notFailedUpdateNames -match $_.KB) }
 
     if ( $failedUpdates ) {
         throw "Windows updates failed to install: $($failedUpdates.KB)"
