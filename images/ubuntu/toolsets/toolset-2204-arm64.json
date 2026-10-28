@@ -65,7 +65,8 @@
     "java": {
         "default": "11",
         "versions": [ "8", "11", "17", "21", "25"],
-        "maven": "3.9.12"
+        "maven": "3.9.12",
+        "install_script": "../scripts/build/install-java-tools.sh"
     },
     "android": {
         "cmdline-tools": "commandlinetools-linux-9477386_latest.zip",
@@ -304,6 +305,21 @@
     },
     "ruby": {
         "install_script": "../scripts/build/install-ruby.sh"
+    },
+    "swift": {
+        "install_script": "../scripts/build/install-swift.sh"
+    },
+    "kotlin": {
+        "install_script": "../scripts/build/install-kotlin.sh"
+    },
+    "mysql": {
+        "install_script": "../scripts/build/install-mysql.sh"
+    },
+    "nginx": {
+        "install_script": "../scripts/build/install-nginx.sh"
+    },
+    "bazel": {
+        "install_script": "../scripts/build/install-bazel.sh"
     },
     "rust": {
         "install_script": "../scripts/build/install-rust.sh"

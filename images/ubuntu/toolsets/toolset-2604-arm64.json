@@ -287,6 +287,21 @@
     "ruby": {
         "install_script": "../scripts/build/install-ruby.sh"
     },
+    "swift": {
+        "install_script": "../scripts/build/install-swift.sh"
+    },
+    "kotlin": {
+        "install_script": "../scripts/build/install-kotlin.sh"
+    },
+    "mysql": {
+        "install_script": "../scripts/build/install-mysql.sh"
+    },
+    "nginx": {
+        "install_script": "../scripts/build/install-nginx.sh"
+    },
+    "bazel": {
+        "install_script": "../scripts/build/install-bazel.sh"
+    },
     "rust": {
         "install_script": "../scripts/build/install-rust.sh"
     },
