@@ -214,16 +214,19 @@
             }
         ]
     },
-    "pipx": [
-        {
-            "package": "yamllint",
-            "cmd": "yamllint"
-        },
-        {
-            "package": "ansible-core",
-            "cmd": "ansible"
-        }
-    ],
+    "pipx": {
+        "install_script": "../scripts/build/install-pipx-packages.sh",
+        "packages": [
+            {
+                "package": "yamllint",
+                "cmd": "yamllint"
+            },
+            {
+                "package": "ansible-core",
+                "cmd": "ansible"
+            }
+        ]
+    },
     "dotnet": {
         "versions": [
             "8.0",
