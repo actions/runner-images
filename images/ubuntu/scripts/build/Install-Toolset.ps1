@@ -74,6 +74,8 @@ function Resolve-ToolsetInstallScriptPath {
 }
 
 # Run any tool-specific install scripts declared in the toolset JSON.
+# Keep the execution order explicit for dependency-sensitive tools instead of relying on JSON property order.
+# In particular, Ninja invokes CMake during validation, so CMake must be installed before Ninja.
 $toolsetContent = Get-ToolsetContent
 $installScripts = @(
     foreach ($property in $toolsetContent.PSObject.Properties) {
@@ -88,6 +90,30 @@ $installScripts = @(
         }
     }
 )
+
+$installScriptPriority = @{
+    "cmake" = 0
+    "clang" = 1
+    "gcc" = 2
+    "gfortran" = 3
+    "java" = 4
+    "android" = 5
+    "python" = 6
+    "pypy" = 7
+    "ruby" = 8
+    "node" = 9
+    "php" = 10
+    "rust" = 11
+    "ninja" = 12
+}
+
+$installScripts = $installScripts | Sort-Object {
+    if ($installScriptPriority.ContainsKey($_.Tool)) {
+        return $installScriptPriority[$_.Tool]
+    }
+
+    return 1000 + ($_.Tool.Length)
+}
 
 foreach ($installScript in $installScripts) {
     Write-Host "Running install script for tool '$($installScript.Tool)' from $($installScript.ScriptPath)"
