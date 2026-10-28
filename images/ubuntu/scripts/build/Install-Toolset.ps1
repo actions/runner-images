@@ -24,7 +24,10 @@ function Install-Asset {
     try {
         Push-Location -Path $assetFolderPath
         try {
-            Invoke-Expression "bash ./setup.sh"
+            & bash -e ./setup.sh
+            if ($LASTEXITCODE -ne 0) {
+                throw "Asset setup script failed with exit code $LASTEXITCODE"
+            }
         } finally {
             Pop-Location
         }
@@ -88,7 +91,10 @@ $installScripts = @(
 
 foreach ($installScript in $installScripts) {
     Write-Host "Running install script for tool '$($installScript.Tool)' from $($installScript.ScriptPath)"
-    & bash $installScript.ScriptPath
+    & bash -e $installScript.ScriptPath
+    if ($LASTEXITCODE -ne 0) {
+        throw "Install script for '$($installScript.Tool)' failed with exit code $LASTEXITCODE"
+    }
 }
 
 # Get toolcache content from toolset
