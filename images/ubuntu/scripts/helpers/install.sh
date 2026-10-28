@@ -46,10 +46,15 @@ download_with_retry() {
 }
 
 get_toolset_value() {
-    local toolset_path="${INSTALLER_SCRIPT_FOLDER}/toolset.json"
+    local toolset_path
     local query=$1
 
-    echo "$(jq -r "$query" $toolset_path)"
+    toolset_path=$(toolset_config_path) || {
+        echo "A toolset.json file is required to install the image toolset." >&2
+        return 1
+    }
+
+    echo "$(jq -r "$query" "$toolset_path")"
 }
 
 # Ubuntu build logic uses bash helpers; Windows uses PowerShell modules.

@@ -62,7 +62,7 @@ get_toolset_install_scripts() {
     echo "[toolset debug] toolset file exists: $(if [ -f "$toolset_path" ]; then echo yes; else echo no; fi)" >&2
     echo "[toolset debug] toolset file size: $(wc -c < "$toolset_path" 2>/dev/null || echo 0) bytes" >&2
 
-    jq -r 'to_entries[] | select(.value | type == "object") | select(has("install_script")) | select(.install_script != null) | [.key, .install_script] | @tsv' "$toolset_path" | \
+    jq -r 'to_entries[] | select(.value | type == "object") | select(.value.install_script != null) | [.key, .value.install_script] | @tsv' "$toolset_path" | \
         while IFS=$'\t' read -r key relative_path; do
             printf '[toolset debug] raw entry: key=%s relative_path=%s\n' "$key" "$relative_path" >&2
             script_path=$(resolve_install_script_path "$relative_path")
