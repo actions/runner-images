@@ -56,17 +56,28 @@ get_toolset_value() {
 # Resolve the active toolset file in the same precedence order used by the image runtime.
 toolset_config_path() {
     local candidate
+
+    echo "[toolset debug] TOOLSET_PATH=${TOOLSET_PATH:-<unset>}" >&2
+    echo "[toolset debug] TOOLSET_FILE=${TOOLSET_FILE:-<unset>}" >&2
+    echo "[toolset debug] IMAGE_FOLDER=${IMAGE_FOLDER:-<unset>}" >&2
+    echo "[toolset debug] INSTALLER_SCRIPT_FOLDER=${INSTALLER_SCRIPT_FOLDER:-<unset>}" >&2
+    echo "[toolset debug] HELPER_SCRIPTS=${HELPER_SCRIPTS:-<unset>}" >&2
+    echo "[toolset debug] pwd=$(pwd)" >&2
+
     for candidate in \
         "${TOOLSET_PATH:-}" \
         "${TOOLSET_FILE:-}" \
         "${IMAGE_FOLDER:-}/toolset.json" \
         "${INSTALLER_SCRIPT_FOLDER:-}/toolset.json"; do
+        echo "[toolset debug] checking candidate: '$candidate'" >&2
         if [ -n "$candidate" ] && [ -f "$candidate" ]; then
+            echo "[toolset debug] selected toolset: $candidate" >&2
             echo "$candidate"
             return 0
         fi
     done
 
+    echo "[toolset debug] no valid toolset file found in any candidate path" >&2
     return 1
 }
 

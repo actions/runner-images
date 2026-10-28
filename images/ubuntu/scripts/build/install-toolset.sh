@@ -11,28 +11,39 @@ resolve_install_script_path() {
     local toolset_path
     local script_path
 
+    echo "[toolset debug] resolve_install_script_path called with: '$relative_path'" >&2
+
     if [ -z "$relative_path" ]; then
+        echo "[toolset debug] empty relative path; returning failure" >&2
         return 1
     fi
 
     if [[ "$relative_path" = /* ]]; then
+        echo "[toolset debug] absolute path detected: '$relative_path'" >&2
         echo "$relative_path"
         return 0
     fi
 
     toolset_path=$(toolset_config_path) || toolset_path="${INSTALLER_SCRIPT_FOLDER}/toolset.json"
+    echo "[toolset debug] resolved toolset_path for script lookup: '$toolset_path'" >&2
+    echo "[toolset debug] dirname(toolset_path)=$(dirname "$toolset_path")" >&2
+    echo "[toolset debug] INSTALLER_SCRIPT_FOLDER=${INSTALLER_SCRIPT_FOLDER:-<unset>}" >&2
+    echo "[toolset debug] HELPER_SCRIPTS=${HELPER_SCRIPTS:-<unset>}" >&2
 
     for script_path in \
         "$(dirname "$toolset_path")/$relative_path" \
         "${INSTALLER_SCRIPT_FOLDER}/$relative_path" \
         "${INSTALLER_SCRIPT_FOLDER}/$(basename "$relative_path")" \
         "$HELPER_SCRIPTS/$relative_path"; do
+        echo "[toolset debug] candidate script path: '$script_path'" >&2
         if [ -f "$script_path" ]; then
+            echo "[toolset debug] found script file: '$script_path'" >&2
             echo "$script_path"
             return 0
         fi
     done
 
+    echo "[toolset debug] no matching script file found, returning original relative path: '$relative_path'" >&2
     echo "$relative_path"
 }
 
@@ -47,15 +58,17 @@ get_toolset_install_scripts() {
         return 1
     }
 
-    while IFS=$'\t' read -r tool_name script_path; do
-        [ -n "$tool_name" ] || continue
-        printf '%s\t%s\n' "$tool_name" "$script_path"
-    done < <(
-        jq -r 'to_entries[] | select(.value | type == "object") | select(has("install_script")) | select(.install_script != null) | [.key, .install_script] | @tsv' "$toolset_path" | \
+    echo "[toolset debug] loading toolset from: $toolset_path" >&2
+    echo "[toolset debug] toolset file exists: $(if [ -f "$toolset_path" ]; then echo yes; else echo no; fi)" >&2
+    echo "[toolset debug] toolset file size: $(wc -c < "$toolset_path" 2>/dev/null || echo 0) bytes" >&2
+
+    jq -r 'to_entries[] | select(.value | type == "object") | select(has("install_script")) | select(.install_script != null) | [.key, .install_script] | @tsv' "$toolset_path" | \
         while IFS=$'\t' read -r key relative_path; do
-            printf '%s\t%s\n' "$key" "$(resolve_install_script_path "$relative_path")"
+            printf '[toolset debug] raw entry: key=%s relative_path=%s\n' "$key" "$relative_path" >&2
+            script_path=$(resolve_install_script_path "$relative_path")
+            printf '[toolset debug] resolved script path for %s => %s\n' "$key" "$script_path" >&2
+            printf '%s\t%s\n' "$key" "$script_path"
         done
-    )
 }
 
 main() {
