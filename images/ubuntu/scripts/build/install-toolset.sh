@@ -86,8 +86,11 @@ main() {
         printf '%s\t%s\t%s\n' "$priority_value" "$tool_name" "$script_path"
     done < <(get_toolset_install_scripts) | sort -t $'\t' -k1,1n -k2,2 | while IFS=$'\t' read -r _ tool_name script_path; do
         [ -n "$tool_name" ] || continue
-        echo "Running install script for tool '$tool_name' from $script_path"
+
+        echo "##[section]Installing tool '$tool_name'"
+        echo "##[command]Executing $script_path"
         bash -e "$script_path"
+        echo "##[section]Completed tool '$tool_name'"
     done
 }
 

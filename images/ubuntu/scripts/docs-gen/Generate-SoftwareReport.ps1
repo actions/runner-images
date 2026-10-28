@@ -84,6 +84,33 @@ function Test-ToolsetModuleEnabled {
     return $false
 }
 
+function Add-ToolVersionsListIfAvailable {
+    param(
+        [Parameter(Mandatory = $true)]
+        [object] $Node,
+
+        [Parameter(Mandatory = $true)]
+        [string] $ToolName,
+
+        [Parameter(Mandatory = $false)]
+        [object[]] $Versions,
+
+        [Parameter(Mandatory = $true)]
+        [string] $MajorVersionRegex
+    )
+
+    if ($null -eq $Versions) {
+        return
+    }
+
+    $versionList = @($Versions)
+    if ($versionList.Count -eq 0) {
+        return
+    }
+
+    $Node.AddToolVersionsListInline($ToolName, $versionList, $MajorVersionRegex)
+}
+
 # Restore file owner in user profile
 sudo chown -R ${env:USER}: $env:HOME
 
@@ -99,12 +126,18 @@ $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 # Language and Runtime
 $languageAndRuntime = $installedSoftware.AddHeader("Language and Runtime")
 $languageAndRuntime.AddToolVersion("Bash", $(Get-BashVersion))
-$languageAndRuntime.AddToolVersionsListInline("Clang", $(Get-ClangToolVersions -ToolName "clang"), "^\d+")
-$languageAndRuntime.AddToolVersionsListInline("Clang-format", $(Get-ClangToolVersions -ToolName "clang-format"), "^\d+")
-$languageAndRuntime.AddToolVersionsListInline("Clang-tidy", $(Get-ClangTidyVersions), "^\d+")
 $languageAndRuntime.AddToolVersion("Dash", $(Get-DashVersion))
-$languageAndRuntime.AddToolVersionsListInline("GNU C++", $(Get-CPPVersions), "^\d+")
-$languageAndRuntime.AddToolVersionsListInline("GNU Fortran", $(Get-FortranVersions), "^\d+")
+if (Test-ToolsetModuleEnabled "clang") {
+    Add-ToolVersionsListIfAvailable -Node $languageAndRuntime -ToolName "Clang" -Versions $(Get-ClangToolVersions -ToolName "clang") -MajorVersionRegex "^\d+"
+    Add-ToolVersionsListIfAvailable -Node $languageAndRuntime -ToolName "Clang-format" -Versions $(Get-ClangToolVersions -ToolName "clang-format") -MajorVersionRegex "^\d+"
+    Add-ToolVersionsListIfAvailable -Node $languageAndRuntime -ToolName "Clang-tidy" -Versions $(Get-ClangTidyVersions) -MajorVersionRegex "^\d+"
+}
+if (Test-ToolsetModuleEnabled "gcc") {
+    Add-ToolVersionsListIfAvailable -Node $languageAndRuntime -ToolName "GNU C++" -Versions $(Get-CPPVersions) -MajorVersionRegex "^\d+"
+}
+if (Test-ToolsetModuleEnabled "gfortran") {
+    Add-ToolVersionsListIfAvailable -Node $languageAndRuntime -ToolName "GNU Fortran" -Versions $(Get-FortranVersions) -MajorVersionRegex "^\d+"
+}
 if ((Test-IsUbuntu22-X64) -or (Test-IsUbuntu24-X64)) {
     $languageAndRuntime.AddToolVersion("Julia", $(Get-JuliaVersion))
 }
@@ -113,10 +146,16 @@ if (Test-IsUbuntu22) {
     $languageAndRuntime.AddToolVersion("Mono", $(Get-MonoVersion))
     $languageAndRuntime.AddToolVersion("MSBuild", $(Get-MsbuildVersion))
 }
-$languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
+if (Test-ToolsetModuleEnabled "node") {
+    $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
+}
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
-$languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
-$languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
+if (Test-ToolsetModuleEnabled "python") {
+    $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
+}
+if (Test-ToolsetModuleEnabled "ruby") {
+    $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
+}
 $languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
 
 
@@ -326,9 +365,11 @@ if ((Test-ToolsetModuleEnabled "google-chrome") -or (Test-ToolsetModuleEnabled "
 }
 
 # .NET Tools
-$netCoreTools = $installedSoftware.AddHeader(".NET Tools")
-$netCoreTools.AddToolVersionsListInline(".NET Core SDK", $(Get-DotNetCoreSdkVersions), "^\d+\.\d+\.\d")
-$netCoreTools.AddNodes($(Get-DotnetTools))
+if ((Test-ToolsetModuleEnabled "dotnet") -or (Test-ToolsetModuleEnabled "dotnetcore-sdk")) {
+    $netCoreTools = $installedSoftware.AddHeader(".NET Tools")
+    Add-ToolVersionsListIfAvailable -Node $netCoreTools -ToolName ".NET Core SDK" -Versions $(Get-DotNetCoreSdkVersions) -MajorVersionRegex "^\d+\.\d+\.\d"
+    $netCoreTools.AddNodes($(Get-DotnetTools))
+}
 
 # Databases
 $databasesTools = $installedSoftware.AddHeader("Databases")
