@@ -386,16 +386,18 @@
     "apt-common": {
         "install_script": "../scripts/build/install-apt-common.sh"
     },
-    "node_modules": [
-        {
-            "name": "n",
-            "command": "n"
-        },
-        {
-            "name": "yarn",
-            "command": "yarn"
-        }
-    ],
+    "node_modules": {
+        "packages": [
+            {
+                "name": "n",
+                "command": "n"
+            },
+            {
+                "name": "yarn",
+                "command": "yarn"
+            }
+        ]
+    },
     "postgresql": {
         "version": "18",
         "install_script": "../scripts/build/install-postgresql.sh"
