@@ -1,4 +1,6 @@
-Describe "Apache" {
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameChecking
+
+Describe "Apache" -Skip:(-not (Test-ToolsetModuleEnabled "apache")) {
     It "Apache CLI" {
         "apache2 -v" | Should -ReturnZeroExitCode
     }
@@ -10,7 +12,7 @@ Describe "Apache" {
     }
 }
 
-Describe "Nginx" {
+Describe "Nginx" -Skip:(-not (Test-ToolsetModuleEnabled "nginx")) {
     It "Nginx CLI" {
         "nginx -v" | Should -ReturnZeroExitCode
     }

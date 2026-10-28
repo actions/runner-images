@@ -333,9 +333,13 @@ $netCoreTools.AddNodes($(Get-DotnetTools))
 # Databases
 $databasesTools = $installedSoftware.AddHeader("Databases")
 $databasesTools.AddToolVersion("sqlite3", $(Get-SqliteVersion))
-$databasesTools.AddNode($(Build-PostgreSqlSection))
-$databasesTools.AddNode($(Build-MySQLSection))
-if (Test-IsUbuntu22-X64) {
+if (Test-ToolsetModuleEnabled "postgresql") {
+    $databasesTools.AddNode($(Build-PostgreSqlSection))
+}
+if (Test-ToolsetModuleEnabled "mysql") {
+    $databasesTools.AddNode($(Build-MySQLSection))
+}
+if ((Test-IsUbuntu22-X64) -and (Test-ToolsetModuleEnabled "mssql-tools")) {
     $databasesTools.AddNode($(Build-MSSQLToolsSection))
 }
 
@@ -363,7 +367,9 @@ $powerShellTools = $installedSoftware.AddHeader("PowerShell Tools")
 $powerShellTools.AddToolVersion("PowerShell", $(Get-PowershellVersion))
 $powerShellTools.AddHeader("PowerShell Modules").AddNodes($(Get-PowerShellModules))
 
-$installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersTable))
+if ((Test-ToolsetModuleEnabled "apache") -or (Test-ToolsetModuleEnabled "nginx")) {
+    $installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersTable))
+}
 
 if ((Test-IsX64) -and (Test-ToolsetModuleEnabled "android")) {
     $androidTools = $installedSoftware.AddHeader("Android")

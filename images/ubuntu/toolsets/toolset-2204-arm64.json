@@ -369,9 +369,6 @@
     "packer": {
         "install_script": "../scripts/build/install-packer.sh"
     },
-    "vcpkg": {
-        "install_script": "../scripts/build/install-vcpkg.sh"
-    },
     "yq": {
         "install_script": "../scripts/build/install-yq.sh"
     },

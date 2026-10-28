@@ -15,7 +15,7 @@ Describe "Bicep" -Skip:(Test-IsArm64) {
     }
 }
 
-Describe "Rust" {
+Describe "Rust" -Skip:(-not (Test-ToolsetModuleEnabled "rust")) {
     BeforeAll {
         $env:PATH = "/etc/skel/.cargo/bin:/etc/skel/.rustup/bin:$($env:PATH)"
         $env:RUSTUP_HOME = "/etc/skel/.rustup"
@@ -119,7 +119,7 @@ Describe "Ansible" {
     }
 }
 
-Describe "Bazel" {
+Describe "Bazel" -Skip:(-not (Test-ToolsetModuleEnabled "bazel")) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bazel" }
         @{ ToolName = "bazelisk" }
