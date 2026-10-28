@@ -52,6 +52,42 @@ get_toolset_value() {
     echo "$(jq -r "$query" $toolset_path)"
 }
 
+# Ubuntu build logic uses bash helpers; Windows uses PowerShell modules.
+# Resolve the active toolset file in the same precedence order used by the image runtime.
+toolset_config_path() {
+    local candidate
+    for candidate in \
+        "${TOOLSET_PATH:-}" \
+        "${TOOLSET_FILE:-}" \
+        "${IMAGE_FOLDER:-}/toolset.json" \
+        "${INSTALLER_SCRIPT_FOLDER:-}/toolset.json"; do
+        if [ -n "$candidate" ] && [ -f "$candidate" ]; then
+            echo "$candidate"
+            return 0
+        fi
+    done
+
+    return 1
+}
+
+# Returns success if the named tool/module exists in the active toolset definition.
+toolset_module_enabled() {
+    local module_name="${1:-}"
+    local toolset_path
+
+    if [ -z "$module_name" ]; then
+        return 1
+    fi
+
+    toolset_path=$(toolset_config_path) || return 0
+
+    jq -e --arg name "$module_name" '
+        (to_entries | any(.key | ascii_downcase == ($name | ascii_downcase)))
+        or
+        (.toolcache[]? | ((.name // "") | ascii_downcase) == ($name | ascii_downcase))
+    ' "$toolset_path" >/dev/null 2>&1
+}
+
 # Unauthenticated api.github.com requests are limited to 60 per hour per source IP,
 # so one refused request would otherwise kill the whole build.
 get_github_api_json() {
