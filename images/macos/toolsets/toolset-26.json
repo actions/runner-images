@@ -1,7 +1,6 @@
 {
     "xcode": {
         "default": "26.6",
-        "command_line_tools": "26.6",
         "x64": {
             "versions": [
                 {

@@ -6,12 +6,10 @@
 
 source ~/utils/utils.sh
 
-# Optional pin to match the default Xcode, a newer CLT SDK may be unreadable by its linker (e.g. GHC fails to link)
+# Optional pin, e.g. to match the default Xcode, since a newer CLT SDK may be unreadable by its linker
 # https://github.com/actions/runner-images/issues/14940
-# jq is not built into macOS 14 and is installed later via Homebrew
-if ! is_Sonoma; then
-    clt_version=$(get_toolset_value '.xcode.command_line_tools // empty')
-fi
+# Without a pin the latest CLT is installed. jq isn't available on macOS 14 yet, so the pin is ignored there
+clt_version=$(get_toolset_value '.xcode.command_line_tools // empty')
 
 is_clt_installed() {
     clt_path=$(xcode-select -p 2>&1)
