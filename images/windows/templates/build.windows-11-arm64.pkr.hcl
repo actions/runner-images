@@ -19,7 +19,7 @@ build {
 
   provisioner "file" {
     destination = "${var.image_folder}\\toolset.json"
-    source      = var.toolset_file != "" ? var.toolset_file : "${path.root}/../toolsets/toolset-win-11-arm64.json"
+    source      = trimspace(var.toolset_file) != "" && fileexists(trimspace(var.toolset_file)) ? trimspace(var.toolset_file) : "${path.root}/../toolsets/toolset-win-11-arm64.json"
   }
 
   provisioner "file" {

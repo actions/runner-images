@@ -200,9 +200,9 @@ class ToolVersionsListNode: BaseToolNode {
     [String] $ListType
 
     ToolVersionsListNode([String] $ToolName, [String[]] $Versions, [String] $MajorVersionRegex, [String] $ListType): base($ToolName) {
-        $this.Versions = $Versions
+        $this.Versions = @($Versions)
 
-         if ([String]::IsNullOrEmpty($Versions)) {
+        if ($null -eq $this.Versions -or $this.Versions.Count -eq 0 -or ($this.Versions | Where-Object { -not [String]::IsNullOrWhiteSpace($_) }).Count -eq 0) {
             throw "ToolVersionsListNode '$($this.ToolName)' has empty versions list"
         }
 
