@@ -51,7 +51,7 @@ get_toolset_install_scripts() {
         [ -n "$tool_name" ] || continue
         printf '%s\t%s\n' "$tool_name" "$script_path"
     done < <(
-        jq -r 'to_entries[] | select(.value.install_script != null) | [.key, .value.install_script] | @tsv' "$toolset_path" | \
+        jq -r 'to_entries[] | select((.value | type) == "object" and (.value.install_script != null)) | [.key, .value.install_script] | @tsv' "$toolset_path" | \
         while IFS=$'\t' read -r key relative_path; do
             printf '%s\t%s\n' "$key" "$(resolve_install_script_path "$relative_path")"
         done
