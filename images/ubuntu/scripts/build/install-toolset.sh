@@ -59,6 +59,9 @@ get_toolset_install_scripts() {
 }
 
 main() {
+    
+    printf '==> Starting toolset install\n'
+
     local tool_name
     local script_path
     local priority_value
@@ -86,12 +89,22 @@ main() {
         printf '%s\t%s\t%s\n' "$priority_value" "$tool_name" "$script_path"
     done < <(get_toolset_install_scripts) | sort -t $'\t' -k1,1n -k2,2 | while IFS=$'\t' read -r _ tool_name script_path; do
         [ -n "$tool_name" ] || continue
+        script_count=$((script_count + 1))
 
-        echo "##[section]Installing tool '$tool_name'"
-        echo "##[command]Executing $script_path"
+        printf '==> Installing tool %s\n' "$tool_name"
+        printf '##[section]Installing tool %s\n' "$tool_name"
+        printf '##[command]Executing %s\n' "$script_path"
         bash -e "$script_path"
-        echo "##[section]Completed tool '$tool_name'"
+        printf '==> Completed tool %s\n' "$tool_name"
+        printf '##[section]Completed tool %s\n' "$tool_name"
     done
+
+    if [ "$script_count" -eq 0 ]; then
+        printf '==> No toolset install scripts were selected for this build.\n'
+        printf '##[warning]No toolset install scripts selected; skipping tool installation.\n'
+    else
+        printf '==> Toolset install complete (%s scripts executed).\n' "$script_count"
+    fi
 }
 
 main "$@"

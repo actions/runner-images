@@ -77,15 +77,37 @@ class HeaderNode: BaseNode {
     }
 
     [void] AddToolVersion([String] $ToolName, [String] $Version) {
+        if ([String]::IsNullOrWhiteSpace($ToolName) -or [String]::IsNullOrWhiteSpace($Version)) {
+            return
+        }
+
         $this.AddNode([ToolVersionNode]::new($ToolName, $Version))
     }
 
     [void] AddToolVersionsList([String] $ToolName, [String[]] $Version, [String] $MajorVersionRegex) {
-        $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, "List"))
+        if ([String]::IsNullOrWhiteSpace($ToolName)) {
+            return
+        }
+
+        $filteredVersions = @($Version | Where-Object { -not [String]::IsNullOrWhiteSpace($_) })
+        if ($filteredVersions.Count -eq 0) {
+            return
+        }
+
+        $this.AddNode([ToolVersionsListNode]::new($ToolName, $filteredVersions, $MajorVersionRegex, "List"))
     }
 
     [void] AddToolVersionsListInline([String] $ToolName, [String[]] $Version, [String] $MajorVersionRegex) {
-        $this.AddNode([ToolVersionsListNode]::new($ToolName, $Version, $MajorVersionRegex, "Inline"))
+        if ([String]::IsNullOrWhiteSpace($ToolName)) {
+            return
+        }
+
+        $filteredVersions = @($Version | Where-Object { -not [String]::IsNullOrWhiteSpace($_) })
+        if ($filteredVersions.Count -eq 0) {
+            return
+        }
+
+        $this.AddNode([ToolVersionsListNode]::new($ToolName, $filteredVersions, $MajorVersionRegex, "Inline"))
     }
      
     [void] AddTable([PSCustomObject[]] $Table) {
@@ -200,12 +222,12 @@ class ToolVersionsListNode: BaseToolNode {
     [String] $ListType
 
     ToolVersionsListNode([String] $ToolName, [String[]] $Versions, [String] $MajorVersionRegex, [String] $ListType): base($ToolName) {
-        $this.Versions = @($Versions)
-
-        if ($null -eq $this.Versions -or $this.Versions.Count -eq 0 -or ($this.Versions | Where-Object { -not [String]::IsNullOrWhiteSpace($_) }).Count -eq 0) {
+        $filteredVersions = @($Versions | Where-Object { -not [String]::IsNullOrWhiteSpace($_) })
+        if ($filteredVersions.Count -eq 0) {
             throw "ToolVersionsListNode '$($this.ToolName)' has empty versions list"
         }
 
+        $this.Versions = $filteredVersions
         $this.MajorVersionRegex = [Regex]::new($MajorVersionRegex)
         $this.ListType = $ListType
         $this.ValidateMajorVersionRegex()
