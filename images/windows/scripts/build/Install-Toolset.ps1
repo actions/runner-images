@@ -45,13 +45,22 @@ function Resolve-ToolsetInstallScriptPath {
         return $RelativePath
     }
 
+    $normalizedRelativePath = $RelativePath.Replace('/', '\')
+    while ($normalizedRelativePath.StartsWith('.\') -or $normalizedRelativePath.StartsWith('..\')) {
+        $normalizedRelativePath = $normalizedRelativePath.Substring(3)
+    }
+    $normalizedRelativePath = $normalizedRelativePath.TrimStart('\')
+
     $toolsetPath = Join-Path $env:IMAGE_FOLDER "toolset.json"
     $toolsetDirectory = Split-Path -Parent $toolsetPath
     $scriptFileName = Split-Path -Leaf $RelativePath
 
     $candidatePaths = @(
         [System.IO.Path]::GetFullPath((Join-Path $toolsetDirectory $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $toolsetDirectory $normalizedRelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $env:IMAGE_FOLDER $normalizedRelativePath)),
         [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot $normalizedRelativePath)),
         [System.IO.Path]::GetFullPath((Join-Path (Split-Path -Parent $PSScriptRoot) $RelativePath)),
         [System.IO.Path]::GetFullPath((Join-Path $env:IMAGE_FOLDER $scriptFileName)),
         [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot $scriptFileName))
@@ -63,7 +72,7 @@ function Resolve-ToolsetInstallScriptPath {
         }
     }
 
-    return $candidatePaths[0]
+    throw "Unable to resolve install script '$RelativePath'. Checked: $($candidatePaths -join '; ')"
 }
 
 $toolsetContent = Get-ToolsetContent

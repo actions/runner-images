@@ -91,7 +91,6 @@ build {
       "${path.root}/../scripts/build/Install-Docker.ps1",
       "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
       "${path.root}/../scripts/build/Install-DockerCompose.ps1",
-      "${path.root}/../scripts/build/Install-PowershellCore.ps1",
       "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1",
       "${path.root}/../scripts/build/Install-TortoiseSvn.ps1"
     ]
@@ -126,17 +125,8 @@ build {
       "${path.root}/../scripts/build/Install-VSExtensions.ps1",
       "${path.root}/../scripts/build/Install-AzureCli.ps1",
       "${path.root}/../scripts/build/Install-AzureDevOpsCli.ps1",
-      "${path.root}/../scripts/build/Install-ChocolateyPackages.ps1",
-      "${path.root}/../scripts/build/Install-JavaTools.ps1",
-      "${path.root}/../scripts/build/Install-Kotlin.ps1",
-      "${path.root}/../scripts/build/Install-OpenSSL.ps1"
+      "${path.root}/../scripts/build/Install-ChocolateyPackages.ps1"
     ]
-  }
-
-  provisioner "powershell" {
-    execution_policy = "remotesigned"
-    environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
-    scripts          = ["${path.root}/../scripts/build/Install-ServiceFabricSDK.ps1"]
   }
 
   provisioner "windows-restart" {
@@ -164,8 +154,7 @@ build {
       "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
       "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",
       "${path.root}/../scripts/build/Configure-Shell.ps1",
-      "${path.root}/../scripts/build/Configure-DeveloperMode.ps1",
-      "${path.root}/../scripts/build/Install-LLVM.ps1"
+      "${path.root}/../scripts/build/Configure-DeveloperMode.ps1"
     ]
   }
 
