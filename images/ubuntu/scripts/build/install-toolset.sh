@@ -59,12 +59,15 @@ get_toolset_install_scripts() {
 }
 
 main() {
-    
     printf '==> Starting toolset install\n'
 
     local tool_name
     local script_path
     local priority_value
+    local script_count=0
+    local sorted_toolset_file
+
+    sorted_toolset_file=$(mktemp)
 
     while IFS=$'\t' read -r tool_name script_path; do
         [ -n "$tool_name" ] || continue
@@ -87,7 +90,9 @@ main() {
         esac
 
         printf '%s\t%s\t%s\n' "$priority_value" "$tool_name" "$script_path"
-    done < <(get_toolset_install_scripts) | sort -t $'\t' -k1,1n -k2,2 | while IFS=$'\t' read -r _ tool_name script_path; do
+    done < <(get_toolset_install_scripts) | sort -t $'\t' -k1,1n -k2,2 > "$sorted_toolset_file"
+
+    while IFS=$'\t' read -r _ tool_name script_path; do
         [ -n "$tool_name" ] || continue
         script_count=$((script_count + 1))
 
@@ -97,7 +102,9 @@ main() {
         bash -e "$script_path"
         printf '==> Completed tool %s\n' "$tool_name"
         printf '##[section]Completed tool %s\n' "$tool_name"
-    done
+    done < "$sorted_toolset_file"
+
+    rm -f "$sorted_toolset_file"
 
     if [ "$script_count" -eq 0 ]; then
         printf '==> No toolset install scripts were selected for this build.\n'
