@@ -17,6 +17,62 @@ Import-Module (Join-Path $PSScriptRoot "SoftwareReport.Java.psm1") -DisableNameC
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.WebServers.psm1") -DisableNameChecking
 Import-Module (Join-Path $PSScriptRoot "SoftwareReport.VisualStudio.psm1") -DisableNameChecking
 
+function Get-ToolsetConfig {
+    if ($script:ToolsetConfig) {
+        return $script:ToolsetConfig
+    }
+
+    $candidatePaths = @()
+    if ($env:IMAGE_FOLDER) {
+        $candidatePaths += Join-Path $env:IMAGE_FOLDER "toolset.json"
+    }
+
+    if ($env:TOOLSET_PATH) {
+        $candidatePaths += $env:TOOLSET_PATH
+    }
+
+    $candidatePaths += Join-Path $PSScriptRoot "..\..\toolsets\toolset.json"
+
+    foreach ($candidatePath in $candidatePaths) {
+        if ($candidatePath -and (Test-Path $candidatePath)) {
+            $script:ToolsetConfig = Get-Content -Raw -Path $candidatePath | ConvertFrom-Json
+            return $script:ToolsetConfig
+        }
+    }
+
+    return $null
+}
+
+function Test-ToolsetModuleEnabled {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $ModuleName
+    )
+
+    $toolset = Get-ToolsetConfig
+    if (-not $toolset) {
+        return $true
+    }
+
+    $normalizedModuleName = $ModuleName.ToLowerInvariant()
+
+    foreach ($property in $toolset.PSObject.Properties) {
+        if ($property.Name.ToLowerInvariant() -eq $normalizedModuleName) {
+            return $true
+        }
+    }
+
+    if ($toolset.toolcache) {
+        foreach ($tool in $toolset.toolcache) {
+            if ($tool.name -and $tool.name.ToLowerInvariant() -eq $normalizedModuleName) {
+                return $true
+            }
+        }
+    }
+
+    return $false
+}
+
 # Software report
 $softwareReport = [SoftwareReport]::new($(Build-OSInfoSection))
 $optionalFeatures = $softwareReport.Root.AddHeader("Windows features")
@@ -144,22 +200,24 @@ $cliTools.AddToolVersion("Azure DevOps CLI extension", $(Get-AzureDevopsExtVersi
 $cliTools.AddToolVersion("GitHub CLI", $(Get-GHVersion))
 
 # Rust Tools
-Initialize-RustEnvironment
-$rustTools = $installedSoftware.AddHeader("Rust Tools")
-$rustTools.AddToolVersion("Cargo", $(Get-RustCargoVersion))
-$rustTools.AddToolVersion("Rust", $(Get-RustVersion))
-$rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
-$rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
+if (Test-ToolsetModuleEnabled "rust") {
+    Initialize-RustEnvironment
+    $rustTools = $installedSoftware.AddHeader("Rust Tools")
+    $rustTools.AddToolVersion("Cargo", $(Get-RustCargoVersion))
+    $rustTools.AddToolVersion("Rust", $(Get-RustVersion))
+    $rustTools.AddToolVersion("Rustdoc", $(Get-RustdocVersion))
+    $rustTools.AddToolVersion("Rustup", $(Get-RustupVersion))
 
-$rustToolsPackages = $rustTools.AddHeader("Packages")
-if (-not (Test-IsWin25-X64)) {
-    $rustToolsPackages.AddToolVersion("bindgen", $(Get-BindgenVersion))
-    $rustToolsPackages.AddToolVersion("cargo-audit", $(Get-CargoAuditVersion))
-    $rustToolsPackages.AddToolVersion("cargo-outdated", $(Get-CargoOutdatedVersion))
-    $rustToolsPackages.AddToolVersion("cbindgen", $(Get-CbindgenVersion))
+    $rustToolsPackages = $rustTools.AddHeader("Packages")
+    if (-not (Test-IsWin25-X64)) {
+        $rustToolsPackages.AddToolVersion("bindgen", $(Get-BindgenVersion))
+        $rustToolsPackages.AddToolVersion("cargo-audit", $(Get-CargoAuditVersion))
+        $rustToolsPackages.AddToolVersion("cargo-outdated", $(Get-CargoOutdatedVersion))
+        $rustToolsPackages.AddToolVersion("cbindgen", $(Get-CbindgenVersion))
+    }
+    $rustToolsPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
+    $rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 }
-$rustToolsPackages.AddToolVersion("Clippy", $(Get-RustClippyVersion))
-$rustToolsPackages.AddToolVersion("Rustfmt", $(Get-RustfmtVersion))
 
 # Browsers and Drivers
 $browsersAndWebdrivers = $installedSoftware.AddHeader("Browsers and Drivers")
@@ -167,59 +225,73 @@ $browsersAndWebdrivers.AddNodes($(Build-BrowserSection))
 $browsersAndWebdrivers.AddHeader("Environment variables").AddTable($(Build-BrowserWebdriversEnvironmentTable))
 
 # Java
-$installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
+if (Test-ToolsetModuleEnabled "java") {
+    $installedSoftware.AddHeader("Java").AddTable($(Get-JavaVersions))
+}
 
 # Shells
 $installedSoftware.AddHeader("Shells").AddTable($(Get-ShellTarget))
 
 # MSYS2
-$msys2 = $installedSoftware.AddHeader("MSYS2")
-$msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
+if (Test-ToolsetModuleEnabled "MsysPackages") {
+    $msys2 = $installedSoftware.AddHeader("MSYS2")
+    $msys2.AddToolVersion("Pacman", $(Get-PacmanVersion))
 
-$notes = @'
+    $notes = @'
 Location: C:\msys64
 
 Note: MSYS2 is pre-installed on image but not added to PATH.
 '@
-$msys2.AddHeader("Notes").AddNote($notes)
+    $msys2.AddHeader("Notes").AddNote($notes)
+}
 
 # Cached Tools
 $installedSoftware.AddHeader("Cached Tools").AddNodes($(Build-CachedToolsSection))
 
 # Databases
-if (Test-IsX64) {
+if ((Test-IsX64) -and ((Test-ToolsetModuleEnabled "postgresql") -or (Test-ToolsetModuleEnabled "mongodb"))) {
     $databases = $installedSoftware.AddHeader("Databases")
-    $databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
-    $databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
+    if (Test-ToolsetModuleEnabled "postgresql") {
+        $databases.AddHeader("PostgreSQL").AddTable($(Get-PostgreSQLTable))
+    }
+    if (Test-ToolsetModuleEnabled "mongodb") {
+        $databases.AddHeader("MongoDB").AddTable($(Get-MongoDBTable))
+    }
 }
 
 # Database tools
-$databaseTools = $installedSoftware.AddHeader("Database tools")
-$databaseTools.AddToolVersion("Azure CosmosDb Emulator", $(Get-AzCosmosDBEmulatorVersion))
-$databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
-$databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
-$databaseTools.AddToolVersion("SQL OLEDB Driver 18", $(Get-SQLOLEDBDriver18Version))
-$databaseTools.AddToolVersion("SQL OLEDB Driver 19", $(Get-SQLOLEDBDriver19Version))
-if (Test-IsX64) {
-    $databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
-    $databaseTools.AddToolVersion("MongoDB Shell (mongosh)", $(Get-MongoshVersion))
+if ((Test-ToolsetModuleEnabled "postgresql") -or (Test-ToolsetModuleEnabled "mongodb")) {
+    $databaseTools = $installedSoftware.AddHeader("Database tools")
+    $databaseTools.AddToolVersion("Azure CosmosDb Emulator", $(Get-AzCosmosDBEmulatorVersion))
+    $databaseTools.AddToolVersion("DacFx", $(Get-DacFxVersion))
+    $databaseTools.AddToolVersion("MySQL", $(Get-MySQLVersion))
+    $databaseTools.AddToolVersion("SQL OLEDB Driver 18", $(Get-SQLOLEDBDriver18Version))
+    $databaseTools.AddToolVersion("SQL OLEDB Driver 19", $(Get-SQLOLEDBDriver19Version))
+    if (Test-IsX64) {
+        $databaseTools.AddToolVersion("SQLPS", $(Get-SQLPSVersion))
+        if (Test-ToolsetModuleEnabled "mongodb") {
+            $databaseTools.AddToolVersion("MongoDB Shell (mongosh)", $(Get-MongoshVersion))
+        }
+    }
 }
 
 # Web Servers
 $installedSoftware.AddHeader("Web Servers").AddTable($(Build-WebServersSection))
 
 # Visual Studio
-$vsTable = Get-VisualStudioVersion
-$visualStudio = $installedSoftware.AddHeader($vsTable.Name)
-$visualStudio.AddTable($vsTable)
+if (Test-ToolsetModuleEnabled "visualStudio") {
+    $vsTable = Get-VisualStudioVersion
+    $visualStudio = $installedSoftware.AddHeader($vsTable.Name)
+    $visualStudio.AddTable($vsTable)
 
-$workloads = $visualStudio.AddHeader("Workloads, components and extensions")
-$workloads.AddTable((Get-VisualStudioComponents) + (Get-VisualStudioExtensions))
+    $workloads = $visualStudio.AddHeader("Workloads, components and extensions")
+    $workloads.AddTable((Get-VisualStudioComponents) + (Get-VisualStudioExtensions))
 
-$msVisualCpp = $visualStudio.AddHeader("Microsoft Visual C++")
-$msVisualCpp.AddTable($(Get-VisualCPPComponents))
+    $msVisualCpp = $visualStudio.AddHeader("Microsoft Visual C++")
+    $msVisualCpp.AddTable($(Get-VisualCPPComponents))
 
-$visualStudio.AddToolVersionsList("Installed Windows SDKs", $(Get-WindowsSDKs).Versions, '^.+')
+    $visualStudio.AddToolVersionsList("Installed Windows SDKs", $(Get-WindowsSDKs).Versions, '^.+')
+}
 
 # .NET Core Tools
 $netCoreTools = $installedSoftware.AddHeader(".NET Core Tools")
@@ -239,7 +311,7 @@ $psModules.AddNodes($(Get-PowerShellModules))
 
 
 # Android
-if (Test-IsX64) {
+if ((Test-IsX64) -and (Test-ToolsetModuleEnabled "android")) {
     $android = $installedSoftware.AddHeader("Android")
     $android.AddTable($(Build-AndroidTable))
 
