@@ -13,6 +13,7 @@ for real_tool in /usr/bin/apt /usr/bin/apt-get /usr/bin/apt-key; do
 #!/bin/sh
 
 i=1
+network_retries=0
 while [ \$i -le 30 ];do
   err=\$(mktemp)
   rc=0
@@ -20,6 +21,7 @@ while [ \$i -le 30 ];do
   cat \$err >&2
 
   retry=false
+  delay=5
 
   if grep -q 'Could not get lock' \$err;then
     # apt db locked needs retry
@@ -45,6 +47,12 @@ while [ \$i -le 30 ];do
   elif grep -q 'dpkg frontend is locked by another process' \$err;then
     # dpkg process is busy by another process
     retry=true
+  elif [ \$rc -ne 0 ] && [ \$network_retries -lt 9 ] && ! grep -q ' 404 ' \$err \\
+    && grep -qE 'Failed to fetch|Unable to fetch some archives|Hash Sum mismatch|Could not connect to|Connection timed out| 50[234] ' \$err;then
+    # transient mirror or network failure (404 is not transient), retry up to 10 attempts with a longer delay
+    retry=true
+    delay=30
+    network_retries=\$((network_retries + 1))
   fi
 
   rm \$err
@@ -52,7 +60,7 @@ while [ \$i -le 30 ];do
     break
   fi
 
-  sleep 5
+  sleep \$delay
   echo "...retry \$i"
   i=\$((i + 1))
 done
