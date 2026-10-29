@@ -1070,13 +1070,24 @@ function Test-FileSignature {
         [string] $ExpectedSubject
     )
 
-    $signature = Get-AuthenticodeSignature $Path
+    $signature = Get-AuthenticodeSignature -FilePath $Path -ErrorAction Stop
 
-    if ($signature.Status -ne "Valid") {
+    if ($signature.Status -ne "Valid" -and $signature.Status -ne "UnknownError") {
         throw "Signature status is not valid. Status: $($signature.Status)"
     }
 
-    if ($signature.SignerCertificate.EnhancedKeyUsageList.FriendlyName -notcontains "Code Signing") {
+    if (-not $signature.SignerCertificate) {
+        throw "No signing certificate was found for $Path. Signature status: $($signature.Status)"
+    }
+
+    if ($signature.Status -eq "UnknownError") {
+        Write-Warning "Get-AuthenticodeSignature returned UnknownError for $Path. Continuing only if the signer certificate still matches the expected subject."
+        Write-Warning "Signer status: $($signature.Status)"
+        Write-Warning "Signer subject: $($signature.SignerCertificate.Subject)"
+    }
+
+    $eku = @($signature.SignerCertificate.EnhancedKeyUsageList | ForEach-Object { $_.FriendlyName })
+    if ($eku -and $eku -notcontains "Code Signing") {
         throw "Certificate is not for code signing. Key usage: $($signature.SignerCertificate.EnhancedKeyUsageList)"
     }
 

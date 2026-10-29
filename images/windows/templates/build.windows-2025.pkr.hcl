@@ -59,6 +59,18 @@ build {
     inline            = ["bcdedit.exe /set TESTSIGNING ON"]
   }
 
+
+  provisioner "powershell" {
+    elevated_password = "${var.install_password}"
+    elevated_user     = "${var.install_user}"
+    environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
+    scripts           = [
+      "${path.root}/../scripts/build/Install-RootCA.ps1",
+    ]
+    valid_exit_codes  = [0, 3010]
+  }
+
+  
   provisioner "powershell" {
     environment_vars = ["IMAGE_VERSION=${var.image_version}", "IMAGE_OS=${var.image_os}", "AGENT_TOOLSDIRECTORY=${var.agent_tools_directory}", "IMAGEDATA_FILE=${var.imagedata_file}", "IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     execution_policy = "unrestricted"
@@ -100,12 +112,12 @@ build {
     restart_timeout = "30m"
   }
 
+
   provisioner "powershell" {
     elevated_password = "${var.install_password}"
     elevated_user     = "${var.install_user}"
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts           = [
-      "${path.root}/../scripts/build/Install-RootCA.ps1",
       "${path.root}/../scripts/build/Install-VisualStudio.ps1",
       "${path.root}/../scripts/build/Install-KubernetesTools.ps1"
     ]
