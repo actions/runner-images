@@ -13,6 +13,9 @@ if is_Tahoe || is_GoldenGate; then
   exit 0
 fi
 
+echo "Unlink openssl@4 before installing openssl@1.1"
+brew unlink openssl@4
+
 echo "Install openssl@1.1"
 
 COMMIT=d91dabd087cb0b906c92a825df9e5e5e1a4f59f8
@@ -21,6 +24,12 @@ FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/o
 mkdir -p "$(dirname $FORMULA_PATH)"
 curl -fsSL $FORMULA_URL -o $FORMULA_PATH
 HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install openssl@1.1
+
+echo "Unlink openssl@1.1 before creating symlinks"
+brew unlink openssl@1.1
+
+echo "Relinking openssl@4"
+brew link openssl@4
 
 if ! is_Arm64; then
   # Symlink brew openssl@1.1 to `/usr/local/bin` as Homebrew refuses
