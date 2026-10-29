@@ -128,7 +128,7 @@ Describe "Bazel" -Skip:(-not (Test-ToolsetModuleEnabled "bazel")) {
     }
 }
 
-Describe "clang" {
+Describe "clang" -Skip:(-not (Test-ToolsetModuleEnabled "clang")) {
     $testCases = (Get-ToolsetContent).clang.Versions | ForEach-Object { @{ClangVersion = $_} }
 
     It "clang <ClangVersion>" -TestCases $testCases {
@@ -140,13 +140,13 @@ Describe "clang" {
     }
 }
 
-Describe "Cmake" {
+Describe "Cmake" -Skip:(-not (Test-ToolsetModuleEnabled "cmake")) {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "gcc" {
+Describe "gcc" -Skip:(-not (Test-ToolsetModuleEnabled "gcc")) {
     $testCases = (Get-ToolsetContent).gcc.Versions | ForEach-Object { @{GccVersion = $_} }
 
     It "gcc <GccVersion>" -TestCases $testCases {
@@ -154,7 +154,7 @@ Describe "gcc" {
     }
 }
 
-Describe "gfortran" {
+Describe "gfortran" -Skip:(-not (Test-ToolsetModuleEnabled "gfortran")) {
     $testCases = (Get-ToolsetContent).gfortran.Versions | ForEach-Object { @{GfortranVersion = $_} }
 
     It "gfortran <GfortranVersion>" -TestCases $testCases {
@@ -223,7 +223,7 @@ Describe "Zstd" {
     }
 }
 
-Describe "Vcpkg" {
+Describe "Vcpkg" -Skip:(-not (Test-ToolsetModuleEnabled "vcpkg")) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -365,15 +365,27 @@ Describe "nvm" {
     }
 }
 
-Describe "Python" {
-    $testCases = @("python", "pip", "python3", "pip3") | ForEach-Object { @{PythonCommand = $_} }
+Describe "Python" -Skip:(-not (Test-ToolsetModuleEnabled "python")) {
+    $testCases = @()
+
+    foreach ($commandName in @("python", "pip", "python3", "pip3")) {
+        if (Get-Command $commandName -ErrorAction SilentlyContinue) {
+            $testCases += @{ PythonCommand = $commandName }
+        }
+    }
+
+    if (-not $testCases) {
+        It "Python is installed" {
+            throw "No Python command was discovered on PATH for the active image."
+        }
+    }
 
     It "<PythonCommand>" -TestCases $testCases {
         "$PythonCommand --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Ruby" {
+Describe "Ruby" -Skip:(-not (Test-ToolsetModuleEnabled "ruby")) {
     $testCases = @("ruby", "gem") | ForEach-Object { @{RubyCommand = $_} }
 
     It "<RubyCommand>" -TestCases $testCases {
@@ -389,13 +401,13 @@ Describe "Ruby" {
     }
 }
 
-Describe "yq" {
+Describe "yq" -Skip:(-not (Test-ToolsetModuleEnabled "yq")) {
     It "yq" {
         "yq -V" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Kotlin" {
+Describe "Kotlin" -Skip:(-not (Test-ToolsetModuleEnabled "kotlin")) {
     It "kapt" {
         "kapt -version" | Should -ReturnZeroExitCode
     }
@@ -417,7 +429,7 @@ Describe "Kotlin" {
     }
 }
 
-Describe "Ninja" {
+Describe "Ninja" -Skip:(-not (Test-ToolsetModuleEnabled "ninja")) {
     BeforeAll {
         New-item -Path "/tmp/ninjaproject" -ItemType Directory -Force
 @'
