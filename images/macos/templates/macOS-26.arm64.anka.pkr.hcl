@@ -269,6 +269,12 @@ build {
   provisioner "shell" {
     environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    script           = "${path.root}/../scripts/build/remove-emudhra-certs.sh"
+  }
+
+  provisioner "shell" {
+    environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
+    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     script           = "${path.root}/../scripts/build/install-openssl.sh"
   }
 
@@ -297,7 +303,6 @@ build {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts         = [
       "${path.root}/../scripts/build/configure-hostname.sh",
-      "${path.root}/../scripts/build/remove-emudhra-certs.sh",
       "${path.root}/../scripts/build/configure-system.sh"
     ]
   }
