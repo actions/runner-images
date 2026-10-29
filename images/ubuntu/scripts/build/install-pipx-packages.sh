@@ -9,7 +9,7 @@ source $HELPER_SCRIPTS/install.sh
 
 export PATH="$PATH:/opt/pipx_bin"
 
-pipx_packages=$(get_toolset_value ".pipx[] .package")
+pipx_packages=$(get_toolset_value '.pipx.packages[].package')
 
 for package in $pipx_packages; do
     echo "Install $package into default python"

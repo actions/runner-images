@@ -53,6 +53,7 @@ get_toolset_value() {
         echo "A toolset.json file is required to install the image toolset." >&2
         return 1
     }
+    echo "[toolset debug] get_toolset_value" >&2
 
     echo "$(jq -r "$query" "$toolset_path")"
 }
@@ -62,17 +63,11 @@ get_toolset_value() {
 toolset_config_path() {
     local candidate
 
-    echo "[toolset debug] TOOLSET_PATH=${TOOLSET_PATH:-<unset>}" >&2
-    echo "[toolset debug] TOOLSET_FILE=${TOOLSET_FILE:-<unset>}" >&2
-    echo "[toolset debug] IMAGE_FOLDER=${IMAGE_FOLDER:-<unset>}" >&2
     echo "[toolset debug] INSTALLER_SCRIPT_FOLDER=${INSTALLER_SCRIPT_FOLDER:-<unset>}" >&2
     echo "[toolset debug] HELPER_SCRIPTS=${HELPER_SCRIPTS:-<unset>}" >&2
     echo "[toolset debug] pwd=$(pwd)" >&2
 
     for candidate in \
-        "${TOOLSET_PATH:-}" \
-        "${TOOLSET_FILE:-}" \
-        "${IMAGE_FOLDER:-}/toolset.json" \
         "${INSTALLER_SCRIPT_FOLDER:-}/toolset.json"; do
         echo "[toolset debug] checking candidate: '$candidate'" >&2
         if [ -n "$candidate" ] && [ -f "$candidate" ]; then
@@ -96,7 +91,7 @@ toolset_module_enabled() {
     fi
 
     toolset_path=$(toolset_config_path) || return 0
-
+    echo "[toolset debug] toolset_module_enabled" >&2
     jq -e --arg name "$module_name" '
         (to_entries | any(.key | ascii_downcase == ($name | ascii_downcase)))
         or
