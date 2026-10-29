@@ -165,7 +165,7 @@
             "ftp",
             "lz4",
             "m4",
-            "netcat",
+            "netcat-openbsd",
             "net-tools",
             "7zip",
             "parallel",
