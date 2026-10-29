@@ -15,6 +15,13 @@ Describe "Node.js" {
     }
 
     It "Node.js version should correspond to the version in the toolset" {
-        node --version | Should -BeLike "v$($toolsetContent.node.default).*"
+        $expectedNodeVersion = [string]$toolsetContent.node.default
+        $actualNodeVersion = (node --version).Trim()
+
+        if ($expectedNodeVersion -match '^\d+\.\d+\.\d+$') {
+            $actualNodeVersion | Should -Be "v$expectedNodeVersion"
+        } else {
+            $actualNodeVersion | Should -BeLike "v$expectedNodeVersion.*"
+        }
     }
 }
