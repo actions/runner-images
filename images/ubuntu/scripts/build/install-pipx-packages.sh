@@ -7,9 +7,17 @@
 # Source the helpers for use with the script
 source $HELPER_SCRIPTS/install.sh
 
-export PATH="$PATH:/opt/pipx_bin"
+export PIPX_BIN_DIR="/opt/pipx_bin"
+export PIPX_HOME="/opt/pipx"
+export PATH="$PATH:$PIPX_BIN_DIR:$HOME/.local/bin"
+python3 -m pipx ensurepath >/dev/null 2>&1 || true
 
 pipx_packages=$(get_toolset_value '.pipx.packages[].package')
+
+if [[ -z "$pipx_packages" ]]; then
+    echo "No pipx packages defined in the active toolset. Skipping installation and validation."
+    exit 0
+fi
 
 for package in $pipx_packages; do
     echo "Install $package into default python"
