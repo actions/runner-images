@@ -33,7 +33,7 @@ function Get-CommandResult {
     )
 
     # Ensure pipx-installed tools are visible even when the test runner invokes a fresh bash process.
-    $env:PATH = "/opt/pipx_bin:$HOME/.local/bin:$env:PATH"
+    $env:PATH = "/opt/pipx_bin:$HOME/.local/bin:${env:PATH}"
 
     # Some pipx applications are installed into a dedicated bin dir and are not visible in a fresh shell unless we resolve them explicitly.
     $resolvedCommand = $Command.Trim()
@@ -42,7 +42,7 @@ function Get-CommandResult {
         foreach ($candidateDir in @('/opt/pipx_bin', "$HOME/.local/bin", '/usr/local/bin')) {
             $resolvedPath = Join-Path $candidateDir $candidateName
             if (Test-Path $resolvedPath) {
-                $env:PATH = "$candidateDir:$env:PATH"
+                $env:PATH = "${candidateDir}:${env:PATH}"
                 break
             }
         }
