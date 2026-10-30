@@ -40,13 +40,12 @@ case "$subjects" in
     ;;
 esac
 
-# Leave the original unchanged if the replacement has the same contents.
-if cmp -s "$bundle" "$temporary"; then
-  exit 0
-fi
-
-# Preserve the first backup, then install with Apple's recommended ownership and permissions.
+# Preserve the first backup - it is needed for tests
 [ -e "$bundle.orig" ] || sudo -n cp -p "$bundle" "$bundle.orig"
-sudo -n install -m 0644 -o root -g wheel "$temporary" "$bundle"
+
+# Replace the bundle when its contents have changed
+if ! cmp -s "$bundle" "$temporary"; then
+  sudo -n install -m 0644 -o root -g wheel "$temporary" "$bundle"
+fi
 
 CERTIFICATE_BUNDLE_PATH="$bundle" invoke_tests "Certificates"
