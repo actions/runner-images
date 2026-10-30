@@ -1067,22 +1067,23 @@ function Test-FileSignature {
         [Parameter(Mandatory = $true, Position = 0)]
         [string] $Path,
         [Parameter(Mandatory = $true, Position = 1)]
-        [string] $ExpectedSubject
+        [string] $ExpectedSubject,
+        [string[]] $AllowedNonValidStatuses = @("UnknownError")
     )
 
     $signature = Get-AuthenticodeSignature -FilePath $Path -ErrorAction Stop
     $signatureStatus = $signature.Status
 
-    if ($signatureStatus -ne "Valid" -and $signatureStatus -ne "UnknownError") {
-        throw "Signature status is not valid. Status: $signatureStatus"
+    if ($signatureStatus -ne "Valid" -and ($AllowedNonValidStatuses -notcontains [string]$signatureStatus)) {
+        throw "Signature status is not valid. Status: $signatureStatus. Allowed non-valid statuses: $($AllowedNonValidStatuses -join ', ')"
     }
 
     if (-not $signature.SignerCertificate) {
         throw "No signing certificate was found for $Path. Signature status: $signatureStatus"
     }
 
-    if ($signatureStatus -eq "UnknownError") {
-        Write-Warning "Get-AuthenticodeSignature returned UnknownError for $Path. Continuing only if the signer certificate still matches the expected subject."
+    if ($signatureStatus -ne "Valid") {
+        Write-Warning "Get-AuthenticodeSignature returned $signatureStatus for $Path. Continuing only if the signer certificate still matches the expected subject."
         Write-Warning "Signer status: $signatureStatus"
         Write-Warning "Signer subject: $($signature.SignerCertificate.Subject)"
     }

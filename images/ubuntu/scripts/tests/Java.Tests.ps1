@@ -21,9 +21,19 @@ Describe "Java" {
         "$ToolName -version" | Should -ReturnZeroExitCode
     }
 
-    $testCases = $jdkVersions | ForEach-Object { @{Version = $_ } }
+    $testCases = @(
+        $jdkVersions |
+            ForEach-Object { [string]$_ } |
+            ForEach-Object { $_.Trim() } |
+            Where-Object { $_ } |
+            ForEach-Object { @{ Version = $_ } }
+    )
+
+    $testCases.Count | Should -BeGreaterThan 0
 
     It "Java <Version>" -TestCases $testCases {
+        param([string] $Version)
+
         $javaVersion = [string]$Version
         $javaVariableValue = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${javaVersion}_X64")
         $javaVariableValue | Should -Not -BeNullOrEmpty
