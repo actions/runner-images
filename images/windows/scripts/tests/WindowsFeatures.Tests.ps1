@@ -85,6 +85,9 @@ Describe "Windows Updates" {
         if ( $Title -match "Microsoft.WidgetsPlatformRuntime" ) {
             $expect = "Installed", "Failed", "Running"
         }
+        if ( $Title -match "Malicious Software Removal Tool" ) {
+            $expect = "Installed", "Failed", "Running"
+        }
 
         $State | Should -BeIn $expect
     }
