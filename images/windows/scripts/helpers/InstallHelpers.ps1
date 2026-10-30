@@ -1091,8 +1091,20 @@ function Test-FileSignature {
         throw "Certificate is not for code signing. Key usage: $($signature.SignerCertificate.EnhancedKeyUsageList)"
     }
 
-    if ($signature.SignerCertificate.Subject -ne $ExpectedSubject) {
-        throw "Certificate subject does not match. Subject: $($signature.SignerCertificate.Subject)"
+    $actualSubject = $signature.SignerCertificate.Subject
+    $expectedSubjectParts = @($ExpectedSubject -split ',') | ForEach-Object { $_.Trim() } | Where-Object { $_ }
+    $actualSubjectParts = @($actualSubject -split ',') | ForEach-Object { $_.Trim() } | Where-Object { $_ }
+
+    $subjectMatches = $true
+    foreach ($expectedPart in $expectedSubjectParts) {
+        if (-not ($actualSubjectParts | Where-Object { $_ -ieq $expectedPart })) {
+            $subjectMatches = $false
+            break
+        }
+    }
+
+    if (-not $subjectMatches) {
+        throw "Certificate subject does not match. Expected: $ExpectedSubject; Actual: $actualSubject"
     }
 
     Write-Output "Signature for $Path is valid"
