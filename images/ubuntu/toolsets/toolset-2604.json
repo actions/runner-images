@@ -133,6 +133,7 @@
             "libyaml-dev",
             "libtool",
             "libssl-dev",
+            "libjitterentropy3-dev",
             "libcrypt-dev",
             "libicu-dev",
             "libsqlite3-dev",
