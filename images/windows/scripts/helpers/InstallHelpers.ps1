@@ -1040,37 +1040,6 @@ function Test-FileChecksum {
     }
 }
 
-function Refresh-RootCertificateStore {
-    <#
-    .SYNOPSIS
-        Refreshes the Windows root certificate store from Windows Update and imports the generated SST.
-    #>
-
-    $sstFile = "$env:TEMP\roots.sst"
-
-    try {
-        $null = & certutil.exe -generateSSTFromWU $sstFile 2>&1 | Out-String
-        if ($LASTEXITCODE -ne 0) {
-            Write-Warning "certutil generateSSTFromWU failed while refreshing the trusted root store."
-            return $false
-        }
-
-        $null = & certutil.exe -dump $sstFile 2>&1 | Out-String
-        if ($LASTEXITCODE -ne 0) {
-            Write-Warning "certutil dump failed while refreshing the trusted root store."
-            return $false
-        }
-
-        Import-Certificate -FilePath $sstFile -CertStoreLocation Cert:\LocalMachine\Root | Out-Null
-        Write-Host "Root certificate store refreshed successfully."
-        return $true
-    }
-    catch {
-        Write-Warning "Root certificate refresh failed: $($_.Exception.Message)"
-        return $false
-    }
-}
-
 function Test-FileSignature {
     <#
     .SYNOPSIS
@@ -1113,18 +1082,9 @@ function Test-FileSignature {
     }
 
     if ($signatureStatus -eq "UnknownError") {
-        Write-Warning "Get-AuthenticodeSignature returned UnknownError for $Path. Refreshing root certificates and retrying once."
+        Write-Warning "Get-AuthenticodeSignature returned UnknownError for $Path. Continuing only if the signer certificate still matches the expected subject."
         Write-Warning "Signer status: $signatureStatus"
         Write-Warning "Signer subject: $($signature.SignerCertificate.Subject)"
-
-        if (Refresh-RootCertificateStore) {
-            $signature = Get-AuthenticodeSignature -FilePath $Path -ErrorAction Stop
-            $signatureStatus = $signature.Status
-        }
-    }
-
-    if ($signatureStatus -ne "Valid" -and $signatureStatus -ne "UnknownError") {
-        throw "Signature status is not valid after root-store refresh. Status: $signatureStatus"
     }
 
     $eku = @($signature.SignerCertificate.EnhancedKeyUsageList | ForEach-Object { $_.FriendlyName })
@@ -1141,21 +1101,6 @@ function Test-FileSignature {
         if (-not ($actualSubjectParts | Where-Object { $_ -ieq $expectedPart })) {
             $subjectMatches = $false
             break
-        }
-    }
-
-    if (-not $subjectMatches) {
-        if (Refresh-RootCertificateStore) {
-            $signature = Get-AuthenticodeSignature -FilePath $Path -ErrorAction Stop
-            $actualSubject = $signature.SignerCertificate.Subject
-            $actualSubjectParts = @($actualSubject -split ',') | ForEach-Object { $_.Trim() } | Where-Object { $_ }
-            $subjectMatches = $true
-            foreach ($expectedPart in $expectedSubjectParts) {
-                if (-not ($actualSubjectParts | Where-Object { $_ -ieq $expectedPart })) {
-                    $subjectMatches = $false
-                    break
-                }
-            }
         }
     }
 
