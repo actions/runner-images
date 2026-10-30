@@ -24,16 +24,15 @@ Describe "Java" {
     $testCases = $jdkVersions | ForEach-Object { @{Version = $_ } }
 
     It "Java <Version>" -TestCases $testCases {
-        $javaVariableValue = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${Version}_X64")
+        $javaVersion = [string]$Version
+        $javaVariableValue = [System.Environment]::GetEnvironmentVariable("JAVA_HOME_${javaVersion}_X64")
         $javaVariableValue | Should -Not -BeNullOrEmpty
         $javaPath = Join-Path $javaVariableValue "bin/java"
 
         "`"$javaPath`" -version" | Should -ReturnZeroExitCode
 
-        if ($Version -eq 8) {
-            $Version = "1.${Version}"
-        }
-        "`"$javaPath`" -version" | Should -OutputTextMatchingRegex "openjdk\ version\ `"${Version}(\.[0-9_\.]+)?`""
+        $expectedJavaVersion = if ($javaVersion -eq "8") { "1.8" } else { $javaVersion }
+        "`"$javaPath`" -version" | Should -OutputTextMatchingRegex "openjdk\ version\ `"${expectedJavaVersion}(\.[0-9_\.]+)?`""
     }
 }
 
