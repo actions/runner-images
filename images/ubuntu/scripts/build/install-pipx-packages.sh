@@ -9,8 +9,9 @@ source $HELPER_SCRIPTS/install.sh
 
 export PIPX_BIN_DIR="/opt/pipx_bin"
 export PIPX_HOME="/opt/pipx"
-export PATH="$PATH:$PIPX_BIN_DIR:$HOME/.local/bin"
+export PATH="/opt/pipx_bin:$HOME/.local/bin:$PATH"
 python3 -m pipx ensurepath >/dev/null 2>&1 || true
+hash -r 2>/dev/null || true
 
 pipx_packages=$(get_toolset_value '.pipx.packages[].package')
 

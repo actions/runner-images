@@ -32,8 +32,24 @@ function Get-CommandResult {
         [bool] $ValidateExitCode = $true
     )
 
+    # Ensure pipx-installed tools are visible even when the test runner invokes a fresh bash process.
+    $env:PATH = "/opt/pipx_bin:$HOME/.local/bin:$env:PATH"
+
+    # Some pipx applications are installed into a dedicated bin dir and are not visible in a fresh shell unless we resolve them explicitly.
+    $resolvedCommand = $Command.Trim()
+    if ($resolvedCommand -match '^(?<name>[^\s]+)') {
+        $candidateName = $Matches['name']
+        foreach ($candidateDir in @('/opt/pipx_bin', "$HOME/.local/bin", '/usr/local/bin')) {
+            $resolvedPath = Join-Path $candidateDir $candidateName
+            if (Test-Path $resolvedPath) {
+                $env:PATH = "$candidateDir:$env:PATH"
+                break
+            }
+        }
+    }
+
     # Bash trick to suppress and show error output because some commands write to stderr (for example, "python --version")
-    $stdout = & bash -c "$Command 2>&1"
+    $stdout = & bash -c "export PATH=\"/opt/pipx_bin:$HOME/.local/bin:$PATH\"; $Command 2>&1"
     $exitCode = $LASTEXITCODE
 
     if ($ValidateExitCode) {
