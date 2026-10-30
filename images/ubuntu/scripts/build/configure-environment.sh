@@ -43,16 +43,23 @@ set_etc_environment_variable "AGENT_TOOLSDIRECTORY" "${AGENT_TOOLSDIRECTORY}"
 set_etc_environment_variable "RUNNER_TOOL_CACHE" "${AGENT_TOOLSDIRECTORY}"
 chmod -R 777 $AGENT_TOOLSDIRECTORY
 
+# https://github.com/actions/runner-images/issues/15108
+# Ubuntu 26.04 no longer reads /etc/sysctl.conf, so kernel parameters go to a sysctl.d drop-in
+sysctl_conf='/etc/sysctl.d/99-runner-images.conf'
+
 # https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
 # https://www.suse.com/support/kb/doc/?id=000016692
-echo 'vm.max_map_count=262144' | tee -a /etc/sysctl.conf
+# Ubuntu 24.04 and later already set vm.max_map_count=1048576
+if is_ubuntu22; then
+    echo 'vm.max_map_count=262144' | tee -a $sysctl_conf
+fi
 
 # https://kind.sigs.k8s.io/docs/user/known-issues/#pod-errors-due-to-too-many-open-files
-echo 'fs.inotify.max_user_watches=655360' | tee -a /etc/sysctl.conf
-echo 'fs.inotify.max_user_instances=1280' | tee -a /etc/sysctl.conf
+echo 'fs.inotify.max_user_watches=655360' | tee -a $sysctl_conf
+echo 'fs.inotify.max_user_instances=1280' | tee -a $sysctl_conf
 
 # https://github.com/actions/runner-images/issues/9491
-echo 'vm.mmap_rnd_bits=28' | tee -a /etc/sysctl.conf
+echo 'vm.mmap_rnd_bits=28' | tee -a $sysctl_conf
 
 # https://github.com/actions/runner-images/pull/7860
 netfilter_rule='/etc/udev/rules.d/50-netfilter.rules'
