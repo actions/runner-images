@@ -114,6 +114,14 @@ fi
 # https://github.com/actions/runner-images/issues/14777
 if is_ubuntu26; then
     systemctl mask tmp.mount
+
+    # The 26.04 tmp.conf only age-cleans /tmp (q, 10d) because it expects a tmpfs.
+    # Empty /tmp at boot like earlier images so build leftovers don't reach jobs.
+    # https://github.com/actions/runner-images/issues/15177
+    cat <<EOF > /etc/tmpfiles.d/tmp.conf
+D /tmp 1777 root root -
+q /var/tmp 1777 root root 30d
+EOF
 fi
 
 # This is a legacy check, leaving for earlier versions of Ubuntu

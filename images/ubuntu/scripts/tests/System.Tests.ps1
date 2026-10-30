@@ -45,6 +45,19 @@ Describe "tmp.mount masked" -Skip:(-not (Test-IsUbuntu26)) {
     }
 }
 
+# https://github.com/actions/runner-images/issues/15177
+Describe "/tmp emptied at boot" {
+    It "tmpfiles rule for /tmp is D" {
+        $rule = & systemd-tmpfiles --cat-config | Where-Object { $_ -match '^[^#\s]\S*\s+/tmp\s' }
+        $rule | Should -Match '^D\s+/tmp\s'
+    }
+
+    It "/var/tmp rule is kept" -Skip:(-not (Test-IsUbuntu26)) {
+        $rule = & systemd-tmpfiles --cat-config | Where-Object { $_ -match '^[^#\s]\S*\s+/var/tmp\s' }
+        $rule | Should -Not -BeNullOrEmpty
+    }
+}
+
 # https://github.com/actions/runner-images/issues/15108
 # Kernel parameters set in configure-environment.sh must be applied after reboot
 Describe "Kernel parameters" {
