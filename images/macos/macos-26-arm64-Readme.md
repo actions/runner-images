@@ -7,12 +7,12 @@
 # macOS 26
 - OS Version: macOS 26.6.2 (25G83)
 - Kernel Version: Darwin 25.6.0
-- Image Version: 20261013.0424.1
+- Image Version: 20261026.0455.2
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.425, 9.0.102, 9.0.203, 9.0.318, 10.0.103, 10.0.203, 10.0.302, 10.0.401
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.427, 9.0.102, 9.0.203, 9.0.320, 10.0.103, 10.0.203, 10.0.302, 10.0.403
 - Bash 3.2.57(1)-release
 - Clang/LLVM 21.0.0
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
@@ -23,76 +23,76 @@
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
 - Kotlin 2.4.21
-- Node.js 24.21.0
+- Node.js 24.22.1
 - Perl 5.44.0
-- Python3 3.15.0
-- Ruby 3.4.11
+- Python3 3.15.1
+- Ruby 3.4.12
 
 ### Package Management
-- Bundler 4.0.22
+- Bundler 4.0.23
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 7.0.9
-- NPM 11.19.0
-- Pip3 26.2.1 (python 3.15)
-- Pipx 1.17.13
-- RubyGems 4.0.22
-- Vcpkg 2026 (build from commit e456309491)
+- Homebrew 7.0.11
+- NPM 11.19.1
+- Pip3 26.2.2 (python 3.15)
+- Pipx 1.18.4
+- RubyGems 4.0.23
+- Vcpkg 2026 (build from commit 09f646c836)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.18
 - Apache Maven 3.10.0
-- Gradle 9.8.1
+- Gradle 9.8.2
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.32.8
-- bazel 9.3.0
-- bazelisk 1.29.0
+- azcopy 10.34.1
+- bazel 9.3.1
+- bazelisk 1.30.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.56.0
-- Git LFS 3.8.0
-- GitHub CLI 2.102.0
+- Git LFS 3.8.1
+- GitHub CLI 2.103.2
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.24
 - jq 1.8.2
-- OpenSSL 3.6.5 29 Sep 2026 (Library: OpenSSL 3.6.5 29 Sep 2026)
-- OpenSSL (openssl@4) 4.0.3 29 Sep 2026 (Library: OpenSSL 4.0.3 29 Sep 2026) - available on `/opt/homebrew/opt/openssl@4/bin/openssl`
-- Packer 1.16.1
-- pkgconf 3.0.8
+- OpenSSL 3.5.9 29 Sep 2026 (Library: OpenSSL 3.5.9 29 Sep 2026)
+- OpenSSL (openssl@4) 4.1.0 23 Oct 2026 (Library: OpenSSL 4.1.0 23 Oct 2026) - available on `/opt/homebrew/opt/openssl@4/bin/openssl`
+- Packer 1.16.2
+- pkgconf 3.0.10
 - Unxip 3.3
 - yq 4.54.1
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.37.13
-- AWS SAM CLI 1.168.0
-- AWS Session Manager CLI 1.2.835.0
+- AWS CLI 2.38.5
+- AWS SAM CLI 1.170.0
+- AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.91.0
-- Azure CLI (azure-devops) 1.0.9
+- Azure CLI (azure-devops) 1.0.10
 - Bicep CLI 0.48.1
 - Cmake 4.4.4
-- CodeQL Action Bundle 2.27.2
-- Fastlane 2.241.0
-- SwiftFormat 0.63.1
+- CodeQL Action Bundle 2.27.3
+- Fastlane 2.241.2
+- SwiftFormat 0.64.3
 - Xcbeautify 3.2.1
-- Xcode Command Line Tools 27.0.0.0.1788430756
+- Xcode Command Line Tools 26.6.0.0.1781586589
 - Xcodes 2.1.0
 
 ### Browsers
 - Safari 26.6.2 (21624.5.1.11.3)
 - SafariDriver 26.6.2 (21624.5.1.11.3)
-- Google Chrome 155.0.8059.40
-- Google Chrome for Testing 155.0.8059.39
-- ChromeDriver 155.0.8059.39
-- Microsoft Edge 155.0.4283.45
-- Microsoft Edge WebDriver 155.0.4283.45
-- Mozilla Firefox 157.0.1
+- Google Chrome 156.0.8078.48
+- Google Chrome for Testing 156.0.8078.47
+- ChromeDriver 156.0.8078.47
+- Microsoft Edge 156.0.4314.42
+- Microsoft Edge WebDriver 156.0.4314.42
+- Mozilla Firefox 158.0.1
 - geckodriver 0.37.1
 - Selenium server 4.51.0
 
@@ -104,48 +104,48 @@
 | GECKOWEBDRIVER  | /opt/homebrew/opt/geckodriver/bin       |
 
 ### Java
-| Version                 | Environment Variable |
-| ----------------------- | -------------------- |
-| 11.0.32+101             | JAVA_HOME_11_arm64   |
-| 17.0.20+101             | JAVA_HOME_17_arm64   |
-| 21.0.12+101.0 (default) | JAVA_HOME_21_arm64   |
-| 25.0.4+101.0            | JAVA_HOME_25_arm64   |
+| Version               | Environment Variable |
+| --------------------- | -------------------- |
+| 11.0.32+101           | JAVA_HOME_11_arm64   |
+| 17.0.21+9             | JAVA_HOME_17_arm64   |
+| 21.0.13+9.0 (default) | JAVA_HOME_21_arm64   |
+| 25.0.5+8.0            | JAVA_HOME_25_arm64   |
 
 ### Cached Tools
 
 #### Ruby
 - 3.2.11
-- 3.3.12
-- 3.4.11
-- 4.0.7
+- 3.3.13
+- 3.4.12
+- 4.0.9
 
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.16
-- 3.14.8
+- 3.13.17
+- 3.14.10
 
 #### Node.js
-- 22.23.3
-- 24.21.0
+- 22.23.4
+- 24.22.1
 
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.9
+- 1.26.10
 
 ### Rust Tools
-- Cargo 1.99.0
-- Rust 1.99.0
-- Rustdoc 1.99.0
-- Rustup 1.29.0
+- Cargo 1.99.1
+- Rust 1.99.1
+- Rustdoc 1.99.1
+- Rustup 1.29.2
 
 #### Packages
 - Clippy 0.1.99
 - Rustfmt 1.10.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.6.6
+- PowerShell 7.6.9
 
 #### PowerShell Modules
 - Az: 15.6.1
