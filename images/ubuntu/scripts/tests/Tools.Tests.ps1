@@ -338,8 +338,12 @@ Describe "Containers" {
     # registries.conf must be valid v2 format; a v1 file is rejected by newer podman.
     It "podman registries.conf" {
         "podman info" | Should -ReturnZeroExitCode
-        "podman info" | Should -OutputTextMatchingRegex "docker.io"
-        "podman info" | Should -OutputTextMatchingRegex "quay.io"
+
+        $registriesConfigPath = "/etc/containers/registries.conf"
+        $registriesConfigPath | Should -Exist
+
+        $registriesConfig = Get-Content $registriesConfigPath -Raw
+        $registriesConfig | Should -Match ([regex]::Escape('unqualified-search-registries = ["docker.io", "quay.io"]'))
     }
 
     # https://github.com/actions/runner-images/issues/14477
@@ -443,10 +447,13 @@ int main(void) {
     return 0;
 }
 '@ | Out-File -FilePath "/tmp/ninjaproject/main.c"
+
+        "cmake -GNinja -S /tmp/ninjaproject -B /tmp/ninjaproject/build" | Should -ReturnZeroExitCode
     }
 
     It "Make a simple ninja project" {
-        "cmake -GNinja -S /tmp/ninjaproject -B /tmp/ninjaproject/build" | Should -ReturnZeroExitCode
+        $buildFilePath = Join-Path "/tmp/ninjaproject/build" "build.ninja"
+        $buildFilePath | Should -Exist
     }
 
     It "build.ninja file should exist" {
