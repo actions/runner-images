@@ -39,7 +39,7 @@ Describe "Apt acquire configuration" {
         @{ setting = "Acquire::Retries"; expectedValue = if ($usesPortsArchive) { "3" } else { "1" }; allowUnset = $allowUnsetAcquireValues }
         @{ setting = "Acquire::http::Timeout"; expectedValue = $expectedTimeout; allowUnset = $allowUnsetAcquireValues }
         @{ setting = "Acquire::https::Timeout"; expectedValue = $expectedTimeout; allowUnset = $allowUnsetAcquireValues }
-        @{ setting = "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled"; expectedValue = "false"; allowUnset = $false }
+        @{ setting = "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled"; expectedValue = "false"; allowUnset = $allowUnsetAcquireValues }
     )
 
     It "<setting> is set to <expectedValue>" -TestCases $settingsTestCases {
@@ -60,6 +60,10 @@ Describe "Apt acquire configuration" {
 
     It "APT::Acquire::Retries is not set" {
         (Get-CommandResult "apt-config dump APT::Acquire::Retries").Output | Should -BeNullOrEmpty
+    }
+
+    It "DEP-11 index target override is configured" {
+        Get-Content "/etc/apt/apt.conf.d/90-index-targets" -Raw | Should -Match ([regex]::Escape('Acquire::IndexTargets::deb::DEP-11::DefaultEnabled "false";'))
     }
 
     It "Apt sources resolve through the mirror list" -Skip:$usesPortsArchive {
