@@ -434,17 +434,33 @@ Describe "Ninja" -Skip:(-not (Test-ToolsetModuleEnabled "ninja")) {
         New-item -Path "/tmp/ninjaproject" -ItemType Directory -Force
 @'
 cmake_minimum_required(VERSION 3.10)
-project(NinjaTest NONE)
+project(NinjaTest C)
+add_executable(ninja main.c)
 '@ | Out-File -FilePath "/tmp/ninjaproject/CMakeLists.txt"
+
+@'
+int main(void) {
+    return 0;
+}
+'@ | Out-File -FilePath "/tmp/ninjaproject/main.c"
     }
 
     It "Make a simple ninja project" {
-        "cmake -GNinja -S /tmp/ninjaproject -B /tmp/ninjaproject" | Should -ReturnZeroExitCode
+        "cmake -GNinja -S /tmp/ninjaproject -B /tmp/ninjaproject/build" | Should -ReturnZeroExitCode
     }
 
     It "build.ninja file should exist" {
-        $buildFilePath = Join-Path "/tmp/ninjaproject" "build.ninja"
+        $buildFilePath = Join-Path "/tmp/ninjaproject/build" "build.ninja"
         $buildFilePath | Should -Exist
+    }
+
+    It "Build a simple ninja project" {
+        "ninja -C /tmp/ninjaproject/build" | Should -ReturnZeroExitCode
+    }
+
+    It "Built ninja artifact should exist" {
+        $binaryPath = Join-Path "/tmp/ninjaproject/build" "ninja"
+        $binaryPath | Should -Exist
     }
 
     It "Ninja" {
