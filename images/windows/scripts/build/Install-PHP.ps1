@@ -7,7 +7,17 @@
 $installDir = "c:\tools\php"
 $phpMajorMinor = (Get-ToolsetContent).php.version
 $phpVersionToInstall = Resolve-ChocoPackageVersion -PackageName "php" -TargetVersion $phpMajorMinor
+if (-not $phpVersionToInstall) {
+    throw "No approved PHP $phpMajorMinor package was found."
+}
 Install-ChocoPackage php -ArgumentList "--params", "/InstallDir:$installDir", "--version=$phpVersionToInstall"
+
+# Reject stale package mirrors without changing the configured PHP release branch.
+$phpInstalledVersion = (& "$installDir\php.exe" -r 'echo PHP_VERSION;' | Out-String).Trim()
+if ($LASTEXITCODE -ne 0) {
+    throw "Unable to execute the installed PHP binary."
+}
+Assert-PhpSecurityVersion -Version $phpInstalledVersion -ExpectedBranch $phpMajorMinor
 
 # Install latest Composer in chocolatey
 Install-ChocoPackage composer -ArgumentList "--install-args", "/DEV=$installDir /PHP=$installDir"

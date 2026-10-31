@@ -8,6 +8,10 @@
 source $HELPER_SCRIPTS/etc-environment.sh
 source $HELPER_SCRIPTS/os.sh
 source $HELPER_SCRIPTS/install.sh
+source "$HELPER_SCRIPTS/php-security.sh"
+
+# Refresh security updates before resolving PHP packages.
+apt-get update
 
 # Install PHP
 php_versions=$(get_toolset_value '.php.versions[]')
@@ -84,6 +88,9 @@ done
 apt-get install --no-install-recommends php-pear
 
 apt-get install --no-install-recommends snmp
+
+# Validate every installed PHP source package, including CGI/FPM and extensions.
+php_security_check_installed
 
 # Install composer
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
