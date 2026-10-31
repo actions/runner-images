@@ -274,7 +274,8 @@ Describe "Kubernetes tools" {
     }
 
     It "kubectl" {
-        "kubectl version --client=true" | Should -OutputTextMatchingRegex "Client Version: v"
+        "kubectl version --client=true" | Should -ReturnZeroExitCode
+        "kubectl version --client=true" | Should -OutputTextMatchingRegex "Client Version: v|GitVersion:\s*v|clientVersion"
     }
 
     It "helm" {
