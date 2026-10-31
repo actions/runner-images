@@ -18,9 +18,10 @@ $vsixPackagesList | ForEach-Object {
     if ($vsixPackage.FileName.EndsWith(".vsix")) {
         Install-VSIXFromUrl $vsixPackage.DownloadUri
     } else {
+        Write-Host "Installing extension executable '$($vsixPackage.FileName)' from '$($vsixPackage.DownloadUri)'"
         Install-Binary `
             -Url $vsixPackage.DownloadUri `
-            -InstallArgs @('/install', '/quiet', '/norestart')
+            -InstallArgs @('/quiet', '/norestart')
     }
 }
 

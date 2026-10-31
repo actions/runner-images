@@ -12,6 +12,17 @@ source $HELPER_SCRIPTS/os.sh
 # Install Python, Python 3, pip, pip3
 apt-get install --no-install-recommends python3 python3-dev python3-pip python3-venv
 
+# Ensure compatibility symlinks exist for the conventional python/pip aliases.
+# Some images include Python 3 without the python-is-python3 shim, and the tests
+# should not fail just because the legacy alias was not materialized by the package set.
+if ! command -v python >/dev/null 2>&1; then
+    ln -sf /usr/bin/python3 /usr/local/bin/python
+fi
+
+if ! command -v pip >/dev/null 2>&1; then
+    ln -sf /usr/bin/pip3 /usr/local/bin/pip
+fi
+
 if ! is_ubuntu22; then
     # allow user to continue using pip
     sudo tee /etc/pip.conf > /dev/null <<EOF

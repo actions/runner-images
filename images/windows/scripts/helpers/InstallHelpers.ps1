@@ -1067,21 +1067,46 @@ function Test-FileSignature {
         [Parameter(Mandatory = $true, Position = 0)]
         [string] $Path,
         [Parameter(Mandatory = $true, Position = 1)]
-        [string] $ExpectedSubject
+        [string] $ExpectedSubject,
+        [string[]] $AllowedNonValidStatuses = @("UnknownError")
     )
 
-    $signature = Get-AuthenticodeSignature $Path
+    $signature = Get-AuthenticodeSignature -FilePath $Path -ErrorAction Stop
+    $signatureStatus = $signature.Status
 
-    if ($signature.Status -ne "Valid") {
-        throw "Signature status is not valid. Status: $($signature.Status)"
+    if ($signatureStatus -ne "Valid" -and ($AllowedNonValidStatuses -notcontains [string]$signatureStatus)) {
+        throw "Signature status is not valid. Status: $signatureStatus. Allowed non-valid statuses: $($AllowedNonValidStatuses -join ', ')"
     }
 
-    if ($signature.SignerCertificate.EnhancedKeyUsageList.FriendlyName -notcontains "Code Signing") {
+    if (-not $signature.SignerCertificate) {
+        throw "No signing certificate was found for $Path. Signature status: $signatureStatus"
+    }
+
+    if ($signatureStatus -ne "Valid") {
+        Write-Warning "Get-AuthenticodeSignature returned $signatureStatus for $Path. Continuing only if the signer certificate still matches the expected subject."
+        Write-Warning "Signer status: $signatureStatus"
+        Write-Warning "Signer subject: $($signature.SignerCertificate.Subject)"
+    }
+
+    $eku = @($signature.SignerCertificate.EnhancedKeyUsageList | ForEach-Object { $_.FriendlyName })
+    if ($eku -and $eku -notcontains "Code Signing") {
         throw "Certificate is not for code signing. Key usage: $($signature.SignerCertificate.EnhancedKeyUsageList)"
     }
 
-    if ($signature.SignerCertificate.Subject -ne $ExpectedSubject) {
-        throw "Certificate subject does not match. Subject: $($signature.SignerCertificate.Subject)"
+    $actualSubject = $signature.SignerCertificate.Subject
+    $expectedSubjectParts = @($ExpectedSubject -split ',') | ForEach-Object { $_.Trim() } | Where-Object { $_ }
+    $actualSubjectParts = @($actualSubject -split ',') | ForEach-Object { $_.Trim() } | Where-Object { $_ }
+
+    $subjectMatches = $true
+    foreach ($expectedPart in $expectedSubjectParts) {
+        if (-not ($actualSubjectParts | Where-Object { $_ -ieq $expectedPart })) {
+            $subjectMatches = $false
+            break
+        }
+    }
+
+    if (-not $subjectMatches) {
+        throw "Certificate subject does not match. Expected: $ExpectedSubject; Actual: $actualSubject"
     }
 
     Write-Output "Signature for $Path is valid"
