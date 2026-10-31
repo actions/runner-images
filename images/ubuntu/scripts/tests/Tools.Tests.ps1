@@ -274,8 +274,12 @@ Describe "Kubernetes tools" {
     }
 
     It "kubectl" {
-        "kubectl version --client=true" | Should -ReturnZeroExitCode
-        "kubectl version --client=true" | Should -OutputTextMatchingRegex "Client Version: v|GitVersion:\s*v|clientVersion"
+        "kubectl version --client -o json" | Should -ReturnZeroExitCode
+
+        $kubectlVersionJson = (Get-CommandResult "kubectl version --client -o json").Output | Out-String
+        $kubectlVersion = $kubectlVersionJson | ConvertFrom-Json
+        $kubectlVersion.clientVersion.gitVersion | Should -Not -BeNullOrEmpty
+        $kubectlVersion.clientVersion.gitVersion.StartsWith("v") | Should -BeTrue
     }
 
     It "helm" {
@@ -325,7 +329,7 @@ Describe "Containers" {
     # https://github.com/actions/runner-images/issues/7753
     It "podman networking" -TestCases "podman CNI plugins" {
         "podman network create -d bridge test-net" | Should -ReturnZeroExitCode
-        "podman network ls" | Should -Not -OutputTextMatchingRegex "Error"
+        "podman network ls --format '{{.Name}}'" | Should -OutputTextMatchingRegex '^test-net$|\stest-net\s'
         "podman network rm test-net" | Should -ReturnZeroExitCode
     }
 
@@ -401,7 +405,7 @@ Describe "Ruby" -Skip:(-not (Test-ToolsetModuleEnabled "ruby")) {
 
     if ($gemTestCases) {
         It "Gem <gemName> is installed" -TestCases $gemTestCases {
-            "gem list -i '^$gemName$'" | Should -OutputTextMatchingRegex "true"
+            "gem list -i '^$gemName$'" | Should -ReturnZeroExitCode
         }
     }
 }
