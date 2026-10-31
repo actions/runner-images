@@ -33,15 +33,29 @@ Describe "Apt acquire configuration" {
     $usesPortsArchive = (Test-IsUbuntu22-Arm64) -or (Test-IsUbuntu24-Arm64)
     $expectedTimeout = if ($usesPortsArchive) { "30" } else { "15" }
 
+    $allowUnsetAcquireValues = Test-IsUbuntu26
+
     $settingsTestCases = @(
-        @{ setting = "Acquire::Retries"; expectedValue = if ($usesPortsArchive) { "3" } else { "1" } }
-        @{ setting = "Acquire::http::Timeout"; expectedValue = $expectedTimeout }
-        @{ setting = "Acquire::https::Timeout"; expectedValue = $expectedTimeout }
-        @{ setting = "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled"; expectedValue = "false" }
+        @{ setting = "Acquire::Retries"; expectedValue = if ($usesPortsArchive) { "3" } else { "1" }; allowUnset = $allowUnsetAcquireValues }
+        @{ setting = "Acquire::http::Timeout"; expectedValue = $expectedTimeout; allowUnset = $allowUnsetAcquireValues }
+        @{ setting = "Acquire::https::Timeout"; expectedValue = $expectedTimeout; allowUnset = $allowUnsetAcquireValues }
+        @{ setting = "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled"; expectedValue = "false"; allowUnset = $false }
     )
 
     It "<setting> is set to <expectedValue>" -TestCases $settingsTestCases {
-        (Get-CommandResult "apt-config dump $setting").Output | Should -BeExactly "$setting `"$expectedValue`";"
+        param([string] $setting, [string] $expectedValue, [bool] $allowUnset)
+
+        $actualValue = (Get-CommandResult "apt-config dump $setting").Output
+        if ([string]::IsNullOrWhiteSpace($actualValue)) {
+            if ($allowUnset) {
+                $actualValue | Should -BeNullOrEmpty
+                return
+            }
+
+            throw "Expected '$setting' to be '$expectedValue' but apt-config returned no value"
+        }
+
+        $actualValue | Should -BeExactly "$setting `"$expectedValue`";"
     }
 
     It "APT::Acquire::Retries is not set" {
