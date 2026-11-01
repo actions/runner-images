@@ -193,11 +193,11 @@
             },
             {
                 "package": "docker-ce-cli",
-                "version": "29.9.2"
+                "version": "29.7.2"
             },
             {
                 "package": "docker-ce",
-                "version": "29.9.2"
+                "version": "29.7.2"
             }
         ],
         "plugins": [
