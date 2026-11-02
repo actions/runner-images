@@ -13,8 +13,10 @@ if is_Tahoe || is_GoldenGate; then
   exit 0
 fi
 
-echo "Unlink openssl@4 before installing openssl@1.1"
-brew unlink openssl@4
+if brew list --versions openssl@4 > /dev/null 2>&1; then
+  echo "Unlink openssl@4 before installing openssl@1.1"
+  brew unlink openssl@4
+fi
 
 echo "Install openssl@1.1"
 
@@ -28,8 +30,10 @@ HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install openssl@1.
 echo "Unlink openssl@1.1 before creating symlinks"
 brew unlink openssl@1.1
 
-echo "Relinking openssl@4"
-brew link openssl@4
+if brew list --versions openssl@4 > /dev/null 2>&1; then
+  echo "Relinking openssl@4"
+  brew link openssl@4
+fi
 
 if ! is_Arm64; then
   # Symlink brew openssl@1.1 to `/usr/local/bin` as Homebrew refuses
