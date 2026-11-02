@@ -27,11 +27,9 @@ mkdir -p "$(dirname $FORMULA_PATH)"
 curl -fsSL $FORMULA_URL -o $FORMULA_PATH
 HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install openssl@1.1
 
-echo "Unlink openssl@1.1 before creating symlinks"
-brew unlink openssl@1.1
-
 if brew list --versions openssl@4 > /dev/null 2>&1; then
-  echo "Relinking openssl@4"
+  echo "Unlink openssl@1.1 and relink openssl@4"
+  brew unlink openssl@1.1
   brew link openssl@4
 fi
 
