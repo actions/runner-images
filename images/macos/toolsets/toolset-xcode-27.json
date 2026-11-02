@@ -4,12 +4,10 @@
         "arm64": {
             "versions": [
                 {
-                    "link": "27.2_Release_Candidate",
-                    "filename": "Xcode_27.2_Release_Candidate",
-                    "version": "27.2+27B48",
-                    "symlinks": ["27.2"],
-                    "sha256": "aab47159fa56c8521b0535d5231efc70d330dd4819513c8266a0cf3eceacc425",
-                    "install_runtimes": "none"
+                    "link": "27.2",
+                    "filename": "Xcode_27.2",
+                    "version": "27.2+27B52",
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "27.1",
