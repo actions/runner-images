@@ -35,7 +35,6 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 | macOS 14 [![deprecated](https://img.shields.io/badge/deprecated-E5534B?style=flat&logoColor=white)](https://github.com/actions/runner-images/issues/15226)<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-14.json) | x64 | `macos-14` | [macOS-14] |
 | Windows Server 2025<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin25-vs2026.json) | x64 | `windows-latest`, `windows-2025`, or `windows-2025-vs2026` | [windows-2025-vs2026] |
 | Windows Server 2022<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin22.json) | x64 | `windows-2022` | [windows-2022] |
-| Windows 11 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin11-arm64.json) | arm64 | `windows-11-arm` | [windows-11-arm64] |
 | Windows 11 Arm64 with Visual Studio 2026<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin11-vs2026-arm64.json) | arm64 | `windows-11-vs2026-arm` | [windows-11-vs2026-arm64] |
 
 > [!IMPORTANT]
@@ -56,7 +55,6 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [ubuntu-slim]: https://github.com/actions/runner-images/blob/main/images/ubuntu-slim/ubuntu-slim-Readme.md
 [windows-2025-vs2026]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-VS2026-Readme.md
 [windows-2022]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
-[windows-11-arm64]: https://github.com/actions/runner-images/blob/main/images/windows/Windows11-Arm64-Readme.md
 [windows-11-vs2026-arm64]: https://github.com/actions/runner-images/blob/main/images/windows/Windows11-VS2026-Arm64-Readme.md
 [macOS-14]: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
 [macOS-15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
