@@ -2,7 +2,7 @@
 
 The macOS image assigns a unique hostname on each boot. `HostName` must use a
 plain name rather than `.local`, which depends on multicast DNS. The boot script
-maintains only its own marked IPv4 and IPv6 loopback aliases in `/etc/hosts`;
+maintains only its own marked IPv4 loopback alias in `/etc/hosts`;
 existing entries and the standard localhost mappings are retained.
 
 `configure-hostname.sh` applies the boot script before image validation and
@@ -18,6 +18,9 @@ check **after assigning the final hostname**, before accepting the runner:
 ```bash
 python3 /usr/local/bin/check_hostname_resolution.py
 ```
+
+Run this check in the runner job user context as well as during boot: a passing
+root check does not establish that the job user has the same resolver behavior.
 
 This check does not repair or rename the machine. It tests `getaddrinfo` with
 `AI_CANONNAME`, `getfqdn`, and `gethostbyaddr` against the current system hostname.

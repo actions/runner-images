@@ -15,7 +15,7 @@ tee /usr/local/bin/change_hostname.sh > /dev/null <<\EOF
 name="Mac-$(python3 -c 'from time import time; print(int(round(time() * 1000)))')"
 # Replace only our previous boot's aliases, retaining all other hosts entries.
 sed -i '' '/[[:space:]]# runner-image-hostname$/d' /etc/hosts
-printf '127.0.0.1\t%s # runner-image-hostname\n::1\t%s # runner-image-hostname\n' "$name" "$name" >> /etc/hosts
+printf '127.0.0.1\t%s # runner-image-hostname\n' "$name" >> /etc/hosts
 
 scutil --set HostName "$name"
 scutil --set LocalHostName "$name"
