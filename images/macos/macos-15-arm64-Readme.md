@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[macOS] Azure DevOps macOS 14 Intel runners extended through November 23, 2026](https://github.com/actions/runner-images/issues/15226) |
 | [[macOS] The default OpenSSL version will be updated from 3 to 4 on macOS 26 and Xcode 27](https://github.com/actions/runner-images/issues/14856) |
 | [[macOS] Xcode 27 is now available as a public preview](https://github.com/actions/runner-images/issues/14404) |
-| [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
+| [[macOS] macOS 14 Sonoma retirement: GitHub Actions and ADO arm64 on November 2; ADO Intel on November 23](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 15
 - OS Version: macOS 15.8.2 (24H232)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20261028.0489.1
+- Image Version: 20261028.0491.1
 
 ## Installed Software
 
@@ -37,7 +38,7 @@
 - Pip3 26.2.2 (python 3.15)
 - Pipx 1.18.4
 - RubyGems 4.0.23
-- Vcpkg 2026 (build from commit 866e9e258a)
+- Vcpkg 2026 (build from commit 15b12b99a2)
 - Yarn 1.22.22
 
 ### Project Management
@@ -75,7 +76,7 @@
 - Azure CLI 2.91.0
 - Azure CLI (azure-devops) 1.0.10
 - Bicep CLI 0.48.1
-- Cmake 4.4.4
+- Cmake 4.4.5
 - CodeQL Action Bundle 2.27.3
 - Fastlane 2.241.2
 - SwiftFormat 0.64.4
