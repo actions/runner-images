@@ -73,7 +73,6 @@ body:
         - label: Windows Server 2022
         - label: Windows Server 2025
         - label: Windows Server 2025 with Visual Studio 2026
-        - label: Windows Desktop 11
         - label: Windows Desktop 11 with Visual Studio 2026
   - type: textarea
     attributes:
