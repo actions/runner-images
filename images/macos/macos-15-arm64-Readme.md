@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[macOS] Azure DevOps macOS 14 Intel runners extended through November 23, 2026](https://github.com/actions/runner-images/issues/15226) |
 | [[macOS] The default OpenSSL version will be updated from 3 to 4 on macOS 26 and Xcode 27](https://github.com/actions/runner-images/issues/14856) |
 | [[macOS] Xcode 27 is now available as a public preview](https://github.com/actions/runner-images/issues/14404) |
-| [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
+| [[macOS] macOS 14 Sonoma retirement: GitHub Actions and ADO arm64 on November 2; ADO Intel on November 23](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 15
 - OS Version: macOS 15.8.2 (24H232)
 - Kernel Version: Darwin 24.6.0
-- Image Version: 20261028.0489.1
+- Image Version: 20261103.0511.1
 
 ## Installed Software
 
@@ -32,12 +33,12 @@
 - Bundler 4.0.23
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 7.0.11
+- Homebrew 7.0.12
 - NPM 10.9.9
 - Pip3 26.2.2 (python 3.15)
-- Pipx 1.18.4
+- Pipx 1.18.11
 - RubyGems 4.0.23
-- Vcpkg 2026 (build from commit 866e9e258a)
+- Vcpkg 2026 (build from commit afa249f12f)
 - Yarn 1.22.22
 
 ### Project Management
@@ -69,16 +70,16 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.39.0
-- AWS SAM CLI 1.170.0
+- AWS CLI 2.39.3
+- AWS SAM CLI 1.171.0
 - AWS Session Manager CLI 1.2.896.0
-- Azure CLI 2.91.0
+- Azure CLI 2.92.0
 - Azure CLI (azure-devops) 1.0.10
 - Bicep CLI 0.48.1
-- Cmake 4.4.4
-- CodeQL Action Bundle 2.27.3
+- Cmake 4.4.5
+- CodeQL Action Bundle 2.27.4
 - Fastlane 2.241.2
-- SwiftFormat 0.64.4
+- SwiftFormat 0.64.5
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 16.4.0.0.1.1747106510
 - Xcodes 2.1.0
@@ -86,14 +87,14 @@
 ### Browsers
 - Safari 27.2 (20625.2.8.18.4)
 - SafariDriver 27.2 (20625.2.8.18.4)
-- Google Chrome 156.0.8078.74
-- Google Chrome for Testing 156.0.8078.73
-- ChromeDriver 156.0.8078.73
-- Microsoft Edge 156.0.4314.50
-- Microsoft Edge WebDriver 156.0.4314.50
+- Google Chrome 156.0.8078.80
+- Google Chrome for Testing 156.0.8078.80
+- ChromeDriver 156.0.8078.80
+- Microsoft Edge 156.0.4314.58
+- Microsoft Edge WebDriver 156.0.4314.58
 - Mozilla Firefox 159.0
 - geckodriver 0.37.1
-- Selenium server 4.51.0
+- Selenium server 4.52.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -126,7 +127,7 @@
 
 #### Node.js
 - 22.23.4
-- 24.22.1
+- 24.22.2
 
 #### Go
 - 1.24.13
@@ -272,9 +273,9 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Android Emulator           | 37.2.12                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Android Emulator           | 37.2.13                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
+| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 2)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
