@@ -156,6 +156,10 @@ $powerShellModules.AddNodes($(Get-PowerShellModules))
 
 # Xcode section
 $xcode = $installedSoftware.AddHeader("Xcode")
+$arch = Get-Architecture
+if ((Get-ToolsetContent).xcode.$arch.system_resources) {
+    $xcode.AddToolVersion("CoreSimulator", $(Get-CoreSimulatorVersion))
+}
 # First run doesn't provide full data about devices and runtimes
 Get-XcodeInfoList | Out-Null
 
