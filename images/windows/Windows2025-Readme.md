@@ -5,7 +5,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 33674
-- Image Version: 20261030.317.1
+- Image Version: 20261101.318.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -35,7 +35,7 @@
 - pip 26.2.2 (python 3.12)
 - Pipx 1.18.11
 - RubyGems 3.5.22
-- Vcpkg (build from commit d186940b2f)
+- Vcpkg (build from commit 9a5dfef5d1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -91,7 +91,7 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.39.2
+- AWS CLI 2.39.3
 - AWS SAM CLI 1.171.0
 - AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.91.0
@@ -112,7 +112,7 @@
 - Google Chrome 156.0.8078.80
 - Chrome Driver 156.0.8078.80
 - Microsoft Edge 156.0.4314.58
-- Microsoft Edge Driver 156.0.4314.56
+- Microsoft Edge Driver 156.0.4314.58
 - Mozilla Firefox 159.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
