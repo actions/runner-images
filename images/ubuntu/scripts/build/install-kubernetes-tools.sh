@@ -9,14 +9,7 @@
 source $HELPER_SCRIPTS/install.sh
 source $HELPER_SCRIPTS/os.sh
 
-if is_x64; then
-  tools_arch="amd64"
-elif is_arm64; then
-  tools_arch="arm64"
-else
-  echo "Unsupported architecture"
-  exit 1
-fi
+tools_arch=$(select_by_arch "amd64" "arm64")
 
 # Download KIND
 kind_url=$(resolve_github_release_asset_url "kubernetes-sigs/kind" "endswith(\"kind-linux-${tools_arch}\")" "latest")
