@@ -21,6 +21,7 @@ After successful completion of all installation steps, Packer creates a managed 
   - [Azure Subscription Authentication](#azure-subscription-authentication)
 - [Generated Machine Deployment](#generated-machine-deployment)
 - [Automated image generation](#automated-image-generation)
+  - [Windows dependency preflight](#windows-dependency-preflight)
   - [Required variables](#required-variables)
   - [Optional variables](#optional-variables)
 - [Builder variables](#builder-variables)
@@ -184,6 +185,38 @@ Where:
 This function creates an Azure VM and generates network resources in Azure to make the VM accessible.
 
 ## Automated image generation
+
+### Windows dependency preflight
+
+Before starting a Windows Packer build, run the dependency-resolution preflight from the exact repository revision you plan to build. `-Image` is required so the template and toolset being validated always match the intended build:
+
+```powershell
+pwsh -File .\images\windows\scripts\preflight\Invoke-WindowsResolverPreflight.ps1 -Image Windows2025
+```
+
+Supported image values are `Windows2022`, `Windows2025`, `Windows2025VS2026`, `Windows11Arm64`, and `Windows11VS2026Arm64`.
+
+The script uses `GITHUB_TOKEN` when it is available for GitHub release API queries. Set it in automated environments to avoid unauthenticated GitHub API rate limits; no token is required for a single ordinary run.
+
+The preflight parses Windows PowerShell scripts, validates the selected image's local template references, and checks dependency metadata from the selected toolset, Chocolatey, PowerShell Gallery, GitHub releases, and Visual Studio Marketplace. It does not create Azure resources, provision a VM, download installer payloads, or mutate the build machine.
+
+Use `-SkipNetwork` to run only the static checks:
+
+```powershell
+pwsh -File .\images\windows\scripts\preflight\Invoke-WindowsResolverPreflight.ps1 -Image Windows2025 -SkipNetwork
+```
+
+For a downstream build that copies or customizes the Packer inputs into a prepared tree, supply the effective paths that Packer will use. When all three paths are supplied, `-Image` is optional:
+
+```powershell
+pwsh -File .\images\windows\scripts\preflight\Invoke-WindowsResolverPreflight.ps1 `
+    -TemplatePath C:\prepared-image\templates\build.windows-custom.pkr.hcl `
+    -ToolsetPath C:\prepared-image\toolset.json `
+    -ScriptsRoot C:\prepared-image\scripts `
+    -Architecture x64
+```
+
+`-TemplatePath` is used as the base for `${path.root}` reference validation; relative segments such as `..` are normalized to an absolute filesystem path before they are checked. `-ToolsetPath` supplies all network dependency checks, and `-ScriptsRoot` supplies the PowerShell syntax check. A custom networked run without `-Image` must specify `-Architecture x64` or `-Architecture arm64` so the GitHub CLI asset matches the image being built. You can also combine `-Image` with any individual override, retaining image-derived defaults for the paths you do not supply.
 
 If you want to generate images automatically (e.g., as a part of a CI/CD pipeline),
 you can use Packer directly. To do this, you will need:
