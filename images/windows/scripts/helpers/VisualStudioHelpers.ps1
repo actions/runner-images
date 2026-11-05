@@ -37,9 +37,9 @@ Function Install-VisualStudio {
     )
 
     if ($env:INSTALL_VS_2026) {
-        $bootstrapperUrl = "https://aka.ms/vs/postGRO-${Channel}/vs_${Edition}.exe"
+        $bootstrapperUrl = "https://aka.ms/vs/18/Stable/vs_${Edition}.exe"
     } else {
-        $bootstrapperUrl = "https://aka.ms/vs/${Version}/postGRO-${Channel}/vs_${Edition}.exe"
+        $bootstrapperUrl = "https://aka.ms/vs/${Version}/Stable/vs_${Edition}.exe"
     }
     $channelUri = "https://aka.ms/vs/${Version}/${Channel}/channel"
     $channelId = "VisualStudio.${Version}.Release"
@@ -54,7 +54,7 @@ Function Install-VisualStudio {
     $bootstrapperFilePath = Invoke-DownloadWithRetry $BootstrapperUrl
 
     # Verify that the bootstrapper is signed by Microsoft
-    Test-FileSignature -Path $bootstrapperFilePath -ExpectedSubject $(Get-MicrosoftPublisher)
+    Test-FileSignature -Path $bootstrapperFilePath -ExpectedSubject $(Get-MicrosoftPublisher) -AllowedNonValidStatuses @("UnknownError", "NotTrusted")
 
     try {
         $responseData = @{

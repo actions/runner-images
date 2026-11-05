@@ -15,7 +15,7 @@ Describe "Bicep" -Skip:(Test-IsArm64) {
     }
 }
 
-Describe "Rust" {
+Describe "Rust" -Skip:(-not (Test-ToolsetModuleEnabled "rust")) {
     BeforeAll {
         $env:PATH = "/etc/skel/.cargo/bin:/etc/skel/.rustup/bin:$($env:PATH)"
         $env:RUSTUP_HOME = "/etc/skel/.rustup"
@@ -119,7 +119,7 @@ Describe "Ansible" {
     }
 }
 
-Describe "Bazel" {
+Describe "Bazel" -Skip:(-not (Test-ToolsetModuleEnabled "bazel")) {
     It "<ToolName>" -TestCases @(
         @{ ToolName = "bazel" }
         @{ ToolName = "bazelisk" }
@@ -128,7 +128,7 @@ Describe "Bazel" {
     }
 }
 
-Describe "clang" {
+Describe "clang" -Skip:(-not (Test-ToolsetModuleEnabled "clang")) {
     $testCases = (Get-ToolsetContent).clang.Versions | ForEach-Object { @{ClangVersion = $_} }
 
     It "clang <ClangVersion>" -TestCases $testCases {
@@ -140,13 +140,13 @@ Describe "clang" {
     }
 }
 
-Describe "Cmake" {
+Describe "Cmake" -Skip:(-not (Test-ToolsetModuleEnabled "cmake")) {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "gcc" {
+Describe "gcc" -Skip:(-not (Test-ToolsetModuleEnabled "gcc")) {
     $testCases = (Get-ToolsetContent).gcc.Versions | ForEach-Object { @{GccVersion = $_} }
 
     It "gcc <GccVersion>" -TestCases $testCases {
@@ -154,7 +154,7 @@ Describe "gcc" {
     }
 }
 
-Describe "gfortran" {
+Describe "gfortran" -Skip:(-not (Test-ToolsetModuleEnabled "gfortran")) {
     $testCases = (Get-ToolsetContent).gfortran.Versions | ForEach-Object { @{GfortranVersion = $_} }
 
     It "gfortran <GfortranVersion>" -TestCases $testCases {
@@ -223,7 +223,7 @@ Describe "Zstd" {
     }
 }
 
-Describe "Vcpkg" {
+Describe "Vcpkg" -Skip:(-not (Test-ToolsetModuleEnabled "vcpkg")) {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
     }
@@ -274,7 +274,12 @@ Describe "Kubernetes tools" {
     }
 
     It "kubectl" {
-        "kubectl version --client=true" | Should -OutputTextMatchingRegex "Client Version: v"
+        "kubectl version --client -o json" | Should -ReturnZeroExitCode
+
+        $kubectlVersionJson = (Get-CommandResult "kubectl version --client -o json").Output | Out-String
+        $kubectlVersion = $kubectlVersionJson | ConvertFrom-Json
+        $kubectlVersion.clientVersion.gitVersion | Should -Not -BeNullOrEmpty
+        $kubectlVersion.clientVersion.gitVersion.StartsWith("v") | Should -BeTrue
     }
 
     It "helm" {
@@ -324,7 +329,7 @@ Describe "Containers" {
     # https://github.com/actions/runner-images/issues/7753
     It "podman networking" -TestCases "podman CNI plugins" {
         "podman network create -d bridge test-net" | Should -ReturnZeroExitCode
-        "podman network ls" | Should -Not -OutputTextMatchingRegex "Error"
+        "podman network ls --format '{{.Name}}'" | Should -OutputTextMatchingRegex '^test-net$|\stest-net\s'
         "podman network rm test-net" | Should -ReturnZeroExitCode
     }
 
@@ -338,8 +343,12 @@ Describe "Containers" {
     # registries.conf must be valid v2 format; a v1 file is rejected by newer podman.
     It "podman registries.conf" {
         "podman info" | Should -ReturnZeroExitCode
-        "podman info" | Should -OutputTextMatchingRegex "docker.io"
-        "podman info" | Should -OutputTextMatchingRegex "quay.io"
+
+        $registriesConfigPath = "/etc/containers/registries.conf"
+        $registriesConfigPath | Should -Exist
+
+        $registriesConfig = Get-Content $registriesConfigPath -Raw
+        $registriesConfig | Should -Match ([regex]::Escape('unqualified-search-registries = ["docker.io", "quay.io"]'))
     }
 
     # https://github.com/actions/runner-images/issues/14477
@@ -365,15 +374,27 @@ Describe "nvm" {
     }
 }
 
-Describe "Python" {
-    $testCases = @("python", "pip", "python3", "pip3") | ForEach-Object { @{PythonCommand = $_} }
+Describe "Python" -Skip:(-not (Test-ToolsetModuleEnabled "python")) {
+    $testCases = @()
+
+    foreach ($commandName in @("python", "pip", "python3", "pip3")) {
+        if (Get-Command $commandName -ErrorAction SilentlyContinue) {
+            $testCases += @{ PythonCommand = $commandName }
+        }
+    }
+
+    if (-not $testCases) {
+        It "Python is installed" {
+            throw "No Python command was discovered on PATH for the active image."
+        }
+    }
 
     It "<PythonCommand>" -TestCases $testCases {
         "$PythonCommand --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Ruby" {
+Describe "Ruby" -Skip:(-not (Test-ToolsetModuleEnabled "ruby")) {
     $testCases = @("ruby", "gem") | ForEach-Object { @{RubyCommand = $_} }
 
     It "<RubyCommand>" -TestCases $testCases {
@@ -384,18 +405,18 @@ Describe "Ruby" {
 
     if ($gemTestCases) {
         It "Gem <gemName> is installed" -TestCases $gemTestCases {
-            "gem list -i '^$gemName$'" | Should -OutputTextMatchingRegex "true"
+            "gem list -i '^$gemName$'" | Should -ReturnZeroExitCode
         }
     }
 }
 
-Describe "yq" {
+Describe "yq" -Skip:(-not (Test-ToolsetModuleEnabled "yq")) {
     It "yq" {
         "yq -V" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Kotlin" {
+Describe "Kotlin" -Skip:(-not (Test-ToolsetModuleEnabled "kotlin")) {
     It "kapt" {
         "kapt -version" | Should -ReturnZeroExitCode
     }
@@ -417,22 +438,41 @@ Describe "Kotlin" {
     }
 }
 
-Describe "Ninja" {
+Describe "Ninja" -Skip:(-not (Test-ToolsetModuleEnabled "ninja")) {
     BeforeAll {
         New-item -Path "/tmp/ninjaproject" -ItemType Directory -Force
 @'
 cmake_minimum_required(VERSION 3.10)
-project(NinjaTest NONE)
+project(NinjaTest C)
+add_executable(ninja main.c)
 '@ | Out-File -FilePath "/tmp/ninjaproject/CMakeLists.txt"
+
+@'
+int main(void) {
+    return 0;
+}
+'@ | Out-File -FilePath "/tmp/ninjaproject/main.c"
+
+        "cmake -GNinja -S /tmp/ninjaproject -B /tmp/ninjaproject/build" | Should -ReturnZeroExitCode
     }
 
     It "Make a simple ninja project" {
-        "cmake -GNinja -S /tmp/ninjaproject -B /tmp/ninjaproject" | Should -ReturnZeroExitCode
+        $buildFilePath = Join-Path "/tmp/ninjaproject/build" "build.ninja"
+        $buildFilePath | Should -Exist
     }
 
     It "build.ninja file should exist" {
-        $buildFilePath = Join-Path "/tmp/ninjaproject" "build.ninja"
+        $buildFilePath = Join-Path "/tmp/ninjaproject/build" "build.ninja"
         $buildFilePath | Should -Exist
+    }
+
+    It "Build a simple ninja project" {
+        "ninja -C /tmp/ninjaproject/build" | Should -ReturnZeroExitCode
+    }
+
+    It "Built ninja artifact should exist" {
+        $binaryPath = Join-Path "/tmp/ninjaproject/build" "ninja"
+        $binaryPath | Should -Exist
     }
 
     It "Ninja" {

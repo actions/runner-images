@@ -96,7 +96,8 @@
     ],
     "java": {
         "default": "8",
-        "versions": [ "8", "11", "17", "21", "25"]
+        "versions": [ "8", "11", "17", "21", "25"],
+        "install_script": "../scripts/build/Install-JavaTools.ps1"
     },
     "android": {
         "commandline_tools_url": "https://dl.google.com/android/repository/commandlinetools-win-9123335_latest.zip",
@@ -119,15 +120,18 @@
             "versions": [
                 "27", "29", "30"
             ]
-        }
+        },
+        "install_script": "../scripts/build/Install-AndroidSDK.ps1"
     },
     "mingw": {
         "version": "14.*",
-        "runtime": "ucrt"
+        "runtime": "ucrt",
+        "install_script": "../scripts/build/Install-Mingw64.ps1"
     },
     "MsysPackages": {
         "msys2": [],
-        "mingw": []
+        "mingw": [],
+        "install_script": "../scripts/build/Install-Msys2.ps1"
     },
     "windowsFeatures": [
         { "name": "Containers" },
@@ -261,7 +265,8 @@
         }
     ],
     "selenium": {
-        "version": "4"
+        "version": "4",
+        "install_script": "../scripts/build/Install-Selenium.ps1"
     },
     "npm": {
         "global_packages": [
@@ -280,7 +285,8 @@
         "sdk": {
             "version": "8.7.157",
             "checksum": "32ECB92CA3C9369A0BEA688737F9714E93EC1F8022D1708ABF5084E5B1F9EFBA"
-        }
+        },
+        "install_script": "../scripts/build/Install-ServiceFabricSDK.ps1"
     },
     "dotnet": {
         "versions": [
@@ -291,7 +297,8 @@
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
         ],
-        "warmup": false
+        "warmup": false,
+        "install_script": "../scripts/build/Install-DotnetSDK.ps1"
     },
     "choco": {
         "common_packages": [
@@ -321,39 +328,47 @@
             },
             { "name": "imagemagick" },
             { "name": "ninja" }
-        ]
+        ],
+        "install_script": "../scripts/build/Install-ChocolateyPackages.ps1"
     },
     "node": {
-        "default": "22.*"
-    },
-    "maven": {
-        "version": "3.9"
+        "default": "22.*",
+        "install_script": "../scripts/build/Install-NodeJS.ps1"
     },
     "mysql": {
-        "version": "8.4"
+        "version": "8.4",
+        "install_script": "../scripts/build/Install-MysqlCli.ps1"
     },
     "mongodb": {
-        "version": "7.0"
+        "version": "7.0",
+        "install_script": "../scripts/build/Install-MongoDB.ps1"
     },
     "nsis": {
-        "version": "3.10"
+        "version": "3.10",
+        "install_script": "../scripts/build/Install-NSIS.ps1"
     },
     "llvm": {
-        "version": "20"
+        "version": "20",
+        "install_script": "../scripts/build/Install-LLVM.ps1"
     },
     "php": {
-        "version": "8.5"
+        "version": "8.5",
+        "install_script": "../scripts/build/Install-PHP.ps1"
     },
     "postgresql": {
-        "version": "14"
+        "version": "14",
+        "install_script": "../scripts/build/Install-PostgreSQL.ps1"
     },
     "kotlin": {
-        "version": "latest"
+        "version": "latest",
+        "install_script": "../scripts/build/Install-Kotlin.ps1"
     },
     "openssl": {
-        "version": "3.*"
+        "version": "3.*",
+        "install_script": "../scripts/build/Install-OpenSSL.ps1"
     },
     "pwsh": {
-        "version": "7.6"
+        "version": "7.6",
+        "install_script": "../scripts/build/Install-PowershellCore.ps1"
     }
 }
