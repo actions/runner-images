@@ -70,7 +70,6 @@ function Invoke-SimulatorPrewarm {
                      throw "Failed to pre-warm the simulator keyboard service (exit code $LASTEXITCODE)."
                  }
                  Start-Sleep -Seconds 5
-                }
             }
         }
         finally {
