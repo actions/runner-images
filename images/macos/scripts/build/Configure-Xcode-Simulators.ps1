@@ -65,10 +65,11 @@ function Invoke-SimulatorPrewarm {
 
                 # Pre-warm text input / keyboard XPC service
                 Write-Host "Triggering TextInput service pre-warm..."
-                $targetUid = $(xcrun simctl spawn $udid id -u)
-                if ($targetUid) {
-                    xcrun simctl spawn $udid launchctl kickstart -k "gui/$targetUid/com.apple.TextInput.kbd" 2>$null
-                    Start-Sleep -Seconds 5
+                 xcrun simctl spawn $udid launchctl kickstart -k "system/com.apple.TextInput.kbd"
+                 if ($LASTEXITCODE -ne 0) {
+                     throw "Failed to pre-warm the simulator keyboard service (exit code $LASTEXITCODE)."
+                 }
+                 Start-Sleep -Seconds 5
                 }
             }
         }
