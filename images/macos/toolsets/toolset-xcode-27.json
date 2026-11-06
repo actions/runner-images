@@ -4,6 +4,13 @@
         "arm64": {
             "versions": [
                 {
+                    "link": "27.3_beta",
+                    "filename": "Xcode_27.3_beta",
+                    "version": "27.3+27C5020n",
+                    "symlinks": ["27.3"],
+                    "install_runtimes": "none"
+                },
+                {
                     "link": "27.2",
                     "filename": "Xcode_27.2",
                     "version": "27.2+27B52",
