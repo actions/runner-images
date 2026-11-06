@@ -1,13 +1,14 @@
 | Announcements |
 |-|
+| [[macOS] Azure DevOps macOS 14 Intel runners extended through November 23, 2026](https://github.com/actions/runner-images/issues/15226) |
 | [[macOS] The default OpenSSL version will be updated from 3 to 4 on macOS 26 and Xcode 27](https://github.com/actions/runner-images/issues/14856) |
 | [[macOS] Xcode 27 is now available as a public preview](https://github.com/actions/runner-images/issues/14404) |
-| [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
+| [[macOS] macOS 14 Sonoma retirement: GitHub Actions and ADO arm64 on November 2; ADO Intel on November 23](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 26
-- OS Version: macOS 26.6.2 (25G83)
+- OS Version: macOS 26.7.2 (25G332)
 - Kernel Version: Darwin 25.6.0
-- Image Version: 20261026.0455.2
+- Image Version: 20261102.0473.1
 
 ## Installed Software
 
@@ -23,9 +24,9 @@
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
 - Kotlin 2.4.21
-- Node.js 24.22.1
+- Node.js 24.22.2
 - Perl 5.44.0
-- Python3 3.15.1
+- Python3 3.15.2
 - Ruby 3.4.12
 
 ### Package Management
@@ -35,9 +36,9 @@
 - Homebrew 7.0.11
 - NPM 11.19.1
 - Pip3 26.2.2 (python 3.15)
-- Pipx 1.18.4
+- Pipx 1.18.11
 - RubyGems 4.0.23
-- Vcpkg 2026 (build from commit 09f646c836)
+- Vcpkg 2026 (build from commit 9a5dfef5d1)
 - Yarn 1.22.22
 
 ### Project Management
@@ -55,7 +56,7 @@
 - Curl 8.7.1
 - Git 2.56.0
 - Git LFS 3.8.1
-- GitHub CLI 2.103.2
+- GitHub CLI 2.103.3
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.24
@@ -70,29 +71,29 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.38.5
-- AWS SAM CLI 1.170.0
+- AWS CLI 2.39.3
+- AWS SAM CLI 1.171.0
 - AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.91.0
 - Azure CLI (azure-devops) 1.0.10
 - Bicep CLI 0.48.1
-- Cmake 4.4.4
+- Cmake 4.4.5
 - CodeQL Action Bundle 2.27.3
 - Fastlane 2.241.2
-- SwiftFormat 0.64.3
+- SwiftFormat 0.64.5
 - Xcbeautify 3.2.1
 - Xcode Command Line Tools 26.6.0.0.1781586589
 - Xcodes 2.1.0
 
 ### Browsers
-- Safari 26.6.2 (21624.5.1.11.3)
-- SafariDriver 26.6.2 (21624.5.1.11.3)
-- Google Chrome 156.0.8078.48
-- Google Chrome for Testing 156.0.8078.47
-- ChromeDriver 156.0.8078.47
-- Microsoft Edge 156.0.4314.42
-- Microsoft Edge WebDriver 156.0.4314.42
-- Mozilla Firefox 158.0.1
+- Safari 27.2 (21625.2.8.18.4)
+- SafariDriver 27.2 (21625.2.8.18.4)
+- Google Chrome 156.0.8078.80
+- Google Chrome for Testing 156.0.8078.80
+- ChromeDriver 156.0.8078.80
+- Microsoft Edge 156.0.4314.58
+- Microsoft Edge WebDriver 156.0.4314.58
+- Mozilla Firefox 159.0
 - geckodriver 0.37.1
 - Selenium server 4.51.0
 
@@ -127,7 +128,7 @@
 
 #### Node.js
 - 22.23.4
-- 24.22.1
+- 24.22.2
 
 #### Go
 - 1.24.13
@@ -237,9 +238,9 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                            |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                                               |
-| Android Emulator           | 37.2.12                                                                                                                                                                                                                                                                                                                                            |
+| Android Emulator           | 37.2.13                                                                                                                                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                                           |
-| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
+| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 2)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                             |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                             |
