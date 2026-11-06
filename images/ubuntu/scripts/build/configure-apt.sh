@@ -82,6 +82,34 @@ cat /etc/apt/apt-mirrors.txt
 
 apt-get update
 apt-get upgrade -y
+
+# CVE-2026-111943: the eMudhra/emSign intermediate CA compromise. The patched
+# ca-certificates package may not have reached every archive/mirror yet, so
+# distrust the affected root explicitly by subject rather than depending on a
+# package version landing. Matches by commonName so this is a safe no-op once
+# an upstream ca-certificates update removes the root for us.
+# https://github.com/actions/runner-images/issues/15018
+compromised_ca_subjects=("emSign ECC Root CA - G3")
+ca_conf=/etc/ca-certificates.conf
+ca_changed=0
+for crt in /usr/share/ca-certificates/mozilla/*.crt; do
+    [ -f "$crt" ] || continue
+    subject=$(openssl x509 -in "$crt" -noout -subject -nameopt multiline 2>/dev/null | awk -F'= *' '/commonName/ {print $2}')
+    for bad in "${compromised_ca_subjects[@]}"; do
+        if [ "$subject" = "$bad" ]; then
+            rel="mozilla/$(basename "$crt")"
+            if grep -qxF "$rel" "$ca_conf"; then
+                sed -i "s|^${rel}\$|!${rel}|" "$ca_conf"
+                echo "Distrusted compromised CA: $rel ($subject)"
+                ca_changed=1
+            fi
+        fi
+    done
+done
+if [ "$ca_changed" -eq 1 ]; then
+    update-ca-certificates
+fi
+
 # Install jq
 apt-get install jq
 
