@@ -47,14 +47,20 @@ function Invoke-SimulatorPrewarm {
             Write-Host "Waiting for simulator to finish boot and data migration (timeout: ${timeoutMinutes}m)..."
             $bootJob = Start-Job -ScriptBlock {
                 param($id)
+                $ErrorActionPreference = "Stop"
                 xcrun simctl bootstatus $id -b
+                if ($LASTEXITCODE -ne 0) {
+                    throw "Simulator bootstatus failed with exit code $LASTEXITCODE."
+                }
             } -ArgumentList $udid
 
             $completed = Wait-Job -Job $bootJob -Timeout ($timeoutMinutes * 60)
             if ($null -eq $completed) {
                 Write-Warning "Simulator bootstatus wait timed out after ${timeoutMinutes} minutes."
+            } elseif ($completed.State -ne "Completed") {
+                throw "Simulator bootstatus job ended in state $($completed.State)."
             } else {
-                Receive-Job -Job $bootJob | Out-Null
+                Receive-Job -Job $bootJob -ErrorAction Stop | Out-Null
                 Write-Host "Simulator $name successfully booted and finished initial data migration."
 
                 # Pre-warm text input / keyboard XPC service
