@@ -7,7 +7,7 @@
 ***
 # Ubuntu-Slim
 - OS Version: 24.04.5 LTS
-- Image Version: 20261026.36.1
+- Image Version: 20261101.43.1
 - Systemd version: 255.4-1ubuntu8.18
 
 ## Installed Software
@@ -15,7 +15,7 @@
 ### Language and Runtime
 - Bash 5.2.21(1)-release
 - Dash 0.5.12-6ubuntu5
-- Node.js 24.22.1
+- Node.js 24.22.2
 - Perl 5.38.2
 - Python 3.12.3
 
@@ -23,7 +23,7 @@
 - Npm 11.19.1
 - Pip 24.0
 - Pip3 24.0
-- Pipx 1.18.4
+- Pipx 1.18.11
 
 ### Tools
 - AzCopy 10.34.1 - available by `azcopy` and `azcopy10` aliases
@@ -41,13 +41,13 @@
 - zstd 1.5.7
 
 ### CLI Tools
-- AWS CLI 2.38.5
+- AWS CLI 2.39.3
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.170.0
+- AWS SAM CLI 1.171.0
 - Azure CLI 2.91.0
 - Azure CLI (azure-devops) 1.0.10
-- GitHub CLI 2.103.2
-- Google Cloud CLI 590.0.1
+- GitHub CLI 2.103.3
+- Google Cloud CLI 591.0.0
 
 ### PowerShell Tools
 - PowerShell 7.6.9
