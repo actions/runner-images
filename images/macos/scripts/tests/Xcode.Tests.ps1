@@ -7,6 +7,26 @@ $xcodeVersions = (Get-ToolsetContent).xcode.${arch}.versions
 $defaultXcode = (Get-ToolsetContent).xcode.default
 $latestXcodeVersion = $xcodeVersions | Select-Object -First 1
 $os = Get-OSVersion
+$systemResources = (Get-ToolsetContent).xcode.$arch.system_resources
+
+if ($systemResources) {
+    Describe "CoreSimulator version" {
+        It "Installed framework matches the pinned version" -TestCases @(@{ ExpectedVersion = $systemResources.coresimulator_version }) {
+            Get-CoreSimulatorVersion | Should -Be $ExpectedVersion
+        }
+    }
+
+    Describe "Xcode system resources compatibility" {
+        $testCases = $xcodeVersions | ForEach-Object { @{ XcodeVersion = $_.link } }
+        It "Xcode <XcodeVersion> can enumerate simulators" -TestCases $testCases {
+            $developerDirectory = "$(Get-XcodeRootPath -Version $XcodeVersion)/Contents/Developer"
+            $result = Get-CommandResult "DEVELOPER_DIR='$developerDirectory' /usr/bin/xcrun simctl list --json"
+            $result.ExitCode | Should -Be 0 -Because $result.Output
+            $simulators = $result.Output | ConvertFrom-Json -ErrorAction Stop
+            $simulators.PSObject.Properties.Name | Should -Contain "devices"
+        }
+    }
+}
 
 Describe "Xcode" {
     $testCases = $xcodeVersions | ForEach-Object {

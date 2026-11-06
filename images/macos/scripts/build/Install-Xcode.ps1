@@ -11,6 +11,7 @@ Import-Module "$env:HOME/image-generation/helpers/Xcode.Installer.psm1" -Disable
 $os = Get-OSVersion
 $arch = Get-Architecture
 [Array]$xcodeVersions = (Get-ToolsetContent).xcode.$arch.versions
+$systemResources = (Get-ToolsetContent).xcode.$arch.system_resources
 Write-Host $xcodeVersions
 $defaultXcode = (Get-ToolsetContent).xcode.default
 [Array]::Reverse($xcodeVersions)
@@ -43,6 +44,10 @@ $xcodeVersions | ForEach-Object {
 
 Invoke-XcodeRunFirstLaunch -Version $defaultXcode
 
+if ($systemResources) {
+    Install-XcodeSystemResources -Version $systemResources.xcode_version -Sha256Sum $systemResources.sha256 -CoreSimulatorVersion $systemResources.coresimulator_version
+}
+
 Write-Host "Configuring Xcode symlinks..."
 $xcodeVersions | ForEach-Object {
     Build-XcodeSymlinks -Version $_.link -Symlinks $_.symlinks
@@ -64,3 +69,8 @@ New-Item -Path "/Applications/Xcode.app" -ItemType SymbolicLink -Value (Get-Xcod
 
 Write-Host "Setting environment variables 'XCODE_<VERSION>_DEVELOPER_DIR'"
 Set-XcodeDeveloperDirEnvironmentVariables -XcodeList $xcodeVersions.link
+
+if ($systemResources) {
+    Import-Module "$env:HOME/image-generation/tests/Helpers.psm1" -DisableNameChecking
+    Invoke-PesterTests -TestFile "Xcode" -TestName "CoreSimulator version*"
+}
