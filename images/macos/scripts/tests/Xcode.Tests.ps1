@@ -103,6 +103,27 @@ Describe "XCODE_DEVELOPER_DIR variables" {
     }
 }
 
+Describe "Xcode Command Line Tools" {
+    $cltVersion = (Get-ToolsetContent).xcode.command_line_tools
+    $cltTestCase = @{
+        CltVersion = $cltVersion
+        CltSdkPath = "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk"
+    }
+
+    It "Command Line Tools version matches toolset" -TestCases $cltTestCase -Skip:(-not $cltVersion) {
+        $installedVersion = (Get-CommandResult "pkgutil --pkg-info com.apple.pkg.CLTools_Executables | awk '/^version:/ {print `$2}'").Output.Trim()
+        ($installedVersion -eq $CltVersion -or $installedVersion -like "${CltVersion}.*") | Should -BeTrue -Because "installed version is '$installedVersion'"
+    }
+
+    # Tools like GHC hardcode the CLT SDK library path, so the default Xcode linker must be able to read it
+    # https://github.com/actions/runner-images/issues/14940
+    It "Default Xcode toolchain links against Command Line Tools SDK libraries" -TestCases $cltTestCase -Skip:(-not $cltVersion) {
+        $binaryPath = "/tmp/clt-sdk-link-test"
+        "echo 'int main(void) { return 0; }' | env -u SDKROOT /usr/bin/clang -x c - -L${CltSdkPath}/usr/lib -lffi -liconv -o $binaryPath && $binaryPath" | Should -ReturnZeroExitCode
+        Remove-Item -Path $binaryPath -Force -ErrorAction SilentlyContinue
+    }
+}
+
 Describe "Xcode simulators" {
     $xcodeVersions.link | Where-Object { Test-XcodeStableRelease -Version $_ } | ForEach-Object {
         Context "$_" {
