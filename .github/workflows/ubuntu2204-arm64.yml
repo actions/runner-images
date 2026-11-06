@@ -1,0 +1,20 @@
+name: Trigger Ubuntu22.04 Arm64 CI
+run-name: Ubuntu22.04 Arm64 - ${{ github.event.pull_request.title }}
+
+on:
+  pull_request_target:
+    types: labeled
+    paths:
+    - 'images/ubuntu/**'
+
+defaults:
+  run:
+    shell: pwsh
+
+jobs:
+  Ubuntu_2204_Arm64:
+    if: github.event.label.name == 'CI ubuntu-all' || github.event.label.name == 'CI ubuntu-2204-arm64'
+    uses: ./.github/workflows/trigger-ubuntu-win-build.yml
+    with:
+      image_type: 'ubuntu2204-arm64'
+    secrets: inherit

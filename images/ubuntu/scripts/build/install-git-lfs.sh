@@ -13,10 +13,10 @@ GIT_LFS_REPO="https://packagecloud.io/install/repositories/github/git-lfs"
 curl -fsSL $GIT_LFS_REPO/script.deb.sh | bash
 apt-get install git-lfs
 
-# Remove source repo's
+# Remove source repos
 rm /etc/apt/sources.list.d/github_git-lfs.list
 
-# Document apt source repo's
+# Document apt source repos
 echo "git-lfs $GIT_LFS_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 
 invoke_tests "Tools" "Git-lfs"

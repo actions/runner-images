@@ -9,7 +9,7 @@ Describe "azcopy" {
     }
 }
 
-Describe "Bicep" {
+Describe "Bicep" -Skip:(Test-IsArm64) {
     It "Bicep" {
         "bicep --version" | Should -ReturnZeroExitCode
     }
@@ -99,7 +99,7 @@ Describe "Docker" {
         }
     }
 
-    It "docker compose v2" {
+    It "docker compose" {
         $version=(Get-ToolsetContent).docker.plugins | Where-Object { $_.plugin -eq 'compose' } | Select-Object -ExpandProperty version
         If ($version -ne "latest") {
             $(docker compose version --short) | Should -BeLike "*$version*"
@@ -176,25 +176,25 @@ Describe "Mono" -Skip:((-not (Test-IsUbuntu22))) {
     }
 }
 
-Describe "MSSQLCommandLineTools" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "MSSQLCommandLineTools" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "sqlcmd" {
         "sqlcmd -?" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "SqlPackage" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "SqlPackage" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "sqlpackage" {
         "sqlpackage /version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "R" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "R" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "r" {
         "R --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Sbt" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "Sbt" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "sbt" {
         "sbt --version" | Should -ReturnZeroExitCode
     }
@@ -234,6 +234,11 @@ Describe "Git" {
         "git --version" | Should -ReturnZeroExitCode
     }
 
+    # https://github.com/actions/runner-images/issues/14583
+    It "git comes from the git-core PPA" {
+        $(dpkg-query -W -f '${Version}' git) | Should -BeLike "*ppa*"
+    }
+
     It "git-ftp" {
         "git-ftp --version" | Should -ReturnZeroExitCode
     }
@@ -245,7 +250,7 @@ Describe "Git-lfs" {
     }
 }
 
-Describe "Heroku" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "Heroku" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "heroku" {
         "heroku --version" | Should -ReturnZeroExitCode
     }
@@ -257,7 +262,7 @@ Describe "Homebrew" {
     }
 }
 
-Describe "Julia" {
+Describe "Julia" -Skip:(-not ((Test-IsUbuntu22-X64) -or (Test-IsUbuntu24-X64))) {
     It "julia" {
         "julia --version" | Should -ReturnZeroExitCode
     }
@@ -285,13 +290,13 @@ Describe "Kubernetes tools" {
     }
 }
 
-Describe "Leiningen" -Skip:((-not (Test-IsUbuntu22))) {
+Describe "Leiningen" -Skip:((-not (Test-IsUbuntu22-X64))) {
     It "leiningen" {
         "lein --version" | Should -ReturnZeroExitCode
     }
 }
 
-Describe "Conda" {
+Describe "Conda" -Skip:(-not ((Test-IsUbuntu22-X64) -or (Test-IsUbuntu24-X64))) {
     It "conda" {
         "conda --version" | Should -ReturnZeroExitCode
     }
@@ -303,7 +308,7 @@ Describe "Packer" {
     }
 }
 
-Describe "Pulumi" {
+Describe "Pulumi" -Skip:(Test-IsUbuntu26) {
     It "pulumi" {
         "pulumi version" | Should -ReturnZeroExitCode
     }
@@ -321,6 +326,35 @@ Describe "Containers" {
         "podman network create -d bridge test-net" | Should -ReturnZeroExitCode
         "podman network ls" | Should -Not -OutputTextMatchingRegex "Error"
         "podman network rm test-net" | Should -ReturnZeroExitCode
+    }
+
+    # https://github.com/actions/runner-images/issues/14611
+    It "podman is installed from the Ubuntu package" {
+        (Get-Command podman).Source | Should -Be "/usr/bin/podman"
+        "dpkg-query --show podman" | Should -ReturnZeroExitCode
+    }
+
+    # https://github.com/actions/runner-images/issues/14406
+    # registries.conf must be valid v2 format; a v1 file is rejected by newer podman.
+    It "podman registries.conf" {
+        "podman info" | Should -ReturnZeroExitCode
+        "podman info" | Should -OutputTextMatchingRegex "docker.io"
+        "podman info" | Should -OutputTextMatchingRegex "quay.io"
+    }
+
+    # https://github.com/actions/runner-images/issues/14477
+    It "<Directory> is owned by root" -TestCases @(
+        @{ Directory = "/usr" }
+        @{ Directory = "/etc" }
+        @{ Directory = "/usr/local" }
+        @{ Directory = "/usr/local/bin" }
+    ) {
+        $(stat -c "%U" $Directory) | Should -Be "root"
+    }
+
+    # https://github.com/actions/runner-images/issues/14516
+    It "fusermount3 resolves to the setuid distro helper, not the podman bundle shadow" -Skip:(Test-IsUbuntu26) {
+        (Get-Command fusermount3).Source | Should -Be "/usr/bin/fusermount3"
     }
 
 }
@@ -426,5 +460,28 @@ Describe "AWF" -Skip:(Test-IsUbuntu22) {
         $latestVersion = Get-ChildItem -Path $awfPath -Directory | Sort-Object -Property { [version]$_.Name } -Descending | Select-Object -First 1
         $bundlePath = Join-Path $latestVersion.FullName "x64" "awf-bundle.js"
         $bundlePath | Should -Exist
+    }
+}
+
+Describe "Copilot CLI" -Skip:(Test-IsUbuntu22) {
+    It "Copilot CLI toolcache directory exists" {
+        $copilotPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
+        $copilotPath | Should -Exist
+    }
+
+    It "Copilot CLI binary exists in toolcache" {
+        $arch = if ((uname -m) -eq "aarch64") { "arm64" } else { "x64" }
+        $copilotPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
+        $latestVersion = Get-ChildItem -Path $copilotPath -Directory | Sort-Object -Property { [version]$_.Name } -Descending | Select-Object -First 1
+        $binPath = Join-Path $latestVersion.FullName $arch "bin" "copilot"
+        $binPath | Should -Exist
+    }
+
+    It "Copilot CLI toolcache .complete marker exists" {
+        $arch = if ((uname -m) -eq "aarch64") { "arm64" } else { "x64" }
+        $copilotPath = Join-Path $env:AGENT_TOOLSDIRECTORY "copilot-cli"
+        $latestVersion = Get-ChildItem -Path $copilotPath -Directory | Sort-Object -Property { [version]$_.Name } -Descending | Select-Object -First 1
+        $completeMarker = Join-Path $latestVersion.FullName "$arch.complete"
+        $completeMarker | Should -Exist
     }
 }

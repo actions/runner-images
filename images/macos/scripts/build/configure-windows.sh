@@ -33,7 +33,11 @@ for key in ${!windowslist[@]}; do
         echo "[Warning] ${windowslist[$key]}"
     else
         echo " - ${windowslist[$key]}" | xargs
-        scripterror=true
+
+        # Disabled error exit for MacOS 27 - still in preview
+        if ! is_GoldenGate; then
+            scripterror=true
+        fi
     fi
 done
 

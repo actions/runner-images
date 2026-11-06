@@ -53,7 +53,11 @@ run_test() {
 # Build the image only if using the default name (for backward compatibility)
 if [[ "$IMAGE_NAME" == "ubuntu-slim:test" ]]; then
     echo "Building image: $IMAGE_NAME"
-    if ! docker build --no-cache --debug --progress plain -t "$IMAGE_NAME" .; then
+    api_pat_args=()
+    if [[ -n "${GITHUB_TOKEN:-}" ]]; then
+        api_pat_args=(--secret "id=api_pat,env=GITHUB_TOKEN")
+    fi
+    if ! docker build --no-cache --debug --progress plain "${api_pat_args[@]}" -t "$IMAGE_NAME" .; then
         echo "Error: Docker build failed"
         exit 1
     fi
@@ -99,3 +103,14 @@ run_test "docker buildx is installed" docker buildx version
 
 # Quick check: ensure the imagedata JSON file was created during image build
 run_test "imagedata JSON file exists" test -f /imagegeneration/imagedata.json
+
+# Quick check: ensure the action archive cache was downloaded and extracted during image build
+run_test "action archive cache is populated" bash -c '[ "$(find /opt/actionarchivecache -name "*.tar.gz" | wc -l)" -gt 0 ]'
+
+# Assert the effective apt acquire bounds, since a setting written under a key apt does not read is
+# silently ignored: https://github.com/actions/runner-images/issues/14594
+run_test "apt acquire retries are bounded" bash -c 'apt-config dump Acquire::Retries | grep -Fxq "Acquire::Retries \"1\";"'
+run_test "apt http timeout is bounded" bash -c 'apt-config dump Acquire::http::Timeout | grep -Fxq "Acquire::http::Timeout \"15\";"'
+run_test "apt https timeout is bounded" bash -c 'apt-config dump Acquire::https::Timeout | grep -Fxq "Acquire::https::Timeout \"15\";"'
+run_test "apt DEP-11 index target is disabled" bash -c 'apt-config dump Acquire::IndexTargets::deb::DEP-11::DefaultEnabled | grep -Fxq "Acquire::IndexTargets::deb::DEP-11::DefaultEnabled \"false\";"'
+run_test "apt sources resolve through the mirror list" bash -c 'grep -Rq "mirror+file:/etc/apt/apt-mirrors.txt" /etc/apt/'

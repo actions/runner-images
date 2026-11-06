@@ -6,6 +6,7 @@ enum ImageType {
     Windows2025_vs2026  = 3
     Ubuntu2204          = 4
     Ubuntu2404          = 5
+    Ubuntu2604          = 6
 }
 
 Function Get-PackerTemplate {
@@ -37,6 +38,10 @@ Function Get-PackerTemplate {
         ([ImageType]::Ubuntu2404) {
             $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-24_04.pkr.hcl"
             $imageOS = "ubuntu24"
+        }
+        ([ImageType]::Ubuntu2604) {
+            $relativeTemplatePath = Join-Path (Join-Path "ubuntu" "templates") "build.ubuntu-26_04.pkr.hcl"
+            $imageOS = "ubuntu26"
         }
         default { throw "Unknown type of image" }
     }
@@ -117,7 +122,7 @@ Function GenerateResourcesAndImage {
         .PARAMETER ResourceGroupName
             The name of the resource group to store the resulting artifact. Resource group must already exist.
         .PARAMETER ImageType
-            The type of image to generate. Valid values are: Windows2022, Windows2025, Windows2025_vs2026, Ubuntu2204, Ubuntu2404.
+            The type of image to generate. Valid values are: Windows2022, Windows2025, Windows2025_vs2026, Ubuntu2204, Ubuntu2404, Ubuntu2604.
         .PARAMETER ManagedImageName
             The name of the managed image to create. The default is "Runner-Image-{{ImageType}}".
         .PARAMETER AzureLocation

@@ -39,11 +39,17 @@ function Add-GlobalEnvironmentVariable {
 
 $ErrorActionPreference = "Stop"
 
+if ( Test-IsArm64 ) {
+    $envVarTemplate = "GOROOT_{0}_{1}_AARCH64"
+} else {
+    $envVarTemplate = "GOROOT_{0}_{1}_X64"
+}
+
 Write-Host "Configure toolcache tools environment..."
 $toolEnvConfigs = @{
     go = @{
         command          = "ln -s {0}/bin/* /usr/bin/"
-        variableTemplate = "GOROOT_{0}_{1}_X64"
+        variableTemplate = $envVarTemplate
     }
 }
 

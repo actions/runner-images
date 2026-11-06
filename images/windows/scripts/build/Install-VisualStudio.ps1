@@ -53,7 +53,7 @@ if (Test-IsWin25-X64) {
     $installerEntry = Get-ItemProperty HKLM:\Software\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\* `
         | Where-Object { $_.DisplayName -match "Windows Software Development Kit" } `
         | Sort-Object DisplayVersion -Descending | Select-Object -First 1
-    
+
     if ($installerEntry -and $installerEntry.BundleCachePath) {
         Install-Binary -Type EXE `
             -LocalPath $installerEntry.BundleCachePath `

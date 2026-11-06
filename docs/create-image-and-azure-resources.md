@@ -1,6 +1,6 @@
 # GitHub Actions Runner Images
 
-The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for Windows 2022/2025 and Ubuntu 22.04/24.04.
+The runner-images project uses [Packer](https://www.packer.io/) to generate disk images for Windows 2022/2025 and Ubuntu 22.04/24.04/26.04.
 
 Each image is configured by a HCL2 Packer template that specifies where to build the image (Azure, in this case),
 and what steps to run to install software and prepare the disk.
@@ -98,7 +98,7 @@ Finally, run the `GenerateResourcesAndImage` function, setting the mandatory arg
 - `ResourceGroupName` - the name of the resource group that will store the resulting artifact (e.g., "imagegen-test").
     The resource group must already exist in your Azure subscription;
 - `AzureLocation` - the location where resources will be created (e.g., "East US");
-- `ImageType` - the type of image to build (valid options are "Windows2022", "Windows2025", "Ubuntu2204", "Ubuntu2404").
+- `ImageType` - the type of image to build (valid options are "Windows2022", "Windows2025", "Windows2025_vs2026", "Ubuntu2204", "Ubuntu2404", "Ubuntu2604").
 
 This function automatically creates all required Azure resources and initiates the Packer image generation for the selected image type.
 
@@ -200,7 +200,7 @@ Then, you can invoke Packer in your CI/CD pipeline using the following commands:
 ```powershell
 packer plugins install github.com/hashicorp/azure 2.2.1
 
-packer build -only "$BuildName*" `
+packer build -only "$BuildName.*" `
              -var "subscription_id=$SubscriptionId" `
              -var "client_id=$ClientId" `
              -var "client_secret=$ClientSecret" `
@@ -233,8 +233,9 @@ The following variables are required to be passed to the Packer process:
 | ------------ | ------- | -----------
 | `subscription_id` | `ARM_SUBSCRIPTION_ID` | The subscription under which the build will be performed.
 | `client_id` | `ARM_CLIENT_ID` | The Active Directory service principal associated with your builder.
-| `client_secret` | `ARM_CLIENT_SECRET` | The password or secret for your service principal; may be omitted if `client_cert_path` is set.
-| `client_cert_path` | `ARM_CLIENT_CERT_PATH` | The location of a PEM file containing a certificate and private key for the service principal; may be omitted if `client_secret` is set.
+| `client_secret` | `ARM_CLIENT_SECRET` | The password or secret for your service principal; may be omitted if `client_cert_path` or `client_jwt` is set.
+| `client_cert_path` | `ARM_CLIENT_CERT_PATH` | The location of a PEM file containing a certificate and private key for the service principal; may be omitted if `client_secret` or `client_jwt` is set.
+| `client_jwt` | `ARM_CLIENT_JWT` | A bearer JWT assertion for federated/workload identity authentication (e.g. Azure DevOps workload identity federation); may be omitted if `client_secret` or `client_cert_path` is set.
 | `location` | `ARM_RESOURCE_LOCATION` | The Azure datacenter in which your VM will be built.
 | `managed_image_resource_group_name` | `ARM_RESOURCE_GROUP` | The resource group under which the final artifact will be stored.
 

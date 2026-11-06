@@ -27,7 +27,11 @@ RUN chmod +x /opt/entrypoint.sh
 
 RUN echo 'set -eo pipefail' >> /etc/bash.bashrc
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y sudo lsb-release jq dpkg && \
+# Mounted as a build secret rather than an ARG so the token never reaches the image history.
+# Absent secret leaves API_PAT empty, which keeps the build on its unauthenticated path.
+RUN --mount=type=secret,id=api_pat \
+    export API_PAT="$(cat /run/secrets/api_pat 2>/dev/null || true)" && \
+    apt-get update && apt-get upgrade -y && apt-get install -y sudo lsb-release jq dpkg && \
     touch /run/.containerenv && \
     /tmp/scripts/build/configure-apt-sources.sh && \
     /tmp/scripts/build/configure-apt.sh && \

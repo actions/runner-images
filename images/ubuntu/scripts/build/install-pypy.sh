@@ -13,7 +13,7 @@ install_pypy() {
     local package_url=$1
 
     package_tar_name=$(echo "$package_url" | awk -F/ '{print $NF}')
-    package_name=${package_tar_name/.tar.bz2/}
+    package_name=${package_tar_name%.tar.*}
 
     echo "Downloading tar archive '$package_name'"
     package_tar_temp_path=$(download_with_retry $package_url)

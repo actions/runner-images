@@ -13,7 +13,7 @@ Describe "Docker" -Skip:(Test-IsWin11-Arm64) {
 }
 
 Describe "DockerCompose" -Skip:(Test-IsWin11-Arm64) {
-    It "docker compose v2" {
+    It "docker compose" {
         "docker compose version" | Should -ReturnZeroExitCode
     }
 
@@ -25,12 +25,22 @@ Describe "DockerWinCred" -Skip:(Test-IsWin11-Arm64) {
     }
 }
 
-Describe "DockerImages" -Skip:((Test-IsWin25-X64) -or (Test-IsWin11-Arm64)) {
-    Context "docker images" {
-        $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
+$skipDockerImages = (Test-IsWin25-X64) -or (Test-IsWin11-Arm64)
 
-        It "<ImageName>" -TestCases $testCases {
-            docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
+Describe "DockerImages" -Skip:$skipDockerImages {
+    BeforeDiscovery {
+        $testCases = @()
+        if (-not $skipDockerImages) {
+            $dockerImages = (Get-ToolsetContent).docker.images
+            $testCases = $dockerImages | ForEach-Object { @{ ImageName = $_ } }
+        }
+    }
+
+    Context "docker images" {
+        if ($testCases.Count -gt 0) {
+            It "<ImageName>" -TestCases $testCases {
+                docker images "$ImageName" --format "{{.Repository}}" | Should -Not -BeNullOrEmpty
+            }
         }
     }
 }

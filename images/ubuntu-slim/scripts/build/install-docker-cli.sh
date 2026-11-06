@@ -18,7 +18,7 @@ apt-get update
 # Install Docker CLI components (not the daemon)
 # docker-ce-cli: Docker command line interface
 # docker-buildx-plugin: Build with BuildKit
-# docker-compose-plugin: Docker Compose V2
+# docker-compose-plugin: Docker Compose
 apt-get install --no-install-recommends -y \
     docker-ce-cli \
     docker-buildx-plugin \
