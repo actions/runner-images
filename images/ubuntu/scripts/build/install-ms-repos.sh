@@ -11,6 +11,6 @@ wget https://packages.microsoft.com/config/ubuntu/$os_label/packages-microsoft-p
 dpkg -i packages-microsoft-prod.deb
 
 # update
-apt-get install apt-transport-https ca-certificates curl software-properties-common
+# configure-apt.sh sets APT::Get::Assume-Yes only after this script, so pass -y explicitly
+apt-get install -y apt-transport-https ca-certificates curl software-properties-common
 apt-get update
-apt-get dist-upgrade
