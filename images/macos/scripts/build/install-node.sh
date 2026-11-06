@@ -18,7 +18,13 @@ fi
 
 echo "Installing Node.js $defaultVersion"
 brew_smart_install "node@$defaultVersion"
+HOMEBREW_NO_AUTO_UPDATE=1 brew upgrade "node@$defaultVersion"
 brew link node@$defaultVersion --force --overwrite
+node <<'NODE'
+const [major, minor, patch] = process.versions.node.split(".").map(Number);
+const minimum = {22: [23, 4], 24: [22, 1], 26: [12, 1]}[major];
+if (!minimum || minor < minimum[0] || (minor === minimum[0] && patch < minimum[1])) process.exit(1);
+NODE
 
 echo Installing yarn...
 yarn_installer_path=$(download_with_retry "https://yarnpkg.com/install.sh")

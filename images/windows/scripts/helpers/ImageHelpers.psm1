@@ -61,3 +61,6 @@ Export-ModuleMember -Function @(
     'Install-VSIXFromUrl'
     'Get-VSExtensionVersion'
 )
+
+Import-Module "$PSScriptRoot\PhpSecurity.Helpers.psm1"
+Export-ModuleMember -Function Assert-PhpSecurityVersion
