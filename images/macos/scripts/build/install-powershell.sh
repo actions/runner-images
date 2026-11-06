@@ -28,6 +28,7 @@ sudo xattr -rd com.apple.quarantine $pkg_path
 sudo installer -pkg $pkg_path -target /
 
 # Install PowerShell modules
+# Install-PSResource builds download URLs itself; Install-Module follows broken PSGallery feed links (PowerShell/PowerShellGallery#357)
 psModules=$(get_toolset_value '.powershellModules[].name')
 for module in ${psModules[@]}; do
     echo "Installing $module module"
@@ -35,19 +36,19 @@ for module in ${psModules[@]}; do
     if [[ -z $moduleVersions ]];then
         # Check MacOS architecture and sudo on Arm64
         if [[ $arch == "arm64" ]]; then
-            sudo pwsh -command "& {Install-Module $module -Force -Scope AllUsers}"
+            sudo pwsh -command "& {Install-PSResource -Name $module -Scope AllUsers -TrustRepository -AcceptLicense -Reinstall -ErrorAction Stop}"
         else
-            pwsh -command "& {Install-Module $module -Force -Scope AllUsers}"
+            pwsh -command "& {Install-PSResource -Name $module -Scope AllUsers -TrustRepository -AcceptLicense -Reinstall -ErrorAction Stop}"
         fi
     else
         for version in ${moduleVersions[@]}; do
             # Check MacOS architecture and sudo on Arm64
             if [[ $arch == "arm64" ]]; then
                 echo " - $version"
-                sudo pwsh -command "& {Install-Module $module -RequiredVersion $version -Force -Scope AllUsers}"
+                sudo pwsh -command "& {Install-PSResource -Name $module -Version $version -Scope AllUsers -TrustRepository -AcceptLicense -Reinstall -ErrorAction Stop}"
             else
                 echo " - $version"
-                pwsh -command "& {Install-Module $module -RequiredVersion $version -Force -Scope AllUsers}"
+                pwsh -command "& {Install-PSResource -Name $module -Version $version -Scope AllUsers -TrustRepository -AcceptLicense -Reinstall -ErrorAction Stop}"
             fi
         done
     fi

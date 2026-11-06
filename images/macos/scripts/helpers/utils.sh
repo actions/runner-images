@@ -100,7 +100,7 @@ get_toolset_value() {
 # Use the '--build-from-source' option to build from source in this case
 brew_smart_install() {
     local tool_name=$1
-    local no_deps_update=$4
+    local no_deps_update=$2
 
     echo "Downloading $tool_name..."
 
