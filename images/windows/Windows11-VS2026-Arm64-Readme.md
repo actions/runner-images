@@ -4,8 +4,8 @@
 | [[Windows] The Windows 11 Arm64 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14592) |
 ***
 # Windows 11 Enterprise
-- OS Version: 10.0.26200 Build 9725
-- Image Version: 20261101.203.1
+- OS Version: 10.0.26200 Build 9711
+- Image Version: 20261026.197.1
 
 ## Windows features
 
@@ -17,22 +17,22 @@
 - Julia 1.12.0
 - Kotlin 2.4.21
 - LLVM 22.1.8
-- Node 24.22.2
+- Node 24.22.1
 - Perl 5.32.1
 - PHP 8.4.27
 - Python 3.13.17
 - Ruby 3.4.12
 
 ### Package Management
-- Chocolatey 2.7.5
-- Composer 2.11.1
+- Chocolatey 2.7.4
+- Composer 2.10.3
 - Helm 4.1.4
 - NPM 11.19.1
 - NuGet 7.9.0.83
 - pip 26.2.2 (python 3.13)
-- Pipx 1.18.11
+- Pipx 1.18.4
 - RubyGems 3.6.9
-- Vcpkg (build from commit 9a5dfef5d1)
+- Vcpkg (build from commit 817892b0ec)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -53,15 +53,15 @@
 - Bazel 9.3.1
 - Bazelisk 1.28.1
 - Bicep 0.48.1
-- CMake 4.4.5
+- CMake 4.4.4
 - CodeQL Action Bundle 2.27.3
-- Git 2.56.0.windows.4
+- Git 2.56.0.windows.3
 - Git LFS 3.8.1
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.2
 - Kind 0.33.0
-- Kubectl 1.37.2
+- Kubectl 1.37.1
 - Mercurial 6.3.1
 - gcc 14.2.0
 - gdb 16.2
@@ -70,8 +70,8 @@
 - NSIS 3.10
 - OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.273.0
-- R 4.6.2 (x86_64, emulated)
+- Pulumi 3.272.0
+- R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
 - VSWhere 3.1.7
@@ -82,12 +82,12 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.2
-- AWS CLI 2.39.3
-- AWS SAM CLI 1.171.0
+- AWS CLI 2.38.5
+- AWS SAM CLI 1.170.0
 - AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.91.0
 - Azure DevOps CLI extension 1.0.10
-- GitHub CLI 2.103.3
+- GitHub CLI 2.103.2
 
 ### Rust Tools
 - Cargo 1.99.1
@@ -104,14 +104,14 @@
 - Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Google Chrome 156.0.8078.80
-- Chrome Driver 156.0.8078.80
-- Microsoft Edge 156.0.4314.58
-- Microsoft Edge Driver 156.0.4314.58
-- Mozilla Firefox 159.0
+- Google Chrome 156.0.8078.48
+- Chrome Driver 156.0.8078.47
+- Microsoft Edge 156.0.4314.42
+- Microsoft Edge Driver 156.0.4314.42
+- Mozilla Firefox 158.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.52.0
+- Selenium server 4.51.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -153,13 +153,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Node.js
 - 22.23.4
-- 24.22.2
+- 24.22.1
 
 #### Python
 - 3.12.10
 - 3.13.17
-- 3.14.10
-- 3.15.2
+- 3.14.9
+- 3.15.1
 
 #### Ruby
 - 3.4.12
@@ -180,7 +180,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2026
 | Name                          | Version         | Path                                                   |
 | ----------------------------- | --------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.11.12328.437 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Visual Studio Enterprise 2026 | 18.11.12324.101 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -392,7 +392,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.327
+- AWSPowershell: 5.0.322
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
