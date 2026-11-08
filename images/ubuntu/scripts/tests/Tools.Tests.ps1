@@ -113,6 +113,44 @@ Describe "Docker" {
     }
 }
 
+Describe "CachedDockerImages" {
+    # Keep this map in sync with the `docker.images` list in the toolset file: each entry defines
+    # a lightweight, non-mutating command that proves the cached image can actually run, without
+    # starting a long-lived service (e.g. a database server or the LocalStack gateway).
+    $cachedImageChecks = [ordered]@{
+        "postgres:18"                     = @{ Args = "--version" }
+        "mysql:8.4"                       = @{ Args = "--version" }
+        "node:24-bookworm"                = @{ Args = "node --version" }
+        "pgvector/pgvector:pg18"          = @{ Args = "--version" }
+        "localstack/localstack:2026.10.6" = @{ Entrypoint = "localstack"; Args = "--version" }
+        "python:3.14-bookworm"            = @{ Args = "python --version" }
+        "espressif/idf:v5.5.6"            = @{ Args = "idf.py --version" }
+        "mongo:8.0"                       = @{ Args = "--version" }
+        "semgrep/semgrep:1.184.0"         = @{ Args = "--version" }
+        "golang:1.27-bookworm"            = @{ Args = "go version" }
+    }
+
+    $testCases = (Get-ToolsetContent).docker.images | ForEach-Object {
+        if (-not $cachedImageChecks.Contains($_)) {
+            throw "No validation command registered for cached image '$_'. Add an entry to `$cachedImageChecks` in CachedDockerImages (images/ubuntu/scripts/tests/Tools.Tests.ps1)."
+        }
+        $check = $cachedImageChecks[$_]
+        $entrypointFlag = if ($check.Entrypoint) { "--entrypoint $($check.Entrypoint) " } else { "" }
+        @{
+            ImageName  = $_
+            RunCommand = "sudo docker run --rm --pull=never $entrypointFlag$_ $($check.Args)"
+        }
+    }
+
+    It "<ImageName> is present" -TestCases $testCases {
+        $(sudo docker images "$ImageName" --format "{{.Repository}}") | Should -Not -BeNullOrEmpty
+    }
+
+    It "<ImageName> is usable" -TestCases $testCases {
+        $RunCommand | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Ansible" {
     It "Ansible" {
         "ansible --version" | Should -ReturnZeroExitCode

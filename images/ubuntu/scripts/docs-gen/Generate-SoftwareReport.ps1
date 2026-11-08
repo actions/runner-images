@@ -281,6 +281,9 @@ if ($availableCachedTools.Count -gt 0) {
     }
 }
 
+# Cached Docker images
+$installedSoftware.AddHeader("Cached Docker images").AddTable($(Get-CachedDockerImagesTableData))
+
 # PowerShell Tools
 $powerShellTools = $installedSoftware.AddHeader("PowerShell Tools")
 $powerShellTools.AddToolVersion("PowerShell", $(Get-PowershellVersion))

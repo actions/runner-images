@@ -124,7 +124,7 @@ The `-latest` migration process is gradual and happens over 1-2 months in order 
 
 | Tool name | Installation strategy |
 |-----------|-----------------------|
-| Docker images | not more than 3 latest LTS OS\tool versions. New images or new versions of current images are added using the standard tool request process |
+| Docker images | not more than 3 latest LTS OS\tool versions. New images or new versions of current images are added using the standard tool request process. Note for [Ubuntu images see details](./docs/common-dev-container-images.md) on the common development/test container images cached on every Ubuntu image. |
 | Java      | all LTS versions |
 | Node.js   | 3 latest LTS versions |
 | Go        | 3 latest minor versions |
