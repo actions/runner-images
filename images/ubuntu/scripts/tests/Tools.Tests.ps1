@@ -126,7 +126,7 @@ Describe "CachedDockerImages" {
         "python:3.14-bookworm"            = @{ Args = "python --version" }
         "espressif/idf:v5.5.6"            = @{ Args = "idf.py --version" }
         "mongo:8.0"                       = @{ Args = "--version" }
-        "semgrep/semgrep:1.184.0"         = @{ Args = "--version" }
+        "semgrep/semgrep:1.184.0"         = @{ Args = "semgrep --version" }
         "golang:1.27-bookworm"            = @{ Args = "go version" }
     }
 
