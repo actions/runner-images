@@ -5,7 +5,7 @@
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 33674
-- Image Version: 20261030.294.1
+- Image Version: 20261103.298.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -27,15 +27,15 @@
 
 ### Package Management
 - Chocolatey 2.7.5
-- Composer 2.11.0
+- Composer 2.11.1
 - Helm 4.1.4
 - Miniconda 26.9.4 (pre-installed on the image but not added to PATH)
 - NPM 10.9.9
 - NuGet 7.9.0.83
-- pip 26.2.2 (python 3.12)
-- Pipx 1.18.10
+- pip 26.3 (python 3.12)
+- Pipx 1.18.12
 - RubyGems 3.5.22
-- Vcpkg (build from commit d186940b2f)
+- Vcpkg (build from commit afa249f12f)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -59,7 +59,7 @@
 - Bicep 0.48.1
 - Cabal 3.18.2.0
 - CMake 4.4.5
-- CodeQL Action Bundle 2.27.3
+- CodeQL Action Bundle 2.27.4
 - Docker 29.7.2
 - Docker Compose 2.40.3
 - Docker-wincred 0.9.12
@@ -78,7 +78,7 @@
 - OpenSSL 3.6.5
 - Packer 1.16.0
 - Pulumi 3.273.0
-- R 4.6.1
+- R 4.6.2
 - Service Fabric Runtime 11.7.157.1
 - Service Fabric SDK 8.7.157.1
 - Stack 3.11.1
@@ -91,10 +91,10 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.39.1
+- AWS CLI 2.39.3
 - AWS SAM CLI 1.171.0
 - AWS Session Manager CLI 1.2.896.0
-- Azure CLI 2.91.0
+- Azure CLI 2.92.0
 - Azure DevOps CLI extension 1.0.10
 - GitHub CLI 2.103.3
 
@@ -102,7 +102,7 @@
 - Cargo 1.99.1
 - Rust 1.99.1
 - Rustdoc 1.99.1
-- Rustup 1.29.2
+- Rustup 1.29.3
 
 #### Packages
 - Clippy 0.1.99
@@ -111,9 +111,9 @@
 ### Browsers and Drivers
 - Google Chrome 156.0.8078.80
 - Chrome Driver 156.0.8078.80
-- Microsoft Edge 156.0.4314.56
-- Microsoft Edge Driver 156.0.4314.50
-- Mozilla Firefox 159.0
+- Microsoft Edge 156.0.4314.58
+- Microsoft Edge Driver 156.0.4314.58
+- Mozilla Firefox 159.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
 - Selenium server 4.52.0
@@ -127,13 +127,13 @@
 | SELENIUM_JAR_PATH | C:\selenium\selenium-server.jar    |
 
 ### Java
-| Version               | Environment Variable |
-| --------------------- | -------------------- |
-| 8.0.504+1             | JAVA_HOME_8_X64      |
-| 11.0.32+101           | JAVA_HOME_11_X64     |
-| 17.0.20+101 (default) | JAVA_HOME_17_X64     |
-| 21.0.13+9.0           | JAVA_HOME_21_X64     |
-| 25.0.5+8.0            | JAVA_HOME_25_X64     |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.504+1           | JAVA_HOME_8_X64      |
+| 11.0.32+101         | JAVA_HOME_11_X64     |
+| 17.0.21+9 (default) | JAVA_HOME_17_X64     |
+| 21.0.13+9.0         | JAVA_HOME_21_X64     |
+| 25.0.5+8.0          | JAVA_HOME_25_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -455,7 +455,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.326
+- AWSPowershell: 5.0.327
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
