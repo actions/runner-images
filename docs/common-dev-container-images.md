@@ -31,13 +31,15 @@ don't fit the update policy below. They aren't part of this document's scope.
 | `pgvector/pgvector` | `pg18` | Must track the PostgreSQL major version above. |
 | `localstack/localstack` | `2026.10.6` | Requires a `LOCALSTACK_AUTH_TOKEN` to activate; see [Known limitations](#known-limitations). |
 | `python` | `3.14-bookworm` | |
-| `espressif/idf` | `v5.5.6` | Large image (~5.4 GB compressed per architecture); see [Known limitations](#known-limitations). |
+| `espressif/idf` | `v5.5.6` | Large image (~5.4 GB compressed per architecture); excluded on Ubuntu 26.04 (both architectures). See [Known limitations](#known-limitations). |
 | `mongo` | `7.0` | Not `8.0`: see [Known limitations](#known-limitations). |
 | `semgrep/semgrep` | `1.184.0` | |
 | `golang` | `1.27-bookworm` | |
 
-All tags above publish both `linux/amd64` and `linux/arm64` manifests, so the same list applies
-unchanged to every supported Ubuntu architecture.
+All tags above publish both `linux/amd64` and `linux/arm64` manifests. The full ten-image list
+applies unchanged to every architecture of Ubuntu 22.04 and 24.04; Ubuntu 26.04 (both
+architectures) caches only nine of the ten images, excluding `espressif/idf` — see
+[Known limitations](#known-limitations).
 
 ## Selection criteria
 
@@ -91,10 +93,15 @@ repository, tag, and digest under **Cached Docker images**, produced by
   AWS service emulation when a `LOCALSTACK_AUTH_TOKEN` (or `LOCALSTACK_API_KEY`) is supplied at
   container start. Pre-pulling the image guarantees the layers are local, but it does not provide
   a license; users must still supply their own token to start LocalStack and use its services.
-- **`espressif/idf` is large.** The pinned tag is approximately 5.4 GB compressed per
-  architecture. This meaningfully increases image build time and the disk space consumed on the
-  runner. If available disk space for user jobs becomes a concern, revisit whether this image
-  should remain in the default cached set.
+- **`espressif/idf` is excluded on Ubuntu 26.04.** The pinned tag is approximately 5.4 GB
+  compressed per architecture. A real build of Ubuntu 26.04 (both architectures) with all 10
+  images cached measured only 16 GB free against the required 17 GB minimum enforced by the
+  `Disk free space` baseline test (see
+  [`System.Tests.ps1`](../images/ubuntu/scripts/tests/System.Tests.ps1)). Rather than reduce that
+  safety margin — or grow every Ubuntu 26.04 runner's OS disk to make room for one large image —
+  `espressif/idf` is left out of the Ubuntu 26.04 toolsets only. Revisit this exclusion (and
+  re-check the other Ubuntu versions' margin as the cached set or base image grows) if Ubuntu
+  26.04's base disk usage shrinks or its OS disk is resized.
 - **`mongo` is pinned to `7.0`, not `8.0`.** MongoDB 8.0+ aborts at startup on Linux kernel
   versions 6.19 up to (but not including) 7.0.14, due to a known TCMalloc/rseq incompatibility
   (see [MongoDB SERVER-121912](https://jira.mongodb.org/browse/SERVER-121912)). The hosted Ubuntu
