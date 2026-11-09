@@ -124,12 +124,16 @@ Describe "CachedDockerImages" {
         "mysql"                 = @{ Args = "--version" }
         "node"                  = @{ Args = "node --version" }
         "pgvector/pgvector"     = @{ Args = "--version" }
-        # LocalStack's default entrypoint (docker-entrypoint.sh) activates a venv to put the
-        # `localstack` CLI on PATH before exec'ing the long-running gateway. Overriding
-        # --entrypoint bypasses that script entirely, so the CLI must be invoked by its absolute
-        # path instead of the bare command name - the same path LocalStack's own Dockerfile
-        # HEALTHCHECK uses.
-        "localstack/localstack" = @{ Entrypoint = "/opt/code/localstack/.venv/bin/localstack"; Args = "--version" }
+        # This pinned LocalStack build doesn't ship a standalone `localstack` CLI binary at all
+        # (confirmed by inspecting the published image's layers): its entrypoint always execs the
+        # long-running `localstack-supervisor` gateway, which isn't suitable for a lightweight,
+        # non-mutating check. Instead, invoke the image's own embedded venv interpreter directly
+        # and import the static `localstack.version` module, which only reads a pre-generated
+        # version string and starts nothing.
+        "localstack/localstack" = @{
+            Entrypoint = "/opt/code/localstack/.venv/bin/python3"
+            Args       = '-c "from localstack.version import __version__; print(__version__)"'
+        }
         "python"                = @{ Args = "python --version" }
         "espressif/idf"         = @{ Args = "idf.py --version" }
         "mongo"                 = @{ Args = "--version" }
