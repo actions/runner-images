@@ -91,7 +91,8 @@ docker info
 
 if ! is_ubuntu22; then
     # Pull Dependabot docker image
-    docker pull ghcr.io/dependabot/dependabot-updater-core:latest
+    # The image is published for amd64 only, so pin the platform to keep ARM64 pulls working: https://github.com/dependabot/dependabot-core/issues/15874
+    docker pull --platform linux/amd64 ghcr.io/dependabot/dependabot-updater-core:latest
 
     # Pull AW docker images
     docker pull ghcr.io/github/gh-aw-mcpg:latest
