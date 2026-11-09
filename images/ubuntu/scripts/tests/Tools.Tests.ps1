@@ -114,31 +114,40 @@ Describe "Docker" {
 }
 
 Describe "CachedDockerImages" {
-    # Keep this map in sync with the `docker.images` list in the toolset file: each entry defines
-    # a lightweight, non-mutating command that proves the cached image can actually run, without
-    # starting a long-lived service (e.g. a database server or the LocalStack gateway).
+    # Keyed by repository only (not the pinned tag) so the toolset's `docker.images` list stays
+    # the single source of truth for versions: bumping a tag there never requires touching this
+    # map, only adding/removing a repository does. Each entry defines a lightweight, non-mutating
+    # command that proves the cached image can actually run, without starting a long-lived service
+    # (e.g. a database server or the LocalStack gateway).
     $cachedImageChecks = [ordered]@{
-        "postgres:18"                     = @{ Args = "--version" }
-        "mysql:8.4"                       = @{ Args = "--version" }
-        "node:24-bookworm"                = @{ Args = "node --version" }
-        "pgvector/pgvector:pg18"          = @{ Args = "--version" }
-        "localstack/localstack:2026.10.6" = @{ Entrypoint = "localstack"; Args = "--version" }
-        "python:3.14-bookworm"            = @{ Args = "python --version" }
-        "espressif/idf:v5.5.6"            = @{ Args = "idf.py --version" }
-        "mongo:8.0"                       = @{ Args = "--version" }
-        "semgrep/semgrep:1.184.0"         = @{ Args = "semgrep --version" }
-        "golang:1.27-bookworm"            = @{ Args = "go version" }
+        "postgres"              = @{ Args = "--version" }
+        "mysql"                 = @{ Args = "--version" }
+        "node"                  = @{ Args = "node --version" }
+        "pgvector/pgvector"     = @{ Args = "--version" }
+        # LocalStack's default entrypoint (docker-entrypoint.sh) activates a venv to put the
+        # `localstack` CLI on PATH before exec'ing the long-running gateway. Overriding
+        # --entrypoint bypasses that script entirely, so the CLI must be invoked by its absolute
+        # path instead of the bare command name - the same path LocalStack's own Dockerfile
+        # HEALTHCHECK uses.
+        "localstack/localstack" = @{ Entrypoint = "/opt/code/localstack/.venv/bin/localstack"; Args = "--version" }
+        "python"                = @{ Args = "python --version" }
+        "espressif/idf"         = @{ Args = "idf.py --version" }
+        "mongo"                 = @{ Args = "--version" }
+        "semgrep/semgrep"       = @{ Args = "semgrep --version" }
+        "golang"                = @{ Args = "go version" }
     }
 
     $testCases = (Get-ToolsetContent).docker.images | ForEach-Object {
-        if (-not $cachedImageChecks.Contains($_)) {
-            throw "No validation command registered for cached image '$_'. Add an entry to `$cachedImageChecks` in CachedDockerImages (images/ubuntu/scripts/tests/Tools.Tests.ps1)."
+        $image = $_
+        $repository = $image.Substring(0, $image.LastIndexOf(":"))
+        if (-not $cachedImageChecks.Contains($repository)) {
+            throw "No validation command registered for cached image repository '$repository'. Add an entry to `$cachedImageChecks` in CachedDockerImages (images/ubuntu/scripts/tests/Tools.Tests.ps1)."
         }
-        $check = $cachedImageChecks[$_]
+        $check = $cachedImageChecks[$repository]
         $entrypointFlag = if ($check.Entrypoint) { "--entrypoint $($check.Entrypoint) " } else { "" }
         @{
-            ImageName  = $_
-            RunCommand = "sudo docker run --rm --pull=never $entrypointFlag$_ $($check.Args)"
+            ImageName  = $image
+            RunCommand = "sudo docker run --rm --pull=never $entrypointFlag$image $($check.Args)"
         }
     }
 
