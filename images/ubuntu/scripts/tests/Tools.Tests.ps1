@@ -135,7 +135,6 @@ Describe "CachedDockerImages" {
             Args       = '-c "from localstack.version import __version__; print(__version__)"'
         }
         "python"                = @{ Args = "python --version" }
-        "espressif/idf"         = @{ Args = "idf.py --version" }
         "mongo"                 = @{ Args = "--version" }
         "semgrep/semgrep"       = @{ Args = "semgrep --version" }
         "golang"                = @{ Args = "go version" }
