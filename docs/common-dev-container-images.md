@@ -32,7 +32,7 @@ don't fit the update policy below. They aren't part of this document's scope.
 | `localstack/localstack` | `2026.10.6` | Requires a `LOCALSTACK_AUTH_TOKEN` to activate; see [Known limitations](#known-limitations). |
 | `python` | `3.14-bookworm` | |
 | `espressif/idf` | `v5.5.6` | Large image (~5.4 GB compressed per architecture); see [Known limitations](#known-limitations). |
-| `mongo` | `8.0` | |
+| `mongo` | `7.0` | Not `8.0`: see [Known limitations](#known-limitations). |
 | `semgrep/semgrep` | `1.184.0` | |
 | `golang` | `1.27-bookworm` | |
 
@@ -95,3 +95,11 @@ repository, tag, and digest under **Cached Docker images**, produced by
   architecture. This meaningfully increases image build time and the disk space consumed on the
   runner. If available disk space for user jobs becomes a concern, revisit whether this image
   should remain in the default cached set.
+- **`mongo` is pinned to `7.0`, not `8.0`.** MongoDB 8.0+ aborts at startup on Linux kernel
+  versions 6.19 up to (but not including) 7.0.14, due to a known TCMalloc/rseq incompatibility
+  (see [MongoDB SERVER-121912](https://jira.mongodb.org/browse/SERVER-121912)). The hosted Ubuntu
+  runner kernels currently fall in that affected range, so `mongo:8.0` fails the
+  `CachedDockerImages` usability check outright (`mongod` refuses to start even for `--version`).
+  MongoDB 7.0 doesn't carry the affected TCMalloc code path and isn't affected. Revisit this pin
+  once the hosted runner kernel is upgraded past 7.0.14 or MongoDB ships a build that tolerates the
+  affected kernel range.

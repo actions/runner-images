@@ -248,7 +248,7 @@
             "localstack/localstack:2026.10.6",
             "python:3.14-bookworm",
             "espressif/idf:v5.5.6",
-            "mongo:8.0",
+            "mongo:7.0",
             "semgrep/semgrep:1.184.0",
             "golang:1.27-bookworm"
         ]
