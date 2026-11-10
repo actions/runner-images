@@ -4,9 +4,9 @@ To save users from pulling frequently used development and test container images
 every Packer-built Ubuntu VM image (22.04, 24.04, and 26.04, both x64 and arm64) pre-pulls a
 fixed set of container images during the build. The list is declared in the `docker.images`
 array of each image's `toolsets/toolset-*.json` file and pulled by
-[`install-docker.sh`](../images/ubuntu/scripts/build/install-docker.sh). Nine images are cached;
-a tenth requested image, `espressif/idf`, is intentionally excluded — see
-[Known limitations](#known-limitations).
+[`install-docker.sh`](../images/ubuntu/scripts/build/install-docker.sh). All 10 requested images
+are cached, including the large `espressif/idf` image — see
+[Known limitations](#known-limitations) for the disk-size trade-off that required.
 
 > [!NOTE]
 > `ubuntu-slim` is out of scope. It runs as an unprivileged container rather than a VM and only
@@ -33,23 +33,20 @@ don't fit the update policy below. They aren't part of this document's scope.
 | `pgvector/pgvector` | `pg18` | Must track the PostgreSQL major version above. |
 | `localstack/localstack` | `2026.10.6` | Requires a `LOCALSTACK_AUTH_TOKEN` to activate; see [Known limitations](#known-limitations). |
 | `python` | `3.14-bookworm` | |
+| `espressif/idf` | `v5.5.6` | Large image (~5.4 GB compressed per architecture); required a larger OS disk on every Ubuntu version, see [Known limitations](#known-limitations). |
 | `mongo` | `7.0` | Not `8.0`: see [Known limitations](#known-limitations). |
 | `semgrep/semgrep` | `1.184.0` | |
 | `golang` | `1.27-bookworm` | |
 
-`espressif/idf` was also requested but is **not** cached on any Ubuntu version; see
-[Known limitations](#known-limitations).
-
-All tags above publish both `linux/amd64` and `linux/arm64` manifests, so the same nine-image
+All tags above publish both `linux/amd64` and `linux/arm64` manifests, so the same ten-image
 list applies unchanged to every supported Ubuntu version and architecture.
 
 ## Selection criteria
 
 The 10 repositories come from the tool-request issue linked in the pull request that introduced
-this list; that request specified repositories only, not tags or versions. Nine of the ten are
-cached (`espressif/idf` is excluded, see [Known limitations](#known-limitations)). Each tag was
-chosen as the current stable release of its repository at implementation time (for example, the
-latest published major/minor version as of this writing), following the same
+this list; that request specified repositories only, not tags or versions. Each tag was chosen as
+the current stable release of its repository at implementation time (for example, the latest
+published major/minor version as of this writing), following the same
 [tool request process](../CONTRIBUTING.md#adding-a-new-tool-to-an-image) used for any other tool
 addition. Tags aren't digest-pinned (see [Update policy](#update-policy)), so this list reflects a
 point-in-time choice rather than a permanently fixed set of exact image contents.
@@ -81,7 +78,7 @@ change to the test file. For every entry in `docker.images` the suite:
 
 1. Confirms the image is present locally (`docker images` lists it).
 2. Runs the image with `--pull=never` and a lightweight, non-mutating command (for example
-   `--version`, `node --version`, or `go version`) to prove it can actually execute, not just
+   `--version`, `node --version`, or `idf.py --version`) to prove it can actually execute, not just
    that the layers were downloaded.
 
 The generated image README (for example
@@ -96,23 +93,19 @@ repository, tag, and digest under **Cached Docker images**, produced by
   AWS service emulation when a `LOCALSTACK_AUTH_TOKEN` (or `LOCALSTACK_API_KEY`) is supplied at
   container start. Pre-pulling the image guarantees the layers are local, but it does not provide
   a license; users must still supply their own token to start LocalStack and use its services.
-- **`espressif/idf` is not cached on any Ubuntu version.** It was part of the original request
-  (~5.4 GB compressed per architecture, by far the largest of the ten images), but real builds
-  measured insufficient disk headroom to include it safely: an Ubuntu 26.04 build with all 10
-  images cached left only 16 GB free against the 17 GB minimum enforced by the `Disk free space`
-  baseline test (see [`System.Tests.ps1`](../images/ubuntu/scripts/tests/System.Tests.ps1)), and a
-  separate Ubuntu 22.04 build with the same 10 images ran out of disk space outright while
-  extracting a later image's layers. Since the shortfall wasn't confined to one Ubuntu version,
-  `espressif/idf` is excluded from every Ubuntu toolset rather than patched per OS. Revisit this
-  exclusion if the Ubuntu base images' disk usage shrinks, the OS disk is resized, or the other
-  nine images' combined footprint is reduced.
-- **x64 OS disk bumped from 75 GB to 85 GB.** Even without `espressif/idf`, the remaining nine
-  images (roughly 2.5 GB compressed combined) still didn't reliably fit: a cache-free main-branch
-  build of Ubuntu 22.04 x64 measured only 18 GB free (just ~1 GB above the 17 GB minimum), and
-  builds with the nine-image cache measured as low as 11-12 GB free on all three x64 Ubuntu
-  versions. arm64 builds, by contrast, measured 23+ GB free with the full ten-image cache, so only
-  the three x64 variants' `os_disk_size_gb` were increased, in
-  [`locals.ubuntu.pkr.hcl`](../images/ubuntu/templates/locals.ubuntu.pkr.hcl).
+- **`espressif/idf` required bumping every Ubuntu version's OS disk.** It's by far the largest
+  of the ten images (~5.4 GB compressed per architecture), and including it in the cache
+  consistently broke the existing `Disk free space` baseline test's 17 GB minimum (see
+  [`System.Tests.ps1`](../images/ubuntu/scripts/tests/System.Tests.ps1)) across every Ubuntu
+  version: a cache-free main-branch build of Ubuntu 22.04 x64 measured only 18 GB free (~1 GB of
+  pre-existing margin) before this PR, builds with the nine-*other*-image cache measured as low
+  as 11-12 GB free on x64, and an Ubuntu 26.04 arm64 build with the full ten-image cache measured
+  only 16 GB free. To fit it safely, `os_disk_size_gb` in
+  [`locals.ubuntu.pkr.hcl`](../images/ubuntu/templates/locals.ubuntu.pkr.hcl) was increased on
+  every Ubuntu version: x64 from 75 GB to 100 GB (x64 had almost no pre-existing headroom even
+  without this cache), and arm64 from 75 GB to 85 GB (arm64 had more baseline headroom, but still
+  not enough once `espressif/idf` was included). Revisit these sizes if the Ubuntu base images'
+  disk usage shrinks or the cached image set changes.
 - **`mongo` is pinned to `7.0`, not `8.0`.** MongoDB 8.0+ aborts at startup on Linux kernel
   versions 6.19 up to (but not including) 7.0.14, due to a known TCMalloc/rseq incompatibility
   (see [MongoDB SERVER-121912](https://jira.mongodb.org/browse/SERVER-121912)). The hosted Ubuntu
