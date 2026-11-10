@@ -106,6 +106,13 @@ repository, tag, and digest under **Cached Docker images**, produced by
   `espressif/idf` is excluded from every Ubuntu toolset rather than patched per OS. Revisit this
   exclusion if the Ubuntu base images' disk usage shrinks, the OS disk is resized, or the other
   nine images' combined footprint is reduced.
+- **x64 OS disk bumped from 75 GB to 85 GB.** Even without `espressif/idf`, the remaining nine
+  images (roughly 2.5 GB compressed combined) still didn't reliably fit: a cache-free main-branch
+  build of Ubuntu 22.04 x64 measured only 18 GB free (just ~1 GB above the 17 GB minimum), and
+  builds with the nine-image cache measured as low as 11-12 GB free on all three x64 Ubuntu
+  versions. arm64 builds, by contrast, measured 23+ GB free with the full ten-image cache, so only
+  the three x64 variants' `os_disk_size_gb` were increased, in
+  [`locals.ubuntu.pkr.hcl`](../images/ubuntu/templates/locals.ubuntu.pkr.hcl).
 - **`mongo` is pinned to `7.0`, not `8.0`.** MongoDB 8.0+ aborts at startup on Linux kernel
   versions 6.19 up to (but not including) 7.0.14, due to a known TCMalloc/rseq incompatibility
   (see [MongoDB SERVER-121912](https://jira.mongodb.org/browse/SERVER-121912)). The hosted Ubuntu
