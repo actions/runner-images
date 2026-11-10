@@ -20,17 +20,8 @@ if is_SonomaX64; then
 fi
 
 # Installing latest Homebrew Python 3 to handle python3 and pip3 symlinks
-if is_Arm64; then
-    echo "Brew Installing default Python 3"
-    brew_smart_install "python3"
-else
-    echo "Brew Installing pinned Python 3.15.0_1"
-
-    COMMIT=014cba5977d8d903d2e006e063e74808b877898c
-    FILE_NAME="p/python@3.15.rb"
-    FORMULA_NAME="python@3.15"
-    brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
-fi;
+echo "Brew Installing default Python 3"
+brew_smart_install "python3"
 
 # Pipx has its own Python dependency
 echo "Installing pipx"

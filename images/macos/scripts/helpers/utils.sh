@@ -102,6 +102,11 @@ brew_smart_install() {
     local tool_name=$1
     local no_deps_update=$2
 
+    # Intel installs formulae from the homebrew-core snapshot set up in install-homebrew.sh
+    if ! is_Arm64; then
+        local -x HOMEBREW_NO_INSTALL_FROM_API=1
+    fi
+
     echo "Downloading $tool_name..."
 
     # get deps & cache em
