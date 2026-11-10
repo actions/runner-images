@@ -7,8 +7,8 @@
 source ~/utils/utils.sh
 
 if is_Tahoe || is_GoldenGate; then
-  echo "Set openssl@3 as the default OpenSSL"
-  ln -sf "$(brew --prefix openssl@3)/bin/openssl" "$(brew --prefix)/bin/openssl"
+  echo "Set openssl@4 as the default OpenSSL"
+  ln -sf "$(brew --prefix openssl@4)/bin/openssl" "$(brew --prefix)/bin/openssl"
   invoke_tests "OpenSSL"
   exit 0
 fi
