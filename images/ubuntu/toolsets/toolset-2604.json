@@ -133,6 +133,7 @@
             "libyaml-dev",
             "libtool",
             "libssl-dev",
+            "libjitterentropy3-dev",
             "libcrypt-dev",
             "libicu-dev",
             "libsqlite3-dev",
@@ -229,7 +230,8 @@
         "versions": [
             "8.0",
             "9.0",
-            "10.0"
+            "10.0",
+            "11.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion" : "nbgv --version" }
