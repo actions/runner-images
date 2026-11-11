@@ -76,7 +76,7 @@ function Install-DotnetSDK {
     }
 
     Write-Host "Installing dotnet $SDKVersion"
-    $zipPath = Join-Path ([IO.Path]::GetTempPath()) ([IO.Path]::GetRandomFileName())
+    $zipPath = Join-Path $env:TEMP_DIR ([IO.Path]::GetRandomFileName())
     & $InstallScriptPath -Version $SDKVersion -InstallDir $(Join-Path -Path $env:ProgramFiles -ChildPath 'dotnet') -ZipPath $zipPath -KeepZip
     # Installer is PowerShell script that doesn't set exit code on failure
     # If installation failed, tests will fail anyway
@@ -92,6 +92,9 @@ function Install-DotnetSDK {
     $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq "dotnet-sdk-win-$dotnetArch.zip" }).hash
     Test-FileChecksum $zipPath -ExpectedSHA512Sum $distributorFileHash
     #endregion
+
+    # The archive is kept only for checksum validation; remove it to free disk space
+    Remove-Item -Path $zipPath -Force -ErrorAction SilentlyContinue
 }
 #endregion
 
