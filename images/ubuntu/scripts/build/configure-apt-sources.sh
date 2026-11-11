@@ -6,9 +6,6 @@
 
 source $HELPER_SCRIPTS/os.sh
 
-# Wait for cloud-init, which may still be rewriting the apt sources on first boot
-timeout 120 cloud-init status --wait --long || true
-
 touch /etc/apt/apt-mirrors.txt
 
 printf "http://azure.archive.ubuntu.com/ubuntu/\tpriority:1\n" | tee -a /etc/apt/apt-mirrors.txt
