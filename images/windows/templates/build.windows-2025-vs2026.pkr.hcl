@@ -13,9 +13,13 @@ build {
     destination = "${var.image_folder}\\"
     sources     = [
       "${path.root}/../assets",
-      "${path.root}/../scripts",
-      "${path.root}/../toolsets"
+      "${path.root}/../scripts"
     ]
+  }
+
+  provisioner "file" {
+    destination = "${var.image_folder}\\toolset.json"
+    source      = trimspace(var.toolset_file) != "" && fileexists(trimspace(var.toolset_file)) ? trimspace(var.toolset_file) : "${path.root}/../toolsets/toolset-2025-vs2026.json"
   }
 
   provisioner "file" {
@@ -32,9 +36,7 @@ build {
       "New-Item -Type Directory -Path '${var.helper_script_folder}\\TestsHelpers\\'",
       "Move-Item '${var.image_folder}\\scripts\\tests\\Helpers.psm1' '${var.helper_script_folder}\\TestsHelpers\\TestsHelpers.psm1'",
       "Move-Item '${var.image_folder}\\scripts\\tests' '${var.image_folder}\\tests'",
-      "Remove-Item -Recurse '${var.image_folder}\\scripts'",
-      "Move-Item '${var.image_folder}\\toolsets\\toolset-2025-vs2026.json' '${var.image_folder}\\toolset.json'",
-      "Remove-Item -Recurse '${var.image_folder}\\toolsets'"
+      "Remove-Item -Recurse '${var.image_folder}\\scripts'"
     ]
   }
 
@@ -90,13 +92,22 @@ build {
       "${path.root}/../scripts/build/Install-Docker.ps1",
       "${path.root}/../scripts/build/Install-DockerWinCred.ps1",
       "${path.root}/../scripts/build/Install-DockerCompose.ps1",
-      "${path.root}/../scripts/build/Install-PowershellCore.ps1",
       "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1"
     ]
   }
 
   provisioner "windows-restart" {
     restart_timeout = "30m"
+  }
+
+  provisioner "powershell" {
+    elevated_password = "${var.install_password}"
+    elevated_user     = "${var.install_user}"
+    environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}", "INSTALL_VS_2026=true"]
+    scripts           = [
+      "${path.root}/../scripts/build/Install-RootCA.ps1"
+    ]
+    valid_exit_codes  = [0, 3010]
   }
 
   provisioner "powershell" {
@@ -123,17 +134,8 @@ build {
       "${path.root}/../scripts/build/Install-VSExtensions.ps1",
       "${path.root}/../scripts/build/Install-AzureCli.ps1",
       "${path.root}/../scripts/build/Install-AzureDevOpsCli.ps1",
-      "${path.root}/../scripts/build/Install-ChocolateyPackages.ps1",
-      "${path.root}/../scripts/build/Install-JavaTools.ps1",
-      "${path.root}/../scripts/build/Install-Kotlin.ps1",
-      "${path.root}/../scripts/build/Install-OpenSSL.ps1"
+      "${path.root}/../scripts/build/Install-ChocolateyPackages.ps1"
     ]
-  }
-
-  provisioner "powershell" {
-    execution_policy = "remotesigned"
-    environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
-    scripts          = ["${path.root}/../scripts/build/Install-ServiceFabricSDK.ps1"]
   }
 
   provisioner "windows-restart" {
@@ -143,49 +145,8 @@ build {
   provisioner "powershell" {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
-      "${path.root}/../scripts/build/Install-LLVM.ps1",
-      "${path.root}/../scripts/build/Install-ActionsCache.ps1",
-      "${path.root}/../scripts/build/Install-Ruby.ps1",
-      "${path.root}/../scripts/build/Install-PyPy.ps1",
       "${path.root}/../scripts/build/Install-Toolset.ps1",
-      "${path.root}/../scripts/build/Configure-Toolset.ps1",
-      "${path.root}/../scripts/build/Install-NodeJS.ps1",
-      "${path.root}/../scripts/build/Install-AndroidSDK.ps1",
-      "${path.root}/../scripts/build/Install-PowershellAzModules.ps1",
-      "${path.root}/../scripts/build/Install-Pipx.ps1",
-      "${path.root}/../scripts/build/Install-Git.ps1",
-      "${path.root}/../scripts/build/Install-GitHub-CLI.ps1",
-      "${path.root}/../scripts/build/Install-PHP.ps1",
-      "${path.root}/../scripts/build/Install-Rust.ps1",
-      "${path.root}/../scripts/build/Install-Sbt.ps1",
-      "${path.root}/../scripts/build/Install-Chrome.ps1",
-      "${path.root}/../scripts/build/Install-EdgeDriver.ps1",
-      "${path.root}/../scripts/build/Install-Firefox.ps1",
-      "${path.root}/../scripts/build/Install-Selenium.ps1",
-      "${path.root}/../scripts/build/Install-IEWebDriver.ps1",
-      "${path.root}/../scripts/build/Install-Apache.ps1",
-      "${path.root}/../scripts/build/Install-Nginx.ps1",
-      "${path.root}/../scripts/build/Install-Msys2.ps1",
-      "${path.root}/../scripts/build/Install-WinAppDriver.ps1",
-      "${path.root}/../scripts/build/Install-R.ps1",
-      "${path.root}/../scripts/build/Install-AWSTools.ps1",
-      "${path.root}/../scripts/build/Install-DACFx.ps1",
-      "${path.root}/../scripts/build/Install-MysqlCli.ps1",
-      "${path.root}/../scripts/build/Install-SQLPowerShellTools.ps1",
-      "${path.root}/../scripts/build/Install-SQLOLEDBDriver.ps1",
-      "${path.root}/../scripts/build/Install-DotnetSDK.ps1",
-      "${path.root}/../scripts/build/Install-Mingw64.ps1",
-      "${path.root}/../scripts/build/Install-Haskell.ps1",
-      "${path.root}/../scripts/build/Install-Stack.ps1",
-      "${path.root}/../scripts/build/Install-Miniconda.ps1",
-      "${path.root}/../scripts/build/Install-AzureCosmosDbEmulator.ps1",
-      "${path.root}/../scripts/build/Install-Zstd.ps1",
-      "${path.root}/../scripts/build/Install-Vcpkg.ps1",
-      "${path.root}/../scripts/build/Install-Bazel.ps1",
-      "${path.root}/../scripts/build/Install-RootCA.ps1",
-      "${path.root}/../scripts/build/Install-MongoDB.ps1",
-      "${path.root}/../scripts/build/Install-CodeQLBundle.ps1",
-      "${path.root}/../scripts/build/Configure-Diagnostics.ps1"
+      "${path.root}/../scripts/build/Configure-Toolset.ps1"
     ]
   }
 
@@ -194,7 +155,6 @@ build {
     elevated_user     = "${var.install_user}"
     environment_vars  = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts           = [
-      "${path.root}/../scripts/build/Install-PostgreSQL.ps1",
       "${path.root}/../scripts/build/Install-WindowsUpdates.ps1",
       "${path.root}/../scripts/build/Configure-DynamicPort.ps1",
       "${path.root}/../scripts/build/Configure-GDIProcessHandleQuota.ps1",

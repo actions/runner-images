@@ -53,7 +53,7 @@ build {
 
   provisioner "file" {
     destination = "${var.installer_script_folder}/toolset.json"
-    source      = "${path.root}/../toolsets/toolset-2404-arm64.json"
+    source      = var.toolset_file != "" ? var.toolset_file : "${path.root}/../toolsets/toolset-2404-arm64.json"
   }
 
   provisioner "shell" {
@@ -95,55 +95,6 @@ provisioner "shell" {
   }
 
   provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}", "DEBIAN_FRONTEND=noninteractive"]
-    execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = [
-      "${path.root}/../scripts/build/install-actions-cache.sh",
-      "${path.root}/../scripts/build/install-apt-common.sh",
-      "${path.root}/../scripts/build/install-azcopy.sh",
-      "${path.root}/../scripts/build/install-azure-cli.sh",
-      "${path.root}/../scripts/build/install-azure-devops-cli.sh",
-      "${path.root}/../scripts/build/install-apache.sh",
-      "${path.root}/../scripts/build/install-aws-tools.sh",
-      "${path.root}/../scripts/build/install-clang.sh",
-      "${path.root}/../scripts/build/install-swift.sh",
-      "${path.root}/../scripts/build/install-cmake.sh",
-      "${path.root}/../scripts/build/install-awf.sh",
-      "${path.root}/../scripts/build/install-container-tools.sh",
-      "${path.root}/../scripts/build/install-dotnetcore-sdk.sh",
-      "${path.root}/../scripts/build/install-gcc-compilers.sh",
-      "${path.root}/../scripts/build/install-firefox.sh",
-      "${path.root}/../scripts/build/install-gfortran.sh",
-      "${path.root}/../scripts/build/install-git.sh",
-      "${path.root}/../scripts/build/install-git-lfs.sh",
-      "${path.root}/../scripts/build/install-github-cli.sh",
-      "${path.root}/../scripts/build/install-google-cloud-cli.sh",
-      "${path.root}/../scripts/build/install-java-tools.sh",
-      "${path.root}/../scripts/build/install-kubernetes-tools.sh",
-      "${path.root}/../scripts/build/install-kotlin.sh",
-      "${path.root}/../scripts/build/install-mysql.sh",
-      "${path.root}/../scripts/build/install-nginx.sh",
-      "${path.root}/../scripts/build/install-nvm.sh",
-      "${path.root}/../scripts/build/install-nodejs.sh",
-      "${path.root}/../scripts/build/install-copilot-cli.sh",
-      "${path.root}/../scripts/build/install-bazel.sh",
-      "${path.root}/../scripts/build/install-php.sh",
-      "${path.root}/../scripts/build/install-postgresql.sh",
-      "${path.root}/../scripts/build/install-pulumi.sh",
-      "${path.root}/../scripts/build/install-ruby.sh",
-      "${path.root}/../scripts/build/install-rust.sh",
-      "${path.root}/../scripts/build/install-selenium.sh",
-      "${path.root}/../scripts/build/install-packer.sh",
-      "${path.root}/../scripts/build/install-vcpkg.sh",
-      "${path.root}/../scripts/build/configure-dpkg.sh",
-      "${path.root}/../scripts/build/install-yq.sh",
-      "${path.root}/../scripts/build/install-python.sh",
-      "${path.root}/../scripts/build/install-zstd.sh",
-      "${path.root}/../scripts/build/install-ninja.sh"
-    ]
-  }
-
-  provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
     scripts          = ["${path.root}/../scripts/build/install-docker.sh"]
@@ -151,14 +102,8 @@ provisioner "shell" {
 
   provisioner "shell" {
     environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
-    execute_command  = "sudo sh -c '{{ .Vars }} pwsh -f {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/Install-Toolset.ps1", "${path.root}/../scripts/build/Configure-Toolset.ps1"]
-  }
-
-  provisioner "shell" {
-    environment_vars = ["HELPER_SCRIPTS=${var.helper_script_folder}", "INSTALLER_SCRIPT_FOLDER=${var.installer_script_folder}"]
     execute_command  = "sudo sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts          = ["${path.root}/../scripts/build/install-pipx-packages.sh"]
+    scripts          = ["${path.root}/../scripts/build/install-toolset.sh", "${path.root}/../scripts/build/configure-toolset.sh"]
   }
 
   provisioner "shell" {
