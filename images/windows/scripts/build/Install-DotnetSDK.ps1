@@ -87,9 +87,22 @@ function Install-DotnetSDK {
     } else {
         $dotnetArch = "x64"
     }
+    # dotnet-install downloads .tar.gz instead of .zip for .NET 11+ when tar is available
+    $archiveStream = [IO.File]::OpenRead($zipPath)
+    try {
+        $isGzip = ($archiveStream.ReadByte() -eq 0x1F) -and ($archiveStream.ReadByte() -eq 0x8B)
+    } finally {
+        $archiveStream.Dispose()
+    }
+    $archiveExtension = if ($isGzip) { "tar.gz" } else { "zip" }
+    $archiveName = "dotnet-sdk-win-$dotnetArch.$archiveExtension"
+
     $releasesJsonUri = "https://dotnetcli.blob.core.windows.net/dotnet/release-metadata/${DotnetVersion}/releases.json"
     $releasesData = (Invoke-DownloadWithRetry $releasesJsonUri) | Get-Item | Get-Content | ConvertFrom-Json
-    $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq "dotnet-sdk-win-$dotnetArch.zip" }).hash
+    $distributorFileHash = $releasesData.releases.sdks.Where({ $_.version -eq $SDKVersion }).files.Where({ $_.name -eq $archiveName }).hash
+    if (-not $distributorFileHash) {
+        throw "Unable to find SHA512 hash for $archiveName (SDK $SDKVersion) in $releasesJsonUri"
+    }
     Test-FileChecksum $zipPath -ExpectedSHA512Sum $distributorFileHash
     #endregion
 }
