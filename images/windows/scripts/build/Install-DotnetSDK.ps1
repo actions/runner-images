@@ -161,4 +161,12 @@ foreach ($dotnetTool in $dotnetToolset.tools) {
     }
 }
 
+# Compress the dotnet directory right away to keep enough free disk space until the end of the build.
+if (Test-IsWin25-X64) {
+    Write-Host "Compressing dotnet directory"
+    compact.exe /s:"$env:ProgramFiles\dotnet" /c /a /i /EXE:LZX * | Select-Object -Last 3
+    # compact.exe returns non-zero when some files cannot be compressed
+    $global:LASTEXITCODE = 0
+}
+
 Invoke-PesterTests -TestFile "DotnetSDK"
