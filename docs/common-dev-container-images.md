@@ -27,16 +27,16 @@ don't fit the update policy below. They aren't part of this document's scope.
 
 | Repository | Pinned tag | Notes |
 | --- | --- | --- |
-| `postgres` | `18` | |
-| `mysql` | `8.4` | |
-| `node` | `24-bookworm` | Only this exact tag is cached; `node:latest` and other Node major versions are not. |
+| `postgres` | `18` | Latest major release at implementation time. |
+| `mysql` | `8.4` | Oracle's current MySQL Long-Term Support (LTS) release line. |
+| `node` | `24-bookworm` | Current Active LTS release line (Node.js promotes an even-numbered major to LTS each October); only this exact tag is cached, `node:latest` and other Node major versions are not. |
 | `pgvector/pgvector` | `pg18` | Must track the PostgreSQL major version above. |
-| `localstack/localstack` | `2026.10.6` | Requires a `LOCALSTACK_AUTH_TOKEN` to activate; see [Known limitations](#known-limitations). |
-| `python` | `3.14-bookworm` | |
-| `espressif/idf` | `v5.5.6` | Large image (~5.4 GB compressed per architecture); required a larger OS disk on every Ubuntu version, see [Known limitations](#known-limitations). |
-| `mongo` | `7.0` | Not `8.0`: see [Known limitations](#known-limitations). |
-| `semgrep/semgrep` | `1.184.0` | |
-| `golang` | `1.27-bookworm` | |
+| `localstack/localstack` | `2026.10.6` | LocalStack uses calendar versioning (`YYYY.MM.patch`) rather than semantic major/minor releases, so this tag is simply the latest published release at implementation time. Requires a `LOCALSTACK_AUTH_TOKEN` to activate; see [Known limitations](#known-limitations). |
+| `python` | `3.14-bookworm` | Latest stable CPython release at implementation time (CPython has no separate LTS track). |
+| `espressif/idf` | `v5.5.6` | Latest stable ESP-IDF release branch at implementation time. Large image (~5.4 GB compressed per architecture); required a larger OS disk on every Ubuntu version, see [Known limitations](#known-limitations). |
+| `mongo` | `7.0` | Not the latest major (`8.0`): see [Known limitations](#known-limitations) for why. |
+| `semgrep/semgrep` | `1.184.0` | Semgrep has no LTS track; this is simply the latest published release at implementation time. |
+| `golang` | `1.27-bookworm` | Latest stable Go release at implementation time (Go has no separate LTS track; each release is supported until the next two releases ship). |
 
 All tags above publish both `linux/amd64` and `linux/arm64` manifests, so the same ten-image
 list applies unchanged to every supported Ubuntu version and architecture.
@@ -44,11 +44,21 @@ list applies unchanged to every supported Ubuntu version and architecture.
 ## Selection criteria
 
 The 10 repositories come from the tool-request issue linked in the pull request that introduced
-this list; that request specified repositories only, not tags or versions. Each tag was chosen as
-the current stable release of its repository at implementation time (for example, the latest
-published major/minor version as of this writing), following the same
-[tool request process](../CONTRIBUTING.md#adding-a-new-tool-to-an-image) used for any other tool
-addition. Tags aren't digest-pinned (see [Update policy](#update-policy)), so this list reflects a
+this list; that request specified repositories only, not tags or versions. Two patterns were used
+to pick each tag, per the [tool request process](../CONTRIBUTING.md#adding-a-new-tool-to-an-image)
+used for any other tool addition:
+
+- **Projects with a formal LTS/stable track** (`mysql`, `node`) are pinned to that track's current
+  release, since that's the version most users running these images would reach for.
+- **Everything else** is pinned to the latest stable release published at implementation time
+  (see the Notes column above for each repository's specific release model — major-version
+  cadence, calendar versioning, or no LTS concept at all).
+
+The one deliberate exception is `mongo`, pinned to `7.0` instead of the latest `8.0` for a
+documented compatibility reason (see [Known limitations](#known-limitations)), not because `7.0`
+was "latest" at the time.
+
+Tags aren't digest-pinned (see [Update policy](#update-policy)), so this list reflects a
 point-in-time choice rather than a permanently fixed set of exact image contents.
 
 ## Update policy
