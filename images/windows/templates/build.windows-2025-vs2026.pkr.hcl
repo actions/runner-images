@@ -151,6 +151,7 @@ build {
       "${path.root}/../scripts/build/Configure-Toolset.ps1",
       "${path.root}/../scripts/build/Install-NodeJS.ps1",
       "${path.root}/../scripts/build/Install-AndroidSDK.ps1",
+      "${path.root}/../scripts/build/Show-DiskUsage.ps1",
       "${path.root}/../scripts/build/Install-PowershellAzModules.ps1",
       "${path.root}/../scripts/build/Install-Pipx.ps1",
       "${path.root}/../scripts/build/Install-Git.ps1",
@@ -174,6 +175,8 @@ build {
       "${path.root}/../scripts/build/Install-SQLPowerShellTools.ps1",
       "${path.root}/../scripts/build/Install-SQLOLEDBDriver.ps1",
       "${path.root}/../scripts/build/Install-DotnetSDK.ps1",
+      "${path.root}/../scripts/build/Invoke-EarlyCompression.ps1",
+      "${path.root}/../scripts/build/Show-DiskUsage.ps1",
       "${path.root}/../scripts/build/Install-Mingw64.ps1",
       "${path.root}/../scripts/build/Install-Haskell.ps1",
       "${path.root}/../scripts/build/Install-Stack.ps1",
@@ -184,6 +187,7 @@ build {
       "${path.root}/../scripts/build/Install-Bazel.ps1",
       "${path.root}/../scripts/build/Install-RootCA.ps1",
       "${path.root}/../scripts/build/Install-MongoDB.ps1",
+      "${path.root}/../scripts/build/Show-DiskUsage.ps1",
       "${path.root}/../scripts/build/Install-CodeQLBundle.ps1",
       "${path.root}/../scripts/build/Configure-Diagnostics.ps1"
     ]
