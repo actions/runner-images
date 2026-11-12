@@ -91,8 +91,8 @@ $utilities.AddToolVersion("gpg (GnuPG)", $(Get-GPGVersion))
 $utilities.AddToolVersion("jq", $(Get-JqVersion))
 $utilities.AddToolVersion("OpenSSL", $(Get-OpenSSLVersion))
 if ($os.IsTahoe -or $os.IsGoldenGate) {
-    $openSSL4Path = "$(brew --prefix openssl@4)/bin/openssl"
-    $utilities.AddToolVersion("OpenSSL (openssl@4)", "$(Get-OpenSSLVersion -OpenSSLPath $openSSL4Path) - available on ``$openSSL4Path``")
+    $openSSL3Path = "$(brew --prefix openssl@3)/bin/openssl"
+    $utilities.AddToolVersion("OpenSSL (openssl@3)", "$(Get-OpenSSLVersion -OpenSSLPath $openSSL3Path) - available on ``$openSSL3Path``")
 }
 $utilities.AddToolVersion("Packer", $(Get-PackerVersion))
 $utilities.AddToolVersion("pkgconf", $(Get-PKGConfVersion))
@@ -176,7 +176,7 @@ $android.AddTable($androidTable)
 $androidEnv = $android.AddHeader("Environment variables")
 $androidEnv.AddTable($(Build-AndroidEnvironmentTable))
 
-if (($os.IsSonoma -or $os.IsSequoia -or $os.IsTahoe)) {
+if (($os.IsSonoma -or $os.IsSequoia -or $os.IsTahoe -or $os.IsGoldenGate)) {
     $miscellaneous = $installedSoftware.AddHeader("Miscellaneous")
     $miscellaneous.AddToolVersion("Tcl/Tk", $(Get-TclTkVersion))
 }

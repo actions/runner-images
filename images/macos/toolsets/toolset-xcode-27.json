@@ -1,23 +1,29 @@
 {
     "xcode": {
-        "default": "27",
+        "default": "27.1",
         "arm64": {
             "versions": [
                 {
-                    "link": "27.2_beta_2",
-                    "filename": "Xcode_27.2_beta_2",
-                    "version": "27.2+27B5028f",
-                    "symlinks": ["27.2"],
-                    "sha256": "31ca3b5b6e1faa43fe691504b9c53b9267f85413bd42ddeb1f0d5b951549ff9e",
+                    "link": "27.3_beta",
+                    "filename": "Xcode_27.3_beta",
+                    "version": "27.3+27C5020n",
+                    "sha256": "7263cc664d441b1b181fbc58719339a064873ffa5e89a86e6f83a88ea015cb58",
+                    "symlinks": ["27.3"],
                     "install_runtimes": "none"
                 },
                 {
-                    "link": "27.1_Release_Candidate",
-                    "filename": "Xcode_27.1_Release_Candidate",
+                    "link": "27.2",
+                    "filename": "Xcode_27.2",
+                    "version": "27.2+27B52",
+                    "sha256": "c28b05526225394fa4017d7f9919c1c898822713edca68872cb4701599f01978",
+                    "install_runtimes": "default"
+                },
+                {
+                    "link": "27.1",
+                    "filename": "Xcode_27.1",
                     "version": "27.1+27A9275",
-                    "symlinks": ["27.1"],
                     "sha256": "038ad29cc2cd87e7762aac596833943000fd3d5fb64be530e2ecdbe5449cd660",
-                    "install_runtimes": "none"
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "27",
@@ -111,7 +117,8 @@
                 "versions": [
                     "8.0",
                     "9.0",
-                    "10.0"
+                    "10.0",
+                    "11.0"
                 ]
             }
         }
@@ -136,7 +143,8 @@
                         "3.11.*",
                         "3.12.*",
                         "3.13.*",
-                        "3.14.*"
+                        "3.14.*",
+                        "3.15.*"
                     ]
                 }
             }

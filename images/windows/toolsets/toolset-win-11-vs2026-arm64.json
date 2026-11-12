@@ -17,7 +17,8 @@
             "versions": [
                 "3.12.*",
                 "3.13.*",
-                "3.14.*"
+                "3.14.*",
+                "3.15.*"
             ],
             "default": "3.13.*"
         },
@@ -48,7 +49,7 @@
         { "name": "DockerMsftProvider" },
         { "name": "MarkdownPS" },
         { "name": "Pester", "versions": [ "5.9.0"] },
-        { "name": "PowerShellGet" },
+        { "name": "PowerShellGet", "versions": [ "2.2.5" ] },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
         { "name": "SqlServer" },
@@ -212,10 +213,10 @@
     },
     "dotnet": {
         "versions": [
-            "6.0",
             "8.0",
             "9.0",
-            "10.0"
+            "10.0",
+            "11.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
@@ -253,7 +254,7 @@
         "version": "3.9"
     },
     "mysql": {
-        "version": "8.0"
+        "version": "8.4"
     },
     "mongodb": {
         "version": "5.0"

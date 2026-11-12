@@ -25,13 +25,13 @@ add-apt-repository $FIREFOX_REPO -y
 apt-get update
 apt-get install --target-release 'o=LP-PPA-mozillateam' -y firefox
 
-# Remove source repo's
+# Remove source repos
 add-apt-repository --remove $FIREFOX_REPO
 
-# Document apt source repo's
+# Document apt source repos
 echo "mozillateam $FIREFOX_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 
-# add to global system preferences for firefox locale en_US, because other browsers have en_US local.
+# add to global system preferences for firefox locale en_US, because other browsers have en_US locale.
 # Default firefox local is en_GB
 echo 'pref("intl.locale.requested","en_US");' >> "/usr/lib/firefox/browser/defaults/preferences/syspref.js"
 
