@@ -7,8 +7,8 @@
 ***
 # Ubuntu 26.04
 - OS Version: 26.04.1 LTS
-- Kernel Version: 7.0.0-1017-azure
-- Image Version: 20261026.180.1
+- Kernel Version: 7.0.0-1019-azure
+- Image Version: 20261101.186.1
 - Systemd version: 259.9-0ubuntu0.1
 
 ## Installed Software
@@ -22,22 +22,22 @@
 - GNU C++: 13.4.0, 14.3.0, 15.2.0
 - GNU Fortran: 13.4.0, 14.3.0, 15.2.0
 - Kotlin 2.4.21
-- Node.js 24.22.1
+- Node.js 24.22.2
 - Perl 5.40.1
 - Python 3.14.4
 - Ruby 3.3.8
-- Swift 6.4.1
+- Swift 6.4.2
 
 ### Package Management
 - cpan 1.64
 - Helm 4.3.1
-- Homebrew 7.0.10
+- Homebrew 7.0.11
 - Npm 11.19.1
 - Pip 25.1.1
 - Pip3 25.1.1
 - Pipx 1.17.10
 - RubyGems 3.6.7
-- Vcpkg (build from commit 817892b0ec)
+- Vcpkg (build from commit 9a5dfef5d1)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -66,7 +66,7 @@ to accomplish this.
 - Bazelisk 1.28.1
 - Bicep 0.48.1
 - Buildah 1.42.1
-- CMake 4.4.4
+- CMake 4.4.5
 - CodeQL Action Bundle 2.27.3
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 5.1.3
@@ -78,7 +78,7 @@ to accomplish this.
 - Git-ftp 1.6.0
 - jq 1.8.1
 - Kind 0.33.0
-- Kubectl 1.37.1
+- Kubectl 1.37.2
 - Kustomize 5.8.3
 - Minikube 1.39.0
 - n 11.0.0
@@ -93,13 +93,13 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.38.5
+- AWS CLI 2.39.3
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.170.0
+- AWS SAM CLI 1.171.0
 - Azure CLI 2.91.0
 - Azure CLI (azure-devops) 1.0.10
-- GitHub CLI 2.103.2
-- Google Cloud CLI 590.0.1
+- GitHub CLI 2.103.3
+- Google Cloud CLI 591.0.0
 
 ### Java
 | Version            | Environment Variable |
@@ -111,7 +111,7 @@ to accomplish this.
 
 ### PHP Tools
 - PHP: 8.5.4
-- Composer 2.10.3
+- Composer 2.11.1
 - PHPUnit 8.5.56
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -133,13 +133,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Google Chrome 156.0.8078.47
-- ChromeDriver 156.0.8078.47
+- Google Chrome 156.0.8078.79
+- ChromeDriver 156.0.8078.80
 - Chromium 156.0.8078.0
-- Microsoft Edge 156.0.4314.42
-- Microsoft Edge WebDriver 156.0.4314.42
-- Selenium server 4.51.0
-- Mozilla Firefox 158.0.1
+- Microsoft Edge 156.0.4314.58
+- Microsoft Edge WebDriver 156.0.4314.58
+- Selenium server 4.52.0
+- Mozilla Firefox 159.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -183,14 +183,14 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Node.js
 - 22.23.4
-- 24.22.1
+- 24.22.2
 
 #### Python
-- 3.11.17
-- 3.12.15
-- 3.13.17
-- 3.14.9
-- 3.15.1
+- 3.11.18
+- 3.12.16
+- 3.13.18
+- 3.14.10
+- 3.15.2
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -224,7 +224,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Android Command Line Tools | 20.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
+| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 2)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -253,7 +253,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | bind9-dnsutils         | 1:9.20.24-1ubuntu0.4          |
 | binutils               | 2.46-3ubuntu2                 |
 | bison                  | 2:3.8.2+dfsg-1ubuntu0.26.04.1 |
-| brotli                 | 1.2.0-3build1                 |
+| brotli                 | 1.2.0-3ubuntu0.1              |
 | bzip2                  | 1.0.8-6ubuntu0.1              |
 | coreutils              | 9.5-1ubuntu2+0.0.0\~ubuntu25  |
 | curl                   | 8.18.0-1ubuntu2.8             |
@@ -274,6 +274,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | jq                     | 1.8.1-4ubuntu2                |
 | libcrypt-dev           | 1:4.5.1-1                     |
 | libicu-dev             | 78.2-2ubuntu1                 |
+| libjitterentropy3-dev  | 3.6.3-1                       |
 | libnss3-tools          | 2:3.120-1ubuntu2.2            |
 | libsqlite3-dev         | 3.46.1-9ubuntu0.3             |
 | libssl-dev             | 3.5.5-1ubuntu3.7              |

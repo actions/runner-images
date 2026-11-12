@@ -1,18 +1,19 @@
 | Announcements |
 |-|
+| [[macOS] Azure DevOps macOS 14 Intel runners extended through November 23, 2026](https://github.com/actions/runner-images/issues/15226) |
 | [[macOS] The default OpenSSL version will be updated from 3 to 4 on macOS 26 and Xcode 27](https://github.com/actions/runner-images/issues/14856) |
 | [[macOS] Xcode 27 is now available as a public preview](https://github.com/actions/runner-images/issues/14404) |
-| [[macOS] The macOS 14 Sonoma based runner images will begin deprecation on July 6th and will be fully unsupported by November 2nd for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/13518) |
+| [[macOS] macOS 14 Sonoma retirement: GitHub Actions and ADO arm64 on November 2; ADO Intel on November 23](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 27
 - OS Version: macOS 27.0.1 (26A434)
 - Kernel Version: Darwin 27.0.0
-- Image Version: 20261022.0305.3
+- Image Version: 20261104.0337.1
 
 ## Installed Software
 
 ### Language and Runtime
-- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.426, 9.0.102, 9.0.203, 9.0.319, 10.0.103, 10.0.203, 10.0.302, 10.0.402
+- .NET Core SDK: 8.0.101, 8.0.204, 8.0.303, 8.0.427, 9.0.102, 9.0.203, 9.0.320, 10.0.103, 10.0.203, 10.0.302, 10.0.403
 - Bash 3.2.57(1)-release
 - Clang/LLVM 21.0.0
 - Clang/LLVM (Homebrew) 20.1.8 - available on `$(brew --prefix llvm@20)/bin/clang`
@@ -23,21 +24,21 @@
 - GNU Fortran 14 (Homebrew GCC 14.4.0) - available by `gfortran-14` alias
 - GNU Fortran 15 (Homebrew GCC 15.3.0) - available by `gfortran-15` alias
 - Kotlin 2.4.21
-- Node.js 24.22.1
+- Node.js 24.22.2
 - Perl 5.44.0
-- Python3 3.15.0
-- Ruby 3.4.11
+- Python3 3.15.2
+- Ruby 3.4.12
 
 ### Package Management
 - Bundler 4.0.23
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 7.0.10
+- Homebrew 7.0.12
 - NPM 11.19.1
 - Pip3 26.2.2 (python 3.15)
-- Pipx 1.18.4
+- Pipx 1.18.11
 - RubyGems 4.0.23
-- Vcpkg 2026 (build from commit 67972e92ed)
+- Vcpkg 2026 (build from commit 8450b13265)
 - Yarn 1.22.22
 
 ### Project Management
@@ -48,21 +49,21 @@
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.32.8
+- azcopy 10.34.1
 - bazel 9.3.1
 - bazelisk 1.30.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.56.0
-- Git LFS 3.8.0
-- GitHub CLI 2.103.0
+- Git LFS 3.8.1
+- GitHub CLI 2.103.3
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.24
 - jq 1.8.2
 - OpenSSL 3.5.9 29 Sep 2026 (Library: OpenSSL 3.5.9 29 Sep 2026)
-- OpenSSL (openssl@4) 4.0.3 29 Sep 2026 (Library: OpenSSL 4.0.3 29 Sep 2026) - available on `/opt/homebrew/opt/openssl@4/bin/openssl`
-- Packer 1.16.1
+- OpenSSL (openssl@4) 4.1.0 23 Oct 2026 (Library: OpenSSL 4.1.0 23 Oct 2026) - available on `/opt/homebrew/opt/openssl@4/bin/openssl`
+- Packer 1.16.2
 - pkgconf 3.0.10
 - Unxip 3.3
 - yq 4.54.1
@@ -70,31 +71,31 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.38.4
-- AWS SAM CLI 1.169.0
+- AWS CLI 2.39.3
+- AWS SAM CLI 1.171.0
 - AWS Session Manager CLI 1.2.896.0
-- Azure CLI 2.91.0
-- Azure CLI (azure-devops) 1.0.9
+- Azure CLI 2.92.0
+- Azure CLI (azure-devops) 1.0.10
 - Bicep CLI 0.48.1
-- Cmake 4.4.4
-- CodeQL Action Bundle 2.27.3
-- Fastlane 2.241.1
-- SwiftFormat 0.64.0
+- Cmake 4.4.5
+- CodeQL Action Bundle 2.27.4
+- Fastlane 2.241.2
+- SwiftFormat 0.64.5
 - Xcbeautify 3.2.1
-- Xcode Command Line Tools 27.0.0.0.1788430756
+- Xcode Command Line Tools 27.2.0.0.1792721180
 - Xcodes 2.1.0
 
 ### Browsers
 - Safari 27.0.1 (22625.1.29.11.28)
 - SafariDriver 27.0.1 (22625.1.29.11.28)
-- Google Chrome 156.0.8078.48
-- Google Chrome for Testing 156.0.8078.47
-- ChromeDriver 156.0.8078.47
-- Microsoft Edge 155.0.4283.62
-- Microsoft Edge WebDriver 155.0.4283.62
-- Mozilla Firefox 158.0.1
+- Google Chrome 157.0.8103.39
+- Google Chrome for Testing 157.0.8103.38
+- ChromeDriver 157.0.8103.38
+- Microsoft Edge 156.0.4314.58
+- Microsoft Edge WebDriver 156.0.4314.58
+- Mozilla Firefox 159.0.1
 - geckodriver 0.37.1
-- Selenium server 4.51.0
+- Selenium server 4.52.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -115,19 +116,19 @@
 
 #### Ruby
 - 3.2.11
-- 3.3.12
-- 3.4.11
-- 4.0.8
+- 3.3.13
+- 3.4.12
+- 4.0.9
 
 #### Python
 - 3.11.9
 - 3.12.10
 - 3.13.17
-- 3.14.9
+- 3.14.10
 
 #### Node.js
 - 22.23.4
-- 24.22.1
+- 24.22.2
 
 #### Go
 - 1.24.13
@@ -138,14 +139,14 @@
 - Cargo 1.99.1
 - Rust 1.99.1
 - Rustdoc 1.99.1
-- Rustup 1.29.2
+- Rustup 1.29.3
 
 #### Packages
 - Clippy 0.1.99
 - Rustfmt 1.10.0-stable
 
 ### PowerShell Tools
-- PowerShell 7.6.7
+- PowerShell 7.6.9
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -153,11 +154,11 @@
 - PSScriptAnalyzer: 1.25.0
 
 ### Xcode
-| Version        | Build   | Path                                           | Symlinks                                                       |
-| -------------- | ------- | ---------------------------------------------- | -------------------------------------------------------------- |
-| 27.2           | 27B48   | /Applications/Xcode_27.2_Release_Candidate.app | /Applications/Xcode_27.2.0.app<br>/Applications/Xcode_27.2.app |
-| 27.1 (default) | 27A9275 | /Applications/Xcode_27.1.app                   | /Applications/Xcode_27.1.0.app<br>/Applications/Xcode.app      |
-| 27.0           | 27A266a | /Applications/Xcode_27.app                     | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app |
+| Version        | Build   | Path                         | Symlinks                                                       |
+| -------------- | ------- | ---------------------------- | -------------------------------------------------------------- |
+| 27.2           | 27B52   | /Applications/Xcode_27.2.app | /Applications/Xcode_27.2.0.app                                 |
+| 27.1 (default) | 27A9275 | /Applications/Xcode_27.1.app | /Applications/Xcode_27.1.0.app<br>/Applications/Xcode.app      |
+| 27.0           | 27A266a | /Applications/Xcode_27.app   | /Applications/Xcode_27.0.0.app<br>/Applications/Xcode_27.0.app |
 
 #### Installed SDKs
 | SDK                       | SDK Name             | Xcode Version |
@@ -190,17 +191,22 @@
 | ------------- | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | iOS 27.0      | 27.0 | iPhone 17<br>iPhone 17e<br>iPhone 18 Pro<br>iPhone 18 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A17 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
 | iOS 27.1      | 27.1 | iPhone Duo                                                                                                                                                                                                           |
+| iOS 27.2      | 27.2 | iPhone 17<br>iPhone 17e<br>iPhone 18 Pro<br>iPhone 18 Pro Max<br>iPhone Air<br>iPad (A16)<br>iPad Air 11-inch (M4)<br>iPad Air 13-inch (M4)<br>iPad mini (A20 Pro)<br>iPad Pro 11-inch (M5)<br>iPad Pro 13-inch (M5) |
+| iOS 27.2      | 27.2 | iPhone Duo                                                                                                                                                                                                           |
 | tvOS 27.0     | 27.0 | Apple TV 4K (3rd generation)<br>Apple TV 4K (3rd generation) (at 1080p)                                                                                                                                              |
+| tvOS 27.2     | 27.2 | Apple TV 4K (4th generation)<br>Apple TV 4K (4th generation) (at 1080p)                                                                                                                                              |
 | watchOS 27.0  | 27.0 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 12 (42mm)<br>Apple Watch Series 12 (46mm)<br>Apple Watch Ultra 4 (49mm)                                                                     |
+| watchOS 27.2  | 27.2 | Apple Watch SE 3 (40mm)<br>Apple Watch SE 3 (44mm)<br>Apple Watch Series 12 (42mm)<br>Apple Watch Series 12 (46mm)<br>Apple Watch Ultra 4 (49mm)                                                                     |
 | visionOS 27.0 | 27.0 | Apple Vision Pro                                                                                                                                                                                                     |
+| visionOS 27.2 | 27.2 | Apple Vision Pro                                                                                                                                                                                                     |
 
 ### Android
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                            |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                                               |
-| Android Emulator           | 37.2.12                                                                                                                                                                                                                                                                                                                                            |
+| Android Emulator           | 37.2.13                                                                                                                                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                                           |
-| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
+| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 2)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                             |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                             |
