@@ -74,6 +74,18 @@ for package in $common_packages; do
                 brew_smart_install "$package"
             fi
             ;;
+
+        gnupg)
+            if ! is_Arm64; then
+                # Snapshot gnupg 2.5.22 has no Intel bottle and its source build fails self-tests; 2.5.21 is the last bottled version
+                COMMIT=e13b9985baafcb86cd1836112dc05a6195906f09
+                FILE_NAME="g/gnupg.rb"
+                FORMULA_NAME="gnupg"
+                brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+            else
+                brew_smart_install "$package"
+            fi
+            ;;
         
         libpq)
             if ! is_Arm64; then
