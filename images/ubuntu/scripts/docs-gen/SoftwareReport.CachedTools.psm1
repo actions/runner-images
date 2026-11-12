@@ -11,7 +11,7 @@ function Get-ToolcacheVersions {
         return @()
     }
 
-    return @(Get-ChildItem $toolcachePath -Name | Sort-Object { [Version] $_ })
+    return @(Get-ChildItem $toolcachePath -Name | Sort-Object { ($_ -split '-', 2)[0] -as [Version] }, { $_ })
 }
 
 function Get-ToolcacheRubyVersions {

@@ -34,6 +34,30 @@ Describe "fwupd removed" {
     }
 }
 
+# https://github.com/actions/runner-images/issues/14777
+Describe "tmp.mount masked" -Skip:(-not (Test-IsUbuntu26)) {
+    It "tmp.mount is masked" {
+        & systemctl is-enabled tmp.mount | Should -Be "masked"
+    }
+
+    It "/tmp is not mounted as tmpfs" {
+        & findmnt -n -o FSTYPE /tmp | Should -Not -Be "tmpfs"
+    }
+}
+
+# https://github.com/actions/runner-images/issues/15177
+Describe "/tmp emptied at boot" {
+    It "tmpfiles rule for /tmp is D" {
+        $rule = & systemd-tmpfiles --cat-config | Where-Object { $_ -match '^[^#\s]\S*\s+/tmp\s' }
+        $rule | Should -Match '^D\s+/tmp\s'
+    }
+
+    It "/var/tmp rule is kept" -Skip:(-not (Test-IsUbuntu26)) {
+        $rule = & systemd-tmpfiles --cat-config | Where-Object { $_ -match '^[^#\s]\S*\s+/var/tmp\s' }
+        $rule | Should -Not -BeNullOrEmpty
+    }
+}
+
 # https://github.com/actions/runner-images/issues/13770
 # Linux kernel 6.17 changed read_ahead_kb from 128 to 4096 on Azure VMs, causing I/O thrashing
 Describe "ReadAhead udev rule" -Skip:(Test-IsUbuntu22) {

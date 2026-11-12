@@ -5,7 +5,7 @@
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9457
-- Image Version: 20260920.174.1
+- Image Version: 20261006.188.1
 
 ## Windows features
 
@@ -19,9 +19,9 @@
 - LLVM 22.1.8
 - Node 24.21.0
 - Perl 5.32.1
-- PHP 8.4.25
-- Python 3.13.15
-- Ruby 3.4.10
+- PHP 8.4.26
+- Python 3.13.16
+- Ruby 3.4.11
 
 ### Package Management
 - Chocolatey 2.7.4
@@ -30,9 +30,9 @@
 - NPM 11.19.0
 - NuGet 7.9.0.83
 - pip 26.2.1 (python 3.13)
-- Pipx 1.17.5
+- Pipx 1.17.11
 - RubyGems 3.6.9
-- Vcpkg (build from commit 5f96cd15fd)
+- Vcpkg (build from commit 2976266a3b)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -42,7 +42,7 @@
 
 ### Project Management
 - Ant 1.10.18
-- Gradle 9.7
+- Gradle 9.8
 - Maven 3.9.16
 - sbt 1.12.12
 
@@ -53,24 +53,24 @@
 - Bazel 9.2.0
 - Bazelisk 1.28.1
 - Bicep 0.47.16
-- CMake 4.4.3
-- CodeQL Action Bundle 2.27.0
-- Git 2.55.0.windows.5
-- Git LFS 3.7.1
+- CMake 4.4.4
+- CodeQL Action Bundle 2.27.1
+- Git 2.56.0.windows.2
+- Git LFS 3.8.0
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.1
 - Kind 0.33.0
-- Kubectl 1.37.0
+- Kubectl 1.37.1
 - Mercurial 6.3.1
 - gcc 14.2.0
 - gdb 16.2
 - GNU Binutils 2.44
 - Newman 6.2.2
 - NSIS 3.10
-- OpenSSL 3.6.4
+- OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.263.0
+- Pulumi 3.267.0
 - R 4.6.1 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -82,17 +82,17 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.1
-- AWS CLI 2.36.49
-- AWS SAM CLI 1.166.2
+- AWS CLI 2.37.9
+- AWS SAM CLI 1.167.0
 - AWS Session Manager CLI 1.2.835.0
-- Azure CLI 2.90.0
+- Azure CLI 2.91.0
 - Azure DevOps CLI extension 1.0.8
-- GitHub CLI 2.101.0
+- GitHub CLI 2.102.0
 
 ### Rust Tools
-- Cargo 1.98.1
-- Rust 1.98.1
-- Rustdoc 1.98.1
+- Cargo 1.99.0
+- Rust 1.99.0
+- Rustdoc 1.99.0
 - Rustup 1.29.1
 
 #### Packages
@@ -100,18 +100,18 @@
 - cargo-audit 0.22.2
 - cargo-outdated 0.19.0
 - cbindgen 0.29.4
-- Clippy 0.1.98
-- Rustfmt 1.9.0
+- Clippy 0.1.99
+- Rustfmt 1.10.0
 
 ### Browsers and Drivers
-- Google Chrome 153.0.8010.53
-- Chrome Driver 153.0.8010.52
-- Microsoft Edge 153.0.4234.48
-- Microsoft Edge Driver 153.0.4234.48
-- Mozilla Firefox 156.0
+- Google Chrome 155.0.8059.40
+- Chrome Driver 155.0.8059.39
+- Microsoft Edge 154.0.4258.62
+- Microsoft Edge Driver 154.0.4258.62
+- Mozilla Firefox 157.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.49.0
+- Selenium server 4.50.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -152,16 +152,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 1.26.8
 
 #### Node.js
-- 22.23.2
+- 22.23.3
 - 24.21.0
 
 #### Python
 - 3.12.10
-- 3.13.15
-- 3.14.7
+- 3.13.16
+- 3.14.8
 
 #### Ruby
-- 3.4.10
+- 3.4.11
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.28.0
@@ -399,10 +399,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.302
+- AWSPowershell: 5.0.312
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
-- Microsoft.Graph: 2.40.0
+- Microsoft.Graph: 2.41.1
 - Pester: 3.4.0, 5.9.0
 - PowerShellGet: 1.0.0.1, 2.2.5
 - PSScriptAnalyzer: 1.25.0

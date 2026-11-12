@@ -55,10 +55,7 @@ $languageAndRuntime.AddToolVersion("Node.js", $(Get-NodeVersion))
 $languageAndRuntime.AddToolVersion("Perl", $(Get-PerlVersion))
 $languageAndRuntime.AddToolVersion("Python", $(Get-PythonVersion))
 $languageAndRuntime.AddToolVersion("Ruby", $(Get-RubyVersion))
-if (-not (Test-IsUbuntu26)) {
-    # No Ubuntu 26 support yet
-    $languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
-}
+$languageAndRuntime.AddToolVersion("Swift", $(Get-SwiftVersion))
 
 
 # Package Management

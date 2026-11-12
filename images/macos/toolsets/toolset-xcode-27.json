@@ -1,23 +1,29 @@
 {
     "xcode": {
-        "default": "27",
+        "default": "27.1",
         "arm64": {
             "versions": [
                 {
-                    "link": "27.2_beta",
-                    "filename": "Xcode_27.2_beta",
-                    "version": "27.2+27B5019j",
-                    "symlinks": ["27.2"],
-                    "sha256": "b2d396f5fc1a109e4d74874093575f5b3c1044a6cc05ef2b3ca27c738d90442b",
+                    "link": "27.3_beta",
+                    "filename": "Xcode_27.3_beta",
+                    "version": "27.3+27C5020n",
+                    "sha256": "7263cc664d441b1b181fbc58719339a064873ffa5e89a86e6f83a88ea015cb58",
+                    "symlinks": ["27.3"],
                     "install_runtimes": "none"
                 },
                 {
-                    "link": "27.1_beta",
-                    "filename": "Xcode_27.1_beta",
-                    "version": "27.1+27A9269",
-                    "symlinks": ["27.1"],
-                    "sha256": "7e90e1757f490f163e01d5262baa5db5c9d64c63d9f42450eeface0749f086fe",
-                    "install_runtimes": "none"
+                    "link": "27.2",
+                    "filename": "Xcode_27.2",
+                    "version": "27.2+27B52",
+                    "sha256": "c28b05526225394fa4017d7f9919c1c898822713edca68872cb4701599f01978",
+                    "install_runtimes": "default"
+                },
+                {
+                    "link": "27.1",
+                    "filename": "Xcode_27.1",
+                    "version": "27.1+27A9275",
+                    "sha256": "038ad29cc2cd87e7762aac596833943000fd3d5fb64be530e2ecdbe5449cd660",
+                    "install_runtimes": "default"
                 },
                 {
                     "link": "27",
@@ -80,7 +86,8 @@
             "kotlin",
             "libpq",
             "libsodium",
-            "openssl",
+            "openssl@3",
+            "openssl@4",
             "p7zip",
             "packer",
             "perl",
@@ -110,7 +117,8 @@
                 "versions": [
                     "8.0",
                     "9.0",
-                    "10.0"
+                    "10.0",
+                    "11.0"
                 ]
             }
         }
@@ -135,7 +143,8 @@
                         "3.11.*",
                         "3.12.*",
                         "3.13.*",
-                        "3.14.*"
+                        "3.14.*",
+                        "3.15.*"
                     ]
                 }
             }
