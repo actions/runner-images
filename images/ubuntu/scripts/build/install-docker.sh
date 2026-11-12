@@ -102,6 +102,15 @@ if ! is_ubuntu22; then
     docker pull ghcr.io/github/github-mcp-server:latest
 fi
 
+# Pull commonly requested development/test container images so they're available on every
+# Ubuntu image without an additional pull at job time. Images and tags are pinned in the
+# toolset file; see docs/common-dev-container-images.md for the per-image update policy.
+images=$(get_toolset_value '.docker.images[]')
+for image in $images; do
+    echo "Pulling docker image $image ..."
+    docker pull "$image"
+done
+
 # Download amazon-ecr-credential-helper
 aws_latest_release_url="https://api.github.com/repos/awslabs/amazon-ecr-credential-helper/releases/latest"
 aws_helper_url=$(curl -fsSL "${aws_latest_release_url}" | jq -r '.body' | awk -F'[()]' '/linux-'"${docker_arch}"'/ {print $2}')
@@ -119,3 +128,4 @@ rm $GPG_KEY
 rm $REPO_PATH
 
 invoke_tests "Tools" "Docker"
+invoke_tests "Tools" "CachedDockerImages"
