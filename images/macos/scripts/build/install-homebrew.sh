@@ -21,11 +21,20 @@ fi
 /bin/bash $homebrew_installer_path
 
 if [[ $arch == "arm64" ]]; then
-  /opt/homebrew/bin/brew update
-  /opt/homebrew/bin/brew upgrade
-  /opt/homebrew/bin/brew upgrade --cask
-  /opt/homebrew/bin/brew cleanup
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+    /opt/homebrew/bin/brew update
+    /opt/homebrew/bin/brew upgrade
+    /opt/homebrew/bin/brew upgrade --cask
+    /opt/homebrew/bin/brew cleanup
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    # Homebrew stopped building Intel bottles on 2026-09-02,
+    # so Intel installs formulae from the last homebrew-core commit before that
+    SNAPSHOT_COMMIT=9e0071fca71f307d466b49e932a3a418931b1543
+    homebrew_core_path="$(brew --repository)/Library/Taps/homebrew/homebrew-core"
+    git init --quiet "$homebrew_core_path"
+    git -C "$homebrew_core_path" remote add origin https://github.com/Homebrew/homebrew-core
+    git -C "$homebrew_core_path" fetch --depth 1 origin "$SNAPSHOT_COMMIT"
+    git -C "$homebrew_core_path" checkout --quiet FETCH_HEAD
 fi
 
 echo "Disabling Homebrew analytics..."
@@ -37,20 +46,15 @@ brew_smart_install jq
 
 echo "Installing curl..."
 if ! is_Arm64; then
+    brew_smart_install ca-certificates
+
     # For the Intel images curl dependency openssl@3 stopped to work, using pinned commit
     COMMIT=ac0bc95fef0e5aed25b3662f6271020410cfbc3d
     FILE_NAME="o/openssl@3.rb"
     FORMULA_NAME="openssl@3"
     brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
-
-    # Pinning curl to bypass dropping Intel support
-    COMMIT_CURL=bce3d09048e3cb6e0a9e75a49f79ec33e321f328
-    FILE_NAME_CURL="c/curl.rb"
-    FORMULA_NAME_CURL="curl"
-    brew_install_pinned_formula "$FORMULA_NAME_CURL" "$FILE_NAME_CURL" "$COMMIT_CURL"
-else
-    brew_smart_install curl
 fi
+brew_smart_install curl
 
 echo "Installing wget..."
 brew_smart_install "wget"

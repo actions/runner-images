@@ -4,44 +4,6 @@
         "x64": {
             "versions": [
                 {
-                    "link": "26.3",
-                    "filename": "Xcode_26.3_Universal",
-                    "version": "26.3+17C529",
-                    "sha256": "cf87232e0419785170edcfa070b750f28808ec00b489ab540c08b7d197c79ae4",
-                    "install_runtimes": "none"
-                },
-                {
-                    "link": "26.2",
-                    "filename": "Xcode_26.2_Universal",
-                    "version": "26.2+17C52",
-                    "sha256": "8f29ab6a9ac6670d3cf53545ffdb1c317d11607fa8db38fc56d3391df7783fbd",
-                    "install_runtimes": [
-                        { "iOS": ["26.2"] },
-                        { "watchOS": ["default"] },
-                        { "tvOS": ["default"] }
-                    ]
-                },
-                {
-                    "link": "26.1.1",
-                    "filename": "Xcode_26.1.1_Universal",
-                    "version": "26.1.1+17B100",
-                    "symlinks": ["26.1"],
-                    "sha256": "ed55d55fa28455c11a65e0809ba8fdf7d83fdeb268aabf9af7fcc1ee911543eb",
-                    "install_runtimes": "default"
-                },
-                {
-                    "link": "26.0.1",
-                    "filename": "Xcode_26.0.1_Universal",
-                    "version": "26.0.1+17A400",
-                    "symlinks": ["26.0"],
-                    "sha256": "9881c457068c86ac91e94cca2d7116dfd01cb7179c22b0863b63c7f3bb7e7695",
-                    "install_runtimes": [
-                        { "iOS": ["default"] },
-                        { "watchOS": ["skip"] },
-                        { "tvOS": ["skip"] }
-                    ]
-                },
-                {
                     "link": "16.4",
                     "filename": "Xcode_16.4",
                     "version": "16.4.0+16F6",
@@ -51,35 +13,6 @@
                         { "watchOS": ["11.5"] },
                         { "tvOS": ["18.5"] }
                     ]
-                },
-                {
-                    "link": "16.3",
-                    "filename": "Xcode_16.3",
-                    "version": "16.3+16E140",
-                    "sha256": "c593177b73e45f31e1cf7ced131760d8aa8e1532f5bbf8ba11a4ded01da14fbb",
-                    "install_runtimes": "none"
-                },
-                {
-                    "link": "16.2",
-                    "filename": "Xcode_16.2",
-                    "version": "16.2+16C5032a",
-                    "sha256": "0e367d06eb7c334ea143bada5e4422f56688aabff571bedf0d2ad9434b7290de",
-                    "install_runtimes": "none"
-                },
-                {
-                    "link": "16.1",
-                    "filename": "Xcode_16.1",
-                    "version": "16.1+16B40",
-                    "sha256": "8ca961d55981f983d21b99a95a6b0ac04905b837f6e11346ee86d28f12afe720",
-                    "install_runtimes": "none"
-                },
-                {
-                    "link": "16",
-                    "filename": "Xcode_16",
-                    "version": "16.0.0+16A242d",
-                    "sha256": "4a26c3d102a55c7222fb145e0ee1503249c9c26c6e02dc64d783c8810b37b1e3",
-                    "symlinks": ["16.0"],
-                    "install_runtimes": "none"
                 }
             ]
         },
@@ -211,6 +144,7 @@
     ],
     "brew": {
         "common_packages": [
+            "libpq",
             "ant",
             "aria2",
             "azure-cli",
@@ -221,7 +155,6 @@
             "gnupg",
             "gnu-tar",
             "kotlin",
-            "libpq",
             "libsodium",
             "p7zip",
             "packer",

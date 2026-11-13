@@ -101,6 +101,11 @@ get_toolset_value() {
 brew_smart_install() {
     local tool_name=$1
 
+    # Intel installs formulae from the homebrew-core snapshot set up in install-homebrew.sh
+    if ! is_Arm64; then
+        local -x HOMEBREW_NO_INSTALL_FROM_API=1
+    fi
+
     echo "Downloading $tool_name..."
 
     # get deps & cache em
@@ -130,8 +135,9 @@ brew_smart_install() {
     fi
     done
 
+    # Build errors don't pass on retry, so only retry a few times for network errors
     failed=true
-    for i in {1..10}; do
+    for i in {1..3}; do
         HOMEBREW_NO_AUTO_UPDATE=1 brew install "$tool_name" && failed=false || sleep 60
         [ "$failed" = false ] && break
     done
