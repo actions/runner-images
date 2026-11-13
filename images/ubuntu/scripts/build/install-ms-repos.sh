@@ -4,6 +4,9 @@
 ##  Desc:  Install official Microsoft package repos for the distribution
 ################################################################################
 
+# Wait for cloud-init before the first apt use, as it may still be rewriting the apt sources on first boot
+timeout 120 cloud-init status --wait --long || true
+
 os_label=$(lsb_release -rs)
 
 # Install Microsoft repository
