@@ -115,6 +115,17 @@ Write-Host "Installing Android SDK packages for platforms..."
 $platformList = Get-AndroidPlatformPackages `
     -SDKRootPath $SDKRootPath `
     -minVersion $androidToolset.platform_min_version
+
+# Visual Studio workloads can create platform directories that sdkmanager doesn't register as installed packages.
+# sdkmanager then installs the package into a "<platform>-2" directory, which breaks Android Gradle Plugin lint.
+$installedPackages = Get-AndroidInstalledPackages -SDKRootPath $SDKRootPath
+foreach ($platform in $platformList) {
+    $platformPath = Join-Path -Path $SDKInstallRoot -ChildPath "platforms\$($platform.Split(';')[1])"
+    if ((Test-Path $platformPath) -and -not ($installedPackages -match "^\s*$([regex]::Escape($platform))\s")) {
+        Write-Host "Removing previous $platform installation from Visual Studio workload"
+        Remove-Item $platformPath -Recurse -Force
+    }
+}
 Install-AndroidSDKPackages $platformList
 
 # Install Android build-tools versions
