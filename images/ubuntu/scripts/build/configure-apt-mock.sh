@@ -15,10 +15,8 @@ for real_tool in /usr/bin/apt /usr/bin/apt-get /usr/bin/apt-key; do
 i=1
 while [ \$i -le 30 ];do
   err=\$(mktemp)
-  $real_tool "\$@" 2>\$err
-
-  # no errors, break the loop and continue normal flow
-  test -f \$err || break
+  rc=0
+  $real_tool "\$@" 2>\$err || rc=\$?
   cat \$err >&2
 
   retry=false
@@ -58,6 +56,9 @@ while [ \$i -le 30 ];do
   echo "...retry \$i"
   i=\$((i + 1))
 done
+
+# propagate the real tool's exit code, otherwise every apt failure is reported as success
+exit \$rc
 EOT
     chmod +x $prefix/$tool
 done

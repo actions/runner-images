@@ -34,8 +34,8 @@ APT::Get::AutomaticRemove "0";
 APT::Get::HideAutoRemove "1";
 EOF
 
-# Install libicu70 package for Ubuntu 24
-if  is_ubuntu24 ; then
+# Install libicu70 package for Ubuntu 24 x64, the deb is amd64 only
+if is_ubuntu24_x64; then
   wget https://archive.ubuntu.com/ubuntu/pool/main/i/icu/libicu70_70.1-2_amd64.deb
 
   EXPECTED_LIBICU_SHA512="a6315482d93606e375c272718d2458870b95e4ed4b672ea8640cf7bc2d2c2f41aea13b798b1e417e1ffc472a90c6aad150d3d293aa9bddec48e39106e4042807"

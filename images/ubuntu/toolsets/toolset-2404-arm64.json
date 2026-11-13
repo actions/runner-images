@@ -164,7 +164,7 @@
             "lz4",
             "m4",
             "mediainfo",
-            "netcat",
+            "netcat-openbsd",
             "net-tools",
             "p7zip-full",
             "parallel",
