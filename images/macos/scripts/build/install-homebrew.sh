@@ -21,21 +21,20 @@ fi
 /bin/bash $homebrew_installer_path
 
 if [[ $arch == "arm64" ]]; then
-  /opt/homebrew/bin/brew update
-  /opt/homebrew/bin/brew upgrade
-  /opt/homebrew/bin/brew upgrade --cask
-  /opt/homebrew/bin/brew cleanup
-  eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
-if ! is_Arm64; then
-    # Homebrew stopped building Intel bottles on 2026-09-02, so Intel installs formulae from the last homebrew-core commit before that
-    homebrew_core_commit=9e0071fca71f307d466b49e932a3a418931b1543
+    /opt/homebrew/bin/brew update
+    /opt/homebrew/bin/brew upgrade
+    /opt/homebrew/bin/brew upgrade --cask
+    /opt/homebrew/bin/brew cleanup
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+else
+    # Homebrew stopped building Intel bottles on 2026-09-02,
+    # so Intel installs formulae from the last homebrew-core commit before that
+    SNAPSHOT_COMMIT=9e0071fca71f307d466b49e932a3a418931b1543
     homebrew_core_path="$(brew --repository)/Library/Taps/homebrew/homebrew-core"
-    git init -q "$homebrew_core_path"
+    git init --quiet "$homebrew_core_path"
     git -C "$homebrew_core_path" remote add origin https://github.com/Homebrew/homebrew-core
-    git -C "$homebrew_core_path" fetch --depth 1 origin "$homebrew_core_commit"
-    git -C "$homebrew_core_path" checkout -q FETCH_HEAD
+    git -C "$homebrew_core_path" fetch --depth 1 origin "$SNAPSHOT_COMMIT"
+    git -C "$homebrew_core_path" checkout --quiet FETCH_HEAD
 fi
 
 echo "Disabling Homebrew analytics..."

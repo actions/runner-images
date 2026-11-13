@@ -100,7 +100,6 @@ get_toolset_value() {
 # Use the '--build-from-source' option to build from source in this case
 brew_smart_install() {
     local tool_name=$1
-    local no_deps_update=$2
 
     # Intel installs formulae from the homebrew-core snapshot set up in install-homebrew.sh
     if ! is_Arm64; then
@@ -136,10 +135,10 @@ brew_smart_install() {
     fi
     done
 
-    # Install failures are mostly build errors that won't pass on retry, so only allow a few attempts for network errors
+    # Build errors don't pass on retry, so only retry a few times for network errors
     failed=true
     for i in {1..3}; do
-        HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=$no_deps_update brew install "$tool_name" && failed=false || sleep 60
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install "$tool_name" && failed=false || sleep 60
         [ "$failed" = false ] && break
     done
 

@@ -67,7 +67,8 @@ for package in $common_packages; do
 
         gnupg)
             if ! is_Arm64; then
-                # Snapshot gnupg 2.5.22 has no Intel bottle and its source build fails self-tests; 2.5.21 is the last bottled version
+                # gnupg 2.5.22 in the snapshot has no Intel bottle and its source build fails self-tests,
+                # using pinned commit of 2.5.21, the last bottled version
                 COMMIT=e13b9985baafcb86cd1836112dc05a6195906f09
                 FILE_NAME="g/gnupg.rb"
                 FORMULA_NAME="gnupg"
