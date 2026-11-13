@@ -33,6 +33,16 @@ if is_ubuntu26; then
     mkdir -p /etc/containers/containers.conf.d
     printf '[network]\nfirewall_driver = "iptables"\n' | tee /etc/containers/containers.conf.d/99-fix-firewall.conf
     podman network reload --all 2>/dev/null
+
+    # https://github.com/actions/runner-images/issues/15182
+    # The pasta AppArmor profile does not let podman stop pasta, so tearing down the rootless
+    # netns fails with "kill network process: permission denied" (https://bugs.launchpad.net/bugs/2154379).
+    # The profile has no local/ include, so the rule is added in place.
+    pasta_profile="/etc/apparmor.d/usr.bin.pasta"
+    if ! grep -q 'peer=podman' "$pasta_profile"; then
+        sed -i '$ i\  signal (receive) set=(term) peer=podman,' "$pasta_profile"
+    fi
+    apparmor_parser -r -W "$pasta_profile"
 fi
 
 invoke_tests "Tools" "Containers"
