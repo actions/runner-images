@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 | [[Ubuntu] `ubuntu-latest` label will use Ubuntu 26.04 in November 2026](https://github.com/actions/runner-images/issues/14748) |
 | [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm64 are now generally available](https://github.com/actions/runner-images/issues/14747) |
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
@@ -7,7 +8,7 @@
 ***
 # Ubuntu-Slim
 - OS Version: 24.04.5 LTS
-- Image Version: 20261101.43.1
+- Image Version: 20261111.52.1
 - Systemd version: 255.4-1ubuntu8.18
 
 ## Installed Software
@@ -15,7 +16,7 @@
 ### Language and Runtime
 - Bash 5.2.21(1)-release
 - Dash 0.5.12-6ubuntu5
-- Node.js 24.22.2
+- Node.js 24.22.3
 - Perl 5.38.2
 - Python 3.12.3
 
@@ -23,50 +24,50 @@
 - Npm 11.19.1
 - Pip 24.0
 - Pip3 24.0
-- Pipx 1.18.11
+- Pipx 1.18.16
 
 ### Tools
 - AzCopy 10.34.1 - available by `azcopy` and `azcopy10` aliases
-- Bicep 0.48.1
-- Docker Compose 5.6.1
+- Bicep 0.49.2
+- Docker Compose 5.7.1
 - Docker-Buildx 0.38.1
-- Docker Client 29.9.2
-- Git 2.56.0
+- Docker Client 29.9.3
+- Git 2.56.1
 - Git LFS 3.8.1
 - Git-ftp 1.6.0
 - jq 1.7
-- nvm 0.40.8
+- nvm 0.41.0
 - OpenSSL 3.0.13-0ubuntu3.16
-- yq 4.54.1
+- yq 4.54.3
 - zstd 1.5.7
 
 ### CLI Tools
-- AWS CLI 2.39.3
+- AWS CLI 2.40.1
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.171.0
-- Azure CLI 2.91.0
+- AWS SAM CLI 1.172.1
+- Azure CLI 2.92.0
 - Azure CLI (azure-devops) 1.0.10
 - GitHub CLI 2.103.3
-- Google Cloud CLI 591.0.0
+- Google Cloud CLI 593.0.0
 
 ### PowerShell Tools
-- PowerShell 7.6.9
+- PowerShell 7.6.10
 
 ### Installed apt packages
 | Name                   | Version                      |
 | ---------------------- | ---------------------------- |
 | acl                    | 2.3.2-1build1.1              |
-| apt-utils              | 2.8.3                        |
+| apt-utils              | 2.8.4ubuntu0.1               |
 | autoconf               | 2.71-3                       |
 | automake               | 1:1.16.5-1.3ubuntu1          |
 | bc                     | 1.07.1-3ubuntu4              |
 | binutils               | 2.42-4ubuntu2.10             |
 | bzip2                  | 1.0.8-5.1ubuntu0.1           |
-| ca-certificates        | 20260816ubuntu0.24.04.1      |
+| ca-certificates        | 20260816ubuntu0.24.04.2      |
 | coreutils              | 9.4-3ubuntu6.3               |
 | curl                   | 8.5.0-2ubuntu10.16           |
 | dbus                   | 1.14.10-4ubuntu4.1           |
-| dnsutils               | 1:9.18.39-0ubuntu0.24.04.8   |
+| dnsutils               | 1:9.18.39-0ubuntu0.24.04.9   |
 | dpkg                   | 1.22.6ubuntu6.6              |
 | dpkg-dev               | 1.22.6ubuntu6.6              |
 | fakeroot               | 1.33-1                       |
@@ -83,7 +84,7 @@
 | iputils-ping           | 3:20240117-1ubuntu0.1        |
 | jq                     | 1.7.1-3ubuntu0.24.04.2       |
 | libnss3-tools          | 2:3.98-1ubuntu0.3            |
-| libsqlite3-dev         | 3.45.1-1ubuntu2.8            |
+| libsqlite3-dev         | 3.45.1-1ubuntu2.9            |
 | libssl-dev             | 3.0.13-0ubuntu3.16           |
 | libtool                | 2.4.7-7build1                |
 | libyaml-dev            | 0.2.5-1build1                |
@@ -106,7 +107,7 @@
 | rpm                    | 4.18.2+dfsg-2.1build2        |
 | rsync                  | 3.2.7-1ubuntu1.5             |
 | shellcheck             | 0.9.0-1                      |
-| sqlite3                | 3.45.1-1ubuntu2.8            |
+| sqlite3                | 3.45.1-1ubuntu2.9            |
 | ssh                    | 1:9.6p1-3ubuntu13.20         |
 | sshpass                | 1.09-1                       |
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.4    |
