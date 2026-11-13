@@ -52,7 +52,6 @@ if ($LASTEXITCODE -ne 0) {
 if (Test-IsWin25-X64) {
     $directoriesToCompact = @(
         "C:\Program Files (x86)\Android",
-        "C:\Program Files\dotnet",
         "$env:SystemRoot\assembly",
         "$env:SystemRoot\WinSxS"
     )
