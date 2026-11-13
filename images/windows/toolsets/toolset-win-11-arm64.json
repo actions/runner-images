@@ -49,7 +49,7 @@
         { "name": "DockerMsftProvider" },
         { "name": "MarkdownPS" },
         { "name": "Pester", "versions": [ "5.9.0"] },
-        { "name": "PowerShellGet" },
+        { "name": "PowerShellGet", "versions": [ "2.2.5" ] },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
         { "name": "SqlServer" },
