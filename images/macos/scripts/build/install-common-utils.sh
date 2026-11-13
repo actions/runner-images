@@ -6,16 +6,6 @@
 
 source ~/utils/utils.sh
 
-# homebrew-core dropped the Intel bottles for gmp on 2026-09-02, and gmplib.org blocks
-# GitHub server IPs so the source build cannot fetch the tarball. Install the last bottled
-# revision before gnupg pulls gmp in as a dependency.
-if ! is_Arm64; then
-    COMMIT=f97a5a6fd3dee66c7f015608b82ad047a29e2c9b
-    FILE_NAME="g/gmp.rb"
-    FORMULA_NAME="gmp"
-    brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
-fi
-
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
@@ -82,20 +72,6 @@ for package in $common_packages; do
                 FILE_NAME="g/gnupg.rb"
                 FORMULA_NAME="gnupg"
                 brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
-            else
-                brew_smart_install "$package"
-            fi
-            ;;
-        
-        libpq)
-            if ! is_Arm64; then
-                echo "[DEBUG] Pre-installing dependencies for libpq"
-                COMMIT=4bf9dca5bfa519b9c8f6cd9d17f3f118ceb5daab
-                FILE_NAME="k/krb5.rb"
-                FORMULA_NAME="krb5"
-                brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
-
-                brew_smart_install "$package" 1
             else
                 brew_smart_install "$package"
             fi

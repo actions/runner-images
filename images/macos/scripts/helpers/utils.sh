@@ -136,8 +136,9 @@ brew_smart_install() {
     fi
     done
 
+    # Install failures are mostly build errors that won't pass on retry, so only allow a few attempts for network errors
     failed=true
-    for i in {1..10}; do
+    for i in {1..3}; do
         HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=$no_deps_update brew install "$tool_name" && failed=false || sleep 60
         [ "$failed" = false ] && break
     done

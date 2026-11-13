@@ -54,15 +54,8 @@ if ! is_Arm64; then
     FILE_NAME="o/openssl@3.rb"
     FORMULA_NAME="openssl@3"
     brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
-
-    # Pinning curl to bypass dropping Intel support
-    COMMIT_CURL=bce3d09048e3cb6e0a9e75a49f79ec33e321f328
-    FILE_NAME_CURL="c/curl.rb"
-    FORMULA_NAME_CURL="curl"
-    brew_install_pinned_formula "$FORMULA_NAME_CURL" "$FILE_NAME_CURL" "$COMMIT_CURL"
-else
-    brew_smart_install curl
 fi
+brew_smart_install curl
 
 echo "Installing wget..."
 brew_smart_install "wget"
