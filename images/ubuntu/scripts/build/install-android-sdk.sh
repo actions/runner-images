@@ -47,12 +47,12 @@ mkdir -p ${ANDROID_SDK_ROOT}
 # Download the latest command line tools so that we can accept all of the licenses.
 # See https://developer.android.com/studio/#command-tools
 cmdline_tools_package=$(get_toolset_value '.android."cmdline-tools"')
-if [[ $cmdline_tools_version == "latest" ]]; then
+if [[ $cmdline_tools_package == "latest" ]]; then
     REPOSITORY_XML_URL="https://dl.google.com/android/repository/repository2-1.xml"
     repository_xml_file=$(download_with_retry "$REPOSITORY_XML_URL")
     cmdline_tools_package=$(
         yq -p=xml \
-        '.sdk-repository.remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-linux"))' \
+        '.["sdk:sdk-repository"].remotePackage[] | select(."+@path" == "cmdline-tools;latest" and .channelRef."+@ref" == "channel-0").archives.archive[].complete.url | select(contains("commandlinetools-linux"))' \
         "${repository_xml_file}"
     )
 
