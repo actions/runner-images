@@ -1,0 +1,43 @@
+name: PHP security validation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'images/**/scripts/**/php-security.sh'
+      - 'images/**/scripts/**/install-php.sh'
+      - 'images/windows/scripts/build/Install-PHP.ps1'
+      - 'images/windows/scripts/helpers/PhpSecurity.Helpers.psm1'
+      - 'images/windows/scripts/helpers/ImageHelpers.psm1'
+      - 'byoi/scripts/**/php-security.sh'
+      - 'byoi/scripts/build/install-php.sh'
+      - 'tests/test_php_*.py'
+      - 'tests/test_runtime_security_toolsets.py'
+      - 'images/**/toolsets/*.json'
+      - 'byoi/toolsets/*.json'
+      - 'images/**/scripts/**/install-node.sh'
+      - 'tests/php-security/**'
+      - '.github/workflows/php-security.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  php-security:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ubuntu-24.04, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate Linux package and macOS release policies
+        if: runner.os == 'Linux'
+        run: |
+          command -v dpkg php jq
+          python3 -m unittest discover -s tests -p 'test_php_*.py' -v
+          python3 -m unittest discover -s tests -p 'test_runtime_security_toolsets.py' -v
+      - name: Validate Windows release policy
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Invoke-Pester -Path tests/php-security -Output Detailed -CI
