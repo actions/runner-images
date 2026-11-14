@@ -13,7 +13,7 @@ function Install-XcodeVersion {
 
     $xcodeDownloadDirectory = "$env:HOME/Library/Caches/XcodeInstall"
     $xcodeTargetPath = Get-XcodeRootPath -Version $LinkTo
-    $xcodeXipDirectory = Invoke-DownloadXcodeArchive -DownloadDirectory $xcodeDownloadDirectory -Version $Version
+    $xcodeXipDirectory = Invoke-DownloadXcodeArchive -DownloadDirectory $xcodeDownloadDirectory -Version $Version -Sha256Sum $Sha256Sum
     Expand-XcodeXipArchive -DownloadDirectory $xcodeXipDirectory.FullName -TargetPath $xcodeTargetPath
     Remove-Item -Path $xcodeXipDirectory -Force -Recurse
 }
@@ -23,7 +23,9 @@ function Invoke-DownloadXcodeArchive {
         [Parameter(Mandatory)]
         [string] $DownloadDirectory,
         [Parameter(Mandatory)]
-        [string] $Version
+        [string] $Version,
+        [Parameter(Mandatory)]
+        [string] $Sha256Sum
     )
 
     Write-Host "Downloading Xcode $Version"
@@ -54,12 +56,15 @@ function Expand-XcodeXipArchive {
 
     Write-Host "Extracting Xcode from '$xcodeXipPath'"
     Push-Location $DownloadDirectory
-    if ([boolean] (Get-Command 'unxip' -ErrorAction 'SilentlyContinue')) {
-        Invoke-ValidateCommand "unxip $xcodeXipPath"
-    } else {
-        Invoke-ValidateCommand "xip -x $xcodeXipPath"
+    try {
+        if ([boolean] (Get-Command 'unxip' -ErrorAction 'SilentlyContinue')) {
+            Invoke-ValidateCommand "unxip '$xcodeXipPath'"
+        } else {
+            Invoke-ValidateCommand "xip -x '$xcodeXipPath'"
+        }
+    } finally {
+        Pop-Location
     }
-    Pop-Location
 
     if (Test-Path "$DownloadDirectory/Xcode-beta.app") {
         Write-Host "Renaming Xcode-beta.app to Xcode.app"
@@ -72,6 +77,50 @@ function Expand-XcodeXipArchive {
 
     Write-Host "Moving '$DownloadDirectory/Xcode.app' to '$TargetPath'"
     Move-Item -Path "$DownloadDirectory/Xcode.app" -Destination $TargetPath
+}
+
+function Install-XcodeSystemResources {
+    param (
+        [Parameter(Mandatory)]
+        [string] $Version,
+        [Parameter(Mandatory)]
+        [string] $Sha256Sum,
+        [Parameter(Mandatory)]
+        [string] $CoreSimulatorVersion
+    )
+
+    if (-not $env:XCODE_INSTALL_STORAGE_URL -or -not $env:XCODE_INSTALL_SAS) {
+        throw "Xcode archive storage URL and access token are required to install system resources."
+    }
+
+    $temporaryDirectory = Join-Path "/tmp" "xcode-system-resources-$([guid]::NewGuid().ToString('N'))"
+    New-Item -Path $temporaryDirectory -ItemType Directory | Out-Null
+    try {
+        $archiveDirectory = Invoke-DownloadXcodeArchive -DownloadDirectory $temporaryDirectory -Version $Version -Sha256Sum $Sha256Sum
+        $xcodePath = Join-Path $temporaryDirectory "Xcode.app"
+        Expand-XcodeXipArchive -DownloadDirectory $archiveDirectory.FullName -TargetPath $xcodePath
+        $packagePath = Join-Path $xcodePath "Contents/Resources/Packages/XcodeSystemResources.pkg"
+        if (-not (Test-Path $packagePath)) {
+            throw "Xcode $Version does not contain XcodeSystemResources.pkg."
+        }
+
+        Invoke-ValidateCommand "/usr/sbin/pkgutil --check-signature '$packagePath'" | Out-Null
+        [xml] $packageInfo = (Invoke-ValidateCommand "/usr/bin/tar -xOf '$packagePath' PackageInfo") -join "`n"
+        $coreSimulator = $packageInfo.SelectNodes("//bundle[@id='com.apple.CoreSimulator'][@CFBundleVersion]")
+        if ($coreSimulator.Count -ne 1 -or $coreSimulator[0].CFBundleVersion -ne $CoreSimulatorVersion) {
+            throw "Xcode $Version system resources must contain CoreSimulator $CoreSimulatorVersion."
+        }
+
+        # Install the signed package (also CoreDevice and ROCKit), not Xcode 27, which requires macOS 26.6.
+        Write-Host "Installing Xcode $Version system resources with CoreSimulator $CoreSimulatorVersion..."
+        Invoke-ValidateCommand "sudo /usr/sbin/installer -pkg '$packagePath' -target /"
+        $installedVersion = Get-CoreSimulatorVersion
+        if ($installedVersion -ne $CoreSimulatorVersion) {
+            throw "CoreSimulator version mismatch. Expected: $CoreSimulatorVersion, Actual: $installedVersion"
+        }
+    } finally {
+        Remove-Item -Path $temporaryDirectory -Recurse -Force
+    }
 }
 
 function Confirm-XcodeIntegrity {

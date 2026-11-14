@@ -1,3 +1,12 @@
+function Get-CoreSimulatorVersion {
+    $infoPath = "/Library/Developer/PrivateFrameworks/CoreSimulator.framework/Resources/Info.plist"
+    $version = & /usr/libexec/PlistBuddy -c "Print CFBundleVersion" $infoPath
+    if ($LASTEXITCODE -ne 0 -or [string]::IsNullOrWhiteSpace($version)) {
+        throw "Unable to read the installed CoreSimulator version from '$infoPath'."
+    }
+    return $version
+}
+
 function Get-XcodeRootPath {
     Param (
         [Parameter(Mandatory)]
