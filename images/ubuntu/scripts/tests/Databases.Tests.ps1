@@ -1,4 +1,6 @@
-Describe "PostgreSQL" {
+Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1" -DisableNameChecking
+
+Describe "PostgreSQL" -Skip:(-not (Test-ToolsetModuleEnabled "postgresql")) {
     It "PostgreSQL Service" {
         "sudo systemctl start postgresql" | Should -ReturnZeroExitCode
         "pg_isready" | Should -OutputTextMatchingRegex "/var/run/postgresql:5432 - accepting connections"
@@ -14,7 +16,7 @@ Describe "PostgreSQL" {
     }
 }
 
-Describe "MySQL" {
+Describe "MySQL" -Skip:(-not (Test-ToolsetModuleEnabled "mysql")) {
     It "MySQL CLI" {
         "mysql -V" | Should -ReturnZeroExitCode
     }

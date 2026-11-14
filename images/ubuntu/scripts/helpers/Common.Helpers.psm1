@@ -32,8 +32,24 @@ function Get-CommandResult {
         [bool] $ValidateExitCode = $true
     )
 
+    # Ensure pipx-installed tools are visible even when the test runner invokes a fresh bash process.
+    $env:PATH = "/opt/pipx_bin:$HOME/.local/bin:${env:PATH}"
+
+    # Some pipx applications are installed into a dedicated bin dir and are not visible in a fresh shell unless we resolve them explicitly.
+    $resolvedCommand = $Command.Trim()
+    if ($resolvedCommand -match '^(?<name>[^\s]+)') {
+        $candidateName = $Matches['name']
+        foreach ($candidateDir in @('/opt/pipx_bin', "$HOME/.local/bin", '/usr/local/bin')) {
+            $resolvedPath = Join-Path $candidateDir $candidateName
+            if (Test-Path $resolvedPath) {
+                $env:PATH = "${candidateDir}:${env:PATH}"
+                break
+            }
+        }
+    }
+
     # Bash trick to suppress and show error output because some commands write to stderr (for example, "python --version")
-    $stdout = & bash -c "$Command 2>&1"
+    $stdout = & bash -c "export PATH=\"/opt/pipx_bin:$HOME/.local/bin:$PATH\"; $Command 2>&1"
     $exitCode = $LASTEXITCODE
 
     if ($ValidateExitCode) {
@@ -98,6 +114,33 @@ function Test-IsUbuntu26-X64 {
     return (Test-IsUbuntu26) -and (Test-IsX64)
 }
 
+function Get-ToolsetConfig {
+    $candidatePaths = @()
+    if ($env:TOOLSET_PATH) {
+        $candidatePaths += $env:TOOLSET_PATH
+    }
+
+    if ($env:TOOLSET_FILE) {
+        $candidatePaths += $env:TOOLSET_FILE
+    }
+
+    if ($env:IMAGE_FOLDER) {
+        $candidatePaths += Join-Path $env:IMAGE_FOLDER "toolset.json"
+    }
+
+    if ($env:INSTALLER_SCRIPT_FOLDER) {
+        $candidatePaths += Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
+    }
+
+    foreach ($candidatePath in $candidatePaths) {
+        if ($candidatePath -and (Test-Path $candidatePath)) {
+            return Get-Content -Raw -Path $candidatePath | ConvertFrom-Json
+        }
+    }
+
+    return $null
+}
+
 function Get-ToolsetContent {
     <#
     .SYNOPSIS
@@ -108,9 +151,42 @@ function Get-ToolsetContent {
         environment variable and returns the content as a PowerShell object.
     #>
 
-    $toolsetPath = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
-    $toolsetJson = Get-Content -Path $toolsetPath -Raw
-    ConvertFrom-Json -InputObject $toolsetJson
+    $toolset = Get-ToolsetConfig
+    if (-not $toolset) {
+        throw "Unable to locate a toolset.json file in the active image build."
+    }
+
+    return $toolset
+}
+
+function Test-ToolsetModuleEnabled {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $ModuleName
+    )
+
+    $toolset = Get-ToolsetConfig
+    if (-not $toolset) {
+        return $true
+    }
+
+    $normalizedModuleName = $ModuleName.ToLowerInvariant()
+
+    foreach ($property in $toolset.PSObject.Properties) {
+        if ($property.Name.ToLowerInvariant() -eq $normalizedModuleName) {
+            return $true
+        }
+    }
+
+    if ($toolset.toolcache) {
+        foreach ($tool in $toolset.toolcache) {
+            if ($tool.name -and $tool.name.ToLowerInvariant() -eq $normalizedModuleName) {
+                return $true
+            }
+        }
+    }
+
+    return $false
 }
 
 function Invoke-DownloadWithRetry {

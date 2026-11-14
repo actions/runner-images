@@ -46,10 +46,57 @@ download_with_retry() {
 }
 
 get_toolset_value() {
-    local toolset_path="${INSTALLER_SCRIPT_FOLDER}/toolset.json"
+    local toolset_path
     local query=$1
 
-    echo "$(jq -r "$query" $toolset_path)"
+    toolset_path=$(toolset_config_path) || {
+        echo "A toolset.json file is required to install the image toolset." >&2
+        return 1
+    }
+    echo "[toolset debug] get_toolset_value" >&2
+
+    echo "$(jq -r "$query" "$toolset_path")"
+}
+
+# Ubuntu build logic uses bash helpers; Windows uses PowerShell modules.
+# Resolve the active toolset file in the same precedence order used by the image runtime.
+toolset_config_path() {
+    local candidate
+
+    echo "[toolset debug] INSTALLER_SCRIPT_FOLDER=${INSTALLER_SCRIPT_FOLDER:-<unset>}" >&2
+    echo "[toolset debug] HELPER_SCRIPTS=${HELPER_SCRIPTS:-<unset>}" >&2
+    echo "[toolset debug] pwd=$(pwd)" >&2
+
+    for candidate in \
+        "${INSTALLER_SCRIPT_FOLDER:-}/toolset.json"; do
+        echo "[toolset debug] checking candidate: '$candidate'" >&2
+        if [ -n "$candidate" ] && [ -f "$candidate" ]; then
+            echo "[toolset debug] selected toolset: $candidate" >&2
+            echo "$candidate"
+            return 0
+        fi
+    done
+
+    echo "[toolset debug] no valid toolset file found in any candidate path" >&2
+    return 1
+}
+
+# Returns success if the named tool/module exists in the active toolset definition.
+toolset_module_enabled() {
+    local module_name="${1:-}"
+    local toolset_path
+
+    if [ -z "$module_name" ]; then
+        return 1
+    fi
+
+    toolset_path=$(toolset_config_path) || return 0
+    echo "[toolset debug] toolset_module_enabled" >&2
+    jq -e --arg name "$module_name" '
+        (to_entries | any(.key | ascii_downcase == ($name | ascii_downcase)))
+        or
+        (.toolcache[]? | ((.name // "") | ascii_downcase) == ($name | ascii_downcase))
+    ' "$toolset_path" >/dev/null 2>&1
 }
 
 # Unauthenticated api.github.com requests are limited to 60 per hour per source IP,

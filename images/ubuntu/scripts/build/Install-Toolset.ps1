@@ -24,7 +24,10 @@ function Install-Asset {
     try {
         Push-Location -Path $assetFolderPath
         try {
-            Invoke-Expression "bash ./setup.sh"
+            & bash -e ./setup.sh
+            if ($LASTEXITCODE -ne 0) {
+                throw "Asset setup script failed with exit code $LASTEXITCODE"
+            }
         } finally {
             Pop-Location
         }
@@ -36,8 +39,92 @@ function Install-Asset {
 
 $ErrorActionPreference = "Stop"
 
+function Resolve-ToolsetInstallScriptPath {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $RelativePath
+    )
+
+    if ([string]::IsNullOrWhiteSpace($RelativePath)) {
+        return $null
+    }
+
+    if ([System.IO.Path]::IsPathRooted($RelativePath)) {
+        return $RelativePath
+    }
+
+    $toolsetPath = Join-Path $env:INSTALLER_SCRIPT_FOLDER "toolset.json"
+    $toolsetDirectory = Split-Path -Parent $toolsetPath
+    $scriptFileName = Split-Path -Leaf $RelativePath
+
+    $candidatePaths = @(
+        [System.IO.Path]::GetFullPath((Join-Path $toolsetDirectory $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $env:INSTALLER_SCRIPT_FOLDER $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $env:INSTALLER_SCRIPT_FOLDER $scriptFileName))
+    )
+
+    foreach ($candidate in $candidatePaths) {
+        if (Test-Path $candidate) {
+            return $candidate
+        }
+    }
+
+    return $candidatePaths[0]
+}
+
+# Run any tool-specific install scripts declared in the toolset JSON.
+# Keep the execution order explicit for dependency-sensitive tools instead of relying on JSON property order.
+# In particular, Ninja invokes CMake during validation, so CMake must be installed before Ninja.
+$toolsetContent = Get-ToolsetContent
+$installScripts = @(
+    foreach ($property in $toolsetContent.PSObject.Properties) {
+        if ($property.Value -is [pscustomobject] -and ($property.Value.PSObject.Properties.Name -contains "install_script")) {
+            $scriptPath = Resolve-ToolsetInstallScriptPath -RelativePath $property.Value.install_script
+            if ($scriptPath) {
+                [pscustomobject]@{
+                    Tool = $property.Name
+                    ScriptPath = $scriptPath
+                }
+            }
+        }
+    }
+)
+
+$installScriptPriority = @{
+    "cmake" = 0
+    "clang" = 1
+    "gcc" = 2
+    "gfortran" = 3
+    "java" = 4
+    "android" = 5
+    "python" = 6
+    "pypy" = 7
+    "ruby" = 8
+    "node" = 9
+    "php" = 10
+    "rust" = 11
+    "ninja" = 12
+}
+
+$installScripts = $installScripts | Sort-Object {
+    if ($installScriptPriority.ContainsKey($_.Tool)) {
+        return $installScriptPriority[$_.Tool]
+    }
+
+    return 1000 + ($_.Tool.Length)
+}
+
+foreach ($installScript in $installScripts) {
+    Write-Host "Running install script for tool '$($installScript.Tool)' from $($installScript.ScriptPath)"
+    & bash -e $installScript.ScriptPath
+    if ($LASTEXITCODE -ne 0) {
+        throw "Install script for '$($installScript.Tool)' failed with exit code $LASTEXITCODE"
+    }
+}
+
 # Get toolcache content from toolset
-$tools = (Get-ToolsetContent).toolcache | Where-Object { $_.url -ne $null }
+$tools = $toolsetContent.toolcache | Where-Object { $_.url -ne $null }
 
 foreach ($tool in $tools) {
     # Get versions manifest for current tool

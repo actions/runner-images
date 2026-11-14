@@ -31,6 +31,70 @@ Function Install-Asset {
     Pop-Location
 }
 
+function Resolve-ToolsetInstallScriptPath {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $RelativePath
+    )
+
+    if ([string]::IsNullOrWhiteSpace($RelativePath)) {
+        return $null
+    }
+
+    if ([System.IO.Path]::IsPathRooted($RelativePath)) {
+        return $RelativePath
+    }
+
+    $normalizedRelativePath = $RelativePath.Replace('/', '\')
+    while ($normalizedRelativePath.StartsWith('.\') -or $normalizedRelativePath.StartsWith('..\')) {
+        $normalizedRelativePath = $normalizedRelativePath.Substring(3)
+    }
+    $normalizedRelativePath = $normalizedRelativePath.TrimStart('\')
+
+    $toolsetPath = Join-Path $env:IMAGE_FOLDER "toolset.json"
+    $toolsetDirectory = Split-Path -Parent $toolsetPath
+    $scriptFileName = Split-Path -Leaf $RelativePath
+
+    $candidatePaths = @(
+        [System.IO.Path]::GetFullPath((Join-Path $toolsetDirectory $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $toolsetDirectory $normalizedRelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $env:IMAGE_FOLDER $normalizedRelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot $normalizedRelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path (Split-Path -Parent $PSScriptRoot) $RelativePath)),
+        [System.IO.Path]::GetFullPath((Join-Path $env:IMAGE_FOLDER $scriptFileName)),
+        [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot $scriptFileName))
+    )
+
+    foreach ($candidate in $candidatePaths | Select-Object -Unique) {
+        if (Test-Path $candidate) {
+            return $candidate
+        }
+    }
+
+    throw "Unable to resolve install script '$RelativePath'. Checked: $($candidatePaths -join '; ')"
+}
+
+$toolsetContent = Get-ToolsetContent
+$installScripts = @(
+    foreach ($property in $toolsetContent.PSObject.Properties) {
+        if ($property.Value -is [pscustomobject] -and ($property.Value.PSObject.Properties.Name -contains "install_script")) {
+            $scriptPath = Resolve-ToolsetInstallScriptPath -RelativePath $property.Value.install_script
+            if ($scriptPath) {
+                [pscustomobject]@{
+                    Tool = $property.Name
+                    ScriptPath = $scriptPath
+                }
+            }
+        }
+    }
+)
+
+foreach ($installScript in $installScripts) {
+    Write-Host "Running install script for tool '$($installScript.Tool)' from $($installScript.ScriptPath)"
+    & $installScript.ScriptPath
+}
+
 # Get toolcache content from toolset
 $toolsToInstall = @("Python", "Node", "Go")
 $tools = Get-ToolsetContent | Select-Object -ExpandProperty toolcache | Where-Object { $toolsToInstall -contains $_.Name }
