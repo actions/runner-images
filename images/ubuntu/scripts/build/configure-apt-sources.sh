@@ -15,9 +15,9 @@ fi
 
 touch /etc/apt/apt-mirrors.txt
 
-if grep -q "http://azure.archive.ubuntu.com/ubuntu/" "$sources_file"; then
+if grep -Eq 'http://azure\.archive\.ubuntu\.com/ubuntu/?([[:space:]]|$)' "$sources_file"; then
     printf "http://azure.archive.ubuntu.com/ubuntu/\tpriority:1\n" | tee -a /etc/apt/apt-mirrors.txt
-elif grep -q "http://us-east-2.ec2.archive.ubuntu.com/ubuntu/" "$sources_file"; then
+elif grep -Eq 'http://us-east-2\.ec2\.archive\.ubuntu\.com/ubuntu/?([[:space:]]|$)' "$sources_file"; then
     printf "http://us-east-2.ec2.archive.ubuntu.com/ubuntu/\tpriority:1\n" | tee -a /etc/apt/apt-mirrors.txt
 fi
 

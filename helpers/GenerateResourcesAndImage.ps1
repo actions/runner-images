@@ -159,6 +159,8 @@ Function GenerateResourcesAndImage {
             Tags to be applied to the Azure resources created.
         .PARAMETER PluginVersion
             Specify the version of the packer Azure plugin to use. The default is "2.2.1".
+        .PARAMETER AmazonPluginVersion
+            Specify the version of the Packer Amazon plugin required by Ubuntu templates. The default is "1.8.2".
         .EXAMPLE
             GenerateResourcesAndImage -SubscriptionId {YourSubscriptionId} -ResourceGroupName "shsamytest1" -ImageGenerationRepositoryRoot "C:\runner-images" -ImageType Ubuntu2204 -AzureLocation "East US"
     #>
@@ -199,7 +201,9 @@ Function GenerateResourcesAndImage {
         [ValidateSet("abort", "ask", "cleanup", "run-cleanup-provisioner")]
         [string] $OnError = "ask",
         [Parameter(Mandatory = $False)]
-        [hashtable] $Tags = @{}
+        [hashtable] $Tags = @{},
+        [Parameter(Mandatory = $False)]
+        [string] $AmazonPluginVersion = "1.8.2"
     )
 
     Show-LatestCommit -ErrorAction SilentlyContinue
@@ -260,6 +264,15 @@ Function GenerateResourcesAndImage {
 
     if ($LastExitCode -ne 0) {
         throw "Packer plugins download failed."
+    }
+
+    if ($PackerTemplate.ImageOS -like "ubuntu*") {
+        # Packer decodes all sources in the template directory, including unselected AWS sources.
+        & $PackerBinary plugins install github.com/hashicorp/amazon $AmazonPluginVersion
+
+        if ($LastExitCode -ne 0) {
+            throw "Packer Amazon plugin download failed."
+        }
     }
 
     Write-Host "Validating packer template..."

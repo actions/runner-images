@@ -55,6 +55,7 @@ source "amazon-ebs" "image" {
   encrypt_boot                = false
   instance_type               = var.aws_instance_type
   region                      = var.aws_region
+  ssh_clear_authorized_keys   = var.ssh_clear_authorized_keys
   ssh_interface               = "public_ip"
   ssh_username                = var.aws_ssh_username
 
