@@ -102,6 +102,7 @@ build {
     environment_vars = ["IMAGE_FOLDER=${var.image_folder}", "TEMP_DIR=${var.temp_dir}"]
     scripts          = [
       "${path.root}/../scripts/build/Install-PowershellCore.ps1",
+      "${path.root}/../scripts/build/Install-WSL2.ps1",
       "${path.root}/../scripts/build/Install-WebPlatformInstaller.ps1"
     ]
   }

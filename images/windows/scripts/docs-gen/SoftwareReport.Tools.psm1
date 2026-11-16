@@ -318,6 +318,17 @@ function Get-WSL2Version {
     return $((Get-AppxPackage -Name "MicrosoftCorporationII.WindowsSubsystemForLinux").version)
 }
 
+function Get-WSLPackageVersion {
+    $output = wsl.exe --version | Out-String
+    if ($LASTEXITCODE -ne 0) {
+        throw "Unable to read WSL package version: $output"
+    }
+    if ($output -notmatch "WSL version:\s+(?<version>\d+\.\d+\.\d+(?:\.\d+)?)") {
+        throw "Unable to parse WSL package version: $output"
+    }
+    return $Matches.version
+}
+
 function Get-NinjaVersion {
     return $(ninja --version)
 }
