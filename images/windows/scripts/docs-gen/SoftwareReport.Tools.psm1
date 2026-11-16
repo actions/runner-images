@@ -319,14 +319,20 @@ function Get-WSL2Version {
 }
 
 function Get-WSLPackageVersion {
-    $output = wsl.exe --version | Out-String
-    if ($LASTEXITCODE -ne 0) {
-        throw "Unable to read WSL package version: $output"
+    $previousEncoding = $env:WSL_UTF8
+    try {
+        $env:WSL_UTF8 = "1"
+        $output = wsl.exe --version | Out-String
+        if ($LASTEXITCODE -ne 0) {
+            throw "Unable to read WSL package version: $output"
+        }
+        if ($output -notmatch "WSL version:\s+(?<version>\d+\.\d+\.\d+(?:\.\d+)?)") {
+            throw "Unable to parse WSL package version: $output"
+        }
+        return $Matches.version
+    } finally {
+        $env:WSL_UTF8 = $previousEncoding
     }
-    if ($output -notmatch "WSL version:\s+(?<version>\d+\.\d+\.\d+(?:\.\d+)?)") {
-        throw "Unable to parse WSL package version: $output"
-    }
-    return $Matches.version
 }
 
 function Get-NinjaVersion {
