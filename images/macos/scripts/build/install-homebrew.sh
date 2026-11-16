@@ -31,6 +31,7 @@ else
     # so Intel installs formulae from the last homebrew-core commit before that
     SNAPSHOT_COMMIT=9e0071fca71f307d466b49e932a3a418931b1543
     homebrew_core_path="$(brew --repository)/Library/Taps/homebrew/homebrew-core"
+    echo "Path to homebrew-core: $homebrew_core_path"
     git init --quiet "$homebrew_core_path"
     git -C "$homebrew_core_path" remote add origin https://github.com/Homebrew/homebrew-core
     git -C "$homebrew_core_path" fetch --depth 1 origin "$SNAPSHOT_COMMIT"
