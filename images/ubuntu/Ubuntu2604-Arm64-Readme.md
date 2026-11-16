@@ -1,5 +1,6 @@
 | Announcements |
 |-|
+| [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 | [[Ubuntu] `ubuntu-latest` label will use Ubuntu 26.04 in November 2026](https://github.com/actions/runner-images/issues/14748) |
 | [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm64 are now generally available](https://github.com/actions/runner-images/issues/14747) |
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
@@ -8,7 +9,7 @@
 # Ubuntu 26.04
 - OS Version: 26.04.1 LTS
 - Kernel Version: 7.0.0-1019-azure
-- Image Version: 20261101.174.1
+- Image Version: 20261111.184.1
 - Systemd version: 259.9-0ubuntu0.1
 
 ## Installed Software
@@ -31,13 +32,13 @@
 ### Package Management
 - cpan 1.64
 - Helm 4.3.1
-- Homebrew 7.0.11
+- Homebrew 7.0.13
 - Npm 11.19.1
 - Pip 25.1.1
 - Pip3 25.1.1
 - Pipx 1.17.10
 - RubyGems 3.6.7
-- Vcpkg (build from commit 9a5dfef5d1)
+- Vcpkg (build from commit 2ec0f1747d)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -56,22 +57,22 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.15
-- Gradle 9.8.2
+- Gradle 9.9.1
 - Maven 3.9.15
 
 ### Tools
-- Ansible 2.21.5
+- Ansible 2.21.6
 - AzCopy 10.34.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.3.1
+- Bazel 9.3.2
 - Bazelisk 1.28.1
 - Buildah 1.42.1
 - CMake 4.4.5
 - Docker Amazon ECR Credential Helper 0.12.0
 - Docker Compose 5.1.3
-- Docker-Buildx 0.38.1
+- Docker-Buildx 0.38.2
 - Docker Client 29.4.2
 - Docker Server 29.4.2
-- Git 2.56.0
+- Git 2.56.1
 - Git LFS 3.8.1
 - Git-ftp 1.6.0
 - jq 1.8.1
@@ -80,36 +81,36 @@ to accomplish this.
 - Kustomize 5.8.3
 - Minikube 1.39.0
 - n 11.0.0
-- nvm 0.40.8
+- nvm 0.41.0
 - OpenSSL 3.5.5-1ubuntu3.7
 - Packer 1.16.2
 - Podman 5.7.0
 - Skopeo 1.21.0-dev
 - yamllint 1.38.0
-- yq 4.54.1
+- yq 4.54.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.39.3
+- AWS CLI 2.40.0
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.171.0
-- Azure CLI 2.91.0
+- AWS SAM CLI 1.172.1
+- Azure CLI 2.92.0
 - Azure CLI (azure-devops) 1.0.10
 - GitHub CLI 2.103.3
-- Google Cloud CLI 591.0.0
+- Google Cloud CLI 593.0.0
 
 ### Java
 | Version            | Environment Variable |
 | ------------------ | -------------------- |
-| 11.0.32+1          | JAVA_HOME_11_X64     |
+| 11.0.33+10         | JAVA_HOME_11_X64     |
 | 17.0.21+9          | JAVA_HOME_17_X64     |
 | 21.0.13+9          | JAVA_HOME_21_X64     |
 | 25.0.5+8 (default) | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.5.4
-- Composer 2.11.1
+- Composer 2.11.2
 - PHPUnit 8.5.56
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
@@ -119,14 +120,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Cargo 1.99.1
 - Rust 1.99.1
 - Rustdoc 1.99.1
-- Rustup 1.29.2
+- Rustup 1.29.3
 
 #### Packages
 - Rustfmt 1.10.0
 
 ### Browsers and Drivers
 - Selenium server 4.52.0
-- Mozilla Firefox 159.0
+- Mozilla Firefox 160.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -138,7 +139,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.133, 8.0.206, 8.0.319, 8.0.427, 9.0.123, 9.0.205, 9.0.320, 10.0.114, 10.0.204, 10.0.303, 10.0.403
+- .NET Core SDK: 8.0.134, 8.0.206, 8.0.319, 8.0.428, 9.0.124, 9.0.205, 9.0.321, 10.0.115, 10.0.204, 10.0.303, 10.0.404, 11.0.100
 - nbgv 3.10.94+dea9a6c17c
 
 ### Databases
@@ -166,7 +167,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Go
 - 1.24.13
 - 1.25.14
-- 1.26.10
+- 1.26.11
 
 #### Node.js
 - 22.23.4
@@ -186,7 +187,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 4.0.9
 
 ### PowerShell Tools
-- PowerShell 7.6.9
+- PowerShell 7.6.10
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -209,7 +210,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | aria2                  | 1.37.0+debian-4               |
 | autoconf               | 2.72-3.1ubuntu2               |
 | automake               | 1:1.18.1-3build1              |
-| bind9-dnsutils         | 1:9.20.24-1ubuntu0.4          |
+| bind9-dnsutils         | 1:9.20.24-1ubuntu0.5          |
 | binutils               | 2.46-3ubuntu2                 |
 | bison                  | 2:3.8.2+dfsg-1ubuntu0.26.04.1 |
 | brotli                 | 1.2.0-3ubuntu0.1              |
