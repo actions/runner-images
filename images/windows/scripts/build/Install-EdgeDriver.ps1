@@ -27,9 +27,9 @@ Install-Binary -Type MSI `
     -ExpectedSubject $(Get-MicrosoftPublisher)
 
 # Disable Edge auto-updates
-# The MSI starts Edge Update in the background, let it finish so it does not restore the executable after the rename
-Get-Process -Name "MicrosoftEdgeUpdate*" -ErrorAction SilentlyContinue | Wait-Process -Timeout 300 -ErrorAction SilentlyContinue
+# The MSI starts Edge Update in the background, stop it so it does not restore the executable after the rename
 Stop-Service -Name "edgeupdate", "edgeupdatem" -Force -ErrorAction SilentlyContinue
+Get-Process -Name "MicrosoftEdgeUpdate*" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
 $edgeUpdatePath = "${env:ProgramFiles(x86)}\Microsoft\EdgeUpdate"
 Rename-Item -Path "$edgeUpdatePath\MicrosoftEdgeUpdate.exe" -NewName "Disabled_MicrosoftEdgeUpdate.exe" -ErrorAction Stop
 

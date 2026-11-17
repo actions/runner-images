@@ -15,12 +15,16 @@ jobs:
         fetch-depth: 0
 
     - name: Resolve possible conflicts ${{ github.event.client_payload.ReleaseBranchName }} with main
+      env:
+        RELEASE_BRANCH_NAME: ${{ github.event.client_payload.ReleaseBranchName }}
       run: |
+        git check-ref-format "refs/heads/$RELEASE_BRANCH_NAME"
+        git check-ref-format --branch "$RELEASE_BRANCH_NAME-docs"
         git config --global user.email "no-reply@github.com"
         git config --global user.name "Actions service account"
-        git checkout ${{ github.event.client_payload.ReleaseBranchName }}-docs
+        git checkout "$RELEASE_BRANCH_NAME-docs" --
         git merge --no-edit --strategy-option=ours main
-        git push origin ${{ github.event.client_payload.ReleaseBranchName }}-docs
+        git push origin "refs/heads/$RELEASE_BRANCH_NAME-docs:refs/heads/$RELEASE_BRANCH_NAME-docs"
         sleep 30
 
     - name: Approve pull request by GitHub-Actions bot
@@ -31,7 +35,7 @@ jobs:
           github.rest.pulls.createReview({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            pull_number: ${{ github.event.client_payload.PullRequestNumber }},
+            pull_number: context.payload.client_payload.PullRequestNumber,
             event: "APPROVE"
           });
 
@@ -43,6 +47,6 @@ jobs:
           github.rest.pulls.merge({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            pull_number: ${{ github.event.client_payload.PullRequestNumber }},
+            pull_number: context.payload.client_payload.PullRequestNumber,
             merge_method: "squash"
           })

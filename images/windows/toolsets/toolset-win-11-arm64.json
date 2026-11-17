@@ -38,18 +38,18 @@
             "arch": "arm64",
             "platform" : "win32",
             "versions": [
-                "1.24.*",
                 "1.25.*",
-                "1.26.*"
+                "1.26.*",
+                "1.27.*"
             ],
-            "default": "1.24.*"
+            "default": "1.26.*"
         }
     ],
     "powershellModules": [
         { "name": "DockerMsftProvider" },
         { "name": "MarkdownPS" },
         { "name": "Pester", "versions": [ "5.9.0"] },
-        { "name": "PowerShellGet" },
+        { "name": "PowerShellGet", "versions": [ "2.2.5" ] },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
         { "name": "SqlServer" },
@@ -263,7 +263,7 @@
         "version": "3.9"
     },
     "mysql": {
-        "version": "8.0"
+        "version": "8.4"
     },
     "mongodb": {
         "version": "5.0"

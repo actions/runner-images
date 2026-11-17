@@ -7,10 +7,15 @@
 source ~/utils/utils.sh
 
 if is_Tahoe || is_GoldenGate; then
-  echo "Set openssl@3 as the default OpenSSL"
-  ln -sf "$(brew --prefix openssl@3)/bin/openssl" "$(brew --prefix)/bin/openssl"
+  echo "Set openssl@4 as the default OpenSSL"
+  ln -sf "$(brew --prefix openssl@4)/bin/openssl" "$(brew --prefix)/bin/openssl"
   invoke_tests "OpenSSL"
   exit 0
+fi
+
+if brew list --versions openssl@4 > /dev/null 2>&1; then
+  echo "Unlink openssl@4 before installing openssl@1.1"
+  brew unlink openssl@4
 fi
 
 echo "Install openssl@1.1"
@@ -21,6 +26,12 @@ FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/o
 mkdir -p "$(dirname $FORMULA_PATH)"
 curl -fsSL $FORMULA_URL -o $FORMULA_PATH
 HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install openssl@1.1
+
+if brew list --versions openssl@4 > /dev/null 2>&1; then
+  echo "Unlink openssl@1.1 and relink openssl@4"
+  brew unlink openssl@1.1
+  brew link openssl@4
+fi
 
 if ! is_Arm64; then
   # Symlink brew openssl@1.1 to `/usr/local/bin` as Homebrew refuses

@@ -19,10 +19,12 @@ set_etc_environment_variable "ACCEPT_EULA" "Y"
 mkdir -p /etc/skel/.config/configstore
 set_etc_environment_variable "XDG_CONFIG_HOME" '$HOME/.config'
 
-# Change waagent entries to use /mnt for swap file
-sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
-sed -i 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
-sed -i 's/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=4096/g' /etc/waagent.conf
+# Change waagent entries to use /mnt for swap file when waagent config exists.
+if [[ -f /etc/waagent.conf ]]; then
+    sed -i 's/ResourceDisk.Format=n/ResourceDisk.Format=y/g' /etc/waagent.conf
+    sed -i 's/ResourceDisk.EnableSwap=n/ResourceDisk.EnableSwap=y/g' /etc/waagent.conf
+    sed -i 's/ResourceDisk.SwapSizeMB=0/ResourceDisk.SwapSizeMB=4096/g' /etc/waagent.conf
+fi
 
 # Ephemeral-OS VMs have no Azure resource disk, so cloud-init's default /mnt mount waits ~90s
 # at boot for a device that never appears. Cap that wait via cloud-init, which rewrites
@@ -107,6 +109,14 @@ fi
 # https://github.com/actions/runner-images/issues/14777
 if is_ubuntu26; then
     systemctl mask tmp.mount
+
+    # The 26.04 tmp.conf only age-cleans /tmp (q, 10d) because it expects a tmpfs.
+    # Empty /tmp at boot like earlier images so build leftovers don't reach jobs.
+    # https://github.com/actions/runner-images/issues/15177
+    cat <<EOF > /etc/tmpfiles.d/tmp.conf
+D /tmp 1777 root root -
+q /var/tmp 1777 root root 30d
+EOF
 fi
 
 # This is a legacy check, leaving for earlier versions of Ubuntu

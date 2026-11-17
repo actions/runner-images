@@ -119,3 +119,8 @@ brew uninstall expect
 
 # Remove temp tap if it was used
 brew_cleanup_temp_tap
+
+# Remove the partial homebrew/core tap created by pinned formula installs, so Homebrew can tap the full one when needed
+if brew tap | grep -Fxq "homebrew/core"; then
+    brew untap homebrew/core
+fi

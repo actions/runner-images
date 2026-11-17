@@ -31,7 +31,8 @@
             "arch": "x64",
             "versions": [
                 "22.*",
-                "24.*"
+                "24.*",
+                "26.*"
             ]
         },
         {
@@ -40,11 +41,11 @@
             "arch": "x64",
             "platform" : "linux",
             "versions": [
-                "1.24.*",
                 "1.25.*",
-                "1.26.*"
+                "1.26.*",
+                "1.27.*"
             ],
-            "default": "1.24.*"
+            "default": "1.26.*"
         },
         {
             "name": "Ruby",
@@ -232,7 +233,8 @@
         "versions": [
             "8.0",
             "9.0",
-            "10.0"
+            "10.0",
+            "11.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion" : "nbgv --version" }
