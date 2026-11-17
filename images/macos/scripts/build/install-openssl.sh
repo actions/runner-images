@@ -25,6 +25,18 @@ FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Fo
 FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/o/openssl@1.1.rb"
 mkdir -p "$(dirname $FORMULA_PATH)"
 curl -fsSL $FORMULA_URL -o $FORMULA_PATH
+
+if is_Arm64; then
+  # Since Homebrew 7.0.13, an install with HOMEBREW_NO_INSTALL_FROM_API=1 looks up
+  # dependencies only in the local tap, so the ca-certificates formula must be there too.
+  # Intel images use an older pinned Homebrew that can't load this formula version.
+  CA_COMMIT=5367b4e0885b7f463a8bb756b35a9ee446df2585
+  CA_FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$CA_COMMIT/Formula/c/ca-certificates.rb"
+  CA_FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/c/ca-certificates.rb"
+  mkdir -p "$(dirname "$CA_FORMULA_PATH")"
+  curl -fsSL "$CA_FORMULA_URL" -o "$CA_FORMULA_PATH"
+fi
+
 HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install openssl@1.1
 
 if brew list --versions openssl@4 > /dev/null 2>&1; then
