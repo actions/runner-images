@@ -113,6 +113,57 @@ Describe "Docker" {
     }
 }
 
+Describe "CachedDockerImages" {
+    # Keyed by repository only (not the pinned tag) so the toolset's `docker.images` list stays
+    # the single source of truth for versions: bumping a tag there never requires touching this
+    # map, only adding/removing a repository does. Each entry defines a lightweight, non-mutating
+    # command that proves the cached image can actually run, without starting a long-lived service
+    # (e.g. a database server or the LocalStack gateway).
+    $cachedImageChecks = [ordered]@{
+        "postgres"              = @{ Args = "--version" }
+        "mysql"                 = @{ Args = "--version" }
+        "node"                  = @{ Args = "node --version" }
+        "pgvector/pgvector"     = @{ Args = "--version" }
+        # This pinned LocalStack build doesn't ship a standalone `localstack` CLI binary at all
+        # (confirmed by inspecting the published image's layers): its entrypoint always execs the
+        # long-running `localstack-supervisor` gateway, which isn't suitable for a lightweight,
+        # non-mutating check. Instead, invoke the image's own embedded venv interpreter directly
+        # and import the static `localstack.version` module, which only reads a pre-generated
+        # version string and starts nothing.
+        "localstack/localstack" = @{
+            Entrypoint = "/opt/code/localstack/.venv/bin/python3"
+            Args       = '-c "from localstack.version import __version__; print(__version__)"'
+        }
+        "python"                = @{ Args = "python --version" }
+        "espressif/idf"         = @{ Args = "idf.py --version" }
+        "mongo"                 = @{ Args = "--version" }
+        "semgrep/semgrep"       = @{ Args = "semgrep --version" }
+        "golang"                = @{ Args = "go version" }
+    }
+
+    $testCases = (Get-ToolsetContent).docker.images | ForEach-Object {
+        $image = $_
+        $repository = $image.Substring(0, $image.LastIndexOf(":"))
+        if (-not $cachedImageChecks.Contains($repository)) {
+            throw "No validation command registered for cached image repository '$repository'. Add an entry to `$cachedImageChecks` in CachedDockerImages (images/ubuntu/scripts/tests/Tools.Tests.ps1)."
+        }
+        $check = $cachedImageChecks[$repository]
+        $entrypointFlag = if ($check.Entrypoint) { "--entrypoint $($check.Entrypoint) " } else { "" }
+        @{
+            ImageName  = $image
+            RunCommand = "sudo docker run --rm --pull=never $entrypointFlag$image $($check.Args)"
+        }
+    }
+
+    It "<ImageName> is present" -TestCases $testCases {
+        $(sudo docker images "$ImageName" --format "{{.Repository}}") | Should -Not -BeNullOrEmpty
+    }
+
+    It "<ImageName> is usable" -TestCases $testCases {
+        $RunCommand | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Ansible" {
     It "Ansible" {
         "ansible --version" | Should -ReturnZeroExitCode

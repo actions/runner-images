@@ -268,12 +268,6 @@ function Get-DotnetTools {
     }
 }
 
-function Get-CachedDockerImages {
-    $toolsetJson = Get-ToolsetContent
-    $images = $toolsetJson.docker.images
-    return $images
-}
-
 function Get-CachedDockerImagesTableData {
     $allImages = sudo docker images --digests --format "*{{.Repository}}:{{.Tag}}|{{.Digest}}|{{.CreatedAt}}"
     $allImages.Split("*") | Where-Object { $_ } | ForEach-Object {

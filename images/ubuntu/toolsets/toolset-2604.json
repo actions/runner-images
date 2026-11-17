@@ -214,6 +214,18 @@
                 "version": "5.1.3",
                 "asset": "linux-x86_64"
             }
+        ],
+        "images": [
+            "postgres:18",
+            "mysql:8.4",
+            "node:24-bookworm",
+            "pgvector/pgvector:pg18",
+            "localstack/localstack:2026.10.6",
+            "python:3.14-bookworm",
+            "espressif/idf:v5.5.6",
+            "mongo:7.0",
+            "semgrep/semgrep:1.184.0",
+            "golang:1.27-bookworm"
         ]
     },
     "pipx": [
