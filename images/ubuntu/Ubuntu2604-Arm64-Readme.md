@@ -2,14 +2,12 @@
 |-|
 | [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 | [[Ubuntu] `ubuntu-latest` label will use Ubuntu 26.04 in November 2026](https://github.com/actions/runner-images/issues/14748) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm64 are now generally available](https://github.com/actions/runner-images/issues/14747) |
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
 ***
 # Ubuntu 26.04
 - OS Version: 26.04.1 LTS
-- Kernel Version: 7.0.0-1019-azure
-- Image Version: 20261111.184.1
+- Kernel Version: 7.0.0-1020-azure
+- Image Version: 20261116.190.1
 - Systemd version: 259.9-0ubuntu0.1
 
 ## Installed Software
@@ -23,7 +21,7 @@
 - GNU C++: 13.4.0, 14.3.0, 15.2.0
 - GNU Fortran: 13.4.0, 14.3.0, 15.2.0
 - Kotlin 2.4.21
-- Node.js 24.22.2
+- Node.js 24.22.3
 - Perl 5.40.1
 - Python 3.14.4
 - Ruby 3.3.8
@@ -31,14 +29,14 @@
 
 ### Package Management
 - cpan 1.64
-- Helm 4.3.1
-- Homebrew 7.0.13
+- Helm 4.3.2
+- Homebrew 7.0.14
 - Npm 11.19.1
 - Pip 25.1.1
 - Pip3 25.1.1
 - Pipx 1.17.10
 - RubyGems 3.6.7
-- Vcpkg (build from commit 2ec0f1747d)
+- Vcpkg (build from commit 1c6c7f95b0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -66,10 +64,10 @@ to accomplish this.
 - Bazel 9.3.2
 - Bazelisk 1.28.1
 - Buildah 1.42.1
-- CMake 4.4.5
-- Docker Amazon ECR Credential Helper 0.12.0
+- CMake 4.5.0
+- Docker Amazon ECR Credential Helper 0.13.0
 - Docker Compose 5.1.3
-- Docker-Buildx 0.38.2
+- Docker-Buildx 0.39.0
 - Docker Client 29.4.2
 - Docker Server 29.4.2
 - Git 2.56.1
@@ -92,12 +90,12 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.40.0
+- AWS CLI 2.40.4
 - AWS CLI Session Manager Plugin 1.2.896.0
 - AWS SAM CLI 1.172.1
-- Azure CLI 2.92.0
-- Azure CLI (azure-devops) 1.0.10
-- GitHub CLI 2.103.3
+- Azure CLI 2.93.0
+- Azure CLI (azure-devops) 1.0.11
+- GitHub CLI 2.104.0
 - Google Cloud CLI 593.0.0
 
 ### Java
@@ -111,19 +109,19 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.5.4
 - Composer 2.11.2
-- PHPUnit 8.5.56
+- PHPUnit 8.5.57
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
 
 ### Rust Tools
-- Cargo 1.99.1
-- Rust 1.99.1
-- Rustdoc 1.99.1
+- Cargo 1.100.0
+- Rust 1.100.0
+- Rustdoc 1.100.0
 - Rustup 1.29.3
 
 #### Packages
-- Rustfmt 1.10.0
+- Rustfmt 1.11.0
 
 ### Browsers and Drivers
 - Selenium server 4.52.0
@@ -146,7 +144,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.46.1
 
 #### PostgreSQL
-- PostgreSQL 18.6
+- PostgreSQL 18.7
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -154,7 +152,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.4.11-0ubuntu0.26.04.1
+- MySQL 8.4.13-0ubuntu0.26.04.2
 ```
 User: root
 Password: root
@@ -165,13 +163,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.24.13
 - 1.25.14
 - 1.26.11
+- 1.27.4
 
 #### Node.js
-- 22.23.4
-- 24.22.2
+- 22.23.5
+- 24.22.3
 
 #### Python
 - 3.11.18
@@ -241,7 +239,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libssl-dev             | 3.5.5-1ubuntu3.7              |
 | libtool                | 2.5.4-9                       |
 | libyaml-dev            | 0.2.5-2build3                 |
-| locales                | 2.43-2ubuntu2.4               |
+| locales                | 2.43-2ubuntu2.7               |
 | lz4                    | 1.10.0-8                      |
 | m4                     | 1.4.21-1                      |
 | make                   | 4.4.1-3                       |
