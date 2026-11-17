@@ -20,7 +20,7 @@ else
 fi
 /bin/bash $homebrew_installer_path
 
-# if [[ $arch == "arm64" ]]; then
+if [[ $arch == "arm64" ]]; then
     /opt/homebrew/bin/brew update
     /opt/homebrew/bin/brew upgrade
     /opt/homebrew/bin/brew upgrade --cask
@@ -36,7 +36,7 @@ fi
 #     git -C "$homebrew_core_path" remote add origin https://github.com/Homebrew/homebrew-core
 #     git -C "$homebrew_core_path" fetch --depth 1 origin "$SNAPSHOT_COMMIT"
 #     git -C "$homebrew_core_path" checkout --quiet FETCH_HEAD
-# fi
+fi
 
 echo "Disabling Homebrew analytics..."
 brew analytics off
