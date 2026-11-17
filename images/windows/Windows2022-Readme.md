@@ -3,12 +3,10 @@
 | [[Windows] D: drive will use ReFS instead of NTFS on Windows images from November 30, 2026](https://github.com/actions/runner-images/issues/15315) |
 | [[Windows 11 Arm64] Actions workspace will move to D: drive on November 30, 2026](https://github.com/actions/runner-images/issues/15314) |
 | [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
-| [[Windows] The `windows-11-arm` image label will use Windows 11 Arm64 with Visual Studio 2026 image in September 2026](https://github.com/actions/runner-images/issues/14602) |
-| [[Windows] The Windows 11 Arm64 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14592) |
 ***
 # Windows Server 2022
 - OS Version: 10.0.20348 Build 5870
-- Image Version: 20261112.366.7
+- Image Version: 20261116.370.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -17,7 +15,7 @@
 
 ### Language and Runtime
 - Bash 5.3.15(2)-release
-- Go 1.24.13
+- Go 1.26.11
 - Julia 1.12.0
 - Kotlin 2.4.21
 - LLVM 20.1.8
@@ -37,7 +35,7 @@
 - pip 26.3 (python 3.12)
 - Pipx 1.18.16
 - RubyGems 3.5.22
-- Vcpkg (build from commit 177e817512)
+- Vcpkg (build from commit 0df93a05b9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -81,7 +79,7 @@
 - NSIS 3.10
 - OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.274.1
+- Pulumi 3.275.0
 - R 4.6.2
 - Service Fabric Runtime 11.7.157.1
 - Service Fabric SDK 8.7.157.1
@@ -97,17 +95,17 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.3
-- AWS CLI 2.40.0
+- AWS CLI 2.40.3
 - AWS SAM CLI 1.172.1
 - AWS Session Manager CLI 1.2.896.0
-- Azure CLI 2.92.0
-- Azure DevOps CLI extension 1.0.10
-- GitHub CLI 2.103.3
+- Azure CLI 2.93.0
+- Azure DevOps CLI extension 1.0.11
+- GitHub CLI 2.104.0
 
 ### Rust Tools
-- Cargo 1.99.1
-- Rust 1.99.1
-- Rustdoc 1.99.1
+- Cargo 1.100.0
+- Rust 1.100.0
+- Rustdoc 1.100.0
 - Rustup 1.29.3
 
 #### Packages
@@ -115,14 +113,14 @@
 - cargo-audit 0.23.0
 - cargo-outdated 0.19.0
 - cbindgen 0.29.4
-- Clippy 0.1.99
-- Rustfmt 1.10.0
+- Clippy 0.1.100
+- Rustfmt 1.11.0
 
 ### Browsers and Drivers
 - Google Chrome 157.0.8103.79
 - Chrome Driver 157.0.8103.78
-- Microsoft Edge 157.0.4341.46
-- Microsoft Edge Driver 157.0.4341.46
+- Microsoft Edge 157.0.4341.60
+- Microsoft Edge Driver 157.0.4341.60
 - Mozilla Firefox 160.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
@@ -165,13 +163,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Tools
 
 #### Go
-- 1.24.13
 - 1.25.14
 - 1.26.11
+- 1.27.4
 
 #### Node.js
-- 22.23.4
-- 24.22.2
+- 22.23.5
+- 24.22.3
 
 #### Python
 - 3.11.9
@@ -199,7 +197,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                  |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | ServiceName          | postgresql-x64-14                                                                                                      |
-| Version              | 14.24                                                                                                                  |
+| Version              | 14.25                                                                                                                  |
 | ServiceStatus        | Stopped                                                                                                                |
 | ServiceStartType     | Disabled                                                                                                               |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\14\bin <br> PGDATA=C:\PostgreSQL\14\data <br> PGROOT=C:\Program Files\PostgreSQL\14  |
@@ -496,7 +494,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.333
+- AWSPowershell: 5.0.337
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
@@ -537,6 +535,6 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | mcr.microsoft.com/dotnet/framework/aspnet:4.8-windowsservercore-ltsc2022  | sha256:ec04e733695f49a0dc9132184f6b06704866b34f422004093c1972512c86259e | 2025-09-09 |
 | mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2022 | sha256:3983348680840ca6e53ad641e314c3c9184ca2fd19f88bc467600f7d9f6e9d73 | 2025-09-09 |
 | mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2022     | sha256:460dedaed73224f73ff10dc3ad754d0ed250aa57bcdf6c5052a811b4b7e29345 | 2025-09-09 |
-| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:5a1c3c8308f8f5c9b67d21d2332a449d4ab8f9a6cf277f07d4aeac27ff2a0213 | 2026-11-09 |
-| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:301d571fc0cffed67083d4cc7a10167f551212f76b3f91eb7457e89aa5a183da | 2026-11-09 |
+| mcr.microsoft.com/windows/nanoserver:ltsc2022                             | sha256:0b85b25c76e25efeb8e5f772d1d44bc24a54e0a8e4917385bc810a847952cdea | 2026-11-12 |
+| mcr.microsoft.com/windows/servercore:ltsc2022                             | sha256:f1a914079973258061ddbc95a9af579eab2ee252a6fddb254b1be5d769761acd | 2026-11-12 |
 
