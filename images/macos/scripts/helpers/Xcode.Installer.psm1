@@ -137,7 +137,7 @@ function Invoke-XcodeSimulatorRuntimesDownload {
     )
 
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName 'xcodebuild'
-    
+
     # Xcode 27+ shuts down simulators whose runtime was mounted as a disk image and then remounted as a cryptex (Apple 191574717),
     # which happens to downloaded runtimes on VMs created from the image. Imported runtimes are registered once and aren't remounted.
     if ($Version -notmatch '^(\d+)' -or [int]$matches[1] -lt 27) {
@@ -289,7 +289,7 @@ function Initialize-XcodeLaunchServicesDb {
 
     $xcodePath = Get-XcodeRootPath -Version $Version
     $lsregister = '/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister'
-    Get-ChildItem -Recurse -Filter "*.app" $xcodePath | Foreach-Object { & $lsregister -f $_.FullName }
+    Get-ChildItem -Recurse -Filter "*.app" $xcodePath | Foreach-Object { & $lsregister -f $_.FullName}
 }
 
 function Build-ProvisionatorSymlink {
@@ -320,7 +320,7 @@ function Set-XcodeDeveloperDirEnvironmentVariables {
         $xcodeVersionInfo = Get-XcodeVersionInfo -XcodeRootPath $xcodeRootPath
         return @{
             RootPath = $xcodeRootPath
-            Version  = [SemVer]::Parse($xcodeVersionInfo.Version)
+            Version = [SemVer]::Parse($xcodeVersionInfo.Version)
         }
     } | Sort-Object -Property Version -Descending
 
@@ -363,18 +363,18 @@ function Invoke-ValidateCommand {
         $job = $command | Start-Job -ScriptBlock {
             $output = Invoke-Expression -Command $input
             if ($LASTEXITCODE -ne 0) {
-                throw 'Command failed'
+                  throw 'Command failed'
             }
             return $output
         }
         $waitObject = $job | Wait-Job -Timeout $Timeout
 
         if (-not $waitObject) {
-            throw "Command '$Command' has timed out"
+             throw "Command '$Command' has timed out"
         }
 
         if ($waitObject.State -eq 'Failed') {
-            throw "Command '$Command' has failed"
+             throw "Command '$Command' has failed"
         }
         Receive-Job -Job $job
     }
