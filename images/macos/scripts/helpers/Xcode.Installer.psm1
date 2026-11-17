@@ -29,7 +29,7 @@ function Invoke-DownloadXcodeArchive {
     Write-Host "Downloading Xcode $Version"
     $tempXipDirectory = New-Item -Path $DownloadDirectory -Name "Xcode$Version" -ItemType "Directory"
     $xcodeFileName = 'Xcode-{0}.xip' -f $Version
-    $xcodeUri = '{0}{1}?{2}'-f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
+    $xcodeUri = '{0}{1}?{2}' -f ${env:XCODE_INSTALL_STORAGE_URL}, $xcodeFileName, ${env:XCODE_INSTALL_SAS}
     $xcodeFullPath = Join-Path $tempXipDirectory.FullName $xcodeFileName
     Invoke-DownloadWithRetry -Url $xcodeUri -Path $xcodeFullPath | Out-Null
 
@@ -128,6 +128,50 @@ function Invoke-XcodeRunFirstLaunch {
     Invoke-ValidateCommand "sudo $xcodeRootPath -runFirstLaunch"
 }
 
+function Invoke-XcodeSimulatorRuntimesDownload {
+    param (
+        [Parameter(Mandatory)]
+        [string] $Version,
+        [Parameter(Mandatory)]
+        [string] $Arguments
+    )
+
+    $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName 'xcodebuild'
+    
+    # Xcode 27+ shuts down simulators whose runtime was mounted as a disk image and then remounted as a cryptex (Apple 191574717),
+    # which happens to downloaded runtimes on VMs created from the image. Imported runtimes are registered once and aren't remounted.
+    if ($Version -notmatch '^(\d+)' -or [int]$matches[1] -lt 27) {
+        Invoke-ValidateCommand -Command "$xcodebuildPath $Arguments" -RetryCount 3 | Out-Null
+        return
+    }
+
+    $exportDirectory = "$env:HOME/Library/Caches/XcodeInstall/SimulatorRuntimes$Version"
+    $exportCommand = "$xcodebuildPath $Arguments -exportPath '$exportDirectory'"
+    for ($retries = 3; $retries -ge 0; $retries--) {
+        Remove-Item -Path $exportDirectory -Force -Recurse -ErrorAction SilentlyContinue
+        New-Item -Path $exportDirectory -ItemType "Directory" -Force | Out-Null
+
+        Invoke-Expression -Command $exportCommand | Out-Null
+        $exportedRuntimes = Get-ChildItem -Path $exportDirectory
+        if ($exportedRuntimes) {
+            break
+        }
+
+        if ($retries -eq 0) {
+            throw "Command '$exportCommand' has finished with exit code $LASTEXITCODE and exported no simulator runtimes"
+        }
+        Write-Warning "Command '$exportCommand' exported no simulator runtimes"
+        Write-Warning "Waiting 30 seconds before retrying (retries left: $retries)..."
+        Start-Sleep -Seconds 30
+    }
+
+    $exportedRuntimes | ForEach-Object {
+        Write-Host "Importing simulator runtime '$($_.Name)' for Xcode $Version ..."
+        Invoke-ValidateCommand -Command "$xcodebuildPath -importPlatform '$($_.FullName)'" | Out-Null
+    }
+    Remove-Item -Path $exportDirectory -Force -Recurse
+}
+
 function Install-XcodeAdditionalSimulatorRuntimes {
     param (
         [Parameter(Mandatory)]
@@ -139,7 +183,6 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     )
 
     Write-Host "Installing Simulator Runtimes for Xcode $Version ..."
-    $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName 'xcodebuild'
     $validRuntimes = @("iOS", "watchOS", "tvOS")
 
     # Xcode 27.1+ cannot resolve universal runtimes; let Xcode select the variant.
@@ -159,7 +202,7 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     # Install all runtimes / skip runtimes
     if ($Runtimes -eq "default") {
         Write-Host "Installing all runtimes for Xcode $Version ..."
-        Invoke-ValidateCommand -Command "$xcodebuildPath -downloadAllPlatforms $archSuffix" -RetryCount 3 | Out-Null
+        Invoke-XcodeSimulatorRuntimesDownload -Version $Version -Arguments "-downloadAllPlatforms $archSuffix"
         return
     } elseif ($Runtimes -eq "none") {
         Write-Host "Skipping runtimes installation for Xcode $Version ..."
@@ -206,14 +249,14 @@ function Install-XcodeAdditionalSimulatorRuntimes {
                 }
                 "default" {
                     Write-Host "Installing default $platform runtime for Xcode $Version ..."
-                    Invoke-ValidateCommand -Command "$xcodebuildPath -downloadPlatform $platform $archSuffix" -RetryCount 3 | Out-Null
+                    Invoke-XcodeSimulatorRuntimesDownload -Version $Version -Arguments "-downloadPlatform $platform $archSuffix"
                     continue
                 }
                 default {
                     # Version might be a semver or a build number
                     if (($platformVersion -match "^\d{1,2}\.\d(\.\d)?$") -or ($platformVersion -match "^[a-zA-Z0-9]{6,8}$")) {
                         Write-Host "Installing $platform $platformVersion runtime for Xcode $Version ..."
-                        Invoke-ValidateCommand -Command "$xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion $archSuffix" -RetryCount 3 | Out-Null
+                        Invoke-XcodeSimulatorRuntimesDownload -Version $Version -Arguments "-downloadPlatform $platform -buildVersion $platformVersion $archSuffix"
                         continue
                     }
                     throw "$platformVersion is not a valid value for $platform version. Valid values are 'default', or 'skip', or a semver from 0.0 to 99.9.(9), or a build number."
@@ -246,7 +289,7 @@ function Initialize-XcodeLaunchServicesDb {
 
     $xcodePath = Get-XcodeRootPath -Version $Version
     $lsregister = '/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister'
-    Get-ChildItem -Recurse -Filter "*.app" $xcodePath | Foreach-Object { & $lsregister -f $_.FullName}
+    Get-ChildItem -Recurse -Filter "*.app" $xcodePath | Foreach-Object { & $lsregister -f $_.FullName }
 }
 
 function Build-ProvisionatorSymlink {
@@ -277,7 +320,7 @@ function Set-XcodeDeveloperDirEnvironmentVariables {
         $xcodeVersionInfo = Get-XcodeVersionInfo -XcodeRootPath $xcodeRootPath
         return @{
             RootPath = $xcodeRootPath
-            Version = [SemVer]::Parse($xcodeVersionInfo.Version)
+            Version  = [SemVer]::Parse($xcodeVersionInfo.Version)
         }
     } | Sort-Object -Property Version -Descending
 
@@ -320,18 +363,18 @@ function Invoke-ValidateCommand {
         $job = $command | Start-Job -ScriptBlock {
             $output = Invoke-Expression -Command $input
             if ($LASTEXITCODE -ne 0) {
-                  throw 'Command failed'
+                throw 'Command failed'
             }
             return $output
         }
         $waitObject = $job | Wait-Job -Timeout $Timeout
 
         if (-not $waitObject) {
-             throw "Command '$Command' has timed out"
+            throw "Command '$Command' has timed out"
         }
 
         if ($waitObject.State -eq 'Failed') {
-             throw "Command '$Command' has failed"
+            throw "Command '$Command' has failed"
         }
         Receive-Job -Job $job
     }
