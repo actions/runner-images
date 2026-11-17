@@ -26,7 +26,7 @@ FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/o
 mkdir -p "$(dirname $FORMULA_PATH)"
 curl -fsSL $FORMULA_URL -o $FORMULA_PATH
 
-if is_Arm64; then
+if is_SequoiaArm64; then
   # Since Homebrew 7.0.13, an install with HOMEBREW_NO_INSTALL_FROM_API=1 looks up
   # dependencies only in the local tap, so the ca-certificates formula must be there too.
   # Copy the formula of the installed version so ca-certificates is left unchanged.
