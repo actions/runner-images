@@ -116,9 +116,11 @@ Describe "Xcode simulators" {
             }
         }
     }
-    
+
     It "All devices have their runtime installed" -Skip:(-not $os.IsGoldenGate) {
         $devices = Get-XcodeSimulatorsInfo -Filter "devices"
+        [array]$allDevices = $devices.PSObject.Properties.Value
+        $allDevices | Should -Not -BeNullOrEmpty -Because "simctl should list the simulator devices"
         [array]$unavailableDevices = $devices.PSObject.Properties | ForEach-Object {
             $runtime = $_.Name
             $_.Value | Where-Object { $_.isAvailable -ne $true } | ForEach-Object { "$runtime $($_.name): $($_.availabilityError)" }
