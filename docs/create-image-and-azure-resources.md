@@ -102,6 +102,10 @@ Finally, run the `GenerateResourcesAndImage` function, setting the mandatory arg
 
 This function automatically creates all required Azure resources and initiates the Packer image generation for the selected image type.
 
+Ubuntu templates include both Azure and Amazon sources. The manual helper and CI build script install both Packer plugins before validation, even for Azure-only builds. Use `AmazonPluginVersion` to override the default Amazon plugin version (`1.8.2`); `PluginVersion` continues to control the Azure plugin.
+
+When invoking Packer directly for Ubuntu, install both plugins first. For Ubuntu 24.04 and 26.04 x64, the optional `apt_snapshot_timestamp` Packer variable is passed to APT configuration as `APT_SNAPSHOT_TIMESTAMP`. Its default is empty, leaving snapshot configuration disabled. The generated snapshot configuration is removed during image cleanup.
+
 When the image is ready, you may proceed to [deployment](#generated-machine-deployment).
 
 ## Manual Image Generation Customization
