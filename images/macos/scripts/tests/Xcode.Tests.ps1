@@ -116,6 +116,15 @@ Describe "Xcode simulators" {
             }
         }
     }
+    
+    It "All devices have their runtime installed" -Skip:(-not $os.IsGoldenGate) {
+        $devices = Get-XcodeSimulatorsInfo -Filter "devices"
+        [array]$unavailableDevices = $devices.PSObject.Properties | ForEach-Object {
+            $runtime = $_.Name
+            $_.Value | Where-Object { $_.isAvailable -ne $true } | ForEach-Object { "$runtime $($_.name): $($_.availabilityError)" }
+        }
+        $unavailableDevices | Should -BeNullOrEmpty -Because "every simulator runtime should be installed"
+    }
 
     AfterEach {
         $defaultXcode = (Get-ToolsetContent).xcode.default
