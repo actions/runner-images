@@ -7,6 +7,9 @@ on:
     branches: [ main ]
     paths:
       - 'helpers/software-report-base/**'
+      - 'images/ubuntu/scripts/tests/PowerShellModules.Tests.ps1'
+      - 'images.CI/tests/**'
+      - '.github/workflows/powershell-tests.yml'
 
 jobs:
   powershell-tests:
@@ -22,4 +25,10 @@ jobs:
         run: |
             $ErrorActionPreference = "Stop"
             Invoke-Pester -Output Detailed "helpers/software-report-base/tests"
+
+      - name: Run image validation regression tests
+        shell: pwsh
+        run: |
+            $ErrorActionPreference = "Stop"
+            Invoke-Pester -CI -Output Detailed "images.CI/tests"
         

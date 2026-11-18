@@ -41,13 +41,13 @@ Describe "AzureModules" {
                             $moduleName
                         )
 
-                        $env:PSModulePath = "${modulePath}:${env:PSModulePath}"
-                        (Get-Module -ListAvailable -Name $moduleName).Version.ToString()
+                        $env:PSModulePath = $modulePath
+                        Get-Module -ListAvailable -Name $moduleName | ForEach-Object { $_.Version.ToString() }
                     } -ArgumentList $modulePath, $moduleName
 
-                    $moduleVersion = $testJob | Wait-Job | Receive-Job
+                    $moduleVersions = $testJob | Wait-Job | Receive-Job
                     Remove-Job $testJob
-                    $moduleVersion | Should -Match $expectedVersion
+                    $moduleVersions | Should -Contain $expectedVersion
                 }
             }
         }
