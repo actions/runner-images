@@ -42,6 +42,14 @@ runs:
                 network: lxdbr0
                 type: nic
 
+    # The hosted runner's egress path has broken PMTU discovery, so a large TLS
+    # response (e.g. packages.microsoft.com) stalls while apt to archive.ubuntu.com
+    # still works. Docker-backed builds survive because Docker clamps MSS on its own
+    # bridge; LXD does not, so clamp it here on lxdbr0's forwarded traffic.
+    - name: Clamp MSS on the LXD bridge
+      shell: bash
+      run: sudo iptables -t mangle -A FORWARD -o lxdbr0 -p tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+
     # Keep image storage and exports off the root filesystem as well.
     - name: Configure LXD image storage
       shell: bash
