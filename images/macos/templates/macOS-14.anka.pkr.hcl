@@ -278,6 +278,11 @@ build {
   }
 
   provisioner "shell" {
+    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    script          = "${path.root}/../scripts/build/configure-hostname.sh"
+  }
+
+  provisioner "shell" {
     environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
     execute_command  = "source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     inline           = [
@@ -306,7 +311,6 @@ build {
   provisioner "shell" {
     execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
     scripts         = [
-      "${path.root}/../scripts/build/configure-hostname.sh",
       "${path.root}/../scripts/build/configure-system.sh"
     ]
   }
