@@ -88,7 +88,8 @@ jobs:
           ./helpers/WaitWorkflowCompletion.ps1 `
             -WorkflowRunId "${{ needs.trigger-workflow.outputs.ci_workflow_run_id }}" `
             -Repository "${env:CI_REPO}" `
-            -AccessToken "${env:CI_PR_TOKEN}"
+            -AccessToken "${env:CI_PR_TOKEN}" `
+            -MaxRetryCount 1
 
       - name: Add Summary
         if: always()
