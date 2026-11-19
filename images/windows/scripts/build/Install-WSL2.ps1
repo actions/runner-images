@@ -1,4 +1,4 @@
-Write-Host "Install WSL package"
+Write-Host "Install WSL2"
 
 $architecture = if (Test-IsArm64) { "arm64" } else { "x64" }
 $version = (Get-GithubReleasesByVersion -Repo "microsoft/WSL" -Version "latest").version
