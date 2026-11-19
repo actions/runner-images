@@ -29,7 +29,11 @@ IMAGE_NAME="${1:-ubuntu-slim:test}"
 # Build the image only if using the default name (for backward compatibility)
 if [[ "$IMAGE_NAME" == "ubuntu-slim:test" ]]; then
     echo "Building image: $IMAGE_NAME"
-    docker build --debug --progress plain -t "$IMAGE_NAME" .
+    api_pat_args=()
+    if [[ -n "${GITHUB_TOKEN:-}" ]]; then
+        api_pat_args=(--secret "id=api_pat,env=GITHUB_TOKEN")
+    fi
+    docker build --debug --progress plain "${api_pat_args[@]}" -t "$IMAGE_NAME" .
 else
     # Check if the image exists
     if ! docker image inspect "$IMAGE_NAME" >/dev/null 2>&1; then

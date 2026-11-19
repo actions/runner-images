@@ -114,7 +114,7 @@ function Install-XcodeAdditionalComponents {
     Write-Host "Installing additional MetalToolchain component for Xcode $Version..."
     $xcodeRootPath = Get-XcodeRootPath -Version $Version
     $xcodeBuildPath = Get-XcodeToolPath -XcodeRootPath $xcodeRootPath -ToolName "xcodebuild"
-    Invoke-ValidateCommand "$xcodeBuildPath -downloadComponent MetalToolchain" | Out-Null
+    Invoke-ValidateCommand -Command "$xcodeBuildPath -downloadComponent MetalToolchain" -RetryCount 3 | Out-Null
 }
 
 function Invoke-XcodeRunFirstLaunch {
@@ -142,10 +142,13 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     $xcodebuildPath = Get-XcodeToolPath -Version $Version -ToolName 'xcodebuild'
     $validRuntimes = @("iOS", "watchOS", "tvOS")
 
-    # Determine architecture variant suffix for Xcode 26+
+    # Xcode 27.1+ cannot resolve universal runtimes; let Xcode select the variant.
     $archSuffix = ""
-    if ($Version -match '^(\d+)\.' -and [int]$matches[1] -ge 26) {
-        $archSuffix = "-architectureVariant universal"
+    if ($Version -match '^\d+\.\d+') {
+        $xcodeVersion = [version]$matches[0]
+        if ($xcodeVersion -ge [version]"26.0" -and $xcodeVersion -lt [version]"27.1") {
+            $archSuffix = "-architectureVariant universal"
+        }
     }
 
     # visionOS is only available on arm64
@@ -156,7 +159,7 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     # Install all runtimes / skip runtimes
     if ($Runtimes -eq "default") {
         Write-Host "Installing all runtimes for Xcode $Version ..."
-        Invoke-ValidateCommand "$xcodebuildPath -downloadAllPlatforms $archSuffix" | Out-Null
+        Invoke-ValidateCommand -Command "$xcodebuildPath -downloadAllPlatforms $archSuffix" -RetryCount 3 | Out-Null
         return
     } elseif ($Runtimes -eq "none") {
         Write-Host "Skipping runtimes installation for Xcode $Version ..."
@@ -203,14 +206,14 @@ function Install-XcodeAdditionalSimulatorRuntimes {
                 }
                 "default" {
                     Write-Host "Installing default $platform runtime for Xcode $Version ..."
-                    Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform $archSuffix" | Out-Null
+                    Invoke-ValidateCommand -Command "$xcodebuildPath -downloadPlatform $platform $archSuffix" -RetryCount 3 | Out-Null
                     continue
                 }
                 default {
                     # Version might be a semver or a build number
                     if (($platformVersion -match "^\d{1,2}\.\d(\.\d)?$") -or ($platformVersion -match "^[a-zA-Z0-9]{6,8}$")) {
                         Write-Host "Installing $platform $platformVersion runtime for Xcode $Version ..."
-                        Invoke-ValidateCommand "$xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion $archSuffix" | Out-Null
+                        Invoke-ValidateCommand -Command "$xcodebuildPath -downloadPlatform $platform -buildVersion $platformVersion $archSuffix" -RetryCount 3 | Out-Null
                         continue
                     }
                     throw "$platformVersion is not a valid value for $platform version. Valid values are 'default', or 'skip', or a semver from 0.0 to 99.9.(9), or a build number."
@@ -293,15 +296,26 @@ function Invoke-ValidateCommand {
     param (
         [Parameter(Mandatory)]
         [string] $Command,
-        [Uint] $Timeout = 0
+        [Uint] $Timeout = 0,
+        [Uint] $RetryCount = 0
     )
 
     if ($Timeout -eq 0) {
-        $output = Invoke-Expression -Command $Command
-        if ($LASTEXITCODE -ne 0) {
-            throw "Command '$Command' has finished with exit code $LASTEXITCODE"
+        $interval = 30
+        for ($retries = $RetryCount; $retries -ge 0; $retries--) {
+            $output = Invoke-Expression -Command $Command
+            $exitCode = $LASTEXITCODE
+            if ($exitCode -eq 0) {
+                return $output
+            }
+
+            if ($retries -gt 0) {
+                Write-Warning "Command '$Command' has finished with exit code $exitCode"
+                Write-Warning "Waiting $interval seconds before retrying (retries left: $retries)..."
+                Start-Sleep -Seconds $interval
+            }
         }
-        return $output
+        throw "Command '$Command' has finished with exit code $exitCode"
     } else {
         $job = $command | Start-Job -ScriptBlock {
             $output = Invoke-Expression -Command $input

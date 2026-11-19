@@ -15,10 +15,14 @@ jobs:
         fetch-depth: 0
 
     - name: Clone release branch to create pull request
+      env:
+        RELEASE_BRANCH_NAME: ${{ github.event.client_payload.ReleaseBranchName }}
       run: |
-        git checkout ${{ github.event.client_payload.ReleaseBranchName }}
-        git branch ${{ github.event.client_payload.ReleaseBranchName }}-docs
-        git push origin ${{ github.event.client_payload.ReleaseBranchName }}-docs --force
+        git check-ref-format "refs/heads/$RELEASE_BRANCH_NAME"
+        git check-ref-format --branch "$RELEASE_BRANCH_NAME-docs"
+        git checkout "$RELEASE_BRANCH_NAME" --
+        git branch -- "$RELEASE_BRANCH_NAME-docs"
+        git push --force origin "refs/heads/$RELEASE_BRANCH_NAME-docs:refs/heads/$RELEASE_BRANCH_NAME-docs"
 
     - name: Create pull request for ${{ github.event.client_payload.ReleaseBranchName }}
       id: create-pr
@@ -26,11 +30,12 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
+          const payload = context.payload.client_payload;
           const pulls = await github.rest.pulls.list({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            head: `${context.repo.owner}:${{ github.event.client_payload.ReleaseBranchName }}-docs`,
-            base: "${{ github.event.client_payload.PullRequestBase }}",
+            head: `${context.repo.owner}:${payload.ReleaseBranchName}-docs`,
+            base: payload.PullRequestBase,
             state: 'open'
           });
 
@@ -42,10 +47,10 @@ jobs:
             let response = await github.rest.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              title: "${{ github.event.client_payload.PullRequestTitle }}",
-              head: "${{ github.event.client_payload.ReleaseBranchName }}-docs",
-              base: "${{ github.event.client_payload.PullRequestBase }}",
-              body: `${{ github.event.client_payload.PullRequestBody }}`
+              title: payload.PullRequestTitle,
+              head: `${payload.ReleaseBranchName}-docs`,
+              base: payload.PullRequestBase,
+              body: payload.PullRequestBody
             });
             return response.data.number;
           }

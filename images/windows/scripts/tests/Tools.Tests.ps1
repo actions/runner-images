@@ -129,8 +129,13 @@ Describe "ServiceFabricSDK" -Skip:(Test-IsWin11-Arm64) {
         }
     }
 
+    It "Service Fabric runtime version" {
+        $runtimeVersion = (Get-ToolsetContent).serviceFabric.runtime.version
+        Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion | Should -Be $runtimeVersion
+    }
+
     It "ServiceFabricSDK version" {
-        Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric\' -Name FabricVersion | Should -Not -BeNullOrEmpty
+        Get-ItemPropertyValue 'HKLM:\SOFTWARE\Microsoft\Service Fabric SDK\' -Name FabricSDKVersion | Should -Not -BeNullOrEmpty
     }
 }
 

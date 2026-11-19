@@ -17,7 +17,8 @@
             "versions": [
                 "3.12.*",
                 "3.13.*",
-                "3.14.*"
+                "3.14.*",
+                "3.15.*"
             ],
             "default": "3.13.*"
         },
@@ -37,18 +38,18 @@
             "arch": "arm64",
             "platform" : "win32",
             "versions": [
-                "1.24.*",
                 "1.25.*",
-                "1.26.*"
+                "1.26.*",
+                "1.27.*"
             ],
-            "default": "1.24.*"
+            "default": "1.26.*"
         }
     ],
     "powershellModules": [
         { "name": "DockerMsftProvider" },
         { "name": "MarkdownPS" },
         { "name": "Pester", "versions": [ "5.9.0"] },
-        { "name": "PowerShellGet" },
+        { "name": "PowerShellGet", "versions": [ "2.2.5" ] },
         { "name": "PSScriptAnalyzer" },
         { "name": "PSWindowsUpdate" },
         { "name": "SqlServer" },
@@ -89,7 +90,7 @@
         "ndk": {
             "default": "27",
             "versions": [
-                "26", "27", "28"
+                "27", "29", "30"
             ]
         }
     },
@@ -211,17 +212,16 @@
     },
     "serviceFabric": {
         "runtime": {
-            "version": "10.1.2493.9590",
-            "checksum": "09C63A971BACDE338282C73B3C9174BED9AAD53E1D3A1B73D44515852C9C00CF"
+            "version": "11.7.157.1",
+            "checksum": "BBD4531D80ED5FA8D2704C9267F701684FC58306987184BE9CAF35153F358C7B"
         },
         "sdk": {
-            "version": "7.1.2493",
-            "checksum": "0CB1084156C75CF5075EA91ABA330CF10B58648B8E036C9C2F286805263C497F"
+            "version": "8.7.157",
+            "checksum": "32ECB92CA3C9369A0BEA688737F9714E93EC1F8022D1708ABF5084E5B1F9EFBA"
         }
     },
     "dotnet": {
         "versions": [
-            "6.0",
             "8.0",
             "9.0",
             "10.0"
@@ -262,7 +262,7 @@
         "version": "3.9"
     },
     "mysql": {
-        "version": "8.0"
+        "version": "8.4"
     },
     "mongodb": {
         "version": "5.0"

@@ -52,7 +52,6 @@ if ($LASTEXITCODE -ne 0) {
 if (Test-IsWin25-X64) {
     $directoriesToCompact = @(
         "C:\Program Files (x86)\Android",
-        "C:\Program Files\dotnet",
         "$env:SystemRoot\assembly",
         "$env:SystemRoot\WinSxS"
     )
@@ -60,10 +59,18 @@ if (Test-IsWin25-X64) {
     $start = get-date
     $ErrorActionPreviousValue = $ErrorActionPreference
     $ErrorActionPreference = 'SilentlyContinue'
-    foreach ($directory in $directoriesToCompact) {
+    # compact.exe compresses one file at a time, so compress the directories in parallel
+    $compactJobs = foreach ($directory in $directoriesToCompact) {
         Write-Host "Compressing '$directory' directory"
-        $compressionResult =  & compact /s:"$directory" /c /a /i /EXE:LZX *
-        $compressionResult | Select-Object -Last 3
+        $logFile = Join-Path $env:TEMP_DIR "compact-$(Split-Path $directory -Leaf).log"
+        $process = Start-Process -FilePath "compact.exe" -ArgumentList "/s:`"$directory`"", "/c", "/a", "/i", "/EXE:LZX", "*" `
+            -NoNewWindow -PassThru -RedirectStandardOutput $logFile
+        @{ Directory = $directory; Process = $process; LogFile = $logFile }
+    }
+    foreach ($job in $compactJobs) {
+        $job.Process | Wait-Process
+        Write-Host "Compressed '$($job.Directory)' directory"
+        Get-Content -Path $job.LogFile -Tail 3
     }
     $ErrorActionPreference = $ErrorActionPreviousValue
     $finish = get-date

@@ -16,10 +16,14 @@ foreach ($module in $modules) {
     if ($module.versions) {
         foreach ($version in $module.versions) {
             Write-Host " - $version"
-            Install-Module -Name $moduleName -RequiredVersion $version -Scope AllUsers -SkipPublisherCheck -Force
+            Invoke-ScriptBlockWithRetry -Command {
+                Install-Module -Name $moduleName -RequiredVersion $version -Scope AllUsers -SkipPublisherCheck -Force -ErrorAction Stop
+            }
         }
     } else {
-        Install-Module -Name $moduleName -Scope AllUsers -SkipPublisherCheck -Force
+        Invoke-ScriptBlockWithRetry -Command {
+            Install-Module -Name $moduleName -Scope AllUsers -SkipPublisherCheck -Force -ErrorAction Stop
+        }
     }
 }
 

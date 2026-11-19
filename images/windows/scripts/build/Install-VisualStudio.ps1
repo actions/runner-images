@@ -62,24 +62,4 @@ if (Test-IsWin25-X64) {
     }
 }
 
-# On ARM64 the Windows SDK installer never provides the x64 Debugging Tools, so
-# Debuggers\x64\dbghelp.dll is missing. Chromium's vs_toolchain.py copies that file for
-# its win_clang_x64 host toolchain even in a native arm64 build, so builds fail without it.
-# The x64 dbghelp.dll already ships under the SDK bin folder; stage it where it is expected.
-if (Test-IsWin11-Arm64) {
-    $kitsRoot = "${env:ProgramFiles(x86)}\Windows Kits\10"
-    $x64DbgHelp = Get-ChildItem "$kitsRoot\bin\*\x64\dbghelp.dll" -ErrorAction SilentlyContinue `
-        | Sort-Object { $_.VersionInfo.FileVersionRaw } -Descending | Select-Object -First 1
-    if (-not $x64DbgHelp) {
-        throw "x64 dbghelp.dll not found under $kitsRoot\bin - cannot stage x64 Debugging Tools"
-    }
-    $x64DebuggersDir = Join-Path $kitsRoot "Debuggers\x64"
-    New-Item -ItemType Directory -Force -Path $x64DebuggersDir | Out-Null
-    # Do not clobber an existing copy - if a future SDK ever ships its own x64 debuggers, keep it.
-    $destDbgHelp = Join-Path $x64DebuggersDir "dbghelp.dll"
-    if (-not (Test-Path $destDbgHelp)) {
-        Copy-Item -Path $x64DbgHelp.FullName -Destination $destDbgHelp -Force
-    }
-}
-
 Invoke-PesterTests -TestFile "VisualStudio"

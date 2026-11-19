@@ -22,6 +22,10 @@ Describe "Chrome" -Skip:(Test-IsArm64) {
         $chromeDriverMajor = (chromedriver --version).Trim("ChromeDriver ").Split(".")[0]
         $chromeMajor | Should -BeExactly $chromeDriverMajor
     }
+
+    It "Google Chrome apt repository is not configured" {
+        "/etc/apt/sources.list.d/google-chrome*" | Should -Not -Exist
+    }
 }
 
 Describe "Edge" -Skip:(Test-IsArm64) {

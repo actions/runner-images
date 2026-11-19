@@ -1,0 +1,236 @@
+#!/bin/bash -e -o pipefail
+################################################################################
+##  File:  configure-tccdb-macos-27.sh
+##  Desc:  Configure permissions in the TCC databases
+################################################################################
+
+source ~/utils/utils.sh
+
+macosVersion="$(sw_vers -productVersion)"
+macosMajor="${macosVersion%%.*}"
+case "$macosMajor" in
+    ''|*[!0-9]*)
+        echo "Unexpected macOS version: $macosVersion" >&2
+        exit 1
+        ;;
+esac
+
+resolve_user_tccdb() {
+    local base dbPath openPath
+    local -a databases=() activeDatabases=()
+
+    if [[ "$macosMajor" -lt 27 ]]; then
+        dbPath="$HOME/Library/Application Support/com.apple.TCC/TCC.db"
+    else
+        base="/private/var/containers/Data/ProtectedSystem"
+        while IFS= read -r dbPath; do
+            databases+=("$dbPath")
+        done < <(
+            sudo find "$base" \
+                -mindepth 6 \
+                -maxdepth 6 \
+                -type f \
+                -path "*/Data/Library/Application Support/com.apple.TCC/TCC.db" \
+                -print
+        )
+
+        case "${#databases[@]}" in
+            0)
+                echo "Unable to find a ProtectedSystem TCC database" >&2
+                return 1
+                ;;
+            1)
+                dbPath="${databases[0]}"
+                ;;
+            *)
+                while IFS= read -r openPath; do
+                    for dbPath in "${databases[@]}"; do
+                        if [[ "$openPath" == "$dbPath" ]]; then
+                            activeDatabases+=("$dbPath")
+                        fi
+                    done
+                done < <(
+                    sudo lsof -c tccd -Fn |
+                        sed -n 's/^n//p' |
+                        grep '/ProtectedSystem/.*/com\.apple\.TCC/TCC\.db$' |
+                        sort -u
+                )
+
+                if [[ "${#activeDatabases[@]}" -ne 1 ]]; then
+                    echo "Unable to identify one active ProtectedSystem TCC database:" >&2
+                    printf '  %s\n' "${databases[@]}" >&2
+                    return 1
+                fi
+                dbPath="${activeDatabases[0]}"
+                ;;
+        esac
+
+    fi
+
+    if ! sudo test -f "$dbPath"; then
+        echo "User TCC database does not exist: $dbPath" >&2
+        return 1
+    fi
+
+    printf '%s\n' "$dbPath"
+}
+
+configure_tccdb() {
+    local dbPath=$1
+    local values=$2
+    local sqlQuery
+
+    sqlQuery="
+        INSERT OR IGNORE INTO access (
+            service,
+            client,
+            client_type,
+            auth_value,
+            auth_reason,
+            auth_version,
+            csreq,
+            policy_id,
+            indirect_object_identifier_type,
+            indirect_object_identifier,
+            indirect_object_code_identity,
+            flags,
+            last_modified,
+            pid,
+            pid_version,
+            boot_uuid,
+            last_reminded
+        ) VALUES($values);
+    "
+
+    sudo sqlite3 "$dbPath" "$sqlQuery"
+}
+
+systemTCCDB="/Library/Application Support/com.apple.TCC/TCC.db"
+userTCCDB="$(resolve_user_tccdb)"
+
+configure_system_values() {
+    local values=$1
+
+    if [[ "$macosMajor" -lt 27 ]]; then
+        configure_system_tccdb "$values"
+        return
+    fi
+
+    configure_tccdb "$systemTCCDB" "$values"
+}
+
+configure_user_values() {
+    local values=$1
+
+    if [[ "$macosMajor" -lt 27 ]]; then
+        configure_user_tccdb "$values"
+        return
+    fi
+
+    configure_tccdb "$userTCCDB" "$values"
+}
+
+# /Library/Application Support/com.apple.TCC/TCC.db
+systemValuesArray=(
+    "'kTCCServiceAccessibility','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceAccessibility','/opt/hca/hosted-compute-agent',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,NULL,1592919552"
+    "'kTCCServiceAccessibility','/opt/hca/start_hca.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1566321319"
+    "'kTCCServiceAccessibility','/usr/bin/osascript',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1566321319"
+    "'kTCCServiceAccessibility','/usr/libexec/sshd-keygen-wrapper',1,2,4,1,X'fade0c000000003c0000000100000006000000020000001d636f6d2e6170706c652e737368642d6b657967656e2d7772617070657200000000000003',NULL,0,'UNUSED',NULL,0,1644564233"
+    "'kTCCServiceAccessibility','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,NULL,1592919552"
+    "'kTCCServiceAccessibility','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1566321319"
+    "'kTCCServiceAccessibility','com.apple.Terminal',0,2,0,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,NULL,'UNUSED',NULL,0,1591180502"
+    "'kTCCServiceAccessibility','com.apple.dt.Xcode-Helper',0,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1551941368"
+    "'kTCCServiceAppleEvents','/bin/bash',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1591532620"
+    "'kTCCServiceAppleEvents','/opt/hca/hosted-compute-agent',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
+    "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
+    "'kTCCServiceAppleEvents','com.apple.Terminal',0,2,0,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,NULL,'UNUSED',NULL,0,1591180502"
+    "'kTCCServiceAppleEvents','/usr/bin/osascript',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1591532620"
+    "'kTCCServiceAppleEvents','/usr/bin/osascript',1,2,0,1,NULL,NULL,0,'com.apple.Safari',NULL,NULL,1755087312"
+    "'kTCCServiceAppleEvents','/bin/bash',1,2,0,1,NULL,NULL,0,'com.apple.Safari',NULL,NULL,1755087312"
+    "'kTCCServiceAppleEvents','/opt/hca/hosted-compute-agent',1,2,0,1,NULL,NULL,0,'com.apple.Safari',NULL,NULL,1755087312"
+    "'kTCCServiceBluetoothAlways','/opt/hca/hosted-compute-agent',1,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1736467200"
+    "'kTCCServiceBluetoothAlways','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1736467200"
+    "'kTCCServiceMicrophone','/opt/hca/hosted-compute-agent',1,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1736467200"
+    "'kTCCServiceMicrophone','/opt/hca/start_hca.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1576661342"
+    "'kTCCServiceMicrophone','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1736467200"
+    "'kTCCServiceMicrophone','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1576661342"
+    "'kTCCServicePostEvent','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1644565949"
+    "'kTCCServicePostEvent','/opt/hca/start_hca.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1566321326"
+    "'kTCCServicePostEvent','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1566321326"
+    "'kTCCServiceScreenCapture','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1599831148"
+    "'kTCCServiceScreenCapture','/opt/hca/hosted-compute-agent',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
+    "'kTCCServiceScreenCapture','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
+    "'kTCCServiceSystemPolicyAllFiles','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceSystemPolicyAllFiles','/opt/hca/start_hca.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceSystemPolicyAllFiles','/usr/libexec/sshd-keygen-wrapper',1,0,4,1,X'fade0c000000003c0000000100000006000000020000001d636f6d2e6170706c652e737368642d6b657967656e2d7772617070657200000000000003',NULL,0,'UNUSED',NULL,0,1639660695"
+    "'kTCCServiceSystemPolicyAllFiles','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceSystemPolicyAllFiles','com.apple.Terminal',0,2,4,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,0,'UNUSED',NULL,0,1678990068"
+    "'kTCCServiceSystemPolicyAllFiles','com.microsoft.wdav',0,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,0,1643970979"
+    "'kTCCServiceSystemPolicyAllFiles','com.microsoft.wdav.epsext',0,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,0,1643970979"
+    "'kTCCServiceSystemPolicyNetworkVolumes','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceSystemPolicyNetworkVolumes','com.apple.Terminal',0,2,4,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,0,'UNUSED',NULL,0,1678990068"
+)
+for values in "${systemValuesArray[@]}"; do
+    configure_system_values "$values,NULL,NULL,'UNUSED',${values##*,}"
+done
+
+# Current user's TCC.db
+userValuesArray=(
+    "'kTCCServiceAccessibility','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceAccessibility','/usr/bin/osascript',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1566321319"
+    "'kTCCServiceAccessibility','com.apple.Terminal',0,2,0,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,NULL,'UNUSED',NULL,0,1591180502"
+    "'kTCCServiceAppleEvents','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,3,1,NULL,NULL,0,'com.apple.Terminal',X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,1655808179"
+    "'kTCCServiceAppleEvents','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1629294900"
+    "'kTCCServiceAppleEvents','/Library/Application Support/Veertu/Anka/addons/ankarund',1,2,3,1,NULL,NULL,0,'com.apple.systemevents',X'fade0c000000003400000001000000060000000200000016636f6d2e6170706c652e73797374656d6576656e7473000000000003',NULL,164456761"
+    "'kTCCServiceAppleEvents','/bin/bash',1,2,0,1,NULL,NULL,0,'com.apple.finder',NULL,NULL,1592919552"
+    "'kTCCServiceAppleEvents','/bin/bash',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1591532620"
+    "'kTCCServiceAppleEvents','/usr/bin/osascript',1,2,0,1,NULL,NULL,0,'com.apple.finder',NULL,NULL,1592919552"
+    "'kTCCServiceAppleEvents','/usr/bin/osascript',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1591532620"
+    "'kTCCServiceAppleEvents','/opt/hca/hosted-compute-agent',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
+    "'kTCCServiceAppleEvents','/opt/hca/hosted-compute-agent',1,2,3,1,NULL,NULL,0,'com.apple.systemevents',X'fade0c000000003400000001000000060000000200000016636f6d2e6170706c652e73797374656d6576656e7473000000000003',NULL,1592919552"
+    "'kTCCServiceAppleEvents','/opt/hca/start_hca.sh',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1574241374"
+    "'kTCCServiceAppleEvents','/usr/libexec/sshd-keygen-wrapper',1,2,0,1,X'fade0c000000003c0000000100000006000000020000001d636f6d2e6170706c652e737368642d6b657967656e2d7772617070657200000000000003',NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1591357685"
+    "'kTCCServiceAppleEvents','/usr/libexec/sshd-keygen-wrapper',1,2,3,1,X'fade0c000000003c0000000100000006000000020000001d636f6d2e6170706c652e737368642d6b657967656e2d7772617070657200000000000003',NULL,0,'com.apple.systemevents',X'fade0c000000003400000001000000060000000200000016636f6d2e6170706c652e73797374656d6576656e7473000000000003',NULL,1644564201"
+    "'kTCCServiceAppleEvents','/usr/libexec/sshd-keygen-wrapper',1,2,3,1,X'fade0c000000003c0000000100000006000000020000001d636f6d2e6170706c652e737368642d6b657967656e2d7772617070657200000000000003',NULL,0,'com.apple.Terminal',X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,1650386089"
+    "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.finder',X'fade0c000000002c00000001000000060000000200000010636f6d2e6170706c652e66696e64657200000003',NULL,1592919552"
+    "'kTCCServiceAppleEvents','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,0,'com.apple.systemevents',X'fade0c000000003400000001000000060000000200000016636f6d2e6170706c652e73797374656d6576656e7473000000000003',NULL,1592919552"
+    "'kTCCServiceAppleEvents','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,0,'com.apple.systemevents',NULL,NULL,1574241374"
+    "'kTCCServiceAppleEvents','com.apple.Terminal',0,2,0,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,0,'com.apple.systemevents',X'fade0c000000003400000001000000060000000200000016636f6d2e6170706c652e73797374656d6576656e7473000000000003',NULL,1591180478"
+    "'kTCCServiceBluetoothAlways','/opt/hca/hosted-compute-agent',1,2,3,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1736467200"
+    "'kTCCServiceBluetoothAlways','/usr/local/opt/runner/provisioner/provisioner',1,2,3,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1736467200"
+    "'kTCCServiceMicrophone','/opt/hca/hosted-compute-agent',1,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1736467200"
+    "'kTCCServiceMicrophone','/opt/hca/start_hca.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1576661342"
+    "'kTCCServiceMicrophone','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1736467200"
+    "'kTCCServiceMicrophone','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1576661342"
+    "'kTCCServiceMicrophone','com.apple.CoreSimulator.SimulatorTrampoline',0,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1576347152"
+    "'kTCCServicePostEvent','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceScreenCapture','/opt/hca/hosted-compute-agent',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
+    "'kTCCServiceScreenCapture','/usr/local/opt/runner/provisioner/provisioner',1,2,4,1,NULL,NULL,0,'UNUSED',NULL,0,1687786159"
+    "'kTCCServiceScreenCapture','/bin/bash',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceScreenCapture','/usr/bin/osascript',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1566321319"
+    "'kTCCServiceScreenCapture','com.apple.Terminal',0,2,4,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465726d696e616c000000000003',NULL,0,'UNUSED',NULL,0,1678990068"
+    "'kTCCServiceSystemPolicyAllFiles','/opt/hca/start_hca.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceSystemPolicyAllFiles','/usr/local/opt/runner/runprovisioner.sh',1,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,0,1583997993"
+    "'kTCCServiceUbiquity','/System/Library/PrivateFrameworks/PhotoLibraryServices.framework/Versions/A/Support/photolibraryd',1,2,5,1,NULL,NULL,NULL,'UNUSED',NULL,0,1619461750"
+    "'kTCCServiceUbiquity','com.apple.CloudDocs.MobileDocumentsFileProvider',0,2,0,1,X'fade0c000000004c0000000100000006000000020000002f636f6d2e6170706c652e436c6f7564446f63732e4d6f62696c65446f63756d656e747346696c6550726f76696465720000000003',NULL,NULL,'UNUSED',NULL,0,1570793290"
+    "'kTCCServiceUbiquity','com.apple.PassKitCore',0,2,5,1,NULL,NULL,NULL,'UNUSED',NULL,0,1619516250"
+    "'kTCCServiceUbiquity','com.apple.TextEdit',0,2,0,1,X'fade0c000000003000000001000000060000000200000012636f6d2e6170706c652e5465787445646974000000000003',NULL,NULL,'UNUSED',NULL,0,1566368356"
+    "'kTCCServiceUbiquity','com.apple.mail',0,2,0,1,NULL,NULL,NULL,'UNUSED',NULL,NULL,1551941469"
+)
+for values in "${userValuesArray[@]}"; do
+    configure_user_values "$values,NULL,NULL,'UNUSED',${values##*,}"
+done
+
+# Pre-approve screen capture for the runner agent.
+# Granting kTCCServiceScreenCapture above is not enough on macOS 15+: capturing
+# the screen through a legacy API instead of ScreenCaptureKit's picker raises a
+# recurring "<app> is requesting to bypass the system private window picker"
+# alert, which takes focus and breaks headed UI tests. replayd tracks the
+# reminder in its own approvals file, keyed by the responsible process.
+approvalsPlist="$HOME/Library/Group Containers/group.com.apple.replayd/ScreenCaptureApprovals.plist"
+mkdir -p "$(dirname "$approvalsPlist")"
+defaults write "$approvalsPlist" "/opt/hca/hosted-compute-agent" -date "3024-01-01 00:00:00 +0000"
+
+# Flush the preferences cache so the write is on disk.
+killall cfprefsd 2>/dev/null || true

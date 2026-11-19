@@ -47,10 +47,10 @@ if is_ubuntu26_x64; then
     update_git_ppa_sources '/^URIs:.*git-core/{n;/^Architectures: amd64$/d}'
 fi
 
-# Remove source repo's
+# Remove source repos
 add-apt-repository --remove $GIT_REPO
 
-# Document apt source repo's
+# Document apt source repos
 echo "git-core $GIT_REPO" >> $HELPER_SCRIPTS/apt-sources.txt
 
 # Add well-known SSH host keys to known_hosts

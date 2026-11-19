@@ -45,6 +45,14 @@ is_Arm64() {
     [ "$(arch)" = "arm64" ]
 }
 
+is_GoldenGate() {
+    [ "$OSTYPE" = "darwin26" ]
+}
+
+is_GoldenGateArm64() {
+    is_GoldenGate && is_Arm64
+}
+
 is_Tahoe() {
     [ "$OSTYPE" = "darwin25" ]
 }
@@ -124,7 +132,7 @@ brew_smart_install() {
 
     failed=true
     for i in {1..10}; do
-        brew install $tool_name && failed=false || sleep 60
+        HOMEBREW_NO_AUTO_UPDATE=1 brew install "$tool_name" && failed=false || sleep 60
         [ "$failed" = false ] && break
     done
 
@@ -132,6 +140,31 @@ brew_smart_install() {
        echo "Failed: brew install $tool_name"
        exit 1;
     fi
+}
+
+brew_install_pinned_formula() {
+    local formula_name=$1
+    local formula_file=$2
+    local commit_hash=$3
+    local no_deps_update=$4
+
+    # If no_deps_update is not specified, default to 0 (update already installed dependencies as usual)
+    if [ -z "$no_deps_update" ]; then
+        no_deps_update=0
+    elif [ "$no_deps_update" -ne 1 ] && [ "$no_deps_update" -ne 0 ]; then
+        echo "Invalid value for no_deps_update: $no_deps_update. Must be 0 or 1."
+        exit 1
+    fi
+
+    echo "Installing pinned formula: $formula_name"
+
+    local FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$commit_hash/Formula/$formula_file"
+    local FORMULA_PATH
+    FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/$formula_file"
+    mkdir -p "$(dirname "$FORMULA_PATH")"
+    curl -fsSL "$FORMULA_URL" -o "$FORMULA_PATH"
+
+    HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=$no_deps_update brew install "$FORMULA_PATH"
 }
 
 configure_system_tccdb () {

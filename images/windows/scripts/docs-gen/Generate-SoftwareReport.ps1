@@ -114,6 +114,7 @@ if (Test-IsArm64) {
     $tools.AddToolVersion("R", $(Get-RVersion))
 }
 if (Test-IsX64) {
+    $tools.AddToolVersion("Service Fabric Runtime", $(Get-ServiceFabricRuntimeVersion))
     $tools.AddToolVersion("Service Fabric SDK", $(Get-ServiceFabricSDKVersion))
 }
 $tools.AddToolVersion("Stack", $(Get-StackVersion))

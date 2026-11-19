@@ -18,10 +18,13 @@ set_etc_environment_variable "DEBIAN_FRONTEND" "noninteractive"
 
 # dpkg can be instructed not to ask for confirmation
 # when replacing a configuration file (with the --force-confdef --force-confold options)
+# --force-unsafe-io drops the fsync calls dpkg makes while unpacking packages. Runner VMs are
+# ephemeral, so trading crash consistency for faster package installation is acceptable here
 cat <<EOF >> /etc/apt/apt.conf.d/10dpkg-options
 Dpkg::Options {
   "--force-confdef";
   "--force-confold";
+  "--force-unsafe-io";
 }
 EOF
 

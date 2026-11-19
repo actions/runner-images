@@ -38,6 +38,8 @@ function Get-OSVersion {
         IsTahoe        = $($osVersion.Version.Major -eq "26")
         IsTahoeArm64   = $($osVersion.Version.Major -eq "26" -and $processorArchitecture -eq "arm64")
         IsTahoeX64     = $($osVersion.Version.Major -eq "26" -and $processorArchitecture -ne "arm64")
+        IsGoldenGate   = $($osVersion.Version.Major -eq "27")
+        IsGoldenGateArm64 = $($osVersion.Version.Major -eq "27" -and $processorArchitecture -eq "arm64")
     }
 }
 

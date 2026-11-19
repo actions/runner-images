@@ -6,6 +6,16 @@
 
 source ~/utils/utils.sh
 
+# homebrew-core dropped the Intel bottles for gmp on 2026-09-02, and gmplib.org blocks
+# GitHub server IPs so the source build cannot fetch the tarball. Install the last bottled
+# revision before gnupg pulls gmp in as a dependency.
+if ! is_Arm64; then
+    COMMIT=f97a5a6fd3dee66c7f015608b82ad047a29e2c9b
+    FILE_NAME="g/gmp.rb"
+    FORMULA_NAME="gmp"
+    brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+fi
+
 common_packages=$(get_toolset_value '.brew.common_packages[]')
 for package in $common_packages; do
     echo "Installing $package..."
@@ -27,7 +37,7 @@ for package in $common_packages; do
             ;;
 
         xcodes)
-            if is_SequoiaArm64 || is_TahoeArm64; then
+            if is_SequoiaArm64 || is_TahoeArm64 || is_GoldenGate; then
                 # xcodes formulae still works on MacOS 15 ARM and 26 ARM
                 brew_smart_install "$package"
             else
@@ -39,6 +49,29 @@ for package in $common_packages; do
                 unzip -oq /tmp/xcodes.zip -d /tmp/xcodes-bin
                 sudo install -m 0755 /tmp/xcodes-bin/xcodes /usr/local/bin/xcodes
                 rm -rf /tmp/xcodes.zip /tmp/xcodes-bin
+            fi
+            ;;
+
+        gnu-tar)
+            if ! is_Arm64; then
+                # For the Intel images gnu-tar stopped to work, using pinned commit
+                COMMIT=f80d41dc9db047924348b69d03f398e9e8b19598
+                FILE_NAME="g/gnu-tar.rb"
+                FORMULA_NAME="gnu-tar"
+                brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+            else
+                brew_smart_install "$package"
+            fi
+            ;;
+
+        swiftformat)
+            if ! is_Arm64; then
+                COMMIT=cb845e90e905cb254daaf82a721ac972c3307b03
+                FILE_NAME="s/swiftformat.rb"
+                FORMULA_NAME="swiftformat"
+                brew_install_pinned_formula "$FORMULA_NAME" "$FILE_NAME" "$COMMIT"
+            else
+                brew_smart_install "$package"
             fi
             ;;
 

@@ -30,12 +30,21 @@ $xcodeVersions | ForEach-Object {
     Approve-XcodeLicense -Version $_.link
 }
 
+# Install the newest CoreSimulator before downloading runtimes. Runtimes downloaded with an older one are
+# personalized to the build VM and get registered twice on VMs created from the image.
+# https://github.com/actions/runner-images/issues/15334
+if ($os.IsGoldenGate) {
+    $xcodeVersions | ForEach-Object {
+        Invoke-XcodeRunFirstLaunch -Version $_.link
+    }
+}
+
 Write-Host "Configuring Xcode versions..."
 $xcodeVersions | ForEach-Object {
     Write-Host "Configuring Xcode $($_.link) ..."
     Invoke-XcodeRunFirstLaunch -Version $_.link
     Install-XcodeAdditionalSimulatorRuntimes -Version $_.link -Arch $arch -Runtimes $_.install_runtimes
-    if ($_.link -match '^(\d+)\.(\d+)(?:\.(\d+))?$' -and [int]$matches[1] -ge 26) {
+    if ($_.link -match '^(\d+)(?:\.(\d+))?(?:\.(\d+))?$' -and [int]$matches[1] -ge 26) {
         Install-XcodeAdditionalComponents -Version $_.link
         Update-DyldCache -Version $_.link
     }
