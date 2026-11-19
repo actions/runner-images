@@ -1,6 +1,6 @@
 ################################################################################
 ##  File:  PowerShellModules.Tests.ps1
-##  Desc:  Regression tests for Ubuntu Azure module validation
+##  Desc:  Tests for installed Azure modules validation
 ################################################################################
 
 BeforeAll {
