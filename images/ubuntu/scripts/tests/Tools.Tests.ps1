@@ -328,6 +328,11 @@ Describe "Containers" {
         "podman network rm test-net" | Should -ReturnZeroExitCode
     }
 
+    # https://github.com/actions/runner-images/issues/15182
+    It "pasta AppArmor profile lets podman stop pasta" -Skip:(-not (Test-IsUbuntu26)) {
+        "grep -q 'peer=podman' /etc/apparmor.d/usr.bin.pasta" | Should -ReturnZeroExitCode
+    }
+
     # https://github.com/actions/runner-images/issues/14611
     It "podman is installed from the Ubuntu package" {
         (Get-Command podman).Source | Should -Be "/usr/bin/podman"
