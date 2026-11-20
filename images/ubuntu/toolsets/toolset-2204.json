@@ -355,9 +355,9 @@
     "cmake": {
         "version": "3.31.6",
         "pinnedDetails": {
-            "reason": "Pinned to avoid CMake 4.0 compatibility issues",
+            "reason": "Pinned to avoid CMake 4.0 compatibility issues; kept on CMake 3.x until the Ubuntu 22.04 image is retired",
             "link": "https://github.com/actions/runner-images/issues/11926",
-            "review-at": "2026-12-01"
+            "review-at": "2027-04-17"
         }
     },
     "pwsh": {
