@@ -163,8 +163,9 @@ build {
   }
 
   provisioner "shell" {
-    execute_command = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
-    scripts         = [
+    environment_vars = ["IMAGE_FOLDER=${local.image_folder}"]
+    execute_command  = "chmod +x {{ .Path }}; source $HOME/.bash_profile; {{ .Vars }} {{ .Path }}"
+    scripts          = [
       "${path.root}/../scripts/build/install-xcode-clt.sh",
       "${path.root}/../scripts/build/install-homebrew.sh",
       "${path.root}/../scripts/build/install-rosetta.sh"

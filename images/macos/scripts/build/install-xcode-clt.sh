@@ -6,6 +6,11 @@
 
 source ~/utils/utils.sh
 
+# Optional pin, e.g. to match the default Xcode, since a newer CLT SDK may be unreadable by its linker
+# https://github.com/actions/runner-images/issues/14940
+# Without a pin the latest CLT is installed. jq isn't available on macOS 14 yet, so the pin is ignored there
+clt_version=$(get_toolset_value '.xcode.command_line_tools // empty')
+
 is_clt_installed() {
     clt_path=$(xcode-select -p 2>&1)
     [[ -d $clt_path ]]
@@ -17,6 +22,10 @@ install_clt() {
     clt_placeholder="/tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress"
     sudo touch $clt_placeholder
     cltPattern="Command Line Tools"
+    if [[ -n "$clt_version" ]]; then
+        # Match the pinned version and its patch releases, e.g. 'Title: Command Line Tools for Xcode, Version: 26.6, ...'
+        cltPattern="Command Line Tools.*Version: ${clt_version}[.,]"
+    fi
 
     clt_label_command="/usr/sbin/softwareupdate -l |
                         grep -B 1 -E '${cltPattern}' |
@@ -32,7 +41,7 @@ install_clt() {
     sudo "/bin/rm" "-f" "$clt_placeholder"
 }
 
-echo "Installing Command Line Tools..."
+echo "Installing Command Line Tools${clt_version:+ $clt_version}..."
 install_clt
 
 # Retry the installation if tools are not installed from the first attempt
