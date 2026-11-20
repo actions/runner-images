@@ -28,6 +28,9 @@ if (-not (Test-IsWin11-Arm64)) {
 if (Test-IsWin25-X64) {
     $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (Default, WSLv2):", $(Get-WSL2Version))
 }
+if (Test-IsWin11-Arm64) {
+    $optionalFeatures.AddToolVersion("Windows Subsystem for Linux (package only):", $(Get-WSLPackageVersion))
+}
 $installedSoftware = $softwareReport.Root.AddHeader("Installed Software")
 
 # Language and Runtime
@@ -256,7 +259,9 @@ if (Test-IsWin11-Arm64) {
     $defenderNote = @'
 Microsoft Defender is not disabled on this image. Tamper Protection is enabled by default on Windows 11 and prevents the image build from disabling it. See https://github.com/actions/runner-images/issues/14326 for details.
 '@
-    $softwareReport.Root.AddHeader("Notes").AddNote($defenderNote)
+    $notes = $softwareReport.Root.AddHeader("Notes")
+    $notes.AddNote($defenderNote)
+    $notes.AddNote("The ARM64 WSL package is installed without a Linux distribution to avoid interactive installation prompts during WSL discovery. WSL1 and WSL2 workloads are not supported on this image. See https://github.com/actions/runner-images/issues/14076.")
 }
 
 # Generate reports
