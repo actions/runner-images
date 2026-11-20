@@ -2,13 +2,11 @@
 |-|
 | [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 | [[Ubuntu] `ubuntu-latest` label will use Ubuntu 26.04 in November 2026](https://github.com/actions/runner-images/issues/14748) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm64 are now generally available](https://github.com/actions/runner-images/issues/14747) |
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
 ***
 # Ubuntu-Slim
 - OS Version: 24.04.5 LTS
-- Image Version: 20261111.52.1
+- Image Version: 20261116.56.1
 - Systemd version: 255.4-1ubuntu8.18
 
 ## Installed Software
@@ -30,8 +28,8 @@
 - AzCopy 10.34.1 - available by `azcopy` and `azcopy10` aliases
 - Bicep 0.49.2
 - Docker Compose 5.7.1
-- Docker-Buildx 0.38.1
-- Docker Client 29.9.3
+- Docker-Buildx 0.39.0
+- Docker Client 29.10.0
 - Git 2.56.1
 - Git LFS 3.8.1
 - Git-ftp 1.6.0
@@ -42,12 +40,12 @@
 - zstd 1.5.7
 
 ### CLI Tools
-- AWS CLI 2.40.1
+- AWS CLI 2.40.4
 - AWS CLI Session Manager Plugin 1.2.896.0
 - AWS SAM CLI 1.172.1
-- Azure CLI 2.92.0
-- Azure CLI (azure-devops) 1.0.10
-- GitHub CLI 2.103.3
+- Azure CLI 2.93.0
+- Azure CLI (azure-devops) 1.0.11
+- GitHub CLI 2.104.0
 - Google Cloud CLI 593.0.0
 
 ### PowerShell Tools
@@ -88,7 +86,7 @@
 | libssl-dev             | 3.0.13-0ubuntu3.16           |
 | libtool                | 2.4.7-7build1                |
 | libyaml-dev            | 0.2.5-1build1                |
-| locales                | 2.39-0ubuntu8.9              |
+| locales                | 2.39-0ubuntu8.12             |
 | lz4                    | 1.9.4-1build1.1              |
 | lzma                   | 9.22-2.2                     |
 | make                   | 4.3-4.1build2                |
