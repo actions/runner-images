@@ -3,12 +3,10 @@
 | [[Windows] D: drive will use ReFS instead of NTFS on Windows images from November 30, 2026](https://github.com/actions/runner-images/issues/15315) |
 | [[Windows 11 Arm64] Actions workspace will move to D: drive on November 30, 2026](https://github.com/actions/runner-images/issues/15314) |
 | [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
-| [[Windows] The `windows-11-arm` image label will use Windows 11 Arm64 with Visual Studio 2026 image in September 2026](https://github.com/actions/runner-images/issues/14602) |
-| [[Windows] The Windows 11 Arm64 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14592) |
 ***
 # Windows Server 2025
-- OS Version: 10.0.26100 Build 33822
-- Image Version: 20261111.331.1
+- OS Version: 10.0.26100 Build 33828
+- Image Version: 20261116.335.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -18,7 +16,7 @@
 
 ### Language and Runtime
 - Bash 5.3.15(2)-release
-- Go 1.24.13
+- Go 1.26.11
 - Julia 1.12.0
 - Kotlin 2.4.21
 - LLVM 20.1.8
@@ -38,7 +36,7 @@
 - pip 26.3 (python 3.12)
 - Pipx 1.18.16
 - RubyGems 3.5.22
-- Vcpkg (build from commit 177e817512)
+- Vcpkg (build from commit 0df93a05b9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -80,7 +78,7 @@
 - Newman 6.2.3
 - OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.274.1
+- Pulumi 3.275.0
 - R 4.6.2
 - Service Fabric Runtime 11.7.157.1
 - Service Fabric SDK 8.7.157.1
@@ -94,28 +92,28 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.40.0
+- AWS CLI 2.40.3
 - AWS SAM CLI 1.172.1
 - AWS Session Manager CLI 1.2.896.0
-- Azure CLI 2.92.0
-- Azure DevOps CLI extension 1.0.10
-- GitHub CLI 2.103.3
+- Azure CLI 2.93.0
+- Azure DevOps CLI extension 1.0.11
+- GitHub CLI 2.104.0
 
 ### Rust Tools
-- Cargo 1.99.1
-- Rust 1.99.1
-- Rustdoc 1.99.1
+- Cargo 1.100.0
+- Rust 1.100.0
+- Rustdoc 1.100.0
 - Rustup 1.29.3
 
 #### Packages
-- Clippy 0.1.99
-- Rustfmt 1.10.0
+- Clippy 0.1.100
+- Rustfmt 1.11.0
 
 ### Browsers and Drivers
 - Google Chrome 157.0.8103.79
 - Chrome Driver 157.0.8103.78
-- Microsoft Edge 157.0.4341.46
-- Microsoft Edge Driver 157.0.4341.46
+- Microsoft Edge 157.0.4341.60
+- Microsoft Edge Driver 157.0.4341.60
 - Mozilla Firefox 160.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
@@ -158,13 +156,13 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Tools
 
 #### Go
-- 1.24.13
 - 1.25.14
 - 1.26.11
+- 1.27.4
 
 #### Node.js
-- 22.23.4
-- 24.22.2
+- 22.23.5
+- 24.22.3
 
 #### Python
 - 3.11.9
@@ -189,7 +187,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                  |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | ServiceName          | postgresql-x64-17                                                                                                      |
-| Version              | 17.11                                                                                                                  |
+| Version              | 17.12                                                                                                                  |
 | ServiceStatus        | Stopped                                                                                                                |
 | ServiceStartType     | Disabled                                                                                                               |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\17\bin <br> PGDATA=C:\PostgreSQL\17\data <br> PGROOT=C:\Program Files\PostgreSQL\17  |
@@ -476,7 +474,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.333
+- AWSPowershell: 5.0.337
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
