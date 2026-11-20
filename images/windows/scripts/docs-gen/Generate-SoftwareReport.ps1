@@ -239,12 +239,10 @@ $psModules.AddNodes($(Get-PowerShellModules))
 
 
 # Android
-if (Test-IsX64) {
-    $android = $installedSoftware.AddHeader("Android")
-    $android.AddTable($(Build-AndroidTable))
+$android = $installedSoftware.AddHeader("Android")
+$android.AddTable($(Build-AndroidTable))
 
-    $android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
-}
+$android.AddHeader("Environment variables").AddTable($(Build-AndroidEnvironmentTable))
 
 # Cached Docker images
 if (Test-IsWin22-X64) {

@@ -1,9 +1,5 @@
-Describe "Android SDK" -Skip:(Test-IsArm64) {
+Describe "Android SDK" {
     BeforeDiscovery {
-        if (Test-IsArm64) {
-            return
-        }
-
         $androidToolset = (Get-ToolsetContent).android
         $androidInstalledPackages = Get-AndroidInstalledPackages
 
@@ -48,27 +44,25 @@ Describe "Android SDK" -Skip:(Test-IsArm64) {
     }
 
     Context "Packages" {
-        if (-not (Test-IsArm64)) {
-            It "Platform version <platformVersion> is installed" -TestCases $platformTestCases {
-                "$installedPackages" | Should -Match "$platformVersion"
-            }
+        It "Platform version <platformVersion> is installed" -TestCases $platformTestCases {
+            "$installedPackages" | Should -Match "$platformVersion"
+        }
 
-            It "Packages are installed in expected locations" {
-                $sdkManager = "$env:ANDROID_HOME\cmdline-tools\latest\bin\sdkmanager.bat"
-                "$(cmd /c "$sdkManager --list_installed 2>&1")" | Should -Not -Match "inconsistent location"
-            }
+        It "Packages are installed in expected locations" {
+            $sdkManager = "$env:ANDROID_HOME\cmdline-tools\latest\bin\sdkmanager.bat"
+            "$(cmd /c "$sdkManager --list_installed 2>&1")" | Should -Not -Match "inconsistent location"
+        }
 
-            It "Platform build tools <buildToolsVersion> is installed" -TestCases $buildToolsTestCases {
-                "$installedPackages" | Should -Match "$buildToolsVersion"
-            }
+        It "Platform build tools <buildToolsVersion> is installed" -TestCases $buildToolsTestCases {
+            "$installedPackages" | Should -Match "$buildToolsVersion"
+        }
 
-            It "Additional tool <additionalToolVersion> is installed" -TestCases $additionalToolsTestCases {
-                "$installedPackages" | Should -Match $additionalToolVersion
-            }
+        It "Additional tool <additionalToolVersion> is installed" -TestCases $additionalToolsTestCases {
+            "$installedPackages" | Should -Match $additionalToolVersion
+        }
 
-            It "NDK <ndkPackage> is installed" -TestCases $ndkPackagesTestCases {
-                "$installedPackages" | Should -Match "ndk;$ndkPackage"
-            }
+        It "NDK <ndkPackage> is installed" -TestCases $ndkPackagesTestCases {
+            "$installedPackages" | Should -Match "ndk;$ndkPackage"
         }
     }
 }
