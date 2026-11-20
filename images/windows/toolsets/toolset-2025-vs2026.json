@@ -294,7 +294,7 @@
         "version": "7.0"
     },
     "llvm": {
-        "version": "20"
+        "version": "22"
     },
     "php": {
         "version": "8.5"
