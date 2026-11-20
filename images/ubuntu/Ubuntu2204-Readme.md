@@ -2,14 +2,12 @@
 |-|
 | [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 | [[Ubuntu] `ubuntu-latest` label will use Ubuntu 26.04 in November 2026](https://github.com/actions/runner-images/issues/14748) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm64 are now generally available](https://github.com/actions/runner-images/issues/14747) |
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1070-azure
-- Image Version: 20261111.360.2
+- Image Version: 20261116.365.1
 - Systemd version: 249.11-0ubuntu3.23
 
 ## Installed Software
@@ -22,7 +20,7 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.13.3
+- Julia 1.13.4
 - Kotlin 2.4.21
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
@@ -35,7 +33,7 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.22.1
-- Homebrew 7.0.13
+- Homebrew 7.0.14
 - Miniconda 26.9.4
 - Npm 10.9.9
 - NuGet 6.6.1.2
@@ -43,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.17.12
 - RubyGems 3.3.5
-- Vcpkg (build from commit b58529e333)
+- Vcpkg (build from commit d387c3cee2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -64,7 +62,7 @@ to accomplish this.
 - Ant 1.10.12
 - Gradle 9.9.1
 - Lerna 10.1.1
-- Maven 3.10.0
+- Maven 3.10.1
 - Sbt 1.13.1
 
 ### Tools
@@ -77,7 +75,7 @@ to accomplish this.
 - Buildah 1.23.1
 - CMake 3.31.6
 - CodeQL Action Bundle 2.27.4
-- Docker Amazon ECR Credential Helper 0.12.0
+- Docker Amazon ECR Credential Helper 0.13.0
 - Docker Compose 2.38.2
 - Docker-Buildx 0.39.0
 - Docker Client 28.0.4
@@ -103,7 +101,7 @@ to accomplish this.
 - Packer 1.16.2
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.274.1
+- Pulumi 3.276.0
 - R 4.6.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
@@ -116,17 +114,17 @@ to accomplish this.
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.3
-- AWS CLI 2.40.1
+- AWS CLI 2.40.4
 - AWS CLI Session Manager Plugin 1.2.896.0
 - AWS SAM CLI 1.172.1
-- Azure CLI 2.92.0
-- Azure CLI (azure-devops) 1.0.10
-- GitHub CLI 2.103.3
+- Azure CLI 2.93.0
+- Azure CLI (azure-devops) 1.0.11
+- GitHub CLI 2.104.0
 - Google Cloud CLI 593.0.0
 - ORAS CLI 1.3.6
-- Netlify CLI 27.17.0
+- Netlify CLI 27.20.0
 - OpenShift CLI 5.0.1
-- Vercel CLI 65.14.0
+- Vercel CLI 65.16.0
 
 ### Java
 | Version              | Environment Variable |
@@ -140,7 +138,7 @@ to accomplish this.
 ### PHP Tools
 - PHP: 8.1.2
 - Composer 2.11.2
-- PHPUnit 8.5.56
+- PHPUnit 8.5.57
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -152,25 +150,25 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.11.1
 
 ### Rust Tools
-- Cargo 1.99.1
-- Rust 1.99.1
-- Rustdoc 1.99.1
+- Cargo 1.100.0
+- Rust 1.100.0
+- Rustdoc 1.100.0
 - Rustup 1.29.3
 
 #### Packages
 - Bindgen 0.73.2
 - Cargo audit 0.23.0
-- Cargo clippy 0.1.99
+- Cargo clippy 0.1.100
 - Cargo outdated 0.19.0
 - Cbindgen 0.29.4
-- Rustfmt 1.10.0
+- Rustfmt 1.11.0
 
 ### Browsers and Drivers
 - Google Chrome 157.0.8103.78
 - ChromeDriver 157.0.8103.78
 - Chromium 157.0.8103.0
-- Microsoft Edge 157.0.4341.46
-- Microsoft Edge WebDriver 157.0.4341.46
+- Microsoft Edge 157.0.4341.60
+- Microsoft Edge WebDriver 157.0.4341.60
 - Selenium server 4.52.0
 - Mozilla Firefox 160.0
 - Geckodriver 0.37.1
@@ -191,7 +189,7 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - sqlite3 3.37.2
 
 #### PostgreSQL
-- PostgreSQL 14.24
+- PostgreSQL 14.25
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -214,13 +212,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.24.13
 - 1.25.14
 - 1.26.11
+- 1.27.4
 
 #### Node.js
-- 22.23.4
-- 24.22.2
+- 22.23.5
+- 24.22.3
 
 #### Python
 - 3.11.18
@@ -315,7 +313,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.15                    |
+| libc6-dev              | 2.35-0ubuntu3.18                    |
 | libcurl4               | 7.81.0-1ubuntu1.30                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.4          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -334,7 +332,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.15                    |
+| locales                | 2.35-0ubuntu3.18                    |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |
