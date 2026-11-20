@@ -1,8 +1,87 @@
 ################################################################################
 ##  File:  Configure-Xcode-Simulators.ps1
 ##  Team:  CI-Build
-##  Desc:  CHeck and remove duplicate simulators
+##  Desc:  Check and remove duplicate simulators and pre-warm standard simulator
 ################################################################################
+
+function Invoke-SimulatorPrewarm {
+    param (
+        [int] $timeoutMinutes = 5
+    )
+
+    Write-Host "Pre-warming standard iOS simulator..."
+    try {
+        $rawDevices = $(xcrun simctl list -j devices | ConvertFrom-Json)
+        $targetDevice = $null
+
+        foreach ($runtime in $rawDevices.devices.psobject.Properties.name) {
+            if ($runtime -like "*iOS*") {
+                foreach ($device in $rawDevices.devices.$runtime) {
+                    $available = (($device.isAvailable -eq $true) -or ($device.isAvailable -eq "YES") -or ($device.availability -eq "(available)"))
+                    if ($available -and $device.name -like "iPhone*") {
+                        $targetDevice = $device
+                        if ($device.name -like "*16*" -or $device.name -like "*15*") {
+                            break
+                        }
+                    }
+                }
+            }
+            if ($null -ne $targetDevice -and ($targetDevice.name -like "*16*" -or $targetDevice.name -like "*15*")) {
+                break
+            }
+        }
+
+        if ($null -eq $targetDevice) {
+            Write-Host "No available iPhone simulator found for pre-warming. Skipping."
+            return
+        }
+
+        $udid = $targetDevice.udid
+        $name = $targetDevice.name
+        Write-Host "Selected simulator for pre-warming: $name ($udid)"
+
+        Write-Host "Booting simulator $udid ..."
+        xcrun simctl boot $udid
+
+        try {
+            Write-Host "Waiting for simulator to finish boot and data migration (timeout: ${timeoutMinutes}m)..."
+            $bootJob = Start-Job -ScriptBlock {
+                param($id)
+                $ErrorActionPreference = "Stop"
+                xcrun simctl bootstatus $id -b
+                if ($LASTEXITCODE -ne 0) {
+                    throw "Simulator bootstatus failed with exit code $LASTEXITCODE."
+                }
+            } -ArgumentList $udid
+
+            $completed = Wait-Job -Job $bootJob -Timeout ($timeoutMinutes * 60)
+            if ($null -eq $completed) {
+                Write-Warning "Simulator bootstatus wait timed out after ${timeoutMinutes} minutes."
+            } elseif ($completed.State -ne "Completed") {
+                throw "Simulator bootstatus job ended in state $($completed.State)."
+            } else {
+                Receive-Job -Job $bootJob -ErrorAction Stop | Out-Null
+                Write-Host "Simulator $name successfully booted and finished initial data migration."
+
+                # Pre-warm text input / keyboard XPC service
+                Write-Host "Triggering TextInput service pre-warm..."
+                 xcrun simctl spawn $udid launchctl kickstart -k "system/com.apple.TextInput.kbd"
+                 if ($LASTEXITCODE -ne 0) {
+                     throw "Failed to pre-warm the simulator keyboard service (exit code $LASTEXITCODE)."
+                 }
+                 Start-Sleep -Seconds 5
+            }
+        }
+        finally {
+            Write-Host "Shutting down pre-warmed simulator $udid ..."
+            xcrun simctl shutdown $udid 2>$null
+            Write-Host "Simulator pre-warming completed."
+        }
+    }
+    catch {
+        Write-Warning "Simulator pre-warming encountered an error: $_"
+    }
+}
 
 Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
 Import-Module "~/image-generation/helpers/Xcode.Helpers.psm1"
@@ -71,3 +150,6 @@ foreach ($xcodeVersion in $xcodeVersions.link) {
 # Restore default Xcode
 Write-Host "Restoring default Xcode to $defaultXcode"
 Switch-Xcode -Version $defaultXcode
+
+# Pre-warm standard iOS simulator
+Invoke-SimulatorPrewarm
