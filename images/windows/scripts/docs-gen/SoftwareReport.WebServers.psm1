@@ -8,7 +8,7 @@ function Get-NginxPath {
 
 function Get-ApacheVersion {
     $apacheBinPath = Join-Path (Get-ApachePath) "\bin\httpd"
-    (. $apacheBinPath -V | Select-String -Pattern "Apache/") -match "Apache/(?<version>\d+\.\d+\.\d+)" | Out-Null
+    (. $apacheBinPath -V | Select-String -Pattern "Server version: Apache/") -match "Apache/(?<version>\d+\.\d+\.\d+)" | Out-Null
     return $Matches.Version
 }
 
