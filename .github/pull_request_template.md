@@ -5,7 +5,7 @@ Please include a summary of the change and which issue is fixed. Also include re
 
 <!-- Currently, we can't accept external contributions to macOS source. Please find more details in [CONTRIBUTING.md](CONTRIBUTING.md#macOS) guide -->
 
-#### Related issue:
+## Related issue:
 
 ## Check list
 - [ ] Related issue / work item is attached
