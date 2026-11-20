@@ -3,12 +3,10 @@
 | [[Windows] D: drive will use ReFS instead of NTFS on Windows images from November 30, 2026](https://github.com/actions/runner-images/issues/15315) |
 | [[Windows 11 Arm64] Actions workspace will move to D: drive on November 30, 2026](https://github.com/actions/runner-images/issues/15314) |
 | [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
-| [[Windows] The `windows-11-arm` image label will use Windows 11 Arm64 with Visual Studio 2026 image in September 2026](https://github.com/actions/runner-images/issues/14602) |
-| [[Windows] The Windows 11 Arm64 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14592) |
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9974
-- Image Version: 20261112.217.1
+- Image Version: 20261115.219.1
 
 ## Windows features
 
@@ -35,7 +33,7 @@
 - pip 26.3 (python 3.13)
 - Pipx 1.18.16
 - RubyGems 3.6.9
-- Vcpkg (build from commit da6b979efe)
+- Vcpkg (build from commit 8f363bdc11)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -85,7 +83,7 @@
 
 ### CLI Tools
 - Alibaba Cloud CLI 3.5.3
-- AWS CLI 2.40.0
+- AWS CLI 2.40.3
 - AWS SAM CLI 1.172.1
 - AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.92.0
@@ -109,8 +107,8 @@
 ### Browsers and Drivers
 - Google Chrome 157.0.8103.79
 - Chrome Driver 157.0.8103.78
-- Microsoft Edge 157.0.4341.46
-- Microsoft Edge Driver 157.0.4341.46
+- Microsoft Edge 157.0.4341.60
+- Microsoft Edge Driver 157.0.4341.60
 - Mozilla Firefox 160.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
@@ -396,7 +394,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.335
+- AWSPowershell: 5.0.336
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
