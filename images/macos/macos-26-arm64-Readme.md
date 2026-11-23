@@ -9,7 +9,7 @@
 # macOS 26
 - OS Version: macOS 26.7.2 (25G332)
 - Kernel Version: Darwin 25.6.0
-- Image Version: 20261117.0516.1
+- Image Version: 20261123.0526.1
 
 ## Installed Software
 
@@ -28,36 +28,36 @@
 - Node.js 24.22.3
 - Perl 5.44.0
 - Python3 3.15.2
-- Ruby 3.4.12
+- Ruby 3.4.13
 
 ### Package Management
 - Bundler 4.1.0
 - Carthage 0.40.0
 - CocoaPods 1.17.0
-- Homebrew 7.0.14
+- Homebrew 7.0.15
 - NPM 11.19.1
 - Pip3 26.2.2 (python 3.15)
-- Pipx 1.18.16
+- Pipx 1.18.19
 - RubyGems 4.1.0
-- Vcpkg 2026 (build from commit 0df93a05b9)
+- Vcpkg 2026 (build from commit 277978ad2e)
 - Yarn 1.22.22
 
 ### Project Management
 - Apache Ant 1.10.18
-- Apache Maven 3.10.1
-- Gradle 9.9.1
+- Apache Maven 3.10.2
+- Gradle 9.9.2
 
 ### Utilities
 - 7-Zip 17.05
 - aria2 1.37.0
-- azcopy 10.34.1
-- bazel 9.3.2
+- azcopy 10.34.2
+- bazel 9.3.3
 - bazelisk 1.30.0
 - bsdtar 3.5.3 - available by 'tar' alias
 - Curl 8.7.1
 - Git 2.56.1
 - Git LFS 3.8.1
-- GitHub CLI 2.104.0
+- GitHub CLI 2.105.0
 - GNU Tar 1.35 - available by 'gtar' alias
 - GNU Wget 1.25.0
 - gpg (GnuPG) 2.5.24
@@ -72,14 +72,14 @@
 - Ninja 1.13.2
 
 ### Tools
-- AWS CLI 2.40.4
-- AWS SAM CLI 1.172.1
+- AWS CLI 2.42.1
+- AWS SAM CLI 1.174.0
 - AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.93.0
-- Azure CLI (azure-devops) 1.0.11
+- Azure CLI (azure-devops) 1.0.12
 - Bicep CLI 0.49.2
-- Cmake 4.5.0
-- CodeQL Action Bundle 2.27.4
+- Cmake 4.5.1
+- CodeQL Action Bundle 2.27.5
 - Fastlane 2.242.0
 - SwiftFormat 0.64.7
 - Xcbeautify 3.2.1
@@ -89,14 +89,14 @@
 ### Browsers
 - Safari 27.2 (21625.2.8.18.4)
 - SafariDriver 27.2 (21625.2.8.18.4)
-- Google Chrome 157.0.8103.79
-- Google Chrome for Testing 157.0.8103.78
-- ChromeDriver 157.0.8103.78
-- Microsoft Edge 157.0.4341.60
-- Microsoft Edge WebDriver 157.0.4341.60
-- Mozilla Firefox 160.0
+- Google Chrome 158.0.8127.37
+- Google Chrome for Testing 158.0.8127.36
+- ChromeDriver 158.0.8127.36
+- Microsoft Edge 158.0.4370.33
+- Microsoft Edge WebDriver 158.0.4370.33
+- Mozilla Firefox 160.0.1
 - geckodriver 0.37.1
-- Selenium server 4.52.0
+- Selenium server 4.53.0
 
 #### Environment variables
 | Name            | Value                                   |
@@ -106,20 +106,20 @@
 | GECKOWEBDRIVER  | /opt/homebrew/opt/geckodriver/bin       |
 
 ### Java
-| Version               | Environment Variable |
-| --------------------- | -------------------- |
-| 11.0.33+10            | JAVA_HOME_11_arm64   |
-| 17.0.21+9             | JAVA_HOME_17_arm64   |
-| 21.0.13+9.0 (default) | JAVA_HOME_21_arm64   |
-| 25.0.5+8.0            | JAVA_HOME_25_arm64   |
+| Version                       | Environment Variable |
+| ----------------------------- | -------------------- |
+| 11.0.33+100000001             | JAVA_HOME_11_arm64   |
+| 17.0.21+100000002             | JAVA_HOME_17_arm64   |
+| 21.0.13+100000002.0 (default) | JAVA_HOME_21_arm64   |
+| 25.0.5+100000002.0            | JAVA_HOME_25_arm64   |
 
 ### Cached Tools
 
 #### Ruby
 - 3.2.11
-- 3.3.13
-- 3.4.12
-- 4.0.9
+- 3.3.14
+- 3.4.13
+- 4.0.10
 
 #### Python
 - 3.11.9
@@ -240,10 +240,10 @@
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                            |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 16.0                                                                                                                                                                                                                                                                                                                                               |
-| Android Emulator           | 37.2.13                                                                                                                                                                                                                                                                                                                                            |
+| Android Emulator           | 37.3.10                                                                                                                                                                                                                                                                                                                                            |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1                                                                                                                                                                                                                                                                                                           |
 | Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 2)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2) |
-| Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                             |
+| Android SDK Platform-Tools | 37.0.3                                                                                                                                                                                                                                                                                                                                             |
 | Android SDK Tools          | 26.1.1                                                                                                                                                                                                                                                                                                                                             |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                             |
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                    |
