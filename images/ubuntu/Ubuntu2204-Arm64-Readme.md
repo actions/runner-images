@@ -6,8 +6,8 @@
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
-- Kernel Version: 6.8.0-1070-azure
-- Image Version: 20261116.196.1
+- Kernel Version: 6.8.0-1073-azure
+- Image Version: 20261122.201.1
 - Systemd version: 249.11-0ubuntu3.23
 
 ## Installed Software
@@ -27,12 +27,12 @@
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.4.2
+- Swift 6.4.3
 
 ### Package Management
 - cpan 1.64
 - Helm 3.22.1
-- Homebrew 7.0.14
+- Homebrew 7.0.15
 - Npm 10.9.9
 - NuGet 6.6.1.2
 - Pip 22.0.2
@@ -58,21 +58,21 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.9.1
-- Lerna 10.1.1
+- Gradle 9.9.2
+- Lerna 10.1.3
 - Maven 3.9.12
 
 ### Tools
 - Ansible 2.17.14
 - apt-fast 1.10.0
-- AzCopy 10.34.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.3.2
+- AzCopy 10.34.2 - available by `azcopy` and `azcopy10` aliases
+- Bazel 9.3.3
 - Bazelisk 1.28.1
 - Buildah 1.23.1
 - CMake 3.31.6
 - Docker Amazon ECR Credential Helper 0.13.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.39.0
+- Docker-Buildx 0.39.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.238.0
@@ -87,14 +87,14 @@ to accomplish this.
 - MediaInfo 21.09
 - Mercurial 6.1.1
 - Minikube 1.39.0
-- n 11.0.0
+- n 12.0.0
 - Newman 6.2.3
 - nvm 0.41.0
 - OpenSSL 3.0.2-0ubuntu1.30
 - Packer 1.16.2
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.276.0
+- Pulumi 3.277.0
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
@@ -105,25 +105,25 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.40.4
+- AWS CLI 2.42.1
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.172.1
+- AWS SAM CLI 1.174.0
 - Azure CLI 2.93.0
-- Azure CLI (azure-devops) 1.0.11
-- GitHub CLI 2.104.0
-- Google Cloud CLI 593.0.0
-- Netlify CLI 27.20.0
+- Azure CLI (azure-devops) 1.0.12
+- GitHub CLI 2.105.0
+- Google Cloud CLI 594.0.1
+- Netlify CLI 27.20.1
 - OpenShift CLI 5.0.1
-- Vercel CLI 65.16.0
+- Vercel CLI 66.6.0
 
 ### Java
 | Version              | Environment Variable |
 | -------------------- | -------------------- |
 | 8.0.512+9            | JAVA_HOME_8_X64      |
 | 11.0.33+10 (default) | JAVA_HOME_11_X64     |
-| 17.0.21+9            | JAVA_HOME_17_X64     |
-| 21.0.13+9            | JAVA_HOME_21_X64     |
-| 25.0.5+8             | JAVA_HOME_25_X64     |
+| 17.0.21+2            | JAVA_HOME_17_X64     |
+| 21.0.13+2            | JAVA_HOME_21_X64     |
+| 25.0.5+2             | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.1.2
@@ -148,8 +148,8 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.11.0
 
 ### Browsers and Drivers
-- Selenium server 4.52.0
-- Mozilla Firefox 160.0
+- Selenium server 4.53.0
+- Mozilla Firefox 160.0.1
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -194,6 +194,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 22.23.5
 - 24.22.3
+- 26.13.1
 
 #### Python
 - 3.11.18
@@ -204,9 +205,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Ruby
 - 3.2.11
-- 3.3.13
-- 3.4.12
-- 4.0.9
+- 3.3.14
+- 3.4.13
+- 4.0.10
 
 ### PowerShell Tools
 - PowerShell 7.6.10
