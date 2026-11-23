@@ -65,7 +65,8 @@ function Set-DefaultRubyVersion {
 
 if (Test-IsArm64) {
     $downloadArch = "arm"
-    $toolcacheArch = "aarch64"
+    # ruby/setup-ruby uses the Node.js architecture name when looking up cached Ruby.
+    $toolcacheArch = "arm64"
 } else {
     $downloadArch = "x64"
     $toolcacheArch = "x64"
@@ -92,3 +93,5 @@ foreach ($rubyVersion in $rubyToolVersions) {
 }
 
 Set-DefaultRubyVersion -Version $rubyTools.default -Arch $rubyTools.arch
+
+Invoke-PesterTests -TestFile "Toolset" -TestName "Ruby*"

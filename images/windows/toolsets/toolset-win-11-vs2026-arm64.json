@@ -2,10 +2,11 @@
     "toolcache": [
         {
             "name": "Ruby",
-            "arch": "aarch64",
+            "arch": "arm64",
             "platform" : "win32",
             "versions": [
-                "3.4"
+                "3.4",
+                "4.0"
             ],
             "default": "3.4"
         },
