@@ -267,6 +267,19 @@ The `builders` section contains variables for the `azure-arm` builder used in th
 
 **Detailed Azure builders documentation can be found in the [packer documentation](https://www.packer.io/docs/builders/azure).**
 
+### Windows Server 2025 temporary storage
+
+Windows Server 2025 builds, including the Visual Studio 2026 variant, validate read/write access to `temp_dir` before installing software. The default is `D:\temp`; an existing healthy fixed volume is reused without formatting.
+
+If D: is unavailable, the build can initialize exactly one healthy, online, writable, unpartitioned RAW Azure local NVMe disk (`Microsoft NVMe Direct Disk*`) as GPT/NTFS and assign it D:. A CD-ROM occupying D: is moved to a free letter between E: and Z:. OS disks, remote NVMe disks, existing partitions, and non-CD-ROM devices occupying D: are not modified. Multiple local NVMe disks require manual preparation.
+
+> [!WARNING]
+> Initialization formats the selected local temporary disk. Its contents are ephemeral and are not preserved across VM deallocation or host changes. This preparation applies to the build VM, not to VMs subsequently deployed from the generated image.
+
+If the storage configuration cannot be prepared safely, the build fails with a diagnostic. Use a VM size with an already initialized temporary volume, prepare the volume before provisioning, or pass `-var 'temp_dir=C:\temp'` to Packer. A custom `temp_dir` must be below an existing healthy fixed volume; the build does not initialize disks for other drive letters. When using C:, ensure sufficient free space during installation and account for temporary files in the captured OS image.
+
+See the [Azure temporary NVMe disk FAQ](https://learn.microsoft.com/en-us/azure/virtual-machines/enable-nvme-temp-faqs) and [issue #15327](https://github.com/actions/runner-images/issues/15327).
+
 ## Toolset
 
 The configuration for some installed software is located in `toolset.json` files. These files define the list of Ruby, Python, Go versions, the list of PowerShell modules and VS components that will be installed on the image. They can be changed if these tools are not required, to reduce image generation time or image size.
