@@ -276,7 +276,8 @@ If D: is unavailable, the build can initialize exactly one healthy, online, writ
 > [!WARNING]
 > Initialization formats the selected local temporary disk. Its contents are ephemeral and are not preserved across VM deallocation or host changes. This preparation applies to the build VM, not to VMs subsequently deployed from the generated image.
 
-If the storage configuration cannot be prepared safely, the build fails with a diagnostic. Use a VM size with an already initialized temporary volume, prepare the volume before provisioning, or pass `-var 'temp_dir=C:\temp'` to Packer. A custom `temp_dir` must be below an existing healthy fixed volume; the build does not initialize disks for other drive letters. When using C:, ensure sufficient free space during installation and account for temporary files in the captured OS image.
+If the storage configuration cannot be prepared safely, the build fails with a diagnostic. Use a VM size with an already initialized temporary volume, prepare the volume before provisioning, or pass `-var 'temp_dir=C:\temp'` to Packer.
+A custom `temp_dir` must be below an existing healthy fixed volume; the build does not initialize disks for other drive letters. When using C:, ensure sufficient free space during installation and account for temporary files in the captured OS image.
 
 See the [Azure temporary NVMe disk FAQ](https://learn.microsoft.com/en-us/azure/virtual-machines/enable-nvme-temp-faqs) and [issue #15327](https://github.com/actions/runner-images/issues/15327).
 
