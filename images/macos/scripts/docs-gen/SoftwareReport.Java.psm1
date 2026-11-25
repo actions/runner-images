@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/software-report-base/JavaVersion.psm1" -DisableNameChecking
+
 function Get-JavaVersions {
     $defaultJavaPath = (Get-Item env:JAVA_HOME).value
 
@@ -15,9 +17,7 @@ function Get-JavaVersions {
 
     return $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
-        # Take semver from the java path
-        $version = $javaPath.split('/')[5]
-        $fullVersion = $version.Replace('-', '+')
+        $fullVersion = Get-InstalledJavaVersion -JavaHome $javaPath
         $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
 
         [PSCustomObject] @{

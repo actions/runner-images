@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/software-report-base/JavaVersion.psm1" -DisableNameChecking
+
 function Get-JavaVersions {
     $defaultJavaPath = $env:JAVA_HOME
     if (Test-IsArm64) {
@@ -12,11 +14,8 @@ function Get-JavaVersions {
 
     return $javaVersions | Sort-Object $sortRules | ForEach-Object {
         $javaPath = $_.Value
-        # Take semver from the java path
-        # The path contains '-' sign in the version number instead of '+' due to the following issue, need to substitute it back https://github.com/actions/runner-images/issues/3014
-        $versionInPath = (Split-Path $javaPath) -replace "\w:\\.*\\"
-        $version = $versionInPath -replace '-', '+'
-        $defaultPostfix = ($javaPath -eq $defaultJavaPath) ? " (default)" : ""
+        $version = Get-InstalledJavaVersion -JavaHome $javaPath
+        $defaultPostfix = if ($javaPath -eq $defaultJavaPath) { " (default)" } else { "" }
 
         [PSCustomObject] @{
             "Version"              = $version + $defaultPostfix
