@@ -15,14 +15,15 @@ jobs:
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
         script: |
+            const payload = context.payload.client_payload;
             const response = await github.rest.repos.getReleaseByTag({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              tag: "${{ github.event.client_payload.ReleaseBranchName }}"
+              tag: payload.ReleaseBranchName
             });
             github.rest.repos.updateRelease({
               owner: context.repo.owner,
               repo: context.repo.repo,
               release_id: response.data.id,
-              prerelease: ${{ github.event.client_payload.Prerelease }}
+              prerelease: String(payload.Prerelease) === 'true'
             });

@@ -53,6 +53,11 @@ Describe "Android SDK" -Skip:(Test-IsArm64) {
                 "$installedPackages" | Should -Match "$platformVersion"
             }
 
+            It "Packages are installed in expected locations" {
+                $sdkManager = "$env:ANDROID_HOME\cmdline-tools\latest\bin\sdkmanager.bat"
+                "$(cmd /c "$sdkManager --list_installed 2>&1")" | Should -Not -Match "inconsistent location"
+            }
+
             It "Platform build tools <buildToolsVersion> is installed" -TestCases $buildToolsTestCases {
                 "$installedPackages" | Should -Match "$buildToolsVersion"
             }

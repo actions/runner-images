@@ -1,14 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 | [[Ubuntu] `ubuntu-latest` label will use Ubuntu 26.04 in November 2026](https://github.com/actions/runner-images/issues/14748) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm64 are now generally available](https://github.com/actions/runner-images/issues/14747) |
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
 ***
 # Ubuntu 22.04
 - OS Version: 22.04.5 LTS
 - Kernel Version: 6.8.0-1070-azure
-- Image Version: 20261026.341.1
+- Image Version: 20261116.365.1
 - Systemd version: 249.11-0ubuntu3.23
 
 ## Installed Software
@@ -21,20 +20,20 @@
 - Dash 0.5.11+git20210903+057cd650a4ed-3build1
 - GNU C++: 10.5.0, 11.4.0, 12.3.0
 - GNU Fortran: 10.5.0, 11.4.0, 12.3.0
-- Julia 1.13.2
+- Julia 1.13.4
 - Kotlin 2.4.21
 - Mono 6.12.0.200
 - MSBuild 16.10.1.31701 (Mono 6.12.0.200)
-- Node.js 22.23.4
+- Node.js 22.23.5
 - Perl 5.34.0
 - Python 3.10.12
 - Ruby 3.0.2p107
-- Swift 6.4.1
+- Swift 6.4.2
 
 ### Package Management
 - cpan 1.64
 - Helm 3.22.1
-- Homebrew 7.0.10
+- Homebrew 7.0.14
 - Miniconda 26.9.4
 - Npm 10.9.9
 - NuGet 6.6.1.2
@@ -42,7 +41,7 @@
 - Pip3 22.0.2
 - Pipx 1.17.12
 - RubyGems 3.3.5
-- Vcpkg (build from commit 817892b0ec)
+- Vcpkg (build from commit d387c3cee2)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -61,35 +60,35 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.12
-- Gradle 9.8.2
+- Gradle 9.9.1
 - Lerna 10.1.1
-- Maven 3.10.0
-- Sbt 1.13.0
+- Maven 3.10.1
+- Sbt 1.13.1
 
 ### Tools
 - Ansible 2.17.14
 - apt-fast 1.10.0
 - AzCopy 10.34.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.3.1
+- Bazel 9.3.2
 - Bazelisk 1.28.1
-- Bicep 0.48.1
+- Bicep 0.49.2
 - Buildah 1.23.1
 - CMake 3.31.6
-- CodeQL Action Bundle 2.27.3
-- Docker Amazon ECR Credential Helper 0.12.0
+- CodeQL Action Bundle 2.27.4
+- Docker Amazon ECR Credential Helper 0.13.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.38.1
+- Docker-Buildx 0.39.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.238.0
-- Git 2.56.0
+- Git 2.56.1
 - Git LFS 3.8.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
-- Heroku 11.12.1
+- Heroku 11.13.0
 - jq 1.6
 - Kind 0.33.0
-- Kubectl 1.37.1
+- Kubectl 1.37.2
 - Kustomize 5.8.3
 - Leiningen 2.12.0
 - MediaInfo 21.09
@@ -97,49 +96,49 @@ to accomplish this.
 - Minikube 1.39.0
 - n 11.0.0
 - Newman 6.2.3
-- nvm 0.40.8
+- nvm 0.41.0
 - OpenSSL 3.0.2-0ubuntu1.30
 - Packer 1.16.2
 - Parcel 2.16.4
 - Podman 3.4.4
-- Pulumi 3.272.0
-- R 4.6.1
+- Pulumi 3.276.0
+- R 4.6.2
 - Skopeo 1.4.1
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.14.1
-- Terraform 1.17.0
+- Terraform 1.17.2
 - yamllint 1.38.0
-- yq 4.54.1
+- yq 4.54.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.5.2
-- AWS CLI 2.38.5
+- Alibaba Cloud CLI 3.5.3
+- AWS CLI 2.40.4
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.170.0
-- Azure CLI 2.91.0
-- Azure CLI (azure-devops) 1.0.10
-- GitHub CLI 2.103.2
-- Google Cloud CLI 590.0.1
+- AWS SAM CLI 1.172.1
+- Azure CLI 2.93.0
+- Azure CLI (azure-devops) 1.0.11
+- GitHub CLI 2.104.0
+- Google Cloud CLI 593.0.0
 - ORAS CLI 1.3.6
-- Netlify CLI 27.14.2
-- OpenShift CLI 4.22.19
-- Vercel CLI 65.2.0
+- Netlify CLI 27.20.0
+- OpenShift CLI 5.0.1
+- Vercel CLI 65.16.0
 
 ### Java
-| Version             | Environment Variable |
-| ------------------- | -------------------- |
-| 8.0.504+1           | JAVA_HOME_8_X64      |
-| 11.0.32+1 (default) | JAVA_HOME_11_X64     |
-| 17.0.21+9           | JAVA_HOME_17_X64     |
-| 21.0.13+9           | JAVA_HOME_21_X64     |
-| 25.0.5+8            | JAVA_HOME_25_X64     |
+| Version              | Environment Variable |
+| -------------------- | -------------------- |
+| 8.0.512+9            | JAVA_HOME_8_X64      |
+| 11.0.33+10 (default) | JAVA_HOME_11_X64     |
+| 17.0.21+9            | JAVA_HOME_17_X64     |
+| 21.0.13+9            | JAVA_HOME_21_X64     |
+| 25.0.5+8             | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.1.2
-- Composer 2.10.3
-- PHPUnit 8.5.56
+- Composer 2.11.2
+- PHPUnit 8.5.57
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -151,27 +150,27 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.11.1
 
 ### Rust Tools
-- Cargo 1.99.1
-- Rust 1.99.1
-- Rustdoc 1.99.1
-- Rustup 1.29.2
+- Cargo 1.100.0
+- Rust 1.100.0
+- Rustdoc 1.100.0
+- Rustup 1.29.3
 
 #### Packages
 - Bindgen 0.73.2
-- Cargo audit 0.22.2
-- Cargo clippy 0.1.99
+- Cargo audit 0.23.0
+- Cargo clippy 0.1.100
 - Cargo outdated 0.19.0
 - Cbindgen 0.29.4
-- Rustfmt 1.10.0
+- Rustfmt 1.11.0
 
 ### Browsers and Drivers
-- Google Chrome 156.0.8078.47
-- ChromeDriver 156.0.8078.47
-- Chromium 156.0.8078.0
-- Microsoft Edge 156.0.4314.42
-- Microsoft Edge WebDriver 156.0.4314.42
-- Selenium server 4.51.0
-- Mozilla Firefox 158.0.1
+- Google Chrome 157.0.8103.78
+- ChromeDriver 157.0.8103.78
+- Chromium 157.0.8103.0
+- Microsoft Edge 157.0.4341.60
+- Microsoft Edge WebDriver 157.0.4341.60
+- Selenium server 4.52.0
+- Mozilla Firefox 160.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -183,14 +182,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.133, 8.0.206, 8.0.319, 8.0.427, 9.0.123, 9.0.205, 9.0.320, 10.0.114, 10.0.204, 10.0.303, 10.0.403
+- .NET Core SDK: 8.0.134, 8.0.206, 8.0.319, 8.0.428, 9.0.124, 9.0.205, 9.0.321, 10.0.115, 10.0.204, 10.0.303, 10.0.404, 11.0.100
 - nbgv 3.10.94+dea9a6c17c
 
 ### Databases
 - sqlite3 3.37.2
 
 #### PostgreSQL
-- PostgreSQL 14.24
+- PostgreSQL 14.25
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -198,7 +197,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.46-0ubuntu0.22.04.4
+- MySQL 8.0.46-0ubuntu0.22.04.5
 ```
 User: root
 Password: root
@@ -213,20 +212,20 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.24.13
 - 1.25.14
-- 1.26.10
+- 1.26.11
+- 1.27.4
 
 #### Node.js
-- 22.23.4
-- 24.22.1
+- 22.23.5
+- 24.22.3
 
 #### Python
-- 3.11.17
-- 3.12.15
-- 3.13.17
-- 3.14.9
-- 3.15.1
+- 3.11.18
+- 3.12.16
+- 3.13.18
+- 3.14.10
+- 3.15.2
 
 #### PyPy
 - 3.7.13 [PyPy 7.3.9]
@@ -242,7 +241,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 4.0.9
 
 ### PowerShell Tools
-- PowerShell 7.6.9
+- PowerShell 7.6.10
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -263,7 +262,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | Android Command Line Tools | 9.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
+| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 2)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | CMake                      | 3.18.1<br>3.22.1<br>3.31.5                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -289,12 +288,12 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | automake               | 1:1.16.5-1.3                        |
 | binutils               | 2.38-4ubuntu2.12                    |
 | bison                  | 2:3.8.2+dfsg-1ubuntu0.22.04.1       |
-| brotli                 | 1.0.9-2build6                       |
+| brotli                 | 1.0.9-2ubuntu0.1                    |
 | bzip2                  | 1.0.8-5ubuntu0.1                    |
 | coreutils              | 8.32-4.1ubuntu1.4                   |
 | curl                   | 7.81.0-1ubuntu1.30                  |
 | dbus                   | 1.12.20-2ubuntu4.1                  |
-| dnsutils               | 1:9.18.39-0ubuntu0.22.04.7          |
+| dnsutils               | 1:9.18.39-0ubuntu0.22.04.8          |
 | dpkg                   | 1.21.1ubuntu2.6                     |
 | dpkg-dev               | 1.21.1ubuntu2.6                     |
 | fakeroot               | 1.28-1ubuntu1                       |
@@ -314,7 +313,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | lib32z1                | 1:1.2.11.dfsg-2ubuntu9.2            |
 | libc++-dev             | 1:14.0-55\~exp2                     |
 | libc++abi-dev          | 1:14.0-55\~exp2                     |
-| libc6-dev              | 2.35-0ubuntu3.15                    |
+| libc6-dev              | 2.35-0ubuntu3.18                    |
 | libcurl4               | 7.81.0-1ubuntu1.30                  |
 | libgbm-dev             | 23.2.1-1ubuntu3.1\~22.04.4          |
 | libgconf-2-4           | 3.2.6-7ubuntu2                      |
@@ -333,7 +332,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | libxkbfile-dev         | 1:1.1.0-1build3                     |
 | libxss1                | 1:1.2.3-1build2                     |
 | libyaml-dev            | 0.2.2-1build2                       |
-| locales                | 2.35-0ubuntu3.15                    |
+| locales                | 2.35-0ubuntu3.18                    |
 | lz4                    | 1.9.3-2build2                       |
 | m4                     | 1.4.18-5ubuntu2                     |
 | make                   | 4.3-4.1build1                       |

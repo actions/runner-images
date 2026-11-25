@@ -1,41 +1,42 @@
 | Announcements |
 |-|
-| [[Windows] The `windows-11-arm` image label will use Windows 11 Arm64 with Visual Studio 2026 image in September 2026](https://github.com/actions/runner-images/issues/14602) |
-| [[Windows] The Windows 11 Arm64 with Visual Studio 2026 is now generally available in GitHub Actions](https://github.com/actions/runner-images/issues/14592) |
+| [[Windows] D: drive will use ReFS instead of NTFS on Windows images from November 30, 2026](https://github.com/actions/runner-images/issues/15315) |
+| [[Windows 11 Arm64] Actions workspace will move to D: drive on November 30, 2026](https://github.com/actions/runner-images/issues/15314) |
+| [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 ***
 # Windows Server 2025
-- OS Version: 10.0.26100 Build 33650
-- Image Version: 20261021.278.1
+- OS Version: 10.0.26100 Build 33828
+- Image Version: 20261116.315.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
-- Windows Subsystem for Linux (Default, WSLv2): 3.0.3.0
+- Windows Subsystem for Linux (Default, WSLv2): 3.0.5.0
 
 ## Installed Software
 
 ### Language and Runtime
 - Bash 5.3.15(2)-release
-- Go 1.24.13
+- Go 1.26.11
 - Julia 1.12.0
 - Kotlin 2.4.21
 - LLVM 20.1.8
-- Node 22.23.4
+- Node 22.23.5
 - Perl 5.42.0
-- PHP 8.5.11
+- PHP 8.5.12
 - Python 3.12.10
-- Ruby 3.3.12
+- Ruby 3.3.13
 
 ### Package Management
-- Chocolatey 2.7.4
-- Composer 2.10.3
+- Chocolatey 2.7.5
+- Composer 2.11.2
 - Helm 4.1.4
-- Miniconda 26.9.3 (pre-installed on the image but not added to PATH)
+- Miniconda 26.9.4 (pre-installed on the image but not added to PATH)
 - NPM 10.9.9
-- NuGet 7.9.0.83
-- pip 26.2.2 (python 3.12)
-- Pipx 1.18.4
+- NuGet 8.0.0.137
+- pip 26.3 (python 3.12)
+- Pipx 1.18.16
 - RubyGems 3.5.22
-- Vcpkg (build from commit 8c5c88430a)
+- Vcpkg (build from commit 0df93a05b9)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -46,39 +47,39 @@
 
 ### Project Management
 - Ant 1.10.18
-- Gradle 9.8
+- Gradle 9.9
 - Maven 3.9.16
 - sbt 1.12.12
 
 ### Tools
-- 7zip 26.04
+- 7zip 26.06
 - aria2 1.37.0
-- azcopy 10.32.8
-- Bazel 9.3.1
+- azcopy 10.34.1
+- Bazel 9.3.2
 - Bazelisk 1.28.1
 - Bicep 0.48.1
 - Cabal 3.18.2.0
-- CMake 4.4.4
-- CodeQL Action Bundle 2.27.3
+- CMake 4.5.0
+- CodeQL Action Bundle 2.27.4
 - Docker 29.7.2
 - Docker Compose 2.40.3
-- Docker-wincred 0.9.12
+- Docker-wincred 0.9.13
 - ghc 9.14.1
-- Git 2.56.0.windows.2
-- Git LFS 3.8.0
+- Git 2.56.1.windows.1
+- Git LFS 3.8.1
 - ImageMagick 7.1.2-25
 - InnoSetup 6.7.1
 - jq 1.8.2
 - Kind 0.33.0
-- Kubectl 1.37.1
+- Kubectl 1.37.2
 - gcc 15.2.0
 - gdb 17.1
 - GNU Binutils 2.46
 - Newman 6.2.3
 - OpenSSL 3.6.5
 - Packer 1.16.0
-- Pulumi 3.270.0
-- R 4.6.1
+- Pulumi 3.275.0
+- R 4.6.2
 - Service Fabric Runtime 11.7.157.1
 - Service Fabric SDK 8.7.157.1
 - Stack 3.11.1
@@ -91,32 +92,32 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.38.3
-- AWS SAM CLI 1.169.0
+- AWS CLI 2.40.3
+- AWS SAM CLI 1.172.1
 - AWS Session Manager CLI 1.2.896.0
-- Azure CLI 2.91.0
-- Azure DevOps CLI extension 1.0.9
-- GitHub CLI 2.103.0
+- Azure CLI 2.93.0
+- Azure DevOps CLI extension 1.0.11
+- GitHub CLI 2.104.0
 
 ### Rust Tools
-- Cargo 1.99.1
-- Rust 1.99.1
-- Rustdoc 1.99.1
-- Rustup 1.29.2
+- Cargo 1.100.0
+- Rust 1.100.0
+- Rustdoc 1.100.0
+- Rustup 1.29.3
 
 #### Packages
-- Clippy 0.1.99
-- Rustfmt 1.10.0
+- Clippy 0.1.100
+- Rustfmt 1.11.0
 
 ### Browsers and Drivers
-- Google Chrome 156.0.8078.48
-- Chrome Driver 156.0.8078.47
-- Microsoft Edge 155.0.4283.62
-- Microsoft Edge Driver 155.0.4283.62
-- Mozilla Firefox 158.0.1
+- Google Chrome 157.0.8103.79
+- Chrome Driver 157.0.8103.78
+- Microsoft Edge 157.0.4341.60
+- Microsoft Edge Driver 157.0.4341.60
+- Mozilla Firefox 160.0
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.51.0
+- Selenium server 4.52.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -127,13 +128,13 @@
 | SELENIUM_JAR_PATH | C:\selenium\selenium-server.jar    |
 
 ### Java
-| Version               | Environment Variable |
-| --------------------- | -------------------- |
-| 8.0.504+1             | JAVA_HOME_8_X64      |
-| 11.0.32+101           | JAVA_HOME_11_X64     |
-| 17.0.20+101 (default) | JAVA_HOME_17_X64     |
-| 21.0.12+101.0         | JAVA_HOME_21_X64     |
-| 25.0.4+101.0          | JAVA_HOME_25_X64     |
+| Version             | Environment Variable |
+| ------------------- | -------------------- |
+| 8.0.512+9           | JAVA_HOME_8_X64      |
+| 11.0.33+10          | JAVA_HOME_11_X64     |
+| 17.0.21+9 (default) | JAVA_HOME_17_X64     |
+| 21.0.13+9.0         | JAVA_HOME_21_X64     |
+| 25.0.5+8.0          | JAVA_HOME_25_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -155,20 +156,20 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Tools
 
 #### Go
-- 1.24.13
 - 1.25.14
-- 1.26.10
+- 1.26.11
+- 1.27.4
 
 #### Node.js
-- 22.23.4
-- 24.22.1
+- 22.23.5
+- 24.22.3
 
 #### Python
 - 3.11.9
 - 3.12.10
-- 3.13.16
-- 3.14.9
-- 3.15.1
+- 3.13.17
+- 3.14.10
+- 3.15.2
 
 #### PyPy
 - 3.9.19 [PyPy 7.3.16]
@@ -176,9 +177,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Ruby
 - 3.2.11
-- 3.3.12
-- 3.4.11
-- 4.0.7
+- 3.3.13
+- 3.4.12
+- 4.0.9
 
 ### Databases
 
@@ -186,7 +187,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Property             | Value                                                                                                                  |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | ServiceName          | postgresql-x64-17                                                                                                      |
-| Version              | 17.11                                                                                                                  |
+| Version              | 17.12                                                                                                                  |
 | ServiceStatus        | Stopped                                                                                                                |
 | ServiceStartType     | Disabled                                                                                                               |
 | EnvironmentVariables | PGBIN=C:\Program Files\PostgreSQL\17\bin <br> PGDATA=C:\PostgreSQL\17\data <br> PGROOT=C:\Program Files\PostgreSQL\17  |
@@ -197,16 +198,16 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 #### MongoDB
 | Version  | ServiceName | ServiceStatus | ServiceStartType |
 | -------- | ----------- | ------------- | ---------------- |
-| 7.0.45.0 | MongoDB     | Stopped       | Disabled         |
+| 7.0.48.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
 - Azure CosmosDb Emulator 2.14.28.0
 - DacFx 170.4.83.3
-- MySQL 8.0.46.0
+- MySQL 8.4.13.0
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.13.0
+- MongoDB Shell (mongosh) 2.14.2
 
 ### Web Servers
 | Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
@@ -217,207 +218,208 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2026
 | Name                          | Version         | Path                                                   |
 | ----------------------------- | --------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.11.12315.225 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Visual Studio Enterprise 2026 | 18.12.12405.243 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
 | ------------------------------------------------------------------------- | --------------- |
-| android                                                                   | 36.1.118.0      |
-| Component.Android.NDK.R27C                                                | 18.11.12301.404 |
-| Component.Android.SDK.MAUI                                                | 18.11.12301.404 |
-| Component.Linux.CMake                                                     | 18.11.12301.404 |
-| Component.Linux.RemoteFileExplorer                                        | 18.11.12301.404 |
-| Component.MDD.Linux                                                       | 18.11.12301.404 |
-| Component.Microsoft.NET.AppModernization                                  | 18.11.12301.404 |
-| Component.Microsoft.VisualStudio.RazorExtension                           | 18.11.12301.404 |
+| android                                                                   | 37.2.29.0       |
+| Component.Android.NDK.R27C                                                | 18.12.12405.243 |
+| Component.Android.SDK.MAUI                                                | 18.12.12405.243 |
+| Component.Linux.CMake                                                     | 18.12.12405.243 |
+| Component.Linux.RemoteFileExplorer                                        | 18.12.12405.243 |
+| Component.MDD.Linux                                                       | 18.12.12405.243 |
+| Component.Microsoft.NET.AppModernization                                  | 18.12.12405.243 |
+| Component.Microsoft.VisualStudio.RazorExtension                           | 18.12.12405.243 |
 | Component.Microsoft.VisualStudio.Tools.Applications.amd64                 | 17.1.37110.1    |
-| Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 18.11.12301.404 |
-| Component.Microsoft.Web.LibraryManager                                    | 18.11.12301.404 |
-| Component.Microsoft.Windows.DriverKit                                     | 18.11.12301.404 |
-| Component.OpenJDK                                                         | 18.11.12301.404 |
-| Component.UnityEngine.x64                                                 | 18.11.12301.404 |
-| Component.Unreal.Debugger                                                 | 18.11.12301.404 |
-| Component.Unreal.Ide                                                      | 18.11.12301.404 |
-| Component.VisualStudio.GitHub.Copilot                                     | 18.11.12301.404 |
+| Component.Microsoft.VisualStudio.Web.AzureFunctions                       | 18.12.12405.243 |
+| Component.Microsoft.Web.LibraryManager                                    | 18.12.12405.243 |
+| Component.Microsoft.Windows.DriverKit                                     | 18.12.12405.243 |
+| Component.OpenJDK                                                         | 18.12.12405.243 |
+| Component.UnityEngine.x64                                                 | 18.12.12405.243 |
+| Component.Unreal.Debugger                                                 | 18.12.12405.243 |
+| Component.Unreal.Ide                                                      | 18.12.12405.243 |
+| Component.VisualStudio.GitHub.Copilot                                     | 18.12.12405.243 |
 | Component.VSInstallerProjects2022                                         | 3.0.0           |
 | Component.WixToolset.VisualStudioExtension.Dev17                          | 1.0.0.22        |
 | Component.WixToolset.VisualStudioExtension.Schemas3                       | 1.0.0.22        |
-| ComponentGroup.Copilot.Azure.Skills                                       | 18.11.12301.404 |
-| ComponentGroup.Copilot.DotNet.Skills                                      | 18.11.12301.404 |
-| ComponentGroup.Microsoft.NET.AppModernization                             | 18.11.12301.404 |
-| ios                                                                       | 26.5.10315      |
-| maccatalyst                                                               | 26.5.10315      |
-| maui.blazor                                                               | 10.0.110.9434   |
-| maui.core                                                                 | 10.0.110.9434   |
-| maui.windows                                                              | 10.0.110.9434   |
-| Microsoft.Component.Azure.DataLake.Tools                                  | 18.11.12301.404 |
-| Microsoft.Component.ClickOnce                                             | 18.11.12301.404 |
-| Microsoft.Component.CodeAnalysis.SDK                                      | 18.11.12301.404 |
-| Microsoft.Component.MSBuild                                               | 18.11.12301.404 |
-| Microsoft.Component.NetFX.Native                                          | 18.11.12301.404 |
-| Microsoft.Component.PythonTools                                           | 18.11.12301.404 |
-| Microsoft.Component.PythonTools.Web                                       | 18.11.12301.404 |
-| Microsoft.ComponentGroup.Blend                                            | 18.11.12301.404 |
-| Microsoft.ComponentGroup.ClickOnce.Publish                                | 18.11.12301.404 |
-| Microsoft.Net.Component.4.6.2.TargetingPack                               | 18.11.12301.404 |
-| Microsoft.Net.Component.4.7.1.TargetingPack                               | 18.11.12301.404 |
-| Microsoft.Net.Component.4.7.2.TargetingPack                               | 18.11.12301.404 |
-| Microsoft.Net.Component.4.7.TargetingPack                                 | 18.11.12301.404 |
-| Microsoft.Net.Component.4.8.1.SDK                                         | 18.11.12301.404 |
-| Microsoft.Net.Component.4.8.1.TargetingPack                               | 18.11.12301.404 |
-| Microsoft.Net.Component.4.8.SDK                                           | 18.11.12301.404 |
-| Microsoft.Net.Component.4.8.TargetingPack                                 | 18.11.12301.404 |
-| Microsoft.Net.ComponentGroup.4.8.DeveloperTools                           | 18.11.12301.404 |
-| Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 18.11.12301.404 |
-| Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 18.11.12301.404 |
-| microsoft.net.runtime.android                                             | 10.1.1326.50504 |
-| microsoft.net.runtime.android.aot                                         | 10.1.1326.50504 |
-| microsoft.net.runtime.android.aot.net9                                    | 10.1.1326.50504 |
-| microsoft.net.runtime.android.net9                                        | 10.1.1326.50504 |
-| microsoft.net.runtime.ios                                                 | 10.1.1326.50504 |
-| microsoft.net.runtime.ios.net9                                            | 10.1.1326.50504 |
-| microsoft.net.runtime.maccatalyst                                         | 10.1.1326.50504 |
-| microsoft.net.runtime.maccatalyst.net9                                    | 10.1.1326.50504 |
-| microsoft.net.runtime.mono.tooling                                        | 10.1.1326.50504 |
-| microsoft.net.runtime.mono.tooling.net9                                   | 10.1.1326.50504 |
-| microsoft.net.sdk.emscripten                                              | 10.1.1326.50504 |
-| Microsoft.NetCore.Component.DevelopmentTools                              | 18.11.12301.404 |
-| Microsoft.NetCore.Component.Runtime.10.0                                  | 18.11.12306.233 |
-| Microsoft.NetCore.Component.Runtime.8.0                                   | 18.11.12306.233 |
-| Microsoft.NetCore.Component.SDK                                           | 18.11.12306.233 |
-| Microsoft.NetCore.Component.Web                                           | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.AppInsights.Tools                        | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.AspNet                                   | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.AspNet45                                 | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.ClassDesigner                            | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.CodeMap                                  | 18.11.12301.404 |
+| ComponentGroup.Copilot.Azure.Skills                                       | 18.12.12405.243 |
+| ComponentGroup.Copilot.DotNet.Skills                                      | 18.12.12405.243 |
+| ComponentGroup.Microsoft.NET.AppModernization                             | 18.12.12405.243 |
+| ios                                                                       | 27.2.11039      |
+| maccatalyst                                                               | 27.2.11039      |
+| maui.blazor                                                               | 11.0.0.9706     |
+| maui.core                                                                 | 11.0.0.9706     |
+| maui.windows                                                              | 11.0.0.9706     |
+| Microsoft.Component.Azure.DataLake.Tools                                  | 18.12.12405.243 |
+| Microsoft.Component.ClickOnce                                             | 18.12.12405.243 |
+| Microsoft.Component.CodeAnalysis.SDK                                      | 18.12.12405.243 |
+| Microsoft.Component.MSBuild                                               | 18.12.12405.243 |
+| Microsoft.Component.NetFX.Native                                          | 18.12.12405.243 |
+| Microsoft.Component.PythonTools                                           | 18.12.12405.243 |
+| Microsoft.Component.PythonTools.Web                                       | 18.12.12405.243 |
+| Microsoft.ComponentGroup.Blend                                            | 18.12.12405.243 |
+| Microsoft.ComponentGroup.ClickOnce.Publish                                | 18.12.12405.243 |
+| Microsoft.Net.Component.4.6.2.TargetingPack                               | 18.12.12405.243 |
+| Microsoft.Net.Component.4.7.1.TargetingPack                               | 18.12.12405.243 |
+| Microsoft.Net.Component.4.7.2.TargetingPack                               | 18.12.12405.243 |
+| Microsoft.Net.Component.4.7.TargetingPack                                 | 18.12.12405.243 |
+| Microsoft.Net.Component.4.8.1.SDK                                         | 18.12.12405.243 |
+| Microsoft.Net.Component.4.8.1.TargetingPack                               | 18.12.12405.243 |
+| Microsoft.Net.Component.4.8.SDK                                           | 18.12.12405.243 |
+| Microsoft.Net.Component.4.8.TargetingPack                                 | 18.12.12405.243 |
+| Microsoft.Net.ComponentGroup.4.8.DeveloperTools                           | 18.12.12405.243 |
+| Microsoft.Net.ComponentGroup.DevelopmentPrerequisites                     | 18.12.12405.243 |
+| Microsoft.Net.ComponentGroup.TargetingPacks.Common                        | 18.12.12405.243 |
+| microsoft.net.runtime.android                                             | 11.1.26.53018   |
+| microsoft.net.runtime.android.aot                                         | 11.1.26.53018   |
+| microsoft.net.runtime.android.aot.net10                                   | 11.1.26.53018   |
+| microsoft.net.runtime.android.net10                                       | 11.1.26.53018   |
+| microsoft.net.runtime.ios                                                 | 11.1.26.53018   |
+| microsoft.net.runtime.ios.net10                                           | 11.1.26.53018   |
+| microsoft.net.runtime.maccatalyst                                         | 11.1.26.53018   |
+| microsoft.net.runtime.maccatalyst.net10                                   | 11.1.26.53018   |
+| microsoft.net.runtime.mono.tooling                                        | 11.1.26.53018   |
+| microsoft.net.runtime.mono.tooling.net10                                  | 11.1.26.53018   |
+| microsoft.net.sdk.emscripten                                              | 11.1.26.53018   |
+| Microsoft.NetCore.Component.DevelopmentTools                              | 18.12.12405.243 |
+| Microsoft.NetCore.Component.Runtime.10.0                                  | 18.12.12405.243 |
+| Microsoft.NetCore.Component.Runtime.11.0                                  | 18.12.12405.243 |
+| Microsoft.NetCore.Component.Runtime.8.0                                   | 18.12.12405.243 |
+| Microsoft.NetCore.Component.SDK                                           | 18.12.12405.243 |
+| Microsoft.NetCore.Component.Web                                           | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.AppInsights.Tools                        | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.AspNet                                   | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.AspNet45                                 | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.ClassDesigner                            | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.CodeMap                                  | 18.12.12405.243 |
 | Microsoft.VisualStudio.Component.CoreEditor                               | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.CppBuildInsights                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Debugger.JustInTime                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.DiagnosticTools                          | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.DockerTools                              | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.DotNetModelBuilder                       | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.DslTools                                 | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.EntityFramework                          | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.FSharp                                   | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.FSharp.Desktop                           | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.FSharp.WebTemplates                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.GraphDocument                            | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Graphics                                 | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Graphics.Tools                           | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.HLSL                                     | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.IISExpress                               | 18.11.12301.404 |
+| Microsoft.VisualStudio.Component.CppBuildInsights                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Debugger.JustInTime                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.DiagnosticTools                          | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.DockerTools                              | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.DotNetModelBuilder                       | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.DslTools                                 | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.EntityFramework                          | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.FSharp                                   | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.FSharp.Desktop                           | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.FSharp.WebTemplates                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.GraphDocument                            | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Graphics                                 | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Graphics.Tools                           | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.HLSL                                     | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.IISExpress                               | 18.12.12405.243 |
 | Microsoft.VisualStudio.Component.IntelliCode                              | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.LinqToSql                                | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.LiveUnitTesting                          | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.ManagedDesktop.Core                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.ManagedDesktop.Prerequisites             | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.MSODBC.SQL                               | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.MSSQL.CMDLnUtils                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Node.Tools                               | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.NuGet                                    | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.NuGet.BuildTools                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.PortableLibrary                          | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Roslyn.Compiler                          | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Roslyn.LanguageServices                  | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Sharepoint.Tools                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.SQL.CLR                                  | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.SQL.DataSources                          | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.SQL.LocalDB.Runtime                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.SQL.SSDT                                 | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.TeamOffice                               | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.TextTemplating                           | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.TypeScript.TSServer                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Unity                                    | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.UWP.VC.ARM64                             | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.UWP.VC.ARM64EC                           | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM                       | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM64                     | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.14.44.17.14.x86.x64                   | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.ASAN                                  | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.ATL                                   | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.ATL.ARM64                             | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre                     | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.ATL.Spectre                           | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.ATLMFC                                | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre                        | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.CLI.Support                           | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.CMake.Project                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.CoreIde                               | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.DiagnosticTools                       | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Llvm.Clang                            | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset                     | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.MFC.ARM64                             | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre                     | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Redist.14.Latest                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Redist.MSM                            | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre                | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Runtimes.ARM64EC.Spectre              | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre              | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest               | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest              | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Tools.ARM64                           | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Tools.ARM64EC                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VC.Tools.x86.x64                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Vcpkg                                    | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.VSSDK                                    | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Wcf.Tooling                              | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Web                                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.WebDeploy                                | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Windows10SDK                             | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Windows11SDK.26100                       | 18.11.12315.133 |
-| Microsoft.VisualStudio.Component.Windows11Sdk.WindowsPerformanceToolkit   | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.WindowsAppSdkSupport.CSharp              | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.Workflow                                 | 18.11.12301.404 |
-| Microsoft.VisualStudio.Component.WslDebugging                             | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Native            | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Azure.Prerequisites                 | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.AzureFunctions                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Maui.All                            | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Maui.Android                        | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Maui.Blazor                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Maui.iOS                            | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Maui.MacCatalyst                    | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Maui.Shared                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Maui.Windows                        | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core                  | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang            | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard              | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.UWP.VC.v142                         | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64                | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Web                                 | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions                  | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.CMake            | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.TemplateEngine   | 18.11.12301.404 |
-| Microsoft.VisualStudio.ComponentGroup.WindowsAppDevelopment.Prerequisites | 18.11.12301.404 |
+| Microsoft.VisualStudio.Component.IntelliTrace.FrontEnd                    | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.JavaScript.Diagnostics                   | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.JavaScript.TypeScript                    | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.LinqToSql                                | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.LiveUnitTesting                          | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.ManagedDesktop.Core                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.ManagedDesktop.Prerequisites             | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.MSODBC.SQL                               | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.MSSQL.CMDLnUtils                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Node.Tools                               | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.NuGet                                    | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.NuGet.BuildTools                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.PortableLibrary                          | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Roslyn.Compiler                          | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Roslyn.LanguageServices                  | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Sharepoint.Tools                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.SQL.CLR                                  | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.SQL.DataSources                          | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.SQL.LocalDB.Runtime                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.SQL.SSDT                                 | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.TeamOffice                               | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.TextTemplating                           | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.TypeScript.TSServer                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Unity                                    | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.UWP.VC.ARM64                             | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.UWP.VC.ARM64EC                           | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM                       | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.14.29.16.11.ARM64                     | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.14.44.17.14.x86.x64                   | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.ASAN                                  | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.ATL                                   | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM64                             | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.ATL.ARM64.Spectre                     | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.ATL.Spectre                           | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.ATLMFC                                | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.ATLMFC.Spectre                        | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.CLI.Support                           | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.CMake.Project                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.CoreIde                               | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.DiagnosticTools                       | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Llvm.Clang                            | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Llvm.ClangToolset                     | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM64                             | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre                     | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Redist.14.Latest                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Redist.MSM                            | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre                | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Runtimes.ARM64EC.Spectre              | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Runtimes.x86.x64.Spectre              | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.TestAdapterForBoostTest               | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.TestAdapterForGoogleTest              | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Tools.ARM64                           | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Tools.ARM64EC                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VC.Tools.x86.x64                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Vcpkg                                    | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.VSSDK                                    | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Wcf.Tooling                              | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Web                                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.WebDeploy                                | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Windows10SDK                             | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Windows11SDK.26100                       | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Windows11Sdk.WindowsPerformanceToolkit   | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.WindowsAppSdkSupport.CSharp              | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.Workflow                                 | 18.12.12405.243 |
+| Microsoft.VisualStudio.Component.WslDebugging                             | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.ArchitectureTools.Native            | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Azure.Prerequisites                 | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.AzureFunctions                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Maui.All                            | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Maui.Android                        | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Maui.Blazor                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Maui.iOS                            | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Maui.MacCatalyst                    | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Maui.Shared                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Maui.Windows                        | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.MSIX.Packaging                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Core                  | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.NativeDesktop.Llvm.Clang            | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.UWP.NetCoreAndStandard              | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.UWP.VC.v142                         | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.VC.Tools.142.x86.x64                | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.VisualStudioExtension.Prerequisites | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Web                                 | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.Web.CloudTools                      | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions                  | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.CMake            | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.WebToolsExtensions.TemplateEngine   | 18.12.12405.243 |
+| Microsoft.VisualStudio.ComponentGroup.WindowsAppDevelopment.Prerequisites | 18.12.12405.243 |
 | Microsoft.VisualStudio.Workload.Azure                                     | 18.9.11915.232  |
 | Microsoft.VisualStudio.Workload.CoreEditor                                | 18.9.11915.232  |
 | Microsoft.VisualStudio.Workload.Data                                      | 18.9.11915.232  |
 | Microsoft.VisualStudio.Workload.DataScience                               | 18.9.11915.232  |
-| Microsoft.VisualStudio.Workload.ManagedDesktop                            | 18.9.11915.232  |
+| Microsoft.VisualStudio.Workload.ManagedDesktop                            | 18.12.12405.243 |
 | Microsoft.VisualStudio.Workload.ManagedGame                               | 18.9.11915.232  |
 | Microsoft.VisualStudio.Workload.NativeCrossPlat                           | 18.9.11915.232  |
-| Microsoft.VisualStudio.Workload.NativeDesktop                             | 18.9.11915.232  |
+| Microsoft.VisualStudio.Workload.NativeDesktop                             | 18.12.12405.243 |
 | Microsoft.VisualStudio.Workload.NativeGame                                | 18.9.11915.232  |
 | Microsoft.VisualStudio.Workload.NativeMobile                              | 18.9.11915.232  |
 | Microsoft.VisualStudio.Workload.NetCrossPlat                              | 18.9.11915.232  |
-| Microsoft.VisualStudio.Workload.NetWeb                                    | 18.11.12301.404 |
-| Microsoft.VisualStudio.Workload.Node                                      | 18.9.11915.232  |
+| Microsoft.VisualStudio.Workload.NetWeb                                    | 18.12.12405.243 |
+| Microsoft.VisualStudio.Workload.Node                                      | 18.12.12405.243 |
 | Microsoft.VisualStudio.Workload.Office                                    | 18.9.11915.232  |
-| Microsoft.VisualStudio.Workload.Python                                    | 18.9.11915.232  |
+| Microsoft.VisualStudio.Workload.Python                                    | 18.12.12405.243 |
 | Microsoft.VisualStudio.Workload.Universal                                 | 18.9.11915.232  |
 | Microsoft.VisualStudio.Workload.VisualStudioExtension                     | 18.9.11915.232  |
-| runtimes.ios                                                              | 10.1.1326.50504 |
-| runtimes.ios.net9                                                         | 10.1.1326.50504 |
-| runtimes.maccatalyst                                                      | 10.1.1326.50504 |
-| runtimes.maccatalyst.net9                                                 | 10.1.1326.50504 |
-| wasm.tools                                                                | 10.1.1326.50504 |
+| runtimes.ios                                                              | 11.1.26.53018   |
+| runtimes.ios.net10                                                        | 11.1.26.53018   |
+| runtimes.maccatalyst                                                      | 11.1.26.53018   |
+| runtimes.maccatalyst.net10                                                | 11.1.26.53018   |
+| wasm.tools                                                                | 11.1.26.53018   |
 | ms-azuretools.MicrosoftVisualStudioAzureFabricVsix                        | 18.0.20260523.1 |
 | ProBITools.MicrosoftAnalysisServicesModelingProjects2022                  | 4.0.0           |
 | ProBITools.MicrosoftReportProjectsforVisualStudio2022                     | 4.0.0           |
@@ -432,30 +434,30 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | -------------------------------------------- | ------------ | ----------- |
 | Microsoft Visual C++ 2013 Additional Runtime | x64          | 12.0.40660  |
 | Microsoft Visual C++ 2013 Minimum Runtime    | x64          | 12.0.40660  |
-| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.51.36247 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.51.36247 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.51.36247 |
-| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.51.36247 |
-| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.51.36247 |
-| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.51.36247 |
+| Microsoft Visual C++ 2022 Additional Runtime | x64          | 14.52.37029 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x64          | 14.52.37029 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x64          | 14.52.37029 |
+| Microsoft Visual C++ 2022 Additional Runtime | x86          | 14.52.37029 |
+| Microsoft Visual C++ 2022 Debug Runtime      | x86          | 14.52.37029 |
+| Microsoft Visual C++ 2022 Minimum Runtime    | x86          | 14.52.37029 |
 
 #### Installed Windows SDKs
 - 10.0.26100.0
 
 ### .NET Core Tools
-- .NET Core SDK: 8.0.132, 8.0.206, 8.0.319, 8.0.426, 9.0.122, 9.0.205, 9.0.319, 10.0.113, 10.0.204, 10.0.303, 10.0.402
+- .NET Core SDK: 8.0.134, 8.0.206, 8.0.319, 8.0.428, 9.0.124, 9.0.205, 9.0.321, 10.0.115, 10.0.204, 10.0.303, 10.0.404, 11.0.100
 - .NET Framework: 4.8, 4.8.1
-- Microsoft.AspNetCore.App: 8.0.6, 8.0.22, 8.0.32, 9.0.6, 9.0.21, 10.0.8, 10.0.11, 10.0.13
-- Microsoft.NETCore.App: 8.0.6, 8.0.22, 8.0.32, 9.0.6, 9.0.21, 10.0.8, 10.0.11, 10.0.13
-- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.22, 8.0.32, 9.0.6, 9.0.21, 10.0.8, 10.0.11, 10.0.13
+- Microsoft.AspNetCore.App: 8.0.6, 8.0.22, 8.0.34, 9.0.6, 9.0.23, 10.0.8, 10.0.11, 10.0.15, 11.0.0
+- Microsoft.NETCore.App: 8.0.6, 8.0.22, 8.0.34, 9.0.6, 9.0.23, 10.0.8, 10.0.11, 10.0.15, 11.0.0
+- Microsoft.WindowsDesktop.App: 8.0.6, 8.0.22, 8.0.34, 9.0.6, 9.0.23, 10.0.8, 10.0.11, 10.0.15, 11.0.0
 - nbgv 3.10.94+dea9a6c17c
 
 ### PowerShell Tools
-- PowerShell 7.6.7
+- PowerShell 7.6.10
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.320
+- AWSPowershell: 5.0.337
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
@@ -470,9 +472,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 19.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Android Emulator           | 37.2.12                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Android Emulator           | 37.2.13                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 1)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
+| Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 2)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | CMake                      | 3.30.5<br>3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                                                                               |

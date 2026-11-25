@@ -20,24 +20,25 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 
 | Image | Architecture | YAML Label | Included Software |
 | --------------------|--------------|---------------------|------------------|
-| Ubuntu 26.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26.json) | x64 | `ubuntu-26.04` | [ubuntu-26.04] |
+| Ubuntu 26.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26.json) | x64 | `ubuntu-latest` or `ubuntu-26.04` | [ubuntu-26.04] |
 | Ubuntu 26.04 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26-arm64.json) | arm64 | `ubuntu-26.04-arm` | [ubuntu-26.04-arm64] |
-| Ubuntu 24.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu24.json) | x64 | `ubuntu-latest` or `ubuntu-24.04` | [ubuntu-24.04] |
+| Ubuntu 24.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu24.json) | x64 | `ubuntu-24.04` | [ubuntu-24.04] |
 | Ubuntu 24.04 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu24-arm64.json) | arm64 | `ubuntu-24.04-arm` | [ubuntu-24.04-arm64] |
 | Ubuntu 22.04<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu22.json) | x64 | `ubuntu-22.04` | [ubuntu-22.04] |
 | Ubuntu 22.04 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu22-arm64.json) | arm64 | `ubuntu-22.04-arm` | [ubuntu-22.04-arm64] |
 | Ubuntu Slim<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu-slim.json) | x64 | `ubuntu-slim` | [ubuntu-slim] |
-| Xcode 27 [![preview](https://img.shields.io/badge/preview-0969DA?style=flat&logoColor=white)](https://github.com/actions/runner-images/issues/14404)<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fxcode-27-arm64.json) | arm64 | `xcode-27` or `xcode-27-xlarge` | [xcode-27] |
+| Xcode 27<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fxcode-27-arm64.json) | arm64 | `xcode-27` or `xcode-27-xlarge` | [xcode-27] |
 | macOS 26<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-26.json) | x64 | `macos-latest-large`, `macos-26-intel`, `macos-26-large` | [macOS-26] |
 | macOS 26 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-26-arm64.json) | arm64 | `macos-latest`, `macos-26` or `macos-26-xlarge` | [macOS-26-arm64] |
 | macOS 15<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-15.json) | x64 | `macos-15-large`, or `macos-15-intel` | [macOS-15] |
 | macOS 15 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-15-arm64.json) | arm64 | `macos-15`, or `macos-15-xlarge` | [macOS-15-arm64] |
-| macOS 14 [![deprecated](https://img.shields.io/badge/deprecated-E5534B?style=flat&logoColor=white)](https://github.com/actions/runner-images/issues/13518)<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-14.json) | x64 | `macos-14-large` | [macOS-14] |
-| macOS 14 Arm64 [![deprecated](https://img.shields.io/badge/deprecated-E5534B?style=flat&logoColor=white)](https://github.com/actions/runner-images/issues/13518)<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-14-arm64.json) | arm64 | `macos-14` or `macos-14-xlarge` | [macOS-14-arm64] |
+| macOS 14 [![deprecated](https://img.shields.io/badge/deprecated-E5534B?style=flat&logoColor=white)](https://github.com/actions/runner-images/issues/15226)<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-14.json) | x64 | `macos-14` | [macOS-14] |
 | Windows Server 2025<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin25-vs2026.json) | x64 | `windows-latest`, `windows-2025`, or `windows-2025-vs2026` | [windows-2025-vs2026] |
 | Windows Server 2022<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin22.json) | x64 | `windows-2022` | [windows-2022] |
-| Windows 11 Arm64<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin11-arm64.json) | arm64 | `windows-11-arm` | [windows-11-arm64] |
-| Windows 11 Arm64 with Visual Studio 2026<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin11-vs2026-arm64.json) | arm64 | `windows-11-vs2026-arm` | [windows-11-vs2026-arm64] |
+| Windows 11 Arm64 with Visual Studio 2026<br>![Endpoint Badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin11-vs2026-arm64.json) | arm64 | `windows-11-arm` or `windows-11-vs2026-arm` | [windows-11-vs2026-arm64] |
+
+> [!IMPORTANT]
+> All macOS 14 images retired from GitHub Actions on November 2, 2026. macOS 14 Intel images remain available only in Azure DevOps until November 23, 2026. This extension does not apply to Arm64 images. See the [retirement announcement](https://github.com/actions/runner-images/issues/15226) for brownout dates and migration details.
 
 ### Label scheme
 
@@ -54,10 +55,8 @@ To build a VM machine from this repo's source, see the [instructions](docs/creat
 [ubuntu-slim]: https://github.com/actions/runner-images/blob/main/images/ubuntu-slim/ubuntu-slim-Readme.md
 [windows-2025-vs2026]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-VS2026-Readme.md
 [windows-2022]: https://github.com/actions/runner-images/blob/main/images/windows/Windows2022-Readme.md
-[windows-11-arm64]: https://github.com/actions/runner-images/blob/main/images/windows/Windows11-Arm64-Readme.md
 [windows-11-vs2026-arm64]: https://github.com/actions/runner-images/blob/main/images/windows/Windows11-VS2026-Arm64-Readme.md
 [macOS-14]: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md
-[macOS-14-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-14-arm64-Readme.md
 [macOS-15]: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-Readme.md
 [macOS-15-arm64]: https://github.com/actions/runner-images/blob/main/images/macos/macos-15-arm64-Readme.md
 [macOS-26]: https://github.com/actions/runner-images/blob/main/images/macos/macos-26-Readme.md
@@ -176,7 +175,7 @@ In general, these are the guidelines we follow when deciding what to pre-install
 
 ## How to Interact with the Repo
 
-- **Issues**: To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/runner-images/issues/new/choose)
+- **Issues**: To file a bug report, or request tools to be added/updated, please [open an issue using the appropriate template](https://github.com/actions/runner-images/issues/new/choose)
 - **Discussions**: If you want to share your thoughts about image configuration, installed software, or bring a new idea, please create a [new discussion](https://github.com/orgs/community/discussions/new?category=actions). Before making a new discussion, please make sure no similar topics were created earlier in the [actions category](https://github.com/orgs/community/discussions/categories/actions).
 - For general questions about using the runner images or writing your Actions workflow, please open requests in the [GitHub Community discussion Actions category](https://github.com/orgs/community/discussions/categories/actions).
 

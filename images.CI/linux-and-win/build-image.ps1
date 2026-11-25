@@ -16,7 +16,8 @@ param(
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkRG,
     [String] [Parameter (Mandatory=$false)] $VirtualNetworkSubnet,
     [String] [Parameter (Mandatory=$false)] $AllowedInboundIpAddresses = "[]",
-    [hashtable] [Parameter (Mandatory=$false)] $Tags = @{}
+    [hashtable] [Parameter (Mandatory=$false)] $Tags = @{},
+    [String] [Parameter (Mandatory=$false)] $AmazonPluginVersion = "1.8.2"
 )
 
 if (-not (Test-Path $TemplatePath))
@@ -45,6 +46,19 @@ packer --version
 
 Write-Host "Download packer plugins"
 packer plugins install github.com/hashicorp/azure $pluginVersion
+
+if ($LASTEXITCODE -ne 0) {
+    throw "Packer Azure plugin download failed."
+}
+
+if ($ImageOS -like "ubuntu*") {
+    # Packer decodes all sources in the template directory, including unselected AWS sources.
+    packer plugins install github.com/hashicorp/amazon $AmazonPluginVersion
+
+    if ($LASTEXITCODE -ne 0) {
+        throw "Packer Amazon plugin download failed."
+    }
+}
 
 Write-Host "Validate packer template"
 packer validate -syntax-only -only "$buildName.*" $TemplatePath

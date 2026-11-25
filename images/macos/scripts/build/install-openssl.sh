@@ -7,8 +7,8 @@
 source ~/utils/utils.sh
 
 if is_Tahoe || is_GoldenGate; then
-  echo "Set openssl@3 as the default OpenSSL"
-  ln -sf "$(brew --prefix openssl@3)/bin/openssl" "$(brew --prefix)/bin/openssl"
+  echo "Set openssl@4 as the default OpenSSL"
+  ln -sf "$(brew --prefix openssl@4)/bin/openssl" "$(brew --prefix)/bin/openssl"
   invoke_tests "OpenSSL"
   exit 0
 fi
@@ -25,6 +25,17 @@ FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$COMMIT/Fo
 FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/o/openssl@1.1.rb"
 mkdir -p "$(dirname $FORMULA_PATH)"
 curl -fsSL $FORMULA_URL -o $FORMULA_PATH
+
+if is_SequoiaArm64; then
+  # Since Homebrew 7.0.13, an install with HOMEBREW_NO_INSTALL_FROM_API=1 looks up
+  # dependencies only in the local tap, so the ca-certificates formula must be there too.
+  # Copy the formula of the installed version so ca-certificates is left unchanged.
+  brew_smart_install ca-certificates
+  CA_FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/c/ca-certificates.rb"
+  mkdir -p "$(dirname "$CA_FORMULA_PATH")"
+  cp "$(brew --prefix ca-certificates)/.brew/ca-certificates.rb" "$CA_FORMULA_PATH"
+fi
+
 HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 brew install openssl@1.1
 
 if brew list --versions openssl@4 > /dev/null 2>&1; then
