@@ -169,6 +169,37 @@ Describe "Zstd" {
     It "zstd" {
         "zstd -V" | Should -ReturnZeroExitCode
     }
+
+    It "uses the native executable architecture" {
+        $zstdPath = (Get-Command zstd -CommandType Application | Select-Object -First 1).Source
+        $reader = [System.IO.BinaryReader]::new([System.IO.File]::OpenRead($zstdPath))
+        try {
+            $reader.ReadUInt16() | Should -Be 0x5a4d
+            $reader.BaseStream.Position = 0x3c
+            $peOffset = $reader.ReadInt32()
+            $reader.BaseStream.Position = $peOffset
+            $reader.ReadUInt32() | Should -Be 0x00004550
+            $machine = $reader.ReadUInt16()
+        } finally {
+            $reader.Dispose()
+        }
+
+        $expectedMachine = if (Test-IsArm64) { 0xaa64 } else { 0x8664 }
+        $machine | Should -Be $expectedMachine
+    }
+
+    It "compresses and decompresses a file" {
+        $source = Join-Path $TestDrive "zstd-source.txt"
+        $compressed = Join-Path $TestDrive "zstd-source.txt.zst"
+        $restored = Join-Path $TestDrive "zstd-restored.txt"
+        Set-Content -Path $source -Value "Zstd compression test"
+
+        zstd -q -f $source -o $compressed
+        $LASTEXITCODE | Should -Be 0
+        zstd -q -d -f $compressed -o $restored
+        $LASTEXITCODE | Should -Be 0
+        (Get-FileHash $restored).Hash | Should -Be (Get-FileHash $source).Hash
+    }
 }
 
 Describe "Pipx" {

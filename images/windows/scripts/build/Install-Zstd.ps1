@@ -3,10 +3,11 @@
 ##  Desc:  Install zstd
 ################################################################################
 
+$zstdArch = if (Test-IsArm64) { "win-arm64" } else { "win64" }
 $downloadUrl = Resolve-GithubReleaseAssetUrl `
     -Repo "facebook/zstd" `
     -Version "latest" `
-    -UrlMatchPattern "zstd-*-win64.zip"
+    -UrlMatchPattern "zstd-*-${zstdArch}.zip"
 $zstdArchivePath = Invoke-DownloadWithRetry $downloadUrl
 $zstdName = [IO.Path]::GetFileNameWithoutExtension($zstdArchivePath)
 
@@ -23,7 +24,7 @@ if ($filesInArchive.Contains($zstdName)) {
     Expand-7ZipArchive -Path $zstdArchivePath -DestinationPath $zstdPath
 }
 
-# Add zstd-win64 to PATH
+# Add zstd to PATH
 Add-MachinePathItem $zstdPath
 
 Invoke-PesterTests -TestFile "Tools" -TestName "Zstd"
