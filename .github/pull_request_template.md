@@ -20,7 +20,7 @@ If your PR is too big to fit this description - consider splitting it to smaller
 
 - Updated Cool-Soft tool across all images.
 - The Cool-Soft update also resolved performance issues ***Issue 1*** and ***Issue 2***.
-- Cool-Soft remains pinned because latest versions are still not 100% stable. This one is a latest "Golden build".
+- Cool-Soft remains pinned because latest versions are still not 100% stable - this one is a latest "Golden build".
 
 <!-- Currently, we can't accept external contributions to macOS source. Please find more details in [CONTRIBUTING.md](CONTRIBUTING.md#macOS) guide -->
 
