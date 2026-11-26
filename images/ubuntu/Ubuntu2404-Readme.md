@@ -1,14 +1,13 @@
 | Announcements |
 |-|
+| [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 | [[Ubuntu] `ubuntu-latest` label will use Ubuntu 26.04 in November 2026](https://github.com/actions/runner-images/issues/14748) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm64 are now generally available](https://github.com/actions/runner-images/issues/14747) |
 | [[Ubuntu] The Ubuntu 22 based runner images will begin deprecation on September 17th and will be fully unsupported by April 17th for GitHub Actions and Azure DevOps](https://github.com/actions/runner-images/issues/14254) |
-| [[Ubuntu] Ubuntu 26.04 and Ubuntu 26.04 Arm is now available as a public preview](https://github.com/actions/runner-images/issues/14226) |
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.5 LTS
 - Kernel Version: 7.0.0-1017-azure
-- Image Version: 20261101.360.1
+- Image Version: 20261116.376.1
 - Systemd version: 255.4-1ubuntu8.18
 
 ## Installed Software
@@ -21,9 +20,9 @@
 - Dash 0.5.12-6ubuntu5
 - GNU C++: 12.4.0, 13.3.0, 14.2.0
 - GNU Fortran: 12.4.0, 13.3.0, 14.2.0
-- Julia 1.13.3
+- Julia 1.13.4
 - Kotlin 2.4.21
-- Node.js 22.23.4
+- Node.js 22.23.5
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
@@ -32,14 +31,14 @@
 ### Package Management
 - cpan 1.64
 - Helm 3.22.1
-- Homebrew 7.0.11
+- Homebrew 7.0.14
 - Miniconda 26.9.4
 - Npm 10.9.9
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.16.7
 - RubyGems 3.4.20
-- Vcpkg (build from commit 9a5dfef5d1)
+- Vcpkg (build from commit 1c6c7f95b0)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -58,26 +57,26 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.8.2
+- Gradle 9.9.1
 - Lerna 10.1.1
-- Maven 3.10.0
+- Maven 3.10.1
 
 ### Tools
-- Ansible 2.21.5
+- Ansible 2.21.6
 - AzCopy 10.34.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.3.1
+- Bazel 9.3.2
 - Bazelisk 1.28.1
-- Bicep 0.48.1
+- Bicep 0.49.2
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.27.3
-- Docker Amazon ECR Credential Helper 0.12.0
+- CodeQL Action Bundle 2.27.4
+- Docker Amazon ECR Credential Helper 0.13.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.38.1
+- Docker-Buildx 0.39.0
 - Docker Client 28.0.4
 - Docker Server 28.0.4
-- Fastlane 2.241.2
-- Git 2.56.0
+- Fastlane 2.242.0
+- Git 2.56.1
 - Git LFS 3.8.1
 - Git-ftp 1.6.0
 - Haveged 1.9.14
@@ -90,41 +89,41 @@ to accomplish this.
 - Minikube 1.39.0
 - n 11.0.0
 - Newman 6.2.3
-- nvm 0.40.8
+- nvm 0.41.0
 - OpenSSL 3.0.13-0ubuntu3.16
 - Packer 1.16.2
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.273.0
+- Pulumi 3.276.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
-- yq 4.54.1
+- yq 4.54.3
 - zstd 1.5.7
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.39.3
+- AWS CLI 2.40.4
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.171.0
-- Azure CLI 2.91.0
-- Azure CLI (azure-devops) 1.0.10
-- GitHub CLI 2.103.3
-- Google Cloud CLI 591.0.0
+- AWS SAM CLI 1.172.1
+- Azure CLI 2.93.0
+- Azure CLI (azure-devops) 1.0.11
+- GitHub CLI 2.104.0
+- Google Cloud CLI 593.0.0
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.504+1           | JAVA_HOME_8_X64      |
-| 11.0.32+1           | JAVA_HOME_11_X64     |
+| 8.0.512+9           | JAVA_HOME_8_X64      |
+| 11.0.33+10          | JAVA_HOME_11_X64     |
 | 17.0.21+9 (default) | JAVA_HOME_17_X64     |
 | 21.0.13+9           | JAVA_HOME_21_X64     |
 | 25.0.5+8            | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
-- Composer 2.11.1
-- PHPUnit 8.5.56
+- Composer 2.11.2
+- PHPUnit 8.5.57
 ```
 Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 ```
@@ -136,22 +135,22 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Stack 3.11.1
 
 ### Rust Tools
-- Cargo 1.99.1
-- Rust 1.99.1
-- Rustdoc 1.99.1
-- Rustup 1.29.2
+- Cargo 1.100.0
+- Rust 1.100.0
+- Rustdoc 1.100.0
+- Rustup 1.29.3
 
 #### Packages
-- Rustfmt 1.10.0
+- Rustfmt 1.11.0
 
 ### Browsers and Drivers
-- Google Chrome 156.0.8078.79
-- ChromeDriver 156.0.8078.80
-- Chromium 156.0.8078.0
-- Microsoft Edge 156.0.4314.58
-- Microsoft Edge WebDriver 156.0.4314.58
+- Google Chrome 157.0.8103.78
+- ChromeDriver 157.0.8103.78
+- Chromium 157.0.8103.0
+- Microsoft Edge 157.0.4341.60
+- Microsoft Edge WebDriver 157.0.4341.60
 - Selenium server 4.52.0
-- Mozilla Firefox 159.0
+- Mozilla Firefox 160.0
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -163,14 +162,14 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar   |
 
 ### .NET Tools
-- .NET Core SDK: 8.0.133, 8.0.206, 8.0.319, 8.0.427, 9.0.123, 9.0.205, 9.0.320, 10.0.114, 10.0.204, 10.0.303, 10.0.403
+- .NET Core SDK: 8.0.134, 8.0.206, 8.0.319, 8.0.428, 9.0.124, 9.0.205, 9.0.321, 10.0.115, 10.0.204, 10.0.303, 10.0.404, 11.0.100
 - nbgv 3.10.94+dea9a6c17c
 
 ### Databases
 - sqlite3 3.45.1
 
 #### PostgreSQL
-- PostgreSQL 16.15
+- PostgreSQL 16.16
 ```
 User: postgres
 PostgreSQL service is disabled by default.
@@ -178,7 +177,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ```
 
 #### MySQL
-- MySQL 8.0.46-0ubuntu0.24.04.4
+- MySQL 8.0.46-0ubuntu0.24.04.5
 ```
 User: root
 Password: root
@@ -189,13 +188,13 @@ Use the following command as a part of your job to start the service: 'sudo syst
 ### Cached Tools
 
 #### Go
-- 1.24.13
 - 1.25.14
-- 1.26.10
+- 1.26.11
+- 1.27.4
 
 #### Node.js
-- 22.23.4
-- 24.22.2
+- 22.23.5
+- 24.22.3
 
 #### Python
 - 3.11.18
@@ -216,7 +215,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 - 4.0.9
 
 ### PowerShell Tools
-- PowerShell 7.6.9
+- PowerShell 7.6.10
 
 #### PowerShell Modules
 - Az: 15.6.1
@@ -267,7 +266,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | coreutils              | 9.4-3ubuntu6.3                |
 | curl                   | 8.5.0-2ubuntu10.16            |
 | dbus                   | 1.14.10-4ubuntu4.1            |
-| dnsutils               | 1:9.18.39-0ubuntu0.24.04.8    |
+| dnsutils               | 1:9.18.39-0ubuntu0.24.04.9    |
 | dpkg                   | 1.22.6ubuntu6.6               |
 | dpkg-dev               | 1.22.6ubuntu6.6               |
 | fakeroot               | 1.33-1                        |
@@ -285,11 +284,11 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | jq                     | 1.7.1-3ubuntu0.24.04.2        |
 | libicu-dev             | 74.2-1ubuntu3.1               |
 | libnss3-tools          | 2:3.98-1ubuntu0.3             |
-| libsqlite3-dev         | 3.45.1-1ubuntu2.8             |
+| libsqlite3-dev         | 3.45.1-1ubuntu2.9             |
 | libssl-dev             | 3.0.13-0ubuntu3.16            |
 | libtool                | 2.4.7-7build1                 |
 | libyaml-dev            | 0.2.5-1build1                 |
-| locales                | 2.39-0ubuntu8.9               |
+| locales                | 2.39-0ubuntu8.12              |
 | lz4                    | 1.9.4-1build1.1               |
 | m4                     | 1.4.19-4build1                |
 | make                   | 4.3-4.1build2                 |
@@ -310,7 +309,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | rsync                  | 3.2.7-1ubuntu1.5              |
 | shellcheck             | 0.9.0-1                       |
 | sphinxsearch           | 2.2.11-8build1                |
-| sqlite3                | 3.45.1-1ubuntu2.8             |
+| sqlite3                | 3.45.1-1ubuntu2.9             |
 | ssh                    | 1:9.6p1-3ubuntu13.20          |
 | sshpass                | 1.09-1                        |
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.4     |

@@ -4,14 +4,6 @@
         "arm64": {
             "versions": [
                 {
-                    "link": "27.3_beta",
-                    "filename": "Xcode_27.3_beta",
-                    "version": "27.3+27C5020n",
-                    "sha256": "7263cc664d441b1b181fbc58719339a064873ffa5e89a86e6f83a88ea015cb58",
-                    "symlinks": ["27.3"],
-                    "install_runtimes": "none"
-                },
-                {
                     "link": "27.2",
                     "filename": "Xcode_27.2",
                     "version": "27.2+27B52",
@@ -170,9 +162,9 @@
                 "arm64": {
                     "variable_template" : "GOROOT_{0}_{1}_ARM64",
                     "versions": [
-                        "1.24.*",
                         "1.25.*",
-                        "1.26.*"
+                        "1.26.*",
+                        "1.27.*"
                     ]
                 }
             }
