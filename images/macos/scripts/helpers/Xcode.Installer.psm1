@@ -223,6 +223,64 @@ function Install-XcodeAdditionalSimulatorRuntimes {
     }
 }
 
+function Repair-XcodeSimulatorRuntimes {
+    # Some downloaded runtimes can't be mounted as a cryptex after a reboot, so they fall back to a disk-image mount.
+    # simdiskimaged later remounts them as a cryptex, which shuts down running simulators (Apple 191574717).
+    # Re-register them as plain disk images from their own DMG, so they are never remounted.
+    # https://github.com/actions/runner-images/issues/15334
+    [array]$builds = Get-XcodeSimulatorRuntimesOnDiskImageFallback | Select-Object -ExpandProperty build -Unique
+    if (-not $builds) {
+        return
+    }
+
+    $dmgDirectory = "$env:HOME/Library/Caches/XcodeInstall"
+    New-Item -Path $dmgDirectory -ItemType Directory -Force | Out-Null
+    foreach ($build in $builds) {
+        Write-Host "Registering simulator runtime $build as a disk image..."
+        [array]$registrations = Get-XcodeSimulatorRuntimes | Where-Object { $_.build -eq $build }
+        $dmgPath = Invoke-ValidateCommand "sudo find '$($registrations[0].path)' -name '*.dmg' -size +100M" | Select-Object -First 1
+        if (-not $dmgPath) {
+            throw "Simulator runtime $build has no DMG in '$($registrations[0].path)'"
+        }
+
+        # Deleting the runtime also deletes its MobileAsset, so keep a copy of the DMG (an instant APFS clone)
+        $dmgCopyPath = "$dmgDirectory/$build.dmg"
+        Invoke-ValidateCommand "sudo cp -c '$dmgPath' '$dmgCopyPath'"
+        Invoke-ValidateCommand "sudo chown $env:USER '$dmgCopyPath'"
+
+        # A delete can be deferred, and simdiskimaged can register the MobileAsset again until it is removed, so keep
+        # deleting until no registration is left. Adding the DMG fails as a duplicate while one is left.
+        $retries = 30
+        while ([array]$registrations = Get-XcodeSimulatorRuntimes | Where-Object { $_.build -eq $build }) {
+            if ($retries-- -eq 0) {
+                throw "Simulator runtime $build is still registered: $($registrations.identifier -join ', ')"
+            }
+            $registrations | ForEach-Object { xcrun simctl runtime delete $_.identifier }
+            Start-Sleep -Seconds 10
+        }
+
+        Invoke-ValidateCommand "xcrun simctl runtime add '$dmgCopyPath'"
+        Remove-Item -Path $dmgCopyPath -Force
+    }
+
+    # simdiskimaged removes the replaced registrations and their MobileAssets when it restarts
+    Invoke-ValidateCommand "sudo launchctl kickstart -k system/com.apple.CoreSimulator.simdiskimaged"
+    $retries = 12
+    do {
+        Start-Sleep -Seconds 10
+        $runtimes = Get-XcodeSimulatorRuntimes
+        [array]$unfixedBuilds = $builds | Where-Object {
+            $build = $_
+            [array]$registrations = $runtimes | Where-Object { $_.build -eq $build }
+            $registrations.Count -ne 1 -or $registrations[0].kind -ne "Disk Image" -or $registrations[0].state -ne "Ready"
+        }
+    } while ($unfixedBuilds -and $retries-- -gt 0)
+
+    if ($unfixedBuilds) {
+        throw "Simulator runtimes $($unfixedBuilds -join ', ') are not registered once as a ready disk image"
+    }
+}
+
 function Build-XcodeSymlinks {
     param (
         [Parameter(Mandatory)]

@@ -128,6 +128,12 @@ Describe "Xcode simulators" {
         $unavailableDevices | Should -BeNullOrEmpty -Because "every simulator runtime should be installed"
     }
 
+    It "No runtime runs from a disk-image fallback mount" -Skip:(-not $os.IsGoldenGate) {
+        Get-XcodeSimulatorRuntimes | Should -Not -BeNullOrEmpty -Because "simctl should list the simulator runtimes"
+        [array]$fallbackRuntimes = Get-XcodeSimulatorRuntimesOnDiskImageFallback | ForEach-Object { "$($_.runtimeIdentifier) ($($_.build))" }
+        $fallbackRuntimes | Should -BeNullOrEmpty -Because "these runtimes get remounted as a cryptex, which shuts down running simulators"
+    }
+
     AfterEach {
         $defaultXcode = (Get-ToolsetContent).xcode.default
         Switch-Xcode -Version $defaultXcode

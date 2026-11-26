@@ -6,9 +6,16 @@
 
 Import-Module "~/image-generation/helpers/Common.Helpers.psm1"
 Import-Module "~/image-generation/helpers/Xcode.Helpers.psm1"
+Import-Module "~/image-generation/helpers/Xcode.Installer.psm1" -DisableNameChecking
+$os = Get-OSVersion
 $arch = Get-Architecture
 $xcodeVersions = (Get-ToolsetContent).xcode.${arch}.versions
 $defaultXcode = (Get-ToolsetContent).xcode.default
+
+# Runs after the reboot that follows the Xcode installation, because runtimes fall back to disk-image mounts only then
+if ($os.IsGoldenGate) {
+    Repair-XcodeSimulatorRuntimes
+}
 
 # Switch to each Xcode version
 foreach ($xcodeVersion in $xcodeVersions.link) {
