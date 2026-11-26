@@ -248,14 +248,27 @@ function Repair-XcodeSimulatorRuntimes {
         Invoke-ValidateCommand "sudo cp -c '$dmgPath' '$dmgCopyPath'"
         Invoke-ValidateCommand "sudo chown $env:USER '$dmgCopyPath'"
 
-        # A delete can be deferred, and simdiskimaged can register the MobileAsset again until it is removed, so keep
-        # deleting until no registration is left. Adding the DMG fails as a duplicate while one is left.
+        # simdiskimaged registers the MobileAsset again until its DMG is gone, and adding our copy fails as a duplicate
+        # while a registration is left, so keep deleting until neither is left. A delete can be deferred, or remove the
+        # registration but keep the MobileAsset (code 30). Apple's advice for the latter is to re-register it with
+        # 'scan-and-mount' and delete it again; first give the background purge 30 seconds.
         $retries = 30
-        while ([array]$registrations = Get-XcodeSimulatorRuntimes | Where-Object { $_.build -eq $build }) {
-            if ($retries-- -eq 0) {
-                throw "Simulator runtime $build is still registered: $($registrations.identifier -join ', ')"
+        $assetWaits = 0
+        while ($true) {
+            [array]$registrations = Get-XcodeSimulatorRuntimes | Where-Object { $_.build -eq $build }
+            sudo test -e $dmgPath
+            $assetLeft = $LASTEXITCODE -eq 0
+            if (-not $registrations -and -not $assetLeft) {
+                break
             }
-            $registrations | ForEach-Object { xcrun simctl runtime delete $_.identifier }
+            if ($retries-- -eq 0) {
+                throw "Simulator runtime $build is still registered ($($registrations.identifier -join ', ')) or its MobileAsset is left ($assetLeft)"
+            }
+            if ($registrations) {
+                $registrations | ForEach-Object { xcrun simctl runtime delete $_.identifier }
+            } elseif (++$assetWaits % 3 -eq 0) {
+                xcrun simctl runtime scan-and-mount
+            }
             Start-Sleep -Seconds 10
         }
 
@@ -263,7 +276,7 @@ function Repair-XcodeSimulatorRuntimes {
         Remove-Item -Path $dmgCopyPath -Force
     }
 
-    # simdiskimaged removes the replaced registrations and their MobileAssets when it restarts
+    # Like a VM boot, the restart makes simdiskimaged re-read the registrations and mount the runtimes again
     Invoke-ValidateCommand "sudo launchctl kickstart -k system/com.apple.CoreSimulator.simdiskimaged"
     $retries = 12
     do {
@@ -277,7 +290,8 @@ function Repair-XcodeSimulatorRuntimes {
     } while ($unfixedBuilds -and $retries-- -gt 0)
 
     if ($unfixedBuilds) {
-        throw "Simulator runtimes $($unfixedBuilds -join ', ') are not registered once as a ready disk image"
+        $registrations = $runtimes | Where-Object { $_.build -in $unfixedBuilds } | ForEach-Object { "$($_.build) $($_.identifier) $($_.kind) $($_.state) $($_.mountPath)" }
+        throw "Simulator runtimes $($unfixedBuilds -join ', ') are not registered once as a ready disk image: $($registrations -join '; ')"
     }
 }
 
