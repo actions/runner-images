@@ -167,12 +167,12 @@ brew_install_pinned_formula() {
 
     local FORMULA_URL="https://raw.githubusercontent.com/Homebrew/homebrew-core/$commit_hash/Formula/$formula_file"
     local FORMULA_PATH
-    FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Custom-Formula/$formula_file"
+    FORMULA_PATH="$(brew --repository)/Library/Taps/homebrew/homebrew-core/Formula/$formula_file"
     mkdir -p "$(dirname "$FORMULA_PATH")"
     curl -fsSL "$FORMULA_URL" -o "$FORMULA_PATH"
     echo "Downloaded formula to $FORMULA_PATH"
 
-    HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALL_FROM_API=1 HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=$no_deps_update brew install "$FORMULA_PATH"
+    HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_INSTALLED_DEPENDENTS_CHECK=$no_deps_update brew install "$formula_name"
 }
 
 configure_system_tccdb () {
