@@ -92,6 +92,18 @@ function Get-XcodeSimulatorsInfo {
     return $jsonSimulatorsInfo
 }
 
+function Get-XcodeSimulatorRuntimes {
+    [string]$rawRuntimesInfo = Invoke-Expression "xcrun simctl runtime list -j"
+    return ($rawRuntimesInfo | ConvertFrom-Json).PSObject.Properties.Value
+}
+
+function Get-XcodeSimulatorRuntimesOnDiskImageFallback {
+    # A cryptex runtime that can't be mounted as a cryptex falls back to a disk-image mount under CoreSimulator/Volumes
+    return Get-XcodeSimulatorRuntimes | Where-Object {
+        $_.kind -like "*Cryptex*" -and $_.mountPath -like "/Library/Developer/CoreSimulator/Volumes/*"
+    }
+}
+
 function Get-XcodeDevicesList {
     $result = @()
 

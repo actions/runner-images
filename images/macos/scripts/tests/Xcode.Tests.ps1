@@ -117,6 +117,23 @@ Describe "Xcode simulators" {
         }
     }
 
+    It "All devices have their runtime installed" -Skip:(-not $os.IsGoldenGate) {
+        $devices = Get-XcodeSimulatorsInfo -Filter "devices"
+        [array]$allDevices = $devices.PSObject.Properties.Value
+        $allDevices | Should -Not -BeNullOrEmpty -Because "simctl should list the simulator devices"
+        [array]$unavailableDevices = $devices.PSObject.Properties | ForEach-Object {
+            $runtime = $_.Name
+            $_.Value | Where-Object { $_.isAvailable -ne $true } | ForEach-Object { "$runtime $($_.name): $($_.availabilityError)" }
+        }
+        $unavailableDevices | Should -BeNullOrEmpty -Because "every simulator runtime should be installed"
+    }
+
+    It "No runtime runs from a disk-image fallback mount" -Skip:(-not $os.IsGoldenGate) {
+        Get-XcodeSimulatorRuntimes | Should -Not -BeNullOrEmpty -Because "simctl should list the simulator runtimes"
+        [array]$fallbackRuntimes = Get-XcodeSimulatorRuntimesOnDiskImageFallback | ForEach-Object { "$($_.runtimeIdentifier) ($($_.build))" }
+        $fallbackRuntimes | Should -BeNullOrEmpty -Because "these runtimes get remounted as a cryptex, which shuts down running simulators"
+    }
+
     AfterEach {
         $defaultXcode = (Get-ToolsetContent).xcode.default
         Switch-Xcode -Version $defaultXcode
