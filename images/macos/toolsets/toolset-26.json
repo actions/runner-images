@@ -62,6 +62,11 @@
             ]
         },
         "arm64": {
+            "system_resources": {
+                "xcode_version": "27.2+27B52",
+                "sha256": "c28b05526225394fa4017d7f9919c1c898822713edca68872cb4701599f01978",
+                "coresimulator_version": "1174.21"
+            },
             "versions": [
                 {
                     "link": "26.6",
