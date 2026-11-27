@@ -3,9 +3,13 @@ build {
   name = "windows-2025-vs2026"
 
   provisioner "powershell" {
+    environment_vars = ["TEMP_DIR=${var.temp_dir}"]
+    script           = "${path.root}/../scripts/build/Initialize-TempDirectory.ps1"
+  }
+
+  provisioner "powershell" {
     inline = [
-      "New-Item -Path ${var.image_folder} -ItemType Directory -Force",
-      "New-Item -Path ${var.temp_dir} -ItemType Directory -Force"
+      "New-Item -Path ${var.image_folder} -ItemType Directory -Force"
     ]
   }
 

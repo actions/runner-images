@@ -80,3 +80,7 @@ $driveLetter = "C"
 $size = Get-PartitionSupportedSize -DriveLetter $driveLetter
 Resize-Partition -DriveLetter $driveLetter -Size $size.SizeMax
 Get-Volume | Select-Object DriveLetter, SizeRemaining, Size | Sort-Object DriveLetter
+
+if (Test-IsWin25-X64) {
+    Invoke-PesterTests -TestFile "Storage"
+}
