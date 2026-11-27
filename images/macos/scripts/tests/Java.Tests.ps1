@@ -1,5 +1,6 @@
 Import-Module "$PSScriptRoot/../helpers/Common.Helpers.psm1"
 Import-Module "$PSScriptRoot/Helpers.psm1" -DisableNameChecking
+Import-Module "$PSScriptRoot/../software-report/SoftwareReport.Java.psm1" -DisableNameChecking
 
 $os = Get-OSVersion
 $arch = Get-Architecture
@@ -47,6 +48,26 @@ Describe "Java" {
                 $envVariablePath = [System.Environment]::GetEnvironmentVariable($EnvVariable)
                 $javaBinPath = Join-Path $envVariablePath "/bin/java"
                 Confirm-JavaVersion -JavaCommand "$javaBinPath -version" -ExpectedVersion $Version
+            }
+
+            if ($_.Title -ne "Default") {
+                It "Reports the installed Java <Version> full version" -TestCases $_ {
+                    $javaHome = [System.Environment]::GetEnvironmentVariable($EnvVariable)
+                    $output = & (Join-Path $javaHome "bin/java") -fullversion 2>&1
+                    $LASTEXITCODE | Should -Be 0
+                    $match = [regex]::Match("$output", '^openjdk full version "([^"]+)"$')
+                    $match.Success | Should -BeTrue
+                    $expected = $match.Groups[1].Value -replace '-LTS$', ''
+                    if ($expected -match '^1\.8\.0_(\d+)-b(\d+)$') {
+                        $expected = "8.0.$($Matches[1])+$([int]$Matches[2])"
+                    }
+                    if ($javaHome -eq $env:JAVA_HOME) {
+                        $expected += " (default)"
+                    }
+
+                    $row = Get-JavaVersions | Where-Object { $_.'Environment Variable' -eq $EnvVariable }
+                    $row.Version | Should -BeExactly $expected
+                }
             }
 
             if ($_.Title -eq "Default") {

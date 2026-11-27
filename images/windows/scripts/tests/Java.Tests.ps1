@@ -1,3 +1,5 @@
+Import-Module "$PSScriptRoot/../SoftwareReport/SoftwareReport.Java.psm1" -DisableNameChecking
+
 Describe "Java" {
     $toolsetJava = (Get-ToolsetContent).java
     $defaultVersion = $toolsetJava.default
@@ -44,5 +46,25 @@ Describe "Java" {
         $outputLines = (& $env:comspec /c "`"$javaPath`" -version 2>&1") -as [string[]]
         $LASTEXITCODE | Should -Be 0
         $outputLines[0] | Should -Match $outputPattern
+    }
+
+    It "Reports the installed Java <Version> full version" -TestCases $testCases {
+        $variable = "JAVA_HOME_${Version}_${expectedArch}"
+        $javaHome = Get-EnvironmentVariable $variable
+        $java = Join-Path $javaHome "bin/java.exe"
+        $output = & $env:comspec /c "`"$java`" -fullversion 2>&1"
+        $LASTEXITCODE | Should -Be 0
+        $match = [regex]::Match("$output", '^openjdk full version "([^"]+)"$')
+        $match.Success | Should -BeTrue
+        $expected = $match.Groups[1].Value -replace '-LTS$', ''
+        if ($expected -match '^1\.8\.0_(\d+)-b(\d+)$') {
+            $expected = "8.0.$($Matches[1])+$([int]$Matches[2])"
+        }
+        if ($javaHome -eq $env:JAVA_HOME) {
+            $expected += " (default)"
+        }
+
+        $row = Get-JavaVersions | Where-Object { $_.'Environment Variable' -eq $variable }
+        $row.Version | Should -BeExactly $expected
     }
 }
