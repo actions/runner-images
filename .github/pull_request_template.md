@@ -1,3 +1,7 @@
+<!-- Please keep your PR description short and clear! Do not add any information between sections or alter the number of sections or their order. Match your PR description to the provided example.
+
+If your PR is too big to fit this description - consider splitting it to smaller ones to keep review process smooth. -->
+
 ## Workitem
 *Which issue (or issues) this PR resolves or contributes against?*
 - Workitem 1
@@ -12,11 +16,11 @@
 - The Cool-Soft tool version is outdated and new stable release has come.
 
 ### Description of changes
-*Short description of what was done, five sentences max. For new tools also add total size and installation time.*
+*Short description of what was done, one sentence per entry, five entries max. For new tools also add total size and installation time.*
 
 - Updated Cool-Soft tool across all images.
 - The Cool-Soft update also resolved performance issues ***Issue 1*** and ***Issue 2***.
-- Cool-Soft remains pinned because latest versions are still not 100% stable. This one is a latest "Golden build".
+- Cool-Soft remains pinned because latest versions are still not 100% stable - this one is a latest "Golden build".
 
 <!-- Currently, we can't accept external contributions to macOS source. Please find more details in [CONTRIBUTING.md](CONTRIBUTING.md#macOS) guide -->
 

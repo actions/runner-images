@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Windows] Visual Studio 2027 are now available; Visual Studio 2026 labels begin deprecation in December](https://github.com/actions/runner-images/issues/15373) |
 | [[Windows] D: drive will use ReFS instead of NTFS on Windows images from November 30, 2026](https://github.com/actions/runner-images/issues/15315) |
 | [[Windows 11 Arm64] Actions workspace will move to D: drive on November 30, 2026](https://github.com/actions/runner-images/issues/15314) |
 | [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 ***
 # Windows Server 2025
 - OS Version: 10.0.26100 Build 33828
-- Image Version: 20261116.315.1
+- Image Version: 20261123.321.1
 
 ## Windows features
 - Windows Subsystem for Linux (WSLv1): Enabled
@@ -22,9 +23,9 @@
 - LLVM 20.1.8
 - Node 22.23.5
 - Perl 5.42.0
-- PHP 8.5.12
+- PHP 8.5.13
 - Python 3.12.10
-- Ruby 3.3.13
+- Ruby 3.3.14
 
 ### Package Management
 - Chocolatey 2.7.5
@@ -34,9 +35,9 @@
 - NPM 10.9.9
 - NuGet 8.0.0.137
 - pip 26.3 (python 3.12)
-- Pipx 1.18.16
+- Pipx 1.19.1
 - RubyGems 3.5.22
-- Vcpkg (build from commit 0df93a05b9)
+- Vcpkg (build from commit 0bd8ac7456)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -54,13 +55,13 @@
 ### Tools
 - 7zip 26.06
 - aria2 1.37.0
-- azcopy 10.34.1
-- Bazel 9.3.2
+- azcopy 10.34.2
+- Bazel 9.3.3
 - Bazelisk 1.28.1
 - Bicep 0.48.1
 - Cabal 3.18.2.0
 - CMake 4.5.0
-- CodeQL Action Bundle 2.27.4
+- CodeQL Action Bundle 2.27.5
 - Docker 29.7.2
 - Docker Compose 2.40.3
 - Docker-wincred 0.9.13
@@ -77,8 +78,8 @@
 - GNU Binutils 2.46
 - Newman 6.2.3
 - OpenSSL 3.6.5
-- Packer 1.16.0
-- Pulumi 3.275.0
+- Packer 1.16.2
+- Pulumi 3.277.0
 - R 4.6.2
 - Service Fabric Runtime 11.7.157.1
 - Service Fabric SDK 8.7.157.1
@@ -88,16 +89,16 @@
 - WinAppDriver 1.2.2009.02003
 - WiX Toolset 3.14.1.8722
 - yamllint 1.38.0
-- zstd 1.5.7
+- zstd 1.6.0
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.40.3
-- AWS SAM CLI 1.172.1
+- AWS CLI 2.42.1
+- AWS SAM CLI 1.174.0
 - AWS Session Manager CLI 1.2.896.0
 - Azure CLI 2.93.0
-- Azure DevOps CLI extension 1.0.11
-- GitHub CLI 2.104.0
+- Azure DevOps CLI extension 1.0.12
+- GitHub CLI 2.105.0
 
 ### Rust Tools
 - Cargo 1.100.0
@@ -110,14 +111,14 @@
 - Rustfmt 1.11.0
 
 ### Browsers and Drivers
-- Google Chrome 157.0.8103.79
-- Chrome Driver 157.0.8103.78
-- Microsoft Edge 157.0.4341.60
-- Microsoft Edge Driver 157.0.4341.60
-- Mozilla Firefox 160.0
+- Google Chrome 158.0.8127.89
+- Chrome Driver 158.0.8127.88
+- Microsoft Edge 158.0.4370.33
+- Microsoft Edge Driver 158.0.4370.33
+- Mozilla Firefox 160.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.52.0
+- Selenium server 4.54.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -128,13 +129,13 @@
 | SELENIUM_JAR_PATH | C:\selenium\selenium-server.jar    |
 
 ### Java
-| Version             | Environment Variable |
-| ------------------- | -------------------- |
-| 8.0.512+9           | JAVA_HOME_8_X64      |
-| 11.0.33+10          | JAVA_HOME_11_X64     |
-| 17.0.21+9 (default) | JAVA_HOME_17_X64     |
-| 21.0.13+9.0         | JAVA_HOME_21_X64     |
-| 25.0.5+8.0          | JAVA_HOME_25_X64     |
+| Version                     | Environment Variable |
+| --------------------------- | -------------------- |
+| 8.0.512+9                   | JAVA_HOME_8_X64      |
+| 11.0.33+10                  | JAVA_HOME_11_X64     |
+| 17.0.21+100000002 (default) | JAVA_HOME_17_X64     |
+| 21.0.13+100000002.0         | JAVA_HOME_21_X64     |
+| 25.0.5+100000002.0          | JAVA_HOME_25_X64     |
 
 ### Shells
 | Name          | Target                            |
@@ -177,9 +178,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Ruby
 - 3.2.11
-- 3.3.13
-- 3.4.12
-- 4.0.9
+- 3.3.14
+- 3.4.13
+- 4.0.10
 
 ### Databases
 
@@ -201,24 +202,24 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | 7.0.48.0 | MongoDB     | Stopped       | Disabled         |
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.28.0
+- Azure CosmosDb Emulator 2.14.29.0
 - DacFx 170.4.83.3
 - MySQL 8.4.13.0
 - SQL OLEDB Driver 18 18.7.5.0
 - SQL OLEDB Driver 19 19.4.1.0
 - SQLPS 1.0
-- MongoDB Shell (mongosh) 2.14.2
+- MongoDB Shell (mongosh) 2.14.3
 
 ### Web Servers
-| Name   | Version | ConfigFile                            | ServiceName | ServiceStatus | ListenPort |
-| ------ | ------- | ------------------------------------- | ----------- | ------------- | ---------- |
-| Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf     | Apache      | Stopped       | 80         |
-| Nginx  | 1.31.8  | C:\tools\nginx-1.31.8\conf\nginx.conf | nginx       | Stopped       | 80         |
+| Name   | Version | ConfigFile                             | ServiceName | ServiceStatus | ListenPort |
+| ------ | ------- | -------------------------------------- | ----------- | ------------- | ---------- |
+| Apache | 2.4.55  | C:\tools\Apache24\conf\httpd.conf      | Apache      | Stopped       | 80         |
+| Nginx  | 1.31.10 | C:\tools\nginx-1.31.10\conf\nginx.conf | nginx       | Stopped       | 80         |
 
 ### Visual Studio Enterprise 2026
 | Name                          | Version         | Path                                                   |
 | ----------------------------- | --------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.12.12405.243 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Visual Studio Enterprise 2026 | 18.12.12412.261 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -457,7 +458,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.337
+- AWSPowershell: 5.0.342
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
@@ -472,10 +473,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 | Package Name               | Version                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 19.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Android Emulator           | 37.2.13                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Android Emulator           | 37.3.10                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 2)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
-| Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Android SDK Platform-Tools | 37.0.3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | CMake                      | 3.30.5<br>3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | Google Play services       | 49                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
