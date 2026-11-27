@@ -6,9 +6,9 @@
 ***
 # Ubuntu 24.04
 - OS Version: 24.04.5 LTS
-- Kernel Version: 7.0.0-1017-azure
-- Image Version: 20261116.376.1
-- Systemd version: 255.4-1ubuntu8.18
+- Kernel Version: 7.0.0-1020-azure (AWS:  7.0.0-1018-aws)
+- Image Version: 20261122.23.1
+- Systemd version: 255.4-1ubuntu8.19
 
 ## Installed Software
 
@@ -26,19 +26,19 @@
 - Perl 5.38.2
 - Python 3.12.3
 - Ruby 3.2.3
-- Swift 6.4.2
+- Swift 6.4.3
 
 ### Package Management
 - cpan 1.64
 - Helm 3.22.1
-- Homebrew 7.0.14
+- Homebrew 7.0.15
 - Miniconda 26.9.4
 - Npm 10.9.9
 - Pip 24.0
 - Pip3 24.0
 - Pipx 1.16.7
 - RubyGems 3.4.20
-- Vcpkg (build from commit 1c6c7f95b0)
+- Vcpkg (build from commit 93ad765c7b)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -57,22 +57,22 @@ to accomplish this.
 
 ### Project Management
 - Ant 1.10.14
-- Gradle 9.9.1
-- Lerna 10.1.1
-- Maven 3.10.1
+- Gradle 9.9.2
+- Lerna 10.1.3
+- Maven 3.10.2
 
 ### Tools
 - Ansible 2.21.6
-- AzCopy 10.34.1 - available by `azcopy` and `azcopy10` aliases
-- Bazel 9.3.2
+- AzCopy 10.34.2 - available by `azcopy` and `azcopy10` aliases
+- Bazel 9.3.3
 - Bazelisk 1.28.1
 - Bicep 0.49.2
 - Buildah 1.33.7
 - CMake 3.31.6
-- CodeQL Action Bundle 2.27.4
+- CodeQL Action Bundle 2.27.5
 - Docker Amazon ECR Credential Helper 0.13.0
 - Docker Compose 2.38.2
-- Docker-Buildx 0.39.0
+- Docker-Buildx 0.39.1
 - Docker Client 28.0.4
 - Docker Server 28.0.4
 - Fastlane 2.242.0
@@ -87,14 +87,14 @@ to accomplish this.
 - MediaInfo 24.01
 - Mercurial 6.7.2
 - Minikube 1.39.0
-- n 11.0.0
+- n 12.0.0
 - Newman 6.2.3
 - nvm 0.41.0
 - OpenSSL 3.0.13-0ubuntu3.16
 - Packer 1.16.2
 - Parcel 2.16.4
 - Podman 4.9.3
-- Pulumi 3.276.0
+- Pulumi 3.277.0
 - Skopeo 1.13.3
 - Sphinx Open Source Search Server 2.2.11
 - yamllint 1.38.0
@@ -103,22 +103,22 @@ to accomplish this.
 - Ninja 1.13.2
 
 ### CLI Tools
-- AWS CLI 2.40.4
+- AWS CLI 2.42.1
 - AWS CLI Session Manager Plugin 1.2.896.0
-- AWS SAM CLI 1.172.1
+- AWS SAM CLI 1.174.0
 - Azure CLI 2.93.0
-- Azure CLI (azure-devops) 1.0.11
-- GitHub CLI 2.104.0
-- Google Cloud CLI 593.0.0
+- Azure CLI (azure-devops) 1.0.12
+- GitHub CLI 2.105.0
+- Google Cloud CLI 594.0.1
 
 ### Java
 | Version             | Environment Variable |
 | ------------------- | -------------------- |
-| 8.0.512+9           | JAVA_HOME_8_X64      |
-| 11.0.33+10          | JAVA_HOME_11_X64     |
-| 17.0.21+9 (default) | JAVA_HOME_17_X64     |
-| 21.0.13+9           | JAVA_HOME_21_X64     |
-| 25.0.5+8            | JAVA_HOME_25_X64     |
+| 8.0.514+1           | JAVA_HOME_8_X64      |
+| 11.0.33+1           | JAVA_HOME_11_X64     |
+| 17.0.21+2 (default) | JAVA_HOME_17_X64     |
+| 21.0.13+2           | JAVA_HOME_21_X64     |
+| 25.0.5+2            | JAVA_HOME_25_X64     |
 
 ### PHP Tools
 - PHP: 8.3.6
@@ -144,13 +144,13 @@ Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
 - Rustfmt 1.11.0
 
 ### Browsers and Drivers
-- Google Chrome 157.0.8103.78
-- ChromeDriver 157.0.8103.78
-- Chromium 157.0.8103.0
-- Microsoft Edge 157.0.4341.60
-- Microsoft Edge WebDriver 157.0.4341.60
-- Selenium server 4.52.0
-- Mozilla Firefox 160.0
+- Google Chrome 158.0.8127.36
+- ChromeDriver 158.0.8127.36
+- Chromium 158.0.8127.0
+- Microsoft Edge 158.0.4370.33
+- Microsoft Edge WebDriver 158.0.4370.33
+- Selenium server 4.53.0
+- Mozilla Firefox 160.0.1
 - Geckodriver 0.37.1
 
 #### Environment variables
@@ -195,6 +195,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 #### Node.js
 - 22.23.5
 - 24.22.3
+- 26.13.1
 
 #### Python
 - 3.11.18
@@ -210,9 +211,9 @@ Use the following command as a part of your job to start the service: 'sudo syst
 
 #### Ruby
 - 3.2.11
-- 3.3.13
-- 3.4.12
-- 4.0.9
+- 3.3.14
+- 3.4.13
+- 4.0.10
 
 ### PowerShell Tools
 - PowerShell 7.6.10
@@ -234,7 +235,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Android Command Line Tools | 12.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | Android SDK Build-tools    | 37.0.0<br>36.0.0 36.1.0<br>35.0.0 35.0.1<br>34.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Android SDK Platform-Tools | 37.0.1                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Android SDK Platform-Tools | 37.0.3                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Android SDK Platforms      | android-37.2-beta3 (rev 3)<br>android-37.2-beta2 (rev 2)<br>android-37.2-beta1 (rev 1)<br>android-37.2 (rev 2)<br>android-37.1 (rev 1)<br>android-37.0 (rev 2)<br>android-36.1 (rev 1)<br>android-36-ext19 (rev 1)<br>android-36-ext18 (rev 1)<br>android-36 (rev 2)<br>android-35-ext15 (rev 1)<br>android-35-ext14 (rev 1)<br>android-35 (rev 2)<br>android-34-ext8 (rev 1)<br>android-34-ext12 (rev 1)<br>android-34-ext11 (rev 1)<br>android-34-ext10 (rev 1)<br>android-34 (rev 3) |
 | Android Support Repository | 47.0.0                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | CMake                      | 3.31.5<br>4.1.2                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
@@ -314,7 +315,7 @@ Use the following command as a part of your job to start the service: 'sudo syst
 | sshpass                | 1.09-1                        |
 | sudo                   | 1.9.15p5-3ubuntu5.24.04.4     |
 | swig                   | 4.2.0-2ubuntu1                |
-| systemd-coredump       | 255.4-1ubuntu8.18             |
+| systemd-coredump       | 255.4-1ubuntu8.19             |
 | tar                    | 1.35+dfsg-3ubuntu0.4          |
 | telnet                 | 0.17+2.5-3ubuntu4.2           |
 | texinfo                | 7.1-3build2                   |
