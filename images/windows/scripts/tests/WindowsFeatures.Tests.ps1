@@ -96,6 +96,20 @@ Describe "Windows Updates" {
     }
 }
 
+Describe "WSL package" -Skip:(Test-IsWin22-X64) {
+    It "WSL reports an installed package version" {
+        $previousEncoding = $env:WSL_UTF8
+        try {
+            $env:WSL_UTF8 = "1"
+            $output = wsl.exe --version | Out-String
+            $LASTEXITCODE | Should -Be 0
+            $output | Should -Match "WSL version:\s+\d+\.\d+\.\d+"
+        } finally {
+            $env:WSL_UTF8 = $previousEncoding
+        }
+    }
+}
+
 Describe "WSL2" -Skip:((Test-IsWin22-X64) -or (Test-IsWin11-Arm64)) {
     It "WSL status should return zero exit code" {
         "wsl --status" | Should -ReturnZeroExitCode
