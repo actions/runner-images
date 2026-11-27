@@ -80,6 +80,30 @@ foreach ($tool in $tools) {
                 if ($toolExecs) {
                     Test-Binaries -Name $tool.name -Version $version -Arch $tool.arch -ToolExecs $toolExecs
                 }
+
+                if ($tool.name -eq "Ruby") {
+                    It "Ruby version matches the requested version" -TestCases $toolInfo {
+                        $rubyPath = Join-Path (Get-TCToolVersionPath -Name $Name -Version $Version -Arch $Arch) "bin\ruby.exe"
+                        $rubyVersion = & $rubyPath -e "print RUBY_VERSION"
+                        $LASTEXITCODE | Should -Be 0
+                        $rubyVersion | Should -BeLike "$Version.*"
+                    }
+
+                    It "Ruby cache has a completion marker" -TestCases $toolInfo {
+                        $rubyCachePath = Get-TCToolVersionPath -Name $Name -Version $Version -Arch $Arch
+                        "$rubyCachePath.complete" | Should -Exist
+                    }
+
+                    if (Test-IsArm64) {
+                        It "Ruby uses the ARM64 cache layout and native binaries" -TestCases $toolInfo {
+                            $Arch | Should -Be "arm64"
+                            $rubyPath = Join-Path (Get-TCToolVersionPath -Name $Name -Version $Version -Arch "arm64") "bin\ruby.exe"
+                            $hostCpu = & $rubyPath -rrbconfig -e "print RbConfig::CONFIG['host_cpu']"
+                            $LASTEXITCODE | Should -Be 0
+                            $hostCpu | Should -Match "^(aarch64|arm64)$"
+                        }
+                    }
+                }
             }
         }
 
