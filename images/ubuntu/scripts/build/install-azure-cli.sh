@@ -39,7 +39,7 @@ echo "Installing azure-cli from the '$dist_code' suite"
 # Install Azure CLI (instructions taken from https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
 curl -fsSL https://aka.ms/InstallAzureCLIDeb | sudo DIST_CODE="$dist_code" bash
 
-# The apt mock swallows apt-get exit codes, so we confirm if the package really landed
+# Confirm the package really landed
 if ! command -v az > /dev/null; then
     echo "Failed to install azure-cli from the '$dist_code' suite: 'az' is not on PATH" >&2
     exit 1
