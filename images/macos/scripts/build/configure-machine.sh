@@ -53,7 +53,7 @@ done
 rm -f ./add-certificate
 
 # enable-automationmode-without-authentication
-brew install expect
+brew_smart_install expect
 retry=10
 while [[ $retry -gt 0 ]]; do
 {
