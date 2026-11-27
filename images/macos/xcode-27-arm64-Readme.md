@@ -1,9 +1,7 @@
 | Announcements |
 |-|
-| [[macOS] Azure DevOps macOS 14 Intel runners extended through November 23, 2026](https://github.com/actions/runner-images/issues/15226) |
 | [[macOS] The default OpenSSL version will be updated from 3 to 4 on macOS 26 and Xcode 27](https://github.com/actions/runner-images/issues/14856) |
 | [[macOS] Xcode 27 is now available as a public preview](https://github.com/actions/runner-images/issues/14404) |
-| [[macOS] macOS 14 Sonoma retirement: GitHub Actions and ADO arm64 on November 2; ADO Intel on November 23](https://github.com/actions/runner-images/issues/13518) |
 ***
 # macOS 27
 - OS Version: macOS 27.0.1 (26A434)

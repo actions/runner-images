@@ -1,12 +1,13 @@
 | Announcements |
 |-|
+| [[Windows] Visual Studio 2027 are now available; Visual Studio 2026 labels begin deprecation in December](https://github.com/actions/runner-images/issues/15373) |
 | [[Windows] D: drive will use ReFS instead of NTFS on Windows images from November 30, 2026](https://github.com/actions/runner-images/issues/15315) |
 | [[Windows 11 Arm64] Actions workspace will move to D: drive on November 30, 2026](https://github.com/actions/runner-images/issues/15314) |
 | [[Ubuntu, macOS, Windows] Go 1.24 will be removed from the tool-cache and the default Go version will be updated to 1.26 starting November 18, 2026](https://github.com/actions/runner-images/issues/15253) |
 ***
 # Windows 11 Enterprise
 - OS Version: 10.0.26200 Build 9974
-- Image Version: 20261115.219.1
+- Image Version: 20261123.225.2
 
 ## Windows features
 
@@ -14,15 +15,15 @@
 
 ### Language and Runtime
 - Bash 5.3.15(2)-release
-- Go 1.24.13
+- Go 1.26.11
 - Julia 1.12.0
 - Kotlin 2.4.21
 - LLVM 22.1.8
 - Node 24.22.3
 - Perl 5.32.1
-- PHP 8.4.27
+- PHP 8.4.28
 - Python 3.13.17
-- Ruby 3.4.12
+- Ruby 3.4.13
 
 ### Package Management
 - Chocolatey 2.7.5
@@ -31,9 +32,9 @@
 - NPM 11.19.1
 - NuGet 8.0.0.137
 - pip 26.3 (python 3.13)
-- Pipx 1.18.16
+- Pipx 1.18.19
 - RubyGems 3.6.9
-- Vcpkg (build from commit 8f363bdc11)
+- Vcpkg (build from commit 277978ad2e)
 - Yarn 1.22.22
 
 #### Environment variables
@@ -50,12 +51,12 @@
 ### Tools
 - 7zip 26.06
 - aria2 1.37.0
-- azcopy 10.34.1
-- Bazel 9.3.2
+- azcopy 10.34.2
+- Bazel 9.3.3
 - Bazelisk 1.28.1
 - Bicep 0.48.1
-- CMake 4.5.0
-- CodeQL Action Bundle 2.27.4
+- CMake 4.5.1
+- CodeQL Action Bundle 2.27.5
 - Git 2.56.1.windows.1
 - Git LFS 3.8.1
 - ImageMagick 7.1.2-25
@@ -70,8 +71,8 @@
 - Newman 6.2.3
 - NSIS 3.10
 - OpenSSL 3.6.5
-- Packer 1.16.0
-- Pulumi 3.275.0
+- Packer 1.16.2
+- Pulumi 3.277.0
 - R 4.6.2 (x86_64, emulated)
 - Stack 3.11.1
 - Swig 4.4.1
@@ -82,13 +83,13 @@
 - Ninja 1.13.2
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.5.3
-- AWS CLI 2.40.3
-- AWS SAM CLI 1.172.1
+- Alibaba Cloud CLI 3.5.4
+- AWS CLI 2.42.1
+- AWS SAM CLI 1.174.0
 - AWS Session Manager CLI 1.2.896.0
-- Azure CLI 2.92.0
-- Azure DevOps CLI extension 1.0.10
-- GitHub CLI 2.104.0
+- Azure CLI 2.93.0
+- Azure DevOps CLI extension 1.0.12
+- GitHub CLI 2.105.0
 
 ### Rust Tools
 - Cargo 1.100.0
@@ -105,14 +106,14 @@
 - Rustfmt 1.11.0
 
 ### Browsers and Drivers
-- Google Chrome 157.0.8103.79
-- Chrome Driver 157.0.8103.78
-- Microsoft Edge 157.0.4341.60
-- Microsoft Edge Driver 157.0.4341.60
-- Mozilla Firefox 160.0
+- Google Chrome 158.0.8127.37
+- Chrome Driver 158.0.8127.36
+- Microsoft Edge 158.0.4370.33
+- Microsoft Edge Driver 158.0.4370.33
+- Mozilla Firefox 160.0.1
 - Gecko Driver 0.37.1
 - IE Driver 4.14.0.0
-- Selenium server 4.52.0
+- Selenium server 4.54.0
 
 #### Environment variables
 | Name              | Value                              |
@@ -148,9 +149,9 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Cached Tools
 
 #### Go
-- 1.24.13
 - 1.25.14
 - 1.26.11
+- 1.27.4
 
 #### Node.js
 - 22.23.5
@@ -163,10 +164,10 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 - 3.15.2
 
 #### Ruby
-- 3.4.12
+- 3.4.13
 
 ### Database tools
-- Azure CosmosDb Emulator 2.14.28.0
+- Azure CosmosDb Emulator 2.14.29.0
 - DacFx 170.4.83.3
 - MySQL 8.4.13.0
 - SQL OLEDB Driver 18 18.7.5.0
@@ -181,7 +182,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 ### Visual Studio Enterprise 2026
 | Name                          | Version         | Path                                                   |
 | ----------------------------- | --------------- | ------------------------------------------------------ |
-| Visual Studio Enterprise 2026 | 18.12.12405.243 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
+| Visual Studio Enterprise 2026 | 18.12.12412.261 | C:\Program Files\Microsoft Visual Studio\18\Enterprise |
 
 #### Workloads, components and extensions
 | Package                                                                   | Version         |
@@ -394,7 +395,7 @@ Note: MSYS2 is pre-installed on image but not added to PATH.
 
 #### Powershell Modules
 - Az: 15.6.1
-- AWSPowershell: 5.0.336
+- AWSPowershell: 5.0.342
 - DockerMsftProvider: 1.0.0.8
 - MarkdownPS: 1.10
 - Microsoft.Graph: 2.41.2
